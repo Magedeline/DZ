@@ -79,7 +79,7 @@ namespace MaggyHelper.Cutscenes
             }
 
             // Avoid global time scaling to prevent perceived freezes
-            this.player.Sprite.Play("roll");
+            PlayPlayerSpriteSafe(this.player, "roll", "idle");
             while (this.player.Speed.X != 0f)
             {
                 this.player.Speed.X = Calc.Approach(this.player.Speed.X, 0f, 120f * Engine.DeltaTime);
@@ -92,7 +92,7 @@ namespace MaggyHelper.Cutscenes
             yield return 0.25f;
             Add(this.zoomRoutine = new Coroutine(level.ZoomTo(new Vector2(160f, 110f), 1.5f, 6f), true));
             yield return 1.5f;
-            this.player.Sprite.Play("rollGetUp");
+            PlayPlayerSpriteSafe(this.player, "rollGetUp", "idle");
             yield return 0.5f;
             this.player.ForceCameraUpdate = false;
             yield return Textbox.Say("CH19_MISS_THE_BIRD", new Func<IEnumerator>[] {
@@ -126,6 +126,17 @@ namespace MaggyHelper.Cutscenes
             yield return 0.2f;
             this.player.Facing = Facings.Left;
             yield return 0.5f;
+        }
+
+        private static void PlayPlayerSpriteSafe(global::Celeste.Player player, string preferredAnim, string fallbackAnim)
+        {
+            if (player?.Sprite == null)
+                return;
+
+            if (player.Sprite.Has(preferredAnim))
+                player.Sprite.Play(preferredAnim);
+            else if (player.Sprite.Has(fallbackAnim))
+                player.Sprite.Play(fallbackAnim);
         }
 
         private IEnumerator TakeStepLeft()

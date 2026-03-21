@@ -71,7 +71,7 @@ namespace MaggyHelper.Cutscenes
             // Avoid global time scaling to prevent perceived freezes
             float ground = this.player.Position.Y;
             this.player.Dashes = 1;
-            this.player.Sprite.Play("roll", false, false);
+            PlayPlayerSpriteSafe(this.player, "roll", "idle");
             this.player.Speed.X = 200f;
             this.player.DummyFriction = false;
             for (float p = 0f; p < 1f; p += Engine.DeltaTime)
@@ -92,7 +92,7 @@ namespace MaggyHelper.Cutscenes
             // No global timescale restore loop; continue with normal time progression
             this.player.ForceCameraUpdate = false;
             yield return 0.6f;
-            this.player.Sprite.Play("rollGetUp", false, false);
+            PlayPlayerSpriteSafe(this.player, "rollGetUp", "idle");
             yield return 0.8f;
             level.Session.Audio.Music.Event = "event:/desolozantas/final_content/music/lvl19/tragiclost";
             level.Session.Audio.Apply(false);
@@ -148,6 +148,17 @@ namespace MaggyHelper.Cutscenes
                 yield return null;
             }
             yield break;
+        }
+
+        private static void PlayPlayerSpriteSafe(global::Celeste.Player player, string preferredAnim, string fallbackAnim)
+        {
+            if (player?.Sprite == null)
+                return;
+
+            if (player.Sprite.Has(preferredAnim))
+                player.Sprite.Play(preferredAnim, false, false);
+            else if (player.Sprite.Has(fallbackAnim))
+                player.Sprite.Play(fallbackAnim, false, false);
         }
 
         private IEnumerator BirdLooksHurt()

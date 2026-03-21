@@ -30,10 +30,10 @@
 
   <heartgem4 path="collectables/Maggy/heartgem/4/" start="idle">
     <Center />
-    <Loop id="idle" path="spin" frames="0" />
-    <Loop id="spin" path="spin" frames="0*10,1-10" delay="0.08"/>
-    <Loop id="fastspin" path="spin" frames="1-10" delay="0.08"/>
-    <Anim id="break" path="spin" frames="11-32" delay="0.07"/>
+    <Loop id="idle" path="" frames="0" />
+    <Loop id="spin" path="" frames="0*10,1-10" delay="0.08"/>
+    <Loop id="fastspin" path="" frames="1-10" delay="0.08"/>
+    <Anim id="break" path="" frames="11-32" delay="0.07"/>
   </heartgem4>
 
   <maggy_save path="save/Maggy/saveIcon" start="start">

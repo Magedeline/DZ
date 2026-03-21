@@ -31,12 +31,14 @@ namespace Celeste.Mod.MaggyHelper
 
         public override void Load()
         {
-            // TODO: apply any hooks that should always be active
+            global::MaggyHelper.AreaModeExtender.Load();
+            global::MaggyHelper.MonoModHooks.Load();
         }
 
         public override void Unload()
         {
-            // TODO: unapply any hooks applied in Load()
+            global::MaggyHelper.MonoModHooks.Unload();
+            global::MaggyHelper.AreaModeExtender.Unload();
         }
     }
 }

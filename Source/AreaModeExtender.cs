@@ -479,7 +479,7 @@ public static class AreaModeExtender
             Logger.Log(LogLevel.Warn, "MaggyHelper",
                 $"Session ctor failed for {area} with provided stats ({firstEx.GetType().Name}); trying regenerated AreaStats.");
 
-            object regenerated = EnsureSafeAreaStats(area, null);
+            object regenerated = CreateFreshAreaStats(area);
             if (regenerated != null && !ReferenceEquals(regenerated, stats) && !ReferenceEquals(regenerated, oldStats))
             {
                 try
@@ -508,6 +508,7 @@ public static class AreaModeExtender
     private static object EnsureSafeAreaStats(AreaKey area, object oldStats)
     {
         object stats = oldStats;
+        bool createdFallback = false;
 
         if (stats == null)
         {
@@ -517,7 +518,10 @@ public static class AreaModeExtender
         }
 
         if (stats == null)
+        {
             stats = CreateFallbackAreaStats(area);
+            createdFallback = stats != null;
+        }
 
         if (stats == null)
             return null;
@@ -533,6 +537,31 @@ public static class AreaModeExtender
 
         int requiredModes = Math.Max((int) area.Mode + 1, Math.Max(areaModeCount, 3));
         EnsureAreaModeStatsArray(stats, requiredModes, allowShrink: areaModeCount > 0);
+
+        if (createdFallback)
+            TryStoreSaveAreaStats(area, stats);
+
+        return stats;
+    }
+
+    private static object CreateFreshAreaStats(AreaKey area)
+    {
+        object stats = CreateFallbackAreaStats(area);
+        if (stats == null)
+            return null;
+
+        int areaModeCount = 0;
+        try
+        {
+            areaModeCount = AreaData.Get(area)?.Mode?.Length ?? 0;
+        }
+        catch
+        {
+        }
+
+        int requiredModes = Math.Max((int) area.Mode + 1, Math.Max(areaModeCount, 3));
+        EnsureAreaModeStatsArray(stats, requiredModes, allowShrink: areaModeCount > 0);
+        TryStoreSaveAreaStats(area, stats);
         return stats;
     }
 
@@ -865,6 +894,20 @@ public static class AreaModeExtender
     internal static object TryGetSaveAreaStats(AreaKey area)
     {
         return TryGetSaveAreaStats(area.ID);
+    }
+
+    private static bool TryStoreSaveAreaStats(AreaKey area, object stats)
+    {
+        SaveData save = SaveData.Instance;
+        IList areas = save?.Areas_Safe;
+        if (areas == null || area.ID < 0)
+            return false;
+
+        while (areas.Count <= area.ID)
+            areas.Add(null);
+
+        areas[area.ID] = stats;
+        return true;
     }
 
     internal static int GetSaveAreaModeCount(int areaId)

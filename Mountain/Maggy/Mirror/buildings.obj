@@ -1,0 +1,6 @@
+# Desolo Zantas - Empty buildings placeholder
+# Buildings geometry is baked into the custom mountain.obj
+v -0.000000 0.0 0.0
+v -0.001000 0.0 0.0
+v -0.000000 0.001 0.0
+f 3 2 1

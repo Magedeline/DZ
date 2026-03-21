@@ -1,0 +1,84 @@
+<Sprites>
+    <Sprite id="kirby_player" texture="characters/kirby/player">
+        <!-- Basic Movement -->
+        <Anim id="idle" path="idle" delay="0.2" loop="true" />
+        <Anim id="walk" path="walk" delay="0.08" loop="true" />
+        <Anim id="run" path="run" delay="0.06" loop="true" />
+        <Anim id="runSlow" path="run" delay="0.08" loop="true" />
+        <Anim id="runFast" path="run" delay="0.05" loop="true" />
+        <Anim id="jump" path="jump" delay="0.1" loop="false" />
+        <Anim id="jumpFast" path="jump" delay="0.08" loop="false" />
+        <Anim id="jumpSlow" path="jump" delay="0.12" loop="false" />
+        <Anim id="fall" path="fall" delay="0.1" loop="true" />
+        <Anim id="dash" path="dash" delay="0.04" loop="false" />
+        <Anim id="duck" path="duck" delay="0.15" loop="true" />
+        <Anim id="slide" path="slide" delay="0.04" loop="false" />
+        
+        <!-- Climbing -->
+        <Anim id="climbUp" path="climb" delay="0.08" loop="true" />
+        <Anim id="climbDown" path="climb" delay="0.08" loop="true" />
+        <Anim id="wallslide" path="wallslide" delay="0.1" loop="true" />
+
+        <!-- Kirby Abilities -->
+        <Anim id="inhale" path="inhale" delay="0.1" loop="true" />
+        <Anim id="exhale" path="exhale" delay="0.08" loop="false" />
+        <Anim id="float" path="float" delay="0.2" loop="true" />
+        <Anim id="attack" path="attack" delay="0.06" loop="false" />
+        <Anim id="parry" path="parry" delay="0.05" loop="false" />
+        <Anim id="hurt" path="hurt" delay="0.08" loop="false" />
+        <Anim id="land" path="land" delay="0.06" loop="false" />
+        <Anim id="crouch" path="crouch" delay="0.1" loop="true" />
+        
+        <!-- Dream Dash -->
+        <Anim id="dreamDashIn" path="dreamdash_in" delay="0.06" loop="false" />
+        <Anim id="dreamDashLoop" path="dreamdash_loop" delay="0.08" loop="true" />
+        <Anim id="dreamDashOut" path="dreamdash_out" delay="0.06" loop="false" />
+
+        <!-- Fire Power -->
+        <Anim id="fire_idle" path="powers/fire/idle" delay="0.15" loop="true" />
+        <Anim id="fire_walk" path="powers/fire/walk" delay="0.08" loop="true" />
+        <Anim id="fire_attack" path="powers/fire/attack" delay="0.04" loop="false" />
+
+        <!-- Ice Power -->
+        <Anim id="ice_idle" path="powers/ice/idle" delay="0.15" loop="true" />
+        <Anim id="ice_walk" path="powers/ice/walk" delay="0.08" loop="true" />
+        <Anim id="ice_attack" path="powers/ice/attack" delay="0.06" loop="false" />
+
+        <!-- Spark Power -->
+        <Anim id="spark_idle" path="powers/spark/idle" delay="0.12" loop="true" />
+        <Anim id="spark_walk" path="powers/spark/walk" delay="0.08" loop="true" />
+        <Anim id="spark_attack" path="powers/spark/attack" delay="0.03" loop="false" />
+
+        <!-- Stone Power -->
+        <Anim id="stone_idle" path="powers/stone/idle" delay="0.2" loop="true" />
+        <Anim id="stone_walk" path="powers/stone/walk" delay="0.1" loop="true" />
+        <Anim id="stone_attack" path="powers/stone/crush" delay="0.08" loop="false" />
+        <Anim id="stone_transform" path="powers/stone/transform" delay="0.05" loop="false" />
+        <Anim id="stone_form" path="powers/stone/form" delay="0.3" loop="true" />
+
+        <!-- Sword Power -->
+        <Anim id="sword_idle" path="powers/sword/idle" delay="0.15" loop="true" />
+        <Anim id="sword_walk" path="powers/sword/walk" delay="0.08" loop="true" />
+        <Anim id="sword_attack" path="powers/sword/attack" delay="0.04" loop="false" />
+        
+        <!-- Beam Power -->
+        <Anim id="beam_idle" path="powers/beam/idle" delay="0.12" loop="true" />
+        <Anim id="beam_walk" path="powers/beam/walk" delay="0.08" loop="true" />
+        <Anim id="beam_attack" path="powers/beam/attack" delay="0.04" loop="false" />
+        
+        <!-- Cutter Power -->
+        <Anim id="cutter_idle" path="powers/cutter/idle" delay="0.15" loop="true" />
+        <Anim id="cutter_walk" path="powers/cutter/walk" delay="0.08" loop="true" />
+        <Anim id="cutter_attack" path="powers/cutter/throw" delay="0.05" loop="false" />
+        
+        <!-- Hammer Power -->
+        <Anim id="hammer_idle" path="powers/hammer/idle" delay="0.15" loop="true" />
+        <Anim id="hammer_walk" path="powers/hammer/walk" delay="0.1" loop="true" />
+        <Anim id="hammer_attack" path="powers/hammer/attack" delay="0.06" loop="false" />
+        
+        <!-- Wing Power -->
+        <Anim id="wing_idle" path="powers/wing/idle" delay="0.15" loop="true" />
+        <Anim id="wing_fly" path="powers/wing/fly" delay="0.08" loop="true" />
+        <Anim id="wing_attack" path="powers/wing/attack" delay="0.05" loop="false" />
+    </Sprite>
+</Sprites>

@@ -1,0 +1,8 @@
+﻿schema: maggyhelper-map-meta-v1
+sid: Maggy/Main/01_City_A
+baseKey: 01_City
+side: A
+modeIndex: 0
+isMainChapterEntry: true
+mainChapterSid: Maggy/Main/01_City_A
+showInChapterSelect: true

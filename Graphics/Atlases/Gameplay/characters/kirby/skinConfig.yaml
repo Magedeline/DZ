@@ -1,0 +1,44 @@
+skinName: "Kirby"
+spritePath: "Kirby/Kirby"
+playerSkin: true
+
+hair:
+  enabled: true
+  type: "scarf"
+  count: 4
+  colors:
+    normal: "#AC3232"
+    used: "#44B7FF"
+    twoDashes: "#ff6def"
+    flash: "#FFFFFF"
+
+dashColors:
+  - dashes: 0
+    color: "#44B7FF"
+  - dashes: 1
+    color: "#AC3232"
+  - dashes: 2
+    color: "#ff6def"
+  - dashes: 3
+    color: "#FFA500"
+  - dashes: 4
+    color: "#ADD8E6"
+  - dashes: 5
+    color: "#800080"
+
+effects:
+  - name: "sparkle"
+    trigger: "dash"
+    color: "#FFB7C5"
+  - name: "puff"
+    trigger: "jump"
+    color: "#FFFFFF"
+
+animations:
+  idle: "idle"
+  walk: "runSlow"
+  run: "runFast"
+  jump: "jumpSlow"
+  dash: "dash"
+  climb: "climbUp"
+  fall: "fallSlow"

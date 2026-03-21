@@ -1,0 +1,8 @@
+﻿schema: maggyhelper-map-meta-v1
+sid: Maggy/Main/20_TheEnd
+baseKey: 20_TheEnd
+side: A
+modeIndex: 0
+isMainChapterEntry: true
+mainChapterSid: Maggy/Main/20_TheEnd
+showInChapterSelect: true

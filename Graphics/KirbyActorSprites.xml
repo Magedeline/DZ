@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Kirby Actor System Sprite Definitions -->
+<!-- Place sprite images in Graphics/Atlases/Gameplay/ with these paths -->
+<Sprites>
+  <!-- ================================================================ -->
+  <!--                    KIRBY SMALL ENEMIES                          -->
+  <!-- ================================================================ -->
+  <!-- Waddle Dee - Basic enemy, no power -->
+  <waddle_dee path="enemies/kirby/waddle_dee/" start="idle">
+    <Origin x="8" y="16" />
+    <Loop id="idle" path="idle" delay="0.15" />
+    <Anim id="walk" path="walk" delay="0.1" goto="walk" />
+    <Anim id="attack" path="attack" delay="0.08" goto="idle" />
+    <Anim id="hurt" path="hurt" delay="0.1" goto="idle" />
+  </waddle_dee>
+  <!-- Waddle Doo - Beam power -->
+  <waddle_doo path="enemies/kirby/waddle_doo/" start="idle">
+    <Origin x="8" y="16" />
+    <Loop id="idle" path="idle" delay="0.15" />
+    <Anim id="walk" path="walk" delay="0.1" goto="walk" />
+    <Anim id="attack" path="attack" delay="0.08" goto="idle" />
+    <Anim id="hurt" path="hurt" delay="0.1" goto="idle" />
+  </waddle_doo>
+  <!-- Hot Head - Fire power -->
+  <hot_head path="enemies/kirby/hot_head/" start="idle">
+    <Origin x="8" y="16" />
+    <Loop id="idle" path="idle" delay="0.15" />
+    <Anim id="walk" path="walk" delay="0.1" goto="walk" />
+    <Anim id="attack" path="attack" delay="0.06" goto="idle" />
+    <Anim id="hurt" path="hurt" delay="0.1" goto="idle" />
+  </hot_head>
+  <!-- Chilly - Ice power -->
+  <chilly path="enemies/kirby/chilly/" start="idle">
+    <Origin x="8" y="16" />
+    <Loop id="idle" path="idle" delay="0.15" />
+    <Anim id="walk" path="walk" delay="0.12" goto="walk" />
+    <Anim id="attack" path="attack" delay="0.08" goto="idle" />
+    <Anim id="hurt" path="hurt" delay="0.1" goto="idle" />
+  </chilly>
+  <!-- Sparky - Spark power -->
+  <sparky path="enemies/kirby/sparky/" start="idle">
+    <Origin x="8" y="16" />
+    <Loop id="idle" path="idle" delay="0.12" />
+    <Anim id="walk" path="walk" delay="0.08" goto="walk" />
+    <Anim id="attack" path="attack" delay="0.05" goto="idle" />
+    <Anim id="hurt" path="hurt" delay="0.1" goto="idle" />
+  </sparky>
+  <!-- Rocky - Stone power -->
+  <rocky path="enemies/kirby/rocky/" start="idle">
+    <Origin x="8" y="16" />
+    <Loop id="idle" path="idle" delay="0.2" />
+    <Anim id="walk" path="walk" delay="0.12" goto="walk" />
+    <Anim id="attack" path="attack" delay="0.1" goto="idle" />
+    <Anim id="hurt" path="hurt" delay="0.1" goto="idle" />
+  </rocky>
+  <!-- Sir Kibble - Cutter power -->
+  <sir_kibble path="enemies/kirby/sir_kibble/" start="idle">
+    <Origin x="8" y="16" />
+    <Loop id="idle" path="idle" delay="0.15" />
+    <Anim id="walk" path="walk" delay="0.1" goto="walk" />
+    <Anim id="attack" path="attack" delay="0.06" goto="idle" />
+    <Anim id="hurt" path="hurt" delay="0.1" goto="idle" />
+  </sir_kibble>
+  <!-- Poppy - Bomb power -->
+  <poppy path="enemies/kirby/poppy/" start="idle">
+    <Origin x="8" y="16" />
+    <Loop id="idle" path="idle" delay="0.15" />
+    <Anim id="walk" path="walk" delay="0.1" goto="walk" />
+    <Anim id="attack" path="attack" delay="0.08" goto="idle" />
+    <Anim id="hurt" path="hurt" delay="0.1" goto="idle" />
+  </poppy>
+  <!-- Wheelie - Wheel power -->
+  <wheelie path="enemies/kirby/wheelie/" start="idle">
+    <Origin x="12" y="16" />
+    <Loop id="idle" path="idle" delay="0.15" />
+    <Anim id="walk" path="walk" delay="0.06" goto="walk" />
+    <Anim id="attack" path="attack" delay="0.04" goto="idle" />
+    <Anim id="hurt" path="hurt" delay="0.1" goto="idle" />
+  </wheelie>
+  <!-- Needlous - Needle power -->
+  <needlous path="enemies/kirby/needlous/" start="idle">
+    <Origin x="8" y="16" />
+    <Loop id="idle" path="idle" delay="0.15" />
+    <Anim id="walk" path="walk" delay="0.1" goto="walk" />
+    <Anim id="attack" path="attack" delay="0.08" goto="idle" />
+    <Anim id="hurt" path="hurt" delay="0.1" goto="idle" />
+  </needlous>
+  <!-- Simirror - Mirror power -->
+  <simirror path="enemies/kirby/simirror/" start="idle">
+    <Origin x="8" y="16" />
+    <Loop id="idle" path="idle" delay="0.15" />
+    <Anim id="walk" path="walk" delay="0.1" goto="walk" />
+    <Anim id="attack" path="attack" delay="0.06" goto="idle" />
+    <Anim id="hurt" path="hurt" delay="0.1" goto="idle" />
+  </simirror>
+  <!-- Scarfy - Transforms when attacked -->
+  <scarfy path="enemies/kirby/scarfy/" start="idle">
+    <Origin x="8" y="12" />
+    <Loop id="idle" path="idle" delay="0.15" />
+    <Anim id="walk" path="walk" delay="0.1" goto="walk" />
+    <Anim id="attack" path="attack" delay="0.05" goto="attack" />
+    <Anim id="hurt" path="hurt" delay="0.1" goto="idle" />
+  </scarfy>
+  <!-- Gordo - Invincible spiky enemy -->
+  <gordo path="enemies/kirby/gordo/" start="idle">
+    <Origin x="12" y="12" />
+    <Loop id="idle" path="idle" delay="0.2" />
+  </gordo>
+  <!-- ================================================================ -->
+  <!--                      KIRBY NPCs                                 -->
+  <!-- ================================================================ -->
+  <bandana_dee path="characters/kirby/bandana_dee/" start="idle">
+    <Origin x="8" y="16" />
+    <Loop id="idle" path="idle" delay="0.15" />
+    <Anim id="walk" path="walk" delay="0.1" goto="walk" />
+    <Anim id="talk" path="talk" delay="0.12" goto="talk" />
+    <Anim id="happy" path="happy" delay="0.1" goto="happy" />
+  </bandana_dee>
+  <king_dedede path="characters/kirby/king_dedede/" start="idle">
+    <Origin x="16" y="40" />
+    <Loop id="idle" path="idle" delay="0.15" />
+    <Anim id="walk" path="walk" delay="0.1" goto="walk" />
+    <Anim id="talk" path="talk" delay="0.12" goto="talk" />
+    <Anim id="happy" path="happy" delay="0.1" goto="happy" />
+  </king_dedede>
+  <meta_knight_npc path="characters/kirby/meta_knight/" start="idle">
+    <Origin x="8" y="16" />
+    <Loop id="idle" path="idle" delay="0.15" />
+    <Anim id="walk" path="walk" delay="0.08" goto="walk" />
+    <Anim id="talk" path="talk" delay="0.12" goto="talk" />
+    <Anim id="happy" path="happy" delay="0.1" goto="happy" />
+  </meta_knight_npc>
+  <magolor_npc path="characters/kirby/magolor/" start="idle">
+    <Origin x="8" y="16" />
+    <Loop id="idle" path="idle" delay="0.15" />
+    <Anim id="walk" path="walk" delay="0.1" goto="walk" />
+    <Anim id="talk" path="talk" delay="0.12" goto="talk" />
+    <Anim id="happy" path="happy" delay="0.1" goto="happy" />
+  </magolor_npc>
+  <gooey path="characters/kirby/gooey/" start="idle">
+    <Origin x="8" y="16" />
+    <Loop id="idle" path="idle" delay="0.2" />
+    <Anim id="walk" path="walk" delay="0.12" goto="walk" />
+    <Anim id="talk" path="talk" delay="0.15" goto="talk" />
+  </gooey>
+  <!-- ================================================================ -->
+  <!--                     MID BOSSES                                  -->
+  <!-- ================================================================ -->
+  <whispy_woods path="bosses/kirby/whispy_woods/" start="idle">
+    <Origin x="32" y="96" />
+    <Loop id="idle" path="idle" delay="0.2" />
+    <Anim id="attack" path="attack" delay="0.15" goto="idle" />
+    <Anim id="hurt" path="hurt" delay="0.1" goto="idle" />
+    <Loop id="defeated" path="defeated" delay="0.2" />
+  </whispy_woods>
+  <kracko path="bosses/kirby/kracko/" start="idle">
+    <Origin x="24" y="16" />
+    <Loop id="idle" path="idle" delay="0.15" />
+    <Anim id="attack" path="attack" delay="0.08" goto="idle" />
+    <Anim id="hurt" path="hurt" delay="0.1" goto="idle" />
+    <Loop id="defeated" path="defeated" delay="0.2" />
+  </kracko>
+  <mr_frosty path="bosses/kirby/mr_frosty/" start="idle">
+    <Origin x="16" y="32" />
+    <Loop id="idle" path="idle" delay="0.15" />
+    <Anim id="attack" path="attack" delay="0.1" goto="idle" />
+    <Anim id="hurt" path="hurt" delay="0.1" goto="idle" />
+    <Loop id="defeated" path="defeated" delay="0.2" />
+  </mr_frosty>
+  <bonkers path="bosses/kirby/bonkers/" start="idle">
+    <Origin x="16" y="40" />
+    <Loop id="idle" path="idle" delay="0.15" />
+    <Anim id="attack" path="attack" delay="0.1" goto="idle" />
+    <Anim id="hurt" path="hurt" delay="0.1" goto="idle" />
+    <Loop id="defeated" path="defeated" delay="0.2" />
+  </bonkers>
+  <!-- ================================================================ -->
+  <!--                    FOOD ITEMS                                   -->
+  <!-- ================================================================ -->
+  <food_apple path="items/kirby/food/apple/" start="idle">
+    <Origin x="8" y="8" />
+    <Loop id="idle" path="idle" delay="0.2" />
+    <Anim id="shine" path="shine" delay="0.1" goto="idle" />
+  </food_apple>
+  <food_maxtomato path="items/kirby/food/maxtomato/" start="idle">
+    <Origin x="8" y="8" />
+    <Loop id="idle" path="idle" delay="0.15" />
+    <Anim id="shine" path="shine" delay="0.08" goto="shine" />
+  </food_maxtomato>
+  <invincibility_star path="items/kirby/star/" start="shine">
+    <Origin x="8" y="8" />
+    <Loop id="idle" path="idle" delay="0.1" />
+    <Loop id="shine" path="shine" delay="0.08" />
+  </invincibility_star>
+  <oneup path="items/kirby/oneup/" start="shine">
+    <Origin x="8" y="8" />
+    <Loop id="idle" path="idle" delay="0.15" />
+    <Loop id="shine" path="shine" delay="0.1" />
+  </oneup>
+  <!-- ================================================================ -->
+  <!--                   PROJECTILES                                   -->
+  <!-- ================================================================ -->
+  <projectile_star path="projectiles/kirby/star/" start="idle">
+    <Origin x="4" y="4" />
+    <Loop id="idle" path="idle" delay="0.1" />
+  </projectile_star>
+  <projectile_beam path="projectiles/kirby/beam/" start="idle">
+    <Origin x="8" y="2" />
+    <Loop id="idle" path="idle" delay="0.08" />
+  </projectile_beam>
+  <projectile_fire path="projectiles/kirby/fire/" start="idle">
+    <Origin x="4" y="4" />
+    <Loop id="idle" path="idle" delay="0.06" />
+  </projectile_fire>
+  <projectile_ice path="projectiles/kirby/ice/" start="idle">
+    <Origin x="6" y="6" />
+    <Loop id="idle" path="idle" delay="0.1" />
+  </projectile_ice>
+  <projectile_lightning path="projectiles/kirby/lightning/" start="idle">
+    <Origin x="2" y="16" />
+    <Loop id="idle" path="idle" delay="0.05" />
+  </projectile_lightning>
+  <projectile_cutter path="projectiles/kirby/cutter/" start="idle">
+    <Origin x="4" y="4" />
+    <Loop id="idle" path="idle" delay="0.08" />
+  </projectile_cutter>
+  <projectile_bomb path="projectiles/kirby/bomb/" start="idle">
+    <Origin x="4" y="4" />
+    <Loop id="idle" path="idle" delay="0.15" />
+  </projectile_bomb>
+</Sprites>

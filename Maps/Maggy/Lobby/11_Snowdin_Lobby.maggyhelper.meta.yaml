@@ -1,0 +1,27 @@
+schema: maggyhelper-map-meta-v1
+sid: Maggy/Lobby/11_Snowdin_Lobby
+baseKey: 11_Snowdin_Lobby
+side: Lobby
+modeIndex: 99
+isMainChapterEntry: false
+mainChapterSid: Maggy/Main/11_Snow_A
+showInChapterSelect: false
+lobbyFor: 11
+startRoom: lvl_lobby_hub
+# ── Snowdin City Layout ────────────────────────────────────────────────────
+# The lobby is a wide horizontal map styled as a snowy Snowdin street.
+# Key landmarks:
+#   - Grillby's Bar & Grill (left side, warm interior glow)
+#   - Undyne's Safehouse    (centre-left, fortified door with spear motifs)
+#   - Brother Bones' Home   (centre-right, cosy with scarf + sock decorations)
+#   - Froggit frozen pond   (right side, ambient wildlife)
+#   - Portal row            (right end, 8 doors for SM1-SM6 / EX / Boss)
+submapSids:
+  sm1:  Maggy/SmallMaps/11_Snow_SM1
+  sm2:  Maggy/SmallMaps/11_Snow_SM2
+  sm3:  Maggy/SmallMaps/11_Snow_SM3
+  sm4:  Maggy/SmallMaps/11_Snow_SM4
+  sm5:  Maggy/SmallMaps/11_Snow_SM5
+  sm6:  Maggy/SmallMaps/11_Snow_SM6
+  ex:   Maggy/SmallMaps/11_Snow_EX
+  boss: Maggy/SmallMaps/11_Snow_Boss

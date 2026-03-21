@@ -1,0 +1,12 @@
+# Blender 4.1.1 MTL File: 'DesoloZantas_Mountain_Final.blend'
+# www.blender.org
+
+newmtl DZ_MoonGlow
+Ns 640.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.950000 0.880000 0.650000
+Ks 0.500000 0.500000 0.500000
+Ke 2.500000 2.375000 2.000000
+Ni 1.500000
+d 1.000000
+illum 2

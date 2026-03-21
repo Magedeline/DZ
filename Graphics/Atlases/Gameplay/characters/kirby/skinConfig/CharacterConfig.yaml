@@ -1,0 +1,38 @@
+# Text after a # symbol is a comment which gets ignored when the file is read.
+
+SilhouetteMode: false           # If enabled, the player will be tinted to the hair color.
+HairLength: 4
+HairType: "scarf"
+PlayerSkinCompatible: true
+LowStaminaFlashColor: "FF0000"  # Specifies the color that the player will flash when their stamina is below 20.
+LowStaminaFlashHair: false      # If enabled, low stamina flash will color the hair in addition to the player.
+# DeathParticleColor: "FFFFFF"  # Uncomment to take effect. Changes the color of the 8 particles that flash when you die. Normally they're colored to your skins hair color.
+
+
+# Smh+ allows you to add more idle animations.
+
+# These are the idle animations when a map has no core mode or the core mod is set to cold.
+IdleColdOptions:
+- A, 3          # First the identifier, then the weight of the probability
+- B, 5          # This corresponds to <Anim id="idleB" ... />
+- C, 1          # This corresponds to <Anim id="idleC" ... />
+
+# Uncomment these two lines to enable the custom idle animations defined inside the Sprites.xml.
+# - D, 1        # You can add more animations like this. This corresponds to <Anim id="idleD" ... />
+# - Sit, 1      # The identifier doesn't have to be a single letter. This corresponds to <Anim id="idleSit" ... />
+
+# These are the idle animations when the core mode is set to hot.
+IdleWarmOptions:
+- A, 3
+- B, 5
+- C, 1
+
+# In the default scenario the total weights are 3+5+1=9, so the probabilities of each option are:
+# A: 3/9
+# B: 5/9
+# C: 1/9
+
+
+# The chance for an idle animation to play every time the idle animation loop finishes.
+# The default value is 0.2=20%. This template makes it a lower 5% because vanilla 20% plays idle animations basically constantly.
+IdleAnimationChance: 0.05

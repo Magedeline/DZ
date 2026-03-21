@@ -1,0 +1,13 @@
+schema: maggyhelper-map-meta-v1
+sid: Maggy/SmallMaps/10_Ruins_EX
+baseKey: 10_Ruins_EX
+side: EX
+modeIndex: 7
+isMainChapterEntry: false
+mainChapterSid: Maggy/Main/10_Ruins_A
+showInChapterSelect: false
+lobbySid: Maggy/Lobby/10_Ruins_Lobby
+chapterNumber: 10
+mapType: ex
+startRoom: lvl_ex_start
+unlockRequirement: complete_all_sm

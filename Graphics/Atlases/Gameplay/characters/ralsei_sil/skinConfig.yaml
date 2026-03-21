@@ -1,0 +1,25 @@
+skinName: "Ralsei (Silhouette)"
+spritePath: "Ralsei/RalseiSil"
+
+hair:
+  enabled: true
+  color: "#A9A9A9"
+  style: "shadow"
+
+effects:
+  - name: "shadow_step"
+    trigger: "dash"
+    color: "#2F2F2F"
+  - name: "veil"
+    trigger: "jump"
+    color: "#3F3F3F"
+
+animations:
+  idle: "idle"
+  walk: "runSlow"
+  run: "runFast"
+  jump: "jumpSlow"
+  dash: "dashAttack"
+  climb: "climbUp"
+  fall: "fallSlow"
+

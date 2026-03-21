@@ -1,0 +1,22 @@
+# Desolo Zantas — Alt Mirror Wall Materials
+# Inversion of the original wall: faint red veining in the void rock.
+
+newmtl DZ_VoidRock
+Ns 90.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.015000 0.020000 0.040000
+Ks 0.500000 0.500000 0.500000
+Ke 0.005000 0.000000 0.010000
+Ni 1.500000
+d 1.000000
+illum 2
+
+newmtl DZ_WallDark
+Ns 90.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.050000 0.025000 0.030000
+Ks 0.500000 0.500000 0.500000
+Ke 0.010000 0.000000 0.005000
+Ni 1.500000
+d 1.000000
+illum 2

@@ -1,0 +1,74 @@
+- DLL: Code/net8.0/MaggyHelper.dll
+  Name: MaggyHelper
+  Version: 3.0.0
+  Dependencies:
+    - Name: AdventureHelper
+      Version: 1.6.0
+    - Name: Anonhelper
+      Version: 1.1.1
+    - Name: AxoHelper
+      Version: 1.0.0
+    - Name: BounceHelper
+      Version: 1.14.0
+    - Name: BrokemiaHelper
+      Version: 1.8.5
+    - Name: CherryHelper
+      Version: 1.8.2
+    - Name: ChroniaHelper
+      Version: 1.47.49
+    - Name: CommunalHelper
+      Version: 1.24.5
+    - Name: ContortHelper
+      Version: 1.5.5
+    - Name: CrystallineHelper
+      Version: 1.17.1
+    - Name: DJMapHelper
+      Version: 1.13.4
+    - Name: DoonvHelper
+      Version: 1.0.3
+    - Name: EeveeHelper
+      Version: 1.12.3
+    - Name: ExtendedVariantMode
+      Version: 0.48.1
+    - Name: FemtoHelper
+      Version: 1.15.10
+    - Name: FlaglinesAndSuch
+      Version: 1.6.65
+    - Name: FrostHelper
+      Version: 1.77.1
+    - Name: HonlyHelper
+      Version: 1.7.5
+    - Name: JackalHelper
+      Version: 1.7.6
+    - Name: JungleHelper
+      Version: 1.4.7
+    - Name: KirbyBoi_Skinmod_UnPseduo_and_Maggy
+      Version: 1.0.0
+    - Name: LoennScripts
+      Version: 1.0.8
+    - Name: LuaCutscenes
+      Version: 0.2.13
+    - Name: LunaticHelper
+      Version: 1.1.1
+    - Name: MaggyHelperAudio
+      Version: 1.0.0
+    - Name: MaxHelpingHand
+      Version: 1.39.18
+    - Name: ModderToolkit
+      Version: 0.1.1
+    - Name: MoreDasheline
+      Version: 1.7.1
+    - Name: NerdHelper
+      Version: 1.6.3
+    - Name: ReverseHelper
+      Version: 1.15.20
+    - Name: SkinModHelper
+      Version: 0.6.1
+    - Name: SkinModHelperPlus
+      Version: 0.17.7
+    - Name: SorbetHelper
+      Version: 1.8.3
+    - Name: VidPlayer
+      Version: 0.5.2
+    - Name: VivHelper
+      Version: 1.14.10

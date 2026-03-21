@@ -1,0 +1,22 @@
+# Desolo Zantas — Alt Mirror Moon Materials
+# Mirror moon: blood-red glow corona, deeper void core.
+
+newmtl DZ_MoonGlow
+Ns 90.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.900000 0.200000 0.200000
+Ks 0.500000 0.500000 0.500000
+Ke 0.800000 0.150000 0.150000
+Ni 1.500000
+d 1.000000
+illum 2
+
+newmtl DZ_MoonVoid
+Ns 90.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.020000 0.005000 0.010000
+Ks 0.500000 0.500000 0.500000
+Ke 0.010000 0.000000 0.005000
+Ni 1.500000
+d 1.000000
+illum 2

@@ -1,0 +1,32 @@
+# King Dedede Skin Configuration for SkinModHelperPlus
+
+skinName: "King Dedede"
+spritePath: "characters/dedede/"
+
+# Hair configuration specific to King Dedede
+hair:
+  enabled: false  # Dedede doesn't have hair, but has his robe
+  
+# Special effects
+effects:
+  - name: "royal_sparkle"
+    trigger: "dash"
+    color: "#FFD700"
+  - name: "hammer_swing"
+    trigger: "jump"
+    color: "#8B4513"
+
+# Animation overrides
+animations:
+  idle: "idle"
+  walk: "runSlow"
+  run: "runFast" 
+  jump: "jumpSlow"
+  dash: "dashAttack"
+  climb: "climbUp"
+  fall: "fallSlow"
+
+# Special properties
+properties:
+  showCrown: true
+  hammerEffects: true

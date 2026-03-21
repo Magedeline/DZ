@@ -1,0 +1,13 @@
+schema: maggyhelper-map-meta-v1
+sid: Maggy/SmallMaps/10_Ruins_Boss
+baseKey: 10_Ruins_Boss
+side: Boss
+modeIndex: 8
+isMainChapterEntry: false
+mainChapterSid: Maggy/Main/10_Ruins_A
+showInChapterSelect: false
+lobbySid: Maggy/Lobby/10_Ruins_Lobby
+chapterNumber: 10
+mapType: boss
+startRoom: lvl_boss_arena
+unlockRequirement: complete_any_sm

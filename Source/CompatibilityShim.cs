@@ -1,0 +1,487 @@
+using System.Collections;
+using System.Reflection;
+using System.Runtime.CompilerServices;
+
+namespace MaggyHelper.Utils
+{
+    public static class Util
+    {
+        public static Rectangle Rectangle(Vector2 from, Vector2 to)
+        {
+            int left = (int)Math.Min(from.X, to.X);
+            int top = (int)Math.Min(from.Y, to.Y);
+            int right = (int)Math.Max(from.X, to.X);
+            int bottom = (int)Math.Max(from.Y, to.Y);
+            return new Rectangle(left, top, right - left, bottom - top);
+        }
+
+        public static float Mod(float value, float modulo)
+        {
+            if (modulo == 0f)
+            {
+                return 0f;
+            }
+
+            float result = value % modulo;
+            return result < 0f ? result + modulo : result;
+        }
+
+        public static Vector2 Min(Vector2 a, Vector2 b)
+        {
+            return new Vector2(Math.Min(a.X, b.X), Math.Min(a.Y, b.Y));
+        }
+
+        public static Vector2 Max(Vector2 a, Vector2 b)
+        {
+            return new Vector2(Math.Max(a.X, b.X), Math.Max(a.Y, b.Y));
+        }
+    }
+}
+
+namespace MaggyHelper
+{
+    public static class ShapeRenderer
+    {
+        public static void DrawCircleOutline(Vector2 center, float radius, Color color, float thickness = 1f, int segments = 12)
+        {
+            segments = Math.Max(3, segments);
+            Vector2 previous = center + Calc.AngleToVector(0f, radius);
+
+            for (int i = 1; i <= segments; i++)
+            {
+                float angle = i / (float)segments * MathHelper.TwoPi;
+                Vector2 current = center + Calc.AngleToVector(angle, radius);
+                Draw.Line(previous, current, color, thickness);
+                previous = current;
+            }
+        }
+
+        public static void DrawTrail(Vector2 position, Vector2 direction, Color color,
+            int count = 3, float spacing = 8f, float startRadius = 4f, float radiusShrink = 1f,
+            float alphaFade = 0.15f, int segments = 12)
+        {
+            Vector2 normalized = direction.SafeNormalize();
+
+            for (int i = 0; i < count; i++)
+            {
+                float alpha = Math.Max(0f, 1f - alphaFade * (i + 1));
+                float radius = Math.Max(0.5f, startRadius - radiusShrink * i);
+                Vector2 trailPos = position - normalized * spacing * (i + 1);
+                DrawCircleOutline(trailPos, radius, color * alpha, 1f, segments);
+            }
+        }
+    }
+
+    public static class LuaCutsceneManager
+    {
+        public static bool IsInitialized => true;
+
+        public static void CallLuaFunction(string command)
+        {
+            if (string.IsNullOrWhiteSpace(command))
+            {
+                return;
+            }
+
+            Logger.Log(LogLevel.Info, "MaggyHelper", $"LuaCutsceneManager compatibility call: {command}");
+        }
+    }
+
+    public static class PlayerCharacterIds
+    {
+        public const string Default = Madeline;
+        public const string Madeline = "madeline";
+        public const string Kirby = "kirby";
+    }
+
+    public static class PlayerCharacter
+    {
+        public static string NormalizeId(string? characterId)
+        {
+            if (string.IsNullOrWhiteSpace(characterId))
+            {
+                return PlayerCharacterIds.Default;
+            }
+
+            return characterId.Trim().ToLowerInvariant() switch
+            {
+                "default" => PlayerCharacterIds.Default,
+                "maggy" => PlayerCharacterIds.Madeline,
+                _ => characterId.Trim().ToLowerInvariant()
+            };
+        }
+    }
+
+    public static class MaggySaveFacade
+    {
+        private const string ChapterUnlockPrefix = "chapter_unlocked:";
+
+        public static bool IsLoaded => SaveData.Instance != null;
+        public static bool HasModSave => MaggyHelperModule.SaveData != null;
+
+        public static int SelectedAreaId
+        {
+            get
+            {
+                object lastArea = GetMember(SaveData.Instance, "LastArea") ?? GetMember(SaveData.Instance, "lastArea");
+                return GetIntMember(lastArea, "ID") ?? GetIntMember(lastArea, "id") ?? -1;
+            }
+        }
+
+        public static void TrySelectArea(int areaId)
+        {
+            object save = SaveData.Instance;
+            if (save == null || areaId < 0)
+            {
+                return;
+            }
+
+            object areaKey = CreateAreaKey(areaId);
+            if (areaKey == null)
+            {
+                return;
+            }
+
+            SetMember(save, "LastArea", areaKey);
+            SetMember(save, "lastArea", areaKey);
+        }
+
+        public static void UnlockChapter(string sid)
+        {
+            if (!string.IsNullOrWhiteSpace(sid))
+            {
+                MaggyHelperModule.SaveData?.UnlockedModes.Add(ChapterUnlockPrefix + sid);
+            }
+        }
+
+        public static bool IsChapterUnlocked(string sid)
+        {
+            return !string.IsNullOrWhiteSpace(sid)
+                && MaggyHelperModule.SaveData?.UnlockedModes.Contains(ChapterUnlockPrefix + sid) == true;
+        }
+
+        public static string BuildExtendedHeartId(string sid, int mode)
+        {
+            return $"{sid}_{AreaModeExtender.GetModeName(mode)}";
+        }
+
+        public static void TryRecordExtendedHeartGem(Session session)
+        {
+            if (session == null)
+            {
+                return;
+            }
+
+            string sid = AreaData.Get(session.Area)?.SID;
+            if (!string.IsNullOrEmpty(sid))
+            {
+                MaggyHelperModule.SaveData?.CollectHeartGem(BuildExtendedHeartId(sid, (int)session.Area.Mode));
+            }
+        }
+
+        public static bool HasHeartGem(Session session)
+        {
+            if (session == null)
+            {
+                return false;
+            }
+
+            AreaData area = AreaData.Get(session.Area);
+            if (area?.SID == null)
+            {
+                return false;
+            }
+
+            int mode = (int)session.Area.Mode;
+            if (mode >= AreaModeExtender.MODE_DSIDE)
+            {
+                return MaggyHelperModule.SaveData?.HasCollectedHeartGem(BuildExtendedHeartId(area.SID, mode)) == true;
+            }
+
+            return TryGetVanillaHeartGem(area.ID, mode);
+        }
+
+        public static int CountHeartsForChapter(int areaId)
+        {
+            AreaData area = AreaData.Get(areaId);
+            if (area?.SID == null)
+            {
+                return 0;
+            }
+
+            int total = 0;
+            int modeCount = area.Mode?.Length ?? 0;
+            for (int mode = 0; mode < modeCount; mode++)
+            {
+                if (mode >= AreaModeExtender.MODE_DSIDE)
+                {
+                    if (MaggyHelperModule.SaveData?.HasCollectedHeartGem(BuildExtendedHeartId(area.SID, mode)) == true)
+                    {
+                        total++;
+                    }
+                }
+                else if (TryGetVanillaHeartGem(areaId, mode))
+                {
+                    total++;
+                }
+            }
+
+            return total;
+        }
+
+        private static bool TryGetVanillaHeartGem(int areaId, int mode)
+        {
+            object save = SaveData.Instance;
+            if (save == null)
+            {
+                return false;
+            }
+
+            if (GetMember(save, "Areas") is not IList areas || areaId < 0 || areaId >= areas.Count)
+            {
+                return false;
+            }
+
+            object areaStats = areas[areaId];
+            if (GetMember(areaStats, "Modes") is not IList modes || mode < 0 || mode >= modes.Count)
+            {
+                return false;
+            }
+
+            object modeStats = modes[mode];
+            return GetBoolMember(modeStats, "HeartGem") ?? GetBoolMember(modeStats, "heartGem") ?? false;
+        }
+
+        private static object CreateAreaKey(int areaId)
+        {
+            ConstructorInfo ctor = typeof(AreaKey).GetConstructor(new[] { typeof(int) });
+            if (ctor != null)
+            {
+                return ctor.Invoke(new object[] { areaId });
+            }
+
+            ctor = typeof(AreaKey).GetConstructor(new[] { typeof(int), typeof(AreaMode) });
+            return ctor?.Invoke(new object[] { areaId, AreaMode.Normal });
+        }
+
+        private static object GetMember(object target, string name)
+        {
+            if (target == null)
+            {
+                return null;
+            }
+
+            const BindingFlags Flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
+            Type type = target.GetType();
+            return type.GetProperty(name, Flags)?.GetValue(target) ?? type.GetField(name, Flags)?.GetValue(target);
+        }
+
+        private static void SetMember(object target, string name, object value)
+        {
+            const BindingFlags Flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
+            Type type = target.GetType();
+            PropertyInfo property = type.GetProperty(name, Flags);
+            if (property?.CanWrite == true)
+            {
+                property.SetValue(target, value);
+                return;
+            }
+
+            type.GetField(name, Flags)?.SetValue(target, value);
+        }
+
+        private static int? GetIntMember(object target, string name)
+        {
+            object value = GetMember(target, name);
+            return value is int intValue ? intValue : null;
+        }
+
+        private static bool? GetBoolMember(object target, string name)
+        {
+            object value = GetMember(target, name);
+            return value is bool boolValue ? boolValue : null;
+        }
+    }
+
+    public static class MaggyProgressionManager
+    {
+        public static void RefreshProgression()
+        {
+        }
+
+        public static void RecordCheckpoint(Level level, Vector2 checkpoint, string checkpointId)
+        {
+            if (level?.Session == null)
+            {
+                return;
+            }
+
+            level.Session.RespawnPoint = checkpoint;
+            if (!string.IsNullOrEmpty(checkpointId))
+            {
+                level.Session.SetFlag($"checkpoint_{checkpointId}", true);
+                MaggyHelperModule.SaveData?.UnlockAchievement($"checkpoint:{level.Session.Area.SID}:{checkpointId}");
+            }
+        }
+
+        public static void RecordPinkPlatinumBerry(Level level, string berryId)
+        {
+            if (level?.Session != null && !string.IsNullOrEmpty(berryId))
+            {
+                MaggyHelperModule.SaveData?.UnlockAchievement($"pink_platinum:{level.Session.Area.SID}:{berryId}");
+            }
+        }
+
+        public static void RecordMiniHeart(Level level, string gemId)
+        {
+            if (level?.Session != null && !string.IsNullOrEmpty(gemId))
+            {
+                MaggyHelperModule.SaveData?.UnlockAchievement($"mini_heart:{level.Session.Area.SID}:{gemId}");
+            }
+        }
+
+        public static void RecordCassette(Level level)
+        {
+            if (level?.Session != null)
+            {
+                MaggyHelperModule.SaveData?.UnlockAchievement($"cassette:{level.Session.Area.SID}");
+            }
+        }
+    }
+}
+
+namespace Celeste.Mod.MaggyHelper
+{
+    public static class Util
+    {
+        public static Rectangle Rectangle(Vector2 from, Vector2 to) => global::MaggyHelper.Utils.Util.Rectangle(from, to);
+        public static float Mod(float value, float modulo) => global::MaggyHelper.Utils.Util.Mod(value, modulo);
+        public static Vector2 Min(Vector2 a, Vector2 b) => global::MaggyHelper.Utils.Util.Min(a, b);
+        public static Vector2 Max(Vector2 a, Vector2 b) => global::MaggyHelper.Utils.Util.Max(a, b);
+    }
+
+    public static class CustomSFX
+    {
+        public const string game_dreamZipMover_move = "event:/game/01_forsaken_city/zip_mover";
+        public const string game_dreamZipMover_return = "event:/game/01_forsaken_city/zip_mover_return";
+        public const string game_dreamZipMover_tick = "event:/game/01_forsaken_city/zip_mover_tick";
+        public const string game_dreamZipMover_finish = "event:/game/01_forsaken_city/zip_mover_finish";
+        public const string game_dreamZipMover_impact = "event:/game/01_forsaken_city/zip_mover_impact";
+    }
+}
+
+public static class Util
+{
+    public static Rectangle Rectangle(Vector2 from, Vector2 to) => global::MaggyHelper.Utils.Util.Rectangle(from, to);
+    public static float Mod(float value, float modulo) => global::MaggyHelper.Utils.Util.Mod(value, modulo);
+    public static Vector2 Min(Vector2 a, Vector2 b) => global::MaggyHelper.Utils.Util.Min(a, b);
+    public static Vector2 Max(Vector2 a, Vector2 b) => global::MaggyHelper.Utils.Util.Max(a, b);
+}
+
+public static class CustomSFX
+{
+    public const string game_dreamZipMover_move = "event:/game/01_forsaken_city/zip_mover";
+    public const string game_dreamZipMover_return = "event:/game/01_forsaken_city/zip_mover_return";
+    public const string game_dreamZipMover_tick = "event:/game/01_forsaken_city/zip_mover_tick";
+    public const string game_dreamZipMover_finish = "event:/game/01_forsaken_city/zip_mover_finish";
+    public const string game_dreamZipMover_impact = "event:/game/01_forsaken_city/zip_mover_impact";
+}
+
+namespace MaggyHelper.Utils
+{
+
+    public static class ColorUtils
+    {
+        public static Color[] GenerateRainbowPalette(int count)
+        {
+            if (count <= 0)
+            {
+                return Array.Empty<Color>();
+            }
+
+            Color[] colors = new Color[count];
+            for (int i = 0; i < count; i++)
+            {
+                colors[i] = FromHsv(i / (float)count * 360f, 1f, 1f);
+            }
+
+            return colors;
+        }
+
+        public static Color FromHsv(float hue, float saturation, float value)
+        {
+            hue = ((hue % 360f) + 360f) % 360f;
+            saturation = Math.Clamp(saturation, 0f, 1f);
+            value = Math.Clamp(value, 0f, 1f);
+
+            if (saturation <= 0f)
+            {
+                return new Color(value, value, value);
+            }
+
+            float sector = hue / 60f;
+            int index = (int)MathF.Floor(sector);
+            float fraction = sector - index;
+            float p = value * (1f - saturation);
+            float q = value * (1f - saturation * fraction);
+            float t = value * (1f - saturation * (1f - fraction));
+
+            return index switch
+            {
+                0 => new Color(value, t, p),
+                1 => new Color(q, value, p),
+                2 => new Color(p, value, t),
+                3 => new Color(p, q, value),
+                4 => new Color(t, p, value),
+                _ => new Color(value, p, q)
+            };
+        }
+    }
+
+    public static class TextureUtil
+    {
+        public static MTexture TryGetOverworldTexture(string path)
+        {
+            return GFX.Gui.Has(path) ? GFX.Gui[path] : null;
+        }
+    }
+}
+
+namespace MaggyHelper.Extensions
+{
+    public static class CompatibilityExtensions
+    {
+        private sealed class TimeRateState
+        {
+            public float Value = 1f;
+        }
+
+        private static readonly ConditionalWeakTable<TimeRateModifier, TimeRateState> TimeRateStates = new();
+
+        public static Vector2 CorrectJoystickPrecision(this Vector2 value)
+        {
+            return value;
+        }
+
+        public static float CurrentTimeRate(this TimeRateModifier modifier)
+        {
+            return TimeRateStates.GetOrCreateValue(modifier).Value;
+        }
+
+        public static void SetTimeRateMultiplier(this TimeRateModifier modifier, float multiplier)
+        {
+            TimeRateStates.GetOrCreateValue(modifier).Value = multiplier;
+            Engine.TimeRate = multiplier;
+        }
+
+        public static void ResetTimeRateMultiplier(this TimeRateModifier modifier)
+        {
+            modifier.SetTimeRateMultiplier(1f);
+        }
+
+        public static bool HasValue(this string value)
+        {
+            return !string.IsNullOrEmpty(value);
+        }
+    }
+}

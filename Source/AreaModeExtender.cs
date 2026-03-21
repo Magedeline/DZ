@@ -474,8 +474,32 @@ public static class AreaModeExtender
         {
             orig.DynamicInvoke(self, area, checkpoint, stats ?? oldStats);
         }
-        catch
+        catch (Exception firstEx)
         {
+            Logger.Log(LogLevel.Warn, "MaggyHelper",
+                $"Session ctor failed for {area} with provided stats ({firstEx.GetType().Name}); trying regenerated AreaStats.");
+
+            object regenerated = EnsureSafeAreaStats(area, null);
+            if (regenerated != null && !ReferenceEquals(regenerated, stats) && !ReferenceEquals(regenerated, oldStats))
+            {
+                try
+                {
+                    orig.DynamicInvoke(self, area, checkpoint, regenerated);
+
+                    SaveData save = SaveData.Instance;
+                    IList areas = save?.Areas_Safe;
+                    if (areas != null && area.ID >= 0 && area.ID < areas.Count)
+                        areas[area.ID] = regenerated;
+
+                    return;
+                }
+                catch (Exception regeneratedEx)
+                {
+                    Logger.Log(LogLevel.Warn, "MaggyHelper",
+                        $"Regenerated AreaStats also failed for {area}: {regeneratedEx.GetType().Name}");
+                }
+            }
+
             // Final fallback: retry with original payload so vanilla can own the error path.
             orig.DynamicInvoke(self, area, checkpoint, oldStats);
         }

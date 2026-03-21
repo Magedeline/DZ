@@ -1,0 +1,27 @@
+schema: maggyhelper-map-meta-v1
+sid: Maggy/Lobby/13_Fire_Lobby
+baseKey: 13_Fire_Lobby
+side: Lobby
+modeIndex: 99
+isMainChapterEntry: false
+mainChapterSid: Maggy/Main/13_Fire_A
+showInChapterSelect: false
+lobbyFor: 13
+startRoom: lvl_lobby_hub
+# ── Hotcliffland Layout ───────────────────────────────────────────────────
+# Tall vertical map built into a volcanic cliff face above a lava sea.
+# Key landmarks:
+#   - Tenna TV Showtime Studio  (bottom tier; broadcast tower; audience stands)
+#   - Alphys Labs               (mid tier; lab dome; beakers, robot parts)
+#   - Hotlands Heights          (upper tier; luxury overlook platform)
+#   - Lava River Bridge         (horizontal connector between tiers)
+#   - Portal column             (far-right cliff wall, 8 heat-vent portals)
+submapSids:
+  sm1:  Maggy/SmallMaps/13_Fire_SM1
+  sm2:  Maggy/SmallMaps/13_Fire_SM2
+  sm3:  Maggy/SmallMaps/13_Fire_SM3
+  sm4:  Maggy/SmallMaps/13_Fire_SM4
+  sm5:  Maggy/SmallMaps/13_Fire_SM5
+  sm6:  Maggy/SmallMaps/13_Fire_SM6
+  ex:   Maggy/SmallMaps/13_Fire_EX
+  boss: Maggy/SmallMaps/13_Fire_Boss

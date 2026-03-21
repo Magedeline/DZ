@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Screens>
+  <ForsakenCity atlas="ForsakenCity" scale="2">
+    <start x="-10" y="2000" />
+    <center x="-10" y="1200" />
+    <layers>
+      <layer img="01" x="0" y="0" scroll="0" scale="2" />
+      <layer img="02" x="-800" y="-700" scroll="0.02" scale="2" />
+      <layer img="03" x="-800" y="-700" scroll="0.03" scale="2" />
+      <layer img="04" x="-800" y="-700" scroll="0.04" scale="2" />
+      <layer img="05" x="-800" y="-700" scroll="0.05" scale="2" />
+      <layer img="snow-back" x="-920" y="-720" scroll="0.06" scale="2" />
+      <layer img="06" x="-800" y="-700" scroll="0.07" scale="2" />
+      <ui scroll="0.62" />
+      <layer img="07" x="-800" y="-700" scroll="0.08" scale="2" />
+      <layer img="08a" x="-800" y="-700" scroll="0.10" scale="2" />
+      <layer img="08b" x="-800" y="-700" scroll="0.10" scale="2" />
+      <layer img="09" x="-920" y="-720" scroll="0.10" />
+      <layer img="10" x="-920" y="-720" scroll="0.10" />
+      <layer img="snow-front" x="-920" y="-720" scroll="0.12" scale="2" />
+      <layer img="11" x="-800" y="-520" scroll="0.14" scale="2" />
+    </layers>
+  </ForsakenCity>
+  <OldSite atlas="OldSite">
+    <start x="0" y="1050" />
+    <center x="0" y="250" />
+    <offset x="-108" y="0" />
+    <layers>
+      <layer img="00" x="0" y="0" scroll="0" scale="2"/>
+      <layer img="01" x="0" y="0" scroll="0.02" scale="2" />
+      <layer img="02" x="0" y="0" scroll="0.04" scale="2" />
+      <layer img="03" x="0" y="0" scroll="0.06" scale="2" />
+      <layer img="04" x="0" y="0" scroll="0.10" scale="2" />
+      <layer img="05" x="0" y="0" scroll="0.10" scale="2" />
+      <layer img="06" x="0" y="-20" scroll="0.11" />
+      <layer img="07" x="0" y="0" scroll="0.12" scale="2" />
+      <ui scrollX="0.2" />
+      <layer img="08" x="0" y="-680" scroll="0.13" />
+      <layer img="09" x="0" y="0" scroll="0.13" scale="2" />
+      <layer img="10" x="0" y="-680" scroll="0.15" scale="2" />
+    </layers>
+  </OldSite>
+  <CelestialResort atlas="CelestialResort">
+    <start x="0" y="1050" />
+    <center x="0" y="250" />
+    <offset x="-108" y="0" />
+    <layers>
+      <layer img="00" x="0" y="0" scroll="0" scale="2" />
+      <layer img="00b" x="0" y="0" scroll="0.02" scale="2" />
+      <layer img="01" x="0" y="0" scroll="0.04" />
+      <layer img="02" x="0" y="0" scroll="0.06" scale="2" />
+      <layer img="03" x="0" y="0" scroll="0.04" scale="2" />
+      <layer img="04a" x="40" y="-64" scroll="0.08" />
+      <layer img="04b" x="40" y="-64" scroll="0.08" />
+      <layer img="05a" x="30" y="0" scroll="0.09" />
+      <layer img="05b" x="30" y="0" scroll="0.09" />
+      <layer img="06" x="0" y="0" scroll="0.10" scale="2" />
+      <ui scrollX="0.2" />
+    </layers>
+  </CelestialResort>
+  <Cliffside atlas="Cliffside">
+    <start x="200" y="1050" />
+    <center x="200" y="250" />
+    <layers>
+      <layer img="00" x="0" y="0" scroll="0" scale="2" />
+      <layer img="01" x="0" y="-50" scroll="0.02" scale="2" />
+      <layer img="02" x="0" y="-40" scroll="0.04" scale="2" />
+      <layer img="03" x="0" y="0" scroll="0.04" scale="2" />
+      <layer img="04" x="0" y="-30" scroll="0.06" scale="2" />
+      <layer img="05" x="0" y="0" scroll="0.08" scale="2" />
+      <layer img="06" x="0" y="0" scroll="0.10" scale="2" />
+      <layer img="07" x="0" y="0" scroll="0.12" />
+      <layer img="08" x="0" y="0" scroll="0.14" scale="2" />
+      <ui scrollX="0.2" />
+    </layers>
+  </Cliffside>
+  <MirrorTemple atlas="MirrorTemple">
+    <start x="0" y="1050" />
+    <center x="0" y="250" />
+    <offset x="-108" y="0" />
+    <layers>
+      <layer img="00" x="0" y="0" scroll="0" scale="2" />
+      <layer img="01" x="0" y="0" scroll="0.01" scale="2" />
+      <layer img="02" x="0" y="-100" scroll="0.02" scale="2" />
+      <layer img="03" x="0" y="0" scroll="0.022" scale="2" />
+      <layer img="04" x="0" y="0" scroll="0.03" scale="2" />
+      <layer img="05a" x="0" y="30" scroll="0.04" scale="2" />
+      <layer img="05b" x="0" y="30" scroll="0.04" scale="2" />
+      <layer img="05c" x="0" y="30" scroll="0.04" scale="2" />
+      <layer img="06a" x="0" y="-50" scroll="0.05" scale="2" />
+      <layer img="06b" x="0" y="-50" scroll="0.05" scale="2" />
+      <layer img="06c" x="0" y="-50" scroll="0.05" scale="2" />
+      <layer img="07a" x="0" y="-100" scroll="0.03" scale="2" />
+      <layer img="07b" x="0" y="-100" scroll="0.03" scale="2" />
+      <layer img="08" x="0" y="0" scroll="0.05" scale="2" />
+      <layer img="09a" x="0" y="-15" scroll="0.07" />
+      <layer img="09b" x="0" y="-15" scroll="0.07" />
+      <ui scrollX="0.2" />
+      <layer img="10" x="0" y="0" scroll="0.12" scale="2" />
+    </layers>
+  </MirrorTemple>
+  <Fall atlas="TheFall">
+    <start x="0" y="1050" />
+    <center x="0" y="250" />
+    <offset x="-100" y="0" />
+    <layers>
+      <layer img="00" x="0" y="0" scroll="0" scale="2" />
+      <layer img="01" x="-10" y="0" scroll="0.02" scale="2" />
+      <layer img="02" x="-10" y="0" scroll="0.04" scale="2" />
+      <layer img="03a" x="0" y="0" scroll="0.05" />
+      <layer img="03b" x="0" y="0" scroll="0.05" />
+      <layer img="04" x="0" y="0" scroll="0.08" scale="2" />
+      <layer img="05a0,05a0,05a0,05a0,05a0,05a0,05a0,05a0,05a0,05a0,05a0,05a0,05a0,05a0,05a0,05a0,05a0,05a1,05a2,05a3,05a3,05a3,05a3,05a3,05a3,05a3,05a3,05a3,05a2,05a1" x="0" y="0" scroll="0.12" />
+      <layer img="06" x="0" y="0" scroll="0.14" />
+      <layer img="05b0,05b0,05b0,05b0,05b0,05b0,05b0,05b0,05b0,05b0,05b0,05b0,05b0,05b0,05b0,05b0,05b0,05b1,05b2,05b3,05b4,05b4,05b4,05b4,05b4,05b4,05b4,05b3,05b2,05b1" x="0" y="0" scroll="0.14" />
+      <layer img="05c0,05c0,05c0,05c0,05c0,05c0,05c0,05c0,05c0,05c0,05c0,05c0,05c0,05c0,05c0,05c0,05c0,05c0,05c1,05c2,05c2,05c2,05c2,05c2,05c2,05c2,05c2,05c2,05c2,05c1" x="0" y="0" scroll="0.12" />
+      <layer img="05d0,05d0,05d0,05d0,05d0,05d0,05d0,05d0,05d0,05d0,05d0,05d0,05d0,05d0,05d0,05d0,05d0,05d1,05d2,05d3,05d4,05d4,05d4,05d4,05d4,05d4,05d4,05d3,05d2,05d1" x="0" y="0" scroll="0.14" />
+      <ui scrollX="0.2" />
+    </layers>
+  </Fall>
+  <SummitIntro atlas="SummitIntro">
+    <start x="0" y="1500" />
+    <center x="0" y="-4000" />
+    <offset x="-108" y="-80" />
+    <layers>
+      <layer img="00" x="0" y="0" scroll="0" scale="2" />
+      <layer img="01a" x="0" y="0" scroll="0.02" scale="2" />
+      <layer img="01b" x="0" y="0" scroll="0.02" scale="2" />
+      <layer img="02a" x="0" y="0" scroll="0.04" />
+      <layer img="02b" x="0" y="0" scroll="0.04" />
+      <layer img="03" x="-60" y="-100" scroll="0.06" scale="2" />
+      <layer img="07a" x="0" y="0" scroll="0.08" scale="2" />
+      <layer img="07b" x="0" y="0" scroll="0.08" scale="2" />
+      <layer img="04" x="0" y="0" scroll="0.09" scale="2" />
+      <layer img="05" x="0" y="0" scroll="0.10" scale="2" />
+      <layer img="06" x="0" y="0" scroll="0.14" scale="2" />
+      <layer img="08" x="0" y="0" scroll="0.08" scale="2" />
+      <layer img="09a" x="0" y="0" scroll="0.10" scale="2" />
+      <layer img="09b" x="0" y="0" scroll="0.10" scale="2" />
+      <layer img="10" x="0" y="0" scroll="0.12" />
+      <layer img="11" x="0" y="0" scroll="0.12" />
+      <layer img="12a" x="0" y="0" scroll="0.13" scale="2" />
+      <layer img="12b" x="0" y="0" scroll="0.13" scale="2" />
+      <layer img="13" x="0" y="0" scroll="0.14" scale="2" />
+    </layers>
+  </SummitIntro>
+  <Summit atlas="SummitEnd">
+    <start x="0" y="0" />
+    <center x="0" y="-800" />
+    <offset x="-108" y="0" />
+    <layers>
+      <layer img="00" x="-80" y="0" scroll="0" scale="2" />
+      <layer img="01a,01b,01c,---,01c,01b,01a,01a,01a,01a,01a,01a,01a,01a,01a" x="0" y="0" scroll="0.01" />
+      <layer img="02a,02a,02a,02a,02a,02a,02a,02b,02c,---,---,---,---,02c,02b,02a,02a" x="0" y="0" scroll="0.01" />
+      <layer img="---,---,---,---,---,03c,03b,03a,03a,03a,03b,03c" x="0" y="0" scroll="0.01" />
+      <layer img="04" x="-40" y="-160" scroll="0.02" scale="2" />
+      <layer img="05" x="0" y="-80" scroll="0.04" />
+      <ui />
+      <layer img="06" x="0" y="-160" alpha="0.80" scroll="0.08" scale="2" />
+      <layer img="07a,07b,07c,07b,07d,07c" x="0" y="-78" scroll="0.12" />
+      <layer img="08" x="0" y="-80" scroll="0.12" />
+      <layer img="09a,09b,09c,09d,09e,09f,09g,09h" x="0" y="-80" scroll="0.12" />
+      <layer img="10" x="30" y="-90" scroll="0.14" />
+      <layer img="11b,11b,11b,11b,11b,11b,11b,11b,11b,11b,11b,11b,11c,11b,11c,11b,11a" x="40" y="-70" scroll="0.14" />
+      <layer img="12" x="0" y="-200" speedx="-50" alpha="0.70" scroll="0.18" scale="2" />
+    </layers>
+  </Summit>
+  <Core atlas="Core">
+    <start x="0" y="200" />
+    <center x="0" y="0" />
+    <offset x="-108" y="-110" />
+    <layers>
+      <layer img="01" x="0" y="0" scroll="0" scale="2" />
+      <layer img="02" x="0" y="0" scroll="0.02" />
+      <layer img="03" x="0" y="0" scroll="0.06" scale="2" />
+      <layer img="04" x="0" y="0" scroll="0.08" scale="2" />
+      <layer img="05" x="0" y="0" scroll="0.10" />
+      <layer img="06" x="0" y="0" scroll="0.12" scale="2" />
+      <layer img="07a" x="0" y="0" scroll="0.16" scale="2" />
+      <layer img="07b" x="0" y="0" scroll="0.16" scale="2" />
+      <layer img="07c" x="0" y="0" scroll="0.16" scale="2" />
+    </layers>
+  </Core>
+</Screens>
+

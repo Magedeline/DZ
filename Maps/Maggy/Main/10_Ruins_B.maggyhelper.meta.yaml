@@ -1,0 +1,8 @@
+﻿schema: maggyhelper-map-meta-v1
+sid: Maggy/Main/10_Ruins_B
+baseKey: 10_Ruins
+side: B
+modeIndex: 1
+isMainChapterEntry: false
+mainChapterSid: Maggy/Main/10_Ruins_A
+showInChapterSelect: false

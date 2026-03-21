@@ -1,0 +1,8 @@
+﻿schema: maggyhelper-map-meta-v1
+sid: Maggy/Main/09_Summit_D
+baseKey: 09_Summit
+side: D
+modeIndex: 3
+isMainChapterEntry: false
+mainChapterSid: Maggy/Main/09_Summit_A
+showInChapterSelect: false

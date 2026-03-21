@@ -1,0 +1,13 @@
+schema: maggyhelper-map-meta-v1
+sid: Maggy/SmallMaps/10_Ruins_SM5
+baseKey: 10_Ruins_SM5
+side: SM5
+modeIndex: 5
+isMainChapterEntry: false
+mainChapterSid: Maggy/Main/10_Ruins_A
+showInChapterSelect: false
+lobbySid: Maggy/Lobby/10_Ruins_Lobby
+chapterNumber: 10
+smallMapNumber: 5
+mapType: small
+startRoom: lvl_sm5_start

@@ -1,0 +1,11 @@
+.vs/
+.venv/
+bin/
+obj/
+obj3/
+__pycache__/
+
+MapleStarters/
+loenn-mcp/
+
+.vscode/mcp.json

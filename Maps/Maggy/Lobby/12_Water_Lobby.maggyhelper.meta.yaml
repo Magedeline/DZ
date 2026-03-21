@@ -1,0 +1,27 @@
+schema: maggyhelper-map-meta-v1
+sid: Maggy/Lobby/12_Water_Lobby
+baseKey: 12_Water_Lobby
+side: Lobby
+modeIndex: 99
+isMainChapterEntry: false
+mainChapterSid: Maggy/Main/12_Water_A
+showInChapterSelect: false
+lobbyFor: 12
+startRoom: lvl_lobby_hub
+# ── Wateredgefalls Layout ─────────────────────────────────────────────────
+# Multi-level vertical map with waterfalls, bioluminescent plants, and docks.
+# Key landmarks:
+#   - Roxulship Dock         (lower tier, ship anchored; entrance to boat SM)
+#   - Temmie Village         (upper-left cluster of tiny huts, shop NPC inside)
+#   - Echo Flower Grove      (centre, ambient memory-replay flowers)
+#   - Crystal Tide Bridge    (mid platform connecting tiers)
+#   - Portal row             (right cliff face, 8 waterdoor portals)
+submapSids:
+  sm1:  Maggy/SmallMaps/12_Water_SM1
+  sm2:  Maggy/SmallMaps/12_Water_SM2
+  sm3:  Maggy/SmallMaps/12_Water_SM3
+  sm4:  Maggy/SmallMaps/12_Water_SM4
+  sm5:  Maggy/SmallMaps/12_Water_SM5
+  sm6:  Maggy/SmallMaps/12_Water_SM6
+  ex:   Maggy/SmallMaps/12_Water_EX
+  boss: Maggy/SmallMaps/12_Water_Boss

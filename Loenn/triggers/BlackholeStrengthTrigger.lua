@@ -1,0 +1,20 @@
+local enums = require("consts.ingeste_enums")
+
+local BlackholeStrengthTrigger = {}
+
+BlackholeStrengthTrigger.name = "MaggyHelper/BlackholeStrengthTrigger"
+BlackholeStrengthTrigger.placements = {
+    name = "BlackholeStrengthTrigger",
+    data = {
+        strength = "Medium"
+    }
+}
+
+BlackholeStrengthTrigger.fieldInformation = {
+    strength = {
+        options = enums.black_hole_strengths,
+        editable = false
+    }
+}
+
+return BlackholeStrengthTrigger

@@ -1,0 +1,17 @@
+- SkinName: "KirbySkin"
+  Player_List: true
+  Character_ID: "KirbySkin"
+  OtherSprite_Path: "Atlases/Gameplay/characters/kirby"
+  OtherSprite_ExPath: "Atlases/Gameplay/characters/kirby"
+  General_List: true
+  hashSeed: "KirbySkin"
+  Mod: "SkinModHelper_Grouping__KirbySkin"
+
+- SkinName: "KirbySkin_NB"
+  Player_List: true
+  Character_ID: "KirbySkin_NB"
+  OtherSprite_Path: "Atlases/Gameplay/characters/kirby_No_Backpack"
+  OtherSprite_ExPath: "Atlases/Gameplay/characters/kirby_No_Backpack"
+  General_List: true
+  hashSeed: "KirbySkin_NB"
+  Mod: "SkinModHelper_Grouping__KirbySkin_NB"

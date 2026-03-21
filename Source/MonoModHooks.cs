@@ -1,0 +1,362 @@
+using System;
+using System.Reflection;
+using MaggyHelper.Entities;
+using MaggyHelper;
+using Microsoft.Xna.Framework;
+using Mono.Cecil.Cil;
+using Monocle;
+using MonoMod.Cil;
+using MonoMod.RuntimeDetour;
+using MonoMod.Utils;
+
+using CopyAbilityType = MaggyHelper.Entities.Bosses.CopyAbilityType;
+
+namespace MaggyHelper
+{
+    /// <summary>
+    /// Demonstrates advanced MonoMod hooking techniques:
+    ///   1. IL Hooks  — Surgically modify individual instructions inside a method
+    ///   2. Manual Hook class — Hook private/internal methods that On.* can't reach
+    ///
+    /// These complement the On.* hooks already used throughout the mod.
+    /// </summary>
+    public static class MonoModHooks
+    {
+        // ── Manual Hook references (must be stored so they aren't GC'd) ──────────
+        private static Hook dashBeginHook;
+        private static Hook wallJumpHook;
+
+        // ── Public API ───────────────────────────────────────────────────────────
+
+        /// <summary>
+        /// Call from <see cref="MaggyHelperModule.Load"/> to register all
+        /// advanced MonoMod hooks.
+        /// </summary>
+        public static void Load()
+        {
+            // ─── 1. IL Hook ──────────────────────────────────────────────
+            // Patch Player.NormalUpdate to boost jump height while Kirby is floating.
+            // Instead of replacing the entire method (like On.* would), we only
+            // touch the single IL instruction that loads the jump-speed constant.
+            IL.Celeste.Player.NormalUpdate += IL_Player_NormalUpdate;
+
+            // ─── 2. Manual Hook (private method) ─────────────────────────
+            // Player.DashBegin is private — On.* hooks can't reach it.
+            // We use MonoMod's Hook class + reflection to intercept it anyway.
+            try
+            {
+                MethodInfo dashBegin = typeof(Player).GetMethod(
+                    "DashBegin",
+                    BindingFlags.Instance | BindingFlags.NonPublic);
+
+                if (dashBegin != null)
+                {
+                    dashBeginHook = new Hook(
+                        dashBegin,
+                        typeof(MonoModHooks).GetMethod(
+                            nameof(Hook_Player_DashBegin),
+                            BindingFlags.Static | BindingFlags.NonPublic));
+
+                    Logger.Log(LogLevel.Info, "MaggyHelper",
+                        "[MonoModHooks] Manual Hook on Player.DashBegin registered");
+                }
+                else
+                {
+                    Logger.Log(LogLevel.Warn, "MaggyHelper",
+                        "[MonoModHooks] Player.DashBegin not found — skipping manual hook");
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(LogLevel.Warn, "MaggyHelper",
+                    $"[MonoModHooks] Failed to hook Player.DashBegin: {ex.Message}");
+            }
+
+            // ─── 3. Manual Hook on WallJump (another private method) ─────
+            // Modifies wall-jump behavior when Kirby has a copy ability active.
+            try
+            {
+                MethodInfo wallJump = typeof(Player).GetMethod(
+                    "WallJump",
+                    BindingFlags.Instance | BindingFlags.NonPublic);
+
+                if (wallJump != null)
+                {
+                    wallJumpHook = new Hook(
+                        wallJump,
+                        typeof(MonoModHooks).GetMethod(
+                            nameof(Hook_Player_WallJump),
+                            BindingFlags.Static | BindingFlags.NonPublic));
+
+                    Logger.Log(LogLevel.Info, "MaggyHelper",
+                        "[MonoModHooks] Manual Hook on Player.WallJump registered");
+                }
+                else
+                {
+                    Logger.Log(LogLevel.Warn, "MaggyHelper",
+                        "[MonoModHooks] Player.WallJump not found — skipping manual hook");
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(LogLevel.Warn, "MaggyHelper",
+                    $"[MonoModHooks] Failed to hook Player.WallJump: {ex.Message}");
+            }
+
+            // ─── 3. OuiMapList null-MapData guard ───────────────────────────
+            MapListExt.Load();
+
+            Logger.Log(LogLevel.Info, "MaggyHelper",
+                "[MonoModHooks] All advanced MonoMod hooks loaded");
+        }
+
+        /// <summary>
+        /// Call from <see cref="MaggyHelperModule.Unload"/> to clean up.
+        /// </summary>
+        public static void Unload()
+        {
+            // Remove IL hook
+            IL.Celeste.Player.NormalUpdate -= IL_Player_NormalUpdate;
+
+            // Dispose manual hooks (this un-detours the methods)
+            dashBeginHook?.Dispose();
+            dashBeginHook = null;
+
+            wallJumpHook?.Dispose();
+            wallJumpHook = null;
+
+            // Remove OuiMapList guard
+            MapListExt.Unload();
+
+            Logger.Log(LogLevel.Info, "MaggyHelper",
+                "[MonoModHooks] All advanced MonoMod hooks unloaded");
+        }
+
+
+        // =====================================================================
+        //  1.  IL HOOK — Modify Player.NormalUpdate jump constant
+        // =====================================================================
+        //
+        //  HOW IT WORKS:
+        //  Celeste's Player.NormalUpdate loads a float constant for jump speed
+        //  (–105f). Our IL hook scans for that value and replaces it with a
+        //  softer value (–80f) when Kirby float mode is active. This is
+        //  *far* more surgical than an On.* hook — we don't need to duplicate
+        //  the entire NormalUpdate method, we just tweak one number.
+        //
+        // =====================================================================
+
+        private static void IL_Player_NormalUpdate(ILContext il)
+        {
+            ILCursor cursor = new ILCursor(il);
+
+            // Find the instruction that loads the jump-speed constant (-105f).
+            // In vanilla Celeste this is: ldc.r4 -105
+            if (cursor.TryGotoNext(MoveType.After,
+                instr => instr.MatchLdcR4(-105f)))
+            {
+                Logger.Log(LogLevel.Verbose, "MaggyHelper",
+                    $"[IL Hook] Found jump constant at IL_{cursor.Prev.Offset:X4}");
+
+                // Emit a call that can substitute a different value at runtime.
+                cursor.EmitDelegate<Func<float, float>>(ModifyJumpSpeed);
+
+                Logger.Log(LogLevel.Info, "MaggyHelper",
+                    "[IL Hook] Player.NormalUpdate jump-speed patch applied");
+            }
+            else
+            {
+                Logger.Log(LogLevel.Warn, "MaggyHelper",
+                    "[IL Hook] Could not find jump constant in Player.NormalUpdate — " +
+                    "the game version may have changed. Hook skipped safely.");
+            }
+        }
+
+        /// <summary>
+        /// Called at runtime by the IL hook.  Receives the original jump-speed
+        /// constant and returns a (possibly modified) value.
+        /// </summary>
+        private static float ModifyJumpSpeed(float originalSpeed)
+        {
+            // Only modify when Kirby player is enabled and floating is active
+            var settings = MaggyHelperModule.Settings;
+            var session  = MaggyHelperModule.Session;
+
+            if (settings?.KirbyPlayerEnabled == true &&
+                settings?.KirbyMaxFloatJumps > 0  &&
+                session?.IsKirbyModeActive   == true)
+            {
+                // Softer jump while floating — gives that Kirby "puff" feel.
+                // Original is -105f (strong jump); we reduce to -80f.
+                return -80f;
+            }
+
+            return originalSpeed;
+        }
+
+
+        // =====================================================================
+        //  2.  MANUAL HOOK — Player.DashBegin (private method)
+        // =====================================================================
+        //
+        //  HOW IT WORKS:
+        //  On.Celeste.Player.DashBegin doesn't exist because the method is
+        //  private.  We use MonoMod's Hook class with reflection to intercept
+        //  it anyway.  The delegate signature must match:
+        //      orig(Player self)  →  our method(orig, Player self)
+        //
+        //  We use this to spawn copy-ability particle effects when Kirby dashes.
+        //
+        // =====================================================================
+
+        // Delegate matching the original method signature
+        private delegate void orig_DashBegin(Player self);
+
+        private static void Hook_Player_DashBegin(orig_DashBegin orig, Player self)
+        {
+            // Call original first (let the dash start normally)
+            orig(self);
+
+            try
+            {
+                var settings = MaggyHelperModule.Settings;
+                var session  = MaggyHelperModule.Session;
+
+                if (settings?.KirbyPlayerEnabled != true ||
+                    session == null ||
+                    session.CurrentCopyAbility == CopyAbilityType.None)
+                    return;
+
+                // Spawn themed particles based on Kirby's current copy ability
+                Color particleColor = GetAbilityColor(session.CurrentCopyAbility);
+
+                Level level = self.SceneAs<Level>();
+                if (level == null) return;
+
+                // Burst of colored particles at the player position
+                for (int i = 0; i < 8; i++)
+                {
+                    float angle = Calc.Random.NextFloat((float)Math.PI * 2f);
+                    float speed = 40f + Calc.Random.NextFloat(60f);
+
+                    level.Particles.Emit(
+                        ParticleTypes.Dust,
+                        self.Center + Calc.AngleToVector(angle, 4f),
+                        particleColor,
+                        angle);
+                }
+
+                if (settings.DebugMode)
+                {
+                    Logger.Log(LogLevel.Verbose, "MaggyHelper",
+                        $"[Hook] Dash particles spawned for ability: {session.CurrentCopyAbility}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(LogLevel.Warn, "MaggyHelper",
+                    $"[Hook] Error in DashBegin hook: {ex.Message}");
+            }
+        }
+
+
+        // =====================================================================
+        //  3.  MANUAL HOOK — Player.WallJump (private method)
+        // =====================================================================
+        //
+        //  Adjusts wall-jump force when Kirby has certain copy abilities.
+        //  For example, Wing gives extra horizontal boost; Stone reduces it.
+        //
+        // =====================================================================
+
+        private delegate void orig_WallJump(Player self, int dir);
+
+        private static void Hook_Player_WallJump(orig_WallJump orig, Player self, int dir)
+        {
+            // Call the original wall jump
+            orig(self, dir);
+
+            try
+            {
+                var settings = MaggyHelperModule.Settings;
+                var session  = MaggyHelperModule.Session;
+
+                if (settings?.KirbyPlayerEnabled != true ||
+                    session == null ||
+                    session.CurrentCopyAbility == CopyAbilityType.None)
+                    return;
+
+                // Access player data via DynamicData (can reach private fields)
+                DynamicData playerData = DynamicData.For(self);
+
+                switch (session.CurrentCopyAbility)
+                {
+                    case CopyAbilityType.Wing:
+                        // Wing ability: extra horizontal boost on wall jump
+                        self.Speed.X *= 1.25f;
+                        if (settings.DebugMode)
+                            Logger.Log(LogLevel.Verbose, "MaggyHelper",
+                                "[Hook] Wing wall-jump boost applied");
+                        break;
+
+                    case CopyAbilityType.Stone:
+                        // Stone ability: heavier, slower wall jump
+                        self.Speed.X *= 0.7f;
+                        self.Speed.Y *= 0.85f;
+                        if (settings.DebugMode)
+                            Logger.Log(LogLevel.Verbose, "MaggyHelper",
+                                "[Hook] Stone wall-jump weight applied");
+                        break;
+
+                    case CopyAbilityType.Wheel:
+                        // Wheel ability: much faster horizontal wall jump
+                        self.Speed.X *= 1.5f;
+                        if (settings.DebugMode)
+                            Logger.Log(LogLevel.Verbose, "MaggyHelper",
+                                "[Hook] Wheel wall-jump speed boost applied");
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(LogLevel.Warn, "MaggyHelper",
+                    $"[Hook] Error in WallJump hook: {ex.Message}");
+            }
+        }
+
+
+        // =====================================================================
+        //  Helpers
+        // =====================================================================
+
+        /// <summary>
+        /// Maps a copy ability to its signature particle color.
+        /// </summary>
+        private static Color GetAbilityColor(CopyAbilityType ability)
+        {
+            return ability switch
+            {
+                CopyAbilityType.Fire    => Color.OrangeRed,
+                CopyAbilityType.Ice     => Color.LightCyan,
+                CopyAbilityType.Spark   => Color.Yellow,
+                CopyAbilityType.Sword   => Color.Silver,
+                CopyAbilityType.Cutter  => Color.Gold,
+                CopyAbilityType.Beam    => Color.Cyan,
+                CopyAbilityType.Stone   => Color.SaddleBrown,
+                CopyAbilityType.Needle  => Color.White,
+                CopyAbilityType.Parasol => Color.LightPink,
+                CopyAbilityType.Wheel   => Color.Red,
+                CopyAbilityType.Bomb    => Color.DarkGray,
+                CopyAbilityType.Fighter => Color.Orange,
+                CopyAbilityType.Suplex  => Color.DarkRed,
+                CopyAbilityType.Ninja   => Color.Purple,
+                CopyAbilityType.Mirror  => Color.LightGoldenrodYellow,
+                CopyAbilityType.Hammer  => Color.Brown,
+                CopyAbilityType.Wing    => Color.LightSkyBlue,
+                CopyAbilityType.UFO     => Color.LimeGreen,
+                CopyAbilityType.Sleep   => Color.LavenderBlush,
+                _                       => Color.White,
+            };
+        }
+    }
+}

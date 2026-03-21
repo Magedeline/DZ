@@ -1,0 +1,14 @@
+HairColors: 
+- Dashes: 0 
+  Color: "44B7FF"
+- Dashes: 1 
+  Color: "AC3232"
+- Dashes: 2 
+  Color: "ff6def"
+- Dashes: 3 
+  Color: "FFA500"
+- Dashes: 4 
+  Color: "ADD8E6"
+- Dashes: 5 
+  Color: "800080"
+HairLength: 4

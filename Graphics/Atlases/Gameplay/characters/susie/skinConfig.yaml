@@ -1,0 +1,34 @@
+# Susie Skin Configuration for SkinModHelperPlus
+
+skinName: "Susie"
+spritePath: "characters/susie/"
+
+# Hair configuration specific to Susie
+hair:
+  enabled: true
+  color: "#9370DB"
+  style: "spiky"
+  
+# Special effects
+effects:
+  - name: "rude_buster"
+    trigger: "dash"
+    color: "#800080"
+  - name: "axe_spin"
+    trigger: "jump"
+    color: "#C0C0C0"
+
+# Animation overrides
+animations:
+  idle: "idle"
+  walk: "runSlow"
+  run: "runFast" 
+  jump: "jumpSlow"
+  dash: "dashAttack"
+  climb: "climbUp"
+  fall: "fallSlow"
+
+# Special properties
+properties:
+  showAxe: true
+  rudeBusterEffect: true

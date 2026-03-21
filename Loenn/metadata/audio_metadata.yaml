@@ -1,0 +1,354 @@
+# DesoloZantas Audio Metadata for Loenn
+# Organized audio references from GUIDs.txt for Loenn mapping integration
+
+music:
+  # Cassette tapes - Chapter music
+  cassettes:
+    - id: "01_forsaken_city"
+      guid: "{51873fdd-604e-4810-9db1-8c6e5a6049b5}"
+      path: "event:/music/cassette/01_forsaken_city"
+      description: "Forsaken City cassette music"
+      
+    - id: "02_old_site"
+      guid: "{e44a2aa5-f96e-4d75-8018-8bee278017ad}"
+      path: "event:/music/cassette/02_old_site"
+      description: "Old Site cassette music"
+      
+    - id: "03_resort"
+      guid: "{bb2ac8fc-6353-4127-bc7b-7439262508da}"
+      path: "event:/music/cassette/03_resort"
+      description: "Celestial Resort cassette music"
+      
+    - id: "04_cliffside"
+      guid: "{bda820f1-0c6f-4c4f-8e8b-615d94a6bb89}"
+      path: "event:/music/cassette/04_cliffside"
+      description: "Golden Ridge cassette music"
+      
+    - id: "05_mirror_temple"
+      guid: "{117d38ce-6174-491e-9564-107d17a7b187}"
+      path: "event:/music/cassette/05_mirror_temple"
+      description: "Mirror Temple cassette music"
+      
+    - id: "06_reflection"
+      guid: "{832066ac-c78a-4c60-a7d0-dbc2c4712dd7}"
+      path: "event:/music/cassette/06_reflection"
+      description: "Reflection cassette music"
+
+  # PICO-8 classic music
+  classic:
+    - id: "pico8_boot"
+      guid: "{96db8ec4-31c6-45aa-ae05-0b73cd02a1ff}"
+      path: "event:/classic/pico8_boot"
+      description: "PICO-8 boot sound"
+      
+    - id: "pico8_mus_00"
+      guid: "{79038cb9-407b-4d35-892a-1ec71396a682}"
+      path: "event:/classic/pico8_mus_00"
+      description: "PICO-8 music track 0"
+      
+    - id: "pico8_mus_01"
+      guid: "{b7c9c3a9-c1bc-4a77-961e-b306f5b9c140}"
+      path: "event:/classic/pico8_mus_01"
+      description: "PICO-8 music track 1"
+      
+    - id: "pico8_mus_02"
+      guid: "{feac844d-0797-404b-a390-3ab8257a187c}"
+      path: "event:/classic/pico8_mus_02"
+      description: "PICO-8 music track 2"
+      
+    - id: "pico8_mus_03"
+      guid: "{7186f56e-2df7-42eb-9375-3b272fe60ce1}"
+      path: "event:/classic/pico8_mus_03"
+      description: "PICO-8 music track 3"
+
+ambience:
+  # Environmental ambience by chapter
+  chapters:
+    - id: "prologue"
+      guid: "{0fa79a65-c103-4f72-84d6-7a22c9b2f43c}"
+      path: "event:/env/amb/00_prologue"
+      description: "Prologue ambient sound"
+      
+    - id: "forsaken_city"
+      guid: "{04cc4be2-4acf-474a-a897-8709563af4c3}"
+      path: "event:/env/amb/01_main"
+      description: "Forsaken City ambient sound"
+      
+    - id: "old_site_awake"
+      guid: "{f34c1fdf-5470-453f-afc5-c3ef0f0f65cb}"
+      path: "event:/env/amb/02_awake"
+      description: "Old Site awake state ambient"
+      
+    - id: "old_site_dream"
+      guid: "{409883b0-271d-4b20-9f0b-2d24e2f3c328}"
+      path: "event:/env/amb/02_dream"
+      description: "Old Site dream state ambient"
+      
+    - id: "resort_exterior"
+      guid: "{c37ce843-6664-44ab-9d07-8acdbc9efed8}"
+      path: "event:/env/amb/03_exterior"
+      description: "Celestial Resort exterior ambient"
+      
+    - id: "resort_interior"
+      guid: "{fee4e52e-5f96-4739-b609-07ccd6c60610}"
+      path: "event:/env/amb/03_interior"
+      description: "Celestial Resort interior ambient"
+      
+    - id: "resort_pico8"
+      guid: "{db641550-ff4f-430a-9dad-9e038e382ae5}"
+      path: "event:/env/amb/03_pico8_closeup"
+      description: "PICO-8 machine ambient"
+      
+    - id: "cliffside"
+      guid: "{d0ea5750-b681-4bcd-a795-8a1fa908ac2e}"
+      path: "event:/env/amb/04_main"
+      description: "Golden Ridge ambient sound"
+      
+    - id: "temple_dark"
+      guid: "{edc1c4bb-137f-4551-92f0-220b11118e0d}"
+      path: "event:/env/amb/05_interior_dark"
+      description: "Mirror Temple dark interior"
+      
+    - id: "temple_main"
+      guid: "{36b91db4-ad22-4c8d-aa83-7964f95398ab}"
+      path: "event:/env/amb/05_interior_main"
+      description: "Mirror Temple main interior"
+      
+    - id: "temple_mirror"
+      guid: "{fb77cba9-f373-4f6b-9057-2fa3fffdd657}"
+      path: "event:/env/amb/05_mirror_sequence"
+      description: "Mirror Temple mirror sequence"
+      
+    - id: "reflection_lake"
+      guid: "{8a921fb6-6b6c-4f2d-bd8b-8d7a319a44fc}"
+      path: "event:/env/amb/06_lake"
+      description: "Reflection lake ambient"
+      
+    - id: "reflection_main"
+      guid: "{b09159fb-d5a0-4daa-ab5f-0f1898bc3335}"
+      path: "event:/env/amb/06_main"
+      description: "Reflection main ambient"
+      
+    - id: "core"
+      guid: "{2e69b6a7-2ab5-4a35-a307-27a52fdf7458}"
+      path: "event:/env/amb/09_main"
+      description: "Core ambient sound"
+      
+    - id: "worldmap"
+      guid: "{a64aedd6-1f18-4f49-a41d-9a9f5ebbe616}"
+      path: "event:/env/amb/worldmap"
+      description: "World map ambient"
+
+  # Local environmental sounds
+  local_environments:
+    - id: "campfire_loop"
+      guid: "{7cc20e5f-81e5-4166-acc6-704dc13f46f3}"
+      path: "event:/env/local/campfire_loop"
+      description: "Campfire ambient loop"
+      
+    - id: "campfire_start"
+      guid: "{a780517b-19c9-47d4-88ab-091fb03f1f9e}"
+      path: "event:/env/local/campfire_start"
+      description: "Campfire starting sound"
+      
+    - id: "waterfall_big_main"
+      guid: "{1a51e71c-fbf7-4f0c-b659-622ada05f17c}"
+      path: "event:/env/local/waterfall_big_main"
+      description: "Large waterfall main sound"
+      
+    - id: "waterfall_small_main"
+      guid: "{ccef0473-c1e5-4dd0-8c94-fc3fe5fc95bb}"
+      path: "event:/env/local/waterfall_small_main"
+      description: "Small waterfall main sound"
+      
+    - id: "underwater"
+      guid: "{6a3f7aaf-bea3-4ac6-a919-d4b6eef81ae7}"
+      path: "event:/env/state/underwater"
+      description: "Underwater ambient state"
+
+sfx:
+  # Character dialogue voices
+  dialogue:
+    - id: "madeline"
+      guid: "{6db7fffa-a9ef-4b37-8c16-6857785af731}"
+      path: "event:/char/dialogue/madeline"
+      description: "Madeline dialogue voice"
+      
+    - id: "badeline"
+      guid: "{aba9f19a-b015-4dfa-ab6a-c1c34385e6e9}"
+      path: "event:/char/dialogue/badeline"
+      description: "Badeline dialogue voice"
+      
+    - id: "theo"
+      guid: "{e15162c0-8d07-4a4a-86b2-31a4143ef96c}"
+      path: "event:/char/dialogue/theo"
+      description: "Theo dialogue voice"
+      
+    - id: "oshiro"
+      guid: "{94086ab9-c160-4468-b8f5-20d8c0df94f3}"
+      path: "event:/char/dialogue/oshiro"
+      description: "Oshiro dialogue voice"
+      
+    - id: "granny"
+      guid: "{93dc35c9-2d7f-428b-a991-10a75e908831}"
+      path: "event:/char/dialogue/granny"
+      description: "Granny dialogue voice"
+
+    # Custom character voices for DesoloZantas mod
+    - id: "kirby"
+      guid: "{98c442fa-6141-4f7c-97a6-cf7c0a6d8951}"
+      path: "event:/char/dialogue/kirby"
+      description: "Kirby dialogue voice"
+      
+    - id: "asriel"
+      guid: "{a598ceb1-5946-48b0-8759-d18643128324}"
+      path: "event:/char/dialogue/asriel"
+      description: "Asriel dialogue voice"
+      
+    - id: "sans"
+      guid: "{356f70b9-6608-437f-a14e-587403adb8f8}"
+      path: "event:/char/dialogue/sans"
+      description: "Sans dialogue voice"
+      
+    - id: "papyrus"
+      guid: "{f37601e2-96cb-4069-9c88-4a5ec2421b27}"
+      path: "event:/char/dialogue/pap"
+      description: "Papyrus dialogue voice"
+      
+    - id: "flowey"
+      guid: "{5a574137-cafb-4c50-9701-44dcbe0633e6}"
+      path: "event:/char/dialogue/flowey"
+      description: "Flowey dialogue voice"
+      
+    - id: "chara"
+      guid: "{f92708c3-b0d8-4464-bb3f-29e379a2a44b}"
+      path: "event:/char/dialogue/chara"
+      description: "Chara dialogue voice"
+
+  # Character movement sounds
+  movement:
+    madeline:
+      - id: "footstep"
+        guid: "{73ada323-e77f-43f7-b0df-a8facdef03b7}"
+        path: "event:/char/madeline/footstep"
+        description: "Madeline footstep"
+        
+      - id: "jump"
+        guid: "{eeede5f5-3691-4cd9-8b2c-91e02d3d41ed}"
+        path: "event:/char/madeline/jump"
+        description: "Madeline jump"
+        
+      - id: "landing"
+        guid: "{a7289b79-f525-4762-943e-98cf5c94151a}"
+        path: "event:/char/madeline/landing"
+        description: "Madeline landing"
+        
+      - id: "dash_pink_left"
+        guid: "{cb220baa-d2cb-4a87-9907-a6595dba6735}"
+        path: "event:/char/madeline/dash_pink_left"
+        description: "Madeline pink dash left"
+        
+      - id: "dash_pink_right"
+        guid: "{8ec31009-771f-4473-a3fc-45b209d6aa87}"
+        path: "event:/char/madeline/dash_pink_right"
+        description: "Madeline pink dash right"
+        
+      - id: "grab"
+        guid: "{8aa6ab7b-3104-4a06-8e7e-b1141ac0d23d}"
+        path: "event:/char/madeline/grab"
+        description: "Madeline grab"
+        
+      - id: "wallslide"
+        guid: "{cad411d1-889d-4fb6-85e7-210db19d1e11}"
+        path: "event:/char/madeline/wallslide"
+        description: "Madeline wall slide"
+        
+      - id: "death"
+        guid: "{ae79fcef-d9b4-44c5-91e5-e0348229e9d5}"
+        path: "event:/char/madeline/death"
+        description: "Madeline death sound"
+
+    badeline:
+      - id: "footstep"
+        guid: "{ff6442f1-66c2-4dba-8d57-038dda8fd296}"
+        path: "event:/char/badeline/footstep"
+        description: "Badeline footstep"
+        
+      - id: "appear"
+        guid: "{ad25a031-880b-4f88-ac12-82d6c52fbdea}"
+        path: "event:/char/badeline/appear"
+        description: "Badeline appear"
+        
+      - id: "disappear"
+        guid: "{16b40879-0a79-4e42-8c91-fe419a8e186c}"
+        path: "event:/char/badeline/disappear"
+        description: "Badeline disappear"
+
+  # Game mechanics sounds
+  mechanics:
+    blocks:
+      - id: "fallblock_ice_impact"
+        guid: "{99c35088-2d5e-4846-b27e-e1adfcd15afa}"
+        path: "event:/game/01_forsaken_city/fallblock_ice_impact"
+        description: "Ice falling block impact"
+        
+      - id: "fallblock_wood_impact"
+        guid: "{d77f57f5-6a0e-41d7-aff8-3d2e35942458}"
+        path: "event:/game/03_resort/fallblock_wood_impact"
+        description: "Wood falling block impact"
+        
+      - id: "zip_mover"
+        guid: "{c7f359ea-785f-4328-8135-4000ec1486bc}"
+        path: "event:/game/01_forsaken_city/zip_mover"
+        description: "Zip mover platform sound"
+
+    collectibles:
+      - id: "strawberry_collect"
+        guid: "{YOUR_GUID_HERE}"
+        path: "event:/game/general/strawberry_collect"
+        description: "Strawberry collection sound"
+        
+      - id: "key_collect"
+        guid: "{YOUR_GUID_HERE}"
+        path: "event:/game/general/key_collect"
+        description: "Key collection sound"
+
+    platforms:
+      - id: "platform_horiz_left"
+        guid: "{e4408a77-67c1-4e52-974d-4e1363d4cb6f}"
+        path: "event:/game/03_resort/platform_horiz_left"
+        description: "Horizontal platform moving left"
+        
+      - id: "platform_horiz_right"
+        guid: "{ce237948-99bc-45ba-a812-45c3166d1ce9}"
+        path: "event:/game/03_resort/platform_horiz_right"
+        description: "Horizontal platform moving right"
+
+  # PICO-8 classic SFX
+  classic_sfx:
+    - id: "sfx0"
+      guid: "{aaa40caf-ae3a-4f7e-a2b3-92c2ebe55df6}"
+      path: "event:/classic/sfx0"
+      description: "PICO-8 SFX 0"
+      
+    - id: "sfx1"
+      guid: "{3e4da5d7-22bc-4a2a-975f-962d0b13ea30}"
+      path: "event:/classic/sfx1"
+      description: "PICO-8 SFX 1"
+      
+    - id: "sfx2"
+      guid: "{e52366bb-874d-4e52-97b0-5f84602ce96d}"
+      path: "event:/classic/sfx2"
+      description: "PICO-8 SFX 2"
+
+# Usage instructions for Loenn mappers:
+# To use these audio events in your Loenn entities or triggers:
+# 1. Reference the 'path' value for FMOD events
+# 2. Use the 'guid' for direct GUID references
+# 3. 'id' provides a human-readable identifier
+# 4. Check 'description' for context about when to use each sound
+
+# Example entity usage:
+# audioTrigger:
+#   event: "event:/char/madeline/jump"
+#   guid: "{eeede5f5-3691-4cd9-8b2c-91e02d3d41ed}"

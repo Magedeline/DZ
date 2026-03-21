@@ -1,0 +1,22 @@
+# Desolo Zantas — Alt Mirror Bird Materials
+# Mirror bird: crimson glow instead of moon-purple, deeper void silhouette.
+
+newmtl DZ_MoonGlow
+Ns 90.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.900000 0.300000 0.300000
+Ks 0.500000 0.500000 0.500000
+Ke 0.800000 0.200000 0.200000
+Ni 1.500000
+d 1.000000
+illum 2
+
+newmtl DZ_VoidBird
+Ns 90.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.150000 0.020000 0.080000
+Ks 0.500000 0.500000 0.500000
+Ke 0.060000 0.008000 0.030000
+Ni 1.500000
+d 1.000000
+illum 2

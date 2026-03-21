@@ -5,23 +5,21 @@
         <AssemblyName>MaggyHelper</AssemblyName>
         <RootNamespace>Celeste.Mod.MaggyHelper</RootNamespace>
         <LangVersion>latest</LangVersion>
+        <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
         <CelestePrefix Condition="'$(CelestePrefix)' == '' And Exists('..\..\..\Celeste.dll')">..\..\..</CelestePrefix>
         <CelestePrefix Condition="'$(CelestePrefix)' == ''">lib-stripped</CelestePrefix>
         <ZippedFiles>..\everest.yaml;..\bin\**\*.*;..\Audio\**\*.*;..\Dialog\**\*.*;..\Graphics\**\*.*;..\Ahorn\**\*.*;..\Loenn\**\*.*</ZippedFiles>
     </PropertyGroup>
 
-    <!--Disable "Copy Local" for all references-->
+    <!--Disable copy-local for direct assembly references only. Package runtime assets are needed by Everest at load time. -->
     <ItemDefinitionGroup>
-        <PackageReference PrivateAssets="all" ExcludeAssets="runtime" />
         <Reference Private="false" />
     </ItemDefinitionGroup>
 
     <ItemGroup>
-        <PackageReference Include="MonoMod.RuntimeDetour" Version="25.0.2" PrivateAssets="all" ExcludeAssets="runtime" />
-        <PackageReference Include="MonoMod.Patcher" Version="25.0.0-prerelease.2" />
+        <PackageReference Include="MonoMod.RuntimeDetour" Version="25.0.2" />
+        <PackageReference Include="Mono.Cecil" Version="0.11.6" />
         <PackageReference Include="CelesteAnalyzer" Version="*" />
-        <PackageReference Include="Microsoft.ML" Version="3.0.1" />
-        <PackageReference Include="Microsoft.ML.OnnxRuntime" Version="1.19.2" />
         <PackageReference Include="YamlDotNet" Version="16.2.1" />
     </ItemGroup>
 
@@ -35,9 +33,15 @@
         <Compile Remove="Player.cs" />
     </ItemGroup>
 
-    <Target Name="CopyFiles" AfterTargets="Build" Inputs="$(OutputPath)\$(AssemblyName).dll;$(OutputPath)\$(AssemblyName).pdb" Outputs="..\bin\$(AssemblyName).dll;..\bin\$(AssemblyName).pdb">
-        <Copy SourceFiles="$(OutputPath)\$(AssemblyName).dll" DestinationFolder="..\bin" />
-        <Copy SourceFiles="$(OutputPath)\$(AssemblyName).pdb" DestinationFolder="..\bin" />
+    <Target Name="CopyFiles" AfterTargets="Build">
+        <ItemGroup>
+            <FilesToCopy Include="$(OutputPath)\$(AssemblyName).dll" />
+            <FilesToCopy Include="$(OutputPath)\$(AssemblyName).pdb" />
+            <FilesToCopy Include="@(ReferenceCopyLocalPaths)"
+                         Condition="'%(Filename)' == 'YamlDotNet' Or '%(Filename)' == 'Mono.Cecil' Or '%(Filename)' == 'Mono.Cecil.Mdb' Or '%(Filename)' == 'Mono.Cecil.Pdb' Or '%(Filename)' == 'Mono.Cecil.Rocks' Or '%(Filename)' == 'MonoMod.RuntimeDetour' Or '%(Filename)' == 'MonoMod.Utils' Or '%(Filename)' == 'MonoMod.Backports' Or '%(Filename)' == 'MonoMod.Core' Or '%(Filename)' == 'MonoMod.ILHelpers' Or '%(Filename)' == 'MonoMod.Iced'" />
+        </ItemGroup>
+
+        <Copy SourceFiles="@(FilesToCopy)" DestinationFolder="..\bin" SkipUnchangedFiles="true" />
     </Target>
 
     <Target Name="PackageMod" AfterTargets="CopyFiles" Inputs="$(ZippedFiles)" Outputs="..\MaggyHelper.zip" Condition="'$(Configuration)' == 'Release'">

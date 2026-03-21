@@ -7695,3 +7695,8 @@ triggers.MaggyHelper/KirbyTutorialBirdTrigger.attributes.name.width=Width
 triggers.MaggyHelper/KirbyTutorialBirdTrigger.attributes.description.width=Trigger area width.
 triggers.MaggyHelper/KirbyTutorialBirdTrigger.attributes.name.height=Height
 triggers.MaggyHelper/KirbyTutorialBirdTrigger.attributes.description.height=Trigger area height.
+
+# Player
+entities.MaggyHelper/Player.placements.name.player=Player (Spawn Point)
+entities.MaggyHelper/Player.attributes.name.isDefaultSpawn=Default Spawn
+entities.MaggyHelper/Player.attributes.description.isDefaultSpawn=Whether this should be the spawn point that the player appears at when first starting the map. Only works if the room is the starting room.

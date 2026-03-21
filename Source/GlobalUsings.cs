@@ -17,6 +17,8 @@ global using MaggyHelper.HotReload;
 global using MaggyHelper.Extensions;
 global using MaggyHelper.Extensions.Core;
 global using MaggyHelper.Utils;
+global using Util = Celeste.Mod.MaggyHelper.Util;
+global using CustomSFX = Celeste.Mod.MaggyHelper.CustomSFX;
 global using Microsoft.Xna.Framework;
 global using Microsoft.Xna.Framework.Graphics;
 global using Monocle;

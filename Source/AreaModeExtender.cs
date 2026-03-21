@@ -522,7 +522,16 @@ public static class AreaModeExtender
         if (stats == null)
             return null;
 
-        int requiredModes = Math.Max((int) area.Mode + 1, TOTAL_MODES);
+        int areaModeCount = 0;
+        try
+        {
+            areaModeCount = AreaData.Get(area)?.Mode?.Length ?? 0;
+        }
+        catch
+        {
+        }
+
+        int requiredModes = Math.Max((int) area.Mode + 1, Math.Max(areaModeCount, 3));
         EnsureAreaModeStatsArray(stats, requiredModes);
         return stats;
     }

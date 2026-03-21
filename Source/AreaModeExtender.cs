@@ -45,6 +45,7 @@ public static class AreaModeExtender
     private static bool _loaded;
     private static Hook _mapMetaApplyHook;
     private static On.Celeste.Session.hook_ctor_AreaKey_string_AreaStats _sessionCtorHook;
+    private static On.Celeste.AreaStats.hook_Clone _areaStatsCloneHook;
 
     private delegate void orig_MapMetaModeProperties_ApplyTo(MapMetaModeProperties self, AreaData area, AreaMode mode);
 
@@ -90,6 +91,9 @@ public static class AreaModeExtender
         _sessionCtorHook ??= (orig, self, area, checkpoint, oldStats) => OnSessionCtor(orig, self, area, checkpoint, oldStats);
         On.Celeste.Session.ctor_AreaKey_string_AreaStats += _sessionCtorHook;
 
+        _areaStatsCloneHook ??= (orig, self) => OnAreaStatsClone(orig, self);
+        On.Celeste.AreaStats.Clone += _areaStatsCloneHook;
+
         On.Celeste.SaveData.AfterInitialize += OnSaveDataAfterInitialize;
         On.Celeste.UserIO.SaveThread += OnSaveThread;
 
@@ -113,6 +117,10 @@ public static class AreaModeExtender
 
         if (_sessionCtorHook != null)
             On.Celeste.Session.ctor_AreaKey_string_AreaStats -= _sessionCtorHook;
+
+        if (_areaStatsCloneHook != null)
+            On.Celeste.AreaStats.Clone -= _areaStatsCloneHook;
+        _areaStatsCloneHook = null;
 
         On.Celeste.SaveData.AfterInitialize -= OnSaveDataAfterInitialize;
         On.Celeste.UserIO.SaveThread -= OnSaveThread;
@@ -463,6 +471,39 @@ public static class AreaModeExtender
             return;
 
         Engine.Scene = new SideUnlockVignette(session, completedMode);
+    }
+
+    private static AreaStats OnAreaStatsClone(On.Celeste.AreaStats.orig_Clone orig, AreaStats self)
+    {
+        // When MaggyHelper extends Modes beyond 3, vanilla Clone() iterates self.Modes.Length (e.g. 5)
+        // but writes into a freshly-created 3-slot destination, causing IndexOutOfRangeException.
+        // Guard: temporarily shrink to 3, let vanilla clone handle them, then re-extend the result.
+        if (self?.Modes == null || self.Modes.Length <= 3)
+            return orig(self);
+
+        AreaModeStats[] fullModes = self.Modes;
+        AreaModeStats[] cap = new AreaModeStats[3];
+        Array.Copy(fullModes, cap, 3);
+        self.Modes = cap;
+
+        AreaStats result;
+        try
+        {
+            result = orig(self);
+        }
+        finally
+        {
+            self.Modes = fullModes;
+        }
+
+        // Extend result.Modes to carry the cloned extended-mode entries as well.
+        AreaModeStats[] extended = new AreaModeStats[fullModes.Length];
+        Array.Copy(result.Modes, extended, result.Modes.Length);
+        for (int i = result.Modes.Length; i < fullModes.Length; i++)
+            extended[i] = fullModes[i]?.Clone() ?? new AreaModeStats();
+        result.Modes = extended;
+
+        return result;
     }
 
     private static void OnSessionCtor(On.Celeste.Session.orig_ctor_AreaKey_string_AreaStats orig, Session self,

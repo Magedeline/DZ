@@ -1,3 +1,4 @@
+using Celeste;
 using System;
 using System.Collections;
 using Microsoft.Xna.Framework;
@@ -24,7 +25,7 @@ namespace MaggyHelper.Entities
 			};
 			base.Collider = new Hitbox(10f, 10f, -5f, -5f);
 			base.Add(new MirrorReflection());
-			base.Add(new PlayerCollider(new Action<Player>(this.OnPlayer), null, null));
+			base.Add(new PlayerCollider(new Action<Celeste.Player>(this.OnPlayerAdapter), null, null));
 			base.Add(new VertexLight(Color.White, 1f, 32, 64));
 			base.Add(this.timeRateModifier = new TimeRateModifier(1f, false));
 			this.facing = Facings.Right;
@@ -107,6 +108,12 @@ namespace MaggyHelper.Entities
 			}
 		}
 
+		private void OnPlayerAdapter(Celeste.Player player)
+		{
+			// If MaggyHelper.Entities.Player is a subclass of Celeste.Player, you can cast:
+			this.OnPlayer(player as Player);
+		}
+
 		// Token: 0x060010E8 RID: 4328 RVA: 0x0004FF9C File Offset: 0x0004E19C
 		private void End()
 		{
@@ -121,7 +128,7 @@ namespace MaggyHelper.Entities
 				level.CanRetry = true;
 				level.Session.Level = "c-00";
 				level.Session.RespawnPoint = new Vector2?(level.GetSpawnPoint(new Vector2((float)level.Bounds.Left, (float)level.Bounds.Top)));
-				level.LoadLevel(Player.IntroTypes.WakeUp, false);
+				level.LoadLevel((CelestePlayer.IntroTypes)Player.IntroTypes.WakeUp, false);
 				Leader.RestoreStrawberries(level.Tracker.GetEntity<Player>().Leader);
 			};
 		}

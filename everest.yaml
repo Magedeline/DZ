@@ -1,4 +1,4 @@
-- DLL: Code/net8.0/MaggyHelper.dll
+- DLL: bin/MaggyHelper.dll
   Name: MaggyHelper
   Version: 3.0.0
   Dependencies:

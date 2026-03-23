@@ -47,14 +47,23 @@ public class KirbyHeavenAscendManager : Entity
         if (level == null)
             return;
 
-        voidBg = new VoidRainbowBackground(this);
-        level.Add(voidBg);
+        if (voidBg == null || voidBg.Scene != level)
+        {
+            voidBg = new VoidRainbowBackground(this);
+            level.Add(voidBg);
+        }
 
-        streaks = new HeavenStreaks(this);
-        level.Add(streaks);
+        if (streaks == null || streaks.Scene != level)
+        {
+            streaks = new HeavenStreaks(this);
+            level.Add(streaks);
+        }
 
-        deltaStars = new DeltaruneStarField(this);
-        level.Add(deltaStars);
+        if (deltaStars == null || deltaStars.Scene != level)
+        {
+            deltaStars = new DeltaruneStarField(this);
+            level.Add(deltaStars);
+        }
     }
 
     public IEnumerator FadeIn(float duration = 1.5f)
@@ -70,8 +79,11 @@ public class KirbyHeavenAscendManager : Entity
 
     public HeavenFader SpawnFader()
     {
-        fader = new HeavenFader(this);
-        Scene.Add(fader);
+        if (fader == null || fader.Scene != Scene)
+        {
+            fader = new HeavenFader(this);
+            Scene.Add(fader);
+        }
         return fader;
     }
 
@@ -83,8 +95,33 @@ public class KirbyHeavenAscendManager : Entity
 
     public override void Render()
     {
+        if (level == null)
+            level = Scene as Level;
+
+        if (level == null)
+            return;
+
         // Dark void base
         Draw.Rect(level.Camera.X - 10f, level.Camera.Y - 10f, 340f, 200f, Color.Black * fade);
+    }
+
+    public override void Removed(Scene scene)
+    {
+        base.Removed(scene);
+
+        if (streaks != null && streaks.Scene != null)
+            streaks.RemoveSelf();
+        if (deltaStars != null && deltaStars.Scene != null)
+            deltaStars.RemoveSelf();
+        if (voidBg != null && voidBg.Scene != null)
+            voidBg.RemoveSelf();
+        if (fader != null && fader.Scene != null)
+            fader.RemoveSelf();
+
+        streaks = null;
+        deltaStars = null;
+        voidBg = null;
+        fader = null;
     }
 
     private static float Mod(float x, float m) => (x % m + m) % m;
@@ -152,8 +189,14 @@ public class KirbyHeavenAscendManager : Entity
             float alpha = Ease.SineInOut((manager?.Fade ?? 1f) * Alpha);
             if (alpha <= 0f) return;
 
-            Vector2 cam = (Scene as Level).Camera.Position;
+            Level level = Scene as Level;
+            if (level == null) return;
+
+            Vector2 cam = level.Camera.Position;
             float time = manager?.timer ?? 0f;
+
+            if (textures == null || textures.Count == 0)
+                return;
 
             for (int i = 0; i < particles.Length; i++)
             {
@@ -294,7 +337,10 @@ public class KirbyHeavenAscendManager : Entity
             float alpha = Ease.SineInOut((manager?.Fade ?? 1f) * Alpha);
             if (alpha <= 0f) return;
 
-            Vector2 cam = (Scene as Level).Camera.Position;
+            Level level = Scene as Level;
+            if (level == null) return;
+
+            Vector2 cam = level.Camera.Position;
             float time = manager?.timer ?? 0f;
 
             // Draw four/six-pointed stars (Deltarune style)
@@ -557,7 +603,10 @@ public class KirbyHeavenAscendManager : Entity
             float alpha = (manager?.Fade ?? 1f) * Alpha;
             if (alpha <= 0f) return;
 
-            Vector2 cam = (Scene as Level).Camera.Position;
+            Level level = Scene as Level;
+            if (level == null) return;
+
+            Vector2 cam = level.Camera.Position;
             Vector2 screenCenter = cam + new Vector2(160f, 90f);
             float time = manager?.timer ?? 0f;
 
@@ -664,7 +713,10 @@ public class KirbyHeavenAscendManager : Entity
         {
             if (Fade <= 0f) return;
 
-            Vector2 cam = (Scene as Level).Camera.Position;
+            Level level = Scene as Level;
+            if (level == null) return;
+
+            Vector2 cam = level.Camera.Position;
             float time = manager?.timer ?? 0f;
 
             // Cycle through warm white → gold → pink for a heavenly glow

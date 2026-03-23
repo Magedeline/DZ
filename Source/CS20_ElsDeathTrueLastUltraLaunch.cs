@@ -88,6 +88,12 @@ namespace MaggyHelper.Cutscenes
         [MethodImpl(MethodImplOptions.NoInlining)]
         public override void OnBegin(Level level)
         {
+            if (player == null || boost == null)
+            {
+                EndCutscene(level);
+                return;
+            }
+
             Audio.SetMusic(null);
             ScreenWipe.WipeColor = Color.White;
             foreach (var _ in player.Leader.Followers.Where(follower => follower.Entity is Strawberry { Golden: not false }).Select(follower => new { }))
@@ -101,8 +107,10 @@ namespace MaggyHelper.Cutscenes
 
         private IEnumerator Cutscene()
         {
+            if (Level == null) yield break;
+
             Engine.TimeRate = 1f;
-            boost.Active = false;
+            if (boost != null) boost.Active = false;
             yield return null;
 
             // Find Els and the starfield backdrop
@@ -119,8 +127,8 @@ namespace MaggyHelper.Cutscenes
             }
 
             cameraOffset = new Vector2(0f, -20f);
-            boost.Active = true;
-            player.EnforceLevelBounds = false;
+            if (boost != null) boost.Active = true;
+            if (player != null) player.EnforceLevelBounds = false;
             yield return null;
 
             // === Destroy Els with starfield explosion ===
@@ -168,8 +176,11 @@ namespace MaggyHelper.Cutscenes
             Add(new Coroutine(SevenSoulBirdsRoutine(1.2f)));
 
             // Spawn the heaven ascend manager with gold/pink/rainbow stars + Deltarune symbols
-            heavenManager = new KirbyHeavenAscendManager();
-            Level.Add(heavenManager);
+            if (heavenManager == null || heavenManager.Scene != Level)
+            {
+                heavenManager = new KirbyHeavenAscendManager();
+                Level.Add(heavenManager);
+            }
             heavenManager.Activate();
             Add(new Coroutine(heavenManager.FadeIn(3f)));
 
@@ -225,6 +236,28 @@ namespace MaggyHelper.Cutscenes
                 boost.Ch20FinalBoostSfx.release();
             }
 
+            // Clean up heaven manager and all its sub-entities
+            if (heavenManager != null && heavenManager.Scene != null)
+                heavenManager.RemoveSelf();
+            heavenManager = null;
+
+            // Clean up any remaining soul birds
+            foreach (BirdNPC b in soulBirds)
+            {
+                if (b != null && b.Scene != null)
+                    b.RemoveSelf();
+            }
+            soulBirds.Clear();
+
+            // Clean up main bird
+            if (bird != null && bird.Scene != null)
+                bird.RemoveSelf();
+            bird = null;
+
+            // Restore boost visibility so it can be reused or cleaned up
+            if (boost != null)
+                boost.Active = false;
+
             string nextLevelName = "end-saved";
             global::Celeste.Player.IntroTypes nextLevelIntro = global::Celeste.Player.IntroTypes.Transition;
             if (hasGolden)
@@ -233,15 +266,19 @@ namespace MaggyHelper.Cutscenes
                 nextLevelIntro = global::Celeste.Player.IntroTypes.Jump;
             }
 
-            player.Active = true;
-            player.Speed = Vector2.Zero;
-            player.EnforceLevelBounds = true;
-            player.StateMachine.State = 0;
-            player.DummyFriction = true;
-            player.DummyGravity = true;
-            player.DummyAutoAnimate = true;
-            player.ForceCameraUpdate = false;
             Engine.TimeRate = 1f;
+
+            if (player != null)
+            {
+                player.Active = true;
+                player.Speed = Vector2.Zero;
+                player.EnforceLevelBounds = true;
+                player.StateMachine.State = 0;
+                player.DummyFriction = true;
+                player.DummyGravity = true;
+                player.DummyAutoAnimate = true;
+                player.ForceCameraUpdate = false;
+            }
 
             Level.OnEndOfFrame += [MethodImpl(MethodImplOptions.NoInlining)] () =>
             {
@@ -502,6 +539,7 @@ namespace MaggyHelper.Cutscenes
         public override void Update()
         {
             base.Update();
+            if (Level == null) return;
             timer += Engine.DeltaTime;
             if (bird != null)
             {
@@ -530,6 +568,7 @@ namespace MaggyHelper.Cutscenes
         [MethodImpl(MethodImplOptions.NoInlining)]
         public override void Render()
         {
+            if (Level == null) return;
             Camera camera = Level.Camera;
             Draw.Rect(camera.X - 1f, camera.Y - 1f, 322f, 322f, Color.White * fadeToWhite);
         }

@@ -99,16 +99,18 @@ namespace MaggyHelper.Entities.SoulBoosts
             CreateParticles();
 
             // Sprite setup - use custom vessel soul sprite
-            Add(sprite = new Sprite(GFX.Game, "objects/MaggyHelper/sevensoulboost/"));
-            sprite.AddLoop("vessel_soul00", "soul", 0.08f);
-            sprite.Play("vessel_soul00");
+            Add(sprite = new Sprite(GFX.Game, "characters/soul/soul/"));
+            char soulSuffix = (char)('A' + (int)Soul);
+            string soulAnim = $"vessel_soul{soulSuffix}";
+            sprite.AddLoop(soulAnim, soulAnim, 0.08f);
+            sprite.Play(soulAnim);
             sprite.CenterOrigin();
             sprite.Scale.X = -1f;
             sprite.Position = spriteOffset;
-            sprite.Color = SoulColor;
+            sprite.Color = Color.White;
 
             // Stretch image for travel
-            Add(stretch = new Image(GFX.Game["objects/badelineboost/stretch"]));
+            Add(stretch = new Image(GFX.Game["objects/sevensoulboost/stretch"]));
             stretch.Visible = false;
             stretch.CenterOrigin();
             stretch.Color = SoulColor;
@@ -183,8 +185,8 @@ namespace MaggyHelper.Entities.SoulBoosts
             // Try to load soul-specific sprite
             try
             {
-                int soulIndex = (int)Soul;
-                soulImage = new Image(GFX.Game[$"objects/MaggyHelper/sevensoulboost/soul/vessel_soul00{soulIndex}"]);
+                char soulSuffix = (char)('A' + (int)Soul);
+                soulImage = new Image(GFX.Game[$"characters/soul/soul/vessel_soul{soulSuffix}"]);
                 soulImage.CenterOrigin();
                 Add(soulImage);
             }

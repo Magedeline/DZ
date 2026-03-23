@@ -167,7 +167,7 @@
     <Loop id="talk_cry" path="cry" delay="0.2" frames="0" />-->
   </portrait_ralsei>
 
-  <portrait_kirby path="kirby/" sfx="kirby" textbox="kirby">
+  <portrait_kirby_maggy path="kirby/" sfx="kirby" textbox="kirby">
     <Center />
 
       <sfxs>
@@ -262,7 +262,7 @@
     <Anim id="idle_togetherZoom_blink" path="togetherZoom" delay="0.08" frames="10,14,15*2,16" goto="idle_togetherZoom"/>
     <Loop id="talk_togetherZoom" path="togetherZoom" delay="0.2" frames="11,13,12,10" />
 
-  </portrait_kirby>
+  </portrait_kirby_maggy>
 
 	<maggy_portrait_madeline_phone path="madelineph/" sfx="madeline" textbox="madeline">
 		<Center />

@@ -1012,6 +1012,11 @@ public class IngesteEventTrigger : Trigger
                 // CS20_BossEnd has no constructor parameters
                 TriggerOnce(level, "ch20_boss_end_trigger", () => new CS20_BossEnd());
                 break;
+
+            case "ch20_asriel_boss_end":
+                // Post Angel-of-Death fight: Asriel breaks down, Els reveals itself
+                TriggerOnce(level, CS20_AsrielBossEnd.Flag, () => new CS20_AsrielBossEnd(player));
+                break;
                 
             case "ch20_final_boss_defeat":
                 TriggerOnce(level, "ch20_final_boss_defeat_trigger", () => new CS20_FinalBossDefeat(player));

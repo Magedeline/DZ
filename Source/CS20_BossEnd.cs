@@ -159,7 +159,7 @@ namespace MaggyHelper.Cutscenes
             level.Session.SetFlag("asriel_angel_phase_started");
             
             // Update music for Angel of Death phase
-            level.Session.Audio.Music.Event = "event:/desolozantas/final_content/music/lvl20/azzy_fight01";
+            level.Session.Audio.Music.Event = "event:/desolozantas/final_content/music/lvl20/burn_in_despair";
             level.Session.Audio.Apply();
         }
     }

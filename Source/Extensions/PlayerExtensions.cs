@@ -34,6 +34,8 @@ namespace MaggyHelper.Extensions
                     player.Dashes = maxDashes;
                 }
             }
+
+            TryApplyPlayerSprite(player, "kirby_player");
         }
 
         /// <summary>
@@ -46,6 +48,9 @@ namespace MaggyHelper.Extensions
             {
                 session.IsKirbyModeActive = false;
             }
+
+            string spriteId = global::MaggyHelper.PlayerSpriteModeExtensions.GetSpriteBankId(player.Sprite.Mode);
+            TryApplyPlayerSprite(player, spriteId);
         }
 
         public static void EnableKirbyPlayerMode(this Player player, int maxDashes = 3)
@@ -110,6 +115,34 @@ namespace MaggyHelper.Extensions
         public static DynamicData GetData(this Player player)
         {
             return new DynamicData(player);
+        }
+
+        private static void TryApplyPlayerSprite(Player player, string spriteId)
+        {
+            if (player?.Sprite == null || string.IsNullOrEmpty(spriteId))
+            {
+                return;
+            }
+
+            if (GFX.SpriteBank == null || !GFX.SpriteBank.Has(spriteId))
+            {
+                return;
+            }
+
+            string currentAnim = player.Sprite.CurrentAnimationID;
+            int currentFrame = player.Sprite.CurrentAnimationFrame;
+
+            GFX.SpriteBank.CreateOn(player.Sprite, spriteId);
+
+            if (!string.IsNullOrEmpty(currentAnim) && player.Sprite.Has(currentAnim))
+            {
+                player.Sprite.Play(currentAnim, restart: true, randomizeFrame: false);
+                player.Sprite.SetAnimationFrame(currentFrame);
+            }
+            else if (player.Sprite.Has("idle"))
+            {
+                player.Sprite.Play("idle");
+            }
         }
     }
 }

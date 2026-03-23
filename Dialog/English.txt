@@ -16846,8 +16846,12 @@ CH20_ASRIEL_BOSS_END=
 [none left]
 UGH... INSUFFERABLE FOOLS.
 
+{trigger 1 camera slightly move to els on the right}
+
 [MADELINE left angry]
 ASRIEL'S CORRUPTOR REVEALS ITSELF.
+
+{trigger 2 madeline walk forward and confront els}
 
 [ASRIEL left disapointed]
 {# 000000}Els... the darkness controlling me throughout.{#}
@@ -16860,12 +16864,23 @@ ASRIEL'S CORRUPTOR REVEALS ITSELF.
 {# 000000}Choice elimination was your agenda.{#}
 {# 000000}Concern for others... absent.{#}
 
+{trigger 3 els start angry with disortion effect}
+
 [ELS left furious]
 {# 000000}HONESTLY ALL FIVE OF YOU GENERATE ABSOLUTE DISGUSTING!{#}
+
+{trigger 4 els calm down and disapointed}
+
+[ELS left furious]
 {# 000000}TEMPORAL LIMITATIONS APPROACH!{#}
 {# 000000}.... YOU WANT TO KNOW THE TRUTH?{#}
 {# 000000}FINE, SO BE IF SO THEN...{#}
+
+{trigger 5 els start to transform into a more humanoid form with glitch effects}
+
 {# 000000}SURVIVAL THIS PHASE!{#}
+
+{trigger 6 els fadded to black}
 
 # ====================================================================
 # THE FALLEN PATH - SIAMO ZERO ("We Are Zero")
@@ -18208,10 +18223,14 @@ alright then, on to the second area.
 [GOOEY left confused]
 kirby? is that you?
 what happened to this place?
+[KIRBY right sad]
+it's... a long story...
 {trigger 1 rock kine coo and gooey appear from different directions}
 [RICK left worried]
 this whole area feels wrong.
 something is definitely off here.
+[KIRBY right distracted]
+I know of what really happen to this place but I don't want to talk about it right now.
 [KINE left scared]
 I don't like this one bit kirby.
 all the water around here has dried up too.
@@ -18221,26 +18240,30 @@ there are enemy patrols throughout this zone.
 [GOOEY left happy]
 ooh ooh! I want to help kirby!
 can I help? please?
-[KIRBY right normal]
+[KIRBY right together]
 yes of course you can.
 I need everyone I can get right now.
+[KIRBY right upset]
+... wait marx! what are you doing here?
+
 
 DXAREA2_REMIX_MARX=
 {trigger 0 marx drops down from above laughing}
 [MARX left smirk]
 heh heh heh...
 well well well, if it isn't the pink puffball again.
-[KIRBY left upset]
-marx! what are you doing here?
+[KIRBY right upset]
+marx! do you have anywhere else to be?
 [MARX left grin]
 relax relax, I'm not here to cause trouble this time.
 believe it or not I actually want to help you out.
-[KIRBY left deadpan]
+[KIRBY right upset]
 ...seriously?
 [MARX right normal]
 don't give me that look.
 even I know when things have gone way too far.
 els is messing with the very fabric of wishes themselves.
+he even turn galactic nova against me.
 that's MY territory.
 [KIRBY right together]
 then you're with us?
@@ -18251,10 +18274,12 @@ let's just say our goals happen to align for now.
 DXAREA2_REMIX_A=
 [GOOEY left excited]
 kirby kirby! I can see the crystal shard somewhere over there!
+all I have to do is just...
 
 DXAREA2_REMIX_B=
 [COO left sharp]
 wait. I can see a barrier blocking the entire path ahead.
+but it is made out of pure... black stone ice?
 [KINE left scared]
 who put that thing there?
 [RICK left determined]
@@ -18263,255 +18288,103 @@ I'll handle this one.
 {trigger 0 rock charges at the barrier}
 [ROCK left normal]
 hmm. this barrier is way tougher than I expected.
+it must be made laos out of metal or something.
 
 DXAREA2_REMIX_C=
 [MARX left grin]
 allow me.
 {trigger 0 marx calls upon nova wish energy to crack the barrier open}
-[MARX left smirk]
-see? told you I'd be useful.
+[MARX left hetryed]
+
+welp I tryed but it seems like this barrier is too strong even for me.
+
+[Gooey left idea]
+wait I think I have an idea about this but I think it's a door that need to be activated to get us through.
+[marx left wtf]
+wait your seriously suggesting that we need to find a key to open this door?
+[GOOEY left bruh]
+no I am talking about going into the barrier and find a power switch.
+[marx right iforgor]
+oh right well thats on me
+[marx right watchingyou]
+but I'll be watching you closely gooey, don't mess this up.
 
 DXAREA2_REMIX_D=
-[COO left sharp]
-the path is clear but I count five guardians ahead.
-[GOOEY left worried]
-five? that's a lot kirby...
-[KIRBY left determined]
-then we take them down one by one.
-let's move.
+[COO left normal]
+finally the door is open. lets get that crystal shard and scedattle out of here.
 
-DXAREA2_REMIX_DYNABLADE=
-[KIRBY left surprised]
-Dyna Blade!?
-[DYNA_BLADE right fierce]
-hmm... the star warrior returns.
-you seek greater power? then prove yourself worthy of it first.
-[KIRBY right determined]
-I don't want to fight you.
-but I need to keep getting stronger.
-[DYNA_BLADE right fierce]
-then show me what you are truly made of.
-
-DXAREA2_REMIX_DYNABLADE_END=
-[DYNA_BLADE right normal]
-...impressive.
-you have grown considerably since we last met, star warrior.
-your strength is genuine.
-[KIRBY left grateful]
-thank you dyna blade.
-[DYNA_BLADE right fierce]
-do not thank me.
-just make sure that power of yours is put to good use.
-{trigger 0 dyna blade spreads her wings and flies off}
-
-DXAREA2_REMIX_FATTYWHALE=
-[FATTY_WHALE left rolling]
-BWWWAAAH!
-who dares enter my domain!?
-[KIRBY left determined]
-I need to pass through here.
-please stand aside!
-[FATTY_WHALE left rolling]
-BWWWAAAH! defeat me first if you want through!
-
-DXAREA2_REMIX_FATTYWHALE_END=
-[FATTY_WHALE left tired]
-...huff... huff...
-okay okay you win.
-go on through already.
-I need a very long nap now.
-{trigger 0 fatty whale flops to the side clearing the path}
-
-DXAREA2_REMIX_HEAVYMOLE=
-[HEAVY_MOLE left drilling]
-INTRUDER DETECTED IN SECTOR SEVEN!
-INITIATING LOCKDOWN PROTOCOL!
-[KIRBY left upset]
-I don't have time for this!
-[HEAVY_MOLE left drilling]
-ELIMINATION SEQUENCE COMMENCING!
-
-DXAREA2_REMIX_HEAVYMOLE_END=
-[HEAVY_MOLE left sparking]
-...SYSTEM... FAILURE...
-UNIT SHUTTING DOWN...
-{trigger 0 heavy mole breaks apart and crashes}
-[KINE left relieved]
-phew. that thing was scary kirby.
-[KIRBY right normal]
-yeah. but we're through now.
-
-DXAREA2_REMIX_PAINTTROLLER=
-[PAINT_ROLLER left spinning]
-aha! a brand new canvas has arrived!
-let me paint you a picture of DEFEAT!
-[KIRBY left upset]
-this is really not the time for art!
-[PAINT_ROLLER left spinning]
-art is ALWAYS the time my pink friend!
-
-DXAREA2_REMIX_PAINTTROLLER_END=
-[PAINT_ROLLER left sad]
-my masterpiece... ruined...
-[KIRBY left sad]
-I'm sorry paint roller.
-but I really need to keep moving.
-[PAINT_ROLLER left normal]
-...fine.
-I'll just paint a picture of your victory instead then.
-{trigger 0 paint roller waves goodbye and rolls away}
-
-DXAREA2_REMIX_MRTICKTOCK=
-[MR_TICK_TOCK left ticking]
-tick... tock... tick... tock...
-time is up for you intruder!
-[KIRBY left determined]
-no. time is just getting started.
-
-DXAREA2_REMIX_MRTICKTOCK_END=
-[MR_TICK_TOCK left ticking]
-tick... tock... tick...
-...time... runs... out...
-{trigger 0 mr tick tock winds down and stops}
-[GOOEY left happy]
-yaaay kirby you did it!
-
-DXAREA2_REMIX_SECOND_TITAN_PROTECTOR=
-{trigger 0 the ground trembles and a massive titan rises from beneath the crystal-covered earth}
-[KIRBY left awestruck]
-what... what is that?
-[GOOEY left scared]
-kirby that thing is huge!
+DXAREA1_REMIX_SECOND_TITAN=
+[kirby left angry]
+hey you over here, wake up
 [second_titan]
-...
-you have arrived, small warrior.
-I am the second warden.
-guardian of the crystal shards that slumber in this land.
-[KIRBY left determined]
-we need those crystal shards.
-please let us through.
+... whos the name of the pink puffball that woke me up?
+[KIRBY left distracted]
+uh... it's me, kirby.
+but I need your help and give me a trails for me to gain up enough exp to defeat els..
 [second_titan]
-the crystal shards are not taken.
-they are earned.
-those shards carry the resonance of a thousand fallen stars.
-only one whose strength is true may hold them without shattering.
-[RICK left firm]
-kirby can handle it.
-he's gotten through everything else today.
-[second_titan]
-then let him prove it.
-survive my second trial, and the crystal shards are yours.
-fail, and leave this place forever.
-[KIRBY left determined]
-I won't fail.
-not today.
-
-DXAREA2_REMIX_SECOND_TITAN_TRIAL=
-{trigger 0 the second titan raises both arms and the crystal formations around the area begin to spin and fire}
-[second_titan]
-STEEL YOURSELF.
-THIS IS THE TRIAL OF THE SHARD!
+I see... you want to gain up enough exp to defeat els, right?
+well then I'll put you in the second trials
+reminding you that you may need to parry the opponent's attacks as much as you can.
+there very agaile and quick so you need to be on your toes.
 
 DXAREA2_REMIX_SECOND_TITAN_END=
-[KIRBY left glowing_blue]
-the shards... they're flowing into me...
-[second_titan]
-...you did not flinch.
-not once.
-the crystal shards recognize you, star warrior.
-their power is now bound to your will.
-use them to cut through even the darkest veil.
-[COO left sharp]
-kirby your whole aura just changed.
-[KINE left amazed]
-I've never seen him glow like that before!
 [KIRBY left thankyou]
-thank you.
-really.
+thank you for your help, I can feel the power flowing through me.
 [second_titan]
-...continue onward.
-the third warden will be watching.
-[chara left curious]
-will you come with us?
-[second_titan]
-...not yet.
-my duty still binds me to this land.
-but when the final moment comes
-I will answer.
-{trigger 0 second titan slowly sinks back into the crystal earth leaving a faint blue glow behind}
-
-DXAREA2_REMIX_END=
-[GOOEY left excited]
-we got the crystal shards from this area!
-[COO left sharp]
-kirby your power has jumped way up again.
-[KINE left happy]
-the crystal light around you is incredible!
-[RICK left normal]
-keep going kirby.
-we'll be right behind you.
-[MARX left smirk]
-heh. not bad puffball.
-not bad at all.
-{trigger 0 all animal friends and marx give a thumbs up}
+don't thank me, you should be proud of it.
+you may have few scratches but overall you did well.
+just upahead lies the third titan ability.
+now then with that out of the way.
+good luck
+{trigger 0 second titan fade away}
 
 # ================================
 # DX AREA 3 REMIX - ALLIES FROM STARS AND SHADOWS
 # ================================
 
 DXAREA3_REMIX_INTRO=
-{trigger 0 pan into third area warning lights flashing}
-[KIRBY left determined]
-this is the third area.
-but something feels different here.
-{trigger 1 adeline ribbon dark meta knight and daroach appear}
-[ADELINE left surprised]
-kirby! there you are!
-ribbon and I have been searching everywhere for you!
-[RIBBON left worried]
-kirby this area is heavily guarded.
-we tried to get through but the enemies are much stronger here.
+{trigger 0 interdimentional rift opens and daroach, ribbon, and dark meta knight step out}
+[RIBBON left determined]
+this is it kirby, the heart staff is just up ahead.
+[daroach left sly]
+we've been waiting for you to get here.
+but we must try to get the heart staff.
 [DARK_META_KNIGHT left cool]
-...I have been observing.
-these enemies are not random.
-els has specifically fortified this zone.
-[KIRBY left distracted]
-dark meta knight? you're helping us too?
-[DARK_META_KNIGHT left cool]
-do not misunderstand.
-I have my own reasons for wanting els stopped.
-but our paths are the same for now.
-[DAROACH left sly]
-and I suppose I am here too.
-if there is treasure to be gained from defeating els then count the squeak squad in.
-[KIRBY right together]
-the more the merrier I guess.
-let's go.
+the heart staff is the most powerful weapon in the universe.
+but it is also the most dangerous.
+it can amplify the power of the wielder but it can also consume them if they are not careful.
+[ADELINE left determined]
+no worry about that.
+lets do this...
 
 DXAREA3_REMIX_A=
 [ADELINE left happy]
-I spotted the heart staff on the other side of that ridge kirby!
+I made it to the heart staff!
 
 DXAREA3_REMIX_B=
-[RIBBON left worried]
-there's a massive barrier sealing the entrance.
-we couldn't break through it at all kirby.
-[DARK_META_KNIGHT left cool]
-leave it to me.
-{trigger 0 dark meta knight slashes through the barrier with dark sword energy}
-[DARK_META_KNIGHT left cool]
-...done.
-[DAROACH left impressed]
-not bad for a shadow.
+[RIBBON left shocked]
+adeline look out!
+{trigger 0 a heart door slam shut ahaead to adeline nearly crushing her}
+[ADELINE left happy]
+thank ribbon for saving me!
+but how the heck that door just slam shut like that?
+[darkmeta_knight left hmmm]
+it's not a door it's a dome.
+or a sphere
+[DAROACH left bruh]
+yeah I don't know how to get across it but how we able to get in there...?
+[darkmeta_knight left ideastruck]
+Maybe I can go through the mirror with that same crystalize wall
+let me phase through it.
 
 DXAREA3_REMIX_C=
 [DAROACH left sly]
-I can see three powerful guardians protecting the heartstaff.
-these are not small fry kirby.
-be ready for a real fight.
-[KIRBY left determined]
-I know.
-I've come too far to back down now.
+great now it is open but how do we get across it?
+{platform appears across the dome}
+[adeline left normal]
+well here is your awnser.
+[daroach left bruh]
+really smooth move there adeline.
 
 DXAREA3_REMIX_GRANDDOOMER=
 [GRAND_DOOMER left looming]
@@ -18523,103 +18396,23 @@ I can do it again!
 [GRAND_DOOMER left looming]
 YOU ARE NOTHING BUT A SPECK OF HOPE IN AN INFINITE VOID!
 
-DXAREA3_REMIX_GRANDDOOMER_END=
-[GRAND_DOOMER left weakened]
-...how... how can this be...
-the star warrior's power grows beyond all measure...
-{trigger 0 grand doomer shatters into fragments of light}
-[ADELINE left amazed]
-kirby that was incredible!
-[KIRBY left determined]
-still two more to go.
-
-DXAREA3_REMIX_PONANDCON=
-[PON_AND_CON left spinning]
-nyah nyah! you'll never get through us!
-we guard this place day and night!
-[KIRBY left calm]
-you two should stand aside.
-this doesn't have to end badly for you.
-[PON_AND_CON left spinning]
-no chance!
-battle stations CON!
-
-DXAREA3_REMIX_PONANDCON_END=
-[PON left tired]
-ow ow ow...
-[CON left tired]
-that really stung...
-okay okay, you can pass.
-just please don't hit us again.
-{trigger 0 pon and con flop over dramatically}
-[DAROACH left smirking]
-embarrassing little pair.
-
-DXAREA3_REMIX_MAHALL=
-[MA_HALL left furious]
-SERVANTS OF ELS WILL NOT ALLOW PASSAGE!
-THIS SANCTUARY IS SEALED BY HIS WILL!
-[DARK_META_KNIGHT left cool]
-...what an annoyance.
-[KIRBY right determined]
-I'll handle this one.
-stand back everyone.
-
-DXAREA3_REMIX_MAHALL_END=
-[MA_HALL left crumbling]
-...impossible... the star warrior... has truly surpassed all limits...
-{trigger 0 ma hall collapses and dissipates into dust}
-[RIBBON left relieved]
-thank goodness that's over.
-[KIRBY left determined]
-yeah.
-but we still have one more area after this.
-
 DXAREA3_REMIX_THIRD_TITAN_PROTECTOR=
-{trigger 0 the shadows around the heart staff begin to twist and a titan steps out of the darkness silently}
-[RIBBON left frightened]
-kirby! something is coming!
-[DARK_META_KNIGHT left guarded]
-...a warden.
-stand ready.
+[kirby left upset]
+why there snoring?
+well i have to yell this again.
+[kirby left angry]
+HEY WAKE UP!
 [third_titan]
-so the star warrior comes seeking the heart staff.
-I expected you sooner.
-[KIRBY left steady]
-you knew I was coming?
+wh- whos there?
+oh it's you...
+[kirby left determined]
+I need your take a trails for me to get even stronger, 
+I have done it twice and now here for the third.
 [third_titan]
-I have watched every step you have taken since the first trial.
-the first warden told me of your determination.
-the second warden told me of your unyielding will.
-now I must decide if your heart matches your strength.
-[ADELINE left worried]
-what do you mean by that?
-[third_titan]
-the heart staff is not a weapon.
-it is a vessel.
-it holds the grief, the hope, and the love of every soul who ever fought for something beyond themselves.
-an impure heart would be consumed by it instantly.
-[KIRBY left quietly]
-...then test me.
-I won't hold anything back.
-[third_titan]
-no.
-you will hold EVERYTHING in.
-that is the nature of this trial.
-the trial of the heart is not about power.
-it is about endurance.
-how much can you carry without breaking?
-[DAROACH left unnerved]
-that sounds significantly more painful than a boss fight.
-[third_titan]
-begin.
-
-DXAREA3_REMIX_THIRD_TITAN_TRIAL=
-{trigger 0 the third titan channels waves of emotional resonance that hit kirby like physical force visions of every fallen ally and every painful moment flash through kirby}
-[third_titan]
-FEEL IT ALL.
-EVERY LOSS. EVERY DOUBT. EVERY SCAR.
-IF YOUR HEART IS TRUE IT WILL NOT BREAK.
+I see you want to take a third tails.
+so be it this time...
+prove to me that you are worthy of the heart staff.
+and give you a heads up that it require you to use element ability to match up the enemy element and use it against them.
 
 DXAREA3_REMIX_THIRD_TITAN_END=
 [KIRBY left on_knees_breathing_hard]
@@ -18636,40 +18429,15 @@ the heart staff chose you.
 it will amplify every ounce of love you carry.
 and in the darkest moment ahead
 you will need every single piece of it.
-[RIBBON left tearful]
-kirby... are you okay?
-[KIRBY left slowly_standing]
-yeah.
-...yeah I am.
-[ADELINE left painting_in_the_air]
-I couldn't look away from that.
-goodbye third titan.
-and thank you.
+[KIRBY left determined]
+thanks again for your help.
+you have no idea how much this means to me.
 [third_titan]
-...go.
+...then go.
 the fourth warden awaits.
 and the one beyond the fourth.
-[chara left serious]
-the roaring one?
-[third_titan]
-...you already know of them.
-then prepare yourselves well.
+and prepare for the fourth trails.
 {trigger 0 third titan dissolves back into shadow}
-
-DXAREA3_REMIX_END=
-[ADELINE left happy]
-we've got the heart staff from area three!
-[RIBBON left cheerful]
-kirby that staff is already resonating with your energy!
-[DARK_META_KNIGHT left cool]
-...your progress is noted.
-do not grow complacent.
-[DAROACH left grinning]
-the final stretch is ahead.
-and apparently something called the roaring titan waits near the end.
-[KIRBY right determined]
-then let's not waste any more time.
-{trigger 0 the group presses forward toward the fourth area}
 
 # ================================
 # DX AREA 4 REMIX - THE GREATEST ALLIES AND THE FINAL TRIAL
@@ -18677,285 +18445,57 @@ then let's not waste any more time.
 
 DXAREA4_REMIX_INTRO=
 {trigger 0 massive energy surge fills the area with blinding light}
-[KIRBY left awestruck]
-this place...
-the energy here is incredible.
-{trigger 1 magolor taranza susie elfilin and the three mage sisters all appear together}
-[MAGOLOR left serious]
-kirby. i'm glad you made it this far.
-i owe you a great deal and today I repay that debt in full.
-[TARANZA left nervous]
-I never thought I'd be fighting alongside everyone like this.
-but if it's for the sake of all worlds then I am ready.
-[SUSIE_HALTMANN left determined]
-HWC systems are fully operational.
-I'm with you commander kirby.
-[ELFILIN left hopeful]
-kirby! I believe in you with everything I have!
-this universe deserves to be saved!
-[FRANCISCA left calm]
-the mage sisters stand united.
-[FLAMBERGE left fired_up]
-we're gonna burn every last obstacle to the ground!
-[ZAN_PARTIZANNE left proud]
-for lord hyness!
-...wait no.
-for the universe. for everyone.
-[KIRBY right moved]
-everyone...
-thank you. truly.
-let's end this together.
+[zan_partizanne left prime]
+this is it.
+our final chances to help our little friend.
+[susiehaltmann left analytical]
+the energy signature is off the charts.
+theres a super ability sealed up ahead.
+[elfilin left shut]
+enough talking about it.
+lets gets the super ability!
 
 DXAREA4_REMIX_A=
 [ELFILIN left hopeful]
-I can feel the super ability just beyond this point kirby!
-the energy signature is enormous!
+Holy crap this barrier is way too big!
 
 DXAREA4_REMIX_B=
 [MAGOLOR left serious]
-and so is the barrier sealing it.
-this is the most reinforced one we've seen yet.
-[SUSIE_HALTMANN left determined]
-HWC analysis complete.
-this barrier requires simultaneous impact from multiple energy signatures.
-[TARANZA left thinking]
-then we all attack at once?
-[FLAMBERGE left fired_up]
-NOW you're speaking my language!
-let's all hit it together!
-{trigger 0 magolor taranza susie elfilin and all three mage sisters combine their power and blast the barrier open}
-[ZAN_PARTIZANNE left proud]
-...that's how you do it.
+yeah this is why you shouldn't have any doubts about this.
+[MAGOLOR left happy]
+luckly I know a trick of how to get through this.
+{trigger 0 magolor uses a ultra sword to cut through the barrier but shatter the sword that the barrier is too strong}
+[MAGOLOR left annoyed]
+okay maybe that wasn't the best idea but anyone know how we can do this?
+[zan_partizanne left thinking]
+....hmmm
+[ZAN_PARTIZANNE left struck]
+what about of two sister and I get into this barrier to create a gap to get us through but it won't hold much longer.
+[MAGOLOR left happy]
+actually I like that idea, I'll let you three do it!
 
 DXAREA4_REMIX_C=
-[FRANCISCA left calm]
-the final eight guardians await beyond.
-these are the most powerful enemies els has placed here.
-be prepared kirby.
-none of them will hold back.
-[KIRBY left determined]
-I know.
-but neither will I.
-
-DXAREA4_REMIX_NIGHTMARE=
-[NIGHTMARE left looming]
-so the star warrior has come at last.
-I have been waiting a very long time for this rematch.
-[KIRBY left steeled]
-nightmare...
-you were my first real test.
-[NIGHTMARE left looming]
-and now I shall be your LAST!
-
-DXAREA4_REMIX_NIGHTMARE_END=
-[NIGHTMARE left fading]
-...remarkable... to think that little star warrior from so long ago...
-has grown into this...
-do not disappoint me in the battle ahead, kirby...
-{trigger 0 nightmare dissolves into cascading dark stars}
-[MAGOLOR left serious]
-first one down.
-seven more to go.
-
-DXAREA4_REMIX_ZEROTWO=
-[ZERO_TWO left silent]
-...
-[KIRBY left horrified]
-zero two!? you're still here!?
-[ZERO_TWO left silent]
-...DARKNESS... CANNOT... DIE...
-...ONLY... TRANSFORM...
-
-DXAREA4_REMIX_ZEROTWO_END=
-[ZERO_TWO left fading]
-...pink... warrior...
-...do not... let it... consume...
-...everything...
-{trigger 0 zero two sinks away into a deep void of light}
-[ELFILIN left shaked]
-that was the most terrifying thing I have ever felt.
-[KIRBY left resolute]
-stay with me elfilin.
-we keep going.
-
-DXAREA4_REMIX_DARKMIND=
-[DARK_MIND left splitting]
-mirrors within mirrors within mirrors!
-you cannot defeat what is endless and ever-reflecting!
-[SUSIE_HALTMANN left analytical]
-interesting. its energy signature keeps replicating itself.
-[KIRBY left firm]
-doesn't matter.
-I'll smash every single mirror until there's nothing left!
-
-DXAREA4_REMIX_DARKMIND_END=
-[DARK_MIND left fracturing]
-e... every reflection shattered...
-how can something so small destroy something so vast...
-{trigger 0 dark mind's mirrors crack and shatter one by one until silence}
-[TARANZA left shaky]
-this is getting more intense by the second.
-
-DXAREA4_REMIX_DARKNEBULA=
-[DARK_NEBULA left surging]
-THE EYE OF DARKNESS SEES ALL!
-NOTHING SHALL ESCAPE MY GAZE!
-[KIRBY left determined]
-then look me in the eye.
-and see someone who won't give up!
-
-DXAREA4_REMIX_DARKNEBULA_END=
-[DARK_NEBULA left flickering]
-...you dare stare back...
-...into the very eye of oblivion...
-...you are not what I expected...
-{trigger 0 dark nebula's eye dims and blinks out into darkness}
-[FRANCISCA left composed]
-halfway there. four remain.
-
-DXAREA4_REMIX_DRAWCIASOUL=
-[DRAWCIA_SOUL left swirling]
-PAINT! CANVAS! COLOR!
-I WILL REMAKE THIS WORLD IN MY OWN IMAGE!
-[KIRBY left ready]
-this world already has a meaning.
-and I'm going to protect it!
-
-DXAREA4_REMIX_DRAWCIASOUL_END=
-[DRAWCIA_SOUL left dissolving]
-the colors... are fading...
-but perhaps... a new painting... is beginning...
-{trigger 0 drawcia soul melts into a beautiful cascade of rainbow light}
-[FLAMBERGE left pumped]
-three more kirby you've got this!
-
-DXAREA4_REMIX_GALACTAKNIGHT=
-[GALACTA_KNIGHT left silent]
-...
-{trigger 0 galacta knight raises lance and points directly at kirby}
-[KIRBY left intense]
-the greatest warrior in the galaxy.
-I know what you're capable of.
-[GALACTA_KNIGHT left silent]
-...THEN COME.
-
-DXAREA4_REMIX_GALACTAKNIGHT_END=
-[GALACTA_KNIGHT left kneeling]
-...
-you have surpassed even my measure.
-carry that strength into the fight that awaits.
-{trigger 0 galacta knight sheathes lance and stands aside with a bow}
-[ZAN_PARTIZANNE left moved]
-even galacta knight acknowledged you kirby.
-this is truly something else.
-
-DXAREA4_REMIX_VOIDTERMINA=
-[VOID_TERMINA left roaring]
-SOULS OF CHAOS CONVERGE!
-I AM THE DESTROYER! THE BEGINNING! THE END!
-[KIRBY left determined]
-you are none of those things.
-als long as there is still love in this universe
-you will never truly win!
-[VOID_TERMINA left roaring]
-LOVE IS MEANINGLESS IN THE FACE OF INFINITE OBLIVION!
-
-DXAREA4_REMIX_VOIDTERMINA_END=
-[VOID_TERMINA left trembling]
-this power... within you...
-it feels like... something i once knew...
-something i... lost long ago...
-{trigger 0 void termina implodes into a single point of brilliant light that slowly fades}
-[MAGOLOR left quiet]
-one more kirby.
-just one more.
-
-DXAREA4_REMIX_FECTOELFILIS=
-[FECTO_ELFILIS left looming]
-SPECIMEN HAS EXCEEDED ALL PARAMETERS!
-INITIATING TOTAL ERADICATION PROTOCOL!
-[ELFILIN left distressed]
-fecto elfilis...
-I am sorry that things came to this.
-[KIRBY left stepping_forward]
-elfilin. stand back.
-I'll handle this.
-[ELFILIN left tearful]
-kirby...
-please bring them back.
-
-DXAREA4_REMIX_FECTOELFILIS_END=
-[FECTO_ELFILIS left weakened]
-...specimen... you are... unlike... any other...
-...this unit... cannot... comprehend...
-{trigger 0 fecto elfilis collapses releasing a surge of pure white energy}
-[ELFILIN left crying]
-...
-thank you kirby.
-they can finally rest now.
-{trigger 1 elfilin touches the fading energy gently}
+[francisca left composed]
+finally we made it through that barrier.
+[susie_haltmann left stunned]
+fascinating, the energy signature of that barrier is unlike anything I've ever seen before.
+there a 40% chances that it was made by els himself.
+[zan_partizanne left together]
+thens lets grab it and get out of here.
 
 DXAREA4_REMIX_FOURTH_TITAN_PROTECTOR=
 {trigger 0 a deafening silence falls then the ground splits apart and the fourth and largest titan erupts from below towering over everything}
-[MAGOLOR left stunned]
-...I have traveled to the far corners of this universe.
-I have never seen anything like that.
-[ELFILIN left trembling]
-the energy coming off of it is beyond anything in any database...
 [fourth_titan]
-STAR WARRIOR.
-{trigger 1 the fourth titan focuses entirely on kirby ignoring everyone else}
+who dares trespass into the realm of the fourth warden?
+[KIRBY left determined]
+I am the star warrior.
+and that will be me.
+I need your help to defeat els.
+and gain the exp for a trails to get stronger.
 [fourth_titan]
-I AM THE FOURTH WARDEN.
-I HAVE STOOD VIGIL OVER THE SUPER ABILITY SINCE BEFORE YOUR STAR WAS BORN.
-[KIRBY left not_backing_down]
-I know you're powerful.
-but I've come this far.
-and I need that ability to stop els.
-[fourth_titan]
-ELS.
-yes.
-I too have felt his corruption spreading like rot across every plane of existence.
-...which is precisely why I cannot hand the super ability to just anyone.
-what you are asking to wield is not a power.
-it is a FORCE OF NATURE.
-a single strike from it can unmake a mountain.
-a single wave can shatter the barriers between worlds.
-[SUSIE_HALTMANN left calculating]
-and if the wrong person used it—
-[fourth_titan]
-EVERYTHING.
-would end.
-not just els.
-everything.
-[KIRBY left quietly but firmly]
-then test me.
-all of me.
-not just my strength.
-not just my heart.
-all of it.
-[fourth_titan]
-...
-...you understand what you are asking.
-{trigger 2 the fourth titan lowers its enormous head until it is eye level with kirby}
-[fourth_titan]
-then face the final trial.
-the trial of everything you are.
-soul. strength. heart. will. bond.
-if any part of you is false, you will not survive this.
-[ZAN_PARTIZANNE left gripping_her_lance]
-kirby... please come back from this.
-[KIRBY left calm_smile]
-I will.
-
-DXAREA4_REMIX_FOURTH_TITAN_TRIAL=
-{trigger 0 the fourth titan channels all three trial energies at once crystal shard resonance heart staff resonance and raw cosmic force all crash into kirby simultaneously}
-[fourth_titan]
-EVERY STEP YOU HAVE TAKEN.
-EVERY ALLY YOU HAVE STOOD BESIDE.
-EVERY LOSS YOU HAVE CARRIED.
-EVERY REASON YOU ARE STILL FIGHTING.
-SHOW THEM ALL TO ME!
+...I understood.
+you may shall proceed the fourt trails and test your limits.
+last note that this require you to endure your health to the fullest.
 
 DXAREA4_REMIX_FOURTH_TITAN_END=
 {trigger 0 an enormous beam of light erupts from kirby and pierces straight upward through the ceiling of the void itself}
@@ -18963,7 +18503,7 @@ DXAREA4_REMIX_FOURTH_TITAN_END=
 ...
 ...
 ...
-I see.
+Impressive.
 {trigger 1 the super ability descends from above wrapped in all three power auras crystal blue heart gold and cosmic white and settles into kirby}
 [KIRBY left transcendent]
 I... I can feel everything...
@@ -18978,63 +18518,13 @@ given physical form and unleashed as one.
 [KIRBY left thankyou]
 than... thank you.
 [fourth_titan]
-...one more thing, star warrior.
-you asked each warden if they would come with you.
-we have been deliberating.
-the second and third wardens have already answered.
-[chara left eyes_wide]
-and the first?
-[fourth_titan]
-the first warden led the way.
-you will understand when you reach the end.
-but for now.
-you must also face the one we call the ROARING TITAN.
-the warden between all wardens.
-not a protector of power.
-but a protector of warriors themselves.
-[TARANZA left pale]
-that sounds terrifying.
-[fourth_titan]
-it is.
-but it is also the last thing standing between you and els.
-not as an enemy.
-as the final gate.
-{trigger 2 fourth titan steps aside creating a path of pure light}
-[fourth_titan]
-GO, STAR WARRIOR.
-WE WILL ANSWER WHEN THE MOMENT COMES.
-{trigger 3 the four wardens voices echo from every direction as kirby walks forward}
-
-DXAREA4_REMIX_END=
-[KIRBY left exhausted_but_standing]
-...we did it.
-all eight.
-and the super ability is mine.
-[MAGOLOR left quietly proud]
-you have surpassed every expectation kirby.
-even mine.
-and that is saying something.
-[TARANZA left emotional]
-I... I never want to fight again after this.
-but I am glad I was here for it.
-[SUSIE_HALTMANN left respectful]
-super ability confirmed and integrated, commander.
-you are at full operational capacity.
-[FRANCISCA left nodding]
-you have our full support from here forward kirby.
-[FLAMBERGE left tearful_smile]
-go get him you magnificent pink ball!
-[ZAN_PARTIZANNE left proud]
-we believe in you!
-[ELFILIN left hopeful]
-kirby...
-you are the brightest hope I have ever known.
-please save everyone.
-[KIRBY right determined]
-...I will.
-I promise.
-{trigger 0 everyone stands together as a brilliant light fills the area}
-{trigger 1 kirby walks forward alone into the final path toward the roaring titan}
+don't thank me, your own strength and determination is what got you here.
+now go,
+the final warden and els await.
+and encourage the final titan protector to follow you as well.
+{trigger 0 fourth titan fades away}
+[kirby left thankyou]
+I won't let you down.
 
 # ================================
 # DX FINAL AREA - CHAPTER 20
@@ -19044,696 +18534,541 @@ DXFINALAREA_CH20_ROARING_TITAN_GATE=
 {trigger 0 kirby reaches the threshold between the fourth area and els domain and the ground begins to quake violently}
 [KIRBY left stopping]
 ...this is it.
-beyond here is els.
-{trigger 1 a sound unlike anything heard before a roar that shakes the very void itself erupts from directly ahead}
-{trigger 2 the roaring titan materializes blocking the entire path it is unlike the other wardens it radiates not darkness or light but raw primal will}
-[KIRBY left breath_caught]
-what—
-[roaring_titan]
-...
-{trigger 3 the roaring titan says nothing just stares at kirby with ancient eyes}
-[KIRBY left slowly_stepping_forward]
-...are you one of the wardens?
-[roaring_titan]
-...
-I am the last.
-I roar so that warriors do not forget what they are fighting for.
-before every great battle through all of history
-I have stood at the final gate.
-and I have turned back every warrior who was not truly ready.
-[KIRBY left serious]
-then you're going to test me too.
-[roaring_titan]
-...no.
-{trigger 4 the roaring titan pauses and something shifts in its ancient eyes}
-[roaring_titan]
-I have already seen your trial.
-the first warden told me of your determination.
-the second of your will.
-the third of your heart.
-the fourth of your soul.
-...there is nothing left for me to test.
-[KIRBY left confused]
-then... you're letting me through?
-[roaring_titan]
-...I am doing more than that.
-{trigger 5 the roaring titan slowly kneels before kirby}
-[roaring_titan]
-star warrior.
-I have stood at this gate for longer than your world has existed.
-I have never once left my post.
-but what lies beyond that gate is something I have never seen in all those years.
-a darkness that would erase not just lives... but the very concept of hope itself.
-if that is allowed to exist...
-there is no gate worth guarding anymore.
-[KIRBY left moved]
-...then come with me.
-[roaring_titan]
-...
-...yes.
-{trigger 6 the roaring titan rises to its full height and stands behind kirby}
-[roaring_titan]
-I will follow you into the void itself, star warrior.
-it is... an unusual feeling.
-to walk forward instead of simply standing.
-[KIRBY left small_smile]
-I think you'll like it.
-[roaring_titan]
-...perhaps.
-now.
-let us end this.
-{trigger 7 the roaring titan's roar sends a shockwave through the entire void dimension that shakes els domain to its core}
-{trigger 8 the first second third and fourth wardens all emerge from behind matching the roaring titan all five standing with kirby}
-[first_titan]
-we are with you.
-[second_titan]
-all of us.
-[third_titan]
-until the very end.
-[fourth_titan]
-STAR WARRIOR. MOVE FORWARD.
-[roaring_titan]
-...together.
-{trigger 9 all five titans march forward as kirby leads them through the final gate}
+[roaring_titan left booming]
+who the name of deltarune dares to enter the realm of the roaring titan?
+[KIRBY left together]
+that will be me.
+I need your help and I know you can hear me.
+but I need you to fight with me one last time.
+[roaring_titan left booming]
+... I understand now.
+you are the star warrior and delta warrior.
+you have fought through every trial and every battle.
+you have gained the strength of every ally and every bond you have ever forged.
+that then, you must prove yourself one last time.
+to face a girl who climb the mountian and defeat a god who rules over the void.
+who the girl you may ask?
+well it's madeline ofcourse but that just a simulation.
+[kirby left determined]
+I understood loud and clear.
+[kirby left distracted]
+but anything else
+[roaring_titan left affirmative]
+there also other enemys that you have face before during your climb
+so be prepared for anything.
+[KIRBY left together]
+then lets do this!
 
-DXFINALAREA_CH20_APPROACH=
-{trigger 0 kirby enters the final threshold the five titans at his back the world trembling around him}
+DXFINALAREA_CH20_ROARING_TITAN_GATE_END=
+[roaring_titan left stunning]
+impressive.
+you have proven yourself worthy to enter the realm of els.
+but be warned, the final battle will be unlike anything you have ever faced before.
+and were with you this time, but you will need to rely on your own strength and determination to overcome the challenges ahead.
+calling all wanderers who have come to this realm, the star warrior has arrived.
+[all_titans_wanderer left order]
+were waiting for your order as you wish.
+[kirby left determined]
+Go onward to the event horizon and stop els!
+
+DXFINALAREA_CH19_END=
+[chara right normal]
+kirby you made it back here, I thought you would never make it.
+[KIRBY left sad]
+and how it my dream friends
+[chara right worried]
+well there okay but little but infected by the void but they are still with you.
+[kirby right surprised]
+oh holy sweet lord
+thank you all of you for bringing me here and helping me get this far.
+[chara right normal]
+please be careful, my little pink puff ball.
+
+DXFINALAREA_CH20_INTRO=
+[kirby left angry]
+this is it.
+this is the final battle against els.
+wait... I see...
+... Madeline!!! Badeline!!!
+your trap in there too!?
+[MADELINE left panic]
+kirby... I know you have been through a lot but please be careful.
+[BADELINE left worried]
+yeah, you better watch your back out there.
+els has been keeping us like toys as a doll.
+[titans left together]
+fear not my young infant.
+we will help you out.
+{trigger 0 the titans step forward and bring out the chains}
+[kirby left surprised]
+titan look out!
+{trigger 1 the titans chain themselves to kirby to help him endure els attacks}
+[els right smuckle]
+well how very touching.
+you brought your power and your titan to rescue her.
+I honestly think that you also gather ever gimmick ability as we speak?
+[kirby left angry]
+what are you even talk about?
+[els right normal]
+oh I see...
+don't you get it, this gimmick ability is going be your final run test.
+and over all you and your titan have to go through us.
+[roating_titan right discourage]
+you fall how did you such things els!
+you will pay for this of what you done!
+[first_titan left furoius]
+you actions will be above your consequense
+nothing matter the most that it's you who did this.
+[second_titan left angry]
+you seriously gonna use them to become something greater than yourself.
+your not only harnessing there power.
+you also groomed them, your sick!
+[third_titan left pissed]
+I won't let you hurt or torture them any longer.
+you may put them to be tramatized and axeinity
+this will be your end els!
+[fourth_titan left angony]
+you run away anymore els,
+theres nothing left to hide from us.
+[kirby left angry]
+you seriously using there power to become something more powerful then me?
+how disgusting you peice of pedophile!
+[els left pissed]
+shut up you little pink pest!
+you have no idea what I have been through.
+and I have no problem using them to become something greater than you.
+I'll consume them two that you love so much and use them to become something greater than you.
+[roaring_titan left shocked]
+no don't you dare touch them els!
+[madeline_and_badeline left panic]
+help us kirby!
+[kirby left surpried]
+what you have done!
+{trigger 0 fade to black}
+
+DXFINALAREA_CH20_HOMESTUCK_INTRO=
+[]
+hey jade do you wanna go to the mall?
+uh sure but I have to finish this quest first.
+well can I help you with that?
+sure, I need to defeat this big bad guy but I don't know how to do it.
+lets see here, what do we have it in the market?
+wait...
+what is that?
+
+{trigger 0 a flash of light appears and a figure jade from homestuck appears}
+[jade left normal]
+ha looks like you found me you pink puffball.
+or should I say I find you.
+[kirby left surprised]
+what the hell?
+{trigger 0 instant blackout}
+as I always said.
+in our little perfect world
+no one will make or get to choose of who they are nor they make their own choices.
+but you know what?
+they can still fight for what they want.
+{trigger 1 evil jade laugh}
+
+DXFINALAREA_CH20_ELS_INFORMATION=
+[status]
+NAME: JADES
+reality name: homestuck
+age: unknown
+power: reality warping, time manipulation, space manipulation, and more
+his goal is to consume all realities and become the ultimate being in the multiverse
+and he won't stop until he achieves his goal to become penumbra phastasm.
+
+DXFINALAREA_CH20_KIRBY_REFUSED_TO_DIED=
+but you refused...!
+
+DXFINALAREA_CH20_KIRBY_1_A=
+it's penumbra phastasm.
+
+DXFINALAREA_CH20_JADES_PHASE_1_A=
+[JADE left bruh]
+you know what, I don't even care about you or your goals.
+I just want to have fun and fight you.
+thats all I care about.
+[kirby left angry]
+you can't take someone who has that power lightly.
+[JADE left smuggle]
+oh I know, but I also know that you have been through a lot and you have a lot of power too.
+then lets see of how far we can go for it...
+
+DXFINALAREA_CH20_JADES_PHASE_1_B=
+[JADE left eye_roll]
+all of your progess and power is impressive but it won't be enough to stop me.
+everything will fall to zero.
+[kirby left determined]
+I am not zero and I will never be zero.
+I am a star warrior and thats who I am.
+
+DXFINALAREA_CH20_JADES_PHASE_1_C=
+[JADE left again]
+then we can do this fight after death all over again!
+
+DXFINALAREA_CH20_JADES_PHASE_1_D=
+[JADE left smirkle]
+and do you know what is the awesome part about this?
+you get off the game over screen and you get to fight me again and again until you finally get it right.
+[kirby left angry]
+oh shut up!
+
+DXFINALAREA_CH20_JADES_PHASE_1_E=
+[JADE left bruh]
+then you win and have a happy ending, again...
+
+DXFINALAREA_CH20_JADES_PHASE_1_F=
+[JADE left eye_closed]
+and again!
+
+DXFINALAREA_CH20_JADES_PHASE_1_G=
+[JADE left flashing_eyes]
+AND AGAIN!!!
+
+DXFINALAREA_CH20_JADES_PHASE_1_H=
+[JADE left heknowsit_A]
+because you want to spend time with your family.
+
+DXFINALAREA_CH20_JADES_PHASE_1_J=
+[JADE left heknowsit_B]
+because you love this game that you play!
+
+DXFINALAREA_CH20_JADES_PHASE_1_I=
+[JADE left heknowsit_C]
+because you never back down
+
+DXFINALAREA_CH20_JADES_PHASE_1_K=
+[JADE left shruggle]
+isn't this amazing...
+[JADE left eye_closed]
+everything you have, everything ability you got, and every area you conqurered that let you get this far.
+[JADE left eye_flash]
+this will be your Doom!
+
+DXFINALAREA_CH20_JADES_PHASE_1_L=
+[JADE left frustrated]
+ugh, this is so annoying!
+it's time you and this world to be purge this discarded once and for all!
+
+DXFINALAREA_CH20_JADES_PHASE_1_M=
+[JADE left what]
+even that attack, your still standing in my way.
+[JADE left shruggle]
+wow maybe your something special
+[JADE left stink_eyes]
+but don't get actually too cocky
+up to till now this is only a fraction to my real power.
+[JADE left flash_eyes_alt]
+lets see you can stand up against this!
+
+DXFINALAREA_CH20_JADES_DELTARUNE_PHASE_2=
+[KIRBY left surprised]
+wh- `what the hell is that?
+[JADE left omniA]
+behold, the true form of penumbra phastasm!
+[roaring_titan left downed]
+he struck us down...
+[first_titan left downed]
+I can't move...
+[second_titan left downed]
+I cannot feel anything...
+[third_titan left downed]
+I can't see of those bluring fog...
+[fourth_titan left downed]
+I can't even feel my own existence...
+[JADE left omniB]
+hah I can feel you all...
+and I can feel the power of every single one of you.
+will be strip away and consumed by me.
 [KIRBY left determined]
-...els.
-I know you can hear me.
-{trigger 1 the void tears open and els presence fills everything}
-[ELS left omnipotent]
-so you have arrived at last, star warrior.
-you have slaughtered my guardians.
-burned through my barriers.
-rallied every soul that ever stood against the darkness.
-[KIRBY left unwavering]
-and now I'm standing right here.
-in front of you.
-[ELS left omnipotent]
-does that not frighten you?
-[KIRBY left smiling]
-yeah.
-but everyone I love is counting on me.
-and that matters more than being afraid.
+no... I won't let you do that!
+[JADE left omniC]
+ha, so be it...
+[JADE left omniD]
+still?
+heh this is look like something from my birthday of my dad
+in a few moment you will forget everything too...
+this addutiude will server you into the afterlife
+[JADE left omniFINAL]
+still? oh come on!
+show me your so called starwarrior now!
 
-DXFINALAREA_CH20_MADELINE_ARRIVES=
-{trigger 0 madeline and badeline break through from another path}
-[MADELINE left determined]
-Kirby! Sorry I'm late!
-[BADELINE right smirk]
-we had a few walls to climb through.
-several hundred feet of them.
-[KIRBY left relieved]
-Madeline! Badeline!
-I thought you couldn't make it!
-[MADELINE left serious]
-this is our world too kirby.
-we're not sitting this one out.
-[BADELINE right fierce]
-if this guy thinks he's erasing everything
-he's going to have to go through me first.
-and I am NOT in a good mood.
-[ELS left omnipotent]
-two more insects to be erased alongside the star warrior.
-how touching.
-[MADELINE left defiant]
-come on then.
-let's see what you've actually got.
+DXFINALAREA_CH20_THOUGHT=
+[]
+we try to fight, nothing happen.
+we try to run, we can't move.
+we try to call out to help, nothing wouldn't awnser.
+seem that taking over his power is the only way to defeat him.
+but his power is beyond than ours.
+this is really is impossible to complete this game...
+... perhaps
+maybe a little bit power that I have.
+I could save someone else.
 
-DXFINALAREA_CH20_ELS_FIRST_PHASE=
-{trigger 0 the ground shatters and els begins his assault}
-[ELS left raging]
-I AM THE END OF ALL THINGS!
-EVERY REALITY! EVERY DREAM! EVERY HOPE!
-ALL OF IT BELONGS TO THE VOID!
-[KIRBY left enduring]
-not today.
-NOT TODAY!
-{trigger 1 kirby charges forward with everything he has}
-
-DXFINALAREA_CH20_ELS_SECOND_PHASE=
-{trigger 0 els transforms into a more terrifying form}
-[ELS left transcendent]
-YOU CANNOT STOP OBLIVION ITSELF!
-EVEN YOUR LOVE IS NOTHING AGAINST INFINITE NOTHING!
-[MADELINE left struggling]
-kirby... his power is unreal...
-[BADELINE right fierce]
-don't you dare give up now madeline.
-use it. use all of it!
-{trigger 1 badeline merges with madeline to form their full united power}
-[MADELINE_BADELINE left together]
-KIRBY! we're right behind you!
-pour everything into this!
-
-DXFINALAREA_CH20_ELS_BREAKING=
-{trigger 0 cracks of light begin appearing in els form}
-[ELS left panicking]
-IMPOSSIBLE!
-THIS IS NOT... SUPPOSED TO...
-HOW ARE YOU STILL STANDING!?
-[KIRBY left radiant]
-because I'm not alone.
-I've never been alone.
-not once through all of this.
-{trigger 0b all five titans step forward around kirby their combined presence causing the void to fracture}
-[roaring_titan]
-NOR WILL HE EVER BE.
-{trigger 0c the titans roar together sending shockwaves through els that crack his form further}
-[ELS left cracking]
-WARDENS!? THE WARDENS HAVE LEFT THEIR POSTS!?
-[fourth_titan]
-THERE IS NOTHING LEFT WORTH GUARDING.
-IF THE STAR WARRIOR FALLS. EVERYTHING FALLS.
-[third_titan]
-and he will not fall.
-[second_titan]
-not today.
-[first_titan]
-not ever.
-{trigger 1 the names and faces of every ally flash across the sky}
-[KIRBY left breaking_limits]
-Madeline. Badeline. Asriel. Chara.
-Meta Knight. Bandana Dee. King Dedede.
-Magolor. Taranza. Susie. Elfilin.
-Rock. Kine. Coo. Gooey. Marx.
-Adeline. Ribbon. Daroach.
-Francisca. Flamberge. Zan Partizanne.
-Everyone from dreamland to the mountain to my deltarune.
-EVERY DETERMINATION OF SINGLE ONE OF YOU...
-GIVE ME YOUR STRENGTH!
-{trigger 2 a blinding wave of combined energy surges into kirby from all directions}
-
-DXFINALAREA_CH20_FINAL_PHASE=
-[ELS left desperate]
-NO! NO NO NO!
-ENOUGH!
-{trigger 0 els screams and his form begins to violently expand and distort}
-[ELS left pissedandmalice]
-you think your wardens can stop me?
-you think these ancient ruins of stone and will mean anything against OBLIVION ITSELF!?
-I AM NOT A DARKNESS YOU CAN SIMPLY STRIKE DOWN!
-I AM SOMETHING OLDER THAN YOUR STARS!
-If titans are what you bring to this battle...
-{trigger 1 els erupts into a colossal titan form that dwarfs even the roaring titan towers of black void energy reaching into the sky}
-THEN I SHALL BECOME A TITAN TOO.
-{trigger 2 the sheer force of els titan transformation sends a catastrophic shockwave that throws all five wardens backward}
-[roaring_titan]
-...what...
-{trigger 3 the roaring titan is slammed into the ground the earth cracking beneath it}
-[roaring_titan]
-...this force... it is unlike anything I have ever...
-{trigger 4 first titan is crushed under els enormous shadow hand}
-[first_titan]
-he is too strong...
-he is CRUSHING us with his weight alone!
-Kirby... I cannot hold...
-{trigger 5 second titan staggers as el's void energy pours through it}
-[second_titan]
-my crystal... my core is decaying...
-that power is not just darkness...
-it is ERASURE...
-{trigger 6 third titan collapses to one knee overwhelmed}
-[third_titan]
-I cannot read him at all...
-his will has no shape... no limit...
-he is beyond anything I was made to withstand...
-[fourth_titan]
-I will not... let this...
-{trigger 7 fourth titan surges forward and clashes with els but is thrown back hard}
-[fourth_titan]
-...I... cannot reach him...
-there is not enough of us...
-[roaring_titan]
-KIRBY!
-{trigger 8 the roaring titan drags itself upright and turns toward kirby}
-[roaring_titan]
-this is beyond what we can carry.
-we were wardens of power, heart, will, and soul.
-but even all five of us together...
-we were never meant to fight a titan.
-we were meant to make one.
-{trigger 9 a terrible silence as els looms overhead blocking out all light}
-[ELS left pissedandmalice]
-your wardens kneel.
-your allies fade.
-your hope ends HERE.
-[KIRBY left staring_up]
-...
-...all this time...
-crystal shards. heart staff. super ability.
-the wardens poured everything into me.
-...
-...but I was still thinking like a warrior.
-what if... I need to stop being a warrior.
-what if I need to become something MORE.
-[MADELINE left horrified]
-kirby... what are you thinking?
-[KIRBY left eyes_shining]
-the roaring titan said it.
-they were never meant to fight a titan.
-they were meant to make one.
-[BADELINE right fierce]
-Kirby you cannot be serious right now—
-[roaring_titan]
-...
-...yes.
-{trigger 10 the roaring titan meets kirby's eyes and understands}
-[roaring_titan]
-that is it.
-that is exactly it.
-
-DXFINALAREA_CH20_KIRBY_BECOME_THE_STARROARING_TITAN=
-{trigger 0 the roaring titan slowly rises despite every wound and turns to face the other four wardens}
-[roaring_titan]
-first warden.
-your trial gave him determination.
-give him the last of it now.
-{trigger 1 first titan extends its hand toward kirby and its remaining energy pours out as warm golden light}
-[first_titan]
-everything I have left is yours, star warrior.
-carry it to the end.
-[roaring_titan]
-second warden.
-your crystal shards found him worthy.
-let them become part of him now. completely.
-{trigger 2 second titan releases its crystal core and the blue light spirals into kirby and begins to fuse with him}
-[second_titan]
-I pour every star I have ever held into you.
-do not let a single one go dark.
-[roaring_titan]
-third warden.
-the heart staff chose him for his love.
-and love is the only thing that ends a god like els.
-{trigger 3 the heart staff shatters into pure golden warmth and flows directly into kirby's chest}
-[third_titan]
-feel every bond you have ever made, kirby.
-all of them at once.
-now hold them and do not let go.
-[roaring_titan]
-fourth warden.
-the super ability was never his limit.
-you know that now.
-{trigger 4 fourth titan collapses to its knees and its cosmic white energy pours upward surrounding kirby from below}
-[fourth_titan]
-I bestow it not as a technique.
-but as a truth.
-GO. STAR WARRIOR. GO.
-{trigger 5 all four wardens are now completely still spent of their last power as their energy converges on kirby}
-[roaring_titan]
-and as for me...
-{trigger 6 the roaring titan places its enormous hand gently around kirby like a protective shell}
-[roaring_titan]
-I have stood at the final gate since before your world existed.
-I have turned back armies. gods. voids.
-but the thing I have guarded all this time... was never a place.
-it was the specific warrior who would one day arrive and be ready for this exact moment.
-that warrior is you, kirby.
-take my roar.
-take my will.
-take everything that I am.
-{trigger 7 the roaring titan's body dissolves entirely into a pure primal sound that shakes reality itself}
-[roaring_titan]
-BECOME THE TITAN THAT STANDS WHERE NO ONE ELSE COULD.
-BECOME THE STAR ROARING TITAN!
-{trigger 8 a blinding pillar of light erupts from where kirby stands}
-{trigger 9 crystal blue heart gold cosmic white and the primal gold of the roaring titan all spiral together around kirby}
-[MADELINE left shielding_eyes]
-kirby...
-[BADELINE right staring]
-...
-[ELS left pissedandmalice]
-what is this!?
-WHAT IS THIS!?
-{trigger 10 the light clears and kirby stands now as the star roaring titan towering at els own height his form blazing with all five power auras at once}
-[KIRBY_TITAN left radiant]
-...
-{trigger 11 kirby as the star roaring titan slowly turns to face els}
-[KIRBY_TITAN left determined]
-I remember what every one of them said.
-the first titan said stay determined.
-the second said let the stars guide you.
-the third said carry love without breaking.
-the fourth said that power is found in bonds not force.
-and the roaring titan...
-said BECOME.
-{trigger 12 kirby titan raises his head and roars}
-{trigger 13 the roar matches the roaring titan's final sound and amplifies it resonating through every world at once}
-[ELS left backing_away]
-no.
-NO.
-YOU ARE JUST A CHILD!
-YOU ARE JUST A PINK STUPID SMALL LITTLE—
-[KIRBY_TITAN left walking_forward]
-now then.
-every one of you is with me.
-we are going to make sure he does not push back again.
-{trigger 14 kirby advances on els with slow unstoppable steps}
-
-DXFINALAREA_CH20_ELS_KNOCKOUT=
-[ELS left pissedandmalice]
-I AM INFINITE!
-I AM EVERYTHING YOU FEAR!
-YOU CANNOT DESTROY SOMETHING THAT HAS NO END!
-[KIRBY_TITAN left calm]
-maybe not.
-but I can make sure you can never hurt anyone again.
-{trigger 0 els swings both titan fists at kirby}
-[ELS left raging]
-YOU WILL BE ERASED LIKE ALL THE OTHERS!
-NOTHING YOU LOVE WILL SURVIVE!
-[KIRBY_TITAN left enduring]
-I've heard enough.
-{trigger 1 kirby catches els strike with both hands and holds it}
-[ELS left shocked]
-wh— WHAT!?
-you— you are holding MY—
-[KIRBY_TITAN left quiet]
-for every world you tried to erase.
-for every hope you tried to extinguish.
-for every ally who gave me a piece of themselves so that I could stand here right now.
-{trigger 2 kirby's titan form flares blindingly with all five combined auras crystal blue heart gold cosmic white primal gold and a deep starlight pink none of them have seen before}
-[KIRBY_TITAN left charging]
-this ends.
-NOW.
-{trigger 3 kirby drives forward with both hands and all five auras channeled into a single unstoppable strike straight through els form}
-[ELS left screaming]
-GHHHHH—
-IMPOSSIBLE—
-HOW— A CHILD— A SINGLE CHILD—
-{trigger 4 the strike connects and els form begins to collapse from the inside out}
-[ELS left collapsing]
-...
-...ah.
-...so this is how it ends.
-...brought down by...
-...something so... small...
-{trigger 5 els titan form buckles and falls}
-[ELS left dissolving]
-...I was...
-I was not always...
-this kind of darkness...
-...once...
-once there was...
-something warmer than this...
-...kirby...
-{trigger 6 a single fragment of pure light breaks from els dissolving form and drifts toward kirby}
-[ELS left dissolving]
-...thank you.
-for not giving up.
-even on me.
-{trigger 7 els collapses entirely and the void begins to tear apart from within replaced by spreading light}
-[KIRBY_TITAN left quietly]
-...
-...rest now.
-{trigger 8 the star roaring titan form slowly fades from kirby returning him to his normal size as the last of the wardens energy gently departs}
-[KIRBY left on_knees_exhausted]
-...it's done.
-...
-it's really done.
-
-DXFINALAREA_CH20_RESTORE=
-{trigger 0 the void shatters and collapses and the world beyond begins flooding in with warm light}
-{trigger 1 madeline and badeline run to kirby}
-[MADELINE left running]
-KIRBY!
-{trigger 2 madeline slides to her knees next to kirby}
-[MADELINE left tearful]
-Kirby you did it.
-you actually did it.
-[KIRBY left exhausted]
-...heh.
-we did it.
-[BADELINE right quietly]
-...yeah.
-{trigger 3 badeline looks up at the sky now full of returning light and stars}
-[BADELINE right soft]
-all that light...
-it's coming back.
-every world he tried to erase...
-{trigger 4 across every dimension stars and lights that had gone dark reignite one by one}
-[MADELINE left looking_up]
-I can feel it.
-everything is coming back.
-[KIRBY left slowly_standing]
-thanks to everyone.
-{trigger 5 the four wardens' faint presences linger in the air as soft glowing outlines their voices barely a whisper}
-[first_titan]
-...well done.
-[second_titan]
-...the stars remember you.
-[third_titan]
-...your heart held.
-it always would have.
-[fourth_titan]
-...you were what the super ability truly needed.
-a worthy soul.
-{trigger 6 the four presences fade away gently into the restored light}
-[KIRBY left hand_over_heart]
-...thank you.
-all of you.
-always.
-{trigger 7 the restored world fully solidifies around them}
-[MADELINE left looking_around]
-it's... it's beautiful.
-[BADELINE right smiling_softly]
-don't cry madeline.
-[MADELINE left already_crying]
-I'm NOT cry— okay I am a little.
-{trigger 8 kirby laughs softly for the first time}
-
-DXFINALAREA_CH20_FAREWELL=
-{trigger 0 the restored sky fills with a brilliant dawn sunrise everyone kirby has met on this journey appears silhouetted against the horizon}
-[MADELINE left peaceful]
-so.
-what do you do now?
-after saving the universe.
-[KIRBY left thinking]
-...probably sleep for a really long time.
-[BADELINE right laughing]
-that's fair.
-you've earned it completely.
-{trigger 1 sans walks forward from the gathered crowd}
-[sans right smirk]
-heh... kid.
-you did good.
-real good.
-and I don't say that about just anybody.
-[KIRBY left grateful]
-thanks sans.
-{trigger 2 papyrus pushes to the front dramatically}
-[papyrus right excited]
-NHEEEE HEH HEH!
-KIRBY!
-YOU WERE MAGNIFICENT!
-THE GREAT PAPYRUS PERSONALLY DECLARES YOU AN HONORARY SKELETON!
-[KIRBY left surprised]
-wait really?
-[papyrus right excited]
-YES! YOU HAVE THE CHEEKBONES FOR IT!
-[badeline right deadpan]
-he does not have cheekbones.
-[papyrus right wacky]
-SEMANTICS!
-{trigger 3 undyne runs forward and lifts kirby into the air}
-[undyne right pride]
-YEAH! LITTLE GUY! THAT'S WHAT I'M TALKING ABOUT!
-YOU WENT FULL TITAN MODE AND PUNCHED A GOD IN THE FACE!
-THAT IS THE MOST AMAZING THING I HAVE EVER WITNESSED!
-[KIRBY left spinning_in_the_air]
-iiii am going to drop the strawberries!!
-{trigger 4 undyne sets kirby down}
-[KIRBY left dizzy]
-...okay.
-still worth it.
-{trigger 5 magolor drifts over importantly}
-[MAGOLOR left quietly_proud]
-for the record.
-I always knew you had it in you.
-[KIRBY left skeptical_smile]
-you were terrified at least twice.
-[MAGOLOR left annoyed]
-I was STRATEGICALLY concerned.
-there is a significant difference.
-[KIRBY left laughing]
-yeah okay magolor.
-{trigger 6 elfilin floats up to kirby gently}
-[ELFILIN left tearful]
-kirby...
-thank you.
-for everything.
-for fecto elfilis.
-for all the worlds.
-for never stopping.
-[KIRBY left gently]
-hey.
-that's what we do.
-{trigger 7 the crowd slowly begins to settle into a warm peaceful gathering in the restored light}
-[MADELINE left sitting_down]
-so.
-where do we go from here?
-[KIRBY left looking_at_the_horizon]
-home.
-i think.
-and then...
-wherever the wind goes next.
-[BADELINE right smiling]
-that's a very kirby answer.
-[KIRBY left smiling]
-yeah.
-[MADELINE left peaceful]
-yeah it is.
-{trigger 8 the sun rises fully the light warm and complete filling the sky}
-
-DXFINALAREA_CH20_CINEMATIC=
-{trigger 0 kirby wakes up in dreamland after sleeping for three days sunlight pouring through the round window}
-[KIRBY left sleepy]
-...mmph.
-{trigger 1 kirby rolls over and falls off the bed with a soft thud}
-[KIRBY left facedown]
-...
-still worth it.
-{trigger 2 kirby shuffles over to his round little computer and opens it up a video call notification already waiting}
-[KIRBY left surprised]
-oh.
-they called first.
-{trigger 3 the video call connects showing madeline and theo side by side}
-[MADELINE_VIDEOCALL right normal]
-yeah...
-That {~#}is{~}Nice....
-[MADELINE_VIDEOCALL right distracted]
-but what are you gonna do now?
+DXFINALAREA_CH20_KIRBY_SAVING_JADES=
+{oversave icon appears on screen}
+[KIRBY left determined]
+but you may be powerful, I am not going to let you hurt anyone else.
 [KIRBY left distracted]
-...honestly?
-probably eat something.
-then look at this for a really long time.
-{trigger 4 kirby holds up the crumpled photo to the camera — the group shot chara secretly took right after els fell everyone under the restored sunrise all five warden outlines barely visible in the background}
-[THEO_VIDEOCALL right squinting]
-wait is that— is that EVERYONE?
-[MADELINE_VIDEOCALL right leaning_in]
-wait— when was this taken?!
-I don't remember anyone having a camera!
-[KIRBY left distracted]
-well if I were you I'll put this to my memories photos.
-I wish there could be someone who can see it.
-[BADELINE_VIDEOCALL right yell]
-wait— look at the corner!
-is that ME smiling in the background!?
-[MADELINE_VIDEOCALL right teasing]
-oh that is ABSOLUTELY you smiling.
-[BADELINE_VIDEOCALL right yell]
-I was NOT smiling I was— I was exhaling.
-[THEO_VIDEOCALL right laughing]
-that is definitely smiling badeline.
-[BADELINE_VIDEOCALL right huffing]
-I will end this call.
-[FLOWEY left wut]
-wait— I know who took this.
-that little sneaky human with the knife.
-{trigger 5 flowey tilts into frame looking suspicious and also secretly delighted}
-[FLOWEY left wut]
-wait don't you mean by...
-{trigger 6 A New Adopted Kid introduced on screen}
+but madeline and badeline are in there still somewhere are they not?
 [KIRBY left surprised]
-Is that your baby?
-[MADELINE_VIDEOCALL right distracted]
-not really but I adopted him...
-[THEO_VIDEOCALL right excited]
-dude your adopted baby is beautiful.
-what did you name him?
-[MADELINE_VIDEOCALL right distracted]
-well I am not so sure of what to say.
-[MADELINE_VIDEOCALL right normal]
-but I named him.
-[MADELINE_VIDEOCALL right peaceful]
-{~#}KRIS{~}
-[FLOWEY left eyes_wide]
-wait.
-KRIS?
-{trigger 7 flowey freezes completely}
-[FLOWEY left starting_to_grin]
-...
-as in.
-THAT Kris.
-[MADELINE_VIDEOCALL right confused]
-...do you know a Kris?
-[FLOWEY left scheming_but_warmly]
-oh.
-oh this is going to be very interesting.
-[KIRBY left tilting_head]
-flowey what do you know.
-[FLOWEY left mysterious]
-nothing.
-absolutely nothing.
-just... be very patient with him.
-and maybe keep chocolate around.
-[BADELINE_VIDEOCALL right suspicious]
-that is NOT nothing.
-[FLOWEY left whistling_innocently]
-so anyway kirby will you be visiting soon?
-[KIRBY left thinking]
-...yeah.
-yeah I think I will.
-[THEO_VIDEOCALL right grinning]
-he can meet Kris!
-[KIRBY left small_smile]
-does Kris know what happened?
-[MADELINE_VIDEOCALL right soft]
-not everything.
-but I showed him the photo.
-{trigger 8 a pause on madeline's end of the call}
-[MADELINE_VIDEOCALL right peacefully]
-he stared at it for a real long time.
-then he asked if you were okay.
-[KIRBY left quietly]
-...
-tell him yeah.
-tell him I'm okay.
-[MADELINE_VIDEOCALL right smiling]
-I will.
-{trigger 9 a comfortable silence settles over all of them no one rushes to fill it}
-[THEO_VIDEOCALL right leaning_back]
-so.
-three whole days sleeping huh?
-[KIRBY left sheepish]
-I fought five titan wardens and a god.
-[THEO_VIDEOCALL right grinning]
-I know I know.
-I just think you could've made it four.
-set a record.
-[KIRBY left laughing_softly]
-maybe next time.
-[BADELINE_VIDEOCALL right quietly]
-...kirby.
-{trigger 10 badeline looks directly at the camera for once}
-[BADELINE_VIDEOCALL right sincere]
-good job.
+wait... everything is fadeded? white...
+[KIRBY left sadder]
+what is this?
+this must be the the forsaken city.
+[KIRBY left determined]
+well then lets climb this mountain one last time and save you girls.
+
+DXFINALAREA_CH20_KIRBY_SEE_MAD_AND_BAD=
 [KIRBY left surprised]
-...thanks badeline.
-{trigger 11 badeline immediately looks away like she said nothing}
-[BADELINE_VIDEOCALL right huffing]
-don't make it weird.
-[MADELINE_VIDEOCALL right laughing]
-oh she means it she means it—
-[BADELINE_VIDEOCALL right yell]
-MADELINE—
-{trigger 12 kirby sets the photo down against the base of the screen so everyone on the call can see it while they talk}
-[KIRBY left leaning_back]
-...I'm going to keep this forever, you know.
-[THEO_VIDEOCALL right smiling]
-good.
-you've earned the right to.
-{trigger 13 nobody hangs up}
-{trigger 14 the call stays open as the warm morning light fills kirby's room and drifts across the photo}
+wait I see them!
+[MADELINE left weak]
+kirby... is that you?
+[BADELINE left weak]
+kirby... thank you for coming back for us...
+[MADELINE left weak]
+we need you to get us out of here?
+[BADELINE left weak]
+please save us kirby...
+[KIRBY left determined]
+I never break a promise.
+{trigger 0 kirby reaches out and grabs madeline and badeline and pulls them out of summit to ascend back to the final battle}
 
-...AND THAT'S HOW IT ENDED.
-NOT WITH A SPEECH.
-NOT WITH A GRAND DECLARATION.
-JUST THREE FRIENDS ON A VIDEO CALL.
-A CRUMPLED PHOTO.
-AND ENOUGH QUIET TO FINALLY REST.
+DXFINALAREA_CH20_JADES_PHASE_2=
+[roaring_titan left releived]
+thank goodness, you saved them.
+[first_titan left releived]
+but we do not have much time
+[second_titan left releived]
+jades is going to consume everything all around us
+[madeline right determined]
+I know how to do it.
+Jades!
+[JADES left huh]
+wh- what are you doing!?
 
-{trigger 14 fade to black}
+DXFINALAREA_CH20_JADES_PHASE_FINAL=
+{tigger 0 jades flash back to his homestuck form and the battle continues}
+[JADES left omnifeelings]
+what the heck is that?
+[KIRBY left surprised]
+it's love.
+[JADES left wut]
+love?
+no...
+NO!
+I don't need love! I don't even know what that is!
+[MADELINE left sadder]
+love is what you have for your friends and family.
+and I know you have that too.
+[JADES left feelings]
+no... I don't have that! I don't have any friends or family! I am alone in this world!
+leave me alone!
+[BADELINE left concerned]
+no jades, you are not alone.
+[roaring_titan left together]
+we are here for you jades.
+[JADES left wut]
+what the heck are you talking about?
+[second_titan left together]
+we are your friends jades.
+[jades left sad]
+listen do you even know why I am keep fighting you?
+[JADES left sad]
+because I want to have fun fighting you!
+it's not because I want to hurt you or anything like that!
+it's just I don't have any fun in the real world anymore.
+no friends, no family, no one to care about me.
+[third_titan left together]
+but we do care about you...
+[JADE left sad]
+no this isn't true!
+i... I just want to a friend
+a friend who understand me
+a friend who is there for me
+[fourth_titan left together]
+there will be always someone for being with you
+[jade left sadB]
+I am not ready for this game to end...
+I am not ready to all of you leave...
+and I am not ready for saying goodnight...
+[jade left finalpower]
+so please, stop doing this!
+AND JUST LET ME WINNNN!!!!!
 
-THE END.
+[JADE left finalpowerfade]
+I am so alone right now...
+I am so afraid right now...
+I...
+i......
+
+DXFINALAREA_CH20_JADES_END=
+{trigger 0 jades crying}
+[]
+I am so sorry...
+[JADE_TEEN right normal]
+I have been a little bit too pushy too much weren't I?
+[MADELINE left sad]
+actually I think I was the one who push it too far as we speak...
+[JADES_TEEN left uh]
+oh right... so you must be...
+[BADELINE left normal]
+madeline and badeline
+[BADELINE left concerned]
+but did you know that we are still in there?
+[KIRBY left thankyou]
+well at least were all in once pieces.
+[JADES_TEEN left guilt]
+... listen
+I know that I may hurt people
+like lot of people,
+as a dark matter or els, I was alone this whole time.
+bystander I was the one who pushed away.
+I ignore my dad rules, disrespect my mother
+and losing a real friend that I know of.
+he died 10 years ago.
+[MADELINE left sadder]
+I am very sorry to hear that
+I also lost granny too 10 years ago too.
+[MADELINE left sad]
+I was stubborness knowing that granny is gone.
+[JADES_TEEN left feltthis]
+I pretty sure that you know of how I felt too.
+look I know your still mad at me, and there a chances that you may never forgive me.
+but there no excused or accusing for my actions...
+
+DXFINALAREA_CH20_FORGIVE_JADES_YES=
+[]
+I forgive you...
+
+DXFINALAREA_CH20_FORGIVE_JADES_NO=
+[]
+still I do not...
+
+DXFINALAREA_CH20_FORGIVE_JADES_YES_RESPONDED=
+wh- what your forgiving me?
+oh come on man, I know your what it is...
+I felt more happy than ever right now...
+I am so sorry for everything I have done to you and everyone else.
+but first I must do something very important.
+every gimmick and soul and stars that are inside of me are all in one...
+I felt that they want to come out.
+but with everyone hopes and dreams, and everyone love and determination.
+it safe to say we can finally restore this reality.
+
+DXFINALAREA_CH20_FORGIVE_JADES_NO_RESPONDED=
+I understand, I think it best for this way.
+but first I must do something very important.
+every gimmick and soul and stars that are inside of me are all in one...
+I felt that they want to come out.
+but with everyone hopes and dreams, and everyone love and determination.
+it safe to say we can finally restore this reality.
+
+DXFINALAREA_CH20_REST_NOW_JADES=
+[MADELINE left sad]
+thank you jades, for everything you have done.
+even though you have done some bad things, you are still a good person at heart.
+[JADES_TEEN left grateful]
+thank you madeline, that means a lot to me.
+now I must go and rest now.
+as soon as I am done with this, I will be able to see you all again in the afterlife.
+my darkness is no more, and I can finally be at peace.
+[BADELINE left concernedalt]
+I hope you can finally find peace too jades.
+[KIRBY left thankyou]
+I own you one jades, thank you for everything.
+{trigger 0 hugs jades and then jades fades away into the light}
+[MADELINE left sad]
+awwe thats sweet of you kirby.
+[JADES_TEEN left mytimeisup]
+yeah... I guess so...
+my time is up now...
+goodbye everyone...
+also...
+tell chara and everyone else that I am sorry for everything I have done to them too...
+hope they can also forgive me too...
+{trigger 0 jades fades away into the light}
+
+DXFINALAREA_CH20_WAKE_UP=
+[]
+Madeline, my little strawberry, your rest is over.
+Wake up...
+
+[MADELINE left surpriesed]
+Granny what are you doing here?
+[GRANNY left normal]
+I came here just to check up on you three.
+[MADELINE left distracted]
+oh... I see...
+but wait you said three right?
+then who?
+[KIRBY left normal]
+yeah that would be me...
+[GRANNY left normal]
+oh right, I forgot about you.
+thanks to you with your determination and your love I albe to live more than 100 years
+and I am very grateful for that.
+[MADELINE left surprised]
+100 years?
+[GRANNY left normal]
+yeah, I have been around 10 years ago but I somehow woke up from my deep nap and I am here now.
+[MADELINE left normal]
+well that's good to hear, but I am still confused about one thing.
+why are you here?
+[GRANNY left normal]
+well see it for yourself.
+{trigger 0 madeline open the door and see the full picture of planet popstar and mountian celeste with desolo zantas right next to it}
+[MADELINE right surprised]
+wait this can't be real!
+[GRANNY left normal]
+oh but it is, this is the real world.
+you have alter the timeline since els death
+not only you brought me back to life.
+but everyone is doing a mt celeste and desolo zantas tour mountian tour.
+[MADELINE right normal]
+thats not sound bad at all.
+I am glad to see everyone is doing well.
+[OHSIRO left normal]
+oh hey madeline, I am glad to see you again.
+I brought some more advancement repair to help for my hotel.
+thank you susie haltmann for the full repair.
+[SUSIEHALTMANN left normal]
+no problem, I am glad to help out.
+[TORIEL left normal]
+there you are elder lady
+we must be worry about you.
+[GRANNY left normal]
+oh thank you toriel, but I am doing just fine.
+just felt like taking a walk and check up on you all.
+[ASGORE left normal]
+we at the positive side we can have nice of golden cup of tea.
+[GRANNY left normal]
+oh that sounds lovely, I would love to have some tea with you all.
+well then see ya later kiddo.
+[KIRBY left sad]
+so what now...?
+[MADELINE left normal]
+well I guess we can just enjoy the rest of our lives now.
+[KIRBY left upset]
+well not just that.
+wanna go on to adventure like a mountian or a planet?
+[BADELINE left normal]
+actually not that bad idea
+[BANDANA DEE left normal]
+count me in too!
+[GOOEY left excited]
+I'm with you too!
+[ADELINE left happy]
+I felt this but sure why not.
+[RIBBON left normal]
+I am down for that too.
+[SUZY right hellya]
+hell yeah, let's do this!
+[THEO left normal]
+YOLO! WAIT UP!
+[CHARA right normal]
+well I guess I can come too, but I am not going to be the one who lead the way.
+[MADELINE right peaceful]
+then lets do this...

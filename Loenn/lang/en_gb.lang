@@ -551,8 +551,6 @@ triggers.SkinModHelper/SkinSwapTrigger.placements.name.normal=Skin Swap Trigger
 triggers.SkinModHelper/SkinSwapTrigger.attributes.description.revertOnLeave=If checked, the previous skin will be restored upon exiting the trigger.
 triggers.SkinModHelper/SkinSwapTrigger.attributes.description.skinId=The skin ID to apply. This should be the same ID as the one in SkinModHelperConfig.yaml (use "Default" for Madeline).
 
-trigger.Ingeste/Kirby_Player_Trigger.placements.name.normal=KirbyPlayerTrigger
-
 # -- Kirby Player Extension --
 entities.Ingeste/KirbyPlayerExtension.placements.name.default=Kirby Player Extension
 entities.Ingeste/KirbyPlayerExtension.placements.name.fire=Kirby Player Extension (Fire)
@@ -7124,21 +7122,15 @@ triggers.MaggyHelper/KirbyAbilityTrigger.attributes.description.width=
 
 # -- Kirby Player Trigger --
 triggers.MaggyHelper/Kirby_Player_Trigger.placements.name.on_enter=Kirby Player Trigger (On Enter)
-triggers.MaggyHelper/Kirby_Player_Trigger.placements.description.on_enter=
+triggers.MaggyHelper/Kirby_Player_Trigger.placements.description.on_enter=Transforms the player when they enter this trigger area.
 triggers.MaggyHelper/Kirby_Player_Trigger.placements.name.on_exit=Kirby Player Trigger (On Exit)
-triggers.MaggyHelper/Kirby_Player_Trigger.placements.description.on_exit=
+triggers.MaggyHelper/Kirby_Player_Trigger.placements.description.on_exit=Transforms the player when they leave this trigger area.
 triggers.MaggyHelper/Kirby_Player_Trigger.placements.name.toggle=Kirby Player Trigger (Toggle)
-triggers.MaggyHelper/Kirby_Player_Trigger.placements.description.toggle=
+triggers.MaggyHelper/Kirby_Player_Trigger.placements.description.toggle=Toggles between normal and Kirby mode when the player enters.
 triggers.MaggyHelper/Kirby_Player_Trigger.placements.name.fire_power_enable=Kirby Player Trigger (Fire Power Enable)
-triggers.MaggyHelper/Kirby_Player_Trigger.placements.description.fire_power_enable=
+triggers.MaggyHelper/Kirby_Player_Trigger.placements.description.fire_power_enable=Transforms the player to Kirby mode and sets the initial power to Fire.
 triggers.MaggyHelper/Kirby_Player_Trigger.placements.name.sword_power_enable=Kirby Player Trigger (Sword Power Enable)
-triggers.MaggyHelper/Kirby_Player_Trigger.placements.description.sword_power_enable=
-triggers.MaggyHelper/Kirby_Player_Trigger.attributes.name.action=Action
-triggers.MaggyHelper/Kirby_Player_Trigger.attributes.description.action=
-triggers.MaggyHelper/Kirby_Player_Trigger.attributes.name.height=Height
-triggers.MaggyHelper/Kirby_Player_Trigger.attributes.description.height=
-triggers.MaggyHelper/Kirby_Player_Trigger.attributes.name.width=Width
-triggers.MaggyHelper/Kirby_Player_Trigger.attributes.description.width=
+triggers.MaggyHelper/Kirby_Player_Trigger.placements.description.sword_power_enable=Transforms the player to Kirby mode and sets the initial power to Sword.
 
 # -- Bridge Freeze Trigger --
 triggers.MaggyHelper/BridgeFreezeTrigger.placements.name.default=Bridge Freeze (Nearly Frozen)
@@ -7147,31 +7139,30 @@ triggers.MaggyHelper/BridgeFreezeTrigger.placements.name.slow_motion=Bridge Free
 triggers.MaggyHelper/BridgeFreezeTrigger.placements.description.slow_motion=Freezes time during the bridge collapse sequence with a slow motion effect (0.1x speed).
 triggers.MaggyHelper/BridgeFreezeTrigger.attributes.name.freezeStrength=Freeze Strength
 triggers.MaggyHelper/BridgeFreezeTrigger.attributes.description.freezeStrength=How much time slows down (0.001 = nearly frozen, 0.1 = slow motion, 1.0 = normal speed).
-triggers.MaggyHelper/Kirby_Player_Trigger.placements.description.sword_power_enable=
 triggers.MaggyHelper/Kirby_Player_Trigger.placements.name.knight_mode_enable=Kirby Player Trigger (Knight Mode Enable)
-triggers.MaggyHelper/Kirby_Player_Trigger.placements.description.knight_mode_enable=
+triggers.MaggyHelper/Kirby_Player_Trigger.placements.description.knight_mode_enable=Transforms the player to Kirby mode with Knight power and a longer animation.
 triggers.MaggyHelper/Kirby_Player_Trigger.attributes.name.activationType=Activation Type
-triggers.MaggyHelper/Kirby_Player_Trigger.attributes.description.activationType=
+triggers.MaggyHelper/Kirby_Player_Trigger.attributes.description.activationType=When to activate this trigger: OnEnter, OnExit, or Toggle.
 triggers.MaggyHelper/Kirby_Player_Trigger.attributes.name.height=Height
-triggers.MaggyHelper/Kirby_Player_Trigger.attributes.description.height=
+triggers.MaggyHelper/Kirby_Player_Trigger.attributes.description.height=Height of the trigger hitbox in pixels.
 triggers.MaggyHelper/Kirby_Player_Trigger.attributes.name.initialPower=Initial Power
-triggers.MaggyHelper/Kirby_Player_Trigger.attributes.description.initialPower=
+triggers.MaggyHelper/Kirby_Player_Trigger.attributes.description.initialPower=Kirby power to apply when transforming to Kirby mode. Use None for no power.
 triggers.MaggyHelper/Kirby_Player_Trigger.attributes.name.oneUse=One Use
-triggers.MaggyHelper/Kirby_Player_Trigger.attributes.description.oneUse=
+triggers.MaggyHelper/Kirby_Player_Trigger.attributes.description.oneUse=If enabled, this trigger can only activate once.
 triggers.MaggyHelper/Kirby_Player_Trigger.attributes.name.playSound=Play Sound
-triggers.MaggyHelper/Kirby_Player_Trigger.attributes.description.playSound=
+triggers.MaggyHelper/Kirby_Player_Trigger.attributes.description.playSound=If enabled, plays the transformation sound effect.
 triggers.MaggyHelper/Kirby_Player_Trigger.attributes.name.preserveVelocity=Preserve Velocity
-triggers.MaggyHelper/Kirby_Player_Trigger.attributes.description.preserveVelocity=
+triggers.MaggyHelper/Kirby_Player_Trigger.attributes.description.preserveVelocity=If enabled, keeps the player's speed through the transformation.
 triggers.MaggyHelper/Kirby_Player_Trigger.attributes.name.requiredFlag=Required Flag
-triggers.MaggyHelper/Kirby_Player_Trigger.attributes.description.requiredFlag=
+triggers.MaggyHelper/Kirby_Player_Trigger.attributes.description.requiredFlag=Optional session flag required for this trigger to activate.
 triggers.MaggyHelper/Kirby_Player_Trigger.attributes.name.transformAnimation=Transform Animation
-triggers.MaggyHelper/Kirby_Player_Trigger.attributes.description.transformAnimation=
+triggers.MaggyHelper/Kirby_Player_Trigger.attributes.description.transformAnimation=Animation ID used for transformation visuals (metadata value).
 triggers.MaggyHelper/Kirby_Player_Trigger.attributes.name.transformationType=Transformation Type
-triggers.MaggyHelper/Kirby_Player_Trigger.attributes.description.transformationType=
+triggers.MaggyHelper/Kirby_Player_Trigger.attributes.description.transformationType=Visual style used for transformation: Instant, Animated, or Fade.
 triggers.MaggyHelper/Kirby_Player_Trigger.attributes.name.transformDuration=Transform Duration
-triggers.MaggyHelper/Kirby_Player_Trigger.attributes.description.transformDuration=
+triggers.MaggyHelper/Kirby_Player_Trigger.attributes.description.transformDuration=Duration in seconds for the animated transformation effect.
 triggers.MaggyHelper/Kirby_Player_Trigger.attributes.name.width=Width
-triggers.MaggyHelper/Kirby_Player_Trigger.attributes.description.width=
+triggers.MaggyHelper/Kirby_Player_Trigger.attributes.description.width=Width of the trigger hitbox in pixels.
 
 # -- Kirby Knight Trigger --
 triggers.MaggyHelper/KirbyKnightTrigger.placements.name.knight_enable=Kirby Knight Trigger (Knight Enable)
@@ -7213,6 +7204,28 @@ triggers.MaggyHelper/Kirby_Mode_Toggle_Trigger.placements.description.disable_ki
 triggers.MaggyHelper/Kirby_Mode_Toggle_Trigger.placements.name.toggle_kirby_mode=Kirby Mode Toggle Trigger (Toggle Kirby Mode)
 triggers.MaggyHelper/Kirby_Mode_Toggle_Trigger.placements.description.toggle_kirby_mode=
 triggers.MaggyHelper/Kirby_Mode_Toggle_Trigger.placements.name.enable_fire_power=Kirby Mode Toggle Trigger (Enable Fire Power)
+
+# -- Player Trigger --
+triggers.MaggyHelper/PlayerTrigger.placements.name.default=Player Trigger
+triggers.MaggyHelper/PlayerTrigger.placements.description.default=Triggers enter and/or exit events for the player and can set session flags.
+triggers.MaggyHelper/PlayerTrigger.placements.name.enter_only=Player Trigger (Enter Only)
+triggers.MaggyHelper/PlayerTrigger.placements.description.enter_only=Activates only when the player enters this trigger.
+triggers.MaggyHelper/PlayerTrigger.placements.name.exit_only=Player Trigger (Exit Only)
+triggers.MaggyHelper/PlayerTrigger.placements.description.exit_only=Activates only when the player exits this trigger.
+triggers.MaggyHelper/PlayerTrigger.attributes.name.triggerOnEnter=Trigger On Enter
+triggers.MaggyHelper/PlayerTrigger.attributes.description.triggerOnEnter=If enabled, this trigger activates on enter.
+triggers.MaggyHelper/PlayerTrigger.attributes.name.triggerOnExit=Trigger On Exit
+triggers.MaggyHelper/PlayerTrigger.attributes.description.triggerOnExit=If enabled, this trigger activates on exit.
+triggers.MaggyHelper/PlayerTrigger.attributes.name.onEnterFlag=On Enter Flag
+triggers.MaggyHelper/PlayerTrigger.attributes.description.onEnterFlag=Session flag to set when enter activation occurs.
+triggers.MaggyHelper/PlayerTrigger.attributes.name.onExitFlag=On Exit Flag
+triggers.MaggyHelper/PlayerTrigger.attributes.description.onExitFlag=Session flag to set when exit activation occurs.
+triggers.MaggyHelper/PlayerTrigger.attributes.name.setFlagState=Set Flag State
+triggers.MaggyHelper/PlayerTrigger.attributes.description.setFlagState=State to apply to On Enter/On Exit flag keys.
+triggers.MaggyHelper/PlayerTrigger.attributes.name.triggerOnce=Trigger Once
+triggers.MaggyHelper/PlayerTrigger.attributes.description.triggerOnce=If enabled, this trigger can activate only once.
+triggers.MaggyHelper/PlayerTrigger.attributes.name.requiredFlag=Required Flag
+triggers.MaggyHelper/PlayerTrigger.attributes.description.requiredFlag=Optional flag that must be set for this trigger to activate.
 triggers.MaggyHelper/Kirby_Mode_Toggle_Trigger.placements.description.enable_fire_power=
 triggers.MaggyHelper/Kirby_Mode_Toggle_Trigger.placements.name.enable_sword_power=Kirby Mode Toggle Trigger (Enable Sword Power)
 triggers.MaggyHelper/Kirby_Mode_Toggle_Trigger.placements.description.enable_sword_power=

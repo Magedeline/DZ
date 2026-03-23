@@ -8,10 +8,10 @@ using Microsoft.Xna.Framework.Input;
 /// Please do not remove the player class from the mod, even if it seems like it's not doing much. The Player class is used as a base for all player-related functionality, and removing it would cause the mod to break. If you want to disable certain features, please do so through the mod's settings or by commenting out specific code sections, rather than removing the entire Player class.
 namespace MaggyHelper.Entities
 {
-    [CustomEntity(ids: "MaggyHelper/Player")]
+    [CustomEntity(ids: "MaggyHelper/Player", "MaggyHelper/KirbyPlayer", "maggyhelper/player", "maggyhelperp/layer")]
     [Tracked(true)]
     [HotReloadable]
-    public class Player : KirbyPlayerExtension
+    public class Player : Actor
     {
         #region Constants
 
@@ -345,6 +345,17 @@ namespace MaggyHelper.Entities
 
         private List<Entity> temp = new List<Entity>();
 
+        // Phase 3: Extended Kirby Mechanics
+        public int jumpCount = 0;                            // Current jump count (0 = no jump used, 1 = first jump, 2 = second/double jump, etc.)
+        public int maxJumpCount = 2;                         // Maximum number of jumps (2 = double jump, 3 = triple jump, etc.)
+        public bool isInArena = false;                       // Whether player is currently in an arena; gates special abilities
+        private float arenaDetectionRadius = 200f;           // Radius around boss arena triggers
+        public float multiJumpInputTimeout = 0.15f;          // Time window to input another jump after landing
+        public float multiJumpInputTimer = 0f;               // Timer for multi-jump input window
+        public bool canPerformAlternateDash = false;         // Whether alternate dash is available (in arena)
+        public float alternateDashCooldown = 0f;             // Cooldown for alternate dash
+        private const float AlternateDashCooldownMax = 0.3f; // Cooldown time between alternate dashes
+
         // hair
         public static readonly Color NormalHairColor = Calc.HexToColor("AC3232");
         public static readonly Color FlyPowerHairColor = Calc.HexToColor("F2EB6D");
@@ -484,6 +495,15 @@ namespace MaggyHelper.Entities
         #endregion
 
         #region constructor / added / removed
+
+        /// <summary>
+        /// EntityData constructor - called by Celeste when loading a player entity from a map file.
+        /// Required for the map editor and level loader to instantiate this entity.
+        /// </summary>
+        public Player(EntityData data, Vector2 offset)
+            : this(data.Position + offset, (PlayerSpriteMode)data.Enum("spriteMode", PlayerSpriteMode.Madeline))
+        {
+        }
 
         public Player(Vector2 position, PlayerSpriteMode spriteMode)
             : base(new Vector2((int)position.X, (int)position.Y))
@@ -637,10 +657,38 @@ namespace MaggyHelper.Entities
             Add(reflection = new MirrorReflection());
         }
 
+        public override void Awake(Scene scene)
+        {
+            base.Awake(scene);
+            Level level = scene as Level;
+            if (level != null)
+            {
+                // Initialize level state for MaggyHelper player spawning
+                level.ScreenPadding = 32f;
+            }
+        }
+
         public override void Added(Scene scene)
         {
             base.Added(scene);
             level = SceneAs<Level>();
+
+            // Initialize player selection system
+            PlayerSelectionManager.GetOrCreate(level);
+            PlayerHealthManager.GetOrCreate(level, maxHealth);
+
+            // Phase 5: Initialize health bar UI
+            if (KirbyModeActive && level.Tracker?.GetEntity<HealthBarUI>() == null)
+            {
+                level.Add(new HealthBarUI(level));
+            }
+
+            // Log which player type is active (for debugging)
+            var selectedPlayer = PlayerSelectionManager.GetSelectedPlayer();
+            Logger.Log($"[MaggyHelper] Player spawned - Type: {PlayerSelectionManager.GetPlayerName(selectedPlayer)}");
+
+            // Add visual spawn effect to show MaggyHelper/Player entering
+            EmitSpawnEffect();
 
             lastDashes = Dashes = MaxDashes;
 
@@ -866,6 +914,9 @@ namespace MaggyHelper.Entities
                     }
                 }
 
+                // Phase 3: Arena Detection - Check if player is in a boss arena
+                UpdatePhase3ArenaDetection();
+
                 playFootstepOnLand -= Engine.DeltaTime;
 
                 //Highest Air Y
@@ -915,9 +966,24 @@ namespace MaggyHelper.Entities
                 {
                     dreamJump = false;
                     jumpGraceTimer = JumpGraceTime;
+                    
+                    // Phase 3: Reset multi-jump on landing and start input window
+                    if (jumpCount > 0)
+                    {
+                        jumpCount = 0;
+                        multiJumpInputTimer = multiJumpInputTimeout;
+                    }
                 }
                 else if (jumpGraceTimer > 0)
                     jumpGraceTimer -= Engine.DeltaTime;
+                
+                // Phase 3: Update multi-jump input window timer
+                if (multiJumpInputTimer > 0)
+                    multiJumpInputTimer -= Engine.DeltaTime;
+
+                // Phase 3: Update alternate dash cooldown
+                if (alternateDashCooldown > 0)
+                    alternateDashCooldown -= Engine.DeltaTime;
 
                 //Dashes
                 {
@@ -3226,6 +3292,12 @@ namespace MaggyHelper.Entities
                     {
                         Jump();
                     }
+                    // Phase 3: Multi-jump logic - check for double/triple jump in arena
+                    else if (isInArena && !onGround && jumpCount < maxJumpCount && multiJumpInputTimer > 0)
+                    {
+                        PerformPhase3MultiJump();
+                        Input.Jump.ConsumeBuffer();
+                    }
                     else if (CanUnDuck)
                     {
                         bool canUnduck = CanUnDuck;
@@ -5363,7 +5435,52 @@ namespace MaggyHelper.Entities
 
         #endregion
 
+        /// <summary>
+        /// Emit visual effect when MaggyHelper/Player enters the map
+        /// This provides a visual indication of the custom player spawning
+        /// </summary>
+        private void EmitSpawnEffect()
+        {
+            if (level == null)
+                return;
+
+            // Get the player's position (center)
+            Vector2 position = Center;
+
+            // Emit a burst of the split particles as a spawn indicator
+            if (P_Split != null)
+            {
+                level.Particles.Emit(P_Split, 16, position, Vector2.One * 10);
+            }
+
+            // Also use dash particles for a more pronounced effect
+            if (P_DashA != null)
+            {
+                level.ParticlesFG.Emit(P_DashA, 12, position, Vector2.One * 8);
+            }
+
+            // Add a third particle layer for even more visual impact
+            if (P_DashB != null)
+            {
+                level.ParticlesFG.Emit(P_DashB, 8, position, Vector2.One * 6);
+            }
+
+            // Optional: Play spawn sound effect
+            try
+            {
+                Audio.Play(Sfxs.char_mad_grab, position);
+            }
+            catch
+            {
+                // Fallback silently if sound doesn't exist
+            }
+
+            // Log spawn for debugging
+            Logger.Log($"[MaggyHelper] Player spawn effect emitted at position: {position}");
+        }
+
         #region Intro Walk State
+
 
         private Facings IntroWalkDirection;
 
@@ -6503,6 +6620,74 @@ namespace MaggyHelper.Entities
                     Dust.Burst(target.Center, knockbackDir.Angle(), 4);
             }
         }
+
+        #region Phase 3: Extended Kirby Mechanics (Multi-Jump & Alternate Dash)
+
+        /// <summary>
+        /// Phase 3: Detects if player is in a boss arena and updates isInArena flag.
+        /// Called each frame in Update() to determine if special abilities are active.
+        /// </summary>
+        private void UpdatePhase3ArenaDetection()
+        {
+            if (level == null)
+            {
+                isInArena = false;
+                return;
+            }
+
+            // Check if camera is in boss lock mode (definitive arena indicator)
+            if (level.CameraLockMode == Level.CameraLockModes.FinalBoss)
+            {
+                isInArena = true;
+                return;
+            }
+
+            // Check for nearby boss entities within arena radius (200f)
+            var bosses = level?.Tracker?.GetEntities<BaseBoss>();
+            if (bosses != null && bosses.Count > 0)
+            {
+                foreach (var boss in bosses)
+                {
+                    float distance = Vector2.Distance(Position, boss.Position);
+                    if (distance < 200f)
+                    {
+                        isInArena = true;
+                        return;
+                    }
+                }
+            }
+
+            isInArena = false;
+        }
+
+        /// <summary>
+        /// Phase 3: Perform a multi-jump (double-jump, triple-jump, etc.)
+        /// Called when jump input is detected and multi-jump conditions are met.
+        /// Requires: isInArena = true, jumpCount < maxJumpCount, !onGround, multiJumpInputTimer > 0
+        /// </summary>
+        private void PerformPhase3MultiJump()
+        {
+            if (!isInArena || jumpCount >= maxJumpCount || onGround)
+                return;
+
+            // Increment jump count
+            jumpCount++;
+
+            // Apply jump velocity
+            Speed.Y = JumpSpeed;
+
+            // Play jump sound
+            Play(Sfxs.char_mad_jump);
+
+            // Create jump particles
+            if (Scene.OnInterval(.05f))
+                Dust.Burst(Position, Circle.Random() * 6f, 4, P_Jump);
+
+            // Reset multi-jump input window
+            multiJumpInputTimer = 0f;
+        }
+
+        #endregion
 
         #endregion
 

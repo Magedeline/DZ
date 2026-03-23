@@ -25,6 +25,7 @@ namespace MaggyHelper
         // ── Manual Hook references (must be stored so they aren't GC'd) ──────────
         private static Hook dashBeginHook;
         private static Hook wallJumpHook;
+        private static On.Celeste.Level.hook_LoadLevel levelLoadLevelHook;
 
         // ── Public API ───────────────────────────────────────────────────────────
 
@@ -106,6 +107,14 @@ namespace MaggyHelper
             // ─── 3. OuiMapList null-MapData guard ───────────────────────────
             MapListExt.Load();
 
+            // ─── 4. Entity Name Remapping (player entity ID normalization) ──────
+            // Hook Level.LoadLevel to remap player entity IDs from binary maps
+            if (levelLoadLevelHook == null)
+            {
+                levelLoadLevelHook = new On.Celeste.Level.hook_LoadLevel(Hook_Level_LoadLevel);
+                On.Celeste.Level.LoadLevel += levelLoadLevelHook;
+            }
+
             Logger.Log(LogLevel.Info, "MaggyHelper",
                 "[MonoModHooks] All advanced MonoMod hooks loaded");
         }
@@ -124,6 +133,11 @@ namespace MaggyHelper
 
             wallJumpHook?.Dispose();
             wallJumpHook = null;
+
+            // Remove entity name remapping hook
+            if (levelLoadLevelHook != null)
+                On.Celeste.Level.LoadLevel -= levelLoadLevelHook;
+            levelLoadLevelHook = null;
 
             // Remove OuiMapList guard
             MapListExt.Unload();
@@ -322,6 +336,74 @@ namespace MaggyHelper
                 Logger.Log(LogLevel.Warn, "MaggyHelper",
                     $"[Hook] Error in WallJump hook: {ex.Message}");
             }
+        }
+
+
+        // =====================================================================
+        //  4.  ENTITY NAME REMAPPING — Player entity ID normalization
+        // =====================================================================
+        //
+        //  HOW IT WORKS:
+        //  Binary map files can contain player entities with various IDs
+        //  (e.g., "maggyhelperp/layer", "player", different casings, etc.).
+        //  This hook intercepts Level.LoadLevel and remaps any player entity
+        //  names to our registered "MaggyHelper/Player" ID before they're spawned.
+        //
+        //  This ensures that regardless of what ID is in the binary map,
+        //  the correct player entity is used.
+        //
+        // =====================================================================
+
+        private static void Hook_Level_LoadLevel(On.Celeste.Level.orig_LoadLevel orig, Level self,
+            global::Celeste.Player.IntroTypes playerIntro, bool isFromLoader)
+        {
+            try
+            {
+                // Get the map data and its levels
+                if (self.Session?.MapData?.Levels is List<LevelData> levels && levels.Count > 0)
+                {
+                    // Scan through all levels for player entities
+                    foreach (LevelData levelData in levels)
+                    {
+                        if (levelData?.Entities is List<EntityData> entities)
+                        {
+                            // Scan for player entities with mismatched IDs
+                            foreach (var entityData in entities)
+                            {
+                                if (entityData?.Name != null)
+                                {
+                                    // Check if this looks like a player entity but with wrong ID
+                                    string lowerName = entityData.Name.ToLower();
+                                    
+                                    // Remap common player ID variants to our registered ID
+                                    if (lowerName == "player" ||
+                                        lowerName == "maggyhelperp/layer" ||
+                                        lowerName == "maggyhelper/player" ||
+                                        lowerName.Contains("player"))
+                                    {
+                                        // Only remap if it's not already one of our registered IDs
+                                        if (entityData.Name != "MaggyHelper/Player" &&
+                                            entityData.Name != "MaggyHelper/KirbyPlayer")
+                                        {
+                                            Logger.Log(LogLevel.Info, "MaggyHelper",
+                                                $"[EntityRemapper] Remapping entity '{entityData.Name}' → 'MaggyHelper/Player'");
+                                            entityData.Name = "MaggyHelper/Player";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(LogLevel.Warn, "MaggyHelper",
+                    $"[EntityRemapper] Error in entity remapping hook: {ex.Message}\n{ex.StackTrace}");
+            }
+
+            // Call the original LoadLevel
+            orig(self, playerIntro, isFromLoader);
         }
 
 

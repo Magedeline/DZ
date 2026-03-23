@@ -38,7 +38,7 @@ namespace MaggyHelper.Entities
 		{
 			base.Awake(scene);
 			Level level = scene as Level;
-			level.Session.ColorGrade = "templevoid";
+			level.Session.ColorGrade = "templenull";
 			level.ScreenPadding = 32f;
 			level.CanRetry = false;
 		}

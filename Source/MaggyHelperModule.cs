@@ -40,5 +40,37 @@ namespace Celeste.Mod.MaggyHelper
             global::MaggyHelper.MonoModHooks.Unload();
             global::MaggyHelper.AreaModeExtender.Unload();
         }
+
+        /// <summary>
+        /// Allows other mods (like BrokemiaHelper) to detect if MaggyHelper/Player is available.
+        /// Returns true if the MaggyHelper Player type is loaded and available.
+        /// </summary>
+        public static bool IsMaggyPlayerAvailable()
+        {
+            try
+            {
+                Type playerType = Type.GetType("MaggyHelper.Entities.Player, MaggyHelper");
+                return playerType != null;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Gets the MaggyHelper Player type if available. Use this for reflection-based interaction.
+        /// </summary>
+        public static Type GetMaggyPlayerType()
+        {
+            try
+            {
+                return Type.GetType("MaggyHelper.Entities.Player, MaggyHelper");
+            }
+            catch
+            {
+                return null;
+            }
+        }
     }
 }

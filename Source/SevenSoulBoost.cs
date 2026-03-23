@@ -21,6 +21,13 @@ namespace MaggyHelper.Entities.SoulBoosts
     [Tracked]
     public class SevenSoulBoost : Entity
     {
+        private static readonly Vector2[] DefaultNode = new Vector2[] { Vector2.Zero };
+
+        private static Vector2[] NormalizeNodes(Vector2[] input)
+        {
+            return input != null && input.Length > 0 ? input : DefaultNode;
+        }
+
         // Soul colors from Undertale
         public static readonly Color[] SoulColors = new Color[]
         {
@@ -118,10 +125,10 @@ namespace MaggyHelper.Entities.SoulBoosts
             bool finalCh20Boost = false,
             bool finalCh20GoldenBoost = false,
             string finalCh20Dialog = null
-        ) : base(nodes[0])
+        ) : base(NormalizeNodes(nodes)[0])
         {
             Depth = -1000000;
-            this.nodes = nodes;
+            this.nodes = NormalizeNodes(nodes);
             this.lockCamera = lockCamera;
             this.canSkip = canSkip;
             this.oneUse = oneUse;
@@ -140,8 +147,8 @@ namespace MaggyHelper.Entities.SoulBoosts
             CreateParticles();
 
             // Sprite setup - use custom vessel soul sprite
-            Add(sprite = new Sprite(GFX.Game, "objects/sevensoulboost/"));
-            sprite.AddLoop("boost", "vessel_soul07", 0.08f);
+            Add(sprite = new Sprite(GFX.Game, "characters/soul/soul/"));
+            sprite.AddLoop("boost", "vessel_soulA", 0.08f);
             sprite.Play("boost");
             sprite.CenterOrigin();
             sprite.Scale.X = -1f;
@@ -149,7 +156,7 @@ namespace MaggyHelper.Entities.SoulBoosts
             sprite.Color = Color.White;
 
             // Stretch image for travel
-            Add(stretch = new Image(GFX.Game["objects/badelineboost/stretch"]));
+            Add(stretch = new Image(GFX.Game["objects/sevensoulboost/stretch"]));
             stretch.Visible = false;
             stretch.CenterOrigin();
             stretch.Color = Color.White;
@@ -159,9 +166,9 @@ namespace MaggyHelper.Entities.SoulBoosts
             {
                 try
                 {
-                    var soulImage = new Image(GFX.Game[$"objects/MaggyHelper/sevensoulboost/soul/vessel_soul00{i}"]);
+                    char soulSuffix = (char)('A' + i);
+                    var soulImage = new Image(GFX.Game[$"characters/soul/soul/vessel_soul{soulSuffix}"]);
                     soulImage.CenterOrigin();
-                    soulImage.Color = SoulColors[i];
                     soulImages.Add(soulImage);
                     Add(soulImage);
                 }
@@ -317,6 +324,11 @@ namespace MaggyHelper.Entities.SoulBoosts
 
         protected virtual IEnumerator BoostRoutine(Player player)
         {
+        if (player == null || Scene == null)
+        {
+            yield break;
+        }
+
         holding = player;
         travelling = true;
         nodeIndex++;
@@ -325,6 +337,16 @@ namespace MaggyHelper.Entities.SoulBoosts
         Collidable = false;
         bool finalBoost = nodeIndex >= nodes.Length;
         Level level = Scene as Level;
+            if (level == null)
+            {
+                state = States.Wait;
+                travelling = false;
+                sprite.Visible = true;
+                Collidable = true;
+                holding = null;
+                yield break;
+            }
+
             // Hide soul images during boost
             foreach (var soul in soulImages)
             {
@@ -448,9 +470,9 @@ namespace MaggyHelper.Entities.SoulBoosts
                     player.Dashes++;
                 }
                 Scene.Remove(asriel);
-                (Scene as Level).Displacement.AddBurst(asriel.Position, 0.25f, 8f, 32f, 0.5f);
+                (Scene as Level)?.Displacement.AddBurst(asriel.Position, 0.25f, 8f, 32f, 0.5f);
             }, 0.15f, start: true));
-            (Scene as Level).Shake();
+            (Scene as Level)?.Shake();
             holding = null;
             if (!finalBoost)
             {
@@ -591,6 +613,9 @@ namespace MaggyHelper.Entities.SoulBoosts
             Collidable = false;
 
             Level level = SceneAs<Level>();
+            if (level == null)
+                return;
+
             Vector2 from = Position;
             Vector2 to = nodes[nodeIndex];
             float duration = Math.Min(3f, Vector2.Distance(from, to) / boostSpeed);

@@ -17,6 +17,8 @@ namespace MaggyHelper.Cutscenes
         
         private VertexLight restorationLight;
         private float healingProgress = 0f;
+        private float overlayAlpha;
+        private Color overlayColor = Color.Transparent;
         
         public CS20_FinalBossDefeat(global::Celeste.Player player) : base(false, true)
         {
@@ -40,6 +42,12 @@ namespace MaggyHelper.Cutscenes
             }
             
             setupSprites();
+        }
+
+        private void setOverlay(Color color, float alpha)
+        {
+            overlayColor = color;
+            overlayAlpha = Calc.Clamp(alpha, 0f, 1f);
         }
         
         private void setupSprites()
@@ -70,6 +78,12 @@ namespace MaggyHelper.Cutscenes
         
         public override void OnBegin(Level level)
         {
+            if (level == null)
+            {
+                EndCutscene(level);
+                return;
+            }
+
             Audio.SetAmbience(null);
             Audio.SetMusic("event:/cutscene/final_boss_aftermath");
             
@@ -182,9 +196,11 @@ namespace MaggyHelper.Cutscenes
             for (float t = 0f; t < 2f; t += Engine.DeltaTime)
             {
                 float fade = Ease.CubeIn(t / 2f);
-                Draw.Rect(0f, 0f, 1920f, 1080f, Color.White * fade);
+                setOverlay(Color.White, fade);
                 yield return null;
             }
+
+            setOverlay(Color.White, 1f);
             
             yield return 1f;
             
@@ -203,32 +219,52 @@ namespace MaggyHelper.Cutscenes
             {
                 float progress = t / duration;
                 float alpha = MathHelper.Lerp(from, to, progress);
-                
-                Draw.Rect(0f, 0f, 1920f, 1080f, Color.Black * alpha);
+
+                setOverlay(Color.Black, alpha);
                 
                 yield return null;
             }
+
+            setOverlay(Color.Black, to);
         }
         
         public override void OnEnd(Level level)
         {
             // Clean up
-            level.Session.SetFlag("final_boss_defeated");
-            level.Session.SetFlag("hearts_restored");
+            if (level != null)
+            {
+                level.Session.SetFlag("final_boss_defeated");
+                level.Session.SetFlag("hearts_restored");
+                level.TimerStopped = false;
+                level.TimerHidden = false;
+                level.SaveQuitDisabled = false;
+                level.PauseLock = false;
+            }
+
+            setOverlay(Color.Transparent, 0f);
             
             // Progress to next cutscene
-            level.Session.SetFlag("ready_for_rainbow_tree");
+            level?.Session.SetFlag("ready_for_rainbow_tree");
         }
         
         public override void Render()
         {
             base.Render();
+
+            Level level = Scene as Level;
+            if (level == null)
+                return;
             
             // Draw restoration effect
             if (healingProgress > 0f)
             {
                 float alpha = (float)Math.Sin(healingProgress * MathHelper.Pi) * 0.3f;
-                Draw.Rect(0f, 0f, 1920f, 1080f, Color.LightGoldenrodYellow * alpha);
+                Draw.Rect(level.Camera.X - 10f, level.Camera.Y - 10f, 340f, 200f, Color.LightGoldenrodYellow * alpha);
+            }
+
+            if (overlayAlpha > 0f)
+            {
+                Draw.Rect(level.Camera.X - 10f, level.Camera.Y - 10f, 340f, 200f, overlayColor * overlayAlpha);
             }
         }
     }

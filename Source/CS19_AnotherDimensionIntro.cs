@@ -85,6 +85,8 @@ namespace MaggyHelper.Cutscenes
     {
       Cs19AnotherDimensionIntro cs10MoonIntro = this;
       yield return (object) 0.1f;
+      if (cs10MoonIntro.chara == null || cs10MoonIntro.chara.Sprite == null)
+        yield break;
       int target = Math.Sign(cs10MoonIntro.chara.Sprite.Scale.X) * -1;
       Wiggler wiggler = Wiggler.Create(0.5f, 3f, (Action<float>) (v => this.chara.Sprite.Scale = new Vector2((float) target, 1f) * (float) (1.0 + 0.20000000298023224 * (double) v)), true, true);
       cs10MoonIntro.Add((Component) wiggler);
@@ -108,7 +110,7 @@ namespace MaggyHelper.Cutscenes
     private IEnumerator charaVanishes()
     {
       yield return (object) 0.5f;
-      this.chara.Any();
+      this.chara?.Vanish();
       Input.Rumble(RumbleStrength.Medium, RumbleLength.Medium);
       this.chara = (CharaDummy) null;
       yield return (object) 0.8f;

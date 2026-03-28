@@ -441,8 +441,9 @@ namespace MaggyHelper.Cutscenes
         {
             // Remove previous chara if present
             if (chara != null) this.Scene.Remove(chara);
-            // Spawn Chara
+            // Spawn Chara - non-lethal during credits (follows but does not kill)
             var newChara = new CharaChaser(this.player.Position + new Vector2(32f, 0f), 0);
+            newChara.Collidable = false;
             this.Scene.Add(newChara);
             chara = newChara;
 
@@ -478,28 +479,62 @@ namespace MaggyHelper.Cutscenes
             Vector2 cameraOrigin = this.Level.Camera.Position;
             Vector2 basePos = cameraOrigin + new Vector2(200f, 160f);
 
+            // Kirby and Darkeners
             Entity kirby = SpawnCreditsKirby(basePos + new Vector2(24f, 0f));
             Entity darkenerLeft = SpawnCreditsDarkener(basePos + new Vector2(-8f, 0f), faceLeft: false);
             Entity darkenerRight = SpawnCreditsDarkener(basePos + new Vector2(52f, 0f), faceLeft: true);
+
+            // Additional Kirby NPCs
+            Entity bandanaDee = SpawnCreditsNPC(basePos + new Vector2(-32f, 0f), "bandana_dee", bob: true, bobAmount: 1.5f);
+            Entity metaKnight = SpawnCreditsNPC(basePos + new Vector2(80f, 0f), "meta_knight_npc", bob: true, bobAmount: 1.5f);
+            Entity kingDedede = SpawnCreditsNPC(basePos + new Vector2(-56f, -8f), "king_dedede", bob: true, bobAmount: 2f);
+            Entity waddleDee = SpawnCreditsNPC(basePos + new Vector2(104f, 0f), "waddle_dee", bob: true, bobAmount: 1f);
+            Entity magolor = SpawnCreditsNPC(basePos + new Vector2(-80f, 0f), "magolor_npc", bob: true, bobAmount: 1.5f);
 
             Sprite kirbySprite = kirby.Get<Sprite>();
             if (kirbySprite != null && kirbySprite.Has("walk"))
                 kirbySprite.Play("walk", false, false);
 
+            // Animate NPCs walking if they can
+            foreach (Entity npc in new[] { bandanaDee, metaKnight, waddleDee, magolor })
+            {
+                Sprite s = npc.Get<Sprite>();
+                if (s != null && s.Has("walk"))
+                    s.Play("walk", false, false);
+            }
+
             for (float t = 0f; t < 1.6f; t += Engine.DeltaTime)
             {
                 kirby.X -= 12f * Engine.DeltaTime;
+                bandanaDee.X -= 10f * Engine.DeltaTime;
+                metaKnight.X -= 14f * Engine.DeltaTime;
+                kingDedede.X -= 8f * Engine.DeltaTime;
+                waddleDee.X -= 11f * Engine.DeltaTime;
+                magolor.X -= 13f * Engine.DeltaTime;
                 yield return null;
             }
 
             if (kirbySprite != null && kirbySprite.Has("idle"))
                 kirbySprite.Play("idle", false, false);
 
+            // Set all NPCs to idle
+            foreach (Entity npc in new[] { bandanaDee, metaKnight, kingDedede, waddleDee, magolor })
+            {
+                Sprite s = npc.Get<Sprite>();
+                if (s != null && s.Has("idle"))
+                    s.Play("idle", false, false);
+            }
+
             yield return 1.2f;
 
             kirby.RemoveSelf();
             darkenerLeft.RemoveSelf();
             darkenerRight.RemoveSelf();
+            bandanaDee.RemoveSelf();
+            metaKnight.RemoveSelf();
+            kingDedede.RemoveSelf();
+            waddleDee.RemoveSelf();
+            magolor.RemoveSelf();
 
             if (this.player != null)
             {
@@ -605,6 +640,15 @@ namespace MaggyHelper.Cutscenes
             sprite.CenterOrigin();
             sprite.Scale.X = faceLeft ? -1f : 1f;
             return SpawnCreditsSprite(position, sprite, bob: true, bobAmount: 1.5f);
+        }
+
+        private Entity SpawnCreditsNPC(Vector2 position, string spriteBankId, bool bob, float bobAmount)
+        {
+            Sprite sprite = GFX.SpriteBank.Create(spriteBankId);
+            if (sprite.Has("idle"))
+                sprite.Play("idle", false, false);
+            sprite.CenterOrigin();
+            return SpawnCreditsSprite(position, sprite, bob, bobAmount);
         }
 
         private Entity SpawnCreditsSprite(Vector2 position, Sprite sprite, bool bob, float bobAmount)

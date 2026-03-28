@@ -3586,9 +3586,9 @@ namespace MaggyHelper.Entities
     [Tracked]
     public class AsrielGodBossRainbowBlackhole : Entity
     {
-        private const float PULL_STRENGTH = 100f;
-        private const float KILL_RADIUS = 12f;
-        private const float PULL_RADIUS = 80f;
+        private const float PULL_STRENGTH = 50f;
+        private const float KILL_RADIUS = 8f;
+        private const float PULL_RADIUS = 60f;
         private const float LIFETIME = 3f;
         private float timer;
 

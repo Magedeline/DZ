@@ -33,6 +33,10 @@ namespace MaggyHelper.Cutscenes
         private HiresSnow snow;
         private bool gotoEpilogue;
         private CharaChaser chara;
+        private Entity kirbyFollower;
+        private bool kirbyAutoFollow = true;
+        private Entity ralseiFollower;
+        private bool ralseiAutoFollow = true;
 
         public CS17_Credits() : base(true, false)
         {
@@ -157,6 +161,10 @@ namespace MaggyHelper.Cutscenes
             this.autoUpdateCamera = false;
             this.player.ForceCameraUpdate = false;
             this.badeline.Visible = false;
+            if (this.kirbyFollower != null) this.kirbyFollower.Visible = false;
+            this.kirbyAutoFollow = false;
+            if (this.ralseiFollower != null) this.ralseiFollower.Visible = false;
+            this.ralseiAutoFollow = false;
             global::Celeste.Player other = null;
             foreach (var entity in this.Scene.Tracker.GetEntities<CreditsTrigger>())
             {
@@ -196,6 +204,10 @@ namespace MaggyHelper.Cutscenes
                 yield return null;
             }
             yield return this.FadeTo(1f);
+            if (this.kirbyFollower != null) this.kirbyFollower.Visible = true;
+            this.kirbyAutoFollow = true;
+            if (this.ralseiFollower != null) this.ralseiFollower.Visible = true;
+            this.ralseiAutoFollow = true;
             other = null;
             yield return 1f;
             this.SetBgFade(0.5f);
@@ -435,6 +447,28 @@ namespace MaggyHelper.Cutscenes
             this.Level.CameraOffset.X = 70f;
             this.Level.CameraOffset.Y = -24f;
             this.Level.Camera.Position = this.player.CameraTarget;
+
+            // Spawn Kirby follower
+            if (this.kirbyFollower != null && this.kirbyFollower.Scene != null)
+                this.kirbyFollower.RemoveSelf();
+            var kirbySprite = GFX.SpriteBank.Create("kirby");
+            kirbySprite.Play("idle", false, false);
+            this.kirbyFollower = new Entity(this.player.Position + new Vector2(28f, -6f));
+            this.kirbyFollower.Depth = -50;
+            this.kirbyFollower.Add(kirbySprite);
+            this.Level.Add(this.kirbyFollower);
+            this.kirbyAutoFollow = true;
+
+            // Spawn Ralsei follower
+            if (this.ralseiFollower != null && this.ralseiFollower.Scene != null)
+                this.ralseiFollower.RemoveSelf();
+            var ralseiSprite = GFX.SpriteBank.Create("ralsei");
+            ralseiSprite.Play("idle", false, false);
+            this.ralseiFollower = new Entity(this.player.Position + new Vector2(44f, 0f));
+            this.ralseiFollower.Depth = -50;
+            this.ralseiFollower.Add(ralseiSprite);
+            this.Level.Add(this.ralseiFollower);
+            this.ralseiAutoFollow = true;
         }
 
         private IEnumerator SpawnChara()
@@ -475,6 +509,14 @@ namespace MaggyHelper.Cutscenes
                 this.badelineAutoFloat = false;
                 this.badelineAutoWalk = false;
             }
+            bool prevKirbyVisible1 = this.kirbyFollower?.Visible ?? false;
+            bool prevKirbyFollow1 = this.kirbyAutoFollow;
+            if (this.kirbyFollower != null) this.kirbyFollower.Visible = false;
+            this.kirbyAutoFollow = false;
+            bool prevRalseiVisible1 = this.ralseiFollower?.Visible ?? false;
+            bool prevRalseiFollow1 = this.ralseiAutoFollow;
+            if (this.ralseiFollower != null) this.ralseiFollower.Visible = false;
+            this.ralseiAutoFollow = false;
 
             Vector2 cameraOrigin = this.Level.Camera.Position;
             Vector2 basePos = cameraOrigin + new Vector2(200f, 160f);
@@ -547,6 +589,10 @@ namespace MaggyHelper.Cutscenes
                 this.badelineAutoFloat = prevBadelineAutoFloat;
                 this.badelineAutoWalk = prevBadelineAutoWalk;
             }
+            if (this.kirbyFollower != null) this.kirbyFollower.Visible = prevKirbyVisible1;
+            this.kirbyAutoFollow = prevKirbyFollow1;
+            if (this.ralseiFollower != null) this.ralseiFollower.Visible = prevRalseiVisible1;
+            this.ralseiAutoFollow = prevRalseiFollow1;
             this.autoWalk = prevAutoWalk;
             this.autoUpdateCamera = prevAutoUpdateCamera;
         }
@@ -576,6 +622,14 @@ namespace MaggyHelper.Cutscenes
                 this.badelineAutoFloat = false;
                 this.badelineAutoWalk = false;
             }
+            bool prevKirbyVisible2 = this.kirbyFollower?.Visible ?? false;
+            bool prevKirbyFollow2 = this.kirbyAutoFollow;
+            if (this.kirbyFollower != null) this.kirbyFollower.Visible = false;
+            this.kirbyAutoFollow = false;
+            bool prevRalseiVisible2 = this.ralseiFollower?.Visible ?? false;
+            bool prevRalseiFollow2 = this.ralseiAutoFollow;
+            if (this.ralseiFollower != null) this.ralseiFollower.Visible = false;
+            this.ralseiAutoFollow = false;
 
             Vector2 cameraOrigin = this.Level.Camera.Position;
             List<Entity> monsters = new List<Entity>();
@@ -619,6 +673,10 @@ namespace MaggyHelper.Cutscenes
                 this.badelineAutoFloat = prevBadelineAutoFloat;
                 this.badelineAutoWalk = prevBadelineAutoWalk;
             }
+            if (this.kirbyFollower != null) this.kirbyFollower.Visible = prevKirbyVisible2;
+            this.kirbyAutoFollow = prevKirbyFollow2;
+            if (this.ralseiFollower != null) this.ralseiFollower.Visible = prevRalseiVisible2;
+            this.ralseiAutoFollow = prevRalseiFollow2;
             this.autoWalk = prevAutoWalk;
             this.autoUpdateCamera = prevAutoUpdateCamera;
         }
@@ -794,9 +852,12 @@ namespace MaggyHelper.Cutscenes
         {
             this.autoWalk = false;
             this.player.DummyFriction = true;
+            this.player.Speed = Vector2.Zero;
+            this.player.Dashes = 2;
             yield return 0.1f;
             this.PlayerJump(-1);
             yield return 0.2f;
+            this.player.Dashes = 2;
             this.player.OverrideDashDirection = new Vector2(-1f, -1f);
             this.player.StateMachine.State = this.player.StartDash();
             yield return 0.6f;
@@ -843,6 +904,30 @@ namespace MaggyHelper.Cutscenes
                 this.chara.Visible = false;
                 this.Level.Displacement.AddBurst(this.player.Position, 0.3f, 8f, 24f, 0.4f);
             }
+            // Kirby merges into player too
+            if (this.kirbyFollower != null)
+            {
+                Vector2 kirbyFrom = this.kirbyFollower.Position;
+                for (float t = 0f; t < 1f; t += Engine.DeltaTime / 0.25f)
+                {
+                    this.kirbyFollower.Position = Vector2.Lerp(kirbyFrom, this.player.Position, Ease.CubeIn(t));
+                    yield return null;
+                }
+                this.kirbyFollower.Visible = false;
+                this.kirbyAutoFollow = false;
+            }
+            // Ralsei merges into player too
+            if (this.ralseiFollower != null)
+            {
+                Vector2 ralseiFrom = this.ralseiFollower.Position;
+                for (float t = 0f; t < 1f; t += Engine.DeltaTime / 0.25f)
+                {
+                    this.ralseiFollower.Position = Vector2.Lerp(ralseiFrom, this.player.Position, Ease.CubeIn(t));
+                    yield return null;
+                }
+                this.ralseiFollower.Visible = false;
+                this.ralseiAutoFollow = false;
+            }
             this.player.Dashes = 2;
             yield return 0.5f;
             this.player.Facing = Facings.Left;
@@ -875,6 +960,18 @@ namespace MaggyHelper.Cutscenes
             {
                 this.chara.Position = this.player.Position + new Vector2(24f, 0f);
                 this.chara.Visible = true;
+            }
+            if (this.kirbyFollower != null)
+            {
+                this.kirbyFollower.Position = this.player.Position + new Vector2(28f, -6f);
+                this.kirbyFollower.Visible = true;
+                this.kirbyAutoFollow = true;
+            }
+            if (this.ralseiFollower != null)
+            {
+                this.ralseiFollower.Position = this.player.Position + new Vector2(44f, 0f);
+                this.ralseiFollower.Visible = true;
+                this.ralseiAutoFollow = true;
             }
             this.player.Dashes = 1;
             yield return 0.8f;
@@ -1039,6 +1136,37 @@ namespace MaggyHelper.Cutscenes
                 }
                 if (Math.Abs(this.player.Speed.X) > 90f)
                     this.player.Speed = new Vector2(Calc.Approach(this.player.Speed.X, 90f * Math.Sign(this.player.Speed.X), 1000f * Engine.DeltaTime), this.player.Speed.Y);
+
+                // Kirby follows behind the player
+                if (this.kirbyFollower != null && this.kirbyAutoFollow)
+                {
+                    Vector2 kirbyTarget = this.player.Position + new Vector2(28f, -6f + (float)Math.Sin(this.Scene.TimeActive * 2.5f) * 3f);
+                    this.kirbyFollower.Position += (kirbyTarget - this.kirbyFollower.Position) * (1f - (float)Math.Pow(0.01, Engine.DeltaTime));
+                    var kSprite = this.kirbyFollower.Get<Sprite>();
+                    if (kSprite != null)
+                    {
+                        kSprite.Scale.X = -1f;
+                        bool moving = Math.Abs(this.player.Speed.X) > 10f;
+                        string wantAnim = moving ? "walk" : "idle";
+                        if (kSprite.CurrentAnimationID != wantAnim && kSprite.Has(wantAnim))
+                            kSprite.Play(wantAnim, false, false);
+                    }
+                }
+                // Ralsei follows behind the player (further back)
+                if (this.ralseiFollower != null && this.ralseiAutoFollow)
+                {
+                    Vector2 ralseiTarget = this.player.Position + new Vector2(44f, (float)Math.Sin(this.Scene.TimeActive * 2.0f) * 2f);
+                    this.ralseiFollower.Position += (ralseiTarget - this.ralseiFollower.Position) * (1f - (float)Math.Pow(0.015, Engine.DeltaTime));
+                    var rSprite = this.ralseiFollower.Get<Sprite>();
+                    if (rSprite != null)
+                    {
+                        rSprite.Scale.X = -1f;
+                        bool rMoving = Math.Abs(this.player.Speed.X) > 10f;
+                        string rWantAnim = rMoving ? "walk" : "idle";
+                        if (rSprite.CurrentAnimationID != rWantAnim && rSprite.Has(rWantAnim))
+                            rSprite.Play(rWantAnim, false, false);
+                    }
+                }
             }
             if (this.credits != null)
                 this.credits.Update();

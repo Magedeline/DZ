@@ -1,8 +1,0 @@
-﻿schema: maggyhelper-map-meta-v1
-sid: Maggy/Main/02_Nightmare_D
-baseKey: 02_Nightmare
-side: D
-modeIndex: 3
-isMainChapterEntry: false
-mainChapterSid: Maggy/Main/02_Nightmare_A
-showInChapterSelect: false

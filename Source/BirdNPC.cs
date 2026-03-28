@@ -327,7 +327,7 @@ public class BirdNPC : Actor
         yield return 1f;
         Player player = Scene.Tracker.GetEntity<Player>();
         Bridge bridge = Scene.Entities.FindFirst<Bridge>();
-        while ((player == null || !(player.X > StartPosition.X - 92f) || !(player.Y > StartPosition.Y - 20f) || !(player.Y < StartPosition.Y - 10f)) && (!SaveData.Instance.Assists.Invincible || player == null || !(player.X > StartPosition.X - 60f) || !(player.Y > StartPosition.Y) || !(player.Y < StartPosition.Y + 34f)))
+        while ((player == null || !(player.X > StartPosition.X - 36f) || !(player.Y > StartPosition.Y - 24f) || !(player.Y < StartPosition.Y + 8f)) && (!SaveData.Instance.Assists.Invincible || player == null || !(player.X > StartPosition.X - 24f) || !(player.Y > StartPosition.Y - 4f) || !(player.Y < StartPosition.Y + 48f)))
         {
             yield return null;
         }
@@ -569,18 +569,18 @@ public class BirdNPC : Actor
         base.DebugRender(camera);
         if (mode == Modes.DashingTutorial)
         {
-            float x = StartPosition.X - 92f;
+            float x = StartPosition.X - 36f;
             float x2 = level.Bounds.Right;
-            float y = StartPosition.Y - 20f;
-            float y2 = StartPosition.Y - 10f;
+            float y = StartPosition.Y - 24f;
+            float y2 = StartPosition.Y + 8f;
             Draw.Line(new Vector2(x, y), new Vector2(x, y2), Color.Aqua);
             Draw.Line(new Vector2(x, y), new Vector2(x2, y), Color.Aqua);
             Draw.Line(new Vector2(x2, y), new Vector2(x2, y2), Color.Aqua);
             Draw.Line(new Vector2(x, y2), new Vector2(x2, y2), Color.Aqua);
-            float x3 = StartPosition.X - 60f;
+            float x3 = StartPosition.X - 24f;
             float x4 = level.Bounds.Right;
-            float y3 = StartPosition.Y;
-            float y4 = StartPosition.Y + 34f;
+            float y3 = StartPosition.Y - 4f;
+            float y4 = StartPosition.Y + 48f;
             Draw.Line(new Vector2(x3, y3), new Vector2(x3, y4), Color.Aqua);
             Draw.Line(new Vector2(x3, y3), new Vector2(x4, y3), Color.Aqua);
             Draw.Line(new Vector2(x4, y3), new Vector2(x4, y4), Color.Aqua);

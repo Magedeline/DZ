@@ -1,8 +1,0 @@
-﻿schema: maggyhelper-map-meta-v1
-sid: Maggy/Main/04_Legend_D
-baseKey: 04_Legend
-side: D
-modeIndex: 3
-isMainChapterEntry: false
-mainChapterSid: Maggy/Main/04_Legend_A
-showInChapterSelect: false

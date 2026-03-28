@@ -1118,8 +1118,9 @@
 {67bfa396-00d5-4429-8fe4-733477e06d67} event:/desolozantas/music/lvl8/chara_fight
 {83c70cd8-2471-446d-9fe1-d5b4c8cebc7b} event:/desolozantas/music/lvl8/chara_glitch
 {6e603546-72ff-40b9-956d-6fe3eae5daf9} event:/desolozantas/music/lvl8/intro
-{9c171941-c565-4467-98be-b80db019c686} event:/desolozantas/music/lvl8/main
+{02156b0c-dae9-42b1-b2da-c8a6aaa3a19c} event:/desolozantas/music/lvl8/main
 {bb664a99-73be-468c-99b2-e8323612bd30} event:/desolozantas/music/lvl8/starjump
+{c8418f4f-41d7-46e4-9181-c29ee076220a} event:/desolozantas/music/lvl8/the_fall
 {c5b7df7f-3643-4ec2-a8b9-078d0ecbe400} event:/desolozantas/music/lvl9/credit
 {84a6fff9-a163-43cd-9b7e-be0793782afa} event:/desolozantas/music/lvl9/final_ascent
 {054fd508-90fe-494d-84c5-9cbae5e39d42} event:/desolozantas/music/lvl9/main
@@ -1203,6 +1204,7 @@
 {e9cd6012-68b0-4231-bcaa-4fe2d2b01b71} event:/desolozantas/ui/game/toggle_off
 {4c7f19e8-25e3-4a66-93a5-b41e643e5850} event:/desolozantas/ui/game/toggle_on
 {5d4ea9ca-0dae-4e1d-8499-4329eb7aa845} event:/desolozantas/ui/game/unpause
+{9739c719-a0ed-4b31-8476-fcc1f01c5c70} event:/desolozantas/ui/game/pre_title_firstinput
 {5429575b-ed34-404b-af1a-f3f28cfa286f} event:/desolozantas/ui/main/postcard_ch10_in
 {ac48272b-38b7-41ed-b28a-2c50f366fc09} event:/desolozantas/ui/main/postcard_ch10_out
 {ce9e2b0d-24cd-4e08-a673-b7a51a9baf0c} event:/desolozantas/ui/main/postcard_ch11_in

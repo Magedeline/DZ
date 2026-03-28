@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Runtime.CompilerServices;
+using Celeste.Mod.MaggyHelper.Cutscenes;
 using FMOD.Studio;
 using Microsoft.Xna.Framework;
 using Monocle;
@@ -20,7 +21,9 @@ public class CS00_EndingMod : CutsceneEntity
         private IEnumerator Routine()
         {
             yield return 3f;
-            (Scene as Level).CompleteArea(false, false);
+            Level level = Scene as Level;
+            Player player = level.Tracker.GetEntity<Player>();
+            level.Add(new CS00_Logo(player, level.Tracker.GetEntity<CS00_EndingMod>()));
         }
     }
 
@@ -38,7 +41,7 @@ public class CS00_EndingMod : CutsceneEntity
 
     [MethodImpl(MethodImplOptions.NoInlining)]
     public CS00_EndingMod(Player player, Entities.BirdNPC bird, Entities.Bridge bridge)
-        : base(fadeInOnSkip: false, endingChapterAfter: true)
+        : base(fadeInOnSkip: false, endingChapterAfter: false)
     {
         this.player = player;
         this.bird = bird;
@@ -47,7 +50,7 @@ public class CS00_EndingMod : CutsceneEntity
     }
 
     public CS00_EndingMod(Player player)
-        : base(fadeInOnSkip: false, endingChapterAfter: true)
+        : base(fadeInOnSkip: false, endingChapterAfter: false)
     {
         this.player = player;
         Add(timeRateModifier = new TimeRateModifier(1f, false));

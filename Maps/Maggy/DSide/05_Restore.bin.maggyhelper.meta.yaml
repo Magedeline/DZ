@@ -1,8 +1,0 @@
-﻿schema: maggyhelper-map-meta-v1
-sid: Maggy/Main/05_Restore_D
-baseKey: 05_Restore
-side: D
-modeIndex: 3
-isMainChapterEntry: false
-mainChapterSid: Maggy/Main/05_Restore_A
-showInChapterSelect: false

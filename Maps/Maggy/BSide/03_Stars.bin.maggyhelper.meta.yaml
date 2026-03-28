@@ -1,8 +1,8 @@
 ﻿schema: maggyhelper-map-meta-v1
-sid: Maggy/Main/03_Stars_B
+sid: Maggy/BSide/03_Stars
 baseKey: 03_Stars
 side: B
 modeIndex: 1
 isMainChapterEntry: false
-mainChapterSid: Maggy/Main/03_Stars_A
+mainChapterSid: Maggy/ASide/03_Stars
 showInChapterSelect: false

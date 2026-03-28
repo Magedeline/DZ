@@ -1,8 +1,8 @@
 ﻿schema: maggyhelper-map-meta-v1
-sid: Maggy/Main/00_Prologue
+sid: Maggy/ASide/00_Prologue
 baseKey: 00_Prologue
 side: A
 modeIndex: 0
 isMainChapterEntry: true
-mainChapterSid: Maggy/Main/00_Prologue
+mainChapterSid: Maggy/ASide/00_Prologue
 showInChapterSelect: true

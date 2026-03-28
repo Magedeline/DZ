@@ -480,12 +480,12 @@ public static class AreaMapData
         {
             Number = number,
             Name = name,
-            SID = AreaModeExtender.BuildASideSID($"{chapterKey}_A"),
+            SID = AreaModeExtender.BuildASideSID(chapterKey),
             Icon = icon,
             IsInterlude = false,
             HasBSide = true,
             HasCSide = true,
-            HasDSide = true,
+            HasDSide = false, // DSide folder has no maps yet
             HasDXSide = false, // DX-Side map not yet ready
             MusicEvents = new[]
             {
@@ -574,19 +574,19 @@ public static class AreaMapData
             GetMusic(chapter, 0), GetAmbience(chapter, 0));
 
         area.Mode[1] = chapter.HasBSide
-            ? BuildOrUpdateMode(area.Mode[1], AreaModeExtender.BuildSideSID(AreaModeExtender.MODE_BSIDE, $"{baseKey}_B"), GetMusic(chapter, 1), GetAmbience(chapter, 1))
+            ? BuildOrUpdateMode(area.Mode[1], AreaModeExtender.BuildSideSID(AreaModeExtender.MODE_BSIDE, baseKey), GetMusic(chapter, 1), GetAmbience(chapter, 1))
             : null;
 
         area.Mode[2] = chapter.HasCSide
-            ? BuildOrUpdateMode(area.Mode[2], AreaModeExtender.BuildSideSID(AreaModeExtender.MODE_CSIDE, $"{baseKey}_C"), GetMusic(chapter, 2), GetAmbience(chapter, 2))
+            ? BuildOrUpdateMode(area.Mode[2], AreaModeExtender.BuildSideSID(AreaModeExtender.MODE_CSIDE, baseKey), GetMusic(chapter, 2), GetAmbience(chapter, 2))
             : null;
 
         area.Mode[3] = chapter.HasDSide
-            ? BuildOrUpdateMode(area.Mode[3], AreaModeExtender.BuildSideSID(AreaModeExtender.MODE_DSIDE, $"{baseKey}_D"), GetMusic(chapter, 3), GetAmbience(chapter, 3))
+            ? BuildOrUpdateMode(area.Mode[3], AreaModeExtender.BuildSideSID(AreaModeExtender.MODE_DSIDE, baseKey), GetMusic(chapter, 3), GetAmbience(chapter, 3))
             : null;
 
         area.Mode[4] = chapter.HasDXSide
-            ? BuildOrUpdateMode(area.Mode[4], AreaModeExtender.BuildSideSID(AreaModeExtender.MODE_DXSIDE, $"{baseKey}_DX"), GetMusic(chapter, 4), GetAmbience(chapter, 4))
+            ? BuildOrUpdateMode(area.Mode[4], AreaModeExtender.BuildSideSID(AreaModeExtender.MODE_DXSIDE, baseKey), GetMusic(chapter, 4), GetAmbience(chapter, 4))
             : null;
 
         if (!string.IsNullOrEmpty(chapter.CassetteSong))
@@ -713,10 +713,7 @@ public static class AreaMapData
         if (string.IsNullOrEmpty(sid)) return null;
         var parts = sid.Split('/');
         if (parts.Length < 3) return null;
-        string name = parts[^1];
-        // Remove _A suffix
-        if (name.EndsWith("_A")) name = name[..^2];
-        return name;
+        return parts[^1];
     }
 
     private static void ApplyHardcodedRuntimeData(AreaData area, ChapterDef chapter)

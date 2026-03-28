@@ -1,8 +1,8 @@
 ﻿schema: maggyhelper-map-meta-v1
-sid: Maggy/Main/07_Hell_A
+sid: Maggy/ASide/07_Hell
 baseKey: 07_Hell
 side: A
 modeIndex: 0
 isMainChapterEntry: true
-mainChapterSid: Maggy/Main/07_Hell_A
+mainChapterSid: Maggy/ASide/07_Hell
 showInChapterSelect: true

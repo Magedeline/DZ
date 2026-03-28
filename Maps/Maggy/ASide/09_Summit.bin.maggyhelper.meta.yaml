@@ -1,8 +1,8 @@
 ﻿schema: maggyhelper-map-meta-v1
-sid: Maggy/Main/09_Summit_A
+sid: Maggy/ASide/09_Summit
 baseKey: 09_Summit
 side: A
 modeIndex: 0
 isMainChapterEntry: true
-mainChapterSid: Maggy/Main/09_Summit_A
+mainChapterSid: Maggy/ASide/09_Summit
 showInChapterSelect: true

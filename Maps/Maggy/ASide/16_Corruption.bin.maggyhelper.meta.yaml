@@ -1,8 +1,8 @@
 ﻿schema: maggyhelper-map-meta-v1
-sid: Maggy/Main/16_Corruption
+sid: Maggy/ASide/16_Corruption
 baseKey: 16_Corruption
 side: A
 modeIndex: 0
 isMainChapterEntry: true
-mainChapterSid: Maggy/Main/16_Corruption
+mainChapterSid: Maggy/ASide/16_Corruption
 showInChapterSelect: true

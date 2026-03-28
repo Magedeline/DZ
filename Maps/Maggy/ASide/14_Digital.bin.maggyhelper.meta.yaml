@@ -1,8 +1,8 @@
 ﻿schema: maggyhelper-map-meta-v1
-sid: Maggy/Main/14_Digital_A
+sid: Maggy/ASide/14_Digital
 baseKey: 14_Digital
 side: A
 modeIndex: 0
 isMainChapterEntry: true
-mainChapterSid: Maggy/Main/14_Digital_A
+mainChapterSid: Maggy/ASide/14_Digital
 showInChapterSelect: true

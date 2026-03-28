@@ -295,8 +295,7 @@ public static class AreaModeExtender
             ? area.Mode[MODE_CSIDE]
             : area.Mode[MODE_NORMAL];
 
-        string suffix = modeIndex == MODE_DSIDE ? "_D" : "_DX";
-        string sid = BuildSideSID(modeIndex, baseKey + suffix);
+        string sid = BuildSideSID(modeIndex, baseKey);
 
         return new ModeProperties
         {

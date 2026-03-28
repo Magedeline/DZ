@@ -1,8 +1,8 @@
 ﻿schema: maggyhelper-map-meta-v1
-sid: Maggy/Main/15_Castle_A
+sid: Maggy/ASide/15_Castle
 baseKey: 15_Castle
 side: A
 modeIndex: 0
 isMainChapterEntry: true
-mainChapterSid: Maggy/Main/15_Castle_A
+mainChapterSid: Maggy/ASide/15_Castle
 showInChapterSelect: true

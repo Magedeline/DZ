@@ -809,10 +809,40 @@ namespace MaggyHelper.Cutscenes
         {
             this.autoWalk = false;
             this.player.DummyFriction = true;
+            this.player.Speed = Vector2.Zero;
             yield return 0.1f;
             this.player.Facing = Facings.Right;
             yield return 0.25f;
+
+            // Chara approaches from behind
+            if (this.chara != null)
+            {
+                Vector2 charaFrom = this.chara.Position;
+                Vector2 charaTo = this.player.Position + new Vector2(24f, 0f);
+                for (float t = 0f; t < 1f; t += Engine.DeltaTime / 0.4f)
+                {
+                    this.chara.Position = Vector2.Lerp(charaFrom, charaTo, Ease.CubeIn(t));
+                    yield return null;
+                }
+                this.chara.Position = charaTo;
+            }
+            yield return 0.15f;
+
+            // Badeline combines with player
             yield return this.BadelineCombine();
+
+            // Chara merges into player too — both give dashes
+            if (this.chara != null)
+            {
+                Vector2 charaFrom2 = this.chara.Position;
+                for (float t = 0f; t < 1f; t += Engine.DeltaTime / 0.25f)
+                {
+                    this.chara.Position = Vector2.Lerp(charaFrom2, this.player.Position, Ease.CubeIn(t));
+                    yield return null;
+                }
+                this.chara.Visible = false;
+                this.Level.Displacement.AddBurst(this.player.Position, 0.3f, 8f, 24f, 0.4f);
+            }
             this.player.Dashes = 2;
             yield return 0.5f;
             this.player.Facing = Facings.Left;
@@ -836,10 +866,16 @@ namespace MaggyHelper.Cutscenes
             yield return 0.5f;
             this.player.Facing = Facings.Right;
             yield return 1f;
+            // Badeline and Chara reappear from the player
             this.Level.Displacement.AddBurst(this.player.Position, 0.4f, 8f, 32f, 0.5f);
             this.badeline.Position = this.player.Position;
             this.badeline.Visible = true;
             this.badelineAutoFloat = true;
+            if (this.chara != null)
+            {
+                this.chara.Position = this.player.Position + new Vector2(24f, 0f);
+                this.chara.Visible = true;
+            }
             this.player.Dashes = 1;
             yield return 0.8f;
             this.player.Facing = Facings.Left;

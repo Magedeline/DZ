@@ -2332,7 +2332,7 @@
       <Anim id="death" path="death" delay="0.06"/>
   </dreamJellyfish>
 
-  <asrielgodboss path="characters/asrielgodboss/">
+  <asrielgodboss path="characters/asrielgodboss/" start="idle">
     <Justify x="0.5" y="0.5" />
     <Loop id="idle" path="idle" delay="0.1"/>
     

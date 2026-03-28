@@ -1643,13 +1643,6 @@ There something that I found and I need him to come here.
 [susiehaltmann right normal]
 Okay I'll be right back and call him would ya?
 
-CH3_POSTCARD_INTRO=
-Among the Stars...
-The journey takes its next step.
-In the cold expanse above,
-Something stirs within the void.
-It's about time.
-
 CH3_KIRBY_INTRO=
 Okay Remember what Susie said to me.
 Don't panic and Just Breath...

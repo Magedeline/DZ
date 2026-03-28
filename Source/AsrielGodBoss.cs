@@ -469,10 +469,15 @@ namespace MaggyHelper.Entities
         public override void Awake(Scene scene)
         {
             base.Awake(scene);
+            this.level = scene as Level;
             this.fallingBlocks = this.Scene.Tracker.GetEntitiesCopy<FallingBlock>();
             this.fallingBlocks.Sort((a, b) => (int)(a.X - b.X));
             this.movingBlocks = this.Scene.Tracker.GetEntitiesCopy<FinalBossMovingBlock>();
             this.movingBlocks.Sort((a, b) => (int)(a.X - b.X));
+
+            // Initialize boss sprite (plays idle animation, sets up callbacks)
+            createBossSprite();
+            InitializeAttackPatterns();
         }
 
         private void createBossSprite()
@@ -648,8 +653,15 @@ namespace MaggyHelper.Entities
                 this.circle.Radius = radius;
                 if (!this.level.IsInBounds(this.Position, 24f))
                 {
-                    this.Active = this.Visible = this.Collidable = false;
+                    this.Visible = false;
+                    this.Collidable = false;
                     return;
+                }
+                else if (!this.Visible)
+                {
+                    // Recover visibility when back in bounds
+                    this.Visible = true;
+                    this.Collidable = true;
                 }
                 Vector2 target;
                 if (!this.Moving && entity != null)
@@ -1267,8 +1279,15 @@ namespace MaggyHelper.Entities
 
             isAttacking = true;
             SetState(BossState.Attacking);
-            attackCoroutine = new Coroutine(attackSequence());
-            Add(attackCoroutine);
+
+            if (useCustomSequence && customAttackSteps != null && customAttackSteps.Count > 0)
+            {
+                attackCoroutine.Replace(attackSequence());
+            }
+            else
+            {
+                StartAttacking();
+            }
         }
 
         private void StartAttacking()
@@ -3084,7 +3103,7 @@ namespace MaggyHelper.Entities
             yield return 0.5f;
 
             // Start boss music now that the god boss has appeared
-            level.Session.Audio.Music.Event = "event:/desolozantas/final_content/music/lvl20/kirby_vs_asriel_fight_01";
+            level.Session.Audio.Music.Event = "event:/desolozantas/final_content/music/lvl20/kirby_vs_asriel_fight_1";
             level.Session.Audio.Apply();
 
             // Restore player control
@@ -3258,15 +3277,508 @@ namespace MaggyHelper.Entities
         }
     }
 
-    // Placeholder classes for new attacks - need to be implemented separately
-    public class AsrielGodBossShot : Entity { public AsrielGodBossShot Init(AsrielGodBoss boss, global::Celeste.Player target, float angleOffset) => this; }
-    public class AsrielGodBossBeam : Entity { public AsrielGodBossBeam Init(AsrielGodBoss boss, global::Celeste.Player target) => this; }
-    public class AsrielGodBossBiggerBeam : Entity { public AsrielGodBossBiggerBeam Init(AsrielGodBoss boss, global::Celeste.Player target) => this; }
-    public class AsrielGodBossBigBeamBall : Entity { public AsrielGodBossBigBeamBall Init(AsrielGodBoss boss, global::Celeste.Player target) => this; }
-    public class AsrielGodBossRainbowBlackhole : Entity { public AsrielGodBossRainbowBlackhole(Vector2 position) : base(position) {} }
-    public class AsrielGodBossBlade : Entity { public AsrielGodBossBlade Init(AsrielGodBoss boss, global::Celeste.Player target, float angle) => this; }
-    public class AsrielGodBossFireShockwave : Entity { public AsrielGodBossFireShockwave(Vector2 position) : base(position) {} }
-    public class AsrielGodBossMeteorite : Entity { public AsrielGodBossMeteorite(Vector2 position, Vector2 target) : base(position) {} }
+    /// <summary>
+    /// Projectile shot by AsrielGodBoss - tracks toward player then flies straight.
+    /// </summary>
+    [Tracked]
+    public class AsrielGodBossShot : Entity
+    {
+        private const float SPEED = 200f;
+        private const float LIFETIME = 6f;
+        private Vector2 velocity;
+        private float timer;
+        private Sprite sprite;
+        private float sinWave;
+        private float perp;
+
+        public AsrielGodBossShot Init(AsrielGodBoss boss, global::Celeste.Player target, float angleOffset)
+        {
+            Position = boss.ShotOrigin;
+            Collider = new Monocle.Circle(4f);
+            Add(new PlayerCollider(OnPlayer));
+            Depth = -1000000;
+
+            Vector2 dir = (target.Center - Position).SafeNormalize();
+            if (angleOffset != 0f)
+                dir = Calc.AngleToVector(dir.Angle() + MathHelper.ToRadians(angleOffset), 1f);
+            velocity = dir * SPEED;
+            perp = dir.Perpendicular().Angle();
+            timer = LIFETIME;
+
+            // Try to use a sprite from the sprite bank, otherwise draw as a simple circle
+            try
+            {
+                if (GFX.SpriteBank.Has("badeline_projectile"))
+                {
+                    sprite = GFX.SpriteBank.Create("badeline_projectile");
+                    sprite.Play("shot");
+                    sprite.Color = Color.Gold;
+                    Add(sprite);
+                }
+            }
+            catch { }
+
+            Add(new VertexLight(Color.Yellow, 0.6f, 16, 32));
+            return this;
+        }
+
+        public override void Update()
+        {
+            base.Update();
+            Position += velocity * Engine.DeltaTime;
+            timer -= Engine.DeltaTime;
+            sinWave += Engine.DeltaTime * 4f;
+
+            if (timer <= 0f || !SceneAs<Level>().IsInBounds(Position, 16f))
+            {
+                RemoveSelf();
+                return;
+            }
+        }
+
+        public override void Render()
+        {
+            base.Render();
+            if (sprite == null)
+            {
+                Draw.Circle(Position, 4f, Color.Gold, 8);
+                Draw.Circle(Position, 2f, Color.White, 6);
+            }
+        }
+
+        private void OnPlayer(global::Celeste.Player player)
+        {
+            try { player.Die((player.Center - Position).SafeNormalize()); }
+            catch (Exception) { /* third-party mod hook crash */ }
+            RemoveSelf();
+        }
+    }
+
+    /// <summary>
+    /// Laser beam fired by AsrielGodBoss toward the player.
+    /// </summary>
+    [Tracked]
+    public class AsrielGodBossBeam : Entity
+    {
+        private const float CHARGE_TIME = 1.4f;
+        private const float FOLLOW_TIME = 0.9f;
+        private const float ACTIVE_TIME = 0.12f;
+        private AsrielGodBoss boss;
+        private global::Celeste.Player target;
+        private float chargeTimer;
+        private float activeTimer;
+        private float angle;
+        private float beamAlpha;
+        private float sideDist = 1f;
+
+        public AsrielGodBossBeam Init(AsrielGodBoss boss, global::Celeste.Player target)
+        {
+            this.boss = boss;
+            this.target = target;
+            chargeTimer = CHARGE_TIME;
+            activeTimer = ACTIVE_TIME;
+            angle = (target.Center - boss.BeamOrigin).Angle();
+            Depth = -1000000;
+            return this;
+        }
+
+        public override void Update()
+        {
+            base.Update();
+            if (boss == null || boss.Scene == null) { RemoveSelf(); return; }
+
+            if (chargeTimer > 0f)
+            {
+                // Track player during charge/follow phase
+                chargeTimer -= Engine.DeltaTime;
+                if (chargeTimer > CHARGE_TIME - FOLLOW_TIME && target != null)
+                    angle = Calc.Approach(angle, (target.Center - boss.BeamOrigin).Angle(), 6f * Engine.DeltaTime);
+                beamAlpha = Calc.Approach(beamAlpha, 1f, Engine.DeltaTime * 2f);
+            }
+            else if (activeTimer > 0f)
+            {
+                // Fire phase - check collision
+                activeTimer -= Engine.DeltaTime;
+                sideDist = 12f;
+                Vector2 origin = boss.BeamOrigin;
+                Vector2 dir = Calc.AngleToVector(angle, 1f);
+                for (float d = 0f; d < 320f; d += 4f)
+                {
+                    Vector2 point = origin + dir * d;
+                    if (target != null && Vector2.Distance(point, target.Center) < 8f)
+                    {
+                        try { target.Die((target.Center - origin).SafeNormalize()); }
+                        catch (Exception) { /* third-party mod hook crash */ }
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                RemoveSelf();
+            }
+        }
+
+        public override void Render()
+        {
+            Vector2 origin = boss?.BeamOrigin ?? Position;
+            Vector2 dir = Calc.AngleToVector(angle, 1f);
+
+            if (chargeTimer > 0f)
+            {
+                // Draw charge line
+                Draw.Line(origin, origin + dir * 320f, Color.White * beamAlpha * 0.3f);
+            }
+            else
+            {
+                // Draw active beam
+                for (int i = -1; i <= 1; i++)
+                {
+                    Vector2 perp = dir.Perpendicular() * i * sideDist * 0.5f;
+                    Draw.Line(origin + perp, origin + perp + dir * 320f, Color.Lerp(Color.Cyan, Color.White, 0.5f));
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// Larger beam variant with wider hitbox.
+    /// </summary>
+    [Tracked]
+    public class AsrielGodBossBiggerBeam : Entity
+    {
+        private const float CHARGE_TIME = 1.8f;
+        private const float FOLLOW_TIME = 1.2f;
+        private const float ACTIVE_TIME = 0.2f;
+        private AsrielGodBoss boss;
+        private global::Celeste.Player target;
+        private float chargeTimer;
+        private float activeTimer;
+        private float angle;
+        private float beamAlpha;
+        private float beamWidth = 2f;
+
+        public AsrielGodBossBiggerBeam Init(AsrielGodBoss boss, global::Celeste.Player target)
+        {
+            this.boss = boss;
+            this.target = target;
+            chargeTimer = CHARGE_TIME;
+            activeTimer = ACTIVE_TIME;
+            angle = (target.Center - boss.BeamOrigin).Angle();
+            Depth = -1000000;
+            return this;
+        }
+
+        public override void Update()
+        {
+            base.Update();
+            if (boss == null || boss.Scene == null) { RemoveSelf(); return; }
+
+            if (chargeTimer > 0f)
+            {
+                chargeTimer -= Engine.DeltaTime;
+                if (chargeTimer > CHARGE_TIME - FOLLOW_TIME && target != null)
+                    angle = Calc.Approach(angle, (target.Center - boss.BeamOrigin).Angle(), 4f * Engine.DeltaTime);
+                beamAlpha = Calc.Approach(beamAlpha, 1f, Engine.DeltaTime * 2f);
+            }
+            else if (activeTimer > 0f)
+            {
+                activeTimer -= Engine.DeltaTime;
+                beamWidth = 24f;
+                Vector2 origin = boss.BeamOrigin;
+                Vector2 dir = Calc.AngleToVector(angle, 1f);
+                for (float d = 0f; d < 400f; d += 4f)
+                {
+                    Vector2 point = origin + dir * d;
+                    if (target != null && Vector2.Distance(point, target.Center) < 14f)
+                    {
+                        try { target.Die((target.Center - origin).SafeNormalize()); }
+                        catch (Exception) { /* third-party mod hook crash */ }
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                RemoveSelf();
+            }
+        }
+
+        public override void Render()
+        {
+            Vector2 origin = boss?.BeamOrigin ?? Position;
+            Vector2 dir = Calc.AngleToVector(angle, 1f);
+
+            if (chargeTimer > 0f)
+            {
+                Draw.Line(origin, origin + dir * 400f, Color.White * beamAlpha * 0.3f);
+                Draw.Line(origin + dir.Perpendicular() * 2f, origin + dir.Perpendicular() * 2f + dir * 400f, Color.White * beamAlpha * 0.15f);
+                Draw.Line(origin - dir.Perpendicular() * 2f, origin - dir.Perpendicular() * 2f + dir * 400f, Color.White * beamAlpha * 0.15f);
+            }
+            else
+            {
+                Vector2 perp = dir.Perpendicular();
+                for (float w = -beamWidth / 2f; w <= beamWidth / 2f; w += 2f)
+                {
+                    Draw.Line(origin + perp * w, origin + perp * w + dir * 400f, Color.Lerp(Color.Magenta, Color.White, 0.4f));
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// Big energy ball that tracks toward the player.
+    /// </summary>
+    [Tracked]
+    public class AsrielGodBossBigBeamBall : Entity
+    {
+        private const float SPEED = 120f;
+        private const float LIFETIME = 5f;
+        private Vector2 velocity;
+        private float timer;
+        private global::Celeste.Player target;
+
+        public AsrielGodBossBigBeamBall Init(AsrielGodBoss boss, global::Celeste.Player target)
+        {
+            Position = boss.ShotOrigin;
+            this.target = target;
+            Collider = new Monocle.Circle(10f);
+            Add(new PlayerCollider(OnPlayer));
+            Depth = -1000000;
+            velocity = (target.Center - Position).SafeNormalize() * SPEED;
+            timer = LIFETIME;
+            Add(new VertexLight(Color.Cyan, 0.8f, 24, 48));
+            return this;
+        }
+
+        public override void Update()
+        {
+            base.Update();
+            // Gently home toward player
+            if (target != null && target.Scene != null)
+            {
+                Vector2 desired = (target.Center - Position).SafeNormalize() * SPEED;
+                velocity = Vector2.Lerp(velocity, desired, Engine.DeltaTime * 1.5f);
+            }
+            Position += velocity * Engine.DeltaTime;
+            timer -= Engine.DeltaTime;
+            if (timer <= 0f) RemoveSelf();
+        }
+
+        public override void Render()
+        {
+            base.Render();
+            Draw.Circle(Position, 10f, Color.Cyan, 12);
+            Draw.Circle(Position, 6f, Color.White, 10);
+        }
+
+        private void OnPlayer(global::Celeste.Player player)
+        {
+            try { player.Die((player.Center - Position).SafeNormalize()); }
+            catch (Exception) { /* third-party mod hook crash */ }
+            RemoveSelf();
+        }
+    }
+
+    /// <summary>
+    /// Rainbow blackhole that pulls the player inward.
+    /// </summary>
+    [Tracked]
+    public class AsrielGodBossRainbowBlackhole : Entity
+    {
+        private const float PULL_STRENGTH = 100f;
+        private const float KILL_RADIUS = 12f;
+        private const float PULL_RADIUS = 80f;
+        private const float LIFETIME = 3f;
+        private float timer;
+
+        public AsrielGodBossRainbowBlackhole(Vector2 position) : base(position)
+        {
+            Collider = new Monocle.Circle(KILL_RADIUS);
+            Add(new PlayerCollider(OnPlayer));
+            Depth = -1000000;
+            timer = LIFETIME;
+        }
+
+        public override void Update()
+        {
+            base.Update();
+            timer -= Engine.DeltaTime;
+            if (timer <= 0f) { RemoveSelf(); return; }
+
+            // Pull player toward center
+            var player = Scene?.Tracker.GetEntity<global::Celeste.Player>();
+            if (player != null)
+            {
+                float dist = Vector2.Distance(player.Center, Position);
+                if (dist < PULL_RADIUS && dist > 1f)
+                {
+                    Vector2 pullDir = (Position - player.Center).SafeNormalize();
+                    float strength = PULL_STRENGTH * (1f - dist / PULL_RADIUS);
+                    player.Speed += pullDir * strength * Engine.DeltaTime;
+                }
+            }
+        }
+
+        public override void Render()
+        {
+            base.Render();
+            float pulse = 0.8f + (float)Math.Sin(Scene.TimeActive * 6f) * 0.2f;
+            Draw.Circle(Position, KILL_RADIUS * pulse, Color.DarkViolet, 12);
+            Draw.Circle(Position, PULL_RADIUS * 0.5f * pulse, Color.Purple * 0.4f, 16);
+            Draw.Circle(Position, PULL_RADIUS * pulse, Color.Magenta * 0.2f, 20);
+        }
+
+        private void OnPlayer(global::Celeste.Player player)
+        {
+            try { player.Die((player.Center - Position).SafeNormalize()); }
+            catch (Exception) { /* third-party mod hook crash */ }
+        }
+    }
+
+    /// <summary>
+    /// Spinning blade projectile.
+    /// </summary>
+    [Tracked]
+    public class AsrielGodBossBlade : Entity
+    {
+        private const float SPEED = 250f;
+        private const float LIFETIME = 4f;
+        private Vector2 velocity;
+        private float timer;
+        private float rotation;
+
+        public AsrielGodBossBlade Init(AsrielGodBoss boss, global::Celeste.Player target, float angleOffset)
+        {
+            Position = boss.ShotOrigin;
+            Collider = new Monocle.Circle(6f);
+            Add(new PlayerCollider(OnPlayer));
+            Depth = -1000000;
+            Vector2 dir = (target.Center - Position).SafeNormalize();
+            dir = Calc.AngleToVector(dir.Angle() + MathHelper.ToRadians(angleOffset), 1f);
+            velocity = dir * SPEED;
+            timer = LIFETIME;
+            return this;
+        }
+
+        public override void Update()
+        {
+            base.Update();
+            Position += velocity * Engine.DeltaTime;
+            rotation += Engine.DeltaTime * 12f;
+            timer -= Engine.DeltaTime;
+            if (timer <= 0f) RemoveSelf();
+        }
+
+        public override void Render()
+        {
+            base.Render();
+            // Draw a spinning cross/blade shape
+            for (int i = 0; i < 4; i++)
+            {
+                float a = rotation + i * MathHelper.PiOver2;
+                Vector2 tip = Position + Calc.AngleToVector(a, 6f);
+                Draw.Line(Position, tip, Color.Orange, 2f);
+            }
+        }
+
+        private void OnPlayer(global::Celeste.Player player)
+        {
+            try { player.Die((player.Center - Position).SafeNormalize()); }
+            catch (Exception) { /* third-party mod hook crash */ }
+            RemoveSelf();
+        }
+    }
+
+    /// <summary>
+    /// Expanding fire shockwave that damages the player.
+    /// </summary>
+    [Tracked]
+    public class AsrielGodBossFireShockwave : Entity
+    {
+        private const float EXPAND_SPEED = 150f;
+        private const float MAX_RADIUS = 100f;
+        private const float RING_WIDTH = 8f;
+        private float radius;
+
+        public AsrielGodBossFireShockwave(Vector2 position) : base(position)
+        {
+            Depth = -1000000;
+            radius = 0f;
+        }
+
+        public override void Update()
+        {
+            base.Update();
+            radius += EXPAND_SPEED * Engine.DeltaTime;
+            if (radius >= MAX_RADIUS) { RemoveSelf(); return; }
+
+            // Check player collision with the ring
+            var player = Scene?.Tracker.GetEntity<global::Celeste.Player>();
+            if (player != null)
+            {
+                float dist = Vector2.Distance(player.Center, Position);
+                if (dist >= radius - RING_WIDTH / 2f && dist <= radius + RING_WIDTH / 2f)
+                {
+                    try { player.Die((player.Center - Position).SafeNormalize()); }
+                    catch (Exception) { /* third-party mod hook crash */ }
+                }
+            }
+        }
+
+        public override void Render()
+        {
+            base.Render();
+            float alpha = 1f - radius / MAX_RADIUS;
+            Draw.Circle(Position, radius, Color.OrangeRed * alpha, 24);
+            if (radius > 2f)
+                Draw.Circle(Position, radius - 2f, Color.Yellow * alpha * 0.5f, 24);
+        }
+    }
+
+    /// <summary>
+    /// Meteorite projectile that falls from above.
+    /// </summary>
+    [Tracked]
+    public class AsrielGodBossMeteorite : Entity
+    {
+        private const float SPEED = 300f;
+        private const float LIFETIME = 4f;
+        private Vector2 velocity;
+        private float timer;
+
+        public AsrielGodBossMeteorite(Vector2 position, Vector2 target) : base(position)
+        {
+            Collider = new Monocle.Circle(5f);
+            Add(new PlayerCollider(OnPlayer));
+            Depth = -1000000;
+            velocity = (target - position).SafeNormalize() * SPEED;
+            timer = LIFETIME;
+            Add(new VertexLight(Color.OrangeRed, 0.6f, 16, 32));
+        }
+
+        public override void Update()
+        {
+            base.Update();
+            Position += velocity * Engine.DeltaTime;
+            timer -= Engine.DeltaTime;
+            if (timer <= 0f) RemoveSelf();
+        }
+
+        public override void Render()
+        {
+            base.Render();
+            Draw.Circle(Position, 5f, Color.OrangeRed, 8);
+            Draw.Circle(Position, 3f, Color.Yellow, 6);
+        }
+
+        private void OnPlayer(global::Celeste.Player player)
+        {
+            try { player.Die((player.Center - Position).SafeNormalize()); }
+            catch (Exception) { /* third-party mod hook crash */ }
+            RemoveSelf();
+        }
+    }
 }
 
 

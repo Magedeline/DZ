@@ -16,5 +16,10 @@ namespace Celeste.Mod.MaggyHelper
                 : global::MaggyHelper.Entities.Bosses.CopyAbilityType.None;
         }
         public int EnemiesDefeated { get; set; }
+
+        // Credits state
+        public bool InCredits { get; set; }
+        public int CreditsPhase { get; set; }
+        public bool CreditsCompleted { get; set; }
     }
 }

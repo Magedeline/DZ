@@ -13,7 +13,7 @@ namespace MaggyHelper.Cutscenes
     {
         public static class LoadingVignetteText
         {
-            public const string Dialog = "CH3_POSTCARD_INTRO";
+            public const string Dialog = "CH3_KIRBY_INTRO";
         }
 
         private readonly Session session;
@@ -81,10 +81,6 @@ namespace MaggyHelper.Cutscenes
             fade = 0f;
 
             yield return 0.5f;
-
-            // Play intro music
-            introMusic = Audio.Play("event:/desolozantas/music/lvl3/intro", Vector2.Zero);
-            yield return 1f;
 
             // Play intro vignette sound effect
             introVignetteSfx = Audio.Play("event:/desolozantas/game/03_star/intro_vignette", Vector2.Zero);

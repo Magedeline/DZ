@@ -1,4 +1,5 @@
 ﻿using System;
+using MaggyHelper.Cutscenes;
 using Monocle;
 
 namespace Celeste.Mod.MaggyHelper
@@ -31,14 +32,27 @@ namespace Celeste.Mod.MaggyHelper
 
         public override void Load()
         {
+            global::MaggyHelper.AreaMapData.Initialize();
             global::MaggyHelper.AreaModeExtender.Load();
+            global::MaggyHelper.IntroRemixHooks.Load();
             global::MaggyHelper.MonoModHooks.Load();
+            global::MaggyHelper.VignetteHooks.Load();
+
+            // Reset credits launch flags
+            LaunchPart1Credits = false;
+            LaunchPart2Credits = false;
         }
 
         public override void Unload()
         {
+            global::MaggyHelper.VignetteHooks.Unload();
             global::MaggyHelper.MonoModHooks.Unload();
+            global::MaggyHelper.IntroRemixHooks.Unload();
             global::MaggyHelper.AreaModeExtender.Unload();
+
+            // Reset credits state
+            LaunchPart1Credits = false;
+            LaunchPart2Credits = false;
         }
 
         /// <summary>
@@ -71,6 +85,55 @@ namespace Celeste.Mod.MaggyHelper
             {
                 return null;
             }
+        }
+
+        /// <summary>
+        /// Launches the Chapter 17 credits sequence from a level session.
+        /// Sets the session to the credits-summit room and adds the CS17_Credits cutscene entity.
+        /// </summary>
+        public static void LaunchCredits(Session session)
+        {
+            if (session == null)
+                return;
+
+            // Update module session state
+            if (Session != null)
+            {
+                Session.InCredits = true;
+                Session.CreditsPhase = 1;
+                Session.CreditsCompleted = false;
+            }
+
+            session.RespawnPoint = null;
+            session.FirstLevel = false;
+            session.Level = "credits-summit";
+            session.Audio.Music.Event = "event:/desolozantas/music/lvl17/main";
+            session.Audio.Apply(false);
+
+            Engine.Scene = new LevelLoader(session)
+            {
+                PlayerIntroTypeOverride = Player.IntroTypes.None,
+                Level =
+                {
+                    new CS17_Credits()
+                }
+            };
+        }
+
+        /// <summary>
+        /// Console command: maggy_credits — launches the credits sequence from the current level.
+        /// </summary>
+        [Command("maggy_credits", "Launches the Chapter 17 credits sequence from the current level.")]
+        private static void Cmd_LaunchCredits()
+        {
+            if (Engine.Scene is not Level level)
+            {
+                Engine.Commands?.Log("[MaggyHelper] Must be in a level to launch credits.");
+                return;
+            }
+
+            Engine.Commands?.Log("[MaggyHelper] Launching Chapter 17 credits...");
+            LaunchCredits(level.Session);
         }
     }
 }

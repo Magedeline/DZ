@@ -302,7 +302,7 @@ public static class AreaMapData
             IsInterlude = true,
             HasBSide = false, HasCSide = false, HasDSide = false, HasDXSide = false,
             MusicEvents = new[] { "event:/desolozantas/music/lvl17/main" },
-            AmbienceEvents = new[] { "event:/desolozantas/env/16_saved" },
+            AmbienceEvents = new[] { "event:/desolozantas/env/00_main" },
             MountainState = 0,
             MountainData = new MountainCameraData
             {
@@ -357,8 +357,8 @@ public static class AreaMapData
             Icon = "areas/theend",
             IsInterlude = false,
             HasBSide = false, HasCSide = false, HasDSide = false, HasDXSide = false,
-            MusicEvents = new[] { "event:/desolozantas/music/menu/last_push" },
-            AmbienceEvents = new[] { "event:/desolozantas/final_content/env/20_world_is_ending" },
+            MusicEvents = new[] { "event:/" },
+            AmbienceEvents = new[] { "event:/" },
             MountainState = 1,
             MountainData = new MountainCameraData
             {

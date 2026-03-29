@@ -37,6 +37,7 @@ namespace Celeste.Mod.MaggyHelper
             global::MaggyHelper.IntroRemixHooks.Load();
             global::MaggyHelper.MonoModHooks.Load();
             global::MaggyHelper.VignetteHooks.Load();
+            global::MaggyHelper.Cutscenes.IntroWarning.Load();
 
             // Reset credits launch flags
             LaunchPart1Credits = false;
@@ -45,6 +46,7 @@ namespace Celeste.Mod.MaggyHelper
 
         public override void Unload()
         {
+            global::MaggyHelper.Cutscenes.IntroWarning.Unload();
             global::MaggyHelper.VignetteHooks.Unload();
             global::MaggyHelper.MonoModHooks.Unload();
             global::MaggyHelper.IntroRemixHooks.Unload();

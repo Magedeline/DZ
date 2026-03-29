@@ -36,7 +36,7 @@ public class Bridge : Entity
 
     private SoundSource collapseSfx;
 
-    public object TimeRateModifier { get; internal set; }
+    private TimeRateModifier timeRateModifier;
 
     [MethodImpl(MethodImplOptions.NoInlining)]
     public Bridge(Vector2 position, int width, float gapStartX, float gapEndX)
@@ -57,6 +57,7 @@ public class Bridge : Entity
         tileSizes.Add(new Rectangle(80, 0, 16, 52));
         tileSizes.Add(new Rectangle(96, 0, 8, 52));
         Add(collapseSfx = new SoundSource());
+        Add(timeRateModifier = new TimeRateModifier(1f, false));
     }
 
     [MethodImpl(MethodImplOptions.NoInlining)]
@@ -70,6 +71,11 @@ public class Bridge : Entity
     {
         base.Added(scene);
         level = scene as Level;
+        if (level.Session.GetLevelFlag("intro-3"))
+        {
+            RemoveSelf();
+            return;
+        }
         tiles = new List<BridgeTile>();
         gapStartX += level.Bounds.Left;
         gapEndX += level.Bounds.Left;
@@ -171,5 +177,11 @@ public class Bridge : Entity
     public void StopCollapseLoop()
     {
         collapseSfx.Stop();
+    }
+
+    public override void SceneEnd(Scene scene)
+    {
+        timeRateModifier.ResetTimeRateMultiplier();
+        base.SceneEnd(scene);
     }
 }

@@ -940,11 +940,14 @@ INTRO_PRESENTS_WORD=PRESENTS
 INTRO_PRESENTS_TITLE=DESOLO ZANTAS
 INTROPRESENTS_SKIP=Press any button to skip
 
-INTRO_DISCLAIMER_HEADER=CONTENT WARNING
-INTRO_DISCLAIMER_LINE1=This mod contains flashing lights
-INTRO_DISCLAIMER_LINE2=and content from various fandoms.
-INTRO_DISCLAIMER_LINE3=Themes include fantasy violence, mild horror,
-INTRO_DISCLAIMER_LINE4=and references to various game series.
+INTRO_DISCLAIMER_HEADER=FALSE ALLEGATION WARNING
+INTRO_DISCLAIMER_LINE1=This is a fan-made mod and is not affiliated with the original creators of Celeste or any other media referenced within.
+INTRO_DISCLAIMER_LINE2=and It put alot of protection for the original creators and the mod creator.
+INTRO_DISCLAIMER_LINE3=so if you have any question about this mod please ask the mod creator or the original creators of Celeste.
+INTRO_DISCLAIMER_LINE4=and you agree on not sharing this mod without permission and not allowed to make false evidences.
+INTRO_DISCLAIMER_LINE5=remind you that if you did, you will be held accountable for your actions and you will be responsible for any consequences that may arise from it.
+INTRO_DISCLAIMER_LINE6=so please be respectful and responsible when sharing this mod and any content related to it.
+INTRO_DISCLAIMER_YOUHAVEBEENWARNED=You have been warned.
 INTRO_DISCLAIMER_CONTINUE=Press any button to continue...
 DISCLAIMER_CONTINUE=Press CONFIRM to continue
 

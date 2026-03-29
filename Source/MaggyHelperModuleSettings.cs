@@ -9,5 +9,6 @@ namespace Celeste.Mod.MaggyHelper
         public int KirbyMaxFloatJumps { get; set; } = 5;
         public bool DebugMode { get; set; }
         public bool SkipModIntro { get; set; }
+        public bool HasSeenIntroWarning { get; set; }
     }
 }

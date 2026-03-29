@@ -10,7 +10,8 @@ bridge.placements = {
         name = "BridgeAgain",
         data = {
             width = 160,
-            height = 8
+            height = 8,
+            getLevelFlag = ""
         }
     }
 }
@@ -20,6 +21,9 @@ bridge.fieldInformation = {
         fieldType = "integer",
         minimumValue = 8,
         maximumValue = 2048
+    },
+    getLevelFlag = {
+        fieldType = "string"
     }
 }
 

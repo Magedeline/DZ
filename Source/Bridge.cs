@@ -34,17 +34,20 @@ public class Bridge : Entity
 
     private float gapEndX;
 
+    private string getLevelFlag;
+
     private SoundSource collapseSfx;
 
     private TimeRateModifier timeRateModifier;
 
     [MethodImpl(MethodImplOptions.NoInlining)]
-    public Bridge(Vector2 position, int width, float gapStartX, float gapEndX)
+    public Bridge(Vector2 position, int width, float gapStartX, float gapEndX, string getLevelFlag = "")
         : base(position)
     {
         this.width = width;
         this.gapStartX = gapStartX;
         this.gapEndX = gapEndX;
+        this.getLevelFlag = getLevelFlag;
         tileSizes.Add(new Rectangle(0, 0, 16, 52));
         tileSizes.Add(new Rectangle(16, 0, 8, 52));
         tileSizes.Add(new Rectangle(24, 0, 8, 52));
@@ -62,7 +65,7 @@ public class Bridge : Entity
 
     [MethodImpl(MethodImplOptions.NoInlining)]
     public Bridge(EntityData data, Vector2 offset)
-        : this(data.Position + offset, data.Width, data.Nodes[0].X, data.Nodes[1].X)
+        : this(data.Position + offset, data.Width, data.Nodes[0].X, data.Nodes[1].X, data.Attr("getLevelFlag", ""))
     {
     }
 
@@ -71,7 +74,7 @@ public class Bridge : Entity
     {
         base.Added(scene);
         level = scene as Level;
-        if (level.Session.GetLevelFlag("intro-3"))
+        if (!string.IsNullOrEmpty(getLevelFlag) && level.Session.GetLevelFlag(getLevelFlag))
         {
             RemoveSelf();
             return;

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Monocle;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
@@ -14,6 +15,21 @@ namespace MaggyHelper.Entities
     [HotReloadable]
     public class Player : Actor
     {
+        /// <summary>
+        /// Reinterprets this reference as Celeste.Player without a runtime type check.
+        /// Required because MaggyHelper.Entities.Player extends Actor directly,
+        /// but many vanilla APIs expect Celeste.Player.
+        /// </summary>
+        private Celeste.Player SelfPlayer
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get
+            {
+                Player self = this;
+                return Unsafe.As<Player, Celeste.Player>(ref self);
+            }
+        }
+
         #region Constants
 
         public static ParticleType P_DashA;
@@ -608,7 +624,7 @@ namespace MaggyHelper.Entities
                     {
                         var holding = SurfaceIndex.GetPlatformByPriority(CollideAll<Solid>(Center + Vector2.UnitX * (int)Facing, temp));
                         if (holding != null)
-                            Play(Sfxs.char_mad_handhold, SurfaceIndex.Param, holding.GetWallSoundIndex((Celeste.Player)(object)this, (int)Facing));
+                            Play(Sfxs.char_mad_handhold, SurfaceIndex.Param, holding.GetWallSoundIndex(SelfPlayer, (int)Facing));
                     }
                     else if (anim.Equals("wakeUp") && frame == 19)
                         Play(Sfxs.char_mad_campfire_stand);
@@ -761,7 +777,7 @@ namespace MaggyHelper.Entities
             foreach (var trigger in triggersInside)
             {
                 trigger.Triggered = false;
-                trigger.OnLeave((Celeste.Player)(object)this);
+                trigger.OnLeave(SelfPlayer);
             }
         }
 
@@ -908,7 +924,7 @@ namespace MaggyHelper.Entities
                 {
                     foreach (SafeGroundBlocker blocker in Scene.Tracker.GetComponents<SafeGroundBlocker>())
                     {
-                        if (blocker.Check((Celeste.Player)(object)this))
+                        if (blocker.Check(SelfPlayer))
                         {
                             OnSafeGround = false;
                             break;
@@ -1272,7 +1288,7 @@ namespace MaggyHelper.Entities
 
                     var platform = SurfaceIndex.GetPlatformByPriority(CollideAll<Solid>(Center + Vector2.UnitX * (int)Facing, temp));
                     if (platform != null)
-                        wallSlideSfx.Param(SurfaceIndex.Param, platform.GetWallSoundIndex((Celeste.Player)(object)this, (int)Facing));
+                        wallSlideSfx.Param(SurfaceIndex.Param, platform.GetWallSoundIndex(SelfPlayer, (int)Facing));
                 }
                 else
                     Stop(wallSlideSfx);
@@ -1295,15 +1311,15 @@ namespace MaggyHelper.Entities
                         {
                             trigger.Triggered = true;
                             triggersInside.Add(trigger);
-                            trigger.OnEnter((Celeste.Player)(object)this);
+                            trigger.OnEnter(SelfPlayer);
                         }
-                        trigger.OnStay((Celeste.Player)(object)this);
+                        trigger.OnStay(SelfPlayer);
                     }
                     else if (trigger.Triggered)
                     {
                         triggersInside.Remove(trigger);
                         trigger.Triggered = false;
-                        trigger.OnLeave((Celeste.Player)(object)this);
+                        trigger.OnLeave(SelfPlayer);
                     }
                 }
             }
@@ -1336,7 +1352,7 @@ namespace MaggyHelper.Entities
 
                 foreach (PlayerCollider pc in Scene.Tracker.GetComponents<PlayerCollider>())
                 {
-                    if (pc.Check((Celeste.Player)(object)this) && Dead)
+                    if (pc.Check(SelfPlayer) && Dead)
                     {
                         Collider = was;
                         return;
@@ -1352,7 +1368,7 @@ namespace MaggyHelper.Entities
             
             //Bounds
             if (InControl && !Dead && StateMachine.State != StDreamDash)
-                level.EnforceBounds((Celeste.Player)(object)this);
+                level.EnforceBounds(SelfPlayer);
 
             UpdateChaserStates();
             UpdateHair(true);
@@ -1390,7 +1406,7 @@ namespace MaggyHelper.Entities
             {
                 foreach (var trigger in triggersInside)
                 {
-                    trigger.OnLeave((Celeste.Player)(object)this);
+                    trigger.OnLeave(SelfPlayer);
                     trigger.Triggered = false;
                 }
 
@@ -2083,7 +2099,7 @@ namespace MaggyHelper.Entities
             // wall-sound?
             var pushOff = SurfaceIndex.GetPlatformByPriority(CollideAll<Platform>(Position - Vector2.UnitX * dir * 4, temp));
             if (pushOff != null)
-                Play(Sfxs.char_mad_land, SurfaceIndex.Param, pushOff.GetWallSoundIndex((Celeste.Player)(object)this, -dir));
+                Play(Sfxs.char_mad_land, SurfaceIndex.Param, pushOff.GetWallSoundIndex(SelfPlayer, -dir));
 
             // jump sfx
             Play(dir < 0 ? Sfxs.char_mad_jump_wall_right : Sfxs.char_mad_jump_wall_left);
@@ -2384,7 +2400,7 @@ namespace MaggyHelper.Entities
                 level.Shake();
                 Input.Rumble(RumbleStrength.Light, RumbleLength.Medium);
 
-                var body = new PlayerDeadBody((Celeste.Player)(object)this, direction);
+                var body = new PlayerDeadBody(SelfPlayer, direction);
                 if (goldenStrawb != null)
                 {
                     body.DeathAction = () =>
@@ -2534,7 +2550,7 @@ namespace MaggyHelper.Entities
 
         private bool Pickup(Holdable pickup)
         {
-            if (pickup.Pickup((Celeste.Player)(object)this))
+            if (pickup.Pickup(SelfPlayer))
             {
                 Ducking = false;
                 Holding = pickup;
@@ -2697,7 +2713,7 @@ namespace MaggyHelper.Entities
             //Dash Blocks
             if (DashAttacking && data.Hit != null && data.Hit.OnDashCollide != null && data.Direction.X == Math.Sign(DashDir.X))
             {
-                var result = data.Hit.OnDashCollide((Celeste.Player)(object)this, data.Direction);
+                var result = data.Hit.OnDashCollide(SelfPlayer, data.Direction);
                 if (StateMachine.State == StRedDash)
                     result = DashCollisionResults.Ignore;
 
@@ -2797,7 +2813,7 @@ namespace MaggyHelper.Entities
             {
                 if (DashAttacking && data.Direction.Y == Math.Sign(DashDir.Y))
                 {
-                    var result = data.Hit.OnDashCollide((Celeste.Player)(object)this, data.Direction);
+                    var result = data.Hit.OnDashCollide(SelfPlayer, data.Direction);
                     if (StateMachine.State == StRedDash)
                         result = DashCollisionResults.Ignore;
 
@@ -2816,7 +2832,7 @@ namespace MaggyHelper.Entities
                 }
                 else if (StateMachine.State == StSummitLaunch)
                 {
-                    data.Hit.OnDashCollide((Celeste.Player)(object)this, data.Direction);
+                    data.Hit.OnDashCollide(SelfPlayer, data.Direction);
                     return;
                 }
             }
@@ -3113,7 +3129,7 @@ namespace MaggyHelper.Entities
                 {
                     //Grabbing Holdables
                     foreach (Holdable hold in Scene.Tracker.GetComponents<Holdable>())
-                        if (hold.Check((Celeste.Player)(object)this) && Pickup(hold))
+                        if (hold.Check(SelfPlayer) && Pickup(hold))
                             return StPickup;
 
                     //Climbing
@@ -3456,7 +3472,7 @@ namespace MaggyHelper.Entities
             // tell the thing we grabbed it
             var platform = SurfaceIndex.GetPlatformByPriority(CollideAll<Solid>(Position + Vector2.UnitX * (int)Facing, temp));
             if (platform != null)
-                Play(Sfxs.char_mad_grab, SurfaceIndex.Param, platform.GetWallSoundIndex((Celeste.Player)(object)this, (int)Facing));
+                Play(Sfxs.char_mad_grab, SurfaceIndex.Param, platform.GetWallSoundIndex(SelfPlayer, (int)Facing));
         }
 
         private void ClimbEnd()
@@ -3715,7 +3731,7 @@ namespace MaggyHelper.Entities
 
             //If you hit a ledge blocker, you're blocked
             foreach (LedgeBlocker blocker in Scene.Tracker.GetComponents<LedgeBlocker>())
-                if (blocker.HopBlockCheck((Celeste.Player)(object)this))
+                if (blocker.HopBlockCheck(SelfPlayer))
                     return true;
 
             //If there's a solid in the way, you're blocked
@@ -3728,7 +3744,7 @@ namespace MaggyHelper.Entities
         private bool JumpThruBoostBlockedCheck()
         {
             foreach (LedgeBlocker blocker in Scene.Tracker.GetComponents<LedgeBlocker>())
-                if (blocker.JumpThruBoostCheck((Celeste.Player)(object)this))
+                if (blocker.JumpThruBoostCheck(SelfPlayer))
                     return true;
             return false;
         }
@@ -3815,7 +3831,7 @@ namespace MaggyHelper.Entities
                 else
                 {
                     //Booster
-                    CurrentBooster.PlayerBoosted((Celeste.Player)(object)this, DashDir);
+                    CurrentBooster.PlayerBoosted(SelfPlayer, DashDir);
                     CurrentBooster = null;
                 }
             }
@@ -3870,7 +3886,7 @@ namespace MaggyHelper.Entities
             {
                 //Grabbing Holdables
                 foreach (Holdable hold in Scene.Tracker.GetComponents<Holdable>())
-                    if (hold.Check((Celeste.Player)(object)this) && Pickup(hold))
+                    if (hold.Check(SelfPlayer) && Pickup(hold))
                         return StPickup;
             }
 
@@ -4584,7 +4600,7 @@ namespace MaggyHelper.Entities
                 else
                     jumpGraceTimer = 0;
 
-                dreamBlock.OnPlayerExit((Celeste.Player)(object)this);
+                dreamBlock.OnPlayerExit(SelfPlayer);
                 dreamBlock = null;
             }
 

@@ -402,16 +402,15 @@ namespace MaggyHelper
         /// <summary>
         /// Get max dashes for legacy InventoryType (legacy compatibility)
         /// </summary>
-        public static int GetMaxDashesForInventory(Entities.PlayerInventoryTrigger.InventoryType inventoryType)
+        public static int GetMaxDashesForInventory(Triggers.PlayerInventoryTrigger.InventoryType inventoryType)
         {
             return inventoryType switch
             {
-                Entities.PlayerInventoryTrigger.InventoryType.Heart => 2,
-                Entities.PlayerInventoryTrigger.InventoryType.KirbyPlayer => 10,
-                Entities.PlayerInventoryTrigger.InventoryType.SayGoodbye => 2,
-                Entities.PlayerInventoryTrigger.InventoryType.TitanTowerClimbing => 3,
-                Entities.PlayerInventoryTrigger.InventoryType.Corruption => 5,
-                Entities.PlayerInventoryTrigger.InventoryType.TheEnd => 4,
+                Triggers.PlayerInventoryTrigger.InventoryType.KirbyPlayer => 10,
+                Triggers.PlayerInventoryTrigger.InventoryType.SayGoodbye => 2,
+                Triggers.PlayerInventoryTrigger.InventoryType.TitanTowerClimbing => 3,
+                Triggers.PlayerInventoryTrigger.InventoryType.Corruption => 5,
+                Triggers.PlayerInventoryTrigger.InventoryType.TheEnd => 4,
                 _ => 1
             };
         }
@@ -419,17 +418,17 @@ namespace MaggyHelper
         /// <summary>
         /// Get current inventory from session as legacy type (legacy compatibility)
         /// </summary>
-        public static Entities.PlayerInventoryTrigger.InventoryType GetCurrentInventoryAsLegacyType(Level level)
+        public static Triggers.PlayerInventoryTrigger.InventoryType GetCurrentInventoryAsLegacyType(Level level)
         {
             var refillType = GetCurrentInventoryFromSession(level);
             return refillType switch
             {
-                RefillInventoryType.TwoDash => Entities.PlayerInventoryTrigger.InventoryType.Heart,
-                RefillInventoryType.Solar => Entities.PlayerInventoryTrigger.InventoryType.TitanTowerClimbing,
-                RefillInventoryType.Lunar => Entities.PlayerInventoryTrigger.InventoryType.TheEnd,
-                RefillInventoryType.BlackHole => Entities.PlayerInventoryTrigger.InventoryType.Corruption,
-                RefillInventoryType.SaveStar => Entities.PlayerInventoryTrigger.InventoryType.KirbyPlayer,
-                _ => Entities.PlayerInventoryTrigger.InventoryType.Default
+                RefillInventoryType.TwoDash => Triggers.PlayerInventoryTrigger.InventoryType.CH6End,
+                RefillInventoryType.Solar => Triggers.PlayerInventoryTrigger.InventoryType.TitanTowerClimbing,
+                RefillInventoryType.Lunar => Triggers.PlayerInventoryTrigger.InventoryType.TheEnd,
+                RefillInventoryType.BlackHole => Triggers.PlayerInventoryTrigger.InventoryType.Corruption,
+                RefillInventoryType.SaveStar => Triggers.PlayerInventoryTrigger.InventoryType.KirbyPlayer,
+                _ => Triggers.PlayerInventoryTrigger.InventoryType.Default
             };
         }
 

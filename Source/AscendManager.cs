@@ -116,7 +116,7 @@ public class AscendManagerBeyond : Entity
         }
         manager.level.CanRetry = false;
         player.Sprite.Play("launch");
-        Audio.Play("event:/char/madeline/summit_flytonext", player.Position);
+        Audio.Play("event:/desolozantas/char/kirby/summit_flytonext", player.Position);
         yield return 0.25f;
         Vector2 from = player.Position;
         float p;

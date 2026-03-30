@@ -159,7 +159,7 @@ namespace MaggyHelper.Entities
                 }
                 else if (anim == "walk" && currentAnimationFrame == 2)
                 {
-                    Audio.Play("event:/char/madeline/footstep", this.Position);
+                    Audio.Play("event:/desolozantas/char/kirby/footstep", this.Position);
                 }
             };
         }
@@ -181,7 +181,7 @@ namespace MaggyHelper.Entities
                 }
                 else if (anim == "walk" && currentAnimationFrame == 2)
                 {
-                    Audio.Play("event:/char/madeline/footstep", this.Position);
+                    Audio.Play("event:/desolozantas/char/kirby/footstep", this.Position);
                 }
             };
         }
@@ -203,7 +203,7 @@ namespace MaggyHelper.Entities
                 }
                 else if (anim == "walk" && currentAnimationFrame == 2)
                 {
-                    Audio.Play("event:/char/madeline/footstep", this.Position);
+                    Audio.Play("event:/desolozantas/char/kirby/footstep", this.Position);
                 }
             };
         }
@@ -225,7 +225,7 @@ namespace MaggyHelper.Entities
                 }
                 else if (anim == "walk" && currentAnimationFrame == 2)
                 {
-                    Audio.Play("event:/char/madeline/footstep", this.Position);
+                    Audio.Play("event:/desolozantas/char/kirby/footstep", this.Position);
                 }
             };
         }

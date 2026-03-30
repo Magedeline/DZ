@@ -61,7 +61,7 @@ namespace MaggyHelper.Cutscenes
                 this.TurnToLeft,
                 this.MaggyStopTired
             });
-            Audio.Play("event:/char/madeline/backpack_drop", this.player.Position);
+            Audio.Play("event:/desolozantas/char/kirby/backpack_drop", this.player.Position);
             this.player.DummyAutoAnimate = false;
             this.player.Sprite.Play("bagdown");
             base.EndCutscene(level, true);

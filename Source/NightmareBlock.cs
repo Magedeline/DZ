@@ -131,7 +131,7 @@ namespace MaggyHelper.Entities
             Dust.Burst(player.Position, player.Speed.Angle(), 16);
             
             // Play exit sound
-            Audio.Play("event:/char/madeline/dreamblock_exit", player.Position);
+            Audio.Play("event:/desolozantas/char/kirby/dreamblock_exit", player.Position);
             
             // Defuse the bomb - player made it out in time!
             bombActive = false;

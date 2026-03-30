@@ -181,7 +181,7 @@ namespace MaggyHelper.Cutscenes
             yield return 0.3f;
             player.DummyAutoAnimate = false;
             player.Sprite.Play("duck");
-            Audio.Play("event:/char/madeline/jump_superslide", player.Position);
+            Audio.Play("event:/desolozantas/char/kirby/jump_superslide", player.Position);
             yield return 0.5f;
         }
 

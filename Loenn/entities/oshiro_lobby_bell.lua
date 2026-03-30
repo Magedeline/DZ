@@ -1,92 +1,57 @@
+local drawableSprite = require("structs.drawable_sprite")
+local utils = require("utils")
+
 local oshiroLobbyBell = {}
 
 oshiroLobbyBell.name = "MaggyHelper/OshiroLobbyBell"
 oshiroLobbyBell.depth = 0
-oshiroLobbyBell.texture = "objects/IngesteHelper/oshiro_lobby_bell"
 oshiroLobbyBell.justification = {0.5, 1.0}
 
-oshiroLobbyBell.fieldInformation = {
-    isActive = {
-        fieldType = "boolean"
-    },
-    bellType = {
-        options = {"normal", "golden", "silver", "antique"},
-        editable = false
-    },
-    soundEffect = {
-        fieldType = "string",
-        options = {
-            "event:/game/03_resort/oshiro_bell",
-            "event:/game/general/thing_booped",
-            "event:/char/oshiro/chat_voice"
-        },
-        editable = true
-    },
-    interactDistance = {
-        fieldType = "number",
-        minimumValue = 16.0,
-        maximumValue = 64.0
-    },
-    onceOnly = {
-        fieldType = "boolean"
-    },
-    flagName = {
-        fieldType = "string"
-    },
-    eventId = {
-        fieldType = "string"
-    }
-}
+-- NPC05_Oshiro_Lobby spawns this bell at (npc.X - 14, npc.Y)
+-- CS05_OshiroLobby cutscene triggers on bell talk, flag: "oshiro_resort_talked_1"
+-- After cutscene, bell talk becomes active (plays "event:/game/03_resort/deskbell_again")
 
 oshiroLobbyBell.placements = {
     {
-        name = "normal",
-        data = {
-            isActive = true,
-            bellType = "normal",
-            soundEffect = "event:/game/03_resort/oshiro_bell",
-            interactDistance = 32.0,
-            onceOnly = false,
-            flagName = "",
-            eventId = ""
-        }
-    },
-    {
-        name = "golden",
-        data = {
-            isActive = true,
-            bellType = "golden",
-            soundEffect = "event:/game/03_resort/oshiro_bell",
-            interactDistance = 40.0,
-            onceOnly = true,
-            flagName = "oshiro_bell_rung",
-            eventId = "oshiro_summon"
-        }
-    },
-    {
-        name = "antique",
-        data = {
-            isActive = true,
-            bellType = "antique",
-            soundEffect = "event:/char/oshiro/chat_voice",
-            interactDistance = 24.0,
-            onceOnly = false,
-            flagName = "",
-            eventId = ""
-        }
+        name = "oshiroLobbyBell",
+        data = {}
     }
 }
 
+-- Render a desk bell sprite with a ghost Oshiro NPC offset to the right
+-- matching the NPC05_Oshiro_Lobby relationship (NPC is +14px to the right of the bell)
 function oshiroLobbyBell.sprite(room, entity)
-    local bellType = entity.bellType or "normal"
-    
-    return {
-        texture = "objects/IngesteHelper/oshiro_lobby_bell_" .. bellType,
-        x = entity.x,
-        y = entity.y,
-        justificationX = 0.5,
-        justificationY = 1.0
-    }
+    local sprites = {}
+
+    -- Oshiro ghost sprite (NPC05_Oshiro_Lobby stands 14px to the right of the bell)
+    local oshiroSprite = drawableSprite.fromTexture("characters/oshiro/oshiro00", entity)
+    if oshiroSprite then
+        oshiroSprite:setJustification(0.5, 1.0)
+        oshiroSprite:addPosition(14, 0)
+        oshiroSprite:setColor({1.0, 1.0, 1.0, 0.4})
+        table.insert(sprites, oshiroSprite)
+    end
+
+    -- Bell sprite (the actual entity visual)
+    local bellSprite = drawableSprite.fromTexture("objects/introscene/deskbell", entity)
+    if bellSprite then
+        bellSprite:setJustification(0.5, 1.0)
+        table.insert(sprites, bellSprite)
+    end
+
+    if #sprites == 0 then
+        local fallback = drawableSprite.fromTexture("characters/oshiro/oshiro00", entity)
+        if fallback then
+            fallback:setJustification(0.5, 1.0)
+            table.insert(sprites, fallback)
+        end
+    end
+
+    return sprites
+end
+
+function oshiroLobbyBell.selection(room, entity)
+    return utils.rectangle(entity.x - 8, entity.y - 16, 16, 16)
 end
 
 return oshiroLobbyBell

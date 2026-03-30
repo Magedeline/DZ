@@ -366,7 +366,7 @@ public class FinalTitanSummitBackgroundManager : Entity
             level.Add(new global::MaggyHelper.HeightDisplayMod(progressStage));
 
         player.Sprite.Play("launch");
-        Audio.Play("event:/char/madeline/summit_flytonext", player.Position);
+        Audio.Play("event:/desolozantas/char/kirby/summit_flytonext", player.Position);
 
         level.Session.SetFlag(GetBackgroundSwapFlag(progressStage));
         level.NextTransitionDuration = 0.05f;

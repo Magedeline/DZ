@@ -88,7 +88,7 @@ namespace MaggyHelper.Cutscenes
             player.DummyAutoAnimate = false;
             player.Facing = Facings.Right;
             player.Sprite.Play("sleep");
-            Audio.Play("event:/char/madeline/campfire_sit", player.Position);
+            Audio.Play("event:/desolozantas/char/kirby/campfire_sit", player.Position);
             yield return 4f;
 
             // Add bird scene

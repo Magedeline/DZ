@@ -319,7 +319,7 @@ namespace MaggyHelper
 
             // Thud
             level.Shake(0.3f);
-            Audio.Play("event:/char/madeline/landing", player.Position);
+            Audio.Play("event:/desolozantas/char/kirby/landing", player.Position);
 
             // Brief beat of silence — scene ends
             yield return 1.5f;

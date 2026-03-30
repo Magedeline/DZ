@@ -39,7 +39,7 @@ namespace MaggyHelper
                     (anim == "runSlow" && (currentAnimationFrame == 0 || currentAnimationFrame == 6)) ||
                     (anim == "runFast" && (currentAnimationFrame == 0 || currentAnimationFrame == 6)))
                 {
-                    Audio.Play("event:/char/madeline/footstep", Position);
+                    Audio.Play("event:/desolozantas/char/kirby/footstep", Position);
                 }
             };
 

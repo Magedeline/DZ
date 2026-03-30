@@ -223,7 +223,7 @@ namespace MaggyHelper.Cutscenes
       yield return (object)0.6f;
       Audio.Play("event:/game/general/bird_squawk", cs10Gravestone.bird.Position);
       yield return (object)0.9f;
-      Audio.Play("event:/char/madeline/stand", cs10Gravestone.player.Position);
+      Audio.Play("event:/desolozantas/char/kirby/stand", cs10Gravestone.player.Position);
       cs10Gravestone.player.Sprite.Play("idle");
       yield return (object)1f;
       

@@ -102,7 +102,7 @@ public class CS10End : CutsceneEntity
         {
             // Madeline bows respectfully
             madelineNpc.Sprite.Play("thanks", false);
-            Audio.Play("event:/char/madeline/screenentry");
+            Audio.Play("event:/desolozantas/char/kirby/screenentry");
             yield return 0.8f;
             madelineNpc.Sprite.Play("idle", false);
         }

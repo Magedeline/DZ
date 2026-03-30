@@ -26,8 +26,8 @@ namespace MaggyHelper.Cutscenes
         // Spin effect constants
         private const float SPIN_DURATION = 1.5f;
         private const float SPIN_SPEED = 20f; // Rotations per second
-        private const string SFX_SPIN = "event:/char/madeline/dreamblock_travel";
-        private const string SFX_OUTFIT_CHANGE = "event:/char/madeline/appear";
+        private const string SFX_SPIN = "event:/desolozantas/char/kirby/dreamblock_travel";
+        private const string SFX_OUTFIT_CHANGE = "event:/desolozantas/char/kirby/appear";
         #endregion
 
         #region Fields

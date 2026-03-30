@@ -108,7 +108,7 @@ namespace MaggyHelper.Cutscenes
 
             player.DummyAutoAnimate = false;
             player.Sprite.Play("sleep");
-            Audio.Play("event:/char/madeline/campfire_sit", player.Position);
+            Audio.Play("event:/desolozantas/char/kirby/campfire_sit", player.Position);
             yield return 2f;
 
             Vector2 birdOrigin = (badeline?.Position ?? player.Position) + new Vector2(88f, -200f);

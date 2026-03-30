@@ -120,7 +120,7 @@ namespace MaggyHelper.Cutscenes
             while (!this.zoomRoutine.Finished)
                 yield return null;
             yield return 0.2f;
-            Audio.Play("event:/char/madeline/stand", this.player.Position);
+            Audio.Play("event:/desolozantas/char/kirby/stand", this.player.Position);
             this.player.DummyAutoAnimate = true;
             this.player.Sprite.Play("idle");
             yield return 0.2f;

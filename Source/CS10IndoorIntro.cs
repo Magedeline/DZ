@@ -197,7 +197,7 @@ public class CS10IndoorIntro : CutsceneEntity
         if (player != null)
         {
             player.Sprite.Play("laugh", false);
-            Audio.Play("event:/char/madeline/laugh");
+            Audio.Play("event:/desolozantas/char/kirby/laugh");
         }
         yield return 1.2f;
         if (player != null)

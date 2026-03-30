@@ -129,7 +129,7 @@ namespace MaggyHelper.Cutscenes
                 
                 // Play stand animation if player was sitting and cutscene wasn't skipped
                 if (!first && !WasSkipped)
-                    Audio.Play("event:/char/madeline/stand", player.Position);
+                    Audio.Play("event:/desolozantas/char/kirby/stand", player.Position);
             }
             
             // Ensure Chara is properly removed if still present

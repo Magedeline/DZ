@@ -84,7 +84,7 @@ namespace MaggyHelper.Cutscenes
             player.Facing = (Facings) dashDirection;
             player.DummyAutoAnimate = false;
             player.Sprite.Play("dash");
-            Audio.Play("event:/char/madeline/dash_pink_right", player.Position);
+            Audio.Play("event:/desolozantas/char/kirby/dash_pink_right", player.Position);
             
             player.Hair.Color = Player.UsedHairColor;
             

@@ -34,7 +34,7 @@ namespace MaggyHelper.Entities
             oneUse = data.Bool("oneUse", true);
             
             Collider = new Hitbox(16f, 16f, -8f, -8f);
-            Add(new PlayerCollider(OnPlayer));
+            Add(new PlayerCollider(p => OnPlayer(p)));
             
             orbColor = new Color(255, 50, 50);
             coreColor = new Color(255, 150, 150);
@@ -61,7 +61,7 @@ namespace MaggyHelper.Entities
             }
         }
         
-        private void OnPlayer(Player player)
+        private void OnPlayer(Celeste.Player player)
         {
             if (collected) return;
             
@@ -91,7 +91,7 @@ namespace MaggyHelper.Entities
             }
         }
         
-        private void ApplyBoost(Player player)
+        private void ApplyBoost(Celeste.Player player)
         {
             // Store original values and apply boost
             // This would integrate with your existing player modification system

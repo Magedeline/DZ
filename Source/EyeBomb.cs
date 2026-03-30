@@ -124,7 +124,7 @@ namespace MaggyHelper.Entities
                 {
                     // Launch player away from explosion
                     Vector2 launchDir = (player.Center - Position).SafeNormalize();
-                    player.ExplodeLaunch(launchDir * -1f, false, false);
+                    player.ExplodeLaunch(launchDir * -1f, false);
                 }
             }
             

@@ -325,7 +325,7 @@ public class BirdNPC : Actor
         Y = level.Bounds.Top;
         X += 32f;
         yield return 1f;
-        Player player = Scene.Tracker.GetEntity<Player>();
+        Celeste.Player player = Scene.Tracker.GetEntity<Celeste.Player>();
         Bridge bridge = Scene.Entities.FindFirst<Bridge>();
         while ((player == null || !(player.X > StartPosition.X - 36f) || !(player.Y > StartPosition.Y - 24f) || !(player.Y < StartPosition.Y + 8f)) && (!SaveData.Instance.Assists.Invincible || player == null || !(player.X > StartPosition.X - 24f) || !(player.Y > StartPosition.Y - 4f) || !(player.Y < StartPosition.Y + 48f)))
         {

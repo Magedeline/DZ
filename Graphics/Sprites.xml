@@ -2381,6 +2381,9 @@
     <!-- Beam Animations -->
     <Loop id="beamStart" path="beamStart" delay="0.06"/>
     <Loop id="beam" path="beam" delay="0.03"/>
+
+    <!-- Shot Projectiles Animations-->
+    <Loop id="shot" path="shot00" delay="0.03"/>
     
     <!-- Wave Animations -->
     <Loop id="airwave" path="airwave" delay="0.1"/>

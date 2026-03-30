@@ -17,7 +17,7 @@ namespace MaggyHelper.Entities
             Depth = 8998;
             Collider.Position = new Vector2(-16f, -64f);
             Collidable = false;
-            OnDashCollide = (Player player, Vector2 direction) =>
+            OnDashCollide = (Celeste.Player player, Vector2 direction) =>
             {
                 if (Scene is not Level level)
                     return DashCollisionResults.NormalCollision;

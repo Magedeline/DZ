@@ -3812,7 +3812,7 @@ We need to move before it pulls us back in.
 [BADELINE left worried]
 Wait a minute... where are we?
 
-CH7_SHADOW_CHARA_0=
+CH7_PRE_INGESTE_0=
 [BADELINE left yell]
 {*}Hey!{/*} Where are we?
 {!}What did you do to {+PART_OF_HER}?{/!}
@@ -3821,7 +3821,7 @@ CH7_SHADOW_CHARA_0=
 You guys think {~}I'm{/~} for me do this to take you there?
 Then why are you yelling at me?
 
-CH7_SHADOW_CHARA_1=
+CH7_PRE_INGESTE_1=
 [BADELINE left freakA]
 Don't you think that we yell at you first!
 
@@ -3844,7 +3844,7 @@ I do not know of how we suppose to save her.
 [CHARA right disapointed]
 That's what I thought of you were.
 
-CH7_SHADOW_CHARA_2=
+CH7_PRE_INGESTE_2=
 [RALSEI left angry]
 What did you exactly do to her
 AWNSER ME!
@@ -3869,7 +3869,7 @@ If your not proven to be a fighter or a warrior.
 [CHARA right disapionted]
 You would died in this fight.
 
-CH7_SHADOW_CHARA_3=
+CH7_PRE_INGESTE_3=
 [CHARA right concerned]
 Huh? what this?
 You won't give up?
@@ -4793,7 +4793,7 @@ We'll do our best as much as we can.
 
 {trigger 2 Camera Zooms Out}
 
-CH8_INTRO_CHARA_BOSS=
+CH8_CHARA_BOSS_START=
 {trigger 0 Camera Pan right}
 
 [CHARA right disapointed flip]

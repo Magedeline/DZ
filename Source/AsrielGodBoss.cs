@@ -810,8 +810,23 @@ namespace MaggyHelper.Entities
                 Audio.Play(SFX_SPELLCAST_GLITCH, player.Position); // Mercy sound
                 // Visual effect for mercy
                 level.Particles.Emit(PBurst, 10, player.Center, Vector2.One * 4f);
+                
+                // CH20_KIRBY_STRUCK_DOWN dialog in rooms azzyboss-00 through azzyboss-30
+                if (!dialogTriggered_StruckDown && dialog && patternIndex >= 0 && patternIndex <= 30)
+                {
+                    dialogTriggered_StruckDown = true;
+                    Add(new Coroutine(PlayStruckDownDialog()));
+                }
             }
             // Don't damage the player during mercy
+        }
+        
+        private IEnumerator PlayStruckDownDialog()
+        {
+            stopAttacking();
+            yield return Textbox.Say("CH20_KIRBY_STRUCK_DOWN");
+            yield return 0.5f;
+            startAttacking();
         }
         
         /// <summary>
@@ -1643,6 +1658,14 @@ namespace MaggyHelper.Entities
 
         private IEnumerator Attack05Sequence()
         {
+            // CH20_KIRBY_ASK_WHY dialog in azzyboss-05
+            if (!dialogTriggered_AskWhy && dialog)
+            {
+                dialogTriggered_AskWhy = true;
+                stopAttacking();
+                yield return Textbox.Say("CH20_KIRBY_ASK_WHY");
+                yield return 0.5f;
+            }
             yield return 0.2f;
             while (true)
             {
@@ -1720,6 +1743,14 @@ namespace MaggyHelper.Entities
 
         private IEnumerator Attack10Sequence()
         {
+            // CH20_KIRBY_ASK_WHAT dialog in azzyboss-10
+            if (!dialogTriggered_AskWhat && dialog)
+            {
+                dialogTriggered_AskWhat = true;
+                stopAttacking();
+                yield return Textbox.Say("CH20_KIRBY_ASK_WHAT");
+                yield return 0.5f;
+            }
             yield break;
         }
 
@@ -1768,6 +1799,14 @@ namespace MaggyHelper.Entities
 
         private IEnumerator Attack15Sequence()
         {
+            // CH20_KIRBY_DO_NOT_WANT_TO_FIGHT dialog in azzyboss-15
+            if (!dialogTriggered_DoNotWantToFight && dialog)
+            {
+                dialogTriggered_DoNotWantToFight = true;
+                stopAttacking();
+                yield return Textbox.Say("CH20_KIRBY_DO_NOT_WANT_TO_FIGHT");
+                yield return 0.5f;
+            }
             while (true)
             {
                 yield return 0.2f;
@@ -1963,6 +2002,23 @@ namespace MaggyHelper.Entities
 
         private IEnumerator Attack30Sequence()
         {
+            // CH20_KIRBY_REFUSED_TO_DIE → CH20_ASRIEL_FIRST_SPECIAL_ATTACK → CH20_MADELINE_AND_BADELINE_SAVE_KIRBY_FROM_ASRIEL_FIRST_SPECIAL_ATTACK
+            if (!dialogTriggered_RefusedToDie && dialog)
+            {
+                dialogTriggered_RefusedToDie = true;
+                stopAttacking();
+                yield return Textbox.Say("CH20_KIRBY_REFUSED_TO_DIE");
+                yield return 0.3f;
+
+                if (!dialogTriggered_FirstSpecialAttack)
+                {
+                    dialogTriggered_FirstSpecialAttack = true;
+                    yield return Textbox.Say("CH20_ASRIEL_FIRST_SPECIAL_ATTACK");
+                    yield return 0.3f;
+                    yield return Textbox.Say("CH20_MADELINE_AND_BADELINE_SAVE_KIRBY_FROM_ASRIEL_FIRST_SPECIAL_ATTACK");
+                    yield return 0.5f;
+                }
+            }
             while (true)
             {
                 yield return bigBeamBall();
@@ -2414,6 +2470,16 @@ namespace MaggyHelper.Entities
 
         private IEnumerator Attack60Sequence()
         {
+            // CH20_ASRIEL_GOD_SECOND_SPECIAL_ATTACK → CH20_ASRIEL_GOD_SECOND_SPECIAL_ATTACK_END in azzyboss-60
+            if (!dialogTriggered_SecondSpecialAttack && dialog)
+            {
+                dialogTriggered_SecondSpecialAttack = true;
+                stopAttacking();
+                yield return Textbox.Say("CH20_ASRIEL_GOD_SECOND_SPECIAL_ATTACK");
+                yield return 0.3f;
+                yield return Textbox.Say("CH20_ASRIEL_GOD_SECOND_SPECIAL_ATTACK_END");
+                yield return 0.5f;
+            }
             startShootCharge();
             while (true)
             {
@@ -2503,7 +2569,7 @@ namespace MaggyHelper.Entities
         {
             var asrielboss = this;
             currentAttackPhase = AttackPhase.Charging;
-            asrielboss.laserSfx.Play("event:/char/badeline/boss_laser_charge");
+            asrielboss.laserSfx.Play(SFX_BOSS_LASER_CHARGE);
             asrielboss.Sprite.Play("beamStart", true);
             yield return 0.1f;
             var entity = asrielboss.level.Tracker.GetEntity<global::Celeste.Player>();
@@ -2517,7 +2583,7 @@ namespace MaggyHelper.Entities
             asrielboss.Sprite.Play("beam", true);
             yield return 0.5f;
             asrielboss.laserSfx.Stop();
-            Audio.Play(SFX_BIGGER_GUN_FIRE, asrielboss.Position);
+            Audio.Play(SFX_BOSS_LASER_FIRE, asrielboss.Position);
             asrielboss.Sprite.Play("idle");
             currentAttackPhase = AttackPhase.Recovery;
         }
@@ -2526,7 +2592,7 @@ namespace MaggyHelper.Entities
         {
             var asrielboss = this;
             currentAttackPhase = AttackPhase.Charging;
-            asrielboss.laserSfx.Play("event:/char/badeline/boss_laser_charge");
+            asrielboss.laserSfx.Play(SFX_BOSS_LASER_CHARGE);
             asrielboss.Sprite.Play("beamStart", true);
             yield return 0.2f;
             var entity = asrielboss.level.Tracker.GetEntity<global::Celeste.Player>();
@@ -2549,7 +2615,7 @@ namespace MaggyHelper.Entities
         {
             var asrielboss = this;
             currentAttackPhase = AttackPhase.Charging;
-            asrielboss.laserSfx.Play("event:/char/badeline/boss_laser_charge");
+            asrielboss.laserSfx.Play(SFX_BOSS_LASER_CHARGE);
             asrielboss.Sprite.Play("beamStart", true);
             yield return 0.3f;
             var entity = asrielboss.level.Tracker.GetEntity<global::Celeste.Player>();
@@ -2723,9 +2789,14 @@ namespace MaggyHelper.Entities
             string currentRoomId = level.Session.Level;
             string[] transitionRoomIds = new string[]
             {
+                "azzyboss-00",          // Intro room - CH20_ASRIEL_REVEAL_IDENTITY
+                "azzyboss-05",          // CH20_KIRBY_ASK_WHY
+                "azzyboss-10",          // CH20_KIRBY_ASK_WHAT
+                "azzyboss-15",          // CH20_KIRBY_DO_NOT_WANT_TO_FIGHT
+                "azzyboss-30",          // CH20_KIRBY_REFUSED_TO_DIE → CH20_ASRIEL_FIRST_SPECIAL_ATTACK → CH20_MADELINE_AND_BADELINE_SAVE_KIRBY_FROM_ASRIEL_FIRST_SPECIAL_ATTACK
+                "azzyboss-60",          // CH20_ASRIEL_GOD_SECOND_SPECIAL_ATTACK → CH20_ASRIEL_GOD_SECOND_SPECIAL_ATTACK_END
                 "azzyboss-final",       // Final confrontation room
                 "azzyboss-hypergoner",  // HyperGoner specific room
-                // Add more room IDs as needed
             };
             
             foreach (string id in transitionRoomIds)
@@ -2925,6 +2996,33 @@ namespace MaggyHelper.Entities
                 case "CH20_ASRIEL_BOSS_END":
                     yield return PlayDialog_AsrielBossEnd();
                     break;
+                case "CH20_KIRBY_ASK_WHY":
+                    yield return PlayDialog_KirbyAskWhy();
+                    break;
+                case "CH20_KIRBY_ASK_WHAT":
+                    yield return PlayDialog_KirbyAskWhat();
+                    break;
+                case "CH20_KIRBY_DO_NOT_WANT_TO_FIGHT":
+                    yield return PlayDialog_KirbyDoNotWantToFight();
+                    break;
+                case "CH20_KIRBY_STRUCK_DOWN":
+                    yield return PlayDialog_KirbyStruckDown();
+                    break;
+                case "CH20_KIRBY_REFUSED_TO_DIE":
+                    yield return PlayDialog_KirbyRefusedToDie();
+                    break;
+                case "CH20_ASRIEL_FIRST_SPECIAL_ATTACK":
+                    yield return PlayDialog_AsrielFirstSpecialAttack();
+                    break;
+                case "CH20_MADELINE_AND_BADELINE_SAVE_KIRBY_FROM_ASRIEL_FIRST_SPECIAL_ATTACK":
+                    yield return PlayDialog_MadelineSaveKirbyFromFirstSpecialAttack();
+                    break;
+                case "CH20_ASRIEL_GOD_SECOND_SPECIAL_ATTACK":
+                    yield return PlayDialog_AsrielGodSecondSpecialAttack();
+                    break;
+                case "CH20_ASRIEL_GOD_SECOND_SPECIAL_ATTACK_END":
+                    yield return PlayDialog_AsrielGodSecondSpecialAttackEnd();
+                    break;
             }
             
             // Mark dialog as finished
@@ -3013,11 +3111,63 @@ namespace MaggyHelper.Entities
             yield return Textbox.Say("CH20_ASRIEL_BOSS_END");
         }
 
+        private IEnumerator PlayDialog_KirbyAskWhy()
+        {
+            yield return Textbox.Say("CH20_KIRBY_ASK_WHY");
+        }
+
+        private IEnumerator PlayDialog_KirbyAskWhat()
+        {
+            yield return Textbox.Say("CH20_KIRBY_ASK_WHAT");
+        }
+
+        private IEnumerator PlayDialog_KirbyDoNotWantToFight()
+        {
+            yield return Textbox.Say("CH20_KIRBY_DO_NOT_WANT_TO_FIGHT");
+        }
+
+        private IEnumerator PlayDialog_KirbyStruckDown()
+        {
+            yield return Textbox.Say("CH20_KIRBY_STRUCK_DOWN");
+        }
+
+        private IEnumerator PlayDialog_KirbyRefusedToDie()
+        {
+            yield return Textbox.Say("CH20_KIRBY_REFUSED_TO_DIE");
+        }
+
+        private IEnumerator PlayDialog_AsrielFirstSpecialAttack()
+        {
+            yield return Textbox.Say("CH20_ASRIEL_FIRST_SPECIAL_ATTACK");
+        }
+
+        private IEnumerator PlayDialog_MadelineSaveKirbyFromFirstSpecialAttack()
+        {
+            yield return Textbox.Say("CH20_MADELINE_AND_BADELINE_SAVE_KIRBY_FROM_ASRIEL_FIRST_SPECIAL_ATTACK");
+        }
+
+        private IEnumerator PlayDialog_AsrielGodSecondSpecialAttack()
+        {
+            yield return Textbox.Say("CH20_ASRIEL_GOD_SECOND_SPECIAL_ATTACK");
+        }
+
+        private IEnumerator PlayDialog_AsrielGodSecondSpecialAttackEnd()
+        {
+            yield return Textbox.Say("CH20_ASRIEL_GOD_SECOND_SPECIAL_ATTACK_END");
+        }
+
         // Dialog trigger flags
 #pragma warning disable CS0414
         private bool dialogTriggered_Phase3 = false;
 #pragma warning restore CS0414
         private bool isDialogActive = false;
+        private bool dialogTriggered_AskWhy = false;
+        private bool dialogTriggered_AskWhat = false;
+        private bool dialogTriggered_DoNotWantToFight = false;
+        private bool dialogTriggered_StruckDown = false;
+        private bool dialogTriggered_RefusedToDie = false;
+        private bool dialogTriggered_FirstSpecialAttack = false;
+        private bool dialogTriggered_SecondSpecialAttack = false;
         
         #endregion
 

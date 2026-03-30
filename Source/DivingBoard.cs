@@ -38,7 +38,7 @@ namespace MaggyHelper.Entities
         {
             base.Update();
             
-            Player player = GetPlayerRider();
+            Celeste.Player player = GetPlayerRider();
             bool wasOnBoard = playerOnBoard;
             playerOnBoard = player != null;
             
@@ -60,7 +60,7 @@ namespace MaggyHelper.Entities
             }
         }
 
-        private void LaunchPlayer(Player player)
+        private void LaunchPlayer(Celeste.Player player)
         {
             springTimer = 0.5f;
             wiggler.Start();

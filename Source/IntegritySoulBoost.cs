@@ -42,7 +42,7 @@ namespace MaggyHelper.Entities.SoulBoosts
             this.speedMultiplier = speedMultiplier;
         }
 
-        protected override IEnumerator ApplyAbilityStart(Player player)
+        protected override IEnumerator ApplyAbilityStart(Celeste.Player player)
         {
             // Visual feedback
             Level level = Scene as Level;
@@ -53,7 +53,7 @@ namespace MaggyHelper.Entities.SoulBoosts
             yield return 0.1f;
         }
 
-        protected override IEnumerator ApplyAbilityEnd(Player player)
+        protected override IEnumerator ApplyAbilityEnd(Celeste.Player player)
         {
             // Apply speed buff
             player.Add(new IntegrityBuff(AbilityDuration, speedMultiplier));

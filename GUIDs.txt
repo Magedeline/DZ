@@ -1189,6 +1189,7 @@
 {623fdbd1-5f6a-4b24-9c13-1da5bb491aa2} event:/desolozantas/ui/game/cside_intro
 {e6265dc9-c9fe-473a-8f76-637d50f03c1a} event:/desolozantas/ui/game/increment_strawberry
 {21482cd5-66b4-4acf-b002-36be644f3a90} event:/desolozantas/ui/game/pause
+{9739c719-a0ed-4b31-8476-fcc1f01c5c70} event:/desolozantas/ui/game/pre_title_firstinput
 {88771b8d-a8c8-464d-ace7-801f3cbe2460} event:/desolozantas/ui/game/restart_cancel
 {6348794d-319a-4090-bee1-8937ebcc9389} event:/desolozantas/ui/game/restart_confirm_popup
 {db0b93b0-a716-488b-8477-f0328d53055c} event:/desolozantas/ui/game/roll_down
@@ -1204,7 +1205,6 @@
 {e9cd6012-68b0-4231-bcaa-4fe2d2b01b71} event:/desolozantas/ui/game/toggle_off
 {4c7f19e8-25e3-4a66-93a5-b41e643e5850} event:/desolozantas/ui/game/toggle_on
 {5d4ea9ca-0dae-4e1d-8499-4329eb7aa845} event:/desolozantas/ui/game/unpause
-{9739c719-a0ed-4b31-8476-fcc1f01c5c70} event:/desolozantas/ui/game/pre_title_firstinput
 {5429575b-ed34-404b-af1a-f3f28cfa286f} event:/desolozantas/ui/main/postcard_ch10_in
 {ac48272b-38b7-41ed-b28a-2c50f366fc09} event:/desolozantas/ui/main/postcard_ch10_out
 {ce9e2b0d-24cd-4e08-a673-b7a51a9baf0c} event:/desolozantas/ui/main/postcard_ch11_in

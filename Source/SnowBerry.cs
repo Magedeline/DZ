@@ -26,7 +26,7 @@ namespace MaggyHelper.Entities
             ID = gid;
             
             base.Collider = new Hitbox(14f, 14f, -7f, -7f);
-            Add(new PlayerCollider(OnPlayer));
+            Add(new PlayerCollider(p => OnPlayer(p)));
             Add(new MirrorReflection());
             
             string spritePath = "objects/MaggyHelper/snowberry";
@@ -79,7 +79,7 @@ namespace MaggyHelper.Entities
             }
         }
 
-        private void OnPlayer(Player player)
+        private void OnPlayer(Celeste.Player player)
         {
             if (!collected && follower.Leader == null)
             {

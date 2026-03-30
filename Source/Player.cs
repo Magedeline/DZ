@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using Monocle;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using MaggyHelper.Entities.Bosses;
 
 /// Please do not remove the player class from the mod, even if it seems like it's not doing much. The Player class is used as a base for all player-related functionality, and removing it would cause the mod to break. If you want to disable certain features, please do so through the mod's settings or by commenting out specific code sections, rather than removing the entire Player class.
 namespace MaggyHelper.Entities
 {
-    [CustomEntity(ids: "MaggyHelper/Player", "MaggyHelper/KirbyPlayer", "maggyhelper/player", "maggyhelperp/layer")]
+    [CustomEntity("MaggyHelper/Player", "MaggyHelper/KirbyPlayer", "maggyhelper/player", "maggyhelperp/layer")]
     [Tracked(true)]
     [HotReloadable]
     public class Player : Actor
@@ -22,6 +23,7 @@ namespace MaggyHelper.Entities
         public static ParticleType P_SummitLandA;
         public static ParticleType P_SummitLandB;
         public static ParticleType P_SummitLandC;
+        public static ParticleType P_Jump;
 
         public const float MaxFall = 160f;
         private const float Gravity = 900f;
@@ -249,16 +251,16 @@ namespace MaggyHelper.Entities
         public bool FlipInReflection = false;
         public bool JustRespawned;  // True if the player hasn't moved since respawning
         public bool Dead { get; private set; }
-        public override bool IsDead => Dead;
-        public override float CurrentStamina
+        public bool IsDead => Dead;
+        public float CurrentStamina
         {
             get => Stamina;
             set => Stamina = Math.Clamp(value, 0f, ClimbMaxStamina);
         }
-        public override float MaxStamina => ClimbMaxStamina;
-        public override bool IsHovering => StateMachine?.State == StKirbyFloat;
-        public override int CurrentHealth => currentHealth;
-        public override int MaxHealth => maxHealth;
+        public float MaxStamina => ClimbMaxStamina;
+        public bool IsHovering => StateMachine?.State == StKirbyFloat;
+        public int CurrentHealth => currentHealth;
+        public int MaxHealth => maxHealth;
         public KirbyMode.KirbyPowerState CurrentPowerState { get; private set; } = KirbyMode.KirbyPowerState.None;
 
         private Level level;
@@ -420,55 +422,55 @@ namespace MaggyHelper.Entities
         private static class Sfxs
         {
             // Character - Madeline
-            public const string char_mad_footstep = "event:/char/madeline/footstep";
-            public const string char_mad_handhold = "event:/char/madeline/handhold";
-            public const string char_mad_campfire_stand = "event:/char/madeline/campfire_stand";
-            public const string char_mad_summit_sit = "event:/char/madeline/summit_sit";
-            public const string char_mad_idle_scratch = "event:/char/madeline/idle_scratch";
-            public const string char_mad_idle_sneeze = "event:/char/madeline/idle_sneeze";
-            public const string char_mad_idle_crackknuckles = "event:/char/madeline/idle_crackknuckles";
-            public const string char_mad_jump = "event:/char/madeline/jump";
-            public const string char_mad_jump_assisted = "event:/char/madeline/jump_assisted";
-            public const string char_mad_jump_dreamblock = "event:/char/madeline/jump_dreamblock";
-            public const string char_mad_jump_super = "event:/char/madeline/jump_super";
-            public const string char_mad_jump_superslide = "event:/char/madeline/jump_superslide";
-            public const string char_mad_jump_superwall = "event:/char/madeline/jump_superwall";
-            public const string char_mad_jump_wall_left = "event:/char/madeline/jump_wall_left";
-            public const string char_mad_jump_wall_right = "event:/char/madeline/jump_wall_right";
-            public const string char_mad_jump_climb_left = "event:/char/madeline/jump_climb_left";
-            public const string char_mad_jump_climb_right = "event:/char/madeline/jump_climb_right";
-            public const string char_mad_land = "event:/char/madeline/land";
-            public const string char_mad_grab = "event:/char/madeline/grab";
-            public const string char_mad_grab_letgo = "event:/char/madeline/grab_letgo";
-            public const string char_mad_climb_ledge = "event:/char/madeline/climb_ledge";
-            public const string char_mad_wallslide = "event:/char/madeline/wallslide";
-            public const string char_mad_dash_red_right = "event:/char/madeline/dash_red_right";
-            public const string char_mad_dash_red_left = "event:/char/madeline/dash_red_left";
-            public const string char_mad_dash_pink_right = "event:/char/madeline/dash_pink_right";
-            public const string char_mad_dash_pink_left = "event:/char/madeline/dash_pink_left";
-            public const string char_mad_duck = "event:/char/madeline/duck";
-            public const string char_mad_stand = "event:/char/madeline/stand";
-            public const string char_mad_water_dash_gen = "event:/char/madeline/water_dash_gen";
-            public const string char_mad_water_move_shallow = "event:/char/madeline/water_move_shallow";
-            public const string char_mad_dreamblock_enter = "event:/char/madeline/dreamblock_enter";
-            public const string char_mad_dreamblock_exit = "event:/char/madeline/dreamblock_exit";
-            public const string char_mad_dreamblock_travel = "event:/char/madeline/dreamblock_travel";
-            public const string char_mad_revive = "event:/char/madeline/revive";
-            public const string char_mad_mirrortemple_landing = "event:/char/madeline/mirrortemple_landing";
-            public const string char_mad_summit_areastart = "event:/char/madeline/summit_areastart";
-            public const string char_mad_crystaltheo_lift = "event:/char/madeline/crystaltheo_lift";
-            public const string char_mad_crystaltheo_throw = "event:/char/madeline/crystaltheo_throw";
+            public const string char_mad_footstep = "event:/desolozantas/char/kirby/footstep";
+            public const string char_mad_handhold = "event:/desolozantas/char/kirby/handhold";
+            public const string char_mad_campfire_stand = "event:/desolozantas/char/kirby/campfire_stand";
+            public const string char_mad_summit_sit = "event:/desolozantas/char/kirby/summit_sit";
+            public const string char_mad_idle_scratch = "event:/desolozantas/char/kirby/idle_scratch";
+            public const string char_mad_idle_sneeze = "event:/desolozantas/char/kirby/idle_sneeze";
+            public const string char_mad_idle_crackknuckles = "event:/desolozantas/char/kirby/idle_crackknuckles";
+            public const string char_mad_jump = "event:/desolozantas/char/kirby/jump";
+            public const string char_mad_jump_assisted = "event:/desolozantas/char/kirby/jump_assisted";
+            public const string char_mad_jump_dreamblock = "event:/desolozantas/char/kirby/jump_dreamblock";
+            public const string char_mad_jump_super = "event:/desolozantas/char/kirby/jump_super";
+            public const string char_mad_jump_superslide = "event:/desolozantas/char/kirby/jump_superslide";
+            public const string char_mad_jump_superwall = "event:/desolozantas/char/kirby/jump_superwall";
+            public const string char_mad_jump_wall_left = "event:/desolozantas/char/kirby/jump_wall_left";
+            public const string char_mad_jump_wall_right = "event:/desolozantas/char/kirby/jump_wall_right";
+            public const string char_mad_jump_climb_left = "event:/desolozantas/char/kirby/jump_climb_left";
+            public const string char_mad_jump_climb_right = "event:/desolozantas/char/kirby/jump_climb_right";
+            public const string char_mad_land = "event:/desolozantas/char/kirby/land";
+            public const string char_mad_grab = "event:/desolozantas/char/kirby/grab";
+            public const string char_mad_grab_letgo = "event:/desolozantas/char/kirby/grab_letgo";
+            public const string char_mad_climb_ledge = "event:/desolozantas/char/kirby/climb_ledge";
+            public const string char_mad_wallslide = "event:/desolozantas/char/kirby/wallslide";
+            public const string char_mad_dash_red_right = "event:/desolozantas/char/kirby/dash_red_right";
+            public const string char_mad_dash_red_left = "event:/desolozantas/char/kirby/dash_red_left";
+            public const string char_mad_dash_pink_right = "event:/desolozantas/char/kirby/dash_pink_right";
+            public const string char_mad_dash_pink_left = "event:/desolozantas/char/kirby/dash_pink_left";
+            public const string char_mad_duck = "event:/desolozantas/char/kirby/duck";
+            public const string char_mad_stand = "event:/desolozantas/char/kirby/stand";
+            public const string char_mad_water_dash_gen = "event:/desolozantas/char/kirby/water_dash_gen";
+            public const string char_mad_water_move_shallow = "event:/desolozantas/char/kirby/water_move_shallow";
+            public const string char_mad_dreamblock_enter = "event:/desolozantas/char/kirby/dreamblock_enter";
+            public const string char_mad_dreamblock_exit = "event:/desolozantas/char/kirby/dreamblock_exit";
+            public const string char_mad_dreamblock_travel = "event:/desolozantas/char/kirby/dreamblock_travel";
+            public const string char_mad_revive = "event:/desolozantas/char/kirby/revive";
+            public const string char_mad_mirrortemple_landing = "event:/desolozantas/char/kirby/mirrortemple_landing";
+            public const string char_mad_summit_areastart = "event:/desolozantas/char/kirby/summit_areastart";
+            public const string char_mad_crystaltheo_lift = "event:/desolozantas/char/kirby/crystalmaddy_lift";
+            public const string char_mad_crystaltheo_throw = "event:/desolozantas/char/kirby/crystalmaddy_throw";
 
             // Game
-            public const string game_06_feather_state_bump = "event:/game/06_reflection/feather_state_bump";
-            public const string game_06_feather_state_end = "event:/game/06_reflection/feather_state_end";
-            public const string game_06_feather_state_loop = "event:/game/06_reflection/feather_state_loop";
-            public const string game_06_feather_state_warning = "event:/game/06_reflection/feather_state_warning";
-            public const string game_09_conveyor_activate = "event:/game/09_core/conveyor_activate";
-            public const string game_assist_dreamblockbounce = "event:/game/general/assist_dreamblockbounce";
+            public const string game_06_feather_state_bump = "event:/desolozantas/game/08_truth/warpstar_state_bump";
+            public const string game_06_feather_state_end = "event:/desolozantas/game/08_truth/warpstar_state_end";
+            public const string game_06_feather_state_loop = "event:/desolozantas/game/08_truth/warpstar_state_loop";
+            public const string game_06_feather_state_warning = "event:/desolozantas/game/08_truth/warpstar_state_warning";
+            public const string game_09_conveyor_activate = "event:/desolozantas/game/09_core/conveyor_activate";
+            public const string game_assist_dreamblockbounce = "event:/desolozantas/game/general/assist_dreamblockbounce";
 
             // Music
-            public const string music_reflection_main = "event:/music/lvl6/main";
+            public const string music_reflection_main = "event:/desolozantas/music/lvl8/main";
 
             // Badeline sound mapping
             public static readonly Dictionary<string, string> MadelineToBadelineSound = new Dictionary<string, string>
@@ -606,7 +608,7 @@ namespace MaggyHelper.Entities
                     {
                         var holding = SurfaceIndex.GetPlatformByPriority(CollideAll<Solid>(Center + Vector2.UnitX * (int)Facing, temp));
                         if (holding != null)
-                            Play(Sfxs.char_mad_handhold, SurfaceIndex.Param, holding.GetWallSoundIndex(this, (int)Facing));
+                            Play(Sfxs.char_mad_handhold, SurfaceIndex.Param, holding.GetWallSoundIndex((Celeste.Player)(object)this, (int)Facing));
                     }
                     else if (anim.Equals("wakeUp") && frame == 19)
                         Play(Sfxs.char_mad_campfire_stand);
@@ -685,7 +687,7 @@ namespace MaggyHelper.Entities
 
             // Log which player type is active (for debugging)
             var selectedPlayer = PlayerSelectionManager.GetSelectedPlayer();
-            Logger.Log($"[MaggyHelper] Player spawned - Type: {PlayerSelectionManager.GetPlayerName(selectedPlayer)}");
+            Logger.Log(LogLevel.Info, "MaggyHelper", $"Player spawned - Type: {PlayerSelectionManager.GetPlayerName(selectedPlayer)}");
 
             // Add visual spawn effect to show MaggyHelper/Player entering
             EmitSpawnEffect();
@@ -759,7 +761,7 @@ namespace MaggyHelper.Entities
             foreach (var trigger in triggersInside)
             {
                 trigger.Triggered = false;
-                trigger.OnLeave(this);
+                trigger.OnLeave((Celeste.Player)(object)this);
             }
         }
 
@@ -906,7 +908,7 @@ namespace MaggyHelper.Entities
                 {
                     foreach (SafeGroundBlocker blocker in Scene.Tracker.GetComponents<SafeGroundBlocker>())
                     {
-                        if (blocker.Check(this))
+                        if (blocker.Check((Celeste.Player)(object)this))
                         {
                             OnSafeGround = false;
                             break;
@@ -1270,7 +1272,7 @@ namespace MaggyHelper.Entities
 
                     var platform = SurfaceIndex.GetPlatformByPriority(CollideAll<Solid>(Center + Vector2.UnitX * (int)Facing, temp));
                     if (platform != null)
-                        wallSlideSfx.Param(SurfaceIndex.Param, platform.GetWallSoundIndex(this, (int)Facing));
+                        wallSlideSfx.Param(SurfaceIndex.Param, platform.GetWallSoundIndex((Celeste.Player)(object)this, (int)Facing));
                 }
                 else
                     Stop(wallSlideSfx);
@@ -1293,15 +1295,15 @@ namespace MaggyHelper.Entities
                         {
                             trigger.Triggered = true;
                             triggersInside.Add(trigger);
-                            trigger.OnEnter(this);
+                            trigger.OnEnter((Celeste.Player)(object)this);
                         }
-                        trigger.OnStay(this);
+                        trigger.OnStay((Celeste.Player)(object)this);
                     }
                     else if (trigger.Triggered)
                     {
                         triggersInside.Remove(trigger);
                         trigger.Triggered = false;
-                        trigger.OnLeave(this);
+                        trigger.OnLeave((Celeste.Player)(object)this);
                     }
                 }
             }
@@ -1334,7 +1336,7 @@ namespace MaggyHelper.Entities
 
                 foreach (PlayerCollider pc in Scene.Tracker.GetComponents<PlayerCollider>())
                 {
-                    if (pc.Check(this) && Dead)
+                    if (pc.Check((Celeste.Player)(object)this) && Dead)
                     {
                         Collider = was;
                         return;
@@ -1350,7 +1352,7 @@ namespace MaggyHelper.Entities
             
             //Bounds
             if (InControl && !Dead && StateMachine.State != StDreamDash)
-                level.EnforceBounds(this);
+                level.EnforceBounds((Celeste.Player)(object)this);
 
             UpdateChaserStates();
             UpdateHair(true);
@@ -1379,7 +1381,7 @@ namespace MaggyHelper.Entities
 
         private void CreateTrail()
         {
-            TrailManager.Add(this, wasDashB ? NormalHairColor : UsedHairColor);
+            TrailManager.Add(this, wasDashB ? NormalHairColor : UsedHairColor, 1f, false, false);
         }
 
         public void CleanUpTriggers()
@@ -1388,7 +1390,7 @@ namespace MaggyHelper.Entities
             {
                 foreach (var trigger in triggersInside)
                 {
-                    trigger.OnLeave(this);
+                    trigger.OnLeave((Celeste.Player)(object)this);
                     trigger.Triggered = false;
                 }
 
@@ -1669,7 +1671,7 @@ namespace MaggyHelper.Entities
             get
             {
                 Vector2 at = new Vector2();
-                Vector2 target = new Vector2(X - Celeste.GameWidth / 2, Y - Celeste.GameHeight / 2);
+                Vector2 target = new Vector2(X - Engine.ViewWidth / 2, Y - Engine.ViewHeight / 2);
                 if (StateMachine.State != StReflectionFall)
                     target += new Vector2(level.CameraOffset.X, level.CameraOffset.Y);
 
@@ -1707,8 +1709,8 @@ namespace MaggyHelper.Entities
                     }
                 }
 
-                at.X = MathHelper.Clamp(target.X, level.Bounds.Left, level.Bounds.Right - Celeste.GameWidth);
-                at.Y = MathHelper.Clamp(target.Y, level.Bounds.Top, level.Bounds.Bottom - Celeste.GameHeight);
+                at.X = MathHelper.Clamp(target.X, level.Bounds.Left, level.Bounds.Right - Engine.ViewWidth);
+                at.Y = MathHelper.Clamp(target.Y, level.Bounds.Top, level.Bounds.Bottom - Engine.ViewHeight);
 
                 if (level.CameraLockMode != Level.CameraLockModes.None)
                 {
@@ -2081,7 +2083,7 @@ namespace MaggyHelper.Entities
             // wall-sound?
             var pushOff = SurfaceIndex.GetPlatformByPriority(CollideAll<Platform>(Position - Vector2.UnitX * dir * 4, temp));
             if (pushOff != null)
-                Play(Sfxs.char_mad_land, SurfaceIndex.Param, pushOff.GetWallSoundIndex(this, -dir));
+                Play(Sfxs.char_mad_land, SurfaceIndex.Param, pushOff.GetWallSoundIndex((Celeste.Player)(object)this, -dir));
 
             // jump sfx
             Play(dir < 0 ? Sfxs.char_mad_jump_wall_right : Sfxs.char_mad_jump_wall_left);
@@ -2382,7 +2384,7 @@ namespace MaggyHelper.Entities
                 level.Shake();
                 Input.Rumble(RumbleStrength.Light, RumbleLength.Medium);
 
-                var body = new PlayerDeadBody(this, direction);
+                var body = new PlayerDeadBody((Celeste.Player)(object)this, direction);
                 if (goldenStrawb != null)
                 {
                     body.DeathAction = () =>
@@ -2532,7 +2534,7 @@ namespace MaggyHelper.Entities
 
         private bool Pickup(Holdable pickup)
         {
-            if (pickup.Pickup(this))
+            if (pickup.Pickup((Celeste.Player)(object)this))
             {
                 Ducking = false;
                 Holding = pickup;
@@ -2695,7 +2697,7 @@ namespace MaggyHelper.Entities
             //Dash Blocks
             if (DashAttacking && data.Hit != null && data.Hit.OnDashCollide != null && data.Direction.X == Math.Sign(DashDir.X))
             {
-                var result = data.Hit.OnDashCollide(this, data.Direction);
+                var result = data.Hit.OnDashCollide((Celeste.Player)(object)this, data.Direction);
                 if (StateMachine.State == StRedDash)
                     result = DashCollisionResults.Ignore;
 
@@ -2795,7 +2797,7 @@ namespace MaggyHelper.Entities
             {
                 if (DashAttacking && data.Direction.Y == Math.Sign(DashDir.Y))
                 {
-                    var result = data.Hit.OnDashCollide(this, data.Direction);
+                    var result = data.Hit.OnDashCollide((Celeste.Player)(object)this, data.Direction);
                     if (StateMachine.State == StRedDash)
                         result = DashCollisionResults.Ignore;
 
@@ -2814,7 +2816,7 @@ namespace MaggyHelper.Entities
                 }
                 else if (StateMachine.State == StSummitLaunch)
                 {
-                    data.Hit.OnDashCollide(this, data.Direction);
+                    data.Hit.OnDashCollide((Celeste.Player)(object)this, data.Direction);
                     return;
                 }
             }
@@ -3111,7 +3113,7 @@ namespace MaggyHelper.Entities
                 {
                     //Grabbing Holdables
                     foreach (Holdable hold in Scene.Tracker.GetComponents<Holdable>())
-                        if (hold.Check(this) && Pickup(hold))
+                        if (hold.Check((Celeste.Player)(object)this) && Pickup(hold))
                             return StPickup;
 
                     //Climbing
@@ -3454,7 +3456,7 @@ namespace MaggyHelper.Entities
             // tell the thing we grabbed it
             var platform = SurfaceIndex.GetPlatformByPriority(CollideAll<Solid>(Position + Vector2.UnitX * (int)Facing, temp));
             if (platform != null)
-                Play(Sfxs.char_mad_grab, SurfaceIndex.Param, platform.GetWallSoundIndex(this, (int)Facing));
+                Play(Sfxs.char_mad_grab, SurfaceIndex.Param, platform.GetWallSoundIndex((Celeste.Player)(object)this, (int)Facing));
         }
 
         private void ClimbEnd()
@@ -3713,7 +3715,7 @@ namespace MaggyHelper.Entities
 
             //If you hit a ledge blocker, you're blocked
             foreach (LedgeBlocker blocker in Scene.Tracker.GetComponents<LedgeBlocker>())
-                if (blocker.HopBlockCheck(this))
+                if (blocker.HopBlockCheck((Celeste.Player)(object)this))
                     return true;
 
             //If there's a solid in the way, you're blocked
@@ -3726,7 +3728,7 @@ namespace MaggyHelper.Entities
         private bool JumpThruBoostBlockedCheck()
         {
             foreach (LedgeBlocker blocker in Scene.Tracker.GetComponents<LedgeBlocker>())
-                if (blocker.JumpThruBoostCheck(this))
+                if (blocker.JumpThruBoostCheck((Celeste.Player)(object)this))
                     return true;
             return false;
         }
@@ -3813,7 +3815,7 @@ namespace MaggyHelper.Entities
                 else
                 {
                     //Booster
-                    CurrentBooster.PlayerBoosted(this, DashDir);
+                    CurrentBooster.PlayerBoosted((Celeste.Player)(object)this, DashDir);
                     CurrentBooster = null;
                 }
             }
@@ -3826,7 +3828,7 @@ namespace MaggyHelper.Entities
             launched = false;
 
             if (Engine.TimeRate > 0.25f)
-                Celeste.Freeze(.05f);
+                Celeste.Celeste.Freeze(.05f);
             dashCooldownTimer = DashCooldown;
             dashRefillCooldownTimer = DashRefillCooldown;
             StartedDashing = true;
@@ -3868,7 +3870,7 @@ namespace MaggyHelper.Entities
             {
                 //Grabbing Holdables
                 foreach (Holdable hold in Scene.Tracker.GetComponents<Holdable>())
-                    if (hold.Check(this) && Pickup(hold))
+                    if (hold.Check((Celeste.Player)(object)this) && Pickup(hold))
                         return StPickup;
             }
 
@@ -4216,7 +4218,7 @@ namespace MaggyHelper.Entities
             calledDashEvents = false;
             dashStartedOnGround = false;
 
-            Celeste.Freeze(.05f);
+            Celeste.Celeste.Freeze(.05f);
             Dust.Burst(Position, Calc.Angle(-DashDir), 8);
             dashCooldownTimer = DashCooldown;
             dashRefillCooldownTimer = DashRefillCooldown;
@@ -4362,7 +4364,7 @@ namespace MaggyHelper.Entities
         public Vector2 ExplodeLaunch(Vector2 from, bool snapUp = true)
         {
             Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
-            Celeste.Freeze(.1f);
+            Celeste.Celeste.Freeze(.1f);
             launchApproachX = null;
 
             Vector2 normal = (Center - from).SafeNormalize(-Vector2.UnitY);
@@ -4582,7 +4584,7 @@ namespace MaggyHelper.Entities
                 else
                     jumpGraceTimer = 0;
 
-                dreamBlock.OnPlayerExit(this);
+                dreamBlock.OnPlayerExit((Celeste.Player)(object)this);
                 dreamBlock = null;
             }
 
@@ -4616,7 +4618,7 @@ namespace MaggyHelper.Entities
                 }
                 else if (dreamDashCanEndTimer <= 0)
                 {
-                    Celeste.Freeze(.05f);
+                    Celeste.Celeste.Freeze(.05f);
 
                     if (Input.Jump.Pressed && DashDir.X != 0)
                     {
@@ -5377,7 +5379,7 @@ namespace MaggyHelper.Entities
                 hit.Destroy();
                 level.Shake();
                 Input.Rumble(RumbleStrength.Medium, RumbleLength.Medium);
-                Celeste.Freeze(0.01f);
+                Celeste.Celeste.Freeze(0.01f);
             }
 
             return StReflectionFall;
@@ -5424,7 +5426,7 @@ namespace MaggyHelper.Entities
                 level.UnloadLevel();
                 level.Session.Level = "00";
                 level.Session.RespawnPoint = level.GetSpawnPoint(new Vector2(level.Bounds.Left, level.Bounds.Bottom));
-                level.LoadLevel(IntroTypes.None);
+                level.LoadLevel((Celeste.Player.IntroTypes)IntroTypes.None);
                 
                 FallEffects.Show(false);
 
@@ -5476,7 +5478,7 @@ namespace MaggyHelper.Entities
             }
 
             // Log spawn for debugging
-            Logger.Log($"[MaggyHelper] Player spawn effect emitted at position: {position}");
+            Logger.Log(LogLevel.Info, "MaggyHelper", $"Player spawn effect emitted at position: {position}");
         }
 
         #region Intro Walk State
@@ -5775,7 +5777,7 @@ namespace MaggyHelper.Entities
                 {
                     Speed.X = Calc.Approach(Speed.X, 0, 240 * Engine.DeltaTime);
                     if (Scene.OnInterval(0.04f))
-                        Dust.Burst(BottomCenter + new Vector2(0, -2), Calc.UpLeft);
+                        Dust.Burst(BottomCenter + new Vector2(0, -2), Calc.UpLeft, 4);
                     yield return null;
                 }
             }
@@ -5901,7 +5903,7 @@ namespace MaggyHelper.Entities
             dashChainTimer = .5f;
             launched = false;
 
-            Celeste.Freeze(.03f);
+            Celeste.Celeste.Freeze(.03f);
             Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
             level.Displacement.AddBurst(Center, .4f, 8, 64, .5f, Ease.QuadOut, Ease.QuadOut);
 
@@ -6014,7 +6016,7 @@ namespace MaggyHelper.Entities
                 DealCombatDamageInRadius(Center, CombatSlashRange * 1.5f, CombatSlashDamage * 2);
                 comboCount = 0;
 
-                Celeste.Freeze(.05f);
+                Celeste.Celeste.Freeze(.05f);
                 Sprite.Scale = new Vector2(.6f, 1.4f);
             }
 
@@ -6078,7 +6080,7 @@ namespace MaggyHelper.Entities
 
             // impact
             Speed.Y = 0;
-            Celeste.Freeze(.05f);
+            Celeste.Celeste.Freeze(.05f);
             level.DirectionalShake(Vector2.UnitY, GroundPoundShakeTime);
             Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
             level.Displacement.AddBurst(BottomCenter, .5f, 4, 64, .5f, Ease.QuadOut, Ease.QuadOut);
@@ -6367,7 +6369,7 @@ namespace MaggyHelper.Entities
             Sprite.Play(PlayerSprite.Dash);
             Sprite.Scale = new Vector2(.6f, 1.4f);
 
-            Celeste.Freeze(.04f);
+            Celeste.Celeste.Freeze(.04f);
             Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
         }
 
@@ -6534,7 +6536,7 @@ namespace MaggyHelper.Entities
             return KirbyModeActive;
         }
 
-        public override void SetPowerState(KirbyMode.KirbyPowerState powerState)
+        public void SetPowerState(KirbyMode.KirbyPowerState powerState)
         {
             CurrentPowerState = powerState;
         }
@@ -6544,7 +6546,7 @@ namespace MaggyHelper.Entities
             SetPowerState(powerState);
         }
 
-        public override void Heal(int amount)
+        public void Heal(int amount)
         {
             if (amount <= 0)
             {
@@ -6681,7 +6683,7 @@ namespace MaggyHelper.Entities
 
             // Create jump particles
             if (Scene.OnInterval(.05f))
-                Dust.Burst(Position, Circle.Random() * 6f, 4, P_Jump);
+                Dust.Burst(Position, Calc.Random.Range(Vector2.One * -1f, Vector2.One * 1f).SafeNormalize().Angle(), 4, P_Jump);
 
             // Reset multi-jump input window
             multiJumpInputTimer = 0f;

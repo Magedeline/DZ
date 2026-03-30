@@ -69,8 +69,8 @@ namespace MaggyHelper.Entities
                 new Hitbox(16f, 4f, -8f, -3f)
             );
             Visible = false;
-            Add(new PlayerCollider(OnPlayer));
-            Add(new HoldableCollider(OnHoldable));
+            Add(new PlayerCollider(player => OnPlayer((Celeste.Player)player)));
+            Add(new HoldableCollider(h => OnHoldable((Celeste.Holdable)h)));
             Add(new LedgeBlocker());
             Depth = -8500;
             
@@ -171,11 +171,11 @@ namespace MaggyHelper.Entities
             return CollideCheck(solid);
         }
 
-        private void OnPlayer(Player player)
+        private void OnPlayer(Celeste.Player player)
         {
             if (canHurt && player != null && !player.Dead)
             {
-                if (player.StateMachine.State == Player.StDash || 
+                if (player.StateMachine.State == Celeste.Player.StDash || 
                     player.Speed.LengthSquared() >= MinFlingSpeedSq)
                 {
                     // Player is dashing or moving fast - don't hurt

@@ -19,7 +19,7 @@ namespace MaggyHelper.Entities
         {
             this.fireMode = fireMode;
             base.Collider = new Circle(12f);
-            Add(new PlayerCollider(OnPlayer));
+            Add(new PlayerCollider(player => OnPlayer(player)));
             
             Add(sprite = new Sprite(GFX.Game, "objects/MaggyHelper/uwumper/"));
             sprite.AddLoop("idle", "Idle", 0.1f);
@@ -73,7 +73,7 @@ namespace MaggyHelper.Entities
             }
         }
 
-        private void OnPlayer(Player player)
+        private void OnPlayer(Celeste.Player player)
         {
             if (respawnTimer <= 0f)
             {
@@ -83,8 +83,7 @@ namespace MaggyHelper.Entities
                 hitDir = direction;
                 hitWiggler.Start();
                 
-                float force = fireMode ? 320f : 280f;
-                player.ExplodeLaunch(player.Center - base.Center, false, false);
+                player.ExplodeLaunch(base.Center, false);
                 
                 sprite.Visible = false;
                 light.Visible = false;

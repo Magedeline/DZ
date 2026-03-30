@@ -68,7 +68,7 @@ namespace MaggyHelper.Entities.SoulBoosts
         protected Vector2 spriteOffset = new Vector2(0f, 8f);
 
         // Boost mechanics
-        protected Player holding;
+        protected Celeste.Player holding;
         protected bool lockCamera;
         protected bool canSkip;
         protected bool oneUse;
@@ -141,7 +141,7 @@ namespace MaggyHelper.Entities.SoulBoosts
             this.finalCh20Dialog = finalCh20Dialog;
 
             Collider = new Circle(20f);
-            Add(new PlayerCollider(OnPlayer));
+            Add(new PlayerCollider(player => OnPlayer(player)));
 
             // Create particles
             CreateParticles();
@@ -313,7 +313,7 @@ namespace MaggyHelper.Entities.SoulBoosts
             }
         }
 
-        protected void OnPlayer(Player player)
+        protected void OnPlayer(Celeste.Player player)
         {
             if (state != States.Wait)
                 return;
@@ -322,7 +322,7 @@ namespace MaggyHelper.Entities.SoulBoosts
             Add(new Coroutine(BoostRoutine(player)));
         }
 
-        protected virtual IEnumerator BoostRoutine(Player player)
+        protected virtual IEnumerator BoostRoutine(Celeste.Player player)
         {
         if (player == null || Scene == null)
         {
@@ -386,7 +386,7 @@ namespace MaggyHelper.Entities.SoulBoosts
             }
             if (player.Holding != null)
             {
-                player.Drop();
+                player.Holding = null;
             }
             player.StateMachine.State = 11;
             player.DummyAutoAnimate = false;
@@ -551,7 +551,7 @@ namespace MaggyHelper.Entities.SoulBoosts
             }
         }
 
-        protected virtual IEnumerator ApplyAllSoulsStart(Player player)
+        protected virtual IEnumerator ApplyAllSoulsStart(Celeste.Player player)
         {
             Level level = Scene as Level;
 
@@ -586,7 +586,7 @@ namespace MaggyHelper.Entities.SoulBoosts
             yield return 0.2f;
         }
 
-        protected virtual IEnumerator ApplyAllSoulsEnd(Player player)
+        protected virtual IEnumerator ApplyAllSoulsEnd(Celeste.Player player)
         {
             // Apply combined buff with all seven soul abilities
             player.Add(new SevenSoulBuff(5f, this));

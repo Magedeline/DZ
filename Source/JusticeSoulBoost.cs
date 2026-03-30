@@ -52,7 +52,7 @@ namespace MaggyHelper.Entities.SoulBoosts
             this.spreadShot = spreadShot;
         }
 
-        protected override IEnumerator ApplyAbilityStart(Player player)
+        protected override IEnumerator ApplyAbilityStart(Celeste.Player player)
         {
             // Visual feedback
             Level level = Scene as Level;
@@ -63,7 +63,7 @@ namespace MaggyHelper.Entities.SoulBoosts
             yield return 0.1f;
         }
 
-        protected override IEnumerator ApplyAbilityEnd(Player player)
+        protected override IEnumerator ApplyAbilityEnd(Celeste.Player player)
         {
             // Fire projectiles in direction of travel
             Vector2 direction = player.Speed.SafeNormalize();
@@ -226,7 +226,7 @@ namespace MaggyHelper.Entities.SoulBoosts
             Depth = -1000000;
             Collider = new Circle(6f);
             
-            Add(new PlayerCollider(OnPlayerCollide));
+            Add(new PlayerCollider(player => OnPlayerCollide(player)));
             
             // Create simple sprite/image
             Add(sprite = new Sprite(GFX.Game, "objects/MaggyHelper/sevensoulboost/"));
@@ -285,7 +285,7 @@ namespace MaggyHelper.Entities.SoulBoosts
             }
         }
 
-        private void OnPlayerCollide(Player player)
+        private void OnPlayerCollide(Celeste.Player player)
         {
             // Projectiles don't hurt player
         }

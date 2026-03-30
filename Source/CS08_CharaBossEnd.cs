@@ -108,7 +108,7 @@ public class Cs08CharaBossEnd : CutsceneEntity
         yield return this.chara.Disperse();
         (base.Scene as Level)?.Session.SetFlag("chara_connection", true);
         level.Flash(Color.White, false);
-        level.Session.Inventory.Dashes = 2;
+        level.Session.Inventory.Dashes = 5;
         this.chara.RemoveSelf();
         yield return 0.1f;
         level.Add(new LevelUpEffect(this.player.Position));
@@ -201,7 +201,7 @@ public class Cs08CharaBossEnd : CutsceneEntity
         }
         Audio.SetParameter(Audio.CurrentAmbienceEventInstance, "charapostboss", 0f);
         level.ResetZoom();
-        level.Session.Inventory.Dashes = 2;
+        level.Session.Inventory.Dashes = 5;
         level.Session.Audio.Music.Event = "event:/desolozantas/music/lvl8/chara_acoustic";
         if (this.WasSkipped)
         {

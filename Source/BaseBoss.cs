@@ -57,7 +57,7 @@ namespace MaggyHelper.Entities.Bosses
             Collider = new Hitbox(32f, 32f, -16f, -32f);
             hurtbox = new Hitbox(24f, 24f, -12f, -28f);
             
-            Add(playerCollider = new PlayerCollider(OnPlayerCollide));
+            Add(playerCollider = new PlayerCollider(p => OnPlayerCollide(p)));
             
             Depth = -10000;
         }
@@ -135,12 +135,12 @@ namespace MaggyHelper.Entities.Bosses
         
         protected abstract string GetBossName();
 
-        protected virtual void OnPlayerCollide(Player player)
+        protected virtual void OnPlayerCollide(Celeste.Player player)
         {
             if (isDefeated || !fightStarted) return;
             
             // Check if player is attacking (dashing, etc.)
-            if (player.StateMachine.State == Player.StDash)
+            if (player.StateMachine.State == Celeste.Player.StDash)
             {
                 TakeDamage(1);
             }

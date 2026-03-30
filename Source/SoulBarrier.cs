@@ -190,7 +190,7 @@ namespace MaggyHelper.Entities
             
             Collider = new Hitbox(16f, 16f, -8f, -8f);
             
-            Add(new PlayerCollider(OnPlayer));
+            Add(new PlayerCollider(p => OnPlayer(p)));
         }
         
         public override void Added(Scene scene)
@@ -209,7 +209,7 @@ namespace MaggyHelper.Entities
             }
         }
         
-        private void OnPlayer(Player player)
+        private void OnPlayer(Celeste.Player player)
         {
             if (collected) return;
             

@@ -50,7 +50,16 @@ public class Cs07PreIngeste : CutsceneEntity
         yield return 0.2f;
 
         // Talk to Chara with Badeline and Ralsei present
-        yield return Textbox.Say("CH7_PRE_INGESTE");
+        yield return Textbox.Say("CH7_PRE_INGESTE_0");
+        yield return 0.3f;
+
+        yield return Textbox.Say("CH7_PRE_INGESTE_1");
+        yield return 0.3f;
+
+        yield return Textbox.Say("CH7_PRE_INGESTE_2");
+        yield return 0.3f;
+
+        yield return Textbox.Say("CH7_PRE_INGESTE_3");
 
         yield return 0.5f;
 
@@ -65,7 +74,7 @@ public class Cs07PreIngeste : CutsceneEntity
     public override void OnEnd(Level level)
     {
         if (player != null)
-            player.StateMachine.State = 0; // Normal state
+            player.StateMachine.State = 11; // Normal state
 
         // Clean up companions if cutscene was skipped
         if (badeline?.Scene != null)

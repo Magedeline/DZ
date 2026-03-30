@@ -17,7 +17,7 @@ namespace MaggyHelper.Entities
             
             texture = GFX.Game["objects/MaggyHelper/mrbonesdoor"];
             
-            Add(new PlayerCollider(OnPlayer));
+            Add(new PlayerCollider(player => OnPlayer((Celeste.Player)player)));
             base.Depth = -9000;
         }
 
@@ -27,7 +27,7 @@ namespace MaggyHelper.Entities
         {
         }
 
-        private void OnPlayer(Player player)
+        private void OnPlayer(Celeste.Player player)
         {
             if (!opened && CanOpen())
             {

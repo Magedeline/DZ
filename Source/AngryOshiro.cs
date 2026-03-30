@@ -145,14 +145,14 @@ public class AngyOshiro : Entity
         }
     }
 
-    private void OnPlayer(Player player)
+    private void OnPlayer(Celeste.Player player)
     {
         if (state.State != 5 && (base.CenterX < player.CenterX + 4f || Sprite.CurrentAnimationID != "respawn"))
         {
             player.Die((player.Center - base.Center).SafeNormalize(Vector2.UnitX));
         }
     }
-    private void OnPlayerBounce(Player player)
+    private void OnPlayerBounce(Celeste.Player player)
     {
         if (state.State == 2 && player.Bottom <= base.Top + 6f)
         {
@@ -434,8 +434,8 @@ public class AngyOshiro : Entity
         base.Collider = new Circle(14f);
         base.Collider.Position = (colliderTargetPosition = new Vector2(3f, 4f));
         Add(sine = new SineWave(0.5f, 0f));
-        Add(bounceCollider = new PlayerCollider(OnPlayerBounce, new Hitbox(28f, 6f, -11f, -11f)));
-        Add(new PlayerCollider(OnPlayer));
+        Add(bounceCollider = new PlayerCollider(player => OnPlayerBounce(player), new Hitbox(28f, 6f, -11f, -11f)));
+        Add(new PlayerCollider(player => OnPlayer(player)));
         base.Depth = -12500;
         Visible = false;
         Add(light = new VertexLight(Color.White, 1f, 32, 64));

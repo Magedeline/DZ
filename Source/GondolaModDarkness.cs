@@ -12,13 +12,21 @@ public class GondolaModDarkness : Entity
 
     public GondolaModDarkness(string handsSpriteId = "gondolaHands", string darknessSpriteId = "gondolaDarkness")
     {
-        string resolvedDarknessSpriteId = GFX.SpriteBank.Has(darknessSpriteId) ? darknessSpriteId : "gondolaDarkness";
-        string resolvedHandsSpriteId = GFX.SpriteBank.Has(handsSpriteId) ? handsSpriteId : "gondolaHands";
+        string resolvedDarknessSpriteId = GFX.SpriteBank.Has(darknessSpriteId) ? darknessSpriteId
+            : GFX.SpriteBank.Has("gondolaDarkness") ? "gondolaDarkness" : null;
+        string resolvedHandsSpriteId = GFX.SpriteBank.Has(handsSpriteId) ? handsSpriteId
+            : GFX.SpriteBank.Has("gondolaHands") ? "gondolaHands" : null;
 
-        Add(sprite = GFX.SpriteBank.Create(resolvedDarknessSpriteId));
-        sprite.Play("appear");
-        Add(hands = GFX.SpriteBank.Create(resolvedHandsSpriteId));
-        hands.Visible = false;
+        if (resolvedDarknessSpriteId != null)
+        {
+            Add(sprite = GFX.SpriteBank.Create(resolvedDarknessSpriteId));
+            sprite.Play("appear");
+        }
+        if (resolvedHandsSpriteId != null)
+        {
+            Add(hands = GFX.SpriteBank.Create(resolvedHandsSpriteId));
+            hands.Visible = false;
+        }
         Visible = false;
         Depth = -999900;
     }
@@ -42,24 +50,27 @@ public class GondolaModDarkness : Entity
 
     public IEnumerator Expand()
     {
-        hands.Visible = true;
-        hands.Play("appear");
+        if (hands != null)
+        {
+            hands.Visible = true;
+            hands.Play("appear");
+        }
         yield return 1f;
     }
 
     public IEnumerator Reach(GondolaMod gondola)
     {
-        hands.Play("grab");
+        hands?.Play("grab");
         yield return 0.4f;
-        hands.Play("pull");
+        hands?.Play("pull");
         gondola.PullSides();
     }
 
     public IEnumerator Reach(Action pullSides)
     {
-        hands.Play("grab");
+        hands?.Play("grab");
         yield return 0.4f;
-        hands.Play("pull");
+        hands?.Play("pull");
         pullSides?.Invoke();
     }
 

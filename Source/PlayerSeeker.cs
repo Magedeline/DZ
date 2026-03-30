@@ -96,7 +96,7 @@ namespace MaggyHelper.Entities
 		}
 
 		// Token: 0x060010E7 RID: 4327 RVA: 0x0004FF38 File Offset: 0x0004E138
-		private void OnPlayer(Player player)
+		private void OnPlayer(Celeste.Player player)
 		{
 			if (!player.Dead)
 			{
@@ -110,8 +110,7 @@ namespace MaggyHelper.Entities
 
 		private void OnPlayerAdapter(Celeste.Player player)
 		{
-			// If MaggyHelper.Entities.Player is a subclass of Celeste.Player, you can cast:
-			this.OnPlayer(player as Player);
+			this.OnPlayer(player);
 		}
 
 		// Token: 0x060010E8 RID: 4328 RVA: 0x0004FF9C File Offset: 0x0004E19C

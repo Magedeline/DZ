@@ -27,7 +27,7 @@ namespace MaggyHelper.Entities
         private char fillTile;
         private TileGrid tiles;
         private bool broken;
-        private float shakeTimer;
+        private new float shakeTimer;
         private Vector2 shakeOffset;
         private bool permanent;
         private EntityID id;
@@ -136,7 +136,7 @@ namespace MaggyHelper.Entities
             }
         }
 
-        private DashCollisionResults OnDashed(Player player, Vector2 direction)
+        private DashCollisionResults OnDashed(Celeste.Player player, Vector2 direction)
         {
             // Check if the player is moving fast enough (e.g. launched by cannon)
             float speed = player.Speed.Length();

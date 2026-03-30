@@ -326,7 +326,7 @@ namespace MaggyHelper.Entities
             this.attackSequenceData = attackSequence;
             this.Add((Component)(this.light = new VertexLight(Color.White, 1f, 32, 64)));
             this.circle = (Monocle.Circle)this.Collider;
-            this.Add((Component)new PlayerCollider(new Action<global::Celeste.Player>(this.OnPlayer)));
+            this.Add(new PlayerCollider(player => this.OnPlayer(player)));
             this.nodes = new Vector2[nodes.Length + 1];
             this.nodes[0] = this.Position;
             for (int index = 0; index < nodes.Length; ++index)
@@ -396,7 +396,12 @@ namespace MaggyHelper.Entities
             }
             
             if (this.startHit)
-                Alarm.Set((Entity)this, 0.5f, (Action)(() => this.OnPlayer((global::Celeste.Player)null)));
+                Alarm.Set(this, 0.5f, (Action)(() => 
+                {
+                    var player = this.level?.Tracker.GetEntity<global::Celeste.Player>();
+                    if (player != null)
+                        this.OnPlayer(player);
+                }));
         }
         
         private bool ShouldShowIntroForRoom(string roomId)
@@ -926,7 +931,7 @@ namespace MaggyHelper.Entities
         
         #region Player Collision
         
-        public void OnPlayer(Player player)
+        public void OnPlayer(Celeste.Player player)
         {
             if (GetActiveBossSprite() == null && Sprite == null)
                 return;
@@ -995,7 +1000,7 @@ namespace MaggyHelper.Entities
         }
 
         
-        private IEnumerator MoveSequence(Player player, bool lastHit)
+        private IEnumerator MoveSequence(Celeste.Player player, bool lastHit)
         {
             ElsTrueFinalBoss finalBoss = this;
             if (lastHit)

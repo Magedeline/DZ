@@ -42,7 +42,7 @@ namespace MaggyHelper.Entities.SoulBoosts
             this.slowMotionFactor = slowMotionFactor;
         }
 
-        protected override IEnumerator ApplyAbilityStart(Player player)
+        protected override IEnumerator ApplyAbilityStart(Celeste.Player player)
         {
             // Visual feedback
             Level level = Scene as Level;
@@ -53,7 +53,7 @@ namespace MaggyHelper.Entities.SoulBoosts
             yield return 0.1f;
         }
 
-        protected override IEnumerator ApplyAbilityEnd(Player player)
+        protected override IEnumerator ApplyAbilityEnd(Celeste.Player player)
         {
             // Apply slow-motion buff
             player.Add(new PatienceBuff(AbilityDuration, slowMotionFactor));

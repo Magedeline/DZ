@@ -59,7 +59,7 @@ namespace MaggyHelper.Entities.SoulBoosts
         protected Vector2 spriteOffset = new Vector2(0f, 8f);
 
         // Boost mechanics (BadelineBoost-style)
-        protected Player holding;
+        protected Celeste.Player holding;
         protected bool canSkip;
         protected bool oneUse;
         protected float boostSpeed;
@@ -93,7 +93,7 @@ namespace MaggyHelper.Entities.SoulBoosts
             this.boostSpeed = boostSpeed;
 
             Collider = new Circle(16f);
-            Add(new PlayerCollider(OnPlayer));
+            Add(new PlayerCollider(player => OnPlayer(player)));
 
             // Create particles
             CreateParticles();
@@ -249,7 +249,7 @@ namespace MaggyHelper.Entities.SoulBoosts
             }
         }
 
-        protected void OnPlayer(Player player)
+        protected void OnPlayer(Celeste.Player player)
         {
             if (state != States.Wait || !CanBoostPlayer(player))
                 return;
@@ -258,12 +258,12 @@ namespace MaggyHelper.Entities.SoulBoosts
             Add(new Coroutine(BoostRoutine(player)));
         }
 
-        protected virtual bool CanBoostPlayer(Player player)
+        protected virtual bool CanBoostPlayer(Celeste.Player player)
         {
             return true;
         }
 
-        protected virtual IEnumerator BoostRoutine(Player player)
+        protected virtual IEnumerator BoostRoutine(Celeste.Player player)
         {
             holding = player;
             travelling = true;
@@ -280,7 +280,9 @@ namespace MaggyHelper.Entities.SoulBoosts
 
             // Drop held items
             if (player.Holding != null)
-                player.Drop();
+            {
+                typeof(Player).GetMethod("Drop", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)?.Invoke(player, null);
+            }
 
             // Set player state
             player.StateMachine.State = Player.StDummy;
@@ -466,8 +468,8 @@ namespace MaggyHelper.Entities.SoulBoosts
         }
 
         // Override these in derived classes for soul-specific abilities
-        protected virtual IEnumerator ApplyAbilityStart(Player player) { yield break; }
-        protected virtual IEnumerator ApplyAbilityEnd(Player player) { yield break; }
+        protected virtual IEnumerator ApplyAbilityStart(Celeste.Player player) { yield break; }
+        protected virtual IEnumerator ApplyAbilityEnd(Celeste.Player player) { yield break; }
 
         public override void Render()
         {

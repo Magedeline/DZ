@@ -17,28 +17,30 @@
     </ItemDefinitionGroup>
 
     <ItemGroup>
+        <PackageReference Include="Monocle" Version="0.9.4.5" />
+        <PackageReference Include="MonoGame.Extended" Version="5.5.0" />
+        <PackageReference Include="MonoMod.Backports" Version="1.1.2" />
+        <PackageReference Include="MonoMod.Core" Version="1.3.4" />
+        <PackageReference Include="MonoMod.ILHelpers" Version="1.1.0" />
+        <PackageReference Include="MonoMod.Patcher" Version="25.0.1" />
         <PackageReference Include="MonoMod.RuntimeDetour" Version="25.0.2" />
+        <PackageReference Include="MonoMod.Utils" Version="25.0.12" />
         <PackageReference Include="Mono.Cecil" Version="0.11.6" />
         <PackageReference Include="CelesteAnalyzer" Version="*" />
         <PackageReference Include="YamlDotNet" Version="16.2.1" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="CelesteMod.Publicizer" Version="*" CelesteAssembly="$(CelestePrefix)\Celeste.dll" />
+        <PackageReference Include="CelesteMod.Publicizer" Version="1.1.2" CelesteAssembly="$(CelestePrefix)\Celeste.dll" />
         <Reference Include="$(CelestePrefix)\MMHOOK_Celeste.dll" Private="false" />
         <Reference Include="$(CelestePrefix)\FNA.dll" Private="false" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <Compile Remove="Player.cs" />
     </ItemGroup>
 
     <Target Name="CopyFiles" AfterTargets="Build">
         <ItemGroup>
             <FilesToCopy Include="$(OutputPath)\$(AssemblyName).dll" />
             <FilesToCopy Include="$(OutputPath)\$(AssemblyName).pdb" />
-            <FilesToCopy Include="@(ReferenceCopyLocalPaths)"
-                         Condition="'%(Filename)' == 'YamlDotNet' Or '%(Filename)' == 'Mono.Cecil' Or '%(Filename)' == 'Mono.Cecil.Mdb' Or '%(Filename)' == 'Mono.Cecil.Pdb' Or '%(Filename)' == 'Mono.Cecil.Rocks' Or '%(Filename)' == 'MonoMod.RuntimeDetour' Or '%(Filename)' == 'MonoMod.Utils' Or '%(Filename)' == 'MonoMod.Backports' Or '%(Filename)' == 'MonoMod.Core' Or '%(Filename)' == 'MonoMod.ILHelpers' Or '%(Filename)' == 'MonoMod.Iced'" />
+            <FilesToCopy Include="@(ReferenceCopyLocalPaths)" Condition="'%(Filename)' == 'YamlDotNet' Or '%(Filename)' == 'Mono.Cecil' Or '%(Filename)' == 'Mono.Cecil.Mdb' Or '%(Filename)' == 'Mono.Cecil.Pdb' Or '%(Filename)' == 'Mono.Cecil.Rocks' Or '%(Filename)' == 'MonoMod.RuntimeDetour' Or '%(Filename)' == 'MonoMod.Utils' Or '%(Filename)' == 'MonoMod.Backports' Or '%(Filename)' == 'MonoMod.Core' Or '%(Filename)' == 'MonoMod.ILHelpers' Or '%(Filename)' == 'MonoMod.Iced'" />
         </ItemGroup>
 
         <Copy SourceFiles="@(FilesToCopy)" DestinationFolder="..\bin" SkipUnchangedFiles="true" />

@@ -23,7 +23,7 @@ namespace MaggyHelper.Entities
         {
             this.oneUse = oneUse;
             base.Collider = new Hitbox(16f, 16f, -8f, -8f);
-            Add(new PlayerCollider(OnPlayer));
+            Add(new PlayerCollider(player => OnPlayer(player)));
             
             string spritePath = "objects/MaggyHelper/dreamorb/";
             Add(sprite = new Sprite(GFX.Game, spritePath));
@@ -103,7 +103,7 @@ namespace MaggyHelper.Entities
             base.Render();
         }
 
-        private void OnPlayer(Player player)
+        private void OnPlayer(Celeste.Player player)
         {
             // Enable dream dashing for the player via session
             level.Session.Inventory.DreamDash = true;
@@ -121,7 +121,7 @@ namespace MaggyHelper.Entities
             }
         }
 
-        private IEnumerator CollectRoutine(Player player)
+        private IEnumerator CollectRoutine(Celeste.Player player)
         {
             Celeste.Celeste.Freeze(0.05f);
             yield return null;

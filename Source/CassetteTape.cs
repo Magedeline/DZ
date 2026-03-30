@@ -95,7 +95,7 @@ namespace MaggyHelper.Entities
             Add(talk = new TalkComponent(
                 new Rectangle(-16, -16, 32, 32),
                 new Vector2(0f, -24f),
-                OnTalk
+                p => OnTalk(p)
             ));
             talk.Enabled = false;
         }
@@ -162,7 +162,7 @@ namespace MaggyHelper.Entities
             }
         }
 
-        private void OnTalk(Player player)
+        private void OnTalk(Celeste.Player player)
         {
             if (collected)
                 return;
@@ -170,7 +170,7 @@ namespace MaggyHelper.Entities
             Collect(player);
         }
 
-        private void Collect(Player player)
+        private void Collect(Celeste.Player player)
         {
             if (collected)
                 return;
@@ -201,7 +201,7 @@ namespace MaggyHelper.Entities
             Add(new Coroutine(CollectRoutine(player)));
         }
 
-        private IEnumerator CollectRoutine(Player player)
+        private IEnumerator CollectRoutine(Celeste.Player player)
         {
             Level level = Scene as Level;
             

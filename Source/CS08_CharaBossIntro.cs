@@ -62,10 +62,12 @@ namespace MaggyHelper.Cutscenes {
             Cs08CharaBossIntro cs08CharaBossIntro = this;
             cs08CharaBossIntro.Add((Component)new Coroutine(cs08CharaBossIntro.Level.ZoomTo(new Vector2(170f, 110f), 2f, 1f)));
             Audio.Play("event:/char/badeline/boss_prefight_getup", cs08CharaBossIntro.CharaBoss.Position);
-            cs08CharaBossIntro.CharaBoss.Sitting = false;
-            if (cs08CharaBossIntro.CharaBoss.NormalSprite is global::Celeste.PlayerSprite normalSprite) {
-                normalSprite.Play("fallSlow");
-                normalSprite.Scale.X = -1f;
+            if (cs08CharaBossIntro.CharaBoss.NormalSprite is global::Celeste.PlayerSprite normalSprite && normalSprite.Has("pretendDead")) {
+                normalSprite.Play("pretendDead");
+            }
+            if (cs08CharaBossIntro.CharaBoss.NormalSprite is global::Celeste.PlayerSprite normalSprite2) {
+                normalSprite2.Play("fallSlow");
+                normalSprite2.Scale.X = -1f;
             }
             cs08CharaBossIntro.CharaBoss.Add((Component)(cs08CharaBossIntro.animator = new CharaAutoAnimator()));
             float fromY = cs08CharaBossIntro.CharaBoss.Y;
@@ -101,8 +103,6 @@ namespace MaggyHelper.Cutscenes {
                     normalSprite.Scale.X = -1f;
                     if (normalSprite.Has("angry"))
                         normalSprite.Play("angry");
-                    else if (normalSprite.Has("scaredIdle"))
-                        normalSprite.Play("scaredIdle");
                     else if (normalSprite.Has("idle"))
                         normalSprite.Play("idle");
                 }

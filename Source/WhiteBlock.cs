@@ -25,7 +25,7 @@ namespace MaggyHelper.Entities
             base.Update();
             
             // Check for player standing on block
-            Player player = GetPlayerOnTop();
+            Celeste.Player player = GetPlayerOnTop();
             if (player != null && !activated)
             {
                 activated = true;

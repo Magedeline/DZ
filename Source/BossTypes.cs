@@ -53,7 +53,7 @@ namespace MaggyHelper.Entities.Bosses
             Collider = new Hitbox(16f, 16f, -8f, -8f);
             Depth = -100;
 
-            Add(new PlayerCollider(OnPlayer));
+            Add(new PlayerCollider((Celeste.Player player) => OnPlayer(player)));
         }
 
         public override void Added(Scene scene)
@@ -73,7 +73,7 @@ namespace MaggyHelper.Entities.Bosses
             }
         }
 
-        private void OnPlayer(Player player)
+        private void OnPlayer(Celeste.Player player)
         {
             // Grant the ability via session
             var session = MaggyHelperModule.Session;

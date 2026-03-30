@@ -6,14 +6,14 @@ namespace MaggyHelper.Entities
     {
         private MTexture texture;
         private bool broken;
-        private float shakeTimer;
+        private new float shakeTimer;
         private Vector2 shakeOffset;
 
         public GoldBlock(Vector2 position, int width, int height)
             : base(position, width, height, true)
         {
             texture = GFX.Game["objects/MaggyHelper/goldblock"];
-            OnDashCollide = OnDashed;
+            OnDashCollide = (Celeste.Player player, Vector2 direction) => OnDashed(player, direction);
             base.Depth = -9000;
         }
 
@@ -22,7 +22,7 @@ namespace MaggyHelper.Entities
         {
         }
 
-        private DashCollisionResults OnDashed(Player player, Vector2 direction)
+        private DashCollisionResults OnDashed(Celeste.Player player, Vector2 direction)
         {
             if (!broken)
             {

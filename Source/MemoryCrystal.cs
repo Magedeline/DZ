@@ -29,7 +29,7 @@ namespace MaggyHelper.Entities
             flashbackDuration = data.Float("flashbackDuration", 3f);
             
             Collider = new Hitbox(16f, 16f, -8f, -8f);
-            Add(new PlayerCollider(OnPlayer));
+            Add(new PlayerCollider(player => OnPlayer((Celeste.Player)player)));
             
             crystalColor = new Color(50, 200, 220);
             
@@ -55,7 +55,7 @@ namespace MaggyHelper.Entities
             }
         }
         
-        private void OnPlayer(Player player)
+        private void OnPlayer(Celeste.Player player)
         {
             if (collected) return;
             
@@ -92,7 +92,7 @@ namespace MaggyHelper.Entities
             }
         }
         
-        private void TriggerMemory(Player player)
+        private void TriggerMemory(Celeste.Player player)
         {
             Level level = Scene as Level;
             if (level == null) return;

@@ -43,7 +43,7 @@ namespace MaggyHelper.Entities
             }
             
             Collider = new Hitbox(8f, 48f, -4f, 0f);
-            Add(new PlayerCollider(OnPlayer));
+            Add(new PlayerCollider(player => OnPlayer(player)));
             
             tendrilColor = new Color(80, 0, 80);
             coreColor = new Color(160, 0, 160);
@@ -93,7 +93,7 @@ namespace MaggyHelper.Entities
             Audio.Play("event:/game/general/fallblock_shake", Position);
         }
         
-        private void OnPlayer(Player player)
+        private void OnPlayer(Celeste.Player player)
         {
             if (playerPhasing)
             {

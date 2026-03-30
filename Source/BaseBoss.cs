@@ -9,6 +9,7 @@ namespace MaggyHelper.Entities.Bosses
     /// <summary>
     /// Base class for all boss entities in MaggyHelper
     /// </summary>
+    [Tracked(true)]
     public abstract class BaseBoss : Actor, IKirbyCopySource
     {
         // Movement

@@ -347,6 +347,13 @@ public class FinalTitanSummitBackgroundManager : Entity
         level.Session.SetFlag(GetBeginSwapFlag(progressStage));
         level.Session.SetFlag(GetActorFlag(progressStage));
 
+        player.Sprite.Play("launch");
+        player.Speed = Vector2.Zero;
+        player.StateMachine.State = Player.StDummy;
+        player.DummyGravity = false;
+        player.DummyAutoAnimate = false;
+        player.Facing = Facings.Right;
+
         if (!string.IsNullOrWhiteSpace(ambience))
         {
             if (ambience.Equals("null", StringComparison.InvariantCultureIgnoreCase))
@@ -360,17 +367,12 @@ public class FinalTitanSummitBackgroundManager : Entity
         else
             yield return FadeTo(1f, dark ? 0.8f : 0.5f);
 
-        yield return RunAscendCutscene();
+        yield return RunManagedAscendCutscene();
 
         if (!dark)
             level.Add(new global::MaggyHelper.HeightDisplayMod(progressStage));
 
-        player.Sprite.Play("launch");
-        Audio.Play("event:/desolozantas/char/kirby/summit_flytonext", player.Position);
-
-        level.Session.SetFlag(GetBackgroundSwapFlag(progressStage));
-        level.NextTransitionDuration = 0.05f;
-        outTheTop = true;
+        yield return LaunchToNextRoom();
     }
 
     public override void Update()
@@ -423,6 +425,16 @@ public class FinalTitanSummitBackgroundManager : Entity
         level?.Session.SetFlag(GetBackgroundSwapFlag(progressStage), false);
         level?.Session.SetFlag(GetBeginSwapFlag(progressStage), false);
         level?.Session.SetFlag(GetActorFlag(progressStage), false);
+        if (level != null)
+            level.CanRetry = true;
+
+        if (player != null)
+        {
+            player.DummyGravity = true;
+            player.DummyAutoAnimate = true;
+            if (!outTheTop && player.StateMachine.State == Player.StDummy)
+                player.StateMachine.State = Player.StNormal;
+        }
 
         if (outTheTop)
             ScreenWipe.WipeColor = dark ? Color.Black : Color.White;
@@ -442,7 +454,26 @@ public class FinalTitanSummitBackgroundManager : Entity
         FadeSnapTo(target);
     }
 
-    private IEnumerator RunAscendCutscene()
+    private IEnumerator RunManagedAscendCutscene()
+    {
+        string dialogId = GetAscendCutsceneId();
+        if (string.IsNullOrWhiteSpace(dialogId))
+        {
+            yield return 0.5f;
+            yield break;
+        }
+
+        yield return 0.25f;
+
+        AscendCutscene ascendCutscene = new(this, dialogId);
+        level.Add(ascendCutscene);
+        yield return null;
+
+        while (ascendCutscene.Scene != null && ascendCutscene.Running)
+            yield return null;
+    }
+
+    private IEnumerator RunAscendCutscene(string dialogId)
     {
         Audio.Play("event:/char/badeline/maddy_split", player.Position);
         player.CreateSplitParticles();
@@ -459,21 +490,71 @@ public class FinalTitanSummitBackgroundManager : Entity
         spinning = true;
         Add(new Coroutine(SpinCharacters()));
 
-        if (!string.IsNullOrWhiteSpace(cutscene))
-            yield return Textbox.Say(cutscene);
-        else if (progressStage <= 12)
-            yield return Textbox.Say($"CH20_ASCEND_VS_ELS_{progressStage}");
+        yield return Textbox.Say(dialogId);
 
         Audio.Play("event:/char/badeline/maddy_join", player.Position);
         spinning = false;
         yield return 0.25f;
+    }
+
+    private void FinishAscendCutscene()
+    {
+        spinning = false;
 
         CleanupDummies();
+
+        if (player == null)
+            return;
+
         player.Position = origin;
         player.Dashes = 5;
         player.CreateSplitParticles();
         Input.Rumble(RumbleStrength.Light, RumbleLength.Medium);
-        level.Displacement.AddBurst(player.Position, 0.4f, 8f, 32f, 0.5f, null, null);
+        level?.Displacement.AddBurst(player.Position, 0.4f, 8f, 32f, 0.5f, null, null);
+    }
+
+    private IEnumerator LaunchToNextRoom()
+    {
+        if (level == null || player == null)
+            yield break;
+
+        level.CanRetry = false;
+        player.Sprite.Play("launch");
+        Audio.Play("event:/desolozantas/char/kirby/summit_flytonext", player.Position);
+        yield return 0.25f;
+
+        Vector2 from = player.Position;
+        for (float progress = 0f; progress < 1f; progress += Engine.DeltaTime / 1f)
+        {
+            player.Position = Vector2.Lerp(from, from + new Vector2(0f, 60f), Ease.CubeInOut(progress)) + Calc.Random.ShakeVector();
+            Input.Rumble(RumbleStrength.Light, RumbleLength.Short);
+            yield return null;
+        }
+
+        LaunchFader launchFader = new(this);
+        Scene.Add(launchFader);
+        from = player.Position;
+        Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
+
+        for (float progress = 0f; progress < 1f; progress += Engine.DeltaTime / 0.5f)
+        {
+            float previousY = player.Y;
+            player.Position = Vector2.Lerp(from, from + new Vector2(0f, -160f), Ease.SineIn(progress));
+            if (progress == 0f || Calc.OnInterval(player.Y, previousY, 16f))
+                level.Add(Engine.Pooler.Create<SpeedRing>().Init(player.Center, new Vector2(0f, -1f).Angle(), Color.White));
+
+            launchFader.Fade = progress < 0.5f ? 0f : (progress - 0.5f) * 2f;
+            yield return null;
+        }
+
+        level.CanRetry = true;
+        outTheTop = true;
+        player.Y = level.Bounds.Top;
+        player.SummitLaunch(player.X);
+        player.DummyGravity = true;
+        player.DummyAutoAnimate = true;
+        level.Session.SetFlag(GetBackgroundSwapFlag(progressStage));
+        level.NextTransitionDuration = 0.05f;
     }
 
     private IEnumerator SpinCharacters()
@@ -1016,6 +1097,64 @@ public class FinalTitanSummitBackgroundManager : Entity
                 Math.Clamp(previous.X + Calc.Random.Range(-28f, 28f), 18f, ScreenWidth - 18f),
                 previous.Y + Calc.Random.Range(20f, 36f)
             );
+        }
+    }
+
+    private string GetAscendCutsceneId()
+    {
+        if (!string.IsNullOrWhiteSpace(cutscene))
+            return cutscene;
+
+        return progressStage <= 12 ? $"CH20_ASCEND_VS_ELS_{progressStage}" : string.Empty;
+    }
+
+    private sealed class AscendCutscene : CutsceneEntity
+    {
+        private readonly FinalTitanSummitBackgroundManager manager;
+        private readonly string dialogId;
+
+        public AscendCutscene(FinalTitanSummitBackgroundManager manager, string dialogId)
+            : base(true, false)
+        {
+            this.manager = manager;
+            this.dialogId = dialogId;
+        }
+
+        public override void OnBegin(Level level)
+        {
+            Add(new Coroutine(Cutscene(level), true));
+        }
+
+        private IEnumerator Cutscene(Level level)
+        {
+            yield return manager.RunAscendCutscene(dialogId);
+            EndCutscene(level);
+        }
+
+        public override void OnEnd(Level level)
+        {
+            manager.FinishAscendCutscene();
+        }
+    }
+
+    private sealed class LaunchFader : Entity
+    {
+        public float Fade;
+        private readonly FinalTitanSummitBackgroundManager manager;
+
+        public LaunchFader(FinalTitanSummitBackgroundManager manager)
+        {
+            this.manager = manager;
+            Depth = -1000010;
+        }
+
+        public override void Render()
+        {
+            if (Fade <= 0f)
+                return;
+
+            Vector2 position = (Scene as Level).Camera.Position;
+            Draw.Rect(position.X - 10f, position.Y - 10f, 340f, 200f, (manager.dark ? Color.Black : Color.White) * Fade);
         }
     }
 

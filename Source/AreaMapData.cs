@@ -383,6 +383,8 @@ public static class AreaMapData
     /// </summary>
     public static void ApplyHardcodedRuntimeData()
     {
+        RefreshAvailableSides();
+
         foreach (var chapter in Chapters.OrderBy(ch => ch.Number))
         {
             try
@@ -485,8 +487,8 @@ public static class AreaMapData
             IsInterlude = false,
             HasBSide = true,
             HasCSide = true,
-            HasDSide = false, // DSide folder has no maps yet
-            HasDXSide = false, // DX-Side map not yet ready
+            HasDSide = false,
+            HasDXSide = false,
             MusicEvents = new[]
             {
                 mainMusic,
@@ -537,6 +539,33 @@ public static class AreaMapData
             18 => "event:/desolozantas/env/18_main",
             _ => $"event:/desolozantas/env/{chapterNumber:D2}_main"
         };
+    }
+
+    public static void RefreshAvailableSides()
+    {
+        foreach (ChapterDef chapter in Chapters)
+        {
+            string baseKey = ExtractBaseKey(chapter.SID);
+            if (string.IsNullOrEmpty(baseKey))
+                continue;
+
+            chapter.HasBSide = HasLoadedSide(baseKey, AreaModeExtender.MODE_BSIDE);
+            chapter.HasCSide = HasLoadedSide(baseKey, AreaModeExtender.MODE_CSIDE);
+            chapter.HasDSide = HasLoadedSide(baseKey, AreaModeExtender.MODE_DSIDE);
+            chapter.HasDXSide = HasLoadedSide(baseKey, AreaModeExtender.MODE_DXSIDE);
+        }
+    }
+
+    private static bool HasLoadedSide(string baseKey, int modeIndex)
+    {
+        try
+        {
+            return AreaData.Get(AreaModeExtender.BuildSideSID(modeIndex, baseKey)) != null;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
     private static void Register(ChapterDef chapter)

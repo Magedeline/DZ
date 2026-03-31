@@ -189,6 +189,8 @@ public static class AreaModeExtender
     {
         orig();
 
+        AreaMapData.RefreshAvailableSides();
+
         int extended = 0;
 
         foreach (AreaData area in AreaData.Areas)

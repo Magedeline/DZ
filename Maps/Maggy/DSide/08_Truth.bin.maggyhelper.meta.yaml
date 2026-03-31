@@ -1,0 +1,8 @@
+﻿schema: maggyhelper-map-meta-v1
+sid: Maggy/DSide/08_Truth
+baseKey: 08_Truth
+side: D
+modeIndex: 3
+isMainChapterEntry: false
+mainChapterSid: Maggy/ASide/08_Truth
+showInChapterSelect: false

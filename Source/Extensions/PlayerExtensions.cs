@@ -1,6 +1,9 @@
+using System;
 using Celeste;
 using Celeste.Mod.MaggyHelper;
 using MonoMod.Utils;
+
+using CopyAbilityType = MaggyHelper.Entities.Bosses.CopyAbilityType;
 
 namespace MaggyHelper.Extensions
 {
@@ -29,11 +32,9 @@ namespace MaggyHelper.Extensions
             if (session != null)
             {
                 session.IsKirbyModeActive = true;
-                if (maxDashes >= 1)
-                {
-                    player.Dashes = maxDashes;
-                }
             }
+
+            PersistDashInventory(player, maxDashes);
 
             TryApplyPlayerSprite(player, "kirby_player");
         }
@@ -68,8 +69,7 @@ namespace MaggyHelper.Extensions
         /// </summary>
         public static void SetMaxDashes(this Player player, int count)
         {
-            if (count >= 1)
-                player.Dashes = count;
+            PersistDashInventory(player, count);
         }
 
         public static void SetKirbyPowerState(this Player player, KirbyMode.KirbyPowerState powerState)
@@ -78,9 +78,48 @@ namespace MaggyHelper.Extensions
             if (session != null)
             {
                 session.CurrentKirbyPower = powerState.ToString();
+                session.CurrentCopyAbility = Enum.TryParse(powerState.ToString(), true, out CopyAbilityType ability)
+                    ? ability
+                    : CopyAbilityType.None;
             }
 
             if (player.Scene is Level level)
+            {
+                var kirbyMode = level.Tracker.GetEntity<KirbyMode>();
+                if (kirbyMode == null)
+                {
+                    kirbyMode = new KirbyMode();
+                    level.Add(kirbyMode);
+                }
+
+                kirbyMode.SetPowerState(powerState);
+            }
+        }
+
+        public static void RestorePersistentState(this Player player)
+        {
+            if (player?.Scene is not Level level)
+            {
+                return;
+            }
+
+            var session = MaggyHelperModule.Session;
+            if (session == null)
+            {
+                return;
+            }
+
+            PersistDashInventory(player, level.Session?.Inventory.Dashes ?? 0);
+
+            if (!session.IsKirbyModeActive)
+            {
+                return;
+            }
+
+            TryApplyPlayerSprite(player, "kirby_player");
+
+            if (TryGetStoredKirbyPower(session, out KirbyMode.KirbyPowerState powerState) &&
+                powerState != KirbyMode.KirbyPowerState.None)
             {
                 var kirbyMode = level.Tracker.GetEntity<KirbyMode>();
                 if (kirbyMode == null)
@@ -143,6 +182,29 @@ namespace MaggyHelper.Extensions
             {
                 player.Sprite.Play("idle");
             }
+        }
+
+        private static void PersistDashInventory(Player player, int dashCount)
+        {
+            if (dashCount < 1)
+            {
+                return;
+            }
+
+            if (player?.Scene is Level level)
+            {
+                level.Session.Inventory.Dashes = dashCount;
+            }
+
+            if (player != null)
+            {
+                player.Dashes = dashCount;
+            }
+        }
+
+        private static bool TryGetStoredKirbyPower(MaggyHelperModuleSession session, out KirbyMode.KirbyPowerState powerState)
+        {
+            return Enum.TryParse(session?.CurrentKirbyPower, true, out powerState);
         }
     }
 }

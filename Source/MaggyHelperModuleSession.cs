@@ -3,6 +3,8 @@ namespace Celeste.Mod.MaggyHelper
 {
     public class MaggyHelperModuleSession : EverestModuleSession
     {
+        private string currentKirbyPower = global::MaggyHelper.Extensions.KirbyMode.KirbyPowerState.None.ToString();
+
         public bool BossFightActive { get; set; }
         public string CurrentBossName { get; set; }
         public int BossesDefeated { get; set; }
@@ -10,10 +12,10 @@ namespace Celeste.Mod.MaggyHelper
         public global::MaggyHelper.Entities.Bosses.CopyAbilityType CurrentCopyAbility { get; set; }
         public string CurrentKirbyPower
         {
-            get => CurrentCopyAbility.ToString();
-            set => CurrentCopyAbility = Enum.TryParse(value, true, out global::MaggyHelper.Entities.Bosses.CopyAbilityType ability)
-                ? ability
-                : global::MaggyHelper.Entities.Bosses.CopyAbilityType.None;
+            get => currentKirbyPower;
+            set => currentKirbyPower = string.IsNullOrWhiteSpace(value)
+                ? global::MaggyHelper.Extensions.KirbyMode.KirbyPowerState.None.ToString()
+                : value;
         }
         public int EnemiesDefeated { get; set; }
 

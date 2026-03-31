@@ -1,6 +1,7 @@
 using System;
 using System.Reflection;
 using MaggyHelper.Entities;
+using MaggyHelper.Extensions;
 using MaggyHelper;
 using Microsoft.Xna.Framework;
 using Mono.Cecil.Cil;
@@ -404,6 +405,16 @@ namespace MaggyHelper
 
             // Call the original LoadLevel
             orig(self, playerIntro, isFromLoader);
+
+            try
+            {
+                self.Tracker.GetEntity<global::Celeste.Player>()?.RestorePersistentState();
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(LogLevel.Warn, "MaggyHelper",
+                    $"[PlayerState] Error restoring persistent player state: {ex.Message}\n{ex.StackTrace}");
+            }
         }
 
 

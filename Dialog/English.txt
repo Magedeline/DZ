@@ -5840,7 +5840,7 @@ Funny how ran into the struggle.
 {trigger 0 maddy turn right}
 
 [MADELINE left sad]
-This is where My Granny has passed away 9 years ago.
+This is where My Granny has passed away 10 years ago.
 
 [MADELINE left sadder]
 and I still miss her.
@@ -11949,20 +11949,86 @@ THE BETRAYAL!
 
 CH13_EXTRA_NPC_ALPHYS_LAB=
 [ALPHYS left nervous]
-O-oh! Visitors!
-I wasn't expecting... um... anyone!
+O-oh! Visitors...
+I wasn't expecting anyone down here.
 
 [ALPHYS left embarrassed]
-Sorry about the mess!
-I've been working on, um, important research!
+This part of the lab is supposed to be sealed.
+I... I guess you found the one room I never wanted anyone to see.
 
-[MADELINE right friendly]
-It's nice to meet you, Alphys.
+[MADELINE right concerned]
+Then tell us why it's here.
 
-[ALPHYS left excited]
-Y-you know my name?!
-Wait, has Undyne been talking about me?!
-Oh no, what did she say?!
+[KIRBY right distracted]
+These tanks have dark matter residue.
+And those notes mention Zero.
+What were you doing in this lab, Alphys?
+
+[ALPHYS left worried]
+I was studying things I should have left alone.
+If you want the truth...
+then I need to say it out loud.
+{+CH13_EXTRA_NPC_ALPHYS_LAB_TRUTH_00}
+
+CH13_EXTRA_NPC_ALPHYS_LAB_TRUTH_00=
+[ALPHYS left remembering]
+Years ago, I started a hidden project.
+Zero's biology, dark matter, and other life forms like you, Kirby.
+Anything I thought I could understand, I kept here.
+
+[ALPHYS left nervous]
+I thought determination could stabilize them.
+I thought I could force impossible bodies to survive.
+
+[BADELINE left concerned]
+You mixed determination with dark matter?
+
+[ALPHYS left worried]
+Y-yes...
+and it was a disaster.
+
+[ALPHYS left remembering]
+The subjects began to melt together.
+They lost their shapes, their voices, their pain thresholds.
+They became living amalgamations.
+{+CH13_EXTRA_NPC_ALPHYS_LAB_TRUTH_01}
+
+CH13_EXTRA_NPC_ALPHYS_LAB_TRUTH_01=
+[KIRBY right upset]
+So the records were real...
+
+[ALPHYS left worried]
+Every single one.
+When they started lashing out, I had to put them down myself.
+I told the public the lab had been shut down safely.
+That was a lie.
+
+[KIRBY right angry]
+You lied to everyone.
+You turned living things into experiments.
+I trusted you.
+
+[MADELINE right upset]
+Alphys...
+how long were you going to keep hiding this?
+
+[ALPHYS left thinking]
+Until I couldn't anymore.
+I kept telling myself I was protecting people,
+but really I was protecting myself from what I did.
+
+[ALPHYS left smile]
+No more lies.
+I'll release the records, expose the project,
+and do whatever it takes to make this right.
+
+[KIRBY right determined]
+That won't undo it.
+But if you're serious, then start with the truth.
+
+[ALPHYS left worried]
+I will.
+Even if everyone hates me for it.
 
 CH13_EXTRA_NPC_VULKIN_HELPFUL=
 [VULKIN left happy]
@@ -13547,10 +13613,11 @@ How do we stop him?
 [BADELINE left screaming]
 MADELINE! DON'T GIVE UP!
 
-CH16_ELS_STORY_INTRO
-Long ago Two Races Rule over the earthh...
-Humans and Monsters
-One Day They all get slaughter by els without a mercy
+CH16_ELS_STORY_INTRO=
+In the cracks between broken timelines,
+the hatred of Zero did not disappear.
+It fused with dark matter and discarded possibilities.
+From that will, Els was born.
 
 CH16_ELS_INTRO_MY_WORLD_NAME= ELS		My World
 
@@ -13563,58 +13630,63 @@ CH16_MADDY_FILE_ERASED_FATAL= File Corruptted... Fatal Error Detected
 # ================================
 
 CH16_ELS_BOSS_INTRO_00=
-Howdy Madeline
-It's me Suit The Suited Man
-I Really like what you have done so far
-with you and your friends would never made this far
-[titankingfake left normal]
-But with your guidance
-he is dead
-and I have not only the fountian of dreams, or six human soul, but I have kirby ability and everything like literally
+[zeroreal left normal]
+You want to know what I am, Madeline?
+Then listen carefully.
+
+[zeroreal left normal]
+I was not born the way you were.
+I was pieced together from Zero's hatred,
+dark matter, and the remains of possibilities that should have died.
+
+[zeroreal left wut]
+When those fragments found a will,
+they stopped being a weapon.
+That is how I became Zero.
 
 CH16_ELS_BOSS_INTRO_01=
-man this been awhile ride
-aww you feel left out for you madeline
-[badelinefake left nomral]
-well don't worry your pretty little head
-because after I able to collect all of the powers
-[torielfake right normal]
-and I need one more berry 
-[asrielfake left normal]
-before I become a GOD of everything
-[elsfake center menacing]
-and with that power
-[magolorfake right normal]
-halcandras
-[friskfake left normal]
-humanity
-[ralseifake right normal]
-darkeners
-[asgorefake left normal]
-monsterkind
-[wtfisthisfake left normal]
-and everyone else
-[charafake left normal]
-I will show you all of what I'm capable of
+[zeroreal left normal]
+And then I saw you.
+A girl who keeps creating new outcomes no matter how many times she falls.
+An endless chain of possibilities.
+
+[zeroreal left normal]
+That is why I chose you.
+With your potential, I will not stop at one world.
+Not this mountain.
+Not this universe.
+
+[zeroreal left wut]
+I will consume the entire Oversival multiverse
+until every future belongs to me.
 
 CH16_ELS_BOSS_INTRO_02=
-also forget escaping from your old save files
-it's already long dead gone
-[floweyfake left normal]
-because I just have a wonderful idea just for you
 [zeroreal left normal]
-I will erase your existence from this world
-and turn into nothingness
-over and over and OVER AGAIN
-until you beg for mercy
+But there was one obstacle between me and that future.
+Your grandmother.
+Granny.
+
+[MADELINE left surprised]
+Granny...?
+What did you do?
+
+[zeroreal left normal]
+I could not break her spirit,
+so I chose something slower.
+I pushed age into her bones.
+I made her weaker, day by day,
+hoping time itself would kill her for me.
+
+[MADELINE left angry]
+You hurt Granny just to reach me?!
+
+[BADELINE left yell]
+Madeline, focus!
+
 [zeroreal left wut]
-heh, you think you can stop me
-[suitedmanreal left normal]
-well think again madeline
-because this time
-I have become more powerful than ever before
-and with that power
-I will consume everything
+Yes.
+Now show me whether those endless possibilities of yours
+can stop what Zero has become.
 
 CH16_CALL_FOR_HELP_00=
 YOU CALL EMILY FOR HELP

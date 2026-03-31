@@ -12,7 +12,7 @@
             "stopAtEntry": false,
             "console": "integratedTerminal",
             "sourceMap": true,
-            "symbolSearchPath": "${workspaceFolder}/bin/Debug"
+            "symbolSearchPath": "${workspaceFolder}/bin"
         },
         {
             "name": "Attach to Celeste",

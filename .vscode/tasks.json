@@ -2,13 +2,30 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
+			"label": "build",
+			"type": "shell",
+			"command": "${env:ProgramFiles}\\dotnet\\dotnet.exe",
+			"args": [
+				"build",
+				"MaggyHelper.sln"
+			],
+			"problemMatcher": [
+				"$msCompile"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		},
+		{
 			"label": "watch",
 			"type": "shell",
-			"command": "dotnet",
+			"command": "${env:ProgramFiles}\\dotnet\\dotnet.exe",
 			"args": [
 				"watch",
-				"-p",
-				"MaggyHelper.sln"
+				"--project",
+				"MaggyHelper.sln",
+				"build"
 			],
 			"isBackground": true,
 			"problemMatcher": [

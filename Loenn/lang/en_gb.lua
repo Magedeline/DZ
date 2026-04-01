@@ -59,6 +59,66 @@ return {
                 bossMusic = "Boss Music Event"
             }
         },
+        ["MaggyHelper/GalactaKnightClone"] = {
+            placements = {
+                default = "Galacta Knight Clone"
+            },
+            attributes = {
+                health = "Boss Health",
+                moveSpeed = "Move Speed",
+                attackCooldown = "Attack Cooldown",
+                orbitRadius = "Orbit Radius",
+                dashSpeed = "Dash Speed",
+                playMusicOnStart = "Play Music On Start",
+                bossMusic = "Boss Music Event",
+                spritePath = "Sprite Root Path",
+                idleAnimationPath = "Idle Animation Path",
+                moveAnimationPath = "Move Animation Path",
+                chargeAnimationPath = "Charge Animation Path",
+                slashAnimationPath = "Slash Animation Path",
+                warpAnimationPath = "Warp Animation Path"
+            }
+        },
+        ["MaggyHelper/GalacticKnightClone"] = {
+            placements = {
+                default = "Galacta Knight Clone"
+            },
+            attributes = {
+                health = "Boss Health",
+                moveSpeed = "Move Speed",
+                attackCooldown = "Attack Cooldown",
+                orbitRadius = "Orbit Radius",
+                dashSpeed = "Dash Speed",
+                playMusicOnStart = "Play Music On Start",
+                bossMusic = "Boss Music Event",
+                spritePath = "Sprite Root Path",
+                idleAnimationPath = "Idle Animation Path",
+                moveAnimationPath = "Move Animation Path",
+                chargeAnimationPath = "Charge Animation Path",
+                slashAnimationPath = "Slash Animation Path",
+                warpAnimationPath = "Warp Animation Path"
+            }
+        },
+        ["MaggyHelper/MorphoKnightClone"] = {
+            placements = {
+                default = "Morpho Knight Clone"
+            },
+            attributes = {
+                health = "Boss Health",
+                moveSpeed = "Move Speed",
+                attackCooldown = "Attack Cooldown",
+                orbitRadius = "Orbit Radius",
+                dashSpeed = "Dash Speed",
+                playMusicOnStart = "Play Music On Start",
+                bossMusic = "Boss Music Event",
+                spritePath = "Sprite Root Path",
+                idleAnimationPath = "Idle Animation Path",
+                moveAnimationPath = "Move Animation Path",
+                chargeAnimationPath = "Charge Animation Path",
+                slashAnimationPath = "Slash Animation Path",
+                warpAnimationPath = "Warp Animation Path"
+            }
+        },
         ["MaggyHelper/WaddleDee"] = {
             placements = {
                 default = "Waddle Dee"

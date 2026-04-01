@@ -159,7 +159,11 @@ local attackPatterns = {
     "VortexStrike",
     "DoubleSideSlash",
     "MorphoEmerge",
-    "TimeborderCollapse"
+    "TimeborderCollapse",
+    -- Utility / clone summons
+    "SummonGalactaKnightClone",
+    "SummonMorphoKnightClone",
+    "ClearKnightClones"
 }
 
 -- Pattern index for different behavior modes
@@ -203,6 +207,7 @@ elsTrueFinalBoss.tooltips = {
     startHit = "Boss takes initial hit to start battle immediately (BadelineBoss style)",
     attackSequence = [[Custom attack sequence (comma-separated attack names)
 Leave empty for default AI behavior.
+Optional per-step delay syntax: AttackName:1.25
 
 PHASE 1 - DOPPIA ELILLCA (Duality/Mirror):
 • DoppiaCloneAssault - Spawns 4 shadow clones
@@ -243,7 +248,12 @@ PHASE 3 - SIAMO ZERO (Fallen Path / Corrupted Nightmare):
 • VortexStrike - Vortex summon + pull-in + explosive blade release
 • DoubleSideSlash - Two sweeping crescent fans from left/right
 • MorphoEmerge - Vanish + emerge from below with upward pillar strike
-• TimeborderCollapse - 120-frame reality distortion + 3 projectile waves + final 24-projectile burst]]
+• TimeborderCollapse - 120-frame reality distortion + 3 projectile waves + final 24-projectile burst
+
+UTILITY / CLONES:
+• SummonGalactaKnightClone - Spawns a roaming Galacta Knight clone on Els' left
+• SummonMorphoKnightClone - Spawns a roaming Morpho Knight clone on Els' right
+• ClearKnightClones - Removes any currently active knight clones]]
 }
 
 -- Attack descriptions for reference (based on C# implementation)
@@ -447,7 +457,18 @@ Effects:
   3 Waves (0.8s apart): projectiles from screen left/right (6/8/10 per side)
   Finale: white flash, screen shake (4.0), displacement (1024px)
   Final burst: 24 crescent projectiles radiating from center (red, varied speed)
-  Total duration: ~5s including 2s fade-out]]
+    Total duration: ~5s including 2s fade-out]],
+
+        SummonGalactaKnightClone = [[Spawns a roaming Galacta Knight clone at Els' left flank.
+Clone behavior: orbiting duelist with crescent volleys, dash slashes, warp strikes, and radial sword bursts.
+    Sequence use: can be inserted into attackSequence or called with a custom delay using SummonGalactaKnightClone:1.5]],
+
+        SummonMorphoKnightClone = [[Spawns a roaming Morpho Knight clone at Els' right flank.
+Clone behavior: orbiting duelist with warp strikes, crescent volleys, dash slashes, and radial blade bursts.
+Sequence use: can be inserted into attackSequence or called with a custom delay using SummonMorphoKnightClone:1.5]],
+
+        ClearKnightClones = [[Despawns any active knight clones previously summoned by the Els attack sequence.
+Useful for transition beats, cleanup before cutscenes, or phase handoff scripting.]]
 }
 
 function elsTrueFinalBoss.ignoredFields(entity)

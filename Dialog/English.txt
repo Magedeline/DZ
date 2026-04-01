@@ -11947,88 +11947,436 @@ But alas, my ratings have been down lately.
 Tenna's new gameshow is stealing my audience!
 THE BETRAYAL!
 
-CH13_EXTRA_NPC_ALPHYS_LAB=
-[ALPHYS left nervous]
-O-oh! Visitors...
-I wasn't expecting anyone down here.
+CH13_ALPHY_TRUTH_LABS_PRE_INTRO=
+[none]
+To: Madeline
+thank you madeline for encoruage me to have something that I can motivated
+I was afriad that undyne would feel that she would died because I wasn't able to help her
+now with that out of the way I want to share something that lied beyond this elevator
+you may want to prepare something or someone at least, afraid or not
+but in the end I own you an explanation.
+From your best pride: Alphy
 
-[ALPHYS left embarrassed]
-This part of the lab is supposed to be sealed.
-I... I guess you found the one room I never wanted anyone to see.
+CH13_ELEVATOR_MALFUNCTION=
+WARNING... WARNING!
+EVELVATOR DESTABLIZED!
+POWERFUEL LEAKED!
+ENEGRY BATTERY SURGE!
+ADDITUDE HEIGHT DROPPING...
 
-[MADELINE right concerned]
-Then tell us why it's here.
+CH13_ENTRYLOG_00=
+[none]
+ENTRYLOG NUMBER 1
+This is really it, my first experiments to study of those living organsim
+I hope this wouldn't get any worst.
+but either in that lets called them
+dark matter or speiciesmen ZERO EIGHTYSIX
 
-[KIRBY right distracted]
-These tanks have dark matter residue.
-And those notes mention Zero.
-What were you doing in this lab, Alphys?
+CH13_ENTRYLOG_01=
+[none]
+ENTRYLOG NUMBER 2
+The first experiments was a small success, but I wonder of how they would react after my sastifaction.
+... I would have to come back tommorrow.
 
-[ALPHYS left worried]
-I was studying things I should have left alone.
-If you want the truth...
-then I need to say it out loud.
-{+CH13_EXTRA_NPC_ALPHYS_LAB_TRUTH_00}
+CH13_ENTRYLOG_02=
+[none]
+ENTRYLOG NUMBER 3
+The darkmatter seem to... communicate me?
+Hold up I think they have there own culteral language
+It's describe something that I could not understand
+I need to decoded and translated.
 
-CH13_EXTRA_NPC_ALPHYS_LAB_TRUTH_00=
-[ALPHYS left remembering]
-Years ago, I started a hidden project.
-Zero's biology, dark matter, and other life forms like you, Kirby.
-Anything I thought I could understand, I kept here.
+CH13_ENTRYLOG_03=
+[none]
+ENTRYLOG NUMBER 4
+I Figure out of what therye saying, but they only said that they want food
+well in that case I have plenty of dog food for them right?
+... no that isn't suitable for them how about actual food.
 
-[ALPHYS left nervous]
-I thought determination could stabilize them.
-I thought I could force impossible bodies to survive.
+CH13_ENTRYLOG_04=
+[none]
+ENTRYLOG NUMBER 5
+So many thing I have discover during decoding there language.
+they seem have it link to the two words, it seem to said...
+Siamo Zero...
+... I do not understand but I must keep trying.
 
-[BADELINE left concerned]
-You mixed determination with dark matter?
+CH13_ENTRYLOG_05=
+[none]
+ENTRYLOG NUMBER 6
+Oh Shit! no No No! NO!!!
 
-[ALPHYS left worried]
-Y-yes...
-and it was a disaster.
+CH13_ENTRYLOG_06=
+[none]
+ENTRYLOG NUMBER 7
+It was a disater from the 4th experiments, I don't know what just happen.
+I feel they something about them, something that the roaring titan has told us not.
+despite that they said to bring determination to them.
+I think may need to sneak into there and take one of those samples.
 
-[ALPHYS left remembering]
-The subjects began to melt together.
-They lost their shapes, their voices, their pain thresholds.
-They became living amalgamations.
-{+CH13_EXTRA_NPC_ALPHYS_LAB_TRUTH_01}
+CH13_ENTRYLOG_07=
+[none]
+ENTRYLOG NUMBER 8
+I brought the samples of determination with me, and I hope they don't attack me.
+If this happen I brought the algamation with me just for protections, lets hope and dream that they don't do something insane.
+{trigger 0 play the giygas sound ressurected from darkmatter reactions}
+Okay this is so much worst than I expected, I need to get out of here!
 
-CH13_EXTRA_NPC_ALPHYS_LAB_TRUTH_01=
+CH13_ENTRYLOG_08=
+[none]
+ENTRYLOG NUMBER 9
+Determination exposure did not heal the damaged sample.
+It locked the body into survival mode and kept the tissue moving after structural collapse.
+Every heartbeat made the dark matter spread faster through the host.
+
+[MADELINE left concerned]
+She wrote that like she was measuring weather.
+
+[KIRBY right sad]
+It sounds like they were suffering the whole time.
+
+CH13_ENTRYLOG_09=
+[none]
+ENTRYLOG NUMBER 10
+The mass has begun copying nearby anatomy.
+Eyes appear where the subject needs sight.
+Teeth form along defensive tissue.
+It is not evolving naturally.
+It is improvising under fear.
+
+[MADELINE left upset]
+Improvising under fear...
+that's not adaptation, that's panic.
+
+[KIRBY right concerned]
+And she kept watching it happen.
+
+CH13_ENTRYLOG_10=
+[none]
+ENTRYLOG NUMBER 11
+When startled, the specimens split into two patterns.
+Closed chambers produce aggression, armor, and striking limbs.
+Open exits produce flattening, softening, and liquid escape behavior.
+Fight and flight are no longer instincts.
+They are physical states.
+
 [KIRBY right upset]
-So the records were real...
+So even their fear changed their bodies.
 
-[ALPHYS left worried]
-Every single one.
-When they started lashing out, I had to put them down myself.
-I told the public the lab had been shut down safely.
-That was a lie.
+[MADELINE left angry]
+No one should have to survive like that.
+
+CH13_ENTRYLOG_11=
+[none]
+ENTRYLOG NUMBER 12
+Several amalgamations still respond to familiar voices.
+One repeated the same name for three hours.
+Another retreated when I raised my voice.
+I cannot keep pretending the mind is gone.
+
+[MADELINE left sad]
+They were still in there.
 
 [KIRBY right angry]
-You lied to everyone.
-You turned living things into experiments.
-I trusted you.
+Then she knew these weren't monsters.
+They were victims.
 
-[MADELINE right upset]
-Alphys...
-how long were you going to keep hiding this?
+CH13_ENTRYLOG_12=
+[none]
+ENTRYLOG NUMBER 13
+Subject clusters begin sharing distress signals.
+When one panics, the others answer through the walls.
+The entire chamber reacts as a single wounded organism.
+I believe they feel each other.
 
-[ALPHYS left thinking]
-Until I couldn't anymore.
-I kept telling myself I was protecting people,
-but really I was protecting myself from what I did.
+[KIRBY right distracted]
+They were all connected...
 
-[ALPHYS left smile]
-No more lies.
-I'll release the records, expose the project,
-and do whatever it takes to make this right.
+[MADELINE left concerned]
+That would make every experiment even crueler.
 
-[KIRBY right determined]
-That won't undo it.
-But if you're serious, then start with the truth.
+CH13_ENTRYLOG_13=
+[none]
+ENTRYLOG NUMBER 14
+Dark matter does not consume dead tissue first.
+It preserves living tissue and repurposes it.
+Pain tolerance drops.
+Awareness remains.
+The body is remodeled faster when the subject is afraid.
+
+[MADELINE left angry]
+She knew fear made it worse and kept going.
+
+[KIRBY right sad]
+No wonder this whole lab feels wrong.
+
+CH13_ENTRYLOG_14=
+[none]
+ENTRYLOG NUMBER 15
+Specimen 86 reacted to Kirby-related residue more aggressively than any other sample.
+Not with recognition.
+With hunger.
+As if it remembered a missing shape and wanted to become it.
+
+[KIRBY right surprised]
+It was trying to copy me?
+
+[MADELINE left distracted]
+Or fill itself with whatever power it thought you had.
+
+CH13_ENTRYLOG_15=
+[none]
+ENTRYLOG NUMBER 16
+One subject chose flight and forced itself through a ventilation grate.
+It shed bone, skin, and voice in layers, then reassembled beyond the barrier.
+I found pieces of it still trying to crawl back toward the others.
+I euthanized what I could reach.
+
+[MADELINE left upset]
+That's horrible...
+
+[KIRBY right angry]
+It was trying to get back to the others.
+She still called that containment.
+
+CH13_ENTRYLOG_16=
+[none]
+ENTRYLOG NUMBER 17
+Determination and dark matter are a lethal pair.
+One refuses to die.
+The other refuses to stay one shape.
+Together they create persistence without mercy.
+Recovery is impossible once the cycle begins.
+
+[KIRBY right concerned]
+Then every dose made them harder to save.
+
+[MADELINE left determined]
+Which means she kept crossing the line on purpose.
+
+CH13_ENTRYLOG_17=
+[none]
+ENTRYLOG NUMBER 18
+I caught one amalgamation staring at its reflection.
+It touched the glass, then hid its face.
+Another used a tendril to cover the eyes of the first.
+They are afraid of what they have become.
+I am afraid of what I made.
+
+[MADELINE left sad]
+That might be the first honest line in any of these logs.
+
+[KIRBY right upset]
+Too late for honesty if they're the ones paying for it.
+
+CH13_ENTRYLOG_18=
+[none]
+ENTRYLOG NUMBER 19
+Specimen 86 has surpassed environmental limits.
+It remained coherent beyond the event horizon threshold.
+It no longer requires one host body.
+It can infest, abandon, and reassemble across multiple vessels.
+If it reaches open reality, containment will fail everywhere.
+
+[KIRBY right angry]
+That's not a specimen anymore.
+That's a spreading disaster.
+
+[MADELINE left determined]
+And she wrote this before warning anyone.
+
+CH13_TAPE_00=
+[none]
+oh asgore.
+yea?
+I brought and bake something for you.
+oh really how sweet of you.
+wait is this?
+strawberry short cake yeah I just made this myself.
+it took me week to grow one of those plants from the seeds of those bird droppling
+ah so no wonder why you were out for bird feeding
+what? mffg no that just gross, they just give me a bag of seed to me with a blue crow.
+tori I got to be honest this taste is the most amazingness cake I ever have.
+yeah I bet so for me too.
+oh dear it's getting late, my new born sons will be coming in a months afterwards
+yeah hope our sons would be happy to see those bird.
+anyways good night tori
+good night asgore
+shoot I forgot to turn off the camera.
+
+CH13_TAPE_01=
+[none]
+hey chara...
+are you recording?
+yes why?
+because the camera cap is covering the view.
+oh right hold up
+... there better?
+looks good
+now then we can explore to the depth of the cave.
+azzy your really sure about this?
+I don't think this is really good idea to go in there without our mom and dad
+chara I get it but either in way lets go.
+sigh this is why I shouldn't came to this vortex.. big mistake
+
+CH13_TAPE_02=
+[none]
+Asriel your not feeling well
+yeah cough cough I am fine
+it just a scracth of my throat
+but your eye is abit red
+here let me take you back home.
+that sound nice to me.
+I can barely see it and I felt... sick
+
+CH13_TAPE_03=
+[none]
+You put our both son in danger king titan,
+I'm sorry I never meant for both of them
+oh really then explain this that asriel is sick like he can't breath barely.
+asriel I think this is really bad idea about this.
+no it's okay chara I loud cough need some rest.
+this is all my fault.
+I'm really am an idiot...
+
+CH13_TAPE_04=
+[none]
+asriel
+I know you barely hear me or feel that I am still here
+but I want to say this, I met this oldlady she encoruage me to climb to this mountian name celeste,
+I was pull into that vortex
+and met you.
+but... I ruined everything.
+I failed you asriel...
+... what? what you said?
+... a star warrior?
+what that even suppose to mean? and who is the star warrior anyways?
+
+CH13_TAPE_05=
+[none]
+Old lady are you sure about this?
+[granny]
+positive I know you have the strength within it.
+[none]
+if it is gonna be another deja vu of this stupid mountian then I am willing to find out why.
+[granny]
+suit youself chara there things that you ready to meet but to others no ready to encounter
+[none]
+sheesh get the actual fuck help old lady
+
+CH13_TAPE_FINAL=
+[none]
+I am so weak but still carrying asriel entering back to this floating mountian.
+I do not know how long I can live for.
+asriel I know your the only one who can help me but please anything say anything, I need your help.
+[darkmatter]
+perhaps you should turn around...
+[none]
+who said th-
+no...
+No!
+NOOOOOOOO!!!!!
+
+CH13_ENTRYLOG_PREFINAL=
+[none]
+ENTRYLOG NUMBER 20
+I am sealing the lab tonight.
+Officially, I will report a safe shutdown and contained losses.
+Unofficially, that is a lie I am telling because I am afraid.
+The amalgamations are not gone.
+Specimen 86 is not dead.
+If these records are found, then let them stand as proof that I chose silence over truth.
+
+[MADELINE left angry]
+She knew exactly what she was doing.
+
+[KIRBY right upset]
+And everyone else had to live with what she buried.
+
+CH13_ENTRYLOG_FINAL=
+[none]
+ENTRYLOG NUMBER Infinite
+[none]
+Playback source unidentified.
+Signal origin no longer matches the recorder.
+[zero]
+Hello Kirby... Nice seeing you again...
+
+[KIRBY right shocked]
+That voice...
+It's looking right at us.
+
+[MADELINE left concerned]
+Back away from the terminal. Now.
+
+CH13_ALPHYS_LAB_TRUTH=
+{+CH13_ALPHY_TRUTH_LABS_00}
+
+CH13_ALPHY_TRUTH_LABS_00=
+[ALPHYS left nervous]
+You read the logs, didn't you?
+Then you already know the part I was trying not to say.
+I wasn't studying a sickness.
+I was studying survival twisted into biology.
+{+CH13_ALPHY_TRUTH_LABS_01}
+
+CH13_ALPHY_TRUTH_LABS_01=
+[ALPHYS left remembering]
+Dark matter changed with pressure.
+Trap it, and it built weapons.
+Threaten it, and it turned the body fluid enough to flee.
+Fight and flight stopped being choices.
+They became the only shapes the victims were allowed to have.
+
+[KIRBY right angry]
+You keep saying "it" like the dark matter made every decision.
+You were the one feeding it more lives.
+{+CH13_ALPHY_TRUTH_LABS_02}
+
+CH13_ALPHY_TRUTH_LABS_02=
+[ALPHYS left sad]
+I know.
+And the worst part is that I heard them.
+Fragments of names.
+Fragments of memory.
+Enough to know they were still aware while their bodies were being rewritten.
+
+[MADELINE left angry]
+Then call them what they were.
+Not specimens.
+Not assets.
+People.
 
 [ALPHYS left worried]
-I will.
-Even if everyone hates me for it.
+Victims.
+They were victims.
+And I turned my fear into procedure because procedure sounded cleaner than guilt.
+{+CH13_ALPHY_TRUTH_LABS_03}
+
+CH13_ALPHY_TRUTH_LABS_03=
+[KIRBY right upset]
+You don't get to undo that by sounding sorry.
+
+[ALPHYS left worried]
+I know I don't.
+But I can stop hiding.
+I'll release every entry log, every failed report, every false statement I made about the shutdown.
+If the Underground hates me for it, then that's the part I deserve.
+
+[MADELINE left determined]
+Start with the truth.
+No more soft words.
+No more sealed doors.
+
+[ALPHYS left thinking]
+Then here's the truth.
+Specimen 86 was the first dark matter body to keep its will across hosts.
+The amalgamations were never mindless.
+And this lab should have been destroyed the day I realized that.
+
+[KIRBY right determined]
+Then help us finish what you started.
+This time, no more lies.
 
 CH13_EXTRA_NPC_VULKIN_HELPFUL=
 [VULKIN left happy]

@@ -54,9 +54,26 @@ namespace MaggyHelper.Entities.Bosses
         private Sprite eyeSprite;
         private Sprite swordSprite;
         private Sprite auraSprite;
+        private Sprite eyeFormSprite;
+        private Sprite swordsmanFormSprite;
         private VertexLight coreGlow;
         private VertexLight eyeGlow;
         private SoundSource voidLoop;
+
+        private string eyeFormSpriteRoot;
+        private string eyeDormantAnimationPath;
+        private string eyeIdleAnimationPath;
+        private string eyeAttackAnimationPath;
+        private string eyeTransformAnimationPath;
+        private string eyeEnragedAnimationPath;
+        private string eyeDefeatAnimationPath;
+
+        private string swordsmanFormSpriteRoot;
+        private string swordsmanIdleAnimationPath;
+        private string swordsmanReadyAnimationPath;
+        private string swordsmanSlashAnimationPath;
+        private string swordsmanRainbowAnimationPath;
+        private string swordsmanDefeatAnimationPath;
         
         private Color darkColor = new Color(30, 0, 50);
         private Color eyeColor = Color.Red;
@@ -74,6 +91,7 @@ namespace MaggyHelper.Entities.Bosses
         {
             health = data.Int("health", 1600);
             maxHealth = data.Int("maxHealth", 1600);
+            InitializeVisualConfig(data);
             SetupVisuals();
         }
 
@@ -81,11 +99,214 @@ namespace MaggyHelper.Entities.Bosses
             : base(position, "darker_dark_matter_boss", Vector2.One, 0f, true, false, 0f, 
                    new Hitbox(48f, 48f, -24f, -24f))
         {
+            InitializeVisualConfig(null);
             SetupVisuals();
         }
         #endregion
 
         #region Setup
+        private void InitializeVisualConfig(EntityData data)
+        {
+            eyeFormSpriteRoot = NormalizeSpriteRoot(data?.Attr("eyeFormSpriteRoot", "characters/darkmatter_boss_runtime") ?? "characters/darkmatter_boss_runtime");
+            eyeDormantAnimationPath = data?.Attr("eyeDormantAnimationPath", "dormant") ?? "dormant";
+            eyeIdleAnimationPath = data?.Attr("eyeIdleAnimationPath", "idle") ?? "idle";
+            eyeAttackAnimationPath = data?.Attr("eyeAttackAnimationPath", "attack") ?? "attack";
+            eyeTransformAnimationPath = data?.Attr("eyeTransformAnimationPath", "transform") ?? "transform";
+            eyeEnragedAnimationPath = data?.Attr("eyeEnragedAnimationPath", "enraged") ?? "enraged";
+            eyeDefeatAnimationPath = data?.Attr("eyeDefeatAnimationPath", "defeat") ?? "defeat";
+
+            swordsmanFormSpriteRoot = NormalizeSpriteRoot(data?.Attr("swordsmanFormSpriteRoot", "characters/darkerdark_swordsman_runtime") ?? "characters/darkerdark_swordsman_runtime");
+            swordsmanIdleAnimationPath = data?.Attr("swordsmanIdleAnimationPath", "idle") ?? "idle";
+            swordsmanReadyAnimationPath = data?.Attr("swordsmanReadyAnimationPath", swordsmanIdleAnimationPath) ?? swordsmanIdleAnimationPath;
+            swordsmanSlashAnimationPath = data?.Attr("swordsmanSlashAnimationPath", "slash") ?? "slash";
+            swordsmanRainbowAnimationPath = data?.Attr("swordsmanRainbowAnimationPath", "rainbow") ?? "rainbow";
+            swordsmanDefeatAnimationPath = data?.Attr("swordsmanDefeatAnimationPath", "defeat") ?? "defeat";
+        }
+
+        private static string NormalizeSpriteRoot(string root)
+        {
+            if (string.IsNullOrWhiteSpace(root))
+                return string.Empty;
+
+            return root.Trim().Trim('/').Replace('\\', '/') + "/";
+        }
+
+        private static bool HasAtlasFrames(string root, string animationPath)
+        {
+            return !string.IsNullOrWhiteSpace(root)
+                && !string.IsNullOrWhiteSpace(animationPath)
+                && GFX.Game.HasAtlasSubtextures(root + animationPath);
+        }
+
+        private static bool TryPlay(Sprite sprite, string animation)
+        {
+            if (sprite == null || string.IsNullOrWhiteSpace(animation))
+                return false;
+
+            try
+            {
+                sprite.Play(animation);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        private static void AddLoopWithFallback(Sprite sprite, string root, string id, string animationPath, string fallbackPath, float delay)
+        {
+            string resolvedPath = HasAtlasFrames(root, animationPath)
+                ? animationPath
+                : fallbackPath;
+
+            if (HasAtlasFrames(root, resolvedPath))
+                sprite.AddLoop(id, resolvedPath, delay);
+        }
+
+        private static void AddAnimWithFallback(Sprite sprite, string root, string id, string animationPath, string fallbackPath, float delay, string gotoAnimation = null)
+        {
+            string resolvedPath = HasAtlasFrames(root, animationPath)
+                ? animationPath
+                : fallbackPath;
+
+            if (!HasAtlasFrames(root, resolvedPath))
+                return;
+
+            if (string.IsNullOrWhiteSpace(gotoAnimation))
+                sprite.Add(id, resolvedPath, delay);
+            else
+                sprite.Add(id, resolvedPath, delay, gotoAnimation);
+        }
+
+        private Sprite CreateEyeFormSprite()
+        {
+            if (!HasAtlasFrames(eyeFormSpriteRoot, eyeIdleAnimationPath))
+                return null;
+
+            Sprite sprite = new Sprite(GFX.Game, eyeFormSpriteRoot);
+            AddLoopWithFallback(sprite, eyeFormSpriteRoot, "dormant", eyeDormantAnimationPath, eyeIdleAnimationPath, 0.15f);
+            AddLoopWithFallback(sprite, eyeFormSpriteRoot, "idle", eyeIdleAnimationPath, eyeDormantAnimationPath, 0.1f);
+            AddLoopWithFallback(sprite, eyeFormSpriteRoot, "attack", eyeAttackAnimationPath, eyeIdleAnimationPath, 0.06f);
+            AddAnimWithFallback(sprite, eyeFormSpriteRoot, "transform", eyeTransformAnimationPath, eyeAttackAnimationPath, 0.08f, "idle");
+            AddLoopWithFallback(sprite, eyeFormSpriteRoot, "enraged", eyeEnragedAnimationPath, eyeAttackAnimationPath, 0.05f);
+            AddAnimWithFallback(sprite, eyeFormSpriteRoot, "defeat", eyeDefeatAnimationPath, eyeAttackAnimationPath, 0.08f);
+            sprite.CenterOrigin();
+            sprite.Visible = false;
+            return sprite;
+        }
+
+        private Sprite CreateSwordsmanFormSprite()
+        {
+            if (!HasAtlasFrames(swordsmanFormSpriteRoot, swordsmanIdleAnimationPath))
+                return null;
+
+            Sprite sprite = new Sprite(GFX.Game, swordsmanFormSpriteRoot);
+            AddLoopWithFallback(sprite, swordsmanFormSpriteRoot, "idle", swordsmanIdleAnimationPath, swordsmanReadyAnimationPath, 0.1f);
+            AddLoopWithFallback(sprite, swordsmanFormSpriteRoot, "ready", swordsmanReadyAnimationPath, swordsmanIdleAnimationPath, 0.08f);
+            AddLoopWithFallback(sprite, swordsmanFormSpriteRoot, "slash", swordsmanSlashAnimationPath, swordsmanReadyAnimationPath, 0.04f);
+            AddLoopWithFallback(sprite, swordsmanFormSpriteRoot, "rainbow", swordsmanRainbowAnimationPath, swordsmanSlashAnimationPath, 0.05f);
+            AddAnimWithFallback(sprite, swordsmanFormSpriteRoot, "defeat", swordsmanDefeatAnimationPath, swordsmanSlashAnimationPath, 0.08f);
+            sprite.CenterOrigin();
+            sprite.Visible = false;
+            return sprite;
+        }
+
+        private bool UsingEyeFormSprite => eyeFormSprite != null && (currentPhase == BossPhase.Awakening || currentPhase == BossPhase.Phase1_Eye);
+
+        private bool UsingSwordsmanFormSprite => swordsmanFormSprite != null && currentPhase == BossPhase.Phase2_Swordsman;
+
+        private Sprite GetPrimaryVisualSprite()
+        {
+            if (UsingEyeFormSprite)
+                return eyeFormSprite;
+
+            if (UsingSwordsmanFormSprite)
+                return swordsmanFormSprite;
+
+            return coreSprite;
+        }
+
+        private Sprite GetSwordsmanVisualSprite()
+        {
+            return UsingSwordsmanFormSprite ? swordsmanFormSprite : swordSprite;
+        }
+
+        private void UpdateFormSpriteVisibility()
+        {
+            if (eyeFormSprite != null)
+                eyeFormSprite.Visible = UsingEyeFormSprite;
+
+            if (swordsmanFormSprite != null)
+                swordsmanFormSprite.Visible = UsingSwordsmanFormSprite;
+
+            if (UsingEyeFormSprite || UsingSwordsmanFormSprite)
+            {
+                coreSprite.Visible = false;
+                eyeSprite.Visible = false;
+                swordSprite.Visible = false;
+                auraSprite.Visible = false;
+            }
+            else
+            {
+                coreSprite.Visible = true;
+                eyeSprite.Visible = true;
+                auraSprite.Visible = true;
+            }
+        }
+
+        private void PlaySpriteAnimationWithFallback(Sprite sprite, params string[] candidates)
+        {
+            foreach (string candidate in candidates)
+            {
+                if (TryPlay(sprite, candidate))
+                    return;
+            }
+        }
+
+        private void PlayEyePhaseVisual(string customAnimation, string coreAnimation, string eyeAnimation)
+        {
+            if (UsingEyeFormSprite)
+            {
+                PlaySpriteAnimationWithFallback(eyeFormSprite, customAnimation, "idle", "dormant");
+                UpdateFormSpriteVisibility();
+                return;
+            }
+
+            coreSprite.Play(coreAnimation);
+            if (!string.IsNullOrWhiteSpace(eyeAnimation))
+                eyeSprite.Play(eyeAnimation);
+
+            UpdateFormSpriteVisibility();
+        }
+
+        private void PlaySwordsmanPhaseVisual(string customAnimation, string swordAnimation)
+        {
+            if (UsingSwordsmanFormSprite)
+            {
+                PlaySpriteAnimationWithFallback(swordsmanFormSprite, customAnimation, "ready", "idle");
+                UpdateFormSpriteVisibility();
+                return;
+            }
+
+            swordSprite.Play(swordAnimation);
+            UpdateFormSpriteVisibility();
+        }
+
+        private void SetVisualColor(Color color)
+        {
+            coreSprite.Color = color;
+            eyeSprite.Color = color;
+            swordSprite.Color = color;
+            auraSprite.Color = color;
+
+            if (eyeFormSprite != null)
+                eyeFormSprite.Color = color;
+
+            if (swordsmanFormSprite != null)
+                swordsmanFormSprite.Color = color;
+        }
+
         private void SetupVisuals()
         {
             // Core/body sprite
@@ -133,6 +354,22 @@ namespace MaggyHelper.Entities.Bosses
             
             // Void ambience
             Add(voidLoop = new SoundSource());
+
+            eyeFormSprite = CreateEyeFormSprite();
+            if (eyeFormSprite != null)
+            {
+                Add(eyeFormSprite);
+                PlaySpriteAnimationWithFallback(eyeFormSprite, "dormant", "idle");
+            }
+
+            swordsmanFormSprite = CreateSwordsmanFormSprite();
+            if (swordsmanFormSprite != null)
+            {
+                Add(swordsmanFormSprite);
+                PlaySpriteAnimationWithFallback(swordsmanFormSprite, "idle", "ready");
+            }
+
+            UpdateFormSpriteVisibility();
         }
         #endregion
 
@@ -153,6 +390,8 @@ namespace MaggyHelper.Entities.Bosses
                 rotationAngle += Engine.DeltaTime * 2f;
                 coreSprite.Rotation = rotationAngle;
             }
+
+            UpdateFormSpriteVisibility();
             
             // Pulsing glow
             coreGlow.Alpha = 1f + (float)Math.Sin(Scene.TimeActive * 2f) * 0.3f;
@@ -221,13 +460,12 @@ namespace MaggyHelper.Entities.Bosses
             // Eye opens
             yield return 1f;
             
-            eyeSprite.Play("open");
+            PlayEyePhaseVisual("idle", "idle", "open");
             Audio.Play("event:/darkerdarkmatter_awaken", Position);
             
             var level = Scene as Level;
             level?.Shake(1f);
             
-            coreSprite.Play("idle");
             auraSprite.Play("dark");
             
             yield return 1f;
@@ -270,7 +508,7 @@ namespace MaggyHelper.Entities.Bosses
         private IEnumerator EnterPhase2()
         {
             isSwordsmanForm = true;
-            coreSprite.Play("transform");
+            PlayEyePhaseVisual("transform", "transform", "rage");
             Audio.Play("event:/darkerdarkmatter_transform", Position);
             
             var level = Scene as Level;
@@ -281,11 +519,10 @@ namespace MaggyHelper.Entities.Bosses
             
             // Sword appears
             swordSprite.Visible = true;
-            swordSprite.Play("ready");
+            UpdateFormSpriteVisibility();
+            PlaySwordsmanPhaseVisual("ready", "ready");
             Audio.Play("event:/darkerdarkmatter_sword_appear", Position);
-            
-            coreSprite.Play("idle");
-            eyeSprite.Play("rage");
+
             eyeColor = Color.Yellow;
             eyeGlow.Color = eyeColor;
             
@@ -318,11 +555,13 @@ namespace MaggyHelper.Entities.Bosses
             coreGlow.Color = new Color(60, 0, 100);
             coreGlow.StartRadius = 96f;
             coreGlow.EndRadius = 160f;
-            
+
             eyeSprite.Play("rage");
             eyeColor = Color.Red;
             eyeGlow.Color = eyeColor;
             eyeGlow.Alpha = 2f;
+
+            UpdateFormSpriteVisibility();
             
             yield return 2f;
         }
@@ -391,10 +630,9 @@ namespace MaggyHelper.Entities.Bosses
         #region Phase 1 Attacks
         private IEnumerator DarkBeamAttack()
         {
-            eyeSprite.Play("attack");
+            PlayEyePhaseVisual("attack", "pulse", "attack");
             Audio.Play("event:/darkerdarkmatter_dark_beam", Position);
-            
-            coreSprite.Play("pulse");
+
             eyeGlow.Alpha = 2f;
             
             var level = Scene as Level;
@@ -427,13 +665,12 @@ namespace MaggyHelper.Entities.Bosses
             yield return 0.5f;
             
             eyeGlow.Alpha = 1f;
-            coreSprite.Play("idle");
-            eyeSprite.Play("open");
+            PlayEyePhaseVisual("idle", "idle", "open");
         }
 
         private IEnumerator VoidOrbsAttack()
         {
-            coreSprite.Play("pulse");
+            PlayEyePhaseVisual("attack", "pulse", "open");
             Audio.Play("event:/darkerdarkmatter_void_orbs", Position);
             
             var level = Scene as Level;
@@ -450,7 +687,7 @@ namespace MaggyHelper.Entities.Bosses
                 yield return 0.1f;
             }
             
-            coreSprite.Play("idle");
+            PlayEyePhaseVisual("idle", "idle", "open");
         }
 
         private IEnumerator DimensionalTearAttack()
@@ -473,7 +710,7 @@ namespace MaggyHelper.Entities.Bosses
 
         private IEnumerator GravityPullAttack()
         {
-            coreSprite.Play("pulse");
+            PlayEyePhaseVisual("attack", "pulse", "open");
             Audio.Play("event:/darkerdarkmatter_gravity_pull", Position);
             
             var level = Scene as Level;
@@ -495,14 +732,15 @@ namespace MaggyHelper.Entities.Bosses
             }
             
             coreGlow.Alpha = 1f;
-            coreSprite.Play("idle");
+            PlayEyePhaseVisual("idle", "idle", "open");
         }
         #endregion
 
         #region Phase 2 Attacks
         private IEnumerator RainbowSwordAttack()
         {
-            swordSprite.Play("rainbow");
+            Sprite swordsmanSprite = GetSwordsmanVisualSprite();
+            PlaySwordsmanPhaseVisual("rainbow", "rainbow");
             Audio.Play("event:/darkerdarkmatter_rainbow_sword", Position);
             
             var level = Scene as Level;
@@ -512,7 +750,7 @@ namespace MaggyHelper.Entities.Bosses
             
             for (int i = 0; i < 6; i++)
             {
-                swordSprite.Color = rainbowColors[i];
+                swordsmanSprite.Color = rainbowColors[i];
                 
                 level?.Displacement.AddBurst(Position + new Vector2(50f, 0f), 0.5f, 24f, 64f, 0.4f);
                 level?.Flash(rainbowColors[i] * 0.2f, true);
@@ -520,13 +758,13 @@ namespace MaggyHelper.Entities.Bosses
                 yield return 0.15f;
             }
             
-            swordSprite.Color = Color.White;
-            swordSprite.Play("ready");
+            swordsmanSprite.Color = Color.White;
+            PlaySwordsmanPhaseVisual("ready", "ready");
         }
 
         private IEnumerator DarkSlashAttack()
         {
-            swordSprite.Play("slash");
+            PlaySwordsmanPhaseVisual("slash", "slash");
             Audio.Play("event:/darkerdarkmatter_dark_slash", Position);
             
             var player = Scene.Tracker.GetEntity<global::Celeste.Player>();
@@ -547,12 +785,12 @@ namespace MaggyHelper.Entities.Bosses
             Speed = Vector2.Zero;
             level?.Shake(1f);
             
-            swordSprite.Play("ready");
+            PlaySwordsmanPhaseVisual("ready", "ready");
         }
 
         private IEnumerator DimensionalCutAttack()
         {
-            swordSprite.Play("slash");
+            PlaySwordsmanPhaseVisual("slash", "slash");
             Audio.Play("event:/darkerdarkmatter_dimension_cut", Position);
             
             var level = Scene as Level;
@@ -573,7 +811,7 @@ namespace MaggyHelper.Entities.Bosses
             
             level?.Flash(Color.Purple * 0.3f, true);
             
-            swordSprite.Play("ready");
+            PlaySwordsmanPhaseVisual("ready", "ready");
         }
 
         private IEnumerator BladeBarrageAttack()
@@ -585,7 +823,7 @@ namespace MaggyHelper.Entities.Bosses
             // Multiple sword slashes in rapid succession
             for (int i = 0; i < 8; i++)
             {
-                swordSprite.Play("slash");
+                PlaySwordsmanPhaseVisual("slash", "slash");
                 
                 float angle = (i / 8f) * MathHelper.TwoPi;
                 Vector2 slashDir = Calc.AngleToVector(angle, 80f);
@@ -595,7 +833,7 @@ namespace MaggyHelper.Entities.Bosses
                 yield return 0.12f;
             }
             
-            swordSprite.Play("ready");
+            PlaySwordsmanPhaseVisual("ready", "ready");
         }
         #endregion
 
@@ -747,8 +985,7 @@ namespace MaggyHelper.Entities.Bosses
             level?.Shake(0.4f);
             
             // Flash red
-            coreSprite.Color = Color.Red;
-            eyeSprite.Color = Color.Red;
+            SetVisualColor(Color.Red);
             Add(new Coroutine(FlashReset()));
             
             if (health <= 0)
@@ -760,8 +997,7 @@ namespace MaggyHelper.Entities.Bosses
         private IEnumerator FlashReset()
         {
             yield return 0.1f;
-            coreSprite.Color = Color.White;
-            eyeSprite.Color = Color.White;
+            SetVisualColor(Color.White);
         }
 
         private void Defeat()
@@ -777,14 +1013,18 @@ namespace MaggyHelper.Entities.Bosses
             Audio.Play("event:/darkerdarkmatter_defeat", Position);
             
             var level = Scene as Level;
-            
-            eyeSprite.Play("closed");
-            coreSprite.Play("pulse");
+
+            if (currentPhase == BossPhase.Phase2_Swordsman)
+                PlaySwordsmanPhaseVisual("defeat", "slash");
+            else
+                PlayEyePhaseVisual("defeat", "pulse", "closed");
+
+            Sprite mainSprite = GetPrimaryVisualSprite();
             
             // Destabilizing
             for (float t = 0; t < 3f; t += Engine.DeltaTime)
             {
-                coreSprite.Position = Calc.Random.Range(Vector2.One * -5f, Vector2.One * 5f);
+                mainSprite.Position = Calc.Random.Range(Vector2.One * -5f, Vector2.One * 5f);
                 level?.Displacement.AddBurst(Position, 0.5f, 30f, 60f, 0.3f);
                 level?.Shake(0.5f);
                 
@@ -797,7 +1037,7 @@ namespace MaggyHelper.Entities.Bosses
             
             for (float t = 0; t < 1f; t += Engine.DeltaTime)
             {
-                coreSprite.Scale = new Vector2(1f - t);
+                mainSprite.Scale = new Vector2(1f - t);
                 coreGlow.Alpha = 1f - t;
                 yield return null;
             }

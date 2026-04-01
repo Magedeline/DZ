@@ -2499,6 +2499,42 @@ entities.MaggyHelper/DarkMatterMidBoss.placements.description.dark_matter_mid_bo
 entities.MaggyHelper/DarkMatterMidBoss.attributes.name.health=Health
 entities.MaggyHelper/DarkMatterMidBoss.attributes.description.health=
 
+# -- Darker Dark Matter Boss --
+entities.MaggyHelper/DarkerDarkMatterBoss.placements.name.default=Darker Dark Matter Boss
+entities.MaggyHelper/DarkerDarkMatterBoss.placements.description.default=Multi-phase Dark Matter boss with a Phase 1 eye form and Phase 2 swordsman form. Supports separate imported sprite roots for each form.
+entities.MaggyHelper/DarkerDarkMatterBoss.attributes.name.health=Health
+entities.MaggyHelper/DarkerDarkMatterBoss.attributes.description.health=Current boss HP at spawn.
+entities.MaggyHelper/DarkerDarkMatterBoss.attributes.name.maxHealth=Max Health
+entities.MaggyHelper/DarkerDarkMatterBoss.attributes.description.maxHealth=Maximum HP used for phase transitions.
+entities.MaggyHelper/DarkerDarkMatterBoss.attributes.name.eyeFormSpriteRoot=Eye Form Sprite Root
+entities.MaggyHelper/DarkerDarkMatterBoss.attributes.description.eyeFormSpriteRoot=Optional atlas root for the cleaned Phase 1 eye-form runtime frames, for example characters/darkmatter_boss_runtime.
+entities.MaggyHelper/DarkerDarkMatterBoss.attributes.name.eyeDormantAnimationPath=Eye Dormant Animation
+entities.MaggyHelper/DarkerDarkMatterBoss.attributes.description.eyeDormantAnimationPath=Animation path used for the eye-form dormant opening state.
+entities.MaggyHelper/DarkerDarkMatterBoss.attributes.name.eyeIdleAnimationPath=Eye Idle Animation
+entities.MaggyHelper/DarkerDarkMatterBoss.attributes.description.eyeIdleAnimationPath=Animation path used for the eye-form idle loop.
+entities.MaggyHelper/DarkerDarkMatterBoss.attributes.name.eyeAttackAnimationPath=Eye Attack Animation
+entities.MaggyHelper/DarkerDarkMatterBoss.attributes.description.eyeAttackAnimationPath=Animation path used for the eye-form attack loop.
+entities.MaggyHelper/DarkerDarkMatterBoss.attributes.name.eyeTransformAnimationPath=Eye Transform Animation
+entities.MaggyHelper/DarkerDarkMatterBoss.attributes.description.eyeTransformAnimationPath=Animation path used during the shift into the swordsman phase.
+entities.MaggyHelper/DarkerDarkMatterBoss.attributes.name.eyeEnragedAnimationPath=Eye Enraged Animation
+entities.MaggyHelper/DarkerDarkMatterBoss.attributes.description.eyeEnragedAnimationPath=Optional eye-form enraged loop used when no dedicated true-form sheet exists yet.
+entities.MaggyHelper/DarkerDarkMatterBoss.attributes.name.eyeDefeatAnimationPath=Eye Defeat Animation
+entities.MaggyHelper/DarkerDarkMatterBoss.attributes.description.eyeDefeatAnimationPath=Animation path used if the boss dies while the eye form is active.
+entities.MaggyHelper/DarkerDarkMatterBoss.attributes.name.swordsmanFormSpriteRoot=Swordsman Form Sprite Root
+entities.MaggyHelper/DarkerDarkMatterBoss.attributes.description.swordsmanFormSpriteRoot=Optional atlas root for the cleaned Phase 2 swordsman runtime frames, for example characters/darkerdark_swordsman_runtime.
+entities.MaggyHelper/DarkerDarkMatterBoss.attributes.name.swordsmanIdleAnimationPath=Swordsman Idle Animation
+entities.MaggyHelper/DarkerDarkMatterBoss.attributes.description.swordsmanIdleAnimationPath=Animation path used for the swordsman-form idle loop.
+entities.MaggyHelper/DarkerDarkMatterBoss.attributes.name.swordsmanReadyAnimationPath=Swordsman Ready Animation
+entities.MaggyHelper/DarkerDarkMatterBoss.attributes.description.swordsmanReadyAnimationPath=Animation path used between swordsman attacks.
+entities.MaggyHelper/DarkerDarkMatterBoss.attributes.name.swordsmanSlashAnimationPath=Swordsman Slash Animation
+entities.MaggyHelper/DarkerDarkMatterBoss.attributes.description.swordsmanSlashAnimationPath=Animation path used for slash-style attacks.
+entities.MaggyHelper/DarkerDarkMatterBoss.attributes.name.swordsmanRainbowAnimationPath=Swordsman Rainbow Animation
+entities.MaggyHelper/DarkerDarkMatterBoss.attributes.description.swordsmanRainbowAnimationPath=Animation path used for the rainbow sword sequence.
+entities.MaggyHelper/DarkerDarkMatterBoss.attributes.name.swordsmanDefeatAnimationPath=Swordsman Defeat Animation
+entities.MaggyHelper/DarkerDarkMatterBoss.attributes.description.swordsmanDefeatAnimationPath=Animation path used if the boss dies while the swordsman form is active.
+entities.MaggyHelper/DarkerDarkMatterBoss.attributes.name.previewTexture=Preview Texture
+entities.MaggyHelper/DarkerDarkMatterBoss.attributes.description.previewTexture=Optional Loenn preview texture path ending in 00, defaults to the generated eye-form runtime atlas.
+
 # -- Dash Code Gate --
 entities.MaggyHelper/DashCodeGate.placements.name.normal=Dash Code Gate (Normal)
 entities.MaggyHelper/DashCodeGate.placements.description.normal=

@@ -2494,10 +2494,15 @@
   </buzzo>
 
   <!-- DARKERDARK_SWORDSMAN - Auto-generated -->
-  <darkerdark_swordsman path="characters/darkerdark_swordsman/" start="boss">
+  <darkerdark_swordsman path="characters/darkerdark_swordsman_runtime/" start="boss">
     <Justify x=".5" y="1" />
 
-    <Loop id="boss" path="boss" delay="0.1" />
+    <Loop id="boss" path="idle" delay="0.1" />
+    <Loop id="idle" path="idle" delay="0.1" />
+    <Loop id="ready" path="ready" delay="0.08" />
+    <Loop id="slash" path="slash" delay="0.04" />
+    <Loop id="rainbow" path="rainbow" delay="0.04" />
+    <Anim id="defeat" path="defeat" delay="0.08" goto="idle" />
   </darkerdark_swordsman>
 
   <!-- DARKMATTER - Auto-generated -->
@@ -2508,10 +2513,16 @@
   </darkmatter>
 
   <!-- DARKMATTER_BOSS - Auto-generated -->
-  <darkmatter_boss path="characters/darkmatter_boss/" start="boss">
+  <darkmatter_boss path="characters/darkmatter_boss_runtime/" start="boss">
     <Justify x=".5" y="1" />
 
-    <Loop id="boss" path="boss" delay="0.1" />
+    <Loop id="boss" path="idle" delay="0.1" />
+    <Loop id="dormant" path="dormant" delay="0.1" />
+    <Loop id="idle" path="idle" delay="0.1" />
+    <Loop id="attack" path="attack" delay="0.06" />
+    <Anim id="transform" path="transform" delay="0.08" goto="idle" />
+    <Loop id="enraged" path="enraged" delay="0.06" />
+    <Anim id="defeat" path="defeat" delay="0.08" goto="idle" />
   </darkmatter_boss>
 
   <!-- ELS - Auto-generated -->
@@ -2550,6 +2561,17 @@
     <Loop id="boss" path="boss" delay="0.1" />
   </gigiant_edge>
 
+  <!-- GALACTA_KNIGHT_CLONE - Els clone support -->
+  <galacta_knight_clone path="characters/els_true_final_boss/siamo_zero_aeon_hero_fake/" start="idle">
+    <Justify x=".5" y="1" />
+
+    <Loop id="idle" path="idle" delay="0.15" />
+    <Loop id="move" path="move" delay="0.08" />
+    <Loop id="charge" path="awaken" delay="0.08" />
+    <Loop id="slash" path="rapid_slash" delay="0.05" />
+    <Loop id="warp" path="fly_start" delay="0.06" />
+  </galacta_knight_clone>
+
   <!-- KRACKO - Auto-generated -->
   <kracko path="characters/kracko/" start="boss">
     <Justify x=".5" y="1" />
@@ -2570,6 +2592,17 @@
 
     <Loop id="boss" path="boss" delay="0.1" />
   </mockby>
+
+  <!-- MORPHO_KNIGHT_CLONE - Els clone support -->
+  <morpho_knight_clone path="characters/els_true_final_boss/siamo_zero_morpho_knight_fake/" start="idle">
+    <Justify x=".5" y="1" />
+
+    <Loop id="idle" path="swords" delay="0.1" />
+    <Loop id="move" path="swords" delay="0.08" />
+    <Loop id="charge" path="vortex_summon" delay="0.06" />
+    <Loop id="slash" path="double_side_slash" delay="0.05" />
+    <Loop id="warp" path="vortex_strike" delay="0.04" />
+  </morpho_knight_clone>
 
   <!-- MORPHO_KNIGHT_DELTA - Auto-generated -->
   <morpho_knight_delta path="characters/morpho_knight_delta/" start="Custom _ Edited - Kirby Customs - Morpho Knight - Morpho Knight EX (KSSU-Style)">

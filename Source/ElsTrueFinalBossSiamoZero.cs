@@ -106,6 +106,8 @@ namespace MaggyHelper.Entities
             siamoZeroCombatActive = true;
             currentElsPhase = ElsPhase.SiamoZero;
             currentSiamoSubPhase = SiamoSubPhase.AeonHeroFake;
+            ClearSummonedKnightClones();
+            automaticCloneSummonCooldown = 0.35f;
 
             setupSiamoZero();
             SetupSiamoZeroCombatSprites();

@@ -19,7 +19,6 @@ public class BeyondSummitVignette : Scene
     private float fade = 1f;
     private float timer;
     private bool ready;
-    private bool finalFade;
 
     // Gem display
     private readonly MTexture[] gemTextures = new MTexture[TotalGems];
@@ -178,7 +177,6 @@ public class BeyondSummitVignette : Scene
             yield return null;
 
         // Fade out and transition to level
-        finalFade = true;
         t = 0f;
         while (t < 1f)
         {

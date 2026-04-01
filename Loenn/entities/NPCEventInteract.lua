@@ -533,7 +533,7 @@ npc_event_interact.placements = {
             enableSpriteSwap = false,
             alternateSprite = "alphys",
             csFlag = "npc14_alphys_lab",
-            dialogKey = "CH14_ALPHYS_LAB",
+            dialogKey = "CH13_EXTRA_NPC_ALPHYS_LAB",
             triggerFlag = "met_alphys",
             requireFlag = ""
         }

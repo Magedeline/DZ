@@ -1,3 +1,5 @@
+using Celeste.Mod.MaggyHelper;
+
 namespace MaggyHelper.Cutscenes
 {
     /// <summary>
@@ -9,8 +11,13 @@ namespace MaggyHelper.Cutscenes
     {
         private global::Celeste.Player player;
         private List<CreditEntry> credits = new List<CreditEntry>();
-        private int currentCreditIndex = 0;
+        private int currentCreditIndex = -1;
         private float creditYPosition = 1080f;
+        private int previousPlayerState;
+        private bool previousTimerStopped;
+        private bool previousTimerHidden;
+        private bool previousSaveQuitDisabled;
+        private bool previousPauseLock;
         
         private struct CreditEntry
         {
@@ -188,21 +195,38 @@ namespace MaggyHelper.Cutscenes
             
             if (player == null)
                 player = Scene.Tracker.GetEntity<global::Celeste.Player>();
-                
-            var level = scene as Level;
-            if (level != null)
-            {
-                level.TimerStopped = true;
-                level.TimerHidden = true;
-                level.SaveQuitDisabled = true;
-                level.PauseLock = true;
-            }
         }
         
         public override void OnBegin(Level level)
         {
+            if (player == null)
+                player = Scene.Tracker.GetEntity<global::Celeste.Player>();
+
+            previousTimerStopped = level.TimerStopped;
+            previousTimerHidden = level.TimerHidden;
+            previousSaveQuitDisabled = level.SaveQuitDisabled;
+            previousPauseLock = level.PauseLock;
+
+            level.TimerStopped = true;
+            level.TimerHidden = true;
+            level.SaveQuitDisabled = true;
+            level.PauseLock = true;
+
+            if (player?.StateMachine != null)
+            {
+                previousPlayerState = player.StateMachine.State;
+                player.StateMachine.State = 11;
+            }
+
+            if (MaggyHelperModule.Session != null)
+            {
+                MaggyHelperModule.Session.InCredits = true;
+                MaggyHelperModule.Session.CreditsPhase = 2;
+                MaggyHelperModule.Session.CreditsCompleted = false;
+            }
+
             Audio.SetAmbience(null);
-            Audio.SetMusic("event:/music/ch21_epilogue_credits");
+            Audio.SetMusic("event:/desolozantas/music/menu/cast");
             
             Add(new Coroutine(creditsSequence(level)));
         }
@@ -213,8 +237,11 @@ namespace MaggyHelper.Cutscenes
             yield return 2f;
             
             // Show credits one by one
-            foreach (var credit in credits)
+            for (int i = 0; i < credits.Count; i++)
             {
+                currentCreditIndex = i;
+                CreditEntry credit = credits[i];
+
                 if (credit.IsMemory)
                 {
                     // Show memory
@@ -228,6 +255,8 @@ namespace MaggyHelper.Cutscenes
                 
                 yield return 2f;
             }
+
+            currentCreditIndex = -1;
             
             yield return 3f;
             
@@ -246,6 +275,8 @@ namespace MaggyHelper.Cutscenes
         
         private IEnumerator showMemory(CreditEntry memory, Level level)
         {
+            memoryAlpha = 0f;
+
             // Fade in memory text
             for (float t = 0f; t < 1f; t += Engine.DeltaTime)
             {
@@ -273,6 +304,7 @@ namespace MaggyHelper.Cutscenes
             // Scroll credit onto screen
             float targetY = 400f;
             float startY = 1080f;
+            creditYPosition = startY;
             
             for (float t = 0f; t < 2f; t += Engine.DeltaTime)
             {
@@ -292,8 +324,25 @@ namespace MaggyHelper.Cutscenes
         
         public override void OnEnd(Level level)
         {
+            if (player?.StateMachine != null)
+                player.StateMachine.State = previousPlayerState;
+
+            level.TimerStopped = previousTimerStopped;
+            level.TimerHidden = previousTimerHidden;
+            level.SaveQuitDisabled = previousSaveQuitDisabled;
+            level.PauseLock = previousPauseLock;
+
             level.Session.SetFlag("epilogue_credits_complete");
             level.Session.SetFlag("ready_for_final_cutscene");
+
+            if (level.Session.Area.SID == MaggyHelperModule.Chapter17EpilogueSid)
+                MaggyHelperModule.MarkChapter17EpilogueCompleted();
+            else if (MaggyHelperModule.Session != null)
+            {
+                MaggyHelperModule.Session.InCredits = false;
+                MaggyHelperModule.Session.CreditsPhase = 0;
+                MaggyHelperModule.Session.CreditsCompleted = true;
+            }
         }
         
         public override void Render()
@@ -304,7 +353,7 @@ namespace MaggyHelper.Cutscenes
             Draw.Rect(0f, 0f, 1920f, 1080f, Color.Black);
             
             // Draw current credit or memory
-            if (currentCreditIndex < credits.Count)
+            if (currentCreditIndex >= 0 && currentCreditIndex < credits.Count)
             {
                 var current = credits[currentCreditIndex];
                 

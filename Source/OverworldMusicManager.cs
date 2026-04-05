@@ -11,6 +11,7 @@ namespace MaggyHelper;
 public static class OverworldMusicManager
 {
     private static bool _hooked = false;
+    private const int SummitChapterNumber = 9;
 
     // ── Custom Music Events (from GUIDs.txt) ─────────────────────────────
 
@@ -26,11 +27,17 @@ public static class OverworldMusicManager
     /// <summary>B-Side completion music</summary>
     public const string MUSIC_COMPLETE_BSIDE = "event:/desolozantas/music/menu/complete_bside";
 
+    /// <summary>B-Side summit completion music</summary>
+    public const string MUSIC_COMPLETE_BSIDE_SUMMIT = "event:/desolozantas/music/menu/complete_bside_summit";
+
     /// <summary>C-Side completion music</summary>
     public const string MUSIC_COMPLETE_CSIDE = "event:/desolozantas/music/menu/complete_cside";
 
     /// <summary>C-Side summit completion music</summary>
     public const string MUSIC_COMPLETE_CSIDE_SUMMIT = "event:/desolozantas/music/menu/complete_cside_summit";
+
+    /// <summary>D-Side and DX-Side completion music</summary>
+    public const string MUSIC_COMPLETE_DSIDE_VOID = "event:/desolozantas/music/menu/complete_dside_void";
 
     /// <summary>Credits music</summary>
     public const string MUSIC_CREDIT = "event:/desolozantas/music/menu/credit";
@@ -286,14 +293,28 @@ public static class OverworldMusicManager
     /// </summary>
     public static string GetCompletionMusic(int mode)
     {
+        return GetCompletionMusic(mode, isSummit: false);
+    }
+
+    /// <summary>
+    /// Gets the appropriate completion music event for the given session.
+    /// Summit chapters use their dedicated variants, while D / DX use the void theme.
+    /// </summary>
+    public static string GetCompletionMusic(Session session)
+    {
+        int mode = session != null ? (int) session.Area.Mode : AreaModeExtender.MODE_NORMAL;
+        return GetCompletionMusic(mode, IsSummitChapter(session));
+    }
+
+    private static string GetCompletionMusic(int mode, bool isSummit)
+    {
         return mode switch
         {
-            0 => MUSIC_COMPLETE_AREA,        // A-Side
-            1 => MUSIC_COMPLETE_BSIDE,       // B-Side
-            2 => MUSIC_COMPLETE_CSIDE,       // C-Side
-            3 => MUSIC_COMPLETE_CSIDE_SUMMIT, // D-Side (uses summit variant)
-            4 => MUSIC_COMPLETE_SUMMIT,       // DX-Side (uses summit)
-            _ => MUSIC_COMPLETE_AREA,
+            AreaModeExtender.MODE_NORMAL => isSummit ? MUSIC_COMPLETE_SUMMIT : MUSIC_COMPLETE_AREA,
+            AreaModeExtender.MODE_BSIDE => isSummit ? MUSIC_COMPLETE_BSIDE_SUMMIT : MUSIC_COMPLETE_BSIDE,
+            AreaModeExtender.MODE_CSIDE => isSummit ? MUSIC_COMPLETE_CSIDE_SUMMIT : MUSIC_COMPLETE_CSIDE,
+            AreaModeExtender.MODE_DSIDE or AreaModeExtender.MODE_DXSIDE => MUSIC_COMPLETE_DSIDE_VOID,
+            _ => isSummit ? MUSIC_COMPLETE_SUMMIT : MUSIC_COMPLETE_AREA,
         };
     }
 
@@ -302,15 +323,23 @@ public static class OverworldMusicManager
     /// </summary>
     public static string GetSummitCompletionMusic(int mode)
     {
-        return mode switch
-        {
-            0 => MUSIC_COMPLETE_SUMMIT,
-            1 => MUSIC_COMPLETE_BSIDE,
-            2 => MUSIC_COMPLETE_CSIDE_SUMMIT,
-            3 => MUSIC_COMPLETE_CSIDE_SUMMIT,
-            4 => MUSIC_COMPLETE_SUMMIT,
-            _ => MUSIC_COMPLETE_SUMMIT,
-        };
+        return GetCompletionMusic(mode, isSummit: true);
+    }
+
+    private static bool IsSummitChapter(Session session)
+    {
+        if (session == null)
+            return false;
+
+        AreaData area = AreaData.Get(session.Area);
+        if (area == null)
+            return false;
+
+        if (AreaModeExtender.IsOurMap(area))
+            return AreaMapData.FindByAnySID(area.SID)?.Number == SummitChapterNumber;
+
+        return area.ID == 7
+            || (area.SID != null && area.SID.IndexOf("Summit", StringComparison.OrdinalIgnoreCase) >= 0);
     }
 }
 

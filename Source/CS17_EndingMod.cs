@@ -155,21 +155,29 @@ namespace MaggyHelper.Cutscenes
 
         public override void OnEnd(Level level)
         {
-            vignette.Visible = true;
-            vignette.Color = Color.White;
-            vignette.Position = TargetCenter;
-            vignette.Scale = Vector2.One;
-            vignette.Rotation = 0f;
+            if (Scene == null)
+            {
+                return;
+            }
+
+            if (vignette != null)
+            {
+                vignette.Visible = true;
+                vignette.Color = Color.White;
+                vignette.Position = TargetCenter;
+                vignette.Scale = Vector2.One;
+                vignette.Rotation = 0f;
+            }
 
             if (player != null)
             {
                 player.Speed = Vector2.Zero;
             }
 
-            Textbox textbox = Scene.Entities.FindFirst<Textbox>();
+            Textbox textbox = level.Entities.FindFirst<Textbox>();
             textbox?.RemoveSelf();
 
-            cutscene.RemoveSelf();
+            cutscene?.RemoveSelf();
             Add(new Coroutine(EndingRoutine(), true));
         }
 

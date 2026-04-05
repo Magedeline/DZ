@@ -1,3 +1,4 @@
+using Celeste.Mod.MaggyHelper;
 using MaggyHelper.Entities;
 using BadelineDummy = MaggyHelper.Entities.BadelineDummy;
 using Monocle;
@@ -50,8 +51,15 @@ namespace MaggyHelper.Cutscenes
         public override void OnBegin(Level level)
         {
             Audio.BusMuted("bus:/gameplay_sfx", true);
-            this.gotoEpilogue = level.Session.OldStats.Modes[0].Completed;
-            this.gotoEpilogue = true;
+
+            if (MaggyHelperModule.Session != null)
+            {
+                MaggyHelperModule.Session.InCredits = true;
+                MaggyHelperModule.Session.CreditsPhase = 1;
+                MaggyHelperModule.Session.CreditsCompleted = false;
+            }
+
+            this.gotoEpilogue = !MaggyHelperModule.IsChapter17EpilogueCompleted();
             this.Add(new Coroutine(this.Routine(), true));
             this.Add(new PostUpdateHook(new Action(this.PostUpdate)));
         }
@@ -1219,9 +1227,20 @@ namespace MaggyHelper.Cutscenes
             CS17_Credits.Instance = null;
             MInput.Disabled = false;
             if (!this.gotoEpilogue)
+            {
+                if (MaggyHelperModule.Session != null)
+                {
+                    MaggyHelperModule.Session.InCredits = false;
+                    MaggyHelperModule.Session.CreditsPhase = 0;
+                    MaggyHelperModule.Session.CreditsCompleted = MaggyHelperModule.IsChapter17EpilogueCompleted();
+                }
+
                 Engine.Scene = new OverworldLoader(Overworld.StartMode.AreaComplete, this.snow);
+            }
             else
-                LevelEnter.Go(new Session(new AreaKey(8)), false);
+            {
+                MaggyHelperModule.LaunchChapter17Epilogue();
+            }
         }
 
         private class Fill : Backdrop

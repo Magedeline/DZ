@@ -31,10 +31,10 @@ namespace MaggyHelper.Entities
 			this.front.Play("idle", false, false);
 			this.front.Origin = new Vector2(this.front.Width / 2f, 12f);
 			this.front.Y = -52f;
-			base.Add(this.top = new Image(GFX.Game["objects/MaggyHelper/gondola/top"]));
+			base.Add(this.top = new Image(AtlasPathHelper.GetTexture("objects/gondola/top")));
 			this.top.Origin = new Vector2(this.top.Width / 2f, 12f);
 			this.top.Y = -52f;
-			base.Add(this.Lever = new Sprite(GFX.Game, "objects/MaggyHelper/gondola/lever"));
+			base.Add(this.Lever = AtlasPathHelper.CreateSprite("objects/gondola/lever"));
 			this.Lever.Add("idle", "", 0f, new int[1]);
 			this.Lever.Add("pulled", "", 0.5f, "idle", new int[]
 			{
@@ -64,12 +64,12 @@ namespace MaggyHelper.Entities
 			this.backImg.Y = -52f;
 			this.back.Add(this.backImg);
 			scene.Add(this.LeftCliffside = new Entity(this.Position + new Vector2(-124f, 0f)));
-			Image image = new Image(GFX.Game["objects/MaggyHelper/gondola/cliffsideLeft"]);
+			Image image = new Image(AtlasPathHelper.GetTexture("objects/gondola/cliffsideLeft"));
 			image.JustifyOrigin(0f, 1f);
 			this.LeftCliffside.Add(image);
 			this.LeftCliffside.Depth = 8998;
 			scene.Add(this.RightCliffside = new Entity(this.Destination + new Vector2(144f, -104f)));
-			Image image2 = new Image(GFX.Game["objects/MaggyHelper/gondola/cliffsideRight"]);
+			Image image2 = new Image(AtlasPathHelper.GetTexture("objects/gondola/cliffsideRight"));
 			image2.JustifyOrigin(0f, 0.5f);
 			image2.Scale.X = -1f;
 			this.RightCliffside.Add(image2);

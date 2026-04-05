@@ -75,11 +75,8 @@ namespace MaggyHelper.Entities
             }
 
             // Outline texture with fallback
-            var outlineTexture = GFX.Game[GetOutlineTextureForDashCount(dashCount)];
-            if (outlineTexture == null)
-            {
-                outlineTexture = GFX.Game["objects/MaggyHelper/refill/outline"];
-            }
+            var outlineTexture = AtlasPathHelper.TryGetTexture(GetOutlineTextureForDashCount(dashCount))
+                ?? AtlasPathHelper.TryGetTexture("objects/refill/outline");
             
             if (outlineTexture != null)
             {
@@ -132,12 +129,12 @@ namespace MaggyHelper.Entities
         {
             return dashCount switch
             {
-                2 => "objects/MaggyHelper/refillTwo/outline",
-                3 => "objects/MaggyHelper/solarrefill/outline",
-                4 => "objects/MaggyHelper/lunarrefill/outline",
-                5 => "objects/MaggyHelper/blackholerefill/outline",
-                >= 10 => "objects/MaggyHelper/savestarrefill/outline",
-                _ => "objects/MaggyHelper/refill/outline"
+                2 => "objects/refillTwo/outline",
+                3 => "objects/solarrefill/outline",
+                4 => "objects/lunarrefill/outline",
+                5 => "objects/blackholerefill/outline",
+                >= 10 => "objects/savestarrefill/outline",
+                _ => "objects/refill/outline"
             };
         }
 

@@ -15,7 +15,7 @@ namespace MaggyHelper.Entities
             this.requiredKeys = requiredKeys;
             this.flagToSet = flagToSet;
             
-            texture = GFX.Game["objects/MaggyHelper/mrbonesdoor"];
+            texture = AtlasPathHelper.GetTexture("objects/mrbonesdoor");
             
             Add(new PlayerCollider(player => OnPlayer((Celeste.Player)player)));
             base.Depth = -9000;

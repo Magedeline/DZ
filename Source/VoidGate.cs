@@ -111,7 +111,7 @@ namespace MaggyHelper.Entities
         private void SetupSprites()
         {
             // Left gate sprite
-            leftGateSprite = new Sprite(GFX.Game, "objects/MaggyHelper/voidgate/");
+            leftGateSprite = AtlasPathHelper.CreateSprite("objects/voidgate/");
             leftGateSprite.AddLoop("idle", "gate_left", 0.1f);
             leftGateSprite.Add("close", "gate_left_close", 0.08f, "idle");
             leftGateSprite.Add("open", "gate_left_open", 0.08f, "idle");
@@ -119,7 +119,7 @@ namespace MaggyHelper.Entities
             leftGateSprite.Position = Vector2.Zero;
             
             // Right gate sprite
-            rightGateSprite = new Sprite(GFX.Game, "objects/MaggyHelper/voidgate/");
+            rightGateSprite = AtlasPathHelper.CreateSprite("objects/voidgate/");
             rightGateSprite.AddLoop("idle", "gate_right", 0.1f);
             rightGateSprite.Add("close", "gate_right_close", 0.08f, "idle");
             rightGateSprite.Add("open", "gate_right_open", 0.08f, "idle");

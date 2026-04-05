@@ -28,8 +28,7 @@ namespace MaggyHelper.Entities
             
             base.Collider = new Circle(12f);
             
-            string spritePath = "objects/MaggyHelper/eyebomb/";
-            Add(sprite = new Sprite(GFX.Game, spritePath));
+            Add(sprite = AtlasPathHelper.CreateSprite("objects/eyebomb/"));
             sprite.AddLoop("idle", "eye", 0.1f);
             sprite.Play("idle");
             sprite.CenterOrigin();

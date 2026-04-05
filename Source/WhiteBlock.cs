@@ -11,7 +11,7 @@ namespace MaggyHelper.Entities
         public WhiteBlock(Vector2 position, int width, int height)
             : base(position, width, height, true)
         {
-            texture = GFX.Game["objects/MaggyHelper/whiteblock"];
+            texture = AtlasPathHelper.GetTexture("objects/whiteblock");
             base.Depth = -9000;
         }
 

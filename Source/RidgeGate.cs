@@ -19,7 +19,7 @@ namespace MaggyHelper.Entities
             closedPosition = position;
             moveDistance = height + 8;
             
-            texture = GFX.Game["objects/MaggyHelper/ridgeGate"];
+            texture = AtlasPathHelper.GetTexture("objects/ridgeGate");
             base.Depth = -9000;
         }
 

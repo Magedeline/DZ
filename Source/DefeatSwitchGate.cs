@@ -78,13 +78,10 @@ namespace MaggyHelper.Entities
             level = SceneAs<Level>();
 
             // Load textures safely
-            texture = GFX.Game.Has("objects/MaggyHelper/defeatSwitchGate")
-                ? GFX.Game["objects/MaggyHelper/defeatSwitchGate"]
-                : GFX.Game["objects/switchgate/icon00"];
+            texture = AtlasPathHelper.TryGetTexture("objects/defeatSwitchGate")
+                ?? GFX.Game["objects/switchgate/icon00"];
 
-            iconTexture = GFX.Game.Has("objects/MaggyHelper/defeatSwitchGateIcon")
-                ? GFX.Game["objects/MaggyHelper/defeatSwitchGateIcon"]
-                : null;
+            iconTexture = AtlasPathHelper.TryGetTexture("objects/defeatSwitchGateIcon");
 
             // If persistent and the flag is already set, open immediately
             if (persistent && !string.IsNullOrEmpty(flag) && level.Session.GetFlag(flag))

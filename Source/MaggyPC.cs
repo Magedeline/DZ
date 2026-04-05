@@ -26,14 +26,14 @@ namespace MaggyHelper.Entities
             : base(position)
         {
             // Main PC image - Star Cutter themed computer terminal
-            Add(image = new Image(GFX.Game["objects/MaggyHelper/maggypc/pc0"]));
+            Add(image = new Image(AtlasPathHelper.GetTexture("objects/maggypc/pc0")));
             image.JustifyOrigin(0.5f, 1f);
             
             // Depth between foreground and background elements
             base.Depth = 8999;
             
             // Holographic display spectogram
-            spectogram = GFX.Game["objects/MaggyHelper/maggypc/spectogram"];
+            spectogram = AtlasPathHelper.GetTexture("objects/maggypc/spectogram");
             subtex = spectogram.GetSubtexture(0, 0, SPECTOGRAM_WIDTH, SPECTOGRAM_HEIGHT, subtex);
             
             // Ambient sci-fi computer sound

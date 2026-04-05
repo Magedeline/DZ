@@ -12,7 +12,7 @@ namespace MaggyHelper.Entities
         public GoldBlock(Vector2 position, int width, int height)
             : base(position, width, height, true)
         {
-            texture = GFX.Game["objects/MaggyHelper/goldblock"];
+            texture = AtlasPathHelper.GetTexture("objects/goldblock");
             OnDashCollide = (Celeste.Player player, Vector2 direction) => OnDashed(player, direction);
             base.Depth = -9000;
         }

@@ -22,7 +22,7 @@ namespace MaggyHelper.Entities
             base.Awake(scene);
             
             // Create the visual representation
-            string texturePath = "objects/MaggyHelper/jumpthru/" + texture;
+            string texturePath = "objects/jumpthru/" + texture;
             
             int tilesWidth = (int)(Width / 8f);
             
@@ -42,11 +42,8 @@ namespace MaggyHelper.Entities
                     frame = 1; // Middle
                 }
                 
-                MTexture texture = GFX.Game[texturePath + frame.ToString("00")];
-                if (texture == null)
-                {
-                    texture = GFX.Game["objects/MaggyHelper/jumpthru/wood" + frame.ToString("00")];
-                }
+                MTexture texture = AtlasPathHelper.TryGetTexture(texturePath + frame.ToString("00"))
+                    ?? AtlasPathHelper.TryGetTexture("objects/jumpthru/wood" + frame.ToString("00"));
                 
                 if (texture != null)
                 {

@@ -80,8 +80,8 @@ public class ZoomMover : Solid
         string themePath = GetThemePath();
         
         // Load block edge textures
-        MTexture blockTexture = GFX.Game[$"objects/MaggyHelper/zoommover/{themePath}block"];
-        if (blockTexture == null || blockTexture == GFX.Game["__notfound"])
+        MTexture blockTexture = AtlasPathHelper.TryGetTexture($"objects/zoommover/{themePath}block");
+        if (blockTexture == null)
         {
             blockTexture = GFX.Game["objects/zipmover/block"];
         }
@@ -95,14 +95,14 @@ public class ZoomMover : Solid
         }
         
         // Load inner cog animation
-        innerCogs = GFX.Game.GetAtlasSubtextures($"objects/MaggyHelper/zoommover/{themePath}innercog");
+        innerCogs = AtlasPathHelper.GetAtlasSubtextures($"objects/zoommover/{themePath}innercog");
         if (innerCogs == null || innerCogs.Count == 0)
         {
             innerCogs = GFX.Game.GetAtlasSubtextures("objects/zipmover/innercog");
         }
         
         // Setup streetlight indicator
-        string lightPath = $"objects/MaggyHelper/zoommover/{themePath}light";
+        string lightPath = AtlasPathHelper.ResolveAtlasPath($"objects/zoommover/{themePath}light");
         if (GFX.Game.Has(lightPath + "00"))
         {
             streetlight = new Sprite(GFX.Game, lightPath);
@@ -405,8 +405,8 @@ public class ZoomMover : Solid
             this.mover = mover;
             
             string themePath = mover.GetThemePath();
-            cog = GFX.Game[$"objects/MaggyHelper/zoommover/{themePath}cog"];
-            if (cog == null || cog == GFX.Game["__notfound"])
+            cog = AtlasPathHelper.TryGetTexture($"objects/zoommover/{themePath}cog");
+            if (cog == null)
             {
                 cog = GFX.Game["objects/zipmover/cog"];
             }

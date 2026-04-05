@@ -16,15 +16,15 @@ namespace MaggyHelper.Entities
             : base(data, offset)
         {
             this.launchSpeed = data.Float("launchSpeed", -300f);
+
+            boardTexture = AtlasPathHelper.TryGetTexture("objects/divingBoard");
+            baseTexture = AtlasPathHelper.TryGetTexture("objects/divingBoardBase");
             
             // Validate that required textures exist before loading them to avoid runtime exceptions.
-            if (!GFX.Game.Has("objects/MaggyHelper/divingBoard") || !GFX.Game.Has("objects/MaggyHelper/divingBoardBase"))
+            if (boardTexture == null || baseTexture == null)
             {
-                throw new InvalidOperationException("Required diving board textures are missing: 'objects/MaggyHelper/divingBoard' and/or 'objects/MaggyHelper/divingBoardBase'.");
+                throw new InvalidOperationException("Required diving board textures are missing for 'objects/MaggyHelper/divingBoard' or 'objects/divingBoard'.");
             }
-            
-            boardTexture = GFX.Game["objects/MaggyHelper/divingBoard"];
-            baseTexture = GFX.Game["objects/MaggyHelper/divingBoardBase"];
             
             Add(wiggler = Wiggler.Create(0.5f, 4f, delegate (float v)
             {

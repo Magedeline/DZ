@@ -19,7 +19,7 @@ namespace MaggyHelper.Entities
             this.rewardType = rewardType;
             originalPosition = position;
             
-            texture = GFX.Game["objects/MaggyHelper/luckyblock"];
+            texture = AtlasPathHelper.GetTexture("objects/luckyblock");
             OnDashCollide = (Celeste.Player player, Vector2 direction) => OnDashed(player, direction);
             
             Add(wiggler = Wiggler.Create(0.3f, 4f));

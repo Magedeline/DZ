@@ -22,7 +22,7 @@ namespace MaggyHelper.Entities
             closedPosition = position;
             moveDistance = height + 8;
             
-            texture = GFX.Game["objects/MaggyHelper/farewellGate"];
+            texture = AtlasPathHelper.GetTexture("objects/farewellGate");
             base.Depth = -9000;
         }
 

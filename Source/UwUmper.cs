@@ -21,7 +21,7 @@ namespace MaggyHelper.Entities
             base.Collider = new Circle(12f);
             Add(new PlayerCollider(player => OnPlayer(player)));
             
-            Add(sprite = new Sprite(GFX.Game, "objects/MaggyHelper/uwumper/"));
+            Add(sprite = AtlasPathHelper.CreateSprite("objects/uwumper/"));
             sprite.AddLoop("idle", "Idle", 0.1f);
             sprite.Play("idle");
             sprite.CenterOrigin();

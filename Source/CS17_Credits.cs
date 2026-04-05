@@ -1098,10 +1098,10 @@ namespace MaggyHelper.Cutscenes
             Vector2[] dashDirections =
             {
                 new Vector2(-1f, -1f),
-                new Vector2(-1f, 0f),
-                new Vector2(-1f, 1f),
-                new Vector2(-1f, 0f),
-                new Vector2(-1f, -1f)
+                new Vector2(-1f, -1f),
+                new Vector2(-1f, -1f),
+                new Vector2(-1f, -1f),
+                new Vector2(-1f, 0f)
             };
 
             for (int index = 0; index < dashDirections.Length; index++)

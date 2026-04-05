@@ -29,8 +29,7 @@ namespace MaggyHelper.Entities
             Add(new PlayerCollider(p => OnPlayer(p)));
             Add(new MirrorReflection());
             
-            string spritePath = "objects/MaggyHelper/snowberry";
-            Add(sprite = new Sprite(GFX.Game, spritePath));
+            Add(sprite = AtlasPathHelper.CreateSprite("objects/snowberry"));
             sprite.AddLoop("idle", "", 0.1f);
             sprite.Play("idle");
             sprite.CenterOrigin();

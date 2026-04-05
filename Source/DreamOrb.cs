@@ -25,8 +25,7 @@ namespace MaggyHelper.Entities
             base.Collider = new Hitbox(16f, 16f, -8f, -8f);
             Add(new PlayerCollider(player => OnPlayer(player)));
             
-            string spritePath = "objects/MaggyHelper/dreamorb/";
-            Add(sprite = new Sprite(GFX.Game, spritePath));
+            Add(sprite = AtlasPathHelper.CreateSprite("objects/dreamorb/"));
             sprite.AddLoop("idle", "", 0.1f);
             sprite.Play("idle");
             sprite.CenterOrigin();

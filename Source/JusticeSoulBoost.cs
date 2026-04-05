@@ -229,7 +229,7 @@ namespace MaggyHelper.Entities.SoulBoosts
             Add(new PlayerCollider(player => OnPlayerCollide(player)));
             
             // Create simple sprite/image
-            Add(sprite = new Sprite(GFX.Game, "objects/MaggyHelper/sevensoulboost/"));
+            Add(sprite = AtlasPathHelper.CreateSprite("objects/sevensoulboost/"));
             sprite.AddLoop("vessel_soul05", "justice_projectile", 0.08f);
             sprite.Play("vessel_soul05");
             sprite.CenterOrigin();

@@ -112,6 +112,140 @@ namespace MaggyHelper
         }
     }
 
+    public static class AtlasPathHelper
+    {
+        private static readonly string[] SupportedRootFolders =
+        {
+            "characters",
+            "objects",
+            "collectables",
+            "collectibles"
+        };
+
+        public static string ResolveTexturePath(string path)
+        {
+            return ResolvePath(path, candidate => GFX.Game != null && GFX.Game.Has(candidate));
+        }
+
+        public static string ResolveAtlasPath(string path)
+        {
+            return ResolvePath(path, candidate => GFX.Game != null && (GFX.Game.Has(candidate) || GFX.Game.HasAtlasSubtextures(candidate)));
+        }
+
+        public static bool HasTexture(string path)
+        {
+            string resolvedPath = ResolveTexturePath(path);
+            return GFX.Game != null && GFX.Game.Has(resolvedPath);
+        }
+
+        public static MTexture TryGetTexture(string path)
+        {
+            if (GFX.Game == null)
+            {
+                return null;
+            }
+
+            string resolvedPath = ResolveTexturePath(path);
+            return GFX.Game.Has(resolvedPath) ? GFX.Game[resolvedPath] : null;
+        }
+
+        public static MTexture GetTexture(string path)
+        {
+            return GFX.Game[ResolveTexturePath(path)];
+        }
+
+        public static List<MTexture> GetAtlasSubtextures(string path)
+        {
+            return GFX.Game.GetAtlasSubtextures(ResolveAtlasPath(path));
+        }
+
+        public static Sprite CreateSprite(string path)
+        {
+            return new Sprite(GFX.Game, ResolveAtlasPath(path));
+        }
+
+        private static string ResolvePath(string path, Func<string, bool> exists)
+        {
+            string normalizedPath = NormalizePath(path);
+            if (string.IsNullOrEmpty(normalizedPath) || GFX.Game == null)
+            {
+                return normalizedPath;
+            }
+
+            foreach (string candidate in GetCandidates(normalizedPath))
+            {
+                if (exists(candidate))
+                {
+                    return candidate;
+                }
+            }
+
+            return normalizedPath;
+        }
+
+        private static IEnumerable<string> GetCandidates(string path)
+        {
+            yield return path;
+
+            string alternatePath = ToggleMaggyHelperSegment(path);
+            if (!string.Equals(alternatePath, path, StringComparison.OrdinalIgnoreCase))
+            {
+                yield return alternatePath;
+            }
+        }
+
+        private static string ToggleMaggyHelperSegment(string path)
+        {
+            string normalizedPath = NormalizePath(path);
+            if (string.IsNullOrEmpty(normalizedPath))
+            {
+                return normalizedPath;
+            }
+
+            bool hasTrailingSlash = normalizedPath.EndsWith("/", StringComparison.Ordinal);
+            string[] parts = normalizedPath.Trim('/').Split('/');
+            if (parts.Length < 2 || !SupportedRootFolders.Contains(parts[0], StringComparer.OrdinalIgnoreCase))
+            {
+                return normalizedPath;
+            }
+
+            List<string> updatedParts = new List<string>(parts);
+            if (string.Equals(updatedParts[1], "MaggyHelper", StringComparison.OrdinalIgnoreCase))
+            {
+                updatedParts.RemoveAt(1);
+            }
+            else
+            {
+                updatedParts.Insert(1, "MaggyHelper");
+            }
+
+            string updatedPath = string.Join("/", updatedParts);
+            if (hasTrailingSlash)
+            {
+                updatedPath += "/";
+            }
+
+            return updatedPath;
+        }
+
+        private static string NormalizePath(string path)
+        {
+            if (string.IsNullOrWhiteSpace(path))
+            {
+                return string.Empty;
+            }
+
+            bool hasTrailingSlash = path.EndsWith("/", StringComparison.Ordinal) || path.EndsWith("\\", StringComparison.Ordinal);
+            string normalizedPath = path.Trim().Replace('\\', '/').Trim('/');
+            if (hasTrailingSlash)
+            {
+                normalizedPath += "/";
+            }
+
+            return normalizedPath;
+        }
+    }
+
     public static class MaggySaveFacade
     {
         private const string ChapterUnlockPrefix = "chapter_unlocked:";

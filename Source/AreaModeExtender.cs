@@ -419,7 +419,10 @@ public static class AreaModeExtender
         if (area.Mode.Length > MODE_DXSIDE && area.Mode[MODE_DXSIDE] != null && IsSideUnlocked(key, MODE_DXSIDE))
             required = MODE_DXSIDE + 1;
 
-        if (required <= save.UnlockedModes)
+        if (required == save.UnlockedModes)
+            return;
+
+        if (required < save.UnlockedModes && save.UnlockedModes > TOTAL_MODES)
             return;
 
         DynamicData saveDyn = DynamicData.For(save);
@@ -468,6 +471,9 @@ public static class AreaModeExtender
 
         int unlockedMode = completedMode + 1;
         if (unlockedMode >= TOTAL_MODES)
+            return;
+
+        if (unlockedMode >= MODE_DSIDE)
             return;
 
         if (area.Mode == null || unlockedMode >= area.Mode.Length || area.Mode[unlockedMode] == null)
@@ -1020,6 +1026,17 @@ public static class AreaModeExtender
         };
     }
 
+    private static bool HasDebugOrCheatExtendedSideAccess(SaveData saveData)
+    {
+        if (saveData?.CheatMode == true)
+            return true;
+
+        if (CelesteGame.PlayMode == CelesteGame.PlayModes.Debug)
+            return true;
+
+        return MaggyHelperModule.Instance != null && MaggyHelperModule.Settings?.DebugMode == true;
+    }
+
     public static bool IsSideUnlocked(AreaKey area, int modeIndex)
     {
         if (modeIndex == MODE_NORMAL)
@@ -1028,6 +1045,17 @@ public static class AreaModeExtender
         SaveData saveData = SaveData.Instance;
         if (saveData == null)
             return false;
+
+        if (modeIndex >= MODE_DSIDE)
+        {
+            if (!HasDebugOrCheatExtendedSideAccess(saveData))
+                return false;
+
+            AreaData areaData = AreaData.Get(area);
+            return areaData?.Mode != null
+                && modeIndex < areaData.Mode.Length
+                && areaData.Mode[modeIndex] != null;
+        }
 
         if (saveData.CheatMode)
             return true;

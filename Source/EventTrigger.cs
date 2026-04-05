@@ -6,7 +6,7 @@ using Monocle;
 
 namespace MaggyHelper.Triggers;
 
-[CustomEntity(ids: "MaggyHelper/EventTrigger")]
+[CustomEntity(ids: "MaggyHelper/EventTrigger,MaggyHelper/CutsceneEventDispatcher")]
 [Tracked]
 public class IngesteEventTrigger : Trigger
 {

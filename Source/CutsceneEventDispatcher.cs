@@ -10,7 +10,6 @@ using FlingBirdIntroMod = MaggyHelper.Entities.FlingBirdIntro;
 using NPC = MaggyHelper.NPCs.NPC;
 
 namespace MaggyHelper.Triggers;
-
 internal static class CutsceneEventDispatcher
 {
     internal delegate bool CutsceneRunner(string flag, Func<CutsceneEntity> factory);

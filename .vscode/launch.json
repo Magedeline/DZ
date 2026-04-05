@@ -1,26 +1,15 @@
 {
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "Debug Celeste Mod",
-            "type": "coreclr",
-            "request": "launch",
-            "preLaunchTask": "build",
-            "program": "${workspaceFolder}/../../Celeste.exe",
-            "args": [],
-            "cwd": "${workspaceFolder}/../../",
-            "stopAtEntry": false,
-            "console": "integratedTerminal",
-            "sourceMap": true,
-            "symbolSearchPath": "${workspaceFolder}/bin"
-        },
-        {
-            "name": "Attach to Celeste",
-            "type": "coreclr",
-            "request": "attach",
-            "processId": "${command:pickProcess}",
-            "stopAtEntry": false,
-            "console": "integratedTerminal"
-        }
-    ]
+  "version": "1.0.0",
+  "configurations": [
+    {
+      "name": "Attach To Celeste",
+      "type": "coreclr",
+      "request": "attach",
+      "processId": "${command:pickProcess}",
+      "preLaunchTask": "build",
+      "justMyCode": false,
+      "requireExactSource": false,
+      "symbolSearchPath": "${workspaceFolder}/bin"
+    }
+  ]
 }

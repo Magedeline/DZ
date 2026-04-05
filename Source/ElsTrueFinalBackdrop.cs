@@ -2,8 +2,8 @@ namespace MaggyHelper.Effects
 {
     /// <summary>
     /// Els True Final Boss backdrop effect.
-    /// Uses authored sprite layers to build a parallax-heavy void backdrop with
-    /// ring bands, tiled eyes, stars, and tier-aware color treatment.
+    /// Uses the authored els_parallax atlas to build a layered void backdrop with
+    /// patterned corruption bands, tiled eyes, stars, and tier-aware color treatment.
     /// </summary>
     [CustomBackdrop("MaggyHelper/ElsTrueFinalBackdrop")]
     [HotReloadable]
@@ -40,14 +40,15 @@ namespace MaggyHelper.Effects
             Calc.HexToColor("b68cff")
         };
 
+        private readonly MTexture backgroundLoopTexture;
         private readonly MTexture ringsBottomTexture;
         private readonly MTexture ringsCenterTexture;
-        private readonly MTexture topStripTexture;
-        private readonly MTexture streaksTexture;
         private readonly MTexture starsSparseTexture;
         private readonly MTexture starsDenseTexture;
         private readonly MTexture eyesBandBaseTexture;
         private readonly MTexture eyesBandIrisTexture;
+        private readonly MTexture streaksTexture;
+        private readonly MTexture topStripTexture;
 
         private Vector2 scrollMultiplier = Vector2.One;
         private Vector2 scrollSpeed = Vector2.Zero;
@@ -58,6 +59,13 @@ namespace MaggyHelper.Effects
         private bool flipY;
         private bool loopX = true;
         private bool loopY = true;
+        private Vector2 currentWind = Vector2.Zero;
+        private Vector2 targetWind = Vector2.Zero;
+        private Vector2 windViewOffset = Vector2.Zero;
+        private float windInfluence;
+        private float windDirection = 1f;
+        private float targetWindDirection = 1f;
+        private float windTransitionSpeed = 2f;
         private MaggyHelper.Entities.ElsTrueFinalBoss.SiamoZeroTier currentTier = MaggyHelper.Entities.ElsTrueFinalBoss.SiamoZeroTier.SoulBlack;
 
         public float Alpha = 1f;
@@ -70,17 +78,23 @@ namespace MaggyHelper.Effects
         public float CorruptionSpeed = 0.8f;
         public Color VoidColor = Color.Black;
         public Color BackgroundColor = SoulBaseColor;
+        public bool WindAffectsView = true;
+        public bool WindAffectsSpinDirection = true;
+        public float WindViewStrength = 1f;
+        public float SpinDirection = 1f;
+        public float WindIrisSpinStrength = 0.6f;
 
         public ElsTrueFinalBackdrop()
         {
+            backgroundLoopTexture = TryGetTexture(TextureRoot + "background_loop");
             ringsBottomTexture = TryGetTexture(TextureRoot + "rings_bottom");
             ringsCenterTexture = TryGetTexture(TextureRoot + "rings_center");
-            topStripTexture = TryGetTexture(TextureRoot + "top_strip");
-            streaksTexture = TryGetTexture(TextureRoot + "streaks");
             starsSparseTexture = TryGetTexture(TextureRoot + "stars_sparse");
             starsDenseTexture = TryGetTexture(TextureRoot + "stars_dense");
             eyesBandBaseTexture = TryGetTexture(TextureRoot + "eyes_band_base");
             eyesBandIrisTexture = TryGetTexture(TextureRoot + "eyes_band_iris");
+            streaksTexture = TryGetOptionalTexture(TextureRoot + "streaks");
+            topStripTexture = TryGetOptionalTexture(TextureRoot + "top_strip");
 
             SetSiamoTier(currentTier);
         }
@@ -110,6 +124,29 @@ namespace MaggyHelper.Effects
 
             if (data.HasAttr("alpha"))
                 Alpha = MathHelper.Clamp(data.AttrFloat("alpha", 1f), 0f, 1f);
+
+            if (data.HasAttr("windAffectsView"))
+                WindAffectsView = data.AttrBool("windAffectsView", true);
+
+            if (data.HasAttr("windAffectsSpinDirection"))
+                WindAffectsSpinDirection = data.AttrBool("windAffectsSpinDirection", true);
+
+            if (data.HasAttr("windViewStrength"))
+                WindViewStrength = Math.Max(0f, data.AttrFloat("windViewStrength", 1f));
+
+            if (data.HasAttr("windIrisSpinStrength"))
+                WindIrisSpinStrength = Math.Max(0f, data.AttrFloat("windIrisSpinStrength", 0.6f));
+
+            if (data.HasAttr("spinDirection"))
+                SpinDirection = MathHelper.Clamp(data.AttrFloat("spinDirection", 1f), -1f, 1f);
+            else if (data.HasAttr("direction"))
+                SpinDirection = MathHelper.Clamp(data.AttrFloat("direction", 1f), -1f, 1f);
+
+            if (data.HasAttr("windTransitionSpeed"))
+                windTransitionSpeed = Math.Max(0.01f, data.AttrFloat("windTransitionSpeed", 2f));
+
+            windDirection = SpinDirection;
+            targetWindDirection = SpinDirection;
 
             if (data.HasAttr("scrollX") || data.HasAttr("scrollY"))
             {
@@ -184,6 +221,8 @@ namespace MaggyHelper.Effects
         {
             base.Update(scene);
 
+            UpdateWindSystem(scene as Level);
+
             animationTime += Engine.DeltaTime * Math.Max(Speed, 0f);
 
             if (burstTimer > 0f)
@@ -210,13 +249,34 @@ namespace MaggyHelper.Effects
             float tierParallax = GetTierParallaxMultiplier();
             float tierSparkle = GetTierSparkleBoost();
             float tierRingScale = GetTierRingScaleBoost();
-            float ringPulse = 1f + (float)Math.Sin(animationTime * (0.55f + GridExpansionSpeed * 0.35f) * tierMotion) * (0.03f + intensityFactor * 0.008f) + burst * 0.08f;
+            float effectiveSpinDirection = WindAffectsSpinDirection ? windDirection : SpinDirection;
+            float spinSpeedMultiplier = WindAffectsSpinDirection ? 1f + windInfluence * 0.6f : 1f;
+            float spinTime = animationTime * effectiveSpinDirection * spinSpeedMultiplier;
+            float tierPatternBoost = 0.84f + tierSparkle * 0.18f;
+            float patternPulse = 1f + (float)Math.Sin(spinTime * (0.32f + GridExpansionSpeed * 0.18f) * tierMotion) * (0.035f + intensityFactor * 0.01f);
+            float membranePulse = 1f + (float)Math.Sin(spinTime * (0.58f + CorruptionSpeed * 0.16f) * tierMotion + 0.45f) * (0.06f + burst * 0.04f);
+            float ringPulse = 1f + (float)Math.Sin(spinTime * (0.55f + GridExpansionSpeed * 0.35f) * tierMotion) * (0.03f + intensityFactor * 0.008f) + burst * 0.08f;
             float ringCenterY = MathHelper.Lerp(100f, 88f, MathHelper.Clamp((VoidRadius - 24f) / 100f, 0f, 1f));
             float lowerRingY = ScreenHeight + 10f - MathHelper.Clamp((VoidRadius - 60f) * 0.12f, -6f, 10f);
+            float membraneY = ringCenterY - 8f + (float)Math.Sin(spinTime * 0.38f * tierMotion) * 3.5f;
 
             Vector2 camera = level.Camera.Position;
+            float windBlend = WindAffectsView ? MathHelper.Clamp(0.3f + windInfluence * 0.7f, 0f, 1f) : 0f;
+            Vector2 viewWindOffset = windViewOffset * windBlend;
+            Vector2 deepWindLayerOffset = viewWindOffset * -1.15f;
+            Vector2 midWindLayerOffset = viewWindOffset * -0.75f;
+            Vector2 surfaceWindLayerOffset = viewWindOffset * -0.35f;
+            Vector2 ringViewOffset = new Vector2(viewWindOffset.X * 0.85f, viewWindOffset.Y * 0.65f);
+            Vector2 lowerRingViewOffset = new Vector2(viewWindOffset.X * 0.55f, viewWindOffset.Y * 0.4f);
+            float ringOrbitAngle = spinTime * (0.42f + GridExpansionSpeed * 0.12f) * (1f + windInfluence * 0.55f);
+            Vector2 ringOrbitOffset = new Vector2(
+                (float)Math.Cos(ringOrbitAngle) * (1.9f + windInfluence * 3.4f),
+                (float)Math.Sin(ringOrbitAngle) * (1.05f + windInfluence * 2f)
+            );
+            float irisSpinAngle = spinTime * (0.95f + RainbowSpeed * 0.22f) * WindIrisSpinStrength * (1f + windInfluence * 1.9f);
 
             Color baseColor = ApplyTint(BackgroundColor);
+            Color voidColor = ApplyTint(VoidColor);
             Color overlayColor = ApplyTint(GetOverlayColor(0.18f));
             Color accentColor = ApplyTint(GetAccentColor(0.06f));
             Color secondaryAccentColor = ApplyTint(GetSecondaryAccentColor(0.12f));
@@ -224,11 +284,15 @@ namespace MaggyHelper.Effects
             Color eyeBaseColor = ApplyTint(GetEyeBaseColor(0.32f));
             Color irisColor = ApplyTint(GetIrisColor(0.48f));
             Color burstFlashColor = ApplyTint(GetBurstFlashColor(0.64f));
+            Color upperVeilColor = Color.Lerp(baseColor, overlayColor, 0.36f);
+            Color lowerVeilColor = Color.Lerp(baseColor, voidColor, 0.58f);
 
             Draw.Rect(-16f, -16f, ScreenWidth + 32f, ScreenHeight + 32f, baseColor * masterAlpha);
 
             float overlayAlpha = MathHelper.Clamp(0.08f + intensityFactor * 0.06f + burst * 0.12f, 0f, 0.5f);
             Draw.Rect(-16f, -16f, ScreenWidth + 32f, ScreenHeight + 32f, overlayColor * masterAlpha * overlayAlpha);
+            Draw.Rect(-16f, -16f, ScreenWidth + 32f, 56f, upperVeilColor * masterAlpha * MathHelper.Clamp(0.05f + intensityFactor * 0.018f, 0f, 0.11f));
+            Draw.Rect(-16f, 128f, ScreenWidth + 32f, 68f, lowerVeilColor * masterAlpha * MathHelper.Clamp(0.07f + intensityFactor * 0.02f, 0f, 0.16f));
 
             if (burst > 0f)
             {
@@ -241,43 +305,91 @@ namespace MaggyHelper.Effects
                 );
             }
 
-            DrawRepeated(
-                starsDenseTexture,
-                GetLayerOffset(camera, starsDenseTexture, new Vector2(0.03f, 0.018f) * tierParallax, new Vector2(-4f * tierMotion, 0.55f * tierMotion), Vector2.Zero, Vector2.One, true, true),
-                Color.Lerp(highlightColor, secondaryAccentColor, 0.32f),
-                masterAlpha * MathHelper.Clamp((0.18f + intensityFactor * 0.04f + burst * 0.1f) * (0.88f + tierSparkle * 0.14f), 0f, 0.68f),
-                Vector2.One,
+            DrawLayer(
+                camera,
+                backgroundLoopTexture,
+                new Vector2(0.016f, 0.01f) * tierParallax,
+                new Vector2((-4f - CorruptionSpeed * 3f) * tierMotion * effectiveSpinDirection, 0.32f * tierMotion),
+                new Vector2((float)Math.Sin(spinTime * 0.18f) * 14f, -18f + (float)Math.Cos(spinTime * 0.27f) * 10f) + deepWindLayerOffset,
+                Color.Lerp(overlayColor, accentColor, 0.12f),
+                masterAlpha * MathHelper.Clamp((0.04f + intensityFactor * 0.018f + burst * 0.05f) * tierPatternBoost, 0f, 0.11f),
+                new Vector2(1.42f, 1.08f) * patternPulse,
                 true,
                 true
             );
 
-            DrawRepeated(
-                starsSparseTexture,
-                GetLayerOffset(camera, starsSparseTexture, new Vector2(0.06f, 0.03f) * tierParallax, new Vector2(-9f * tierMotion, 1.05f * tierMotion), Vector2.Zero, Vector2.One, true, true),
-                Color.Lerp(highlightColor, secondaryAccentColor, 0.15f),
-                masterAlpha * MathHelper.Clamp((0.28f + intensityFactor * 0.06f + burst * 0.14f) * tierSparkle, 0f, 0.85f),
-                Vector2.One,
+            DrawLayer(
+                camera,
+                backgroundLoopTexture,
+                new Vector2(0.045f, 0.018f) * tierParallax,
+                new Vector2((-8f - CorruptionSpeed * 6f - GridExpansionSpeed * 3f) * tierMotion * effectiveSpinDirection, 0.62f * tierMotion),
+                new Vector2(0f, 26f + (float)Math.Sin(spinTime * 0.52f) * 8f) + midWindLayerOffset,
+                Color.Lerp(overlayColor, accentColor, 0.22f),
+                masterAlpha * MathHelper.Clamp((0.06f + intensityFactor * 0.026f + burst * 0.07f) * (0.82f + tierSparkle * 0.14f), 0f, 0.17f),
+                new Vector2(1.14f + burst * 0.03f, 0.9f + burst * 0.02f) * (1f + (float)Math.Sin(spinTime * 0.46f) * 0.025f),
                 true,
                 true
             );
 
-            DrawRepeated(
+            DrawLayer(
+                camera,
                 streaksTexture,
-                GetLayerOffset(camera, streaksTexture, new Vector2(0.095f, 0.024f) * tierParallax, new Vector2((-14f - CorruptionSpeed * 8f) * tierMotion, 0.45f), new Vector2(0f, 24f + (float)Math.Sin(animationTime * 0.7f) * 8f), Vector2.One, true, true),
-                secondaryAccentColor,
-                masterAlpha * MathHelper.Clamp((0.1f + intensityFactor * 0.035f + burst * 0.16f) * (0.82f + tierMotion * 0.18f), 0f, 0.42f),
+                new Vector2(0.09f, 0.024f) * tierParallax,
+                new Vector2((-12f - CorruptionSpeed * 8f) * tierMotion * effectiveSpinDirection, 0.38f * tierMotion),
+                new Vector2(0f, 18f + (float)Math.Sin(spinTime * 0.58f) * 6f) + midWindLayerOffset,
+                Color.Lerp(secondaryAccentColor, highlightColor, 0.24f),
+                masterAlpha * MathHelper.Clamp((0.08f + intensityFactor * 0.03f + burst * 0.08f) * (0.8f + tierMotion * 0.16f), 0f, 0.28f),
                 Vector2.One,
                 true,
                 true
             );
 
-            float eyeBandY = GetTierEyeBandBaseY() + (float)Math.Sin(animationTime * (0.45f + CorruptionSpeed * 0.18f) * tierMotion) * (2.5f + tierSparkle * 1.2f);
-            Vector2 eyesOffset = GetLayerOffset(camera, eyesBandBaseTexture, new Vector2(0.14f, 0.035f) * tierParallax, new Vector2((-18f - CorruptionSpeed * 10f) * tierMotion, 0f), new Vector2(0f, eyeBandY), Vector2.One, true, false);
+            DrawLayer(
+                camera,
+                backgroundLoopTexture,
+                new Vector2(0.12f, 0.02f) * tierParallax,
+                new Vector2((-14f - GridExpansionSpeed * 12f) * tierMotion * effectiveSpinDirection, 0f),
+                new Vector2(0f, -72f + (float)Math.Sin(spinTime * 0.7f) * 5f) + surfaceWindLayerOffset,
+                Color.Lerp(secondaryAccentColor, highlightColor, 0.18f),
+                masterAlpha * MathHelper.Clamp((0.05f + RainbowEdgeIntensity * 0.035f + burst * 0.05f) * (0.9f + tierSparkle * 0.08f), 0f, 0.12f),
+                new Vector2(1.28f, 0.54f) * (1f + (float)Math.Sin(spinTime * 0.4f) * 0.02f),
+                true,
+                false
+            );
+
+            DrawLayer(
+                camera,
+                starsDenseTexture,
+                new Vector2(0.03f, 0.018f) * tierParallax,
+                new Vector2(-4f * tierMotion * effectiveSpinDirection, 0.55f * tierMotion),
+                deepWindLayerOffset * 0.6f,
+                Color.Lerp(highlightColor, secondaryAccentColor, 0.32f),
+                masterAlpha * MathHelper.Clamp((0.14f + intensityFactor * 0.035f + burst * 0.1f) * (0.88f + tierSparkle * 0.14f), 0f, 0.56f),
+                Vector2.One,
+                true,
+                true
+            );
+
+            DrawLayer(
+                camera,
+                starsSparseTexture,
+                new Vector2(0.06f, 0.03f) * tierParallax,
+                new Vector2(-9f * tierMotion * effectiveSpinDirection, 1.05f * tierMotion),
+                midWindLayerOffset * 0.8f,
+                Color.Lerp(highlightColor, secondaryAccentColor, 0.15f),
+                masterAlpha * MathHelper.Clamp((0.22f + intensityFactor * 0.05f + burst * 0.14f) * tierSparkle, 0f, 0.76f),
+                Vector2.One,
+                true,
+                true
+            );
+
+            float eyeBandY = GetTierEyeBandBaseY() + (float)Math.Sin(spinTime * (0.45f + CorruptionSpeed * 0.18f) * tierMotion) * (2.5f + tierSparkle * 1.2f);
+            Vector2 eyesOffset = GetLayerOffset(camera, eyesBandBaseTexture, new Vector2(0.14f, 0.035f) * tierParallax, new Vector2((-18f - CorruptionSpeed * 10f) * tierMotion * effectiveSpinDirection, 0f), new Vector2(viewWindOffset.X * 0.16f, eyeBandY + viewWindOffset.Y * 0.05f), Vector2.One, true, false);
             DrawRepeated(
                 eyesBandBaseTexture,
                 eyesOffset,
                 eyeBaseColor,
-                masterAlpha * MathHelper.Clamp((0.18f + intensityFactor * 0.06f) * GetTierEyeBandAlphaBoost(), 0f, 0.66f),
+                masterAlpha * MathHelper.Clamp((0.16f + intensityFactor * 0.05f) * GetTierEyeBandAlphaBoost(), 0f, 0.56f),
                 Vector2.One,
                 true,
                 false
@@ -285,30 +397,113 @@ namespace MaggyHelper.Effects
 
             DrawRepeated(
                 eyesBandIrisTexture,
-                eyesOffset + new Vector2((float)Math.Sin(animationTime * (1.25f + RainbowSpeed * 0.25f) * tierMotion) * (4f + burst * 8f + tierSparkle * 1.5f), 0f),
+                eyesOffset + new Vector2((float)Math.Sin(spinTime * (1.25f + RainbowSpeed * 0.25f) * tierMotion) * (4f + burst * 8f + tierSparkle * 1.5f), 0f),
                 irisColor,
-                masterAlpha * MathHelper.Clamp((0.16f + RainbowEdgeIntensity * 0.11f + burst * 0.1f) * GetTierEyeBandAlphaBoost(), 0f, 0.76f),
+                masterAlpha * MathHelper.Clamp((0.14f + RainbowEdgeIntensity * 0.1f + burst * 0.1f) * GetTierEyeBandAlphaBoost(), 0f, 0.68f),
                 Vector2.One,
+                true,
+                false
+            );
+
+            DrawLayer(
+                camera,
+                topStripTexture,
+                new Vector2(0.16f, 0.025f) * tierParallax,
+                new Vector2((-22f - GridExpansionSpeed * 14f) * tierMotion * effectiveSpinDirection, 0f),
+                new Vector2(surfaceWindLayerOffset.X * 0.35f, 12f + viewWindOffset.Y * 0.05f),
+                highlightColor,
+                masterAlpha * MathHelper.Clamp((0.12f + RainbowEdgeIntensity * 0.08f + burst * 0.06f) * (0.92f + tierSparkle * 0.08f), 0f, 0.42f),
+                Vector2.One,
+                true,
+                false
+            );
+
+            Vector2 lowerEyesScale = new Vector2(1.08f, 1f);
+            float lowerEyeBandY = ringCenterY + 30f + (float)Math.Sin(spinTime * (0.34f + CorruptionSpeed * 0.12f) * tierMotion + 1.7f) * (3f + burst * 1.8f);
+            Vector2 lowerEyesOffset = GetLayerOffset(camera, eyesBandBaseTexture, new Vector2(0.09f, 0.022f) * tierParallax, new Vector2((-12f - CorruptionSpeed * 7f) * tierMotion * effectiveSpinDirection, 0f), new Vector2(viewWindOffset.X * 0.1f, lowerEyeBandY + viewWindOffset.Y * 0.04f), lowerEyesScale, true, false);
+            DrawRepeated(
+                eyesBandBaseTexture,
+                lowerEyesOffset,
+                Color.Lerp(eyeBaseColor, accentColor, 0.18f),
+                masterAlpha * MathHelper.Clamp((0.08f + intensityFactor * 0.025f + burst * 0.04f) * GetTierEyeBandAlphaBoost(), 0f, 0.32f),
+                lowerEyesScale,
                 true,
                 false
             );
 
             DrawRepeated(
-                topStripTexture,
-                GetLayerOffset(camera, topStripTexture, new Vector2(0.18f, 0.026f) * tierParallax, new Vector2((-24f - GridExpansionSpeed * 16f) * tierMotion, 0f), new Vector2(0f, 14f), Vector2.One, true, false),
-                highlightColor,
-                masterAlpha * MathHelper.Clamp((0.14f + RainbowEdgeIntensity * 0.09f + burst * 0.08f) * (0.92f + tierSparkle * 0.1f), 0f, 0.58f),
-                Vector2.One,
+                eyesBandIrisTexture,
+                lowerEyesOffset + new Vector2((float)Math.Sin(spinTime * (1.1f + RainbowSpeed * 0.18f) * tierMotion + 0.8f) * (6f + burst * 6f + tierSparkle), 0f),
+                irisColor,
+                masterAlpha * MathHelper.Clamp((0.07f + RainbowEdgeIntensity * 0.07f + burst * 0.08f) * GetTierEyeBandAlphaBoost(), 0f, 0.38f),
+                lowerEyesScale,
                 true,
                 false
             );
 
             Vector2 ringParallax = new Vector2(camera.X * 0.11f * scrollMultiplier.X * tierParallax, camera.Y * 0.072f * scrollMultiplier.Y * tierParallax);
+            Vector2 ringCenter = new Vector2(ScreenWidth * 0.5f, ringCenterY) + ringViewOffset + ringOrbitOffset - ringParallax * 0.5f;
             float ringAlpha = masterAlpha * MathHelper.Clamp(0.26f + intensityFactor * 0.08f + RainbowEdgeIntensity * 0.06f + burst * 0.18f, 0f, 0.88f);
+            Vector2 irisCenter = new Vector2(ScreenWidth * 0.5f, membraneY) + ringViewOffset * 0.76f + ringOrbitOffset * 0.62f - ringParallax * 0.42f;
+            Vector2 irisSpinOffset = Calc.AngleToVector(irisSpinAngle, 1f) * (1.4f + windInfluence * 4.2f * WindIrisSpinStrength + burst * 1.8f);
+
+            DrawCenteredRotated(
+                eyesBandBaseTexture,
+                irisCenter,
+                Color.Lerp(eyeBaseColor, secondaryAccentColor, 0.16f),
+                masterAlpha * MathHelper.Clamp(0.12f + intensityFactor * 0.035f + burst * 0.06f, 0f, 0.3f),
+                new Vector2(voidScale * 1.18f * membranePulse, voidScale * 0.62f * membranePulse),
+                spinTime * 0.08f
+            );
+
+            DrawCenteredRotated(
+                eyesBandBaseTexture,
+                irisCenter,
+                Color.Lerp(eyeBaseColor, highlightColor, 0.14f),
+                masterAlpha * MathHelper.Clamp(0.11f + intensityFactor * 0.035f + burst * 0.05f, 0f, 0.28f),
+                new Vector2(voidScale * 0.62f, voidScale * 0.36f),
+                irisSpinAngle * 0.14f
+            );
+
+            DrawCenteredRotated(
+                eyesBandBaseTexture,
+                irisCenter,
+                Color.Lerp(overlayColor, accentColor, 0.22f),
+                masterAlpha * MathHelper.Clamp(0.06f + intensityFactor * 0.025f + windInfluence * 0.08f, 0f, 0.18f),
+                new Vector2(voidScale * 0.46f, voidScale * 0.18f),
+                -irisSpinAngle * 0.3f
+            );
+
+            DrawCenteredRotated(
+                eyesBandIrisTexture,
+                irisCenter + irisSpinOffset,
+                irisColor,
+                masterAlpha * MathHelper.Clamp(0.18f + RainbowEdgeIntensity * 0.08f + windInfluence * 0.12f + burst * 0.08f, 0f, 0.42f),
+                new Vector2(voidScale * 0.82f, voidScale * 0.82f),
+                irisSpinAngle
+            );
+
+            DrawCenteredRotated(
+                eyesBandIrisTexture,
+                irisCenter - irisSpinOffset * 0.55f,
+                Color.Lerp(highlightColor, irisColor, 0.35f),
+                masterAlpha * MathHelper.Clamp(0.07f + windInfluence * 0.08f + burst * 0.04f, 0f, 0.18f),
+                new Vector2(voidScale * 0.92f, voidScale * 0.92f),
+                -irisSpinAngle * 0.65f
+            );
 
             DrawCentered(
                 ringsCenterTexture,
-                new Vector2(ScreenWidth * 0.5f, ringCenterY) - ringParallax * 0.42f + new Vector2(0f, (float)Math.Sin(animationTime * 0.8f * tierMotion) * 2f),
+                ringCenter + new Vector2(0f, 3f),
+                Color.Lerp(voidColor, accentColor, 0.16f),
+                ringAlpha * 0.22f,
+                Vector2.One * (voidScale * tierRingScale * 1.28f * (1f + burst * 0.04f)),
+                new Vector2(0.5f, 0.5f)
+            );
+
+            DrawCentered(
+                ringsCenterTexture,
+                ringCenter + ringParallax * 0.08f + new Vector2((float)Math.Cos(spinTime * 0.8f * tierMotion) * (1.2f + windInfluence * 1.2f), (float)Math.Sin(spinTime * 0.8f * tierMotion) * (2f + windInfluence * 1.3f)),
                 Color.Lerp(secondaryAccentColor, highlightColor, 0.32f),
                 ringAlpha * 0.34f,
                 Vector2.One * (voidScale * tierRingScale * (1.1f + burst * 0.08f) * ringPulse),
@@ -317,7 +512,7 @@ namespace MaggyHelper.Effects
 
             DrawCentered(
                 ringsCenterTexture,
-                new Vector2(ScreenWidth * 0.5f, ringCenterY) - ringParallax * 0.5f,
+                ringCenter,
                 accentColor,
                 ringAlpha,
                 Vector2.One * (voidScale * tierRingScale * ringPulse),
@@ -326,7 +521,7 @@ namespace MaggyHelper.Effects
 
             DrawCentered(
                 ringsBottomTexture,
-                new Vector2(ScreenWidth * 0.5f, lowerRingY) - ringParallax * 0.68f,
+                new Vector2(ScreenWidth * 0.5f, lowerRingY) + lowerRingViewOffset + ringOrbitOffset * 0.35f - ringParallax * 0.68f,
                 Color.Lerp(accentColor, highlightColor, 0.45f),
                 ringAlpha,
                 Vector2.One * (voidScale * tierRingScale * 1.14f * (1f + burst * 0.05f)),
@@ -335,12 +530,24 @@ namespace MaggyHelper.Effects
 
             DrawCentered(
                 ringsBottomTexture,
-                new Vector2(ScreenWidth * 0.5f, lowerRingY + 4f) - ringParallax * 0.74f,
-                Color.Lerp(VoidColor, accentColor, 0.18f),
+                new Vector2(ScreenWidth * 0.5f, lowerRingY + 4f) + lowerRingViewOffset + ringOrbitOffset * 0.22f - ringParallax * 0.74f,
+                Color.Lerp(voidColor, accentColor, 0.18f),
                 ringAlpha * 0.24f,
                 Vector2.One * (voidScale * tierRingScale * 1.28f * (1f + burst * 0.04f)),
                 new Vector2(0.5f, 1f)
             );
+        }
+
+        private static MTexture TryGetOptionalTexture(string path)
+        {
+            try
+            {
+                return GFX.Game[path];
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         private static MTexture TryGetTexture(string path)
@@ -362,6 +569,31 @@ namespace MaggyHelper.Effects
                 return 0f;
 
             return Ease.CubeOut(burstTimer / BurstDuration);
+        }
+
+        private void UpdateWindSystem(Level level)
+        {
+            targetWind = level != null ? level.Wind : Vector2.Zero;
+            currentWind = Vector2.Lerp(currentWind, targetWind, Engine.DeltaTime * 3f);
+            windInfluence = MathHelper.Clamp(currentWind.Length() / 800f, 0f, 1f);
+
+            if (Math.Abs(currentWind.X) > 50f)
+                targetWindDirection = currentWind.X < 0f ? 1f : -1f;
+            else if (Math.Abs(currentWind.Y) > 50f)
+                targetWindDirection = currentWind.Y < 0f ? 1f : -1f;
+            else
+                targetWindDirection = SpinDirection;
+
+            windDirection = Calc.Approach(windDirection, targetWindDirection, Engine.DeltaTime * windTransitionSpeed);
+
+            Vector2 targetViewOffset = Vector2.Zero;
+            if (WindAffectsView && WindViewStrength > 0f)
+            {
+                targetViewOffset = new Vector2(currentWind.X * 0.09f, currentWind.Y * 0.07f) * WindViewStrength;
+            }
+
+            float lerp = 1f - (float)Math.Pow(0.01f, Engine.DeltaTime * windTransitionSpeed);
+            windViewOffset += (targetViewOffset - windViewOffset) * lerp;
         }
 
         private Color GetOverlayColor(float offset)
@@ -577,6 +809,19 @@ namespace MaggyHelper.Effects
             return new Color(color.ToVector4() * tintColor.ToVector4());
         }
 
+        private void DrawLayer(Vector2 camera, MTexture texture, Vector2 parallax, Vector2 drift, Vector2 baseOffset, Color color, float alpha, Vector2 scale, bool repeatX, bool repeatY)
+        {
+            DrawRepeated(
+                texture,
+                GetLayerOffset(camera, texture, parallax, drift, baseOffset, scale, repeatX, repeatY),
+                color,
+                alpha,
+                scale,
+                repeatX,
+                repeatY
+            );
+        }
+
         private Vector2 GetLayerOffset(Vector2 camera, MTexture texture, Vector2 parallax, Vector2 drift, Vector2 baseOffset, Vector2 scale, bool repeatX, bool repeatY)
         {
             repeatX &= loopX;
@@ -644,6 +889,19 @@ namespace MaggyHelper.Effects
             );
 
             texture.DrawJustified(position, justify, color * alpha, drawScale);
+        }
+
+        private void DrawCenteredRotated(MTexture texture, Vector2 position, Color color, float alpha, Vector2 scale, float rotation)
+        {
+            if (texture == null || alpha <= 0.001f)
+                return;
+
+            Vector2 drawScale = new Vector2(
+                (flipX ? -1f : 1f) * Math.Abs(scale.X),
+                (flipY ? -1f : 1f) * Math.Abs(scale.Y)
+            );
+
+            texture.DrawCentered(position, color * alpha, drawScale, rotation);
         }
 
         private static float Mod(float x, float m)

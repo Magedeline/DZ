@@ -23,6 +23,7 @@ namespace Celeste.Mod.MaggyHelper
 
         // Achievement tracking
         private HashSet<string> Achievements { get; set; } = new HashSet<string>();
+        public HashSet<string> BossesExampleStoneFlags { get; set; } = new HashSet<string>();
         private HashSet<string> CollectedHeartGems { get; set; } = new HashSet<string>();
         private HashSet<string> CollectedSoulFragments { get; set; } = new HashSet<string>();
         private Dictionary<string, int> SoulBarrierFragmentCounts { get; set; } = new Dictionary<string, int>();

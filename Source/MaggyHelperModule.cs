@@ -1,4 +1,5 @@
 ﻿using System;
+using Celeste.Mod.MaggyHelper.BossesExample;
 using MaggyHelper.Cutscenes;
 using Monocle;
 
@@ -32,6 +33,7 @@ namespace Celeste.Mod.MaggyHelper
 
         public override void Load()
         {
+            BossesExampleModule.Load();
             global::MaggyHelper.AreaMapData.Initialize();
             global::MaggyHelper.AreaModeExtender.Load();
             global::MaggyHelper.IntroRemixHooks.Load();
@@ -51,10 +53,17 @@ namespace Celeste.Mod.MaggyHelper
             global::MaggyHelper.MonoModHooks.Unload();
             global::MaggyHelper.IntroRemixHooks.Unload();
             global::MaggyHelper.AreaModeExtender.Unload();
+            BossesExampleModule.Unload();
 
             // Reset credits state
             LaunchPart1Credits = false;
             LaunchPart2Credits = false;
+        }
+
+        public override void LoadContent(bool firstLoad)
+        {
+            base.LoadContent(firstLoad);
+            BossesExampleModule.LoadContent(firstLoad);
         }
 
         /// <summary>

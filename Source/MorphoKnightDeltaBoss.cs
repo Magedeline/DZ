@@ -424,6 +424,22 @@ namespace MaggyHelper.Entities.Bosses
         #region Attack Execution
         private IEnumerator ExecuteAttack(AttackType attack)
         {
+            yield return TelegraphIntent(attack switch
+            {
+                AttackType.GracefulDash => BossTelegraphType.DashCyan,
+                AttackType.WingGust => BossTelegraphType.PositioningOrange,
+                AttackType.TeleportStrike => BossTelegraphType.TeleportYellow,
+                AttackType.ScaleStorm => BossTelegraphType.PositioningOrange,
+                AttackType.DivineJudgment => BossTelegraphType.SpecialPurple,
+                AttackType.ParadiseLost => BossTelegraphType.SpecialPurple,
+                AttackType.CelestialBeam => BossTelegraphType.PositioningOrange,
+                AttackType.TranscendentSlash => BossTelegraphType.DashCyan,
+                AttackType.InfiniteButterflies => BossTelegraphType.SpecialPurple,
+                AttackType.DeltaStrike => BossTelegraphType.DashCyan,
+                AttackType.Apotheosis => BossTelegraphType.SpecialPurple,
+                _ => BossTelegraphType.DangerRed
+            }, attack is AttackType.DivineJudgment or AttackType.ParadiseLost or AttackType.InfiniteButterflies or AttackType.Apotheosis ? 0.65f : 0.5f);
+
             switch (attack)
             {
                 // Phase 1

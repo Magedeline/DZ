@@ -2,86 +2,65 @@ namespace MaggyHelper.Effects
 {
     /// <summary>
     /// Els True Final Boss backdrop effect.
-    /// Features a dark void with black center, rainbow edges that expand outward,
-    /// and corrupted perspective grid effect.
-    /// Uses the bg00.png perspective grid texture with inverted/dark theming.
+    /// Uses authored sprite layers to build a parallax-heavy void backdrop with
+    /// ring bands, tiled eyes, stars, and tier-aware color treatment.
     /// </summary>
     [CustomBackdrop("MaggyHelper/ElsTrueFinalBackdrop")]
     [HotReloadable]
     public class ElsTrueFinalBackdrop : Backdrop
     {
-        #region Structs
-        private struct VoidParticle
+        private const float ScreenWidth = 320f;
+        private const float ScreenHeight = 180f;
+        private const float BurstDuration = 0.75f;
+        private const string TextureRoot = "bgs/maggy/20/els_parallax/";
+
+        private static readonly Color PinkBaseColor = Calc.HexToColor("09030b");
+        private static readonly Color PinkOverlayColor = Calc.HexToColor("4d1638");
+        private static readonly Color PinkAccentColor = Calc.HexToColor("ff7bcd");
+        private static readonly Color PinkHighlightColor = Calc.HexToColor("ffe8f7");
+        private static readonly Color PinkIrisColor = Calc.HexToColor("ff4ca7");
+
+        private static readonly Color SoulBaseColor = Calc.HexToColor("020203");
+        private static readonly Color SoulOverlayColor = Calc.HexToColor("210a16");
+        private static readonly Color SoulAccentColor = Calc.HexToColor("6b1630");
+        private static readonly Color SoulHighlightColor = Calc.HexToColor("d6c6d8");
+        private static readonly Color SoulEyeColor = Calc.HexToColor("f2eaf2");
+        private static readonly Color SoulIrisColor = Calc.HexToColor("c92a58");
+
+        private static readonly Color StellarrussBaseColor = Calc.HexToColor("05060d");
+        private static readonly Color StellarrussOverlayColor = Calc.HexToColor("11172d");
+        private static readonly Color[] StellarrussPalette =
         {
-            public Vector2 Position;
-            public Vector2 Velocity;
-            public float Size;
-            public float Alpha;
-            public float RainbowPhase;
-            public float Lifetime;
-            public bool IsRainbow;
-        }
+            Calc.HexToColor("ffffff"),
+            Calc.HexToColor("ff6cce"),
+            Calc.HexToColor("ff8c42"),
+            Calc.HexToColor("ffe66d"),
+            Calc.HexToColor("62ffcf"),
+            Calc.HexToColor("6ec7ff"),
+            Calc.HexToColor("b68cff")
+        };
 
-        private struct GridLayer
-        {
-            public float Scale;
-            public float Rotation;
-            public float Alpha;
-            public float RainbowPhase;
-            public float ExpandSpeed;
-            public float MaxScale;
-            public bool IsInverted;
-            public float DistortionPhase;
-        }
+        private readonly MTexture ringsBottomTexture;
+        private readonly MTexture ringsCenterTexture;
+        private readonly MTexture topStripTexture;
+        private readonly MTexture streaksTexture;
+        private readonly MTexture starsSparseTexture;
+        private readonly MTexture starsDenseTexture;
+        private readonly MTexture eyesBandBaseTexture;
+        private readonly MTexture eyesBandIrisTexture;
 
-        private struct CorruptionTendril
-        {
-            public float Angle;
-            public float Length;
-            public float Width;
-            public float Phase;
-            public float Speed;
-            public float RainbowOffset;
-        }
+        private Vector2 scrollMultiplier = Vector2.One;
+        private Vector2 scrollSpeed = Vector2.Zero;
+        private Color tintColor = Color.White;
+        private float animationTime;
+        private float burstTimer;
+        private bool flipX;
+        private bool flipY;
+        private bool loopX = true;
+        private bool loopY = true;
+        private MaggyHelper.Entities.ElsTrueFinalBoss.SiamoZeroTier currentTier = MaggyHelper.Entities.ElsTrueFinalBoss.SiamoZeroTier.SoulBlack;
 
-        private struct VoidRing
-        {
-            public float Radius;
-            public float ExpandSpeed;
-            public float Alpha;
-            public float RainbowPhase;
-            public float Thickness;
-        }
-        #endregion
-
-        #region Constants
-        private const int VOID_PARTICLE_COUNT = 150;
-        private const int GRID_LAYER_COUNT = 8;
-        private const int TENDRIL_COUNT = 16;
-        private const int VOID_RING_COUNT = 5;
-        private const int RAINBOW_COLOR_COUNT = 16;
-        private const int RAINBOW_LUT_SIZE = 256;
-        #endregion
-
-        #region Fields
-        private readonly MTexture gridTexture;
-        private readonly VoidParticle[] voidParticles;
-        private readonly GridLayer[] gridLayers;
-        private readonly CorruptionTendril[] tendrils;
-        private readonly VoidRing[] voidRings;
-        private readonly Color[] rainbowColors;
-        // Pre-computed rainbow lookup table for fast indexed access
-        private readonly Color[] rainbowLUT;
-
-        private VirtualRenderTarget renderTarget;
-        private float globalTime;
-        private float rainbowTime;
-        private float voidPulse;
-        private float corruptionIntensity;
-        private Vector2 center;
-        private Vector2 cameraOffset;
-
-        // Configuration
+        public float Alpha = 1f;
         public float Intensity = 1f;
         public new float Speed = 1f;
         public float VoidRadius = 60f;
@@ -90,602 +69,586 @@ namespace MaggyHelper.Effects
         public float RainbowSpeed = 1.5f;
         public float CorruptionSpeed = 0.8f;
         public Color VoidColor = Color.Black;
-        public Color BackgroundColor = new(5, 0, 10); // Deep void purple-black
-        #endregion
+        public Color BackgroundColor = SoulBaseColor;
 
-        #region Constructor
         public ElsTrueFinalBackdrop()
         {
-            center = new Vector2(160f, 90f);
+            ringsBottomTexture = TryGetTexture(TextureRoot + "rings_bottom");
+            ringsCenterTexture = TryGetTexture(TextureRoot + "rings_center");
+            topStripTexture = TryGetTexture(TextureRoot + "top_strip");
+            streaksTexture = TryGetTexture(TextureRoot + "streaks");
+            starsSparseTexture = TryGetTexture(TextureRoot + "stars_sparse");
+            starsDenseTexture = TryGetTexture(TextureRoot + "stars_dense");
+            eyesBandBaseTexture = TryGetTexture(TextureRoot + "eyes_band_base");
+            eyesBandIrisTexture = TryGetTexture(TextureRoot + "eyes_band_iris");
 
-            // Load the perspective grid texture with null check
-            try
-            {
-                gridTexture = GFX.Game["bgs/maggy/12/bg00"];
-                if (gridTexture == null)
-                {
-                    Logger.Log(LogLevel.Warn, "MaggyHelper/ElsTrueFinalBackdrop", "Grid texture 'bgs/maggy/12/bg00' not found");
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.Log(LogLevel.Error, "MaggyHelper/ElsTrueFinalBackdrop", $"Failed to load grid texture: {ex.Message}");
-                gridTexture = null;
-            }
-
-            // Initialize rainbow colors
-            rainbowColors = new Color[RAINBOW_COLOR_COUNT];
-            rainbowLUT = new Color[RAINBOW_LUT_SIZE];
-            InitializeRainbowColors();
-
-            // Initialize void particles
-            voidParticles = new VoidParticle[VOID_PARTICLE_COUNT];
-            InitializeVoidParticles();
-
-            // Initialize grid layers
-            gridLayers = new GridLayer[GRID_LAYER_COUNT];
-            InitializeGridLayers();
-
-            // Initialize corruption tendrils
-            tendrils = new CorruptionTendril[TENDRIL_COUNT];
-            InitializeTendrils();
-
-            // Initialize void rings
-            voidRings = new VoidRing[VOID_RING_COUNT];
-            InitializeVoidRings();
+            SetSiamoTier(currentTier);
         }
 
         public ElsTrueFinalBackdrop(BinaryPacker.Element data) : this()
         {
             if (data.HasAttr("intensity"))
                 Intensity = data.AttrFloat("intensity", 1f);
-            
+
             if (data.HasAttr("speed"))
                 Speed = data.AttrFloat("speed", 1f);
-            
+
             if (data.HasAttr("voidRadius"))
                 VoidRadius = data.AttrFloat("voidRadius", 60f);
-            
+
             if (data.HasAttr("rainbowEdgeIntensity"))
                 RainbowEdgeIntensity = data.AttrFloat("rainbowEdgeIntensity", 1f);
-            
+
             if (data.HasAttr("gridExpansionSpeed"))
                 GridExpansionSpeed = data.AttrFloat("gridExpansionSpeed", 0.4f);
-            
+
             if (data.HasAttr("rainbowSpeed"))
                 RainbowSpeed = data.AttrFloat("rainbowSpeed", 1.5f);
-            
+
             if (data.HasAttr("corruptionSpeed"))
                 CorruptionSpeed = data.AttrFloat("corruptionSpeed", 0.8f);
-        }
-        #endregion
 
-        #region Initialization
-        private void InitializeRainbowColors()
-        {
-            for (int i = 0; i < RAINBOW_COLOR_COUNT; i++)
-            {
-                float hue = (float)i / RAINBOW_COLOR_COUNT;
-                rainbowColors[i] = HSVToRGB(hue, 1f, 1f);
-            }
-            // Build LUT for fast rainbow color lookups
-            for (int i = 0; i < RAINBOW_LUT_SIZE; i++)
-            {
-                float hue = (float)i / RAINBOW_LUT_SIZE;
-                rainbowLUT[i] = HSVToRGB(hue, 1f, 1f);
-            }
-        }
+            if (data.HasAttr("alpha"))
+                Alpha = MathHelper.Clamp(data.AttrFloat("alpha", 1f), 0f, 1f);
 
-        private void InitializeVoidParticles()
-        {
-            for (int i = 0; i < VOID_PARTICLE_COUNT; i++)
+            if (data.HasAttr("scrollX") || data.HasAttr("scrollY"))
             {
-                ResetVoidParticle(ref voidParticles[i], true);
+                scrollMultiplier = new Vector2(
+                    data.AttrFloat("scrollX", 1f),
+                    data.AttrFloat("scrollY", 1f)
+                );
             }
-        }
 
-        private void ResetVoidParticle(ref VoidParticle particle, bool randomLifetime = false)
-        {
-            // Spawn from edges, moving towards center (or from center moving outward for rainbow)
-            float angle = Calc.Random.NextFloat() * MathHelper.TwoPi;
-            bool isRainbow = Calc.Random.NextFloat() > 0.6f;
-            
-            if (isRainbow)
+            if (data.HasAttr("speedX") || data.HasAttr("speedY"))
             {
-                // Rainbow particles spawn from center, move outward
-                float distance = Calc.Random.Range(10f, VoidRadius);
-                particle.Position = center + Calc.AngleToVector(angle, distance);
-                particle.Velocity = Calc.AngleToVector(angle, Calc.Random.Range(20f, 80f));
+                scrollSpeed = new Vector2(
+                    data.AttrFloat("speedX", 0f),
+                    data.AttrFloat("speedY", 0f)
+                );
             }
-            else
-            {
-                // Void particles spawn from edges, move toward center
-                float distance = Calc.Random.Range(150f, 250f);
-                particle.Position = center + Calc.AngleToVector(angle, distance);
-                particle.Velocity = -Calc.AngleToVector(angle, Calc.Random.Range(30f, 100f));
-            }
-            
-            particle.Size = Calc.Random.Range(1f, 4f);
-            particle.Alpha = Calc.Random.Range(0.5f, 1f);
-            particle.RainbowPhase = Calc.Random.NextFloat() * MathHelper.TwoPi;
-            particle.Lifetime = randomLifetime ? Calc.Random.Range(0f, 3f) : 0f;
-            particle.IsRainbow = isRainbow;
-        }
 
-        private void InitializeGridLayers()
-        {
-            for (int i = 0; i < GRID_LAYER_COUNT; i++)
+            if (data.HasAttr("color"))
             {
-                float layerFactor = (float)i / GRID_LAYER_COUNT;
-                gridLayers[i] = new GridLayer
+                try
                 {
-                    Scale = 0.1f + layerFactor * 0.3f,
-                    Rotation = Calc.Random.Range(-0.15f, 0.15f),
-                    Alpha = 0.6f - layerFactor * 0.2f,
-                    RainbowPhase = layerFactor * MathHelper.TwoPi,
-                    ExpandSpeed = GridExpansionSpeed * (0.8f + layerFactor * 0.4f),
-                    MaxScale = 4f + layerFactor * 2f,
-                    IsInverted = i % 2 == 0,
-                    DistortionPhase = Calc.Random.NextFloat() * MathHelper.TwoPi
-                };
-            }
-        }
-
-        private void InitializeTendrils()
-        {
-            for (int i = 0; i < TENDRIL_COUNT; i++)
-            {
-                float angle = (float)i / TENDRIL_COUNT * MathHelper.TwoPi;
-                tendrils[i] = new CorruptionTendril
+                    tintColor = Calc.HexToColor(data.Attr("color", "FFFFFF"));
+                }
+                catch
                 {
-                    Angle = angle,
-                    Length = Calc.Random.Range(100f, 200f),
-                    Width = Calc.Random.Range(3f, 10f),
-                    Phase = Calc.Random.NextFloat() * MathHelper.TwoPi,
-                    Speed = Calc.Random.Range(1f, 3f),
-                    RainbowOffset = Calc.Random.NextFloat() * MathHelper.TwoPi
-                };
+                    tintColor = Color.White;
+                }
             }
+
+            if (data.HasAttr("flipX"))
+                flipX = data.AttrBool("flipX", false);
+
+            if (data.HasAttr("flipY"))
+                flipY = data.AttrBool("flipY", false);
+
+            if (data.HasAttr("loopX"))
+                loopX = data.AttrBool("loopX", true);
+
+            if (data.HasAttr("loopY"))
+                loopY = data.AttrBool("loopY", true);
         }
 
-        private void InitializeVoidRings()
+        public void SetSiamoTier(MaggyHelper.Entities.ElsTrueFinalBoss.SiamoZeroTier tier)
         {
-            for (int i = 0; i < VOID_RING_COUNT; i++)
+            currentTier = tier;
+
+            switch (currentTier)
             {
-                float layerFactor = (float)i / VOID_RING_COUNT;
-                voidRings[i] = new VoidRing
-                {
-                    Radius = VoidRadius * (1f + layerFactor * 0.5f),
-                    ExpandSpeed = Calc.Random.Range(20f, 50f),
-                    Alpha = 0.8f,
-                    RainbowPhase = layerFactor * MathHelper.TwoPi,
-                    Thickness = Calc.Random.Range(2f, 6f)
-                };
+                case MaggyHelper.Entities.ElsTrueFinalBoss.SiamoZeroTier.Pink:
+                    BackgroundColor = PinkBaseColor;
+                    VoidColor = Calc.HexToColor("14060f");
+                    break;
+
+                case MaggyHelper.Entities.ElsTrueFinalBoss.SiamoZeroTier.Stellarruss:
+                    BackgroundColor = StellarrussBaseColor;
+                    VoidColor = Calc.HexToColor("04050b");
+                    break;
+
+                default:
+                    BackgroundColor = SoulBaseColor;
+                    VoidColor = Calc.HexToColor("040305");
+                    break;
             }
         }
-        #endregion
 
-        #region Update
+        public void TriggerBurst()
+        {
+            burstTimer = BurstDuration;
+        }
+
         public override void Update(Scene scene)
         {
             base.Update(scene);
 
-            if (!Visible)
-                return;
+            animationTime += Engine.DeltaTime * Math.Max(Speed, 0f);
 
-            globalTime += Engine.DeltaTime * Speed;
-            rainbowTime += Engine.DeltaTime * RainbowSpeed;
-            
-            // Pulsing void effect
-            voidPulse = (float)Math.Sin(globalTime * 0.8f) * 0.15f + 1f;
-            corruptionIntensity = (float)Math.Sin(globalTime * CorruptionSpeed) * 0.3f + 0.7f;
-
-            // Update grid layers - continuous expansion
-            for (int i = 0; i < GRID_LAYER_COUNT; i++)
-            {
-                gridLayers[i].Scale += Engine.DeltaTime * gridLayers[i].ExpandSpeed * Speed;
-                gridLayers[i].RainbowPhase += Engine.DeltaTime * RainbowSpeed * 0.5f;
-                gridLayers[i].DistortionPhase += Engine.DeltaTime * 2f;
-                
-                // Alternate rotation directions
-                float rotationDir = gridLayers[i].IsInverted ? -1f : 1f;
-                gridLayers[i].Rotation += Engine.DeltaTime * 0.08f * rotationDir;
-                
-                // Reset when fully expanded
-                if (gridLayers[i].Scale > gridLayers[i].MaxScale)
-                {
-                    gridLayers[i].Scale = 0.1f;
-                    gridLayers[i].Alpha = 0.6f;
-                }
-                else
-                {
-                    // Fade out as it expands
-                    float expandProgress = gridLayers[i].Scale / gridLayers[i].MaxScale;
-                    gridLayers[i].Alpha = MathHelper.Lerp(0.6f, 0f, expandProgress);
-                }
-            }
-
-            // Update void particles
-            for (int i = 0; i < VOID_PARTICLE_COUNT; i++)
-            {
-                voidParticles[i].Position += voidParticles[i].Velocity * Engine.DeltaTime;
-                voidParticles[i].Lifetime += Engine.DeltaTime;
-                voidParticles[i].RainbowPhase += Engine.DeltaTime * 3f;
-                
-                // Reset particles that go too far or too close
-                float distanceFromCenter = Vector2.Distance(voidParticles[i].Position, center);
-                
-                if (voidParticles[i].IsRainbow)
-                {
-                    if (distanceFromCenter > 250f || voidParticles[i].Lifetime > 3f)
-                        ResetVoidParticle(ref voidParticles[i]);
-                }
-                else
-                {
-                    if (distanceFromCenter < VoidRadius * 0.5f || voidParticles[i].Lifetime > 4f)
-                        ResetVoidParticle(ref voidParticles[i]);
-                }
-            }
-
-            // Update tendrils
-            for (int i = 0; i < TENDRIL_COUNT; i++)
-            {
-                tendrils[i].Phase += Engine.DeltaTime * tendrils[i].Speed;
-                tendrils[i].Angle += Engine.DeltaTime * 0.05f;
-            }
-
-            // Update void rings
-            for (int i = 0; i < VOID_RING_COUNT; i++)
-            {
-                voidRings[i].Radius += Engine.DeltaTime * voidRings[i].ExpandSpeed;
-                voidRings[i].RainbowPhase += Engine.DeltaTime * RainbowSpeed;
-                
-                // Fade and reset
-                float maxRadius = 250f;
-                if (voidRings[i].Radius > maxRadius)
-                {
-                    voidRings[i].Radius = VoidRadius;
-                    voidRings[i].Alpha = 0.8f;
-                }
-                else
-                {
-                    float progress = (voidRings[i].Radius - VoidRadius) / (maxRadius - VoidRadius);
-                    voidRings[i].Alpha = MathHelper.Lerp(0.8f, 0f, progress);
-                }
-            }
-
-            // Camera tracking
-            if (scene is Level level)
-            {
-                Vector2 targetOffset = level.Camera.Position * 0.05f;
-                cameraOffset += (targetOffset - cameraOffset) * (1f - (float)Math.Pow(0.01, Engine.DeltaTime));
-            }
-        }
-        #endregion
-
-        #region Rendering
-        public override void BeforeRender(Scene scene)
-        {
-            if (renderTarget == null || renderTarget.IsDisposed)
-            {
-                renderTarget = VirtualContent.CreateRenderTarget("ElsTrueFinal Backdrop", 320, 180);
-            }
-
-            Engine.Graphics.GraphicsDevice.SetRenderTarget(renderTarget);
-            Engine.Graphics.GraphicsDevice.Clear(BackgroundColor);
-
-            // Draw expanding grid layers (rainbow edges)
-            DrawGridLayers();
-
-            // Draw corruption tendrils
-            DrawCorruptionTendrils();
-
-            // Draw void rings expanding outward + void particles (merged batch)
-            DrawVoidRingsAndParticles();
-
-            // Draw central void (black hole effect)
-            DrawCentralVoid();
-
-            // Add rainbow edge glow
-            DrawRainbowEdgeGlow();
-        }
-
-        private void DrawGridLayers()
-        {
-            Draw.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive);
-
-            if (gridTexture != null)
-            {
-                for (int i = 0; i < GRID_LAYER_COUNT; i++)
-                {
-                    ref readonly GridLayer layer = ref gridLayers[i];
-                    
-                    if (layer.Alpha <= 0.01f)
-                        continue;
-
-                    // Rainbow color with dark tint
-                    float hue = (layer.RainbowPhase + rainbowTime * 0.3f) % MathHelper.TwoPi / MathHelper.TwoPi;
-                    Color baseColor = HSVToRGB(hue, 1f, 0.8f);
-                    
-                    // Mix with black for corrupted look
-                    Color gridColor;
-                    if (layer.IsInverted)
-                    {
-                        // Dark/inverted layers - more black with rainbow edges
-                        gridColor = Color.Lerp(VoidColor, baseColor, 0.3f) * layer.Alpha * Intensity;
-                    }
-                    else
-                    {
-                        // Rainbow layers
-                        gridColor = baseColor * layer.Alpha * Intensity * RainbowEdgeIntensity;
-                    }
-
-                    Vector2 origin = new(gridTexture.Width / 2f, gridTexture.Height / 2f);
-                    Vector2 pos = center - cameraOffset * (1f + i * 0.05f);
-                    
-                    // Add distortion to scale
-                    float distortion = (float)Math.Sin(layer.DistortionPhase) * 0.1f;
-                    float scale = layer.Scale * voidPulse * (1f + distortion);
-
-                    gridTexture.Draw(
-                        pos,
-                        origin,
-                        gridColor,
-                        scale,
-                        layer.Rotation
-                    );
-                }
-            }
-
-            Draw.SpriteBatch.End();
-        }
-
-        private void DrawCorruptionTendrils()
-        {
-            Draw.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive);
-
-            for (int i = 0; i < TENDRIL_COUNT; i++)
-            {
-                ref readonly CorruptionTendril tendril = ref tendrils[i];
-                
-                // Rainbow color at the tip, fading to black at center - use LUT
-                float hue = (rainbowTime * 0.4f + tendril.RainbowOffset) % MathHelper.TwoPi / MathHelper.TwoPi;
-                Color tipColor = rainbowLUT[(int)(hue * (RAINBOW_LUT_SIZE - 1)) & (RAINBOW_LUT_SIZE - 1)];
-                
-                float wave = (float)Math.Sin(tendril.Phase) * 20f;
-                float length = tendril.Length * corruptionIntensity + wave;
-                
-                // Draw tendril as series of segments (reduced from 15 to 8)
-                int segments = 8;
-                for (int j = 0; j < segments; j++)
-                {
-                    float t1 = (float)j / segments;
-                    float t2 = (float)(j + 1) / segments;
-                    
-                    float dist1 = VoidRadius + t1 * length;
-                    float dist2 = VoidRadius + t2 * length;
-                    
-                    // Wavy angle
-                    float waveOffset1 = (float)Math.Sin(tendril.Phase + t1 * 4f) * 0.2f;
-                    float waveOffset2 = (float)Math.Sin(tendril.Phase + t2 * 4f) * 0.2f;
-                    
-                    Vector2 p1 = center + Calc.AngleToVector(tendril.Angle + waveOffset1, dist1);
-                    Vector2 p2 = center + Calc.AngleToVector(tendril.Angle + waveOffset2, dist2);
-                    
-                    // Color fades from black to rainbow
-                    Color segmentColor = Color.Lerp(VoidColor, tipColor, t1 * t1) * (1f - t1 * 0.5f) * Intensity * 0.6f;
-                    
-                    Draw.Line(p1, p2, segmentColor);
-                }
-            }
-
-            Draw.SpriteBatch.End();
-        }
-
-        /// <summary>
-        /// Merged DrawVoidRings + DrawVoidParticles into a single SpriteBatch to save Begin/End calls.
-        /// Ring segments halved from 48 to 24.
-        /// </summary>
-        private void DrawVoidRingsAndParticles()
-        {
-            Draw.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive);
-
-            // --- Void Rings ---
-            for (int i = 0; i < VOID_RING_COUNT; i++)
-            {
-                ref readonly VoidRing ring = ref voidRings[i];
-                
-                if (ring.Alpha <= 0.01f)
-                    continue;
-
-                // Rainbow ring with dark edges - use LUT
-                float hue = (ring.RainbowPhase + rainbowTime * 0.5f) % MathHelper.TwoPi / MathHelper.TwoPi;
-                float ringAlphaBase = ring.Alpha * Intensity * RainbowEdgeIntensity;
-
-                // Draw ring as connected segments (halved from 48 to 24)
-                int segments = 24;
-                for (int j = 0; j < segments; j++)
-                {
-                    float angle1 = (float)j / segments * MathHelper.TwoPi;
-                    float angle2 = (float)(j + 1) / segments * MathHelper.TwoPi;
-                    
-                    Vector2 p1 = center + Calc.AngleToVector(angle1, ring.Radius * voidPulse);
-                    Vector2 p2 = center + Calc.AngleToVector(angle2, ring.Radius * voidPulse);
-                    
-                    // Vary color around the ring - use LUT
-                    float segmentHue = (hue + (float)j / segments) % 1f;
-                    Color segmentColor = rainbowLUT[(int)(segmentHue * (RAINBOW_LUT_SIZE - 1)) & (RAINBOW_LUT_SIZE - 1)] * ringAlphaBase * 0.4f;
-                    
-                    Draw.Line(p1, p2, segmentColor, ring.Thickness);
-                }
-            }
-
-            // --- Void Particles ---
-            for (int i = 0; i < VOID_PARTICLE_COUNT; i++)
-            {
-                ref readonly VoidParticle particle = ref voidParticles[i];
-                
-                Vector2 pos = particle.Position - cameraOffset;
-                Color particleColor;
-                
-                if (particle.IsRainbow)
-                {
-                    // Rainbow particles - use LUT
-                    float hue = (particle.RainbowPhase + rainbowTime) % MathHelper.TwoPi / MathHelper.TwoPi;
-                    particleColor = rainbowLUT[(int)(hue * (RAINBOW_LUT_SIZE - 1)) & (RAINBOW_LUT_SIZE - 1)] * particle.Alpha * Intensity * RainbowEdgeIntensity;
-                }
-                else
-                {
-                    // Dark void particles with slight color tint - use LUT
-                    float hue = (particle.RainbowPhase * 0.2f) % 1f;
-                    Color tint = rainbowLUT[(int)(hue * (RAINBOW_LUT_SIZE - 1)) & (RAINBOW_LUT_SIZE - 1)];
-                    // Approximate HSVToRGB(hue, 0.5, 0.3) by scaling LUT color
-                    tint = new Color(tint.ToVector3() * 0.3f);
-                    particleColor = Color.Lerp(VoidColor, tint, 0.2f) * particle.Alpha * Intensity;
-                }
-
-                Draw.Rect(pos.X - particle.Size * 0.5f, pos.Y - particle.Size * 0.5f, particle.Size, particle.Size, particleColor);
-            }
-
-            Draw.SpriteBatch.End();
-        }
-
-        private void DrawCentralVoid()
-        {
-            Draw.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
-
-            // Draw black void center with gradient
-            float currentRadius = VoidRadius * voidPulse;
-            Color voidIntensity = VoidColor * Intensity;
-            
-            // Solid black center (halved from 32 to 16 segments)
-            int centerSegments = 16;
-            for (int j = 0; j < centerSegments; j++)
-            {
-                float angle1 = (float)j / centerSegments * MathHelper.TwoPi;
-                float angle2 = (float)(j + 1) / centerSegments * MathHelper.TwoPi;
-                
-                Vector2 p1 = center + Calc.AngleToVector(angle1, currentRadius * 0.5f);
-                Vector2 p2 = center + Calc.AngleToVector(angle2, currentRadius * 0.5f);
-                
-                // Draw filled triangle to center
-                Draw.Line(center, p1, voidIntensity);
-                Draw.Line(center, p2, voidIntensity);
-                Draw.Line(p1, p2, voidIntensity);
-            }
-
-            // Gradient edge of void (reduced from 10 to 5 rings)
-            for (int ring = 0; ring < 5; ring++)
-            {
-                float t = (float)ring / 5f;
-                float radius = currentRadius * (0.5f + t * 0.5f);
-                float alpha = 1f - t;
-                Color ringColor = VoidColor * alpha * Intensity;
-                
-                for (int j = 0; j < centerSegments; j++)
-                {
-                    float angle1 = (float)j / centerSegments * MathHelper.TwoPi;
-                    float angle2 = (float)(j + 1) / centerSegments * MathHelper.TwoPi;
-                    
-                    Vector2 p1 = center + Calc.AngleToVector(angle1, radius);
-                    Vector2 p2 = center + Calc.AngleToVector(angle2, radius);
-                    
-                    Draw.Line(p1, p2, ringColor, 3f);
-                }
-            }
-
-            Draw.SpriteBatch.End();
-        }
-
-        private void DrawRainbowEdgeGlow()
-        {
-            Draw.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive);
-
-            // Rainbow glow around the void edge
-            float edgeRadius = VoidRadius * voidPulse;
-            int glowLayers = 8;
-            
-            for (int layer = 0; layer < glowLayers; layer++)
-            {
-                float layerRadius = edgeRadius + layer * 5f;
-                float layerAlpha = (1f - (float)layer / glowLayers) * 0.4f * Intensity * RainbowEdgeIntensity;
-                
-                // Halved from 64 to 32 segments
-                int segments = 32;
-                for (int j = 0; j < segments; j++)
-                {
-                    float angle = (float)j / segments * MathHelper.TwoPi;
-                    float nextAngle = (float)(j + 1) / segments * MathHelper.TwoPi;
-                    
-                    // Rainbow color based on angle and time - use LUT
-                    float hue = (angle / MathHelper.TwoPi + rainbowTime * 0.2f) % 1f;
-                    Color glowColor = rainbowLUT[(int)(hue * (RAINBOW_LUT_SIZE - 1)) & (RAINBOW_LUT_SIZE - 1)] * layerAlpha;
-                    
-                    Vector2 p1 = center + Calc.AngleToVector(angle, layerRadius);
-                    Vector2 p2 = center + Calc.AngleToVector(nextAngle, layerRadius);
-                    
-                    Draw.Line(p1, p2, glowColor, 2f);
-                }
-            }
-
-            Draw.SpriteBatch.End();
+            if (burstTimer > 0f)
+                burstTimer = Math.Max(0f, burstTimer - Engine.DeltaTime);
         }
 
         public override void Render(Scene scene)
         {
-            if (renderTarget != null && !renderTarget.IsDisposed && Visible)
-            {
-                Vector2 renderPos = new(160, 90);
-                Vector2 origin = new Vector2(renderTarget.Width, renderTarget.Height) / 2f;
+            if (!Visible)
+                return;
 
-                Draw.SpriteBatch.Draw(
-                    (RenderTarget2D)renderTarget,
-                    renderPos,
-                    renderTarget.Bounds,
-                    Color.White * FadeAlphaMultiplier * Intensity,
-                    0f,
-                    origin,
-                    1f,
-                    SpriteEffects.None,
-                    0f
+            Level level = scene as Level;
+            if (level == null)
+                return;
+
+            float masterAlpha = MathHelper.Clamp(Alpha * FadeAlphaMultiplier, 0f, 1f);
+            if (masterAlpha <= 0.001f)
+                return;
+
+            float intensityFactor = Math.Max(0f, Intensity);
+            float burst = BurstStrength();
+            float voidScale = MathHelper.Lerp(0.75f, 1.58f, MathHelper.Clamp((VoidRadius - 28f) / 92f, 0f, 1f));
+            float tierMotion = GetTierMotionMultiplier();
+            float tierParallax = GetTierParallaxMultiplier();
+            float tierSparkle = GetTierSparkleBoost();
+            float tierRingScale = GetTierRingScaleBoost();
+            float ringPulse = 1f + (float)Math.Sin(animationTime * (0.55f + GridExpansionSpeed * 0.35f) * tierMotion) * (0.03f + intensityFactor * 0.008f) + burst * 0.08f;
+            float ringCenterY = MathHelper.Lerp(100f, 88f, MathHelper.Clamp((VoidRadius - 24f) / 100f, 0f, 1f));
+            float lowerRingY = ScreenHeight + 10f - MathHelper.Clamp((VoidRadius - 60f) * 0.12f, -6f, 10f);
+
+            Vector2 camera = level.Camera.Position;
+
+            Color baseColor = ApplyTint(BackgroundColor);
+            Color overlayColor = ApplyTint(GetOverlayColor(0.18f));
+            Color accentColor = ApplyTint(GetAccentColor(0.06f));
+            Color secondaryAccentColor = ApplyTint(GetSecondaryAccentColor(0.12f));
+            Color highlightColor = ApplyTint(GetHighlightColor(0.24f));
+            Color eyeBaseColor = ApplyTint(GetEyeBaseColor(0.32f));
+            Color irisColor = ApplyTint(GetIrisColor(0.48f));
+            Color burstFlashColor = ApplyTint(GetBurstFlashColor(0.64f));
+
+            Draw.Rect(-16f, -16f, ScreenWidth + 32f, ScreenHeight + 32f, baseColor * masterAlpha);
+
+            float overlayAlpha = MathHelper.Clamp(0.08f + intensityFactor * 0.06f + burst * 0.12f, 0f, 0.5f);
+            Draw.Rect(-16f, -16f, ScreenWidth + 32f, ScreenHeight + 32f, overlayColor * masterAlpha * overlayAlpha);
+
+            if (burst > 0f)
+            {
+                Draw.Rect(
+                    -16f,
+                    -16f,
+                    ScreenWidth + 32f,
+                    ScreenHeight + 32f,
+                    burstFlashColor * masterAlpha * MathHelper.Clamp(0.05f + burst * 0.14f, 0f, 0.2f)
                 );
             }
+
+            DrawRepeated(
+                starsDenseTexture,
+                GetLayerOffset(camera, starsDenseTexture, new Vector2(0.03f, 0.018f) * tierParallax, new Vector2(-4f * tierMotion, 0.55f * tierMotion), Vector2.Zero, Vector2.One, true, true),
+                Color.Lerp(highlightColor, secondaryAccentColor, 0.32f),
+                masterAlpha * MathHelper.Clamp((0.18f + intensityFactor * 0.04f + burst * 0.1f) * (0.88f + tierSparkle * 0.14f), 0f, 0.68f),
+                Vector2.One,
+                true,
+                true
+            );
+
+            DrawRepeated(
+                starsSparseTexture,
+                GetLayerOffset(camera, starsSparseTexture, new Vector2(0.06f, 0.03f) * tierParallax, new Vector2(-9f * tierMotion, 1.05f * tierMotion), Vector2.Zero, Vector2.One, true, true),
+                Color.Lerp(highlightColor, secondaryAccentColor, 0.15f),
+                masterAlpha * MathHelper.Clamp((0.28f + intensityFactor * 0.06f + burst * 0.14f) * tierSparkle, 0f, 0.85f),
+                Vector2.One,
+                true,
+                true
+            );
+
+            DrawRepeated(
+                streaksTexture,
+                GetLayerOffset(camera, streaksTexture, new Vector2(0.095f, 0.024f) * tierParallax, new Vector2((-14f - CorruptionSpeed * 8f) * tierMotion, 0.45f), new Vector2(0f, 24f + (float)Math.Sin(animationTime * 0.7f) * 8f), Vector2.One, true, true),
+                secondaryAccentColor,
+                masterAlpha * MathHelper.Clamp((0.1f + intensityFactor * 0.035f + burst * 0.16f) * (0.82f + tierMotion * 0.18f), 0f, 0.42f),
+                Vector2.One,
+                true,
+                true
+            );
+
+            float eyeBandY = GetTierEyeBandBaseY() + (float)Math.Sin(animationTime * (0.45f + CorruptionSpeed * 0.18f) * tierMotion) * (2.5f + tierSparkle * 1.2f);
+            Vector2 eyesOffset = GetLayerOffset(camera, eyesBandBaseTexture, new Vector2(0.14f, 0.035f) * tierParallax, new Vector2((-18f - CorruptionSpeed * 10f) * tierMotion, 0f), new Vector2(0f, eyeBandY), Vector2.One, true, false);
+            DrawRepeated(
+                eyesBandBaseTexture,
+                eyesOffset,
+                eyeBaseColor,
+                masterAlpha * MathHelper.Clamp((0.18f + intensityFactor * 0.06f) * GetTierEyeBandAlphaBoost(), 0f, 0.66f),
+                Vector2.One,
+                true,
+                false
+            );
+
+            DrawRepeated(
+                eyesBandIrisTexture,
+                eyesOffset + new Vector2((float)Math.Sin(animationTime * (1.25f + RainbowSpeed * 0.25f) * tierMotion) * (4f + burst * 8f + tierSparkle * 1.5f), 0f),
+                irisColor,
+                masterAlpha * MathHelper.Clamp((0.16f + RainbowEdgeIntensity * 0.11f + burst * 0.1f) * GetTierEyeBandAlphaBoost(), 0f, 0.76f),
+                Vector2.One,
+                true,
+                false
+            );
+
+            DrawRepeated(
+                topStripTexture,
+                GetLayerOffset(camera, topStripTexture, new Vector2(0.18f, 0.026f) * tierParallax, new Vector2((-24f - GridExpansionSpeed * 16f) * tierMotion, 0f), new Vector2(0f, 14f), Vector2.One, true, false),
+                highlightColor,
+                masterAlpha * MathHelper.Clamp((0.14f + RainbowEdgeIntensity * 0.09f + burst * 0.08f) * (0.92f + tierSparkle * 0.1f), 0f, 0.58f),
+                Vector2.One,
+                true,
+                false
+            );
+
+            Vector2 ringParallax = new Vector2(camera.X * 0.11f * scrollMultiplier.X * tierParallax, camera.Y * 0.072f * scrollMultiplier.Y * tierParallax);
+            float ringAlpha = masterAlpha * MathHelper.Clamp(0.26f + intensityFactor * 0.08f + RainbowEdgeIntensity * 0.06f + burst * 0.18f, 0f, 0.88f);
+
+            DrawCentered(
+                ringsCenterTexture,
+                new Vector2(ScreenWidth * 0.5f, ringCenterY) - ringParallax * 0.42f + new Vector2(0f, (float)Math.Sin(animationTime * 0.8f * tierMotion) * 2f),
+                Color.Lerp(secondaryAccentColor, highlightColor, 0.32f),
+                ringAlpha * 0.34f,
+                Vector2.One * (voidScale * tierRingScale * (1.1f + burst * 0.08f) * ringPulse),
+                new Vector2(0.5f, 0.5f)
+            );
+
+            DrawCentered(
+                ringsCenterTexture,
+                new Vector2(ScreenWidth * 0.5f, ringCenterY) - ringParallax * 0.5f,
+                accentColor,
+                ringAlpha,
+                Vector2.One * (voidScale * tierRingScale * ringPulse),
+                new Vector2(0.5f, 0.5f)
+            );
+
+            DrawCentered(
+                ringsBottomTexture,
+                new Vector2(ScreenWidth * 0.5f, lowerRingY) - ringParallax * 0.68f,
+                Color.Lerp(accentColor, highlightColor, 0.45f),
+                ringAlpha,
+                Vector2.One * (voidScale * tierRingScale * 1.14f * (1f + burst * 0.05f)),
+                new Vector2(0.5f, 1f)
+            );
+
+            DrawCentered(
+                ringsBottomTexture,
+                new Vector2(ScreenWidth * 0.5f, lowerRingY + 4f) - ringParallax * 0.74f,
+                Color.Lerp(VoidColor, accentColor, 0.18f),
+                ringAlpha * 0.24f,
+                Vector2.One * (voidScale * tierRingScale * 1.28f * (1f + burst * 0.04f)),
+                new Vector2(0.5f, 1f)
+            );
         }
-        #endregion
 
-        #region Cleanup
-        public override void Ended(Scene scene)
+        private static MTexture TryGetTexture(string path)
         {
-            base.Ended(scene);
-
-            if (renderTarget != null)
+            try
             {
-                renderTarget.Dispose();
-                renderTarget = null;
+                return GFX.Game[path];
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(LogLevel.Warn, "MaggyHelper/ElsTrueFinalBackdrop", $"Missing backdrop texture '{path}': {ex.Message}");
+                return null;
             }
         }
-        #endregion
 
-        #region Helpers
-        private static Color HSVToRGB(float h, float s, float v)
+        private float BurstStrength()
         {
-            int i = (int)Math.Floor(h * 6);
-            float f = h * 6 - i;
-            float p = v * (1 - s);
-            float q = v * (1 - f * s);
-            float t = v * (1 - (1 - f) * s);
+            if (burstTimer <= 0f)
+                return 0f;
 
-            return (i % 6) switch
-            {
-                0 => new Color(v, t, p),
-                1 => new Color(q, v, p),
-                2 => new Color(p, v, t),
-                3 => new Color(p, q, v),
-                4 => new Color(t, p, v),
-                5 => new Color(v, p, q),
-                _ => Color.White
-            };
+            return Ease.CubeOut(burstTimer / BurstDuration);
         }
-        #endregion
+
+        private Color GetOverlayColor(float offset)
+        {
+            switch (currentTier)
+            {
+                case MaggyHelper.Entities.ElsTrueFinalBoss.SiamoZeroTier.Pink:
+                    return Color.Lerp(PinkOverlayColor, PinkAccentColor, 0.2f + ((float)Math.Sin(animationTime * 0.45f + offset) * 0.5f + 0.5f) * 0.16f);
+
+                case MaggyHelper.Entities.ElsTrueFinalBoss.SiamoZeroTier.Stellarruss:
+                    return Color.Lerp(StellarrussOverlayColor, SampleStellarrussColor(animationTime * 0.42f + offset), 0.26f);
+
+                default:
+                    return Color.Lerp(SoulOverlayColor, SoulAccentColor, 0.12f + ((float)Math.Sin(animationTime * 0.35f + offset) * 0.5f + 0.5f) * 0.08f);
+            }
+        }
+
+        private Color GetAccentColor(float offset)
+        {
+            switch (currentTier)
+            {
+                case MaggyHelper.Entities.ElsTrueFinalBoss.SiamoZeroTier.Pink:
+                    return Color.Lerp(PinkAccentColor, PinkHighlightColor, 0.28f + ((float)Math.Sin(animationTime * (0.8f + RainbowSpeed * 0.1f) + offset) * 0.5f + 0.5f) * 0.22f);
+
+                case MaggyHelper.Entities.ElsTrueFinalBoss.SiamoZeroTier.Stellarruss:
+                    return SampleStellarrussColor(animationTime * (0.7f + RainbowSpeed * 0.08f) + offset);
+
+                default:
+                    return Color.Lerp(SoulAccentColor, SoulHighlightColor, 0.22f + ((float)Math.Sin(animationTime * 0.65f + offset) * 0.5f + 0.5f) * 0.18f);
+            }
+        }
+
+        private Color GetSecondaryAccentColor(float offset)
+        {
+            switch (currentTier)
+            {
+                case MaggyHelper.Entities.ElsTrueFinalBoss.SiamoZeroTier.Pink:
+                    return Color.Lerp(PinkHighlightColor, PinkAccentColor, 0.52f + ((float)Math.Sin(animationTime * 0.9f + offset) * 0.5f + 0.5f) * 0.14f);
+
+                case MaggyHelper.Entities.ElsTrueFinalBoss.SiamoZeroTier.Stellarruss:
+                    return Color.Lerp(Color.White, SampleStellarrussColor(animationTime * 1.15f + offset), 0.72f);
+
+                default:
+                    return Color.Lerp(SoulHighlightColor, SoulAccentColor, 0.4f + ((float)Math.Sin(animationTime * 0.7f + offset) * 0.5f + 0.5f) * 0.12f);
+            }
+        }
+
+        private Color GetHighlightColor(float offset)
+        {
+            switch (currentTier)
+            {
+                case MaggyHelper.Entities.ElsTrueFinalBoss.SiamoZeroTier.Pink:
+                    return Color.Lerp(PinkHighlightColor, PinkAccentColor, 0.12f + ((float)Math.Sin(animationTime * 0.55f + offset) * 0.5f + 0.5f) * 0.14f);
+
+                case MaggyHelper.Entities.ElsTrueFinalBoss.SiamoZeroTier.Stellarruss:
+                    return Color.Lerp(Color.White, SampleStellarrussColor(animationTime * (0.95f + RainbowSpeed * 0.12f) + offset), 0.52f);
+
+                default:
+                    return Color.Lerp(SoulEyeColor, SoulAccentColor, 0.08f + ((float)Math.Sin(animationTime * 0.5f + offset) * 0.5f + 0.5f) * 0.12f);
+            }
+        }
+
+        private Color GetEyeBaseColor(float offset)
+        {
+            switch (currentTier)
+            {
+                case MaggyHelper.Entities.ElsTrueFinalBoss.SiamoZeroTier.Pink:
+                    return Color.Lerp(Color.White, PinkHighlightColor, 0.28f);
+
+                case MaggyHelper.Entities.ElsTrueFinalBoss.SiamoZeroTier.Stellarruss:
+                    return Color.Lerp(Color.White, SampleStellarrussColor(animationTime * 0.6f + offset), 0.16f);
+
+                default:
+                    return SoulEyeColor;
+            }
+        }
+
+        private Color GetIrisColor(float offset)
+        {
+            switch (currentTier)
+            {
+                case MaggyHelper.Entities.ElsTrueFinalBoss.SiamoZeroTier.Pink:
+                    return Color.Lerp(PinkAccentColor, PinkIrisColor, 0.38f + ((float)Math.Sin(animationTime * (1f + RainbowSpeed * 0.12f) + offset) * 0.5f + 0.5f) * 0.22f);
+
+                case MaggyHelper.Entities.ElsTrueFinalBoss.SiamoZeroTier.Stellarruss:
+                    return SampleStellarrussColor(animationTime * (1.12f + RainbowSpeed * 0.15f) + offset);
+
+                default:
+                    return Color.Lerp(SoulAccentColor, SoulIrisColor, 0.28f + ((float)Math.Sin(animationTime * 0.85f + offset) * 0.5f + 0.5f) * 0.18f);
+            }
+        }
+
+        private Color GetBurstFlashColor(float offset)
+        {
+            switch (currentTier)
+            {
+                case MaggyHelper.Entities.ElsTrueFinalBoss.SiamoZeroTier.Pink:
+                    return Color.Lerp(PinkHighlightColor, PinkAccentColor, 0.36f + ((float)Math.Sin(animationTime * 1.1f + offset) * 0.5f + 0.5f) * 0.12f);
+
+                case MaggyHelper.Entities.ElsTrueFinalBoss.SiamoZeroTier.Stellarruss:
+                    return Color.Lerp(Color.White, SampleStellarrussColor(animationTime * 1.4f + offset), 0.62f);
+
+                default:
+                    return Color.Lerp(SoulHighlightColor, SoulIrisColor, 0.32f + ((float)Math.Sin(animationTime * 0.95f + offset) * 0.5f + 0.5f) * 0.08f);
+            }
+        }
+
+        private float GetTierMotionMultiplier()
+        {
+            switch (currentTier)
+            {
+                case MaggyHelper.Entities.ElsTrueFinalBoss.SiamoZeroTier.Pink:
+                    return 1.06f;
+
+                case MaggyHelper.Entities.ElsTrueFinalBoss.SiamoZeroTier.Stellarruss:
+                    return 1.24f;
+
+                default:
+                    return 0.92f;
+            }
+        }
+
+        private float GetTierParallaxMultiplier()
+        {
+            switch (currentTier)
+            {
+                case MaggyHelper.Entities.ElsTrueFinalBoss.SiamoZeroTier.Pink:
+                    return 1.02f;
+
+                case MaggyHelper.Entities.ElsTrueFinalBoss.SiamoZeroTier.Stellarruss:
+                    return 1.16f;
+
+                default:
+                    return 0.9f;
+            }
+        }
+
+        private float GetTierSparkleBoost()
+        {
+            switch (currentTier)
+            {
+                case MaggyHelper.Entities.ElsTrueFinalBoss.SiamoZeroTier.Pink:
+                    return 1.04f;
+
+                case MaggyHelper.Entities.ElsTrueFinalBoss.SiamoZeroTier.Stellarruss:
+                    return 1.22f;
+
+                default:
+                    return 0.9f;
+            }
+        }
+
+        private float GetTierRingScaleBoost()
+        {
+            switch (currentTier)
+            {
+                case MaggyHelper.Entities.ElsTrueFinalBoss.SiamoZeroTier.Pink:
+                    return 1.02f;
+
+                case MaggyHelper.Entities.ElsTrueFinalBoss.SiamoZeroTier.Stellarruss:
+                    return 1.08f;
+
+                default:
+                    return 0.96f;
+            }
+        }
+
+        private float GetTierEyeBandBaseY()
+        {
+            switch (currentTier)
+            {
+                case MaggyHelper.Entities.ElsTrueFinalBoss.SiamoZeroTier.Pink:
+                    return 44f;
+
+                case MaggyHelper.Entities.ElsTrueFinalBoss.SiamoZeroTier.Stellarruss:
+                    return 40f;
+
+                default:
+                    return 46f;
+            }
+        }
+
+        private float GetTierEyeBandAlphaBoost()
+        {
+            switch (currentTier)
+            {
+                case MaggyHelper.Entities.ElsTrueFinalBoss.SiamoZeroTier.Pink:
+                    return 1.08f;
+
+                case MaggyHelper.Entities.ElsTrueFinalBoss.SiamoZeroTier.Stellarruss:
+                    return 1.16f;
+
+                default:
+                    return 0.92f;
+            }
+        }
+
+        private static Color SampleStellarrussColor(float offset)
+        {
+            int count = StellarrussPalette.Length;
+            float wrapped = offset % count;
+            if (wrapped < 0f)
+                wrapped += count;
+
+            int left = (int)Math.Floor(wrapped) % count;
+            int right = (left + 1) % count;
+            float blend = wrapped - (float)Math.Floor(wrapped);
+            return Color.Lerp(StellarrussPalette[left], StellarrussPalette[right], blend);
+        }
+
+        private Color ApplyTint(Color color)
+        {
+            return new Color(color.ToVector4() * tintColor.ToVector4());
+        }
+
+        private Vector2 GetLayerOffset(Vector2 camera, MTexture texture, Vector2 parallax, Vector2 drift, Vector2 baseOffset, Vector2 scale, bool repeatX, bool repeatY)
+        {
+            repeatX &= loopX;
+            repeatY &= loopY;
+
+            Vector2 offset = new Vector2(
+                -camera.X * parallax.X * scrollMultiplier.X + animationTime * (drift.X + scrollSpeed.X * 16f) + baseOffset.X,
+                -camera.Y * parallax.Y * scrollMultiplier.Y + animationTime * (drift.Y + scrollSpeed.Y * 16f) + baseOffset.Y
+            );
+
+            if (texture == null)
+                return offset;
+
+            float width = Math.Max(1f, texture.Width * Math.Abs(scale.X));
+            float height = Math.Max(1f, texture.Height * Math.Abs(scale.Y));
+
+            if (repeatX)
+                offset.X = -Mod(offset.X, width);
+
+            if (repeatY)
+                offset.Y = -Mod(offset.Y, height);
+
+            return offset;
+        }
+
+        private void DrawRepeated(MTexture texture, Vector2 offset, Color color, float alpha, Vector2 scale, bool repeatX, bool repeatY)
+        {
+            if (texture == null || alpha <= 0.001f)
+                return;
+
+            repeatX &= loopX;
+            repeatY &= loopY;
+
+            Vector2 baseScale = new Vector2(Math.Abs(scale.X), Math.Abs(scale.Y));
+            Vector2 drawScale = new Vector2((flipX ? -1f : 1f) * baseScale.X, (flipY ? -1f : 1f) * baseScale.Y);
+            float stepX = Math.Max(1f, texture.Width * baseScale.X);
+            float stepY = Math.Max(1f, texture.Height * baseScale.Y);
+            float maxX = repeatX ? ScreenWidth + stepX : offset.X + 1f;
+            float maxY = repeatY ? ScreenHeight + stepY : offset.Y + 1f;
+
+            for (float x = offset.X; x < maxX; x += stepX)
+            {
+                for (float y = offset.Y; y < maxY; y += stepY)
+                {
+                    Vector2 drawPos = new Vector2(x + (flipX ? stepX : 0f), y + (flipY ? stepY : 0f));
+                    texture.Draw(drawPos, Vector2.Zero, color * alpha, drawScale);
+
+                    if (!repeatY)
+                        break;
+                }
+
+                if (!repeatX)
+                    break;
+            }
+        }
+
+        private void DrawCentered(MTexture texture, Vector2 position, Color color, float alpha, Vector2 scale, Vector2 justify)
+        {
+            if (texture == null || alpha <= 0.001f)
+                return;
+
+            Vector2 drawScale = new Vector2(
+                (flipX ? -1f : 1f) * Math.Abs(scale.X),
+                (flipY ? -1f : 1f) * Math.Abs(scale.Y)
+            );
+
+            texture.DrawJustified(position, justify, color * alpha, drawScale);
+        }
+
+        private static float Mod(float x, float m)
+        {
+            return (x % m + m) % m;
+        }
     }
 }

@@ -18,7 +18,7 @@ namespace MaggyHelper.Cutscenes
 {
     /// <summary>
     /// Final ascension cutscene after Els' defeat: Kirby, Madeline, and Badeline
-    /// ascend together while ElsFinalBossStarfield explodes to destroy Els for good.
+    /// ascend together while the live Els backdrop surges and destroys Els for good.
     /// Based on CS10_FinalLaunch structure.
     /// </summary>
     [Tracked]
@@ -32,7 +32,7 @@ namespace MaggyHelper.Cutscenes
 
         private ElsTrueFinalBoss els;
 
-        private ElsFinalBossStarfield starfield;
+        private ElsTrueFinalBackdrop backdrop;
 
         private float fadeToWhite;
 
@@ -113,9 +113,9 @@ namespace MaggyHelper.Cutscenes
             if (boost != null) boost.Active = false;
             yield return null;
 
-            // Find Els and the starfield backdrop
+            // Find Els and the live backdrop used by the room
             els = Level.Entities.FindFirst<ElsTrueFinalBoss>();
-            starfield = Level.Background.Get<ElsFinalBossStarfield>();
+            backdrop = Level.Background.Get<ElsTrueFinalBackdrop>();
 
             if (!string.IsNullOrEmpty(dialog))
             {
@@ -131,10 +131,10 @@ namespace MaggyHelper.Cutscenes
             if (player != null) player.EnforceLevelBounds = false;
             yield return null;
 
-            // === Destroy Els with starfield explosion ===
-            if (starfield != null)
+            // === Destroy Els with backdrop burst ===
+            if (backdrop != null)
             {
-                starfield.TriggerBurst();
+                backdrop.TriggerBurst();
             }
 
             if (els != null)
@@ -159,16 +159,15 @@ namespace MaggyHelper.Cutscenes
             }
 
             // === Ascension sequence (only Kirby, Madeline, Badeline) ===
-            ElsTrueFinalBackdrop blackholeBG = Level.Background.Get<ElsTrueFinalBackdrop>();
-            if (blackholeBG != null)
+            if (backdrop != null)
             {
-                blackholeBG.Intensity = 5.5f;
-                blackholeBG.Speed = 3.5f;
-                blackholeBG.VoidRadius = 100f;
-                blackholeBG.RainbowEdgeIntensity = 2.5f;
-                blackholeBG.GridExpansionSpeed = 1.0f;
-                blackholeBG.RainbowSpeed = 3.0f;
-                blackholeBG.CorruptionSpeed = 2.0f;
+                backdrop.Intensity = 5.5f;
+                backdrop.Speed = 3.5f;
+                backdrop.VoidRadius = 100f;
+                backdrop.RainbowEdgeIntensity = 2.5f;
+                backdrop.GridExpansionSpeed = 1.0f;
+                backdrop.RainbowSpeed = 3.0f;
+                backdrop.CorruptionSpeed = 2.0f;
             }
 
             Add(wave = new Coroutine(WaveCamera()));

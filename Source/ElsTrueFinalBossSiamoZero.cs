@@ -46,6 +46,22 @@ namespace MaggyHelper.Entities
         private static readonly Color SiamoMorphoPurple = new Color(180, 60, 220);
         private static readonly Color SiamoMorphoMagenta = new Color(255, 50, 150);
         private static readonly Color SiamoTimeborderRed = new Color(220, 30, 60);
+        private static readonly Color SiamoPinkRose = new Color(255, 120, 196);
+        private static readonly Color SiamoPinkBlush = new Color(255, 216, 238);
+        private static readonly Color SiamoSoulBlackBody = new Color(204, 196, 214);
+        private static readonly Color SiamoSoulBlackWing = new Color(98, 76, 116);
+        private static readonly Color SiamoSoulBlackCrimson = new Color(160, 24, 48);
+        private static readonly Color SiamoStellarrussWhite = new Color(250, 250, 255);
+        private static readonly Color[] SiamoStellarrussSpectrum =
+        {
+            Calc.HexToColor("ffffff"),
+            Calc.HexToColor("ff6cc8"),
+            Calc.HexToColor("ff9a52"),
+            Calc.HexToColor("ffe56f"),
+            Calc.HexToColor("68ffd4"),
+            Calc.HexToColor("6fc7ff"),
+            Calc.HexToColor("b08cff")
+        };
 
         // Siamo Zero combat properties
         private bool siamoZeroCombatActive = false;
@@ -61,6 +77,160 @@ namespace MaggyHelper.Entities
         private bool hasAeonHeroSprite = false;
         private bool hasMorphoKnightSprite = false;
         private float siamoTransformProgress = 0f;
+
+        private int GetSiamoCount(int pink, int soulBlack, int stellarruss)
+        {
+            return siamoZeroTier switch
+            {
+                SiamoZeroTier.Pink => pink,
+                SiamoZeroTier.Stellarruss => stellarruss,
+                _ => soulBlack
+            };
+        }
+
+        private float GetSiamoValue(float pink, float soulBlack, float stellarruss)
+        {
+            return siamoZeroTier switch
+            {
+                SiamoZeroTier.Pink => pink,
+                SiamoZeroTier.Stellarruss => stellarruss,
+                _ => soulBlack
+            };
+        }
+
+        private Color SampleStellarrussColor(float offset)
+        {
+            float palettePosition = ((Scene?.TimeActive ?? 0f) * 0.55f) + offset * SiamoStellarrussSpectrum.Length;
+            int count = SiamoStellarrussSpectrum.Length;
+            float wrapped = palettePosition % count;
+            if (wrapped < 0f)
+                wrapped += count;
+
+            int left = (int)Math.Floor(wrapped) % count;
+            int right = (left + 1) % count;
+            float blend = wrapped - (float)Math.Floor(wrapped);
+            return Color.Lerp(SiamoStellarrussSpectrum[left], SiamoStellarrussSpectrum[right], blend);
+        }
+
+        private Color GetSiamoAeonColor(float offset = 0f)
+        {
+            return siamoZeroTier switch
+            {
+                SiamoZeroTier.Pink => Color.Lerp(SiamoPinkRose, SiamoPinkBlush, 0.35f + (float)Math.Sin((Scene?.TimeActive ?? 0f) * 3f + offset) * 0.15f),
+                SiamoZeroTier.Stellarruss => SampleStellarrussColor(offset + 0.08f),
+                _ => Color.Lerp(SiamoSoulBlackCrimson, SiamoMorphoMagenta, 0.28f)
+            };
+        }
+
+        private Color GetSiamoMorphoColor(float offset = 0f)
+        {
+            return siamoZeroTier switch
+            {
+                SiamoZeroTier.Pink => Color.Lerp(SiamoPinkRose, SiamoMorphoMagenta, 0.6f),
+                SiamoZeroTier.Stellarruss => SampleStellarrussColor(offset + 0.24f),
+                _ => Color.Lerp(SiamoSoulBlackCrimson, SiamoMorphoPurple, 0.65f)
+            };
+        }
+
+        private Color GetSiamoTimeborderColor(float offset = 0f)
+        {
+            return siamoZeroTier switch
+            {
+                SiamoZeroTier.Pink => Color.Lerp(SiamoPinkRose, SiamoPinkBlush, 0.45f),
+                SiamoZeroTier.Stellarruss => Color.Lerp(SiamoStellarrussWhite, SampleStellarrussColor(offset + 0.36f), 0.5f),
+                _ => Color.Lerp(SiamoTimeborderRed, SiamoMorphoMagenta, 0.25f)
+            };
+        }
+
+        private Color GetSiamoBodyTint(float offset = 0f)
+        {
+            return siamoZeroTier switch
+            {
+                SiamoZeroTier.Pink => Color.Lerp(Color.White, SiamoPinkBlush, 0.4f),
+                SiamoZeroTier.Stellarruss => Color.Lerp(SiamoStellarrussWhite, SampleStellarrussColor(offset + 0.1f), 0.12f),
+                _ => SiamoSoulBlackBody
+            };
+        }
+
+        private Color GetSiamoWingTint(float offset = 0f)
+        {
+            return siamoZeroTier switch
+            {
+                SiamoZeroTier.Pink => Color.Lerp(SiamoPinkRose, SiamoPinkBlush, 0.25f),
+                SiamoZeroTier.Stellarruss => Color.Lerp(SiamoStellarrussWhite, SampleStellarrussColor(offset + 0.18f), 0.72f),
+                _ => SiamoSoulBlackWing
+            };
+        }
+
+        private Color GetSiamoEyeTint(float offset = 0f)
+        {
+            return siamoZeroTier switch
+            {
+                SiamoZeroTier.Pink => Color.Lerp(Color.White, SiamoPinkBlush, 0.22f),
+                SiamoZeroTier.Stellarruss => Color.Lerp(SiamoStellarrussWhite, SampleStellarrussColor(offset + 0.28f), 0.18f),
+                _ => new Color(242, 234, 242)
+            };
+        }
+
+        private Color GetSiamoPupilTint(float offset = 0f)
+        {
+            return siamoZeroTier switch
+            {
+                SiamoZeroTier.Pink => Color.Lerp(SiamoPinkRose, SiamoMorphoMagenta, 0.55f),
+                SiamoZeroTier.Stellarruss => SampleStellarrussColor(offset + 0.34f),
+                _ => Color.Lerp(SiamoSoulBlackCrimson, SiamoMorphoMagenta, 0.35f)
+            };
+        }
+
+        private Color GetSiamoAuraColor(float offset = 0f)
+        {
+            return currentSiamoSubPhase == SiamoSubPhase.AeonHeroFake
+                ? GetSiamoAeonColor(offset)
+                : GetSiamoMorphoColor(offset + 0.12f);
+        }
+
+        private Color GetSiamoAuraAccentColor(float offset = 0f)
+        {
+            return siamoZeroTier switch
+            {
+                SiamoZeroTier.Pink => SiamoPinkBlush,
+                SiamoZeroTier.Stellarruss => Color.Lerp(SiamoStellarrussWhite, SampleStellarrussColor(offset + 0.48f), 0.35f),
+                _ => Color.Lerp(SiamoSoulBlackBody, GetSiamoMorphoColor(offset), 0.25f)
+            };
+        }
+
+        private Color GetSiamoCoreColor(float pulse)
+        {
+            return siamoZeroTier switch
+            {
+                SiamoZeroTier.Pink => Color.Lerp(SiamoPinkRose, SiamoPinkBlush, pulse),
+                SiamoZeroTier.Stellarruss => Color.Lerp(SiamoStellarrussWhite, SampleStellarrussColor(pulse + 0.2f), 0.7f),
+                _ => Color.Lerp(SiamoTimeborderRed, SiamoMorphoMagenta, pulse)
+            };
+        }
+
+        private void ApplySiamoThemeToSprites()
+        {
+            float offset = (Scene?.TimeActive ?? 0f) * 0.12f;
+
+            if (siamoSprite != null)
+                siamoSprite.Color = Color.Lerp(Color.White, GetSiamoBodyTint(offset), GetSiamoValue(0.3f, 0.56f, 0.22f));
+            if (siamoWingSprite != null)
+                siamoWingSprite.Color = Color.Lerp(Color.White, GetSiamoWingTint(offset), GetSiamoValue(0.38f, 0.7f, 0.4f));
+            if (siamoEyeSprite != null)
+                siamoEyeSprite.Color = Color.Lerp(Color.White, GetSiamoEyeTint(offset), GetSiamoValue(0.18f, 0.36f, 0.18f));
+            if (siamoPupilSprite != null)
+                siamoPupilSprite.Color = Color.Lerp(Color.White, GetSiamoPupilTint(offset), GetSiamoValue(0.42f, 0.68f, 0.4f));
+            if (aeonHeroSprite != null)
+                aeonHeroSprite.Color = Color.Lerp(Color.White, GetSiamoAeonColor(offset + 0.08f), GetSiamoValue(0.22f, 0.36f, 0.28f));
+            if (morphoKnightSprite != null)
+                morphoKnightSprite.Color = Color.Lerp(Color.White, GetSiamoMorphoColor(offset + 0.2f), GetSiamoValue(0.28f, 0.44f, 0.34f));
+        }
+
+        private void ApplySiamoBackgroundTheme()
+        {
+            bossBg?.SetSiamoTier(siamoZeroTier);
+        }
 
         #endregion
 
@@ -111,12 +281,13 @@ namespace MaggyHelper.Entities
 
             setupSiamoZero();
             SetupSiamoZeroCombatSprites();
+            ApplySiamoBackgroundTheme();
 
             // Dramatic activation
             Audio.Play(SFX_SIAMO_TRANSFORM, Position);
             var lvl = Scene as Level;
             lvl?.Shake(3f);
-            lvl?.Flash(SiamoTimeborderRed, true);
+            lvl?.Flash(GetSiamoTimeborderColor(0.14f), true);
             lvl?.Displacement.AddBurst(Position, 3f, 384f, 768f, 4f);
 
             phaseWiggler.Start();
@@ -127,7 +298,7 @@ namespace MaggyHelper.Entities
             // Aeon Hero animation sprite (overlay for sword attacks)
             if (aeonHeroSprite == null)
             {
-                string aeonPath = BossSpriteAtlasRoot + AeonHeroBasePath;
+                string aeonPath = BossSpriteAtlasRoot + ResolveSiamoAnimationPath(AeonHeroBasePath, AeonHeroBasePath);
                 if (GFX.Game.HasAtlasSubtextures(aeonPath + "idle"))
                 {
                     aeonHeroSprite = new Sprite(GFX.Game, aeonPath);
@@ -171,7 +342,7 @@ namespace MaggyHelper.Entities
             // Morpho Knight animation sprite (overlay for vortex attacks)
             if (morphoKnightSprite == null)
             {
-                string morphoPath = BossSpriteAtlasRoot + MorphoKnightBasePath;
+                string morphoPath = BossSpriteAtlasRoot + ResolveSiamoAnimationPath(MorphoKnightBasePath, MorphoKnightBasePath);
                 if (GFX.Game.HasAtlasSubtextures(morphoPath + "emerge"))
                 {
                     morphoKnightSprite = new Sprite(GFX.Game, morphoPath);
@@ -195,7 +366,7 @@ namespace MaggyHelper.Entities
             // Timeborder overlay sprite (120 frames)
             if (timeborderSprite == null)
             {
-                string tbPath = BossSpriteAtlasRoot + TimebordersBasePath;
+                string tbPath = BossSpriteAtlasRoot + ResolveSiamoAnimationPath(TimebordersBasePath, TimebordersBasePath);
                 if (GFX.Game.HasAtlasSubtextures(tbPath + "timeborders"))
                 {
                     timeborderSprite = new Sprite(GFX.Game, tbPath);
@@ -240,32 +411,43 @@ namespace MaggyHelper.Entities
             float wingPulse = (float)Math.Sin(Scene.TimeActive * 12f);
             float eyePulse = (float)Math.Sin(Scene.TimeActive * 8f);
             float pupilPulse = (float)Math.Sin(Scene.TimeActive * 9.5f);
+            float rootScale = GetSiamoValue(1.02f, 1.04f, 1.08f);
+            float rootWiggle = GetSiamoValue(0.035f, 0.05f, 0.07f);
 
             // Faster, more aggressive layer pulsing than Penumbra
             ApplyBossLayerTransform(siamoSprite, Vector2.Zero,
-                Vector2.One * (1.04f + phaseWiggler.Value * 0.05f), wingPulse * 0.015f);
+                Vector2.One * (rootScale + phaseWiggler.Value * rootWiggle),
+                wingPulse * GetSiamoValue(0.01f, 0.015f, 0.022f));
 
             ApplyBossLayerTransform(
                 siamoWingSprite, Vector2.Zero,
-                new Vector2(1.2f + wingPulse * 0.28f, 0.78f + Math.Abs(wingPulse) * 0.26f),
-                wingPulse * 0.2f);
+                new Vector2(
+                    GetSiamoValue(1.1f, 1.2f, 1.28f) + wingPulse * GetSiamoValue(0.18f, 0.28f, 0.34f),
+                    GetSiamoValue(0.84f, 0.78f, 0.72f) + Math.Abs(wingPulse) * GetSiamoValue(0.18f, 0.26f, 0.32f)),
+                wingPulse * GetSiamoValue(0.14f, 0.2f, 0.26f));
 
             ApplyBossLayerTransform(
                 siamoEyeSprite, Vector2.Zero,
-                new Vector2(1f + eyePulse * 0.1f, 0.84f + Math.Abs(eyePulse) * 0.15f),
-                eyePulse * 0.06f);
+                new Vector2(
+                    1f + eyePulse * GetSiamoValue(0.07f, 0.1f, 0.13f),
+                    GetSiamoValue(0.9f, 0.84f, 0.8f) + Math.Abs(eyePulse) * GetSiamoValue(0.09f, 0.15f, 0.19f)),
+                eyePulse * GetSiamoValue(0.04f, 0.06f, 0.08f));
 
             ApplyBossLayerTransform(
                 siamoPupilSprite, Vector2.Zero,
-                new Vector2(1f + pupilPulse * 0.07f, 1f + Math.Abs(pupilPulse) * 0.08f),
-                pupilPulse * 0.04f);
+                new Vector2(
+                    1f + pupilPulse * GetSiamoValue(0.05f, 0.07f, 0.1f),
+                    1f + Math.Abs(pupilPulse) * GetSiamoValue(0.06f, 0.08f, 0.11f)),
+                pupilPulse * GetSiamoValue(0.03f, 0.04f, 0.055f));
+
+            ApplySiamoThemeToSprites();
 
             // Timeborder pulsing overlay
             if (siamoTimeborderActive && hasTimeborderSprite)
             {
                 siamoTimeborderTimer += Engine.DeltaTime;
-                siamoTimeborderAlpha = 0.35f + (float)Math.Sin(Scene.TimeActive * 3f) * 0.15f;
-                timeborderSprite.Color = Color.White * siamoTimeborderAlpha;
+                siamoTimeborderAlpha = GetSiamoValue(0.28f, 0.35f, 0.42f) + (float)Math.Sin(Scene.TimeActive * 3f) * GetSiamoValue(0.1f, 0.15f, 0.2f);
+                timeborderSprite.Color = GetSiamoTimeborderColor(0.22f) * siamoTimeborderAlpha;
                 timeborderSprite.Visible = true;
 
                 if (!timeborderSprite.Animating)
@@ -281,10 +463,10 @@ namespace MaggyHelper.Entities
             // Core light for Siamo phase — deep red / dark magenta
             if (coreLight != null)
             {
-                Color siamoColor = Color.Lerp(SiamoTimeborderRed, SiamoMorphoMagenta, (energyPulse.Value + 1f) * 0.5f);
+                Color siamoColor = GetSiamoCoreColor((energyPulse.Value + 1f) * 0.5f);
                 coreLight.Color = siamoColor * 1.6f;
                 coreLight.Alpha = 0.9f + phaseWiggler.Value * 0.4f;
-                coreLight.StartRadius = 400f;
+                coreLight.StartRadius = GetSiamoValue(360f, 400f, 448f);
             }
         }
 
@@ -373,7 +555,7 @@ namespace MaggyHelper.Entities
             var lvl = Scene as Level;
             lvl?.Displacement.AddBurst(Position, 0.6f, 96f, 192f, 0.8f);
 
-            Alarm.Set(this, 0.4f, () =>
+            Alarm.Set(this, GetSiamoValue(0.52f, 0.4f, 0.28f), () =>
             {
                 Audio.Play(SFX_SIAMO_BEAM_FIRE, Position);
                 lvl?.Shake(1.5f);
@@ -383,13 +565,19 @@ namespace MaggyHelper.Entities
                     ? (player.Center - Position).SafeNormalize()
                     : new Vector2(facing, 0f);
 
-                // Fire 3 crescent projectiles in a fan
-                for (int i = -1; i <= 1; i++)
+                int shotCount = GetSiamoCount(3, 3, 5);
+                float spreadRange = GetSiamoValue(0.26f, 0.3f, 0.46f);
+
+                for (int i = 0; i < shotCount; i++)
                 {
-                    float spread = i * 0.3f; // ~17° spread
+                    float lerp = shotCount <= 1 ? 0.5f : i / (float)(shotCount - 1);
+                    float spread = MathHelper.Lerp(-spreadRange, spreadRange, lerp);
                     Vector2 dir = Calc.AngleToVector(baseDir.Angle() + spread, 1f);
-                    lvl?.Add(new SiamoZeroCrescentProjectile(ShotOrigin, dir * 280f, SiamoAeonCyan));
-                    lvl?.ParticlesFG.Emit(PShoot, 5, ShotOrigin, dir * 6f);
+                    lvl?.Add(new SiamoZeroCrescentProjectile(
+                        ShotOrigin,
+                        dir * GetSiamoValue(240f, 280f, 330f),
+                        GetSiamoAeonColor(i * 0.08f)));
+                    lvl?.ParticlesFG.Emit(PShoot, GetSiamoCount(4, 5, 6), ShotOrigin, dir * 6f);
                 }
             });
         }
@@ -411,16 +599,17 @@ namespace MaggyHelper.Entities
         private IEnumerator siamoEnergySwordSequence()
         {
             var lvl = Scene as Level;
+            int comboHits = GetSiamoCount(5, 6, 8);
 
-            for (int hit = 0; hit < 6; hit++)
+            for (int hit = 0; hit < comboHits; hit++)
             {
                 // Teleport near player
                 var player = lvl?.Tracker.GetEntity<global::Celeste.Player>();
                 if (player != null)
                 {
                     Vector2 offset = new Vector2(
-                        Calc.Random.Range(-80f, 80f),
-                        Calc.Random.Range(-60f, 60f)
+                        Calc.Random.Range(GetSiamoValue(-64f, -80f, -96f), GetSiamoValue(64f, 80f, 96f)),
+                        Calc.Random.Range(GetSiamoValue(-48f, -60f, -80f), GetSiamoValue(48f, 60f, 80f))
                     );
                     Vector2 targetPos = player.Center + offset;
 
@@ -436,10 +625,14 @@ namespace MaggyHelper.Entities
                 // Spawn blade hitbox
                 float angle = Calc.Random.NextFloat() * MathHelper.TwoPi;
                 Vector2 bladeDir = Calc.AngleToVector(angle, 1f);
-                lvl?.Add(new SiamoZeroEnergyBlade(Position, bladeDir * 200f, SiamoAeonGold, 0.8f));
-                lvl?.ParticlesFG.Emit(PBurst, 8, Position, Vector2.One * 10f);
+                lvl?.Add(new SiamoZeroEnergyBlade(
+                    Position,
+                    bladeDir * GetSiamoValue(180f, 200f, 235f),
+                    GetSiamoAeonColor(hit * 0.07f),
+                    GetSiamoValue(0.7f, 0.8f, 0.95f)));
+                lvl?.ParticlesFG.Emit(PBurst, GetSiamoCount(6, 8, 10), Position, Vector2.One * 10f);
 
-                yield return 0.18f;
+                yield return GetSiamoValue(0.22f, 0.18f, 0.14f);
             }
 
             // Final shockwave
@@ -447,9 +640,10 @@ namespace MaggyHelper.Entities
             lvl?.Shake(1.5f);
             lvl?.Displacement.AddBurst(Position, 1.5f, 128f, 256f, 1f);
 
-            for (int i = 0; i < 16; i++)
+            int shockwaveParticles = GetSiamoCount(12, 16, 20);
+            for (int i = 0; i < shockwaveParticles; i++)
             {
-                float a = (i / 16f) * MathHelper.TwoPi;
+                float a = (i / (float)shockwaveParticles) * MathHelper.TwoPi;
                 Vector2 dir = new Vector2((float)Math.Cos(a), (float)Math.Sin(a));
                 lvl?.ParticlesFG.Emit(PShoot, 3, Position, dir * 10f);
             }
@@ -472,7 +666,7 @@ namespace MaggyHelper.Entities
         private IEnumerator siamoTornadoSlashSequence()
         {
             var lvl = Scene as Level;
-            float duration = 2.5f;
+            float duration = GetSiamoValue(2.1f, 2.5f, 3f);
             float elapsed = 0f;
             Vector2 startPos = Position;
 
@@ -489,12 +683,14 @@ namespace MaggyHelper.Entities
                     + new Vector2((float)Math.Cos(angle) * radius, (float)Math.Sin(angle) * radius);
 
                 // Emit tornado particles and slash projectiles
-                if (Scene.OnInterval(0.15f))
+                if (Scene.OnInterval(GetSiamoValue(0.18f, 0.15f, 0.11f)))
                 {
-                    lvl?.Add(new SiamoZeroEnergyBlade(Position,
-                        Calc.AngleToVector(angle + MathHelper.PiOver2, 180f),
-                        SiamoAeonCyan, 0.6f));
-                    lvl?.ParticlesFG.Emit(PBurst, 4, Position, Vector2.One * 12f);
+                    lvl?.Add(new SiamoZeroEnergyBlade(
+                        Position,
+                        Calc.AngleToVector(angle + MathHelper.PiOver2, GetSiamoValue(160f, 180f, 215f)),
+                        GetSiamoAeonColor(t + 0.1f),
+                        GetSiamoValue(0.5f, 0.6f, 0.75f)));
+                    lvl?.ParticlesFG.Emit(PBurst, GetSiamoCount(3, 4, 6), Position, Vector2.One * 12f);
                     Audio.Play(SFX_SIAMO_SWORD_SWING, Position);
                 }
 
@@ -509,11 +705,15 @@ namespace MaggyHelper.Entities
             lvl?.Displacement.AddBurst(Position, 2f, 192f, 384f, 1.5f);
 
             // Release 8 projectiles on landing
-            for (int i = 0; i < 8; i++)
+            int landingShots = GetSiamoCount(6, 8, 10);
+            for (int i = 0; i < landingShots; i++)
             {
-                float a = (i / 8f) * MathHelper.TwoPi;
+                float a = (i / (float)landingShots) * MathHelper.TwoPi;
                 Vector2 dir = new Vector2((float)Math.Cos(a), (float)Math.Sin(a));
-                lvl?.Add(new SiamoZeroCrescentProjectile(Position, dir * 200f, SiamoAeonCyan));
+                lvl?.Add(new SiamoZeroCrescentProjectile(
+                    Position,
+                    dir * GetSiamoValue(180f, 200f, 240f),
+                    GetSiamoAeonColor(0.22f + i * 0.06f)));
             }
         }
 
@@ -534,13 +734,13 @@ namespace MaggyHelper.Entities
         private IEnumerator siamoRevolutionSwordSequence()
         {
             var lvl = Scene as Level;
-            int waves = 3;
+            int waves = GetSiamoCount(2, 3, 4);
 
             for (int w = 0; w < waves; w++)
             {
                 float baseAngle = w * (MathHelper.TwoPi / waves);
-                int bladeCount = 5 + w * 2;
-                float radius = 60f + w * 40f;
+                int bladeCount = GetSiamoCount(4, 5, 6) + w * GetSiamoCount(1, 2, 3);
+                float radius = GetSiamoValue(56f, 60f, 68f) + w * GetSiamoValue(34f, 40f, 48f);
 
                 Audio.Play(SFX_SIAMO_SWORD_SWING, Position);
                 lvl?.Shake(0.8f);
@@ -551,12 +751,16 @@ namespace MaggyHelper.Entities
                     Vector2 dir = Calc.AngleToVector(angle, 1f);
                     Vector2 spawnPos = Position + dir * radius;
 
-                    lvl?.Add(new SiamoZeroEnergyBlade(spawnPos, dir * 220f, SiamoAeonGold, 1f));
+                    lvl?.Add(new SiamoZeroEnergyBlade(
+                        spawnPos,
+                        dir * GetSiamoValue(190f, 220f, 255f),
+                        GetSiamoAeonColor(w * 0.14f + i * 0.05f),
+                        GetSiamoValue(0.85f, 1f, 1.15f)));
                     lvl?.ParticlesFG.Emit(PShoot, 3, spawnPos, dir * 4f);
                 }
 
                 lvl?.Displacement.AddBurst(Position, 1f, radius, radius + 128f, 0.8f);
-                yield return 0.5f;
+                yield return GetSiamoValue(0.64f, 0.5f, 0.34f);
             }
         }
 
@@ -583,18 +787,19 @@ namespace MaggyHelper.Entities
             float groundY = player?.Y ?? Position.Y;
 
             // Spawn 8 spine pillars in a line
-            for (int i = 0; i < 8; i++)
+            int spineCount = GetSiamoCount(6, 8, 10);
+            for (int i = 0; i < spineCount; i++)
             {
-                float offsetX = (i - 3.5f) * 40f;
+                float offsetX = (i - (spineCount - 1) * 0.5f) * GetSiamoValue(44f, 40f, 36f);
                 Vector2 spinePos = new Vector2(baseX + offsetX, groundY);
 
                 Audio.Play(SFX_SIAMO_RISING, spinePos);
                 lvl?.Displacement.AddBurst(spinePos, 0.8f, 32f, 64f, 0.5f);
 
-                lvl?.Add(new SiamoZeroSpinePillar(spinePos, SiamoAeonGold));
-                lvl?.ParticlesFG.Emit(PBurst, 6, spinePos, Vector2.One * 6f);
+                lvl?.Add(new SiamoZeroSpinePillar(spinePos, GetSiamoAeonColor(i * 0.06f)));
+                lvl?.ParticlesFG.Emit(PBurst, GetSiamoCount(4, 6, 8), spinePos, Vector2.One * 6f);
 
-                yield return 0.12f;
+                yield return GetSiamoValue(0.15f, 0.12f, 0.09f);
             }
 
             // Final burst
@@ -621,8 +826,8 @@ namespace MaggyHelper.Entities
             var player = lvl?.Tracker.GetEntity<global::Celeste.Player>();
 
             // Rise up
-            Vector2 riseTarget = Position + new Vector2(0, -120f);
-            float riseDuration = 0.4f;
+            Vector2 riseTarget = Position + new Vector2(0, -GetSiamoValue(108f, 120f, 148f));
+            float riseDuration = GetSiamoValue(0.48f, 0.4f, 0.32f);
             Vector2 startPos = Position;
 
             for (float t = 0; t < riseDuration; t += Engine.DeltaTime)
@@ -631,7 +836,7 @@ namespace MaggyHelper.Entities
                 yield return null;
             }
 
-            yield return 0.2f;
+            yield return GetSiamoValue(0.3f, 0.2f, 0.12f);
 
             // Track player position at this moment
             Vector2 thrustTarget = player?.Center ?? (Position + new Vector2(0, 200f));
@@ -640,7 +845,7 @@ namespace MaggyHelper.Entities
             // Dive down
             Audio.Play(SFX_SIAMO_IMPACT, Position);
             startPos = Position;
-            float diveDuration = 0.25f;
+            float diveDuration = GetSiamoValue(0.32f, 0.25f, 0.18f);
 
             for (float t = 0; t < diveDuration; t += Engine.DeltaTime)
             {
@@ -653,14 +858,19 @@ namespace MaggyHelper.Entities
             Audio.Play(SFX_SIAMO_IMPACT, Position);
             lvl?.Shake(2.5f);
             lvl?.Displacement.AddBurst(Position, 2f, 128f, 256f, 1.5f);
-            lvl?.Flash(SiamoAeonGold * 0.6f, false);
+            lvl?.Flash(GetSiamoAeonColor(0.28f) * 0.6f, false);
 
             // Ground shockwave — spawn blades radiating outward
-            for (int i = 0; i < 10; i++)
+            int shockwaveBlades = GetSiamoCount(8, 10, 12);
+            for (int i = 0; i < shockwaveBlades; i++)
             {
-                float angle = (i / 10f) * MathHelper.TwoPi;
+                float angle = (i / (float)shockwaveBlades) * MathHelper.TwoPi;
                 Vector2 dir = new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle));
-                lvl?.Add(new SiamoZeroEnergyBlade(Position, dir * 250f, SiamoAeonGold, 1.2f));
+                lvl?.Add(new SiamoZeroEnergyBlade(
+                    Position,
+                    dir * GetSiamoValue(220f, 250f, 290f),
+                    GetSiamoAeonColor(i * 0.05f),
+                    GetSiamoValue(1f, 1.2f, 1.35f)));
             }
         }
 
@@ -687,8 +897,8 @@ namespace MaggyHelper.Entities
                 ? (player.Center - Position).SafeNormalize()
                 : new Vector2(facing, 0f);
 
-            float drillDistance = 300f;
-            float drillDuration = 0.35f;
+            float drillDistance = GetSiamoValue(260f, 300f, 340f);
+            float drillDuration = GetSiamoValue(0.42f, 0.35f, 0.28f);
             Vector2 startPos = Position;
             Vector2 endPos = startPos + direction * drillDistance;
 
@@ -697,12 +907,20 @@ namespace MaggyHelper.Entities
                 Position = Vector2.Lerp(startPos, endPos, Ease.CubeIn(t / drillDuration));
 
                 // Leave blade trail behind
-                if (Scene.OnInterval(0.05f))
+                if (Scene.OnInterval(GetSiamoValue(0.07f, 0.05f, 0.035f)))
                 {
                     Vector2 perpDir = new Vector2(-direction.Y, direction.X);
-                    lvl?.Add(new SiamoZeroEnergyBlade(Position, perpDir * 120f, SiamoAeonCyan, 0.5f));
-                    lvl?.Add(new SiamoZeroEnergyBlade(Position, -perpDir * 120f, SiamoAeonCyan, 0.5f));
-                    lvl?.ParticlesFG.Emit(PBurst, 3, Position, Vector2.One * 6f);
+                    lvl?.Add(new SiamoZeroEnergyBlade(
+                        Position,
+                        perpDir * GetSiamoValue(100f, 120f, 145f),
+                        GetSiamoAeonColor(0.4f),
+                        GetSiamoValue(0.42f, 0.5f, 0.65f)));
+                    lvl?.Add(new SiamoZeroEnergyBlade(
+                        Position,
+                        -perpDir * GetSiamoValue(100f, 120f, 145f),
+                        GetSiamoAeonColor(0.52f),
+                        GetSiamoValue(0.42f, 0.5f, 0.65f)));
+                    lvl?.ParticlesFG.Emit(PBurst, GetSiamoCount(2, 3, 5), Position, Vector2.One * 6f);
                 }
 
                 yield return null;
@@ -733,9 +951,9 @@ namespace MaggyHelper.Entities
             var lvl = Scene as Level;
 
             // Charge up
-            lvl?.Flash(SiamoAeonGold * 0.4f, false);
+            lvl?.Flash(GetSiamoAeonColor(0.35f) * 0.4f, false);
             lvl?.Displacement.AddBurst(Position, 1f, 128f, 256f, 1f);
-            yield return 0.6f;
+            yield return GetSiamoValue(0.75f, 0.6f, 0.42f);
 
             // Rain 30 energy projectiles
             Audio.Play(SFX_SIAMO_BEAM_FIRE, Position);
@@ -743,8 +961,9 @@ namespace MaggyHelper.Entities
 
             var player = lvl?.Tracker.GetEntity<global::Celeste.Player>();
             float centerX = player?.X ?? Position.X;
+            int projectileCount = GetSiamoCount(20, 30, 42);
 
-            for (int i = 0; i < 30; i++)
+            for (int i = 0; i < projectileCount; i++)
             {
                 float spawnX = centerX + Calc.Random.Range(-200f, 200f);
                 float spawnY = (lvl?.Camera.Top ?? Position.Y - 200f) - 32f;
@@ -753,15 +972,15 @@ namespace MaggyHelper.Entities
                 float angleToCenter = (float)Math.Atan2(Position.Y - spawnY, centerX - spawnX);
                 Vector2 vel = Calc.AngleToVector(angleToCenter + Calc.Random.Range(-0.3f, 0.3f), Calc.Random.Range(180f, 320f));
 
-                lvl?.Add(new SiamoZeroCrescentProjectile(spawnPos, vel, SiamoAeonGold));
+                lvl?.Add(new SiamoZeroCrescentProjectile(spawnPos, vel, GetSiamoAeonColor(i * 0.04f)));
 
                 if (i % 5 == 0)
                     Audio.Play(SFX_ELS_RIFT_BULLET, spawnPos);
 
-                yield return 0.05f;
+                yield return GetSiamoValue(0.07f, 0.05f, 0.035f);
             }
 
-            yield return 0.3f;
+            yield return GetSiamoValue(0.4f, 0.3f, 0.18f);
             lvl?.Shake(1f);
         }
 
@@ -790,19 +1009,19 @@ namespace MaggyHelper.Entities
 
             // Summon vortex
             lvl?.Displacement.AddBurst(Position, 1f, 192f, 384f, 2f);
-            lvl?.Flash(SiamoMorphoPurple * 0.5f, false);
-            yield return 0.6f;
+            lvl?.Flash(GetSiamoMorphoColor(0.16f) * 0.5f, false);
+            yield return GetSiamoValue(0.75f, 0.6f, 0.45f);
 
             // Pull phase — displacement pulls inward
             PlaySiamoOverlay(SiamoSubPhase.MorphoKnightFake, "vortex_pull");
             Audio.Play(SFX_SIAMO_VORTEX, Position);
 
-            for (float t = 0; t < 1.5f; t += Engine.DeltaTime)
+            for (float t = 0; t < GetSiamoValue(1.2f, 1.5f, 1.9f); t += Engine.DeltaTime)
             {
                 lvl?.Displacement.AddBurst(Position, -0.8f, 256f, 512f, 0.2f);
 
                 // Inward particles
-                for (int i = 0; i < 4; i++)
+                for (int i = 0; i < GetSiamoCount(3, 4, 6); i++)
                 {
                     float angle = Calc.Random.NextFloat() * MathHelper.TwoPi;
                     float dist = Calc.Random.Range(100f, 250f);
@@ -817,15 +1036,20 @@ namespace MaggyHelper.Entities
             PlaySiamoOverlay(SiamoSubPhase.MorphoKnightFake, "vortex_strike");
             Audio.Play(SFX_SIAMO_IMPACT, Position);
             lvl?.Shake(3f);
-            lvl?.Flash(SiamoMorphoMagenta, true);
+            lvl?.Flash(GetSiamoMorphoColor(0.28f), true);
             lvl?.Displacement.AddBurst(Position, 3f, 256f, 512f, 2f);
 
             // Explosion of blades
-            for (int i = 0; i < 12; i++)
+            int vortexBladeCount = GetSiamoCount(10, 12, 16);
+            for (int i = 0; i < vortexBladeCount; i++)
             {
-                float angle = (i / 12f) * MathHelper.TwoPi;
+                float angle = (i / (float)vortexBladeCount) * MathHelper.TwoPi;
                 Vector2 dir = Calc.AngleToVector(angle, 1f);
-                lvl?.Add(new SiamoZeroEnergyBlade(Position, dir * 300f, SiamoMorphoMagenta, 1.2f));
+                lvl?.Add(new SiamoZeroEnergyBlade(
+                    Position,
+                    dir * GetSiamoValue(260f, 300f, 340f),
+                    GetSiamoMorphoColor(i * 0.06f),
+                    GetSiamoValue(1f, 1.2f, 1.35f)));
             }
         }
 
@@ -852,25 +1076,33 @@ namespace MaggyHelper.Entities
             Audio.Play(SFX_SIAMO_SWORD_SWING, Position);
             lvl?.Shake(1f);
 
-            for (int i = 0; i < 6; i++)
+            int leftSlashCount = GetSiamoCount(5, 6, 8);
+            for (int i = 0; i < leftSlashCount; i++)
             {
-                float angle = MathHelper.PiOver2 + (i / 6f) * MathHelper.Pi;
+                float angle = MathHelper.PiOver2 + (i / (float)leftSlashCount) * MathHelper.Pi;
                 Vector2 dir = Calc.AngleToVector(angle, 1f);
-                lvl?.Add(new SiamoZeroCrescentProjectile(Position + new Vector2(-80f, 0f), dir * 260f, SiamoMorphoPurple));
+                lvl?.Add(new SiamoZeroCrescentProjectile(
+                    Position + new Vector2(-80f, 0f),
+                    dir * GetSiamoValue(230f, 260f, 300f),
+                    GetSiamoMorphoColor(0.08f + i * 0.05f)));
             }
             lvl?.Displacement.AddBurst(Position + new Vector2(-80f, 0f), 1f, 96f, 192f, 0.8f);
 
-            yield return 0.35f;
+            yield return GetSiamoValue(0.45f, 0.35f, 0.24f);
 
             // Right slash
             Audio.Play(SFX_SIAMO_SWORD_SWING, Position);
             lvl?.Shake(1f);
 
-            for (int i = 0; i < 6; i++)
+            int rightSlashCount = GetSiamoCount(5, 6, 8);
+            for (int i = 0; i < rightSlashCount; i++)
             {
-                float angle = -MathHelper.PiOver2 + (i / 6f) * MathHelper.Pi;
+                float angle = -MathHelper.PiOver2 + (i / (float)rightSlashCount) * MathHelper.Pi;
                 Vector2 dir = Calc.AngleToVector(angle, 1f);
-                lvl?.Add(new SiamoZeroCrescentProjectile(Position + new Vector2(80f, 0f), dir * 260f, SiamoMorphoMagenta));
+                lvl?.Add(new SiamoZeroCrescentProjectile(
+                    Position + new Vector2(80f, 0f),
+                    dir * GetSiamoValue(230f, 260f, 300f),
+                    GetSiamoMorphoColor(0.34f + i * 0.05f)));
             }
             lvl?.Displacement.AddBurst(Position + new Vector2(80f, 0f), 1f, 96f, 192f, 0.8f);
         }
@@ -904,7 +1136,7 @@ namespace MaggyHelper.Entities
             Audio.Play(SFX_ELS_TELEPORT, Position);
             lvl?.Displacement.AddBurst(Position, 0.5f, 64f, 128f, 0.3f);
 
-            yield return 0.8f;
+            yield return GetSiamoValue(0.95f, 0.8f, 0.6f);
 
             // Teleport below player
             Vector2 emergePos = player != null
@@ -921,23 +1153,25 @@ namespace MaggyHelper.Entities
             Audio.Play(SFX_SIAMO_IMPACT, Position);
             Audio.Play(SFX_SIAMO_EMERGE, Position);
             lvl?.Shake(2.5f);
-            lvl?.Flash(SiamoMorphoMagenta * 0.8f, true);
+            lvl?.Flash(GetSiamoMorphoColor(0.42f) * 0.8f, true);
             lvl?.Displacement.AddBurst(Position, 2.5f, 192f, 384f, 2f);
 
             // Upward energy pillar (spawn spine pillars going up)
-            for (int i = 0; i < 6; i++)
+            int pillarCount = GetSiamoCount(5, 6, 8);
+            for (int i = 0; i < pillarCount; i++)
             {
                 Vector2 pillarPos = Position - new Vector2(0, i * 48f);
-                lvl?.Add(new SiamoZeroSpinePillar(pillarPos, SiamoMorphoPurple));
+                lvl?.Add(new SiamoZeroSpinePillar(pillarPos, GetSiamoMorphoColor(0.18f + i * 0.06f)));
                 lvl?.ParticlesFG.Emit(PBurst, 4, pillarPos, Vector2.One * 8f);
             }
 
             // Rise up
             Vector2 startPos = Position;
-            Vector2 riseTarget = Position - new Vector2(0, 140f);
-            for (float t = 0; t < 0.4f; t += Engine.DeltaTime)
+            float riseDuration = GetSiamoValue(0.5f, 0.4f, 0.3f);
+            Vector2 riseTarget = Position - new Vector2(0, GetSiamoValue(124f, 140f, 164f));
+            for (float t = 0; t < riseDuration; t += Engine.DeltaTime)
             {
-                Position = Vector2.Lerp(startPos, riseTarget, Ease.CubeOut(t / 0.4f));
+                Position = Vector2.Lerp(startPos, riseTarget, Ease.CubeOut(t / riseDuration));
                 yield return null;
             }
         }
@@ -970,14 +1204,15 @@ namespace MaggyHelper.Entities
                 timeborderSprite.Play("loop");
             }
 
-            lvl?.Flash(SiamoTimeborderRed, true);
+            lvl?.Flash(GetSiamoTimeborderColor(0.4f), true);
             lvl?.Shake(3f);
             lvl?.Displacement.AddBurst(Position, 3f, 384f, 768f, 4f);
 
-            yield return 0.5f;
+            yield return GetSiamoValue(0.68f, 0.5f, 0.34f);
 
             // Wave 1: projectiles from cardinal directions
-            for (int wave = 0; wave < 3; wave++)
+            int waveCount = GetSiamoCount(2, 3, 4);
+            for (int wave = 0; wave < waveCount; wave++)
             {
                 Audio.Play(SFX_ELS_SHELLCRACK, Position);
                 lvl?.Shake(1.5f);
@@ -987,7 +1222,7 @@ namespace MaggyHelper.Entities
                 float cameraTop = lvl?.Camera.Top ?? Position.Y - 200f;
                 float cameraBottom = lvl?.Camera.Bottom ?? Position.Y + 200f;
 
-                int projectilesPerSide = 6 + wave * 2;
+                int projectilesPerSide = GetSiamoCount(5, 6, 8) + wave * GetSiamoCount(1, 2, 3);
                 for (int i = 0; i < projectilesPerSide; i++)
                 {
                     float fraction = (i + 0.5f) / projectilesPerSide;
@@ -995,15 +1230,15 @@ namespace MaggyHelper.Entities
                     // From left
                     lvl?.Add(new SiamoZeroCrescentProjectile(
                         new Vector2(cameraLeft - 16f, MathHelper.Lerp(cameraTop, cameraBottom, fraction)),
-                        new Vector2(Calc.Random.Range(150f, 250f), 0f), SiamoTimeborderRed));
+                        new Vector2(Calc.Random.Range(GetSiamoValue(130f, 150f, 180f), GetSiamoValue(220f, 250f, 320f)), 0f), GetSiamoTimeborderColor(wave * 0.18f + i * 0.03f)));
 
                     // From right
                     lvl?.Add(new SiamoZeroCrescentProjectile(
                         new Vector2(cameraRight + 16f, MathHelper.Lerp(cameraTop, cameraBottom, fraction)),
-                        new Vector2(Calc.Random.Range(-250f, -150f), 0f), SiamoTimeborderRed));
+                        new Vector2(Calc.Random.Range(GetSiamoValue(-220f, -250f, -320f), GetSiamoValue(-130f, -150f, -180f)), 0f), GetSiamoTimeborderColor(0.22f + wave * 0.18f + i * 0.03f)));
                 }
 
-                yield return 0.8f;
+                yield return GetSiamoValue(1f, 0.8f, 0.65f);
             }
 
             // Final massive shockwave
@@ -1014,14 +1249,15 @@ namespace MaggyHelper.Entities
             lvl?.Displacement.AddBurst(Position, 4f, 512f, 1024f, 5f);
 
             // 24 projectiles in all directions
-            for (int i = 0; i < 24; i++)
+            int collapseBurstCount = GetSiamoCount(18, 24, 32);
+            for (int i = 0; i < collapseBurstCount; i++)
             {
-                float angle = (i / 24f) * MathHelper.TwoPi;
+                float angle = (i / (float)collapseBurstCount) * MathHelper.TwoPi;
                 Vector2 dir = Calc.AngleToVector(angle, Calc.Random.Range(200f, 350f));
-                lvl?.Add(new SiamoZeroCrescentProjectile(Position, dir, SiamoTimeborderRed));
+                lvl?.Add(new SiamoZeroCrescentProjectile(Position, dir, GetSiamoTimeborderColor(i * 0.04f)));
             }
 
-            yield return 2f;
+            yield return GetSiamoValue(2.4f, 2f, 1.4f);
 
             // Fade out timeborder
             siamoTimeborderActive = false;
@@ -1082,7 +1318,7 @@ namespace MaggyHelper.Entities
             var lvl = Scene as Level;
             lvl?.Shake(2f);
             lvl?.Displacement.AddBurst(Position, 2f, 256f, 512f, 2f);
-            lvl?.Flash(SiamoMorphoPurple * 0.7f, true);
+            lvl?.Flash(GetSiamoMorphoColor(0.32f) * 0.7f, true);
         }
 
         #endregion

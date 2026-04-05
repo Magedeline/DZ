@@ -25,6 +25,7 @@ elsTrueFinalBoss.placements = {
         name = "els_true_final_boss",
         data = {
             patternIndex = 0,
+            siamoTier = "soulBlack",
             dialog = true,
             startHit = false,
             attackSequence = ""
@@ -34,6 +35,7 @@ elsTrueFinalBoss.placements = {
         name = "full_intro_battle",
         data = {
             patternIndex = 0,
+            siamoTier = "soulBlack",
             dialog = true,
             startHit = false,
             attackSequence = "DoppiaCloneAssault,DualityWave,ShadowBlast,MirrorDimension,DimensionalDefense"
@@ -43,6 +45,7 @@ elsTrueFinalBoss.placements = {
         name = "phase_1_doppia_complete",
         data = {
             patternIndex = 0,
+            siamoTier = "soulBlack",
             dialog = false,
             startHit = false,
             attackSequence = "DoppiaCloneAssault,DualityWave,ShadowBlast,MirrorDimension,DimensionalDefense,DualityHeal,RiftStrikeCombo,quickDashAttack,energyOrbShot,burstHeal"
@@ -52,6 +55,7 @@ elsTrueFinalBoss.placements = {
         name = "phase_2_penumbra_complete",
         data = {
             patternIndex = 1,
+            siamoTier = "soulBlack",
             dialog = false,
             startHit = true,
             attackSequence = "PenumbraVoidStorm,PhantasmBarrage,VoidCollapse,DimensionalTear,UltimateAnnihilation,VoidShield,PenumbraRegeneration,DimensionalCataclysm,RiftMaelstrom,ApocalypticRiftBlast"
@@ -61,6 +65,7 @@ elsTrueFinalBoss.placements = {
         name = "rift_power_showcase",
         data = {
             patternIndex = 2,
+            siamoTier = "soulBlack",
             dialog = false,
             startHit = false,
             attackSequence = "RiftStrikeCombo,DimensionalCataclysm,RiftMaelstrom,ApocalypticRiftBlast"
@@ -70,6 +75,7 @@ elsTrueFinalBoss.placements = {
         name = "ultimate_attacks_only",
         data = {
             patternIndex = 3,
+            siamoTier = "soulBlack",
             dialog = false,
             startHit = true,
             attackSequence = "UltimateAnnihilation,DimensionalCataclysm,RiftMaelstrom,ApocalypticRiftBlast"
@@ -79,6 +85,7 @@ elsTrueFinalBoss.placements = {
         name = "defensive_battle",
         data = {
             patternIndex = 0,
+            siamoTier = "soulBlack",
             dialog = false,
             startHit = false,
             attackSequence = "DimensionalDefense,DualityHeal,VoidShield,PenumbraRegeneration"
@@ -88,6 +95,7 @@ elsTrueFinalBoss.placements = {
         name = "phase_3_siamo_zero_aeon",
         data = {
             patternIndex = 2,
+            siamoTier = "soulBlack",
             dialog = false,
             startHit = true,
             attackSequence = "CrescentBeamShot,EnergySwordCombo,TornadoSlash,RevolutionSword,RisingSpine,DownThrust,DrillStab,EnergyShower"
@@ -97,6 +105,7 @@ elsTrueFinalBoss.placements = {
         name = "phase_3_siamo_zero_morpho",
         data = {
             patternIndex = 3,
+            siamoTier = "soulBlack",
             dialog = false,
             startHit = true,
             attackSequence = "VortexStrike,DoubleSideSlash,MorphoEmerge,TimeborderCollapse"
@@ -106,8 +115,39 @@ elsTrueFinalBoss.placements = {
         name = "phase_3_siamo_zero_complete",
         data = {
             patternIndex = 2,
+            siamoTier = "soulBlack",
             dialog = true,
             startHit = false,
+            attackSequence = "CrescentBeamShot,EnergySwordCombo,TornadoSlash,RevolutionSword,RisingSpine,DownThrust,DrillStab,EnergyShower,VortexStrike,DoubleSideSlash,MorphoEmerge,TimeborderCollapse"
+        }
+    },
+    {
+        name = "phase_3_siamo_zero_pink",
+        data = {
+            patternIndex = 2,
+            siamoTier = "pink",
+            dialog = false,
+            startHit = true,
+            attackSequence = "CrescentBeamShot,EnergySwordCombo,TornadoSlash,RevolutionSword,RisingSpine,DownThrust,DrillStab,EnergyShower,VortexStrike,DoubleSideSlash,MorphoEmerge,TimeborderCollapse"
+        }
+    },
+    {
+        name = "phase_3_siamo_zero_soul_black",
+        data = {
+            patternIndex = 2,
+            siamoTier = "soulBlack",
+            dialog = false,
+            startHit = true,
+            attackSequence = "CrescentBeamShot,EnergySwordCombo,TornadoSlash,RevolutionSword,RisingSpine,DownThrust,DrillStab,EnergyShower,VortexStrike,DoubleSideSlash,MorphoEmerge,TimeborderCollapse"
+        }
+    },
+    {
+        name = "phase_3_siamo_zero_stellarruss",
+        data = {
+            patternIndex = 2,
+            siamoTier = "stellarruss",
+            dialog = false,
+            startHit = true,
             attackSequence = "CrescentBeamShot,EnergySwordCombo,TornadoSlash,RevolutionSword,RisingSpine,DownThrust,DrillStab,EnergyShower,VortexStrike,DoubleSideSlash,MorphoEmerge,TimeborderCollapse"
         }
     },
@@ -115,6 +155,7 @@ elsTrueFinalBoss.placements = {
         name = "siamo_zero_ultimate_chain",
         data = {
             patternIndex = 4,
+            siamoTier = "stellarruss",
             dialog = false,
             startHit = true,
             attackSequence = "EnergyShower,VortexStrike,TimeborderCollapse"
@@ -168,6 +209,7 @@ local attackPatterns = {
 
 -- Pattern index for different behavior modes
 local patternOptions = {0, 1, 2, 3, 4}
+local siamoTierOptions = {"pink", "soulBlack", "stellarruss"}
 
 elsTrueFinalBoss.fieldInformation = {
     patternIndex = {
@@ -176,6 +218,11 @@ elsTrueFinalBoss.fieldInformation = {
         editable = true,
         minimumValue = 0,
         maximumValue = 4
+    },
+    siamoTier = {
+        fieldType = "string",
+        options = siamoTierOptions,
+        editable = true
     },
     dialog = {
         fieldType = "boolean",
@@ -195,6 +242,7 @@ elsTrueFinalBoss.fieldInformation = {
 elsTrueFinalBoss.fieldOrder = {
     "x", "y",
     "patternIndex",
+    "siamoTier",
     "dialog",
     "startHit",
     "attackSequence"
@@ -203,6 +251,7 @@ elsTrueFinalBoss.fieldOrder = {
 -- Tooltip information
 elsTrueFinalBoss.tooltips = {
     patternIndex = "Attack pattern index (0-4) for different phases and difficulty levels",
+    siamoTier = "Siamo Zero palette and aggression preset. Pink is lightest, soulBlack is the default, stellarruss is the rainbow cosmic-void variant with the hardest timings.",
     dialog = "Show intro dialogue before boss fight starts (only in specific rooms like 'els-true-final-00')",
     startHit = "Boss takes initial hit to start battle immediately (BadelineBoss style)",
     attackSequence = [[Custom attack sequence (comma-separated attack names)
@@ -234,6 +283,7 @@ PHASE 2 - PENUMBRA PHASTASM (Void/Darkness):
 • ApocalypticRiftBlast - Ultimate attack (costs 100 rift power)
 
 PHASE 3 - SIAMO ZERO (Fallen Path / Corrupted Nightmare):
+siamoTier scales this phase: Pink is slower and lighter, soulBlack is the default loadout, and stellarruss is faster with denser projectile patterns.
   Sub-Phase A: Aeon Hero Fake (Sword/Beam):
 • CrescentBeamShot - 3 crescent projectiles in fan pattern
 • EnergySwordCombo - 6-hit teleporting sword combo + shockwave

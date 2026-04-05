@@ -2,6 +2,7 @@ namespace Celeste.Mod.MaggyHelper
 {
     public class MaggyHelperModuleSettings : EverestModuleSettings
     {
+        public bool BossesExampleResetKeysForSession { get; set; }
         public int BossDifficultyMultiplier { get; set; } = 1;
         public bool EnableBossMusic { get; set; } = true;
         public bool EnableKirbyPlayer { get; set; } = false;

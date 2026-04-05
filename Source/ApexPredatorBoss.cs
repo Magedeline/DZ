@@ -325,6 +325,16 @@ namespace MaggyHelper.Entities.Bosses
         #region Attack Execution
         private IEnumerator ExecuteAttack(AttackType attack)
         {
+            yield return TelegraphIntent(attack switch
+            {
+                AttackType.Pounce => BossTelegraphType.DashCyan,
+                AttackType.Ambush => BossTelegraphType.TeleportYellow,
+                AttackType.BloodlustCharge => BossTelegraphType.DashCyan,
+                AttackType.PrimalRoar => BossTelegraphType.SpecialPurple,
+                AttackType.ExtinctionCombo => BossTelegraphType.SpecialPurple,
+                _ => BossTelegraphType.DangerRed
+            }, attack == AttackType.ExtinctionCombo ? 0.6f : 0.5f);
+
             switch (attack)
             {
                 // Phase 1

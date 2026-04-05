@@ -116,6 +116,9 @@ namespace MaggyHelper.Entities
         private bool showHealthBar;
         private bool createHealthUI;
         private string bossEntityType;
+        private bool startEncounter;
+        private bool triggerOnce;
+        private bool triggered;
         
         #endregion
         
@@ -127,6 +130,8 @@ namespace MaggyHelper.Entities
             showHealthBar = data.Bool("showHealthBar", true);
             createHealthUI = data.Bool("createHealthUI", true);
             bossEntityType = data.Attr("bossEntityType", "");
+            startEncounter = data.Bool("startEncounter", false);
+            triggerOnce = data.Bool("triggerOnce", false);
         }
         
         #endregion
@@ -136,19 +141,23 @@ namespace MaggyHelper.Entities
         public override void OnEnter(global::Celeste.Player player)
         {
             base.OnEnter(player);
+
+            if (triggerOnce && triggered)
+                return;
             
             var level = Scene as Level;
             if (level == null) return;
+            bool matchedBoss = false;
             
             // Create UI if needed
             UniversalHealthUI ui = null;
-            if (createHealthUI)
+            if (showHealthBar && createHealthUI)
             {
                 ui = UniversalHealthUI.GetOrCreate(level);
             }
             
-            // Find and track bosses
-            if (showHealthBar)
+            // Find bosses to start and/or track
+            if (showHealthBar || startEncounter)
             {
                 // Track all BossActor entities
                 foreach (var entity in level.Tracker.GetEntities<BossActor>())
@@ -159,17 +168,31 @@ namespace MaggyHelper.Entities
                         if (string.IsNullOrEmpty(bossEntityType) || 
                             entity.GetType().Name.Contains(bossEntityType))
                         {
-                            ui?.TrackBoss(boss, bossName);
-                            
-                            // Also create individual health bar
-                            if (ui == null)
+                            matchedBoss = true;
+
+                            if (startEncounter)
+                                boss.StartBossFight();
+
+                            if (showHealthBar)
                             {
-                                BossHealthBar.AttachToBoss(boss, bossName);
+                                ui?.TrackBoss(boss, bossName);
+                                
+                                // Also create individual health bar
+                                if (ui == null)
+                                {
+                                    BossHealthBar.AttachToBoss(boss, bossName);
+                                }
                             }
                         }
                     }
                 }
             }
+
+            if (matchedBoss)
+                triggered = true;
+
+            if (matchedBoss && triggerOnce)
+                RemoveSelf();
         }
         
         #endregion

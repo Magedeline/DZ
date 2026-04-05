@@ -11,7 +11,22 @@ entity.placements = {
             bossName = "Boss",
             showHealthBar = true,
             createHealthUI = true,
-            bossEntityType = ""
+            bossEntityType = "",
+            startEncounter = false,
+            triggerOnce = false
+        }
+    },
+    {
+        name = "Boss Actor Encounter",
+        data = {
+            width = 16,
+            height = 16,
+            bossName = "Boss",
+            showHealthBar = true,
+            createHealthUI = true,
+            bossEntityType = "",
+            startEncounter = true,
+            triggerOnce = true
         }
     }
 }
@@ -28,7 +43,8 @@ entity.fieldInformation = {
 entity.fieldOrder = {
     "x", "y", "width", "height",
     "bossName", "bossEntityType",
-    "showHealthBar", "createHealthUI"
+    "showHealthBar", "createHealthUI",
+    "startEncounter", "triggerOnce"
 }
 
 return entity

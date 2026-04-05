@@ -313,6 +313,59 @@ namespace MaggyHelper.Entities
             }
         }
 
+        private static SiamoZeroTier ParseSiamoZeroTier(string value)
+        {
+            switch (NormalizeAttackToken(value ?? string.Empty))
+            {
+                case "pink":
+                case "sizmozeropink":
+                case "siamozeropink":
+                    return SiamoZeroTier.Pink;
+
+                case "stellarruss":
+                case "stellarrussrainbowcosmicvoid":
+                case "rainbowcosmicvoid":
+                case "cosmicvoid":
+                    return SiamoZeroTier.Stellarruss;
+
+                default:
+                    return SiamoZeroTier.SoulBlack;
+            }
+        }
+
+        private static bool IsSiamoAttackToken(string attackName)
+        {
+            switch (NormalizeAttackToken(attackName))
+            {
+                case "crescentbeamshot":
+                case "energyswordcombo":
+                case "tornadoslash":
+                case "revolutionsword":
+                case "risingspine":
+                case "downthrust":
+                case "drillstab":
+                case "energyshower":
+                case "vortexstrike":
+                case "doublesideslash":
+                case "morphoemerge":
+                case "timebordercollapse":
+                    return true;
+
+                default:
+                    return false;
+            }
+        }
+
+        private float GetSiamoSequenceDelayMultiplier()
+        {
+            return siamoZeroTier switch
+            {
+                SiamoZeroTier.Pink => 1.15f,
+                SiamoZeroTier.Stellarruss => 0.82f,
+                _ => 1f
+            };
+        }
+
         private static string NormalizeAttackToken(string attackName)
         {
             return attackName
@@ -340,6 +393,8 @@ namespace MaggyHelper.Entities
 
         private float GetDefaultAttackDelay(string action)
         {
+            float delay;
+
             switch (NormalizeAttackToken(action))
             {
                 case "doppiacloneassault":
@@ -347,7 +402,8 @@ namespace MaggyHelper.Entities
                 case "summongalactaknightclone":
                 case "summongalacticknightclone":
                 case "summonmorphoknightclone":
-                    return 1.35f;
+                    delay = 1.35f;
+                    break;
 
                 case "dualitywave":
                 case "voidcollapse":
@@ -355,30 +411,40 @@ namespace MaggyHelper.Entities
                 case "ultimateannihilation":
                 case "apocalypticriftblast":
                 case "timebordercollapse":
-                    return 1.6f;
+                    delay = 1.6f;
+                    break;
 
                 case "dimensionaldefense":
                 case "dualityheal":
                 case "burstheal":
                 case "voidshield":
                 case "penumbraregeneration":
-                    return 1.15f;
+                    delay = 1.15f;
+                    break;
 
                 case "riftstrikecombo":
                 case "dimensionalcataclysm":
                 case "riftmaelstrom":
                 case "vortexstrike":
                 case "morphoemerge":
-                    return 1.45f;
+                    delay = 1.45f;
+                    break;
 
                 case "quickdashattack":
                 case "energyswordcombo":
                 case "doublesideslash":
-                    return 0.85f;
+                    delay = 0.85f;
+                    break;
 
                 default:
-                    return 1f;
+                    delay = 1f;
+                    break;
             }
+
+            if (IsSiamoAttackToken(action))
+                delay *= GetSiamoSequenceDelayMultiplier();
+
+            return delay;
         }
 
         private float GetPhaseAttackDelay()
@@ -389,7 +455,12 @@ namespace MaggyHelper.Entities
                     return isInVoidMode ? 0.9f : 1.15f;
 
                 case ElsPhase.SiamoZero:
-                    return 0.85f;
+                    return siamoZeroTier switch
+                    {
+                        SiamoZeroTier.Pink => 0.98f,
+                        SiamoZeroTier.Stellarruss => 0.72f,
+                        _ => 0.85f
+                    };
 
                 default:
                     return 1.2f;

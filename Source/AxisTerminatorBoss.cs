@@ -174,6 +174,14 @@ namespace MaggyHelper.Entities
         
         private IEnumerator executeAttack(AttackType attack)
         {
+            yield return TelegraphIntent(attack switch
+            {
+                AttackType.RocketLauncher => BossTelegraphType.PositioningOrange,
+                AttackType.LaserSight => BossTelegraphType.PositioningOrange,
+                AttackType.ChargeTackle => BossTelegraphType.DashCyan,
+                _ => BossTelegraphType.DangerRed
+            });
+
             robotSprite.Play("attack");
             
             switch (attack)

@@ -410,6 +410,8 @@ namespace MaggyHelper.Entities
         // Attack 1: Apple Drop - Drops apples from above
         private IEnumerator AppleDropAttack()
         {
+            yield return TelegraphIntent(BossTelegraphType.PositioningOrange);
+
             if (Sprite != null && Sprite.Has("attack_apple"))
                 Sprite.Play("attack_apple");
             
@@ -439,6 +441,8 @@ namespace MaggyHelper.Entities
         // Attack 2: Wind Gust - Pushes player with wind
         private IEnumerator WindGustAttack()
         {
+            yield return TelegraphIntent(BossTelegraphType.PositioningOrange);
+
             if (Sprite != null && Sprite.Has("attack_wind"))
                 Sprite.Play("attack_wind");
             
@@ -464,6 +468,8 @@ namespace MaggyHelper.Entities
         // Attack 3: Root Spike - Ground spikes emerge
         private IEnumerator RootSpikeAttack()
         {
+            yield return TelegraphIntent(BossTelegraphType.PositioningOrange);
+
             if (Sprite != null && Sprite.Has("attack_root"))
                 Sprite.Play("attack_root");
             
@@ -493,6 +499,8 @@ namespace MaggyHelper.Entities
         // Attack 4: Leaf Tornado - Spinning leaf projectiles
         private IEnumerator LeafTornadoAttack()
         {
+            yield return TelegraphIntent(BossTelegraphType.DangerRed);
+
             if (Sprite != null && Sprite.Has("attack_leaf"))
                 Sprite.Play("attack_leaf");
             
@@ -523,6 +531,8 @@ namespace MaggyHelper.Entities
         // Attack 5: Air Puff - Short range knockback
         private IEnumerator AirPuffAttack()
         {
+            yield return TelegraphIntent(BossTelegraphType.DangerRed);
+
             if (Sprite != null && Sprite.Has("attack_puff"))
                 Sprite.Play("attack_puff");
             
@@ -553,6 +563,8 @@ namespace MaggyHelper.Entities
         // Enraged Attack 1: Poison Apple Barrage - Many poison apples
         private IEnumerator PoisonAppleBarrageAttack()
         {
+            yield return TelegraphIntent(BossTelegraphType.SpecialPurple, 0.6f);
+
             if (Sprite != null && Sprite.Has("attack_poison"))
                 Sprite.Play("attack_poison");
             
@@ -584,6 +596,8 @@ namespace MaggyHelper.Entities
         // Enraged Attack 2: Mega Windstorm - Powerful sustained wind
         private IEnumerator MegaWindstormAttack()
         {
+            yield return TelegraphIntent(BossTelegraphType.SpecialPurple, 0.6f);
+
             if (Sprite != null && Sprite.Has("attack_megawind"))
                 Sprite.Play("attack_megawind");
             

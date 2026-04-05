@@ -227,7 +227,7 @@ namespace MaggyHelper.Entities
         
         // Arena bounds
         private float arenaRadius = 400f;
-        private ElsFinalBossStarfield bossBg;
+        private MaggyHelper.Effects.ElsTrueFinalBackdrop bossBg;
         
         // Shockwave tracking for cleanup
         private Coroutine shockwaveCoroutine;
@@ -299,6 +299,14 @@ namespace MaggyHelper.Entities
             /// </summary>
             SiamoZero
         }
+        public enum SiamoZeroTier
+        {
+            Pink,
+            SoulBlack,
+            Stellarruss
+        }
+
+        private SiamoZeroTier siamoZeroTier = SiamoZeroTier.SoulBlack;
         
         #endregion
         
@@ -310,7 +318,8 @@ namespace MaggyHelper.Entities
             int patternIndex,
             bool dialog,
             bool startHit,
-            string attackSequence = "")
+            string attackSequence = "",
+                string siamoTier = "soulBlack")
             : base(position,
                    spriteName: "els_true_final_boss",
                    spriteScale: Vector2.One,
@@ -324,6 +333,7 @@ namespace MaggyHelper.Entities
             this.dialog = dialog;
             this.startHit = startHit;
             this.attackSequenceData = attackSequence;
+            this.siamoZeroTier = ParseSiamoZeroTier(siamoTier);
             this.Add((Component)(this.light = new VertexLight(Color.White, 1f, 32, 64)));
             this.circle = (Monocle.Circle)this.Collider;
             this.Add(new PlayerCollider(player => this.OnPlayer(player)));
@@ -349,7 +359,7 @@ namespace MaggyHelper.Entities
         public ElsTrueFinalBoss(EntityData data, Vector2 offset)
             : this(data.Position + offset, data.NodesOffset(offset), data.Int(nameof(patternIndex)),
                   data.Bool(nameof(dialog)), data.Bool(nameof(startHit)),
-                  data.Attr("attackSequence", ""))
+                  data.Attr("attackSequence", ""), data.Attr("siamoTier", "soulBlack"))
         {
             string seq = attackSequenceData.Trim();
             if (!string.IsNullOrEmpty(seq))
@@ -364,8 +374,8 @@ namespace MaggyHelper.Entities
             base.Added(scene);
             this.level = this.SceneAs<Level>();
             
-            // Initialize boss background starfield
-            this.bossBg = this.level.Background.Get<ElsFinalBossStarfield>();
+            // Initialize the live map backdrop used by the encounter
+            this.bossBg = this.level.Background.Get<MaggyHelper.Effects.ElsTrueFinalBackdrop>();
             
             if (this.patternIndex == 0)
             {
@@ -606,40 +616,54 @@ namespace MaggyHelper.Entities
 
             if (siamoSprite == null)
             {
+                string siamoBodyPath = ResolveSiamoBodyAnimationPath();
+                string siamoWingPath = ResolveSiamoPartAnimationPath(WingsPartSuffix);
+                string siamoEyePath = ResolveSiamoPartAnimationPath(EyesPartSuffix);
+                string siamoPupilPath = ResolveSiamoPartAnimationPath(PupilPartSuffix);
+
                 Add(siamoSprite = CreateBossLayerSprite());
-                AddBossAnimation(siamoSprite, "idle", SiamoZeroAnimationPath + BasePartSuffix, SiamoZeroAnimationPath, 0.1f, loop: true);
-                AddBossAnimation(siamoSprite, "boss", SiamoZeroAnimationPath + BasePartSuffix, SiamoZeroAnimationPath, 0.1f, loop: true);
-                AddBossAnimation(siamoSprite, "void", SiamoZeroAnimationPath + BasePartSuffix, SiamoZeroAnimationPath, 0.08f, loop: true);
-                AddBossAnimation(siamoSprite, "hit", SiamoZeroAnimationPath + BasePartSuffix, SiamoZeroAnimationPath, 0.08f, loop: false);
-                AddBossAnimation(siamoSprite, "getHit", SiamoZeroAnimationPath + BasePartSuffix, SiamoZeroAnimationPath, 0.08f, loop: false, gotoAnimation: "idle");
-                AddBossAnimation(siamoSprite, "death", SiamoZeroAnimationPath + BasePartSuffix, SiamoZeroAnimationPath, 0.1f, loop: false);
+                AddBossAnimation(siamoSprite, "idle", siamoBodyPath, siamoBodyPath, 0.1f, loop: true);
+                AddBossAnimation(siamoSprite, "boss", siamoBodyPath, siamoBodyPath, 0.1f, loop: true);
+                AddBossAnimation(siamoSprite, "void", siamoBodyPath, siamoBodyPath, 0.08f, loop: true);
+                AddBossAnimation(siamoSprite, "hit", siamoBodyPath, siamoBodyPath, 0.08f, loop: false);
+                AddBossAnimation(siamoSprite, "getHit", siamoBodyPath, siamoBodyPath, 0.08f, loop: false, gotoAnimation: "idle");
+                AddBossAnimation(siamoSprite, "death", siamoBodyPath, siamoBodyPath, 0.1f, loop: false);
 
                 Add(siamoWingSprite = CreateBossLayerSprite());
-                hasSiamoWingParts = false;
-                hasSiamoWingParts |= AddBossPartAnimation(siamoWingSprite, "idle", SiamoZeroAnimationPath, LegacyBossAnimationPath, WingsPartSuffix, 0.1f, loop: true);
-                hasSiamoWingParts |= AddBossPartAnimation(siamoWingSprite, "boss", SiamoZeroAnimationPath, LegacyBossAnimationPath, WingsPartSuffix, 0.1f, loop: true);
-                hasSiamoWingParts |= AddBossPartAnimation(siamoWingSprite, "void", SiamoZeroAnimationPath, LegacyBossAnimationPath, WingsPartSuffix, 0.08f, loop: true);
-                hasSiamoWingParts |= AddBossPartAnimation(siamoWingSprite, "hit", SiamoZeroAnimationPath, LegacyBossAnimationPath, WingsPartSuffix, 0.08f, loop: false);
-                hasSiamoWingParts |= AddBossPartAnimation(siamoWingSprite, "getHit", SiamoZeroAnimationPath, LegacyBossAnimationPath, WingsPartSuffix, 0.08f, loop: false, gotoAnimation: "idle");
-                hasSiamoWingParts |= AddBossPartAnimation(siamoWingSprite, "death", SiamoZeroAnimationPath, LegacyBossAnimationPath, WingsPartSuffix, 0.1f, loop: false);
+                hasSiamoWingParts = HasBossFrames(siamoWingPath);
+                if (hasSiamoWingParts)
+                {
+                    AddBossAnimation(siamoWingSprite, "idle", siamoWingPath, siamoWingPath, 0.1f, loop: true);
+                    AddBossAnimation(siamoWingSprite, "boss", siamoWingPath, siamoWingPath, 0.1f, loop: true);
+                    AddBossAnimation(siamoWingSprite, "void", siamoWingPath, siamoWingPath, 0.08f, loop: true);
+                    AddBossAnimation(siamoWingSprite, "hit", siamoWingPath, siamoWingPath, 0.08f, loop: false);
+                    AddBossAnimation(siamoWingSprite, "getHit", siamoWingPath, siamoWingPath, 0.08f, loop: false, gotoAnimation: "idle");
+                    AddBossAnimation(siamoWingSprite, "death", siamoWingPath, siamoWingPath, 0.1f, loop: false);
+                }
 
                 Add(siamoEyeSprite = CreateBossLayerSprite());
-                hasSiamoEyeParts = false;
-                hasSiamoEyeParts |= AddBossPartAnimation(siamoEyeSprite, "idle", SiamoZeroAnimationPath, LegacyBossAnimationPath, EyesPartSuffix, 0.1f, loop: true);
-                hasSiamoEyeParts |= AddBossPartAnimation(siamoEyeSprite, "boss", SiamoZeroAnimationPath, LegacyBossAnimationPath, EyesPartSuffix, 0.1f, loop: true);
-                hasSiamoEyeParts |= AddBossPartAnimation(siamoEyeSprite, "void", SiamoZeroAnimationPath, LegacyBossAnimationPath, EyesPartSuffix, 0.08f, loop: true);
-                hasSiamoEyeParts |= AddBossPartAnimation(siamoEyeSprite, "hit", SiamoZeroAnimationPath, LegacyBossAnimationPath, EyesPartSuffix, 0.08f, loop: false);
-                hasSiamoEyeParts |= AddBossPartAnimation(siamoEyeSprite, "getHit", SiamoZeroAnimationPath, LegacyBossAnimationPath, EyesPartSuffix, 0.08f, loop: false, gotoAnimation: "idle");
-                hasSiamoEyeParts |= AddBossPartAnimation(siamoEyeSprite, "death", SiamoZeroAnimationPath, LegacyBossAnimationPath, EyesPartSuffix, 0.1f, loop: false);
+                hasSiamoEyeParts = HasBossFrames(siamoEyePath);
+                if (hasSiamoEyeParts)
+                {
+                    AddBossAnimation(siamoEyeSprite, "idle", siamoEyePath, siamoEyePath, 0.1f, loop: true);
+                    AddBossAnimation(siamoEyeSprite, "boss", siamoEyePath, siamoEyePath, 0.1f, loop: true);
+                    AddBossAnimation(siamoEyeSprite, "void", siamoEyePath, siamoEyePath, 0.08f, loop: true);
+                    AddBossAnimation(siamoEyeSprite, "hit", siamoEyePath, siamoEyePath, 0.08f, loop: false);
+                    AddBossAnimation(siamoEyeSprite, "getHit", siamoEyePath, siamoEyePath, 0.08f, loop: false, gotoAnimation: "idle");
+                    AddBossAnimation(siamoEyeSprite, "death", siamoEyePath, siamoEyePath, 0.1f, loop: false);
+                }
 
                 Add(siamoPupilSprite = CreateBossLayerSprite());
-                hasSiamoPupilParts = false;
-                hasSiamoPupilParts |= AddBossPartAnimation(siamoPupilSprite, "idle", SiamoZeroAnimationPath, LegacyBossAnimationPath, PupilPartSuffix, 0.1f, loop: true);
-                hasSiamoPupilParts |= AddBossPartAnimation(siamoPupilSprite, "boss", SiamoZeroAnimationPath, LegacyBossAnimationPath, PupilPartSuffix, 0.1f, loop: true);
-                hasSiamoPupilParts |= AddBossPartAnimation(siamoPupilSprite, "void", SiamoZeroAnimationPath, LegacyBossAnimationPath, PupilPartSuffix, 0.08f, loop: true);
-                hasSiamoPupilParts |= AddBossPartAnimation(siamoPupilSprite, "hit", SiamoZeroAnimationPath, LegacyBossAnimationPath, PupilPartSuffix, 0.08f, loop: false);
-                hasSiamoPupilParts |= AddBossPartAnimation(siamoPupilSprite, "getHit", SiamoZeroAnimationPath, LegacyBossAnimationPath, PupilPartSuffix, 0.08f, loop: false, gotoAnimation: "idle");
-                hasSiamoPupilParts |= AddBossPartAnimation(siamoPupilSprite, "death", SiamoZeroAnimationPath, LegacyBossAnimationPath, PupilPartSuffix, 0.1f, loop: false);
+                hasSiamoPupilParts = HasBossFrames(siamoPupilPath);
+                if (hasSiamoPupilParts)
+                {
+                    AddBossAnimation(siamoPupilSprite, "idle", siamoPupilPath, siamoPupilPath, 0.1f, loop: true);
+                    AddBossAnimation(siamoPupilSprite, "boss", siamoPupilPath, siamoPupilPath, 0.1f, loop: true);
+                    AddBossAnimation(siamoPupilSprite, "void", siamoPupilPath, siamoPupilPath, 0.08f, loop: true);
+                    AddBossAnimation(siamoPupilSprite, "hit", siamoPupilPath, siamoPupilPath, 0.08f, loop: false);
+                    AddBossAnimation(siamoPupilSprite, "getHit", siamoPupilPath, siamoPupilPath, 0.08f, loop: false, gotoAnimation: "idle");
+                    AddBossAnimation(siamoPupilSprite, "death", siamoPupilPath, siamoPupilPath, 0.1f, loop: false);
+                }
             }
 
             PlayBossAnimationSet(ElsPhase.SiamoZero, "idle", "boss");
@@ -697,6 +721,58 @@ namespace MaggyHelper.Entities
         private static bool HasBossFrames(string relativePath)
         {
             return GFX.Game.HasAtlasSubtextures(BossSpriteAtlasRoot + relativePath);
+        }
+
+        private string GetSiamoVariantFolderSuffix()
+        {
+            switch (siamoZeroTier)
+            {
+                case SiamoZeroTier.Pink:
+                    return "_pink";
+                case SiamoZeroTier.SoulBlack:
+                    return "_soul_black";
+                case SiamoZeroTier.Stellarruss:
+                    return "_stellarruss";
+                default:
+                    return string.Empty;
+            }
+        }
+
+        private static string AppendVariantSuffix(string basePath, string variantSuffix)
+        {
+            if (string.IsNullOrEmpty(variantSuffix))
+                return basePath;
+
+            if (basePath.EndsWith("/", StringComparison.Ordinal))
+                return basePath.Substring(0, basePath.Length - 1) + variantSuffix + "/";
+
+            return basePath + variantSuffix;
+        }
+
+        private string ResolveSiamoAnimationPath(string basePath, string fallbackPath = null)
+        {
+            string variantSuffix = GetSiamoVariantFolderSuffix();
+            if (!string.IsNullOrEmpty(variantSuffix))
+            {
+                string variantPath = AppendVariantSuffix(basePath, variantSuffix);
+                if (HasBossFrames(variantPath))
+                    return variantPath;
+            }
+
+            if (HasBossFrames(basePath))
+                return basePath;
+
+            return fallbackPath ?? basePath;
+        }
+
+        private string ResolveSiamoBodyAnimationPath()
+        {
+            return ResolveSiamoAnimationPath(SiamoZeroAnimationPath + BasePartSuffix, SiamoZeroAnimationPath);
+        }
+
+        private string ResolveSiamoPartAnimationPath(string partSuffix)
+        {
+            return ResolveSiamoAnimationPath(SiamoZeroAnimationPath + partSuffix, LegacyBossAnimationPath + partSuffix);
         }
 
         private static Sprite CreateBossLayerSprite()

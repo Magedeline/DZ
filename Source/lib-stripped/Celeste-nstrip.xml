@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
 <!--
 
-This is a file containing Hand-Written(!) documentation for Celeste and Monocle.
+This is a file containing Hand-Written(!) documentation for Celeste, Monocle,
+and Desolo Zantas / MaggyHelper project-specific systems.
 
 Please DO NOT REMOVE THIS and modify it carefully.
+
+Because this file is used as a stripped reference doc, keep upstream Celeste
+entries intact and append project docs rather than replacing them outright.
 
 How these should be structured is poorly documented, so if having nested members tags doesn't work for someone, let me know.
 
@@ -13,7 +17,7 @@ How these should be structured is poorly documented, so if having nested members
     <name>Celeste</name>
   </assembly>
   <!--
-  Celeste Docs to be categorized as seen fit.
+  Celeste reference docs to be categorized as seen fit.
   -->
   <members name="Celeste">
     <members name="Scenes">
@@ -6166,5 +6170,472 @@ How these should be structured is poorly documented, so if having nested members
             Set a fallback texture in case the texture becomes unavailable on reload.
             </summary>
     </member>
+  </members>
+  <!--
+  Desolo Zantas / MaggyHelper project docs.
+  These entries document the custom runtime systems most commonly touched while
+  working on this repository.
+  -->
+  <members name="DesoloZantas">
+    <members name="MaggyHelper">
+      <member name="T:MaggyHelper.AreaModeExtender">
+        <summary>
+          Core Desolo Zantas area extension layer. Resolves map SIDs from side folders under <c>Maps/Maggy</c>, extends chapter mode arrays beyond vanilla A/B/C, and keeps custom progression data synchronized with save state.
+          </summary>
+      </member>
+      <member name="M:MaggyHelper.AreaModeExtender.GetSideFolder(System.Int32)">
+        <summary>
+          Return the folder name used for a side index.
+          Desolo Zantas uses <c>ASide</c>, <c>BSide</c>, <c>CSide</c>, <c>DSide</c>, and <c>DXSide</c>.
+          </summary>
+        <param name="modeIndex">Zero-based side index.</param>
+        <returns>The folder segment used to build a map SID.</returns>
+      </member>
+      <member name="M:MaggyHelper.AreaModeExtender.BuildSideSID(System.Int32,System.String)">
+        <summary>
+          Build a Desolo Zantas SID from a side index and base map name.
+          Example: <c>BuildSideSID(3, &quot;01_City&quot;)</c> produces <c>Maggy/DSide/01_City</c>.
+          </summary>
+        <param name="modeIndex">Zero-based side index.</param>
+        <param name="mapName">Map basename without the <c>.bin</c> extension.</param>
+        <returns>A SID rooted at the internal <c>Maggy</c> map prefix.</returns>
+      </member>
+      <member name="M:MaggyHelper.AreaModeExtender.BuildSideSID(System.String,System.String)">
+        <summary>
+          Build a Desolo Zantas SID directly from a side folder name and map basename.
+          Use this overload when the caller already knows the folder string.
+          </summary>
+        <param name="sideFolder">Folder name such as <c>ASide</c> or <c>DXSide</c>.</param>
+        <param name="mapName">Map basename without the <c>.bin</c> extension.</param>
+        <returns>A side-specific map SID.</returns>
+      </member>
+      <member name="M:MaggyHelper.AreaModeExtender.BuildASideSID(System.String)">
+        <summary>
+          Convenience helper for building an A-Side SID in the Desolo Zantas campaign.
+          </summary>
+        <param name="mapName">Map basename without the <c>.bin</c> extension.</param>
+        <returns>An <c>ASide</c> map SID.</returns>
+      </member>
+      <member name="M:MaggyHelper.AreaModeExtender.Load">
+        <summary>
+          Install the runtime hooks used by Desolo Zantas side handling, save synchronization, heart-gem tracking, and chapter panel integration.
+          </summary>
+      </member>
+      <member name="M:MaggyHelper.AreaModeExtender.Unload">
+        <summary>
+          Remove the runtime hooks installed by <see cref="M:MaggyHelper.AreaModeExtender.Load" />.
+          </summary>
+      </member>
+      <member name="M:MaggyHelper.AreaModeExtender.GetModeName(System.Int32)">
+        <summary>
+          Return the internal mode name used by Desolo Zantas save keys and unlock bookkeeping.
+          Values include <c>Normal</c>, <c>BSide</c>, <c>CSide</c>, <c>DSide</c>, and <c>DXSide</c>.
+          </summary>
+        <param name="modeIndex">Zero-based side index.</param>
+        <returns>The internal label for that mode.</returns>
+      </member>
+      <member name="M:MaggyHelper.AreaModeExtender.IsSideUnlocked(Celeste.AreaKey,System.Int32)">
+        <summary>
+          Check whether a side is available to the current save.
+          Vanilla sides follow previous-side completion or heart-gem progression, while extended sides also depend on the current Desolo Zantas debug or cheat gating logic and runtime area data.
+          </summary>
+        <param name="area">Area being inspected.</param>
+        <param name="modeIndex">Zero-based side index.</param>
+        <returns><see langword="true" /> if the side should be selectable; otherwise, <see langword="false" />.</returns>
+      </member>
+      <member name="T:MaggyHelper.PostcardUnlockSystem">
+        <summary>
+          Handles Desolo Zantas unlock postcards for C-Side, D-Side, DX-side, and ultra-completion milestones.
+          The system chooses dialog, textures, sound events, and music before returning control to the overworld flow.
+          </summary>
+      </member>
+      <member name="T:MaggyHelper.PostcardUnlockSystem+PostcardConfig">
+        <summary>
+          Data container describing a Desolo Zantas postcard variant, including dialog key, postcard texture, sound effects, tint, and unlock music.
+          </summary>
+      </member>
+      <member name="M:MaggyHelper.PostcardUnlockSystem.GetUnlockConfig(System.Int32)">
+        <summary>
+          Return the postcard configuration for the side that becomes available after a completed mode.
+          Completing B unlocks C, completing C unlocks D, and completing D unlocks DX.
+          </summary>
+        <param name="completedMode">The side index that was just finished.</param>
+        <returns>The matching unlock postcard configuration, or <see langword="null" /> when no postcard applies.</returns>
+      </member>
+      <member name="M:MaggyHelper.PostcardUnlockSystem.ShowUnlockPostcard(Monocle.Scene,Celeste.Session,System.Int32)">
+        <summary>
+          Show the unlock postcard sequence for a completed Desolo Zantas side and mark the next side as unlocked in custom save data.
+          </summary>
+        <param name="scene">Scene that will host the postcard.</param>
+        <param name="session">Completed run session.</param>
+        <param name="completedMode">The side index that was just finished.</param>
+      </member>
+      <member name="M:MaggyHelper.PostcardUnlockSystem.ShowUltraCompletionPostcard(Monocle.Scene)">
+        <summary>
+          Show the special postcard used for the project's ultra-completion milestone.
+          </summary>
+        <param name="scene">Scene that will host the postcard.</param>
+      </member>
+      <member name="T:MaggyHelper.SideUnlockVignette">
+        <summary>
+          Transition scene that displays a Desolo Zantas side-unlock postcard and then returns the player to the overworld.
+          </summary>
+      </member>
+      <member name="T:MaggyHelper.SideLockDisplaySystem">
+        <summary>
+          Optional chapter-panel UI helper for Desolo Zantas side availability. Provides lock overlays, lock reasons, progress text, and blocked selection behavior for unavailable sides.
+          </summary>
+      </member>
+      <member name="T:MaggyHelper.SideLockDisplaySystem+LockDisplayConfig">
+        <summary>
+          Configuration record for a lockable Desolo Zantas side tab, including icon, label, requirement text, and tint.
+          </summary>
+      </member>
+      <member name="M:MaggyHelper.SideLockDisplaySystem.GetLockReason(Celeste.AreaKey,System.Int32)">
+        <summary>
+          Return a player-facing explanation for why a Desolo Zantas side is currently locked.
+          </summary>
+        <param name="area">Area being inspected.</param>
+        <param name="modeIndex">Zero-based side index.</param>
+        <returns>A requirement string, or <see langword="null" /> when the side is already available.</returns>
+      </member>
+      <member name="M:MaggyHelper.SideLockDisplaySystem.GetUnlockProgress(Celeste.AreaKey,System.Int32)">
+        <summary>
+          Return progress text for a locked Desolo Zantas side, such as whether the previous side still needs to be completed or its heart gem still needs to be collected.
+          </summary>
+        <param name="area">Area being inspected.</param>
+        <param name="modeIndex">Zero-based side index.</param>
+        <returns>A progress string, or <see langword="null" /> when no progress text is needed.</returns>
+      </member>
+      <member name="M:MaggyHelper.SideLockDisplaySystem.ShouldGreyOut(Celeste.AreaKey,System.Int32)">
+        <summary>
+          Check whether a side tab should render as unavailable in Desolo Zantas UI.
+          </summary>
+        <param name="area">Area being inspected.</param>
+        <param name="modeIndex">Zero-based side index.</param>
+        <returns><see langword="true" /> when the side should be greyed out.</returns>
+      </member>
+      <member name="M:MaggyHelper.SideLockDisplaySystem.TrySelectSide(Celeste.AreaKey,System.Int32)">
+        <summary>
+          Attempt to select a side from the chapter UI.
+          This helper plays the invalid sound and blocks the interaction when the side is not currently available.
+          </summary>
+        <param name="area">Area being inspected.</param>
+        <param name="modeIndex">Zero-based side index.</param>
+        <returns><see langword="true" /> when selection may continue; otherwise, <see langword="false" />.</returns>
+      </member>
+      <member name="T:MaggyHelper.UI.ModSelectionScreen">
+        <summary>
+          First-launch Desolo Zantas title overlay. Presents the one-time choice between starting the mod's custom intro flow and continuing directly to the normal Celeste front end.
+          </summary>
+      </member>
+      <member name="M:MaggyHelper.UI.ModSelectionScreen.#ctor">
+        <summary>
+          Create the Desolo Zantas first-launch selection screen and initialize its snow, HUD, and sequence coroutine.
+          </summary>
+      </member>
+      <member name="T:MaggyHelper.Entities.SubMapLobby">
+        <summary>
+          Lobby interaction entity used by Desolo Zantas late-game chapters to expose submaps, EX routes, and boss routes from a shared hub.
+          </summary>
+      </member>
+      <member name="M:MaggyHelper.Entities.SubMapLobby.#ctor(Microsoft.Xna.Framework.Vector2,System.Int32)">
+        <summary>
+          Create a submap lobby anchor for a specific Desolo Zantas chapter.
+          </summary>
+        <param name="position">World position of the lobby interaction entity.</param>
+        <param name="chapter">Chapter number whose submap set should be exposed.</param>
+      </member>
+      <member name="T:MaggyHelper.Triggers.SubMapLobbyTrigger">
+        <summary>
+          Trigger that sends the player from a main chapter into that chapter's Desolo Zantas lobby map after the required completion flag has been met.
+          </summary>
+      </member>
+      <member name="M:MaggyHelper.Triggers.SubMapLobbyTrigger.OnEnter(Celeste.Player)">
+        <summary>
+          Validate main-chapter completion, then queue the transfer into the matching Desolo Zantas lobby session.
+          </summary>
+        <param name="player">The player entering the trigger.</param>
+      </member>
+      <member name="T:MaggyHelper.Triggers.SubMapReturnTrigger">
+        <summary>
+          Trigger that returns the player from a submap back to a configured room or to the lobby flow managed by <see cref="T:MaggyHelper.Entities.SubMapManager" />.
+          </summary>
+      </member>
+      <member name="M:MaggyHelper.Triggers.SubMapReturnTrigger.OnEnter(Celeste.Player)">
+        <summary>
+          Queue a return from a Desolo Zantas submap to its destination room or lobby handler.
+          </summary>
+        <param name="player">The player entering the trigger.</param>
+      </member>
+      <member name="T:MaggyHelper.Triggers.SubMapEnterTrigger">
+        <summary>
+          Trigger that enters a specific Desolo Zantas submap directly, optionally enforcing the project's shard or fragment unlock rules first.
+          </summary>
+      </member>
+      <member name="M:MaggyHelper.Triggers.SubMapEnterTrigger.OnEnter(Celeste.Player)">
+        <summary>
+          Attempt to enter a configured Desolo Zantas submap and show the appropriate locked message when the route is still unavailable.
+          </summary>
+        <param name="player">The player entering the trigger.</param>
+      </member>
+      <member name="T:Celeste.Mod.MaggyHelper.MaggyHelperModule">
+        <summary>
+          Primary Everest entry point for Desolo Zantas. Coordinates chapter registration, hook installation, cutscene bootstrap, credits routing, and shared module state.
+          </summary>
+      </member>
+      <member name="M:Celeste.Mod.MaggyHelper.MaggyHelperModule.#ctor">
+        <summary>
+          Create the Desolo Zantas Everest module instance and store the singleton reference.
+          </summary>
+      </member>
+      <member name="M:Celeste.Mod.MaggyHelper.MaggyHelperModule.Load">
+        <summary>
+          Register Desolo Zantas runtime systems, including area data, side-extension hooks, vignette hooks, intro warnings, and helper integrations.
+          </summary>
+      </member>
+      <member name="M:Celeste.Mod.MaggyHelper.MaggyHelperModule.Unload">
+        <summary>
+          Tear down the hooks and transient state installed by the Desolo Zantas module.
+          </summary>
+      </member>
+      <member name="M:Celeste.Mod.MaggyHelper.MaggyHelperModule.LoadContent(System.Boolean)">
+        <summary>
+          Load content owned by Desolo Zantas and forward content initialization to supporting boss modules.
+          </summary>
+        <param name="firstLoad">Whether this is the first content load for the process.</param>
+      </member>
+      <member name="M:Celeste.Mod.MaggyHelper.MaggyHelperModule.IsChapter17EpilogueCompleted">
+        <summary>
+          Check persistent save data to determine whether the Chapter 17 epilogue has already been completed.
+          </summary>
+        <returns><see langword="true" /> when the epilogue has been marked complete.</returns>
+      </member>
+      <member name="M:Celeste.Mod.MaggyHelper.MaggyHelperModule.MarkChapter17EpilogueCompleted">
+        <summary>
+          Mark the Chapter 17 epilogue as complete and clear the related credits session flags.
+          </summary>
+      </member>
+      <member name="M:Celeste.Mod.MaggyHelper.MaggyHelperModule.LaunchChapter17Epilogue">
+        <summary>
+          Launch the Chapter 17 epilogue area from module-controlled state rather than from the normal map flow.
+          </summary>
+      </member>
+      <member name="M:Celeste.Mod.MaggyHelper.MaggyHelperModule.IsMaggyPlayerAvailable">
+        <summary>
+          Check whether the optional Maggy player implementation is loaded and available for reflection-based integration.
+          </summary>
+        <returns><see langword="true" /> when the player type can be resolved.</returns>
+      </member>
+      <member name="M:Celeste.Mod.MaggyHelper.MaggyHelperModule.GetMaggyPlayerType">
+        <summary>
+          Resolve the runtime <see cref="T:System.Type" /> for the optional Maggy player implementation.
+          </summary>
+        <returns>The player type when available; otherwise, <see langword="null" />.</returns>
+      </member>
+      <member name="M:Celeste.Mod.MaggyHelper.MaggyHelperModule.LaunchCredits(Celeste.Session)">
+        <summary>
+          Start the Chapter 17 credits sequence from a live session, redirecting into the credits room and attaching the Desolo Zantas credits cutscene entity.
+          </summary>
+        <param name="session">Source session used to seed the credits transition.</param>
+      </member>
+      <member name="T:Celeste.Mod.MaggyHelper.MaggyHelperModuleSaveData">
+        <summary>
+          Persistent Desolo Zantas save store. Tracks mod-intro state, chapter unlocks, boss and chapter completion, achievements, custom heart gems, and soul-fragment progression.
+          </summary>
+      </member>
+      <member name="M:Celeste.Mod.MaggyHelper.MaggyHelperModuleSaveData.CollectHeartGem(System.String)">
+        <summary>
+          Record a Desolo Zantas heart gem as collected using its custom identifier.
+          </summary>
+        <param name="heartId">Custom heart-gem id, usually based on SID and mode name.</param>
+      </member>
+      <member name="M:Celeste.Mod.MaggyHelper.MaggyHelperModuleSaveData.HasCollectedHeartGem(System.String)">
+        <summary>
+          Check whether a custom Desolo Zantas heart gem has already been collected.
+          </summary>
+        <param name="heartId">Custom heart-gem id.</param>
+        <returns><see langword="true" /> when the save data already contains the gem id.</returns>
+      </member>
+      <member name="M:Celeste.Mod.MaggyHelper.MaggyHelperModuleSaveData.CollectSoulFragment(System.String,System.String)">
+        <summary>
+          Record a soul fragment pickup and increment the associated barrier tally when applicable.
+          </summary>
+        <param name="fragmentKey">Unique fragment id.</param>
+        <param name="barrierId">Barrier bucket that should receive credit.</param>
+        <returns><see langword="true" /> when the fragment was newly collected.</returns>
+      </member>
+      <member name="M:Celeste.Mod.MaggyHelper.MaggyHelperModuleSaveData.RecordBossDefeat(System.String)">
+        <summary>
+          Record a defeated Desolo Zantas boss and increment the persistent boss counter.
+          </summary>
+        <param name="bossName">Boss identifier to record.</param>
+      </member>
+      <member name="M:Celeste.Mod.MaggyHelper.MaggyHelperModuleSaveData.CompleteChapter(System.String)">
+        <summary>
+          Mark a chapter SID as completed in Desolo Zantas save data.
+          </summary>
+        <param name="chapterSid">Chapter SID to mark complete.</param>
+      </member>
+      <member name="M:Celeste.Mod.MaggyHelper.MaggyHelperModuleSaveData.IsChapterCompleted(System.String)">
+        <summary>
+          Check whether a chapter SID has already been completed according to Desolo Zantas save data.
+          </summary>
+        <param name="chapterSid">Chapter SID to inspect.</param>
+        <returns><see langword="true" /> when the chapter was marked complete.</returns>
+      </member>
+      <member name="T:Celeste.Mod.MaggyHelper.MaggyHelperModuleSession">
+        <summary>
+          Per-session Desolo Zantas runtime state, including boss-fight status, Kirby copy ability state, and the active credits phase.
+          </summary>
+      </member>
+      <member name="T:Celeste.Mod.MaggyHelper.MaggyHelperModuleSettings">
+        <summary>
+          User-configurable Desolo Zantas settings such as boss difficulty, Kirby-player toggles, debug mode, and intro-skip behavior.
+          </summary>
+      </member>
+      <member name="T:MaggyHelper.AreaMapData">
+        <summary>
+          Vanilla-style chapter registry for Desolo Zantas. Stores chapter metadata, side availability, overworld camera positions, and audio assignments used by runtime chapter integration.
+          </summary>
+      </member>
+      <member name="T:MaggyHelper.AreaMapData+ChapterDef">
+        <summary>
+          Metadata record for a single Desolo Zantas chapter, including SID, side availability, icon data, music, ambience, and mountain-state information.
+          </summary>
+      </member>
+      <member name="T:MaggyHelper.AreaMapData+MountainCameraData">
+        <summary>
+          Overworld camera preset bundle for a Desolo Zantas chapter, including idle, select, zoom, and cursor positions.
+          </summary>
+      </member>
+      <member name="M:MaggyHelper.AreaMapData.Initialize">
+        <summary>
+          Register the full Desolo Zantas chapter table in code so chapters behave like native Celeste areas rather than relying on external side-metadata yaml.
+          </summary>
+      </member>
+      <member name="M:MaggyHelper.AreaMapData.RefreshAvailableSides">
+        <summary>
+          Re-scan the Desolo Zantas map folders and refresh which sides are currently available for each registered chapter.
+          </summary>
+      </member>
+      <member name="M:MaggyHelper.AreaMapData.FindByAnySID(System.String)">
+        <summary>
+          Resolve a chapter definition from any supported Desolo Zantas SID variant, including side-specific map SIDs.
+          </summary>
+        <param name="sid">SID to inspect.</param>
+        <returns>The matching chapter definition, or <see langword="null" /> when no chapter matches.</returns>
+      </member>
+      <member name="M:MaggyHelper.AreaMapData.Load">
+        <summary>
+          Install hooks that allow the Desolo Zantas chapter registry to participate in runtime area loading and overworld integration.
+          </summary>
+      </member>
+      <member name="M:MaggyHelper.AreaMapData.Unload">
+        <summary>
+          Remove hooks installed by the Desolo Zantas area-map registry.
+          </summary>
+      </member>
+      <member name="T:MaggyHelper.Entities.SubMapManager">
+        <summary>
+          Persistent hub-progression controller for the Desolo Zantas lobby chapters. Tracks submap unlocks, transition destinations, and heart-gem based route progression for chapters 10 through 14.
+          </summary>
+      </member>
+      <member name="M:MaggyHelper.Entities.SubMapManager.#ctor">
+        <summary>
+          Create the global Desolo Zantas submap manager and initialize the chapter submap registry.
+          </summary>
+      </member>
+      <member name="M:MaggyHelper.Entities.SubMapManager.CanEnterSubmap(System.Int32,System.Int32)">
+        <summary>
+          Check whether a submap route is currently unlocked.
+          </summary>
+        <param name="chapter">Owning chapter number.</param>
+        <param name="submap">Submap index within that chapter.</param>
+        <returns><see langword="true" /> when the route can be entered.</returns>
+      </member>
+      <member name="M:MaggyHelper.Entities.SubMapManager.EnterSubmap(Celeste.Level,Celeste.Player,System.Int32,System.Int32)">
+        <summary>
+          Store return data for the lobby and transition the player into a specific Desolo Zantas submap room.
+          </summary>
+        <param name="level">Current level.</param>
+        <param name="player">Player being transitioned.</param>
+        <param name="chapter">Owning chapter number.</param>
+        <param name="submap">Submap index within that chapter.</param>
+      </member>
+      <member name="M:MaggyHelper.Entities.SubMapManager.ReturnToLobby(Celeste.Level,Celeste.Player)">
+        <summary>
+          Return the player from a Desolo Zantas submap to the recorded lobby room and restore the saved respawn position.
+          </summary>
+        <param name="level">Current submap level.</param>
+        <param name="player">Player being returned.</param>
+      </member>
+      <member name="M:MaggyHelper.Entities.SubMapManager.GetChapterSubmaps(System.Int32)">
+        <summary>
+          Retrieve the registered submap definitions for one Desolo Zantas chapter.
+          </summary>
+        <param name="chapter">Chapter number to inspect.</param>
+        <returns>A list of submap descriptors for that chapter.</returns>
+      </member>
+      <member name="M:MaggyHelper.Entities.SubMapManager.GetCollectedHeartGems(Celeste.Level,System.Int32,System.Int32)">
+        <summary>
+          Count heart-gem style collectibles tracked for a specific Desolo Zantas submap.
+          </summary>
+        <param name="level">Level whose session flags should be inspected.</param>
+        <param name="chapter">Owning chapter number.</param>
+        <param name="submap">Submap index within that chapter.</param>
+        <returns>The number of collected gems detected for that route.</returns>
+      </member>
+      <member name="T:MaggyHelper.Entities.SubMapData">
+        <summary>
+          Runtime record describing one Desolo Zantas submap, including map path, unlock flag, completion flag, required heart gems, and current unlock status.
+          </summary>
+      </member>
+      <member name="T:MaggyHelper.Cutscenes.CS17_Credits">
+        <summary>
+          Large-scale Chapter 17 credits cutscene. Drives the credits-room sequence, camera choreography, follower handling, and the transition into the epilogue when needed.
+          </summary>
+      </member>
+      <member name="M:MaggyHelper.Cutscenes.CS17_Credits.#ctor">
+        <summary>
+          Create the Chapter 17 Desolo Zantas credits cutscene and disable conflicting player input helpers for the duration of the sequence.
+          </summary>
+      </member>
+      <member name="T:MaggyHelper.Cutscenes.CS21_EpilogueCredits">
+        <summary>
+          Post-epilogue Desolo Zantas credits sequence that mixes memory cards and developer credits after the final story content.
+          </summary>
+      </member>
+      <member name="M:MaggyHelper.Cutscenes.CS21_EpilogueCredits.#ctor(Celeste.Player)">
+        <summary>
+          Create the post-epilogue credits sequence around a specific player instance.
+          </summary>
+        <param name="player">Player to anchor during the sequence.</param>
+      </member>
+      <member name="T:MaggyHelper.Entities.AxisTerminatorBoss">
+        <summary>
+          Heavy robotic boss encounter that mixes machine-gun fire, rockets, laser targeting, electric pulses, and charge attacks. Used as one of the custom Desolo Zantas boss entities.
+          </summary>
+      </member>
+      <member name="M:MaggyHelper.Entities.AxisTerminatorBoss.#ctor(Celeste.EntityData,Microsoft.Xna.Framework.Vector2)">
+        <summary>
+          Construct the Axis Terminator boss from map entity data and its room offset.
+          </summary>
+        <param name="data">Entity data from the map.</param>
+        <param name="offset">Room offset applied during entity loading.</param>
+      </member>
+      <member name="T:MaggyHelper.Entities.AsrielGodBoss">
+        <summary>
+          Multi-phase final boss used by Desolo Zantas finale content. Combines node-based movement, scripted attack sequences, projectile patterns, camera locking, dialogue beats, and phase transitions.
+          </summary>
+      </member>
+      <member name="M:MaggyHelper.Entities.AsrielGodBoss.#ctor(Celeste.EntityData,Microsoft.Xna.Framework.Vector2)">
+        <summary>
+          Construct the Asriel God boss from map entity data, including optional custom attack-sequence metadata.
+          </summary>
+        <param name="e">Entity data from the map.</param>
+        <param name="offset">Room offset applied during entity loading.</param>
+      </member>
+    </members>
   </members>
 </doc>

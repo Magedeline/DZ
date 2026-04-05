@@ -6788,8 +6788,32 @@ triggers.MaggyHelper/CreditsTriggerPart1.placements.name.CreditsTriggerPart1=Cre
 triggers.MaggyHelper/CreditsTriggerPart1.placements.description.CreditsTriggerPart1=
 
 # -- Credits Trigger Part2 --
-triggers.MaggyHelper/CreditsTriggerPart2.placements.name.CreditsTriggerPart2=Credits Trigger Part2
-triggers.MaggyHelper/CreditsTriggerPart2.placements.description.CreditsTriggerPart2=
+triggers.MaggyHelper/CreditsTriggerPart2.placements.name.wait_jump_dash=Credits Trigger Part2 (Wait Jump Dash)
+triggers.MaggyHelper/CreditsTriggerPart2.placements.description.wait_jump_dash=Runs the single jump-dash beat during the Chapter 17 credits walk sequence.
+triggers.MaggyHelper/CreditsTriggerPart2.placements.name.wait_jump_double_dash=Credits Trigger Part2 (Wait Jump Double Dash)
+triggers.MaggyHelper/CreditsTriggerPart2.placements.description.wait_jump_double_dash=Runs the follower merge and double-dash beat during the Chapter 17 credits walk sequence.
+triggers.MaggyHelper/CreditsTriggerPart2.placements.name.wait_jump_quintriple_dash=Credits Trigger Part2 (Wait Jump Quintriple Dash)
+triggers.MaggyHelper/CreditsTriggerPart2.placements.description.wait_jump_quintriple_dash=Runs the five-dash version of the follower merge beat during the Chapter 17 credits walk sequence.
+triggers.MaggyHelper/CreditsTriggerPart2.placements.name.climb_down=Credits Trigger Part2 (Climb Down)
+triggers.MaggyHelper/CreditsTriggerPart2.placements.description.climb_down=Runs the wall-slide and climb-down choreography during the Chapter 17 credits walk sequence.
+triggers.MaggyHelper/CreditsTriggerPart2.placements.name.wait=Credits Trigger Part2 (Wait)
+triggers.MaggyHelper/CreditsTriggerPart2.placements.description.wait=Pauses the player and Badeline briefly, then resumes the Chapter 17 credits walk sequence.
+triggers.MaggyHelper/CreditsTriggerPart2.placements.name.badeline_offset=Credits Trigger Part2 (Badeline Offset)
+triggers.MaggyHelper/CreditsTriggerPart2.placements.description.badeline_offset=Passive marker used to place Badeline for a Chapter 17 credits room beat.
+triggers.MaggyHelper/CreditsTriggerPart2.placements.name.chara_offset=Credits Trigger Part2 (Chara Offset)
+triggers.MaggyHelper/CreditsTriggerPart2.placements.description.chara_offset=Passive marker used to place Chara for a Chapter 17 credits room beat.
+triggers.MaggyHelper/CreditsTriggerPart2.placements.name.kirby_offset=Credits Trigger Part2 (Kirby Offset)
+triggers.MaggyHelper/CreditsTriggerPart2.placements.description.kirby_offset=Passive marker used to place Kirby for a Chapter 17 credits room beat.
+triggers.MaggyHelper/CreditsTriggerPart2.placements.name.ralsei_offset=Credits Trigger Part2 (Ralsei Offset)
+triggers.MaggyHelper/CreditsTriggerPart2.placements.description.ralsei_offset=Passive marker used to place Ralsei for a Chapter 17 credits room beat.
+triggers.MaggyHelper/CreditsTriggerPart2.placements.name.oshiro_marker=Credits Trigger Part2 (Oshiro Marker)
+triggers.MaggyHelper/CreditsTriggerPart2.placements.description.oshiro_marker=Passive marker used to place Oshiro in the Chapter 17 resort credits beat.
+triggers.MaggyHelper/CreditsTriggerPart2.attributes.name.event=Event
+triggers.MaggyHelper/CreditsTriggerPart2.attributes.description.event=Credits action or passive marker event stored on this trigger.
+triggers.MaggyHelper/CreditsTriggerPart2.attributes.name.width=Width
+triggers.MaggyHelper/CreditsTriggerPart2.attributes.description.width=Width of the trigger volume in pixels.
+triggers.MaggyHelper/CreditsTriggerPart2.attributes.name.height=Height
+triggers.MaggyHelper/CreditsTriggerPart2.attributes.description.height=Height of the trigger volume in pixels.
 
 # -- CS09 Ending Trigger --
 triggers.MaggyHelper/CS09_EndingTrigger.placements.name.full_ending=CS09 Ending Trigger (Full Ending)
@@ -7125,7 +7149,19 @@ triggers.MaggyHelper/EnemyWaveTrigger.attributes.description.width=
 
 # -- Event Trigger --
 triggers.MaggyHelper/EventTrigger.placements.name.default=Event Trigger
-triggers.MaggyHelper/EventTrigger.placements.description.default=Trigger volume that dispatches a named cutscene or scripted event.
+triggers.MaggyHelper/EventTrigger.placements.name.chapter_intro=Event Trigger (Chapter Intro)
+triggers.MaggyHelper/EventTrigger.placements.name.boss_intro=Event Trigger (Boss Intro)
+triggers.MaggyHelper/EventTrigger.placements.name.boss_mid=Event Trigger (Boss Mid)
+triggers.MaggyHelper/EventTrigger.placements.name.boss_end=Event Trigger (Boss End)
+triggers.MaggyHelper/EventTrigger.placements.name.ending=Event Trigger (Ending)
+triggers.MaggyHelper/EventTrigger.placements.name.credits=Event Trigger (Credits)
+triggers.MaggyHelper/EventTrigger.placements.description.default=Blank trigger volume that dispatches a named cutscene or scripted event.
+triggers.MaggyHelper/EventTrigger.placements.description.chapter_intro=Prefills a typical chapter intro event id and a slightly wider trigger volume.
+triggers.MaggyHelper/EventTrigger.placements.description.boss_intro=Prefills a boss intro event id with a wider trigger volume for arena entrances.
+triggers.MaggyHelper/EventTrigger.placements.description.boss_mid=Prefills a compact boss midpoint event id for phase-change triggers.
+triggers.MaggyHelper/EventTrigger.placements.description.boss_end=Prefills a boss defeat or outro event id with a mid-sized trigger volume.
+triggers.MaggyHelper/EventTrigger.placements.description.ending=Prefills a chapter ending event id with a wider trigger volume for exit corridors.
+triggers.MaggyHelper/EventTrigger.placements.description.credits=Prefills a credits-style event id for finale and epilogue rooms.
 triggers.MaggyHelper/EventTrigger.attributes.name.event=Event
 triggers.MaggyHelper/EventTrigger.attributes.description.event=Named cutscene event to dispatch when the player enters this trigger.
 triggers.MaggyHelper/EventTrigger.attributes.name.height=Height
@@ -7136,6 +7172,32 @@ triggers.MaggyHelper/EventTrigger.attributes.name.x=X
 triggers.MaggyHelper/EventTrigger.attributes.description.x=
 triggers.MaggyHelper/EventTrigger.attributes.name.y=Y
 triggers.MaggyHelper/EventTrigger.attributes.description.y=
+
+# -- Cutscene Event Dispatcher --
+triggers.MaggyHelper/CutsceneEventDispatcher.placements.name.default=Cutscene Event Dispatcher
+triggers.MaggyHelper/CutsceneEventDispatcher.placements.name.chapter_intro=Cutscene Event Dispatcher (Chapter Intro)
+triggers.MaggyHelper/CutsceneEventDispatcher.placements.name.boss_intro=Cutscene Event Dispatcher (Boss Intro)
+triggers.MaggyHelper/CutsceneEventDispatcher.placements.name.boss_mid=Cutscene Event Dispatcher (Boss Mid)
+triggers.MaggyHelper/CutsceneEventDispatcher.placements.name.boss_end=Cutscene Event Dispatcher (Boss End)
+triggers.MaggyHelper/CutsceneEventDispatcher.placements.name.ending=Cutscene Event Dispatcher (Ending)
+triggers.MaggyHelper/CutsceneEventDispatcher.placements.name.credits=Cutscene Event Dispatcher (Credits)
+triggers.MaggyHelper/CutsceneEventDispatcher.placements.description.default=Blank trigger volume that dispatches a named cutscene or scripted event through the shared C# dispatcher.
+triggers.MaggyHelper/CutsceneEventDispatcher.placements.description.chapter_intro=Prefills a typical chapter intro event id and a slightly wider trigger volume.
+triggers.MaggyHelper/CutsceneEventDispatcher.placements.description.boss_intro=Prefills a boss intro event id with a wider trigger volume for arena entrances.
+triggers.MaggyHelper/CutsceneEventDispatcher.placements.description.boss_mid=Prefills a compact boss midpoint event id for phase-change triggers.
+triggers.MaggyHelper/CutsceneEventDispatcher.placements.description.boss_end=Prefills a boss defeat or outro event id with a mid-sized trigger volume.
+triggers.MaggyHelper/CutsceneEventDispatcher.placements.description.ending=Prefills a chapter ending event id with a wider trigger volume for exit corridors.
+triggers.MaggyHelper/CutsceneEventDispatcher.placements.description.credits=Prefills a credits-style event id for finale and epilogue rooms.
+triggers.MaggyHelper/CutsceneEventDispatcher.attributes.name.event=Event ID
+triggers.MaggyHelper/CutsceneEventDispatcher.attributes.description.event=Named cutscene event to dispatch when the player enters this trigger.
+triggers.MaggyHelper/CutsceneEventDispatcher.attributes.name.height=Height
+triggers.MaggyHelper/CutsceneEventDispatcher.attributes.description.height=Height of the trigger volume in pixels.
+triggers.MaggyHelper/CutsceneEventDispatcher.attributes.name.width=Width
+triggers.MaggyHelper/CutsceneEventDispatcher.attributes.description.width=Width of the trigger volume in pixels.
+triggers.MaggyHelper/CutsceneEventDispatcher.attributes.name.x=X
+triggers.MaggyHelper/CutsceneEventDispatcher.attributes.description.x=Left position of the trigger volume.
+triggers.MaggyHelper/CutsceneEventDispatcher.attributes.name.y=Y
+triggers.MaggyHelper/CutsceneEventDispatcher.attributes.description.y=Top position of the trigger volume.
 
 # -- Flashback Trigger --
 triggers.MaggyHelper/FlashbackTrigger.placements.name.FlashbackTrigger=Flashback Trigger

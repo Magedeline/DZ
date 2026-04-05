@@ -2,6 +2,7 @@ using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Xml;
 using Celeste.Mod.Meta;
+using Celeste.Mod.MaggyHelper;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Monocle;
@@ -60,7 +61,7 @@ public class AreaComplete : Scene
             string text = GetCustomCompleteScreenTitle();
             if (text == null)
             {
-                text = Dialog.Clean(string.Concat("areacomplete_", session.Area.Mode, session.FullClear ? "_fullclear" : ""));
+                text = GetDefaultCompleteScreenTitle();
             }
             Vector2 origin = new Vector2(960f, 200f);
             float scale = Math.Min(1600f / ActiveFont.Measure(text).X, 3f);
@@ -83,7 +84,7 @@ public class AreaComplete : Scene
         SpeedrunTimerDisplay.CalculateBaseSizes();
         Add(this.snow = snow);
         base.RendererList.UpdateLists();
-        Audio.Play(OverworldMusicManager.GetCompletionMusic((int)session.Area.Mode));
+        Audio.Play(OverworldMusicManager.GetCompletionMusic(session));
     }
 
     public override void End()
@@ -313,6 +314,13 @@ public class AreaComplete : Scene
                     };
                 });
             }
+            else if (Session.Area.SID == MaggyHelperModule.Chapter16CorruptionSid && Session.Area.Mode == AreaMode.Normal)
+            {
+                new FadeWipe(this, wipeIn: false, delegate
+                {
+                    MaggyHelperModule.LaunchCredits(Session);
+                });
+            }
             else
             {
                 HiresSnow outSnow = new HiresSnow();
@@ -409,6 +417,13 @@ public class AreaComplete : Scene
             return null;
         }
         return Dialog.Clean(text);
+    }
+
+    private string GetDefaultCompleteScreenTitle()
+    {
+        string modeName = AreaModeExtender.GetModeName((int) Session.Area.Mode);
+        string fullClearSuffix = Session.FullClear ? "_fullclear" : string.Empty;
+        return Dialog.Clean($"areacomplete_{modeName}{fullClearSuffix}");
     }
 }
 

@@ -22,6 +22,10 @@ namespace Celeste.Mod.MaggyHelper
         public static bool LaunchPart1Credits { get; set; }
         public static bool LaunchPart2Credits { get; set; }
 
+        public static readonly string Chapter16CorruptionSid = AreaModeExtender.BuildASideSID("16_Corruption");
+        public static readonly string Chapter17EpilogueSid = AreaModeExtender.BuildASideSID("17_Epilogue");
+        public const string Chapter17CreditsLevel = "credits-summit";
+
         // Shared resources
         public static SpriteBank SpriteBank { get; set; }
         public static ParticleType P_StarExplosion { get; set; }
@@ -36,6 +40,7 @@ namespace Celeste.Mod.MaggyHelper
             BossesExampleModule.Load();
             global::MaggyHelper.AreaMapData.Initialize();
             global::MaggyHelper.AreaModeExtender.Load();
+            global::MaggyHelper.AreaCompleteHooks.Load();
             global::MaggyHelper.IntroRemixHooks.Load();
             global::MaggyHelper.MonoModHooks.Load();
             global::MaggyHelper.VignetteHooks.Load();
@@ -52,6 +57,7 @@ namespace Celeste.Mod.MaggyHelper
             global::MaggyHelper.VignetteHooks.Unload();
             global::MaggyHelper.MonoModHooks.Unload();
             global::MaggyHelper.IntroRemixHooks.Unload();
+            global::MaggyHelper.AreaCompleteHooks.Unload();
             global::MaggyHelper.AreaModeExtender.Unload();
             BossesExampleModule.Unload();
 
@@ -64,6 +70,36 @@ namespace Celeste.Mod.MaggyHelper
         {
             base.LoadContent(firstLoad);
             BossesExampleModule.LoadContent(firstLoad);
+        }
+
+        public static bool IsChapter17EpilogueCompleted()
+        {
+            return MaggyHelperModule.SaveData?.IsChapterCompleted(Chapter17EpilogueSid) == true;
+        }
+
+        public static void MarkChapter17EpilogueCompleted()
+        {
+            MaggyHelperModule.SaveData?.CompleteChapter(Chapter17EpilogueSid);
+
+            if (MaggyHelperModule.Session != null)
+            {
+                MaggyHelperModule.Session.InCredits = false;
+                MaggyHelperModule.Session.CreditsPhase = 0;
+                MaggyHelperModule.Session.CreditsCompleted = true;
+            }
+        }
+
+        public static void LaunchChapter17Epilogue()
+        {
+            if (MaggyHelperModule.Session != null)
+            {
+                MaggyHelperModule.Session.InCredits = false;
+                MaggyHelperModule.Session.CreditsPhase = 2;
+                MaggyHelperModule.Session.CreditsCompleted = false;
+            }
+
+            AreaKey targetArea = AreaData.Get(Chapter17EpilogueSid)?.ToKey() ?? new AreaKey(8);
+            LevelEnter.Go(new Session(targetArea), false);
         }
 
         /// <summary>
@@ -100,28 +136,43 @@ namespace Celeste.Mod.MaggyHelper
 
         /// <summary>
         /// Launches the Chapter 17 credits sequence from a level session.
-        /// Sets the session to the credits-summit room and adds the CS17_Credits cutscene entity.
+        /// Loads the Chapter 17 epilogue area directly into the credits-summit room.
         /// </summary>
         public static void LaunchCredits(Session session)
         {
-            if (session == null)
-                return;
+            Session creditsSession = session;
+            AreaData creditsArea = AreaData.Get(Chapter17EpilogueSid);
 
-            // Update module session state
-            if (Session != null)
+            if (creditsArea != null)
             {
-                Session.InCredits = true;
-                Session.CreditsPhase = 1;
-                Session.CreditsCompleted = false;
+                creditsSession = new Session(creditsArea.ToKey());
+                creditsSession.RespawnPoint = null;
+                creditsSession.FirstLevel = false;
+                creditsSession.Level = Chapter17CreditsLevel;
+            }
+            else if (creditsSession == null)
+            {
+                return;
+            }
+            else
+            {
+                creditsSession.RespawnPoint = null;
+                creditsSession.FirstLevel = false;
+                creditsSession.Level = Chapter17CreditsLevel;
             }
 
-            session.RespawnPoint = null;
-            session.FirstLevel = false;
-            session.Level = "credits-summit";
-            session.Audio.Music.Event = "event:/desolozantas/music/lvl17/main";
-            session.Audio.Apply(false);
+            // Update module session state
+            if (MaggyHelperModule.Session != null)
+            {
+                MaggyHelperModule.Session.InCredits = true;
+                MaggyHelperModule.Session.CreditsPhase = 1;
+                MaggyHelperModule.Session.CreditsCompleted = false;
+            }
 
-            Engine.Scene = new LevelLoader(session)
+            creditsSession.Audio.Music.Event = "event:/desolozantas/music/lvl17/main";
+            creditsSession.Audio.Apply(false);
+
+            Engine.Scene = new LevelLoader(creditsSession)
             {
                 PlayerIntroTypeOverride = Player.IntroTypes.None,
                 Level =

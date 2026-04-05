@@ -1,16 +1,20 @@
+using System.Collections;
 using System.Runtime.CompilerServices;
 using MaggyHelper.Entities;
 using MaggyHelper.Cutscenes;
 using MaggyHelper.NPCs;
+using MaggyHelper.Triggers;
 using Microsoft.Xna.Framework;
 using Monocle;
 
 namespace MaggyHelper.Entities
 {
-    [CustomEntity(ids:"DesoloZantas/NPC_Event")]
+    [CustomEntity(ids:"DesoloZantas/NPC_Event,MaggyHelper/NPC_Event")]
     [Tracked(true)]
     public partial class NpcEvent : Entity
     {
+        private const string DefaultSpriteDirectory = "characters/theo/";
+
         public const string MET_THEO = "MetMagolor";
         public const string THEO_KNOWS_NAME = "MagolorKnowsName";
         public const float THEO_MAX_SPEED = 48f;
@@ -26,31 +30,218 @@ namespace MaggyHelper.Entities
         public bool UpdateLight = true;
         public List<Entity> Temp = new List<Entity>();
         public Session Session => this.Level?.Session;
+        protected string DialogKey { get; }
+        protected string FlagName { get; }
+        protected string EventId { get; }
+
+        private bool configuredInteractionRunning;
 
         [MethodImpl(MethodImplOptions.NoInlining)]
         public NpcEvent(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            Collider = new Hitbox(8f, 8f, -4f, -4f);
-            Add(Sprite = new Sprite(GFX.Game, "characters/theo/"));
-            Sprite.CenterOrigin();
-            Add(Talker = new TalkComponent(new Rectangle(-8, -8, 16, 16), new Vector2(0f, -16f), OnTalk));
-            Add(Light = new VertexLight(Color.White, 1f, 16, 32));
-            Depth = 1000;
+            DialogKey = data.Attr("dialogKey", string.Empty);
+            FlagName = data.Attr("flagName", string.Empty);
+            EventId = data.Attr("eventId", string.Empty);
+
+            InitializeBaseComponents();
+            SetSpriteDirectory(ResolveSpriteDirectory(data.Attr("spriteId", string.Empty)));
         }
 
         [MethodImpl(MethodImplOptions.NoInlining)]
         public NpcEvent(Vector2 position) : base(position)
         {
+            DialogKey = string.Empty;
+            FlagName = string.Empty;
+            EventId = string.Empty;
+
+            InitializeBaseComponents();
+            SetSpriteDirectory(DefaultSpriteDirectory);
+        }
+
+        private void InitializeBaseComponents()
+        {
             Collider = new Hitbox(8f, 8f, -4f, -4f);
-            Add(Sprite = new Sprite(GFX.Game, "characters/theo/"));
-            Sprite.CenterOrigin();
             Add(Talker = new TalkComponent(new Rectangle(-8, -8, 16, 16), new Vector2(0f, -16f), OnTalk));
             Add(Light = new VertexLight(Color.White, 1f, 16, 32));
             Depth = 1000;
         }
 
-        protected virtual void OnTalk(global::Celeste.Player player) {
-            // Default talk behavior - override in derived classes
+        protected void SetSpriteDirectory(string spriteDirectory)
+        {
+            if (Sprite != null)
+            {
+                Remove(Sprite);
+            }
+
+            Add(Sprite = new Sprite(GFX.Game, spriteDirectory));
+            Sprite.CenterOrigin();
+        }
+
+        protected bool TryAddCutscene(CutsceneEntity cutscene)
+        {
+            if (Level == null || cutscene == null)
+            {
+                return false;
+            }
+
+            Level.Add(cutscene);
+            return true;
+        }
+
+        private bool RunNpcActionOnce(Level level, string flag, Func<bool> action)
+        {
+            if (!string.IsNullOrWhiteSpace(flag) && level.Session.GetFlag(flag))
+            {
+                return true;
+            }
+
+            try
+            {
+                if (!action())
+                {
+                    return false;
+                }
+
+                if (!string.IsNullOrWhiteSpace(flag))
+                {
+                    level.Session.SetFlag(flag, true);
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(LogLevel.Error, nameof(NpcEvent), $"Failed to run eventId '{EventId}' for {GetType().Name}: {ex}");
+                return false;
+            }
+        }
+
+        private bool TriggerNpcEvent(Level level, string flag, Func<CutsceneEntity> cutsceneFactory)
+        {
+            return RunNpcActionOnce(level, flag, () => {
+                var cutscene = cutsceneFactory();
+                if (cutscene == null)
+                {
+                    return false;
+                }
+
+                level.Add(cutscene);
+                return true;
+            });
+        }
+
+        protected virtual void OnTalk(global::Celeste.Player player)
+        {
+            if (configuredInteractionRunning || Scene is not Level level)
+            {
+                return;
+            }
+
+            if (!string.IsNullOrWhiteSpace(FlagName) && level.Session.GetFlag(FlagName))
+            {
+                return;
+            }
+
+            if (!string.IsNullOrWhiteSpace(EventId))
+            {
+                bool dispatched = CutsceneEventDispatcher.TryDispatch(
+                    level,
+                    player,
+                    EventId,
+                    (flag, factory) => TriggerNpcEvent(level, flag, factory),
+                    (flag, action) => RunNpcActionOnce(level, flag, action));
+
+                if (dispatched && !string.IsNullOrWhiteSpace(FlagName))
+                {
+                    level.Session.SetFlag(FlagName, true);
+                }
+
+                return;
+            }
+
+            string dialogKey = DialogKey;
+            if (!string.IsNullOrWhiteSpace(dialogKey))
+            {
+                Add(new Coroutine(RunConfiguredDialogue(level, player, dialogKey)));
+            }
+        }
+
+        private IEnumerator RunConfiguredDialogue(Level level, global::Celeste.Player player, string dialogKey)
+        {
+            configuredInteractionRunning = true;
+            level.StartCutscene(EndConfiguredDialogue);
+
+            if (player != null)
+            {
+                player.StateMachine.State = global::Celeste.Player.StDummy;
+            }
+
+            yield return Textbox.Say(dialogKey);
+            EndConfiguredDialogue(level);
+        }
+
+        private void EndConfiguredDialogue(Level level)
+        {
+            if (!configuredInteractionRunning)
+            {
+                return;
+            }
+
+            configuredInteractionRunning = false;
+
+            if (!string.IsNullOrWhiteSpace(FlagName))
+            {
+                level.Session.SetFlag(FlagName, true);
+            }
+
+            var player = level.Tracker.GetEntity<global::Celeste.Player>();
+            if (player != null)
+            {
+                player.StateMachine.State = global::Celeste.Player.StNormal;
+            }
+
+            if (level.InCutscene)
+            {
+                level.EndCutscene();
+            }
+        }
+
+        private static string ResolveSpriteDirectory(string spriteId)
+        {
+            if (string.IsNullOrWhiteSpace(spriteId))
+            {
+                return DefaultSpriteDirectory;
+            }
+
+            return spriteId switch
+            {
+                "theo" => "characters/theo/",
+                "chara" => "characters/chara/",
+                "kirby" => "characters/kirby/",
+                "ralsei" => "characters/ralsei/",
+                "madeline" => "characters/madeline/",
+                "badeline" => "characters/badeline/",
+                "maggy" => "characters/maggy/",
+                "magolor" => "characters/magolor/",
+                "magalor" => "characters/magolor/",
+                "toriel" => "characters/toriel/",
+                "asriel" => "characters/asriel/",
+                "oshiro" => "characters/oshiro/",
+                "granny" => "characters/granny/",
+                "meta_knight" => "characters/metaknight/",
+                "metaknight" => "characters/metaknight/",
+                "roxus" => "characters/roxus/",
+                "temmie" => "characters/temmie/",
+                "axis" => "characters/axis/",
+                "els" => "characters/els/",
+                "digital_guide" => "characters/digitalguide/",
+                "digitalguide" => "characters/digitalguide/",
+                "phone" => "characters/phone/",
+                "titan_council_member" => "characters/titancouncil/",
+                "titancouncil" => "characters/titancouncil/",
+                _ when spriteId.Contains("/") => spriteId.EndsWith("/") ? spriteId : $"{spriteId}/",
+                _ => $"characters/{spriteId.TrimEnd('/')}/"
+            };
         }
 
         [MethodImpl(MethodImplOptions.NoInlining)]
@@ -89,6 +280,7 @@ namespace MaggyHelper.Entities
         public override void Render()
         {
             if (this.Light != null && this.UpdateLight) this.Light.Position = this.Position + new Vector2(4f, 4f);
+            base.Render();
         }
         [MethodImpl(MethodImplOptions.NoInlining)]
         public virtual void SetupTheoSpriteSounds()
@@ -240,8 +432,7 @@ namespace MaggyHelper.Entities
     {
         public Npc_Theo(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            Add(Sprite = new Sprite(GFX.Game, "characters/theo/"));
-            Sprite.CenterOrigin();
+            SetSpriteDirectory("characters/theo/");
         }
     }
 
@@ -251,8 +442,7 @@ namespace MaggyHelper.Entities
     {
         public Npc_Chara(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            Add(Sprite = new Sprite(GFX.Game, "characters/chara/"));
-            Sprite.CenterOrigin();
+            SetSpriteDirectory("characters/chara/");
         }
     }
 
@@ -262,8 +452,7 @@ namespace MaggyHelper.Entities
     {
         public Npc_Kirby(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            Add(Sprite = new Sprite(GFX.Game, "characters/kirby/"));
-            Sprite.CenterOrigin();
+            SetSpriteDirectory("characters/kirby/");
         }
     }
 
@@ -273,8 +462,7 @@ namespace MaggyHelper.Entities
     {
         public Npc_Ralsei(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            Add(Sprite = new Sprite(GFX.Game, "characters/ralsei/"));
-            Sprite.CenterOrigin();
+            SetSpriteDirectory("characters/ralsei/");
         }
     }
 
@@ -284,8 +472,7 @@ namespace MaggyHelper.Entities
     {
         public Npc_MetaKnight(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            Add(Sprite = new Sprite(GFX.Game, "characters/metaknight/"));
-            Sprite.CenterOrigin();
+            SetSpriteDirectory("characters/metaknight/");
         }
     }
 
@@ -295,8 +482,7 @@ namespace MaggyHelper.Entities
     {
         public Npc_DigitalGuide(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            Add(Sprite = new Sprite(GFX.Game, "characters/digitalguide/"));
-            Sprite.CenterOrigin();
+            SetSpriteDirectory("characters/digitalguide/");
         }
     }
 
@@ -306,8 +492,7 @@ namespace MaggyHelper.Entities
     {
         public Npc_Phone(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            Add(Sprite = new Sprite(GFX.Game, "characters/phone/"));
-            Sprite.CenterOrigin();
+            SetSpriteDirectory("characters/phone/");
         }
     }
 
@@ -317,8 +502,7 @@ namespace MaggyHelper.Entities
     {
         public Npc_Roxus(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            Add(Sprite = new Sprite(GFX.Game, "characters/roxus/"));
-            Sprite.CenterOrigin();
+            SetSpriteDirectory("characters/roxus/");
         }
     }
 
@@ -328,8 +512,7 @@ namespace MaggyHelper.Entities
     {
         public Npc_Temmie(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            Add(Sprite = new Sprite(GFX.Game, "characters/temmie/"));
-            Sprite.CenterOrigin();
+            SetSpriteDirectory("characters/temmie/");
         }
     }
 
@@ -339,8 +522,7 @@ namespace MaggyHelper.Entities
     {
         public Npc_Axis(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            Add(Sprite = new Sprite(GFX.Game, "characters/axis/"));
-            Sprite.CenterOrigin();
+            SetSpriteDirectory("characters/axis/");
         }
     }
 
@@ -350,8 +532,7 @@ namespace MaggyHelper.Entities
     {
         public Npc_Els(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            Add(Sprite = new Sprite(GFX.Game, "characters/els/"));
-            Sprite.CenterOrigin();
+            SetSpriteDirectory("characters/els/");
         }
     }
 
@@ -361,8 +542,7 @@ namespace MaggyHelper.Entities
     {
         public Npc_TitanCouncilMember(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            Add(Sprite = new Sprite(GFX.Game, "characters/titancouncil/"));
-            Sprite.CenterOrigin();
+            SetSpriteDirectory("characters/titancouncil/");
         }
     }
 
@@ -374,13 +554,11 @@ namespace MaggyHelper.Entities
     {
         public Npc00_Theo(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            Add(Sprite = new Sprite(GFX.Game, "characters/theo/"));
-            Sprite.CenterOrigin();
+            SetSpriteDirectory("characters/theo/");
         }
         protected override void OnTalk(global::Celeste.Player player)
         {
-            Level.StartCutscene(new Cs00Theo(player).OnEnd);
-            base.OnTalk(player);
+            TryAddCutscene(new Cs00Theo(player));
         }
     }
 
@@ -390,8 +568,7 @@ namespace MaggyHelper.Entities
     {
         public Npc01_Maggy(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            Add(Sprite = new Sprite(GFX.Game, "characters/maggy/"));
-            Sprite.CenterOrigin();
+            SetSpriteDirectory("characters/maggy/");
         }
     }
 
@@ -401,8 +578,7 @@ namespace MaggyHelper.Entities
     {
         public Npc02_Maggy(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            Add(Sprite = new Sprite(GFX.Game, "characters/maggy/"));
-            Sprite.CenterOrigin();
+            SetSpriteDirectory("characters/maggy/");
         }
     }
 
@@ -412,8 +588,7 @@ namespace MaggyHelper.Entities
     {
         public Npc03_Maggy(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            Add(Sprite = new Sprite(GFX.Game, "characters/maggy/"));
-            Sprite.CenterOrigin();
+            SetSpriteDirectory("characters/maggy/");
         }
     }
 
@@ -423,8 +598,7 @@ namespace MaggyHelper.Entities
     {
         public Npc03_Theo(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            Add(Sprite = new Sprite(GFX.Game, "characters/theo/"));
-            Sprite.CenterOrigin();
+            SetSpriteDirectory("characters/theo/");
         }
     }
 
@@ -434,8 +608,7 @@ namespace MaggyHelper.Entities
     {
         public Npc05_Magolor_Vents(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            Add(Sprite = new Sprite(GFX.Game, "characters/magolor/"));
-            Sprite.CenterOrigin();
+            SetSpriteDirectory("characters/magolor/");
         }
     }
 
@@ -445,14 +618,15 @@ namespace MaggyHelper.Entities
     {
         public Npc05_Magolor_Escape(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            Add(Sprite = new Sprite(GFX.Game, "characters/magolor/"));
-            Sprite.CenterOrigin();
+            SetSpriteDirectory("characters/magolor/");
         }
         protected override void OnTalk(global::Celeste.Player player)
         {
             var magolor = Scene.Tracker.GetEntity<NPC05_Magolor_Escaping>();
-            Level.StartCutscene(new CS05_MagolorEscape(magolor, player).OnEnd);
-            base.OnTalk(player);
+            if (magolor != null)
+            {
+                TryAddCutscene(new CS05_MagolorEscape(magolor, player));
+            }
         }
     }
 
@@ -462,8 +636,7 @@ namespace MaggyHelper.Entities
     {
         public Npc05_Oshiro_Breakdown(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            Add(Sprite = new Sprite(GFX.Game, "characters/oshiro/"));
-            Sprite.CenterOrigin();
+            SetSpriteDirectory("characters/oshiro/");
         }
     }
 
@@ -478,14 +651,12 @@ namespace MaggyHelper.Entities
 
         public Npc05_Oshiro_Clutter(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            Add(Sprite = new Sprite(GFX.Game, "characters/oshiro/"));
-            Sprite.CenterOrigin();
+            SetSpriteDirectory("characters/oshiro/");
             this.index = data.Int("index", 0);
         }
         protected override void OnTalk(global::Celeste.Player player)
         {
-            Level.StartCutscene(new CS05_OshiroClutter(player, this.sectionsComplete, this.index).OnEnd);
-            base.OnTalk(player);
+            TryAddCutscene(new CS05_OshiroClutter(player, this.sectionsComplete, this.index));
         }
     }
 
@@ -495,14 +666,15 @@ namespace MaggyHelper.Entities
     {
         public Npc05_Oshiro_Hallway1(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            Add(Sprite = new Sprite(GFX.Game, "characters/oshiro/"));
-            Sprite.CenterOrigin();
+            SetSpriteDirectory("characters/oshiro/");
         }
         protected override void OnTalk(global::Celeste.Player player)
         {
             var oshiro = Scene.Tracker.GetEntity<NPC05_Oshiro_Hallway1>();
-            Level.StartCutscene(new CS05_OshiroHallway1(player, oshiro).OnEnd);
-            base.OnTalk(player);
+            if (oshiro != null)
+            {
+                TryAddCutscene(new CS05_OshiroHallway1(player, oshiro));
+            }
         }
     }
 
@@ -512,14 +684,15 @@ namespace MaggyHelper.Entities
     {
         public Npc05_Oshiro_Hallway2(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            Add(Sprite = new Sprite(GFX.Game, "characters/oshiro/"));
-            Sprite.CenterOrigin();
+            SetSpriteDirectory("characters/oshiro/");
         }
         protected override void OnTalk(global::Celeste.Player player)
         {
             var oshiro = Scene.Tracker.GetEntity<NPC05_Oshiro_Hallway2>();
-            Level.StartCutscene(new CS05_OshiroHallway2(player, oshiro).OnEnd);
-            base.OnTalk(player);
+            if (oshiro != null)
+            {
+                TryAddCutscene(new CS05_OshiroHallway2(player, oshiro));
+            }
         }
     }
 
@@ -529,14 +702,15 @@ namespace MaggyHelper.Entities
     {
         public Npc05_Oshiro_Lobby(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            Add(Sprite = new Sprite(GFX.Game, "characters/oshiro/"));
-            Sprite.CenterOrigin();
+            SetSpriteDirectory("characters/oshiro/");
         }
         protected override void OnTalk(global::Celeste.Player player)
         {
             var oshiro = Scene.Tracker.GetEntity<NPC05_Oshiro_Lobby>();
-            Level.StartCutscene(new CS05_OshiroLobby(player, oshiro).OnEnd);
-            base.OnTalk(player);
+            if (oshiro != null)
+            {
+                TryAddCutscene(new CS05_OshiroLobby(player, oshiro));
+            }
         }
     }
 
@@ -546,17 +720,15 @@ namespace MaggyHelper.Entities
     {
         public Npc05_Oshiro_Rooftop(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            Add(Sprite = new Sprite(GFX.Game, "characters/oshiro/"));
-            Sprite.CenterOrigin();
+            SetSpriteDirectory("characters/oshiro/");
         }
         protected override void OnTalk(global::Celeste.Player player)
         {
             var oshiro = Scene.Tracker.GetEntity<Celeste.NPC>();
             if (oshiro != null)
             {
-                Scene.Add(new CS05_OshiroRooftop(oshiro));
+                TryAddCutscene(new CS05_OshiroRooftop(oshiro));
             }
-            base.OnTalk(player);
         }
     }
 
@@ -566,14 +738,15 @@ namespace MaggyHelper.Entities
     {
         public Npc05_Oshiro_Suite(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            Add(Sprite = new Sprite(GFX.Game, "characters/oshiro/"));
-            Sprite.CenterOrigin();
+            SetSpriteDirectory("characters/oshiro/");
         }
         protected override void OnTalk(global::Celeste.Player player)
         {
             var oshiro = Scene.Tracker.GetEntity<NPC05_Oshiro_Suite>();
-            Level.StartCutscene(new CS05_OshiroMasterSuite(oshiro).OnEnd);
-            base.OnTalk(player);
+            if (oshiro != null)
+            {
+                TryAddCutscene(new CS05_OshiroMasterSuite(oshiro));
+            }
         }
     }
 
@@ -583,15 +756,16 @@ namespace MaggyHelper.Entities
     {
         public Npc06_Magolor(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            Add(Sprite = new Sprite(GFX.Game, "characters/magolor/"));
-            Sprite.CenterOrigin();
+            SetSpriteDirectory("characters/magolor/");
         }
         protected override void OnTalk(global::Celeste.Player player)
         {
             var magolor = Scene.Tracker.GetEntity<NPC06_Magolor>();
             var gondola = Scene.Tracker.GetEntity<GondolaMaggy>();
-            Level.StartCutscene(new CS06_Gondola(magolor, gondola, player).OnEnd);
-            base.OnTalk(player);
+            if (magolor != null && gondola != null)
+            {
+                TryAddCutscene(new CS06_Gondola(magolor, gondola, player));
+            }
         }
     }
 
@@ -601,8 +775,7 @@ namespace MaggyHelper.Entities
     {
         public Npc06_Theo(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            Add(Sprite = new Sprite(GFX.Game, "characters/theo/"));
-            Sprite.CenterOrigin();
+            SetSpriteDirectory("characters/theo/");
         }
     }
 
@@ -612,13 +785,11 @@ namespace MaggyHelper.Entities
     {
         public Npc07_Chara(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            Add(Sprite = new Sprite(GFX.Game, "characters/chara/"));
-            Sprite.CenterOrigin();
+            SetSpriteDirectory("characters/chara/");
         }
         protected override void OnTalk(global::Celeste.Player player)
         {
-            Level.StartCutscene(new CS07_Darker(player).OnEnd);
-            base.OnTalk(player);
+            TryAddCutscene(new CS07_Darker(player));
         }
     }
 
@@ -628,13 +799,11 @@ namespace MaggyHelper.Entities
     {
         public Npc07_Maddy_Mirror(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            Add(Sprite = new Sprite(GFX.Game, "characters/theoCrystal/"));
-            Sprite.CenterOrigin();
+            SetSpriteDirectory("characters/theoCrystal/");
         }
         protected override void OnTalk(global::Celeste.Player player)
         {
-            Level.StartCutscene(new Cs07MaddyMirror(player).OnEnd);
-            base.OnTalk(player);
+            TryAddCutscene(new Cs07MaddyMirror(player));
         }
     }
 
@@ -644,14 +813,15 @@ namespace MaggyHelper.Entities
     {
         public Npc08_Chara_Crying(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            Add(Sprite = new Sprite(GFX.Game, "characters/chara/"));
-            Sprite.CenterOrigin();
+            SetSpriteDirectory("characters/chara/");
         }
         protected override void OnTalk(global::Celeste.Player player)
         {
             var chara = Scene.Tracker.GetEntity<Npc08CharaCrying>();
-            Level.StartCutscene(new Cs08CharaBossEnd(player, chara).OnEnd);
-            base.OnTalk(player);
+            if (chara != null)
+            {
+                TryAddCutscene(new Cs08CharaBossEnd(player, chara));
+            }
         }
     }
 
@@ -661,15 +831,16 @@ namespace MaggyHelper.Entities
     {
         public Npc08_Maddy_and_Theo_Ending(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            Add(Sprite = new Sprite(GFX.Game, "characters/madeline/"));
-            Sprite.CenterOrigin();
+            SetSpriteDirectory("characters/madeline/");
         }
         protected override void OnTalk(global::Celeste.Player player)
         {
             var magolor = Scene.Tracker.GetEntity<Npc08MaggyEnding>();
             var theoNMaddy = Scene.Tracker.GetEntity<Npc08MaddyAndTheoEnding>();
-            Level.StartCutscene(new Cs08End(player, theoNMaddy, magolor).OnEnd);
-            base.OnTalk(player);
+            if (theoNMaddy != null && magolor != null)
+            {
+                TryAddCutscene(new Cs08End(player, theoNMaddy, magolor));
+            }
         }
     }
 
@@ -679,15 +850,16 @@ namespace MaggyHelper.Entities
     {
         public Npc08_Madeline_Plateau(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            Add(Sprite = new Sprite(GFX.Game, "characters/madeline/"));
-            Sprite.CenterOrigin();
+            SetSpriteDirectory("characters/madeline/");
         }
         protected override void OnTalk(global::Celeste.Player player)
         {
             var madelineNPC = Scene.Tracker.GetEntity<Npc08MadelinePlateau>();
             var madeline = Scene.Tracker.GetEntity<CelesteNPC>();
-            Level.StartCutscene(new Cs08Campfire(madelineNPC, player, madeline).OnEnd);
-            base.OnTalk(player);
+            if (madelineNPC != null && madeline != null)
+            {
+                TryAddCutscene(new Cs08Campfire(madelineNPC, player, madeline));
+            }
         }
     }
 
@@ -697,15 +869,16 @@ namespace MaggyHelper.Entities
     {
         public Npc08_Maggy_Ending(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            Add(Sprite = new Sprite(GFX.Game, "characters/maggy/"));
-            Sprite.CenterOrigin();
+            SetSpriteDirectory("characters/maggy/");
         }
         protected override void OnTalk(global::Celeste.Player player)
         {
             var theoNMaddy = Scene.Tracker.GetEntity<Npc08MaddyAndTheoEnding>();
             var magolor = Scene.Tracker.GetEntity<Npc08MaggyEnding>();
-            Level.StartCutscene(new Cs08End(player, theoNMaddy, magolor).OnEnd);
-            base.OnTalk(player);
+            if (theoNMaddy != null && magolor != null)
+            {
+                TryAddCutscene(new Cs08End(player, theoNMaddy, magolor));
+            }
         }
     }
 
@@ -715,13 +888,11 @@ namespace MaggyHelper.Entities
     {
         public Npc17_Kirby(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            Add(Sprite = new Sprite(GFX.Game, "characters/kirby/"));
-            Sprite.CenterOrigin();
+            SetSpriteDirectory("characters/kirby/");
         }
         protected override void OnTalk(global::Celeste.Player player)
         {
-            Level.StartCutscene(new CS17_EndingMod().OnEnd);
-            base.OnTalk(player);
+            TryAddCutscene(new CS17_EndingMod());
         }
     }
 
@@ -731,13 +902,11 @@ namespace MaggyHelper.Entities
     {
         public Npc17_Oshiro(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            Add(Sprite = new Sprite(GFX.Game, "characters/oshiro/"));
-            Sprite.CenterOrigin();
+            SetSpriteDirectory("characters/oshiro/");
         }
         protected override void OnTalk(global::Celeste.Player player)
         {
-            Level.StartCutscene(new CS17_EndingMod().OnEnd);
-            base.OnTalk(player);
+            TryAddCutscene(new CS17_EndingMod());
         }
     }
 
@@ -747,13 +916,11 @@ namespace MaggyHelper.Entities
     {
         public Npc17_Ralsei(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            Add(Sprite = new Sprite(GFX.Game, "characters/ralsei/"));
-            Sprite.CenterOrigin();
+            SetSpriteDirectory("characters/ralsei/");
         }
         protected override void OnTalk(global::Celeste.Player player)
         {
-            Level.StartCutscene(new CS17_EndingMod().OnEnd);
-            base.OnTalk(player);
+            TryAddCutscene(new CS17_EndingMod());
         }
     }
 
@@ -763,13 +930,11 @@ namespace MaggyHelper.Entities
     {
         public Npc17_Theo(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            Add(Sprite = new Sprite(GFX.Game, "characters/theo/"));
-            Sprite.CenterOrigin();
+            SetSpriteDirectory("characters/theo/");
         }
         protected override void OnTalk(global::Celeste.Player player)
         {
-            Level.StartCutscene(new CS17_EndingMod().OnEnd);
-            base.OnTalk(player);
+            TryAddCutscene(new CS17_EndingMod());
         }
     }
 
@@ -779,13 +944,11 @@ namespace MaggyHelper.Entities
     {
         public Npc17_Toriel(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            Add(Sprite = new Sprite(GFX.Game, "characters/toriel/"));
-            Sprite.CenterOrigin();
+            SetSpriteDirectory("characters/toriel/");
         }
         protected override void OnTalk(global::Celeste.Player player)
         {
-            Level.StartCutscene(new CS17_EndingMod().OnEnd);
-            base.OnTalk(player);
+            TryAddCutscene(new CS17_EndingMod());
         }
     }
 
@@ -795,8 +958,7 @@ namespace MaggyHelper.Entities
     {
         public Npc18_Toriel_Inside(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            Add(Sprite = new Sprite(GFX.Game, "characters/toriel/"));
-            Sprite.CenterOrigin();
+            SetSpriteDirectory("characters/toriel/");
         }
         
     }
@@ -807,8 +969,7 @@ namespace MaggyHelper.Entities
     {
         public Npc18_Toriel_Outside(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            Add(Sprite = new Sprite(GFX.Game, "characters/toriel/"));
-            Sprite.CenterOrigin();
+            SetSpriteDirectory("characters/toriel/");
         }
     }
 
@@ -818,14 +979,15 @@ namespace MaggyHelper.Entities
     {
         public Npc19_Gravestone(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            Add(Sprite = new Sprite(GFX.Game, "characters/gravestone/"));
-            Sprite.CenterOrigin();
+            SetSpriteDirectory("characters/gravestone/");
         }
         protected override void OnTalk(global::Celeste.Player player)
         {
             var gravestone = Scene.Tracker.GetEntity<NPC19_Gravestone>();
-            Level.StartCutscene(new CS19_Gravestone(player, gravestone, Position).OnEnd);
-            base.OnTalk(player);
+            if (gravestone != null)
+            {
+                TryAddCutscene(new CS19_Gravestone(player, gravestone, Position));
+            }
         }
     }
 
@@ -835,17 +997,15 @@ namespace MaggyHelper.Entities
     {
         public Npc19_Maggy_Loop(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            Add(Sprite = new Sprite(GFX.Game, "characters/maggy/"));
-            Sprite.CenterOrigin();
+            SetSpriteDirectory("characters/maggy/");
         }
         protected override void OnTalk(global::Celeste.Player player)
         {
             CharaDummy charaDummy = Level.Tracker.GetEntity<CharaDummy>();
             if (charaDummy != null)
             {
-                Level.StartCutscene(new Cs19TrapinLoop(player, charaDummy).OnEnd);
+                TryAddCutscene(new Cs19TrapinLoop(player, charaDummy));
             }
-            base.OnTalk(player);
         }
     }
 
@@ -855,8 +1015,7 @@ namespace MaggyHelper.Entities
     {
         public Npc20_Asriel(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            Add(Sprite = new Sprite(GFX.Game, "characters/asriel/"));
-            Sprite.CenterOrigin();
+            SetSpriteDirectory("characters/asriel/");
         }
 
         internal IEnumerator MoveTo(float v1, float v2, bool v3)
@@ -865,8 +1024,7 @@ namespace MaggyHelper.Entities
         }
         protected override void OnTalk(global::Celeste.Player player)
         {
-            Level.StartCutscene(new CS20_Saved(player).OnEnd);
-            base.OnTalk(player);
+            TryAddCutscene(new CS20_Saved(player));
         }
     }
 
@@ -876,8 +1034,7 @@ namespace MaggyHelper.Entities
     {
         public Npc20_Granny(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            Add(Sprite = new Sprite(GFX.Game, "characters/granny/"));
-            Sprite.CenterOrigin();
+            SetSpriteDirectory("characters/granny/");
         }
 
         internal IEnumerator MoveTo(float v)
@@ -886,8 +1043,7 @@ namespace MaggyHelper.Entities
         }
         protected override void OnTalk(global::Celeste.Player player)
         {
-            Level.StartCutscene(new CS20_Saved(player).OnEnd);
-            base.OnTalk(player);
+            TryAddCutscene(new CS20_Saved(player));
         }
     }
 
@@ -897,8 +1053,7 @@ namespace MaggyHelper.Entities
     {
         public Npc20_Madeline(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            Add(Sprite = new Sprite(GFX.Game, "characters/madeline/"));
-            Sprite.CenterOrigin();
+            SetSpriteDirectory("characters/madeline/");
         }
 
         internal IEnumerator MoveTo(float v)
@@ -907,8 +1062,7 @@ namespace MaggyHelper.Entities
         }
         protected override void OnTalk(global::Celeste.Player player)
         {
-            Level.StartCutscene(new CS20_Saved(player).OnEnd);
-            base.OnTalk(player);
+            TryAddCutscene(new CS20_Saved(player));
         }
     }
     [CustomEntity("DesoloZantas/NPCEventInteract")]

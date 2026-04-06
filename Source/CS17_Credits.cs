@@ -8,6 +8,7 @@ using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MaggyHelper.UI;
 
 namespace MaggyHelper.Cutscenes
 {
@@ -18,13 +19,15 @@ namespace MaggyHelper.Cutscenes
         public static CS17_Credits Instance;
         public string Event;
         private MTexture gradient = GFX.Gui["creditsgradient"].GetSubtexture(0, 1, 1920, 1);
-        private Credits credits;
+        private CreditsMaggy credits;
         private global::Celeste.Player player;
         private bool autoWalk = true;
         private bool autoUpdateCamera = true;
         private BadelineDummy badeline;
         private bool badelineAutoFloat = true;
         private bool badelineAutoWalk;
+        private bool chara_auto_float = true;
+        private bool chara_auto_walk = true;
         private float badelineWalkApproach;
         private Vector2 badelineWalkApproachFrom;
         private float walkOffset;
@@ -35,9 +38,10 @@ namespace MaggyHelper.Cutscenes
         private bool gotoEpilogue;
         private CharaDummy chara;
         private Entity kirbyFollower;
-        private bool kirbyAutoFollow = true;
+        private bool kirby_auto_walk = true;
         private Entity ralseiFollower;
-        private bool ralseiAutoFollow = true;
+        private bool ralsei_auto_float = true;
+        private bool ralsei_auto_walk = true;
 
         public CS17_Credits() : base(true, false)
         {
@@ -80,10 +84,7 @@ namespace MaggyHelper.Cutscenes
             yield return null;
             this.Level.Wipe.Cancel();
             yield return 0.5f;
-            float alignment = 1f;
-            if (SaveData.Instance != null && SaveData.Instance.Assists.MirrorMode)
-                alignment = 0f;
-            this.credits = new Credits(alignment, 0.6f, false, true);
+            this.credits = new CreditsMaggy();
             this.credits.AllowInput = false;
             yield return 3f;
             this.SetBgFade(0f);
@@ -143,6 +144,10 @@ namespace MaggyHelper.Cutscenes
             this.Add(new Coroutine(this.FadeTo(0f), true));
             this.Add(new Coroutine(CutsceneEntity.CameraTo(target, 12f, Ease.Linear, 0f), true));
             yield return 3.5f;
+            this.chara.Sprite.Play("idle", false, false);
+            this.chara_auto_float = false;
+            this.chara_auto_walk = false;
+            yield return 0.25f;
             this.badeline.Sprite.Play("idle", false, false);
             this.badelineAutoWalk = false;
             yield return 0.25f;
@@ -154,7 +159,7 @@ namespace MaggyHelper.Cutscenes
             yield return 0.5f;
             this.player.Sprite.Play("sitDown", false, false);
             yield return 4f;
-            this.badeline.Sprite.Play("laugh", false, false);
+            this.chara.Sprite.Play("laugh", false, false);
             yield return 1.75f;
             yield return this.FadeTo(1f);
             this.Level.Foreground.Backdrops.Remove(petals);
@@ -170,9 +175,10 @@ namespace MaggyHelper.Cutscenes
             this.player.ForceCameraUpdate = false;
             this.badeline.Visible = false;
             if (this.kirbyFollower != null) this.kirbyFollower.Visible = false;
-            this.kirbyAutoFollow = false;
+            this.kirby_auto_walk = false;
             if (this.ralseiFollower != null) this.ralseiFollower.Visible = false;
-            this.ralseiAutoFollow = false;
+            this.ralsei_auto_float = false;
+            this.ralsei_auto_walk = false;
             global::Celeste.Player other = null;
             foreach (var entity in this.Scene.Tracker.GetEntities<CreditsTrigger>())
             {
@@ -213,9 +219,10 @@ namespace MaggyHelper.Cutscenes
             }
             yield return this.FadeTo(1f);
             if (this.kirbyFollower != null) this.kirbyFollower.Visible = true;
-            this.kirbyAutoFollow = true;
+            this.kirby_auto_walk = true;
             if (this.ralseiFollower != null) this.ralseiFollower.Visible = true;
-            this.ralseiAutoFollow = true;
+            this.ralsei_auto_float = true;
+            this.ralsei_auto_walk = true;
             other = null;
             yield return 1f;
             this.SetBgFade(0.5f);
@@ -366,7 +373,7 @@ namespace MaggyHelper.Cutscenes
             yield return 0.5f;
             this.Add(new Coroutine(this.BadelineAround(oshiroTarget2, to2, null), true));
             yield return 3f;
-            this.badeline.Sprite.Play("laugh", false, false);
+            this.chara.Sprite.Play("laugh", false, false);
             yield return 0.5f;
             this.player.Facing = Facings.Left;
             yield return 0.5f;
@@ -393,6 +400,19 @@ namespace MaggyHelper.Cutscenes
             yield return this.FadeTo(1f);
             yield return 1f;
             this.SetBgFade(0f);
+            yield return this.NextLevel("credits-kirbynralsei");
+            yield return this.SetupLevel();
+            yield return this.SpawnChara();
+            this.Add(new Coroutine(this.FadeTo(0f), true));
+            yield return this.ExtraCreditsKirbyAndDarkeners();
+            this.SetBgFade(0.85f);
+            yield return this.NextLevel("credits-peakdescent");
+            yield return this.SetupLevel();
+            yield return this.SpawnChara();
+            this.Add(new Coroutine(this.FadeTo(0f), true));
+            yield return this.ExtraCreditsPeakDescent();
+            yield return this.FadeTo(1f);
+            this.SetBgFade(0.9f);
             yield return this.NextLevel("credits-prologue");
             yield return this.SetupLevel();
             yield return this.SpawnChara();
@@ -403,16 +423,9 @@ namespace MaggyHelper.Cutscenes
             this.Add(new Coroutine(this.FadeTo(0f), true));
             yield return this.WaitForPlayer();
             yield return this.FadeTo(1f);
-            yield return 0.75f;
-            this.SetBgFade(0.85f);
-            yield return this.FadeTo(0f);
-            yield return this.ExtraCreditsKirbyAndDarkeners();
+            yield return 1f;
             yield return this.FadeTo(1f);
-            yield return 0.5f;
-            this.SetBgFade(0.9f);
-            yield return this.FadeTo(0f);
-            yield return this.ExtraCreditsPeakDescent();
-            yield return this.FadeTo(1f);
+            yield return 1f;
             while (this.credits.BottomTimer < 2f)
                 yield return null;
             if (!this.gotoEpilogue)
@@ -460,7 +473,7 @@ namespace MaggyHelper.Cutscenes
             this.kirbyFollower.Depth = -50;
             this.kirbyFollower.Add(kirbySprite);
             this.Level.Add(this.kirbyFollower);
-            this.kirbyAutoFollow = true;
+            this.kirby_auto_walk = true;
 
             // Spawn Ralsei follower
             if (this.ralseiFollower != null && this.ralseiFollower.Scene != null)
@@ -471,7 +484,8 @@ namespace MaggyHelper.Cutscenes
             this.ralseiFollower.Depth = -50;
             this.ralseiFollower.Add(ralseiSprite);
             this.Level.Add(this.ralseiFollower);
-            this.ralseiAutoFollow = true;
+            this.ralsei_auto_float = true;
+            this.ralsei_auto_walk = true;
         }
 
         private IEnumerator SpawnChara()
@@ -492,6 +506,8 @@ namespace MaggyHelper.Cutscenes
             }
             this.Scene.Add(newChara);
             this.chara = newChara;
+            this.chara_auto_float = true;
+            this.chara_auto_walk = true;
 
             yield break;
         }
@@ -525,6 +541,8 @@ namespace MaggyHelper.Cutscenes
             bool prevBadelineAutoFloat = this.badelineAutoFloat;
             bool prevBadelineAutoWalk = this.badelineAutoWalk;
             bool prevCharaVisible = this.chara?.Visible ?? false;
+            bool previous_chara_auto_float = this.chara_auto_float;
+            bool previous_chara_auto_walk = this.chara_auto_walk;
             bool prevPlayerVisible = this.player?.Visible ?? true;
             bool prevPlayerAutoAnimate = this.player?.DummyAutoAnimate ?? true;
 
@@ -546,37 +564,73 @@ namespace MaggyHelper.Cutscenes
             if (this.chara != null)
             {
                 this.chara.Visible = false;
+                this.chara_auto_float = false;
+                this.chara_auto_walk = false;
             }
             bool prevKirbyVisible1 = this.kirbyFollower?.Visible ?? false;
-            bool prevKirbyFollow1 = this.kirbyAutoFollow;
+            bool previous_kirby_auto_walk_1 = this.kirby_auto_walk;
             if (this.kirbyFollower != null) this.kirbyFollower.Visible = false;
-            this.kirbyAutoFollow = false;
+            this.kirby_auto_walk = false;
             bool prevRalseiVisible1 = this.ralseiFollower?.Visible ?? false;
-            bool prevRalseiFollow1 = this.ralseiAutoFollow;
+            bool previous_ralsei_auto_float_1 = this.ralsei_auto_float;
+            bool previous_ralsei_auto_walk_1 = this.ralsei_auto_walk;
             if (this.ralseiFollower != null) this.ralseiFollower.Visible = false;
-            this.ralseiAutoFollow = false;
+            this.ralsei_auto_float = false;
+            this.ralsei_auto_walk = false;
 
             Vector2 cameraOrigin = this.Level.Camera.Position;
             Vector2 basePos = cameraOrigin + new Vector2(200f, 160f);
 
-            // Kirby and Darkeners
+            // Kirby leads while Chara and Ralsei hover alongside him.
+            Entity chara = SpawnCreditsChara(basePos + new Vector2(-8f, 0f));
             Entity kirby = SpawnCreditsKirby(basePos + new Vector2(24f, 0f));
-            Entity darkenerLeft = SpawnCreditsDarkener(basePos + new Vector2(-8f, 0f), faceLeft: false);
-            Entity darkenerRight = SpawnCreditsDarkener(basePos + new Vector2(52f, 0f), faceLeft: true);
+            Entity ralsei = SpawnCreditsRalsei(basePos + new Vector2(52f, 0f));
 
-            // Additional Kirby NPCs
-            Entity bandanaDee = SpawnCreditsNPC(basePos + new Vector2(-32f, 0f), "bandana_dee", bob: true, bobAmount: 1.5f);
-            Entity metaKnight = SpawnCreditsNPC(basePos + new Vector2(80f, 0f), "meta_knight_npc", bob: true, bobAmount: 1.5f);
-            Entity kingDedede = SpawnCreditsNPC(basePos + new Vector2(-56f, -8f), "king_dedede", bob: true, bobAmount: 2f);
-            Entity waddleDee = SpawnCreditsNPC(basePos + new Vector2(104f, 0f), "waddle_dee", bob: true, bobAmount: 1f);
-            Entity magolor = SpawnCreditsNPC(basePos + new Vector2(-80f, 0f), "magolor_npc", bob: true, bobAmount: 1.5f);
+            // Placeholder square drawboards for bandanaDee, metaKnight, kingDedede
+            Entity bandanaDee = new Entity(basePos + new Vector2(-32f, 0f));
+            bandanaDee.Depth = -50;
+            bandanaDee.Add(new SquareDrawboard());
+            this.Scene.Add(bandanaDee);
+
+            Entity metaKnight = new Entity(basePos + new Vector2(80f, 0f));
+            metaKnight.Depth = -50;
+            metaKnight.Add(new SquareDrawboard());
+            this.Scene.Add(metaKnight);
+
+            Entity kingDedede = new Entity(basePos + new Vector2(-56f, -8f));
+            kingDedede.Depth = -50;
+            kingDedede.Add(new SquareDrawboard());
+            this.Scene.Add(kingDedede);
+
+            // Waddle Dee and Magolor use atlas sprites
+            Entity waddleDee = new Entity(basePos + new Vector2(104f, 0f));
+            waddleDee.Depth = -50;
+            Monocle.Image waddleDeeImg = new Monocle.Image(GFX.Game["characters/Enemies/ememy/waddledee/idle00"]);
+            waddleDeeImg.CenterOrigin();
+            waddleDee.Add(waddleDeeImg);
+            this.Scene.Add(waddleDee);
+
+            Entity magolor = new Entity(basePos + new Vector2(-80f, 0f));
+            magolor.Depth = -50;
+            Monocle.Image magolorImg = new Monocle.Image(GFX.Game["characters/magolor/idle00"]);
+            magolorImg.CenterOrigin();
+            magolor.Add(magolorImg);
+            this.Scene.Add(magolor);
+
+            Sprite charaSprite = chara.Get<Sprite>();
+            if (charaSprite != null && charaSprite.Has("walk"))
+                charaSprite.Play("walk", false, false);
 
             Sprite kirbySprite = kirby.Get<Sprite>();
             if (kirbySprite != null && kirbySprite.Has("walk"))
                 kirbySprite.Play("walk", false, false);
 
+            Sprite ralseiSprite = ralsei.Get<Sprite>();
+            if (ralseiSprite != null && ralseiSprite.Has("walk"))
+                ralseiSprite.Play("walk", false, false);
+
             // Animate NPCs walking if they can
-            foreach (Entity npc in new[] { bandanaDee, metaKnight, waddleDee, magolor })
+            foreach (Entity npc in new[] { waddleDee, magolor })
             {
                 Sprite s = npc.Get<Sprite>();
                 if (s != null && s.Has("walk"))
@@ -585,7 +639,9 @@ namespace MaggyHelper.Cutscenes
 
             for (float t = 0f; t < 1.6f; t += Engine.DeltaTime)
             {
+                chara.X -= 10f * Engine.DeltaTime;
                 kirby.X -= 12f * Engine.DeltaTime;
+                ralsei.X -= 10f * Engine.DeltaTime;
                 bandanaDee.X -= 10f * Engine.DeltaTime;
                 metaKnight.X -= 14f * Engine.DeltaTime;
                 kingDedede.X -= 8f * Engine.DeltaTime;
@@ -594,11 +650,17 @@ namespace MaggyHelper.Cutscenes
                 yield return null;
             }
 
+            if (charaSprite != null && charaSprite.Has("idle"))
+                charaSprite.Play("idle", false, false);
+
             if (kirbySprite != null && kirbySprite.Has("idle"))
                 kirbySprite.Play("idle", false, false);
 
+            if (ralseiSprite != null && ralseiSprite.Has("idle"))
+                ralseiSprite.Play("idle", false, false);
+
             // Set all NPCs to idle
-            foreach (Entity npc in new[] { bandanaDee, metaKnight, kingDedede, waddleDee, magolor })
+            foreach (Entity npc in new[] { waddleDee, magolor })
             {
                 Sprite s = npc.Get<Sprite>();
                 if (s != null && s.Has("idle"))
@@ -607,9 +669,9 @@ namespace MaggyHelper.Cutscenes
 
             yield return 1.2f;
 
+            chara.RemoveSelf();
             kirby.RemoveSelf();
-            darkenerLeft.RemoveSelf();
-            darkenerRight.RemoveSelf();
+            ralsei.RemoveSelf();
             bandanaDee.RemoveSelf();
             metaKnight.RemoveSelf();
             kingDedede.RemoveSelf();
@@ -629,10 +691,13 @@ namespace MaggyHelper.Cutscenes
             }
             if (this.chara != null)
                 this.chara.Visible = prevCharaVisible;
+            this.chara_auto_float = previous_chara_auto_float;
+            this.chara_auto_walk = previous_chara_auto_walk;
             if (this.kirbyFollower != null) this.kirbyFollower.Visible = prevKirbyVisible1;
-            this.kirbyAutoFollow = prevKirbyFollow1;
+            this.kirby_auto_walk = previous_kirby_auto_walk_1;
             if (this.ralseiFollower != null) this.ralseiFollower.Visible = prevRalseiVisible1;
-            this.ralseiAutoFollow = prevRalseiFollow1;
+            this.ralsei_auto_float = previous_ralsei_auto_float_1;
+            this.ralsei_auto_walk = previous_ralsei_auto_walk_1;
             this.autoWalk = prevAutoWalk;
             this.autoUpdateCamera = prevAutoUpdateCamera;
         }
@@ -641,10 +706,12 @@ namespace MaggyHelper.Cutscenes
         {
             bool prevAutoWalk = this.autoWalk;
             bool prevAutoUpdateCamera = this.autoUpdateCamera;
-            bool prevBadelineVisible = this.badeline?.Visible ?? false;
+            bool prevBadelineVisible = this.badeline?.Visible ?? true;
             bool prevBadelineAutoFloat = this.badelineAutoFloat;
             bool prevBadelineAutoWalk = this.badelineAutoWalk;
-            bool prevCharaVisible = this.chara?.Visible ?? false;
+            bool prevCharaVisible = this.chara?.Visible ?? true;
+            bool previous_chara_auto_float = this.chara_auto_float;
+            bool previous_chara_auto_walk = this.chara_auto_walk;
             bool prevPlayerVisible = this.player?.Visible ?? true;
             bool prevPlayerAutoAnimate = this.player?.DummyAutoAnimate ?? true;
 
@@ -666,30 +733,38 @@ namespace MaggyHelper.Cutscenes
             if (this.chara != null)
             {
                 this.chara.Visible = false;
+                this.chara_auto_float = false;
+                this.chara_auto_walk = false;
             }
             bool prevKirbyVisible2 = this.kirbyFollower?.Visible ?? false;
-            bool prevKirbyFollow2 = this.kirbyAutoFollow;
+            bool previous_kirby_auto_walk_2 = this.kirby_auto_walk;
             if (this.kirbyFollower != null) this.kirbyFollower.Visible = false;
-            this.kirbyAutoFollow = false;
+            this.kirby_auto_walk = false;
             bool prevRalseiVisible2 = this.ralseiFollower?.Visible ?? false;
-            bool prevRalseiFollow2 = this.ralseiAutoFollow;
+            bool previous_ralsei_auto_float_2 = this.ralsei_auto_float;
+            bool previous_ralsei_auto_walk_2 = this.ralsei_auto_walk;
             if (this.ralseiFollower != null) this.ralseiFollower.Visible = false;
-            this.ralseiAutoFollow = false;
+            this.ralsei_auto_float = false;
+            this.ralsei_auto_walk = false;
 
             Vector2 cameraOrigin = this.Level.Camera.Position;
             List<Entity> monsters = new List<Entity>();
             for (int i = 0; i < 4; i++)
             {
                 Vector2 pos = cameraOrigin + new Vector2(220f + i * 16f, 160f);
-                Sprite sprite = GFX.SpriteBank.Create("peakdescent_monster");
-                sprite.Play("idle", false, false);
-                sprite.CenterOrigin();
                 Entity monster = new Entity(pos);
                 monster.Depth = -50;
-                monster.Add(sprite);
+                monster.Add(new SquareDrawboard());
                 this.Scene.Add(monster);
                 monsters.Add(monster);
             }
+
+            // Placeholder square drawboard
+            Vector2 drawboardPos = cameraOrigin + new Vector2(140f, 80f);
+            Entity drawboard = new Entity(drawboardPos);
+            drawboard.Depth = -60;
+            drawboard.Add(new SquareDrawboard());
+            this.Scene.Add(drawboard);
 
             Vector2 velocity = new Vector2(-28f, 22f);
             for (float t = 0f; t < 4.5f; t += Engine.DeltaTime)
@@ -706,6 +781,7 @@ namespace MaggyHelper.Cutscenes
             foreach (Entity monster in monsters)
                 monster.RemoveSelf();
             monsters.Clear();
+            drawboard.RemoveSelf();
 
             if (this.player != null)
             {
@@ -720,10 +796,13 @@ namespace MaggyHelper.Cutscenes
             }
             if (this.chara != null)
                 this.chara.Visible = prevCharaVisible;
+            this.chara_auto_float = previous_chara_auto_float;
+            this.chara_auto_walk = previous_chara_auto_walk;
             if (this.kirbyFollower != null) this.kirbyFollower.Visible = prevKirbyVisible2;
-            this.kirbyAutoFollow = prevKirbyFollow2;
+            this.kirby_auto_walk = previous_kirby_auto_walk_2;
             if (this.ralseiFollower != null) this.ralseiFollower.Visible = prevRalseiVisible2;
-            this.ralseiAutoFollow = prevRalseiFollow2;
+            this.ralsei_auto_float = previous_ralsei_auto_float_2;
+            this.ralsei_auto_walk = previous_ralsei_auto_walk_2;
             this.autoWalk = prevAutoWalk;
             this.autoUpdateCamera = prevAutoUpdateCamera;
         }
@@ -734,16 +813,27 @@ namespace MaggyHelper.Cutscenes
             if (sprite.Has("idle"))
                 sprite.Play("idle", false, false);
             sprite.CenterOrigin();
-            return SpawnCreditsSprite(position, sprite, bob: true, bobAmount: 2f);
+            sprite.Scale.X = -1f;
+            return SpawnCreditsSprite(position, sprite, bob: false, bobAmount: 0f);
         }
 
-        private Entity SpawnCreditsDarkener(Vector2 position, bool faceLeft)
+        private Entity SpawnCreditsChara(Vector2 position)
+        {
+            Sprite sprite = GFX.SpriteBank.Create("maggy_chara");
+            if (sprite.Has("idle"))
+                sprite.Play("idle", false, false);
+            sprite.CenterOrigin();
+            sprite.Scale.X = -1f;
+            return SpawnCreditsSprite(position, sprite, bob: true, bobAmount: 1.5f);
+        }
+
+        private Entity SpawnCreditsRalsei(Vector2 position)
         {
             Sprite sprite = GFX.SpriteBank.Create("ralsei");
             if (sprite.Has("idle"))
                 sprite.Play("idle", false, false);
             sprite.CenterOrigin();
-            sprite.Scale.X = faceLeft ? -1f : 1f;
+            sprite.Scale.X = -1f;
             return SpawnCreditsSprite(position, sprite, bob: true, bobAmount: 1.5f);
         }
 
@@ -873,7 +963,7 @@ namespace MaggyHelper.Cutscenes
             if (removeAtEnd)
                 badeline.Vanish();
             else
-                badeline.Sprite.Play("laugh", false, false);
+                chara.Sprite.Play("laugh", false, false);
         }
 
         private IEnumerator DoEvent(string e)
@@ -952,6 +1042,8 @@ namespace MaggyHelper.Cutscenes
                     yield return null;
                 }
                 this.chara.Visible = false;
+                this.chara_auto_float = false;
+                this.chara_auto_walk = false;
                 this.Level.Displacement.AddBurst(this.player.Position, 0.3f, 8f, 24f, 0.4f);
             }
             // Kirby merges into player too
@@ -964,7 +1056,7 @@ namespace MaggyHelper.Cutscenes
                     yield return null;
                 }
                 this.kirbyFollower.Visible = false;
-                this.kirbyAutoFollow = false;
+                this.kirby_auto_walk = false;
             }
             // Ralsei merges into player too
             if (this.ralseiFollower != null)
@@ -976,7 +1068,8 @@ namespace MaggyHelper.Cutscenes
                     yield return null;
                 }
                 this.ralseiFollower.Visible = false;
-                this.ralseiAutoFollow = false;
+                this.ralsei_auto_float = false;
+                this.ralsei_auto_walk = false;
             }
             this.player.Dashes = 2;
             yield return 0.5f;
@@ -1010,18 +1103,21 @@ namespace MaggyHelper.Cutscenes
             {
                 this.chara.Position = this.player.Position + new Vector2(24f, 0f);
                 this.chara.Visible = true;
+                this.chara_auto_float = true;
+                this.chara_auto_walk = true;
             }
             if (this.kirbyFollower != null)
             {
                 this.kirbyFollower.Position = this.player.Position + new Vector2(28f, -6f);
                 this.kirbyFollower.Visible = true;
-                this.kirbyAutoFollow = true;
+                this.kirby_auto_walk = true;
             }
             if (this.ralseiFollower != null)
             {
                 this.ralseiFollower.Position = this.player.Position + new Vector2(44f, 0f);
                 this.ralseiFollower.Visible = true;
-                this.ralseiAutoFollow = true;
+                this.ralsei_auto_float = true;
+                this.ralsei_auto_walk = true;
             }
             this.player.Dashes = 1;
             yield return 0.8f;
@@ -1064,6 +1160,8 @@ namespace MaggyHelper.Cutscenes
                     yield return null;
                 }
                 this.chara.Visible = false;
+                this.chara_auto_float = false;
+                this.chara_auto_walk = false;
                 this.Level.Displacement.AddBurst(this.player.Position, 0.3f, 8f, 24f, 0.4f);
             }
             if (this.kirbyFollower != null)
@@ -1075,7 +1173,7 @@ namespace MaggyHelper.Cutscenes
                     yield return null;
                 }
                 this.kirbyFollower.Visible = false;
-                this.kirbyAutoFollow = false;
+                this.kirby_auto_walk = false;
             }
             if (this.ralseiFollower != null)
             {
@@ -1086,7 +1184,8 @@ namespace MaggyHelper.Cutscenes
                     yield return null;
                 }
                 this.ralseiFollower.Visible = false;
-                this.ralseiAutoFollow = false;
+                this.ralsei_auto_float = false;
+                this.ralsei_auto_walk = false;
             }
 
             this.player.Dashes = 5;
@@ -1132,18 +1231,21 @@ namespace MaggyHelper.Cutscenes
             {
                 this.chara.Position = this.player.Position + new Vector2(24f, 0f);
                 this.chara.Visible = true;
+                this.chara_auto_float = true;
+                this.chara_auto_walk = true;
             }
             if (this.kirbyFollower != null)
             {
                 this.kirbyFollower.Position = this.player.Position + new Vector2(28f, -6f);
                 this.kirbyFollower.Visible = true;
-                this.kirbyAutoFollow = true;
+                this.kirby_auto_walk = true;
             }
             if (this.ralseiFollower != null)
             {
                 this.ralseiFollower.Position = this.player.Position + new Vector2(44f, 0f);
                 this.ralseiFollower.Visible = true;
-                this.ralseiAutoFollow = true;
+                this.ralsei_auto_float = true;
+                this.ralsei_auto_walk = true;
             }
             this.player.Dashes = 1;
             yield return 0.8f;
@@ -1308,14 +1410,17 @@ namespace MaggyHelper.Cutscenes
                 }
                 if (this.chara != null && this.chara.Visible)
                 {
-                    Vector2 charaTarget = this.player.Position + new Vector2(24f, (float)Math.Sin(this.Scene.TimeActive * 2.2f) * 2f);
-                    this.chara.Position += (charaTarget - this.chara.Position) * (1f - (float)Math.Pow(0.01, Engine.DeltaTime));
-                    this.chara.Floatness = Calc.Approach(this.chara.Floatness, Math.Abs(this.player.Speed.X) > 10f ? 0f : 1.5f, Engine.DeltaTime * 8f);
+                    if (this.chara_auto_walk)
+                    {
+                        Vector2 charaTarget = this.player.Position + new Vector2(24f, 0f);
+                        this.chara.Position += (charaTarget - this.chara.Position) * (1f - (float)Math.Pow(0.01, Engine.DeltaTime));
+                    }
+                    this.chara.Floatness = Calc.Approach(this.chara.Floatness, this.chara_auto_float ? 1.5f : 0f, Engine.DeltaTime * 8f);
 
                     if (this.chara.Sprite != null)
                     {
                         this.chara.Sprite.Scale.X = -1f;
-                        bool moving = Math.Abs(this.player.Speed.X) > 10f;
+                        bool moving = this.chara_auto_walk && Math.Abs(this.player.Speed.X) > 10f;
                         string wantAnim = moving ? "walk" : "idle";
                         if (this.chara.Sprite.CurrentAnimationID != wantAnim && this.chara.Sprite.Has(wantAnim))
                             this.chara.Sprite.Play(wantAnim, false, false);
@@ -1324,10 +1429,10 @@ namespace MaggyHelper.Cutscenes
                 if (Math.Abs(this.player.Speed.X) > 90f)
                     this.player.Speed = new Vector2(Calc.Approach(this.player.Speed.X, 90f * Math.Sign(this.player.Speed.X), 1000f * Engine.DeltaTime), this.player.Speed.Y);
 
-                // Kirby follows behind the player
-                if (this.kirbyFollower != null && this.kirbyAutoFollow)
+                // Kirby follows behind the player without the floating bob.
+                if (this.kirbyFollower != null && this.kirby_auto_walk)
                 {
-                    Vector2 kirbyTarget = this.player.Position + new Vector2(28f, -6f + (float)Math.Sin(this.Scene.TimeActive * 2.5f) * 3f);
+                    Vector2 kirbyTarget = this.player.Position + new Vector2(28f, -6f);
                     this.kirbyFollower.Position += (kirbyTarget - this.kirbyFollower.Position) * (1f - (float)Math.Pow(0.01, Engine.DeltaTime));
                     var kSprite = this.kirbyFollower.Get<Sprite>();
                     if (kSprite != null)
@@ -1340,15 +1445,19 @@ namespace MaggyHelper.Cutscenes
                     }
                 }
                 // Ralsei follows behind the player (further back)
-                if (this.ralseiFollower != null && this.ralseiAutoFollow)
+                if (this.ralseiFollower != null && (this.ralsei_auto_float || this.ralsei_auto_walk))
                 {
-                    Vector2 ralseiTarget = this.player.Position + new Vector2(44f, (float)Math.Sin(this.Scene.TimeActive * 2.0f) * 2f);
+                    Vector2 ralseiTarget = this.ralseiFollower.Position;
+                    if (this.ralsei_auto_walk)
+                        ralseiTarget = this.player.Position + new Vector2(44f, 0f);
+                    if (this.ralsei_auto_float)
+                        ralseiTarget.Y += (float)Math.Sin(this.Scene.TimeActive * 2.0f) * 2f;
                     this.ralseiFollower.Position += (ralseiTarget - this.ralseiFollower.Position) * (1f - (float)Math.Pow(0.015, Engine.DeltaTime));
                     var rSprite = this.ralseiFollower.Get<Sprite>();
                     if (rSprite != null)
                     {
                         rSprite.Scale.X = -1f;
-                        bool rMoving = Math.Abs(this.player.Speed.X) > 10f;
+                        bool rMoving = this.ralsei_auto_walk && Math.Abs(this.player.Speed.X) > 10f;
                         string rWantAnim = rMoving ? "walk" : "idle";
                         if (rSprite.CurrentAnimationID != rWantAnim && rSprite.Has(rWantAnim))
                             rSprite.Play(rWantAnim, false, false);
@@ -1386,7 +1495,7 @@ namespace MaggyHelper.Cutscenes
             if (this.fade > 0f)
                 Draw.Rect(-10f, -10f, 1940f, 1100f, Color.Black * Ease.CubeInOut(this.fade));
             if (this.credits != null && !this.Level.Paused)
-                this.credits.Render(new Vector2(flag ? 100f : 1820f, 0f));
+                this.credits.Render(new Vector2(flag ? 100f : 1820f, 0f), flag ? 0f : 1f);
             base.Render();
         }
 
@@ -1427,6 +1536,20 @@ namespace MaggyHelper.Cutscenes
             public override void Render(Scene scene)
             {
                 Draw.Rect(-10f, -10f, 340f, 200f, this.Color);
+            }
+        }
+
+        private class SquareDrawboard : Component
+        {
+            public float Size = 64f;
+            public Color Color = Color.White * 0.5f;
+
+            public SquareDrawboard() : base(true, true) { }
+
+            public override void Render()
+            {
+                Vector2 pos = this.Entity.Position;
+                Draw.HollowRect(pos.X - Size / 2f, pos.Y - Size / 2f, Size, Size, Color);
             }
         }
     }

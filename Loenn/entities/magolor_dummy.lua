@@ -3,7 +3,7 @@ local magolorDummy = {}
 magolorDummy.name = "MaggyHelper/MagolorDummy"
 magolorDummy.depth = 0
 magolorDummy.justification = {0.5, 1.0}
-magolorDummy.texture = "characters/magolor/magolor00"
+magolorDummy.texture = "characters/kirby/magolor/idle00"
 
 magolorDummy.fieldInformation = {
     facing = {
@@ -17,9 +17,7 @@ magolorDummy.fieldInformation = {
             "idle",
             "walk",
             "happy",
-            "normal",
-            "surprised",
-            "determined"
+            "talk"
         },
         editable = true
     },
@@ -38,6 +36,14 @@ magolorDummy.fieldInformation = {
     },
     playAnimationOnSpawn = {
         fieldType = "boolean"
+    },
+    autoFollow = {
+        fieldType = "boolean"
+    },
+    followDelay = {
+        fieldType = "number",
+        minimumValue = 0.0,
+        maximumValue = 2.0
     }
 }
 
@@ -50,29 +56,9 @@ magolorDummy.placements = {
             scale = 1.0,
             alpha = 1.0,
             isVisible = true,
-            playAnimationOnSpawn = true
-        }
-    },
-    {
-        name = "campfire",
-        data = {
-            facing = 1,
-            animation = "idle",
-            scale = 1.0,
-            alpha = 1.0,
-            isVisible = true,
-            playAnimationOnSpawn = true
-        }
-    },
-    {
-        name = "starjump",
-        data = {
-            facing = 1,
-            animation = "idle",
-            scale = 1.0,
-            alpha = 1.0,
-            isVisible = true,
-            playAnimationOnSpawn = true
+            playAnimationOnSpawn = true,
+            autoFollow = true,
+            followDelay = 0.55
         }
     }
 }
@@ -83,7 +69,7 @@ function magolorDummy.sprite(room, entity)
     local alpha = entity.alpha or 1.0
     
     return {
-        texture = "characters/magolor/magolor00",
+        texture = "characters/kirby/magolor/idle00",
         x = entity.x,
         y = entity.y,
         justificationX = 0.5,

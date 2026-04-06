@@ -2,7 +2,7 @@ local kingDDDDummy = {}
 
 kingDDDDummy.name = "MaggyHelper/KingDDDDummy"
 kingDDDDummy.depth = 0
-kingDDDDummy.texture = "characters/king_ddd/idle00"
+kingDDDDummy.texture = "characters/kirby/king_dedede/idle00"
 kingDDDDummy.justification = {0.5, 1.0}
 
 kingDDDDummy.fieldInformation = {
@@ -16,11 +16,8 @@ kingDDDDummy.fieldInformation = {
         options = {
             "idle",
             "walk",
-            "royal_pose",
-            "hammer_ready",
-            "laughing",
-            "angry",
-            "sleeping"
+            "happy",
+            "talk"
         },
         editable = true
     },
@@ -40,11 +37,13 @@ kingDDDDummy.fieldInformation = {
     playAnimationOnSpawn = {
         fieldType = "boolean"
     },
-    hasHammer = {
+    autoFollow = {
         fieldType = "boolean"
     },
-    hasCrown = {
-        fieldType = "boolean"
+    followDelay = {
+        fieldType = "number",
+        minimumValue = 0.0,
+        maximumValue = 2.0
     }
 }
 
@@ -58,34 +57,8 @@ kingDDDDummy.placements = {
             alpha = 1.0,
             isVisible = true,
             playAnimationOnSpawn = false,
-            hasHammer = true,
-            hasCrown = true
-        }
-    },
-    {
-        name = "royal_pose",
-        data = {
-            facing = 1,
-            animation = "royal_pose",
-            scale = 1.2,
-            alpha = 1.0,
-            isVisible = true,
-            playAnimationOnSpawn = true,
-            hasHammer = false,
-            hasCrown = true
-        }
-    },
-    {
-        name = "battle_ready",
-        data = {
-            facing = 1,
-            animation = "hammer_ready",
-            scale = 1.1,
-            alpha = 1.0,
-            isVisible = true,
-            playAnimationOnSpawn = true,
-            hasHammer = true,
-            hasCrown = true
+            autoFollow = true,
+            followDelay = 0.95
         }
     }
 }
@@ -96,7 +69,7 @@ function kingDDDDummy.sprite(room, entity)
     local alpha = entity.alpha or 1.0
     
     return {
-        texture = "characters/king_ddd/idle00",
+        texture = "characters/kirby/king_dedede/idle00",
         x = entity.x,
         y = entity.y,
         justificationX = 0.5,

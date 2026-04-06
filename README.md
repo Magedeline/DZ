@@ -4,6 +4,14 @@ Desolo Zantas is a large-scale Celeste mod built on the `MaggyHelper` module. Th
 
 `Desolo Zantas` is the public-facing mod name. `MaggyHelper` remains the internal assembly, namespace, and Everest module name used by the project.
 
+## Ownership And Repository Policy
+
+This Celeste mod project, including the Kirby-inspired mechanics and the content spanning the campaign through Chapter 20, was built from scratch for Desolo Zantas.
+
+Public access is provided so players and followers can view development history, report bugs, and leave suggestions or feedback. Public access does not grant permission to modify, reuse, redistribute, or publish altered versions of this codebase or its assets.
+
+Feedback is welcome through issues and discussion, but pull requests and unauthorized code or asset changes are not accepted unless the repository owner gives explicit written permission in advance.
+
 ## Project Snapshot
 
 - Public mod title: Desolo Zantas

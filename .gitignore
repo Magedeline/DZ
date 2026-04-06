@@ -14,3 +14,8 @@ loenn-mcp/
 *.ps1
 *.json
 *.md
+!README.md
+!LICENSE.txt
+!CONTRIBUTING.md
+!.github/
+!.github/**

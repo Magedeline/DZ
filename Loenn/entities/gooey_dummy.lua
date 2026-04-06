@@ -1,11 +1,11 @@
-local kirbyDummy = {}
+local gooeyDummy = {}
 
-kirbyDummy.name = "MaggyHelper/KirbyDummy"
-kirbyDummy.depth = 0
-kirbyDummy.justification = {0.5, 1.0}
-kirbyDummy.texture = "characters/kirby/idle00"
+gooeyDummy.name = "MaggyHelper/GooeyDummy"
+gooeyDummy.depth = 0
+gooeyDummy.texture = "characters/kirby/gooey/idle00"
+gooeyDummy.justification = {0.5, 1.0}
 
-kirbyDummy.fieldInformation = {
+gooeyDummy.fieldInformation = {
     facing = {
         fieldType = "integer",
         options = {-1, 1},
@@ -16,7 +16,7 @@ kirbyDummy.fieldInformation = {
         options = {
             "idle",
             "walk",
-            "run"
+            "talk"
         },
         editable = true
     },
@@ -46,7 +46,7 @@ kirbyDummy.fieldInformation = {
     }
 }
 
-kirbyDummy.placements = {
+gooeyDummy.placements = {
     {
         name = "normal",
         data = {
@@ -57,18 +57,18 @@ kirbyDummy.placements = {
             isVisible = true,
             playAnimationOnSpawn = true,
             autoFollow = true,
-            followDelay = 0.3
+            followDelay = 0.68
         }
     }
 }
 
-function kirbyDummy.sprite(room, entity)
+function gooeyDummy.sprite(room, entity)
     local facing = entity.facing or 1
     local scale = entity.scale or 1.0
     local alpha = entity.alpha or 1.0
 
     return {
-        texture = "characters/kirby/idle00",
+        texture = "characters/kirby/gooey/idle00",
         x = entity.x,
         y = entity.y,
         justificationX = 0.5,
@@ -79,4 +79,4 @@ function kirbyDummy.sprite(room, entity)
     }
 end
 
-return kirbyDummy
+return gooeyDummy

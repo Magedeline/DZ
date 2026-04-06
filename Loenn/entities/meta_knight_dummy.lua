@@ -2,7 +2,7 @@ local metaKnightDummy = {}
 
 metaKnightDummy.name = "MaggyHelper/MetaKnightDummy"
 metaKnightDummy.depth = 0
-metaKnightDummy.texture = "characters/meta_knight/idle00"
+metaKnightDummy.texture = "characters/kirby/meta_knight/idle00"
 metaKnightDummy.justification = {0.5, 1.0}
 
 metaKnightDummy.fieldInformation = {
@@ -16,11 +16,8 @@ metaKnightDummy.fieldInformation = {
         options = {
             "idle",
             "walk",
-            "sword_ready",
-            "cape_flourish",
-            "masked",
-            "unmasked",
-            "flying"
+            "happy",
+            "talk"
         },
         editable = true
     },
@@ -40,11 +37,13 @@ metaKnightDummy.fieldInformation = {
     playAnimationOnSpawn = {
         fieldType = "boolean"
     },
-    hasWings = {
+    autoFollow = {
         fieldType = "boolean"
     },
-    hasSword = {
-        fieldType = "boolean"
+    followDelay = {
+        fieldType = "number",
+        minimumValue = 0.0,
+        maximumValue = 2.0
     }
 }
 
@@ -58,34 +57,8 @@ metaKnightDummy.placements = {
             alpha = 1.0,
             isVisible = true,
             playAnimationOnSpawn = false,
-            hasWings = true,
-            hasSword = true
-        }
-    },
-    {
-        name = "sword_ready",
-        data = {
-            facing = 1,
-            animation = "sword_ready",
-            scale = 1.0,
-            alpha = 1.0,
-            isVisible = true,
-            playAnimationOnSpawn = true,
-            hasWings = true,
-            hasSword = true
-        }
-    },
-    {
-        name = "flying",
-        data = {
-            facing = 1,
-            animation = "flying",
-            scale = 1.2,
-            alpha = 1.0,
-            isVisible = true,
-            playAnimationOnSpawn = true,
-            hasWings = true,
-            hasSword = false
+            autoFollow = true,
+            followDelay = 0.72
         }
     }
 }
@@ -96,7 +69,7 @@ function metaKnightDummy.sprite(room, entity)
     local alpha = entity.alpha or 1.0
     
     return {
-        texture = "characters/meta_knight/idle00",
+        texture = "characters/kirby/meta_knight/idle00",
         x = entity.x,
         y = entity.y,
         justificationX = 0.5,

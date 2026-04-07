@@ -292,12 +292,12 @@ internal static class CutsceneEventDispatcher
         AddCutscene(handlers, "ch16_els_outro", "ch16_els_outro_trigger", ctx => new CS16_ElsOutro(ctx.Player));
         AddCutscene(handlers, "ch16_exited", "ch16_exited_trigger", ctx => new Cs16Exited(ctx.Player));
         AddCutscene(handlers, "ch16_end", "ch16_end_trigger", ctx => new Cs16End(ctx.Player));
-        AddCutscene(handlers, "ch16_Epilouge", "ch16_Epilouge_trigger", ctx => new Cs16WelcomeHome(ctx.Player, targetX: 0f));
         AddCutscene(handlers, "ch16_barrier_breaks", "ch16_barrier_breaks_trigger", ctx => new CS16_BarrierBreaks(ctx.Player));
         AddCutscene(handlers, "ch16_corrupted_reality_intro", "ch16_corrupted_reality_intro_trigger", ctx => new CS16_CorruptedRealityIntro(ctx.Player));
         AddCutscene(handlers, "ch16_lost_souls_unite", "ch16_lost_souls_unite_trigger", ctx => new CS16_LostSoulsUnite(ctx.Player));
         AddCutscene(handlers, "ch16_save_file_battle", "ch16_save_file_battle_trigger", ctx => new CS16_SaveFileBattle(ctx.Player));
 
+        AddCutscene(handlers, "ch17_welcomehome", "ch17_welcomehome_trigger", ctx => new CS17_WelcomeHome(ctx.Player, targetX: 0f));
         AddCutscene(handlers, "ch17_epilouge", "ch17_epilogue_trigger", ctx => new Cs17Epilogue(ctx.Player));
         AddCutscene(handlers, "ch17_credits", "ch17_credits_trigger", ctx => new CS17_Credits());
         AddCutscene(handlers, "ch17_ending_mod", "ch17_ending_mod_trigger", ctx => new CS17_EndingMod());

@@ -75,7 +75,7 @@ namespace MaggyHelper.Cutscenes
         private IEnumerator Cutscene(Level level)
         {
             level.ZoomSnap(new Vector2(164f, 120f), 2f);
-            level.Wipe.Cancel();
+            level.Wipe?.Cancel();
             new FadeWipe(level, true, null);
 
             while (player == null)

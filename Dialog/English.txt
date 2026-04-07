@@ -14886,7 +14886,7 @@ and when you least expect it...
 Everything will end for the nightmare to never end...
 # ================================
 # CHAPTER 17 - EPILOGUE
-CH17_EPILOGUE=
+EPMOD_CABIN=
 [THEO right normal]
 Welcome back {+MADELINE}!
 Did you finally free those monster and darkeners?

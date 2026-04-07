@@ -1,66 +1,53 @@
-namespace MaggyHelper.Cutscenes
-{
-  public class Cs16WelcomeHome : CutsceneEntity
-  {
-    private readonly global::Celeste.Player player;
-    private readonly float targetX;
+using System.Collections;
+using System.Runtime.CompilerServices;
+using MaggyHelper.Cutscenes;
+using Microsoft.Xna.Framework;
+using Monocle;
 
-    public Cs16WelcomeHome(global::Celeste.Player player, float targetX)
+namespace Celeste;
+
+public class CS17_WelcomeHome : CutsceneEntity
+{
+    private Player player;
+
+    private float targetX;
+
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    public CS17_WelcomeHome(Player player, float targetX)
     {
-      this.player = player;
-      this.targetX = targetX;
+        this.player = player;
+        this.targetX = targetX;
     }
 
+    [MethodImpl(MethodImplOptions.NoInlining)]
     public override void OnBegin(Level level)
     {
-      this.Add((Component) new Coroutine(this.cutscene(level)));
+        Add(new Coroutine(Cutscene(level)));
     }
 
-    private IEnumerator cutscene(Level level)
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    private IEnumerator Cutscene(Level level)
     {
-      this.player.StateMachine.State = 11;
-      this.Add((Component)new Coroutine((IEnumerator)this.player.DummyWalkToExact((int)this.targetX)));
-      this.Add((Component)new Coroutine(level.ZoomTo(new Vector2(this.targetX - level.Camera.X, 90f), 2f, 2f)));
-      FadeWipe fadeWipe = new FadeWipe((Scene)level, false);
-      fadeWipe.Duration = 2f;
-      yield return fadeWipe.Wait();
-      this.endCutscene(level, Int32.MaxValue);
+        player.StateMachine.State = 11;
+        Add(new Coroutine(player.DummyWalkToExact((int)targetX, walkBackwards: false, 0.7f)));
+        Add(new Coroutine(level.ZoomTo(new Vector2(targetX - level.Camera.X, 90f), 2f, 2f)));
+        FadeWipe fadeWipe = new FadeWipe(level, wipeIn: false);
+        fadeWipe.Duration = 2f;
+        yield return fadeWipe.Wait();
+        EndCutscene(level);
     }
 
-    private void endCutscene(Level level, int player) {
-        // Restore player control
-        this.player.StateMachine.State = player;
-
-        // Trigger OnEnd logic
-        OnEnd(level);
-
-        // Remove the cutscene entity from the scene
-        if (RemoveOnSkipped || !WasSkipped) level.Remove(this);
-    }
-
+    [MethodImpl(MethodImplOptions.NoInlining)]
     public override void OnEnd(Level level)
     {
-      level.OnEndOfFrame += (Action)(() =>
-      {
-        level.Remove(entity: (Entity)this.player);
-        level.UnloadLevel();
-        level.Session.Level = "inside";
-        Session session = level.Session;
-        Level level1 = level;
-        Rectangle bounds = level.Bounds;
-        double left = (double)bounds.Left;
-        bounds = level.Bounds;
-        double top = (double)bounds.Top;
-        Vector2 from = new Vector2((float)left, (float)top);
-        Vector2? nullable = new Vector2?(level1.GetSpawnPoint(from));
-        session.RespawnPoint = nullable;
-        level.LoadLevel(global::Celeste.Player.IntroTypes.None);
-        level.Add((Entity)new CS17_EndingMod());
-      });
+        level.OnEndOfFrame += [MethodImpl(MethodImplOptions.NoInlining)] () =>
+        {
+            level.Remove(player);
+            level.UnloadLevel();
+            level.Session.Level = "inside";
+            level.Session.RespawnPoint = level.GetSpawnPoint(new Vector2(level.Bounds.Left, level.Bounds.Top));
+            level.LoadLevel(Player.IntroTypes.None);
+            level.Add(new CS17_EndingMod());
+        };
     }
-  }
 }
-
-
-
-

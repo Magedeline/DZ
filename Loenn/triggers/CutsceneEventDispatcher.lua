@@ -130,6 +130,7 @@ local eventOptions = {
     "ch16_corrupted_reality_intro",
     "ch16_lost_souls_unite",
     "ch16_save_file_battle",
+    "ch17_welcomehome",
     "ch17_epilouge",
     "ch17_credits",
     "ch17_ending_mod",

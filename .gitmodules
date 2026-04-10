@@ -1,0 +1,3 @@
+[submodule "Libs/Nez"]
+	path = Libs/Nez
+	url = https://github.com/prime31/Nez.git

@@ -54,7 +54,7 @@ internal class BoomBooster : Entity
     this.Add((Component) new MirrorReflection());
   }
 
-  public virtual void Added(Scene scene)
+  public override void Added(Scene scene)
   {
     base.Added(scene);
     Image image = new Image(GFX.Game["objects/booster/outline"]);
@@ -113,7 +113,7 @@ internal class BoomBooster : Entity
     global::Celeste.Mod.MaggyHelper.BossesExample.BossesExampleModule.destroyDashActive = false;
   }
 
-  public virtual void Render()
+  public override void Render()
   {
     Vector2 position = ((GraphicsComponent) this.sprite).Position;
     ((GraphicsComponent) this.sprite).Position = Calc.Floor(position);
@@ -134,7 +134,7 @@ internal class BoomBooster : Entity
     this.AppearParticles();
   }
 
-  public virtual void Update()
+  public override void Update()
   {
     base.Update();
     if ((double) this.cannotUseTimer > 0.0)

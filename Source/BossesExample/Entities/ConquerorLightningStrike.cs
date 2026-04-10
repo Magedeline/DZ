@@ -27,7 +27,7 @@ internal class ConquerorLightningStrike : Entity
     ((GraphicsComponent) this.strike).Scale.Y *= 1.05f;
   }
 
-  public virtual void Added(Scene scene)
+  public override void Added(Scene scene)
   {
     base.Added(scene);
     this.level = this.SceneAs<Level>();
@@ -41,7 +41,7 @@ internal class ConquerorLightningStrike : Entity
     return this;
   }
 
-  public virtual void Update()
+  public override void Update()
   {
     base.Update();
     if (!this.boss.dead)

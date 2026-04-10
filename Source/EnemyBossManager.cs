@@ -63,6 +63,15 @@ namespace MaggyHelper.Entities
             
             return new Boss(entityData, Vector2.Zero);
         }
+
+        /// <summary>
+        /// Clear all registered room data. Call on level transitions to prevent stale data.
+        /// </summary>
+        public static void Reset()
+        {
+            roomEnemies.Clear();
+            roomBosses.Clear();
+        }
     }
 }
 

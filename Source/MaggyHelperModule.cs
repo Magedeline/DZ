@@ -29,6 +29,7 @@ namespace Celeste.Mod.MaggyHelper
         // Shared resources
         public static SpriteBank SpriteBank { get; set; }
         public static ParticleType P_StarExplosion { get; set; }
+        public static global::MaggyHelper.ProphecyFontRenderer ProphecyFont { get; private set; }
 
         public MaggyHelperModule()
         {
@@ -46,9 +47,20 @@ namespace Celeste.Mod.MaggyHelper
             global::MaggyHelper.VignetteHooks.Load();
             global::MaggyHelper.Cutscenes.IntroWarning.Load();
 
+            // Hook level exit to clean up static state
+            Everest.Events.Level.OnExit += OnLevelExit;
+
             // Reset credits launch flags
             LaunchPart1Credits = false;
             LaunchPart2Credits = false;
+        }
+
+        private static void OnLevelExit(Level level, LevelExit exit, LevelExit.Mode mode, Session session, HiresSnow snow)
+        {
+            global::MaggyHelper.Effects.IceEffects.ClearAll();
+            global::MaggyHelper.Effects.LightningEffects.ClearAll();
+            global::MaggyHelper.Effects.ElementalEffectsManager.StopAllEffects();
+            global::MaggyHelper.Entities.EnemyBossManager.Reset();
         }
 
         public override void Unload()
@@ -61,15 +73,20 @@ namespace Celeste.Mod.MaggyHelper
             global::MaggyHelper.AreaModeExtender.Unload();
             BossesExampleModule.Unload();
 
+            // Unhook level exit cleanup
+            Everest.Events.Level.OnExit -= OnLevelExit;
+
             // Reset credits state
             LaunchPart1Credits = false;
             LaunchPart2Credits = false;
+            ProphecyFont = null;
         }
 
         public override void LoadContent(bool firstLoad)
         {
             base.LoadContent(firstLoad);
             BossesExampleModule.LoadContent(firstLoad);
+            ProphecyFont = new global::MaggyHelper.ProphecyFontRenderer();
         }
 
         public static bool IsChapter17EpilogueCompleted()

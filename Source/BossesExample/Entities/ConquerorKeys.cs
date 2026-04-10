@@ -4,6 +4,8 @@
 // MVID: A006BC09-9B58-4275-A339-ACDC10C611D0
 // Assembly location: C:\Users\warsh\Downloads\conquerorpeak119\Code\ricky06ModPack.dll
 
+#pragma warning disable CS0618 // Engine.TimeRate is obsolete - decompiled third-party code
+
 using Celeste.Mod.Entities;
 using Microsoft.Xna.Framework;
 using Monocle;
@@ -77,7 +79,7 @@ public class ConquerorKeys : Entity
     this.Add((Component) (this.holdableCollider = new HoldableCollider(new Action<Holdable>(this.onHoldable), (Collider) null)));
   }
 
-  public virtual void Awake(Scene scene)
+  public override void Awake(Scene scene)
   {
     base.Awake(scene);
     this.level = this.SceneAs<Level>();
@@ -102,7 +104,7 @@ public class ConquerorKeys : Entity
     this.Add((Component) (this.bloom = new BloomPoint(0.75f, 16f)));
   }
 
-  public virtual void Update()
+  public override void Update()
   {
     base.Update();
     this.bounceSfxDelay -= Engine.DeltaTime;

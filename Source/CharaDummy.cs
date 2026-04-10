@@ -30,9 +30,22 @@ namespace MaggyHelper.Entities
         private const int DEFAULT_LIGHT_START_RADIUS = 20;
         private const int DEFAULT_LIGHT_END_RADIUS = 60;
 
+        // Dash color constants
+        private static readonly Color UsedHairColor = Calc.HexToColor("44B7FF");
+        private static readonly Color NormalHairColor = Calc.HexToColor("AC3232");
+        private static readonly Color TwoDashesHairColor = Calc.HexToColor("ff6def");
+        private static readonly Color TripleDashHairColor = Calc.HexToColor("ffa500");
+        private static readonly Color QuadDashHairColor = Calc.HexToColor("00ff88");
+        private static readonly Color PentaDashHairColor = Calc.HexToColor("00ccff");
+        private static readonly Color HexaDashHairColor = Calc.HexToColor("aa44ff");
+        private static readonly Color SeptaDashHairColor = Calc.HexToColor("ff2288");
+        private static readonly Color OctaDashHairColor = Calc.HexToColor("ffee00");
+        private static readonly Color NonaDashHairColor = Calc.HexToColor("22ffdd");
+        private static readonly Color DecaDashHairColor = Calc.HexToColor("ffffff");
+
         // Public properties with proper backing fields
         public Sprite Sprite { get; private set; }
-        public PlayerHair Hair { get; private set; }
+        public Image HairImage { get; private set; }
         public BadelineAutoAnimator AutoAnimator { get; private set; }
         public SineWave Wave { get; private set; }
         public VertexLight Light { get; private set; }
@@ -127,20 +140,19 @@ namespace MaggyHelper.Entities
 
         private void InitializeHair()
         {
-            // Skip hair initialization for now due to type compatibility issues
-            // The original implementation may have been using a different hair system
-            // TODO: Implement custom hair system compatible with PlayerSprite
             try
             {
-                // For now, we'll skip hair to avoid compilation errors
-                // Hair initialization would need a compatible PlayerHair implementation
-                Hair = null;
-                Logger.Log(LogLevel.Debug, "CharaDummy", "Hair initialization skipped - requires compatible implementation");
+                MTexture hairTexture = GFX.Game["characters/MaggyHelper/chara/hair00"];
+                HairImage = new Image(hairTexture);
+                HairImage.CenterOrigin();
+                HairImage.Position = new Vector2(0f, -8f);
+                HairImage.Color = NormalHairColor;
+                Add(HairImage);
             }
             catch (Exception ex)
             {
-                Logger.Log(LogLevel.Warn, "CharaDummy", $"Hair initialization failed: {ex.Message}");
-                Hair = null;
+                Logger.Log(LogLevel.Warn, "CharaDummy", $"Hair image initialization failed: {ex.Message}");
+                HairImage = null;
             }
         }
 
@@ -459,18 +471,50 @@ namespace MaggyHelper.Entities
             Sprite.Play("fallSlow");
         }
 
+        private static Color GetDashColor(int dashes)
+        {
+            return dashes switch
+            {
+                >= 10 => DecaDashHairColor,
+                9 => NonaDashHairColor,
+                8 => OctaDashHairColor,
+                7 => SeptaDashHairColor,
+                6 => HexaDashHairColor,
+                5 => PentaDashHairColor,
+                4 => QuadDashHairColor,
+                3 => TripleDashHairColor,
+                2 => TwoDashesHairColor,
+                _ => NormalHairColor,
+            };
+        }
+
+        private void UpdateHairColor()
+        {
+            if (HairImage == null) return;
+
+            Player player = Scene?.Tracker?.GetEntity<Player>();
+            if (player == null) return;
+
+            Color targetColor;
+            if (player.Dashes == 0 && player.Dashes < player.MaxDashes)
+                targetColor = UsedHairColor;
+            else
+                targetColor = GetDashColor(player.Dashes);
+
+            HairImage.Color = Color.Lerp(HairImage.Color, targetColor, 6f * Engine.DeltaTime);
+
+            // Flip hair image to match sprite facing
+            if (Sprite != null)
+                HairImage.Scale.X = Math.Sign(Sprite.Scale.X);
+        }
+
         public override void Update()
         {
             if (!isInitialized) return;
 
             try
             {
-                // Update hair facing based on sprite scale (if hair exists)
-                if (Sprite?.Scale.X != 0f && Hair != null)
-                {
-                    Hair.Facing = (Facings)Math.Sign(Sprite.Scale.X);
-                }
-
+                UpdateHairColor();
                 base.Update();
             }
             catch (Exception ex)

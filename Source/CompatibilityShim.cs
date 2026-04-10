@@ -96,7 +96,7 @@ namespace MaggyHelper
 
     public static class PlayerCharacter
     {
-        public static string NormalizeId(string? characterId)
+        public static string NormalizeId(string characterId)
         {
             if (string.IsNullOrWhiteSpace(characterId))
             {
@@ -605,7 +605,9 @@ namespace MaggyHelper.Extensions
         public static void SetTimeRateMultiplier(this TimeRateModifier modifier, float multiplier)
         {
             TimeRateStates.GetOrCreateValue(modifier).Value = multiplier;
+#pragma warning disable CS0618 // Engine.TimeRate used intentionally for backward compatibility
             Engine.TimeRate = multiplier;
+#pragma warning restore CS0618
         }
 
         public static void ResetTimeRateMultiplier(this TimeRateModifier modifier)

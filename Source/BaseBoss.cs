@@ -162,7 +162,12 @@ namespace MaggyHelper.Entities.Bosses
             
             // Flash effect
             if (sprite != null)
+            {
+                var originalColor = sprite.Color;
                 sprite.Color = Color.White;
+                Tween.Set(this, Tween.TweenMode.Oneshot, 0.15f, Ease.Linear,
+                    t => { if (sprite != null) sprite.Color = Color.Lerp(Color.White, originalColor, t.Percent); });
+            }
             
             // Knockback
             Audio.Play("event:/game/general/thing_booped", Position);
@@ -181,7 +186,7 @@ namespace MaggyHelper.Entities.Bosses
             // Update session and save data
             MaggyHelperModule.Session.BossFightActive = false;
             MaggyHelperModule.Session.BossesDefeated++;
-            MaggyHelperModule.SaveData.RecordBossDefeat(GetBossName());
+            MaggyHelperModule.SaveData?.RecordBossDefeat(GetBossName());
             
             // Restore music
             if (!string.IsNullOrEmpty(normalMusic))

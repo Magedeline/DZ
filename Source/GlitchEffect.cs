@@ -131,6 +131,12 @@ namespace MaggyHelper.Effects.ShaderEffects
             GlitchAmount = intensity;
             glitchDuration = duration;
         }
+
+        public override void Ended(Scene scene)
+        {
+            base.Ended(scene);
+            shader = null;
+        }
     }
 }
 

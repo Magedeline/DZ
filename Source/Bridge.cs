@@ -5,7 +5,7 @@ using Monocle;
 
 namespace MaggyHelper.Entities;
 
-    [CustomEntity(ids: "MaggyHelper/BridgeAgain")]
+    [CustomEntity("MaggyHelper/BridgeAgain")]
     [Monocle.Tracked]
     [HotReloadable]
 
@@ -74,7 +74,7 @@ public class Bridge : Entity
     {
         base.Added(scene);
         level = scene as Level;
-        if (!string.IsNullOrEmpty(getLevelFlag) && level.Session.GetLevelFlag(getLevelFlag))
+        if (!string.IsNullOrEmpty(getLevelFlag) && level.Session.GetFlag(getLevelFlag))
         {
             RemoveSelf();
             return;
@@ -180,6 +180,10 @@ public class Bridge : Entity
     public void StopCollapseLoop()
     {
         collapseSfx.Stop();
+        if (!string.IsNullOrEmpty(getLevelFlag))
+        {
+            level.Session.SetFlag(getLevelFlag);
+        }
     }
 
     public override void SceneEnd(Scene scene)

@@ -4,6 +4,8 @@
 // MVID: A006BC09-9B58-4275-A339-ACDC10C611D0
 // Assembly location: C:\Users\warsh\Downloads\conquerorpeak119\Code\ricky06ModPack.dll
 
+#pragma warning disable CS0618 // Engine.TimeRate is obsolete - decompiled third-party code
+
 using Microsoft.Xna.Framework;
 using Monocle;
 using System;

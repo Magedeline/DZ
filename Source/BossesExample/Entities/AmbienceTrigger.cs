@@ -23,7 +23,7 @@ internal class AmbienceTrigger : Trigger
     this.ambience = data.Attr(nameof (ambience), "");
   }
 
-  public virtual void OnEnter(Player player)
+  public override void OnEnter(Player player)
   {
     base.OnEnter(player);
     Session session = ((Entity) this).SceneAs<Level>().Session;

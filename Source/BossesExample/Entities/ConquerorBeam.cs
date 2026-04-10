@@ -71,9 +71,9 @@ internal class ConquerorBeam : Entity
     return this;
   }
 
-  public virtual void Added(Scene scene) => base.Added(scene);
+  public override void Added(Scene scene) => base.Added(scene);
 
-  public virtual void Update()
+  public override void Update()
   {
     base.Update();
     this.player = this.Scene.Tracker.GetEntity<Player>();
@@ -154,7 +154,7 @@ internal class ConquerorBeam : Entity
     this.boss.PlayerTakeDamage(player);
   }
 
-  public virtual void Render()
+  public override void Render()
   {
     Vector2 vector2 = ((Entity) this.boss).Center;
     Vector2 vector = Calc.AngleToVector(this.angle, ((Image) this.beamSprite).Width);

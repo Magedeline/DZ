@@ -86,7 +86,7 @@ public class DarkLightningRenderer : Entity
     On.Celeste.LevelLoader.LoadingThread -= onLevelLoadingThread;
   }
 
-  public virtual void Awake(Scene scene)
+  public override void Awake(Scene scene)
   {
     base.Awake(scene);
     for (int index = 0; index < 4; ++index)
@@ -145,7 +145,7 @@ public class DarkLightningRenderer : Entity
     this.dirty = true;
   }
 
-  public virtual void Update()
+  public override void Update()
   {
     if (this.dirty)
       this.RebuildEdges();

@@ -198,11 +198,6 @@ namespace MaggyHelper.Entities
             charaMirror.smashEnded = true;
             charaMirror.chara = new CharaDummy(charaMirror.reflection.Position + charaMirror.Position - charaMirror.breakingGlass.Origin);
             charaMirror.chara.Floatness = 0.0f;
-            if (charaMirror.chara.Hair != null && charaMirror.reflectionHair != null)
-            {
-                for (int index = 0; index < charaMirror.chara.Hair.Nodes.Count; ++index)
-                    charaMirror.chara.Hair.Nodes[index] = charaMirror.reflectionHair.Nodes[index];
-            }
             charaMirror.Scene.Add(charaMirror.chara);
             charaMirror.chara.Sprite.Play("idle");
             charaMirror.chara.Sprite.Scale = charaMirror.reflectionSprite.Scale;
@@ -247,11 +242,17 @@ namespace MaggyHelper.Entities
 
         public override void Render()
         {
-            if (smashed)
-                breakingGlass.Render();
-            else
-                Draw.SpriteBatch.Draw(mirror.Target, Position - breakingGlass.Origin, Color.White * reflectionAlpha);
-            frame.Render();
+            try
+            {
+                if (smashed)
+                    breakingGlass?.Render();
+                else if (mirror?.Target != null && breakingGlass != null)
+                    Draw.SpriteBatch.Draw(mirror.Target, Position - breakingGlass.Origin, Color.White * reflectionAlpha);
+                frame?.Render();
+            }
+            catch (Exception)
+            {
+            }
         }
 
         public override void SceneEnd(Scene scene)

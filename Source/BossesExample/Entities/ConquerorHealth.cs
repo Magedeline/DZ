@@ -37,7 +37,7 @@ internal class ConquerorHealth : Entity
       this.healthSliceList.Add(new ConquerorHealth.HealthSlice(tag));
   }
 
-  public virtual void Awake(Scene scene)
+  public override void Awake(Scene scene)
   {
     base.Awake(scene);
     this.level = this.SceneAs<Level>();
@@ -70,7 +70,7 @@ internal class ConquerorHealth : Entity
     this.healthSliceList.RemoveAt(this.healthSliceList.Count - 1);
   }
 
-  public virtual void Render()
+  public override void Render()
   {
     base.Render();
     if (this.Scene.Paused)
@@ -104,7 +104,7 @@ internal class ConquerorHealth : Entity
       this.RemoveSelf();
     }
 
-    public virtual void Render()
+    public override void Render()
     {
       base.Render();
       if (this.Scene.Paused)

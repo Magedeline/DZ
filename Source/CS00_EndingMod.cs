@@ -8,6 +8,7 @@ using Monocle;
 
 namespace MaggyHelper.Cutscenes;
 
+[Tracked(false)]
 public class CS00_EndingMod : CutsceneEntity
 {
     private class EndingCutsceneDelay : Entity

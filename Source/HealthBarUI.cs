@@ -82,6 +82,7 @@ namespace MaggyHelper.Entities
                 {
                     currentHealth = healthManager.CurrentHP;
                     maxHealth = healthManager.MaxHP;
+                    displayHealth = currentHealth;
                     healthManager.OnHealthChanged += OnHealthChanged;
                 }
             }
@@ -139,6 +140,24 @@ namespace MaggyHelper.Entities
         /// Get color based on health percentage.
         /// Green (75%+) → Yellow (25-75%) → Red (<25%)
         /// </summary>
+        public override void Removed(Scene scene)
+        {
+            if (healthManager != null)
+            {
+                healthManager.OnHealthChanged -= OnHealthChanged;
+            }
+            base.Removed(scene);
+        }
+
+        public override void SceneEnd(Scene scene)
+        {
+            if (healthManager != null)
+            {
+                healthManager.OnHealthChanged -= OnHealthChanged;
+            }
+            base.SceneEnd(scene);
+        }
+
         private Color GetHealthColor(float healthPercent)
         {
             if (healthPercent >= 0.75f)

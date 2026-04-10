@@ -51,6 +51,14 @@ public class AreaComplete : Scene
 
     private float buttonTimerEase;
 
+    private string subtitleText;
+
+    private float subtitleEase;
+
+    private float subtitleDelay = 1.5f;
+
+    private float subtitleWaveTime;
+
     [MethodImpl(MethodImplOptions.NoInlining)]
     public AreaComplete(Session session, XmlElement xml, Atlas atlas, HiresSnow snow, MapMetaCompleteScreen meta)
     {
@@ -67,6 +75,10 @@ public class AreaComplete : Scene
             float scale = Math.Min(1600f / ActiveFont.Measure(text).X, 3f);
             title = new AreaCompleteTitle(origin, text, scale);
         }
+        // Resolve prophecy subtitle text for this chapter
+        string subtitleKey = GetSubtitleDialogKey();
+        if (subtitleKey != null && Dialog.Has(subtitleKey))
+            subtitleText = Dialog.Clean(subtitleKey);
         Add(complete = new CompleteRenderer(xml, atlas, 1f, delegate
         {
             finishedSlide = true;
@@ -76,6 +88,7 @@ public class AreaComplete : Scene
             complete.RenderUI = delegate
             {
                 title.DrawLineUI();
+                RenderSubtitle();
             };
         }
         complete.RenderPostUI = RenderUI;
@@ -113,6 +126,7 @@ public class AreaComplete : Scene
             return;
         }
         MTexture mTexture = Input.GuiButton(Input.MenuConfirm, Input.PrefixMode.Latest, null);
+        if (mTexture == null) return;
         Vector2 vector = new Vector2(1860f - (float)mTexture.Width, 1020f - (float)mTexture.Height);
         float num = buttonTimerEase * buttonTimerEase;
         float num2 = 0.9f + buttonTimerEase * 0.1f;
@@ -343,6 +357,13 @@ public class AreaComplete : Scene
         {
             title.Update();
         }
+        // Animate prophecy subtitle ease-in
+        subtitleWaveTime += Engine.DeltaTime;
+        subtitleDelay -= Engine.DeltaTime;
+        if (subtitleDelay <= 0f)
+        {
+            subtitleEase = Calc.Approach(subtitleEase, 1f, Engine.DeltaTime * 2f);
+        }
         if (CelesteGame.PlayMode == CelesteGame.PlayModes.Debug)
         {
             if (MInput.Keyboard.Pressed(Keys.F2))
@@ -424,6 +445,39 @@ public class AreaComplete : Scene
         string modeName = AreaModeExtender.GetModeName((int) Session.Area.Mode);
         string fullClearSuffix = Session.FullClear ? "_fullclear" : string.Empty;
         return Dialog.Clean($"areacomplete_{modeName}{fullClearSuffix}");
+    }
+
+    private void RenderSubtitle()
+    {
+        if (subtitleText == null || !(subtitleEase > 0f))
+            return;
+
+        float alpha = Ease.CubeOut(subtitleEase);
+        Vector2 subtitlePos = new Vector2(960f, 280f);
+        ProphecyFontRenderer font = MaggyHelperModule.ProphecyFont;
+        if (font != null)
+        {
+            font.DrawWavyOutline(
+                subtitleText, subtitlePos, new Vector2(0.5f, 0f),
+                1.2f, Color.Gold * alpha, 2f, Color.Black * alpha * 0.8f,
+                subtitleWaveTime, 2f, 3f);
+        }
+        else
+        {
+            // Fallback to ActiveFont if prophecy font not loaded
+            ActiveFont.DrawOutline(
+                subtitleText, subtitlePos, new Vector2(0.5f, 0f),
+                Vector2.One * 0.7f, Color.Gold * alpha, 2f, Color.Black * alpha * 0.8f);
+        }
+    }
+
+    private string GetSubtitleDialogKey()
+    {
+        if (!AreaModeExtender.TryParseMainSideSID(Session.Area.SID, out string baseKey, out _))
+            return null;
+
+        string key = $"COMPLETE_SUBTITLE_{baseKey}";
+        return Dialog.Has(key) ? key : null;
     }
 }
 

@@ -103,6 +103,8 @@ namespace MaggyHelper.Cutscenes
                     textCoroutine?.Update();
                     if (Input.Pause.Pressed || Input.ESC.Pressed)
                     {
+                        Input.Pause.ConsumePress();
+                        Input.ESC.ConsumePress();
                         OpenMenu();
                     }
                 }

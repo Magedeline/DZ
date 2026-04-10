@@ -121,6 +121,7 @@ namespace MaggyHelper.Entities
             Tier = (BossTier)data.Int("tier", 1);
             Gimmick = (GimmickAbility)data.Int("gimmick", 0);
             MaxHealth = calculateHealthByTier(Tier, data.Int("health", 0));
+            if (MaxHealth <= 0) MaxHealth = 100; // Prevent division by zero
             Health = MaxHealth;
             Speed = data.Float("speed", calculateSpeedByTier(Tier));
             arenaRadius = data.Float(nameof(arenaRadius), 200f);
@@ -219,7 +220,7 @@ namespace MaggyHelper.Entities
         
         private void checkPhaseTransitions()
         {
-            if (IsDefeated || CurrentPhase == BossPhase.Transition) return;
+            if (IsDefeated || CurrentPhase == BossPhase.Transition || MaxHealth <= 0) return;
             
             int healthPercentage = (Health * 100) / MaxHealth;
             
@@ -419,6 +420,7 @@ namespace MaggyHelper.Entities
         
         private BossPhase getNextPhaseAfterTransition()
         {
+            if (MaxHealth <= 0) return BossPhase.Defeated;
             int healthPercentage = (Health * 100) / MaxHealth;
             
             if (healthPercentage > 66) return BossPhase.Phase1;
@@ -562,13 +564,24 @@ namespace MaggyHelper.Entities
             }
         }
         
+        public override void Removed(Scene scene)
+        {
+            // Always reset time rate on removal to prevent permanent slowdown
+            if (Gimmick == GimmickAbility.TimeFreeze && IsInGimmickMode)
+            {
+                timeRateModifier.ResetTimeRateMultiplier();
+            }
+            IsInGimmickMode = false;
+            base.Removed(scene);
+        }
+        
         #endregion
         
         public virtual void TakeDamage(int damage)
         {
             if (IsInvulnerable || IsDefeated) return;
             
-            Health -= damage;
+            Health = Math.Max(0, Health - damage);
             
             if (Health <= 0)
             {

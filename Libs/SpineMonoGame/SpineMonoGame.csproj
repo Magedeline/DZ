@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>SpineMonoGame</AssemblyName>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <!-- Suppress warning about FNA reference not being copy-local -->
+    <NoWarn>MSB3245;MSB3277</NoWarn>
+  </PropertyGroup>
+
+  <!-- Reference FNA.dll from the Celeste install (same logic as the main mod project) -->
+  <PropertyGroup>
+    <!-- ..\..\..\..\  goes: SpineMonoGame -> Libs -> MaggyHelper -> Mods -> Celeste Desolo Zantas (Celeste root) -->
+    <CelestePrefix Condition="'$(CelestePrefix)' == '' And Exists('..\..\..\..\Celeste.dll')">..\..\..\..</CelestePrefix>
+    <!-- Fallback: use stripped libs from Source/lib-stripped relative to this project -->
+    <CelestePrefix Condition="'$(CelestePrefix)' == ''">..\..\Source\lib-stripped</CelestePrefix>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="$(CelestePrefix)\FNA.dll" Private="false" />
+  </ItemGroup>
+
+  <!-- SDK auto-includes all *.cs under spine-csharp\ and src\ -->
+
+</Project>

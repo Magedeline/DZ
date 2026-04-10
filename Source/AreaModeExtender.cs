@@ -473,9 +473,6 @@ public static class AreaModeExtender
         if (unlockedMode >= TOTAL_MODES)
             return;
 
-        if (unlockedMode >= MODE_DSIDE)
-            return;
-
         if (area.Mode == null || unlockedMode >= area.Mode.Length || area.Mode[unlockedMode] == null)
             return;
 
@@ -1046,18 +1043,7 @@ public static class AreaModeExtender
         if (saveData == null)
             return false;
 
-        if (modeIndex >= MODE_DSIDE)
-        {
-            if (!HasDebugOrCheatExtendedSideAccess(saveData))
-                return false;
-
-            AreaData areaData = AreaData.Get(area);
-            return areaData?.Mode != null
-                && modeIndex < areaData.Mode.Length
-                && areaData.Mode[modeIndex] != null;
-        }
-
-        if (saveData.CheatMode)
+        if (saveData.CheatMode || HasDebugOrCheatExtendedSideAccess(saveData))
             return true;
 
         if (TryGetSaveAreaStats(area) == null)
@@ -1188,7 +1174,7 @@ public static class AreaModeExtender
     /// baseKey: The map name (e.g., "01_City")
     /// sideFolder: The side folder name (e.g., "ASide", "BSide", "DSide")
     /// </summary>
-    private static bool TryParseMainSideSID(string sid, out string baseKey, out string sideFolder)
+    internal static bool TryParseMainSideSID(string sid, out string baseKey, out string sideFolder)
     {
         baseKey = null;
         sideFolder = null;

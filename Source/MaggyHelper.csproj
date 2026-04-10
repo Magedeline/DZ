@@ -9,6 +9,7 @@
         <CelestePrefix Condition="'$(CelestePrefix)' == '' And Exists('..\..\..\Celeste.dll')">..\..\..</CelestePrefix>
         <CelestePrefix Condition="'$(CelestePrefix)' == ''">lib-stripped</CelestePrefix>
         <ZippedFiles>..\everest.yaml;..\bin\**\*.*;..\Audio\**\*.*;..\Dialog\**\*.*;..\Graphics\**\*.*;..\Ahorn\**\*.*;..\Loenn\**\*.*</ZippedFiles>
+        <NoWarn>NU1701</NoWarn>
     </PropertyGroup>
 
     <!--Disable copy-local for direct assembly references only. Package runtime assets are needed by Everest at load time. -->
@@ -28,12 +29,18 @@
         <PackageReference Include="Mono.Cecil" Version="0.11.6" />
         <PackageReference Include="CelesteAnalyzer" Version="*" />
         <PackageReference Include="YamlDotNet" Version="16.2.1" />
+        <!-- Physics2D: pure C# Box2D port, no native deps -->
+        <PackageReference Include="nkast.Aether.Physics2D" Version="2.0.0" />
+        <!-- ImGui.NET: Dear ImGui wrapper; ships cimgui.dll native binary -->
+        <PackageReference Include="ImGui.NET" Version="1.91.6.1" />
     </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="CelesteMod.Publicizer" Version="1.1.2" CelesteAssembly="$(CelestePrefix)\Celeste.dll" />
         <Reference Include="$(CelestePrefix)\MMHOOK_Celeste.dll" Private="false" />
         <Reference Include="$(CelestePrefix)\FNA.dll" Private="false" />
+        <!-- Spine MonoGame/FNA runtime (source-only, built from Libs/SpineMonoGame) -->
+        <ProjectReference Include="..\Libs\SpineMonoGame\SpineMonoGame.csproj" />
     </ItemGroup>
 
     <Target Name="CopyFiles" AfterTargets="Build">
@@ -41,7 +48,9 @@
             <FilesToCopy Include="$(OutputPath)\$(AssemblyName).dll" />
             <FilesToCopy Include="$(OutputPath)\$(AssemblyName).pdb" />
             <FilesToCopy Include="lib-stripped\MaggyHelper.xml" Condition="Exists('lib-stripped\MaggyHelper.xml')" />
-            <FilesToCopy Include="@(ReferenceCopyLocalPaths)" Condition="'%(Filename)' == 'YamlDotNet' Or '%(Filename)' == 'Mono.Cecil' Or '%(Filename)' == 'Mono.Cecil.Mdb' Or '%(Filename)' == 'Mono.Cecil.Pdb' Or '%(Filename)' == 'Mono.Cecil.Rocks' Or '%(Filename)' == 'MonoMod.RuntimeDetour' Or '%(Filename)' == 'MonoMod.Utils' Or '%(Filename)' == 'MonoMod.Backports' Or '%(Filename)' == 'MonoMod.Core' Or '%(Filename)' == 'MonoMod.ILHelpers' Or '%(Filename)' == 'MonoMod.Iced'" />
+            <FilesToCopy Include="@(ReferenceCopyLocalPaths)" Condition="'%(Filename)' == 'YamlDotNet' Or '%(Filename)' == 'Mono.Cecil' Or '%(Filename)' == 'Mono.Cecil.Mdb' Or '%(Filename)' == 'Mono.Cecil.Pdb' Or '%(Filename)' == 'Mono.Cecil.Rocks' Or '%(Filename)' == 'MonoMod.RuntimeDetour' Or '%(Filename)' == 'MonoMod.Utils' Or '%(Filename)' == 'MonoMod.Backports' Or '%(Filename)' == 'MonoMod.Core' Or '%(Filename)' == 'MonoMod.ILHelpers' Or '%(Filename)' == 'MonoMod.Iced' Or '%(Filename)' == 'Aether.Physics2D' Or '%(Filename)' == 'ImGui.NET' Or '%(Filename)' == 'SpineMonoGame'" />
+            <!-- Copy native cimgui.dll (ImGui.NET dependency) to bin -->
+            <FilesToCopy Include="$(OutputPath)cimgui.dll" Condition="Exists('$(OutputPath)cimgui.dll')" />
         </ItemGroup>
 
         <Copy SourceFiles="@(FilesToCopy)" DestinationFolder="..\bin" SkipUnchangedFiles="true" />

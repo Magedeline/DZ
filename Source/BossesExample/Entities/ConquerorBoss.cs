@@ -4,6 +4,8 @@
 // MVID: A006BC09-9B58-4275-A339-ACDC10C611D0
 // Assembly location: C:\Users\warsh\Downloads\conquerorpeak119\Code\ricky06ModPack.dll
 
+#pragma warning disable CS0618 // Engine.TimeRate is obsolete - decompiled third-party code
+
 using Celeste.Mod.Entities;
 using Microsoft.Xna.Framework;
 using Monocle;
@@ -232,9 +234,9 @@ public class ConquerorBoss : Actor
   {
   }
 
-  public virtual void Awake(Scene scene)
+  public override void Awake(Scene scene)
   {
-    ((Entity) this).Awake(scene);
+    base.Awake(scene);
     this.startTime = ((Entity) this).SceneAs<Level>().Session.Time;
   }
 
@@ -248,7 +250,7 @@ public class ConquerorBoss : Actor
     this.shakeTimer -= Engine.DeltaTime;
   }
 
-  public virtual void Update()
+  public override void Update()
   {
     base.Update();
     Engine.TimeRate = 1f;
@@ -264,9 +266,9 @@ public class ConquerorBoss : Actor
     ((GraphicsComponent) this.Sprite).Scale.Y = MathHelper.Lerp(((GraphicsComponent) this.Sprite).Scale.Y, 1f, 0.1f);
   }
 
-  public virtual void Added(Scene scene)
+  public override void Added(Scene scene)
   {
-    ((Entity) this).Added(scene);
+    base.Added(scene);
     this.level = ((Entity) this).SceneAs<Level>();
     if (this.Phase == 1)
       ((Entity) this).Y = this.TargetY;
@@ -990,7 +992,7 @@ public class ConquerorBoss : Actor
     ((Scene) this.level).Remove((Entity) this);
   }
 
-  public virtual void Render()
+  public override void Render()
   {
     if (this.lightningVisible)
     {
@@ -1005,9 +1007,9 @@ public class ConquerorBoss : Actor
     ((Entity) this).Render();
   }
 
-  public virtual void Removed(Scene scene)
+  public override void Removed(Scene scene)
   {
-    ((Entity) this).Removed(scene);
+    base.Removed(scene);
     Glitch.Value = 0.0f;
     this.FixThings();
   }

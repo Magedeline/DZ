@@ -523,6 +523,14 @@ namespace MaggyHelper.Effects
                 }
             }
         }
+
+        /// <summary>
+        /// Clear all charged entity state. Call on level transitions to prevent leaks.
+        /// </summary>
+        public static void ClearAll()
+        {
+            chargedEntities.Clear();
+        }
     }
 
     /// <summary>

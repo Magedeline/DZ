@@ -466,6 +466,15 @@ namespace MaggyHelper.Effects
                 }
             }
         }
+
+        /// <summary>
+        /// Clear all frozen entity state. Call on level transitions to prevent leaks.
+        /// </summary>
+        public static void ClearAll()
+        {
+            frozenEntities.Clear();
+            lastUpdateTime = 0f;
+        }
     }
 
     /// <summary>

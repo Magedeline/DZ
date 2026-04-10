@@ -122,6 +122,12 @@ namespace MaggyHelper.Effects.ShaderEffects
                 IngesteLogger.Error(string.Format("Error rendering DistortionEffect: {0}", ex.Message));
             }
         }
+
+        public override void Ended(Scene scene)
+        {
+            base.Ended(scene);
+            shader = null;
+        }
     }
 }
 

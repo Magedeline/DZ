@@ -312,7 +312,7 @@ namespace MaggyHelper.Entities
             );
             
             // Health fill
-            float healthWidth = (displayedHealth / maxHealth) * BAR_WIDTH;
+            float healthWidth = maxHealth > 0 ? (displayedHealth / maxHealth) * BAR_WIDTH : 0f;
             if (healthWidth > 0)
             {
                 Color healthColor = GetHealthColor();
@@ -340,7 +340,7 @@ namespace MaggyHelper.Entities
             // Damage indicator (shows recently lost health in different color)
             if (displayedHealth < previousHealth)
             {
-                float damageWidth = ((previousHealth - displayedHealth) / maxHealth) * BAR_WIDTH;
+                float damageWidth = maxHealth > 0 ? ((previousHealth - displayedHealth) / maxHealth) * BAR_WIDTH : 0f;
                 Draw.Rect(
                     position.X + healthWidth, 
                     position.Y, 

@@ -65,6 +65,8 @@ namespace MaggyHelper.Effects.ShaderEffects
         {
             if (lutName != lutTextureName)
             {
+                lutTexture?.Dispose();
+                lutTexture = null;
                 lutName = lutTextureName;
                 LoadLUTTexture(lutTextureName);
             }
@@ -136,6 +138,14 @@ namespace MaggyHelper.Effects.ShaderEffects
             {
                 IngesteLogger.Error(string.Format("Error rendering ColorGradeEffect: {0}", ex.Message));
             }
+        }
+
+        public override void Ended(Scene scene)
+        {
+            base.Ended(scene);
+            lutTexture?.Dispose();
+            lutTexture = null;
+            shader = null;
         }
     }
 }

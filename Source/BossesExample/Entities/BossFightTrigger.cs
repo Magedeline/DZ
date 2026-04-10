@@ -26,19 +26,19 @@ internal class BossFightTrigger : Trigger
     this.hardMode = data.Bool("hard", false);
   }
 
-  public virtual void Added(Scene scene)
+  public override void Added(Scene scene)
   {
-    ((Entity) this).Added(scene);
+    base.Added(scene);
     this.level = ((Entity) this).SceneAs<Level>();
   }
 
-  public virtual void OnEnter(Player player)
+  public override void OnEnter(Player player)
   {
     base.OnEnter(player);
     this.level.Session.Inventory.Dashes = 2;
   }
 
-  public virtual void OnLeave(Player player)
+  public override void OnLeave(Player player)
   {
     base.OnLeave(player);
     if (this.firstTime)

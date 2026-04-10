@@ -876,6 +876,29 @@ AREACOMPLETE_DSIDE_FULLCLEAR=D-Side Full Clear
 AREACOMPLETE_DXSIDE_FULLCLEAR=DX-Side Full Clear
 
 # ================================
+# Chapter Completion Prophecy Subtitles
+# (Jambuhbastion Dual-Prophecy Lore)
+# ================================
+COMPLETE_SUBTITLE_01_CITY=The mountain speaks in tongues forgotten by the waking world
+COMPLETE_SUBTITLE_02_NIGHTMARE=In shadow's veil, the first prophecy whispers its fractured name
+COMPLETE_SUBTITLE_03_STARS=Through starlit gates, the twin prophecies once sang as one
+COMPLETE_SUBTITLE_04_LEGEND=The chronicles remember when Jambuhbastion held both truths together
+COMPLETE_SUBTITLE_05_RESTORE=What was shattered may yet be restored, piece by shining piece
+COMPLETE_SUBTITLE_06_STRONGHOLD=Within these walls, the old prophecy still guards its silent vigil
+COMPLETE_SUBTITLE_07_HELL=The void remembers what the flame forgets
+COMPLETE_SUBTITLE_09_SUMMIT=At the apex, two paths diverge into the astral birth void
+COMPLETE_SUBTITLE_10_RUINS=Two prophecies that were once one echo through the ancient stone
+COMPLETE_SUBTITLE_11_SNOW=Frozen between realities, the path of reincarnation endures
+COMPLETE_SUBTITLE_12_WATER=The depths conceal where the twin prophecies first broke apart
+COMPLETE_SUBTITLE_13_FIRE=Ash carries the memory of what once burned as a single prophecy
+COMPLETE_SUBTITLE_14_DIGITAL=Every signal is a fragment of the original Jambuhbastion code
+COMPLETE_SUBTITLE_15_CASTLE=The citadel stands where the astral birth void first opened
+COMPLETE_SUBTITLE_16_CORRUPTION=From despair, the garden of the final prophecy blooms anew
+COMPLETE_SUBTITLE_18_HEART=At the core, two halves of prophecy beat as one reborn heart
+COMPLETE_SUBTITLE_19_SPACE=The stars remember the day Jambuhbastion split into two
+COMPLETE_SUBTITLE_20_THEEND=The new found reincarnation astral birth void yields its final truth
+
+# ================================
 # AltSidesHelper Labels (UnlockMode UI)
 # ================================
 Maggy_overworld_remix3=D-SIDE
@@ -1064,6 +1087,9 @@ INTRO_PRESENTS_CREATOR=MAGEDELINE
 INTRO_PRESENTS_WORD=PRESENTS
 INTRO_PRESENTS_TITLE=DESOLO ZANTAS
 INTROPRESENTS_SKIP=Press any button to skip
+
+INTRO_VIGNETTE_RESUME=Resume
+INTRO_VIGNETTE_SKIP=Skip Cutscene
 
 INTRO_DISCLAIMER_HEADER=FALSE ALLEGATION WARNING
 INTRO_DISCLAIMER_LINE1=This is a fan-made mod and is not affiliated with the original creators of Celeste or any other media referenced within.

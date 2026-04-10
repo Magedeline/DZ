@@ -147,7 +147,7 @@ public class CustomMoveBlock : Solid
   {
   }
 
-  public virtual void Awake(Scene scene)
+  public override void Awake(Scene scene)
   {
     base.Awake(scene);
     scene.Add((Entity) (this.border = new CustomMoveBlock.Border(this)));
@@ -374,7 +374,7 @@ label_43:
     }
   }
 
-  public virtual void Update()
+  public override void Update()
   {
     base.Update();
     if (this.canSteer)
@@ -403,9 +403,9 @@ label_43:
     this.UpdateColors();
   }
 
-  public virtual void OnStaticMoverTrigger(StaticMover sm) => this.triggered = true;
+  public override void OnStaticMoverTrigger(StaticMover sm) => this.triggered = true;
 
-  public virtual void MoveHExact(int move)
+  public override void MoveHExact(int move)
   {
     if (this.noSquish != null && (move < 0 && (double) ((Entity) this.noSquish).X < (double) ((Entity) this).X || move > 0 && (double) ((Entity) this.noSquish).X > (double) ((Entity) this).X))
     {
@@ -415,7 +415,7 @@ label_43:
     base.MoveHExact(move);
   }
 
-  public virtual void MoveVExact(int move)
+  public override void MoveVExact(int move)
   {
     if (this.noSquish != null && move < 0 && (double) ((Entity) this.noSquish).Y <= (double) ((Entity) this).Y)
     {
@@ -502,7 +502,7 @@ label_43:
       image.Visible = visible;
   }
 
-  public virtual void Render()
+  public override void Render()
   {
     Vector2 position = ((Entity) this).Position;
     ((Entity) this).Position = ((((Entity) this).Position) + (((Platform) this).Shake));
@@ -648,14 +648,14 @@ label_43:
       this.Depth = 1;
     }
 
-    public virtual void Update()
+    public override void Update()
     {
       if (((Entity) this.Parent).Scene != this.Scene)
         this.RemoveSelf();
       base.Update();
     }
 
-    public virtual void Render()
+    public override void Render()
     {
       Draw.Rect((float) ((double) ((Entity) this.Parent).X + (double) ((Platform) this.Parent).Shake.X - 1.0), (float) ((double) ((Entity) this.Parent).Y + (double) ((Platform) this.Parent).Shake.Y - 1.0), ((Entity) this.Parent).Width + 2f, ((Entity) this.Parent).Height + 2f, Color.Black);
     }
@@ -692,7 +692,7 @@ label_43:
       this.onCollideV = new Collision(this.OnCollideV);
     }
 
-    protected virtual void OnSquish(CollisionData data)
+    public override void OnSquish(CollisionData data)
     {
     }
 
@@ -736,7 +736,7 @@ label_43:
       return this;
     }
 
-    public virtual void Update()
+    public override void Update()
     {
       base.Update();
       if (!this.returning)

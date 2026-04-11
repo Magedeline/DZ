@@ -1,0 +1,286 @@
+%% ═══════════════════════════════════════════════════════════════
+%% DESOLO ZANTAS — Full Mod Architecture (MaggyHelper v3.0.0)
+%% ═══════════════════════════════════════════════════════════════
+
+graph TB
+    %% ──────────────── ROOT ────────────────
+    ROOT["🎮 Desolo Zantas<br/><i>MaggyHelper v3.0.0</i>"]
+
+    ROOT --> ASIDE["A-Side<br/>21 Chapters"]
+    ROOT --> BSIDE["B-Side<br/>16 Chapters"]
+    ROOT --> CSIDE["C-Side<br/>16 Chapters"]
+    ROOT --> DSIDE["D-Side<br/>16 Chapters"]
+    ROOT --> DXSIDE["DX-Side<br/>17 Chapters"]
+    ROOT --> LOBBIES["Lobbies<br/>Ch10–14"]
+    ROOT --> SUBMAPS["SmallMaps<br/>Ch10 Fragments"]
+    ROOT --> WIP["WIP<br/>kirbytest / test"]
+    ROOT --> MECHANICS["Custom Mechanics"]
+    ROOT --> KIRBYPLAN["Kirby Player Plan"]
+
+    %% ──────────────── ACT I ────────────────
+    subgraph ACT1["ACT I — Madeline's Journey (Ch 0–9)"]
+        direction TB
+        CH00["CH00 — Prologue<br/>Tutorial Rooms<br/><i>CS00_IntroVignette</i>"]
+        CH01["CH01 — Forbidden Metropolis<br/><i>City</i><br/>NPCs: Theo, Maggy"]
+        CH02["CH02 — Veil of Shadows<br/><i>Nightmare</i><br/>Dream Blocks, Chara Intro"]
+        CH03["CH03 — Arrival<br/><i>Stars</i><br/>CS03_IntroVignette"]
+        CH04["CH04 — Chronicles of Destiny<br/><i>Legend</i><br/>Chara Warning, Escape"]
+        CH05["CH05 — Fractured Memories<br/><i>Restore</i><br/>Oshiro Hotel, Magolorr"]
+        CH06["CH06 — Fortress of Solitude<br/><i>Stronghold</i><br/>Gondola, Theo"]
+        CH07["CH07 — Infernal Reflections<br/><i>Hell</i><br/>Genocide Visions"]
+        CH08["CH08 — Revelation's Edge<br/><i>Truth</i><br/>⚔️ CHARA BOSS BATTLE"]
+        CH09["CH09 — Apex of Reality<br/><i>Summit</i><br/>Summit Climb, Credits"]
+
+        CH00 --> CH01 --> CH02 --> CH03 --> CH04
+        CH04 --> CH05 --> CH06 --> CH07 --> CH08 --> CH09
+    end
+    ASIDE --> ACT1
+
+    %% ──────────────── ACT II ────────────────
+    subgraph ACT2["ACT II — Undertale Crossover Arc (Ch 10–15)"]
+        direction TB
+        CH10["CH10 — Echoes of the Past<br/><i>Ruins</i><br/>Hub + 6 Fragments + EX + Boss<br/>NPCs: Toriel, Flowey, Chara"]
+        CH11["CH11 — Frozen Sanctuary<br/><i>Snow / Snowdin</i><br/>Hub + 6 Shards + EX + Boss<br/>NPCs: Marlet, Theo"]
+        CH12["CH12 — Cascading Depths<br/><i>Water / Wateredge</i><br/>Hub + 6 Shards + EX + Boss<br/>Boss: Coral Titan"]
+        CH13["CH13 — Blazing Territories<br/><i>Fire / Hotcliffland</i><br/>Hub + 6 Shards + EX + Boss<br/>Boss: Inferno Lord"]
+        CH14["CH14 — Cyber Nexus<br/><i>Digital</i><br/>Hub + 6 Byte Shards + EX + Boss<br/>Boss: Queen's Core"]
+        CH15["CH15 — Ethereal Citadel<br/><i>Castle</i><br/>KingTitanBoss<br/>Judgement, Zantas"]
+
+        CH10 --> CH11 --> CH12 --> CH13 --> CH14 --> CH15
+    end
+    ASIDE --> ACT2
+
+    %% ──────────────── ACT III ────────────────
+    subgraph ACT3["ACT III — Corruption & Beyond (Ch 16–21)"]
+        direction TB
+        CH16["CH16 — Organ Garden of Despair<br/><i>Corruption</i><br/>BarrierBreak, SaveFileBattle<br/>Els Intro/Finale"]
+        CH17["CH17 — Final Resonance<br/><i>Epilogue</i><br/>NPC: Kirby, Oshiro, Ralsei<br/>Theo, Toriel"]
+        CH18["CH18 — Core of Existence<br/><i>Heart</i><br/>Lava/Ice Toggle<br/>InfernoMirror"]
+        CH19["CH19 — Farewell to Stars<br/><i>Space</i><br/>Another Dimension<br/>FlingBird, EdgeOfUniverse"]
+        CH20["CH20 — The Last Push<br/><i>The End</i><br/>⚔️ TRUE FINAL BOSS GAUNTLET"]
+        CH21["CH21 — Post Respite<br/><i>Post-Epilogue</i><br/>Beaches, Credits"]
+
+        CH16 --> CH17 --> CH18 --> CH19 --> CH20 --> CH21
+    end
+    ASIDE --> ACT3
+
+    %% ──────────────── CH10 LOBBY DETAIL ────────────────
+    subgraph LOBBY10["Ch10 Ruins Lobby Structure"]
+        direction LR
+        L10HUB["Ruins Lobby<br/>Hub Room"]
+        L10SM1["Fragment I"]
+        L10SM2["Fragment II"]
+        L10SM3["Fragment III"]
+        L10SM4["Fragment IV"]
+        L10SM5["Fragment V"]
+        L10SM6["Fragment VI"]
+        L10EX["Hidden Relic<br/><i>Complete all 6 to unlock</i>"]
+        L10BOSS["Ancient Warden<br/><i>Boss Room</i>"]
+
+        L10HUB --> L10SM1
+        L10HUB --> L10SM2
+        L10HUB --> L10SM3
+        L10HUB --> L10SM4
+        L10HUB --> L10SM5
+        L10HUB --> L10SM6
+        L10HUB --> L10EX
+        L10HUB --> L10BOSS
+    end
+    LOBBIES --> LOBBY10
+
+    subgraph LOBBY_OTHERS["Ch11–14 Lobbies (same structure)"]
+        direction LR
+        L11["Snowdin City<br/>6 Shards + Frozen Cache<br/>Boss: Glacier Guardian"]
+        L12["Wateredgefalls<br/>6 Shards + Temmie Treasure<br/>Boss: Coral Titan"]
+        L13["Hotcliffland<br/>6 Shards + Lava Cache<br/>Boss: Inferno Lord"]
+        L14["Cyber Nexus<br/>6 Byte Shards + Digital Rift<br/>Boss: Queen's Core"]
+    end
+    LOBBIES --> LOBBY_OTHERS
+
+    %% ──────────────── BOSS ROSTER ────────────────
+    subgraph BOSSES["⚔️ Boss Roster"]
+        direction TB
+        subgraph BTIER["Boss Tier System"]
+            BT1["Tier 1 — Lowest<br/>100 HP<br/>BasicEnemy"]
+            BT2["Tier 2 — Low<br/>200 HP<br/>ElementalGuardian<br/>Gimmick: Teleport"]
+            BT3["Tier 3 — Mid<br/>350 HP<br/>ShadowWarrior<br/>Gimmick: TimeFreeze"]
+            BT4["Tier 4 — High<br/>500 HP<br/>Gimmick: ShieldBreaker"]
+            BT5["Tier 5 — Highest<br/>750 HP"]
+            BT6["Tier 6 — Final<br/>1000 HP"]
+            BT1 --> BT2 --> BT3 --> BT4 --> BT5 --> BT6
+        end
+
+        subgraph BNAMED["Named Bosses by Chapter"]
+            B_CH08["Ch08: CharaBoss<br/><i>beam, shot, blocks</i>"]
+            B_CH10["Ch10: TitantisBoss<br/>DarkerDarkMatter"]
+            B_CH11["Ch11: FrostyBoss"]
+            B_CH12["Ch12: WhispyWoodsBoss"]
+            B_CH13["Ch13: AxisTerminator<br/>MetaKnightBoss<br/>GigantEdge"]
+            B_CH14["Ch14: GigaAxisBoss<br/>GigaBoltUltra86000<br/>SpamtonNeoDeluxe<br/>TennaTVBoss"]
+            B_CH15["Ch15: KingTitanBoss<br/>RoboboGuard<br/>DededeBoss"]
+            B_CH16["Ch16: SummitCorrupted<br/>AnotherVesselCorrupted"]
+            B_CH19["Ch19: KrackoBoss<br/>GalactaKnight<br/>ApexPredator<br/>AlphaApexPredator"]
+            B_CH20["Ch20: TesseractBoss<br/>AsrielAngelOfDeath<br/>AsrielGodBoss<br/>ElsTrueFinalBoss<br/>→ ElsKnightClone<br/>→ MorphoKnightClone<br/>→ GalactaKnightClone<br/>→ SiamoZero<br/>BlackholeAngelBoss"]
+        end
+
+        subgraph BSPECIAL["Special Bosses"]
+            BS1["KirbyBoss<br/><i>Shadow Kirby</i>"]
+            BS2["MockbyBoss"]
+            BS3["MorphoKnightDelta"]
+            BS4["SansBoss"]
+            BS5["EmbryoBoss"]
+            BS6["BuzzoBoss"]
+            BS7["DragoneerJrBoss"]
+            BS8["TumbleKevinBoss"]
+        end
+    end
+    MECHANICS --> BOSSES
+
+    %% ──────────────── CUSTOM MECHANICS ────────────────
+    subgraph MECH_CORE["Core Mechanics"]
+        direction TB
+        MECH_HP["HP System<br/>PlayerHealthManager<br/>MaxHP/CurrentHP (def 6)<br/>Damage · Heal · FullHeal<br/>Events: OnHealthChanged"]
+        MECH_COPY["Copy Abilities<br/>CopyAbilityType enum<br/>Fire · Ice · Spark · Sword<br/>Cutter · Beam · Stone · Needle<br/>Parasol · Wheel · Bomb · Fighter<br/>Suplex · Ninja · Mirror · Hammer<br/>Wing · UFO · Sleep<br/>AbilityStar entity"]
+        MECH_KIRBY["Kirby Mode<br/>EnableKirbyMode() / Disable<br/>KirbyPowerState<br/>KirbyModeTrigger<br/>KirbyModeToggleTrigger<br/>KirbySpawnPoint<br/>Session.IsKirbyModeActive"]
+        MECH_SOUL["Soul Boosts<br/>Bravery · Determination<br/>Integrity · Justice<br/>Kindness · Patience<br/>Perseverance · SevenSoul"]
+        MECH_ELEM["Elemental Effects<br/>Fire · Ice · Lightning<br/>Earth · Wind · Dark · Light"]
+        MECH_WARP["Warper Dash<br/>WarperDashHelper<br/>Normal + Charged Dash"]
+        MECH_KNIGHT["Kirby Knight Form<br/>KirbyKnightHelper<br/>Transform · Attack · Special"]
+        MECH_SUBMAP["SubMap System (Ch10–14)<br/>SubMapManager<br/>6 submaps per chapter<br/>Unlock flags · Completion"]
+    end
+    MECHANICS --> MECH_CORE
+
+    %% ──────────────── FOLLOWER DUMMIES ────────────────
+    subgraph FOLLOWERS["Follower Dummies"]
+        direction LR
+        FD_BASE["PassiveFollowerDummy<br/><i>base class</i>"]
+        FD_KIRBY["KirbyDummy<br/>scarf color = dash count"]
+        FD_MAGO["MagolorDummy"]
+        FD_MK["MetaKnightDummy"]
+        FD_DDD["KingDDDDummy"]
+        FD_BD["BandanaDeeDummy"]
+        FD_GOOEY["GooeyDummy"]
+        FD_ASRIEL["AsrielDummy"]
+        FD_BADELINE["BadelineDummy"]
+        FD_MADELINE["MadelineDummy"]
+        FD_RALSEI["RalseiDummy"]
+        FD_CHARA["CharaDummy"]
+
+        FD_BASE --> FD_KIRBY
+        FD_BASE --> FD_MAGO
+        FD_BASE --> FD_MK
+        FD_BASE --> FD_DDD
+        FD_BASE --> FD_BD
+        FD_BASE --> FD_GOOEY
+        FD_BASE --> FD_ASRIEL
+        FD_BASE --> FD_BADELINE
+        FD_BASE --> FD_MADELINE
+        FD_BASE --> FD_RALSEI
+        FD_BASE --> FD_CHARA
+    end
+    MECHANICS --> FOLLOWERS
+
+    %% ──────────────── PLAYER CLASSES ────────────────
+    subgraph PLAYERS["Player Entity Hierarchy"]
+        direction TB
+        P_ACTOR["Monocle.Actor"]
+        P_KEXT["KirbyPlayerExtension<br/><i>abstract</i><br/>AbilityManager<br/>Stamina · Health · Hover"]
+        P_PLAYER["Player.cs<br/><i>MaggyHelper/Player</i><br/>extends Actor<br/>Unsafe.As → Celeste.Player<br/>Full physics constants"]
+        P_MADELINE["MadelinePlayer<br/><i>MaggyHelper/MadelinePlayer</i><br/>extends KirbyPlayerExtension<br/>No Kirby abilities"]
+        P_SELECT["PlayerSelectionManager<br/>PlayerType.Kirby ←→ .Madeline"]
+
+        P_ACTOR --> P_KEXT
+        P_ACTOR --> P_PLAYER
+        P_KEXT --> P_MADELINE
+        P_SELECT -.->|switches| P_PLAYER
+        P_SELECT -.->|switches| P_MADELINE
+    end
+    KIRBYPLAN --> PLAYERS
+
+    %% ──────────────── KIRBY-IN-ROOM PLAN ────────────────
+    subgraph PLAN["Kirby-In-Room Without Real Player"]
+        direction TB
+        PLAN_CURRENT["CURRENT STATE<br/>───────────────<br/>Player.cs extends Actor<br/>Unsafe.As fakes Celeste.Player<br/>KirbyDummy follows player<br/>EnableKirbyMode() on Celeste.Player"]
+
+        subgraph STRAT1["Strategy 1: Autonomous KirbyDummy"]
+            S1A["Extend KirbyDummy"]
+            S1B["Remove follow behavior"]
+            S1C["Add own AI/input controller"]
+            S1D["Collisions + gravity + dash"]
+            S1E["Interacts with bosses & triggers"]
+            S1A --> S1B --> S1C --> S1D --> S1E
+        end
+
+        subgraph STRAT2["Strategy 2: Hijack Player (EXISTING)"]
+            S2A["Keep Celeste.Player"]
+            S2B["PlayerExtensions.EnableKirbyMode()"]
+            S2C["Swap sprite to Kirby"]
+            S2D["Add hover + copy abilities"]
+            S2E["PlayerHealthManager for HP"]
+            S2A --> S2B --> S2C --> S2D --> S2E
+        end
+
+        subgraph STRAT3["Strategy 3: Virtual Player (RECOMMENDED)"]
+            S3A["KirbyPlayerSpawner<br/><i>Lönn entity placed in map</i>"]
+            S3B["On Added:<br/>1. Hide Celeste.Player<br/>2. Spawn MaggyHelper.Player<br/>3. Set IsKirbyModeActive"]
+            S3C["PlayerCompatShim<br/>• Camera → our Player<br/>• PlayerCollider compat<br/>• Trigger.OnEnter compat"]
+            S3D["RoomTransitionHandler<br/>• Carry Player across rooms<br/>• Death → respawn as Kirby<br/>• Set RespawnPoint"]
+            S3E["Result: Full Kirby gameplay<br/>No real Celeste.Player needed"]
+            S3A --> S3B --> S3C --> S3D --> S3E
+        end
+
+        PLAN_CURRENT --> STRAT1
+        PLAN_CURRENT --> STRAT2
+        PLAN_CURRENT --> STRAT3
+    end
+    KIRBYPLAN --> PLAN
+
+    %% ──────────────── ROOM LOAD SEQUENCE ────────────────
+    subgraph LOADSEQ["Room Load Sequence (Strategy 3)"]
+        direction TB
+        LS1["Level.LoadLevel()"]
+        LS2["Celeste spawns default Player"]
+        LS3["KirbyPlayerSpawner.Added()"]
+        LS4["Hide Celeste.Player<br/>(move offscreen, disable Update)"]
+        LS5["Spawn MaggyHelper.Player<br/>at spawn position"]
+        LS6["PlayerCompatShim<br/>redirects camera"]
+        LS7["Bosses find Player via<br/>Scene.Tracker.GetEntity‹Player›()<br/>(works: [Tracked(true)])"]
+        LS8["KirbyDummy optionally<br/>spawns as companion"]
+        LS9["Gameplay runs with<br/>Kirby physics + abilities"]
+
+        LS1 --> LS2 --> LS3 --> LS4 --> LS5 --> LS6 --> LS7 --> LS8 --> LS9
+    end
+    KIRBYPLAN --> LOADSEQ
+
+    %% ──────────────── SIDE VARIANTS ────────────────
+    subgraph SIDES["Side Variants"]
+        direction LR
+        SB["B-Side<br/>Harder remix<br/>Ch01–15, 18"]
+        SC["C-Side<br/>Hardest short<br/>Ch01–15, 18"]
+        SD["D-Side<br/>Extra challenge<br/>Ch01–15, 18"]
+        SDX["DX-Side<br/>Deluxe remix<br/>Ch01–16, 18"]
+    end
+    BSIDE --> SB
+    CSIDE --> SC
+    DSIDE --> SD
+    DXSIDE --> SDX
+
+    %% ──────────────── STYLES ────────────────
+    classDef act1 fill:#2d6a4f,stroke:#1b4332,color:#fff
+    classDef act2 fill:#7b2cbf,stroke:#5a189a,color:#fff
+    classDef act3 fill:#9d0208,stroke:#6a040f,color:#fff
+    classDef boss fill:#e63946,stroke:#d00000,color:#fff
+    classDef mech fill:#0077b6,stroke:#023e8a,color:#fff
+    classDef plan fill:#f77f00,stroke:#e36414,color:#fff
+    classDef root fill:#212529,stroke:#495057,color:#fff
+
+    class ROOT root
+    class CH00,CH01,CH02,CH03,CH04,CH05,CH06,CH07,CH08,CH09 act1
+    class CH10,CH11,CH12,CH13,CH14,CH15 act2
+    class CH16,CH17,CH18,CH19,CH20,CH21 act3
+    class B_CH08,B_CH10,B_CH11,B_CH12,B_CH13,B_CH14,B_CH15,B_CH16,B_CH19,B_CH20 boss
+    class BS1,BS2,BS3,BS4,BS5,BS6,BS7,BS8 boss
+    class BT1,BT2,BT3,BT4,BT5,BT6 boss
+    class MECH_HP,MECH_COPY,MECH_KIRBY,MECH_SOUL,MECH_ELEM,MECH_WARP,MECH_KNIGHT,MECH_SUBMAP mech
+    class S3A,S3B,S3C,S3D,S3E plan
+    class LS1,LS2,LS3,LS4,LS5,LS6,LS7,LS8,LS9 plan

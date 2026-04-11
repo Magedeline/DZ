@@ -40,12 +40,20 @@ namespace Celeste.Mod.MaggyHelper
         {
             BossesExampleModule.Load();
             global::MaggyHelper.AreaMapData.Initialize();
+            global::MaggyHelper.ChapterActRegistry.Initialize();
+            global::MaggyHelper.BossRosterRegistry.Initialize();
             global::MaggyHelper.AreaModeExtender.Load();
             global::MaggyHelper.AreaCompleteHooks.Load();
             global::MaggyHelper.IntroRemixHooks.Load();
             global::MaggyHelper.MonoModHooks.Load();
             global::MaggyHelper.VignetteHooks.Load();
             global::MaggyHelper.Cutscenes.IntroWarning.Load();
+
+            // Player compatibility shim (camera, triggers, colliders)
+            global::MaggyHelper.PlayerCompatShim.Load();
+
+            // Room transition / death / respawn handler
+            global::MaggyHelper.RoomTransitionHandler.Load();
 
             // Hook level exit to clean up static state
             Everest.Events.Level.OnExit += OnLevelExit;
@@ -65,6 +73,8 @@ namespace Celeste.Mod.MaggyHelper
 
         public override void Unload()
         {
+            global::MaggyHelper.RoomTransitionHandler.Unload();
+            global::MaggyHelper.PlayerCompatShim.Unload();
             global::MaggyHelper.Cutscenes.IntroWarning.Unload();
             global::MaggyHelper.VignetteHooks.Unload();
             global::MaggyHelper.MonoModHooks.Unload();

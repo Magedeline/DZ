@@ -69,6 +69,20 @@ namespace MaggyHelper.Entities
             BossType = "VoidKnight";
         }
     }
+
+    // Tier 6 - Final Boss (Blackhole Angel / The End)
+    [CustomEntity(ids: "MaggyHelper/BossTier6")]
+    [Tracked]
+    [HotReloadable]
+    public class BossTier6 : Boss
+    {
+        public BossTier6(EntityData data, Vector2 offset) : base(data, offset)
+        {
+            Tier = BossTier.Final;
+            Gimmick = GimmickAbility.DimensionRift;
+            BossType = "BlackholeAngel";
+        }
+    }
 }
 
 

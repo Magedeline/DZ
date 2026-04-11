@@ -7962,3 +7962,18 @@ triggers.MaggyHelper/KirbyTutorialBirdTrigger.attributes.description.height=Trig
 entities.MaggyHelper/Player.placements.name.player=Player (Spawn Point)
 entities.MaggyHelper/Player.attributes.name.isDefaultSpawn=Default Spawn
 entities.MaggyHelper/Player.attributes.description.isDefaultSpawn=Whether this should be the spawn point that the player appears at when first starting the map. Only works if the room is the starting room.
+# ========================
+# Kirby Player Spawner
+# ========================
+entities.MaggyHelper/KirbyPlayerSpawner.placements.name.kirby_player_spawner=Kirby Player Spawner
+entities.MaggyHelper/KirbyPlayerSpawner.placements.description.kirby_player_spawner=Replaces vanilla player with MaggyHelper Kirby player. Full Kirby gameplay without needing a vanilla player entity.
+entities.MaggyHelper/KirbyPlayerSpawner.placements.name.kirby_player_spawner_with_companion=Kirby Player Spawner (+ Companion)
+entities.MaggyHelper/KirbyPlayerSpawner.placements.description.kirby_player_spawner_with_companion=Kirby player spawner that also spawns a KirbyDummy companion who follows the player.
+entities.MaggyHelper/KirbyPlayerSpawner.placements.name.madeline_player_spawner=Madeline Player Spawner (MaggyHelper)
+entities.MaggyHelper/KirbyPlayerSpawner.placements.description.madeline_player_spawner=Spawns MaggyHelper player as Madeline (no Kirby abilities).
+entities.MaggyHelper/KirbyPlayerSpawner.attributes.name.enableKirbyMode=Enable Kirby Mode
+entities.MaggyHelper/KirbyPlayerSpawner.attributes.description.enableKirbyMode=Whether to enable Kirby mode (abilities, combat, HP) on the spawned player.
+entities.MaggyHelper/KirbyPlayerSpawner.attributes.name.spawnCompanion=Spawn Companion
+entities.MaggyHelper/KirbyPlayerSpawner.attributes.description.spawnCompanion=Whether to spawn a KirbyDummy companion that follows the player.
+entities.MaggyHelper/KirbyPlayerSpawner.attributes.name.startingAbility=Starting Ability
+entities.MaggyHelper/KirbyPlayerSpawner.attributes.description.startingAbility=Copy ability the player starts with (None for default).

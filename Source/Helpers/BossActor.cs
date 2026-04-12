@@ -44,6 +44,7 @@ namespace MaggyHelper.Helpers
         public int Health { get; set; }
         public int MaxHealth { get; set; }
         public bool IsDefeated { get; set; }
+        public virtual string BossDisplayName => null;
 
         public BossActor(
             Vector2 position,

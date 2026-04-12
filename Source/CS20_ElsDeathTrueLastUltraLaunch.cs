@@ -30,7 +30,7 @@ namespace MaggyHelper.Cutscenes
 
         private BirdNPC bird;
 
-        private ElsTrueFinalBoss els;
+        private SiamoZeroFinalBoss els;
 
         private ElsTrueFinalBackdrop backdrop;
 
@@ -114,7 +114,7 @@ namespace MaggyHelper.Cutscenes
             yield return null;
 
             // Find Els and the live backdrop used by the room
-            els = Level.Entities.FindFirst<ElsTrueFinalBoss>();
+            els = Level.Entities.FindFirst<SiamoZeroFinalBoss>();
             backdrop = Level.Background.Get<ElsTrueFinalBackdrop>();
 
             if (!string.IsNullOrEmpty(dialog))

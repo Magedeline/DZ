@@ -219,7 +219,7 @@ public static class ChapterActRegistry
         {
             Number = 20, Name = "The Last Push", Act = Act.ActIII,
             Theme = "The End / Void",
-            Bosses = new[] { "TesseractBoss", "ElsTrueFinalBoss", "BlackholeAngelBoss" },
+            Bosses = new[] { "TesseractBoss", "SiamoZeroFinalBoss", "BlackholeAngelBoss" },
             MechanicsIntroduced = new[] { "VoidMoon", "DimensionRift" }
         });
 

@@ -49,11 +49,8 @@ namespace Celeste.Mod.MaggyHelper
             global::MaggyHelper.VignetteHooks.Load();
             global::MaggyHelper.Cutscenes.IntroWarning.Load();
 
-            // Player compatibility shim (camera, triggers, colliders)
-            global::MaggyHelper.PlayerCompatShim.Load();
-
-            // Room transition / death / respawn handler
-            global::MaggyHelper.RoomTransitionHandler.Load();
+            // Kirby mechanics are layered onto the vanilla player via a custom state.
+            global::MaggyHelper.KirbyPlayerStateController.Load();
 
             // Hook level exit to clean up static state
             Everest.Events.Level.OnExit += OnLevelExit;
@@ -73,8 +70,7 @@ namespace Celeste.Mod.MaggyHelper
 
         public override void Unload()
         {
-            global::MaggyHelper.RoomTransitionHandler.Unload();
-            global::MaggyHelper.PlayerCompatShim.Unload();
+            global::MaggyHelper.KirbyPlayerStateController.Unload();
             global::MaggyHelper.Cutscenes.IntroWarning.Unload();
             global::MaggyHelper.VignetteHooks.Unload();
             global::MaggyHelper.MonoModHooks.Unload();

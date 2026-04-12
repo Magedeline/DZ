@@ -341,17 +341,16 @@ namespace MaggyHelper
 
 
         // =====================================================================
-        //  4.  ENTITY NAME REMAPPING — Player entity ID normalization
+        //  4.  ENTITY NAME REMAPPING — Legacy Kirby player entity normalization
         // =====================================================================
         //
         //  HOW IT WORKS:
-        //  Binary map files can contain player entities with various IDs
-        //  (e.g., "maggyhelperp/layer", "player", different casings, etc.).
-        //  This hook intercepts Level.LoadLevel and remaps any player entity
-        //  names to our registered "MaggyHelper/Player" ID before they're spawned.
+        //  Older map files can contain custom player entities from the now-
+        //  retired second-player architecture. This hook rewrites only those
+        //  legacy IDs to the room-local KirbyPlayerSpawner before the room loads.
         //
-        //  This ensures that regardless of what ID is in the binary map,
-        //  the correct player entity is used.
+        //  This preserves backwards compatibility while keeping the real
+        //  Celeste.Player authoritative in-game.
         //
         // =====================================================================
 
@@ -373,23 +372,15 @@ namespace MaggyHelper
                             {
                                 if (entityData?.Name != null)
                                 {
-                                    // Check if this looks like a player entity but with wrong ID
-                                    string lowerName = entityData.Name.ToLower();
-                                    
-                                    // Remap common player ID variants to our registered ID
-                                    if (lowerName == "player" ||
-                                        lowerName == "maggyhelperp/layer" ||
-                                        lowerName == "maggyhelper/player" ||
-                                        lowerName.Contains("player"))
+                                    string lowerName = entityData.Name.ToLowerInvariant();
+
+                                    if (lowerName == "maggyhelper/player" ||
+                                        lowerName == "maggyhelper/kirbyplayer" ||
+                                        lowerName == "maggyhelperp/layer")
                                     {
-                                        // Only remap if it's not already one of our registered IDs
-                                        if (entityData.Name != "MaggyHelper/Player" &&
-                                            entityData.Name != "MaggyHelper/KirbyPlayer")
-                                        {
-                                            Logger.Log(LogLevel.Info, "MaggyHelper",
-                                                $"[EntityRemapper] Remapping entity '{entityData.Name}' → 'MaggyHelper/Player'");
-                                            entityData.Name = "MaggyHelper/Player";
-                                        }
+                                        Logger.Log(LogLevel.Info, "MaggyHelper",
+                                            $"[EntityRemapper] Remapping legacy entity '{entityData.Name}' → 'MaggyHelper/KirbyPlayerSpawner'");
+                                        entityData.Name = "MaggyHelper/KirbyPlayerSpawner";
                                     }
                                 }
                             }
@@ -409,6 +400,7 @@ namespace MaggyHelper
             try
             {
                 self.Tracker.GetEntity<global::Celeste.Player>()?.RestorePersistentState();
+                KirbyPlayerSpawner.EnsureRoomState(self);
             }
             catch (Exception ex)
             {

@@ -1062,49 +1062,44 @@ entities.MaggyHelper/AsrielGodBossV2.attributes.description.startHit=Whether the
 entities.MaggyHelper/AsrielGodBossV2.attributes.name.attackSequence=Attack Sequence
 entities.MaggyHelper/AsrielGodBossV2.attributes.description.attackSequence=Custom attack sequence override. Leave empty to use phase-based patterns.
 
-# -- Els True Final Boss Entity --
-entities.MaggyHelper/ElsTrueFinalBoss.placements.name.default=Els True Final Boss
-entities.MaggyHelper/ElsTrueFinalBoss.placements.name.full_intro_battle=Els True Final Boss (Full Intro Battle)
-entities.MaggyHelper/ElsTrueFinalBoss.placements.name.phase_1_doppia_complete=Els True Final Boss (Phase 1 - Doppia Complete)
-entities.MaggyHelper/ElsTrueFinalBoss.placements.name.phase_2_penumbra_complete=Els True Final Boss (Phase 2 - Penumbra Complete)
-entities.MaggyHelper/ElsTrueFinalBoss.placements.name.rift_power_showcase=Els True Final Boss (Rift Power Showcase)
-entities.MaggyHelper/ElsTrueFinalBoss.placements.name.ultimate_attacks_only=Els True Final Boss (Ultimate Attacks Only)
-entities.MaggyHelper/ElsTrueFinalBoss.placements.name.defensive_battle=Els True Final Boss (Defensive Battle)
-entities.MaggyHelper/ElsTrueFinalBoss.placements.name.phase_3_siamo_zero_aeon=Els True Final Boss (Siamo Zero - Aeon Hero)
-entities.MaggyHelper/ElsTrueFinalBoss.placements.name.phase_3_siamo_zero_morpho=Els True Final Boss (Siamo Zero - Morpho Knight)
-entities.MaggyHelper/ElsTrueFinalBoss.placements.name.phase_3_siamo_zero_complete=Els True Final Boss (Siamo Zero - Complete)
-entities.MaggyHelper/ElsTrueFinalBoss.placements.name.phase_3_siamo_zero_pink=Els True Final Boss (Siamo Zero Pink)
-entities.MaggyHelper/ElsTrueFinalBoss.placements.name.phase_3_siamo_zero_soul_black=Els True Final Boss (Siamo Zero Soul Black)
-entities.MaggyHelper/ElsTrueFinalBoss.placements.name.phase_3_siamo_zero_stellarruss=Els True Final Boss (Siamo Zero Stellarruss)
-entities.MaggyHelper/ElsTrueFinalBoss.placements.name.siamo_zero_ultimate_chain=Els True Final Boss (Siamo Zero Ultimate Chain)
-entities.MaggyHelper/ElsTrueFinalBoss.placements.description.default=A multi-phase final boss covering Doppia Elillca, Penumbra Phastasm, and Siamo Zero. Supports custom attack sequences, intro control, and Siamo-specific palette tiers.
-entities.MaggyHelper/ElsTrueFinalBoss.placements.description.full_intro_battle=Full battle with intro dialogue. Starts with Phase 1 attacks: Clone Assault, Duality Wave, Shadow Blast, Mirror Dimension.
-entities.MaggyHelper/ElsTrueFinalBoss.placements.description.phase_1_doppia_complete=Phase 1 only: Doppia Elillca attack chain with the full mirror/duality move list.
-entities.MaggyHelper/ElsTrueFinalBoss.placements.description.phase_2_penumbra_complete=Phase 2 only: Penumbra Phastasm attack chain with void and darkness attacks. Starts from a combat-ready state.
-entities.MaggyHelper/ElsTrueFinalBoss.placements.description.rift_power_showcase=Showcase preset focused on rift-power consuming attacks and phase transition pressure.
-entities.MaggyHelper/ElsTrueFinalBoss.placements.description.ultimate_attacks_only=Testing preset that repeatedly cycles the high-end ultimate attacks.
-entities.MaggyHelper/ElsTrueFinalBoss.placements.description.defensive_battle=Utility preset focused on shields, healing, and stall mechanics.
-entities.MaggyHelper/ElsTrueFinalBoss.placements.description.phase_3_siamo_zero_aeon=Aeon Hero Fake sub-phase only. Uses the sword, beam, spine, and shower attacks.
-entities.MaggyHelper/ElsTrueFinalBoss.placements.description.phase_3_siamo_zero_morpho=Morpho Knight Fake sub-phase only. Uses vortex, slash, emerge, and timeborder attacks.
-entities.MaggyHelper/ElsTrueFinalBoss.placements.description.phase_3_siamo_zero_complete=Full Siamo Zero encounter using the default Soul Black palette and attack density.
-entities.MaggyHelper/ElsTrueFinalBoss.placements.description.phase_3_siamo_zero_pink=Full Siamo Zero encounter with the Pink palette, lighter timings, and reduced projectile density.
-entities.MaggyHelper/ElsTrueFinalBoss.placements.description.phase_3_siamo_zero_soul_black=Full Siamo Zero encounter with the Soul Black palette and default attack density.
-entities.MaggyHelper/ElsTrueFinalBoss.placements.description.phase_3_siamo_zero_stellarruss=Full Siamo Zero encounter with the Stellarruss rainbow cosmic-void palette, black-and-white backdrop treatment, and the hardest timings.
-entities.MaggyHelper/ElsTrueFinalBoss.placements.description.siamo_zero_ultimate_chain=Siamo Zero endgame preset chaining Energy Shower, Vortex Strike, and Timeborder Collapse.
-entities.MaggyHelper/ElsTrueFinalBoss.attributes.name.patternIndex=Pattern Index
-entities.MaggyHelper/ElsTrueFinalBoss.attributes.description.patternIndex=Attack pattern index (0-4) determining boss behavior modes and difficulty levels.
-entities.MaggyHelper/ElsTrueFinalBoss.attributes.name.siamoTier=Siamo Tier
-entities.MaggyHelper/ElsTrueFinalBoss.attributes.description.siamoTier=Selects the Siamo Zero variant. pink is the lightest, soulBlack is the default, and stellarruss is the hardest rainbow cosmic-void version.
-entities.MaggyHelper/ElsTrueFinalBoss.attributes.name.cameraPastY=Camera Past Y
-entities.MaggyHelper/ElsTrueFinalBoss.attributes.description.cameraPastY=Camera vertical offset for boss fight arena (default: 120).
-entities.MaggyHelper/ElsTrueFinalBoss.attributes.name.cameraLockY=Camera Lock Y
-entities.MaggyHelper/ElsTrueFinalBoss.attributes.description.cameraLockY=Lock camera Y position during boss fight (prevents vertical scrolling).
-entities.MaggyHelper/ElsTrueFinalBoss.attributes.name.dialog=Dialog
-entities.MaggyHelper/ElsTrueFinalBoss.attributes.description.dialog=Show intro dialogue before boss fight starts.
-entities.MaggyHelper/ElsTrueFinalBoss.attributes.name.startHit=Start Hit
-entities.MaggyHelper/ElsTrueFinalBoss.attributes.description.startHit=Boss takes initial hit to start battle (like BadelineBoss).
-entities.MaggyHelper/ElsTrueFinalBoss.attributes.name.attackSequence=Attack Sequence
-entities.MaggyHelper/ElsTrueFinalBoss.attributes.description.attackSequence=Custom attack sequence override (comma-separated). Includes Phase 1, Phase 2, and all Siamo Zero attacks. Use siamoTier to scale the Siamo Zero visuals and aggression without changing the sequence itself.
+# -- Siamo Zero Final Boss Entity --
+entities.MaggyHelper/SiamoZeroFinalBoss.placements.name.siamo_zero=Siamo Zero
+entities.MaggyHelper/SiamoZeroFinalBoss.placements.name.siamo_zero_aeon=Siamo Zero (Aeon Hero Fake)
+entities.MaggyHelper/SiamoZeroFinalBoss.placements.name.siamo_zero_morpho=Siamo Zero (Morpho Knight Fake)
+entities.MaggyHelper/SiamoZeroFinalBoss.placements.name.siamo_zero_pink=Siamo Zero (Pink)
+entities.MaggyHelper/SiamoZeroFinalBoss.placements.name.siamo_zero_soul_black=Siamo Zero (Soul Black)
+entities.MaggyHelper/SiamoZeroFinalBoss.placements.name.siamo_zero_stellarruss=Siamo Zero (Stellarruss)
+entities.MaggyHelper/SiamoZeroFinalBoss.placements.name.siamo_zero_delta_extra=Siamo Zero Delta (Extra Boss)
+entities.MaggyHelper/SiamoZeroFinalBoss.placements.name.celestial_zero_remix=Celestial Zero (Remix Boss)
+entities.MaggyHelper/SiamoZeroFinalBoss.placements.name.siamo_zero_ultimate_chain=Siamo Zero (Ultimate Chain)
+entities.MaggyHelper/SiamoZeroFinalBoss.placements.description.siamo_zero=Void Astral Birth-inspired full Siamo Zero encounter with the larger final-form presentation, piano-led escalation, and late choir swell.
+entities.MaggyHelper/SiamoZeroFinalBoss.placements.description.siamo_zero_aeon=Aeon Hero Fake sub-phase only. Uses the sword, beam, spine, and shower attacks.
+entities.MaggyHelper/SiamoZeroFinalBoss.placements.description.siamo_zero_morpho=Morpho Knight Fake sub-phase only. Uses vortex, slash, emerge, and timeborder attacks.
+entities.MaggyHelper/SiamoZeroFinalBoss.placements.description.siamo_zero_pink=Full Siamo Zero encounter with the Pink palette, lighter timings, and reduced projectile density.
+entities.MaggyHelper/SiamoZeroFinalBoss.placements.description.siamo_zero_soul_black=Full Siamo Zero encounter with the Soul Black palette and default attack density.
+entities.MaggyHelper/SiamoZeroFinalBoss.placements.description.siamo_zero_stellarruss=Full Siamo Zero encounter with the Stellarruss rainbow cosmic-void palette, black-and-white backdrop treatment, and the hardest timings.
+entities.MaggyHelper/SiamoZeroFinalBoss.placements.description.siamo_zero_delta_extra=Extra boss variant named Siamo Zero Delta. Uses the larger void body, Conquered Peak Cascade dive pattern, and a heavier piano-to-choir finale curve.
+entities.MaggyHelper/SiamoZeroFinalBoss.placements.description.celestial_zero_remix=Remix boss variant named Celestial Zero. Uses the celestial-void palette, the Conquered Peak Cascade rush chain, and the most dramatic choir-backed endgame music progression.
+entities.MaggyHelper/SiamoZeroFinalBoss.placements.description.siamo_zero_ultimate_chain=Siamo Zero endgame preset chaining Energy Shower, Vortex Strike, and Timeborder Collapse.
+entities.MaggyHelper/SiamoZeroFinalBoss.attributes.name.patternIndex=Pattern Index
+entities.MaggyHelper/SiamoZeroFinalBoss.attributes.description.patternIndex=Attack pattern index (0-4) determining Siamo Zero behavior presets and aggression levels.
+entities.MaggyHelper/SiamoZeroFinalBoss.attributes.name.siamoTier=Siamo Tier
+entities.MaggyHelper/SiamoZeroFinalBoss.attributes.description.siamoTier=Selects the Siamo Zero palette and pressure preset. pink is the lightest, soulBlack is the default, and stellarruss is the hardest rainbow cosmic-void version.
+entities.MaggyHelper/SiamoZeroFinalBoss.attributes.name.siamoVariant=Siamo Identity
+entities.MaggyHelper/SiamoZeroFinalBoss.attributes.description.siamoVariant=Selects the boss identity and music behavior. zero uses Siamo Zero, delta becomes Siamo Zero Delta, and celestial becomes Celestial Zero for remix encounters.
+entities.MaggyHelper/SiamoZeroFinalBoss.attributes.name.cameraPastY=Camera Past Y
+entities.MaggyHelper/SiamoZeroFinalBoss.attributes.description.cameraPastY=Camera vertical offset for boss fight arena (default: 120).
+entities.MaggyHelper/SiamoZeroFinalBoss.attributes.name.cameraLockY=Camera Lock Y
+entities.MaggyHelper/SiamoZeroFinalBoss.attributes.description.cameraLockY=Lock camera Y position during boss fight (prevents vertical scrolling).
+entities.MaggyHelper/SiamoZeroFinalBoss.attributes.name.dialog=Dialog
+entities.MaggyHelper/SiamoZeroFinalBoss.attributes.description.dialog=Show intro dialogue before the base Siamo Zero fight starts.
+entities.MaggyHelper/SiamoZeroFinalBoss.attributes.name.startHit=Start Hit
+entities.MaggyHelper/SiamoZeroFinalBoss.attributes.description.startHit=Boss takes initial hit to start battle immediately (like BadelineBoss).
+entities.MaggyHelper/SiamoZeroFinalBoss.attributes.name.attackSequence=Attack Sequence
+entities.MaggyHelper/SiamoZeroFinalBoss.attributes.description.attackSequence=Custom Siamo Zero attack sequence override (comma-separated). Includes Aeon Hero Fake, Morpho Knight Fake, and Conquered Peak Cascade. Use siamoTier to scale visuals and aggression without changing the sequence itself.
+
+# Legacy alias so old maps label the entity correctly in Lönn
+entities.MaggyHelper/ElsTrueFinalBoss.placements.name.default=Siamo Zero (Legacy)
 
 # -- Seven Soul Boost Entity --
 entities.MaggyHelper/SevenSoulBoost.placements.name.seven_soul_boost=Seven Soul Boost
@@ -1245,7 +1240,7 @@ style.effects.MaggyHelper/AsrielGodBackdrop.attributes.description.rainbowSpeed=
 
 # -- Els True Final Backdrop Effect --
 style.effects.MaggyHelper/ElsTrueFinalBackdrop.name=Els True Final Backdrop
-style.effects.MaggyHelper/ElsTrueFinalBackdrop.description=Dark void backdrop with black center and rainbow edges for the Els True Final boss fight. Features expanding corrupted grids, void tendrils, and rainbow rings.
+style.effects.MaggyHelper/ElsTrueFinalBackdrop.description=Dark void backdrop with black center and rainbow edges for the Siamo Zero final boss fight. Features expanding corrupted grids, void tendrils, and rainbow rings.
 
 style.effects.MaggyHelper/ElsTrueFinalBackdrop.placements.name.els_true_final_backdrop=Els True Final Backdrop
 style.effects.MaggyHelper/ElsTrueFinalBackdrop.placements.description.els_true_final_backdrop=Standard black void with rainbow edge effects.

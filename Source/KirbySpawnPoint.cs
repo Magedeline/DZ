@@ -56,17 +56,13 @@ public class KirbySpawnPoint : Entity
             return;
         }
 
-        player.Position = Position;
-        level.Session.RespawnPoint = Position;
-
-        if (spawnAsKirby)
-        {
-            player.EnableKirbyMode();
-            if (startingPower != KirbyMode.KirbyPowerState.None)
-            {
-                player.SetKirbyPowerState(startingPower);
-            }
-        }
+        KirbyPlayerSpawner.ConfigureVanillaPlayer(
+            level,
+            player,
+            Position,
+            spawnAsKirby,
+            startingPower,
+            spawnCompanion: false);
 
         applied = true;
     }

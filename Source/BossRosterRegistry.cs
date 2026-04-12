@@ -293,7 +293,7 @@ public static class BossRosterRegistry
         });
         Add(new BossEntry
         {
-            Id = "ElsTrueFinalBoss", DisplayName = "El (True Final Form)",
+            Id = "SiamoZeroFinalBoss", DisplayName = "Siamo Zero",
             ChapterNumber = 20, Tier = BossTier.Final,
             Gimmick = GimmickAbility.DimensionRift, CopyAbility = CopyAbilityType.None
         });
@@ -310,6 +310,11 @@ public static class BossRosterRegistry
             Gimmick = GimmickAbility.None, CopyAbility = CopyAbilityType.Spark,
             IsMiniBoss = true
         });
+
+        if (_byId.TryGetValue("SiamoZeroFinalBoss", out var siamoZeroFinalBoss))
+        {
+            _byId["ElsTrueFinalBoss"] = siamoZeroFinalBoss;
+        }
 
         Logger.Log(LogLevel.Info, "MaggyHelper",
             $"BossRosterRegistry: {_roster.Count} bosses registered");
@@ -350,4 +355,5 @@ public static class BossRosterRegistry
         }
         list.Add(entry);
     }
+
 }

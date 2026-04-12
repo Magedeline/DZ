@@ -112,16 +112,18 @@ namespace MaggyHelper.Entities
             public Func<int> GetHealth;
             public Func<int> GetMaxHealth;
             public string Name;
+            public bool UseDynamicName;
             public float DisplayedHealth;
             public float DamageFlash;
             public int LastHealth;
             
-            public TrackedBoss(Entity boss, Func<int> health, Func<int> maxHealth, string name)
+            public TrackedBoss(Entity boss, Func<int> health, Func<int> maxHealth, string name, bool useDynamicName)
             {
                 Boss = boss;
                 GetHealth = health;
                 GetMaxHealth = maxHealth;
                 Name = name;
+                UseDynamicName = useDynamicName;
                 DisplayedHealth = health();
                 LastHealth = (int)DisplayedHealth;
             }
@@ -238,13 +240,18 @@ namespace MaggyHelper.Entities
             {
                 if (entity is BossActor boss)
                 {
-                    TrackBoss(boss, GetBossName(boss));
+                    TrackBoss(boss);
                 }
             }
         }
         
         private string GetBossName(Entity boss)
         {
+            if (boss is BossActor bossActor && !string.IsNullOrWhiteSpace(bossActor.BossDisplayName))
+            {
+                return bossActor.BossDisplayName;
+            }
+
             // Try to get a meaningful name from the boss type
             string typeName = boss.GetType().Name;
             
@@ -328,6 +335,11 @@ namespace MaggyHelper.Entities
                 {
                     trackedBosses.RemoveAt(i);
                     continue;
+                }
+
+                if (tracked.UseDynamicName)
+                {
+                    tracked.Name = GetBossName(tracked.Boss);
                 }
                 
                 // Update health tracking
@@ -614,7 +626,7 @@ namespace MaggyHelper.Entities
             if (trackedBosses.Exists(t => t.Boss == boss))
                 return;
             
-            trackedBosses.Add(new TrackedBoss(boss, healthGetter, maxHealthGetter, name ?? GetBossName(boss)));
+            trackedBosses.Add(new TrackedBoss(boss, healthGetter, maxHealthGetter, name ?? GetBossName(boss), name == null));
         }
         
         /// <summary>

@@ -230,9 +230,8 @@ public static class RoomTransitionHandler
 
     private static void HideVanillaPlayer(CelestePlayer player)
     {
-        player.Position = new Vector2(-9999f, -9999f);
         player.Visible = false;
-        player.Active = false;
         player.Collidable = false;
+        player.StateMachine.State = CelestePlayer.StDummy;
     }
 }

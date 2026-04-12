@@ -4,7 +4,7 @@ using MaggyHelper.Entities.Projectiles;
 namespace MaggyHelper.Entities
 {
     /// <summary>
-    /// ElsTrueFinalBoss - Siamo Zero ("We Are Zero") combat phase.
+    /// SiamoZeroFinalBoss - Siamo Zero ("We Are Zero") combat phase.
     /// Phase 3: The Fallen Path - Corrupted dark-path Kirby nightmare form.
     /// 
     /// Attack sets derived from the Siamo Zero sprite assets:
@@ -18,7 +18,7 @@ namespace MaggyHelper.Entities
     ///   • Aeon Hero Fake (melee/sword) - 8 attacks
     ///   • Morpho Knight Fake (vortex/slash) - 4 attacks
     /// </summary>
-    public partial class ElsTrueFinalBoss
+    public partial class SiamoZeroFinalBoss
     {
         #region Siamo Zero Constants
 
@@ -247,6 +247,7 @@ namespace MaggyHelper.Entities
             // Aeon Hero Fake attacks
             CrescentBeamShot,
             EnergySwordCombo,
+            ConqueredPeakCascade,
             TornadoSlash,
             RevolutionSword,
             RisingSpine,
@@ -259,6 +260,66 @@ namespace MaggyHelper.Entities
             DoubleSideSlash,
             MorphoEmerge,
             TimeborderCollapse
+        }
+
+        private static readonly SiamoAttackType[] BaseSiamoAttackPattern =
+        {
+            SiamoAttackType.CrescentBeamShot,
+            SiamoAttackType.EnergySwordCombo,
+            SiamoAttackType.TornadoSlash,
+            SiamoAttackType.RevolutionSword,
+            SiamoAttackType.RisingSpine,
+            SiamoAttackType.DownThrust,
+            SiamoAttackType.DrillStab,
+            SiamoAttackType.EnergyShower,
+            SiamoAttackType.VortexStrike,
+            SiamoAttackType.DoubleSideSlash,
+            SiamoAttackType.MorphoEmerge,
+            SiamoAttackType.TimeborderCollapse
+        };
+
+        private static readonly SiamoAttackType[] DeltaSiamoAttackPattern =
+        {
+            SiamoAttackType.CrescentBeamShot,
+            SiamoAttackType.EnergySwordCombo,
+            SiamoAttackType.ConqueredPeakCascade,
+            SiamoAttackType.TornadoSlash,
+            SiamoAttackType.RevolutionSword,
+            SiamoAttackType.EnergyShower,
+            SiamoAttackType.VortexStrike,
+            SiamoAttackType.DoubleSideSlash,
+            SiamoAttackType.ConqueredPeakCascade,
+            SiamoAttackType.MorphoEmerge,
+            SiamoAttackType.TimeborderCollapse,
+            SiamoAttackType.DownThrust
+        };
+
+        private static readonly SiamoAttackType[] CelestialSiamoAttackPattern =
+        {
+            SiamoAttackType.CrescentBeamShot,
+            SiamoAttackType.RevolutionSword,
+            SiamoAttackType.ConqueredPeakCascade,
+            SiamoAttackType.EnergyShower,
+            SiamoAttackType.VortexStrike,
+            SiamoAttackType.DoubleSideSlash,
+            SiamoAttackType.TimeborderCollapse,
+            SiamoAttackType.ConqueredPeakCascade,
+            SiamoAttackType.MorphoEmerge,
+            SiamoAttackType.EnergySwordCombo,
+            SiamoAttackType.DownThrust,
+            SiamoAttackType.DrillStab
+        };
+
+        private SiamoAttackType ResolveDefaultSiamoAttack(int attackSeed)
+        {
+            SiamoAttackType[] pattern = siamoIdentity switch
+            {
+                SiamoZeroIdentity.Delta => DeltaSiamoAttackPattern,
+                SiamoZeroIdentity.Celestial => CelestialSiamoAttackPattern,
+                _ => BaseSiamoAttackPattern
+            };
+
+            return pattern[Math.Abs(attackSeed) % pattern.Length];
         }
 
         #endregion
@@ -276,6 +337,7 @@ namespace MaggyHelper.Entities
             siamoZeroCombatActive = true;
             currentElsPhase = ElsPhase.SiamoZero;
             currentSiamoSubPhase = SiamoSubPhase.AeonHeroFake;
+            arenaRadius = Math.Max(arenaRadius, GetSiamoArenaRadius());
             ClearSummonedKnightClones();
             automaticCloneSummonCooldown = 0.35f;
 
@@ -291,6 +353,7 @@ namespace MaggyHelper.Entities
             lvl?.Displacement.AddBurst(Position, 3f, 384f, 768f, 4f);
 
             phaseWiggler.Start();
+            EnsureBossMusicState(force: true);
         }
 
         private void SetupSiamoZeroCombatSprites()
@@ -413,31 +476,32 @@ namespace MaggyHelper.Entities
             float pupilPulse = (float)Math.Sin(Scene.TimeActive * 9.5f);
             float rootScale = GetSiamoValue(1.02f, 1.04f, 1.08f);
             float rootWiggle = GetSiamoValue(0.035f, 0.05f, 0.07f);
+            float presenceScale = GetSiamoVariantScaleMultiplier();
 
             // Faster, more aggressive layer pulsing than Penumbra
             ApplyBossLayerTransform(siamoSprite, Vector2.Zero,
-                Vector2.One * (rootScale + phaseWiggler.Value * rootWiggle),
+                Vector2.One * ((rootScale + phaseWiggler.Value * rootWiggle) * presenceScale),
                 wingPulse * GetSiamoValue(0.01f, 0.015f, 0.022f));
 
             ApplyBossLayerTransform(
                 siamoWingSprite, Vector2.Zero,
                 new Vector2(
                     GetSiamoValue(1.1f, 1.2f, 1.28f) + wingPulse * GetSiamoValue(0.18f, 0.28f, 0.34f),
-                    GetSiamoValue(0.84f, 0.78f, 0.72f) + Math.Abs(wingPulse) * GetSiamoValue(0.18f, 0.26f, 0.32f)),
+                    GetSiamoValue(0.84f, 0.78f, 0.72f) + Math.Abs(wingPulse) * GetSiamoValue(0.18f, 0.26f, 0.32f)) * presenceScale,
                 wingPulse * GetSiamoValue(0.14f, 0.2f, 0.26f));
 
             ApplyBossLayerTransform(
                 siamoEyeSprite, Vector2.Zero,
                 new Vector2(
                     1f + eyePulse * GetSiamoValue(0.07f, 0.1f, 0.13f),
-                    GetSiamoValue(0.9f, 0.84f, 0.8f) + Math.Abs(eyePulse) * GetSiamoValue(0.09f, 0.15f, 0.19f)),
+                    GetSiamoValue(0.9f, 0.84f, 0.8f) + Math.Abs(eyePulse) * GetSiamoValue(0.09f, 0.15f, 0.19f)) * presenceScale,
                 eyePulse * GetSiamoValue(0.04f, 0.06f, 0.08f));
 
             ApplyBossLayerTransform(
                 siamoPupilSprite, Vector2.Zero,
                 new Vector2(
                     1f + pupilPulse * GetSiamoValue(0.05f, 0.07f, 0.1f),
-                    1f + Math.Abs(pupilPulse) * GetSiamoValue(0.06f, 0.08f, 0.11f)),
+                    1f + Math.Abs(pupilPulse) * GetSiamoValue(0.06f, 0.08f, 0.11f)) * presenceScale,
                 pupilPulse * GetSiamoValue(0.03f, 0.04f, 0.055f));
 
             ApplySiamoThemeToSprites();
@@ -448,6 +512,7 @@ namespace MaggyHelper.Entities
                 siamoTimeborderTimer += Engine.DeltaTime;
                 siamoTimeborderAlpha = GetSiamoValue(0.28f, 0.35f, 0.42f) + (float)Math.Sin(Scene.TimeActive * 3f) * GetSiamoValue(0.1f, 0.15f, 0.2f);
                 timeborderSprite.Color = GetSiamoTimeborderColor(0.22f) * siamoTimeborderAlpha;
+                timeborderSprite.Scale = Vector2.One * MathHelper.Lerp(1f, presenceScale, 0.9f);
                 timeborderSprite.Visible = true;
 
                 if (!timeborderSprite.Animating)
@@ -465,8 +530,8 @@ namespace MaggyHelper.Entities
             {
                 Color siamoColor = GetSiamoCoreColor((energyPulse.Value + 1f) * 0.5f);
                 coreLight.Color = siamoColor * 1.6f;
-                coreLight.Alpha = 0.9f + phaseWiggler.Value * 0.4f;
-                coreLight.StartRadius = GetSiamoValue(360f, 400f, 448f);
+                coreLight.Alpha = 0.9f + phaseWiggler.Value * 0.4f + (presenceScale - 1f) * 0.2f;
+                coreLight.StartRadius = GetSiamoValue(360f, 400f, 448f) * presenceScale;
             }
         }
 
@@ -486,6 +551,9 @@ namespace MaggyHelper.Entities
                     break;
                 case SiamoAttackType.EnergySwordCombo:
                     siamoAttack_EnergySwordCombo();
+                    break;
+                case SiamoAttackType.ConqueredPeakCascade:
+                    siamoAttack_ConqueredPeakCascade();
                     break;
                 case SiamoAttackType.TornadoSlash:
                     siamoAttack_TornadoSlash();
@@ -647,6 +715,118 @@ namespace MaggyHelper.Entities
                 Vector2 dir = new Vector2((float)Math.Cos(a), (float)Math.Sin(a));
                 lvl?.ParticlesFG.Emit(PShoot, 3, Position, dir * 10f);
             }
+        }
+
+        /// <summary>
+        /// Conquered Peak Cascade — Celeste-style corner warps into crossing sword dives.
+        /// Uses repeated diagonal rushes inspired by FinalBoss / Conquered Peak attack language.
+        /// </summary>
+        private void siamoAttack_ConqueredPeakCascade()
+        {
+            currentSiamoSubPhase = SiamoSubPhase.AeonHeroFake;
+            PlayBossAnimationSet(ElsPhase.SiamoZero, "hit", "boss");
+            PlaySiamoOverlay(SiamoSubPhase.AeonHeroFake, "glide_sword");
+
+            Audio.Play(SFX_SIAMO_BEAM_CHARGE, Position);
+            ShowTelegraph(BossTelegraphType.DashCyan, GetSiamoValue(0.42f, 0.34f, 0.26f));
+
+            Add(new Coroutine(siamoConqueredPeakCascadeSequence()));
+        }
+
+        private IEnumerator siamoConqueredPeakCascadeSequence()
+        {
+            var lvl = Scene as Level;
+            int passes = siamoIdentity switch
+            {
+                SiamoZeroIdentity.Celestial => 5,
+                SiamoZeroIdentity.Delta => 4,
+                _ => 3
+            };
+
+            float horizontalReach = GetSiamoValue(150f, 190f, 220f) * GetSiamoVariantScaleMultiplier();
+            float verticalReach = GetSiamoValue(96f, 128f, 156f);
+
+            for (int pass = 0; pass < passes; pass++)
+            {
+                var player = lvl?.Tracker.GetEntity<global::Celeste.Player>();
+                Vector2 target = player?.Center ?? Position;
+                float side = pass % 2 == 0 ? -1f : 1f;
+                Vector2 start = target + new Vector2(side * horizontalReach, -verticalReach - pass * 12f);
+                Vector2 end = target + new Vector2(-side * horizontalReach * 0.68f, GetSiamoValue(20f, 36f, 52f));
+                Vector2 dashDir = (end - start).SafeNormalize();
+                if (dashDir == Vector2.Zero)
+                    dashDir = new Vector2(side, 0f);
+
+                Position = start;
+                facing = target.X >= Position.X ? 1 : -1;
+
+                Audio.Play(SFX_ELS_TELEPORT, Position);
+                lvl?.Displacement.AddBurst(Position, 0.45f, 72f, 144f, 0.4f);
+                lvl?.ParticlesFG.Emit(PBurst, GetSiamoCount(6, 8, 10), Position, Vector2.One * 8f);
+
+                ShowTelegraph(BossTelegraphType.DashCyan, GetSiamoValue(0.18f, 0.14f, 0.1f));
+                yield return GetSiamoValue(0.18f, 0.14f, 0.1f);
+
+                PlaySiamoOverlay(SiamoSubPhase.AeonHeroFake, pass == passes - 1 ? "finish_slash" : "rapid_slash");
+                Audio.Play(SFX_SIAMO_SWORD_SWING, Position);
+
+                float dashDuration = GetSiamoValue(0.28f, 0.22f, 0.16f);
+                for (float t = 0f; t < dashDuration; t += Engine.DeltaTime)
+                {
+                    float eased = Ease.CubeIn(t / dashDuration);
+                    Position = Vector2.Lerp(start, end, eased);
+
+                    if (Scene.OnInterval(GetSiamoValue(0.07f, 0.05f, 0.035f)))
+                    {
+                        Vector2 perpendicular = new Vector2(-dashDir.Y, dashDir.X);
+                        lvl?.Add(new SiamoZeroEnergyBlade(
+                            Position,
+                            dashDir * GetSiamoValue(190f, 220f, 260f),
+                            GetSiamoAeonColor(pass * 0.1f + t),
+                            GetSiamoValue(0.42f, 0.56f, 0.72f)));
+                        lvl?.Add(new SiamoZeroEnergyBlade(
+                            Position,
+                            perpendicular * GetSiamoValue(84f, 108f, 136f),
+                            GetSiamoAuraAccentColor(pass * 0.12f),
+                            GetSiamoValue(0.26f, 0.34f, 0.42f)));
+                        lvl?.ParticlesFG.Emit(PBurst, GetSiamoCount(2, 3, 5), Position, Vector2.One * 6f);
+                    }
+
+                    yield return null;
+                }
+
+                Audio.Play(SFX_SIAMO_IMPACT, Position);
+                lvl?.Shake(GetSiamoValue(1f, 1.25f, 1.5f));
+                lvl?.Displacement.AddBurst(Position, 1.1f, 96f, 192f, 0.8f);
+
+                int slashBursts = GetSiamoCount(3, 4, 5);
+                for (int i = 0; i < slashBursts; i++)
+                {
+                    float spread = MathHelper.Lerp(-0.24f, 0.24f, slashBursts <= 1 ? 0.5f : i / (float)(slashBursts - 1));
+                    Vector2 burstDir = Calc.AngleToVector(dashDir.Angle() + spread, GetSiamoValue(200f, 235f, 280f));
+                    lvl?.Add(new SiamoZeroCrescentProjectile(Position, burstDir, GetSiamoAeonColor(0.12f + pass * 0.08f + i * 0.04f)));
+                }
+
+                yield return GetSiamoValue(0.22f, 0.18f, 0.12f);
+            }
+
+            Audio.Play(SFX_SIAMO_IMPACT, Position);
+            lvl?.Flash(GetSiamoAuraAccentColor(0.22f) * 0.72f, false);
+            lvl?.Displacement.AddBurst(Position, 1.75f, 160f, 320f, 1.6f);
+
+            int finaleBlades = passes * 2 + GetSiamoCount(4, 6, 8);
+            for (int i = 0; i < finaleBlades; i++)
+            {
+                float angle = (i / (float)finaleBlades) * MathHelper.TwoPi;
+                Vector2 dir = Calc.AngleToVector(angle, GetSiamoValue(200f, 240f, 290f));
+                lvl?.Add(new SiamoZeroEnergyBlade(
+                    Position,
+                    dir,
+                    GetSiamoAuraAccentColor(i * 0.05f),
+                    GetSiamoValue(0.55f, 0.7f, 0.82f)));
+            }
+
+            SiamoReturnToAeonHero();
         }
 
         /// <summary>

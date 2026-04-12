@@ -9,7 +9,7 @@ using FMOD.Studio;
 namespace MaggyHelper.Entities
 {
     /// <summary>
-    /// ElsTrueFinalBoss - A ConqueredPeak/BadelineBoss style boss with pattern-based attacks.
+    /// SiamoZeroFinalBoss - A ConqueredPeak/BadelineBoss style boss with pattern-based attacks.
     /// Uses node-based movement and phase transitions similar to Celeste's FinalBoss and AsrielGodBoss.
     /// Els' true form - Phase 1: Doppia Elillca, Phase 2: Penumbra Phastasm (true final phase)
     /// 
@@ -21,10 +21,10 @@ namespace MaggyHelper.Entities
     /// Kirby would naturally grow sinister over time even without Elmerninis' intervention.
     /// "All it takes is one hero to fall for the story to end."
     /// </summary>
-    [CustomEntity(ids: "MaggyHelper/ElsTrueFinalBoss")]
+    [CustomEntity(ids: "MaggyHelper/SiamoZeroFinalBoss,MaggyHelper/SiamoZeroDelta,MaggyHelper/CelestialZero,MaggyHelper/ElsTrueFinalBoss")]
     [Tracked(true)]
     [HotReloadable]
-    public partial class ElsTrueFinalBoss : BossActor
+    public partial class SiamoZeroFinalBoss : BossActor
     {
         #region Constants and Audio Events
         
@@ -56,6 +56,18 @@ namespace MaggyHelper.Entities
         private const string SFX_ELS_TELEPORT = "event:/desolozantas/final_content/char/els/Els_Teleport";
         private const string SFX_ELS_TIME_MANIPULATOR_END = "event:/desolozantas/final_content/char/els/Els_Time_Manipulator_End";
         private const string SFX_ELS_TIME_MANIPULATOR_START = "event:/desolozantas/final_content/char/els/Els_Time_Manipulator_Start";
+        private const string MUSIC_SIAMO_ZERO = "event:/desolozantas/final_content/music/lvl20/siamo_zero_finale";
+        private const string MUSIC_SIAMO_ZERO_DELTA = "event:/desolozantas/final_content/music/lvl20/siamo_zero_delta";
+        private const string MUSIC_CELESTIAL_ZERO = "event:/desolozantas/final_content/music/lvl20/celestial_zero";
+        private const string ENTITY_SIAMO_ZERO_FINAL_BOSS = "MaggyHelper/SiamoZeroFinalBoss";
+        private const string ENTITY_SIAMO_ZERO_DELTA = "MaggyHelper/SiamoZeroDelta";
+        private const string ENTITY_CELESTIAL_ZERO = "MaggyHelper/CelestialZero";
+        private const string INTRO_FLAG_PREFIX = "siamo_zero_final_boss_intro_";
+        private const string LEGACY_INTRO_FLAG_PREFIX = "els_true_final_boss_intro_";
+        private const string INTRO_FLAG = "siamo_zero_final_boss_intro";
+        private const string LEGACY_INTRO_FLAG = "els_true_final_boss_intro";
+        private const string DEFEATED_FLAG = "siamo_zero_final_boss_defeated";
+        private const string LEGACY_DEFEATED_FLAG = "els_true_final_boss_defeated";
         
         // ConqueredPeak/BadelineBoss constants
         private const float MOVE_SPEED = 600f;
@@ -88,7 +100,7 @@ namespace MaggyHelper.Entities
         public static ParticleType PBurst;
         public static ParticleType PShoot;
         
-        static ElsTrueFinalBoss()
+        static SiamoZeroFinalBoss()
         {
             PBurst = new ParticleType
             {
@@ -215,6 +227,9 @@ namespace MaggyHelper.Entities
         private float knockbackTimer = 0f;
         private bool isHitSlowdownActive = false;
         private readonly TimeRateModifier timeRateModifier;
+        private SiamoZeroIdentity siamoIdentity = SiamoZeroIdentity.Zero;
+        private string currentBossMusicEvent;
+        private bool bossMusicInitialized;
         
         // Phase tracking
         private ElsPhase currentElsPhase = ElsPhase.DoppiaElillca;
@@ -306,20 +321,132 @@ namespace MaggyHelper.Entities
             Stellarruss
         }
 
+        public enum SiamoZeroIdentity
+        {
+            Zero,
+            Delta,
+            Celestial
+        }
+
         private SiamoZeroTier siamoZeroTier = SiamoZeroTier.SoulBlack;
         
         #endregion
         
         #region Constructors
+
+        private static bool IsPrimarySiamoFinalBossEntity(string entityName)
+        {
+            return string.Equals(entityName, ENTITY_SIAMO_ZERO_FINAL_BOSS, StringComparison.OrdinalIgnoreCase)
+                || string.Equals(entityName, ENTITY_SIAMO_ZERO_DELTA, StringComparison.OrdinalIgnoreCase)
+                || string.Equals(entityName, ENTITY_CELESTIAL_ZERO, StringComparison.OrdinalIgnoreCase);
+        }
+
+        private static string ResolveSiamoVariant(EntityData data)
+        {
+            string explicitVariant = data.Attr("siamoVariant", "");
+            if (!string.IsNullOrWhiteSpace(explicitVariant))
+                return explicitVariant;
+
+            return data.Name switch
+            {
+                ENTITY_SIAMO_ZERO_DELTA => "delta",
+                ENTITY_CELESTIAL_ZERO => "celestial",
+                _ => "zero"
+            };
+        }
+
+        private static string ResolveSiamoTier(EntityData data)
+        {
+            string explicitTier = data.Attr("siamoTier", "");
+            if (!string.IsNullOrWhiteSpace(explicitTier))
+                return explicitTier;
+
+            return data.Name switch
+            {
+                ENTITY_CELESTIAL_ZERO => "stellarruss",
+                _ => "soulBlack"
+            };
+        }
+
+        private static int ResolvePatternIndex(EntityData data)
+        {
+            int explicitPatternIndex = data.Int(nameof(patternIndex), -1);
+            if (explicitPatternIndex >= 0)
+                return explicitPatternIndex;
+
+            return IsPrimarySiamoFinalBossEntity(data.Name) ? 4 : 0;
+        }
+
+        private static bool ResolveDialog(EntityData data)
+        {
+            return data.Bool(nameof(dialog), string.Equals(data.Name, ENTITY_SIAMO_ZERO_FINAL_BOSS, StringComparison.OrdinalIgnoreCase));
+        }
+
+        private static bool ResolveStartHit(EntityData data)
+        {
+            return data.Bool(nameof(startHit), !string.Equals(data.Name, ENTITY_SIAMO_ZERO_FINAL_BOSS, StringComparison.OrdinalIgnoreCase));
+        }
+
+        private static string ResolveAttackSequence(EntityData data)
+        {
+            string explicitAttackSequence = data.Attr("attackSequence", "");
+            if (!string.IsNullOrWhiteSpace(explicitAttackSequence))
+                return explicitAttackSequence;
+
+            return data.Name switch
+            {
+                ENTITY_SIAMO_ZERO_FINAL_BOSS => "CrescentBeamShot,EnergySwordCombo,TornadoSlash,RevolutionSword,RisingSpine,DownThrust,DrillStab,EnergyShower,VortexStrike,DoubleSideSlash,MorphoEmerge,TimeborderCollapse",
+                ENTITY_SIAMO_ZERO_DELTA => "CrescentBeamShot,EnergySwordCombo,ConqueredPeakCascade,TornadoSlash,EnergyShower,VortexStrike,DoubleSideSlash,MorphoEmerge,TimeborderCollapse",
+                ENTITY_CELESTIAL_ZERO => "CrescentBeamShot,RevolutionSword,ConqueredPeakCascade,EnergyShower,VortexStrike,DoubleSideSlash,TimeborderCollapse,MorphoEmerge,ConqueredPeakCascade",
+                _ => string.Empty
+            };
+        }
+
+        private static string GetIntroFlagForRoom(string roomId)
+        {
+            return string.IsNullOrWhiteSpace(roomId)
+                ? INTRO_FLAG
+                : $"{INTRO_FLAG_PREFIX}{roomId}";
+        }
+
+        private static string GetLegacyIntroFlagForRoom(string roomId)
+        {
+            return string.IsNullOrWhiteSpace(roomId)
+                ? LEGACY_INTRO_FLAG
+                : $"{LEGACY_INTRO_FLAG_PREFIX}{roomId}";
+        }
+
+        private bool HasSeenEncounterIntro(string roomId)
+        {
+            return level.Session.GetFlag(GetIntroFlagForRoom(roomId))
+                || level.Session.GetFlag(GetLegacyIntroFlagForRoom(roomId))
+                || level.Session.GetFlag(INTRO_FLAG)
+                || level.Session.GetFlag(LEGACY_INTRO_FLAG);
+        }
+
+        private void MarkEncounterIntroSeen(string roomId)
+        {
+            level.Session.SetFlag(GetIntroFlagForRoom(roomId), true);
+            level.Session.SetFlag(GetLegacyIntroFlagForRoom(roomId), true);
+            level.Session.SetFlag(INTRO_FLAG, true);
+            level.Session.SetFlag(LEGACY_INTRO_FLAG, true);
+        }
+
+        private void MarkEncounterDefeated()
+        {
+            level.Session.SetFlag(DEFEATED_FLAG, true);
+            level.Session.SetFlag(LEGACY_DEFEATED_FLAG, true);
+        }
         
-        public ElsTrueFinalBoss(
+        public SiamoZeroFinalBoss(
             Vector2 position,
             Vector2[] nodes,
             int patternIndex,
             bool dialog,
             bool startHit,
             string attackSequence = "",
-                string siamoTier = "soulBlack")
+            string siamoTier = "soulBlack",
+            string siamoVariant = "zero")
             : base(position,
                    spriteName: "els_true_final_boss",
                    spriteScale: Vector2.One,
@@ -334,6 +461,9 @@ namespace MaggyHelper.Entities
             this.startHit = startHit;
             this.attackSequenceData = attackSequence;
             this.siamoZeroTier = ParseSiamoZeroTier(siamoTier);
+            this.siamoIdentity = ParseSiamoZeroIdentity(siamoVariant);
+            this.MaxHealth = MAX_HITS;
+            this.Health = this.MaxHealth;
             this.Add((Component)(this.light = new VertexLight(Color.White, 1f, 32, 64)));
             this.circle = (Monocle.Circle)this.Collider;
             this.Add(new PlayerCollider(player => this.OnPlayer(player)));
@@ -356,10 +486,10 @@ namespace MaggyHelper.Entities
             Add(phaseWiggler = Wiggler.Create(1.2f, 4f));
         }
 
-        public ElsTrueFinalBoss(EntityData data, Vector2 offset)
-            : this(data.Position + offset, data.NodesOffset(offset), data.Int(nameof(patternIndex)),
-                  data.Bool(nameof(dialog)), data.Bool(nameof(startHit)),
-                  data.Attr("attackSequence", ""), data.Attr("siamoTier", "soulBlack"))
+        public SiamoZeroFinalBoss(EntityData data, Vector2 offset)
+            : this(data.Position + offset, data.NodesOffset(offset), ResolvePatternIndex(data),
+                  ResolveDialog(data), ResolveStartHit(data),
+                  ResolveAttackSequence(data), ResolveSiamoTier(data), ResolveSiamoVariant(data))
         {
             string seq = attackSequenceData.Trim();
             if (!string.IsNullOrEmpty(seq))
@@ -389,20 +519,20 @@ namespace MaggyHelper.Entities
                 this.createBossSprite();
             
             setupPhase1();
+            ApplyConfiguredStartingPhase();
             
             string currentRoomId = this.level.Session.Level;
-            string introFlagForRoom = $"els_true_final_boss_intro_{currentRoomId}";
-            bool hasSeenIntro = this.level.Session.GetFlag(introFlagForRoom) || 
-                               this.level.Session.GetFlag("els_true_final_boss_intro");
+            bool hasSeenIntro = HasSeenEncounterIntro(currentRoomId);
+            bool shouldPlayIntro = dialog && currentElsPhase == ElsPhase.DoppiaElillca && !hasSeenIntro && ShouldShowIntroForRoom(currentRoomId);
             
-            if (!hasSeenIntro && ShouldShowIntroForRoom(currentRoomId))
+            if (shouldPlayIntro)
             {
                 Add(new Coroutine(finalBossEntrance()));
             }
             else
             {
-                // Music removed
                 this.level.Session.Audio.Apply();
+                EnsureBossMusicState(force: true);
             }
             
             if (this.startHit)
@@ -423,6 +553,29 @@ namespace MaggyHelper.Entities
                     return true;
             }
             return false;
+        }
+
+        private void ApplyConfiguredStartingPhase()
+        {
+            ElsPhase configuredPhase = DetermineConfiguredStartingPhase();
+
+            switch (configuredPhase)
+            {
+                case ElsPhase.PenumbraPhastasm:
+                    hasTransitionedToPhase2 = true;
+                    currentElsPhase = ElsPhase.PenumbraPhastasm;
+                    currentPhase = 1;
+                    currentState = BossState.Idle;
+                    setupPhase2();
+                    break;
+
+                case ElsPhase.SiamoZero:
+                    hasTransitionedToPhase2 = true;
+                    currentPhase = 2;
+                    currentState = BossState.Idle;
+                    ActivateSiamoZeroCombat();
+                    break;
+            }
         }
 
         public override void Awake(Scene scene)
@@ -983,7 +1136,7 @@ namespace MaggyHelper.Entities
                 }
                 catch (Exception ex)
                 {
-                    Logger.Log(LogLevel.Error, "MaggyHelper", $"ElsTrueFinalBoss: Failed to create sprite: {ex.Message}");
+                    Logger.Log(LogLevel.Error, "MaggyHelper", $"SiamoZeroFinalBoss: Failed to create sprite: {ex.Message}");
                 }
             }
             
@@ -1051,13 +1204,13 @@ namespace MaggyHelper.Entities
                 if (lastHit && level.Session.Level.Equals("x-12"))
                 {
                     // Special handling for x-12 room
-                    level.Session.SetFlag("els_true_final_boss_defeated");
+                    MarkEncounterDefeated();
                 }
                 else if (totalHitsTaken + 1 >= MAX_HITS)
                 {
                     // Boss is defeated
                     currentState = BossState.Defeated;
-                    level.Session.SetFlag("els_true_final_boss_defeated");
+                    MarkEncounterDefeated();
                 }
                 
                 // Update hit tracking
@@ -1078,7 +1231,7 @@ namespace MaggyHelper.Entities
         
         private IEnumerator MoveSequence(Celeste.Player player, bool lastHit)
         {
-            ElsTrueFinalBoss finalBoss = this;
+            SiamoZeroFinalBoss finalBoss = this;
             if (lastHit)
             {
                 Audio.SetMusicParam("boss_pitch", 1f);
@@ -1188,6 +1341,7 @@ namespace MaggyHelper.Entities
         public float PhaseProgress => (float)hitsInPhase / MAX_HITS_PER_PHASE;
         public float OverallProgress => (float)totalHitsTaken / MAX_HITS;
         public new bool IsDefeated => currentState == BossState.Defeated;
+        public override string BossDisplayName => GetEncounterBossName();
         
         #endregion
         
@@ -1220,13 +1374,82 @@ namespace MaggyHelper.Entities
             yield return 0.8f;
             
             string currentRoomId = level?.Session.Level ?? string.Empty;
-            if (!string.IsNullOrEmpty(currentRoomId))
-            {
-                level.Session.SetFlag($"els_true_final_boss_intro_{currentRoomId}", true);
-            }
-            level.Session.SetFlag("els_true_final_boss_intro", true);
+            MarkEncounterIntroSeen(currentRoomId);
             currentState = BossState.Idle;
             Collidable = true;
+            EnsureBossMusicState(force: true);
+        }
+
+        private string GetBossMusicEvent()
+        {
+            return siamoIdentity switch
+            {
+                SiamoZeroIdentity.Delta => MUSIC_SIAMO_ZERO_DELTA,
+                SiamoZeroIdentity.Celestial => MUSIC_CELESTIAL_ZERO,
+                _ => MUSIC_SIAMO_ZERO
+            };
+        }
+
+        private float GetBossMusicPhaseParam()
+        {
+            return currentElsPhase switch
+            {
+                ElsPhase.PenumbraPhastasm => 1f,
+                ElsPhase.SiamoZero => 2f,
+                _ => 0f
+            };
+        }
+
+        private float GetBossMusicVariantParam()
+        {
+            return siamoIdentity switch
+            {
+                SiamoZeroIdentity.Delta => 1f,
+                SiamoZeroIdentity.Celestial => 2f,
+                _ => 0f
+            };
+        }
+
+        private float GetBossMusicProgress()
+        {
+            float maxHealth = Math.Max(1, MaxHealth);
+            float healthProgress = 1f - Health / maxHealth;
+            float hitProgress = Calc.ClampedMap(totalHitsTaken, 0f, MAX_HITS, 0f, 1f);
+            float phaseFloor = currentElsPhase switch
+            {
+                ElsPhase.PenumbraPhastasm => 0.35f,
+                ElsPhase.SiamoZero => 0.68f,
+                _ => 0f
+            };
+
+            return Calc.Clamp(Math.Max(phaseFloor, Math.Max(healthProgress, hitProgress)), 0f, 1f);
+        }
+
+        private void EnsureBossMusicState(bool force = false)
+        {
+            if (level == null)
+                return;
+
+            string targetEvent = GetBossMusicEvent();
+            if (string.IsNullOrWhiteSpace(targetEvent))
+                return;
+
+            if (force || !bossMusicInitialized || !string.Equals(currentBossMusicEvent, targetEvent, StringComparison.Ordinal))
+            {
+                Audio.SetMusic(targetEvent, true, true);
+                currentBossMusicEvent = targetEvent;
+                bossMusicInitialized = true;
+            }
+
+            float progress = GetBossMusicProgress();
+            Audio.SetMusicParam("siamo_progress", progress);
+            Audio.SetMusicParam("boss_progress", progress);
+            Audio.SetMusicParam("piano", Calc.ClampedMap(progress, 0.12f, 0.48f));
+            Audio.SetMusicParam("choir", Calc.ClampedMap(progress, 0.48f, 0.94f));
+            Audio.SetMusicParam("choir_epic", Calc.ClampedMap(progress, 0.7f, 1f));
+            Audio.SetMusicParam("siamo_phase", GetBossMusicPhaseParam());
+            Audio.SetMusicParam("siamo_variant", GetBossMusicVariantParam());
+            Audio.SetMusicParam("intensity", 0.25f + progress * 0.75f);
         }
         
         private List<AttackStep> parseCustomAttackSequence(string sequence)
@@ -1552,6 +1775,9 @@ namespace MaggyHelper.Entities
             // Update core light
             if (coreLight != null)
                 coreLight.Alpha = 0.8f + phaseWiggler.Value * 0.4f;
+
+            if (!introSequencePlaying)
+                EnsureBossMusicState();
         }
 
         private void UpdateBossSpriteVisibility()

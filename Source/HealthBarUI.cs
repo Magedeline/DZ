@@ -100,8 +100,8 @@ namespace MaggyHelper.Entities
         {
             base.Render();
 
-            // Only render if health manager exists and player has health
-            if (healthManager == null || maxHealth <= 0 || currentHealth <= 0)
+            // Only render while Kirby mode is currently active.
+            if (healthManager == null || !healthManager.IsKirbyMode || maxHealth <= 0 || currentHealth <= 0)
                 return;
 
             // Calculate bar fill percentage (0-1) - use HealthPercent from manager

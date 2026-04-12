@@ -7,19 +7,13 @@ using Monocle;
 namespace MaggyHelper.Entities;
 
 /// <summary>
-/// Map entity that replaces the vanilla Celeste.Player with MaggyHelper's own
-/// Player entity at load time. Place this in any room via the Lönn map editor
-/// to get full Kirby gameplay without relying on a vanilla player spawn.
+/// Room-local controller that configures the vanilla Celeste.Player for Kirby
+/// gameplay at load time. Place this in a room via Lonn to enable Kirby mode,
+/// assign a starting copy ability, or snap the spawn to a specific marker.
 ///
-/// Execution order (see <see cref="PlayerCompatShim"/> for hooks):
-///   1. Level.LoadLevel spawns a vanilla Celeste.Player (unavoidable).
-///   2. This entity's <see cref="Awake"/> fires and:
-///      a) Records the vanilla player's position.
-///      b) Removes / hides the vanilla player.
-///      c) Spawns <see cref="MaggyHelper.Entities.Player"/> at the same position.
-///      d) Enables Kirby mode flags in the session.
-///   3. <see cref="PlayerCompatShim"/> redirects camera, triggers, and
-///      <see cref="PlayerCollider"/> to our entity.
+/// Unlike the older implementation, this does not create a second player entity.
+/// It keeps the real Celeste.Player authoritative and layers Kirby mechanics
+/// on top, which matches the common Everest modding pattern.
 /// </summary>
 [CustomEntity("MaggyHelper/KirbyPlayerSpawner")]
 [Tracked(false)]
@@ -60,124 +54,118 @@ public sealed class KirbyPlayerSpawner : Entity
 
     private void ApplySpawn(Level level)
     {
-        // --- 1. Find the vanilla player that Celeste spawned automatically ---
-        var vanillaPlayer = level.Tracker.GetEntity<CelestePlayer>();
-        Vector2 spawnPos = Position;
-
-        if (vanillaPlayer != null)
+        var player = level.Tracker.GetEntity<CelestePlayer>();
+        if (player == null)
         {
-            // Use entity position if set, otherwise inherit vanilla player position
-            if (Position == Vector2.Zero)
-                spawnPos = vanillaPlayer.Position;
-
-            // Hide the vanilla player: move offscreen, make non-interactive
-            HideVanillaPlayer(vanillaPlayer, level);
+            IngesteLogger.Info("[KirbyPlayerSpawner] Celeste.Player not available during Awake");
+            return;
         }
 
-        // --- 2. Spawn our MaggyHelper Player ---
-        var maggyPlayer = new MaggyHelper.Entities.Player(
-            spawnPos,
-            PlayerSpriteMode.Madeline);
+        Vector2? forcedSpawnPos = Position == Vector2.Zero
+            ? null
+            : Position;
 
-        level.Add(maggyPlayer);
-        level.Session.RespawnPoint = spawnPos;
+        ConfigureVanillaPlayer(
+            level,
+            player,
+            forcedSpawnPos,
+            enableKirbyMode,
+            startingPower,
+            spawnCompanion);
 
         IngesteLogger.Info(
-            $"[KirbyPlayerSpawner] Spawned MaggyHelper.Player at {spawnPos}");
+            $"[KirbyPlayerSpawner] Configured Celeste.Player at {player.Position} " +
+            $"(kirby={enableKirbyMode})");
+    }
 
-        // --- 3. Enable Kirby mode if requested ---
+    internal static void ConfigureVanillaPlayer(
+        Level level,
+        CelestePlayer player,
+        Vector2? forcedSpawnPos,
+        bool enableKirbyMode,
+        KirbyMode.KirbyPowerState startingPower,
+        bool spawnCompanion)
+    {
+        if (level == null || player == null)
+            return;
+
+        if (forcedSpawnPos.HasValue)
+        {
+            player.Position = forcedSpawnPos.Value;
+            level.Session.RespawnPoint = forcedSpawnPos.Value;
+        }
+
+        EnsureRoomState(level, enableKirbyMode);
+
         if (enableKirbyMode)
         {
-            var session = MaggyHelperModule.Session;
-            if (session != null)
-            {
-                session.IsKirbyModeActive = true;
-            }
-
-            maggyPlayer.KirbyModeActive = true;
-            maggyPlayer.CombatEnabled = true;
+            player.EnableKirbyMode();
 
             if (startingPower != KirbyMode.KirbyPowerState.None)
-            {
-                // Ensure KirbyMode entity exists in scene
-                var kirbyMode = level.Tracker.GetEntity<KirbyMode>();
-                if (kirbyMode == null)
-                {
-                    kirbyMode = new KirbyMode();
-                    level.Add(kirbyMode);
-                }
-                kirbyMode.SetPowerState(startingPower);
-            }
+                player.SetKirbyPowerState(startingPower);
 
             IngesteLogger.Info(
                 $"[KirbyPlayerSpawner] Kirby mode enabled" +
                 (startingPower != KirbyMode.KirbyPowerState.None
                     ? $" with power: {startingPower}"
-                    : ""));
+                    : string.Empty));
+        }
+        else
+        {
+            player.DisableKirbyMode();
+            IngesteLogger.Info("[KirbyPlayerSpawner] Madeline mode restored for this room");
         }
 
-        // --- 4. Spawn KirbyDummy companion if requested ---
-        if (spawnCompanion)
+        if (spawnCompanion && level.Tracker.GetEntity<KirbyDummy>() == null)
         {
-            var dummy = new KirbyDummy(spawnPos + new Vector2(-16f, 0f));
-            level.Add(dummy);
+            level.Add(new KirbyDummy(player.Position + new Vector2(-16f, 0f)));
             IngesteLogger.Info("[KirbyPlayerSpawner] Spawned KirbyDummy companion");
         }
+    }
 
-        // --- 5. Initialize health + selection managers ---
+    internal static void EnsureRoomState(Level level)
+    {
+        bool enableKirbyMode = MaggyHelperModule.Session?.IsKirbyModeActive == true;
+        EnsureRoomState(level, enableKirbyMode);
+    }
+
+    internal static void EnsureRoomState(Level level, bool enableKirbyMode)
+    {
+        if (level == null)
+            return;
+
         PlayerSelectionManager.GetOrCreate(level);
         PlayerSelectionManager.SetLevelOverride(
             enableKirbyMode
                 ? PlayerSelectionManager.PlayerType.Kirby
                 : PlayerSelectionManager.PlayerType.Madeline);
 
-        PlayerHealthManager.GetOrCreate(level, enableKirbyMode ? 6 : 1);
-
-        // --- 6. Initialize health bar UI for Kirby mode ---
-        if (enableKirbyMode && level.Tracker.GetEntity<HealthBarUI>() == null)
+        var healthManager = PlayerHealthManager.GetOrCreate(level, enableKirbyMode ? 6 : 1);
+        if (enableKirbyMode)
         {
-            level.Add(new HealthBarUI(level));
+            healthManager.EnableKirbyMode(6);
+
+            if (level.Tracker.GetEntity<HealthBarUI>() == null)
+                level.Add(new HealthBarUI(level));
+        }
+        else
+        {
+            healthManager.DisableKirbyMode();
         }
     }
 
-    /// <summary>
-    /// Hides the vanilla Celeste.Player without fully removing it (some vanilla
-    /// systems hard-crash if no Player exists at all). Instead we:
-    ///  - Move it far offscreen
-    ///  - Make it invisible
-    ///  - Set it to the Dummy state so it doesn't process input
-    /// </summary>
-    private static void HideVanillaPlayer(CelestePlayer player, Level level)
-    {
-        player.Position = new Vector2(-9999f, -9999f);
-        player.Visible = false;
-        player.Active = false;
-        player.Collidable = false;
-
-        IngesteLogger.Info("[KirbyPlayerSpawner] Vanilla Celeste.Player hidden");
-    }
-
-    /// <summary>
-    /// Restores a hidden vanilla player. Called when the spawner is removed or
-    /// Kirby mode is disabled and we need to fall back to vanilla.
-    /// </summary>
     public static void RestoreVanillaPlayer(Level level)
     {
+        if (level == null)
+            return;
+
         var vanillaPlayer = level.Tracker.GetEntity<CelestePlayer>();
         if (vanillaPlayer == null)
             return;
 
-        var maggyPlayer = level.Tracker.GetEntity<MaggyHelper.Entities.Player>();
-        Vector2 restorePos = maggyPlayer?.Position ?? (level.Session.RespawnPoint ?? Vector2.Zero);
+        vanillaPlayer.DisableKirbyMode();
+        EnsureRoomState(level, false);
 
-        vanillaPlayer.Position = restorePos;
-        vanillaPlayer.Visible = true;
-        vanillaPlayer.Active = true;
-        vanillaPlayer.Collidable = true;
-
-        // Remove our player
-        maggyPlayer?.RemoveSelf();
-
-        IngesteLogger.Info("[KirbyPlayerSpawner] Vanilla Celeste.Player restored");
+        IngesteLogger.Info("[KirbyPlayerSpawner] Celeste.Player restored to Madeline mode");
     }
 }

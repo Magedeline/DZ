@@ -71,11 +71,11 @@ namespace MaggyHelper.Entities
             }
         }
 
-        public void SetSiamoTier(ElsTrueFinalBoss.SiamoZeroTier tier)
+        public void SetSiamoTier(SiamoZeroFinalBoss.SiamoZeroTier tier)
         {
             switch (tier)
             {
-                case ElsTrueFinalBoss.SiamoZeroTier.Pink:
+                case SiamoZeroFinalBoss.SiamoZeroTier.Pink:
                     activePalette = PinkColors;
                     backgroundBaseColor = Calc.HexToColor("09030b");
                     backgroundOverlayColor = Calc.HexToColor("ffe8f7");
@@ -84,7 +84,7 @@ namespace MaggyHelper.Entities
                     rainbowPulseMode = false;
                     break;
 
-                case ElsTrueFinalBoss.SiamoZeroTier.Stellarruss:
+                case SiamoZeroFinalBoss.SiamoZeroTier.Stellarruss:
                     activePalette = StellarrussColors;
                     backgroundBaseColor = Color.Black;
                     backgroundOverlayColor = Color.White;

@@ -7,10 +7,10 @@ using Microsoft.Xna.Framework;
 namespace MaggyHelper.Entities
 {
     /// <summary>
-    /// Split root for ElsTrueFinalBoss. The heavy battle implementation lives in partial files;
+    /// Split root for SiamoZeroFinalBoss. The heavy battle implementation lives in partial files;
     /// this part owns custom-sequence execution and summonable knight-clone support.
     /// </summary>
-    public partial class ElsTrueFinalBoss
+    public partial class SiamoZeroFinalBoss
     {
         private readonly List<ElsKnightCloneBoss> summonedKnightClones = new List<ElsKnightCloneBoss>();
         private ElsPhase automaticCloneSummonPhase;
@@ -308,7 +308,7 @@ namespace MaggyHelper.Entities
                     if (!siamoZeroCombatActive)
                         ActivateSiamoZeroCombat();
 
-                    ExecuteSiamoAttack((SiamoAttackType)(attackSeed % Enum.GetValues(typeof(SiamoAttackType)).Length));
+                    ExecuteSiamoAttack(ResolveDefaultSiamoAttack(attackSeed));
                     break;
             }
         }
@@ -333,6 +333,153 @@ namespace MaggyHelper.Entities
             }
         }
 
+        private static SiamoZeroIdentity ParseSiamoZeroIdentity(string value)
+        {
+            switch (NormalizeAttackToken(value ?? string.Empty))
+            {
+                case "delta":
+                case "siamozerodelta":
+                case "extra":
+                case "extraboss":
+                    return SiamoZeroIdentity.Delta;
+
+                case "celestial":
+                case "celestialzero":
+                case "remix":
+                case "remixboss":
+                    return SiamoZeroIdentity.Celestial;
+
+                default:
+                    return SiamoZeroIdentity.Zero;
+            }
+        }
+
+        private string GetEncounterBossName()
+        {
+            return siamoIdentity switch
+            {
+                SiamoZeroIdentity.Delta => "Siamo Zero Delta",
+                SiamoZeroIdentity.Celestial => "Celestial Zero",
+                _ => "Siamo Zero"
+            };
+        }
+
+        private float GetSiamoVariantScaleMultiplier()
+        {
+            return siamoIdentity switch
+            {
+                SiamoZeroIdentity.Delta => 1.3f,
+                SiamoZeroIdentity.Celestial => 1.24f,
+                _ => 1.18f
+            };
+        }
+
+        private float GetSiamoVariantDelayMultiplier()
+        {
+            return siamoIdentity switch
+            {
+                SiamoZeroIdentity.Delta => 0.92f,
+                SiamoZeroIdentity.Celestial => 0.86f,
+                _ => 1f
+            };
+        }
+
+        private float GetSiamoArenaRadius()
+        {
+            return siamoIdentity switch
+            {
+                SiamoZeroIdentity.Delta => 520f,
+                SiamoZeroIdentity.Celestial => 500f,
+                _ => 460f
+            };
+        }
+
+        private ElsPhase DetermineConfiguredStartingPhase()
+        {
+            if (customAttackSteps == null || customAttackSteps.Count == 0)
+                return ElsPhase.DoppiaElillca;
+
+            for (int i = 0; i < customAttackSteps.Count; i++)
+            {
+                string action = customAttackSteps[i].Action;
+                if (string.IsNullOrWhiteSpace(action) || IsUtilityAttackToken(action))
+                    continue;
+
+                if (IsSiamoAttackToken(action))
+                    return ElsPhase.SiamoZero;
+
+                if (IsPenumbraAttackToken(action))
+                    return ElsPhase.PenumbraPhastasm;
+
+                if (IsDoppiaAttackToken(action))
+                    return ElsPhase.DoppiaElillca;
+            }
+
+            return ElsPhase.DoppiaElillca;
+        }
+
+        private static bool IsUtilityAttackToken(string attackName)
+        {
+            switch (NormalizeAttackToken(attackName))
+            {
+                case "summongalactaknightclone":
+                case "summongalacticknightclone":
+                case "galactaknightclone":
+                case "galacticknightclone":
+                case "summonmorphoknightclone":
+                case "morphoknightclone":
+                case "clearknightclones":
+                case "dismissknightclones":
+                    return true;
+
+                default:
+                    return false;
+            }
+        }
+
+        private static bool IsDoppiaAttackToken(string attackName)
+        {
+            switch (NormalizeAttackToken(attackName))
+            {
+                case "doppiacloneassault":
+                case "dualitywave":
+                case "shadowblast":
+                case "mirrordimension":
+                case "dimensionaldefense":
+                case "dualityheal":
+                case "riftstrikecombo":
+                case "quickdashattack":
+                case "energyorbshot":
+                case "burstheal":
+                    return true;
+
+                default:
+                    return false;
+            }
+        }
+
+        private static bool IsPenumbraAttackToken(string attackName)
+        {
+            switch (NormalizeAttackToken(attackName))
+            {
+                case "penumbravoidstorm":
+                case "phantasmbarrage":
+                case "voidcollapse":
+                case "voidcollapseattack":
+                case "dimensionaltear":
+                case "ultimateannihilation":
+                case "voidshield":
+                case "penumbraregeneration":
+                case "dimensionalcataclysm":
+                case "riftmaelstrom":
+                case "apocalypticriftblast":
+                    return true;
+
+                default:
+                    return false;
+            }
+        }
+
         private static bool IsSiamoAttackToken(string attackName)
         {
             switch (NormalizeAttackToken(attackName))
@@ -349,6 +496,7 @@ namespace MaggyHelper.Entities
                 case "doublesideslash":
                 case "morphoemerge":
                 case "timebordercollapse":
+                case "conqueredpeakcascade":
                     return true;
 
                 default:
@@ -358,12 +506,14 @@ namespace MaggyHelper.Entities
 
         private float GetSiamoSequenceDelayMultiplier()
         {
-            return siamoZeroTier switch
+            float tierMultiplier = siamoZeroTier switch
             {
                 SiamoZeroTier.Pink => 1.15f,
                 SiamoZeroTier.Stellarruss => 0.82f,
                 _ => 1f
             };
+
+            return tierMultiplier * GetSiamoVariantDelayMultiplier();
         }
 
         private static string NormalizeAttackToken(string attackName)
@@ -427,6 +577,7 @@ namespace MaggyHelper.Entities
                 case "riftmaelstrom":
                 case "vortexstrike":
                 case "morphoemerge":
+                case "conqueredpeakcascade":
                     delay = 1.45f;
                     break;
 
@@ -455,12 +606,12 @@ namespace MaggyHelper.Entities
                     return isInVoidMode ? 0.9f : 1.15f;
 
                 case ElsPhase.SiamoZero:
-                    return siamoZeroTier switch
+                    return (siamoZeroTier switch
                     {
                         SiamoZeroTier.Pink => 0.98f,
                         SiamoZeroTier.Stellarruss => 0.72f,
                         _ => 0.85f
-                    };
+                    }) * GetSiamoVariantDelayMultiplier();
 
                 default:
                     return 1.2f;

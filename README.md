@@ -1,16 +1,24 @@
 # Desolo Zantas
 
-Desolo Zantas is a large-scale Celeste mod built on the `MaggyHelper` module. This repository contains the campaign maps, runtime code, dialogue, art, audio, Loenn metadata, and packaging setup used to build and ship the project.
+**Desolo Zantas** is a massive, story-driven Celeste mod featuring a full 21-chapter campaign, custom bosses, original music, Kirby-inspired mechanics, and an extended side system spanning A through DX difficulty tiers.
 
-`Desolo Zantas` is the public-facing mod name. `MaggyHelper` remains the internal assembly, namespace, and Everest module name used by the project.
+Built on the `MaggyHelper` Everest module, this project includes campaign maps, C# gameplay code, dialogue, original art and audio, Loenn editor support, and full packaging. The mod requires Everest and a large helper stack (46+ dependencies) to run.
+
+## Key Features
+
+- **21-chapter story campaign** — from Prologue through Chapter 20 plus a post-epilogue chapter, each with custom dialogue, cutscenes, and progression.
+- **5-tier side system** — A-Side, B-Side, C-Side, D-Side, and DX-Side support with sequential unlock logic, heart gem requirements, and unlock postcards.
+- **Custom boss encounters** — including Apex Predator, Asriel God, Siamo Zero Final Boss, Whispy Woods, and many more.
+- **Lobby & submap architecture** — Chapters 10–14 feature dedicated hub lobbies with fragment/shard routes, EX maps, and boss arenas.
+- **Kirby crossover content** — custom Kirby player sprites, dedicated skin support, and crossover characters.
+- **Original audio** — FMOD sound banks with custom music and SFX.
+- **Loenn editor integration** — full entity, trigger, effect, and tooling plugins for map editing.
 
 ## Ownership And Repository Policy
 
-This Celeste mod project, including the Kirby-inspired mechanics and the content spanning the campaign through Chapter 20, was built from scratch for Desolo Zantas.
+This project was built from scratch for Desolo Zantas. Public access is provided so players and followers can view development history, report bugs, and leave feedback.
 
-Public access is provided so players and followers can view development history, report bugs, and leave suggestions or feedback. Public access does not grant permission to modify, reuse, redistribute, or publish altered versions of this codebase or its assets.
-
-Feedback is welcome through issues and discussion, but pull requests and unauthorized code or asset changes are not accepted unless the repository owner gives explicit written permission in advance.
+Public access does not grant permission to modify, reuse, redistribute, or publish altered versions of this codebase or its assets. Pull requests are not accepted unless the repository owner gives explicit written permission in advance.
 
 ## Project Snapshot
 

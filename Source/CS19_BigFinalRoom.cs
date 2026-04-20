@@ -1,15 +1,16 @@
-using MaggyHelper.Entities;
+using Celeste.Entities;
 
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
     /// <summary>
     /// Cutscene for the final room of Chapter 19, featuring interaction with Chara
+    /// and the final approach toward the edge of the universe.
     /// </summary>
     public class Cs19BigFinalRoom : CutsceneEntity
     {
-        private global::Celeste.Player player;
+        private readonly global::Celeste.Player player;
         private CharaDummy chara;
-        private bool first;
+        private readonly bool first;
 
         /// <summary>
         /// Creates a new CS19 Big Final Room cutscene
@@ -28,6 +29,8 @@ namespace MaggyHelper.Cutscenes
         /// </summary>
         public override void OnBegin(Level level)
         {
+            // Reapply generator-driven blackhole weakening when entering this cutscene room.
+            PowerGenerator.RefreshBlackholeFromGeneratorProgress(level);
             Add(new Coroutine(cutscene(level)));
         }
 
@@ -43,13 +46,28 @@ namespace MaggyHelper.Cutscenes
             }
 
             // Put player in cutscene state
-            player.StateMachine.State = 11;
+            player.StateMachine.State = Player.StDummy;
             
             if (first)
             {
                 // First time: player walks forward
                 yield return player.DummyWalkToExact((int)(player.X + 16.0));
                 yield return 0.5f;
+
+                yield return charaAppears();
+
+                yield return level.ZoomTo(
+                    (player.Position + new Vector2(0f, -16f)) - level.Camera.Position,
+                    2f, 0.5f);
+
+                yield return Textbox.Say("CH19_LAST_ROOM", new Func<IEnumerator>[]
+                {
+                    NoOpTrigger,
+                    BlindingLightPoursThroughCracks,
+                    CameraPansToRevealVoid
+                });
+
+                yield return level.ZoomBack(0.5f);
             }
             else
             {
@@ -58,20 +76,52 @@ namespace MaggyHelper.Cutscenes
                 player.Sprite.Play("sitDown");
                 player.Sprite.SetAnimationFrame(player.Sprite.CurrentAnimationTotalFrames - 1);
                 yield return 1.25f;
-            }
-            
-            // Show Chara
-            yield return charaAppears();
-            
-            // Display appropriate dialog
-            if (first)
-                yield return Textbox.Say("CH19_LAST_ROOM");
-            else
+
+                yield return charaAppears();
                 yield return Textbox.Say("CH19_LAST_ROOM_ALT");
+                yield return charaVanishes();
+                yield return Textbox.Say("CH19_LAST_ROOM_ALT_2");
+                EndCutscene(level);
+                yield break;
+            }
             
             // Remove Chara and end cutscene
             yield return charaVanishes();
             EndCutscene(level);
+        }
+
+        /// <summary>
+        /// Placeholder callback so dialog trigger indices remain aligned.
+        /// </summary>
+        private IEnumerator NoOpTrigger()
+        {
+            yield return null;
+        }
+
+        /// <summary>
+        /// Trigger 1: a blinding light pours through the cracks.
+        /// </summary>
+        private IEnumerator BlindingLightPoursThroughCracks()
+        {
+            Level?.Flash(Color.White, drawPlayerOver: true);
+            Audio.Play("event:/new_content/game/10_farewell/lightning_strike", player.Position);
+            yield return 1.0f;
+        }
+
+        /// <summary>
+        /// Trigger 2: the camera pans to reveal the void beyond.
+        /// </summary>
+        private IEnumerator CameraPansToRevealVoid()
+        {
+            if (Level == null)
+                yield break;
+
+            // Keep blackhole visibility progression in sync for the void reveal moment.
+            PowerGenerator.RefreshBlackholeFromGeneratorProgress(Level);
+
+            Vector2 target = (player.Position + new Vector2(120f, -80f)) - Level.Camera.Position;
+            yield return Level.ZoomTo(target, 1.5f, 1.5f);
+            yield return 1.0f;
         }
 
         /// <summary>
@@ -138,6 +188,8 @@ namespace MaggyHelper.Cutscenes
                 chara.RemoveSelf();
                 chara = null;
             }
+
+            level?.ResetZoom();
         }
     }
 }

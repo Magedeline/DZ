@@ -3,7 +3,7 @@ using Celeste;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper.Helpers
+namespace Celeste.Helpers
 {
     public enum BossTelegraphType
     {
@@ -240,6 +240,14 @@ namespace MaggyHelper.Helpers
                 return;
 
             EncounterStarted = true;
+
+            Level level = GetLevel();
+            if (level != null)
+            {
+                var ui = global::Celeste.Entities.UniversalHealthUI.GetOrCreate(level);
+                ui.ShowBossHealth = true;
+                ui.TrackBoss(this);
+            }
 
             if (HideUntilEncounterStarts)
             {

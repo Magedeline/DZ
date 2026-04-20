@@ -1,4 +1,4 @@
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// Custom MemorialText that renders dialog text above a MaggyMemorial entity.

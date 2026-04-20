@@ -1,12 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using MaggyHelper.Entities;
+using Celeste.Entities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Monocle;
 
-namespace MaggyHelper.Cutscenes;
+namespace Celeste.Cutscenes;
 
 /// <summary>
 /// Visual effect entity for the 4th wall barrier breaking sequence.

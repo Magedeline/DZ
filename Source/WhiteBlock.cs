@@ -1,4 +1,4 @@
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     [CustomEntity(ids: "MaggyHelper/WhiteBlock")]
     public class WhiteBlock : Solid
@@ -25,7 +25,7 @@ namespace MaggyHelper.Entities
             base.Update();
             
             // Check for player standing on block
-            Celeste.Player player = GetPlayerOnTop();
+            global::Celeste.Player player = GetPlayerOnTop();
             if (player != null && !activated)
             {
                 activated = true;

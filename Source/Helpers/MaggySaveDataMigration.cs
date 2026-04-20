@@ -1,4 +1,4 @@
-namespace MaggyHelper.Helpers
+namespace Celeste.Helpers
 {
     /// <summary>
     /// Handles migration of save data between mod versions.
@@ -8,7 +8,7 @@ namespace MaggyHelper.Helpers
         public static void Run()
         {
             // Migration logic for save data between mod versions
-            var saveData = Celeste.Mod.MaggyHelper.MaggyHelperModule.SaveData;
+            var saveData = global::Celeste.Mod.MaggyHelper.MaggyHelperModule.SaveData;
             if (saveData == null)
                 return;
 

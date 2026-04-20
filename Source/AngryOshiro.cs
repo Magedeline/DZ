@@ -9,7 +9,7 @@
 #nullable disable
 using StateMachine = Monocle.StateMachine;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
   [CustomEntity("MaggyHelper/oshiro_boss")]
   [Tracked(true)]
@@ -145,14 +145,14 @@ public class AngyOshiro : Entity
         }
     }
 
-    private void OnPlayer(Celeste.Player player)
+    private void OnPlayer(global::Celeste.Player player)
     {
         if (state.State != 5 && (base.CenterX < player.CenterX + 4f || Sprite.CurrentAnimationID != "respawn"))
         {
             player.Die((player.Center - base.Center).SafeNormalize(Vector2.UnitX));
         }
     }
-    private void OnPlayerBounce(Celeste.Player player)
+    private void OnPlayerBounce(global::Celeste.Player player)
     {
         if (state.State == 2 && player.Bottom <= base.Top + 6f)
         {
@@ -454,6 +454,7 @@ public class AngyOshiro : Entity
         }
         this.fromCutscene = fromCutscene;
         TransitionListener transitionListener = new TransitionListener();
+        transitionListener.OnOutBegin = delegate
         {
             if (base.X > (float)level.Bounds.Left + Sprite.Width / 2f)
             {
@@ -464,6 +465,7 @@ public class AngyOshiro : Entity
                 easeBackFromRightEdge = true;
             }
         };
+        transitionListener.OnOut = delegate
         {
             lightning.Update();
             if (easeBackFromRightEdge)

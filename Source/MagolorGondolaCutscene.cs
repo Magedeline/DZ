@@ -1,9 +1,9 @@
-using MaggyHelper.Cutscenes;
-using MaggyHelper.Entities;
+using Celeste.Cutscenes;
+using Celeste.Entities;
 using System;
 using Microsoft.Xna.Framework;
 
-namespace MaggyHelper.NPCs
+namespace Celeste.NPCs
 {
 	// Token: 0x02000274 RID: 628
 	public class NPC06_Magolor : NPC

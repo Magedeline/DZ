@@ -1,4 +1,4 @@
-namespace MaggyHelper.Entities;
+namespace Celeste.Entities;
 
 [Tracked]
 public class PlayerHealthManager : Entity
@@ -40,13 +40,26 @@ public class PlayerHealthManager : Entity
             return Instance;
 
         var manager = Instance ?? level.Tracker.GetEntity<PlayerHealthManager>();
+        bool created = false;
         if (manager == null)
         {
             manager = new PlayerHealthManager();
             level.Add(manager);
+            created = true;
         }
 
-        manager.SetMaxHP(maxHP);
+        if (created)
+        {
+            manager.MaxHP = Math.Max(1, maxHP);
+            manager.CurrentHP = manager.MaxHP;
+            manager.OnHealthChanged?.Invoke(manager.CurrentHP, manager.MaxHP);
+        }
+        else
+        {
+            manager.SetMaxHP(maxHP);
+        }
+
+        manager.SyncLegacyKirbyMode(level);
         return manager;
     }
 
@@ -54,11 +67,13 @@ public class PlayerHealthManager : Entity
     {
         IsKirbyMode = true;
         SetMaxHP(maxHP);
+        FullHeal();
     }
 
     public void DisableKirbyMode()
     {
         IsKirbyMode = false;
+        SyncLegacyKirbyMode();
     }
 
     public void SetMaxHP(int maxHP)
@@ -66,6 +81,7 @@ public class PlayerHealthManager : Entity
         MaxHP = Math.Max(1, maxHP);
         CurrentHP = Calc.Clamp(CurrentHP, 0, MaxHP);
         OnHealthChanged?.Invoke(CurrentHP, MaxHP);
+        SyncLegacyKirbyMode();
     }
 
     public void Heal(int amount)
@@ -79,6 +95,7 @@ public class PlayerHealthManager : Entity
 
         CurrentHP = next;
         OnHealthChanged?.Invoke(CurrentHP, MaxHP);
+        SyncLegacyKirbyMode();
     }
 
     public void FullHeal()
@@ -88,6 +105,7 @@ public class PlayerHealthManager : Entity
 
         CurrentHP = MaxHP;
         OnHealthChanged?.Invoke(CurrentHP, MaxHP);
+        SyncLegacyKirbyMode();
     }
 
     public bool Damage(int amount)
@@ -98,6 +116,7 @@ public class PlayerHealthManager : Entity
         CurrentHP = Math.Max(0, CurrentHP - amount);
         OnDamageTaken?.Invoke(amount);
         OnHealthChanged?.Invoke(CurrentHP, MaxHP);
+        SyncLegacyKirbyMode();
         return true;
     }
 
@@ -114,5 +133,27 @@ public class PlayerHealthManager : Entity
             return false;
 
         return manager.Damage(damage);
+    }
+
+    private void SyncLegacyKirbyMode(Level level = null)
+    {
+        level ??= Scene as Level ?? Engine.Scene as Level;
+        if (level == null)
+            return;
+
+        var kirbyMode = level.Tracker.GetEntity<global::Celeste.Extensions.KirbyMode>();
+        if (kirbyMode == null && IsKirbyMode)
+        {
+            kirbyMode = new global::Celeste.Extensions.KirbyMode();
+            level.Add(kirbyMode);
+        }
+
+        if (kirbyMode == null)
+            return;
+
+        kirbyMode.IsActive = IsKirbyMode;
+        kirbyMode.MaxHealth = MaxHP;
+        kirbyMode.CurrentHealth = CurrentHP;
+        kirbyMode.IsDead = IsDead;
     }
 }

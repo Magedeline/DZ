@@ -1,4 +1,4 @@
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// Divine wings backdrop for Asriel Angel of Death boss fight.

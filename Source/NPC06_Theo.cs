@@ -1,319 +1,125 @@
-namespace MaggyHelper.NPCs
+using System.Collections;
+using System.Runtime.CompilerServices;
+using Microsoft.Xna.Framework;
+using Monocle;
+
+namespace Celeste;
+
+[CustomEntity(ids: "MaggyHelper/NPC06_Theo")]
+public class NPC06_Theo : NPC
 {
-    [CustomEntity(ids: "MaggyHelper/NPC06_Theo")]
-    public class Npc06Theo : Entity
+    public Hahaha Hahaha;
+
+    private bool cutscene;
+
+    private Coroutine talkRoutine;
+
+    private const string talkedFlagA = "theo_2";
+
+    private const string talkedFlagB = "theo_3";
+
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    public NPC06_Theo(Vector2 position)
+        : base(position)
     {
-        private const string baseFlagName = "theo_06_conversation";
-        
-        private Sprite sprite;
-        private TalkComponent talker;
-        private Coroutine talkRoutine;
-        private bool isInteracting = false;
-        private int conversationStage = 1;
-        private bool isDisposed = false;
+        Add(Sprite = GFX.SpriteBank.Create("theo"));
+        Sprite.Scale.X = -1f;
+        Sprite.Play("idle");
+    }
 
-        public Npc06Theo(EntityData data, Vector2 offset) : base(data.Position + offset)
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    public NPC06_Theo(EntityData data, Vector2 offset)
+        : this(data.Position + offset)
+    {
+    }
+
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    public override void Added(Scene scene)
+    {
+        base.Added(scene);
+        scene.Add(Hahaha = new Hahaha(Position + new Vector2(8f, -4f)));
+        Hahaha.Enabled = false;
+        if (base.Session.GetFlag("theo_1") && !base.Session.GetFlag("theo_2"))
         {
-            try
+            Sprite.Play("laugh");
+        }
+        if (!base.Session.GetFlag("theo_3"))
+        {
+            Add(Talker = new TalkComponent(new Rectangle(-20, -16, 40, 16), new Vector2(0f, -24f), OnTalk));
+            if (!base.Session.GetFlag("theo_1"))
             {
-                // Get conversation stage from entity data if provided
-                conversationStage = data.Int("conversationStage", 1);
-                
-                setupSprite();
-                setupCollision();
-                Depth = 100;
-                
-                IngesteLogger.Debug($"NPC06_Theo created at {Position} with conversation stage {conversationStage}");
-            }
-            catch (System.Exception ex)
-            {
-                IngesteLogger.Error(ex, "Error creating NPC06_Theo");
-                throw;
+                Talker.Enabled = false;
             }
         }
+    }
 
-        private void setupSprite()
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    public override void Update()
+    {
+        Player entity = Level.Tracker.GetEntity<Player>();
+        if (entity != null && !base.Session.GetFlag("theo_1") && !cutscene && entity.X > base.X - 40f)
         {
-            try
+            cutscene = true;
+            base.Scene.Add(new CS06_Stronghold(this, entity));
+            if (Talker != null)
             {
-                Add(sprite = GFX.SpriteBank.Create("theo"));
-                sprite.Play("idle");
-            }
-            catch (System.Exception ex)
-            {
-                IngesteLogger.Error(ex, "Error setting up NPC06_Theo sprite");
-                // Create a fallback sprite or handle gracefully
-                sprite = null;
+                Talker.Enabled = true;
             }
         }
+        Hahaha.Enabled = Sprite.CurrentAnimationID == "laugh";
+        base.Update();
+    }
 
-        private void setupCollision()
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    private void OnTalk(Player player)
+    {
+        Level.StartCutscene(TalkEnd);
+        Add(talkRoutine = new Coroutine(TalkRoutine(player)));
+    }
+
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    private IEnumerator TalkRoutine(Player player)
+    {
+        Sprite.Play("idle");
+        player.ForceCameraUpdate = true;
+        yield return PlayerApproachLeftSide(player, turnToFace: true, 20f);
+        yield return Level.ZoomTo(new Vector2((player.X + X) / 2f - Level.Camera.X, 116f), 2f, 0.5f);
+        if (!Session.GetFlag("theo_2"))
         {
-            try
-            {
-                Add(talker = new TalkComponent(
-                    new Rectangle(-20, -8, 40, 16),
-                    new Vector2(0f, -24f),
-                    ontalk
-                ));
-            }
-            catch (System.Exception ex)
-            {
-                IngesteLogger.Error(ex, "Error setting up NPC06_Theo collision");
-                talker = null;
-            }
+            yield return Textbox.Say("CH6_THEO_2");
         }
-
-        public override void Awake(Scene scene)
+        else
         {
-            try
-            {
-                base.Awake(scene);
-                IngesteLogger.Debug("NPC06_Theo awakened in scene");
-            }
-            catch (System.Exception ex)
-            {
-                IngesteLogger.Error(ex, "Error during NPC06_Theo awake");
-            }
+            yield return Textbox.Say("CH6_THEO_3");
         }
+        yield return Level.ZoomBack(0.5f);
+        Level.EndCutscene();
+        TalkEnd(Level);
+    }
 
-        public override void Added(Scene scene)
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    private void TalkEnd(Level level)
+    {
+        if (!base.Session.GetFlag("theo_2"))
         {
-            try
-            {
-                base.Added(scene);
-                
-                if (isDisposed)
-                {
-                    IngesteLogger.Warn("NPC06_Theo added after disposal, skipping setup");
-                    return;
-                }
-                
-                if (Scene is Level level)
-                {
-                    // Check conversation progress and determine current stage
-                    if (level.Session.GetFlag($"{baseFlagName}_3"))
-                    {
-                        // All conversations done, disable talker
-                        IngesteLogger.Debug("NPC06_Theo: All conversations completed, disabling talker");
-                        if (talker != null)
-                        {
-                            talker.Enabled = false;
-                        }
-                        return;
-                    }
-                    else if (level.Session.GetFlag($"{baseFlagName}_2"))
-                    {
-                        conversationStage = 3;
-                        IngesteLogger.Debug("NPC06_Theo: Setting conversation stage to 3");
-                    }
-                    else if (level.Session.GetFlag($"{baseFlagName}_1"))
-                    {
-                        conversationStage = 2;
-                        IngesteLogger.Debug("NPC06_Theo: Setting conversation stage to 2");
-                    }
-                    else
-                    {
-                        conversationStage = 1;
-                        IngesteLogger.Debug("NPC06_Theo: Setting conversation stage to 1");
-                    }
-                }
-                
-                if (talker != null)
-                {
-                    talker.Enabled = true;
-                }
-                
-                IngesteLogger.Debug($"NPC06_Theo added to scene with conversation stage {conversationStage}");
-            }
-            catch (System.Exception ex)
-            {
-                IngesteLogger.Error(ex, "Error adding NPC06_ Theo to scene");
-            }
+            base.Session.SetFlag("theo_2");
         }
-
-        private void ontalk(global::Celeste.Player player)
+        else if (!base.Session.GetFlag("theo_3"))
         {
-            if (isInteracting || isDisposed || player == null) return;
-            
-            try
-            {
-                if (Scene is Level level)
-                {
-                    IngesteLogger.Debug($"NPC06_Theo: Starting conversation stage {conversationStage}");
-                    isInteracting = true;
-                    level.StartCutscene(ontalkend);
-                    Add(talkRoutine = new Coroutine(talkcoroutine(player)));
-                }
-            }
-            catch (System.Exception ex)
-            {
-                IngesteLogger.Error(ex, "Error starting NPC06_Theo conversation");
-                isInteracting = false;
-            }
+            base.Session.SetFlag("theo_3");
+            Remove(Talker);
         }
-
-        private IEnumerator talkcoroutine(global::Celeste.Player player)
+        if (talkRoutine != null)
         {
-            if (player == null || isDisposed)
-            {
-                yield break;
-            }
-
-            player.StateMachine.State = global::Celeste.Player.StDummy;
-
-            // Use the conversation stage to determine dialog
-            string dialogKey = conversationStage switch
-            {
-                1 => "CH6_THEO_1",
-                2 => "CH6_THEO_2", 
-                3 => "CH6_THEO_3",
-                _ => "CH6_THEO_1"
-            };
-
-            IngesteLogger.Debug($"NPC06_Theo: Playing dialog {dialogKey}");
-            
-            // Yield the dialog without try-catch
-            yield return Textbox.Say(dialogKey);
-            
-            // Handle cleanup
-            endcutscene();
+            talkRoutine.RemoveSelf();
+            talkRoutine = null;
         }
-
-        private void endcutscene()
+        Player entity = Level.Tracker.GetEntity<Player>();
+        if (entity != null)
         {
-            try
-            {
-                if (Scene is Level level && !isDisposed)
-                {
-                    level.EndCutscene();
-                    ontalkend(level);
-                }
-            }
-            catch (System.Exception ex)
-            {
-                IngesteLogger.Error(ex, "Error ending NPC06_Theo cutscene");
-                isInteracting = false;
-            }
-        }
-
-        private void ontalkend(Level level)
-        {
-            if (isDisposed) return;
-
-            try
-            {
-                isInteracting = false;
-                
-                // Set the flag for the current conversation stage
-                level.Session.SetFlag($"{baseFlagName}_{conversationStage}", true);
-                IngesteLogger.Debug($"NPC06_Theo: Set flag {baseFlagName}_{conversationStage}");
-                
-                // Move to next conversation stage
-                conversationStage++;
-                
-                // If we've completed all conversations, disable the talker
-                if (conversationStage > 3)
-                {
-                    if (talker != null)
-                    {
-                        talker.Enabled = false;
-                    }
-                    IngesteLogger.Debug("NPC06_Theo: All conversations completed, talker disabled");
-                }
-
-                cleanupTalkRoutine();
-
-                // Restore player state
-                var player = level.Tracker.GetEntity<global::Celeste.Player>();
-                if (player != null)
-                {
-                    player.StateMachine.State = global::Celeste.Player.StNormal;
-                }
-            }
-            catch (System.Exception ex)
-            {
-                IngesteLogger.Error(ex, "Error in NPC06_Theo talk end handler");
-                isInteracting = false;
-                cleanupTalkRoutine();
-            }
-        }
-
-        private void cleanupTalkRoutine()
-        {
-            if (talkRoutine != null)
-            {
-                talkRoutine.RemoveSelf();
-                talkRoutine = null;
-            }
-        }
-
-        public override void Update()
-        {
-            if (isDisposed) return;
-
-            try
-            {
-                base.Update();
-                
-                if (sprite != null && !isInteracting)
-                {
-                    sprite.Play("idle");
-                }
-            }
-            catch (System.Exception ex)
-            {
-                IngesteLogger.Error(ex, "Error during NPC06_Theo update");
-            }
-        }
-
-        public override void Removed(Scene scene)
-        {
-            try
-            {
-                IngesteLogger.Debug("NPC06_Theo: Being removed from scene");
-                
-                isDisposed = true;
-                isInteracting = false;
-                
-                cleanupTalkRoutine();
-                
-                // Clean up talker
-                if (talker != null)
-                {
-                    talker.Enabled = false;
-                }
-
-                base.Removed(scene);
-                
-                IngesteLogger.Debug("NPC06_Theo: Successfully removed from scene");
-            }
-            catch (System.Exception ex)
-            {
-                IngesteLogger.Error(ex, "Error removing NPC06_Theo from scene");
-                base.Removed(scene);
-            }
-        }
-
-        /// <summary>
-        /// Static method for registering hooks if needed
-        /// </summary>
-        public static void Load()
-        {
-            IngesteLogger.Info("NPC06_Theo: Load called");
-            // Register any global hooks here if needed
-        }
-
-        /// <summary>
-        /// Static method for unregistering hooks
-        /// </summary>
-        public static void Unload()
-        {
-            IngesteLogger.Info("NPC06_Theo: Unload called");
-            // Unregister any global hooks here if needed
+            entity.StateMachine.Locked = false;
+            entity.StateMachine.State = 0;
+            entity.ForceCameraUpdate = false;
         }
     }
 }
-
-
-

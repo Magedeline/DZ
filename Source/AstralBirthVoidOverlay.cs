@@ -1,6 +1,6 @@
 #nullable enable
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// Draws a swirling "Astral Birth Void" halo above the normal moon on the

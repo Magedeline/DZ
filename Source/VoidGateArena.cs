@@ -4,7 +4,7 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// Void Gate Arena - Manages the arena challenge where player must defeat enemies

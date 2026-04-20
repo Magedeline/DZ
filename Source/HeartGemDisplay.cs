@@ -1,4 +1,4 @@
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
 	// Token: 0x020002EE RID: 750
 	public class HeartGemDisplayMod : Component

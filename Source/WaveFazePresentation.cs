@@ -1,6 +1,6 @@
 using System.Threading;
 
-namespace MaggyHelper
+namespace Celeste
 {
     [HotReloadable]
     public class WaveFazePresentation : Entity

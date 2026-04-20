@@ -1,9 +1,9 @@
 using System.Reflection.Metadata;
-using MaggyHelper.Entities;
-using BadelineDummy = MaggyHelper.Entities.BadelineDummy;
-using TestBreathingGame = MaggyHelper.Entities.TestBreathingGame;
+using Celeste.Entities;
+using BadelineDummy = Celeste.Entities.BadelineDummy;
+using MaggyBreathingGame = Celeste.Entities.TestBreathingGame;
 
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
     public class CS08_StarJumpEnd : CutsceneEntity
     {
@@ -16,7 +16,7 @@ namespace MaggyHelper.Cutscenes
         private Bonfire bonfire;
         private CharaDummy chara;
         private Plateau plateau;
-        private TestBreathingGame breathing;
+        private MaggyBreathingGame breathing;
         private List<ReflectionTentacles> tentacles = new List<ReflectionTentacles>();
         private Vector2 playerStart;
         private Vector2 cameraStart;
@@ -449,7 +449,7 @@ namespace MaggyHelper.Cutscenes
         private IEnumerator HeartgemMinigame()
         {
             // Start the breathing/heartgem minigame (cutscene manages player, so freezePlayer=false)
-            this.breathing = new TestBreathingGame(freezePlayer: false);
+            this.breathing = new MaggyBreathingGame(freezePlayer: false);
             this.rumbler.TrackBreathingGame(this.breathing);
             this.Level.Add(this.breathing);
             while (!this.breathing.Completed)

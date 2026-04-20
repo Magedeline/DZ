@@ -1,6 +1,6 @@
-using MaggyHelper.Cutscenes;
+using Celeste.Cutscenes;
 
-namespace MaggyHelper.NPCs
+namespace Celeste.NPCs
 {
     [CustomEntity(ids: "MaggyHelper/NPC00_Theo")]
     [Tracked(true)]

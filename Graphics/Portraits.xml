@@ -790,7 +790,7 @@
 
   </portrait_undyne>
 
-  <portrait_Magalor path="magalor/" sfx="magolor" textbox="default">
+  <portrait_Magolor path="magolor/" sfx="magolor" textbox="default">
     <Center />
 
     <sfxs>
@@ -803,7 +803,7 @@
       <Loop id="idle_annoyed" path="annoyed" delay="0.125" frames="0*5,0-4,0*4,2,0*7,2-3"/>
       <Loop id="idle_happy" path="happy" delay="0.3" frames="0-1"/>
 
-  </portrait_Magalor>
+  </portrait_Magolor>
 
   <portrait_chara path="chara/" sfx="chara" textbox="default">
     <Center />
@@ -814,7 +814,7 @@
       <interested index="1"/>
       <annoyed index="1"/>
       <angry index="1"/>
-      <bruh index="3"/>
+      <bruh index="1"/>
       <creepy index="4"/>
       <finally index="1"/>
       <laughing index="1"/>
@@ -844,16 +844,16 @@
       <freakc index="5"/>
       <freakd index="5"/>
       <freake index="5"/>
-      <veryupset index="3"/>
-      <veryveryupset index="4"/>
+      <veryupset index="2"/>
+      <veryveryupset index="3"/>
       <!-- Glitchy variations -->
-      <glitchy index="6"/>
-      <glitchycreepy index="7"/>
-      <glitchyangry index="6"/>
-      <glitchysmirk index="6"/>
-      <glitchyfreak index="8"/>
-      <glitchyrevenge index="7"/>
-      <glitchypanic index="7"/>
+      <glitchy index="1"/>
+      <glitchycreepy index="4"/>
+      <glitchyangry index="1"/>
+      <glitchysmirk index="1"/>
+      <glitchyfreak index="5"/>
+      <glitchyrevenge index="1"/>
+      <glitchypanic index="1"/>
     </sfxs>
 
     <!-- Normal Expression -->

@@ -1,11 +1,11 @@
 using System;
-using MaggyHelper.Entities;
-using MaggyHelper.Helpers;
+using Celeste.Entities;
+using Celeste.Helpers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Monocle;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// Universal health bar that displays above any boss entity.

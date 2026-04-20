@@ -1,6 +1,6 @@
-using MaggyHelper.Cutscenes;
+using Celeste.Cutscenes;
 
-namespace MaggyHelper.NPCs
+namespace Celeste.NPCs
 {
     /// <summary>
     /// Axis - Royal Robot Guard NPC for Chapters 13 & 14

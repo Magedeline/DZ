@@ -1,6 +1,6 @@
-using MaggyHelper.Helpers;
+using Celeste.Helpers;
 
-namespace MaggyHelper.Entities.Bosses
+namespace Celeste.Entities.Bosses
 {
     /// <summary>
     /// Embryo Mid-Boss - A mysterious gestating creature

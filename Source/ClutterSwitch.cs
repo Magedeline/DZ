@@ -1,4 +1,4 @@
-namespace MaggyHelper.Entities;
+namespace Celeste.Entities;
 
 /// <summary>
 /// Ingeste ClutterSwitch entity - a pressure switch that activates when dashed into from above
@@ -27,8 +27,33 @@ public class ClutterSwitch : Solid
     #endregion
 
     #region Static Particle Types
-    public static ParticleType P_Pressed;
-    public static ParticleType P_ClutterFly;
+    public static ParticleType P_Pressed = new ParticleType
+    {
+        Color = Calc.HexToColor("99e550"),
+        ColorMode = ParticleType.ColorModes.Static,
+        FadeMode = ParticleType.FadeModes.Late,
+        LifeMin = 0.6f,
+        LifeMax = 1f,
+        Size = 1f,
+        Direction = -(float)Math.PI / 2f,
+        DirectionRange = (float)Math.PI / 4f,
+        SpeedMin = 40f,
+        SpeedMax = 80f,
+        SpeedMultiplier = 0.2f
+    };
+
+    public static ParticleType P_ClutterFly = new ParticleType
+    {
+        Color = Calc.HexToColor("99e550"),
+        ColorMode = ParticleType.ColorModes.Static,
+        FadeMode = ParticleType.FadeModes.Late,
+        LifeMin = 0.8f,
+        LifeMax = 1.2f,
+        Size = 1f,
+        SpeedMin = 20f,
+        SpeedMax = 40f,
+        SpeedMultiplier = 0.1f
+    };
     #endregion
 
     #region Private Fields
@@ -38,6 +63,12 @@ public class ClutterSwitch : Solid
     private float speedY;
     private bool pressed;
     private bool playerWasOnTop;
+
+    // Configurable music/audio fields
+    private readonly string musicEvent;
+    private readonly string absorbCutsceneSound;
+    private readonly bool progressMusic;
+    private readonly float configLightingAlphaAdd;
 
     // Visual Components
     private Sprite sprite;
@@ -53,10 +84,18 @@ public class ClutterSwitch : Solid
     /// <summary>
     /// Creates a new ClutterSwitch at the specified position with the given color
     /// </summary>
-    public ClutterSwitch(Vector2 position, ClutterBlock.Colors color)
+    public ClutterSwitch(Vector2 position, ClutterBlock.Colors color,
+        string musicEvent = "event:/desolozantas/music/lvl5/clean",
+        string absorbCutsceneSound = "event:/game/03_resort/clutterswitch_books",
+        bool progressMusic = true,
+        float configLightingAlphaAdd = LightingAlphaAdd)
         : base(position, 32f, 16f, safe: true)
     {
         this.color = color;
+        this.musicEvent = musicEvent;
+        this.absorbCutsceneSound = absorbCutsceneSound;
+        this.progressMusic = progressMusic;
+        this.configLightingAlphaAdd = configLightingAlphaAdd;
         startY = atY = base.Y;
 
         // Configure collision behavior
@@ -71,7 +110,13 @@ public class ClutterSwitch : Solid
     /// Entity data constructor for level editor integration
     /// </summary>
     public ClutterSwitch(EntityData data, Vector2 offset)
-        : this(data.Position + offset, data.Enum("type", ClutterBlock.Colors.Green))
+        : this(
+            data.Position + offset,
+            data.Enum("type", ClutterBlock.Colors.Green),
+            data.Attr("musicEvent", "event:/desolozantas/music/lvl5/clean"),
+            data.Attr("absorbCutsceneSound", "event:/game/03_resort/clutterswitch_books"),
+            data.Bool("progressMusic", true),
+            data.Float("lightingAlphaAdd", LightingAlphaAdd))
     {
     }
     #endregion
@@ -108,7 +153,7 @@ public class ClutterSwitch : Solid
         base.Added(scene);
 
         // Check if this switch was already activated in a previous session
-        if (SceneAs<Level>().Session.GetFlag($"clutter_cleared_{(int)color}"))
+        if (SceneAs<Level>().Session.GetFlag($"oshiro_clutter_mod_cleared_{(int)color}"))
         {
             BePressed();
         }
@@ -242,14 +287,14 @@ public class ClutterSwitch : Solid
     private void ActivateSwitch(global::Celeste.Player player)
     {
         // Immediate feedback
-        Celeste.Celeste.Freeze(0.2f);
+        CelesteGame.Freeze(0.2f);
         Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
 
         Level level = base.Scene as Level;
 
-        // Set session flags following Ingeste naming conventions
-        level.Session.SetFlag($"clutter_cleared_{(int)color}");
-        level.Session.SetFlag("clutter_door_open", setTo: false);
+        // Set session flags matching ClutterDoor naming conventions
+        level.Session.SetFlag($"oshiro_clutter_mod_cleared_{(int)color}");
+        level.Session.SetFlag("oshiro_clutter_mod_door_open", setTo: true);
 
         // Visual effects
         UpdateActivationVisuals(level);
@@ -306,13 +351,10 @@ public class ClutterSwitch : Solid
     {
         Add(cutsceneSfx = new SoundSource());
 
-        // Use proper duration mapping for each color following Ingeste patterns
-        float duration = GetAudioDurationForColor();
-        string audioEvent = GetAudioEventForColor();
-
-        if (!string.IsNullOrEmpty(audioEvent))
+        if (!string.IsNullOrEmpty(absorbCutsceneSound))
         {
-            cutsceneSfx.Play(audioEvent);
+            float duration = GetAudioDurationForSound(absorbCutsceneSound);
+            cutsceneSfx.Play(absorbCutsceneSound);
 
             // Setup completion audio using Celeste's Audio system
             Add(Alarm.Create(Alarm.AlarmMode.Oneshot, () =>
@@ -322,27 +364,14 @@ public class ClutterSwitch : Solid
         }
     }
 
-    private float GetAudioDurationForColor()
+    private static float GetAudioDurationForSound(string sound)
     {
-        return color switch
+        return sound switch
         {
-            ClutterBlock.Colors.Green => 6.366f,
-            ClutterBlock.Colors.Red => 6.15f,
-            ClutterBlock.Colors.Yellow => 6.066f,
-            ClutterBlock.Colors.Blue => 6.0f, // Default for blue
-            _ => 6.0f
-        };
-    }
-
-    private string GetAudioEventForColor()
-    {
-        return color switch
-        {
-            ClutterBlock.Colors.Green => "event:/game/03_resort/clutterswitch_books",
-            ClutterBlock.Colors.Red => "event:/game/03_resort/clutterswitch_linens",
-            ClutterBlock.Colors.Yellow => "event:/game/03_resort/clutterswitch_boxes",
-            ClutterBlock.Colors.Blue => "event:/game/03_resort/clutterswitch_books", // Fallback
-            _ => null
+            "event:/game/03_resort/clutterswitch_books" => 6.366f,
+            "event:/game/03_resort/clutterswitch_linens" => 6.15f,
+            "event:/game/03_resort/clutterswitch_boxes" => 6.066f,
+            _ => 6.366f
         };
     }
 
@@ -350,10 +379,17 @@ public class ClutterSwitch : Solid
     {
         Level level = SceneAs<Level>();
 
-        // Update audio progress following Ingeste session management
-        level.Session.Audio.Music.Progress++;
-        level.Session.Audio.Apply(forceSixteenthNoteHack: false);
-        level.Session.LightingAlphaAdd -= LightingAlphaAdd;
+        // Update audio progress with configurable music event
+        if (progressMusic)
+        {
+            if (!string.IsNullOrEmpty(musicEvent))
+            {
+                level.Session.Audio.Music.Event = musicEvent;
+            }
+            level.Session.Audio.Music.Progress++;
+            level.Session.Audio.Apply(forceSixteenthNoteHack: false);
+        }
+        level.Session.LightingAlphaAdd -= configLightingAlphaAdd;
 
         // Create lighting transition effects
         yield return CreateLightingTransitions(level);
@@ -411,25 +447,12 @@ public class ClutterSwitch : Solid
         ClutterAbsorbEffect effect = Scene.Entities.FindFirst<ClutterAbsorbEffect>();
         if (effect == null) return;
 
-        // Process ClutterBlock entities
+        // Process ClutterBlock entities matching this switch's color
         foreach (ClutterBlock block in Scene.Entities.FindAll<ClutterBlock>())
         {
             if (block.BlockColor == color)
             {
                 block.Absorb(effect);
-            }
-        }
-
-        // Process ClutterBlockBase entities with proper type checking
-        foreach (ClutterBlockBase blockBase in Scene.Entities.FindAll<ClutterBlockBase>())
-        {
-            if (blockBase.BlockColor == color)
-            {
-                // Check if it's a ClutterBlock and absorb accordingly
-                var clutterBlock = blockBase as ClutterBlock;
-                {
-                    clutterBlock.Absorb(effect);
-                }
             }
         }
     }

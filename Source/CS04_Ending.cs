@@ -1,6 +1,6 @@
 using Facings = Celeste.Facings;
 
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
   [HotReloadable]
   public class Cs04Ending : CutsceneEntity

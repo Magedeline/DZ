@@ -2385,18 +2385,34 @@ entities.MaggyHelper/CloneEnemy.attributes.name.health=Health
 entities.MaggyHelper/CloneEnemy.attributes.description.health=
 
 # -- Clutter Door --
-entities.MaggyHelper/ClutterDoor.placements.name.default=Clutter Door (Default)
-entities.MaggyHelper/ClutterDoor.placements.description.default=
-entities.MaggyHelper/ClutterDoor.attributes.name.height=Height
-entities.MaggyHelper/ClutterDoor.attributes.description.height=
+entities.MaggyHelper/ClutterDoor.placements.name.red=Clutter Door (Laundry)
+entities.MaggyHelper/ClutterDoor.placements.name.green=Clutter Door (Books)
+entities.MaggyHelper/ClutterDoor.placements.name.yellow=Clutter Door (Boxes)
+entities.MaggyHelper/ClutterDoor.placements.name.lightning=Clutter Door (Lightning)
+entities.MaggyHelper/ClutterDoor.placements.description.red=A solid door that unlocks when the corresponding clutter color is cleared.
+entities.MaggyHelper/ClutterDoor.placements.description.green=A solid door that unlocks when the corresponding clutter color is cleared.
+entities.MaggyHelper/ClutterDoor.placements.description.yellow=A solid door that unlocks when the corresponding clutter color is cleared.
+entities.MaggyHelper/ClutterDoor.placements.description.lightning=A solid door that unlocks when the corresponding clutter color is cleared.
+entities.MaggyHelper/ClutterDoor.attributes.name.type=Type
+entities.MaggyHelper/ClutterDoor.attributes.description.type=The clutter color variant this door is associated with.
 entities.MaggyHelper/ClutterDoor.attributes.name.width=Width
-entities.MaggyHelper/ClutterDoor.attributes.description.width=
+entities.MaggyHelper/ClutterDoor.attributes.description.width=Width of the door in pixels.
+entities.MaggyHelper/ClutterDoor.attributes.name.height=Height
+entities.MaggyHelper/ClutterDoor.attributes.description.height=Height of the door in pixels.
 
 # -- Clutter Switch --
 entities.MaggyHelper/ClutterSwitch.placements.name.default=Clutter Switch (Default)
 entities.MaggyHelper/ClutterSwitch.placements.description.default=
 entities.MaggyHelper/ClutterSwitch.attributes.name.type=Type
 entities.MaggyHelper/ClutterSwitch.attributes.description.type=
+entities.MaggyHelper/ClutterSwitch.attributes.name.musicEvent=Music Event
+entities.MaggyHelper/ClutterSwitch.attributes.description.musicEvent=FMOD music event to use for progress tracking when clutter is cleared
+entities.MaggyHelper/ClutterSwitch.attributes.name.absorbCutsceneSound=Absorb Cutscene Sound
+entities.MaggyHelper/ClutterSwitch.attributes.description.absorbCutsceneSound=Sound event to play during the clutter absorption cutscene
+entities.MaggyHelper/ClutterSwitch.attributes.name.progressMusic=Progress Music
+entities.MaggyHelper/ClutterSwitch.attributes.description.progressMusic=Whether pressing this switch advances music progress
+entities.MaggyHelper/ClutterSwitch.attributes.name.lightingAlphaAdd=Lighting Alpha Add
+entities.MaggyHelper/ClutterSwitch.attributes.description.lightingAlphaAdd=How much to reduce lighting alpha when clutter is cleared
 
 # -- Collectible Gem --
 entities.MaggyHelper/CollectibleGem.placements.name.blue=Collectible Gem (Blue)
@@ -5578,23 +5594,6 @@ entities.MaggyHelper/ShopKeeper.attributes.description.dialogId=
 entities.MaggyHelper/ShopKeeper.attributes.name.shopId=Shop Id
 entities.MaggyHelper/ShopKeeper.attributes.description.shopId=
 
-# -- Small Heart Gem --
-entities.MaggyHelper/SmallHeartGem.placements.name.small_heart_gem_ch10=Small Heart Gem (Small Heart Gem Ch10)
-entities.MaggyHelper/SmallHeartGem.placements.description.small_heart_gem_ch10=
-entities.MaggyHelper/SmallHeartGem.placements.name.small_heart_gem_ch11=Small Heart Gem (Small Heart Gem Ch11)
-entities.MaggyHelper/SmallHeartGem.placements.description.small_heart_gem_ch11=
-entities.MaggyHelper/SmallHeartGem.placements.name.small_heart_gem_ch12=Small Heart Gem (Small Heart Gem Ch12)
-entities.MaggyHelper/SmallHeartGem.placements.description.small_heart_gem_ch12=
-entities.MaggyHelper/SmallHeartGem.placements.name.small_heart_gem_ch13=Small Heart Gem (Small Heart Gem Ch13)
-entities.MaggyHelper/SmallHeartGem.placements.description.small_heart_gem_ch13=
-entities.MaggyHelper/SmallHeartGem.placements.name.small_heart_gem_ch14=Small Heart Gem (Small Heart Gem Ch14)
-entities.MaggyHelper/SmallHeartGem.placements.description.small_heart_gem_ch14=
-entities.MaggyHelper/SmallHeartGem.attributes.name.chapterNumber=Chapter Number
-entities.MaggyHelper/SmallHeartGem.attributes.description.chapterNumber=
-entities.MaggyHelper/SmallHeartGem.attributes.name.gemId=Gem Id
-entities.MaggyHelper/SmallHeartGem.attributes.description.gemId=
-entities.MaggyHelper/SmallHeartGem.attributes.name.submapNumber=Submap Number
-entities.MaggyHelper/SmallHeartGem.attributes.description.submapNumber=
 
 # -- Snow Berry --
 entities.MaggyHelper/SnowBerry.placements.name.SnowBerry=Snow Berry
@@ -5805,26 +5804,8 @@ entities.MaggyHelper/StormCloud.attributes.name.warningTime=Warning Time
 entities.MaggyHelper/StormCloud.attributes.description.warningTime=
 
 # -- Sub Map Lobby --
-entities.MaggyHelper/SubMapLobby.placements.name.submap_lobby_ch10=Sub Map Lobby (Submap Lobby Ch10)
-entities.MaggyHelper/SubMapLobby.placements.description.submap_lobby_ch10=
-entities.MaggyHelper/SubMapLobby.placements.name.submap_lobby_ch11=Sub Map Lobby (Submap Lobby Ch11)
-entities.MaggyHelper/SubMapLobby.placements.description.submap_lobby_ch11=
-entities.MaggyHelper/SubMapLobby.placements.name.submap_lobby_ch12=Sub Map Lobby (Submap Lobby Ch12)
-entities.MaggyHelper/SubMapLobby.placements.description.submap_lobby_ch12=
-entities.MaggyHelper/SubMapLobby.placements.name.submap_lobby_ch13=Sub Map Lobby (Submap Lobby Ch13)
-entities.MaggyHelper/SubMapLobby.placements.description.submap_lobby_ch13=
-entities.MaggyHelper/SubMapLobby.placements.name.submap_lobby_ch14=Sub Map Lobby (Submap Lobby Ch14)
-entities.MaggyHelper/SubMapLobby.placements.description.submap_lobby_ch14=
-entities.MaggyHelper/SubMapLobby.attributes.name.chapterNumber=Chapter Number
-entities.MaggyHelper/SubMapLobby.attributes.description.chapterNumber=
 
 # -- Sub Map Manager --
-entities.MaggyHelper/SubMapManager.placements.name.submap_manager=Sub Map Manager (Submap Manager)
-entities.MaggyHelper/SubMapManager.placements.description.submap_manager=
-entities.MaggyHelper/SubMapManager.attributes.name.autoInitialize=Auto Initialize
-entities.MaggyHelper/SubMapManager.attributes.description.autoInitialize=
-entities.MaggyHelper/SubMapManager.attributes.name.debugMode=Debug Mode
-entities.MaggyHelper/SubMapManager.attributes.description.debugMode=
 
 # -- Swarm Enemy --
 entities.MaggyHelper/SwarmEnemy.placements.name.small_swarm=Swarm Enemy (Small Swarm)
@@ -7456,6 +7437,16 @@ triggers.MaggyHelper/PlayerTrigger.placements.name.enter_only=Player Trigger (En
 triggers.MaggyHelper/PlayerTrigger.placements.description.enter_only=Activates only when the player enters this trigger.
 triggers.MaggyHelper/PlayerTrigger.placements.name.exit_only=Player Trigger (Exit Only)
 triggers.MaggyHelper/PlayerTrigger.placements.description.exit_only=Activates only when the player exits this trigger.
+triggers.MaggyHelper/PlayerTrigger.attributes.name.onEnterAction=On Enter Action
+triggers.MaggyHelper/PlayerTrigger.attributes.description.onEnterAction=Action to perform when the player enters the trigger. EnablePlayer/DisablePlayer freezes or unfreezes the player. EnableCombat/DisableCombat toggles combat mode. SetInventory applies inventory settings.
+triggers.MaggyHelper/PlayerTrigger.attributes.name.onExitAction=On Exit Action
+triggers.MaggyHelper/PlayerTrigger.attributes.description.onExitAction=Action to perform when the player exits the trigger.
+triggers.MaggyHelper/PlayerTrigger.attributes.name.inventoryDashes=Inventory Dashes
+triggers.MaggyHelper/PlayerTrigger.attributes.description.inventoryDashes=Number of dashes to set in the player inventory (used with SetInventory action).
+triggers.MaggyHelper/PlayerTrigger.attributes.name.inventoryDreamDash=Inventory Dream Dash
+triggers.MaggyHelper/PlayerTrigger.attributes.description.inventoryDreamDash=Whether dream dash is enabled in the player inventory (used with SetInventory action).
+triggers.MaggyHelper/PlayerTrigger.attributes.name.inventoryNoRefills=Inventory No Refills
+triggers.MaggyHelper/PlayerTrigger.attributes.description.inventoryNoRefills=Whether dash refills are disabled in the player inventory (used with SetInventory action).
 triggers.MaggyHelper/PlayerTrigger.attributes.name.triggerOnEnter=Trigger On Enter
 triggers.MaggyHelper/PlayerTrigger.attributes.description.triggerOnEnter=If enabled, this trigger activates on enter.
 triggers.MaggyHelper/PlayerTrigger.attributes.name.triggerOnExit=Trigger On Exit

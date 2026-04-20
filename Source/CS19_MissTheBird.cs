@@ -1,244 +1,214 @@
+using System;
+using System.Collections;
+using System.Runtime.CompilerServices;
+using Celeste.Entities;
 using FMOD.Studio;
-using Facings = Celeste.Facings;
-using FlingBirdIntroMod = MaggyHelper.Entities.FlingBirdIntro;
-using CustomCharaBoost = MaggyHelper.Entities.CustomCharaBoost;
+using IL.Celeste;
+using Microsoft.Xna.Framework;
+using Monocle;
+using FlingBirdIntroMod = Celeste.Entities.FlingBirdIntro;
 
-namespace MaggyHelper.Cutscenes
+namespace Celeste;
+
+public class CS19_MissTheBird : CutsceneEntity
 {
-    public class CS19_MissTheBird : CutsceneEntity
+    public const string Flag = "MissTheBird";
+
+    private Player player;
+
+    private FlingBirdIntroMod flingBird;
+
+    private BirdNPC bird;
+
+    private Coroutine zoomRoutine;
+
+    private EventInstance crashMusicSfx;
+
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    public CS19_MissTheBird(Player player, FlingBirdIntroMod flingBird)
     {
-        public const string Flag = "MissTheBird";
-        private global::Celeste.Player player;
-        private FlingBirdIntroMod flingBirdmod;
-        private BirdNPC bird;
-        private Coroutine zoomRoutine;
-        private EventInstance crashMusicSfx;
-        private readonly TimeRateModifier timeRateModifier;
-
-        public CS19_MissTheBird(global::Celeste.Player player, FlingBirdIntroMod flingBirdmod) : base(true, false)
+        this.player = player;
+        this.flingBird = flingBird;
+        Add(new LevelEndingHook(delegate
         {
-            this.player = player;
-            this.flingBirdmod = flingBirdmod;
-            Add(timeRateModifier = new TimeRateModifier(1f, false));
-            Add(new LevelEndingHook(delegate {
-                Audio.Stop(this.crashMusicSfx, true);
-            }));
-        }
+            Audio.Stop(crashMusicSfx);
+        }));
+    }
 
-        public override void OnBegin(Level level)
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    public override void OnBegin(Level level)
+    {
+        Add(new Coroutine(Cutscene(level)));
+    }
+
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    private IEnumerator Cutscene(Level level)
+    {
+        Audio.SetMusicParam("bird_grab", 1f);
+        crashMusicSfx = Audio.Play("event:/desolozantas/final_content/music/lvl19/cinematic/bird_crash_first");
+        yield return flingBird.DoGrabbingRoutine(player);
+        bird = new BirdNPC(flingBird.Position, BirdNPC.Modes.None);
+        level.Add(bird);
+        flingBird.RemoveSelf();
+        yield return null;
+        level.ResetZoom();
+        level.Shake(0.5f);
+        player.Position = player.Position.Floor();
+        player.DummyGravity = true;
+        player.DummyAutoAnimate = false;
+        player.DummyFriction = false;
+        player.ForceCameraUpdate = true;
+        player.Speed = new Vector2(200f, 200f);
+        bird.Position += Vector2.UnitX * 16f;
+        bird.Add(new Coroutine(bird.Startle(null, 0.5f, new Vector2(3f, 0.25f))));
+        Add(Alarm.Create(Alarm.AlarmMode.Oneshot, [MethodImpl(MethodImplOptions.NoInlining)] () =>
         {
-            Add(new Coroutine(Cutscene(level), true));
-            StartMusic();
-            TriggerEnvironmentalEvents();
-        }
-
-        private IEnumerator Cutscene(Level level)
-        {
-            // Lock player movement at start of cutscene
-            this.player.StateMachine.State = 11;
-            this.player.DummyGravity = false;
-            this.player.Speed = Vector2.Zero;
-
-            // Hide CharaBoost until cutscene ends
-            CustomCharaBoost charaBoost = base.Scene.Entities.FindFirst<CustomCharaBoost>();
-            if (charaBoost != null)
+            bird.Sprite.Play("hoverStressed");
+            Add(Alarm.Create(Alarm.AlarmMode.Oneshot, [MethodImpl(MethodImplOptions.NoInlining)] () =>
             {
-                charaBoost.Active = charaBoost.Visible = charaBoost.Collidable = false;
+                Add(new Coroutine(bird.FlyAway(0.2f)));
+                bird.Position += new Vector2(0f, -4f);
+            }, 0.8f, start: true));
+        }, 0.1f, start: true));
+        while (!player.OnGround())
+        {
+            player.MoveVExact(1);
+        }
+        Engine.TimeRate = 0.5f;
+        player.Sprite.Play("roll");
+        while (player.Speed.X != 0f)
+        {
+            player.Speed.X = Calc.Approach(player.Speed.X, 0f, 120f * Engine.DeltaTime);
+            if (Scene.OnInterval(0.1f))
+            {
+                Dust.BurstFG(player.Position, -MathF.PI / 2f, 2);
             }
-
-            Audio.SetMusicParam("bird_grab", 1f);
-            this.crashMusicSfx = Audio.Play("event:/desolozantas/final_content/music/lvl19/cinematic/bird_crash_first");
-            // Hold the player while the bird flies along its path
-            yield return this.flingBirdmod.DoGrabbingRoutine(this.player);
-            this.bird = new BirdNPC(this.flingBirdmod.BirdEndPosition, BirdNPC.Modes.None);
-            level.Add(this.bird);
-            this.flingBirdmod.RemoveSelf();
             yield return null;
-            level.ResetZoom();
-            level.Shake(0.5f);
-            this.player.Position = this.player.Position.Floor();
-            this.player.DummyGravity = true;
-            this.player.DummyAutoAnimate = false;
-            this.player.DummyFriction = false;
-            this.player.ForceCameraUpdate = true;
-            this.player.Speed = new Vector2(200f, 200f);
-            this.bird.Position += Vector2.UnitX * 16f;
-            this.bird.Add(new Coroutine(this.bird.Startle(null, 0.5f, new Vector2(3f, 0.25f)), true));
-            Add(Alarm.Create(Alarm.AlarmMode.Oneshot, delegate {
-                Add(new Coroutine(this.bird.FlyAway(0.2f), true));
-                this.bird.Position += new Vector2(0f, -4f);
-            }, 0.8f, true));
-            // Ground the player safely with a timeout to avoid potential infinite loops
-            float maxGroundTime = 2f;
-            // Add null/scene checks before OnGround to prevent NullReferenceException
-            while (this.player != null && this.player.Scene != null && this.player.Collider != null && !this.player.OnGround() && maxGroundTime > 0f)
-            {
-                this.player.MoveVExact(1);
-                maxGroundTime -= Engine.DeltaTime;
-                yield return null;
-            }
-
-            // Avoid global time scaling to prevent perceived freezes
-            PlayPlayerSpriteSafe(this.player, "roll", "idle");
-            while (this.player.Speed.X != 0f)
-            {
-                this.player.Speed.X = Calc.Approach(this.player.Speed.X, 0f, 120f * Engine.DeltaTime);
-                if (Scene.OnInterval(0.1f))
-                    Dust.BurstFG(this.player.Position, -1.5707964f, 2);
-                yield return null;
-            }
-            this.player.Speed.X = 0f;
-            this.player.DummyFriction = true;
-            yield return 0.25f;
-            Add(this.zoomRoutine = new Coroutine(level.ZoomTo(new Vector2(160f, 110f), 1.5f, 6f), true));
-            yield return 1.5f;
-            PlayPlayerSpriteSafe(this.player, "rollGetUp", "idle");
-            yield return 0.5f;
-            this.player.ForceCameraUpdate = false;
-            yield return Textbox.Say("CH19_MISS_THE_BIRD", new Func<IEnumerator>[] {
-                StandUpFaceLeft,
-                TakeStepLeft,
-                TakeStepRight,
-                FlickerBlackhole,
-                FlickerJumpscareBlackhole,
-                OpenBlackhole
-            });
-            // Show CharaBoost now that cutscene is done
-            CustomCharaBoost charaBoostEnd = base.Scene.Entities.FindFirst<CustomCharaBoost>();
-            if (charaBoostEnd != null)
-            {
-                this.Level.Displacement.AddBurst(charaBoostEnd.Center, 0.5f, 8f, 32f, 0.5f, null, null);
-                Audio.Play("event:/new_content/char/badeline/booster_first_appear", charaBoostEnd.Center);
-                charaBoostEnd.Active = charaBoostEnd.Visible = charaBoostEnd.Collidable = true;
-            }
-            StartMusic();
-            EndCutscene(level);
         }
-
-        private IEnumerator StandUpFaceLeft()
+        while (Engine.TimeRate < 1f)
         {
-            while (!this.zoomRoutine.Finished)
-                yield return null;
-            yield return 0.2f;
-            Audio.Play("event:/desolozantas/char/kirby/stand", this.player.Position);
-            this.player.DummyAutoAnimate = true;
-            this.player.Sprite.Play("idle");
-            yield return 0.2f;
-            this.player.Facing = Facings.Left;
-            yield return 0.5f;
+            Engine.TimeRate = Calc.Approach(Engine.TimeRate, 1f, 4f * Engine.DeltaTime);
+            yield return null;
         }
+        player.Speed.X = 0f;
+        player.DummyFriction = true;
+        yield return 0.25f;
+        Add(zoomRoutine = new Coroutine(level.ZoomTo(new Vector2(160f, 110f), 1.5f, 6f)));
+        yield return 1.5f;
+        player.Sprite.Play("rollGetUp");
+        yield return 0.5f;
+        player.ForceCameraUpdate = false;
+        yield return Textbox.Say("CH19_MISS_THE_BIRD", StandUpFaceLeft, TakeStepLeft, TakeStepRight, FlickerBlackhole, OpenBlackhole);
+        StartMusic();
+        EndCutscene(level);
+    }
 
-        private static void PlayPlayerSpriteSafe(global::Celeste.Player player, string preferredAnim, string fallbackAnim)
+    private IEnumerator StandUpFaceLeft()
+    {
+        while (!zoomRoutine.Finished)
         {
-            if (player?.Sprite == null)
-                return;
-
-            if (player.Sprite.Has(preferredAnim))
-                player.Sprite.Play(preferredAnim);
-            else if (player.Sprite.Has(fallbackAnim))
-                player.Sprite.Play(fallbackAnim);
+            yield return null;
         }
+        yield return 0.2f;
+        Audio.Play("event:/char/madeline/stand", player.Position);
+        player.DummyAutoAnimate = true;
+        player.Sprite.Play("idle");
+        yield return 0.2f;
+        player.Facing = Facings.Left;
+        yield return 0.5f;
+    }
 
-        private IEnumerator TakeStepLeft()
+    private IEnumerator TakeStepLeft()
+    {
+        yield return player.DummyWalkTo(player.X - 16f);
+    }
+
+    private IEnumerator TakeStepRight()
+    {
+        yield return player.DummyWalkTo(player.X + 32f);
+    }
+
+    private IEnumerator FlickerBlackhole()
+    {
+        yield return 0.5f;
+        Audio.Play("event:/desolozantas/final_content/game/19_farewell/glitch_medium");
+        Audio.Play("event:/desolozantas/final_content/music/lvl19/cinematic/els_intro_laugh");
+        yield return MoonGlitchBackgroundTrigger.GlitchRoutine(0.5f, stayOn: false);
+        yield return player.DummyWalkTo(player.X - 8f, walkBackwards: true);
+        yield return 0.4f;
+    }
+
+    private IEnumerator OpenBlackhole()
+    {
+        yield return 0.2f;
+        Level.ResetZoom();
+        Level.Flash(Color.White);
+        Level.Shake(0.4f);
+        Level.Add(new LightningStrike(new Vector2(player.X, Level.Bounds.Top), 80, 240f));
+        Level.Add(new LightningStrike(new Vector2(player.X - 100f, Level.Bounds.Top), 90, 240f, 0.5f));
+        Audio.Play("event:/desolozantas/final_content/music/lvl19/cinematic/els_intro_scream");
+        yield return MoonGlitchBackgroundTrigger.GlitchRoutine(1.0f, stayOn: false);
+        yield return 2.4f;
+        Audio.Play("event:/desolozantas/final_content/game/19_farewell/lightning_strike");
+        TriggerEnvironmentalEvents();
+        StartMusic();
+        yield return 1.2f;
+    }
+
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    private void StartMusic()
+    {
+        Level.Session.Audio.Music.Event = "event:/desolozantas/final_content/music/lvl19/part03";
+        Level.Session.Audio.Ambience.Event = "event:/desolozantas/final_content/env/19_vortex";
+        Level.Session.Audio.Apply(false);
+    }
+
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    private void TriggerEnvironmentalEvents()
+    {
+        CutsceneNode cutsceneNode = CutsceneNode.Find("player_skip");
+        if (cutsceneNode != null)
         {
-            yield return this.player.DummyWalkTo(this.player.X - 16f);
+            RumbleTrigger.ManuallyTrigger(cutsceneNode.X, 0f);
         }
+        base.Scene.Entities.FindFirst<MoonGlitchBackgroundTrigger>()?.Invoke();
+    }
 
-        private IEnumerator TakeStepRight()
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    public override void OnEnd(Level level)
+    {
+        Audio.Stop(crashMusicSfx);
+        Engine.TimeRate = 1f;
+        level.Session.SetFlag("MissTheBird");
+        if (WasSkipped)
         {
-            yield return this.player.DummyWalkTo(this.player.X + 32f);
-        }
-
-        private IEnumerator FlickerBlackhole()
-        {
-            yield return 0.5f;
-            Audio.Play("event:/desolozantas/final_content/music/lvl19/cinematic/els_intro_laugh");
-            yield return MoonGlitchBackgroundTrigger.GlitchRoutine(0.5f, false);
-            yield return this.player.DummyWalkTo(this.player.X - 8f, true);
-            yield return 0.4f;
-        }
-
-        private IEnumerator FlickerJumpscareBlackhole()
-        {
-            yield return 0.5f;
-            Audio.Play("event:/desolozantas/final_content/music/lvl19/cinematic/els_intro_scream");
-            yield return MoonGlitchBackgroundTrigger.GlitchRoutine(0.5f, false);
-            yield return this.player.DummyWalkTo(this.player.X - 8f, true);
-            yield return 0.4f;
-        }
-
-        private IEnumerator OpenBlackhole()
-        {
-            yield return 0.2f;
-            this.Level.ResetZoom();
-            this.Level.Flash(Color.White);
-            this.Level.Shake(0.4f);
-            this.Level.Add(new LightningStrike(new Vector2(this.player.X, this.Level.Bounds.Top), 80, 240f));
-            this.Level.Add(new LightningStrike(new Vector2(this.player.X - 100f, this.Level.Bounds.Top), 90, 240f, 0.5f));
-            Audio.Play("event:/new_content/game/10_farewell/lightning_strike");
-            TriggerEnvironmentalEvents();
-            StartMusic();
-            yield return 1.2f;
-        }
-
-        private void StartMusic()
-        {
-            this.Level.Session.Audio.Music.Event = "event:/desolozantas/final_content/music/lvl19/part03";
-            this.Level.Session.Audio.Ambience.Event = "event:/desolozantas/final_content/env/19_vortex";
-            this.Level.Session.Audio.Apply();
-        }
-
-        private void TriggerEnvironmentalEvents()
-        {
+            player.Sprite.Play("idle");
             CutsceneNode cutsceneNode = CutsceneNode.Find("player_skip");
             if (cutsceneNode != null)
-                RumbleTrigger.ManuallyTrigger(((Entity)cutsceneNode).X, 0f);
-            Scene.Entities.FindFirst<MoonGlitchBackgroundTrigger>()?.Invoke();
-        }
-
-        public override void OnEnd(Level level)
-        {
-            Audio.Stop(this.crashMusicSfx, true);
-            timeRateModifier.ResetTimeRateMultiplier();
-            level.Session.SetFlag(Flag);
-            if (this.WasSkipped)
             {
-                this.player.Sprite.Play("idle");
-                CutsceneNode cutsceneNode = CutsceneNode.Find("player_skip");
-                if (cutsceneNode != null)
-                {
-                    this.player.Position = ((Entity)cutsceneNode).Position.Floor();
-                    level.Camera.Position = this.player.CameraTarget;
-                }
-                if (this.flingBirdmod != null)
-                {
-                    if (this.flingBirdmod.CrashSfxEmitter != null)
-                        this.Scene.Remove(this.flingBirdmod.CrashSfxEmitter);
-                    this.flingBirdmod.RemoveSelf();
-                }
-                if (this.bird != null)
-                    this.bird.RemoveSelf();
-                TriggerEnvironmentalEvents();
-                StartMusic();
+                player.Position = cutsceneNode.Position.Floor();
+                level.Camera.Position = player.CameraTarget;
             }
-            this.player.Speed = Vector2.Zero;
-            this.player.DummyAutoAnimate = true;
-            this.player.DummyFriction = true;
-            this.player.DummyGravity = true;
-            this.player.ForceCameraUpdate = false;
-            this.player.StateMachine.State = 0;
-            // Show CharaBoost when cutscene ends (including skip)
-            CustomCharaBoost charaBoostRestore = base.Scene?.Entities?.FindFirst<CustomCharaBoost>();
-            if (charaBoostRestore != null)
+            if (flingBird != null)
             {
-                charaBoostRestore.Active = charaBoostRestore.Visible = charaBoostRestore.Collidable = true;
+                if (flingBird.CrashSfxEmitter != null)
+                {
+                    flingBird.CrashSfxEmitter.RemoveSelf();
+                }
+                flingBird.RemoveSelf();
             }
+            if (bird != null)
+            {
+                bird.RemoveSelf();
+            }
+            TriggerEnvironmentalEvents();
+            StartMusic();
         }
+        player.Speed = Vector2.Zero;
+        player.DummyAutoAnimate = true;
+        player.DummyFriction = true;
+        player.DummyGravity = true;
+        player.ForceCameraUpdate = false;
+        player.StateMachine.State = 0;
     }
 }
-
-
-
-
-
-

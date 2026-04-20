@@ -1,9 +1,9 @@
 using Vector2 = Microsoft.Xna.Framework.Vector2;
-using MaggyHelper.NPCs;
-using MaggyHelper.Cutscenes;
-using NPC = MaggyHelper.NPCs.NPC;
+using Celeste.NPCs;
+using Celeste.Cutscenes;
+using NPC = Celeste.NPCs.NPC;
 
-namespace MaggyHelper;
+namespace Celeste;
 [CustomEntity("MaggyHelper/Gondola")]
 [Tracked]
 [HotReloadable]

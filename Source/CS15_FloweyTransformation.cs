@@ -1,4 +1,4 @@
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
     /// <summary>
     /// Chapter 15 Flowey Attack and Transformation - Major Plot Twist

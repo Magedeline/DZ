@@ -3,7 +3,7 @@ local npc05_oshiro_breakdown = {}
 npc05_oshiro_breakdown.name = "MaggyHelper/NPC05_Oshiro_Breakdown"
 npc05_oshiro_breakdown.depth = 0
 npc05_oshiro_breakdown.justification = {0.5, 1.0}
-npc05_oshiro_breakdown.texture = "characters/oshiro/oshiro00"
+npc05_oshiro_breakdown.texture = "characters/oshiro/oshiro25"
 
 npc05_oshiro_breakdown.placements = {
     {

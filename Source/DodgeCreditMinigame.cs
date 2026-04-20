@@ -1,4 +1,4 @@
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// Dodge credit minigame - Final outro vignette

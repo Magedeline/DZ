@@ -1,8 +1,8 @@
 using System.Runtime.CompilerServices;
-using MaggyHelper.Cutscenes;
-using MaggyHelper.Utils;
+using Celeste.Cutscenes;
+using Celeste.Utils;
 
-namespace MaggyHelper.Entities;
+namespace Celeste.Entities;
 
 /// <summary>
 /// StarJump Cutscene Control - Similar to BeyondSummitManager

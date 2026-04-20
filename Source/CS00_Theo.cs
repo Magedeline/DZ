@@ -1,4 +1,4 @@
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
     /// <summary>
     /// Chapter 0 cutscene featuring Theo

@@ -1,4 +1,4 @@
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// A swirling vortex visual effect for Chapter 7 (Infernal Reflections).

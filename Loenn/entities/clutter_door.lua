@@ -4,12 +4,12 @@ local utils = require("utils")
 
 local clutterDoor = {}
 
-local variants = {"red", "yellow", "green", "lightning"}
+local variants = {"ClutterDoor red", "ClutterDoor yellow", "ClutterDoor green", "ClutterDoor lightning"}
 local variantOptions = {
-    Laundry = "red",
-    Books = "green",
-    Boxes = "yellow",
-    Lightning = "lightning"
+    Laundry = "ClutterDoor red",
+    Books = "ClutterDoor green",
+    Boxes = "ClutterDoor yellow",
+    Lightning = "ClutterDoor lightning"
 }
 
 clutterDoor.name = "MaggyHelper/ClutterDoor"
@@ -39,7 +39,7 @@ local fillColor = {74 / 255, 71 / 255, 135 / 255, 153}
 local borderColor = {1.0, 1.0, 1.0, 1.0}
 
 function clutterDoor.sprite(room, entity)
-    local variant = entity["type"] or "red"
+    local variant = entity["type"] or "ClutterDoor red"
     local width, height = entity.width or 24, entity.height or 24
 
     local rectangle = utils.rectangle(entity.x, entity.y, width, height)

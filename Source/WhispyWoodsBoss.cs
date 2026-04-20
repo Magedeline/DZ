@@ -1,6 +1,6 @@
-using MaggyHelper.Helpers;
+using Celeste.Helpers;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     [CustomEntity(ids: "MaggyHelper/WhispyWoodsBoss")]
     [Tracked(true)]

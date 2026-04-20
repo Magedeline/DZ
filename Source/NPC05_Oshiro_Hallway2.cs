@@ -1,6 +1,6 @@
-using MaggyHelper.Cutscenes;
+using Celeste.Cutscenes;
 
-namespace MaggyHelper.NPCs
+namespace Celeste.NPCs
 {
     [CustomEntity(ids: "MaggyHelper/NPC05_Oshiro_Hallway2")]
     public class NPC05_Oshiro_Hallway2 : NPC

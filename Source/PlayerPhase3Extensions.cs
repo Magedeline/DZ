@@ -2,7 +2,7 @@ using System;
 using Monocle;
 using Microsoft.Xna.Framework;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// Phase 3: Extended Kirby Mechanics - Placeholder for future implementation.

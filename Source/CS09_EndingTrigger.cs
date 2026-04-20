@@ -1,6 +1,6 @@
-using MaggyHelper.Cutscenes;
+using Celeste.Cutscenes;
 
-namespace MaggyHelper.Triggers
+namespace Celeste.Triggers
 {
     /// <summary>
     /// Trigger for the Chapter 9 ending sequence.

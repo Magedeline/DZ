@@ -16,6 +16,9 @@ playerTrigger.placements = {
             onExitFlag = "",
             kirbyPower = "None",
             maxDashes = 3,
+            inventoryDashes = 1,
+            inventoryDreamDash = false,
+            inventoryNoRefills = false,
             setFlagState = true,
             triggerOnce = false,
             requiredFlag = ""
@@ -34,6 +37,9 @@ playerTrigger.placements = {
             onExitFlag = "",
             kirbyPower = "None",
             maxDashes = 3,
+            inventoryDashes = 1,
+            inventoryDreamDash = false,
+            inventoryNoRefills = false,
             setFlagState = true,
             triggerOnce = false,
             requiredFlag = ""
@@ -52,6 +58,9 @@ playerTrigger.placements = {
             onExitFlag = "player_exited_trigger",
             kirbyPower = "None",
             maxDashes = 3,
+            inventoryDashes = 1,
+            inventoryDreamDash = false,
+            inventoryNoRefills = false,
             setFlagState = true,
             triggerOnce = false,
             requiredFlag = ""
@@ -72,7 +81,12 @@ playerTrigger.fieldInformation = {
             "EnableKirbyMode",
             "DisableKirbyMode",
             "SetKirbyPower",
-            "SetMaxDashes"
+            "SetMaxDashes",
+            "EnablePlayer",
+            "DisablePlayer",
+            "EnableCombat",
+            "DisableCombat",
+            "SetInventory"
         },
         editable = false
     },
@@ -82,7 +96,12 @@ playerTrigger.fieldInformation = {
             "EnableKirbyMode",
             "DisableKirbyMode",
             "SetKirbyPower",
-            "SetMaxDashes"
+            "SetMaxDashes",
+            "EnablePlayer",
+            "DisablePlayer",
+            "EnableCombat",
+            "DisableCombat",
+            "SetInventory"
         },
         editable = false
     },
@@ -123,6 +142,17 @@ playerTrigger.fieldInformation = {
         minimumValue = 1,
         maximumValue = 10
     },
+    inventoryDashes = {
+        fieldType = "integer",
+        minimumValue = 0,
+        maximumValue = 10
+    },
+    inventoryDreamDash = {
+        fieldType = "boolean"
+    },
+    inventoryNoRefills = {
+        fieldType = "boolean"
+    },
     setFlagState = {
         fieldType = "boolean"
     },
@@ -147,6 +177,9 @@ playerTrigger.fieldOrder = {
     "onExitFlag",
     "kirbyPower",
     "maxDashes",
+    "inventoryDashes",
+    "inventoryDreamDash",
+    "inventoryNoRefills",
     "setFlagState",
     "triggerOnce",
     "requiredFlag"

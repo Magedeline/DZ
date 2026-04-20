@@ -1,6 +1,6 @@
-using MaggyHelper.Cutscenes;
+using Celeste.Cutscenes;
 
-namespace MaggyHelper.NPCs
+namespace Celeste.NPCs
 {
     /// <summary>
     /// Roxus - Pirate Captain NPC for Chapter 10

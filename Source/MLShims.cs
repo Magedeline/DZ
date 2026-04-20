@@ -1,4 +1,4 @@
-namespace MaggyHelper
+namespace Celeste
 {
     internal sealed class GameplayPredictor
     {
@@ -32,7 +32,7 @@ namespace MaggyHelper
     }
 }
 
-namespace MaggyHelper.Utils
+namespace Celeste.Utils
 {
     internal sealed class Pcg32Random : Random
     {

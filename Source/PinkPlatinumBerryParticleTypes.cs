@@ -1,4 +1,4 @@
-namespace MaggyHelper
+namespace Celeste
 {
     public static class PinkPlatinumBerryParticles
     {

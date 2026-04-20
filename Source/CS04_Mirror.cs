@@ -1,8 +1,8 @@
-using MaggyHelper.Entities;
+using Celeste.Entities;
 using DreamBlock = Celeste.DreamBlock;
 using Facings = Celeste.Facings;
 
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
     [HotReloadable]
     public class Cs04Mirror : CutsceneEntity

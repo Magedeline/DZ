@@ -1,4 +1,4 @@
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     [CustomEntity(ids: "MaggyHelper/DreamOrb")]
     [Tracked]
@@ -102,7 +102,7 @@ namespace MaggyHelper.Entities
             base.Render();
         }
 
-        private void OnPlayer(Celeste.Player player)
+        private void OnPlayer(global::Celeste.Player player)
         {
             // Enable dream dashing for the player via session
             level.Session.Inventory.DreamDash = true;
@@ -120,9 +120,9 @@ namespace MaggyHelper.Entities
             }
         }
 
-        private IEnumerator CollectRoutine(Celeste.Player player)
+        private IEnumerator CollectRoutine(global::Celeste.Player player)
         {
-            Celeste.Celeste.Freeze(0.05f);
+            CelesteGame.Freeze(0.05f);
             yield return null;
             level.Shake();
             sprite.Visible = false;

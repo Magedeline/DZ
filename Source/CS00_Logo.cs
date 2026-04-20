@@ -1,10 +1,10 @@
 using System.Collections;
-using Celeste.Mod.Entities;
+using global::Celeste.Mod.Entities;
 using Microsoft.Xna.Framework;
 using Monocle;
 using System;
-using Celeste.Mod.MaggyHelper.Cutscenes;
-using MaggyHelper.Cutscenes;
+using global::Celeste.Mod.MaggyHelper.Cutscenes;
+using Celeste.Cutscenes;
 using FMOD.Studio;
 
 namespace Celeste.Mod.MaggyHelper.Cutscenes {

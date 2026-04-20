@@ -2,7 +2,7 @@ using System.Collections;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper;
+namespace Celeste;
 
 /// <summary>
 /// Manages HeartGem collection across all 5 sides (A/B/C/D/DX).

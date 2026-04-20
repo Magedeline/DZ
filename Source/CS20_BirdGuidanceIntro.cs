@@ -2,7 +2,7 @@
 // Based on CS19_AnotherDimensionIntro structure
 
 #nullable disable
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
   public class Cs20BirdGuidanceIntro : CutsceneEntity
   {

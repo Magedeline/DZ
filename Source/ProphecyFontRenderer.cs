@@ -1,6 +1,6 @@
 using Monocle;
 
-namespace MaggyHelper;
+namespace Celeste;
 
 /// <summary>
 /// Sprite-based bitmap font renderer for the ancient prophecy font.

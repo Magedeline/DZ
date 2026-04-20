@@ -1,6 +1,6 @@
 using FMOD.Studio;
 
-namespace MaggyHelper.Entities;
+namespace Celeste.Entities;
 
 [CustomEntity(ids: "MaggyHelper/LargeHeartDoorMod")]
 internal class LargeHeartGemDoor : Entity
@@ -135,7 +135,7 @@ internal class LargeHeartGemDoor : Entity
                 if (dashBlock != null)
                 {
                     level.Shake(0.5f);
-                    Celeste.Celeste.Freeze(0.1f);
+                    CelesteGame.Freeze(0.1f);
                     Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
                     dashBlock.Break(this.botSolid.BottomCenter, new Vector2(0f, 1f), true, false);
                     global::Celeste.Player entity2 = this.Scene.Tracker.GetEntity<global::Celeste.Player>();
@@ -148,7 +148,7 @@ internal class LargeHeartGemDoor : Entity
             }
             
             level.Shake(0.5f);
-            Celeste.Celeste.Freeze(0.1f);
+            CelesteGame.Freeze(0.1f);
             this.topSolid.Y = topTo;
             this.botSolid.Y = botTo;
             

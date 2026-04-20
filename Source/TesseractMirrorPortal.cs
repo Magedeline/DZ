@@ -5,9 +5,9 @@
 // Assembly location: C:\Users\User\OneDrive\Desktop\Celeste!\Celeste\Celeste.exe
 
 #nullable disable
-using MaggyHelper.Cutscenes;
+using Celeste.Cutscenes;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
   [CustomEntity(ids: "MaggyHelper/TesseractMirrorPortal")]
   public class TesseractMirrorGateway : Entity

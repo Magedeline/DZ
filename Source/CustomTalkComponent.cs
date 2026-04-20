@@ -1,4 +1,4 @@
-namespace MaggyHelper
+namespace Celeste
 {
     [HotReloadable]
     public class CustomTalkComponent(Rectangle hitbox, Vector2 talkerOffset, Action<global::Celeste.Player> onTalk)

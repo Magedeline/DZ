@@ -1,7 +1,7 @@
 using System.Reflection;
-using MaggyHelper.Entities;
+using Celeste.Entities;
 
-namespace MaggyHelper
+namespace Celeste
 {
     /// <summary>
     /// This class sets up some hooks that will be useful for rainbow berries.

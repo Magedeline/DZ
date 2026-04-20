@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// Handles cross-fading music layers during the ending sequence of

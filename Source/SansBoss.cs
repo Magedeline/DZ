@@ -1,7 +1,7 @@
-using MaggyHelper.Entities.Projectiles;
-using MaggyHelper.Helpers;
+using Celeste.Entities.Projectiles;
+using Celeste.Helpers;
 
-namespace MaggyHelper.Entities.Bosses
+namespace Celeste.Entities.Bosses
 {
     [CustomEntity(ids: "MaggyHelper/SansBoss")]
     [Tracked]

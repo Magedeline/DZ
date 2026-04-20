@@ -1,7 +1,7 @@
-using MaggyHelper.Cutscenes;
-using MaggyHelper.NPCs;
+using Celeste.Cutscenes;
+using Celeste.NPCs;
 
-namespace MaggyHelper.Entities;
+namespace Celeste.Entities;
 [CustomEntity(ids: "MaggyHelper/PlateauMod")]
 [Tracked]
 public class PlateauMod : Solid

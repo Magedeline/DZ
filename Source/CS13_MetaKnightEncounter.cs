@@ -1,4 +1,4 @@
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
     /// <summary>
     /// Chapter 13 Meta Knight Encounter - Metaminator Knight Battle

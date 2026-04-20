@@ -1,4 +1,4 @@
-namespace MaggyHelper.NPCs
+namespace Celeste.NPCs
 {
     [CustomEntity("DesoloZantas/NPC_Theo")]
     public class NPC_Theo : Entity

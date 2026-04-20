@@ -1,4 +1,4 @@
-namespace MaggyHelper.Triggers
+namespace Celeste.Triggers
 {
     /// <summary>
     /// Trigger that stops player movement when entering, creating a "pulled into blackhole" effect

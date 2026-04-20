@@ -1,4 +1,4 @@
-namespace MaggyHelper.Cutscenes;
+namespace Celeste.Cutscenes;
 
 [HotReloadable]
 public class Cs08CharaBossCenter(global::Celeste.Player player) : CutsceneEntity

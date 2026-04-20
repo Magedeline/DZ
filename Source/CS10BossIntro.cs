@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Runtime.CompilerServices;
-using MaggyHelper.Entities;
-using MaggyHelper.NPCs;
+using Celeste.Entities;
+using Celeste.NPCs;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper.Cutscenes;
+namespace Celeste.Cutscenes;
 
 /// <summary>
 /// Chapter 10 - Boss Introduction: Wispy Woods

@@ -1,4 +1,4 @@
-namespace MaggyHelper.Entities;
+namespace Celeste.Entities;
 
 /// <summary>
 /// Shared dummy implementation for passive companions that trail Madeline without colliding or harming her.

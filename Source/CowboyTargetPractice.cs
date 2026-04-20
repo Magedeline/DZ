@@ -1,11 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using MaggyHelper.Entities;
+using Celeste.Entities;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// Cowboy Target Practice Minigame

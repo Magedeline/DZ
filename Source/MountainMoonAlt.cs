@@ -1,6 +1,6 @@
 #nullable enable
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// Renders an alternative moon (moon.obj + moon_alt.png) above the normal

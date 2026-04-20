@@ -1,8 +1,8 @@
 #nullable enable
-using MaggyHelper.NPCs;
+using Celeste.NPCs;
 using Facings = Celeste.Facings;
 
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
     [HotReloadable]
     public class CS05_MagolorEscape : CutsceneEntity

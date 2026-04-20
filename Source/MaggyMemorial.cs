@@ -1,4 +1,4 @@
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// A custom Memorial entity for Desolo Zantas that displays configurable dialog

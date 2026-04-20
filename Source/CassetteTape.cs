@@ -1,12 +1,12 @@
 using Celeste;
-using Celeste.Mod.Entities;
+using global::Celeste.Mod.Entities;
 using FMOD.Studio;
 using Microsoft.Xna.Framework;
 using Monocle;
 using System;
 using System.Collections;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// A collectible cassette tape that can be played using the cassette player system.
@@ -162,7 +162,7 @@ namespace MaggyHelper.Entities
             }
         }
 
-        private void OnTalk(Celeste.Player player)
+        private void OnTalk(global::Celeste.Player player)
         {
             if (collected)
                 return;
@@ -170,7 +170,7 @@ namespace MaggyHelper.Entities
             Collect(player);
         }
 
-        private void Collect(Celeste.Player player)
+        private void Collect(global::Celeste.Player player)
         {
             if (collected)
                 return;
@@ -201,7 +201,7 @@ namespace MaggyHelper.Entities
             Add(new Coroutine(CollectRoutine(player)));
         }
 
-        private IEnumerator CollectRoutine(Celeste.Player player)
+        private IEnumerator CollectRoutine(global::Celeste.Player player)
         {
             Level level = Scene as Level;
             

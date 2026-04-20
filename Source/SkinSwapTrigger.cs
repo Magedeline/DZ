@@ -1,5 +1,5 @@
 
-namespace MaggyHelper.Triggers {
+namespace Celeste.Triggers {
     [CustomEntity("SkinModHelper/SkinSwapTrigger")]
     [HotReloadable]
     public class SkinSwapTrigger : Trigger {

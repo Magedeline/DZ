@@ -1,6 +1,6 @@
-using MaggyHelper.Helpers;
+using Celeste.Helpers;
 
-namespace MaggyHelper.Entities.Bosses
+namespace Celeste.Entities.Bosses
 {
     /// <summary>
     /// Dragoneer Jr Mid-Boss - A young dragon rider in training

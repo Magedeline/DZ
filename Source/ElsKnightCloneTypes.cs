@@ -1,7 +1,7 @@
 using System;
 using Microsoft.Xna.Framework;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     public enum ElsKnightCloneKind
     {

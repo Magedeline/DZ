@@ -1,6 +1,6 @@
 using FMOD.Studio;
 
-namespace MaggyHelper.Entities {
+namespace Celeste.Entities {
 
 	[CustomEntity(ids: "MaggyHelper/Cassette")]
 	[HotReloadable]
@@ -199,7 +199,7 @@ namespace MaggyHelper.Entities {
 			Audio.Play(collectSfx, Position);
 			
 			collected = true;
-			Celeste.Celeste.Freeze(0.1f);
+			CelesteGame.Freeze(0.1f);
 			Add(new Coroutine(CollectRoutine(player)));
 		}
 	}		private IEnumerator CollectRoutine(global::Celeste.Player player) {

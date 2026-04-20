@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Runtime.CompilerServices;
-using MaggyHelper.Entities;
-using MaggyHelper.Cutscenes;
-using MaggyHelper.NPCs;
-using MaggyHelper.Triggers;
+using Celeste.Entities;
+using Celeste.Cutscenes;
+using Celeste.NPCs;
+using Celeste.Triggers;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     [CustomEntity(ids:"DesoloZantas/NPC_Event,MaggyHelper/NPC_Event")]
     [Tracked(true)]
@@ -724,7 +724,7 @@ namespace MaggyHelper.Entities
         }
         protected override void OnTalk(global::Celeste.Player player)
         {
-            var oshiro = Scene.Tracker.GetEntity<Celeste.NPC>();
+            var oshiro = Scene.Tracker.GetEntity<global::Celeste.NPC>();
             if (oshiro != null)
             {
                 TryAddCutscene(new CS05_OshiroRooftop(oshiro));

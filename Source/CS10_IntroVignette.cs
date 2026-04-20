@@ -2,7 +2,7 @@
 
 using FMOD.Studio;
 
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
     class Cs10IntroVignetteAlt : Scene
     {

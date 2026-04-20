@@ -1,8 +1,8 @@
-using MaggyHelper.Entities;
-using MaggyHelper.NPCs;
-using BadelineDummy = MaggyHelper.Entities.BadelineDummy;
+using Celeste.Entities;
+using Celeste.NPCs;
+using BadelineDummy = Celeste.Entities.BadelineDummy;
 
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
     public class Cs08End : CutsceneEntity
     {

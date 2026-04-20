@@ -1,4 +1,4 @@
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
     /// <summary>
     /// Base class for all DesoloZantas vignette scenes (intro cutscenes, outro

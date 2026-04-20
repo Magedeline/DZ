@@ -1,12 +1,12 @@
 using System;
-using Celeste.Mod.MaggyHelper;
-using MaggyHelper.Entities;
-using MaggyHelper.Extensions;
+using global::Celeste.Mod.MaggyHelper;
+using Celeste.Entities;
+using Celeste.Extensions;
 using Microsoft.Xna.Framework;
 using Monocle;
 using MonoMod.Utils;
 
-namespace MaggyHelper;
+namespace Celeste;
 
 /// <summary>
 /// Handles room transitions, death, and respawn for
@@ -62,7 +62,7 @@ public static class RoomTransitionHandler
         // Check if this level should use our Player
         // (either a KirbyPlayerSpawner exists in the room, or
         //  the session says Kirby mode is still active from a previous room)
-        bool hasSpawner = self.Tracker.GetEntities<MaggyHelper.Entities.KirbyPlayerSpawner>().Count > 0;
+        bool hasSpawner = self.Tracker.GetEntities<global::Celeste.Entities.KirbyPlayerSpawner>().Count > 0;
         bool sessionKirby = MaggyHelperModule.Session?.IsKirbyModeActive == true;
 
         if (!hasSpawner && sessionKirby)
@@ -88,7 +88,7 @@ public static class RoomTransitionHandler
             return;
 
         // Check if our player is already there (e.g. tagged Persistent and carried over)
-        var existing = level.Tracker.GetEntity<MaggyHelper.Entities.Player>();
+        var existing = level.Tracker.GetEntity<global::Celeste.Entities.Player>();
         if (existing != null)
         {
             // Just re-hide vanilla and update position
@@ -102,7 +102,7 @@ public static class RoomTransitionHandler
         HideVanillaPlayer(vanillaPlayer);
 
         // Spawn our player
-        var maggyPlayer = new MaggyHelper.Entities.Player(
+        var maggyPlayer = new global::Celeste.Entities.Player(
             spawnPos, PlayerSpriteMode.Madeline);
         maggyPlayer.KirbyModeActive = true;
         maggyPlayer.CombatEnabled = true;
@@ -128,7 +128,7 @@ public static class RoomTransitionHandler
         }
 
         IngesteLogger.Info(
-            $"[RoomTransitionHandler] Re-spawned MaggyHelper.Player at {spawnPos} " +
+            $"[RoomTransitionHandler] Re-spawned global::Celeste.Player at {spawnPos} " +
             $"(intro: {playerIntro})");
     }
 
@@ -146,7 +146,7 @@ public static class RoomTransitionHandler
         // If vanilla player is hidden, relay the death to our player
         if (self.Scene is Level level && PlayerCompatShim.IsMaggyPlayerActive(level))
         {
-            var maggyPlayer = level.Tracker.GetEntity<MaggyHelper.Entities.Player>();
+            var maggyPlayer = level.Tracker.GetEntity<global::Celeste.Entities.Player>();
             if (maggyPlayer != null)
             {
                 // Kill our player
@@ -166,14 +166,14 @@ public static class RoomTransitionHandler
     /// Handles our Player's death: plays effects, then triggers level reload.
     /// </summary>
     private static void KillMaggyPlayer(
-        MaggyHelper.Entities.Player maggyPlayer,
+        global::Celeste.Entities.Player maggyPlayer,
         Level level,
         Vector2 direction)
     {
         if (maggyPlayer.IsDead)
             return;
 
-        IngesteLogger.Info("[RoomTransitionHandler] MaggyHelper.Player died");
+        IngesteLogger.Info("[RoomTransitionHandler] global::Celeste.Player died");
 
         // Death particles
         level.Particles.Emit(
@@ -211,7 +211,7 @@ public static class RoomTransitionHandler
         if (!PlayerCompatShim.IsMaggyPlayerActive(level))
             return;
 
-        var maggyPlayer = level.Tracker.GetEntity<MaggyHelper.Entities.Player>();
+        var maggyPlayer = level.Tracker.GetEntity<global::Celeste.Entities.Player>();
         if (maggyPlayer == null)
             return;
 

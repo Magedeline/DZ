@@ -2,7 +2,7 @@
 
 using FMOD.Studio;
 
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
     /// <summary>
     /// Chapter 18 Outro Vignette - Phone call ending that closes the game

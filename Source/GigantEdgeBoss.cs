@@ -1,6 +1,6 @@
-using MaggyHelper.Helpers;
+using Celeste.Helpers;
 
-namespace MaggyHelper.Entities.Bosses
+namespace Celeste.Entities.Bosses
 {
     /// <summary>
     /// Gigant Edge Mid-Boss - A massive armored knight

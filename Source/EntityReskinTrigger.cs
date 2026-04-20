@@ -1,7 +1,7 @@
 using System.Reflection;
 using MonoMod.Utils;
 
-namespace MaggyHelper.Triggers 
+namespace Celeste.Triggers 
 {
     [CustomEntity(ids: "MaggyHelper/EntityReskinTrigger")]
     public class EntityReskinTrigger : Trigger {
@@ -17,7 +17,7 @@ namespace MaggyHelper.Triggers
             : base(data, offset) {
 
             entityIndex = data.Int("entityIndex", -1);
-            entityFullName = data.Attr("entityFullName", "Celeste.Strawberry");
+            entityFullName = data.Attr("entityFullName", "CelesteStrawberry");
 
             oneUse = data.Bool("oneUse", true);
             newSpriteID = data.Attr("newSpriteID", "");

@@ -1,4 +1,4 @@
-namespace MaggyHelper.Triggers
+namespace Celeste.Triggers
 {
     /// <summary>
     /// Trigger that applies a pink Game Boy-style color grade and sets a flag when activated

@@ -1,4 +1,4 @@
-namespace MaggyHelper.Triggers
+namespace Celeste.Triggers
 {
   public class MaddyPhone : Entity
   {

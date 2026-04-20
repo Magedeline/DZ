@@ -1,9 +1,9 @@
 using System.Runtime.CompilerServices;
-using MaggyHelper.Entities;
+using Celeste.Entities;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// Flowey NPC entity for cutscenes and room interactions.

@@ -1,7 +1,7 @@
 using System.Runtime.CompilerServices;
 using FMOD.Studio;
 
-namespace MaggyHelper.Cutscenes;
+namespace Celeste.Cutscenes;
 
 public class CS19_HubSecondIntro : CutsceneEntity
 {

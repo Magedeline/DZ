@@ -1,4 +1,4 @@
-namespace MaggyHelper.Triggers
+namespace Celeste.Triggers
 {
     /// <summary>
     /// Trigger for Chapter 17 cutscenes - descent and credits sequences

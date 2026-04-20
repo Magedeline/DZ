@@ -1,9 +1,9 @@
 using System;
-using MaggyHelper.Entities;
+using Celeste.Entities;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// Grants temporary determination boost (extra dashes, speed)
@@ -61,7 +61,7 @@ namespace MaggyHelper.Entities
             }
         }
         
-        private void OnPlayer(Celeste.Player player)
+        private void OnPlayer(global::Celeste.Player player)
         {
             if (collected) return;
             
@@ -91,7 +91,7 @@ namespace MaggyHelper.Entities
             }
         }
         
-        private void ApplyBoost(Celeste.Player player)
+        private void ApplyBoost(global::Celeste.Player player)
         {
             // Store original values and apply boost
             // This would integrate with your existing player modification system

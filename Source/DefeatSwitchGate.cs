@@ -1,4 +1,4 @@
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// A gate that opens when the player has defeated a required number of enemies and/or bosses.

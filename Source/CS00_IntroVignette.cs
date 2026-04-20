@@ -2,7 +2,7 @@
 
 using FMOD.Studio;
 
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
     /// <summary>
     /// Chapter 0 Intro Vignette - Full screen cutscene after vessel creation

@@ -1,6 +1,6 @@
-using MaggyHelper.Cutscenes;
+using Celeste.Cutscenes;
 
-namespace MaggyHelper.Triggers
+namespace Celeste.Triggers
 {
     /// <summary>
     /// Standalone trigger for the CS09_Credits cutscene.

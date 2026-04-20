@@ -1,4 +1,4 @@
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
     /// <summary>
     /// Chapter 16 Ending - Barrier Breaks and Return to Celeste

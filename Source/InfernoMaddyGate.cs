@@ -1,4 +1,4 @@
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// A gate for Chapter 7 (Infernal Reflections) that opens when the player

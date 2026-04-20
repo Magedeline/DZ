@@ -1,6 +1,6 @@
 using System.Runtime.CompilerServices;
 
-namespace MaggyHelper.Cutscenes;
+namespace Celeste.Cutscenes;
 
 [HotReloadable]
 public class CS07_Darker(global::Celeste.Player player) : CutsceneEntity

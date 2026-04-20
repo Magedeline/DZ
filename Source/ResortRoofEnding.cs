@@ -1,6 +1,6 @@
-using MaggyHelper.Cutscenes;
+using Celeste.Cutscenes;
 
-namespace MaggyHelper.Entities;
+namespace Celeste.Entities;
 [CustomEntity(ids: "MaggyHelper/RoofTopEnding")]
 [Tracked]
 public class ResortRoofEnding : Solid

@@ -1,4 +1,4 @@
-using MaggyHelper.Entities;
+using Celeste.Entities;
 using Monocle;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
@@ -6,7 +6,7 @@ using MonoMod.RuntimeDetour;
 using System;
 using System.Reflection;
 
-namespace MaggyHelper
+namespace Celeste
 {
     /// <summary>
     /// Patches the chapter-select / map-list flow to prevent the
@@ -82,10 +82,10 @@ namespace MaggyHelper
         {
             try
             {
-                // LevelSetStats is defined in the Everest assembly (Celeste.Mod.SaveData).
+                // LevelSetStats is defined in the Everest assembly (global::Celeste.Mod.SaveData).
                 var everestAsm = typeof(EverestModule).Assembly;
 
-                Type lssType = everestAsm.GetType("Celeste.Mod.SaveData+LevelSetStats")
+                Type lssType = everestAsm.GetType("global::Celeste.Mod.SaveData+LevelSetStats")
                              ?? everestAsm.GetType("Celeste.LevelSetStats");
 
                 if (lssType == null)

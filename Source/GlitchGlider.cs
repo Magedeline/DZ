@@ -1,4 +1,4 @@
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// Glitch Glider that allows throwing, dashing, and teleporting through barriers

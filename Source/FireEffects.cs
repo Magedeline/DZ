@@ -1,4 +1,4 @@
-namespace MaggyHelper.Effects
+namespace Celeste.Effects
 {
     /// <summary>
     /// Advanced fire elemental effects with multiple fire types

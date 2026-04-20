@@ -1,4 +1,4 @@
-namespace MaggyHelper.Entities 
+namespace Celeste.Entities 
 {
     [CustomEntity("MaggyHelper/HeartGem")]
     [Tracked]
@@ -340,7 +340,7 @@ foreach (Follower follower in player.Leader.Followers) {
       Add(this.white = GFX.SpriteBank.Create("heartgem4")); // Use grey heartgem for the white flash effect
             Depth = -2000000;
             yield return null;
-            Celeste.Celeste.Freeze(0.2f);
+            CelesteGame.Freeze(0.2f);
       yield return null;
        this.timeRateModifier.SetTimeRateMultiplier(0.5f);
           player.Depth = -2000000;
@@ -471,8 +471,7 @@ Glitch.Value = 0.75f;
    this.timeRateModifier.ResetTimeRateMultiplier();
             yield return Textbox.Say("CH19_WRONG_HEART", new Func<IEnumerator>[]
             {
-                this.KirbyPicksUpHeartGem,
-                this.SevenGonerSoulsFlyPast
+                this.SevenBirdGonersFlyPast
             });
        this.sfx.Source.Param("end", 1f);
  yield return 0.283f;
@@ -538,24 +537,46 @@ Glitch.Value = 0.75f;
             yield break;
         }
 
-        private IEnumerator KirbyPicksUpHeartGem() {
-            global::Celeste.Player entity = Scene.Tracker.GetEntity<global::Celeste.Player>();
+        private IEnumerator SevenBirdGonersFlyPast() {
+            Level level = SceneAs<Level>();
+            global::Celeste.Player entity = Scene?.Tracker?.GetEntity<global::Celeste.Player>();
+            if (level == null) {
+                yield break;
+            }
+
             if (entity != null) {
                 Audio.Play("event:/game/general/seed_complete_main", entity.Position);
                 Input.Rumble(RumbleStrength.Light, RumbleLength.Short);
             }
-            yield return 0.3f;
-        }
 
-        private IEnumerator SevenGonerSoulsFlyPast() {
-            Level level = SceneAs<Level>();
-            for (int i = 0; i < 7; i++) {
-                Vector2 start = level.Camera.Position + new Vector2(-20f, 60f + i * 14f);
-                Vector2 end = level.Camera.Position + new Vector2(340f, 40f + i * 10f);
-                Scene.Add(new AbsorbOrb(start, null, new Vector2?(end)));
-            }
+            this.ClearFakeBirdGoners();
             Audio.Play("event:/new_content/game/10_farewell/glitch_short", level.Camera.Position + new Vector2(160f, 90f));
-            yield return 1.0f;
+
+            Vector2 cameraPosition = level.Camera.Position;
+            for (int i = 0; i < FakeBirdGonerSpriteIds.Length; i++) {
+                Vector2 start = cameraPosition + new Vector2(-20f - i * 16f, 60f + i * 14f);
+                FakeBirdGoner birdGoner = new FakeBirdGoner(FakeBirdGonerSpriteIds[i], start);
+                this.fakeBirdGoners.Add(birdGoner);
+                level.Add(birdGoner);
+            }
+
+            for (float p = 0f; p < 1f; p += Engine.RawDeltaTime / 1f) {
+                for (int i = 0; i < this.fakeBirdGoners.Count; i++) {
+                    FakeBirdGoner birdGoner = this.fakeBirdGoners[i];
+                    Vector2 start = cameraPosition + new Vector2(-20f - i * 16f, 60f + i * 14f);
+                    Vector2 end = cameraPosition + new Vector2(340f + i * 10f, 40f + i * 10f);
+                    float birdProgress = Math.Clamp((p - i * 0.04f) / 0.65f, 0f, 1f);
+                    float eased = Ease.CubeInOut(birdProgress);
+                    birdGoner.Position = start + (end - start) * eased + Vector2.UnitY * (float)Math.Sin((double)(birdProgress * 8f + i)) * 8f;
+                    if (birdProgress > 0f && level.OnRawInterval(0.2f)) {
+                        TrailManager.Add(birdGoner, Calc.HexToColor("639bff"), 1f, true, true);
+                    }
+                }
+                yield return null;
+            }
+
+            this.ClearFakeBirdGoners();
+            yield return 0.3f;
         }
 
         public void SkipFakeHeartCutscene(Level level) {
@@ -587,6 +608,8 @@ level.Frozen = false;
 
             foreach (AbsorbOrb entity2 in this.Scene.Entities.FindAll<AbsorbOrb>())
                 entity2.RemoveSelf();
+
+            this.ClearFakeBirdGoners();
 
             if (poem != null) {
         poem.RemoveSelf();
@@ -633,6 +656,7 @@ Level level = Scene as Level;
      level.CanRetry = true;
     level.FormationBackdrop.Display = false;
          this.timeRateModifier.ResetTimeRateMultiplier();
+    this.ClearFakeBirdGoners();
     if (poem != null) {
          poem.RemoveSelf();
      }
@@ -658,7 +682,40 @@ Level level = Scene as Level;
   }
         }
 
+        private void ClearFakeBirdGoners() {
+            foreach (FakeBirdGoner birdGoner in this.fakeBirdGoners) {
+                birdGoner.RemoveSelf();
+            }
+            this.fakeBirdGoners.Clear();
+        }
+
+        private sealed class FakeBirdGoner : Entity {
+            public FakeBirdGoner(string spriteId, Vector2 position) : base(position) {
+                Depth = -2000100;
+                Tag = Tags.FrozenUpdate;
+
+                Sprite sprite = GFX.SpriteBank.Create(spriteId);
+                sprite.Play("fly", false, false);
+                sprite.UseRawDeltaTime = true;
+                sprite.Scale.X = 1f;
+                Add(sprite);
+                Add(new VertexLight(Color.White, 0.5f, 8, 32));
+                Add(new BloomPoint(0.5f, 12f));
+            }
+        }
+
         // Fields - these are declared at the top of the class and initialized in LoadParticles()
+        private static readonly string[] FakeBirdGonerSpriteIds = new string[]
+        {
+            "bird",
+            "birdgoner_clover",
+            "birdgoner_cody",
+            "birdgoner_emily",
+            "birdgoner_odin",
+            "birdgoner_robin",
+            "birdgoner_sabel"
+        };
+
         public bool IsGhost;
         public const float GHOST_ALPHA = 0.8f;
      public bool IsFake;
@@ -680,6 +737,7 @@ Level level = Scene as Level;
      private bool removeCameraTriggers;
   private SoundEmitter sfx;
      private List<InvisibleBarrier> walls = new List<InvisibleBarrier>();
+        private readonly List<FakeBirdGoner> fakeBirdGoners = new List<FakeBirdGoner>();
         private HoldableCollider holdableCollider;
         private EntityID entityId;
     private InvisibleBarrier fakeRightWall;

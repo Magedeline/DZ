@@ -1,7 +1,7 @@
 using Celeste;
 using Monocle;
 
-namespace MaggyHelper.Extensions
+namespace Celeste.Extensions
 {
     /// <summary>
     /// Manages Kirby mode state and power abilities.

@@ -1,4 +1,4 @@
-namespace MaggyHelper.Triggers
+namespace Celeste.Triggers
 {
     /// <summary>
     /// Trigger that displays dialog with NPC support

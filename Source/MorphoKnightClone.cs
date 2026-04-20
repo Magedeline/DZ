@@ -1,7 +1,7 @@
-using MaggyHelper.Entities.Bosses;
+using Celeste.Entities.Bosses;
 using Microsoft.Xna.Framework;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     [CustomEntity(ids: "MaggyHelper/MorphoKnightClone")]
     [Tracked]

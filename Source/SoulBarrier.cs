@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using MaggyHelper.Entities;
+using Celeste.Entities;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// A barrier that requires Soul Fragments to unlock
@@ -43,7 +43,7 @@ namespace MaggyHelper.Entities
             // Restore persistent progress so fragments can be collected across rooms/sessions.
             if (!string.IsNullOrEmpty(barrierId))
             {
-                fragmentsCollected = Celeste.Mod.MaggyHelper.MaggyHelperModule.SaveData?.GetCollectedSoulFragmentsForBarrier(barrierId) ?? 0;
+                fragmentsCollected = global::Celeste.Mod.MaggyHelper.MaggyHelperModule.SaveData?.GetCollectedSoulFragmentsForBarrier(barrierId) ?? 0;
             }
             
             // Register with the session for fragment tracking
@@ -209,7 +209,7 @@ namespace MaggyHelper.Entities
             }
         }
         
-        private void OnPlayer(Celeste.Player player)
+        private void OnPlayer(global::Celeste.Player player)
         {
             if (collected) return;
             
@@ -225,7 +225,7 @@ namespace MaggyHelper.Entities
                 string key = $"SoulFragment_{barrierId}_{Position.X}_{Position.Y}_collected";
                 session.SetFlag(key, true);
 
-                Celeste.Mod.MaggyHelper.MaggyHelperModule.SaveData?.CollectSoulFragment(key, barrierId);
+                global::Celeste.Mod.MaggyHelper.MaggyHelperModule.SaveData?.CollectSoulFragment(key, barrierId);
             }
             
             // Find and notify the linked barrier

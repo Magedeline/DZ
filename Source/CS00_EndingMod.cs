@@ -1,12 +1,12 @@
 using System;
 using System.Collections;
 using System.Runtime.CompilerServices;
-using Celeste.Mod.MaggyHelper.Cutscenes;
+using global::Celeste.Mod.MaggyHelper.Cutscenes;
 using FMOD.Studio;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper.Cutscenes;
+namespace Celeste.Cutscenes;
 
 [Tracked(false)]
 public class CS00_EndingMod : CutsceneEntity

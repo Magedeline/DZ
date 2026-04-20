@@ -1,7 +1,7 @@
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper.Entities;
+namespace Celeste.Entities;
 
 /// <summary>
 /// A standalone entity that renders a Spine skeleton at a world position.

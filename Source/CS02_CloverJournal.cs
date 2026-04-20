@@ -5,7 +5,7 @@
 // Assembly location: C:\Users\User\OneDrive\Desktop\Celeste!\Celeste\Celeste.exe
 
 #nullable disable
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
   [HotReloadable]
   public class Cs02JournalMod : CutsceneEntity

@@ -60,8 +60,11 @@ local GRID_COLS = 3  -- rooms per row in the layout grid
 local function clamp(v, lo, hi) return math.max(lo, math.min(hi, v)) end
 
 --- Fill a matrix with solid borders, floor, and open interior.
-local function buildBaseRoom(w, h, tileset)
+--- Uses organic ground/ceiling profiles for natural-looking rooms.
+local function buildBaseRoom(w, h, tileset, opts)
     tileset = tileset or TILE_SOLID
+    opts = opts or {}
+    local seed = opts.seed or (w * 31 + h * 17)
     local m = matrix.filled(tileset, w, h)
 
     -- Carve interior
@@ -71,13 +74,51 @@ local function buildBaseRoom(w, h, tileset)
         end
     end
 
-    -- Floor at h - 3 (two tiles thick)
+    -- Organic rolling ground instead of a flat floor
+    local baseFloorY = h - 3
+    local amplitude = opts.groundAmplitude or 2
+    local freq = opts.groundFreq or 6
     for x = 3, w - 2 do
-        m:set(x, h - 3, tileset)
-        m:set(x, h - 2, tileset)
+        local noise = math.sin(x / freq + seed) * amplitude
+                    + math.sin(x / (freq * 0.6) + seed * 1.3) * (amplitude * 0.5)
+        local floorY = clamp(math.floor(baseFloorY + noise + 0.5), h - 6, h - 2)
+        -- Fill from floor down
+        for y = floorY, h do
+            m:set(x, y, tileset)
+        end
+        -- Clear above floor
+        for y = 3, floorY - 1 do
+            m:set(x, y, TILE_AIR)
+        end
+    end
+
+    -- Organic ceiling instead of flat top wall
+    local baseCeilY = 2
+    local ceilAmp = opts.ceilAmplitude or 1
+    for x = 3, w - 2 do
+        local noise = math.sin(x / 8 + seed * 0.7) * ceilAmp
+                    + math.sin(x / 5 + seed * 1.1) * (ceilAmp * 0.4)
+        local ceilY = clamp(math.floor(baseCeilY + noise + 0.5), 1, 5)
+        for y = 1, ceilY do
+            m:set(x, y, tileset)
+        end
+        for y = ceilY + 1, math.min(ceilY + 2, h - 4) do
+            m:set(x, y, TILE_AIR)
+        end
     end
 
     return m
+end
+
+--- Get the effective floor Y at a given x position in a matrix.
+--- Scans from bottom up to find first air tile.
+local function getFloorY(m, x, h)
+    for y = h - 1, 3, -1 do
+        if m:get(x, y, TILE_SOLID) == TILE_AIR then
+            return y + 1
+        end
+    end
+    return h - 3
 end
 
 --- Carve a doorway opening on the right edge for room transitions.
@@ -134,37 +175,42 @@ end
 local function buildIntroRoom(flowEntry, tileset)
     local size = ROOM_SIZES.intro
     local w, h = size.w, size.h
-    local m = buildBaseRoom(w, h, tileset)
+    local m = buildBaseRoom(w, h, tileset, { groundAmplitude = 1, seed = 42 })
     carveRightExit(m, w, h)
 
-    local floorY = h - 4  -- Y position ON the floor (entity placement)
     local entities = {}
 
-    -- Player spawn (left side)
+    -- Player spawn (left side) — place on actual ground
+    local spawnX = 5
+    local spawnFloorY = getFloorY(m, spawnX, h)
     table.insert(entities, {
         _name = "player",
         id = eid(),
-        x = 40,
-        y = (floorY) * 8,
+        x = spawnX * 8,
+        y = (spawnFloorY - 1) * 8,
     })
 
     -- Kirby NPC (tutorial hint)
+    local npcX = 15
+    local npcFloorY = getFloorY(m, npcX, h)
     table.insert(entities, {
         _name = "MaggyHelper/KirbyNPC",
         id = eid(),
-        x = 120,
-        y = (floorY) * 8,
+        x = npcX * 8,
+        y = (npcFloorY - 1) * 8,
         dialogId = "KIRBY_INTRO_ABILITY",
     })
 
     -- AbilityStar for the chapter's signature ability
     local ability = flowEntry.abilityStars and flowEntry.abilityStars[1]
     if ability and ability ~= "None" then
+        local starX = math.floor(w * 0.6)
+        local starFloorY = getFloorY(m, starX, h)
         table.insert(entities, {
             _name = "MaggyHelper/AbilityStar",
             id = eid(),
-            x = 220,
-            y = (floorY - 3) * 8,
+            x = starX * 8,
+            y = (starFloorY - 4) * 8,
             ability = ability,
         })
     end
@@ -183,24 +229,24 @@ end
 local function buildPracticeRoom(flowEntry, tileset)
     local size = ROOM_SIZES.practice
     local w, h = size.w, size.h
-    local m = buildBaseRoom(w, h, tileset)
+    local m = buildBaseRoom(w, h, tileset, { groundAmplitude = 1.5, seed = 55 })
     carveLeftExit(m, w, h)
     carveRightExit(m, w, h)
 
-    local floorY = h - 4
     local entities = {}
 
-    -- Place signature enemies (spread across the room)
+    -- Place signature enemies (spread across the room, on actual ground)
     local count = flowEntry.enemyCount or 2
     for i = 1, count do
         local enemy = flowEntry.enemies[((i - 1) % #flowEntry.enemies) + 1]
         if enemy then
-            local xPos = 80 + (i - 1) * math.floor((w * 8 - 160) / math.max(count, 1))
+            local ex = math.floor(10 + (i - 1) * ((w - 20) / math.max(count, 1)))
+            local eFloorY = getFloorY(m, clamp(ex, 3, w - 2), h)
             table.insert(entities, {
                 _name = "MaggyHelper/" .. enemy.type,
                 id = eid(),
-                x = xPos,
-                y = (floorY) * 8,
+                x = ex * 8,
+                y = (eFloorY - 1) * 8,
                 health = enemy.health,
                 moveSpeed = enemy.speed,
                 canBeInhaled = true,
@@ -222,36 +268,44 @@ end
 local function buildProgressionRoom(flowEntry, tileset, progressionIndex)
     local size = ROOM_SIZES.progression
     local w, h = size.w, size.h
-    local m = buildBaseRoom(w, h, tileset)
+    local pIdx = progressionIndex or 1
+    local m = buildBaseRoom(w, h, tileset, {
+        groundAmplitude = 1.5 + pIdx * 0.5,
+        ceilAmplitude = 0.5 + pIdx * 0.3,
+        seed = 70 + pIdx * 13,
+    })
     carveLeftExit(m, w, h)
     carveRightExit(m, w, h)
 
-    local floorY = h - 4
     local entities = {}
 
     -- Add floating platforms based on progression index (more platforms in later rooms)
-    local platCount = progressionIndex or 1
+    local platCount = pIdx
     for p = 1, platCount do
         local px = math.floor(w * (p / (platCount + 1)))
-        local py = floorY - 4 - (p % 2) * 3
+        local baseFloorHere = getFloorY(m, clamp(px, 3, w - 2), h)
+        local py = clamp(baseFloorHere - 5 - (p % 2) * 3, 5, h - 6)
         placePlatform(m, clamp(px - 3, 3, w - 2), clamp(px + 3, 3, w - 2), py, tileset)
     end
 
-    -- Place enemies
+    -- Place enemies on actual ground
     local count = flowEntry.enemyCount or 3
     for i = 1, math.min(count, #flowEntry.enemies * 2) do
         local enemy = flowEntry.enemies[((i - 1) % #flowEntry.enemies) + 1]
         if enemy then
-            local xPos = 60 + (i - 1) * math.floor((w * 8 - 120) / math.max(count, 1))
-            local yInTiles = floorY
+            local ex = math.floor(8 + (i - 1) * ((w - 16) / math.max(count, 1)))
+            local eFloorY = getFloorY(m, clamp(ex, 3, w - 2), h)
+            local yInTiles = eFloorY - 1
             -- Some enemies placed on platforms for variety
             if i > count / 2 and platCount > 0 then
-                yInTiles = floorY - 4 - (i % 2) * 3
+                local platPx = math.floor(w * (1 / (platCount + 1)))
+                local platFloor = getFloorY(m, clamp(platPx, 3, w - 2), h)
+                yInTiles = clamp(platFloor - 5 - (i % 2) * 3 - 1, 5, h - 6)
             end
             table.insert(entities, {
                 _name = "MaggyHelper/" .. enemy.type,
                 id = eid(),
-                x = xPos,
+                x = ex * 8,
                 y = yInTiles * 8,
                 health = enemy.health,
                 moveSpeed = enemy.speed,
@@ -264,11 +318,13 @@ local function buildProgressionRoom(flowEntry, tileset, progressionIndex)
     if flowEntry.abilityStars and #flowEntry.abilityStars > 0 then
         local ability = flowEntry.abilityStars[1]
         if ability and ability ~= "None" then
+            local starX = math.floor(w / 2)
+            local starFloorY = getFloorY(m, starX, h)
             table.insert(entities, {
                 _name = "MaggyHelper/AbilityStar",
                 id = eid(),
-                x = math.floor(w / 2) * 8,
-                y = (floorY - 6) * 8,
+                x = starX * 8,
+                y = (starFloorY - 6) * 8,
                 ability = ability,
             })
         end
@@ -288,7 +344,7 @@ end
 local function buildMidBossRoom(flowEntry, tileset)
     local size = ROOM_SIZES.midboss
     local w, h = size.w, size.h
-    local m = buildBaseRoom(w, h, tileset)
+    local m = buildBaseRoom(w, h, tileset, { groundAmplitude = 1, ceilAmplitude = 1.5, seed = 88 })
     carveLeftExit(m, w, h)
     carveRightExit(m, w, h)
 
@@ -296,17 +352,18 @@ local function buildMidBossRoom(flowEntry, tileset)
     placePlatform(m, 8, 15, h - 10, tileset)
     placePlatform(m, w - 15, w - 8, h - 10, tileset)
 
-    local floorY = h - 4
     local entities = {}
 
-    -- Mid-boss entity
+    -- Mid-boss entity (place on actual ground at center)
     local mb = flowEntry.midBoss
+    local bossX = math.floor(w / 2)
+    local bossFloorY = getFloorY(m, bossX, h)
     if mb then
         table.insert(entities, {
             _name = mb.type,
             id = eid(),
-            x = math.floor(w / 2) * 8,
-            y = floorY * 8,
+            x = bossX * 8,
+            y = (bossFloorY - 1) * 8,
             health = mb.health,
         })
     end
@@ -340,42 +397,59 @@ end
 local function buildTestRoom(flowEntry, tileset, testIndex)
     local size = ROOM_SIZES.test
     local w, h = size.w, size.h
-    local m = buildBaseRoom(w, h, tileset)
+    local tIdx = testIndex or 1
+    local m = buildBaseRoom(w, h, tileset, {
+        groundAmplitude = 2,
+        ceilAmplitude = 1,
+        seed = 100 + tIdx * 17,
+    })
     carveLeftExit(m, w, h)
     carveRightExit(m, w, h)
 
-    local floorY = h - 4
     local entities = {}
 
-    -- Complex platform layout
+    -- Complex platform layout (adjusted to terrain)
     local platPositions = {
-        { x1 = 10, x2 = 18, y = floorY - 5 },
-        { x1 = 22, x2 = 30, y = floorY - 9 },
-        { x1 = 34, x2 = 42, y = floorY - 5 },
-        { x1 = 46, x2 = 54, y = floorY - 9 },
-        { x1 = w - 18, x2 = w - 10, y = floorY - 5 },
+        { x1 = 10, x2 = 18, yOff = -5 },
+        { x1 = 22, x2 = 30, yOff = -9 },
+        { x1 = 34, x2 = 42, yOff = -5 },
+        { x1 = 46, x2 = 54, yOff = -9 },
+        { x1 = w - 18, x2 = w - 10, yOff = -5 },
     }
     for _, plat in ipairs(platPositions) do
-        placePlatform(m, plat.x1, plat.x2, plat.y, tileset)
+        local midX = math.floor((plat.x1 + plat.x2) / 2)
+        local baseFloor = getFloorY(m, clamp(midX, 3, w - 2), h)
+        local py = clamp(baseFloor + plat.yOff, 5, h - 6)
+        placePlatform(m, plat.x1, plat.x2, py, tileset)
+        plat.y = py  -- store computed y for entity placement
     end
 
     -- Add pits in test room 2 for extra danger
-    if testIndex and testIndex >= 2 then
-        carvePit(m, 20, 26, floorY)
-        carvePit(m, 40, 46, floorY)
+    if tIdx >= 2 then
+        for x = 20, 26 do
+            local fy = getFloorY(m, clamp(x, 3, w - 2), h)
+            m:set(x, fy - 1, TILE_AIR)
+            m:set(x, fy, TILE_AIR)
+        end
+        for x = 40, 46 do
+            local fy = getFloorY(m, clamp(x, 3, w - 2), h)
+            m:set(x, fy - 1, TILE_AIR)
+            m:set(x, fy, TILE_AIR)
+        end
     end
 
-    -- Place all enemies
+    -- Place all enemies on actual ground
     local count = flowEntry.enemyCount or 5
     for i = 1, math.min(count, 8) do
         local enemy = flowEntry.enemies[((i - 1) % #flowEntry.enemies) + 1]
         if enemy then
-            local xPos = 64 + (i - 1) * math.floor((w * 8 - 128) / math.max(count, 1))
+            local ex = math.floor(8 + (i - 1) * ((w - 16) / math.max(count, 1)))
+            local eFloorY = getFloorY(m, clamp(ex, 3, w - 2), h)
             table.insert(entities, {
                 _name = "MaggyHelper/" .. enemy.type,
                 id = eid(),
-                x = xPos,
-                y = floorY * 8,
+                x = ex * 8,
+                y = (eFloorY - 1) * 8,
                 health = enemy.health,
                 moveSpeed = enemy.speed,
                 canBeInhaled = enemy.power ~= "None",
@@ -413,25 +487,24 @@ end
 local function buildApproachRoom(flowEntry, tileset)
     local size = ROOM_SIZES.approach
     local w, h = size.w, size.h
-    local m = buildBaseRoom(w, h, tileset)
+    local m = buildBaseRoom(w, h, tileset, { groundAmplitude = 1, ceilAmplitude = 1, seed = 120 })
     carveLeftExit(m, w, h)
     carveRightExit(m, w, h)
 
-    -- Long flat corridor — no platforms, few enemies
-    local floorY = h - 4
     local entities = {}
 
-    -- Sparse fodder enemies
+    -- Sparse fodder enemies placed on actual ground
     local count = flowEntry.enemyCount or 2
     for i = 1, count do
         local enemy = flowEntry.enemies[((i - 1) % math.max(#flowEntry.enemies, 1)) + 1]
         if enemy then
-            local xPos = 80 + (i - 1) * math.floor((w * 8 - 160) / math.max(count, 1))
+            local ex = math.floor(10 + (i - 1) * ((w - 20) / math.max(count, 1)))
+            local eFloorY = getFloorY(m, clamp(ex, 3, w - 2), h)
             table.insert(entities, {
                 _name = "MaggyHelper/" .. enemy.type,
                 id = eid(),
-                x = xPos,
-                y = floorY * 8,
+                x = ex * 8,
+                y = (eFloorY - 1) * 8,
                 health = enemy.health,
                 moveSpeed = enemy.speed,
                 canBeInhaled = true,
@@ -443,11 +516,13 @@ local function buildApproachRoom(flowEntry, tileset)
     if flowEntry.abilityStars and #flowEntry.abilityStars > 0 then
         local ability = flowEntry.abilityStars[1]
         if ability and ability ~= "None" then
+            local starX = math.floor(w * 0.75)
+            local starFloorY = getFloorY(m, starX, h)
             table.insert(entities, {
                 _name = "MaggyHelper/AbilityStar",
                 id = eid(),
-                x = math.floor(w * 0.75) * 8,
-                y = (floorY - 3) * 8,
+                x = starX * 8,
+                y = (starFloorY - 4) * 8,
                 ability = ability,
             })
         end
@@ -467,7 +542,7 @@ end
 local function buildBossRoom(flowEntry, chapterData, tileset)
     local size = ROOM_SIZES.boss
     local w, h = size.w, size.h
-    local m = buildBaseRoom(w, h, tileset)
+    local m = buildBaseRoom(w, h, tileset, { groundAmplitude = 2, ceilAmplitude = 2, seed = 150 })
     carveLeftExit(m, w, h)
 
     -- Boss arena has wide open interior + elevated side platforms
@@ -475,17 +550,18 @@ local function buildBossRoom(flowEntry, chapterData, tileset)
     placePlatform(m, w - 16, w - 6, h - 12, tileset)
     placePlatform(m, math.floor(w/2) - 5, math.floor(w/2) + 5, h - 18, tileset)
 
-    local floorY = h - 4
     local entities = {}
 
-    -- Boss entity
+    -- Boss entity on actual ground
     local boss = flowEntry.boss or chapterData.boss
+    local bossX = math.floor(w * 0.65)
+    local bossFloorY = getFloorY(m, bossX, h)
     if boss then
         table.insert(entities, {
             _name = boss.type,
             id = eid(),
-            x = math.floor(w * 0.65) * 8,
-            y = floorY * 8,
+            x = bossX * 8,
+            y = (bossFloorY - 1) * 8,
             health = boss.health,
             maxHealth = boss.health,
         })

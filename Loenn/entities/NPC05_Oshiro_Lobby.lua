@@ -3,7 +3,7 @@ local npc05_oshiro_lobby = {}
 npc05_oshiro_lobby.name = "MaggyHelper/NPC05_Oshiro_Lobby"
 npc05_oshiro_lobby.depth = 0
 npc05_oshiro_lobby.justification = {0.5, 1.0}
-npc05_oshiro_lobby.texture = "characters/oshiro/oshiro00"
+npc05_oshiro_lobby.texture = "characters/oshiro/oshiro25"
 
 npc05_oshiro_lobby.placements = {
     {

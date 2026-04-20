@@ -1,7 +1,7 @@
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 
-namespace MaggyHelper;
+namespace Celeste;
 
 internal class AreaMetadata
 {

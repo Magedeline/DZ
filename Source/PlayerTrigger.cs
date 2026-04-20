@@ -1,4 +1,6 @@
-namespace MaggyHelper.Triggers
+using Celeste.Extensions;
+
+namespace Celeste.Triggers
 {
     [CustomEntity(ids: "MaggyHelper/PlayerTrigger")]
     [Tracked]
@@ -11,7 +13,12 @@ namespace MaggyHelper.Triggers
             EnableKirbyMode,
             DisableKirbyMode,
             SetKirbyPower,
-            SetMaxDashes
+            SetMaxDashes,
+            EnablePlayer,
+            DisablePlayer,
+            EnableCombat,
+            DisableCombat,
+            SetInventory
         }
 
         private readonly bool triggerOnEnter;
@@ -25,6 +32,9 @@ namespace MaggyHelper.Triggers
         private readonly PlayerAction onExitAction;
         private readonly KirbyMode.KirbyPowerState kirbyPower;
         private readonly int maxDashes;
+        private readonly int inventoryDashes;
+        private readonly bool inventoryDreamDash;
+        private readonly bool inventoryNoRefills;
 
         private bool hasTriggered;
 
@@ -46,6 +56,9 @@ namespace MaggyHelper.Triggers
             }
 
             maxDashes = Math.Clamp(data.Int(nameof(maxDashes), 3), 1, 10);
+            inventoryDashes = Math.Clamp(data.Int(nameof(inventoryDashes), 1), 0, 10);
+            inventoryDreamDash = data.Bool(nameof(inventoryDreamDash), false);
+            inventoryNoRefills = data.Bool(nameof(inventoryNoRefills), false);
         }
 
         public override void OnEnter(global::Celeste.Player player)
@@ -121,10 +134,44 @@ namespace MaggyHelper.Triggers
                 case PlayerAction.SetMaxDashes:
                     player.SetMaxDashes(maxDashes);
                     break;
+                case PlayerAction.EnablePlayer:
+                    player.StateMachine.State = Player.StNormal;
+                    player.DummyAutoAnimate = true;
+                    player.Speed = Vector2.Zero;
+                    break;
+                case PlayerAction.DisablePlayer:
+                    player.StateMachine.State = Player.StDummy;
+                    player.DummyAutoAnimate = false;
+                    player.Speed = Vector2.Zero;
+                    break;
+                case PlayerAction.EnableCombat:
+                    player.EnableCombat();
+                    break;
+                case PlayerAction.DisableCombat:
+                    player.DisableCombat();
+                    break;
+                case PlayerAction.SetInventory:
+                    ApplyInventory(player);
+                    break;
                 case PlayerAction.None:
                 default:
                     break;
             }
+        }
+
+        private void ApplyInventory(global::Celeste.Player player)
+        {
+            Level level = SceneAs<Level>();
+            if (level?.Session == null)
+                return;
+
+            var inv = level.Session.Inventory;
+            inv.Dashes = inventoryDashes;
+            inv.DreamDash = inventoryDreamDash;
+            inv.NoRefills = inventoryNoRefills;
+            level.Session.Inventory = inv;
+
+            player.Dashes = inventoryDashes;
         }
 
         private static PlayerAction ParseAction(string action)

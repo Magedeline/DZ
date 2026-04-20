@@ -5,7 +5,7 @@
 // Assembly location: C:\Users\User\OneDrive\Desktop\Celeste!\Celeste\Celeste.exe
 
 #nullable disable
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
   [CustomEntity(ids: "MaggyHelper/TesseractMirror")]
   public class TesseractMirror : Entity

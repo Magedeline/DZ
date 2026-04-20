@@ -1,4 +1,4 @@
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
     [CustomEntity("DesoloZantas/OshiroHotelCutscene")]
     public class OshiroHotelCutscene : CutsceneEntity

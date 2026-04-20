@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using MaggyHelper.Entities;
+using Celeste.Entities;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// Dangerous tentacle from the void
@@ -93,7 +93,7 @@ namespace MaggyHelper.Entities
             Audio.Play("event:/game/general/fallblock_shake", Position);
         }
         
-        private void OnPlayer(Celeste.Player player)
+        private void OnPlayer(global::Celeste.Player player)
         {
             if (playerPhasing)
             {

@@ -1,4 +1,4 @@
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// A solid barrier that blocks BlackholeFlareSideway and BlackholeRiser entities from passing through.

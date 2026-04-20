@@ -1,6 +1,6 @@
 using Celeste.Mod;
 
-namespace MaggyHelper.Helpers
+namespace Celeste.Helpers
 {
     /// <summary>
     /// Centralized logging helper for the Ingeste/MaggyHelper mod.

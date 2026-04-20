@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace MaggyHelper.Entities;
+namespace Celeste.Entities;
 
 [CustomEntity(ids: "MaggyHelper/BeyondSummitGem")]
 [Tracked(true)]

@@ -508,10 +508,11 @@ Maggy_ASide_18_Heart_A=Core of Existence
 Maggy_ASide_19_Space=Farewell to Stars
 
 # Chapter 20 - The End
-Maggy_ASide_20_TheEnd=The Last Push
+Maggy_ASide_20_TheEnd=Light Through the Dark
 
-# Post-Epilogue (Chapter 21)
-Maggy_ASide_21_PostEpilogue=Post Respite
+# Final Chapter (Chapter 21)
+Maggy_ASide_21_PostEpilogue=Desolo Zantas True Finale
+Maggy_ASide_lastlevel=Desolo Zantas True Finale
 
 # ================================
 # Chapter Names - B-Side (Maps/Maggy/BSide/)
@@ -580,7 +581,6 @@ Maggy_DSide_18_Heart_D=Core of Existence
 # Chapter Names - DX-Side (Maps/Maggy/DXSide/)
 # ================================
 
-Maggy_DXSide=Desolo Zantas - DX-Sides
 Maggy_DXSide_01_City_DX=Forbidden Metropolis DX
 Maggy_DXSide_02_Nightmare_DX=Veil of Shadows DX
 Maggy_DXSide_03_Stars_DX=Arrival DX
@@ -962,16 +962,6 @@ soul_Maggy_CSide_07_Hell_C=Jazzy Move
 soul_Maggy_CSide_08_Truth_C=Megalovania
 soul_Maggy_CSide_09_Summit_C=Don't Kill and Don't Be Killed
 soul_Maggy_CSide_18_Heart_C=End of the World
-
-CHARA={# ff0000}Chara{#}
-
-KIRBY={# ffaeed}Kirby{#}
-
-MAGOLOR={# d678db}{~}Magolor{/~}{#}
-
-BADELINE={# 76428a}{~}BADELINE{/~}{#}
-
-MYSTERY_MAN={# 00ffff}{~}???{/~}{#}
 
 Tralier_intro=
 [Madeline left distracted]
@@ -4447,7 +4437,6 @@ CH8_MADELINE_ASK_VOICE=
 [KIRBY left normal]
 What was that voice that you heard of?
 
-CH8_MADELINE_ASK_VOICE=
 [MADELINE left distracted]
 Oh that?
 ...
@@ -5164,6 +5153,32 @@ CH9_HEIGHT_6={X} M
 
 CH9_HEIGHT_7={X} M
 
+CH20_HEIGHT_0=STAGE {X} / 12
+
+CH20_HEIGHT_1=STAGE {X} / 12
+
+CH20_HEIGHT_2=STAGE {X} / 12
+
+CH20_HEIGHT_3=STAGE {X} / 12
+
+CH20_HEIGHT_4=STAGE {X} / 12
+
+CH20_HEIGHT_5=STAGE {X} / 12
+
+CH20_HEIGHT_6=STAGE {X} / 12
+
+CH20_HEIGHT_7=STAGE {X} / 12
+
+CH20_HEIGHT_8=STAGE {X} / 12
+
+CH20_HEIGHT_9=STAGE {X} / 12
+
+CH20_HEIGHT_10=STAGE {X} / 12
+
+CH20_HEIGHT_11=STAGE {X} / 12
+
+CH20_HEIGHT_12=STAGE {X} / 12
+
 CH9_ASCEND_0=
 [THEO left normal]
 I think We're all getting the hang of this.
@@ -5482,172 +5497,86 @@ All right if you say so Madeline
 So lets do this for all of us.
 
 CH9_ARRIVIAL=
-[BADELINE right normal flip]
-This is it, the vortex is onto the another mountain.
-[MADELINE right determined flip]
-Yeah and I can feel it.
-so many of them were being torture.
-[RALSEI right determined flip]
-Yeah I can feel that is where came from.
-[RALSEI right distracted flip]
-But before we get into it.
-Do we have anything to say?
-[BADELINE left worriedalt]
-Oh right.
-anything you want to say {+KIRBY}?
-[KIRBY left normal]
-okay...
-When I first met you Badeline I thought you were gonna hurt me.
-but as soon I come to realized that you really want to leave this mountain and explore outside with {+MADELINE}
-[CHARA right concerned]
-Yeah.
-and I think it's at best to give you a freedom from out of this mountain.
-[CHARA right normal flip]
-for that {0.8}
-I'll give you the other half of my soul.
-[BADELINE left normal]
-Thanks {+CHARA}
-I can now freely be with {+MADELINE} and support her at all times.
-[MADELINE left normal]
-sweet and now I can have you {+PART_OF_ME} to show everyone.
-[THEO left yolo]
-YOLOOOOO Best time in my life.
-[RALSEI right normal flip]
-Yeah that would be amazing
-but I think that's pretty much it
-Shall we go onward?
-[KIRBY left normal]
-Yes lets do this.
-[BADELINE right normal flip]
-I'll see you at the top.
-
-CH9_ARRIVIAL_TO_MT_DESOLOZANTAS=
-[CHARA right sad]
-...
-
-[MADELINE left sad]
-Is there something wrong about it?
-
-[CHARA right sad]
-Uh... no.
-
-[CHARA right concerned]
-But there something that I must warn of you ya.
-
-[BADELINE left upset]
-If so then spit it out.
-
-[THEO right serious]
-Yeah I want to also know of whats going on
-
-[CHARA right concerned]
-...
-Here go nothing.
-
-[CHARA right sad]
-Remember {~}Gaster{/~} that he need you {+MADELINE}?
-
-[MADELINE left sad]
-Yeah {0.8} so?
-
-[CHARA right concerned]
-He doing something that no one notice.
-and I think he isn't okay, but...
-
-[CHARA right upset]
-I feel that he is somewhat possessed or being control by El's.
-That then, we will need to be ready of what come next if we like it or not.
-... {0.7} Even we get into a fight.
-
+[MADELINE left surprised]
+There the vortex We Finally made it in time
+{trigger 0 maddy turn left}
+[MADELINE right sad]
+alright everyone listen up
+I know this vortex is big but this is our only chances to get to desolo zantas
+[RALSEI left determined]
+I understood loud and clear
 [RALSEI left sad]
-To be honest were hoping that were not too late.
+but before we get into this vortex
+[RALSEI left distracted]
+do anyone have to say something about it?
+[BADELINE right concernedalt]
+oh... right
+kirby do you want to say something?
+[KIRBY left sadder]
+well then, when I first met you baddy
+[KIRBY left upset]
+I thought you were gonna touture me
+[KIRBY left distracted]
+but when I try to get to know you
+[KIRBY left upset]
+you have been overall irritated
+[KIRBY left sad]
+but I knew one thing for sure
+[KIRBY left sadder]
+you want to be outside mountian celeste... Right?
+[BADELINE right worriedalt]
+... I am so sorry for getting myself out of your way
+and yes I really want to be with her
+[CHARA left confess]
+well theres one thing that I can give you freedom
+my behalf determination soul that would give you some outside world to follow here freely
+[MADELINE right normal]
+awww... that so sweet of you
+[CHARA left bruh]
+I mean it
+[BADELINE right normal]
+well it doesn't matter until I can be with her as long she needs
+[THEO left thinking]
+hey do you hear something?
+[BADELINE right worried]
+what do you mean by that
+[THEO left wtf]
+I mean by something coming down... something like...?
+[MADELINE right distracted]
+...
+{trigger 1 gigasfx, and flash}
+[MADELINE right surprised]
+everyone Lookout!
+{trigger 2 black katana stab to the peak mountian, make dark fountian, and life everyone upwards}
+[ELS right normal]
+This force of nature has already begun...{n}In a Mean time.
+I'll toy you around later.
+{trigger 3 teleported to creditroom}
 
-[KIRBY right normal]
-To be clear, we can't push ourselves too much.
-We need to stay focus of what targeting at.
-
-[BADELINE left concerned]
-Your right {+KIRBY} I we need to.
-and we'll try our best as we can.
-
-# ============================================
-# Fake Save Point Cutscene Sequence (Chapter 9)
-# Stages A through E, leading to the trap
-# ============================================
-
-CH9_SPACE_SAVE_FILEA=
-	[MADELINE left distracted]
-	strange, {0.6}I never really been in this places before.
-
-	[MADELINE left sad]
-	and what is this?
-
-	[CHARA left sad]
-	Oh that? uh that a save file.
-	I wouldn't touch that if were you.
-	Either in way Let keep moving.
-
-CH9_SPACE_SAVE_FILEB=
-	[THEO left thinking]
-	Are you sure about this {+CHARA}
-	Because this place is fill of nothingness.
-
-	[CHARA left concerned]
-	well yes there nothing of this place like really
-	but alright.
-
-CH9_SPACE_SAVE_FILEC=
-	[BADELINE left upset]
-	What is really going on?
-
-	[CHARA left upset]
-	I do not know of what's happening.
-	But...
-	...
-
-	[CHARA left angry]
-	What is this feeling?
-	there something really going on here.
-
-	[CHARA left upset]
-	and it's not me.
-
-CH9_SPACE_SAVE_FILED=
-	[RALSEI left sad]
-	are you okay chara?
-
-	[CHARA left upset]
-	I am not okay!
-	I feel that there something close by.
-
-	[KIRBY left upset]
-	here {0.5} let me do this.
-
-	[KIRBY left normal]
-	and beside {0.4} what else it could possibly go wrong
-
-CH9_SPACE_SAVE_FILEPRETRAP=
-	[KIRBY left determined]
-	Okay...
-	...
-	Heres go nothing.
-
-CH9_SPACE_TRAP_SAVE_FILE=
-	[ELS left normal]
-	{# 560000}You finally reach to the mountain and your world will come to it end.{#}
-	{# 560000}Your true darkness nightmare has already begun.{#}
-	{# 560000}YOUR REALLY ALL ARE AN IDIOT{#}
-
-	[CHARA right panic]
-	OH NO! GET OUT OF THE WA-
-
-CH9_MADELINE_FREAKOUT=
-	[MADELINE left panic]
-	Where did all of you go and what is happening!?
-
-# ============================================
-# End of Fake Save Point Cutscene
-# ============================================
+CH9_GOLDENFLOWER=
+[FLOWEY left none]
+howdy... long time no see {Name#/}""{/}
+It's been awhile since we have last spoken hadn't it
+well then with this game is complete you can now go down the hill
+and relax for now.
+... actually
+you have been wondering where they are now?
+let me tell you a truth.
+you see when this black katana hit to the peak something has cause this mountian
+thats right this black sword just struck to the heart of the mountian
+and not only theyre being pull upward
+but to everyone who is near to it being pull up as well
+... ultimately the force of nature which everyone has fear
+has already begun
+but it's not that big of the deal with it right?
+well wrong infact the main reason madeline is climbing that peak after 10 years again
+it's because els has planned that for lowering them in
+he won't stop until he reach to his some stupid infinite properparisty goal
+as it for now with you your game of this world continues
+but there journey must climb to another mountian... again
+well thats all
+see you later
+{Name#/}""{/}
 
 # ============================================
 # Chapter 9 Credits Intro Dialog
@@ -9874,10 +9803,6 @@ Yeah I Guess so
 
 [MADELINE left normal]
 But anyways lets get into it
-
-CH12_COLLECTING_MINIHEART_NOT_ENOUGH=
-[none left]
-you need to collect more mini hearts to open the door
 
 CH12_COLLECTING_MINIHEART_ENOUGH=
 [none left]
@@ -15507,270 +15432,14 @@ They didn't deserve this! NOBODY deserves this!
 [BERDLY left sad]
 For once in my life... I have nothing intelligent to say...
 My heart feels like it's been ripped from my chest.
-{trigger seven bird fly down and lands on madeline and badeline's grave}
-
-# ================================
-# CH19 SEVEN BIRDS GRAVESTONE EXTENDED
-# ================================
-
-CH19_GRAVESTONE_SEVEN_BIRDS=
-{trigger 0 Step Forward to gravestone}
-
-[KIRBY left surprised]
-No... NO! This is a nightmare... WAKE UP!
-I SWORE to protect them with my LIFE!
-We promised... we PROMISED to face everything together!
-
-[KIRBY left panic]
-WHY?! Why wasn't I there?!
-They needed me and I... I FAILED THEM!
-{trigger 1 Kirby collapses to knees}
-
-[KIRBY left sadder]
-Every laugh... every smile... every moment we shared...
-It all flashes before my eyes like torture!
-They were my EVERYTHING... my reason to keep fighting!
-
-[CHARA left disgust]
-THIS IS WRONG! THE UNIVERSE IS WRONG!
-I should be the one in that cold ground, NOT THEM!
-They had DREAMS! They had a FUTURE! They had ME!
-{trigger 2 Dark energy begins swirling}
-
-[KIRBY left angry]
-I don't care if it takes an ETERNITY!
-I don't care if I have to TEAR APART REALITY ITSELF!
-WHOEVER DID THIS WILL {*}SUFFER{/*}!
-{trigger 3 Chara appears through the darkness}
-
-[CHARA left concerned]
-{+KIRBY}... I felt your heartbreak across infinite dimensions.
-Your grief is so {*}devastating{/*} that reality itself is {~}weeping{/~}.
-
-[KIRBY left broken]
-They're GONE, {+CHARA}... truly, completely GONE...
-The two souls who taught me what love means...
-And I... I let them DIE while I stood helpless!
-
-[CHARA left upset]
-I've walked through this same darkness, {+KIRBY}... I've lost everyone I loved.
-But your despair has become something {*}dangerous{/*}...
-You're literally {~}breaking the world apart{/~} with your tears.
-
-[KIRBY left sadder]
-Then let it {*}SHATTER{/*}.
-If this cruel universe could let them die...
-Then maybe it DESERVES to burn with my grief!
-{trigger 4 Everyone arrives}
-
-[UNDYNE left sad]
-Kid... when I heard about {+MADELINE} and {+BADELINE}...
-I ran so fast my legs nearly gave out. This CAN'T be real!
-
-[TORIEL right tears]
-My beautiful children... my heart is {~}shattering{/~}...
-We watched them TRIUMPH over impossible odds... how could fate be so CRUEL?!
-
-[THEO left wtf]
-No... no no no NO! This is INSANE!
-Three months ago we were laughing together... THIS ISN'T HAPPENING!
-
-[ASGORE left mourning]
-Two brilliant stars... extinguished forever...
-Even the ancient mountain itself seems to {~}weep{/~} alongside us.
-
-[STARSI left sadder]
-Their light touched realms beyond our understanding...
-Now the very STARS feel dimmer... as if mourning their loss.
-
-[RALSEI left sadder]
-We made so many promises under starlit skies...
-Adventures we'd share... memories we'd create... ALL GONE!
-
-[SANS left noeyes]
-kid... i've seen timelines reset. i've watched everything end.
-but this... this feels like something that can never be undone...
-
-[PAPYRUS left crying]
-THEY WERE THE KINDEST, BRAVEST, MOST WONDERFUL FRIENDS!
-WHY DOES THE UNIVERSE PUNISH THOSE WHO DESERVE IT LEAST?!
-
-[MAGOLOR left downcast]
-Their determination could move mountains... literally...
-Seeing them here... motionless... it breaks something inside me.
-
-[ALPHY left nervous]
-I-I should have SEEN this coming! I should have DONE SOMETHING!
-If my research had been better... m-maybe they'd still be...
-
-[NOELLE left upset]
-They made everyone around them believe in miracles...
-But now... now I don't know if I can believe in anything anymore...
-
-[SUZY left frustrated]
-This is BULLSHIT! COMPLETE AND UTTER BULLSHIT!
-They didn't deserve this! NOBODY deserves this!
-
-[BERDLY left sad]
-For once in my life... I have nothing intelligent to say...
-My heart feels like it's been ripped from my chest.
-{trigger 5 Seven birds fly down and land on gravestone}
-
-[KIRBY left surprised]
-Wait... do you all see that?!
-{trigger 6 Characters react to birds}
-
-[THEO left wtf]
-What the... SEVEN of them?!
-Why are there seven birds on their grave?!
-
-[TORIEL right worried]
-This is no coincidence... seven souls...
-Could this be a sign from the heavens above?
-
-[SANS left noeyes]
-heh... seven birds for seven souls.
-if I didn't know better, I'd say the universe is trying to tell us something.
-
-[PAPYRUS left confused]
-MAYBE THEY'RE HERE TO GUIDE THEM TO THE AFTERLIFE?
-OR... MAYBE THEY CAME TO COMFORT US?
-
-[RALSEI left thinking]
-In the old legends... seven pure souls gathered together...
-Could create a miracle powerful enough to shatter any barrier!
-
-[STARSI left hopeful]
-I sense something... a faint glimmer of {~}hope{/~}...
-These aren't ordinary birds... they carry a {*}divine essence{/*}!
-
-[UNDYNE left shocked]
-Are you saying... there's still a CHANCE?!
-A chance to bring them BACK?!
-
-[ASGORE left thoughtful]
-The prophecy spoke of seven souls reuniting...
-Perhaps this is the sign we've been waiting for.
-
-[NOELLE left hopeful]
-I want to believe... I NEED to believe!
-Please... let this mean something!
-
-[MAGOLOR left determined]
-If there's even the slightest possibility...
-We have to pursue it! For them!
-
-[CHARA left surprised]
-{+KIRBY}... look at the birds! They're {~}glowing{/~}!
-
-[KIRBY left shocked]
-They're... they're starting to FLY UP!
 {trigger 7 Birds fly up and Chara boost appears}
-
-CH19_SEVEN_BIRDS_REACTION=
-[KIRBY left amazed]
-The birds... they left behind a trail of {~}light{/~}!
-
-[CHARA right surprised]
-That light... it's forming into something!
-
-[THEO left shocked]
-Holy crap! Is that... a portal?!
-
-[SANS left wink]
-looks like someone up there is giving you a lift, kid.
-
-[TORIEL right tearful]
-Go, {+KIRBY}! Follow those birds!
-They're showing you the path to save our children!
-
-[UNDYNE left determined]
-DON'T WASTE THIS CHANCE!
-BRING THEM BACK, NO MATTER WHAT IT TAKES!
-
-[PAPYRUS left encouraging]
-WE BELIEVE IN YOU, KIRBY!
-YOU CAN DO THIS!
-
-[RALSEI left hopeful]
-The seven souls have granted you a {*}blessing{/*}!
-May it guide you to where {+MADELINE} and {+BADELINE} await!
-
-[ASGORE left solemn]
-The fate of those we love rests in your hands now.
-Go forth with the strength of all our hearts behind you.
-
-[CHARA left determined]
-I'm coming with you, {+KIRBY}.
-You won't face this alone... not this time.
-
-[KIRBY left togetherzoom]
-I understand now... the seven souls are giving us a second chance!
-{+MADELINE}! {+BADELINE}! HOLD ON!
-WE'RE COMING TO SAVE YOU!
-
-# ================================
-# CH19 SOULS DISCARDED
-# Kirby realizes the gravestones hold only shells -
-# their consciousness persists but is being cast aside
-# ================================
-
-CH19_SOULS_DISCARDED=
-{trigger 0 Kirby kneels at gravestone}
-
-[KIRBY left distracted]
-Wait... something doesn't add up.
-Their bodies are here... the gravestones say it plain...
-But I can still {~}feel{/~} them.
-
-[KIRBY left surprised]
-It's faint... like a whisper behind static.
-Their souls... their consciousness...
-They're not {*}gone{/*}. They're being {*}discarded{/*}.
-
-[CHARA right concerned]
-Discarded? What do you mean?
-
-[KIRBY left angry]
-Someone... or some{~}thing{/~}... is stripping them away.
-Their spirits are still anchored inside...
-But they're being peeled off and thrown into the void!
-
-[SANS left noeyes]
-so those girls aren't dead... they're being {~}erased{/~}.
-that's ten times worse, kid.
-
-[TORIEL right worried]
-We must act quickly...
-If their consciousness is being severed...
-There may be precious little time before they vanish entirely!
-
-[KIRBY left determined]
-Then I won't waste another second.
-{+MADELINE}, {+BADELINE}... your souls are still fighting.
-And so am I.
-{trigger 1 Kirby stands, faces the void}
-
-[KIRBY left togetherzoom]
-I'm going beyond {*}Desolo Zantas{/*}...
-Beyond the {*}Another Dimension{/*}...
-Into whatever lies past the edge of everything.
-
-[CHARA right upset]
-Kirby... you can't be serious.
-That's uncharted territory... even for us.
-
-[KIRBY left determined]
-I {*}am{/*} serious.
-Those girls are trapped somewhere in the unknown.
-And I will drag them back from oblivion itself.
 
 CH19_BEYOND_THE_VOID=
 [CHARA left concern]
 Kirby, where exactly are you leading us?
 
 [KIRBY left sad]
-That bird... we need to track it.
+That Swven bird... we need to track it.
 
 [CHARA left upset]
 Something tells me this path leads nowhere good.
@@ -15862,140 +15531,29 @@ I'll search every corner of this place!
 No door will remain closed to me!
 
 CH19_WRONG_HEART=
-[KIRBY left surprised]
-A heart gem! Could this be...?!
-{trigger 0 Kirby picks up heart gem}
-
 [KIRBY left distracted]
-Hold on... something's off...
-The weight is wrong. The glow is {~}hollow{/~}.
-
-[KIRBY left angry]
-This is a {*}FAKE{/*}!
-Someone planted this here to mislead me!
-
-[KIRBY left sad]
-Another dead end... another lie...
-This isn't where it ends.
-{trigger 1 Seven goner souls fly past Kirby}
+Wait... No... this heart is wrong...
+This isn't the answer. It was never the answer.
 
 [KIRBY left surprised]
-What the...?!
-Seven... spirits just flew right past me!
-
-[KIRBY left distracted]
-They looked like... bird goners?
-No... human souls. Translucent. {~}Grieving{/~}.
-Moving deeper into the void as if pulled by something.
-
-[KIRBY left determined]
-Whatever drew those souls forward...
-That's the direction I need to go.
-This is {*}not{/*} where it ends.
+Those seven birds... they weren't mourning.
+They were pointing me somewhere.
 
 CH19_KEEP_GOING_KIRBY=
 [KIRBY left sad]
-They're waiting for me {2.0}out there.
+They're still reaching out to me... I can feel it.
+Not ahead of me. Not behind me.
+Somewhere inside their past.
 {trigger 0 Step Forward}
 
 [KIRBY left determined]
-And that's all the reason I need to continue.
-
-# ================================
-# CH19 MEMORIES OF THE PAST
-# Kirby encounters echoes of Madeline and Badeline
-# from 10 years ago, after Granny died, after Farewell
-# ================================
-
-CH19_MEMORIES_OF_THE_PAST=
-{trigger 0 Two silhouettes appear ahead}
-
-[KIRBY left surprised]
-Is that... no... it CAN'T be!
-{trigger 1 Kirby rushes forward}
-
-[KIRBY left happy]
-{+MADELINE}! {+BADELINE}!
-You're HERE! You're really—
-{trigger 2 Kirby stops, something is wrong}
-
-[KIRBY left distracted]
-Wait...
-Why do they look... {~}younger{/~}?
-
-[KIRBY left sad]
-That hair... those clothes... that expression...
-This is {+MADELINE} from {*}ten years ago{/*}.
-Right after Granny passed away... right after Farewell.
-
-[KIRBY left sadder]
-And {+BADELINE}... still full of anger and doubt...
-The way she was before they truly became one.
-
-[KIRBY left distracted]
-These aren't the girls I know.
-They're {~}memories{/~}. Echoes of who they were.
-Frozen in the worst moment of their lives.
-{trigger 3 Memory-Madeline and Memory-Badeline flicker}
-
-[KIRBY left sad]
-Someone is using their past against me...
-Projecting their pain to break my spirit.
-
-[KIRBY left surprised]
-Which means whoever did this {*}KNOWS{/*} them intimately.
-Knows their grief. Knows Granny. Knows everything.
-{trigger 4 Realization hits}
-
-[KIRBY left shocked]
-No... {*}ELS{/*}.
-{+ELSERMMIS} has {*}broken free{/*}!
-
-CH19_ELS_BREAKS_FREE=
-{trigger 0 Grand Sunset Blackhole Zero 3 flickers in the sky}
-
-[KIRBY left panic]
-The sky... the {*}Grand Sunset Blackhole{/*}... it's {~}flickering{/~}!
-{trigger 1 Zero 3 energy pulses}
-
-[ELS left normal]
-{# 560000}Did you enjoy my little memorial, star warrior?{#}
-{# 560000}Those memories were delicious.{#}
-{# 560000}Ten years of grief, guilt, and determination...{#}
-{# 560000}Exquisite seasoning for my rebirth.{#}
-
-[KIRBY left angry]
-You MONSTER! You fed on their PAIN!
-
-[ELS left normal]
-{# 560000}And now I am whole again.{#}
-{# 560000}The chains are shattered. The seals are dust.{#}
-{# 560000}Every star, every world, every living soul...{#}
-{# 560000}Will bow before {*}Elsermmis{/*}.{#}
-{# 560000}The entire universe kneels to ME.{#}
-{trigger 2 Blackhole intensifies}
-
-[KIRBY left angry]
-I will NEVER let that happen!
-
-[ELS left normal]
-{# 560000}You're welcome to try.{#}
-{# 560000}But time is not on your side.{#}
-{# 560000}Every second you waste, another star goes dark.{#}
-{# 560000}Tick... tock... star warrior.{#}
-{trigger 3 Els vanishes, blackhole stabilizes ominously}
-
-[KIRBY left determined]
-He's right about one thing... I'm running out of time.
-Every moment I hesitate, Els tightens his grip.
-
-[KIRBY left togetherzoom]
-Then I won't hesitate. Not for a single breath.
+Then that's where I'll go next.
+If their memories are the path forward, I'll walk every step of it.
 
 CH19_MISS_THE_BIRD=
 [KIRBY left angry]
 {~}Wait!{/~}
-Why won't you let me assist you?
+Why won't you let me help you?
 
 [KIRBY left sad]
 ...don't you remember me, {+MADELINE} and {+BADELINE}?
@@ -16007,25 +15565,26 @@ What's the truth here?
 Could it be... {+MADELINE} and {+BADELINE} survived somehow?
 
 [KIRBY left sad]
-RALSEI might have been onto something.{n}What if they're still alive?
-But then who...
+Ralsei might have been onto something.
+What if they're still alive?
+But then who took them...
 {trigger 1 take a step left}
 
-[KIRBY left determined]
+[KIRBY left surprised]
 Wait a moment...
 {trigger 2 take a step right}
 
-[KIRBY left surprised]
-THAT BIRD IS WORKING WITH ELS! IT FREED HIM!
-{trigger 3 creepy laugh, and black hole flickers}
+[KIRBY left angry]
+Did Els has broken free!!!
+{trigger 3 black hole flickers}
 
 [ELS left normal]
 {# 560000}Precisely. Liberation at last.{#}
 {# 560000}Your interference granted me corporeal form once more.{#}
 {# 560000}Now then.{#}
-{# 560000}Make yourself comfortable.{#}
-{# 560000}Perhaps grab some refreshments.{#}
-{# 560000}And witness existence crumble to nothing.{#}
+{# 560000}Follow the bird if you wish.{#}
+{# 560000}It will take you somewhere far more painful than truth.{#}
+{# 560000}Straight into their memories.{#}
 
 [KIRBY left angry]
 YOU MONSTER!!!
@@ -16034,19 +15593,17 @@ WHAT HAVE YOU DONE WITH THEM!?
 [ELS left normal]
 {# 560000}...{#}
 {# 560000}Perhaps something... perhaps nothing.{#}
-{# 560000}Still, you've ventured remarkably far.{#}
-{# 560000}In this age of Hopes and Dreams.{#}
-{# 560000}And the resurgence of the Ultimate Nightmare.{#}
-{# 560000}One final detail - universal reset is imminent.{#}
-{# 560000}Savor the spectacle of annihilation.{#}
-{trigger 4 creepy scream, black hole flickers more, and tiles to crack into the sci-fi one}
+{# 560000}Their past belongs to me now.{#}
+{# 560000}Their grief, their doubt, their worst day...{#}
+{# 560000}All of it makes such useful bait.{#}
+{trigger 4 black hole flickers more, and tiles to crack into the sci-fi one}
 
-[KIRBY left surprised]
-IMPOSSIBLE! HE'S PLANNING TO RESET EVERYTHING?!
-Time is running out - failure means total extinction.
+[KIRBY left angry]
+Shit... is he reseting the universe?!
+I got to hurry before it's too late!
 
 [KIRBY left togetherzoom]
-Stay strong, girls! I'm on my way to save you both.
+Hang on Girls! I'm coming for ya!
 
 CH19_HELPING_HAND=
 [KIRBY left upset]
@@ -16068,21 +15625,22 @@ But should Els capture them...
 ...
 Absolutely {1.0} {~}everything ends{/~}.
 Understand this clearly,
-every living thing will {1.0} {*}CEASE TO EXIST{/*}
+every living thing will {2.0} {*}Perished{/*}
 
-[CHARA right disgust]
+[CHARA right sad]
 ...
 
-[CHARA right bruh]
+[CHARA right worried]
 Here's something I need to confess.
-Looking at the full scope - the abilities, the adversaries, this realm, all of us -
-we're nothing more than fictional constructs.
+Looking at the full scope kirby there something that you need to understand
+the abilities, the adversaries, this realm, all of us
+we're nothing more than madeup stuff.
 
 [KIRBY left sadder flip]
 ...
 
-[CHARA right concerned]
-This is a modified game, Kirby.
+[CHARA right worried]
+Were in a modified game, Kirby.
 
 [KIRBY left sadder flip]
 ...
@@ -16090,23 +15648,24 @@ This is a modified game, Kirby.
 [KIRBY left angry flip]
 That's...
 {*}incredibly...{/*}
-{trigger 1 Kirby faces towards Chara}
+{trigger 1 Kirby faces chara}
 
 [KIRBY left angry]
 {*}Cold-hearted!{/*}
-You're willing to let darkness prevail!
-You dismiss our entire existence as fiction!
+Your telling me to let him win?!
+and Now your saying that this world is a modded game?!!!
 {*}Why keep this secret until now?!{/*}
 
 [CHARA right angry]
-Listen... First point,
-it's literally just a bird.
+Becuase we were being ripped off from another title that someone does not own
+Listen... at this First point,
+it's literally just a fucking bird.
 Second point!
 
 [CHARA right upset]
 ...
 ...
-Maybe some perspective would help you.
+Maybe you should take a step back alittle bit.
 
 [KIRBY left angry]
 Unbelievable!
@@ -16123,16 +15682,16 @@ You're completely {*}useless!{/*}
 Want to abandon us? {*}Then go!{/*}
 {~}Those two{/~} are depending on me.
 
-[CHARA right upset]
+[CHARA right angry]
 Fine.
 Best of luck.
 
-CH19_KILL_THE_BIRD=
+CH19_BROKEN_STAR_WARRIOR=
 [KIRBY left surprised]
 Caught you at last!
 
 [KIRBY left angry]
-Now reveal where they are!
+Now tell me where they are!
 {trigger 0 bird looks hurt}
 
 [KIRBY left angry]
@@ -16140,15 +15699,14 @@ Now reveal where they are!
 
 [KIRBY left surprised]
 Wait... no!
-What did I just do!
+What did I just do?!
 
 [ELS left normal]
-{# 560000}Remarkable yet meaningless.{#}
+{# 560000}Remarkable, yet meaningless.{#}
 {# 560000}You succeeded, but was this truly your desire?{#}
-{# 560000}Consider this {0.5}you didn't merely harm the bird.{#}
-{# 560000}You're evolving into something resembling {+CHARA}{#}
-{# 560000}You're transforming into {2.0}one of us.{#}
-{# 560000}Like Zero himself.{#}
+{# 560000}Consider this: {0.5}you did not merely harm the bird.{#}
+{# 560000}You proved how desperate grief can make you.{#}
+{# 560000}And how easy that grief is to corrupt.{#}
 
 [KIRBY left angry]
 Impossible!
@@ -16158,44 +15716,57 @@ This can't be real.
 This is your doing!!!
 {*}You orchestrated everything!{/*}
 
+[ELS left normal]
+{# 560000}Of course I did.{#}
+{# 560000}I merely gave your grief a direction.{#}
+{# 560000}You were the one who chose to follow it.{#}
+
 [ELS left ]
 {# 560000}...{#}
 {# 560000}Observing you has been entertaining enough.{#}
 {# 560000}Your turn has concluded.{#}
 {# 560000}Mine begins now.{#}
-{# 560000}and dismiss any thoughts of Madeline and Badeline.{#}
-{# 560000}Victory has eluded you.{#}
-{# 560000}Perhaps worlds will fall two or more times.{#}
-{# 560000}Such is existence.{#}
-{# 560000}Regardless, enjoy the catastrophe{#}
+{# 560000}And the truth you refuse to face remains unchanged.{#}
+{# 560000}Madeline and Badeline are gone.{#}
+{# 560000}Regardless, enjoy the catastrophe.{#}
 {trigger 1 bird squaks}
 
 [KIRBY left shocked]
 Thank heavens {0.4} you're still breathing.
+
+[KIRBY left sad]
+I didn't mean to hurt you...
+I thought you were leading me to them.
 {trigger 2 approach bird, it moves away}
 
 [KIRBY left sad]
 No! Don't fly away.
+
+[KIRBY left confess]
+Please... wait.
+I still need you.
 {trigger 3 bird flys out of the camera}
 
 [KIRBY left confess]
 Please just answer...
-Are you {+MADELINE} and {+BADELINE}?
-If departure is necessary, then...
+Are you all I have left of them?
+If you're leaving too, then...
 ...
 
 [KIRBY left struggle]
-The blame rests entirely on me.
+They're really gone, aren't they?
+And I still couldn't let them go...
+I still reached out anyway.
 {trigger 4 chara appears}
 
 [CHARA right yell]
 {+KIRBY}, enough!
 
 [KIRBY left angry]
-Be silent!
-You had no power to make me rescue {+MADELINE} and {+BADELINE}.
-And you can't compel me to preserve all of reality.
-So please {*}leave me alone{/*}
+Don't!
+Don't tell me to stop grieving!
+I failed them once, and then I made it worse.
+So please... just leave me alone.
 
 [CHARA left upset]
 ...
@@ -16208,83 +15779,125 @@ Worried about what?
 
 [CHARA right upset]
 ...
-Your need for them... I understand.
+Because I know what this kind of pain does to someone.
+And because I understand that need more than you think.
 
 [CHARA right sad]
 I once had a sibling, as you're aware.
 Asriel was the sole companion I ever truly had.
 Then came that fateful day.
 Asriel transferred his essence to my soul.
-and then... he faded away.
+And then... he faded away.
 
 [CHARA right upset]
-After our souls merged.
-Emotions I never knew existed awakened.
+After our souls merged,
+emotions I had never known awakened inside me.
 Losing someone creates a void.
-yet simultaneously.
-New capabilities emerged.
+Yet at the same time,
+it can awaken something else.
 
 [CHARA right sad]
 However...
 Not long after.
 Death claimed me too.
-Once determination became unstable.
-Since then, victory has been impossible.
+Once determination became unstable,
+everything fell apart.
+Since then, victory has never come easily.
 
-[CHARA right concerned]
-There's something else you should know about our true nature...
-Certain actions are within our reach, others forever beyond it.
-Our efforts may cause more devastation than salvation.
+[CHARA right sad]
+So when I look at you now...
+I do not see weakness.
+I see someone standing on the same edge I once stood on.
 
 [KIRBY left sadder flip]
-...
+...then that's it.
+They're gone forever.
+Madeline... Badeline... both of them.
 
-[CHARA right concerned]
-They're gone forever...
-Resurrection is beyond our power.
-
-[KIRBY right sadder]
-The player controlled our fates, making us complicit...
-Els has already claimed victory and will erase existence..., corrupting even the real player...
-We've lost everything...
-
-[CHARA right concerned]
-My deepest condolences for this tragedy...
 {trigger 6 Kirby sits}
 
 [KIRBY left confess flip]
-...
-Acceptance is difficult but necessary.
-Total annihilation approaches.
-El's corruption will soon reach the real player...
-Pursuing this bird won't resurrect them.
-His manipulation consumed me completely.
+I wanted one impossible miracle.
+Just one.
+And instead, I hurt the last thing that might have led me to them.
+I couldn't protect them.
+I couldn't even protect a bird.
 {trigger 7 Chara hugs Kirby}
 
 [CHARA left sad]
-Again... I'm deeply sorry, {+KIRBY}.
-Perhaps we should cherish our final moments with loved ones before deletion.
+Then let us help carry that pain.
+Because you should not have to bear it alone.
+
+[UNDYNE left sad]
+Kid... come on.
+You don't have to keep pretending you're okay.
+
+[UNDYNE left concerned]
+If you need to scream, then scream.
+If you need to cry, then cry.
+Just don't shut us out.
+
+[TORIEL right tears]
+Come here, my child.
+No one should have to mourn alone.
+
+[TORIEL right gentle]
+Even if we cannot undo this moment,
+we can still stay beside you through it.
+
+[THEO left sad]
+We're here, Kirby.
+Even if we can't fix this, we're still here.
+
+[THEO left normal]
+And if you fall apart for a while...
+that's okay.
+We'll help you back up.
+
+[RALSEI left sadder]
+Let us stay with you for this moment.
+That matters too.
+
+[RALSEI left sad]
+Hope does not always look like victory.
+Sometimes it simply means refusing to leave someone behind.
 
 [KIRBY right sad]
 ...
-No.
-There's still time.
+Thank you...
+I just... I need a moment.
 {trigger 8 stand up}
-[KIRBY right sad]
-Meta Knight's teachings echo in my mind.
-Correcting this catastrophe falls to me.
 
-[CHARA left sad]
-Elaborate for me?
+[KIRBY right determined]
+But if they're truly gone...
+Then I don't want my last thought of them to be this mistake.
+
+[KIRBY right determined]
+I don't want their memory to end with me giving in.
+
+[Papyrus left Huh]
+What do you mean by that?
+
+[SANS right normal]
+he's got an idea.
+let him talk.
 
 [KIRBY right sad]
-That bird yearns to reach those girls as desperately as I do.
+That seven bird yearns to reach those girls just as desperately as I do.
 The connection between them matters.
 {trigger 9 shift camera over to the bird}
+
+[KIRBY right distracted]
+It kept coming back.
+Even after everything.
+That means there is still something tying them together.
+
 [KIRBY right sad]
-Assisting this creature.
-and eliminating El's permanently this time
-Could potentially restore reality itself.
+If I help these creatures...
+and if I eliminate El's permanently this time...
+then maybe...
+just maybe...
+reality itself can still be restored.
 
 [CHARA left normal]
 That logic holds up.
@@ -16294,85 +15907,23 @@ I'm with you.
 Though once we arrive, the rest is between you two.
 
 [CHARA left sad]
-This dimension is {*}Disturbing{/*}.{n}My parents warned me of its nightmarish nature
-
-# ================================
-# CH19 BROKEN STAR WARRIOR
-# Kirby accepts the truth and shatters inside
-# ================================
-
-CH19_BROKEN_STAR_WARRIOR=
-{trigger 0 Kirby alone in the dark}
-
-[KIRBY left confess]
-...
-I chased shadows across dimensions.
-I nearly killed an innocent bird.
-And for what?
-
-[KIRBY left sadder]
-{+MADELINE} and {+BADELINE}...
-They're not coming back.
-They were never waiting for me at the end of this road.
-{trigger 1 Kirby drops to his knees}
-
-[KIRBY left struggle]
-I am... a {*}broken star warrior{/*}.
-No amount of determination can change what's already been lost.
-Meta Knight... Dream Land... Popstar...
-None of it prepared me for {~}this{/~}.
-
-[KIRBY left sadder]
-Every battle I've won... every world I've saved...
-Means nothing if I couldn't save the two people
-who taught me what it truly means to be {~}alive{/~}.
-{trigger 2 Chara and others appear}
-
-[CHARA right sad]
-{+KIRBY}...
-
-[SANS left noeyes]
-hey kid. we're here.
-
-[PAPYRUS left crying]
-WE REFUSE TO LET YOU FACE THIS DARKNESS ALONE!
-
-[CHARA right concerned]
-We know how much this hurts.
-Maybe... we should spend what time we have left together.
-Before all of us get discarded along with this reality.
-
-[KIRBY left sadder]
-...
-
-[KIRBY left sad]
-No.
-There's still one thing I can do.
-{trigger 3 Kirby looks toward the bird}
+This dimension is {*}disturbing{/*}.{n}My parents warned me about its nightmarish nature.
 
 [KIRBY left determined]
-That bird helped {+MADELINE} through her darkest moments.
-It guided her up the mountain. It waited for her in Farewell.
-If I can't save the girls...
-Then I'll honor their memory by saving what {~}they{/~} loved.
-
-[CHARA right surprised]
-You want to... help the bird?
-
-[KIRBY left determined]
-It's what {+MADELINE} would have wanted.
-So yes. That's exactly what I'm going to do.
-Broken or not... a star warrior doesn't quit.
+Then let's finish this.
+Not for revenge.
+Not for despair.
+For them.
 
 CH19_TRAP_IN_LOOP=
 {trigger 0 CameraZoomin}
-[CHARA left thehell]
+[CHARA left panic]
 WHAT! {0.3} What just occurred?
 {trigger 1 CharaAppear}
 [KIRBY left distracted]
 That wasn't my doing either.
 {trigger 2 CharaTurnLeft}
-[CHARA right thehell]
+[CHARA right panic]
 This is absurd!
 His power can't extend to destruction on this scale.
 
@@ -16458,17 +16009,10 @@ I'll give {*}everything{/*} I have.
 Every last ounce of strength.
 For {+MADELINE}. For {+BADELINE}. For everyone.
 
-# ================================
-# CH19 EDGE OF THE UNIVERSE
-# After breaking the generators, they glimpse
-# what lies beyond the boundary of existence
-# ================================
-
-CH19_EDGE_OF_UNIVERSE=
-{trigger 0 Final generator shatters, reality cracks open}
-
+CH19_LAST_ROOM=
 [KIRBY left surprised]
-The last generator... it's down!
+That generator... it's down!
+onto the last generator!
 {trigger 1 Blinding light pours through the cracks}
 
 [CHARA right shocked]
@@ -16502,14 +16046,6 @@ I understand.
 Whatever waits at the edge of everything...
 I'll face it head on.
 
-CH19_LAST_ROOM=
-[CHARA right normal]
-We've reached the threshold! Almost there.
-Just these chambers stand between us and our goal.
-
-[KIRBY left determined]
-For {+MADELINE} and BADELINE, let's finish this.
-
 CH19_LAST_ROOM_ALT=
 [CHARA right concerned]
 How are you holding up, {+KIRBY}?
@@ -16538,26 +16074,11 @@ Trust me, things will work out
 Very well.
 
 [KIRBY left determined]
-Together, we will succeed.
+Our Choice Matters.
 
 CH19_CHARA_LAST_BOOST=
-[CHARA right happy]
+[CHARA right thankful]
 Bring them home Kirby!!!
-
-# ================================
-# CH19 FREE BIRD
-# The bird is released — area completion follows
-# ================================
-
-CH19_FREE_BIRD=
-[KIRBY left sad]
-You're free now, little one.
-Fly... wherever you need to go.
-
-[KIRBY left determined]
-And I'll keep going too.
-For {+MADELINE}. For {+BADELINE}.
-For everyone who believed in me.
 
 CH20_INTRO=
 [KIRBY left sad]
@@ -16565,6 +16086,121 @@ Alright little one
 {trigger 0 bird flies offscreen}
 [KIRBY left determined]
 Lead me to them....
+
+azzyboss-02=
+[ASRIEL right normal]
+So you really made it this far.
+
+[KIRBY left determined]
+I did not come all this way just to turn back now.
+
+azzyboss-04=
+[ASRIEL right concerned]
+The stars around us are fading.
+Can you still carry hope in a place like this?
+
+[KIRBY left normal]
+Hope is exactly why I am still here.
+
+azzyboss-06=
+[ASRIEL right normal]
+Every step forward brings you closer to the truth.
+You may not like what waits for you.
+
+[KIRBY left sad]
+I don't need to like it.
+I just need to face it.
+
+azzyboss-08=
+[ASRIEL right worried]
+You keep fighting like loss means nothing to you.
+
+[KIRBY left sadder]
+It means everything to me.
+That is why I can't stop.
+
+azzyboss-10=
+[ASRIEL right normal]
+Tell me, Kirby...
+what are you really trying to save?
+
+[KIRBY left determined]
+Madeline. Badeline.
+Everyone Els tries to erase.
+
+azzyboss-12=
+[ASRIEL right sad]
+Sometimes the end comes quietly.
+Not with a scream, but with surrender.
+
+[KIRBY left angry]
+Then I won't surrender.
+Not to him. Not to despair.
+
+azzyboss-14=
+[ASRIEL right concerned]
+You are exhausted.
+I can hear it in the way your heart shakes.
+
+[KIRBY left determinedclosed]
+Maybe.
+But I am not done yet.
+
+azzyboss-16=
+[ASRIEL right sad]
+There was a time when I thought power alone could protect what I loved.
+
+[KIRBY left distracted]
+And now?
+
+[ASRIEL right normal]
+Now I know power without love only makes the fall worse.
+
+azzyboss-18=
+[ASRIEL right concerned]
+If Els offered you one perfect lie,
+would you take it just to see them again?
+
+[KIRBY left sad]
+No.
+I want the truth, even if it hurts.
+
+azzyboss-20=
+[ASRIEL right normal]
+Good.
+Then keep climbing.
+The truth is ugly, but it is still better than chains.
+
+[KIRBY left determined]
+Then I'll break those chains.
+
+azzyboss-22=
+[ASRIEL right worried]
+I can feel Els pressing closer.
+He knows you are almost here.
+
+[KIRBY left angry]
+Then he can wait.
+I'm coming for him.
+
+azzyboss-24=
+[ASRIEL right sad]
+If I falter...
+if I become part of his voice again...
+
+[KIRBY left normal]
+Then I'll remind you who you are.
+Just like my friends did for me.
+
+azzyboss-26=
+[ASRIEL right determined]
+Then let this be our promise.
+No more running.
+No more hiding.
+
+[KIRBY left togetherzoom]
+Right.
+We end this together.
 
 CH20_FAKE_MADELINE_AND_BADELINE=
 [KIRBY left surprised]
@@ -16664,8 +16300,6 @@ oh shut up, you can't put me into some kind of mind prison you coward!
 {# 560000}But I guess I can show you around.{#}
 {# 560000}This is the place where I keep all the memories of my past lives.{#}
 {# 560000}and this is the place where I keep all the memories of my past victims.{#}
-{# 560000}and this is the place where I keep all the memories of my past failures.{#}
-{# 560000}and this is the place where I keep all the memories of my past victories.{#}
 
 CH20_TESSERACT_SOUL=
 [KIRBY left upset]
@@ -16691,7 +16325,7 @@ another heartgem?
 wait... no... this isn't right...
 but what if I just need to use it more?
 
-SOUL_Maggy_CSide_20_THEEND_A=
+SOUL_Maggy_20_THEEND_A=
 GOT YOU, KIRBY!
 
 CH20_ELS_LAST_WISH=
@@ -16706,9 +16340,9 @@ use it wisely, because once I end you, there will be no coming back.
 to be honest, I don't know what to say right now.
 I am not star warrior, I am not a hero, I am not a villain, I am just a kid who loves his friends and wants to save them.
 I don't have any grand speeches or anything like that, but if I had to say something, I would say...
-I wish I could have done more to save them.
-and made madeline and badeline to become stronger, and I wish I could have been there for them more, and I wish I could have protected them better.
-and for asriel, I wish I could have been a better brother to him, and I wish I could have been there for him more, and I wish I could have protected him better.
+I wouldn't have done more to save them.
+and made madeline and badeline to become stronger, and they would have been there for them more.
+and for asriel, It would have been a better brother to him, and I wish I could have been there for him more, and I also could have protected him better.
 and for myself I would not say anththing but...
 ...
 ... I wish to become a knight...
@@ -16733,7 +16367,7 @@ and for myself I would not say anththing but...
 {trigger 5 Els punch Kirby four}
 [ELS left normal]
 {# 560000}Understand this clearly - you squandered your singular opportunity and this insolence is intolerable!{#}
-{# 560000}You not only wasted your chance, but you also disrespected me with your defiance!{#}
+{# 560000}You not only wasted your chance, but you also disrespected me with your defiance to our own zero kind!{#}
 {trigger 6 Els punch Kirby five}
 [ELS left normal]
 {# 560000}and you imagined escape was possible?{#}
@@ -16760,7 +16394,7 @@ CH20_VOID_AWAKENING=
 [none left]
 {trigger 0 Madeline and Badeline float in an endless, dark void}
 [KirbyParents left normal]
-...Madeline... Madeline... ...Consciousness... ...Return...
+...Madeline... Madeline... ...you must... ...wake up...
 What dimension have we entered?
 
 [BADELINE right concerned]
@@ -16912,120 +16546,97 @@ CH20_DREAM_FRIENDS_CAPTURED=
 [KIRBY left exhausted]
 My body... screaming... can't hold on much longer...
 Please... ANYONE... I need help!
+[ELS left normal]
+{# 560000}Oh Really{#}
 {trigger 1 Dark tendrils emerge and capture all of Kirby's allies}
-[CHARA left panicked]
-{+KIRBY}! Something's got me! It's CRUSHING me!
-I can't... I CAN'T BREAK FREE!
-
-[RALSEI left struggling]
-No! These shadows are STEALING everything!
-Our hopes... our dreams... I can feel them being RIPPED AWAY!
-
-[STARSI left hopeless]
-The PAIN! It's unbearable! My power... FADING!
-But I WON'T... I {*}WON'T{/*} give in!
-
-[SANS left strained]
-sorry kiddo... looks like we're done for...
-these things... they're sucking out everything that makes us... {~}us{/~}...
-
-[PAPYRUS left defiant]
-I REFUSE! THE GREAT PAPYRUS NEVER SURRENDERS!
-NYEH HEH HEH! ...heh... h...
-I... I can't... feel my hopes anymore...
 
 [ELS left triumphant]
 {# 560000}BEHOLD YOUR PRECIOUS FRIENDS, {+KIRBY}!{#}
 {# 560000}WATCH AS I DEVOUR THEIR VERY SOULS!{#}
 {# 560000}EVERY DREAM, EVERY HOPE, EVERY LOVING MEMORY...{#}
-{# 560000}ALL BECOMING FUEL FOR MY {*}GODHOOD{/*}!{#}
+{# 560000}ALL BECOMING FUEL FOR MY {*}GOD{/*}!{#}
 
 [KIRBY left angry]
 LET THEM GO! THEY HAVE NOTHING TO DO WITH THIS!
 YOUR FIGHT IS WITH {*}ME{/*}!
 
-[TORIEL left weakening]
-My child... don't blame yourself for this...
-We knew... we {~}always{/~} knew the risks of loving you...
+[ELS left normal]
+{# 560000}How Predictable you were{#}
+{# 560000}I want to consider one thing before I do that though{#}
+{# 560000}as you can see someone behind me is watching this unfold{#}
+{# 560000}who you may ask?{#}
+{# 560000}oh that easy it's you the player{#}
+{# 560000}you've been watching this whole time, haven't you?{#}
+{# 560000}you've been controlling kirby this whole because god who knows how disgusting you are.{#}
+{# 560000}and you know what? I don't care if you have been controlling him or not, because in the end, it doesn't matter.{#}
+{# 560000}because you are just as powerless as he is, and you have no say in this.{#}
+{# 560000}and to that in mind{#}
+{trigger 2 kirby soul lifted up the determination soul}
+{# 560000}Time to die for a Billion times{#}
 
-[ASGORE left fading]
-Keep fighting, young warrior... even when we're gone...
-Carry our hopes... in your heart...
+{trigger 3 zero damage the soul until chara block his final attack}
 
-[ELS left consuming]
-{# 560000}YESSSS! I CAN FEEL THEIR POWER FLOODING INTO ME!{#}
-{# 560000}SOON I'LL HAVE THE STRENGTH TO REMAKE {*}EVERYTHING{/*}!{#}
-{# 560000}AND THERE'S {~}NOTHING{/~} YOU CAN DO TO STOP IT!{#}
+[ELS left normal]
+{# 560000}what?{#}
 
-[KIRBY left breaking]
-STOP! PLEASE STOP! I CAN'T TAKE ANYMORE!
-First {+MADELINE} and {+BADELINE}... now EVERYONE I LOVE?!
-HOW MUCH MORE MUST I {*}LOSE{/*}?!
+[chara left normal]
+{+KIRBY}... Do not give up!
+I know you still a broken star warrior, but you are also so much more than that!
+No matter what happens, we will always be there to protect you.
 
-{trigger 2.5 music starts playing}
+[magolor left normal]
+You are not alone, {+KIRBY}!
+even were straing against impossible odds, we will fight alongside you until the very end!
+we will never abandon you!
 
-CH20_ELS_FRUSTRATION_AND_REVELATION=
-[CHARA left sadder]
-{+KIRBY}... even as these chains {~}crush{/~} my spirit...
-My heart {*}SCREAMS{/*} that you'll save us! I {~}BELIEVE{/~} in you!
+[sans left normal]
+{+KIRBY}... you are stronger than you think!
+but consider this freak whos gonna have a bad time if you let him win!
+I'll say your gonna have a good time, Wink.
 
-[KIRBY left sadder]
-{+CHARA}... everyone... your voices reach me through the darkness!
-Your faith fills my soul with {*}UNSTOPPABLE{/*} fire!
+[papyrus left normal]
+{+KIRBY}... you are a true friend!
+and you have a heart of gold!
+and the star will shine brighter than ever before if you let it!
 
-[ELS left furious]
-{# 560000}ENOUGH OF THIS SENTIMENTAL GARBAGE!{#}
-{# 560000}THEIR SOULS ARE {*}MINE{/*} NOW! EVERY EMOTION YOU SHARE FEEDS MY POWER!{#}
+[undyne left normal]
+Prove to me that your a hero, {+KIRBY}!
+Show me that what you got enough to take down this monster!
 
-[KIRBY left upset]
-You're {*}WRONG{/*}! You can steal their energy...
-But you'll NEVER take their {~}SPIRITS{/~}!
+[alphy left normal]
+{+KIRBY}... I know this may be impossible
+but to my calculation, the a chances that you are deltarune are pretty high, so I think you can do this!
 
-[KIRBY left determined]
-Our love is an {*}INFERNO{/*} that will {~}BURN{/~} through your darkness!
+[theo left yolo]
+That what I knew alphy.
 
-[ELS left raging]
-{# 560000}LOVE?! FRIENDSHIP?! THOSE PATHETIC BONDS?!{#}
-{# 560000}THEY MAKE YOU {*}WEAK{/*}! THEY MAKE YOU {~}VULNERABLE{/~}!{#}
-{# 560000}CARING FOR OTHERS IS THE ULTIMATE FOOLISHNESS!{#}
+[asgore left normal]
+{+KIRBY}... For the Sake of everyone.
+Stay Strong, and fight with all your might!
+and Stay determined!
 
-[KIRBY left standing_firm]
-You understand {*}NOTHING{/*}! They are my STRENGTH!
-They are EVERYTHING worth fighting for!
+[toriel left normal]
+{+KIRBY}... don't forget that you are loved!
+your heart has shown so much kindness and compassion, and that is what makes you truly special!
+now go fourth as a star warrior and save everyone!
 
 [ELS left losing_control]
-{# 560000}YOU WORTHLESS, INSIGNIFICANT SPECKS!{#}
-{# 560000}I WILL DEVOUR EVERY LAST ONE OF YOU!{#}
-{# 560000}AND THEN... FINALLY... I'LL BE... {~}COMPLETE{/~}...{#}
-{trigger 2 Els's dark form begins to crack, revealing something underneath}
-[ELS left transforming]
-{# 560000}Complete... at last... at {~}LONG{/~} last...{#}
-{# FFAAAA}...is this... acceptance? ...love?{#}
+{# 560000}No... NOO! THIS CAN'T BE HAPPENING!{#}
+{# 560000}Fucking Unbelievable!{#}
+{# 560000}You... you are all... just{#}
+{music mute}
+[ELS left normal]
+{# 560000}I can't believe this... that you are all too stupid.{#}
+{# 560000}all of there soul are now mine!!!!!{#}
 
 CH20_ASRIEL_REVEAL_IDENTITY=
-[KIRBY left distracted]
-That voice... it {~}CHANGED{/~}...
-There's someone ELSE underneath all that darkness!
-{trigger 0 ominous zoom in and kirby approaches asriel}
-[KIRBY left distracted]
-Who... who ARE you really?
+[asriel right none]
+finally...
+I was soo tired of hiding in the darkness of shadows
 {trigger 1 rift flicker for a moment glitch effect}
-[ASRIEL left sad]
-{# FFAAAA}My name... it was once... Prince of the Monster...{#}
-{# FFAAAA}I became this {~}MONSTER{/~}... because I was so {*}AFRAID{/*}...{#}
-{# FFAAAA}Loneliness... agony... they twisted me into this {~}NIGHTMARE{/~}...{#}
-
-[KIRBY left sad]
-Asriel... {+CHARA}'s best friend...
-Els was never real... just your {~}pain{/~} given form...
-[ASRIEL left sad]
-{# FFAAAA}NO! I {*}DESTROYED{/*} that pathetic weakling!{#}
-{# 660000}Els is who I CHOSE to become!{#}
-{# 660000}The Darkness chose me because I {*}FEARED{/*} weakness!{#}
-{# 660000}The darkness WELCOMED me when everyone else ABANDONED me!{#}
-{# 660000}I don't NEED love! I don't NEED anyone!{#}
-{# 660000}All that matters is POWER!{#}
-{# 660000}It's KILL or BE KILLED in this cruel world!{#}
+Howdy there, little one.
+Frisk, Chara, anyone? are you all here?
+it's me, your best friend, your brother, your everything.
 {trigger 2 rift flicker again to appear glitch effects and asriel kid turn into a adult like godhood similar to void termina}
 
 # Distorted name reveal text for the AsrielTurnIntoGodAndFinalWriter sequence
@@ -17035,57 +16646,51 @@ CH20_ASRIEL_NAME_REVEAL=
 # ====================================================================
 # ASRIEL GOD BOSS - MID FIGHT DIALOG
 # ====================================================================
-CH20_KIRBY_ASK_WHY=
+CH20_KIRBY_THEEND_INTRO=
 [KIRBY left sadder]
-Asriel why are you even fighting me,
-the darkness is only consuming you just because you have throw away that can't be broken
+This is The End...
 
-[ASRIEL_GOD left mocking]
-Broken?, you really think that I you never did but I have done?
-you see when things get broken.
-I cannot be REPAIR
-and You broke everything!!!
+azzyboss_02=
+You Know what?
+I don't even care about destroying this reality anymore.
 
-CH20_KIRBY_ASK_WHAT=
-[KIRBY left angry]
-I know your still in there asriel, but if you may hurt me,
-I won't hurt you till this darkness is out of your heart, so please tell me what is going on in your head.
+azzyboss_04=
+after We defeat you and gain access to the void.
+I will just create a new one, and I will make sure that you are not in it.
 
-[ASRIEL_GOD left pissed]
-You want to know what is going on in my head?
-You want to know why I am doing this?
-You want to know why I am doing this to you?
-Because your a fucking idiot!
+azzyboss_06=
+All your progress, all your efforts, all your sacrifices...
+I will make everyting fall to zero!
 
-CH20_KIRBY_DO_NOT_WANT_TO_FIGHT=
-[KIRBY left sadder]
-i am sorry asriel, but I don't want to fight you, I just want to save you, but if you want to fight me, then I will fight you, but please stop this madness.
-but you need understand this from our stars and our shining souls we never quit nor our determination, so please stop this madness and let me save you.
+azzyboss-08=
+then we can do this all over again!
 
-[ASRIEL_GOD left furious]
-I don't want to be saved, I don't want it at all,
-Please Let me Kill YOU!!!
+azzyboss-10=
+infact did you know what the best part about all of this is?
+you'll do it...
 
-CH20_KIRBY_STRUCK_DOWN=
-[]
-Is that all... How Disapointing...
-{trigger x kirby soul snap back to pieces}
-[]
-KIRBY YOU MUST STAY DETERMINED
-{trigger x fade in and out white violently}
-[KIRBY left angry]
-ASRIEL I know you still in there But I refuse to fall
-[ASRIEL_GOD left wtf]
-what how did you!?
-ugh you have been ressurected after I kill you, and now I will have do this all over again!.
+azzyboss-12=
+and then you lose to me again...
 
-CH20_KIRBY_REFUSED_TO_DIE=
-[KIRBY left angry]
-I won't give up, Asriel! No matter what!
-and I know your still in there.
-and I'LL NOT FALL!!!
-[ASRIEL_GOD left desperate]
-STAY DOWN!!!
+azzyboss-14=
+and again!
+
+azzyboss-16=
+AND AGAIN!!!
+
+azzyboss-18=
+because you want a final ending
+
+azzyboss-20=
+because you love your friends.
+
+azzyboss-22=
+because you never ever give up!
+
+azzyboss-24=
+is this wonderful or what?
+your determination, that power let you get this far.
+this will be your doom!
 
 CH20_ASRIEL_FIRST_SPECIAL_ATTACK=
 [ASRIEL_GOD left frustrated]
@@ -17792,7 +17397,7 @@ Keep Climbing.
 
 CH20_ASCEND_VS_ELS_5=
 
-[MADELINE_SPIRIT left sadder]
+[MADELINE left sadder]
 those temples, so many worlds destroyed, lost so many people lives.
 I know this is all my fault, I should have been stronger, I should have been able to protect them.
 

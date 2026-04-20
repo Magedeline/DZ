@@ -1,4 +1,4 @@
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
     [Tracked]
     public class CS18_Outro : CutsceneEntity

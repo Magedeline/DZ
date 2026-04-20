@@ -1,4 +1,4 @@
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     [CustomEntity(ids: "MaggyHelper/GoldBlock")]
     [HotReloadable]
@@ -13,7 +13,7 @@ namespace MaggyHelper.Entities
             : base(position, width, height, true)
         {
             texture = AtlasPathHelper.GetTexture("objects/goldblock");
-            OnDashCollide = (Celeste.Player player, Vector2 direction) => OnDashed(player, direction);
+            OnDashCollide = (global::Celeste.Player player, Vector2 direction) => OnDashed(player, direction);
             base.Depth = -9000;
         }
 
@@ -22,7 +22,7 @@ namespace MaggyHelper.Entities
         {
         }
 
-        private DashCollisionResults OnDashed(Celeste.Player player, Vector2 direction)
+        private DashCollisionResults OnDashed(global::Celeste.Player player, Vector2 direction)
         {
             if (!broken)
             {

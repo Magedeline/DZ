@@ -1,6 +1,6 @@
-using MaggyHelper;
+using Celeste;
 
-namespace MaggyHelper.Entities;
+namespace Celeste.Entities;
 
 [CustomEntity(ids: "MaggyHelper/WarpStar")]
 [Tracked]

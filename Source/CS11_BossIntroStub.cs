@@ -1,10 +1,10 @@
 using System;
 using System.Collections;
-using MaggyHelper.Entities;
+using Celeste.Entities;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
     // Stub implementation - methods disabled due to compilation issues
     // This is a placeholder to allow the project to build

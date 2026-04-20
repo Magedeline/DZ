@@ -1,6 +1,6 @@
-using MaggyHelper.Cutscenes;
+using Celeste.Cutscenes;
 
-namespace MaggyHelper.NPCs
+namespace Celeste.NPCs
 {
     /// <summary>
     /// Digital Guide NPC for Chapter 14 - Digital Dimension helper

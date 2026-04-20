@@ -4,7 +4,7 @@ using Monocle;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// Phase 5: Health Bar UI - Top-screen overlay displaying player health.

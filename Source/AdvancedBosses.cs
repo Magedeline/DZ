@@ -1,6 +1,6 @@
-using MaggyHelper.Helpers;
+using Celeste.Helpers;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// Axis Terminator 2.0 Boss - Upgraded version with enhanced abilities

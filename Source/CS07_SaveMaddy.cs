@@ -1,6 +1,6 @@
-using MaggyHelper.Entities;
+using Celeste.Entities;
 
-namespace MaggyHelper.Cutscenes {
+namespace Celeste.Cutscenes {
     [HotReloadable]
     public class Cs07SaveMaddy(global::Celeste.Player player) : CutsceneEntity {
         public const string FLAG = "FoundMaddy";

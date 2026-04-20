@@ -73,6 +73,210 @@ local function placePlatform(matrix, x1, x2, y, material, w, h)
 end
 
 --------------------------------------------------------------------------------
+-- Organic Terrain Helpers — natural-looking shapes instead of rectangles
+--------------------------------------------------------------------------------
+
+--- Simple deterministic noise function (no external deps).
+-- Returns a value roughly in [-1, 1] for continuous-ish terrain height variation.
+local function noiseAt(x, seed)
+    -- Hash-based pseudo-noise using prime mixing
+    local n = x * 374761393 + (seed or 0) * 668265263
+    n = (n * n * n) % 2147483647
+    return (n / 1073741823.5) - 1.0
+end
+
+--- Smoothed noise: average of neighbouring noiseAt values for organic curves.
+local function smoothNoise(x, seed, scale)
+    scale = scale or 4
+    local sx = x / scale
+    local i = math.floor(sx)
+    local f = sx - i
+    -- Cubic smoothing
+    f = f * f * (3 - 2 * f)
+    local a = noiseAt(i, seed)
+    local b = noiseAt(i + 1, seed)
+    return a + (b - a) * f
+end
+
+--- Generate a natural ground-height profile across a room width.
+-- Returns a table of Y-values (floor height in tiles from the room bottom).
+-- @param w         Room width in tiles
+-- @param baseY     Base floor Y position (tiles from top)
+-- @param amplitude Max deviation in tiles (e.g., 3 means +/-3 from baseY)
+-- @param seed      RNG seed for determinism
+-- @param smoothing Noise scale (higher = smoother hills)
+-- @return table    Array [1..w] of floor Y positions
+local function generateGroundProfile(w, baseY, amplitude, seed, smoothing)
+    amplitude = amplitude or 3
+    seed = seed or 42
+    smoothing = smoothing or 6
+    local profile = {}
+    for x = 1, w do
+        -- Two octaves for natural variety
+        local n1 = smoothNoise(x, seed, smoothing)
+        local n2 = smoothNoise(x, seed + 100, smoothing * 0.5) * 0.4
+        local offset = math.floor((n1 + n2) * amplitude + 0.5)
+        profile[x] = clamp(baseY + offset, 4, baseY + amplitude + 2)
+    end
+    return profile
+end
+
+--- Generate a natural ceiling profile (inverse of ground).
+local function generateCeilingProfile(w, baseY, amplitude, seed, smoothing)
+    amplitude = amplitude or 2
+    seed = seed or 99
+    smoothing = smoothing or 5
+    local profile = {}
+    for x = 1, w do
+        local n1 = smoothNoise(x, seed, smoothing)
+        local n2 = smoothNoise(x, seed + 200, smoothing * 0.5) * 0.3
+        local offset = math.floor((n1 + n2) * amplitude + 0.5)
+        profile[x] = clamp(baseY + offset, 2, baseY + amplitude + 1)
+    end
+    return profile
+end
+
+--- Apply a natural ground profile to a room matrix — fills solid below the profile.
+-- This replaces the flat-floor approach with rolling hills and valleys.
+local function applyGroundProfile(matrix, profile, material, w, h)
+    material = material or TILE_SOLID
+    for x = 1, w do
+        local groundY = profile[x]
+        for y = groundY, h do
+            matrix:set(clamp(x, 1, w), clamp(y, 1, h), material)
+        end
+    end
+end
+
+--- Apply a natural ceiling profile — fills solid above the profile.
+local function applyCeilingProfile(matrix, profile, material, w, h)
+    material = material or TILE_SOLID
+    for x = 1, w do
+        local ceilY = profile[x]
+        for y = 1, ceilY do
+            matrix:set(clamp(x, 1, w), clamp(y, 1, h), material)
+        end
+    end
+end
+
+--- Carve an organic (elliptical/blob) opening in the matrix.
+-- Creates natural alcoves, cave bubbles, or rounded openings.
+local function carveBlob(matrix, cx, cy, radiusX, radiusY, w, h, irregularity)
+    irregularity = irregularity or 0.2
+    local seed = cx * 31 + cy * 17
+    for y = clamp(cy - radiusY - 1, 1, h), clamp(cy + radiusY + 1, 1, h) do
+        for x = clamp(cx - radiusX - 1, 1, w), clamp(cx + radiusX + 1, 1, w) do
+            local dx = (x - cx) / radiusX
+            local dy = (y - cy) / radiusY
+            -- Ellipse + noise for blobby edge
+            local distSq = dx * dx + dy * dy
+            local noiseMod = smoothNoise(x + y * 3, seed, 3) * irregularity
+            if distSq + noiseMod < 1.0 then
+                matrix:set(x, y, TILE_AIR)
+            end
+        end
+    end
+end
+
+--- Place a curved (arch-shaped) platform between two points.
+local function placeArchPlatform(matrix, x1, x2, peakY, baseY, material, w, h)
+    material = material or TILE_SOLID
+    local midX = math.floor((x1 + x2) / 2)
+    local halfSpan = math.max((x2 - x1) / 2, 1)
+    for x = clamp(x1, 2, w - 1), clamp(x2, 2, w - 1) do
+        local t = (x - midX) / halfSpan  -- -1 to 1
+        local archY = math.floor(peakY + (baseY - peakY) * t * t + 0.5)
+        local py = clamp(archY, 2, h - 1)
+        matrix:set(x, py, material)
+    end
+end
+
+--- Add a natural-looking ledge/overhang.
+local function placeLedge(matrix, x, y, length, direction, material, w, h)
+    material = material or TILE_SOLID
+    -- direction: 1 = right, -1 = left
+    direction = direction or 1
+    for i = 0, length - 1 do
+        local lx = clamp(x + i * direction, 2, w - 1)
+        -- Taper the ledge (gets thinner toward the end)
+        local thickness = math.max(1, math.floor((length - i) / length * 2 + 0.5))
+        for t = 0, thickness - 1 do
+            local ly = clamp(y + t, 2, h - 1)
+            matrix:set(lx, ly, material)
+        end
+    end
+end
+
+--- Add stalactites (hanging terrain from ceiling) or stalagmites (ground spikes).
+local function placeFormation(matrix, x, fromY, toY, baseWidth, material, w, h)
+    material = material or TILE_SOLID
+    local height = math.abs(toY - fromY)
+    local dir = toY > fromY and 1 or -1
+    for i = 0, height do
+        local y = clamp(fromY + i * dir, 2, h - 1)
+        -- Taper: wider at base, narrower at tip
+        local progress = i / math.max(height, 1)
+        local halfW = math.max(0, math.floor(baseWidth * (1 - progress * 0.8) + 0.5))
+        for dx = -halfW, halfW do
+            matrix:set(clamp(x + dx, 2, w - 1), y, material)
+        end
+    end
+end
+
+--- Create a hill mound on the ground at a given position.
+local function placeHill(matrix, cx, groundY, moundHeight, moundWidth, material, w, h)
+    material = material or TILE_SOLID
+    local halfW = math.floor(moundWidth / 2)
+    for dx = -halfW, halfW do
+        local x = clamp(cx + dx, 2, w - 1)
+        local t = dx / halfW  -- -1 to 1
+        local hillHeight = math.floor(moundHeight * (1 - t * t) + 0.5)
+        for dy = 0, hillHeight - 1 do
+            local y = clamp(groundY - dy, 2, h - 1)
+            matrix:set(x, y, material)
+        end
+    end
+end
+
+--- Create stepped/terraced ground (Kirby Green Greens style).
+local function placeSteppedTerrain(matrix, x1, x2, baseY, stepCount, stepHeight, material, w, h)
+    material = material or TILE_SOLID
+    local stepWidth = math.max(1, math.floor((x2 - x1) / stepCount))
+    for s = 0, stepCount - 1 do
+        local sx1 = x1 + s * stepWidth
+        local sx2 = math.min(sx1 + stepWidth - 1, x2)
+        local sy = baseY - s * stepHeight
+        -- Fill the step and everything below
+        for x = clamp(sx1, 2, w - 1), clamp(sx2, 2, w - 1) do
+            for y = clamp(sy, 2, h - 1), clamp(baseY + 2, 2, h) do
+                matrix:set(x, y, material)
+            end
+        end
+    end
+end
+
+--- Create a pit with irregular/jagged edges (not a clean rectangle).
+local function carveIrregularPit(matrix, cx, groundY, pitWidth, pitDepth, seed, w, h)
+    seed = seed or cx * 7
+    local halfW = math.floor(pitWidth / 2)
+    for dx = -halfW, halfW do
+        local x = clamp(cx + dx, 2, w - 1)
+        -- Edge variation
+        local edgeDist = math.min(math.abs(dx + halfW), math.abs(dx - halfW))
+        local depthHere = pitDepth
+        if edgeDist <= 2 then
+            depthHere = math.floor(pitDepth * edgeDist / 3 + 0.5)
+        end
+        local noiseOff = math.floor(smoothNoise(x, seed, 3) * 1.5)
+        depthHere = math.max(1, depthHere + noiseOff)
+        for dy = 0, depthHere - 1 do
+            local y = clamp(groundY + dy, 2, h)
+            matrix:set(x, y, TILE_AIR)
+        end
+    end
+end
+
+--------------------------------------------------------------------------------
 -- PATH Patterns – winding traversal paths
 --------------------------------------------------------------------------------
 
@@ -711,6 +915,545 @@ function patterns.asrielGodBossArena(matrix, exits, opts)
 end
 
 --------------------------------------------------------------------------------
+-- KIRBY TERRAIN Patterns — nature-inspired, non-boxy room layouts
+-- Based on design patterns from the Kirby series level design document.
+--------------------------------------------------------------------------------
+
+--- "greenGreens" – Kirby's iconic first level: rolling hills, tree trunk alcove,
+--- stepped terrain, scattered platforms. Feels like a grassy field, not a dungeon.
+function patterns.greenGreens(matrix, exits, opts)
+    local w, h = matrix:size()
+    opts = opts or {}
+    local material = opts.material or TILE_SOLID
+    local seed = opts.seed or 42
+
+    -- Start with all air
+    for y = 2, h - 1 do
+        for x = 2, w - 1 do
+            matrix:set(x, y, TILE_AIR)
+        end
+    end
+
+    -- Natural rolling ground with hills
+    local baseGroundY = h - 5
+    local groundProfile = generateGroundProfile(w, baseGroundY, 3, seed, 7)
+    applyGroundProfile(matrix, groundProfile, material, w, h)
+
+    -- Large tree trunk alcove (left-center area) — inside a tree trunk pattern
+    local treeX = math.floor(w * 0.3)
+    local trunkWidth = 6
+    local trunkHeight = 10
+    local trunkTop = groundProfile[treeX] - trunkHeight
+    -- Trunk walls
+    for y = clamp(trunkTop, 3, h), clamp(groundProfile[treeX], 3, h) do
+        matrix:set(clamp(treeX - trunkWidth, 2, w - 1), y, material)
+        matrix:set(clamp(treeX + trunkWidth, 2, w - 1), y, material)
+    end
+    -- Trunk top (canopy)
+    placePlatform(matrix, treeX - trunkWidth, treeX + trunkWidth, clamp(trunkTop, 3, h - 1), material, w, h)
+    -- Hollow inside
+    for y = clamp(trunkTop + 1, 3, h), clamp(groundProfile[treeX] - 1, 3, h) do
+        for x = clamp(treeX - trunkWidth + 1, 3, w - 1), clamp(treeX + trunkWidth - 1, 3, w - 1) do
+            matrix:set(x, y, TILE_AIR)
+        end
+    end
+    -- Trunk opening on one side
+    local openSide = treeX + trunkWidth
+    for dy = 0, 3 do
+        matrix:set(clamp(openSide, 2, w - 1), clamp(groundProfile[treeX] - 1 - dy, 3, h), TILE_AIR)
+    end
+
+    -- Elevated grassy platforms at varying heights
+    local platY1 = groundProfile[math.floor(w * 0.55)] - 5
+    placePlatform(matrix, math.floor(w * 0.5), math.floor(w * 0.65), clamp(platY1, 4, h - 2), material, w, h)
+
+    local platY2 = groundProfile[math.floor(w * 0.75)] - 7
+    placePlatform(matrix, math.floor(w * 0.7), math.floor(w * 0.82), clamp(platY2, 4, h - 2), material, w, h)
+
+    -- Small hill mound near the right side
+    placeHill(matrix, math.floor(w * 0.85), baseGroundY, 3, 8, material, w, h)
+
+    -- Stepped terrain going up on the left
+    placeSteppedTerrain(matrix, 3, math.floor(w * 0.15), baseGroundY, 3, 2, material, w, h)
+end
+
+--- "castleDedede" – Castle interior: columns, arched ceilings, platforms, royal feel.
+function patterns.castleDedede(matrix, exits, opts)
+    local w, h = matrix:size()
+    opts = opts or {}
+    local material = opts.material or TILE_SOLID
+    local seed = opts.seed or 55
+
+    -- Start with all air inside
+    for y = 2, h - 1 do
+        for x = 2, w - 1 do
+            matrix:set(x, y, TILE_AIR)
+        end
+    end
+
+    -- Arched ceiling
+    local ceilProfile = generateCeilingProfile(w, 3, 2, seed, 8)
+    applyCeilingProfile(matrix, ceilProfile, material, w, h)
+
+    -- Flat stone floor
+    local floorY = h - 4
+    placePlatform(matrix, 2, w - 1, floorY, material, w, h)
+    placePlatform(matrix, 2, w - 1, floorY + 1, material, w, h)
+
+    -- Decorative columns
+    local numCols = math.floor(w / 14)
+    for i = 1, numCols do
+        local cx = math.floor(w * i / (numCols + 1))
+        for y = ceilProfile[clamp(cx, 1, w)] + 1, floorY - 1 do
+            matrix:set(clamp(cx, 2, w - 1), y, material)
+            matrix:set(clamp(cx + 1, 2, w - 1), y, material)
+        end
+    end
+
+    -- Elevated balcony platforms between columns
+    for i = 1, numCols - 1 do
+        local lx = math.floor(w * i / (numCols + 1)) + 3
+        local rx = math.floor(w * (i + 1) / (numCols + 1)) - 3
+        if rx > lx + 2 then
+            local balconyY = floorY - 6 - (i % 2) * 2
+            placePlatform(matrix, lx, rx, clamp(balconyY, 4, floorY - 3), material, w, h)
+        end
+    end
+
+    -- Royal carpet area (wider central floor section) — slightly raised center
+    local centerL = math.floor(w * 0.35)
+    local centerR = math.floor(w * 0.65)
+    placePlatform(matrix, centerL, centerR, floorY - 1, material, w, h)
+end
+
+--- "iceCave" – Natural ice cavern: stalactites, stalagmites, rounded walls,
+--- slippery-looking terrain with irregular floor/ceiling.
+function patterns.iceCave(matrix, exits, opts)
+    local w, h = matrix:size()
+    opts = opts or {}
+    local material = opts.material or TILE_SOLID
+    local seed = opts.seed or 77
+
+    -- Fill everything solid first, then carve the cave
+    for y = 1, h do
+        for x = 1, w do
+            matrix:set(x, y, material)
+        end
+    end
+
+    -- Carve main cave opening using a large irregular blob
+    carveBlob(matrix, math.floor(w / 2), math.floor(h / 2),
+              math.floor(w * 0.4), math.floor(h * 0.35), w, h, 0.25)
+
+    -- Carve secondary connected chambers
+    carveBlob(matrix, math.floor(w * 0.2), math.floor(h * 0.55),
+              math.floor(w * 0.15), math.floor(h * 0.2), w, h, 0.3)
+    carveBlob(matrix, math.floor(w * 0.8), math.floor(h * 0.45),
+              math.floor(w * 0.15), math.floor(h * 0.2), w, h, 0.3)
+
+    -- Stalactites hanging from ceiling
+    local caveTopY = 4
+    for i = 1, math.floor(w / 10) do
+        local sx = math.floor(w * i / (math.floor(w / 10) + 1))
+        local stalH = 3 + math.floor(smoothNoise(sx, seed + 300, 4) * 2)
+        placeFormation(matrix, sx, caveTopY, caveTopY + stalH, 2, material, w, h)
+    end
+
+    -- Stalagmites rising from floor
+    local caveFloorY = h - 5
+    for i = 1, math.floor(w / 12) do
+        local sx = math.floor(w * i / (math.floor(w / 12) + 1)) + 3
+        local stagH = 2 + math.floor(smoothNoise(sx, seed + 400, 3) * 2)
+        placeFormation(matrix, sx, caveFloorY, caveFloorY - stagH, 1, material, w, h)
+    end
+
+    -- Natural floor with rolling terrain
+    local floorProfile = generateGroundProfile(w, h - 5, 2, seed + 500, 5)
+    for x = 2, w - 1 do
+        local fy = floorProfile[x]
+        for y = fy, h - 1 do
+            -- Only set solid where it was previously air (inside the cave)
+            if matrix:get(x, y, material) == TILE_AIR then
+                -- Skip — keep the carved cave shape
+            else
+                matrix:set(x, y, material)
+            end
+        end
+    end
+
+    -- Internal ledges for platforming
+    local ledgeY1 = math.floor(h * 0.4)
+    placeLedge(matrix, math.floor(w * 0.2), ledgeY1, 6, 1, material, w, h)
+    placeLedge(matrix, math.floor(w * 0.75), ledgeY1 - 2, 5, -1, material, w, h)
+end
+
+--- "rollingHills" – Open outdoor Kirby level: gentle rolling terrain with
+--- scattered platforms, small pits, and elevation changes. Like Pop Star stages.
+function patterns.rollingHills(matrix, exits, opts)
+    local w, h = matrix:size()
+    opts = opts or {}
+    local material = opts.material or TILE_SOLID
+    local seed = opts.seed or 33
+
+    -- Start all air
+    for y = 1, h do
+        for x = 1, w do
+            matrix:set(x, y, TILE_AIR)
+        end
+    end
+
+    -- Rolling ground profile — the main feature
+    local baseY = h - 6
+    local groundProfile = generateGroundProfile(w, baseY, 4, seed, 8)
+    applyGroundProfile(matrix, groundProfile, material, w, h)
+
+    -- Small pits with irregular edges
+    carveIrregularPit(matrix, math.floor(w * 0.3), groundProfile[math.floor(w * 0.3)], 6, 4, seed + 10, w, h)
+    carveIrregularPit(matrix, math.floor(w * 0.65), groundProfile[math.floor(w * 0.65)], 5, 3, seed + 20, w, h)
+
+    -- Floating platforms at natural-feeling positions (follow the terrain rhythm)
+    for i = 1, 4 do
+        local px = math.floor(w * (0.15 + 0.2 * (i - 1)))
+        local groundHere = groundProfile[clamp(px, 1, w)]
+        local platY = groundHere - 5 - math.floor(smoothNoise(px, seed + 600, 5) * 2)
+        local platLen = 4 + math.floor(math.abs(smoothNoise(px, seed + 700, 4)) * 3)
+        placePlatform(matrix, clamp(px - math.floor(platLen / 2), 3, w - 2),
+                      clamp(px + math.floor(platLen / 2), 3, w - 2),
+                      clamp(platY, 4, groundHere - 3), material, w, h)
+    end
+
+    -- Hill mounds for visual interest
+    placeHill(matrix, math.floor(w * 0.2), baseY, 2, 10, material, w, h)
+    placeHill(matrix, math.floor(w * 0.7), baseY, 3, 12, material, w, h)
+end
+
+--- "bomberCorridor" – A straight path with platforms overhead holding hazards.
+--- Based on the Kirby Bomber corridor design pattern.
+function patterns.bomberCorridor(matrix, exits, opts)
+    local w, h = matrix:size()
+    opts = opts or {}
+    local material = opts.material or TILE_SOLID
+    local seed = opts.seed or 88
+
+    -- All air
+    for y = 2, h - 1 do
+        for x = 2, w - 1 do
+            matrix:set(x, y, TILE_AIR)
+        end
+    end
+
+    -- Natural ground
+    local baseY = h - 4
+    local groundProfile = generateGroundProfile(w, baseY, 1, seed, 10)
+    applyGroundProfile(matrix, groundProfile, material, w, h)
+
+    -- Ceiling with arched profile
+    local ceilProfile = generateCeilingProfile(w, 3, 1, seed + 100, 8)
+    applyCeilingProfile(matrix, ceilProfile, material, w, h)
+
+    -- Overhead bomber platforms (evenly spaced, slightly varied heights)
+    local numPlatforms = math.floor(w / 10)
+    for i = 1, numPlatforms do
+        local px = math.floor(w * i / (numPlatforms + 1))
+        local platY = math.floor(h * 0.35) + math.floor(smoothNoise(px, seed + 200, 4) * 2)
+        placePlatform(matrix, px - 2, px + 2, clamp(platY, 5, h - 8), material, w, h)
+    end
+end
+
+--- "boulderRun" – Chase corridor: narrowing passage with slopes.
+--- Based on the Kirby boulder run design pattern.
+function patterns.boulderRun(matrix, exits, opts)
+    local w, h = matrix:size()
+    opts = opts or {}
+    local material = opts.material or TILE_SOLID
+    local seed = opts.seed or 66
+
+    -- All air
+    for y = 2, h - 1 do
+        for x = 2, w - 1 do
+            matrix:set(x, y, TILE_AIR)
+        end
+    end
+
+    -- Sloping downward ground (left to right descent)
+    local startY = h - 8
+    local endY = h - 3
+    for x = 2, w - 1 do
+        local t = (x - 2) / math.max(w - 3, 1)
+        local baseFloor = math.floor(startY + (endY - startY) * t + 0.5)
+        -- Add slight noise for organic feel
+        local noiseOff = math.floor(smoothNoise(x, seed, 5) * 1.5)
+        local floorY = clamp(baseFloor + noiseOff, 5, h - 2)
+        for y = floorY, h do
+            matrix:set(x, y, material)
+        end
+    end
+
+    -- Narrowing ceiling (follows the descent but stays closer on the right)
+    for x = 2, w - 1 do
+        local t = (x - 2) / math.max(w - 3, 1)
+        local baseCeil = math.floor(3 + t * 4 + 0.5)
+        local noiseOff = math.floor(smoothNoise(x, seed + 50, 4))
+        local ceilY = clamp(baseCeil + noiseOff, 2, h - 6)
+        for y = 1, ceilY do
+            matrix:set(x, y, material)
+        end
+    end
+
+    -- Obstacle ledges jutting from walls (things to dodge while running)
+    for i = 1, 4 do
+        local lx = math.floor(w * i / 5)
+        local fromTop = (i % 2 == 1)
+        if fromTop then
+            local cy = 3 + math.floor(i * 1.5)
+            placeLedge(matrix, lx, clamp(cy, 3, h - 6), 4, 1, material, w, h)
+        else
+            local t = (lx - 2) / math.max(w - 3, 1)
+            local floorHere = math.floor((h - 8) + ((h - 3) - (h - 8)) * t + 0.5)
+            placeLedge(matrix, lx, clamp(floorHere - 3, 4, h - 4), 3, -1, material, w, h)
+        end
+    end
+end
+
+--- "crumblingCliffs" – Kirby crumbling terrain: tall room with ledge-hopping,
+--- layered platforms that suggest fragile/breakable terrain.
+function patterns.crumblingCliffs(matrix, exits, opts)
+    local w, h = matrix:size()
+    opts = opts or {}
+    local material = opts.material or TILE_SOLID
+    local seed = opts.seed or 44
+
+    -- All air
+    for y = 2, h - 1 do
+        for x = 2, w - 1 do
+            matrix:set(x, y, TILE_AIR)
+        end
+    end
+
+    -- Ground at bottom
+    local baseY = h - 3
+    local groundProfile = generateGroundProfile(w, baseY, 1, seed, 8)
+    applyGroundProfile(matrix, groundProfile, material, w, h)
+
+    -- Staggered crumbling platforms going upward (alternating sides)
+    local layers = 5
+    for layer = 1, layers do
+        local t = layer / (layers + 1)
+        local platY = math.floor(baseY - t * (h - 8))
+        local goRight = (layer % 2 == 1)
+        local startX, endX
+        if goRight then
+            startX = 4 + (layer - 1) * 2
+            endX = startX + math.floor(w * 0.35)
+        else
+            endX = w - 4 - (layer - 1) * 2
+            startX = endX - math.floor(w * 0.35)
+        end
+        -- Slightly irregular platform
+        for x = clamp(startX, 3, w - 2), clamp(endX, 3, w - 2) do
+            local nOff = math.floor(smoothNoise(x, seed + layer * 50, 3) * 0.8)
+            matrix:set(x, clamp(platY + nOff, 3, h - 2), material)
+        end
+    end
+
+    -- Small connecting ledges between layers
+    for layer = 1, layers - 1 do
+        local t1 = layer / (layers + 1)
+        local t2 = (layer + 1) / (layers + 1)
+        local y1 = math.floor(baseY - t1 * (h - 8))
+        local y2 = math.floor(baseY - t2 * (h - 8))
+        local midY = math.floor((y1 + y2) / 2)
+        local midX = math.floor(w / 2) + ((layer % 2 == 0) and 4 or -4)
+        placePlatform(matrix, clamp(midX - 2, 3, w - 2), clamp(midX + 2, 3, w - 2),
+                      clamp(midY, 4, h - 3), material, w, h)
+    end
+end
+
+--- "switchAndRun" – Kirby "hit the switch and run" puzzle:
+--- A room with a switch area, a timed path, and a goal behind barriers.
+function patterns.switchAndRun(matrix, exits, opts)
+    local w, h = matrix:size()
+    opts = opts or {}
+    local material = opts.material or TILE_SOLID
+    local seed = opts.seed or 99
+
+    -- All air
+    for y = 2, h - 1 do
+        for x = 2, w - 1 do
+            matrix:set(x, y, TILE_AIR)
+        end
+    end
+
+    -- Floor
+    local floorY = h - 4
+    local groundProfile = generateGroundProfile(w, floorY, 1, seed, 12)
+    applyGroundProfile(matrix, groundProfile, material, w, h)
+
+    -- Ceiling
+    local ceilProfile = generateCeilingProfile(w, 3, 1, seed + 100, 10)
+    applyCeilingProfile(matrix, ceilProfile, material, w, h)
+
+    -- Switch alcove (left section) — recessed area
+    carveBlob(matrix, 8, math.floor(h * 0.5), 5, 4, w, h, 0.15)
+
+    -- Run corridor (middle) — clear path with slight obstacles
+    carveRect(matrix, math.floor(w / 2), math.floor(h * 0.6),
+              math.floor(w * 0.5), 6, w, h)
+
+    -- Barrier wall with gap (right section) — the timed gate
+    local barrierX = math.floor(w * 0.75)
+    for y = ceilProfile[clamp(barrierX, 1, w)] + 1, floorY - 1 do
+        matrix:set(clamp(barrierX, 2, w - 1), y, material)
+    end
+    -- Gap in barrier (the timed opening)
+    local gapY = math.floor(h * 0.55)
+    for dy = -2, 2 do
+        matrix:set(clamp(barrierX, 2, w - 1), clamp(gapY + dy, 3, h - 2), TILE_AIR)
+    end
+
+    -- Reward chamber behind barrier
+    carveBlob(matrix, math.floor(w * 0.88), math.floor(h * 0.5), 5, 4, w, h, 0.1)
+end
+
+--- "doorLabyrinth" – Multiple interconnected chambers with narrow passages.
+--- Based on the Kirby door labyrinth design pattern.
+function patterns.doorLabyrinth(matrix, exits, opts)
+    local w, h = matrix:size()
+    opts = opts or {}
+    local material = opts.material or TILE_SOLID
+    local seed = opts.seed or 111
+
+    -- Fill solid initially
+    for y = 1, h do
+        for x = 1, w do
+            matrix:set(x, y, material)
+        end
+    end
+
+    -- Carve 4-6 interconnected chambers as organic blobs
+    local chambers = opts.chambers or 5
+    local chamberPositions = {}
+    for i = 1, chambers do
+        local cx = math.floor(w * (0.15 + 0.7 * ((i - 1) / math.max(chambers - 1, 1))))
+        local cy = math.floor(h * (0.3 + 0.4 * smoothNoise(i * 7, seed, 2)))
+        local rx = 4 + math.floor(math.abs(smoothNoise(i * 11, seed + 100, 3)) * 3)
+        local ry = 3 + math.floor(math.abs(smoothNoise(i * 13, seed + 200, 3)) * 2)
+        carveBlob(matrix, cx, cy, rx, ry, w, h, 0.2)
+        table.insert(chamberPositions, {x = cx, y = cy})
+        -- Floor in each chamber
+        placePlatform(matrix, cx - rx + 1, cx + rx - 1, clamp(cy + ry - 1, 3, h - 2), material, w, h)
+    end
+
+    -- Connect adjacent chambers with narrow passages
+    for i = 1, #chamberPositions - 1 do
+        local a = chamberPositions[i]
+        local b = chamberPositions[i + 1]
+        -- Horizontal passage
+        carveHLine(matrix, math.min(a.x, b.x), math.max(a.x, b.x),
+                   math.floor((a.y + b.y) / 2), 1, w, h)
+        -- Vertical adjustment if needed
+        if math.abs(a.y - b.y) > 3 then
+            local midX = math.floor((a.x + b.x) / 2)
+            carveVLine(matrix, math.min(a.y, b.y), math.max(a.y, b.y), midX, 1, w, h)
+        end
+    end
+end
+
+--- "elevatorShaft" – Tall vertical room with platforms on alternating sides,
+--- designed for vertical traversal. Kirby elevator pattern.
+function patterns.elevatorShaft(matrix, exits, opts)
+    local w, h = matrix:size()
+    opts = opts or {}
+    local material = opts.material or TILE_SOLID
+    local seed = opts.seed or 123
+
+    -- All air
+    for y = 2, h - 1 do
+        for x = 2, w - 1 do
+            matrix:set(x, y, TILE_AIR)
+        end
+    end
+
+    -- Irregular side walls (not straight vertical lines)
+    for y = 2, h - 1 do
+        local leftWallW = 2 + math.floor(math.abs(smoothNoise(y, seed, 4)) * 3)
+        local rightWallW = 2 + math.floor(math.abs(smoothNoise(y, seed + 50, 4)) * 3)
+        for x = 1, clamp(leftWallW, 1, math.floor(w * 0.3)) do
+            matrix:set(x, y, material)
+        end
+        for x = clamp(w - rightWallW + 1, math.floor(w * 0.7), w), w do
+            matrix:set(x, y, material)
+        end
+    end
+
+    -- Floor
+    placePlatform(matrix, 2, w - 1, h - 1, material, w, h)
+    placePlatform(matrix, 2, w - 1, h, material, w, h)
+
+    -- Alternating platforms going up
+    local numPlats = math.floor(h / 5)
+    for i = 1, numPlats do
+        local py = h - 3 - i * 4
+        if py < 4 then break end
+        local goLeft = (i % 2 == 1)
+        local px1, px2
+        if goLeft then
+            px1 = 4
+            px2 = math.floor(w * 0.55)
+        else
+            px1 = math.floor(w * 0.45)
+            px2 = w - 4
+        end
+        -- Slightly curved platform
+        placeArchPlatform(matrix, px1, px2, py - 1, py, material, w, h)
+    end
+end
+
+--- "pitOfPits" – Kirby "pit of pits": large gap with narrow cliff islands.
+function patterns.pitOfPits(matrix, exits, opts)
+    local w, h = matrix:size()
+    opts = opts or {}
+    local material = opts.material or TILE_SOLID
+    local seed = opts.seed or 55
+
+    -- All air
+    for y = 2, h - 1 do
+        for x = 2, w - 1 do
+            matrix:set(x, y, TILE_AIR)
+        end
+    end
+
+    -- Left and right ground platforms (safe zones)
+    local floorY = h - 5
+    local leftEnd = math.floor(w * 0.15)
+    local rightStart = math.floor(w * 0.85)
+    for x = 2, leftEnd do
+        for y = floorY, h do
+            matrix:set(x, y, material)
+        end
+    end
+    for x = rightStart, w - 1 do
+        for y = floorY, h do
+            matrix:set(x, y, material)
+        end
+    end
+
+    -- Narrow cliff islands in the pit
+    local numIslands = 4 + math.floor(math.abs(smoothNoise(1, seed, 3)) * 2)
+    for i = 1, numIslands do
+        local ix = math.floor(leftEnd + (rightStart - leftEnd) * i / (numIslands + 1))
+        local islandW = 2 + math.floor(math.abs(smoothNoise(ix, seed + 100, 3)) * 2)
+        local islandY = floorY - math.floor(smoothNoise(ix, seed + 200, 4) * 3)
+        -- Small column island
+        for x = clamp(ix - islandW, 3, w - 2), clamp(ix + islandW, 3, w - 2) do
+            for y = clamp(islandY, 4, h - 2), clamp(islandY + 2, 4, h) do
+                matrix:set(x, y, material)
+            end
+        end
+    end
+end
+
+--------------------------------------------------------------------------------
 -- Pattern Registry
 --------------------------------------------------------------------------------
 
@@ -719,10 +1462,13 @@ patterns.CATEGORIES = {
     path      = { "serpentine", "zigzag", "loop", "branching", "spiral" },
     arena     = { "openArena", "tieredArena", "circularArena" },
     challenge = { "gauntlet", "staircase", "precisionGaps" },
-    puzzle    = { "dividedChambers", "switchMaze" },
+    puzzle    = { "dividedChambers", "switchMaze", "switchAndRun", "doorLabyrinth" },
     boss      = { "kirbyBossArena", "kirbyFinalBossArena", "bossCorridorApproach",
                   "normalBossArena", "multiBossArena", "asrielGodBossArena" },
     hub       = { "crossroads", "starHub" },
+    kirbyTerrain = { "greenGreens", "castleDedede", "iceCave", "rollingHills",
+                     "bomberCorridor", "boulderRun", "crumblingCliffs",
+                     "elevatorShaft", "pitOfPits" },
 }
 
 --- Flat list of all pattern names.
@@ -801,6 +1547,28 @@ function patterns.suggestPattern(difficulty, isBoss, isKirby)
                 return "bossCorridorApproach"
             else
                 return "normalBossArena"
+            end
+        end
+    end
+
+    -- Kirby non-boss rooms: prefer organic terrain patterns
+    if isKirby then
+        if difficulty >= 0.7 then
+            local pick = math.random()
+            if pick < 0.4 then return patterns.randomFrom("kirbyTerrain")
+            elseif pick < 0.7 then return patterns.randomFrom("challenge")
+            else return "bomberCorridor"
+            end
+        elseif difficulty >= 0.4 then
+            local pick = math.random()
+            if pick < 0.6 then return patterns.randomFrom("kirbyTerrain")
+            elseif pick < 0.85 then return patterns.randomFrom("puzzle")
+            else return patterns.randomFrom("path")
+            end
+        else
+            local pick = math.random()
+            if pick < 0.7 then return patterns.randomFrom("kirbyTerrain")
+            else return patterns.randomFrom("path")
             end
         end
     end

@@ -1,9 +1,9 @@
-using MaggyHelper.Entities;
-using MaggyHelper.NPCs;
-using BadelineDummy = MaggyHelper.Entities.BadelineDummy;
-using NPC = MaggyHelper.NPCs.NPC;
+using Celeste.Entities;
+using Celeste.NPCs;
+using BadelineDummy = Celeste.Entities.BadelineDummy;
+using NPC = Celeste.NPCs.NPC;
 
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
     /// <summary>
     /// Chapter 5 Master Suite cutscene - Oshiro's haunted mirror encounter

@@ -1,4 +1,4 @@
-namespace MaggyHelper.Triggers {
+namespace Celeste.Triggers {
     [CustomEntity(new string[] { "MaggyHelper/PinkPlatBerryCollectTrigger" })]
     [Monocle.Tracked]
     [HotReloadable]

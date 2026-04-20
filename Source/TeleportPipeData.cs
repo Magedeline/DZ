@@ -1,6 +1,6 @@
 using Microsoft.Xna.Framework;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     public partial class TeleportPipeData
     {

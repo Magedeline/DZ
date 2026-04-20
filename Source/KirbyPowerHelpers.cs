@@ -1,6 +1,6 @@
-using MaggyHelper.Extensions;
+using Celeste.Extensions;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// Helper class for performing Warper-style dash effects.

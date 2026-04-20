@@ -1,10 +1,10 @@
 using System;
 using System.Collections;
-using MaggyHelper.Entities;
+using Celeste.Entities;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper.Entities.SoulBoosts
+namespace Celeste.Entities.SoulBoosts
 {
     /// <summary>
     /// Blue Soul - Integrity
@@ -42,7 +42,7 @@ namespace MaggyHelper.Entities.SoulBoosts
             this.speedMultiplier = speedMultiplier;
         }
 
-        protected override IEnumerator ApplyAbilityStart(Celeste.Player player)
+        protected override IEnumerator ApplyAbilityStart(global::Celeste.Player player)
         {
             // Visual feedback
             Level level = Scene as Level;
@@ -53,7 +53,7 @@ namespace MaggyHelper.Entities.SoulBoosts
             yield return 0.1f;
         }
 
-        protected override IEnumerator ApplyAbilityEnd(Celeste.Player player)
+        protected override IEnumerator ApplyAbilityEnd(global::Celeste.Player player)
         {
             // Apply speed buff
             player.Add(new IntegrityBuff(AbilityDuration, speedMultiplier));

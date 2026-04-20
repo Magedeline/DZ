@@ -1,4 +1,4 @@
-namespace MaggyHelper.Entities;
+namespace Celeste.Entities;
 
 [Pooled]
 [Tracked]

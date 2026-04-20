@@ -1,8 +1,8 @@
 using System.Runtime.CompilerServices;
-using MaggyHelper.Cutscenes;
-using MaggyHelper.Entities;
+using Celeste.Cutscenes;
+using Celeste.Entities;
 
-namespace MaggyHelper.NPCs
+namespace Celeste.NPCs
 {
     [CustomEntity(ids: "MaggyHelper/NPC19_Gravestone")]
     [Tracked(true)]
@@ -50,7 +50,7 @@ namespace MaggyHelper.NPCs
             var level = Scene as global::Celeste.Level;
             if (level != null)
                 level.Session.SetFlag(Flag);
-            base.Scene.Add(new CS19_GravestoneSevenBirds(player, this, boostTarget));
+            base.Scene.Add(new CS19_Gravestone(player, this, boostTarget));
             talk.Enabled = false;
         }
     }

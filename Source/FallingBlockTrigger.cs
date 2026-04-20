@@ -1,4 +1,4 @@
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
   [CustomEntity(new string[] { "MaggyHelper/FallingBlockTrigger" })]
   [Tracked(false)]

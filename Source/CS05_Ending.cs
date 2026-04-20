@@ -4,11 +4,11 @@ using System.Runtime.CompilerServices;
 using FMOD.Studio;
 using Microsoft.Xna.Framework;
 using Monocle;
-using MaggyHelper.Entities;
-using AngyOshiro = MaggyHelper.Entities.AngyOshiro;
-using ResortRoofEnding = MaggyHelper.Entities.ResortRoofEnding;
+using Celeste.Entities;
+using AngyOshiro = Celeste.Entities.AngyOshiro;
+using ModRoofEnding = global::Celeste.Entities.ResortRoofEnding;
 
-namespace MaggyHelper.Cutscenes;
+namespace Celeste.Cutscenes;
 
 public class CS05_Ending : CutsceneEntity
 {
@@ -31,7 +31,7 @@ public class CS05_Ending : CutsceneEntity
 
     public const string Flag = "oshiroEndingalt";
 
-    private ResortRoofEnding roof;
+    private ModRoofEnding roof;
 
     private AngyOshiro angyOshiro;
 
@@ -47,7 +47,7 @@ public class CS05_Ending : CutsceneEntity
 
     private bool smashRumble;
     [MethodImpl(MethodImplOptions.NoInlining)]
-    public CS05_Ending(ResortRoofEnding roof, Player player)
+    public CS05_Ending(ModRoofEnding roof, Player player)
         : base(fadeInOnSkip: false, endingChapterAfter: true)
     {
         this.roof = roof;

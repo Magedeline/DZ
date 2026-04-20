@@ -1,7 +1,7 @@
 #nullable enable
-using Celeste.Mod.Meta;
+using global::Celeste.Mod.Meta;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// Maggy3D - Custom mountain marker character similar to Maddy3D

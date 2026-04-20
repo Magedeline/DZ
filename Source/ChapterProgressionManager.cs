@@ -1,4 +1,4 @@
-namespace MaggyHelper;
+namespace Celeste;
 
 /// <summary>
 /// Hardcoded chapter progression rules for late-game chapters.
@@ -6,6 +6,7 @@ namespace MaggyHelper;
 /// - Ch15 completion => close game, unlock Ch16 on next launch.
 /// - Ch18 outro close => unlock Ch19 on next launch.
 /// - Ch19 completion => close game, unlock Ch20 on next launch.
+/// - Ch20 completion => close game, unlock Ch21 on next launch.
 /// </summary>
 public static class ChapterProgressionManager
 {
@@ -13,6 +14,7 @@ public static class ChapterProgressionManager
     private static readonly string Ch16Sid = AreaModeExtender.BuildASideSID("16_Corruption");
     private static readonly string Ch19Sid = AreaModeExtender.BuildASideSID("19_Space");
     private static readonly string Ch20Sid = AreaModeExtender.BuildASideSID("20_TheEnd");
+    private static readonly string Ch21Sid = AreaModeExtender.BuildASideSID("lastlevel");
 
     private static bool _hooked;
     private static bool _processedLaunchPendingUnlocks;
@@ -78,9 +80,6 @@ public static class ChapterProgressionManager
         if (mode != LevelExit.Mode.Completed || session?.Area.SID == null)
             return;
 
-        if (!session.Area.SID.Equals(Ch15Sid, StringComparison.OrdinalIgnoreCase))
-            return;
-
         if ((int)session.Area.Mode != 0)
             return;
 
@@ -88,13 +87,30 @@ public static class ChapterProgressionManager
         if (save == null)
             return;
 
-        save.CompleteChapter(Ch15Sid);
-        save.PendingUnlockChapter16OnRestart = true;
+        if (session.Area.SID.Equals(Ch15Sid, StringComparison.OrdinalIgnoreCase))
+        {
+            save.CompleteChapter(Ch15Sid);
+            save.PendingUnlockChapter16OnRestart = true;
 
-        Logger.Log(LogLevel.Info, "MaggyHelper",
-            "Chapter 15 completed: queued Chapter 16 unlock for next launch and closing game now.");
+            Logger.Log(LogLevel.Info, "MaggyHelper",
+                "Chapter 15 completed: queued Chapter 16 unlock for next launch and closing game now.");
 
-        Engine.Instance.Exit();
+            Engine.Instance.Exit();
+            return;
+        }
+
+        if (session.Area.SID.Equals(Ch20Sid, StringComparison.OrdinalIgnoreCase))
+        {
+            save.CompleteChapter(Ch20Sid);
+            save.TrueFinaleUnlocked = true;
+            save.PendingUnlockChapter21OnRestart = true;
+
+            Logger.Log(LogLevel.Info, "MaggyHelper",
+                "Chapter 20 completed: queued Chapter 21 unlock for next launch and closing game now.");
+
+            Engine.Instance.Exit();
+            return;
+        }
     }
 
     private static void ProcessPendingUnlocks()
@@ -129,6 +145,15 @@ public static class ChapterProgressionManager
             save.PendingUnlockChapter20OnRestart = false;
             Logger.Log(LogLevel.Info, "MaggyHelper", "Processed pending unlock: Chapter 20");
         }
+
+        if (save.PendingUnlockChapter21OnRestart)
+        {
+            UnlockChapter(Ch21Sid);
+            save.UnlockedChapter21 = true;
+            save.TrueFinaleUnlocked = true;
+            save.PendingUnlockChapter21OnRestart = false;
+            Logger.Log(LogLevel.Info, "MaggyHelper", "Processed pending unlock: Chapter 21");
+        }
     }
 
     private static void ApplyProgressionUnlocks(MaggyHelperModuleSaveData save)
@@ -147,6 +172,14 @@ public static class ChapterProgressionManager
             save.VoidMoonUnlocked = true;
             save.PendingUnlockChapter20OnRestart = false;
             Logger.Log(LogLevel.Info, "MaggyHelper", "Final DLC progression unlocked Chapter 20.");
+        }
+
+        if (save.TrueFinaleUnlocked && !MaggySaveFacade.IsChapterUnlocked(Ch21Sid))
+        {
+            UnlockChapter(Ch21Sid);
+            save.UnlockedChapter21 = true;
+            save.PendingUnlockChapter21OnRestart = false;
+            Logger.Log(LogLevel.Info, "MaggyHelper", "True finale progression unlocked Chapter 21.");
         }
     }
 
@@ -210,6 +243,10 @@ public static class ChapterProgressionManager
             return !MaggySaveFacade.IsChapterUnlocked(Ch20Sid)
                 && save?.FinalDlcContentUnlocked != true;
 
+        if (sid.Equals(Ch21Sid, StringComparison.OrdinalIgnoreCase))
+            return !MaggySaveFacade.IsChapterUnlocked(Ch21Sid)
+                && save?.TrueFinaleUnlocked != true;
+
         return false;
     }
 
@@ -253,7 +290,7 @@ public static class ChapterProgressionManager
         return slash > 0 ? sid[..slash] : sid;
     }
 
-    [Command("maggy_chapter_test", "Test late chapter unlock flow. Usage: maggy_chapter_test [status|queue16|queue19|queue20|unlock16|unlock19|unlock20|apply]")]
+    [Command("maggy_chapter_test", "Test late chapter unlock flow. Usage: maggy_chapter_test [status|queue16|queue19|queue20|queue21|unlock16|unlock19|unlock20|unlock21|apply]")]
     private static void CmdChapterTest(string action = "status")
     {
         var save = MaggyHelperModule.SaveData;
@@ -282,6 +319,11 @@ public static class ChapterProgressionManager
                 Engine.Commands?.Log("[MaggyHelper] Queued Chapter 20 unlock on restart.");
                 break;
 
+            case "queue21":
+                save.PendingUnlockChapter21OnRestart = true;
+                Engine.Commands?.Log("[MaggyHelper] Queued Chapter 21 unlock on restart.");
+                break;
+
             case "unlock16":
                 UnlockChapter(Ch16Sid);
                 save.PendingUnlockChapter16OnRestart = false;
@@ -304,6 +346,14 @@ public static class ChapterProgressionManager
                 Engine.Commands?.Log("[MaggyHelper] Unlocked Chapter 20 immediately.");
                 break;
 
+            case "unlock21":
+                UnlockChapter(Ch21Sid);
+                save.UnlockedChapter21 = true;
+                save.TrueFinaleUnlocked = true;
+                save.PendingUnlockChapter21OnRestart = false;
+                Engine.Commands?.Log("[MaggyHelper] Unlocked Chapter 21 immediately.");
+                break;
+
             case "apply":
                 ProcessPendingUnlocks();
                 EnforceChapterSelectLock();
@@ -318,10 +368,11 @@ public static class ChapterProgressionManager
         bool unlocked16 = MaggySaveFacade.IsChapterUnlocked(Ch16Sid);
         bool unlocked19 = MaggySaveFacade.IsChapterUnlocked(Ch19Sid);
         bool unlocked20 = MaggySaveFacade.IsChapterUnlocked(Ch20Sid);
+        bool unlocked21 = MaggySaveFacade.IsChapterUnlocked(Ch21Sid);
 
         Engine.Commands?.Log(
-            $"[MaggyHelper] status: unlocked16={unlocked16}, unlocked19={unlocked19}, unlocked20={unlocked20}, " +
-            $"pending16={save.PendingUnlockChapter16OnRestart}, pending19={save.PendingUnlockChapter19OnRestart}, pending20={save.PendingUnlockChapter20OnRestart}");
+            $"[MaggyHelper] status: unlocked16={unlocked16}, unlocked19={unlocked19}, unlocked20={unlocked20}, unlocked21={unlocked21}, " +
+            $"pending16={save.PendingUnlockChapter16OnRestart}, pending19={save.PendingUnlockChapter19OnRestart}, pending20={save.PendingUnlockChapter20OnRestart}, pending21={save.PendingUnlockChapter21OnRestart}");
     }
 
     [Command("maggy_unlock_dside", "Unlock D-Side (or DX-Side) for all Maggy chapters. Usage: maggy_unlock_dside [dside|dxside|status]")]

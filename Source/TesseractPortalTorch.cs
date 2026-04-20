@@ -5,7 +5,7 @@
 // Assembly location: C:\Users\User\OneDrive\Desktop\Celeste!\Celeste\Celeste.exe
 
 #nullable disable
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
   public class TesseractPortalTorch : Entity
   {

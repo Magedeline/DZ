@@ -1,9 +1,9 @@
 #nullable enable
 
-using MaggyHelper.Cutscenes;
+using Celeste.Cutscenes;
 using FMOD.Studio;
 
-namespace MaggyHelper.UI
+namespace Celeste.UI
 {
     /// <summary>
     /// Custom title screen overlay that appears when a new player launches the game

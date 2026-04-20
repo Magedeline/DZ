@@ -1,4 +1,4 @@
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// Darkener Fountain entity - creates a fountain effect that darkens or transforms the environment

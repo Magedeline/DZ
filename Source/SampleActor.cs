@@ -1,4 +1,4 @@
-namespace MaggyHelper.Entities;
+namespace Celeste.Entities;
 
 [CustomEntity(ids: "MaggyHelper/SampleActor")]
 public class SampleActor : Actor

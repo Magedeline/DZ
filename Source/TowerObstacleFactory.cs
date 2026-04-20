@@ -1,6 +1,6 @@
-using MaggyHelper.Utils;
+using Celeste.Utils;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// Factory entity that creates sets of obstacles for the 3D Tower

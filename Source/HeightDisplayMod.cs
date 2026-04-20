@@ -1,4 +1,4 @@
-namespace MaggyHelper
+namespace Celeste
 {
 	// Token: 0x020001ED RID: 493
 	[HotReloadable]
@@ -106,8 +106,10 @@ namespace MaggyHelper
 				int num = this.index + 1;
 				if (num <= 5)
 				{
+					session.Audio.Music.Event = "event:/desolozantas/music/lvl9/main";
 					session.Audio.Music.Progress = num;
-				}				else
+				}
+				else
 				{
 					session.Audio.Music.Event = "event:/desolozantas/music/lvl9/final_ascent";
 				}

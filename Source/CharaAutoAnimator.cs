@@ -1,4 +1,4 @@
-namespace MaggyHelper
+namespace Celeste
 {
     /// <summary>
     /// Auto-animator for Chara character that syncs sprite animations with portrait expressions,

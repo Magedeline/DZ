@@ -1,7 +1,7 @@
-using MaggyHelper.Entities;
+using Celeste.Entities;
 using Facings = Celeste.Facings;
 
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
     /// <summary>
     /// Cutscene for Chapter 20: Fake Madeline and Badeline

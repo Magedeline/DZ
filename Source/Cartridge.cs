@@ -1,7 +1,7 @@
 using System.Runtime.CompilerServices;
 using FMOD.Studio;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     [CustomEntity(ids: "MaggyHelper/Cartridge")]
     [HotReloadable]
@@ -261,7 +261,7 @@ namespace MaggyHelper.Entities
                 Audio.Play(collectSfx, Position);
                 
                 collected = true;
-                Celeste.Celeste.Freeze(0.15f); // Longer freeze for more impact
+                CelesteGame.Freeze(0.15f); // Longer freeze for more impact
                 Add(new Coroutine(CollectRoutine(player)));
             }
         }

@@ -1,5 +1,5 @@
 #nullable disable
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// A decorative power-source number display that shows a numbered indicator

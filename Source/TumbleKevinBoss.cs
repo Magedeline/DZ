@@ -1,6 +1,6 @@
-using MaggyHelper.Helpers;
+using Celeste.Helpers;
 
-namespace MaggyHelper.Entities.Bosses
+namespace Celeste.Entities.Bosses
 {
     /// <summary>
     /// Tumble Kevin Boss - standalone tumbling crush-block fight for future DX chapter use.

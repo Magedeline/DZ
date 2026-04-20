@@ -1,6 +1,6 @@
 // Everest mods typically expose the 'On' hooks via this namespace
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     [CustomEntity(ids: "MaggyHelper/Maddy_crystal")]
     [Tracked(true)]

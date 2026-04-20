@@ -1,10 +1,10 @@
 using System.Globalization;
-using MaggyHelper.Helpers;
-using MaggyHelper.Cutscenes;
-using MaggyHelper.Entities.Effects;
-using MaggyHelper.Entities.Projectiles;
+using Celeste.Helpers;
+using Celeste.Cutscenes;
+using Celeste.Entities.Effects;
+using Celeste.Entities.Projectiles;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// AsrielGodBoss - A ConqueredPeak/BadelineBoss style boss with pattern-based attacks.

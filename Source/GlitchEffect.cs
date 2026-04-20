@@ -1,4 +1,4 @@
-namespace MaggyHelper.Effects.ShaderEffects
+namespace Celeste.Effects.ShaderEffects
 {
     /// <summary>
     /// Applies glitch/corruption visual effects with randomized pixelation and RGB offset.

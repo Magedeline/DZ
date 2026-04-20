@@ -1,10 +1,10 @@
 using System;
 using System.Collections;
-using MaggyHelper.Entities;
+using Celeste.Entities;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper.NPCs
+namespace Celeste.NPCs
 {
     [CustomEntity(ids: "MaggyHelper/NPC10_Badeline")]
     public class Npc10Badeline : Entity

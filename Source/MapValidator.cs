@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Monocle;
 using Microsoft.Xna.Framework;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// Phase 6: Map Validator - Validates player entity existence and type matching.

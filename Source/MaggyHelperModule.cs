@@ -1,6 +1,6 @@
-﻿using System;
-using Celeste.Mod.MaggyHelper.BossesExample;
-using MaggyHelper.Cutscenes;
+using System;
+using global::Celeste.Mod.MaggyHelper.BossesExample;
+using Celeste.Cutscenes;
 using Monocle;
 
 namespace Celeste.Mod.MaggyHelper
@@ -29,7 +29,7 @@ namespace Celeste.Mod.MaggyHelper
         // Shared resources
         public static SpriteBank SpriteBank { get; set; }
         public static ParticleType P_StarExplosion { get; set; }
-        public static global::MaggyHelper.ProphecyFontRenderer ProphecyFont { get; private set; }
+        public static global::Celeste.ProphecyFontRenderer ProphecyFont { get; private set; }
 
         public MaggyHelperModule()
         {
@@ -39,18 +39,24 @@ namespace Celeste.Mod.MaggyHelper
         public override void Load()
         {
             BossesExampleModule.Load();
-            global::MaggyHelper.AreaMapData.Initialize();
-            global::MaggyHelper.ChapterActRegistry.Initialize();
-            global::MaggyHelper.BossRosterRegistry.Initialize();
-            global::MaggyHelper.AreaModeExtender.Load();
-            global::MaggyHelper.AreaCompleteHooks.Load();
-            global::MaggyHelper.IntroRemixHooks.Load();
-            global::MaggyHelper.MonoModHooks.Load();
-            global::MaggyHelper.VignetteHooks.Load();
-            global::MaggyHelper.Cutscenes.IntroWarning.Load();
+            global::Celeste.AreaMapData.Initialize();
+            global::Celeste.ChapterActRegistry.Initialize();
+            global::Celeste.BossRosterRegistry.Initialize();
+            global::Celeste.AreaModeExtender.Load();
+            global::Celeste.AreaCompleteHooks.Load();
+            global::Celeste.IntroRemixHooks.Load();
+            global::Celeste.MonoModHooks.Load();
+            global::Celeste.VignetteHooks.Load();
+            global::Celeste.TitleScreen_ExtHook.Load();
+            global::Celeste.OverworldMusicManager.Load();
+            global::Celeste.MountainOverworldManager.Load();
+            global::Celeste.Cutscenes.IntroWarning.Load();
+
+            global::Celeste.ChapterMasteryTracker.Load();
+            global::Celeste.CosmicChapterPanelHook.Load();
 
             // Kirby mechanics are layered onto the vanilla player via a custom state.
-            global::MaggyHelper.KirbyPlayerStateController.Load();
+            global::Celeste.KirbyPlayerStateController.Load();
 
             // Hook level exit to clean up static state
             Everest.Events.Level.OnExit += OnLevelExit;
@@ -62,21 +68,26 @@ namespace Celeste.Mod.MaggyHelper
 
         private static void OnLevelExit(Level level, LevelExit exit, LevelExit.Mode mode, Session session, HiresSnow snow)
         {
-            global::MaggyHelper.Effects.IceEffects.ClearAll();
-            global::MaggyHelper.Effects.LightningEffects.ClearAll();
-            global::MaggyHelper.Effects.ElementalEffectsManager.StopAllEffects();
-            global::MaggyHelper.Entities.EnemyBossManager.Reset();
+            global::Celeste.Effects.IceEffects.ClearAll();
+            global::Celeste.Effects.LightningEffects.ClearAll();
+            global::Celeste.Effects.ElementalEffectsManager.StopAllEffects();
+            global::Celeste.Entities.EnemyBossManager.Reset();
         }
 
         public override void Unload()
         {
-            global::MaggyHelper.KirbyPlayerStateController.Unload();
-            global::MaggyHelper.Cutscenes.IntroWarning.Unload();
-            global::MaggyHelper.VignetteHooks.Unload();
-            global::MaggyHelper.MonoModHooks.Unload();
-            global::MaggyHelper.IntroRemixHooks.Unload();
-            global::MaggyHelper.AreaCompleteHooks.Unload();
-            global::MaggyHelper.AreaModeExtender.Unload();
+            global::Celeste.CosmicChapterPanelHook.Unload();
+            global::Celeste.ChapterMasteryTracker.Unload();
+            global::Celeste.KirbyPlayerStateController.Unload();
+            global::Celeste.MountainOverworldManager.Unload();
+            global::Celeste.OverworldMusicManager.Unload();
+            global::Celeste.TitleScreen_ExtHook.Unload();
+            global::Celeste.Cutscenes.IntroWarning.Unload();
+            global::Celeste.VignetteHooks.Unload();
+            global::Celeste.MonoModHooks.Unload();
+            global::Celeste.IntroRemixHooks.Unload();
+            global::Celeste.AreaCompleteHooks.Unload();
+            global::Celeste.AreaModeExtender.Unload();
             BossesExampleModule.Unload();
 
             // Unhook level exit cleanup
@@ -92,7 +103,7 @@ namespace Celeste.Mod.MaggyHelper
         {
             base.LoadContent(firstLoad);
             BossesExampleModule.LoadContent(firstLoad);
-            ProphecyFont = new global::MaggyHelper.ProphecyFontRenderer();
+            ProphecyFont = new global::Celeste.ProphecyFontRenderer();
         }
 
         public static bool IsChapter17EpilogueCompleted()

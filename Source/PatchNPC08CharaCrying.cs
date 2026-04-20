@@ -1,7 +1,7 @@
 #nullable disable
 using System.Diagnostics;
 
-namespace MaggyHelper
+namespace Celeste
 {
     /// <summary>
     /// Modifies the method to remove the hardcoded FMOD event string used for playing the footstep sound effect.

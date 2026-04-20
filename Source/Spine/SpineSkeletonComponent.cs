@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Monocle;
 using Spine;
 
-namespace MaggyHelper.Entities;
+namespace Celeste.Entities;
 
 /// <summary>
 /// Monocle Component that loads, updates, and renders a Spine skeleton.

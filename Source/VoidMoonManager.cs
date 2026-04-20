@@ -1,7 +1,7 @@
 #nullable enable
-using MaggyHelper.Entities;
+using Celeste.Entities;
 
-namespace MaggyHelper
+namespace Celeste
 {
     /// <summary>
     /// Manages the Void Moon (<see cref="MountainMoonAlt"/> + <see cref="AstralBirthVoidOverlay"/>)

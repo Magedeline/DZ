@@ -1,6 +1,6 @@
-using MaggyHelper.Cutscenes;
+using Celeste.Cutscenes;
 
-namespace MaggyHelper.NPCs;
+namespace Celeste.NPCs;
     [CustomEntity(ids: "MaggyHelper/NPC05_Magolor_Escaping")]
     public class NPC05_Magolor_Escaping : NPC
 {

@@ -1,12 +1,12 @@
 using System.Globalization;
-using MaggyHelper.Helpers;
-using MaggyHelper.Cutscenes;
-using MaggyHelper.Entities.Effects;
-using MaggyHelper.Entities.Projectiles;
-using MaggyHelper.Extensions;
+using Celeste.Helpers;
+using Celeste.Cutscenes;
+using Celeste.Entities.Effects;
+using Celeste.Entities.Projectiles;
+using Celeste.Extensions;
 using FMOD.Studio;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// SiamoZeroFinalBoss - A ConqueredPeak/BadelineBoss style boss with pattern-based attacks.
@@ -242,7 +242,7 @@ namespace MaggyHelper.Entities
         
         // Arena bounds
         private float arenaRadius = 400f;
-        private MaggyHelper.Effects.ElsTrueFinalBackdrop bossBg;
+        private global::Celeste.Effects.ElsTrueFinalBackdrop bossBg;
         
         // Shockwave tracking for cleanup
         private Coroutine shockwaveCoroutine;
@@ -505,7 +505,7 @@ namespace MaggyHelper.Entities
             this.level = this.SceneAs<Level>();
             
             // Initialize the live map backdrop used by the encounter
-            this.bossBg = this.level.Background.Get<MaggyHelper.Effects.ElsTrueFinalBackdrop>();
+            this.bossBg = this.level.Background.Get<global::Celeste.Effects.ElsTrueFinalBackdrop>();
             
             if (this.patternIndex == 0)
             {
@@ -1160,7 +1160,7 @@ namespace MaggyHelper.Entities
         
         #region Player Collision
         
-        public void OnPlayer(Celeste.Player player)
+        public void OnPlayer(global::Celeste.Player player)
         {
             if (GetActiveBossSprite() == null && Sprite == null)
                 return;
@@ -1229,7 +1229,7 @@ namespace MaggyHelper.Entities
         }
 
         
-        private IEnumerator MoveSequence(Celeste.Player player, bool lastHit)
+        private IEnumerator MoveSequence(global::Celeste.Player player, bool lastHit)
         {
             SiamoZeroFinalBoss finalBoss = this;
             if (lastHit)

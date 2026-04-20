@@ -1,7 +1,7 @@
 #nullable disable
-using MaggyHelper.Cutscenes;
+using Celeste.Cutscenes;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     [CustomEntity(new string[] { "MaggyHelper/RalseiMirror" })]
     public class RalseiMirror : Entity

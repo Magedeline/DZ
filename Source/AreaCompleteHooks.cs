@@ -1,7 +1,7 @@
-namespace MaggyHelper;
+namespace Celeste;
 
 using System.Xml;
-using Celeste.Mod.Meta;
+using global::Celeste.Mod.Meta;
 using MonoMod.Utils;
 
 /// <summary>

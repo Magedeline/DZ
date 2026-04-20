@@ -1,4 +1,4 @@
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     [CustomEntity(ids: "MaggyHelper/SnowBerry")]
     [Tracked]
@@ -78,7 +78,7 @@ namespace MaggyHelper.Entities
             }
         }
 
-        private void OnPlayer(Celeste.Player player)
+        private void OnPlayer(global::Celeste.Player player)
         {
             if (!collected && follower.Leader == null)
             {

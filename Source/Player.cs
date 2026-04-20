@@ -5,28 +5,28 @@ using System.Runtime.CompilerServices;
 using Monocle;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using MaggyHelper.Entities.Bosses;
+using Celeste.Entities.Bosses;
 
 /// Please do not remove the player class from the mod, even if it seems like it's not doing much. The Player class is used as a base for all player-related functionality, and removing it would cause the mod to break. If you want to disable certain features, please do so through the mod's settings or by commenting out specific code sections, rather than removing the entire Player class.
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
-    [CustomEntity("MaggyHelper/Player", "MaggyHelper/KirbyPlayer", "maggyhelper/player", "maggyhelperp/layer")]
+    [CustomEntity("MaggyHelper/Player")]
     [Tracked(true)]
     [HotReloadable]
     public class Player : Actor
     {
         /// <summary>
-        /// Reinterprets this reference as Celeste.Player without a runtime type check.
-        /// Required because MaggyHelper.Entities.Player extends Actor directly,
-        /// but many vanilla APIs expect Celeste.Player.
+        /// Reinterprets this reference as global::Celeste.Player without a runtime type check.
+        /// Required because global::Celeste.Entities.Player extends Actor directly,
+        /// but many vanilla APIs expect global::Celeste.Player.
         /// </summary>
-        private Celeste.Player SelfPlayer
+        private global::Celeste.Player SelfPlayer
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get
             {
                 Player self = this;
-                return Unsafe.As<Player, Celeste.Player>(ref self);
+                return Unsafe.As<Player, global::Celeste.Player>(ref self);
             }
         }
 
@@ -693,13 +693,21 @@ namespace MaggyHelper.Entities
 
             // Initialize player selection system
             PlayerSelectionManager.GetOrCreate(level);
-            PlayerHealthManager.GetOrCreate(level, maxHealth);
-
-            // Phase 5: Initialize health bar UI
-            if (KirbyModeActive && level.Tracker?.GetEntity<HealthBarUI>() == null)
+            var healthManager = PlayerHealthManager.GetOrCreate(level, maxHealth);
+            if (KirbyModeActive)
             {
-                level.Add(new HealthBarUI(level));
+                healthManager.EnableKirbyMode(maxHealth);
+                var ui = UniversalHealthUI.GetOrCreate(level);
+                ui.ShowPlayerHealth = true;
             }
+            else
+            {
+                healthManager.DisableKirbyMode();
+                healthManager.SetMaxHP(maxHealth);
+            }
+
+            maxHealth = healthManager.MaxHP;
+            currentHealth = healthManager.CurrentHP;
 
             // Log which player type is active (for debugging)
             var selectedPlayer = PlayerSelectionManager.GetSelectedPlayer();
@@ -3843,8 +3851,8 @@ namespace MaggyHelper.Entities
             dashStartedOnGround = onGround;
             launched = false;
 
-            if (Engine.TimeRate > 0.25f)
-                Celeste.Celeste.Freeze(.05f);
+            if (CelesteGame.TimeRate > 0.25f)
+                CelesteGame.Freeze(.05f);
             dashCooldownTimer = DashCooldown;
             dashRefillCooldownTimer = DashRefillCooldown;
             StartedDashing = true;
@@ -4234,7 +4242,7 @@ namespace MaggyHelper.Entities
             calledDashEvents = false;
             dashStartedOnGround = false;
 
-            Celeste.Celeste.Freeze(.05f);
+            CelesteGame.Freeze(.05f);
             Dust.Burst(Position, Calc.Angle(-DashDir), 8);
             dashCooldownTimer = DashCooldown;
             dashRefillCooldownTimer = DashRefillCooldown;
@@ -4380,7 +4388,7 @@ namespace MaggyHelper.Entities
         public Vector2 ExplodeLaunch(Vector2 from, bool snapUp = true)
         {
             Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
-            Celeste.Celeste.Freeze(.1f);
+            CelesteGame.Freeze(.1f);
             launchApproachX = null;
 
             Vector2 normal = (Center - from).SafeNormalize(-Vector2.UnitY);
@@ -4634,7 +4642,7 @@ namespace MaggyHelper.Entities
                 }
                 else if (dreamDashCanEndTimer <= 0)
                 {
-                    Celeste.Celeste.Freeze(.05f);
+                    CelesteGame.Freeze(.05f);
 
                     if (Input.Jump.Pressed && DashDir.X != 0)
                     {
@@ -5395,7 +5403,7 @@ namespace MaggyHelper.Entities
                 hit.Destroy();
                 level.Shake();
                 Input.Rumble(RumbleStrength.Medium, RumbleLength.Medium);
-                Celeste.Celeste.Freeze(0.01f);
+                CelesteGame.Freeze(0.01f);
             }
 
             return StReflectionFall;
@@ -5442,7 +5450,7 @@ namespace MaggyHelper.Entities
                 level.UnloadLevel();
                 level.Session.Level = "00";
                 level.Session.RespawnPoint = level.GetSpawnPoint(new Vector2(level.Bounds.Left, level.Bounds.Bottom));
-                level.LoadLevel((Celeste.Player.IntroTypes)IntroTypes.None);
+                level.LoadLevel((global::Celeste.Player.IntroTypes)IntroTypes.None);
                 
                 FallEffects.Show(false);
 
@@ -5919,7 +5927,7 @@ namespace MaggyHelper.Entities
             dashChainTimer = .5f;
             launched = false;
 
-            Celeste.Celeste.Freeze(.03f);
+            CelesteGame.Freeze(.03f);
             Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
             level.Displacement.AddBurst(Center, .4f, 8, 64, .5f, Ease.QuadOut, Ease.QuadOut);
 
@@ -6032,7 +6040,7 @@ namespace MaggyHelper.Entities
                 DealCombatDamageInRadius(Center, CombatSlashRange * 1.5f, CombatSlashDamage * 2);
                 comboCount = 0;
 
-                Celeste.Celeste.Freeze(.05f);
+                CelesteGame.Freeze(.05f);
                 Sprite.Scale = new Vector2(.6f, 1.4f);
             }
 
@@ -6096,7 +6104,7 @@ namespace MaggyHelper.Entities
 
             // impact
             Speed.Y = 0;
-            Celeste.Celeste.Freeze(.05f);
+            CelesteGame.Freeze(.05f);
             level.DirectionalShake(Vector2.UnitY, GroundPoundShakeTime);
             Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
             level.Displacement.AddBurst(BottomCenter, .5f, 4, 64, .5f, Ease.QuadOut, Ease.QuadOut);
@@ -6385,7 +6393,7 @@ namespace MaggyHelper.Entities
             Sprite.Play(PlayerSprite.Dash);
             Sprite.Scale = new Vector2(.6f, 1.4f);
 
-            Celeste.Celeste.Freeze(.04f);
+            CelesteGame.Freeze(.04f);
             Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
         }
 
@@ -6545,11 +6553,27 @@ namespace MaggyHelper.Entities
             if (maxDashes >= 3 && maxDashes <= MultiDashMaxCount)
                 MaxDashOverride = maxDashes;
             kirbyHasInhaledEnemy = false;
+
+            if (level != null)
+            {
+                var healthManager = PlayerHealthManager.GetOrCreate(level, maxHealth);
+                healthManager.EnableKirbyMode(maxHealth);
+                var ui = UniversalHealthUI.GetOrCreate(level);
+                ui.ShowPlayerHealth = true;
+                maxHealth = healthManager.MaxHP;
+                currentHealth = healthManager.CurrentHP;
+            }
+
+            if (MaggyHelperModule.Session != null)
+            {
+                MaggyHelperModule.Session.IsKirbyModeActive = true;
+            }
+
             RefillDash();
         }
         public bool IsKirbyMode()
         {
-            return KirbyModeActive;
+            return KirbyModeActive || MaggyHelperModule.Session?.IsKirbyModeActive == true;
         }
 
         public void SetPowerState(KirbyMode.KirbyPowerState powerState)
@@ -6569,6 +6593,15 @@ namespace MaggyHelper.Entities
                 return;
             }
 
+            if (level != null)
+            {
+                var healthManager = PlayerHealthManager.GetOrCreate(level, maxHealth);
+                healthManager.Heal(amount);
+                maxHealth = healthManager.MaxHP;
+                currentHealth = healthManager.CurrentHP;
+                return;
+            }
+
             currentHealth = Math.Min(maxHealth, currentHealth + amount);
         }
 
@@ -6581,6 +6614,16 @@ namespace MaggyHelper.Entities
             CombatEnabled = false;
             MaxDashOverride = -1;
             kirbyHasInhaledEnemy = false;
+
+            if (level != null)
+            {
+                PlayerHealthManager.GetOrCreate(level, maxHealth).DisableKirbyMode();
+            }
+
+            if (MaggyHelperModule.Session != null)
+            {
+                MaggyHelperModule.Session.IsKirbyModeActive = false;
+            }
         }
 
         /// <summary>

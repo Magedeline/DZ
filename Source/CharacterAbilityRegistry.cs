@@ -1,6 +1,6 @@
-using global::MaggyHelper.Extensions.Core;
+using global::Celeste.Extensions.Core;
 
-namespace MaggyHelper
+namespace Celeste
 {
     /// <summary>
     /// Registry for character abilities and data.

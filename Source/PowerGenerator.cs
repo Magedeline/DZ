@@ -1,5 +1,5 @@
 #nullable disable
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     [CustomEntity(new string[] { "MaggyHelper/PowerGenerator" })]
     public class PowerGenerator : Solid
@@ -27,6 +27,9 @@ namespace MaggyHelper.Entities
         private bool spikesRight;
         private bool spikesUp;
         private bool spikesDown;
+
+        private const string COUNTER_TOTAL = "ch19_power_generators_total";
+        private const string COUNTER_BROKEN = "ch19_power_generators_broken";
 
         // --- ADDED: end parameter ---
         private Vector2 end;
@@ -126,6 +129,70 @@ namespace MaggyHelper.Entities
             {
                 this.health = 5;
             }
+
+            // Keep blackhole visuals in sync when entering/re-entering rooms.
+            RefreshBlackholeFromGeneratorProgress(scene as Level);
+        }
+
+        /// <summary>
+        /// Recomputes generator break progression and applies it to all RainbowBlackholeBg backdrops.
+        /// </summary>
+        public static void RefreshBlackholeFromGeneratorProgress(Level level)
+        {
+            if (level?.Session == null)
+                return;
+
+            int broken = Math.Max(0, level.Session.GetCounter(COUNTER_BROKEN));
+            int trackedTotal = Math.Max(0, level.Session.GetCounter(COUNTER_TOTAL));
+
+            int active = 0;
+            List<Entity> trackedGenerators = null;
+            try
+            {
+                trackedGenerators = level.Tracker.GetEntities<PowerGenerator>();
+            }
+            catch (System.Collections.Generic.KeyNotFoundException)
+            {
+                // If the tracker has no entry for this type yet, treat as no active generators.
+            }
+
+            if (trackedGenerators != null)
+            {
+                foreach (Entity entity in trackedGenerators)
+                {
+                    if (entity is PowerGenerator generator && generator.Collidable && generator.health > 0)
+                        active++;
+                }
+            }
+
+            int total = Math.Max(trackedTotal, broken + active);
+            if (total > 0)
+                level.Session.SetCounter(COUNTER_TOTAL, total);
+
+            float progress = total <= 0 ? 0f : MathHelper.Clamp((float)broken / total, 0f, 1f);
+
+            foreach (Backdrop backdrop in level.Background.Backdrops)
+            {
+                if (backdrop is RainbowBlackholeBg blackholeBg)
+                    blackholeBg.SetGeneratorBreakProgress(progress);
+            }
+
+            foreach (Backdrop backdrop in level.Foreground.Backdrops)
+            {
+                if (backdrop is RainbowBlackholeBg blackholeBg)
+                    blackholeBg.SetGeneratorBreakProgress(progress);
+            }
+        }
+
+        private void RegisterPermanentBreakProgress(Level level)
+        {
+            if (level?.Session == null)
+                return;
+
+            int broken = Math.Max(0, level.Session.GetCounter(COUNTER_BROKEN)) + 1;
+            level.Session.SetCounter(COUNTER_BROKEN, broken);
+
+            RefreshBlackholeFromGeneratorProgress(level);
         }
 
         public DashCollisionResults Dashed(global::Celeste.Player player, Vector2 dir)
@@ -149,7 +216,7 @@ namespace MaggyHelper.Entities
                     // Play multiple hits sound for subsequent hits
                     Audio.Play("event:/desolozantas/final_content/game/19_the_end/powergenerator_hit", this.Position);
                 }
-                Celeste.Celeste.Freeze(0.1f);
+                CelesteGame.Freeze(0.1f);
                 this.shakeCounter = 0.2f;
                 this.shaker.On = true;
                 this.bounceDir = dir;
@@ -163,7 +230,7 @@ namespace MaggyHelper.Entities
                 if (this.firstHitSfx != null)
                     this.firstHitSfx.Stop();
                 Audio.Play("event:/desolozantas/final_content/game/19_the_end/powergenerator_hit", this.Position);
-                Celeste.Celeste.Freeze(0.2f);
+                CelesteGame.Freeze(0.2f);
                 player.RefillDash();
                 Input.Rumble(RumbleStrength.Strong, RumbleLength.Long);
                 this.smashParticles1(dir.Perpendicular());
@@ -293,6 +360,10 @@ namespace MaggyHelper.Entities
         private void @break()
         {
             Session session = (this.Scene as Level)?.Session;
+            Level level = this.Scene as Level;
+
+            RegisterPermanentBreakProgress(level);
+
             RumbleTrigger.ManuallyTrigger(this.Center.X, 1.2f);
             this.Tag = (int)Tags.Persistent;
             this.shakeCounter = 0.0f;
@@ -328,21 +399,21 @@ namespace MaggyHelper.Entities
                 }
                 
                 // Particle burst effect
-                Level level = this.SceneAs<Level>();
-                if (level != null)
+                Level fxLevel = this.SceneAs<Level>();
+                if (fxLevel != null)
                 {
                     // Electric sparks burst
                     for (int i = 0; i < 20; i++)
                     {
                         Vector2 sparkDir = Calc.AngleToVector(Calc.Random.NextFloat() * MathHelper.TwoPi, Calc.Random.Range(50f, 120f));
-                        level.ParticlesFG.Emit(LightningBreakerBox.P_Sparks, this.Center + sparkDir * 0.1f, sparkDir.Angle());
+                        fxLevel.ParticlesFG.Emit(LightningBreakerBox.P_Sparks, this.Center + sparkDir * 0.1f, sparkDir.Angle());
                     }
                     
                     // Screen shake for impact
-                    level.Shake(0.8f);
+                    fxLevel.Shake(0.8f);
                     
                     // Distort effect - using correct Celeste distortion
-                    level.Displacement.AddBurst(this.Center, 0.8f, 16f, 128f);
+                    fxLevel.Displacement.AddBurst(this.Center, 0.8f, 16f, 128f);
                 }
             }
 

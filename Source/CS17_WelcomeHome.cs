@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Runtime.CompilerServices;
-using MaggyHelper.Cutscenes;
+using Celeste.Cutscenes;
 using Microsoft.Xna.Framework;
 using Monocle;
 

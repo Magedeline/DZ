@@ -1,6 +1,6 @@
 #nullable enable
 
-namespace MaggyHelper.Cutscenes {
+namespace Celeste.Cutscenes {
     /// <summary>
     /// Cutscene that plays after the Legend Vignette, transitioning back to gameplay
     /// </summary>

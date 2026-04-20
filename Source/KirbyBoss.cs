@@ -1,10 +1,10 @@
 using System;
-using MaggyHelper.Entities;
-using MaggyHelper;
+using Celeste.Entities;
+using Celeste;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper.Entities.Bosses
+namespace Celeste.Entities.Bosses
 {
     /// <summary>
     /// A shadow/dark Kirby boss that mirrors the player's abilities

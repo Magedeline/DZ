@@ -1,8 +1,8 @@
-using MaggyHelper.Entities;
+using Celeste.Entities;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper.Entities.Projectiles
+namespace Celeste.Entities.Projectiles
 {
     /// <summary>
     /// Base class for all projectile entities

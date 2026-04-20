@@ -1,7 +1,7 @@
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper.Entities.Projectiles
+namespace Celeste.Entities.Projectiles
 {
     /// <summary>
     /// Crescent-shaped beam projectile for Siamo Zero's beam attacks.

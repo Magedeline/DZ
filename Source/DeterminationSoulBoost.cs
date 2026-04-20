@@ -1,9 +1,9 @@
 using System.Collections;
-using MaggyHelper.Entities;
+using Celeste.Entities;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper.Entities.SoulBoosts
+namespace Celeste.Entities.SoulBoosts
 {
     /// <summary>
     /// Red Soul - Determination
@@ -41,7 +41,7 @@ namespace MaggyHelper.Entities.SoulBoosts
             this.extraDashes = extraDashes;
         }
 
-        protected override IEnumerator ApplyAbilityStart(Celeste.Player player)
+        protected override IEnumerator ApplyAbilityStart(global::Celeste.Player player)
         {
             // Grant extra dashes
             player.Dashes = Math.Min(player.Inventory.Dashes + extraDashes, 2);
@@ -55,7 +55,7 @@ namespace MaggyHelper.Entities.SoulBoosts
             yield return 0.1f;
         }
 
-        protected override IEnumerator ApplyAbilityEnd(Celeste.Player player)
+        protected override IEnumerator ApplyAbilityEnd(global::Celeste.Player player)
         {
             // Increased launch power (1.5x normal)
             player.Speed *= 1.5f;

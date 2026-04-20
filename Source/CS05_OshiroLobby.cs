@@ -1,8 +1,8 @@
 using System.Runtime.CompilerServices;
-using MaggyHelper.NPCs;
-using NPC = MaggyHelper.NPCs.NPC;
+using Celeste.NPCs;
+using NPC = Celeste.NPCs.NPC;
 
-namespace MaggyHelper.Cutscenes;
+namespace Celeste.Cutscenes;
 
 public class CS05_OshiroLobby : CutsceneEntity
 {

@@ -1,9 +1,9 @@
 #nullable enable
 
-using MaggyHelper.Cutscenes;
-using MaggyHelper.Entities;
+using Celeste.Cutscenes;
+using Celeste.Entities;
 
-namespace MaggyHelper;
+namespace Celeste;
 
 /// <summary>
 /// Centralizes vignette display by hooking into LevelEnter.Go and LevelExit.ctor.
@@ -103,7 +103,7 @@ public static class VignetteHooks
     private static Scene? CreateIntroVignette(Session session, AreaMapData.ChapterDef chapter)
     {
         string flagKey = $"seen_intro_vignette_{chapter.Number}";
-        var saveData = Celeste.Mod.MaggyHelper.MaggyHelperModule.SaveData;
+        var saveData = global::Celeste.Mod.MaggyHelper.MaggyHelperModule.SaveData;
 
         switch (chapter.Number)
         {
@@ -126,7 +126,7 @@ public static class VignetteHooks
                 }
                 break;
 
-            case 9:
+            case 20:
                 if (!HasSeenVignette(flagKey))
                 {
                     MarkVignetteSeen(flagKey);
@@ -192,11 +192,11 @@ public static class VignetteHooks
 
     private static bool HasSeenVignette(string key)
     {
-        return Celeste.Mod.MaggyHelper.MaggyHelperModule.SaveData?.HasAchievement(key) == true;
+        return global::Celeste.Mod.MaggyHelper.MaggyHelperModule.SaveData?.HasAchievement(key) == true;
     }
 
     private static void MarkVignetteSeen(string key)
     {
-        Celeste.Mod.MaggyHelper.MaggyHelperModule.SaveData?.UnlockAchievement(key);
+        global::Celeste.Mod.MaggyHelper.MaggyHelperModule.SaveData?.UnlockAchievement(key);
     }
 }

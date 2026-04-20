@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper.Entities;
+namespace Celeste.Entities;
 
 [CustomEntity(ids: "MaggyHelper/FinalTitanSummitBackgroundManager")]
 [Tracked(true)]
@@ -189,11 +189,7 @@ public class FinalTitanSummitBackgroundManager : Entity
     private readonly Vector2[] thunderPath;
 
     private Level level;
-    private Player player;
-    private Vector2 origin;
-    private BadelineDummy badeline;
-    private MadelineDummy madeline;
-    private AsrielDummy asriel;
+    private global::Celeste.Player player;
     private float fade;
     private float backgroundPulse;
     private float giygasPulse;
@@ -201,7 +197,6 @@ public class FinalTitanSummitBackgroundManager : Entity
     private float thunderFlash;
     private float thunderAlpha;
     private bool outTheTop;
-    private bool spinning;
     private Color background;
 
     public FinalTitanSummitBackgroundManager(EntityData data, Vector2 offset)
@@ -335,24 +330,25 @@ public class FinalTitanSummitBackgroundManager : Entity
 
     private IEnumerator Routine()
     {
-        player = Scene.Tracker.GetEntity<Player>();
-        while (player == null || player.Y > Y)
+        FinalTitanSummitBackgroundManager manager = this;
+        global::Celeste.Player currentPlayer = manager.Scene.Tracker.GetEntity<global::Celeste.Player>();
+        while (currentPlayer == null || currentPlayer.Y > manager.Y)
         {
-            player = Scene.Tracker.GetEntity<Player>();
+            currentPlayer = manager.Scene.Tracker.GetEntity<global::Celeste.Player>();
             yield return null;
         }
 
-        origin = player.Position;
+        player = currentPlayer;
 
-        level.Session.SetFlag(GetBeginSwapFlag(progressStage));
-        level.Session.SetFlag(GetActorFlag(progressStage));
+        manager.level.Session.SetFlag(GetBeginSwapFlag(progressStage));
+        manager.level.Session.SetFlag(GetActorFlag(progressStage));
 
-        player.Sprite.Play("launch");
-        player.Speed = Vector2.Zero;
-        player.StateMachine.State = Player.StDummy;
-        player.DummyGravity = false;
-        player.DummyAutoAnimate = false;
-        player.Facing = Facings.Right;
+        currentPlayer.Sprite.Play("launch");
+        currentPlayer.Speed = Vector2.Zero;
+        currentPlayer.StateMachine.State = Player.StDummy;
+        currentPlayer.DummyGravity = false;
+        currentPlayer.DummyAutoAnimate = false;
+        currentPlayer.Facing = Facings.Right;
 
         if (!string.IsNullOrWhiteSpace(ambience))
         {
@@ -362,17 +358,14 @@ public class FinalTitanSummitBackgroundManager : Entity
                 Audio.SetAmbience(SFX.EventnameByHandle(ambience));
         }
 
-        if (introLaunch)
-            yield return FadeTo(1f, dark ? 1.2f : 0.8f);
+        if (manager.introLaunch)
+            yield return manager.FadeTo(1f, dark ? 1.2f : 0.8f);
         else
-            yield return FadeTo(1f, dark ? 0.8f : 0.5f);
+            yield return manager.FadeTo(1f, dark ? 0.8f : 0.5f);
 
-        yield return RunManagedAscendCutscene();
+        yield return manager.RunManagedAscendCutscene();
 
-        if (!dark)
-            level.Add(new global::MaggyHelper.HeightDisplayMod(progressStage));
-
-        yield return LaunchToNextRoom();
+        yield return manager.LaunchToNextRoom();
     }
 
     public override void Update()
@@ -420,8 +413,6 @@ public class FinalTitanSummitBackgroundManager : Entity
     public override void Removed(Scene scene)
     {
         FadeSnapTo(0f);
-        spinning = false;
-        CleanupDummies();
         level?.Session.SetFlag(GetBackgroundSwapFlag(progressStage), false);
         level?.Session.SetFlag(GetBeginSwapFlag(progressStage), false);
         level?.Session.SetFlag(GetActorFlag(progressStage), false);
@@ -465,52 +456,12 @@ public class FinalTitanSummitBackgroundManager : Entity
 
         yield return 0.25f;
 
-        AscendCutscene ascendCutscene = new(this, dialogId);
+        global::Celeste.Cutscenes.CS20_TrueAscend ascendCutscene = new(progressStage, dialogId, dark);
         level.Add(ascendCutscene);
         yield return null;
 
-        while (ascendCutscene.Scene != null && ascendCutscene.Running)
+        while (ascendCutscene.Running)
             yield return null;
-    }
-
-    private IEnumerator RunAscendCutscene(string dialogId)
-    {
-        Audio.Play("event:/char/badeline/maddy_split", player.Position);
-        player.CreateSplitParticles();
-        Input.Rumble(RumbleStrength.Light, RumbleLength.Medium);
-        level.Displacement.AddBurst(player.Position, 0.4f, 8f, 32f, 0.5f, null, null);
-        player.Dashes = 5;
-        player.Facing = Facings.Right;
-
-        Scene.Add(badeline = new BadelineDummy(player.Position));
-        Scene.Add(madeline = new MadelineDummy(player.Position));
-        Scene.Add(asriel = new AsrielDummy(player.Position));
-        badeline.AutoAnimator.Enabled = true;
-
-        spinning = true;
-        Add(new Coroutine(SpinCharacters()));
-
-        yield return Textbox.Say(dialogId);
-
-        Audio.Play("event:/char/badeline/maddy_join", player.Position);
-        spinning = false;
-        yield return 0.25f;
-    }
-
-    private void FinishAscendCutscene()
-    {
-        spinning = false;
-
-        CleanupDummies();
-
-        if (player == null)
-            return;
-
-        player.Position = origin;
-        player.Dashes = 5;
-        player.CreateSplitParticles();
-        Input.Rumble(RumbleStrength.Light, RumbleLength.Medium);
-        level?.Displacement.AddBurst(player.Position, 0.4f, 8f, 32f, 0.5f, null, null);
     }
 
     private IEnumerator LaunchToNextRoom()
@@ -557,80 +508,12 @@ public class FinalTitanSummitBackgroundManager : Entity
         level.NextTransitionDuration = 0.05f;
     }
 
-    private IEnumerator SpinCharacters()
-    {
-        if (player?.Sprite == null || badeline?.Sprite == null || madeline?.Sprite == null || asriel == null)
-            yield break;
-
-        float dist = 0f;
-        Vector2 center = player.Position;
-        float timer = 1.5707964f;
-
-        bool playerCanSpin = player.Sprite.Has("spin");
-        bool badelineCanSpin = badeline.Sprite.Has("spin");
-        bool madelineCanSpin = madeline.Sprite.Has("spin");
-        bool asrielCanSpin = asriel.Sprite?.Has("spin") ?? false;
-
-        if (playerCanSpin)
-            player.Sprite.Play("spin");
-        if (badelineCanSpin)
-            badeline.Sprite.Play("spin");
-        if (madelineCanSpin)
-            madeline.Sprite.Play("spin");
-        if (asrielCanSpin)
-            asriel.Sprite.Play("spin");
-        badeline.Sprite.Scale.X = 1f;
-        madeline.Sprite.Scale.X = 1.5f;
-        if (asriel.Sprite != null) asriel.Sprite.Scale.X = 2f;
-
-        while (spinning || dist > 0f)
-        {
-            if (player?.Sprite == null || badeline?.Sprite == null || madeline?.Sprite == null || asriel?.Sprite == null)
-                yield break;
-
-            dist = Calc.Approach(dist, spinning ? 2f : 0f, Engine.DeltaTime * 4f);
-            int frame = (int)(timer / 6.2831855f * 14f + 10f);
-            float sin = (float)Math.Sin(timer);
-            float cos = (float)Math.Cos(timer);
-            float radius = Ease.CubeOut(dist) * 32f;
-
-            if (playerCanSpin)
-                player.Sprite.SetAnimationFrame(frame);
-            if (badelineCanSpin)
-                badeline.Sprite.SetAnimationFrame(frame + 7);
-            if (madelineCanSpin)
-                madeline.Sprite.SetAnimationFrame(frame + 7);
-            if (asrielCanSpin)
-                asriel.Sprite?.SetAnimationFrame(frame + 7);
-
-            player.Position = center + new Vector2(sin * radius, cos * dist * 8f);
-            badeline.Position = center + new Vector2((float)Math.Sin(timer + Math.PI / 3) * radius, (float)Math.Cos(timer + Math.PI / 3) * dist * 8f);
-            madeline.Position = center + new Vector2((float)Math.Sin(timer + 2 * Math.PI / 3) * radius, (float)Math.Cos(timer + 2 * Math.PI / 3) * dist * 8f);
-            asriel.Position = center + new Vector2((float)Math.Sin(timer + Math.PI) * radius, (float)Math.Cos(timer + Math.PI) * dist * 8f);
-
-            timer -= Engine.DeltaTime * 2f;
-            if (timer <= 0f)
-                timer += 6.2831855f;
-
-            yield return null;
-        }
-    }
 
     private void FadeSnapTo(float target)
     {
         fade = target;
         if (level != null)
             level.Bloom.Base = AreaData.Get(level).BloomBase + fade * 0.1f;
-    }
-
-    private void CleanupDummies()
-    {
-        badeline?.RemoveSelf();
-        madeline?.RemoveSelf();
-        asriel?.RemoveSelf();
-        badeline = null;
-        madeline = null;
-        asriel = null;
     }
 
     private void InitializeClouds()
@@ -1106,35 +989,6 @@ public class FinalTitanSummitBackgroundManager : Entity
             return cutscene;
 
         return progressStage <= 12 ? $"CH20_ASCEND_VS_ELS_{progressStage}" : string.Empty;
-    }
-
-    private sealed class AscendCutscene : CutsceneEntity
-    {
-        private readonly FinalTitanSummitBackgroundManager manager;
-        private readonly string dialogId;
-
-        public AscendCutscene(FinalTitanSummitBackgroundManager manager, string dialogId)
-            : base(true, false)
-        {
-            this.manager = manager;
-            this.dialogId = dialogId;
-        }
-
-        public override void OnBegin(Level level)
-        {
-            Add(new Coroutine(Cutscene(level), true));
-        }
-
-        private IEnumerator Cutscene(Level level)
-        {
-            yield return manager.RunAscendCutscene(dialogId);
-            EndCutscene(level);
-        }
-
-        public override void OnEnd(Level level)
-        {
-            manager.FinishAscendCutscene();
-        }
     }
 
     private sealed class LaunchFader : Entity

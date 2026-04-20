@@ -1,4 +1,4 @@
-namespace MaggyHelper.NPCs;
+namespace Celeste.NPCs;
 
 /// <summary>
 /// Base class for Toriel NPCs with shared constants and helper methods
@@ -49,15 +49,15 @@ public static class TorielHelpers
 /// <summary>
 /// Base NPC class providing common functionality for Celeste mod NPCs
 /// </summary>
-public class NPC : Entity
+public class NPC : global::Celeste.NPC
 {
-    public Sprite Sprite { get; protected set; }
-    public TalkComponent Talker { get; protected set; }
-    public Level Level => Scene as Level;
-    public Session Session => Level?.Session;
-    public string MoveAnim { get; set; } = "walk";
-    public string IdleAnim { get; set; } = "idle";
-    public float Maxspeed { get; set; } = 60f;
+    public new Sprite Sprite { get; protected set; }
+    public new TalkComponent Talker { get; protected set; }
+    public new Level Level => Scene as Level;
+    public new Session Session => Level?.Session;
+    public new string MoveAnim { get; set; } = "walk";
+    public new string IdleAnim { get; set; } = "idle";
+    public new float Maxspeed { get; set; } = 60f;
     
     protected static float TorielMaxSpeed => TorielHelpers.TorielMaxSpeed;
 
@@ -212,7 +212,7 @@ public class NPC : Entity
     }
 
     /// <summary>
-    /// Overload matching Celeste.NPC.MoveTo signature for compatibility
+    /// Overload matching global::Celeste.NPC.MoveTo signature for compatibility
     /// </summary>
     public IEnumerator MoveTo(Vector2 targetPosition, bool walkBack, SoundSource loopSfx = null, bool turnToFace = true)
     {

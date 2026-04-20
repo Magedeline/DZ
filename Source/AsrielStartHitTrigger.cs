@@ -1,6 +1,6 @@
-using MaggyHelper.Entities;
+using Celeste.Entities;
 
-namespace MaggyHelper.Triggers
+namespace Celeste.Triggers
 {
     /// <summary>
     /// Trigger that starts the Asriel God Boss attack sequence and optionally moves Asriel to a target position.

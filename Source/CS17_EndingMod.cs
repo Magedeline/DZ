@@ -1,7 +1,7 @@
-using MaggyHelper.NPCs;
+using Celeste.NPCs;
 using Facings = Celeste.Facings;
 
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
     public class CS17_EndingMod : CutsceneEntity
     {

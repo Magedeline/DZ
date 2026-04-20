@@ -1,7 +1,7 @@
 using System.Runtime.CompilerServices;
-using MaggyHelper.Cutscenes;
+using Celeste.Cutscenes;
 
-namespace MaggyHelper.NPCs;
+namespace Celeste.NPCs;
 
 [CustomEntity(ids: "MaggyHelper/NPC05_Oshiro_Lobby")]
 public class NPC05_Oshiro_Lobby : NPC

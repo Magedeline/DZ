@@ -3,14 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Monocle;
-using MaggyHelper.Entities;
-using MaggyHelper.NPCs;
-using BadelineDummy = MaggyHelper.Entities.BadelineDummy;
-using NPC = MaggyHelper.NPCs.NPC;
-using GondolaMaggy = MaggyHelper.Entities.GondolaMaggy;
-using TestBreathingGame = MaggyHelper.Entities.TestBreathingGame;
+using Celeste.Entities;
+using Celeste.NPCs;
+using BadelineDummy = Celeste.Entities.BadelineDummy;
+using NPC = Celeste.NPCs.NPC;
+using GondolaMaggy = Celeste.Entities.GondolaMaggy;
+using MaggyBreathingGame = Celeste.Entities.TestBreathingGame;
 
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
 	// Token: 0x02000264 RID: 612
 	public class CS06_Gondola : CutsceneEntity
@@ -376,7 +376,7 @@ namespace MaggyHelper.Cutscenes
 				string handSpriteId = this.Level?.Session?.GetFlag("ch6_gaster_hands") == true
 					? "gasterHands"
 					: (this.Level?.Session?.GetFlag("ch6_master_hands") == true ? "masterHands" : "gondolaHands");
-				this.gondolaDarkness = new global::MaggyHelper.GondolaModDarkness(handSpriteId);
+				this.gondolaDarkness = new global::Celeste.GondolaModDarkness(handSpriteId);
 				this.Level.Add(this.gondolaDarkness);
 				yield return this.gondolaDarkness.Appear(this.windSnowFg);
 			}
@@ -430,7 +430,7 @@ namespace MaggyHelper.Cutscenes
 		// Token: 0x0600131D RID: 4893 RVA: 0x00067991 File Offset: 0x00065B91
 		private IEnumerator StartBreathing()
 		{
-			var breathing = new TestBreathingGame(freezePlayer: false);
+			var breathing = new MaggyBreathingGame(freezePlayer: false);
 			base.Scene.Add(breathing);
 			if (this.rumbler != null)
 				this.rumbler.TrackBreathingGame(breathing);
@@ -764,7 +764,7 @@ namespace MaggyHelper.Cutscenes
 		// Token: 0x04000F14 RID: 3860
 		private HeartGemRumbler rumbler;
 
-		private global::MaggyHelper.GondolaModDarkness gondolaDarkness;
+		private global::Celeste.GondolaModDarkness gondolaDarkness;
 
 		// Token: 0x04000F15 RID: 3861
 		private CS06_Gondola.GondolaStates gondolaState;

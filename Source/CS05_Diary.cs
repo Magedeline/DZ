@@ -1,6 +1,6 @@
 #nullable enable
 
-namespace MaggyHelper.Cutscenes;
+namespace Celeste.Cutscenes;
 // Note: Removed [CustomEntity] - cutscene entities are created programmatically, not placed in maps
     [HotReloadable]
     public class Cs05Diary(bool v, bool v1, global::Celeste.Player player) : CutsceneEntity(v, v1) {

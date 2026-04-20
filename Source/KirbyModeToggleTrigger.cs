@@ -1,6 +1,6 @@
-using MaggyHelper.Extensions;
+using Celeste.Extensions;
 
-namespace MaggyHelper.Triggers
+namespace Celeste.Triggers
 {
     /// <summary>
     /// Comprehensive trigger for managing Kirby mode transformations.

@@ -1,6 +1,6 @@
 using MonoMod.Utils;
 
-namespace MaggyHelper.Triggers {
+namespace Celeste.Triggers {
     [CustomEntity("SkinModHelper/PlayerAnimPrefixAddOnTrigger")]
     [HotReloadable]
     public class PlayerAnimPrefixAddOnTrigger : Trigger {

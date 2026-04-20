@@ -1,14 +1,15 @@
 using System;
 using Celeste;
-using Celeste.Mod.MaggyHelper;
+using Celeste.Entities;
+using global::Celeste.Mod.MaggyHelper;
 using MonoMod.Utils;
 
-using CopyAbilityType = MaggyHelper.Entities.Bosses.CopyAbilityType;
+using CopyAbilityType = Celeste.Entities.Bosses.CopyAbilityType;
 
-namespace MaggyHelper.Extensions
+namespace Celeste.Extensions
 {
     /// <summary>
-    /// Extension methods for Celeste.Player to add Kirby mode and combat functionality.
+    /// Extension methods for global::Celeste.Player to add Kirby mode and combat functionality.
     /// These replace the methods that were previously defined in a custom Player class.
     /// </summary>
     public static class PlayerExtensions
@@ -36,6 +37,13 @@ namespace MaggyHelper.Extensions
 
             PersistDashInventory(player, maxDashes);
 
+            if (player?.Scene is Level level)
+            {
+                var healthManager = PlayerHealthManager.GetOrCreate(level, 6);
+                healthManager.EnableKirbyMode(healthManager.MaxHP);
+                UniversalHealthUI.GetOrCreate(level).ShowPlayerHealth = true;
+            }
+
             TryApplyPlayerSprite(player, "kirby_player");
         }
 
@@ -50,7 +58,12 @@ namespace MaggyHelper.Extensions
                 session.IsKirbyModeActive = false;
             }
 
-            string spriteId = global::MaggyHelper.PlayerSpriteModeExtensions.GetSpriteBankId(player.Sprite.Mode);
+            if (player?.Scene is Level level)
+            {
+                PlayerHealthManager.GetOrCreate(level, 1).DisableKirbyMode();
+            }
+
+            string spriteId = global::Celeste.PlayerSpriteModeExtensions.GetSpriteBankId(player.Sprite.Mode);
             TryApplyPlayerSprite(player, spriteId);
         }
 
@@ -139,16 +152,29 @@ namespace MaggyHelper.Extensions
                 return false;
             }
 
-            var kirbyMode = level.Tracker.GetEntity<KirbyMode>();
-            if (kirbyMode == null)
+            var healthManager = PlayerHealthManager.Instance ?? level.Tracker.GetEntity<PlayerHealthManager>() ?? PlayerHealthManager.GetOrCreate(level, 6);
+            if (!healthManager.IsKirbyMode)
             {
-                return false;
+                healthManager.EnableKirbyMode(Math.Max(healthManager.MaxHP, 1));
             }
 
-            kirbyMode.MaxHealth = Math.Max(kirbyMode.MaxHealth, 1);
-            kirbyMode.CurrentHealth = Math.Max(0, kirbyMode.CurrentHealth - Math.Max(damage, 0));
-            kirbyMode.IsDead = kirbyMode.CurrentHealth <= 0;
-            return true;
+            return healthManager.Damage(Math.Max(damage, 0));
+        }
+
+        /// <summary>
+        /// Enable combat mode on the player via DynamicData.
+        /// </summary>
+        public static void EnableCombat(this Player player)
+        {
+            new DynamicData(player).Set("CombatEnabled", true);
+        }
+
+        /// <summary>
+        /// Disable combat mode on the player via DynamicData.
+        /// </summary>
+        public static void DisableCombat(this Player player)
+        {
+            new DynamicData(player).Set("CombatEnabled", false);
         }
 
         public static DynamicData GetData(this Player player)

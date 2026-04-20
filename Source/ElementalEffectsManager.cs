@@ -1,4 +1,4 @@
-namespace MaggyHelper.Effects
+namespace Celeste.Effects
 {
     /// <summary>
     /// Central manager for all elemental effects in the game

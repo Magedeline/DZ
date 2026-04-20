@@ -1,4 +1,4 @@
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     [CustomEntity(ids: "MaggyHelper/DivingBoard")]
     [HotReloadable]
@@ -38,7 +38,7 @@ namespace MaggyHelper.Entities
         {
             base.Update();
             
-            Celeste.Player player = GetPlayerRider();
+            global::Celeste.Player player = GetPlayerRider();
             bool wasOnBoard = playerOnBoard;
             playerOnBoard = player != null;
             
@@ -60,7 +60,7 @@ namespace MaggyHelper.Entities
             }
         }
 
-        private void LaunchPlayer(Celeste.Player player)
+        private void LaunchPlayer(global::Celeste.Player player)
         {
             springTimer = 0.5f;
             wiggler.Start();

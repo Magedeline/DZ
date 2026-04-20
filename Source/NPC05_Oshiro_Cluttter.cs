@@ -1,8 +1,8 @@
-using MaggyHelper.Cutscenes;
+using Celeste.Cutscenes;
 
-namespace MaggyHelper.NPCs
+namespace Celeste.NPCs
 {
-    [CustomEntity(ids: "MaggyHelper/NPC05_Oshiro_Cluttter")]
+    [CustomEntity(ids: "MaggyHelper/NPC05_Oshiro_Clutter")]
     public class NPC05_Oshiro_Cluttter : NPC
     {
         public const string TalkFlagsA = "oshiro_clutter_";

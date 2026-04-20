@@ -1,6 +1,6 @@
 
 
-namespace MaggyHelper;
+namespace Celeste;
 
 [HotReloadable]
 public class TowerBackgroundStyleground

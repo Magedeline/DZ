@@ -1,10 +1,10 @@
 using System;
-using MaggyHelper.Entities;
-using MaggyHelper;
+using Celeste.Entities;
+using Celeste;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper.Entities.Bosses
+namespace Celeste.Entities.Bosses
 {
     /// <summary>
     /// King Dedede boss - A heavy-hitting melee boss with hammer attacks

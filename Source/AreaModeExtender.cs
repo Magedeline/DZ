@@ -1,10 +1,10 @@
 #pragma warning disable CS0436
 
-using Celeste.Mod.Meta;
+using global::Celeste.Mod.Meta;
 using MonoMod.RuntimeDetour;
 using MonoMod.Utils;
 
-namespace MaggyHelper;
+namespace Celeste;
 
 /// <summary>
 /// Extends Maggy chapters with D/DX sides while keeping vanilla save boundaries stable.
@@ -1198,7 +1198,17 @@ public static class AreaModeExtender
         baseKey = parts[1];
 
         // Verify it's a valid side folder
-        if (!SideFolders.Contains(sideFolder, StringComparer.OrdinalIgnoreCase))
+        bool isKnownSideFolder = false;
+        foreach (string folder in SideFolders)
+        {
+            if (!string.Equals(folder, sideFolder, StringComparison.OrdinalIgnoreCase))
+                continue;
+
+            isKnownSideFolder = true;
+            break;
+        }
+
+        if (!isKnownSideFolder)
             return false;
 
         return !string.IsNullOrWhiteSpace(baseKey);

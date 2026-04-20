@@ -1,15 +1,15 @@
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Xml;
-using Celeste.Mod.Meta;
-using Celeste.Mod.MaggyHelper;
+using global::Celeste.Mod.Meta;
+using global::Celeste.Mod.MaggyHelper;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Monocle;
 using MonoMod;
-using MaggyHelper.Cutscenes;
+using Celeste.Cutscenes;
 
-namespace MaggyHelper;
+namespace Celeste;
 
 public class AreaComplete : Scene
 {

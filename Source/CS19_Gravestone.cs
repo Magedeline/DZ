@@ -5,308 +5,466 @@
 // Assembly location: C:\Users\User\OneDrive\Desktop\Celeste!\Celeste\Celeste.exe
 
 #nullable disable
-using MaggyHelper.Entities;
-using BirdNPC = MaggyHelper.Entities.BirdNPC;
-using NPC19_Gravestone = MaggyHelper.NPCs.NPC19_Gravestone;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using Celeste.Entities;
+using Celeste.NPCs;
+using Microsoft.Xna.Framework;
+using Monocle;
+using BirdNPC = Celeste.Entities.BirdNPC;
+using NPC19_Gravestone = Celeste.NPCs.NPC19_Gravestone;
 
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
-  public class CS19_Gravestone : CutsceneEntity
-  {
-    private const string Flag = "maddy_gravestone";
-    
-    // Bird goner sprite paths
-    private const string BirdGonerPath = "characters/birdgoner/";
-    private const string BirdGonerClover = BirdGonerPath + "cloverflyup";
-    private const string BirdGonerCody = BirdGonerPath + "codyflyup";
-    private const string BirdGonerEmily = BirdGonerPath + "emilyflyup";
-    private const string BirdGonerOdin = BirdGonerPath + "odinflyup";
-    private const string BirdGonerRobin = BirdGonerPath + "robinflyup";
-    private const string BirdGonerSabel = BirdGonerPath + "sabelflyup";
+    public class CS19_Gravestone : CutsceneEntity
+    {
+        private const string Flag = "maddy_gravestone";
 
-    private global::Celeste.Player player;
-    private NPC19_Gravestone gravestone;
-    private CharaDummy chara;
-    private BirdNPC bird;
-    private BirdNPC birdClover;
-    private BirdNPC birdCody;
-    private BirdNPC birdEmily;
-    private BirdNPC birdOdin;
-    private BirdNPC birdRobin;
-    private BirdNPC birdSabel;
-    private Vector2 boostTarget;
-    private bool addedBooster;
-    private CharaDummy undyne;
-    private CharaDummy toriel;
-    private CharaDummy theo;
-    private CharaDummy asgore;
-    private CharaDummy starsi;
-    private CharaDummy ralsei;
-    private CharaDummy sans;
-    private CharaDummy papyrus;
-    private CharaDummy magolor;
-    private CharaDummy alphy;
+        private Player player;
+        private NPC19_Gravestone gravestone;
+        private CharaDummy chara;
 
-    public CS19_Gravestone(global::Celeste.Player player, NPC19_Gravestone gravestone, Vector2 boostTarget)
+        private BirdNPC bird;
+        private BirdNPC birdClover;
+        private BirdNPC birdCody;
+        private BirdNPC birdEmily;
+        private BirdNPC birdOdin;
+        private BirdNPC birdRobin;
+        private BirdNPC birdSabel;
+
+        private CharaDummy undyne;
+        private CharaDummy toriel;
+        private CharaDummy theo;
+        private CharaDummy asgore;
+        private CharaDummy starsi;
+        private CharaDummy ralsei;
+        private CharaDummy sans;
+        private CharaDummy papyrus;
+        private CharaDummy alphy;
+        private CharaDummy noelle;
+        private CharaDummy suzy;
+        private CharaDummy berdly;
+
+        private Vector2 boostTarget;
+        private bool addedBooster;
+
+        private static readonly Color[] SoulColors =
         {
-      this.player = player;
-      this.gravestone = gravestone;
-      this.boostTarget = boostTarget;
+            Calc.HexToColor("ff0000"),
+            Calc.HexToColor("ff8000"),
+            Calc.HexToColor("ffff00"),
+            Calc.HexToColor("00ff00"),
+            Calc.HexToColor("00ffff"),
+            Calc.HexToColor("0000ff"),
+            Calc.HexToColor("ff00ff")
+        };
+
+        public CS19_Gravestone(Player player, NPC19_Gravestone gravestone, Vector2 boostTarget)
+        {
+            this.player = player;
+            this.gravestone = gravestone;
+            this.boostTarget = boostTarget;
         }
 
         public override void OnBegin(Level level)
-    {
-      this.Add((Component)new Coroutine(this.cutscene()));
-    }
-
-    private IEnumerator cutscene()
-    {
-      CS19_Gravestone cs10Gravestone = this;
-      cs10Gravestone.player.StateMachine.State = 11;
-      cs10Gravestone.player.ForceCameraUpdate = true;
-      cs10Gravestone.player.DummyGravity = false;
-      cs10Gravestone.player.Speed.Y = 0.0f;
-      yield return (object)0.1f;
-      yield return (object)cs10Gravestone.player.DummyWalkToExact((int)cs10Gravestone.gravestone.X - 30);
-      yield return (object)0.1f;
-      cs10Gravestone.player.Facing = Facings.Right;
-      yield return (object)0.2f;
-      yield return (object)cs10Gravestone.Level.ZoomTo(new Vector2(160f, 90f), 2f, 3f);
-      cs10Gravestone.player.ForceCameraUpdate = false;
-      
-      // Initialize the dummy characters
-      cs10Gravestone.undyne = new CharaDummy(cs10Gravestone.player.Position + new Vector2(-50f, 0f));
-      cs10Gravestone.toriel = new CharaDummy(cs10Gravestone.player.Position + new Vector2(-45f, 0f));
-      cs10Gravestone.theo = new CharaDummy(cs10Gravestone.player.Position + new Vector2(-40f, 0f));
-      cs10Gravestone.asgore = new CharaDummy(cs10Gravestone.player.Position + new Vector2(-35f, 0f));
-      cs10Gravestone.starsi = new CharaDummy(cs10Gravestone.player.Position + new Vector2(-30f, 0f));
-      cs10Gravestone.ralsei = new CharaDummy(cs10Gravestone.player.Position + new Vector2(-25f, 0f));
-      cs10Gravestone.sans = new CharaDummy(cs10Gravestone.player.Position + new Vector2(-20f, 0f));
-      cs10Gravestone.papyrus = new CharaDummy(cs10Gravestone.player.Position + new Vector2(-15f, 0f));
-      cs10Gravestone.magolor = new CharaDummy(cs10Gravestone.player.Position + new Vector2(-10f, 0f));
-      cs10Gravestone.alphy = new CharaDummy(cs10Gravestone.player.Position + new Vector2(-5f, 0f));
-
-      // Add them to the level
-      cs10Gravestone.Level.Add(cs10Gravestone.undyne);
-      cs10Gravestone.Level.Add(cs10Gravestone.toriel);
-      cs10Gravestone.Level.Add(cs10Gravestone.theo);
-      cs10Gravestone.Level.Add(cs10Gravestone.asgore);
-      cs10Gravestone.Level.Add(cs10Gravestone.starsi);
-      cs10Gravestone.Level.Add(cs10Gravestone.ralsei);
-      cs10Gravestone.Level.Add(cs10Gravestone.sans);
-      cs10Gravestone.Level.Add(cs10Gravestone.papyrus);
-      cs10Gravestone.Level.Add(cs10Gravestone.magolor);
-      cs10Gravestone.Level.Add(cs10Gravestone.alphy);
-
-      yield return (object)0.5f;
-      yield return (object)Textbox.Say("CH19_GRAVESTONE", new Func<IEnumerator>(cs10Gravestone.stepForward), new Func<IEnumerator>(cs10Gravestone.charaAppears), new Func<IEnumerator>(cs10Gravestone.turnleft), new Func<IEnumerator>(cs10Gravestone.EveryoneWalkin));
-      yield return (object)1f;
-      yield return (object)cs10Gravestone.birdStuff();
-      yield return (object)cs10Gravestone.charaRejoin();
-      yield return (object)0.1f;
-      yield return (object)cs10Gravestone.Level.ZoomBack(0.5f);
-      yield return (object)0.3f;
-      cs10Gravestone.addedBooster = true;
-      cs10Gravestone.Level.Displacement.AddBurst(cs10Gravestone.boostTarget, 0.5f, 8f, 32f, 0.5f);
-      Audio.Play("event:/new_content/char/badeline/booster_first_appear", cs10Gravestone.boostTarget);
-      cs10Gravestone.Level.Add((Entity)new CustomCharaBoost(new Vector2[1]
-      {
-        cs10Gravestone.boostTarget
-      }, false));
-      yield return (object)0.2f;
-      cs10Gravestone.EndCutscene(cs10Gravestone.Level);
-    }
-
-    private IEnumerator stepForward()
-    {
-      yield return (object)this.player.DummyWalkTo(this.player.X + 8f);
-    }
-
-    private IEnumerator charaAppears()
-    {
-      CS19_Gravestone cs10Gravestone = this;
-      cs10Gravestone.Level.Session.Inventory.Dashes = 1;
-      cs10Gravestone.player.Dashes = 1;
-      Vector2 position = cs10Gravestone.player.Position + new Vector2(-12f, -10f);
-      cs10Gravestone.Level.Displacement.AddBurst(position, 0.5f, 8f, 32f, 0.5f);
-      cs10Gravestone.Level.Add((Entity)(cs10Gravestone.chara = new CharaDummy(position)));
-      Audio.Play("event:/char/badeline/maddy_split", position);
-      cs10Gravestone.chara.Sprite.Scale.X = 1f;
-      yield return null;
-    }
-
-    private IEnumerator turnleft()
-    {
-      yield return (object)0.2f;
-      this.player.DummyAutoAnimate = false;
-      this.player.Facing = Facings.Left;
-      this.player.Sprite.Play("idle");
-      yield return (object)0.3f;
-    }
-
-    private IEnumerator EveryoneWalkin()
-    {
-      CS19_Gravestone cs10Gravestone = this;
-      yield return cs10Gravestone.undyne.WalkTo(cs10Gravestone.player.X - 10f);
-      yield return cs10Gravestone.toriel.WalkTo(cs10Gravestone.player.X + 16f);
-      yield return cs10Gravestone.theo.WalkTo(cs10Gravestone.player.X + 18f);
-      yield return cs10Gravestone.asgore.WalkTo(cs10Gravestone.player.X);
-      yield return cs10Gravestone.starsi.WalkTo(cs10Gravestone.player.X - 8f);
-      yield return cs10Gravestone.ralsei.WalkTo(cs10Gravestone.player.X - 8f);
-      yield return cs10Gravestone.sans.WalkTo(cs10Gravestone.player.X - 8f);
-      yield return cs10Gravestone.papyrus.WalkTo(cs10Gravestone.player.X - 8f);
-      yield return cs10Gravestone.magolor.WalkTo(cs10Gravestone.player.X - 8f);
-      yield return cs10Gravestone.alphy.WalkTo(cs10Gravestone.player.X - 8f);
-    }
-
-    private IEnumerator birdStuff()
-    {
-      CS19_Gravestone cs10Gravestone = this;
-      
-      // Main bird
-      cs10Gravestone.bird = new BirdNPC(cs10Gravestone.player.Position + new Vector2(88f, -200f), BirdNPC.Modes.None);
-      cs10Gravestone.bird.DisableFlapSfx = true;
-      cs10Gravestone.bird.Facing = Facings.Left;
-      cs10Gravestone.bird.Sprite.Play("fall");
-      
-      // Colored bird goners - Clover (green)
-      cs10Gravestone.birdClover = new BirdNPC(cs10Gravestone.player.Position + new Vector2(108f, -220f), BirdNPC.Modes.None);
-      cs10Gravestone.birdClover.DisableFlapSfx = true;
-      cs10Gravestone.birdClover.Facing = Facings.Left;
-      cs10Gravestone.Level.Add((Entity)cs10Gravestone.birdClover);
-      
-      // Colored bird goners - Cody (blue)
-      cs10Gravestone.birdCody = new BirdNPC(cs10Gravestone.player.Position + new Vector2(68f, -210f), BirdNPC.Modes.None);
-      cs10Gravestone.birdCody.DisableFlapSfx = true;
-      cs10Gravestone.birdCody.Facing = Facings.Left;
-      cs10Gravestone.Level.Add((Entity)cs10Gravestone.birdCody);
-      
-      // Colored bird goners - Emily (pink)
-      cs10Gravestone.birdEmily = new BirdNPC(cs10Gravestone.player.Position + new Vector2(128f, -190f), BirdNPC.Modes.None);
-      cs10Gravestone.birdEmily.DisableFlapSfx = true;
-      cs10Gravestone.birdEmily.Facing = Facings.Left;
-      cs10Gravestone.Level.Add((Entity)cs10Gravestone.birdEmily);
-      
-      // Colored bird goners - Odin (purple)
-      cs10Gravestone.birdOdin = new BirdNPC(cs10Gravestone.player.Position + new Vector2(48f, -230f), BirdNPC.Modes.None);
-      cs10Gravestone.birdOdin.DisableFlapSfx = true;
-      cs10Gravestone.birdOdin.Facing = Facings.Left;
-      cs10Gravestone.Level.Add((Entity)cs10Gravestone.birdOdin);
-      
-      // Colored bird goners - Robin (orange)
-      cs10Gravestone.birdRobin = new BirdNPC(cs10Gravestone.player.Position + new Vector2(148f, -215f), BirdNPC.Modes.None);
-      cs10Gravestone.birdRobin.DisableFlapSfx = true;
-      cs10Gravestone.birdRobin.Facing = Facings.Left;
-      cs10Gravestone.Level.Add((Entity)cs10Gravestone.birdRobin);
-      
-      // Colored bird goners - Sabel (yellow)
-      cs10Gravestone.birdSabel = new BirdNPC(cs10Gravestone.player.Position + new Vector2(28f, -205f), BirdNPC.Modes.None);
-      cs10Gravestone.birdSabel.DisableFlapSfx = true;
-      cs10Gravestone.birdSabel.Facing = Facings.Left;
-      cs10Gravestone.Level.Add((Entity)cs10Gravestone.birdSabel);
-      
-      Vector2 from = cs10Gravestone.bird.Position;
-      Vector2 to = cs10Gravestone.gravestone.Position + new Vector2(1f, -16f);
-      float percent = 0.0f;
-      while ((double)percent < 1.0)
-      {
-        cs10Gravestone.bird.Position = from + (to - from) * Ease.QuadOut(percent);
-        if ((double)percent > 0.5)
-          cs10Gravestone.bird.Sprite.Play("fly");
-        percent += Engine.DeltaTime * 0.5f;
-        yield return (object)null;
-      }
-      cs10Gravestone.bird.Position = to;
-      cs10Gravestone.bird.Sprite.Play("idle");
-      yield return (object)0.5f;
-      cs10Gravestone.bird.Sprite.Play("croak");
-      yield return (object)0.6f;
-      Audio.Play("event:/game/general/bird_squawk", cs10Gravestone.bird.Position);
-      yield return (object)0.9f;
-      Audio.Play("event:/desolozantas/char/kirby/stand", cs10Gravestone.player.Position);
-      cs10Gravestone.player.Sprite.Play("idle");
-      yield return (object)1f;
-      
-      // All birds fly away together
-      yield return (object)cs10Gravestone.bird.StartleAndFlyAway();
-      if (cs10Gravestone.birdClover != null) cs10Gravestone.birdClover.StartleAndFlyAway();
-      if (cs10Gravestone.birdCody != null) cs10Gravestone.birdCody.StartleAndFlyAway();
-      if (cs10Gravestone.birdEmily != null) cs10Gravestone.birdEmily.StartleAndFlyAway();
-      if (cs10Gravestone.birdOdin != null) cs10Gravestone.birdOdin.StartleAndFlyAway();
-      if (cs10Gravestone.birdRobin != null) cs10Gravestone.birdRobin.StartleAndFlyAway();
-      if (cs10Gravestone.birdSabel != null) cs10Gravestone.birdSabel.StartleAndFlyAway();
-    }
-
-    private IEnumerator charaRejoin()
-    {
-      CS19_Gravestone cs10Gravestone = this;
-      Audio.Play("event:/new_content/char/badeline/maddy_join_quick", cs10Gravestone.chara.Position);
-      Vector2 from = cs10Gravestone.chara.Position;
-      for (float p = 0.0f; (double)p < 1.0; p += Engine.DeltaTime / 0.25f)
-      {
-        cs10Gravestone.chara.Position = Vector2.Lerp(from, cs10Gravestone.player.Position, Ease.CubeIn(p));
-        yield return (object)null;
-      }
-      cs10Gravestone.Level.Displacement.AddBurst(cs10Gravestone.player.Center, 0.5f, 8f, 32f, 0.5f);
-      cs10Gravestone.Level.Session.Inventory.Dashes = 2;
-      cs10Gravestone.player.Dashes = 2;
-      cs10Gravestone.chara.RemoveSelf();
-    }
-
-    public override void OnEnd(Level level)
-    {
-      this.player.Facing = Facings.Right;
-      this.player.DummyAutoAnimate = true;
-      this.player.DummyGravity = true;
-      this.player.StateMachine.State = 0;
-      this.Level.Session.Inventory.Dashes = 5;
-      this.player.Dashes = 5;
-      if (this.chara != null)
-        this.chara.RemoveSelf();
-      if (this.bird != null)
-        this.bird.RemoveSelf();
-      if (this.birdClover != null)
-        this.birdClover.RemoveSelf();
-      if (this.birdCody != null)
-        this.birdCody.RemoveSelf();
-      if (this.birdEmily != null)
-        this.birdEmily.RemoveSelf();
-      if (this.birdOdin != null)
-        this.birdOdin.RemoveSelf();
-      if (this.birdRobin != null)
-        this.birdRobin.RemoveSelf();
-      if (this.birdSabel != null)
-        this.birdSabel.RemoveSelf();
-      if (this.undyne != null)
-        this.undyne.RemoveSelf();
-      if (this.toriel != null)
-        this.toriel.RemoveSelf();
-      if (this.theo != null)
-        this.theo.RemoveSelf();
-      if (this.asgore != null)
-        this.asgore.RemoveSelf();
-      if (this.starsi != null)
-        this.starsi.RemoveSelf();
-      if (this.ralsei != null)
-        this.ralsei.RemoveSelf();
-      if (this.sans != null)
-        this.sans.RemoveSelf();
-      if (this.papyrus != null)
-        this.papyrus.RemoveSelf();
-      if (this.magolor != null)
-        this.magolor.RemoveSelf();
-      if (this.alphy != null)
-        this.alphy.RemoveSelf();
-
-      if (!this.addedBooster)
-        level.Add((Entity)new CustomCharaBoost
-        (new Vector2[1]
         {
-          this.boostTarget
-        }, false));
-      level.ResetZoom();
+            Add(new Coroutine(cutscene()));
+        }
+
+        private IEnumerator cutscene()
+        {
+            player.StateMachine.State = 11;
+            player.ForceCameraUpdate = true;
+            player.DummyGravity = false;
+            player.Speed.Y = 0.0f;
+            yield return 0.1f;
+
+            yield return player.DummyWalkToExact((int)gravestone.X - 30);
+            yield return 0.1f;
+            player.Facing = Facings.Right;
+            yield return 0.2f;
+
+            yield return Level.ZoomTo(new Vector2(160f, 90f), 2f, 3f);
+            player.ForceCameraUpdate = false;
+
+            InitializeDummyCharacters();
+
+            yield return 0.5f;
+
+            yield return Textbox.Say("CH19_GRAVESTONE_SEVEN_BIRDS",
+                new Func<IEnumerator>(stepForward),
+                new Func<IEnumerator>(KirbyCollapsesToKnees),
+                new Func<IEnumerator>(DarkEnergyBegins),
+                new Func<IEnumerator>(charaAppears),
+                new Func<IEnumerator>(EveryoneArrives),
+                new Func<IEnumerator>(SevenBirdsFlyDown),
+                new Func<IEnumerator>(ReactToSevenBirds),
+                new Func<IEnumerator>(BirdsFlyUpCharaBoost));
+
+            yield return 1f;
+            yield return Level.ZoomBack(0.5f);
+            yield return 0.3f;
+
+            EndCutscene(Level);
+        }
+
+        private void InitializeDummyCharacters()
+        {
+            float baseX = player.Position.X;
+            float baseY = player.Position.Y;
+
+            undyne = new CharaDummy(new Vector2(baseX - 100f, baseY));
+            toriel = new CharaDummy(new Vector2(baseX - 90f, baseY));
+            theo = new CharaDummy(new Vector2(baseX - 80f, baseY));
+            asgore = new CharaDummy(new Vector2(baseX - 70f, baseY));
+            starsi = new CharaDummy(new Vector2(baseX - 60f, baseY));
+            ralsei = new CharaDummy(new Vector2(baseX - 50f, baseY));
+            sans = new CharaDummy(new Vector2(baseX - 40f, baseY));
+            papyrus = new CharaDummy(new Vector2(baseX - 30f, baseY));
+            alphy = new CharaDummy(new Vector2(baseX - 10f, baseY));
+            noelle = new CharaDummy(new Vector2(baseX + 10f, baseY));
+            suzy = new CharaDummy(new Vector2(baseX + 20f, baseY));
+            berdly = new CharaDummy(new Vector2(baseX + 30f, baseY));
+
+            undyne.Visible = false;
+            toriel.Visible = false;
+            theo.Visible = false;
+            asgore.Visible = false;
+            starsi.Visible = false;
+            ralsei.Visible = false;
+            sans.Visible = false;
+            papyrus.Visible = false;
+            alphy.Visible = false;
+            noelle.Visible = false;
+            suzy.Visible = false;
+            berdly.Visible = false;
+
+            Level.Add(undyne);
+            Level.Add(toriel);
+            Level.Add(theo);
+            Level.Add(asgore);
+            Level.Add(starsi);
+            Level.Add(ralsei);
+            Level.Add(sans);
+            Level.Add(papyrus);
+            Level.Add(alphy);
+            Level.Add(noelle);
+            Level.Add(suzy);
+            Level.Add(berdly);
+        }
+
+        private IEnumerator stepForward()
+        {
+            yield return player.DummyWalkTo(player.X + 8f);
+        }
+
+        private IEnumerator KirbyCollapsesToKnees()
+        {
+            yield return 0.3f;
+            player.DummyAutoAnimate = false;
+            player.Sprite.Play("duck");
+            Audio.Play("event:/desolozantas/char/kirby/jump_superslide", player.Position);
+            yield return 0.5f;
+        }
+
+        private IEnumerator DarkEnergyBegins()
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                Level.Displacement.AddBurst(player.Center, 0.5f, 8f, 64f, 0.5f);
+                Audio.Play("event:/desolozantas/final_content/game/19_the_end/lightning_strike", player.Position);
+                yield return 0.3f;
+            }
+            yield return 0.2f;
+        }
+
+        private IEnumerator charaAppears()
+        {
+            Level.Session.Inventory.Dashes = 1;
+            player.Dashes = 1;
+            Vector2 position = player.Position + new Vector2(-20f, -10f);
+            Level.Displacement.AddBurst(position, 0.5f, 8f, 32f, 0.5f);
+            Level.Add(chara = new CharaDummy(position));
+            Audio.Play("event:/char/badeline/maddy_split", position);
+            chara.Sprite.Scale.X = 1f;
+            yield return 0.3f;
+        }
+
+        private IEnumerator EveryoneArrives()
+        {
+            undyne.Visible = true;
+            toriel.Visible = true;
+            theo.Visible = true;
+            asgore.Visible = true;
+            starsi.Visible = true;
+            ralsei.Visible = true;
+            sans.Visible = true;
+            papyrus.Visible = true;
+            alphy.Visible = true;
+            noelle.Visible = true;
+            suzy.Visible = true;
+            berdly.Visible = true;
+
+            Audio.Play("event:/game/general/world_noise", player.Position);
+
+            float targetX = gravestone.X - 60f;
+            Add(new Coroutine(WalkCharacterTo(undyne, targetX - 50f)));
+            Add(new Coroutine(WalkCharacterTo(toriel, targetX - 40f)));
+            Add(new Coroutine(WalkCharacterTo(theo, targetX - 30f)));
+            Add(new Coroutine(WalkCharacterTo(asgore, targetX - 20f)));
+            Add(new Coroutine(WalkCharacterTo(starsi, targetX - 10f)));
+            Add(new Coroutine(WalkCharacterTo(ralsei, targetX)));
+            Add(new Coroutine(WalkCharacterTo(sans, targetX + 10f)));
+            Add(new Coroutine(WalkCharacterTo(papyrus, targetX + 20f)));
+            Add(new Coroutine(WalkCharacterTo(alphy, targetX + 40f)));
+            Add(new Coroutine(WalkCharacterTo(noelle, targetX + 50f)));
+            Add(new Coroutine(WalkCharacterTo(suzy, targetX + 60f)));
+            Add(new Coroutine(WalkCharacterTo(berdly, targetX + 70f)));
+
+            yield return 2f;
+        }
+
+        private IEnumerator WalkCharacterTo(CharaDummy character, float x)
+        {
+            if (character != null)
+            {
+                yield return character.WalkTo(x);
+            }
+        }
+
+        private IEnumerator SevenBirdsFlyDown()
+        {
+            Vector2 graveCenter = gravestone.Position + new Vector2(0f, -16f);
+
+            bird = CreateBirdNPC(graveCenter + new Vector2(0f, -200f), "bird");
+            birdClover = CreateBirdNPC(graveCenter + new Vector2(20f, -220f), "birdgoner_clover");
+            birdCody = CreateBirdNPC(graveCenter + new Vector2(-20f, -210f), "birdgoner_cody");
+            birdEmily = CreateBirdNPC(graveCenter + new Vector2(40f, -190f), "birdgoner_emily");
+            birdOdin = CreateBirdNPC(graveCenter + new Vector2(-40f, -230f), "birdgoner_odin");
+            birdRobin = CreateBirdNPC(graveCenter + new Vector2(60f, -215f), "birdgoner_robin");
+            birdSabel = CreateBirdNPC(graveCenter + new Vector2(-60f, -205f), "birdgoner_sabel");
+
+            Level.Add(bird);
+            Level.Add(birdClover);
+            Level.Add(birdCody);
+            Level.Add(birdEmily);
+            Level.Add(birdOdin);
+            Level.Add(birdRobin);
+            Level.Add(birdSabel);
+
+            Add(new Coroutine(FlyBirdToPosition(bird, graveCenter, 0f)));
+            Add(new Coroutine(FlyBirdToPosition(birdClover, graveCenter + new Vector2(15f, 2f), 0.2f)));
+            Add(new Coroutine(FlyBirdToPosition(birdCody, graveCenter + new Vector2(-15f, 2f), 0.4f)));
+            Add(new Coroutine(FlyBirdToPosition(birdEmily, graveCenter + new Vector2(30f, 4f), 0.6f)));
+            Add(new Coroutine(FlyBirdToPosition(birdOdin, graveCenter + new Vector2(-30f, 4f), 0.8f)));
+            Add(new Coroutine(FlyBirdToPosition(birdRobin, graveCenter + new Vector2(45f, 6f), 1.0f)));
+            Add(new Coroutine(FlyBirdToPosition(birdSabel, graveCenter + new Vector2(-45f, 6f), 1.2f)));
+
+            yield return 3f;
+
+            Audio.Play("event:/game/general/bird_squawk", graveCenter);
+            yield return 0.5f;
+        }
+
+        private BirdNPC CreateBirdNPC(Vector2 position, string spriteId)
+        {
+            var birdNpc = new BirdNPC(position, BirdNPC.Modes.None);
+            Sprite oldSprite = birdNpc.Sprite;
+            Action<string> onFrameChange = oldSprite.OnFrameChange;
+            oldSprite.RemoveSelf();
+
+            Sprite customSprite = GFX.SpriteBank.Create(spriteId);
+            customSprite.UseRawDeltaTime = true;
+            customSprite.OnFrameChange = onFrameChange;
+            birdNpc.Add(customSprite);
+            birdNpc.Sprite = customSprite;
+            birdNpc.DisableFlapSfx = true;
+            birdNpc.Facing = Facings.Left;
+            birdNpc.Sprite.Play("fall");
+            return birdNpc;
+        }
+
+        private IEnumerator FlyBirdToPosition(BirdNPC targetBird, Vector2 destination, float delay)
+        {
+            if (delay > 0f)
+            {
+                yield return delay;
+            }
+
+            Vector2 from = targetBird.Position;
+            float percent = 0f;
+            while (percent < 1f)
+            {
+                targetBird.Position = from + (destination - from) * Ease.QuadOut(percent);
+                if (percent > 0.5f)
+                {
+                    targetBird.Sprite.Play("fly");
+                }
+                percent += Engine.DeltaTime * 0.5f;
+                yield return null;
+            }
+            targetBird.Position = destination;
+            targetBird.Sprite.Play("idle");
+        }
+
+        private IEnumerator ReactToSevenBirds()
+        {
+            yield return Textbox.Say("CH19_SEVEN_BIRDS_REACTION");
+            yield return 0.5f;
+        }
+
+        private IEnumerator BirdsFlyUpCharaBoost()
+        {
+            Audio.Play("event:/game/06_reflection/badeline_boss_charge", gravestone.Position);
+            yield return 0.3f;
+
+            List<Coroutine> flyUpCoroutines = new List<Coroutine>();
+
+            flyUpCoroutines.Add(new Coroutine(FlyBirdUp(bird, 0)));
+            flyUpCoroutines.Add(new Coroutine(FlyBirdUp(birdClover, 1)));
+            flyUpCoroutines.Add(new Coroutine(FlyBirdUp(birdCody, 2)));
+            flyUpCoroutines.Add(new Coroutine(FlyBirdUp(birdEmily, 3)));
+            flyUpCoroutines.Add(new Coroutine(FlyBirdUp(birdOdin, 4)));
+            flyUpCoroutines.Add(new Coroutine(FlyBirdUp(birdRobin, 5)));
+            flyUpCoroutines.Add(new Coroutine(FlyBirdUp(birdSabel, 6)));
+
+            foreach (var coroutine in flyUpCoroutines)
+            {
+                Add(coroutine);
+            }
+
+            yield return 1.5f;
+
+            Level.Flash(Color.White * 0.5f);
+            Audio.Play("event:/new_content/char/badeline/booster_first_appear", boostTarget);
+            yield return 0.3f;
+
+            addedBooster = true;
+            Level.Displacement.AddBurst(boostTarget, 0.5f, 8f, 32f, 0.5f);
+            Level.Add(new CustomCharaBoost(new Vector2[] { boostTarget }, false));
+
+            yield return 0.5f;
+
+            yield return CharaRejoin();
+        }
+
+        private IEnumerator FlyBirdUp(BirdNPC targetBird, int index)
+        {
+            if (targetBird == null)
+            {
+                yield break;
+            }
+
+            targetBird.Sprite.Play("fly");
+            Audio.Play("event:/game/general/bird_squawk", targetBird.Position);
+
+            Vector2 from = targetBird.Position;
+            float angle = index * ((float)Math.PI * 2f / 7f);
+            float radius = 30f;
+
+            float timer = 0f;
+            float duration = 2f;
+            while (timer < duration)
+            {
+                float progress = timer / duration;
+                float currentAngle = angle + progress * (float)Math.PI * 4f;
+                float spiralRadius = radius * (1f - progress * 0.5f);
+                float yOffset = -progress * 300f;
+
+                Vector2 spiralOffset = new Vector2(
+                    (float)Math.Cos(currentAngle) * spiralRadius,
+                    yOffset
+                );
+
+                targetBird.Position = from + spiralOffset;
+
+                if (timer % 0.1f < Engine.DeltaTime)
+                {
+                    Level.Particles.Emit(
+                        CustomCharaBoost.P_Move,
+                        1,
+                        targetBird.Position,
+                        Vector2.One * 4f,
+                        SoulColors[index % SoulColors.Length],
+                        (float)Math.PI * 0.5f
+                    );
+                }
+
+                timer += Engine.DeltaTime;
+                yield return null;
+            }
+
+            targetBird.RemoveSelf();
+        }
+
+        private IEnumerator CharaRejoin()
+        {
+            if (chara == null)
+            {
+                yield break;
+            }
+
+            Audio.Play("event:/new_content/char/badeline/maddy_join_quick", chara.Position);
+            Vector2 from = chara.Position;
+            for (float p = 0f; p < 1f; p += Engine.DeltaTime / 0.25f)
+            {
+                chara.Position = Vector2.Lerp(from, player.Position, Ease.CubeIn(p));
+                yield return null;
+            }
+            Level.Displacement.AddBurst(player.Center, 0.5f, 8f, 32f, 0.5f);
+            Level.Session.Inventory.Dashes = 2;
+            player.Dashes = 2;
+            chara.RemoveSelf();
+        }
+
+        public override void OnEnd(Level level)
+        {
+            player.Facing = Facings.Right;
+            player.DummyAutoAnimate = true;
+            player.DummyGravity = true;
+            player.StateMachine.State = 0;
+            Level.Session.Inventory.Dashes = 5;
+            player.Dashes = 5;
+
+            RemoveIfExists(chara);
+            RemoveIfExists(bird);
+            RemoveIfExists(birdClover);
+            RemoveIfExists(birdCody);
+            RemoveIfExists(birdEmily);
+            RemoveIfExists(birdOdin);
+            RemoveIfExists(birdRobin);
+            RemoveIfExists(birdSabel);
+            RemoveIfExists(undyne);
+            RemoveIfExists(toriel);
+            RemoveIfExists(theo);
+            RemoveIfExists(asgore);
+            RemoveIfExists(starsi);
+            RemoveIfExists(ralsei);
+            RemoveIfExists(sans);
+            RemoveIfExists(papyrus);
+            RemoveIfExists(alphy);
+            RemoveIfExists(noelle);
+            RemoveIfExists(suzy);
+            RemoveIfExists(berdly);
+
+            if (!addedBooster)
+            {
+                level.Add(new CustomCharaBoost(new Vector2[] { boostTarget }, false));
+            }
+
+            level.ResetZoom();
+            level.Session.SetFlag(Flag, true);
+        }
+
+        private void RemoveIfExists(Entity entity)
+        {
+            if (entity != null && entity.Scene != null)
+            {
+                entity.RemoveSelf();
+            }
+        }
     }
-  }
 }
 
 

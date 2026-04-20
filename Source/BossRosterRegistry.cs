@@ -1,8 +1,8 @@
-using MaggyHelper.Entities;
-using MaggyHelper.Entities.Bosses;
-using static MaggyHelper.Entities.Boss;
+using Celeste.Entities;
+using Celeste.Entities.Bosses;
+using static Celeste.Entities.Boss;
 
-namespace MaggyHelper;
+namespace Celeste;
 
 /// <summary>
 /// Centralized catalog of every boss in the mod, mapping each to its chapter,
@@ -20,6 +20,12 @@ public static class BossRosterRegistry
         public CopyAbilityType CopyAbility { get; init; }
         public bool IsMiniBoss { get; init; }
         public bool IsSecretBoss { get; init; }
+
+        /// <summary>
+        /// DX bosses are secret encounters or Final-tier bosses — the hardest
+        /// encounters that unlock the Asriel mastery badge when all are defeated.
+        /// </summary>
+        public bool IsDXBoss => Tier == BossTier.Final || IsSecretBoss;
     }
 
     private static readonly List<BossEntry> _roster = new();

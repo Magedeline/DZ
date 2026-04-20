@@ -1,6 +1,6 @@
 #nullable enable
 
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
     /// <summary>
     /// IntroWarning — One-time content disclaimer shown before the title screen
@@ -109,7 +109,7 @@ namespace MaggyHelper.Cutscenes
             if (_shownThisSession)
                 return false;
 
-            var settings = Celeste.Mod.MaggyHelper.MaggyHelperModule.Settings;
+            var settings = global::Celeste.Mod.MaggyHelper.MaggyHelperModule.Settings;
             if (settings == null)
                 return false;
 
@@ -124,11 +124,11 @@ namespace MaggyHelper.Cutscenes
         /// </summary>
         public static void MarkSeen()
         {
-            var settings = Celeste.Mod.MaggyHelper.MaggyHelperModule.Settings;
+            var settings = global::Celeste.Mod.MaggyHelper.MaggyHelperModule.Settings;
             if (settings != null)
             {
                 settings.HasSeenIntroWarning = true;
-                Celeste.Mod.MaggyHelper.MaggyHelperModule.Instance.SaveSettings();
+                global::Celeste.Mod.MaggyHelper.MaggyHelperModule.Instance.SaveSettings();
             }
         }
 

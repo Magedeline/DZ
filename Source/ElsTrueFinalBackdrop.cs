@@ -1,4 +1,4 @@
-namespace MaggyHelper.Effects
+namespace Celeste.Effects
 {
     /// <summary>
     /// Els True Final Boss backdrop effect.
@@ -66,7 +66,7 @@ namespace MaggyHelper.Effects
         private float windDirection = 1f;
         private float targetWindDirection = 1f;
         private float windTransitionSpeed = 2f;
-        private MaggyHelper.Entities.SiamoZeroFinalBoss.SiamoZeroTier currentTier = MaggyHelper.Entities.SiamoZeroFinalBoss.SiamoZeroTier.SoulBlack;
+        private global::Celeste.Entities.SiamoZeroFinalBoss.SiamoZeroTier currentTier = global::Celeste.Entities.SiamoZeroFinalBoss.SiamoZeroTier.SoulBlack;
 
         public float Alpha = 1f;
         public float Intensity = 1f;
@@ -189,18 +189,18 @@ namespace MaggyHelper.Effects
                 loopY = data.AttrBool("loopY", true);
         }
 
-        public void SetSiamoTier(MaggyHelper.Entities.SiamoZeroFinalBoss.SiamoZeroTier tier)
+        public void SetSiamoTier(global::Celeste.Entities.SiamoZeroFinalBoss.SiamoZeroTier tier)
         {
             currentTier = tier;
 
             switch (currentTier)
             {
-                case MaggyHelper.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Pink:
+                case global::Celeste.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Pink:
                     BackgroundColor = PinkBaseColor;
                     VoidColor = Calc.HexToColor("14060f");
                     break;
 
-                case MaggyHelper.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Stellarruss:
+                case global::Celeste.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Stellarruss:
                     BackgroundColor = StellarrussBaseColor;
                     VoidColor = Calc.HexToColor("04050b");
                     break;
@@ -600,10 +600,10 @@ namespace MaggyHelper.Effects
         {
             switch (currentTier)
             {
-                case MaggyHelper.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Pink:
+                case global::Celeste.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Pink:
                     return Color.Lerp(PinkOverlayColor, PinkAccentColor, 0.2f + ((float)Math.Sin(animationTime * 0.45f + offset) * 0.5f + 0.5f) * 0.16f);
 
-                case MaggyHelper.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Stellarruss:
+                case global::Celeste.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Stellarruss:
                     return Color.Lerp(StellarrussOverlayColor, SampleStellarrussColor(animationTime * 0.42f + offset), 0.26f);
 
                 default:
@@ -615,10 +615,10 @@ namespace MaggyHelper.Effects
         {
             switch (currentTier)
             {
-                case MaggyHelper.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Pink:
+                case global::Celeste.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Pink:
                     return Color.Lerp(PinkAccentColor, PinkHighlightColor, 0.28f + ((float)Math.Sin(animationTime * (0.8f + RainbowSpeed * 0.1f) + offset) * 0.5f + 0.5f) * 0.22f);
 
-                case MaggyHelper.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Stellarruss:
+                case global::Celeste.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Stellarruss:
                     return SampleStellarrussColor(animationTime * (0.7f + RainbowSpeed * 0.08f) + offset);
 
                 default:
@@ -630,10 +630,10 @@ namespace MaggyHelper.Effects
         {
             switch (currentTier)
             {
-                case MaggyHelper.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Pink:
+                case global::Celeste.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Pink:
                     return Color.Lerp(PinkHighlightColor, PinkAccentColor, 0.52f + ((float)Math.Sin(animationTime * 0.9f + offset) * 0.5f + 0.5f) * 0.14f);
 
-                case MaggyHelper.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Stellarruss:
+                case global::Celeste.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Stellarruss:
                     return Color.Lerp(Color.White, SampleStellarrussColor(animationTime * 1.15f + offset), 0.72f);
 
                 default:
@@ -645,10 +645,10 @@ namespace MaggyHelper.Effects
         {
             switch (currentTier)
             {
-                case MaggyHelper.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Pink:
+                case global::Celeste.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Pink:
                     return Color.Lerp(PinkHighlightColor, PinkAccentColor, 0.12f + ((float)Math.Sin(animationTime * 0.55f + offset) * 0.5f + 0.5f) * 0.14f);
 
-                case MaggyHelper.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Stellarruss:
+                case global::Celeste.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Stellarruss:
                     return Color.Lerp(Color.White, SampleStellarrussColor(animationTime * (0.95f + RainbowSpeed * 0.12f) + offset), 0.52f);
 
                 default:
@@ -660,10 +660,10 @@ namespace MaggyHelper.Effects
         {
             switch (currentTier)
             {
-                case MaggyHelper.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Pink:
+                case global::Celeste.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Pink:
                     return Color.Lerp(Color.White, PinkHighlightColor, 0.28f);
 
-                case MaggyHelper.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Stellarruss:
+                case global::Celeste.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Stellarruss:
                     return Color.Lerp(Color.White, SampleStellarrussColor(animationTime * 0.6f + offset), 0.16f);
 
                 default:
@@ -675,10 +675,10 @@ namespace MaggyHelper.Effects
         {
             switch (currentTier)
             {
-                case MaggyHelper.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Pink:
+                case global::Celeste.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Pink:
                     return Color.Lerp(PinkAccentColor, PinkIrisColor, 0.38f + ((float)Math.Sin(animationTime * (1f + RainbowSpeed * 0.12f) + offset) * 0.5f + 0.5f) * 0.22f);
 
-                case MaggyHelper.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Stellarruss:
+                case global::Celeste.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Stellarruss:
                     return SampleStellarrussColor(animationTime * (1.12f + RainbowSpeed * 0.15f) + offset);
 
                 default:
@@ -690,10 +690,10 @@ namespace MaggyHelper.Effects
         {
             switch (currentTier)
             {
-                case MaggyHelper.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Pink:
+                case global::Celeste.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Pink:
                     return Color.Lerp(PinkHighlightColor, PinkAccentColor, 0.36f + ((float)Math.Sin(animationTime * 1.1f + offset) * 0.5f + 0.5f) * 0.12f);
 
-                case MaggyHelper.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Stellarruss:
+                case global::Celeste.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Stellarruss:
                     return Color.Lerp(Color.White, SampleStellarrussColor(animationTime * 1.4f + offset), 0.62f);
 
                 default:
@@ -705,10 +705,10 @@ namespace MaggyHelper.Effects
         {
             switch (currentTier)
             {
-                case MaggyHelper.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Pink:
+                case global::Celeste.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Pink:
                     return 1.06f;
 
-                case MaggyHelper.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Stellarruss:
+                case global::Celeste.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Stellarruss:
                     return 1.24f;
 
                 default:
@@ -720,10 +720,10 @@ namespace MaggyHelper.Effects
         {
             switch (currentTier)
             {
-                case MaggyHelper.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Pink:
+                case global::Celeste.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Pink:
                     return 1.02f;
 
-                case MaggyHelper.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Stellarruss:
+                case global::Celeste.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Stellarruss:
                     return 1.16f;
 
                 default:
@@ -735,10 +735,10 @@ namespace MaggyHelper.Effects
         {
             switch (currentTier)
             {
-                case MaggyHelper.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Pink:
+                case global::Celeste.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Pink:
                     return 1.04f;
 
-                case MaggyHelper.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Stellarruss:
+                case global::Celeste.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Stellarruss:
                     return 1.22f;
 
                 default:
@@ -750,10 +750,10 @@ namespace MaggyHelper.Effects
         {
             switch (currentTier)
             {
-                case MaggyHelper.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Pink:
+                case global::Celeste.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Pink:
                     return 1.02f;
 
-                case MaggyHelper.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Stellarruss:
+                case global::Celeste.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Stellarruss:
                     return 1.08f;
 
                 default:
@@ -765,10 +765,10 @@ namespace MaggyHelper.Effects
         {
             switch (currentTier)
             {
-                case MaggyHelper.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Pink:
+                case global::Celeste.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Pink:
                     return 44f;
 
-                case MaggyHelper.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Stellarruss:
+                case global::Celeste.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Stellarruss:
                     return 40f;
 
                 default:
@@ -780,10 +780,10 @@ namespace MaggyHelper.Effects
         {
             switch (currentTier)
             {
-                case MaggyHelper.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Pink:
+                case global::Celeste.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Pink:
                     return 1.08f;
 
-                case MaggyHelper.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Stellarruss:
+                case global::Celeste.Entities.SiamoZeroFinalBoss.SiamoZeroTier.Stellarruss:
                     return 1.16f;
 
                 default:

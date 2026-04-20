@@ -1,4 +1,4 @@
-namespace MaggyHelper.Entities;
+namespace Celeste.Entities;
 
 /// <summary>
 /// A ZipMover-style platform that zooms to a target position when the player stands on it.

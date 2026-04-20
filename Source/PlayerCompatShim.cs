@@ -1,14 +1,14 @@
 using System;
 using System.Reflection;
-using Celeste.Mod.MaggyHelper;
-using MaggyHelper.Extensions;
+using global::Celeste.Mod.MaggyHelper;
+using Celeste.Extensions;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper;
+namespace Celeste;
 
 /// <summary>
-/// Keeps the hidden vanilla <c>Celeste.Player</c> synchronised with
+/// Keeps the hidden vanilla <c>global::Celeste.Player</c> synchronised with
 /// <see cref="MaggyHelper.Entities.Player"/> so that Celeste's built-in
 /// systems (camera, transitions, etc.) keep working.
 ///
@@ -65,7 +65,7 @@ public static class PlayerCompatShim
         if (level == null)
             return;
 
-        var maggyPlayer = level.Tracker.GetEntity<MaggyHelper.Entities.Player>();
+        var maggyPlayer = level.Tracker.GetEntity<global::Celeste.Entities.Player>();
         if (maggyPlayer == null)
             return;
 
@@ -92,7 +92,7 @@ public static class PlayerCompatShim
             return false;
 
         var vanillaPlayer = level.Tracker.GetEntity<CelestePlayer>();
-        var maggyPlayer = level.Tracker.GetEntity<MaggyHelper.Entities.Player>();
+        var maggyPlayer = level.Tracker.GetEntity<global::Celeste.Entities.Player>();
 
         // Vanilla player is hidden (Visible=false, StDummy) when our player is in control
         return maggyPlayer != null
@@ -104,13 +104,13 @@ public static class PlayerCompatShim
     /// Gets our <see cref="MaggyHelper.Entities.Player"/> if it's active,
     /// or null if vanilla controls are in use.
     /// </summary>
-    public static MaggyHelper.Entities.Player GetActivePlayer(Level level)
+    public static global::Celeste.Entities.Player GetActivePlayer(Level level)
     {
         if (level == null)
             return null;
 
         return IsMaggyPlayerActive(level)
-            ? level.Tracker.GetEntity<MaggyHelper.Entities.Player>()
+            ? level.Tracker.GetEntity<global::Celeste.Entities.Player>()
             : null;
     }
 }

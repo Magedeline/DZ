@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper.Cutscenes;
+namespace Celeste.Cutscenes;
 
 public class PrologueEndingVignetteText : Entity
 {

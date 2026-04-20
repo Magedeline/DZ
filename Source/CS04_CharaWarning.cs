@@ -1,6 +1,6 @@
-using MaggyHelper.Entities;
+using Celeste.Entities;
 
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
     /// <summary>
     /// CS04_CharaWarning - Warning cutscene before CharaChaser2 begins pursuit.

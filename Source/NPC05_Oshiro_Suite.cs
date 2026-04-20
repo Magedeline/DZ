@@ -1,6 +1,6 @@
 using System.Runtime.CompilerServices;
 
-namespace MaggyHelper.NPCs;
+namespace Celeste.NPCs;
 [CustomEntity(ids: "MaggyHelper/NPC05_Oshiro_Suite")]
 
 public class NPC05_Oshiro_Suite : NPC

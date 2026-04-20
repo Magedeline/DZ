@@ -1,4 +1,4 @@
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
     /// <summary>
     /// Sans voice message cutscene for Chapter 9 ending.
@@ -100,8 +100,8 @@ namespace MaggyHelper.Cutscenes
             // Mark message as complete
             level.Session.SetFlag(FlagMessageComplete, true);
             
-            // Teleport to area complete
-            level.Add(new CS09_AreaComplete(player, skipCredits: true, skipMessage: true));
+            // Teleport to lvl_flowey
+            level.TeleportTo(player, "lvl_flowey", Player.IntroTypes.Respawn, Vector2.Zero);
             
             EndCutscene(level, false);
         }

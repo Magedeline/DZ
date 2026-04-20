@@ -1,6 +1,6 @@
-using Celeste.Mod.MaggyHelper;
-using MaggyHelper.Entities;
-using BadelineDummy = MaggyHelper.Entities.BadelineDummy;
+using global::Celeste.Mod.MaggyHelper;
+using Celeste.Entities;
+using BadelineDummy = Celeste.Entities.BadelineDummy;
 using Monocle;
 using System;
 using System.Collections.Generic;
@@ -8,9 +8,9 @@ using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MaggyHelper.UI;
+using Celeste.UI;
 
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
     public class CS17_Credits : CutsceneEntity
     {

@@ -1,10 +1,10 @@
 #nullable disable
 
-using MaggyHelper.Entities;
-using Payphone = MaggyHelper.Entities.Payphone;
-using Wire = MaggyHelper.Entities.Wire;
+using Celeste.Entities;
+using Payphone = Celeste.Entities.Payphone;
+using Wire = Celeste.Entities.Wire;
 
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
   [HotReloadable]
   public class Cs02DreamingPhonecallPortal : CutsceneEntity

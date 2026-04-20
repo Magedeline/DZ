@@ -1,4 +1,4 @@
-namespace MaggyHelper.Extensions.Core
+namespace Celeste.Extensions.Core
 {
     /// <summary>
     /// Core extension helpers for MaggyHelper.

@@ -1,7 +1,7 @@
-using MaggyHelper.Effects;
-using MaggyHelper.Helpers;
+using Celeste.Effects;
+using Celeste.Helpers;
 
-namespace MaggyHelper.Entities.Bosses
+namespace Celeste.Entities.Bosses
 {
     /// <summary>
     /// Giga Bolt Ultra 86000 Boss - standalone electrical superweapon for future DX chapter use.

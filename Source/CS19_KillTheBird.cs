@@ -1,12 +1,12 @@
-using MaggyHelper.Entities;
-using CutsceneNode = MaggyHelper.Entities.CutsceneNode;
+using Celeste.Entities;
+using CutsceneNode = Celeste.Entities.CutsceneNode;
 using FMOD.Studio;
 using Facings = Celeste.Facings;
-using FlingBirdIntroMod = MaggyHelper.Entities.FlingBirdIntro;
-using FlingBirdIntro = MaggyHelper.Entities.FlingBirdIntro;
-using BirdNPC = MaggyHelper.Entities.BirdNPC;
+using FlingBirdIntroMod = Celeste.Entities.FlingBirdIntro;
+using FlingBirdIntro = Celeste.Entities.FlingBirdIntro;
+using BirdNPC = Celeste.Entities.BirdNPC;
 
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
     public class CS19_KillTheBird : CutsceneEntity
     {
@@ -16,6 +16,18 @@ namespace MaggyHelper.Cutscenes
         private BirdNPC bird;
         private Vector2 birdWaitPosition;
         private EventInstance snapshot;
+        private CharaDummy undyne;
+        private CharaDummy toriel;
+        private CharaDummy theo;
+        private CharaDummy asgore;
+        private CharaDummy starsi;
+        private CharaDummy ralsei;
+        private CharaDummy sans;
+        private CharaDummy papyrus;
+        private CharaDummy alphy;
+        private CharaDummy noelle;
+        private CharaDummy suzy;
+        private CharaDummy berdly;
 
         public CS19_KillTheBird(global::Celeste.Player player, FlingBirdIntroMod flingBird) : base(true, false)
         {
@@ -68,7 +80,7 @@ namespace MaggyHelper.Cutscenes
                 this.player.Y -= 1f;
                 yield return null;
             }
-            // Avoid global time scaling to prevent perceived freezes
+            Engine.TimeRate = 0.65f;
             float ground = this.player.Position.Y;
             this.player.Dashes = 1;
             PlayPlayerSpriteSafe(this.player, "roll", "idle");
@@ -81,22 +93,26 @@ namespace MaggyHelper.Cutscenes
                 {
                     Dust.BurstFG(this.player.Position, -1.5707964f, 2, 4f, null);
                 }
-                this.Position.X += Engine.DeltaTime * 80f * Ease.CubeOut(1f - p);
-                this.Position.Y = ground;
+                this.flingBird.Position.X += Engine.DeltaTime * 80f * Ease.CubeOut(1f - p);
+                this.flingBird.Position.Y = ground;
                 yield return null;
             }
             this.player.Speed.X = 0f;
             this.player.DummyFriction = true;
             this.player.DummyGravity = true;
             yield return 0.25f;
-            // No global timescale restore loop; continue with normal time progression
+            while (Engine.TimeRate < 1f)
+            {
+                Engine.TimeRate = Calc.Approach(Engine.TimeRate, 1f, 4f * Engine.DeltaTime);
+                yield return null;
+            }
             this.player.ForceCameraUpdate = false;
             yield return 0.6f;
             PlayPlayerSpriteSafe(this.player, "rollGetUp", "idle");
             yield return 0.8f;
             level.Session.Audio.Music.Event = "event:/desolozantas/final_content/music/lvl19/tragiclost";
             level.Session.Audio.Apply(false);
-            yield return Textbox.Say("CH19_KILL_THE_BIRD", new Func<IEnumerator>[]
+            yield return Textbox.Say("CH19_BROKEN_STAR_WARRIOR", new Func<IEnumerator>[]
             {
                 new Func<IEnumerator>(this.BirdLooksHurt),
                 new Func<IEnumerator>(this.BirdSquakOnGround),
@@ -113,8 +129,10 @@ namespace MaggyHelper.Cutscenes
             if (this.chara != null)
             {
                 this.chara.Vanish();
+                this.chara = null;
             }
-            yield return 0.5f;
+            yield return 0.4f;
+            yield return this.MonsterKindComfortsKirby();
             if (boost != null)
             {
                 this.Level.Displacement.AddBurst(boost.Center, 0.5f, 8f, 32f, 0.5f, null, null);
@@ -177,7 +195,7 @@ namespace MaggyHelper.Cutscenes
             yield return this.BirdTwitches("event:/new_content/game/10_farewell/bird_crashscene_twitch_3");
             yield return 0.8f;
             Audio.Play("event:/new_content/game/10_farewell/bird_crashscene_recover", this.flingBird.BirdEndPosition);
-            // this.flingBird.RemoveSelf(); // Not available for FlingBirdIntroMod
+            this.RemoveFlingBirdIfExists();
             base.Scene.Add(this.bird = new BirdNPC(this.flingBird.BirdEndPosition, BirdNPC.Modes.None));
             this.bird.Facing = Facings.Right;
             this.bird.Sprite.Play("recover", false, false);
@@ -290,10 +308,109 @@ namespace MaggyHelper.Cutscenes
             yield break;
         }
 
+        private void InitializeMonsterKind()
+        {
+            if (this.undyne != null)
+            {
+                return;
+            }
+
+            float baseX = this.player.X;
+            float baseY = this.player.Y;
+
+            this.undyne = new CharaDummy(new Vector2(baseX - 160f, baseY));
+            this.toriel = new CharaDummy(new Vector2(baseX - 150f, baseY));
+            this.theo = new CharaDummy(new Vector2(baseX - 140f, baseY));
+            this.asgore = new CharaDummy(new Vector2(baseX - 130f, baseY));
+            this.starsi = new CharaDummy(new Vector2(baseX - 120f, baseY));
+            this.ralsei = new CharaDummy(new Vector2(baseX - 110f, baseY));
+            this.sans = new CharaDummy(new Vector2(baseX + 110f, baseY));
+            this.papyrus = new CharaDummy(new Vector2(baseX + 120f, baseY));
+            this.alphy = new CharaDummy(new Vector2(baseX + 140f, baseY));
+            this.noelle = new CharaDummy(new Vector2(baseX + 150f, baseY));
+            this.suzy = new CharaDummy(new Vector2(baseX + 160f, baseY));
+            this.berdly = new CharaDummy(new Vector2(baseX + 170f, baseY));
+
+            this.undyne.Visible = false;
+            this.toriel.Visible = false;
+            this.theo.Visible = false;
+            this.asgore.Visible = false;
+            this.starsi.Visible = false;
+            this.ralsei.Visible = false;
+            this.sans.Visible = false;
+            this.papyrus.Visible = false;
+            this.alphy.Visible = false;
+            this.noelle.Visible = false;
+            this.suzy.Visible = false;
+            this.berdly.Visible = false;
+
+            this.Level.Add(this.undyne);
+            this.Level.Add(this.toriel);
+            this.Level.Add(this.theo);
+            this.Level.Add(this.asgore);
+            this.Level.Add(this.starsi);
+            this.Level.Add(this.ralsei);
+            this.Level.Add(this.sans);
+            this.Level.Add(this.papyrus);
+            this.Level.Add(this.alphy);
+            this.Level.Add(this.noelle);
+            this.Level.Add(this.suzy);
+            this.Level.Add(this.berdly);
+        }
+
+        private IEnumerator MonsterKindComfortsKirby()
+        {
+            this.InitializeMonsterKind();
+            this.player.DummyAutoAnimate = false;
+            PlayPlayerSpriteSafe(this.player, "duck", "idle");
+            Audio.Play("event:/game/general/world_noise", this.player.Position);
+
+            this.undyne.Visible = true;
+            this.toriel.Visible = true;
+            this.theo.Visible = true;
+            this.asgore.Visible = true;
+            this.starsi.Visible = true;
+            this.ralsei.Visible = true;
+            this.sans.Visible = true;
+            this.papyrus.Visible = true;
+            this.alphy.Visible = true;
+            this.noelle.Visible = true;
+            this.suzy.Visible = true;
+            this.berdly.Visible = true;
+
+            float baseX = this.player.X;
+            Add(new Coroutine(this.WalkCharacterTo(this.undyne, baseX - 72f), true));
+            Add(new Coroutine(this.WalkCharacterTo(this.toriel, baseX - 60f), true));
+            Add(new Coroutine(this.WalkCharacterTo(this.theo, baseX - 48f), true));
+            Add(new Coroutine(this.WalkCharacterTo(this.asgore, baseX - 36f), true));
+            Add(new Coroutine(this.WalkCharacterTo(this.starsi, baseX - 24f), true));
+            Add(new Coroutine(this.WalkCharacterTo(this.ralsei, baseX - 12f), true));
+            Add(new Coroutine(this.WalkCharacterTo(this.sans, baseX + 12f), true));
+            Add(new Coroutine(this.WalkCharacterTo(this.papyrus, baseX + 24f), true));
+            Add(new Coroutine(this.WalkCharacterTo(this.alphy, baseX + 48f), true));
+            Add(new Coroutine(this.WalkCharacterTo(this.noelle, baseX + 60f), true));
+            Add(new Coroutine(this.WalkCharacterTo(this.suzy, baseX + 72f), true));
+            Add(new Coroutine(this.WalkCharacterTo(this.berdly, baseX + 84f), true));
+
+            yield return 1.8f;
+            this.player.DummyAutoAnimate = true;
+            PlayPlayerSpriteSafe(this.player, "idle", "idle");
+            yield return 0.4f;
+        }
+
+        private IEnumerator WalkCharacterTo(CharaDummy character, float x)
+        {
+            if (character != null)
+            {
+                yield return character.WalkTo(x);
+            }
+        }
+
         public override void OnEnd(Level level)
         {
             Audio.ReleaseSnapshot(this.snapshot);
             this.snapshot = null;
+            Engine.TimeRate = 1f;
             if (this.WasSkipped)
             {
                 CutsceneNode cutsceneNode = CutsceneNode.Find("player_skip");
@@ -312,7 +429,7 @@ namespace MaggyHelper.Cutscenes
                 {
                     entity.ToggleEdges(true);
                 }
-                level.Session.Audio.Music.Event = "event:/final_content/music/lvl19/forgiveness";
+                level.Session.Audio.Music.Event = "event:/desolozantas/final_content/music/lvl19/tragiclost";
                 level.Session.Audio.Apply(false);
             }
             this.player.Speed = Vector2.Zero;
@@ -332,31 +449,55 @@ namespace MaggyHelper.Cutscenes
             {
                 charaBoostRestore.Active = charaBoostRestore.Visible = charaBoostRestore.Collidable = true;
             }
-            if (this.chara != null)
+            this.RemoveIfExists(this.chara);
+            this.RemoveIfExists(this.undyne);
+            this.RemoveIfExists(this.toriel);
+            this.RemoveIfExists(this.theo);
+            this.RemoveIfExists(this.asgore);
+            this.RemoveIfExists(this.starsi);
+            this.RemoveIfExists(this.ralsei);
+            this.RemoveIfExists(this.sans);
+            this.RemoveIfExists(this.papyrus);
+            this.RemoveIfExists(this.alphy);
+            this.RemoveIfExists(this.noelle);
+            this.RemoveIfExists(this.suzy);
+            this.RemoveIfExists(this.berdly);
+            this.RemoveFlingBirdIfExists();
+            if (this.bird != null)
             {
-                this.chara.RemoveSelf();
-            }
-            if (this.flingBird != null)
-            {
-                if (this.flingBird.CrashSfxEmitter != null)
-                {
-                    this.flingBird.CrashSfxEmitter.RemoveSelf();
-                }
-                // this.flingBird.RemoveSelf(); // Not available for FlingBirdIntroMod
+                this.bird.RemoveSelf();
             }
             if (this.WasSkipped)
             {
-                if (this.bird != null)
-                {
-                    this.bird.RemoveSelf();
-                }
-                base.Scene.Add(this.bird = new BirdNPC(this.birdWaitPosition, BirdNPC.Modes.WaitForLightningOff));
-                this.bird.Facing = Facings.Right;
-                this.bird.FlyAwayUp = false;
-                this.bird.WaitForLightningPostDelay = 1f;
                 level.SnapColorGrade("none");
             }
             level.ResetZoom();
+        }
+
+        private void RemoveFlingBirdIfExists()
+        {
+            if (this.flingBird == null)
+            {
+                return;
+            }
+
+            if (this.flingBird.CrashSfxEmitter != null)
+            {
+                this.flingBird.CrashSfxEmitter.RemoveSelf();
+            }
+
+            if (this.flingBird.Scene != null)
+            {
+                this.flingBird.RemoveSelf();
+            }
+        }
+
+        private void RemoveIfExists(Entity entity)
+        {
+            if (entity != null && entity.Scene != null)
+            {
+                entity.RemoveSelf();
+            }
         }
 
         public override void Removed(Scene scene)

@@ -1,5 +1,5 @@
 #nullable enable
-namespace MaggyHelper.Entities;
+namespace Celeste.Entities;
 
 // Note: Static class - cannot have [CustomEntity] attribute as Everest cannot instantiate static classes
 public static class ClutterBlockGenerator

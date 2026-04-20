@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
-using Celeste.Mod.MaggyHelper.BossesExample.Entities;
+using global::Celeste.Mod.MaggyHelper.BossesExample.Entities;
 using Microsoft.Xna.Framework;
 using Monocle;
 using MonoMod.RuntimeDetour;

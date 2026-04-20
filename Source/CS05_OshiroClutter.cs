@@ -1,7 +1,7 @@
 using System.Runtime.CompilerServices;
-using MaggyHelper.NPCs;
+using Celeste.NPCs;
 
-namespace MaggyHelper.Cutscenes;
+namespace Celeste.Cutscenes;
 
 public class CS05_OshiroClutter : CutsceneEntity
 {
@@ -12,8 +12,18 @@ public class CS05_OshiroClutter : CutsceneEntity
     private readonly NPC03_Oshiro_Cluttter oshiro;
 
     private List<ClutterDoor> doors;
-    private readonly NPC05_Oshiro_Cluttter NPC05_Oshiro_Cluttter;
+    private readonly NPC05_Oshiro_Cluttter npc05;
     private readonly int sectionsComplete;
+
+    // Helpers to dispatch to whichever NPC was provided
+    private int EffectiveIndex => oshiro != null ? index : sectionsComplete;
+    private float OshiroX => oshiro != null ? oshiro.X : npc05.X;
+    private Vector2 OshiroPosition => oshiro != null ? oshiro.Position : npc05.Position;
+    private Sprite OshiroSprite => oshiro != null ? oshiro.Sprite : npc05.Sprite;
+    private Vector2 EffectiveZoomPoint => oshiro != null ? oshiro.ZoomPoint : npc05.ZoomPoint;
+    private Vector2 EffectiveHomePosition => oshiro != null ? oshiro.HomePosition : npc05.HomePosition;
+    private IEnumerator EffectivePaceLeft() => oshiro != null ? oshiro.PaceLeft() : npc05.PaceLeft();
+    private IEnumerator EffectivePaceRight() => oshiro != null ? oshiro.PaceRight() : npc05.PaceRight();
 
     [MethodImpl(MethodImplOptions.NoInlining)]
     public CS05_OshiroClutter(global::Celeste.Player player, NPC03_Oshiro_Cluttter oshiro, int index)
@@ -23,10 +33,10 @@ public class CS05_OshiroClutter : CutsceneEntity
         this.index = index;
     }
 
-    public CS05_OshiroClutter(global::Celeste.Player player, NPC05_Oshiro_Cluttter NPC05_Oshiro_Cluttter, int sectionsComplete)
+    public CS05_OshiroClutter(global::Celeste.Player player, NPC05_Oshiro_Cluttter npc05, int sectionsComplete)
     {
         this.player = player;
-        this.NPC05_Oshiro_Cluttter = NPC05_Oshiro_Cluttter;
+        this.npc05 = npc05;
         this.sectionsComplete = sectionsComplete;
     }
 
@@ -41,29 +51,30 @@ public class CS05_OshiroClutter : CutsceneEntity
     [MethodImpl(MethodImplOptions.NoInlining)]
     private IEnumerator Cutscene(Level level)
     {
+        var idx = EffectiveIndex;
         player.StateMachine.State = 11;
         player.StateMachine.Locked = true;
-        int num = ((index != 1 && index != 2) ? 1 : (-1));
+        int num = ((idx != 1 && idx != 2) ? 1 : (-1));
         if (num == -1)
         {
-            yield return player.DummyWalkToExact((int)oshiro.X - 24);
+            yield return player.DummyWalkToExact((int)OshiroX - 24);
             player.Facing = Facings.Right;
-            oshiro.Sprite.Scale.X = -1f;
+            OshiroSprite.Scale.X = -1f;
         }
         else
         {
-            Add(new Coroutine(oshiro.PaceRight()));
-            yield return player.DummyWalkToExact((int)oshiro.HomePosition.X + 24);
+            Add(new Coroutine(EffectivePaceRight()));
+            yield return player.DummyWalkToExact((int)EffectiveHomePosition.X + 24);
             player.Facing = Facings.Left;
-            oshiro.Sprite.Scale.X = 1f;
+            OshiroSprite.Scale.X = 1f;
         }
-        if (index < 4)
+        if (idx < 4)
         {
-            yield return Level.ZoomTo(oshiro.ZoomPoint, 2f, 0.5f);
-            yield return Textbox.Say("CH5_OSHIRO_CLUTTER" + index, Collapse, oshiro.PaceLeft, oshiro.PaceRight);
+            yield return Level.ZoomTo(EffectiveZoomPoint, 2f, 0.5f);
+            yield return Textbox.Say("CH5_OSHIRO_CLUTTER" + idx, Collapse, EffectivePaceLeft, EffectivePaceRight);
             yield return Level.ZoomBack(0.5f);
-            level.Session.SetFlag("oshiro_clutter_door_open");
-            if (index == 0)
+            level.Session.SetFlag("oshiro_clutter_mod_door_open");
+            if (idx == 0)
             {
                 SetMusic();
             }
@@ -80,8 +91,16 @@ public class CS05_OshiroClutter : CutsceneEntity
             yield return CutsceneEntity.CameraTo(new Vector2(Level.Bounds.X, Level.Bounds.Y), 0.5f);
             yield return Level.ZoomTo(new Vector2(90f, 60f), 2f, 0.5f);
             yield return Textbox.Say("CH5_OSHIRO_CLUTTER_ENDING");
-            yield return oshiro.MoveTo(new Vector2(oshiro.X, level.Bounds.Top - 32));
-            oshiro.Add(new SoundSource("event:/char/oshiro/move_05_09b_exit"));
+            if (oshiro != null)
+            {
+                yield return oshiro.MoveTo(new Vector2(oshiro.X, level.Bounds.Top - 32));
+                oshiro.Add(new SoundSource("event:/char/oshiro/move_05_09b_exit"));
+            }
+            else
+            {
+                yield return npc05.MoveTo(level.Bounds.Top - 32);
+                npc05.Add(new SoundSource("event:/char/oshiro/move_05_09b_exit"));
+            }
             yield return Level.ZoomBack(0.5f);
         }
         EndCutscene(level);
@@ -89,8 +108,8 @@ public class CS05_OshiroClutter : CutsceneEntity
 
     private IEnumerator Collapse()
     {
-        Audio.Play("event:/char/oshiro/chat_collapse", oshiro.Position);
-        oshiro.Sprite.Play("fall");
+        Audio.Play("event:/char/oshiro/chat_collapse", OshiroPosition);
+        OshiroSprite.Play("fall");
         yield return 0.5f;
     }
 
@@ -106,17 +125,18 @@ public class CS05_OshiroClutter : CutsceneEntity
     [MethodImpl(MethodImplOptions.NoInlining)]
     public override void OnEnd(Level level)
     {
+        var idx = EffectiveIndex;
         player.StateMachine.Locked = false;
         player.StateMachine.State = 0;
-        if (oshiro.Sprite.CurrentAnimationID == "side")
+        if (OshiroSprite.CurrentAnimationID == "side")
         {
-            (oshiro.Sprite as OshiroSprite).Pop("idle", flip: true);
+            (OshiroSprite as OshiroSprite).Pop("idle", flip: true);
         }
-        if (index < 4)
+        if (idx < 4)
         {
             level.Session.SetFlag("oshiro_clutter_door_open");
-            level.Session.SetFlag("oshiro_clutter_" + index);
-            if (index == 0 && WasSkipped)
+            level.Session.SetFlag("oshiro_clutter_" + idx);
+            if (idx == 0 && WasSkipped)
             {
                 SetMusic();
             }
@@ -127,15 +147,18 @@ public class CS05_OshiroClutter : CutsceneEntity
                     door.InstantUnlock();
                 }
             }
-            if (WasSkipped && index == 0)
+            if (WasSkipped && idx == 0)
             {
-                oshiro.Sprite.Play("idle_ground");
+                OshiroSprite.Play("idle_ground");
             }
         }
         else
         {
             level.Session.SetFlag("oshiro_clutter_finished");
-            base.Scene.Remove(oshiro);
+            if (oshiro != null)
+                base.Scene.Remove(oshiro);
+            else
+                base.Scene.Remove(npc05);
         }
     }
 }

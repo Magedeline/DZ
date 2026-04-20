@@ -1,11 +1,11 @@
-using MaggyHelper.Entities;
-using MaggyHelper.Extensions;
+using Celeste.Entities;
+using Celeste.Extensions;
 using Microsoft.Xna.Framework;
 using Monocle;
 using System;
 using System.Collections;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// HopesAndDreamsBlock - A special dream block that transforms the player between Madeline and Kirby

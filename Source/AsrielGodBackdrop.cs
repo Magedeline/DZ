@@ -1,4 +1,4 @@
-namespace MaggyHelper.Effects
+namespace Celeste.Effects
 {
     /// <summary>
     /// Asriel God of Hyperdeath boss backdrop effect.

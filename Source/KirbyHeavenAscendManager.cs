@@ -1,7 +1,7 @@
 using System.Runtime.CompilerServices;
-using MaggyHelper.Cutscenes;
+using Celeste.Cutscenes;
 
-namespace MaggyHelper.Entities;
+namespace Celeste.Entities;
 
 /// <summary>
 /// Final ascension manager for Ch20: Kirby, Madeline, and Badeline ascend to heaven

@@ -2,7 +2,7 @@ using Microsoft.Xna.Framework;
 using Monocle;
 using System;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     public class GenocideVisionProp : Entity
     {

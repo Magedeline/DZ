@@ -1,6 +1,6 @@
 using StateMachine = Monocle.StateMachine;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     [CustomEntity(ids: "MaggyHelper/Boss")]
     [Tracked]

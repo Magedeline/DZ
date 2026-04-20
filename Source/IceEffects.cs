@@ -1,4 +1,4 @@
-namespace MaggyHelper.Effects
+namespace Celeste.Effects
 {
     /// <summary>
     /// Advanced ice elemental effects with freezing, crystallization, and snow

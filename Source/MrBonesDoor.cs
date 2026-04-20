@@ -1,4 +1,4 @@
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     [CustomEntity(ids: "MaggyHelper/MrBonesDoor")]
     public class MrBonesDoor : Solid
@@ -17,7 +17,7 @@ namespace MaggyHelper.Entities
             
             texture = AtlasPathHelper.GetTexture("objects/mrbonesdoor");
             
-            Add(new PlayerCollider(player => OnPlayer((Celeste.Player)player)));
+            Add(new PlayerCollider(player => OnPlayer((global::Celeste.Player)player)));
             base.Depth = -9000;
         }
 
@@ -27,7 +27,7 @@ namespace MaggyHelper.Entities
         {
         }
 
-        private void OnPlayer(Celeste.Player player)
+        private void OnPlayer(global::Celeste.Player player)
         {
             if (!opened && CanOpen())
             {

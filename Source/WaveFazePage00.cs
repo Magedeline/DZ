@@ -1,6 +1,6 @@
 using System.Globalization;
 
-namespace MaggyHelper
+namespace Celeste
 {
     [HotReloadable]
     public class WaveFazePage00 : WaveFazePage

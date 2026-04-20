@@ -1,7 +1,7 @@
 using System;
 using Microsoft.Xna.Framework;
 
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
     public static class CH7GenocideMirrorState
     {

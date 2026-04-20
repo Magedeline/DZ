@@ -1,4 +1,4 @@
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// Static helpers for cross-map SID navigation (used by the Ruins lobby system

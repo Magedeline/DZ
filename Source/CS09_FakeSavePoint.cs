@@ -1,9 +1,9 @@
-using MaggyHelper.Entities;
-using MaggyHelper.NPCs;
+using Celeste.Entities;
+using Celeste.NPCs;
 using FMOD.Studio;
-using BadelineDummy = MaggyHelper.Entities.BadelineDummy;
+using BadelineDummy = Celeste.Entities.BadelineDummy;
 
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
     /// <summary>
     /// Fake save point cutscene sequence (A through E) that leads to a trap.

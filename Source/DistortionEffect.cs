@@ -1,4 +1,4 @@
-namespace MaggyHelper.Effects.ShaderEffects
+namespace Celeste.Effects.ShaderEffects
 {
     /// <summary>
     /// Applies distortion, displacement, and chromatic aberration effects.

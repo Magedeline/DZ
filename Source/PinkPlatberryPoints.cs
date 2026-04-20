@@ -1,5 +1,5 @@
 #nullable enable
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     internal class PinkPlatberryPoints : Entity
     {

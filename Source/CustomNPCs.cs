@@ -1,6 +1,6 @@
-using MaggyHelper.Utils;
+using Celeste.Utils;
 
-namespace MaggyHelper.Entities;
+namespace Celeste.Entities;
 
 /// <summary>
 /// It's like <see cref="Mod.Entities.CustomNPC"/> but customer! (Wait that doesn't sound right)

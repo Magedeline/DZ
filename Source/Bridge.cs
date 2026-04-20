@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper.Entities;
+namespace Celeste.Entities;
 
     [CustomEntity("MaggyHelper/BridgeAgain")]
     [Monocle.Tracked]

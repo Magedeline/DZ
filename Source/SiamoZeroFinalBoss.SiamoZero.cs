@@ -1,7 +1,7 @@
-using MaggyHelper.Helpers;
-using MaggyHelper.Entities.Projectiles;
+using Celeste.Helpers;
+using Celeste.Entities.Projectiles;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// SiamoZeroFinalBoss - Siamo Zero ("We Are Zero") combat phase.

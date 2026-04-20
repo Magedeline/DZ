@@ -1,8 +1,8 @@
-using MaggyHelper.Helpers;
-using MaggyHelper.Entities;
+using Celeste.Helpers;
+using Celeste.Entities;
 using HeartGem = Celeste.HeartGem; // Vanilla HeartGem for particles (P_BlueShine)
 
-namespace MaggyHelper
+namespace Celeste
 {
     /// <summary>
     /// Asriel Angel of Death Boss - Chapter 20: The End

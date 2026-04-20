@@ -1,9 +1,9 @@
 using System.Collections;
-using MaggyHelper.Entities;
+using Celeste.Entities;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper
+namespace Celeste
 {
     /// <summary>
     /// Cutscene for Chapter 20: Tesseract Soul

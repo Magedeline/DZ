@@ -1,7 +1,7 @@
-using MaggyHelper.NPCs;
-using NPC = MaggyHelper.NPCs.NPC;
+using Celeste.NPCs;
+using NPC = Celeste.NPCs.NPC;
 
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
     /// <summary>
     /// Chapter 5 Oshiro breakdown cutscene

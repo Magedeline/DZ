@@ -539,6 +539,190 @@ pcg.PRESETS = {
         },
     },
 
+    ---------------------------------------------------------------------------
+    -- Kirby terrain presets — organic, non-boxy room shapes
+    ---------------------------------------------------------------------------
+
+    -- Green Greens: rolling hills, tree trunk, outdoor feel
+    kirbyNature = {
+        config = "000011012",
+        roomWidth = 60,
+        roomHeight = 34,
+        exitSize = 5,
+        borderMaterial = "1",  -- dirt/grass
+        backtrackDepth = 3,
+        entityDensity = 0.2,
+        cleanupPasses = 1,
+        branchProb = 0.3,
+        playabilityCheck = true,
+        maxRetries = 8,
+        roomStyle = "normal",
+        pattern = "greenGreens",
+        patternOpts = { seed = 42 },
+    },
+
+    -- Castle Dedede: columns, arches, royal interior
+    kirbyCastle = {
+        config = "000011012",
+        roomWidth = 56,
+        roomHeight = 30,
+        exitSize = 5,
+        borderMaterial = "B",  -- castle tileset
+        backtrackDepth = 3,
+        entityDensity = 0.15,
+        cleanupPasses = 2,
+        branchProb = 0.2,
+        playabilityCheck = true,
+        maxRetries = 8,
+        roomStyle = "castle",
+        pattern = "castleDedede",
+        patternOpts = { seed = 55 },
+    },
+
+    -- Ice Cave: organic cavern with stalactites/stalagmites
+    kirbyCavern = {
+        config = "000011012",
+        roomWidth = 56,
+        roomHeight = 32,
+        exitSize = 5,
+        borderMaterial = "3",  -- snow/ice tileset
+        backtrackDepth = 3,
+        entityDensity = 0.15,
+        cleanupPasses = 1,
+        branchProb = 0.25,
+        playabilityCheck = true,
+        maxRetries = 10,
+        roomStyle = "ice",
+        pattern = "iceCave",
+        patternOpts = { seed = 77 },
+    },
+
+    -- Rolling Hills: open outdoor terrain with gentle slopes
+    kirbyHills = {
+        config = "000011012",
+        roomWidth = 64,
+        roomHeight = 28,
+        exitSize = 5,
+        borderMaterial = "1",  -- dirt/grass
+        backtrackDepth = 3,
+        entityDensity = 0.2,
+        cleanupPasses = 1,
+        branchProb = 0.3,
+        playabilityCheck = true,
+        maxRetries = 8,
+        roomStyle = "normal",
+        pattern = "rollingHills",
+        patternOpts = { seed = 33 },
+    },
+
+    -- Bomber Corridor: overhead platforms with hazards
+    kirbyBomber = {
+        config = "000011012",
+        roomWidth = 60,
+        roomHeight = 24,
+        exitSize = 5,
+        borderMaterial = "B",  -- castle tileset
+        backtrackDepth = 3,
+        entityDensity = 0.25,
+        cleanupPasses = 2,
+        branchProb = 0.15,
+        playabilityCheck = true,
+        maxRetries = 8,
+        roomStyle = "castle",
+        pattern = "bomberCorridor",
+        patternOpts = { seed = 88 },
+    },
+
+    -- Boulder Run: sloping chase corridor
+    kirbyChase = {
+        config = "000011012",
+        roomWidth = 70,
+        roomHeight = 24,
+        exitSize = 5,
+        borderMaterial = "4",  -- cliff tileset
+        backtrackDepth = 3,
+        entityDensity = 0.1,
+        cleanupPasses = 1,
+        branchProb = 0.1,
+        playabilityCheck = true,
+        maxRetries = 8,
+        roomStyle = "normal",
+        pattern = "boulderRun",
+        patternOpts = { seed = 66 },
+    },
+
+    -- Crumbling Cliffs: vertical climbing with layered platforms
+    kirbyCrumble = {
+        config = "000011012",
+        roomWidth = 48,
+        roomHeight = 40,
+        exitSize = 5,
+        borderMaterial = "4",  -- cliff tileset
+        backtrackDepth = 3,
+        entityDensity = 0.15,
+        cleanupPasses = 1,
+        branchProb = 0.2,
+        playabilityCheck = true,
+        maxRetries = 10,
+        roomStyle = "normal",
+        pattern = "crumblingCliffs",
+        patternOpts = { seed = 44 },
+    },
+
+    -- Door Labyrinth: interconnected blob chambers
+    kirbyLabyrinth = {
+        config = "000011012",
+        roomWidth = 60,
+        roomHeight = 34,
+        exitSize = 5,
+        borderMaterial = "d",  -- temple tileset
+        backtrackDepth = 4,
+        entityDensity = 0.15,
+        cleanupPasses = 2,
+        branchProb = 0.35,
+        playabilityCheck = true,
+        maxRetries = 10,
+        roomStyle = "temple",
+        pattern = "doorLabyrinth",
+        patternOpts = { seed = 111, chambers = 5 },
+    },
+
+    -- Elevator Shaft: vertical room with alternating platforms
+    kirbyElevator = {
+        config = "000011012",
+        roomWidth = 32,
+        roomHeight = 48,
+        exitSize = 5,
+        borderMaterial = "B",  -- castle tileset
+        backtrackDepth = 3,
+        entityDensity = 0.15,
+        cleanupPasses = 1,
+        branchProb = 0.15,
+        playabilityCheck = true,
+        maxRetries = 8,
+        roomStyle = "castle",
+        pattern = "elevatorShaft",
+        patternOpts = { seed = 123 },
+    },
+
+    -- Pit of Pits: wide gap with narrow cliff islands
+    kirbyPitRun = {
+        config = "000011012",
+        roomWidth = 64,
+        roomHeight = 28,
+        exitSize = 5,
+        borderMaterial = "4",  -- cliff tileset
+        backtrackDepth = 3,
+        entityDensity = 0.1,
+        cleanupPasses = 1,
+        branchProb = 0.15,
+        playabilityCheck = true,
+        maxRetries = 10,
+        roomStyle = "normal",
+        pattern = "pitOfPits",
+        patternOpts = { seed = 55 },
+    },
+
     -- Normal player boss: Celeste-style boss room
     playerBoss = {
         config = "000011012",

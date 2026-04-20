@@ -1,6 +1,6 @@
 using System.Runtime.CompilerServices;
 
-namespace MaggyHelper.Entities;
+namespace Celeste.Entities;
 [CustomEntity(ids: "MaggyHelper/TapeBlock")]
 [Tracked(true)]
 public class TapeBlock : Solid

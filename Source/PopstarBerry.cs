@@ -1,5 +1,5 @@
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     [CustomEntity(ids: "MaggyHelper/PopstarBerry")]
     [Monocle.Tracked]
@@ -21,9 +21,15 @@ namespace MaggyHelper.Entities
         private bool collected;
         private EntityID id;
         private float rainbowTimer = 0f;
+        private string collectSound;
+        private string customCollectSound;
 
         public int CheckpointId { get; private set; } = -1;
         public int Order { get; private set; } = -1;
+
+        // Secondary audio event paths per mode
+        private const string AudioElaborate  = "event:/desolozantas/game/general/strawberry_get";
+        private const string AudioOriginalFx = "event:/game/general/strawberry_blue_touch";
 
         public PopstarBerry(EntityData data, Vector2 offset, EntityID id)
             : base(data.Position + offset)
@@ -31,6 +37,8 @@ namespace MaggyHelper.Entities
             this.id = id;
             CheckpointId = data.Int("checkpointID", -1);
             Order = data.Int("order", -1);
+            collectSound      = data.Attr("collectSound",       "Original");
+            customCollectSound = data.Attr("customCollectSound", "");
 
             Depth = -100;
             Collider = new Monocle.Hitbox(14f, 14f, -7f, -10f);
@@ -129,13 +137,34 @@ namespace MaggyHelper.Entities
             if (collected)
                 return;
 
-            Audio.Play("event:/game/general/strawberry_get", Position, "colour", 5f);
-            Audio.Play("event:/game/general/strawberry_blue_touch", Position); // Add extra sparkle sound
-            Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
+
 
             collected = true;
             Collidable = false;
-            
+
+            // Primary collect sound (always)
+            Audio.Play("event:/desolozantas/game/general/strawberry_get", Position, "colour", 5f);
+
+            // Secondary audio event driven by collectSound mode
+            switch (collectSound)
+            {
+                case "Elaborate":
+                    Audio.Play(AudioElaborate, Position, "colour", 5f);
+                    break;
+                case "Minimalist":
+                    // no secondary sound
+                    break;
+                case "Custom":
+                    if (!string.IsNullOrEmpty(customCollectSound))
+                        Audio.Play(customCollectSound, Position);
+                    break;
+                default: // "Original"
+                    Audio.Play(AudioOriginalFx, Position);
+                    break;
+            }
+
+            Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
+
             // Add to session
             var level = Scene as Level;
             if (level != null)
@@ -146,7 +175,7 @@ namespace MaggyHelper.Entities
 
             // Visual effects
             wiggler.Start();
-            
+
             Add(new Coroutine(collectRoutine(player)));
         }
 

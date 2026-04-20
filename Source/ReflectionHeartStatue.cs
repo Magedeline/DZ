@@ -4,7 +4,7 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper;
+namespace Celeste;
 
 /// <summary>
 /// A reimplementation of Celeste's ReflectionHeartStatue (Chapter 6 secret heart puzzle)

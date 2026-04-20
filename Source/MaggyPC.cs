@@ -1,6 +1,6 @@
 using System.Runtime.CompilerServices;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// Maggy's PC - A sci-fi themed computer terminal inspired by the Star Cutter Lor from Kirby.

@@ -1,7 +1,7 @@
 #nullable disable
-using MaggyHelper.Entities;
+using Celeste.Entities;
 
-namespace MaggyHelper.Cutscenes {
+namespace Celeste.Cutscenes {
     public class Cs08CharaBossIntro : CutsceneEntity {
         public const string FLAG = "chara_boss_intro";
         public global::Celeste.Player Player;

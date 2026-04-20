@@ -1,6 +1,6 @@
 #nullable enable
 
-namespace MaggyHelper.UI
+namespace Celeste.UI
 {
     /// <summary>
     /// Custom main-menu credits scene for the Desolo Zantas mod.

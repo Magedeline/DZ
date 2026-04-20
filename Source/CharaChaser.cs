@@ -1,6 +1,6 @@
 using System.Runtime.CompilerServices;
 
-namespace MaggyHelper.Entities;
+namespace Celeste.Entities;
 
 /// <summary>
 /// CharaChaser - A chaser entity that follows the player with Chara's appearance.

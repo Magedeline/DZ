@@ -1,10 +1,10 @@
 using System;
-using MaggyHelper.Entities;
-using MaggyHelper;
+using Celeste.Entities;
+using Celeste;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper.Entities.Bosses
+namespace Celeste.Entities.Bosses
 {
     /// <summary>
     /// Base class for all boss entities in MaggyHelper
@@ -136,12 +136,12 @@ namespace MaggyHelper.Entities.Bosses
         
         protected abstract string GetBossName();
 
-        protected virtual void OnPlayerCollide(Celeste.Player player)
+        protected virtual void OnPlayerCollide(global::Celeste.Player player)
         {
             if (isDefeated || !fightStarted) return;
             
             // Check if player is attacking (dashing, etc.)
-            if (player.StateMachine.State == Celeste.Player.StDash)
+            if (player.StateMachine.State == global::Celeste.Player.StDash)
             {
                 TakeDamage(1);
             }

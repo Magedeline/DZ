@@ -1,10 +1,10 @@
 #nullable enable
 
-using MaggyHelper;
+using Celeste;
 using FMOD.Studio;
 using Microsoft.Xna.Framework.Input;
 
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
     /// <summary>
     /// Vessel Creation Vignette - Interactive vessel creation cutscene 

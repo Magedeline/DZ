@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using Monocle;
 using System;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     [CustomEntity(ids: "MaggyHelper/MainCharaVisionActor")]
     public class MainCharaVisionActor : Actor

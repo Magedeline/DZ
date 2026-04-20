@@ -1,5 +1,5 @@
 #nullable enable
-namespace MaggyHelper {
+namespace Celeste {
     [HotReloadable]
     public class StarsiAutoAnimator() : Component(true, false) {
         private const bool enabled = true;

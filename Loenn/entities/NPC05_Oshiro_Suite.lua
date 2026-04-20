@@ -3,7 +3,7 @@ local npc05_oshiro_suite = {}
 npc05_oshiro_suite.name = "MaggyHelper/NPC05_Oshiro_Suite"
 npc05_oshiro_suite.depth = 0
 npc05_oshiro_suite.justification = {0.5, 1.0}
-npc05_oshiro_suite.texture = "characters/oshiro/oshiro00"
+npc05_oshiro_suite.texture = "characters/oshiro/oshiro25"
 
 npc05_oshiro_suite.placements = {
     {

@@ -1,4 +1,4 @@
-namespace MaggyHelper
+namespace Celeste
 {
     /// <summary>
     /// Giygas-style backdrop effect inspired by Earthbound's final boss

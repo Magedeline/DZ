@@ -1,4 +1,4 @@
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     [CustomEntity(ids: "MaggyHelper/LuckyBlock")]
     public class LuckyBlock : Solid
@@ -20,7 +20,7 @@ namespace MaggyHelper.Entities
             originalPosition = position;
             
             texture = AtlasPathHelper.GetTexture("objects/luckyblock");
-            OnDashCollide = (Celeste.Player player, Vector2 direction) => OnDashed(player, direction);
+            OnDashCollide = (global::Celeste.Player player, Vector2 direction) => OnDashed(player, direction);
             
             Add(wiggler = Wiggler.Create(0.3f, 4f));
             base.Depth = -9000;
@@ -32,7 +32,7 @@ namespace MaggyHelper.Entities
         {
         }
 
-        private DashCollisionResults OnDashed(Celeste.Player player, Vector2 direction)
+        private DashCollisionResults OnDashed(global::Celeste.Player player, Vector2 direction)
         {
             // Only trigger when hit from below
             if (!hit && hitsRemaining > 0 && player != null)
@@ -48,7 +48,7 @@ namespace MaggyHelper.Entities
             base.Update();
             
             // Check if player jumps and hits from below
-            Celeste.Player player = Scene.Tracker.GetEntity<Celeste.Player>();
+            global::Celeste.Player player = Scene.Tracker.GetEntity<global::Celeste.Player>();
             if (player != null && !hit && hitsRemaining > 0)
             {
                 if (player.Speed.Y < 0 && player.Top <= Bottom && player.Top >= Bottom - 8)
@@ -67,7 +67,7 @@ namespace MaggyHelper.Entities
             }
         }
 
-        private void Hit(Celeste.Player player)
+        private void Hit(global::Celeste.Player player)
         {
             if (hitsRemaining <= 0) return;
             

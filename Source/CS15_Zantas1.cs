@@ -1,4 +1,4 @@
-namespace MaggyHelper.Cutscenes;
+namespace Celeste.Cutscenes;
 
 [HotReloadable]
 public class Cs15Zantas1 : CutsceneEntity

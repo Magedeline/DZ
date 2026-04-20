@@ -2,7 +2,7 @@
 
 // Add this namespace if 'Enemy' is defined here
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     public static class EnemyBossManager
     {

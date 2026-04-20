@@ -1,10 +1,10 @@
-using TestBreathingGame = MaggyHelper.Entities.TestBreathingGame;
+using MaggyBreathingGame = Celeste.Entities.TestBreathingGame;
 using System;
 using System.Collections;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper
+namespace Celeste
 {
 	// Token: 0x0200022A RID: 554
 	public class HeartgemDarkness : Entity
@@ -127,13 +127,13 @@ namespace MaggyHelper
 		// Token: 0x04000D62 RID: 3426
 		private WindSnowFG windSnowFG;
 
-		private TestBreathingGame breathingGame;
+		private MaggyBreathingGame breathingGame;
 
 		/// <summary>
 		/// Links this darkness entity to a TestBreathingGame so that anxiety
 		/// is driven by the game's panic level.
 		/// </summary>
-		public void TrackBreathingGame(TestBreathingGame game)
+		public void TrackBreathingGame(MaggyBreathingGame game)
 		{
 			breathingGame = game;
 		}

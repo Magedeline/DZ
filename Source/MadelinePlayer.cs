@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework;
 /// For now, this is a minimal placeholder that shares core mechanics with the Kirby player
 /// but disables all Kirby-specific features (abilities, combat, inhale, etc.).
 /// </summary>
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     [CustomEntity(ids: "MaggyHelper/MadelinePlayer")]
     [Tracked(true)]

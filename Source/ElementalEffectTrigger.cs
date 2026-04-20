@@ -1,6 +1,6 @@
-using MaggyHelper.Effects;
+using Celeste.Effects;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// Trigger entity that creates elemental effects when activated

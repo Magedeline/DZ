@@ -1,6 +1,6 @@
-using MaggyHelper.Utils;
+using Celeste.Utils;
 
-namespace MaggyHelper
+namespace Celeste
 {
     /// <summary>
     /// A spectacular rainbow blackhole background effect that shifts through the entire color spectrum
@@ -116,6 +116,18 @@ namespace MaggyHelper
         private float frameDelay = 0.08f; // ~12.5 FPS by default
         private float animationScale = 1f;
         private bool animationLoops = true;
+
+        // Optional glitch / distortion overlay controls.
+        private float glitchAmount = 0f;
+        private float distortionAmount = 0f;
+        private float distortionFrequency = 2f;
+        private float chromaticAberration = 0f;
+
+        // Baseline values from map data used when generator progression overrides visuals.
+        private float baseAlpha = 1f;
+        private float baseGlitchAmount = 0f;
+        private float baseDistortionAmount = 0f;
+        private float baseChromaticAberration = 0f;
 
         public float Alpha = 1f;
         public float Scale = 1f;
@@ -251,6 +263,25 @@ namespace MaggyHelper
             
             if (data.HasAttr("animationLoops"))
                 animationLoops = data.AttrBool("animationLoops", true);
+
+            // Glitch / distortion controls.
+            if (data.HasAttr("glitchAmount"))
+                glitchAmount = MathHelper.Clamp(data.AttrFloat("glitchAmount", 0f), 0f, 1f);
+
+            if (data.HasAttr("distortionAmount"))
+                distortionAmount = MathHelper.Clamp(data.AttrFloat("distortionAmount", 0f), 0f, 1f);
+
+            if (data.HasAttr("distortionFrequency"))
+                distortionFrequency = Math.Max(0.1f, data.AttrFloat("distortionFrequency", 2f));
+
+            if (data.HasAttr("chromaticAberration"))
+                chromaticAberration = MathHelper.Clamp(data.AttrFloat("chromaticAberration", 0f), 0f, 1f);
+
+            // Cache baseline values so runtime progression can blend from configured map values.
+            baseAlpha = Alpha;
+            baseGlitchAmount = glitchAmount;
+            baseDistortionAmount = distortionAmount;
+            baseChromaticAberration = chromaticAberration;
             
             UpdateStrengthColor();
         }
@@ -393,6 +424,12 @@ namespace MaggyHelper
             colorsLerp = new Color[RAINBOW_COLOR_COUNT];
             colorsLerpBlack = new Color[RAINBOW_COLOR_COUNT, COLOR_STEPS];
             colorsLerpTransparent = new Color[RAINBOW_COLOR_COUNT, COLOR_STEPS];
+
+            // Defaults for cases where no map data constructor is used.
+            baseAlpha = Alpha;
+            baseGlitchAmount = glitchAmount;
+            baseDistortionAmount = distortionAmount;
+            baseChromaticAberration = chromaticAberration;
         }
 
         private void InitializeRainbowColors()
@@ -787,8 +824,23 @@ namespace MaggyHelper
             verts[v + 5].Position = new Vector3(d, 0f);
         }
 
+        /// <summary>
+        /// Rainbow blackhole should stay as a background visual only.
+        /// If a map accidentally places it in foreground, skip rendering there.
+        /// </summary>
+        private bool ShouldRenderInCurrentContainer(Scene scene)
+        {
+            if (scene is not Level level)
+                return true;
+
+            return level.Foreground?.Backdrops == null || !level.Foreground.Backdrops.Contains(this);
+        }
+
         public override void BeforeRender(Scene scene)
         {
+            if (!ShouldRenderInCurrentContainer(scene))
+                return;
+
             // Use normal screen size for cover effect
             int bufferWidth = 320;
             int bufferHeight = 180;
@@ -901,41 +953,85 @@ namespace MaggyHelper
 
         public override void Render(Scene scene)
         {
+            if (!ShouldRenderInCurrentContainer(scene))
+                return;
+
+            Vector2 screenCenter = new Vector2(160f, 90f);
+            float baseAlpha = FadeAlphaMultiplier * Alpha;
+
+            // Compute lightweight procedural distortion from blackhole motion timers.
+            float distortionPulse = distortionAmount * (0.5f + 0.5f * (float)Math.Sin(warpTime * distortionFrequency));
+            Vector2 distortionOffset = new Vector2(
+                (float)Math.Sin(warpTime * (distortionFrequency + 0.7f) + chaosTime) * 2.5f,
+                (float)Math.Cos(warpTime * (distortionFrequency + 1.3f) - chaosTime * 0.8f) * 2.0f
+            ) * distortionPulse;
+
+            Vector2 glitchJitter = Vector2.Zero;
+            if (glitchAmount > 0f)
+            {
+                // Sparse, short jitter bursts to avoid constant screen shake.
+                float burst = (float)Math.Sin((rainbowTime + chaosTime * 0.4f) * 24f);
+                if (burst > 0.65f)
+                {
+                    glitchJitter = new Vector2(
+                        Calc.Random.Range(-1.5f, 1.5f),
+                        Calc.Random.Range(-1.0f, 1.0f)
+                    ) * glitchAmount;
+                }
+            }
+
+            Vector2 finalCenter = screenCenter + distortionOffset + glitchJitter;
+
             // If in animation mode, render the animated background
             if (animationMode != AnimationMode.None && animationFrames != null && animationFrames.Count > 0)
             {
                 MTexture frame = animationFrames[currentFrame];
-                Vector2 screenCenter = new Vector2(160f, 90f);
                 Vector2 frameOrigin = new Vector2(frame.Width / 2f, frame.Height / 2f);
                 
                 // Apply subtle breathing effect and animation scale
                 float breathScale = animationScale * Scale * (1f + (float)Math.Sin(warpTime * 0.5f) * 0.01f * StrengthMultiplier);
                 
                 // Get color tint based on strength
-                Color tint = Color.White * FadeAlphaMultiplier * Alpha;
+                Color tint = Color.White * baseAlpha;
                 if (strength == Strengths.Cosmic)
                 {
                     // Add rainbow tint for cosmic strength
-                    tint = GetRainbowColor(rainbowTime, 1f) * FadeAlphaMultiplier * Alpha;
+                    tint = GetRainbowColor(rainbowTime, 1f) * baseAlpha;
+                }
+
+                float chroma = chromaticAberration * (0.8f + glitchAmount * 1.2f);
+                if (chroma > 0.001f)
+                {
+                    Vector2 chromaOffset = new Vector2(1.2f + distortionPulse * 2f, 0.7f) * chroma;
+                    frame.DrawCentered(finalCenter - chromaOffset, new Color(255, 90, 90, 180) * baseAlpha, breathScale);
+                    frame.DrawCentered(finalCenter + chromaOffset, new Color(90, 255, 255, 180) * baseAlpha, breathScale);
                 }
                 
-                frame.DrawCentered(screenCenter, tint, breathScale);
+                frame.DrawCentered(finalCenter, tint, breathScale);
                 return;
             }
             
             // Default procedural rendering
             if (buffer != null && !buffer.IsDisposed)
             {
-                // Render at the literal screen center
-                Vector2 screenCenter = new Vector2(160f, 90f);
                 Vector2 bufferCenter = new Vector2(buffer.Width / 2f, buffer.Height / 2f);
                 
                 // Subtle breathing scale effect
                 float warpScale = Scale * 1.0f + (float)Math.Sin(warpTime * 0.5f) * 0.02f * StrengthMultiplier;
+
+                float chroma = chromaticAberration * (0.8f + glitchAmount * 1.2f);
+                if (chroma > 0.001f)
+                {
+                    Vector2 chromaOffset = new Vector2(1.4f + distortionPulse * 2.2f, 0.8f) * chroma;
+                    Draw.SpriteBatch.Draw((RenderTarget2D)buffer, finalCenter - chromaOffset, buffer.Bounds,
+                        new Color(255, 95, 95, 170) * baseAlpha, 0f, bufferCenter, warpScale, SpriteEffects.None, 0f);
+                    Draw.SpriteBatch.Draw((RenderTarget2D)buffer, finalCenter + chromaOffset, buffer.Bounds,
+                        new Color(95, 255, 255, 170) * baseAlpha, 0f, bufferCenter, warpScale, SpriteEffects.None, 0f);
+                }
                 
                 // No rotation on final render to keep it stable - rotation is handled in layers
-                Draw.SpriteBatch.Draw((RenderTarget2D)buffer, screenCenter, buffer.Bounds, 
-                    Color.White * FadeAlphaMultiplier * Alpha, 0f, bufferCenter, warpScale, SpriteEffects.None, 0f);
+                Draw.SpriteBatch.Draw((RenderTarget2D)buffer, finalCenter, buffer.Bounds,
+                    Color.White * baseAlpha, 0f, bufferCenter, warpScale, SpriteEffects.None, 0f);
             }
         }
 
@@ -982,6 +1078,35 @@ namespace MaggyHelper
             }
             
             UpdateStrengthColor();
+        }
+
+        /// <summary>
+        /// Applies progression from broken power generators.
+        /// 0 = full blackhole pressure, 1 = weakened blackhole with clearer Zero/Darkmatter visuals.
+        /// </summary>
+        /// <param name="progress">Progress value in range [0, 1].</param>
+        public void SetGeneratorBreakProgress(float progress)
+        {
+            float p = MathHelper.Clamp(progress, 0f, 1f);
+
+            // Step down strength tiers as generators are destroyed.
+            Strengths targetStrength = p switch
+            {
+                < 0.15f => Strengths.Cosmic,
+                < 0.35f => Strengths.Insane,
+                < 0.55f => Strengths.High,
+                < 0.75f => Strengths.Medium,
+                _ => Strengths.Mild
+            };
+
+            SetStrength(targetStrength);
+
+            // Reduce blackhole opacity and distortion so the background visual layer becomes readable.
+            float minVisibleAlpha = Math.Max(0.22f, baseAlpha * 0.3f);
+            Alpha = MathHelper.Lerp(baseAlpha, minVisibleAlpha, p);
+            glitchAmount = MathHelper.Lerp(baseGlitchAmount, 0.02f, p);
+            distortionAmount = MathHelper.Lerp(baseDistortionAmount, 0.04f, p);
+            chromaticAberration = MathHelper.Lerp(baseChromaticAberration, 0.03f, p);
         }
 
         /// <summary>

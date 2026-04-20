@@ -2,7 +2,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper.Entities;
+namespace Celeste.Entities;
     
 [Tracked(true)]
 [CustomEntity(new string[] { "MaggyHelper/CharaChaserEnd" })]

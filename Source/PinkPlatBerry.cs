@@ -1,7 +1,7 @@
-using CelesteEntities = Celeste.Mod.Entities;
+using CelesteEntities = global::Celeste.Mod.Entities;
 
 #nullable enable
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     [CelesteEntities.CustomEntity("MaggyHelper/PinkPlatinumStrawberry")]
     [Monocle.Tracked]

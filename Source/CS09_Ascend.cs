@@ -1,7 +1,7 @@
-using MaggyHelper.Entities;
-using BadelineDummy = MaggyHelper.Entities.BadelineDummy;
+using Celeste.Entities;
+using BadelineDummy = Celeste.Entities.BadelineDummy;
 
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
     public class CS09_Ascend : CutsceneEntity
     {

@@ -1,6 +1,6 @@
-using MaggyHelper.NPCs;
+using Celeste.NPCs;
 
-namespace MaggyHelper.Cutscenes;
+namespace Celeste.Cutscenes;
 
 [HotReloadable]
 public class Cs03Meetup(
@@ -49,7 +49,7 @@ public class Cs03Meetup(
                         var level = Level;
                         if (level != null && player != null)
                         {
-                            var badelineType = System.Type.GetType("Celeste.Mod.DesoloZantasHelper.Entities.BadelineDummy, IngesteHelper");
+                            var badelineType = System.Type.GetType("global::Celeste.Mod.DesoloZantasHelper.Entities.BadelineDummy, IngesteHelper");
                             if (badelineType != null)
                             {
                                 var badeline = System.Activator.CreateInstance(badelineType, player.Position);

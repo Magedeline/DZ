@@ -1,6 +1,6 @@
 using Monocle;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// A larger version of the vanilla Bonfire intended for Chapter 8 maps.

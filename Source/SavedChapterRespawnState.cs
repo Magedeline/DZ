@@ -1,7 +1,7 @@
-using global::MaggyHelper.Extensions.Core;
-using MaggyHelper.Utils;
+using global::Celeste.Extensions.Core;
+using Celeste.Utils;
 
-namespace MaggyHelper;
+namespace Celeste;
 
 /// <summary>
 /// Serialized per-chapter respawn state used to resume a chapter at the latest save point.

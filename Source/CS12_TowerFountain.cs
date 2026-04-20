@@ -1,6 +1,6 @@
-using MaggyHelper.Entities;
+using Celeste.Entities;
 
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
     // Note: Removed [CustomEntity] - cutscene entities are created programmatically, not placed in maps
     public class Cs12TowerFountain : CutsceneEntity

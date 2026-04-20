@@ -3,7 +3,7 @@ using System.Collections;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
 	// Token: 0x02000275 RID: 629
 	public class GondolaMaggy : Solid

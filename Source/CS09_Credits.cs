@@ -1,9 +1,9 @@
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using MaggyHelper.Entities;
+using Celeste.Entities;
 
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
     /// <summary>
     /// Credits cutscene for Chapter 9 that displays image-based credits
@@ -26,7 +26,7 @@ namespace MaggyHelper.Cutscenes
         private float fade = 1f;
         private float shine = 0f;
         private Color fadeColor = Color.Black;
-        private Vector2 center = Celeste.Celeste.TargetCenter;
+        private Vector2 center = CelesteGame.TargetCenter;
         
 #pragma warning disable CS0414
         private bool showingCredits;

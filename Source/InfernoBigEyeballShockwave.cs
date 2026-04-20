@@ -1,4 +1,4 @@
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// A pooled shockwave projectile for Chapter 7 (Infernal Reflections).

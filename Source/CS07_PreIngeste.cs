@@ -1,7 +1,7 @@
-using BadelineDummy = MaggyHelper.Entities.BadelineDummy;
-using MaggyHelper.Entities;
+using BadelineDummy = Celeste.Entities.BadelineDummy;
+using Celeste.Entities;
 
-namespace MaggyHelper.Cutscenes;
+namespace Celeste.Cutscenes;
 
 [HotReloadable]
 public class Cs07PreIngeste : CutsceneEntity

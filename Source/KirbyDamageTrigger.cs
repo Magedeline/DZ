@@ -1,8 +1,8 @@
-using MaggyHelper.Extensions;
+using Celeste.Extensions;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper.Triggers
+namespace Celeste.Triggers
 {
     /// <summary>
     /// Trigger that damages Kirby when entered.

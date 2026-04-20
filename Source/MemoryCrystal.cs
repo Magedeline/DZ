@@ -1,9 +1,9 @@
 using System;
-using MaggyHelper.Entities;
+using Celeste.Entities;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// Collectible that reveals lore through a flashback vision
@@ -29,7 +29,7 @@ namespace MaggyHelper.Entities
             flashbackDuration = data.Float("flashbackDuration", 3f);
             
             Collider = new Hitbox(16f, 16f, -8f, -8f);
-            Add(new PlayerCollider(player => OnPlayer((Celeste.Player)player)));
+            Add(new PlayerCollider(player => OnPlayer((global::Celeste.Player)player)));
             
             crystalColor = new Color(50, 200, 220);
             
@@ -55,7 +55,7 @@ namespace MaggyHelper.Entities
             }
         }
         
-        private void OnPlayer(Celeste.Player player)
+        private void OnPlayer(global::Celeste.Player player)
         {
             if (collected) return;
             
@@ -92,7 +92,7 @@ namespace MaggyHelper.Entities
             }
         }
         
-        private void TriggerMemory(Celeste.Player player)
+        private void TriggerMemory(global::Celeste.Player player)
         {
             Level level = Scene as Level;
             if (level == null) return;

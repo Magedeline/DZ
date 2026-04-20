@@ -38,6 +38,10 @@ local PRESETS = {
     "asrielGodBoss", "challenge", "puzzleRoom", "hubRoom",
     "serpentine", "dualBoss",
     "bspPlatformer", "bspSummit", "bspTemple", "bspResort",
+    -- Kirby terrain presets
+    "kirbyNature", "kirbyCastle", "kirbyCavern", "kirbyHills",
+    "kirbyBomber", "kirbyChase", "kirbyCrumble",
+    "kirbyLabyrinth", "kirbyElevator", "kirbyPitRun",
 }
 
 function tool.getMaterials(layer)

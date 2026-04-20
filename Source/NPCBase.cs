@@ -1,5 +1,5 @@
-using MaggyHelper.Cutscenes;
-namespace MaggyHelper.NPCs
+using Celeste.Cutscenes;
+namespace Celeste.NPCs
 {
     public abstract class NpcBase : Entity
     {

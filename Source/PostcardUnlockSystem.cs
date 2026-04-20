@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Monocle;
 
-namespace MaggyHelper;
+namespace Celeste;
 
 /// <summary>
 /// Handles showing postcards when unlocking C-Side, D-Side, and DX-Side.

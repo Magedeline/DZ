@@ -1,10 +1,10 @@
 using System;
 using System.Collections;
-using MaggyHelper.Entities;
+using Celeste.Entities;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper.Entities.SoulBoosts
+namespace Celeste.Entities.SoulBoosts
 {
     /// <summary>
     /// Base class for soul boost entities that combines FlingBird's waiting behavior
@@ -59,7 +59,7 @@ namespace MaggyHelper.Entities.SoulBoosts
         protected Vector2 spriteOffset = new Vector2(0f, 8f);
 
         // Boost mechanics (BadelineBoost-style)
-        protected Celeste.Player holding;
+        protected global::Celeste.Player holding;
         protected bool canSkip;
         protected bool oneUse;
         protected float boostSpeed;
@@ -249,7 +249,7 @@ namespace MaggyHelper.Entities.SoulBoosts
             }
         }
 
-        protected void OnPlayer(Celeste.Player player)
+        protected void OnPlayer(global::Celeste.Player player)
         {
             if (state != States.Wait || !CanBoostPlayer(player))
                 return;
@@ -258,12 +258,12 @@ namespace MaggyHelper.Entities.SoulBoosts
             Add(new Coroutine(BoostRoutine(player)));
         }
 
-        protected virtual bool CanBoostPlayer(Celeste.Player player)
+        protected virtual bool CanBoostPlayer(global::Celeste.Player player)
         {
             return true;
         }
 
-        protected virtual IEnumerator BoostRoutine(Celeste.Player player)
+        protected virtual IEnumerator BoostRoutine(global::Celeste.Player player)
         {
             holding = player;
             travelling = true;
@@ -468,8 +468,8 @@ namespace MaggyHelper.Entities.SoulBoosts
         }
 
         // Override these in derived classes for soul-specific abilities
-        protected virtual IEnumerator ApplyAbilityStart(Celeste.Player player) { yield break; }
-        protected virtual IEnumerator ApplyAbilityEnd(Celeste.Player player) { yield break; }
+        protected virtual IEnumerator ApplyAbilityStart(global::Celeste.Player player) { yield break; }
+        protected virtual IEnumerator ApplyAbilityEnd(global::Celeste.Player player) { yield break; }
 
         public override void Render()
         {

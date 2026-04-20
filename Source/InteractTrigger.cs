@@ -1,6 +1,6 @@
-using MaggyHelper.Cutscenes;
+using Celeste.Cutscenes;
 
-namespace MaggyHelper.Triggers;
+namespace Celeste.Triggers;
 
 // Note: Abstract class - cannot have [CustomEntity] attribute as Everest cannot instantiate abstract classes
 [Tracked]

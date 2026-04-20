@@ -1,7 +1,7 @@
 #nullable enable
-using MaggyHelper.Entities;
+using Celeste.Entities;
 
-namespace MaggyHelper
+namespace Celeste
 {
     /// <summary>
     /// Manages the mod's custom overworld visuals: a primary mountain renderer,

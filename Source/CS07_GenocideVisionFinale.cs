@@ -1,10 +1,10 @@
 using System;
 using FMOD.Studio;
-using MaggyHelper.Entities;
+using Celeste.Entities;
 using Microsoft.Xna.Framework;
-using BadelineDummy = MaggyHelper.Entities.BadelineDummy;
+using BadelineDummy = Celeste.Entities.BadelineDummy;
 
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
     [HotReloadable]
     public class CS07_GenocideVisionFinale : CutsceneEntity

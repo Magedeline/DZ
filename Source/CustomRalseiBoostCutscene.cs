@@ -1,6 +1,6 @@
 // Celeste.CS10_FinalLaunch
 
-namespace MaggyHelper.Entities;
+namespace Celeste.Entities;
 
 [HotReloadable]
 internal class CustomRalseiBoostCutscene : CutsceneEntity

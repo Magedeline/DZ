@@ -1,6 +1,6 @@
-using MaggyHelper.Entities;
+using Celeste.Entities;
 
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
     public class CS05_OshiroRooftop(CelesteNPC oshiro) : CutsceneEntity
     {

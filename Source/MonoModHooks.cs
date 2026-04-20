@@ -1,8 +1,8 @@
 using System;
 using System.Reflection;
-using MaggyHelper.Entities;
-using MaggyHelper.Extensions;
-using MaggyHelper;
+using Celeste.Entities;
+using Celeste.Extensions;
+using Celeste;
 using Microsoft.Xna.Framework;
 using Mono.Cecil.Cil;
 using Monocle;
@@ -10,9 +10,9 @@ using MonoMod.Cil;
 using MonoMod.RuntimeDetour;
 using MonoMod.Utils;
 
-using CopyAbilityType = MaggyHelper.Entities.Bosses.CopyAbilityType;
+using CopyAbilityType = Celeste.Entities.Bosses.CopyAbilityType;
 
-namespace MaggyHelper
+namespace Celeste
 {
     /// <summary>
     /// Demonstrates advanced MonoMod hooking techniques:
@@ -350,7 +350,7 @@ namespace MaggyHelper
         //  legacy IDs to the room-local KirbyPlayerSpawner before the room loads.
         //
         //  This preserves backwards compatibility while keeping the real
-        //  Celeste.Player authoritative in-game.
+        //  global::Celeste.Player authoritative in-game.
         //
         // =====================================================================
 

@@ -4,12 +4,12 @@ local utils = require("utils")
 
 local clutterSwitch = {}
 
-local variants = {"red", "green", "blue", "yellow"}
+local variants = {"ClutterSwitch red", "ClutterSwitch green", "ClutterSwitch blue", "ClutterSwitch yellow"}
 local variantOptions = {
-    Red = "red",
-    Green = "green", 
-    Blue = "blue",
-    Lightning = "yellow"
+    Red = "ClutterSwitch red",
+    Green = "ClutterSwitch green", 
+    Blue = "ClutterSwitch blue",
+    Lightning = "ClutterSwitch yellow"
 }
 
 clutterSwitch.name = "MaggyHelper/ClutterSwitch"
@@ -20,6 +20,9 @@ clutterSwitch.fieldInformation = {
     type = {
         options = variantOptions,
         editable = false
+    },
+    lightingAlphaAdd = {
+        minimumValue = 0.0
     }
 }
 
@@ -29,13 +32,17 @@ for i, variant in ipairs(variants) do
     clutterSwitch.placements[i] = {
         name = variant,
         data = {
-            type = variant
+            type = variant,
+            musicEvent = "event:/desolozantas/music/lvl5/clean",
+            absorbCutsceneSound = "event:/game/03_resort/clutterswitch_books",
+            progressMusic = true,
+            lightingAlphaAdd = 0.05
         }
     }
 end
 
 function clutterSwitch.sprite(room, entity)
-    local variant = entity.type or "red"
+    local variant = entity.type or "ClutterSwitch red"
     local width, height = 32, 16
     
     -- Create the switch base

@@ -1,7 +1,7 @@
-using MaggyHelper.Cutscenes;
-using MaggyHelper.Entities;
+using Celeste.Cutscenes;
+using Celeste.Entities;
 
-namespace MaggyHelper.Triggers
+namespace Celeste.Triggers
 {
     [CustomEntity(ids: "MaggyHelper/TowerFountainTrigger")]
     [HotReloadable]

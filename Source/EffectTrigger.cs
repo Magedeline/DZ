@@ -1,4 +1,4 @@
-namespace MaggyHelper.Triggers {
+namespace Celeste.Triggers {
     /// <summary>
     /// Trigger for various visual effects like particles, screen shake, etc.
     /// </summary>

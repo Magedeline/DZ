@@ -2,7 +2,7 @@
 
 using FMOD.Studio;
 
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
     /// <summary>
     /// Chapter 3 Outro Vignette - Postcard display after chapter completion
@@ -43,7 +43,7 @@ namespace MaggyHelper.Cutscenes
             {
                 postcard = new Image(GFX.Game["postcards/ch3_outro"]);
                 postcard.CenterOrigin();
-                postcard.Position = Celeste.Celeste.TargetCenter;
+                postcard.Position = CelesteGame.TargetCenter;
                 postcardHolder.Add(postcard);
             }
             else if (GFX.Game.Has("postcards/ch3_intro"))
@@ -51,7 +51,7 @@ namespace MaggyHelper.Cutscenes
                 // Fallback to intro postcard
                 postcard = new Image(GFX.Game["postcards/ch3_intro"]);
                 postcard.CenterOrigin();
-                postcard.Position = Celeste.Celeste.TargetCenter;
+                postcard.Position = CelesteGame.TargetCenter;
                 postcardHolder.Add(postcard);
                 IngesteLogger.Warn("Chapter 3 outro postcard not found, using intro postcard");
             }

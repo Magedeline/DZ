@@ -1,11 +1,11 @@
 using System;
 using System.Collections;
 using System.Runtime.CompilerServices;
-using MaggyHelper.Cutscenes;
+using Celeste.Cutscenes;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper.Entities;
+namespace Celeste.Entities;
 
     [CustomEntity(ids: "MaggyHelper/BirdNPC")]
     [Monocle.Tracked]
@@ -325,7 +325,7 @@ public class BirdNPC : Actor
         Y = level.Bounds.Top;
         X += 32f;
         yield return 1f;
-        Celeste.Player player = Scene.Tracker.GetEntity<Celeste.Player>();
+        global::Celeste.Player player = Scene.Tracker.GetEntity<global::Celeste.Player>();
         Bridge bridge = Scene.Entities.FindFirst<Bridge>();
         while ((player == null || !(player.X > StartPosition.X - 36f) || !(player.Y > StartPosition.Y - 24f) || !(player.Y < StartPosition.Y + 8f)) && (!SaveData.Instance.Assists.Invincible || player == null || !(player.X > StartPosition.X - 24f) || !(player.Y > StartPosition.Y - 4f) || !(player.Y < StartPosition.Y + 48f)))
         {

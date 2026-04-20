@@ -1,4 +1,4 @@
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
     [HotReloadable]
     public class Cs07Intro(global::Celeste.Player player) : CutsceneEntity

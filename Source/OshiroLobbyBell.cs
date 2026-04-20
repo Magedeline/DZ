@@ -1,21 +1,34 @@
-using MaggyHelper.NPCs;
+using Celeste.NPCs;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
-    [CustomEntity(ids: "MaggyHelper/OshiroLobbyBell")]
+    [CustomEntity("MaggyHelper/OshiroLobbyBell")]
     public class OshiroLobbyBell : Entity
     {
         private TalkComponent talker;
+        private string soundEffect;
+        private bool startsActive;
+
+        public OshiroLobbyBell(EntityData data, Vector2 offset)
+            : base(data.Position + offset)
+        {
+            soundEffect = data.Attr("soundEffect", "event:/game/05_restore/deskbell_again");
+            startsActive = data.Bool("isActive", false);
+            Add(talker = new TalkComponent(new Rectangle(-8, -8, 16, 16), new Vector2(0.0f, -24f), OnTalk));
+            talker.Enabled = startsActive;
+        }
 
         public OshiroLobbyBell(Vector2 position)
             : base(position)
         {
+            soundEffect = "event:/game/05_restore/deskbell_again";
+            startsActive = false;
             Add(talker = new TalkComponent(new Rectangle(-8, -8, 16, 16), new Vector2(0.0f, -24f), OnTalk));
             talker.Enabled = false;
         }
 
         private void OnTalk(global::Celeste.Player player) =>
-            Audio.Play("event:/game/03_resort/deskbell_again", Vector2.Zero);
+            Audio.Play(soundEffect, Position);
 
         public override void Update()
         {

@@ -1,11 +1,11 @@
-using MaggyHelper.Entities;
+using Celeste.Entities;
 using Microsoft.Xna.Framework;
 using Monocle;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace MaggyHelper
+namespace Celeste
 {
     // =============================================
     // CompanionNPC - Follower NPC that helps

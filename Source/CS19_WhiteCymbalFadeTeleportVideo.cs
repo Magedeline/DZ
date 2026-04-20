@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
 using Monocle;
 
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
 	/// <summary>
 	/// Cutscene that plays the Undertale Respite flashback video before transitioning to the final ending.
@@ -37,7 +37,7 @@ namespace MaggyHelper.Cutscenes
 		
 		private bool videoPlaying = false;
 		private bool usingMp4 = false;
-		private Vector2 videoCenter = Celeste.Celeste.TargetCenter;
+		private Vector2 videoCenter = CelesteGame.TargetCenter;
 
 		public CS19_WhiteCymbalFadeTeleportVideoOld(Player player) : base(false, true)
 		{
@@ -204,7 +204,7 @@ namespace MaggyHelper.Cutscenes
 				Logger.Log(LogLevel.Info, "MaggyHelper", $"Loading MP4 video: {videoFile}");
 
 				// Load the video using FNA's Video.FromUriEXT for Ogg Theora videos
-				this.video = Video.FromUriEXT(new Uri(videoFile, UriKind.Absolute), Celeste.Celeste.Instance.GraphicsDevice);
+				this.video = Video.FromUriEXT(new Uri(videoFile, UriKind.Absolute), CelesteGame.Instance.GraphicsDevice);
 
 				if (this.video != null)
 				{

@@ -4,7 +4,7 @@ using System.Collections;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
 	// Token: 0x02000205 RID: 517
 	public class PlayerSeeker : Actor
@@ -25,7 +25,7 @@ namespace MaggyHelper.Entities
 			};
 			base.Collider = new Hitbox(10f, 10f, -5f, -5f);
 			base.Add(new MirrorReflection());
-			base.Add(new PlayerCollider(new Action<Celeste.Player>(this.OnPlayerAdapter), null, null));
+			base.Add(new PlayerCollider(new Action<global::Celeste.Player>(this.OnPlayerAdapter), null, null));
 			base.Add(new VertexLight(Color.White, 1f, 32, 64));
 			base.Add(this.timeRateModifier = new TimeRateModifier(1f, false));
 			this.facing = Facings.Right;
@@ -96,7 +96,7 @@ namespace MaggyHelper.Entities
 		}
 
 		// Token: 0x060010E7 RID: 4327 RVA: 0x0004FF38 File Offset: 0x0004E138
-		private void OnPlayer(Celeste.Player player)
+		private void OnPlayer(global::Celeste.Player player)
 		{
 			if (!player.Dead)
 			{
@@ -108,7 +108,7 @@ namespace MaggyHelper.Entities
 			}
 		}
 
-		private void OnPlayerAdapter(Celeste.Player player)
+		private void OnPlayerAdapter(global::Celeste.Player player)
 		{
 			this.OnPlayer(player);
 		}

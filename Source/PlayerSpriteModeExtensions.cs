@@ -1,4 +1,4 @@
-namespace MaggyHelper;
+namespace Celeste;
 
 /// <summary>
 /// Extended PlayerSpriteMode enum values for custom characters.

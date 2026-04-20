@@ -1,4 +1,4 @@
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// A reinforced block that cannot be broken by normal dashing.
@@ -136,7 +136,7 @@ namespace MaggyHelper.Entities
             }
         }
 
-        private DashCollisionResults OnDashed(Celeste.Player player, Vector2 direction)
+        private DashCollisionResults OnDashed(global::Celeste.Player player, Vector2 direction)
         {
             // Check if the player is moving fast enough (e.g. launched by cannon)
             float speed = player.Speed.Length();

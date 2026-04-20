@@ -1,6 +1,6 @@
 using System.Reflection;
 
-namespace MaggyHelper
+namespace Celeste
 {
     /// <summary>
     /// Tape Manager - A cassette-like system for C# and Lua that provides A/B/C/D-Side functionality

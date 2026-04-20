@@ -1,12 +1,12 @@
-using MaggyHelper.Entities;
-using MaggyHelper.Utils;
+using Celeste.Entities;
+using Celeste.Utils;
 using Microsoft.Xna.Framework;
 using Monocle;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace MaggyHelper
+namespace Celeste
 {
     // =============================================
     // WeightSwitch - Pressure plate requiring weight

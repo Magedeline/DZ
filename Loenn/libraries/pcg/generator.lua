@@ -346,7 +346,10 @@ function generator.generateStylegrounds(style)
         },
         darkStars  = {
             bg = {{ _name = "StarField", starCount = 150, speed = -1.5, bgColor = "000000",
-                    shootingStarColor = "ff4488", colors = "ccaaff", seed = 1 }},
+                                        shootingStarColor = "ff4488", colors = "ccaaff", seed = 1 },
+                                    { _name = "MaggyHelper/RainbowBlackholeBg", strength = "Cosmic", animationMode = "Void",
+                                        frameDelay = 0.08, animationScale = 1.0, glitchAmount = 0.18, distortionAmount = 0.26,
+                                        distortionFrequency = 2.2, chromaticAberration = 0.45, alpha = 0.65 }},
             fg = {},
         },
         void       = {

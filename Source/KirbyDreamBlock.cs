@@ -1,6 +1,6 @@
-using MaggyHelper.Extensions;
+using Celeste.Extensions;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// A dream block variant that works for both Kirby mode and the normal player.

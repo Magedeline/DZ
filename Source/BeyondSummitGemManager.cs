@@ -1,4 +1,4 @@
-namespace MaggyHelper.Entities;
+namespace Celeste.Entities;
 
 /// <summary>
 /// Manages BeyondSummitGem collection and the gate/barrier that opens when all 7 gems are collected.

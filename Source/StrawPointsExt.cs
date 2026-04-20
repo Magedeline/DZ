@@ -3,7 +3,7 @@ using Monocle;
 using System;
 
 #nullable disable
-namespace MaggyHelper
+namespace Celeste
 {
   public class StrawBerryPointsExt : Entity
   {

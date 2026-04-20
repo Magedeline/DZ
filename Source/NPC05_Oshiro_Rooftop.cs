@@ -1,9 +1,9 @@
-using MaggyHelper.Cutscenes;
+using Celeste.Cutscenes;
 
-namespace MaggyHelper.NPCs
+namespace Celeste.NPCs
 {
     [CustomEntity(ids: "MaggyHelper/NPC05_Oshiro_Rooftop")]
-    public class NPC05_Oshiro_Rooftop : Celeste.NPC
+    public class NPC05_Oshiro_Rooftop : global::Celeste.NPC
     {
         private const string donetalking = "oshiro_rooftopDoneTalking";
 

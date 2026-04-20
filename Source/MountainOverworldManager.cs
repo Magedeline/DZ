@@ -2,7 +2,7 @@ using Celeste.Mod;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper;
+namespace Celeste;
 
 /// <summary>
 /// Integrates AreaMapData's mountain camera positions with Celeste's 3D overworld.

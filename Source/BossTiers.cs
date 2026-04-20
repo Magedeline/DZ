@@ -1,4 +1,4 @@
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     // Tier 1 - Lowest Boss
     [CustomEntity(ids: "MaggyHelper/BossTier1")]

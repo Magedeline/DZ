@@ -1,7 +1,7 @@
 using System.Runtime.CompilerServices;
-using MaggyHelper.Entities;
+using Celeste.Entities;
 
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
     /// <summary>
     /// Mid-boss cutscene for Asriel God of Hyperdeath fight

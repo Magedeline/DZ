@@ -1,6 +1,6 @@
-using MaggyHelper.Utils;
+using Celeste.Utils;
 
-namespace MaggyHelper
+namespace Celeste
 {
     /// <summary>
     /// Tower obstacle entity that can be placed around the 3D tower

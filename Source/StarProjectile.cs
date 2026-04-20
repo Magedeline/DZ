@@ -1,4 +1,4 @@
-namespace MaggyHelper.Entities.Projectiles
+namespace Celeste.Entities.Projectiles
 {
     public class StarProjectile : Entity
     {

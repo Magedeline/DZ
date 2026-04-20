@@ -1,6 +1,6 @@
-using MaggyHelper.Cutscenes;
+using Celeste.Cutscenes;
 
-namespace MaggyHelper.Triggers
+namespace Celeste.Triggers
 {
     [CustomEntity(ids: "MaggyHelper/Tower3DTrigger")]
     [HotReloadable]

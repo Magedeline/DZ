@@ -1,6 +1,6 @@
-using Celeste.Mod.MaggyHelper;
+using global::Celeste.Mod.MaggyHelper;
 
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
     /// <summary>
     /// Chapter 21 - Post Epilogue Credits

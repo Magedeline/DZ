@@ -1,4 +1,4 @@
-namespace MaggyHelper.Entities {
+namespace Celeste.Entities {
     /// <summary>
     /// Background styleground for the 3D Tower with tiled and parallax elements
     /// </summary>

@@ -1,4 +1,4 @@
-namespace MaggyHelper.Entities.Projectiles
+namespace Celeste.Entities.Projectiles
 {
     [CustomEntity("DesoloZantas/SupernovaStarDeathBlackhole")]
     public class SupernovaStarDeathBlackhole : Entity

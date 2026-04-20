@@ -1,6 +1,6 @@
-using MaggyHelper.Cutscenes;
+using Celeste.Cutscenes;
 
-namespace MaggyHelper.Entities {
+namespace Celeste.Entities {
     [CustomEntity(ids: "MaggyHelper/CharaBoss")]
     [Tracked(true)]
     [HotReloadable]
@@ -382,7 +382,7 @@ namespace MaggyHelper.Entities {
             
             if (player != null)
             {
-                Celeste.Celeste.Freeze(0.1f);
+                CelesteGame.Freeze(0.1f);
                 if (lastHit)
                     timeRateModifier.SetTimeRateMultiplier(0.5f);
                 else
@@ -486,7 +486,7 @@ namespace MaggyHelper.Entities {
             
             if (player != null)
             {
-                Celeste.Celeste.Freeze(0.1f);
+                CelesteGame.Freeze(0.1f);
                 timeRateModifier.SetTimeRateMultiplier(0.5f);
                 Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
             }

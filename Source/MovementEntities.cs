@@ -1,12 +1,12 @@
-using MaggyHelper.Entities;
+using Celeste.Entities;
 using Microsoft.Xna.Framework;
 using Monocle;
 using System;
-using JumpThru = Celeste.JumpThru;
+using JumpThru = global::Celeste.JumpThru;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace MaggyHelper
+namespace Celeste
 {
     // =============================================
     // GravityFlipPlatform - Steps on it to flip gravity

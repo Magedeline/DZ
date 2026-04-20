@@ -2,7 +2,7 @@ using System.Collections;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
-namespace MaggyHelper.Utils
+namespace Celeste.Utils
 {
     public static class Util
     {
@@ -38,7 +38,7 @@ namespace MaggyHelper.Utils
     }
 }
 
-namespace MaggyHelper
+namespace Celeste
 {
     public static class ShapeRenderer
     {
@@ -204,7 +204,8 @@ namespace MaggyHelper
 
             bool hasTrailingSlash = normalizedPath.EndsWith("/", StringComparison.Ordinal);
             string[] parts = normalizedPath.Trim('/').Split('/');
-            if (parts.Length < 2 || !SupportedRootFolders.Contains(parts[0], StringComparer.OrdinalIgnoreCase))
+            if (parts.Length < 2 || !Array.Exists(SupportedRootFolders,
+                    folder => string.Equals(folder, parts[0], StringComparison.OrdinalIgnoreCase)))
             {
                 return normalizedPath;
             }
@@ -488,10 +489,10 @@ namespace Celeste.Mod.MaggyHelper
 {
     public static class Util
     {
-        public static Rectangle Rectangle(Vector2 from, Vector2 to) => global::MaggyHelper.Utils.Util.Rectangle(from, to);
-        public static float Mod(float value, float modulo) => global::MaggyHelper.Utils.Util.Mod(value, modulo);
-        public static Vector2 Min(Vector2 a, Vector2 b) => global::MaggyHelper.Utils.Util.Min(a, b);
-        public static Vector2 Max(Vector2 a, Vector2 b) => global::MaggyHelper.Utils.Util.Max(a, b);
+        public static Rectangle Rectangle(Vector2 from, Vector2 to) => global::Celeste.Utils.Util.Rectangle(from, to);
+        public static float Mod(float value, float modulo) => global::Celeste.Utils.Util.Mod(value, modulo);
+        public static Vector2 Min(Vector2 a, Vector2 b) => global::Celeste.Utils.Util.Min(a, b);
+        public static Vector2 Max(Vector2 a, Vector2 b) => global::Celeste.Utils.Util.Max(a, b);
     }
 
     public static class CustomSFX
@@ -506,10 +507,10 @@ namespace Celeste.Mod.MaggyHelper
 
 public static class Util
 {
-    public static Rectangle Rectangle(Vector2 from, Vector2 to) => global::MaggyHelper.Utils.Util.Rectangle(from, to);
-    public static float Mod(float value, float modulo) => global::MaggyHelper.Utils.Util.Mod(value, modulo);
-    public static Vector2 Min(Vector2 a, Vector2 b) => global::MaggyHelper.Utils.Util.Min(a, b);
-    public static Vector2 Max(Vector2 a, Vector2 b) => global::MaggyHelper.Utils.Util.Max(a, b);
+    public static Rectangle Rectangle(Vector2 from, Vector2 to) => global::Celeste.Utils.Util.Rectangle(from, to);
+    public static float Mod(float value, float modulo) => global::Celeste.Utils.Util.Mod(value, modulo);
+    public static Vector2 Min(Vector2 a, Vector2 b) => global::Celeste.Utils.Util.Min(a, b);
+    public static Vector2 Max(Vector2 a, Vector2 b) => global::Celeste.Utils.Util.Max(a, b);
 }
 
 public static class CustomSFX
@@ -521,7 +522,7 @@ public static class CustomSFX
     public const string game_dreamZipMover_impact = "event:/game/01_forsaken_city/zip_mover_impact";
 }
 
-namespace MaggyHelper.Utils
+namespace Celeste.Utils
 {
 
     public static class ColorUtils
@@ -581,7 +582,7 @@ namespace MaggyHelper.Utils
     }
 }
 
-namespace MaggyHelper.Extensions
+namespace Celeste.Extensions
 {
     public static class CompatibilityExtensions
     {

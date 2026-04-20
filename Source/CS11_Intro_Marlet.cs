@@ -1,8 +1,8 @@
 using System.Collections;
-using MaggyHelper.Entities;
+using Celeste.Entities;
 using Monocle;
 
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
     /// <summary>
     /// Cutscene for Chapter 11 - Marlet checks her list and flies away

@@ -1,4 +1,4 @@
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// Optimized RalseiDummy entity - floating ghost companion similar to CharaDummy

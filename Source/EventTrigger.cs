@@ -1,10 +1,10 @@
 using System;
-using MaggyHelper.Cutscenes;
-using MaggyHelper.Entities;
+using Celeste.Cutscenes;
+using Celeste.Entities;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper.Triggers;
+namespace Celeste.Triggers;
 
 [CustomEntity("MaggyHelper/EventTrigger", "MaggyHelper/CutsceneEventDispatcher")]
 [Tracked]

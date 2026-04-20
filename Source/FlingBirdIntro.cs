@@ -1,7 +1,7 @@
 using System.Runtime.CompilerServices;
-using MaggyHelper.Cutscenes;
+using Celeste.Cutscenes;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     [CustomEntity(new string[] { "MaggyHelper/FlingBirdIntroMod" })]
     [Tracked(true)]

@@ -1,10 +1,10 @@
 using System.Collections;
-using MaggyHelper.Utils;
+using Celeste.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Monocle;
 
-namespace MaggyHelper.Cutscenes;
+namespace Celeste.Cutscenes;
 
 /// <summary>
 /// VHS-style C-Side intro remix cutscene. Even more distorted than the B-Side version

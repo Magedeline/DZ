@@ -1,5 +1,5 @@
 #nullable enable
-namespace MaggyHelper.Triggers
+namespace Celeste.Triggers
 {
     [CustomEntity(new string[] { "MaggyHelper/DetachPinkPlatberryTrigger" })]
     [Tracked(false)]

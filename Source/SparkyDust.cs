@@ -1,4 +1,4 @@
-namespace MaggyHelper.Entities;
+namespace Celeste.Entities;
 internal class SparkyDust
 {
     // 3D Tower Dust Bunny Node - represents a node in a dust tower structure

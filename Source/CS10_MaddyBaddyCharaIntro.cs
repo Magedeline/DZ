@@ -1,7 +1,7 @@
-using MaggyHelper.Entities;
-using BadelineDummy = MaggyHelper.Entities.BadelineDummy;
+using Celeste.Entities;
+using BadelineDummy = Celeste.Entities.BadelineDummy;
 
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
     /// <summary>
     /// Cutscene for Chapter 10 spawn point featuring Madeline, Badeline, and Chara.

@@ -1,11 +1,11 @@
 using System;
-using MaggyHelper.Entities.Bosses;
-using MaggyHelper.Entities.Projectiles;
-using MaggyHelper.Helpers;
+using Celeste.Entities.Bosses;
+using Celeste.Entities.Projectiles;
+using Celeste.Helpers;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     public abstract class ElsKnightCloneBoss : BossActor, IKirbyCopySource
     {

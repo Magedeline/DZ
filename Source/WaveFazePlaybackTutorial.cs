@@ -1,4 +1,4 @@
-namespace MaggyHelper
+namespace Celeste
 {
     [HotReloadable]
     public class WaveFazePlaybackTutorial
@@ -46,7 +46,7 @@ namespace MaggyHelper
                 if (!dashing)
                 {
                     dashing = true;
-                    Celeste.Celeste.Freeze(0.05f);
+                    CelesteGame.Freeze(0.05f);
                     SlashFx.Burst(Playback.Center, (firstDash ? dashDirection0 : (launched ? dreamDashIn : dashDirection1)).Angle()).Tag = tag;
                     dashTrailTimer = 0.1f;
                     dashTrailCounter = 2;

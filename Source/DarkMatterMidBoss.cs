@@ -1,11 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using MaggyHelper.Helpers;
+using Celeste.Helpers;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// Dark Matter Mid Boss - A powerful void entity with enhanced attacks and phases

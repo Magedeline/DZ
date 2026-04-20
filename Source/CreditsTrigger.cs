@@ -5,9 +5,9 @@
 // Assembly location: C:\Users\User\OneDrive\Desktop\Celeste!\Celeste\Celeste.exe
 
 #nullable disable
-using MaggyHelper.Cutscenes;
+using Celeste.Cutscenes;
 
-namespace MaggyHelper.Triggers
+namespace Celeste.Triggers
 {
     [CustomEntity(ids: "MaggyHelper/CreditsTriggerPart2")]
     [Tracked(true)]

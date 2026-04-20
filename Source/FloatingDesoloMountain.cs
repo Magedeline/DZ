@@ -1,6 +1,6 @@
 #nullable enable
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// Renders a floating Desolo Zantas mountain above Mt. Celeste on the overworld,

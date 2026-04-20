@@ -1,4 +1,4 @@
-namespace MaggyHelper
+namespace Celeste
 {
     /// <summary>
     /// Base class for dummy/follower entities in the Ingeste mod

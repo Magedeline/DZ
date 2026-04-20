@@ -1,6 +1,6 @@
-using MaggyHelper.Entities;
+using Celeste.Entities;
 
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
   [HotReloadable]
   public class Cs05SeeMaddy(global::Celeste.Player player, int index) : CutsceneEntity

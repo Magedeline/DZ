@@ -565,6 +565,7 @@
 {a429b37b-21ad-4b03-90fb-8415c4186e5b} event:/desolozantas/final_content/music/lvl19/cinematic/bird_crash_second
 {4cf92893-cac1-4d81-868b-421d3f9d24fa} event:/desolozantas/final_content/music/lvl19/cinematic/els_intro_laugh
 {a351122b-c662-4b8d-874b-0ac8d1f73aca} event:/desolozantas/final_content/music/lvl19/cinematic/els_intro_scream
+{452b6141-0a08-4a80-b69f-b5dbc4db08bd} event:/desolozantas/final_content/music/lvl19/finale
 {61e63c13-f855-4256-9d2e-fbb717aa3945} event:/desolozantas/final_content/music/lvl19/inmyway
 {4a11b57a-3d2c-496c-a6ad-6b75b4de2bb1} event:/desolozantas/final_content/music/lvl19/inmyway_slow
 {aec67c80-36ca-4966-a3de-fea98689f8c7} event:/desolozantas/final_content/music/lvl19/intermission_powerpoint
@@ -584,8 +585,7 @@
 {490a0cc6-7d6d-4458-ad36-f8a75c2a42d9} event:/desolozantas/final_content/music/lvl20/cinematic/end_intro
 {6231c2f3-f5b8-465c-8dc4-49361963a687} event:/desolozantas/final_content/music/lvl20/cinematic/end_outro
 {b81153f7-f501-4d1f-ada8-9ff7f8ef82d5} event:/desolozantas/final_content/music/lvl20/cinematic/true_gameover
-{f75da8e2-a2cc-46a1-a608-58f0eb4d34c2} event:/desolozantas/final_content/music/lvl20/angel
-{e76253a3-494a-4a16-b6ae-c7f96ed8827c} event:/desolozantas/final_content/music/lvl20/angel_alt
+{e76253a3-494a-4a16-b6ae-c7f96ed8827c} event:/desolozantas/final_content/music/lvl20/angel
 {d549664a-b83f-4f01-a895-da2eaf2b8433} event:/desolozantas/final_content/music/lvl20/back
 {70769e76-62cd-4b39-a3c4-3dcac8463cd6} event:/desolozantas/final_content/music/lvl20/burn_in_despair
 {a96fbee3-2a8f-421f-9ba8-0395fc973af9} event:/desolozantas/final_content/music/lvl20/climb
@@ -607,6 +607,7 @@
 {604e47bc-c922-4c35-80f1-fd914009ef22} event:/desolozantas/final_content/music/lvl20/zvo1
 {ecf3765b-637c-4625-8fc9-60d3c4afa53f} event:/desolozantas/final_content/music/lvl20/zvo2
 {a60b335f-ea75-43f9-b339-a64b53add2a5} event:/desolozantas/final_content/music/lvl20/zvo3
+{461a3d8c-1b64-4546-a181-f77a2d6c7ec2} event:/desolozantas/final_content/music/final_remix
 {71792718-c644-4750-af2c-73fda6447a87} event:/desolozantas/final_content/ui/postcard_desolo_variants_in
 {602df6cb-24bb-47b4-acc5-2c4a1c7d8514} event:/desolozantas/final_content/ui/postcard_desolo_variants_out
 {880260d2-c69d-47a5-ade0-a35bc57f69e0} event:/desolozantas/final_content/ui/skip_all

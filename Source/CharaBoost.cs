@@ -1,7 +1,7 @@
-using MaggyHelper.Cutscenes;
+using Celeste.Cutscenes;
 using System.Diagnostics;
 
-namespace MaggyHelper.Entities;
+namespace Celeste.Entities;
 [CustomEntity("MaggyHelper/CharaBoost")]
 [HotReloadable]
 public class CustomCharaBoost : Entity
@@ -107,7 +107,7 @@ public class CustomCharaBoost : Entity
             data.Bool("finalCh19Boost", defaultValue: false),
             data.Bool("finalCh19GoldenBoost", defaultValue: false),
             data.Bool("finalCh19PPBoost", defaultValue: false),
-            data.Attr("finalCh19Dialog") ?? ""
+            data.Bool("finalCh19Dialog", defaultValue: false) ? "finalCh19Dialog" : null
         )
     {
     }

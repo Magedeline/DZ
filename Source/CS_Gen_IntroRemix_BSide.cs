@@ -1,11 +1,11 @@
 using System.Collections;
 using FMOD.Studio;
-using MaggyHelper.Utils;
+using Celeste.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Monocle;
 
-namespace MaggyHelper.Cutscenes;
+namespace Celeste.Cutscenes;
 
 /// <summary>
 /// VHS-style B-Side intro remix cutscene, similar to vanilla Celeste's 

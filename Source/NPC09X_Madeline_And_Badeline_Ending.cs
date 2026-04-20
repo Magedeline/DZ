@@ -1,6 +1,6 @@
 using System.Runtime.CompilerServices;
 
-namespace MaggyHelper;
+namespace Celeste;
 
 [CustomEntity(ids: "MaggyHelper/NPC09X_Madeline_and_Badeline_Ending")]
 [Tracked(true)]

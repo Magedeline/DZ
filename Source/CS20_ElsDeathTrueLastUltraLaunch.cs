@@ -1,20 +1,20 @@
-using MaggyHelper.Effects;
+using Celeste.Effects;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using MaggyHelper.Entities;
-using MaggyHelper.Entities.SoulBoosts;
+using Celeste.Entities;
+using Celeste.Entities.SoulBoosts;
 
 // Kirby Heaven Ascend Manager for the final ascension
 using Microsoft.Xna.Framework;
 using Monocle;
-using BirdNPC = MaggyHelper.Entities.BirdNPC;
+using BirdNPC = Celeste.Entities.BirdNPC;
 using System.Linq;
 
 #pragma warning disable CS0618 // Engine.TimeRate is obsolete but needed for vanilla behavior
 
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
     /// <summary>
     /// Final ascension cutscene after Els' defeat: Kirby, Madeline, and Badeline

@@ -1,8 +1,8 @@
-using MaggyHelper.Entities;
+using Celeste.Entities;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
     /// <summary>
     /// Custom Overworld Reflections Fall scene that returns to 08truthAlt1.bin room lvl_a-00
@@ -167,7 +167,7 @@ namespace MaggyHelper.Cutscenes
             yield return null;
             
             // Add the background fade in
-            level.Add(new Celeste.BackgroundFadeIn(Color.Black, 2f, 30f));
+            level.Add(new global::Celeste.BackgroundFadeIn(Color.Black, 2f, 30f));
             
             // Ensure entity lists are up to date
             level.Entities.UpdateLists();
@@ -190,9 +190,9 @@ namespace MaggyHelper.Cutscenes
             player = level.Tracker?.GetEntity<Player>();
             if (player != null)
             {
-                foreach (Entity entity in level.Tracker.GetEntities<Celeste.DashBlock>())
+                foreach (Entity entity in level.Tracker.GetEntities<CelesteDashBlock>())
                 {
-                    Celeste.DashBlock dashBlock = (Celeste.DashBlock)entity;
+                    CelesteDashBlock dashBlock = (CelesteDashBlock)entity;
                     dashBlock.Break(player.Center, player.Speed, true, true);
                 }
             }

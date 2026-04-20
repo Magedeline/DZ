@@ -1,4 +1,4 @@
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     [CustomEntity("MaggyHelper/MaddyCrystalPedestal")]
     [Tracked]
@@ -17,7 +17,7 @@ namespace MaggyHelper.Entities
             Depth = 8998;
             Collider.Position = new Vector2(-16f, -64f);
             Collidable = false;
-            OnDashCollide = (Celeste.Player player, Vector2 direction) =>
+            OnDashCollide = (global::Celeste.Player player, Vector2 direction) =>
             {
                 if (Scene is not Level level)
                     return DashCollisionResults.NormalCollision;
@@ -30,7 +30,7 @@ namespace MaggyHelper.Entities
                 DroppedMaddy = true;
                 Collidable = false;
                 level.Flash(Color.White);
-                Celeste.Celeste.Freeze(0.1f);
+                CelesteGame.Freeze(0.1f);
                 Input.Rumble(RumbleStrength.Medium, RumbleLength.Short);
                 Audio.Play("event:/game/05_mirror_temple/crystaltheo_break_free", entity.Position);
                 return DashCollisionResults.Rebound;

@@ -1,4 +1,4 @@
-namespace MaggyHelper.Entities.Effects
+namespace Celeste.Entities.Effects
 {
     public class HyperGonerVortex : Entity
     {

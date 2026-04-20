@@ -1,9 +1,9 @@
 using System.Collections;
-using MaggyHelper.Entities;
+using Celeste.Entities;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper.Triggers
+namespace Celeste.Triggers
 {
     [CustomEntity(ids: "MaggyHelper/BridgeFreezeTrigger")]
     public class BridgeFreezeTrigger : Trigger
@@ -27,7 +27,7 @@ namespace MaggyHelper.Triggers
             if (!triggered)
             {
                 triggered = true;
-                var bird = Scene.Tracker.GetEntity<MaggyHelper.Entities.BirdNPC>();
+                var bird = Scene.Tracker.GetEntity<global::Celeste.Entities.BirdNPC>();
                 if (bird != null)
                 {
                     bird.Add(new Coroutine(bird.StartleAndFlyAway()));

@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using MaggyHelper.Cutscenes;
+using Celeste.Cutscenes;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper;
+namespace Celeste;
 
 /// <summary>
 /// Defines each chapter's area data in a vanilla Celeste-like manner for our mod.

@@ -1,4 +1,4 @@
-namespace MaggyHelper.Effects.ShaderEffects
+namespace Celeste.Effects.ShaderEffects
 {
     /// <summary>
     /// Lightweight pool for VirtualRenderTarget to minimize allocations for multi-pass effects.

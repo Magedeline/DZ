@@ -6,7 +6,7 @@ using MonoMod.Cil;
 using MonoMod.RuntimeDetour;
 using MonoMod.Utils;
 
-namespace MaggyHelper.Entities;
+namespace Celeste.Entities;
 
 [CustomEntity("MaggyHelper/Tape")]
 public class DesoloZantasTape : Entity

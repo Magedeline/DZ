@@ -2,7 +2,7 @@
 
 using FMOD.Studio;
 
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
     /// <summary>
     /// Chapter 18 Intro Vignette - "1 Month Later" opening scene

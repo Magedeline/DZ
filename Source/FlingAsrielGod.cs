@@ -1,4 +1,4 @@
-namespace MaggyHelper.Entities;
+namespace Celeste.Entities;
 
 /// <summary>
 /// Asriel God Fling - Similar to FlingBird but themed as Asriel God helping the player

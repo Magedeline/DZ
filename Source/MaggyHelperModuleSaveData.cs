@@ -2,6 +2,25 @@ using System.Collections.Generic;
 
 namespace Celeste.Mod.MaggyHelper
 {
+    /// <summary>
+    /// Per-chapter mastery record. Every flag must be true for the Asriel cosmic
+    /// background to appear on the chapter panel icon.
+    /// </summary>
+    public class ChapterMasteryRecord
+    {
+        public bool AllBerriesCollected  { get; set; }
+        public bool AllHeartGemsCollected { get; set; }
+        public bool AllBossesDefeated    { get; set; }
+        public bool AllDXBossesDefeated  { get; set; }
+        public bool SpeedrunGoalBeaten   { get; set; }
+        public bool FirstTryNoDamageDeath { get; set; }
+
+        public bool IsFullMastery =>
+            AllBerriesCollected && AllHeartGemsCollected &&
+            AllBossesDefeated   && AllDXBossesDefeated   &&
+            SpeedrunGoalBeaten  && FirstTryNoDamageDeath;
+    }
+
     public class MaggyHelperModuleSaveData : EverestModuleSaveData
     {
         // Progression flags
@@ -10,9 +29,12 @@ namespace Celeste.Mod.MaggyHelper
         public bool PendingUnlockChapter16OnRestart { get; set; }
         public bool PendingUnlockChapter19OnRestart { get; set; }
         public bool PendingUnlockChapter20OnRestart { get; set; }
+        public bool PendingUnlockChapter21OnRestart { get; set; }
         public bool BossRushUnlocked { get; set; }
         public bool UnlockedChapter19 { get; set; }
+        public bool UnlockedChapter21 { get; set; }
         public bool FinalDlcContentUnlocked { get; set; }
+        public bool TrueFinaleUnlocked { get; set; }
         public bool Chapter19Complete { get; set; }
 
         // Unlock tracking
@@ -96,6 +118,11 @@ namespace Celeste.Mod.MaggyHelper
             TotalBossesDefeated++;
         }
 
+        public bool HasDefeatedBoss(string bossName)
+        {
+            return DefeatedBosses.Contains(bossName);
+        }
+
         public void CompleteChapter(string chapterSid)
         {
             CompletedChapters.Add(chapterSid);
@@ -105,5 +132,22 @@ namespace Celeste.Mod.MaggyHelper
         {
             return CompletedChapters.Contains(chapterSid);
         }
+
+        // ── Mastery ──────────────────────────────────────────────────────────
+        public Dictionary<string, ChapterMasteryRecord> MasteryRecords { get; set; }
+            = new Dictionary<string, ChapterMasteryRecord>(StringComparer.OrdinalIgnoreCase);
+
+        public ChapterMasteryRecord GetOrCreateMastery(string chapterSid)
+        {
+            if (!MasteryRecords.TryGetValue(chapterSid, out var rec))
+            {
+                rec = new ChapterMasteryRecord();
+                MasteryRecords[chapterSid] = rec;
+            }
+            return rec;
+        }
+
+        public bool HasFullMastery(string chapterSid)
+            => MasteryRecords.TryGetValue(chapterSid, out var rec) && rec.IsFullMastery;
     }
 }

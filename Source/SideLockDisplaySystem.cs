@@ -1,9 +1,9 @@
 using System;
-using Celeste.Mod.Meta;
+using global::Celeste.Mod.Meta;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper;
+namespace Celeste;
 
 /// <summary>
 /// Optional UI enhancement for displaying lock status and progress in the chapter panel.

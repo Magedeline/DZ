@@ -1,10 +1,10 @@
 using System;
 using System.Collections;
-using MaggyHelper.Helpers;
+using Celeste.Helpers;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// Dark Matter Enemy - A void-based enemy that deals variable damage (2-7 hits)

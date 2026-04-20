@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using MaggyHelper.Entities;
+using Celeste.Entities;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// A safe crystal spinner that doesn't conflict with IsaGrabBag's DreamSpinnerRenderer.
@@ -69,8 +69,8 @@ namespace MaggyHelper.Entities
                 new Hitbox(16f, 4f, -8f, -3f)
             );
             Visible = false;
-            Add(new PlayerCollider(player => OnPlayer((Celeste.Player)player)));
-            Add(new HoldableCollider(h => OnHoldable((Celeste.Holdable)h)));
+            Add(new PlayerCollider(player => OnPlayer((global::Celeste.Player)player)));
+            Add(new HoldableCollider(h => OnHoldable((global::Celeste.Holdable)h)));
             Add(new LedgeBlocker());
             Depth = -8500;
             
@@ -171,11 +171,11 @@ namespace MaggyHelper.Entities
             return CollideCheck(solid);
         }
 
-        private void OnPlayer(Celeste.Player player)
+        private void OnPlayer(global::Celeste.Player player)
         {
             if (canHurt && player != null && !player.Dead)
             {
-                if (player.StateMachine.State == Celeste.Player.StDash || 
+                if (player.StateMachine.State == global::Celeste.Player.StDash || 
                     player.Speed.LengthSquared() >= MinFlingSpeedSq)
                 {
                     // Player is dashing or moving fast - don't hurt

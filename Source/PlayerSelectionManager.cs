@@ -1,7 +1,7 @@
 using System;
 using Monocle;
 
-namespace MaggyHelper.Entities;
+namespace Celeste.Entities;
 
 /// <summary>
 /// Manages player selection for the mod (Kirby vs. Madeline).
@@ -142,7 +142,7 @@ public class PlayerSelectionManager : Entity
     /// </summary>
     private void LoadDefaultFromSettings()
     {
-        // TODO: Integrate with MaggyHelper.Settings when available
+        // TODO: Integrate with global::Celeste.Settings when available
         // For now, default to Kirby
         defaultPlayerType = PlayerType.Kirby;
         currentPlayerType = PlayerType.Kirby;

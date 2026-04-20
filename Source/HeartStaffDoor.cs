@@ -1,13 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using MaggyHelper.Entities;
+using Celeste.Entities;
 using FMOD.Studio;
 using Microsoft.Xna.Framework;
 using Monocle;
 using XnaColor = Microsoft.Xna.Framework.Color;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// Large door that requires collecting all Heart Staffs to open.
@@ -240,7 +240,7 @@ namespace MaggyHelper.Entities
 
             // Initial camera focus on door
             level.Shake(0.3f);
-            Celeste.Celeste.Freeze(0.2f);
+            CelesteGame.Freeze(0.2f);
             Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
 
             // Dramatic pause
@@ -274,7 +274,7 @@ namespace MaggyHelper.Entities
 
             Audio.Play("event:/game/general/strawberry_get", Center);
             level.Shake(0.6f);
-            Celeste.Celeste.Freeze(0.3f);
+            CelesteGame.Freeze(0.3f);
             Input.Rumble(RumbleStrength.Strong, RumbleLength.Long);
 
             // Massive particle explosion

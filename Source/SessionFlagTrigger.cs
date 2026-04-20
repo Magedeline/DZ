@@ -1,4 +1,4 @@
-namespace MaggyHelper.Triggers
+namespace Celeste.Triggers
 {
     [CustomEntity(IngesteConstants.EntityNames.SESSION_FLAG_TRIGGER, IngesteConstants.EntityNames.SAMPLE_TRIGGER)]
     [HotReloadable]

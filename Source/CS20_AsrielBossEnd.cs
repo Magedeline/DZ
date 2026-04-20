@@ -1,11 +1,11 @@
 using System;
 using System.Collections;
 using System.Runtime.CompilerServices;
-using MaggyHelper.Entities;
+using Celeste.Entities;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
     /// <summary>
     /// Post-boss cutscene for the Asriel Angel of Death fight.
@@ -68,7 +68,7 @@ namespace MaggyHelper.Cutscenes
 
             // Resolve party NPCs that should already be in the room
             madelineNpc = level.Entities.FindFirst<Npc20_Madeline>() as Entity;
-            badelineNpc = level.Entities.FindFirst<MaggyHelper.Entities.BadelineDummy>() as Entity;
+            badelineNpc = level.Entities.FindFirst<global::Celeste.Entities.BadelineDummy>() as Entity;
 
             // Lock player during cutscene
             player.StateMachine.State = 11; // Player.StDummy

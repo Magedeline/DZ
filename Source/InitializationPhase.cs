@@ -1,4 +1,4 @@
-namespace MaggyHelper
+namespace Celeste
 {
     /// <summary>
     /// Defines the phases of module initialization to ensure proper loading order

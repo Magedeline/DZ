@@ -1,5 +1,5 @@
 #nullable enable
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
     [HotReloadable]
     class Cs03ModEnding : CutsceneEntity

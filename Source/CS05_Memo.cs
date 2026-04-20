@@ -1,5 +1,5 @@
 #nullable enable
-namespace MaggyHelper.Cutscenes;
+namespace Celeste.Cutscenes;
 // Note: Removed [CustomEntity] - cutscene entities are created programmatically, not placed in maps
 [HotReloadable]
 public class Cs05Memo : CutsceneEntity

@@ -1,8 +1,8 @@
-using TestBreathingGame = MaggyHelper.Entities.TestBreathingGame;
+using MaggyBreathingGame = Celeste.Entities.TestBreathingGame;
 using System;
 using Monocle;
 
-namespace MaggyHelper
+namespace Celeste
 {
 	/// <summary>
 	/// Controller rumble entity that can optionally track a TestBreathingGame
@@ -15,7 +15,7 @@ namespace MaggyHelper
 
 		public float Strength = 0.2f;
 		private float currentRumble;
-		private TestBreathingGame breathingGame;
+		private MaggyBreathingGame breathingGame;
 
 		public HeartGemRumbler()
 		{
@@ -26,7 +26,7 @@ namespace MaggyHelper
 		/// Links this rumbler to a TestBreathingGame so rumble intensity
 		/// is driven by the game's panic level.
 		/// </summary>
-		public void TrackBreathingGame(TestBreathingGame game)
+		public void TrackBreathingGame(MaggyBreathingGame game)
 		{
 			breathingGame = game;
 		}

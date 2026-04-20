@@ -1,7 +1,7 @@
-using MaggyHelper.Effects;
-using MaggyHelper.Helpers;
+using Celeste.Effects;
+using Celeste.Helpers;
 
-namespace MaggyHelper.Entities.Bosses
+namespace Celeste.Entities.Bosses
 {
     [CustomEntity(ids: "MaggyHelper/SummitCorruptedMountainBoss")]
     [Tracked]

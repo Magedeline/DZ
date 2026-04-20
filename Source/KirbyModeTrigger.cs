@@ -1,6 +1,6 @@
-using MaggyHelper.Extensions;
+using Celeste.Extensions;
 
-namespace MaggyHelper.Triggers
+namespace Celeste.Triggers
 {
     /// <summary>
     /// Trigger to enable or disable Kirby mode for the player.

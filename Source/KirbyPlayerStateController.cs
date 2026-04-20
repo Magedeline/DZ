@@ -1,14 +1,14 @@
 using Celeste;
-using Celeste.Mod.MaggyHelper;
-using MaggyHelper.Extensions;
+using global::Celeste.Mod.MaggyHelper;
+using Celeste.Extensions;
 using Microsoft.Xna.Framework;
 using Monocle;
 using MonoMod.Utils;
 
-namespace MaggyHelper;
+namespace Celeste;
 
 /// <summary>
-/// Registers a minimal Kirby-specific state on the vanilla Celeste.Player.
+/// Registers a minimal Kirby-specific state on the vanilla global::Celeste.Player.
 /// This follows the common Everest pattern of extending the real player via
 /// custom states instead of swapping the player object at runtime.
 /// </summary>
@@ -140,6 +140,15 @@ public static class KirbyPlayerStateController
 
         if (Input.Dash.Pressed || Input.Grab.Pressed)
             return Player.StNormal;
+
+        // Allow players to cancel hover by pressing down on keyboard or stick.
+        if (Input.MoveY.Value > 0)
+        {
+            if (player.Speed.Y < 0f)
+                player.Speed.Y = 0f;
+
+            return Player.StNormal;
+        }
 
         float remaining = Math.Max(0f, GetFloatTimer(player) - Engine.DeltaTime);
         SetFloatTimer(player, remaining);

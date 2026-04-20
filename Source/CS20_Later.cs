@@ -1,12 +1,12 @@
 using System;
 using System.Collections;
 using System.Runtime.CompilerServices;
-using MaggyHelper.Entities;
+using Celeste.Entities;
 using FMOD.Studio;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper.Cutscenes;
+namespace Celeste.Cutscenes;
 public class CS20_Later : CutsceneEntity
 {
     private Player player;

@@ -1,11 +1,11 @@
 using System.Runtime.CompilerServices;
-using MaggyHelper.Entities;
+using Celeste.Entities;
 using FMOD.Studio;
 using AscendManager = Celeste.AscendManager;
-using Strawberry = Celeste.Strawberry;
-using BirdNPC = MaggyHelper.Entities.BirdNPC;
+using Strawberry = global::Celeste.Strawberry;
+using BirdNPC = Celeste.Entities.BirdNPC;
 
-namespace MaggyHelper.Cutscenes;
+namespace Celeste.Cutscenes;
 
 public class CS19_FinalLaunch : CutsceneEntity
 {

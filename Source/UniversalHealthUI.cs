@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
-using MaggyHelper.Entities;
-using MaggyHelper.Helpers;
+using Celeste.Entities;
+using Celeste.Helpers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Monocle;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// Unified HUD component that displays both player HP and boss HP.
@@ -198,37 +198,92 @@ namespace MaggyHelper.Entities
         
         private void LoadTextures()
         {
-            // Try to load custom heart textures, with fallbacks
-            try
+            MTexture TryGetTexture(params string[] candidates)
             {
-                heartFull = GFX.Game["gui/health/heart_full"];
-                heartEmpty = GFX.Game["gui/health/heart_empty"];
-                heartHalf = GFX.Game["gui/health/heart_half"];
-            }
-            catch
-            {
-                // Fallback to collectables
-                try
+                foreach (string candidate in candidates)
                 {
-                    heartFull = GFX.Game["collectables/heartGem/0/00"];
-                    heartEmpty = GFX.Game["collectables/heartGem/0/00"];
-                    heartHalf = GFX.Game["collectables/heartGem/0/00"];
+                    if (GFX.Gui.Has(candidate))
+                    {
+                        return GFX.Gui[candidate];
+                    }
+
+                    if (GFX.Game.Has(candidate))
+                    {
+                        return GFX.Game[candidate];
+                    }
                 }
-                catch
-                {
-                    // Will draw rectangles as fallback
-                }
+
+                return null;
             }
-            
-            // Kirby-specific hearts
-            try
+
+            // Kirby-specific hearts from the GUI atlas.
+            kirbyHeartFull = TryGetTexture(
+                "kirby/heart_full",
+                "maggy/kirby/heart_full",
+                "Maggy/kirby/heart_full",
+                "gui/kirby/heart_full"
+            );
+            kirbyHeartEmpty = TryGetTexture(
+                "kirby/heart_empty",
+                "maggy/kirby/heart_empty",
+                "Maggy/kirby/heart_empty",
+                "gui/kirby/heart_empty"
+            );
+
+            // Generic health hearts; if unavailable, reuse Kirby textures.
+            heartFull = TryGetTexture("health/heart_full", "gui/health/heart_full");
+            heartEmpty = TryGetTexture("health/heart_empty", "gui/health/heart_empty");
+            heartHalf = TryGetTexture("health/heart_half", "gui/health/heart_half");
+
+            if (heartFull == null)
             {
-                kirbyHeartFull = GFX.Game["gui/kirby/heart_full"];
-                kirbyHeartEmpty = GFX.Game["gui/kirby/heart_empty"];
+                heartFull = kirbyHeartFull;
             }
-            catch
+
+            if (heartEmpty == null)
+            {
+                heartEmpty = kirbyHeartEmpty;
+            }
+
+            if (heartHalf == null)
+            {
+                heartHalf = heartFull;
+            }
+
+            if (kirbyHeartFull == null)
             {
                 kirbyHeartFull = heartFull;
+            }
+
+            if (kirbyHeartEmpty == null)
+            {
+                kirbyHeartEmpty = heartEmpty;
+            }
+
+            // Last fallback if no heart texture is available at all.
+            MTexture fallback = TryGetTexture("collectables/heartGem/0/00");
+            if (heartFull == null)
+            {
+                heartFull = fallback;
+            }
+
+            if (heartEmpty == null)
+            {
+                heartEmpty = fallback;
+            }
+
+            if (heartHalf == null)
+            {
+                heartHalf = fallback;
+            }
+
+            if (kirbyHeartFull == null)
+            {
+                kirbyHeartFull = heartFull;
+            }
+
+            if (kirbyHeartEmpty == null)
+            {
                 kirbyHeartEmpty = heartEmpty;
             }
         }

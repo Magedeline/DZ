@@ -2,7 +2,7 @@
 
 using FMOD.Studio;
 
-namespace MaggyHelper.Cutscenes {
+namespace Celeste.Cutscenes {
     [HotReloadable]
     class Cs04LegendVignette : Scene {
         private readonly Session session;

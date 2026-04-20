@@ -1,9 +1,9 @@
-using MaggyHelper.Cutscenes;
+using Celeste.Cutscenes;
 
-namespace MaggyHelper.NPCs;
+namespace Celeste.NPCs;
 
 [CustomEntity(ids: "MaggyHelper/NPC08_Madeline_Plateau")]
-public class Npc08MadelinePlateau : Celeste.NPC
+public class Npc08MadelinePlateau : global::Celeste.NPC
 {
     private float speedY;
 

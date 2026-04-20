@@ -1,9 +1,9 @@
            using System;
-            using MaggyHelper.Entities;
+            using Celeste.Entities;
             using Microsoft.Xna.Framework;
             using Monocle;
 
-            namespace MaggyHelper.Entities
+            namespace Celeste.Entities
             {
                 /// <summary>
                 /// Simple cutscene helper entity that only displays a sprite from the SpriteBank.

@@ -20,6 +20,7 @@
       Version: 1.24.5
     - Name: ContortHelper
       Version: 1.5.5
+    - Name: CollabUtils2
     - Name: CrystallineHelper
       Version: 1.17.1
     - Name: DJMapHelper
@@ -29,7 +30,7 @@
     - Name: EeveeHelper
       Version: 1.12.3
     - Name: Everest
-      Version: 1.6223.0
+      Version: 1.6249.0
     - Name: ExtendedVariantMode
       Version: 0.48.1
     - Name: FemtoHelper
@@ -40,12 +41,12 @@
       Version: 1.77.1
     - Name: HonlyHelper
       Version: 1.7.5
+    - Name: IsaGrabBag
+      Version: 1.7.3
     - Name: JackalHelper
       Version: 1.7.6
     - Name: JungleHelper
       Version: 1.4.7
-    - Name: KirbyBoi_Skinmod_UnPseduo_and_Maggy
-      Version: 1.0.0
     - Name: LoennScripts
       Version: 1.0.8
     - Name: LuaCutscenes
@@ -63,8 +64,6 @@
     - Name: OutbackHelper
     - Name: ReverseHelper
       Version: 1.15.20
-    - Name: SkinModHelper
-      Version: 0.6.1
     - Name: SkinModHelperPlus
       Version: 0.17.7
     - Name: SorbetHelper

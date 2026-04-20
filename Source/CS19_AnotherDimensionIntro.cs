@@ -5,16 +5,18 @@
 // Assembly location: C:\Users\User\OneDrive\Desktop\Celeste!\Celeste\Celeste.exe
 
 #nullable disable
-using MaggyHelper.Entities;
-using BirdNPC = MaggyHelper.Entities.BirdNPC;
+using Celeste.Entities;
+using BirdNPC = Celeste.Entities.BirdNPC;
+using System.Collections.Generic;
 
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
   public class Cs19AnotherDimensionIntro : CutsceneEntity
   {
     public const string FLAG = "another_dimension_intro";
     private global::Celeste.Player player;
     private CharaDummy chara;
+    private readonly List<CharaDummy> monsterKinds = new List<CharaDummy>();
     private BirdNPC bird;
     private float fade = 1f;
     private float targetX;
@@ -99,10 +101,31 @@ namespace MaggyHelper.Cutscenes
       Cs19AnotherDimensionIntro cs10MoonIntro = this;
       cs10MoonIntro.Level.Session.Inventory.Dashes = 1;
       cs10MoonIntro.player.Dashes = 1;
-      cs10MoonIntro.Level.Add((Entity) (cs10MoonIntro.chara = new CharaDummy(cs10MoonIntro.player.Position)));
+      Vector2 basePos = cs10MoonIntro.player.Position;
+      cs10MoonIntro.Level.Add((Entity) (cs10MoonIntro.chara = new CharaDummy(basePos + new Vector2(-20f, -8f))));
+
+      Vector2[] monsterOffsets = new Vector2[3]
+      {
+        new Vector2(-56f, -8f),
+        new Vector2(-84f, -8f),
+        new Vector2(16f, -8f)
+      };
+
+      foreach (Vector2 offset in monsterOffsets)
+      {
+        CharaDummy monster = new CharaDummy(basePos + offset);
+        cs10MoonIntro.monsterKinds.Add(monster);
+        cs10MoonIntro.Level.Add((Entity) monster);
+      }
+
       cs10MoonIntro.Level.Displacement.AddBurst(cs10MoonIntro.player.Center, 0.5f, 8f, 32f, 0.5f);
       Audio.Play("event:/char/badeline/maddy_split", cs10MoonIntro.player.Position);
       cs10MoonIntro.chara.Sprite.Scale.X = 1f;
+      foreach (CharaDummy monster in cs10MoonIntro.monsterKinds)
+      {
+        if (monster?.Sprite != null)
+          monster.Sprite.Scale.X = 1f;
+      }
       cs10MoonIntro.player.Facing = Facings.Left;
       yield return (object) null;
     }
@@ -111,8 +134,11 @@ namespace MaggyHelper.Cutscenes
     {
       yield return (object) 0.5f;
       this.chara?.Vanish();
+      foreach (CharaDummy monster in this.monsterKinds)
+        monster?.Vanish();
       Input.Rumble(RumbleStrength.Medium, RumbleLength.Medium);
       this.chara = (CharaDummy) null;
+      this.monsterKinds.Clear();
       yield return (object) 0.8f;
       this.player.Facing = Facings.Right;
       yield return (object) 0.6f;
@@ -143,6 +169,12 @@ namespace MaggyHelper.Cutscenes
         this.player.MoveVExact(16);
       if (this.chara != null)
         this.chara.RemoveSelf();
+      foreach (CharaDummy monster in this.monsterKinds)
+      {
+        if (monster != null)
+          monster.RemoveSelf();
+      }
+      this.monsterKinds.Clear();
       if (this.bird != null)
       {
         this.bird.RemoveSelf();

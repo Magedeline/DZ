@@ -1,4 +1,4 @@
-namespace MaggyHelper.Effects.ShaderEffects
+namespace Celeste.Effects.ShaderEffects
 {
     /// <summary>
     /// Manages loading, caching, and lifecycle of HLSL shader effects.

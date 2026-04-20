@@ -1,4 +1,4 @@
-namespace MaggyHelper.Effects.ShaderEffects
+namespace Celeste.Effects.ShaderEffects
 {
     /// <summary>
     /// Simple per-frame LOD and budget manager for shader effects.

@@ -1,6 +1,6 @@
 using MonoMod.Utils;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     [CustomEntity(ids: "MaggyHelper/AdvancedRefill")]
     [Monocle.Tracked]

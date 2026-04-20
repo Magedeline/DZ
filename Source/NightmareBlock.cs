@@ -3,7 +3,7 @@ using System.Collections;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     [CustomEntity(ids: "MaggyHelper/NightmareBlock")]
     [Tracked]

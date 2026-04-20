@@ -1,10 +1,10 @@
 using System;
-using MaggyHelper.Entities;
-using MaggyHelper.Helpers;
+using Celeste.Entities;
+using Celeste.Helpers;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// Trigger to enable and configure the player HP system.

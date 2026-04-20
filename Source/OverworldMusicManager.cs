@@ -1,7 +1,7 @@
 using FMOD.Studio;
 using Monocle;
 
-namespace MaggyHelper;
+namespace Celeste;
 
 /// <summary>
 /// Replaces vanilla overworld/menu music with custom DesoloZantas music events.

@@ -1,4 +1,4 @@
-namespace MaggyHelper.Entities {
+namespace Celeste.Entities {
     /// <summary>
     /// Collectible gem with different colors and point values
     /// </summary>

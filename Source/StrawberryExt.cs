@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 #nullable disable
-namespace MaggyHelper
+namespace Celeste
 {
     [CustomEntity(ids: "MaggyHelper/StrawberryExt")]
     [Tracked]

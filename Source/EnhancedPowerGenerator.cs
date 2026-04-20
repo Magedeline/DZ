@@ -1,4 +1,4 @@
-namespace MaggyHelper.Entities {
+namespace Celeste.Entities {
     /// <summary>
     /// Enhanced power generator with fuel management and different types
     /// </summary>

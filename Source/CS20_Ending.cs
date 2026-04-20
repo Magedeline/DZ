@@ -7,7 +7,7 @@ using FMOD.Studio;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
 	// Token: 0x0200015F RID: 351
 	public class CS20_Ending : CutsceneEntity

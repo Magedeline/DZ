@@ -1,4 +1,4 @@
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     // Simple particle class for hit effects
     public class HitParticle : Entity

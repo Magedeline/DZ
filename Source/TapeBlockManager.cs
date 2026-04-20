@@ -1,9 +1,9 @@
-﻿using System.Runtime.CompilerServices;
-using Celeste.Mod.Meta;
+using System.Runtime.CompilerServices;
+using global::Celeste.Mod.Meta;
 using FMOD.Studio;
-using MaggyHelper.Entities;
+using Celeste.Entities;
 
-namespace MaggyHelper;
+namespace Celeste;
 
 [Tracked(true)]
 [HotReloadable]

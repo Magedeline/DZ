@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper
+namespace Celeste
 {
     public class BirdGonerTutorialGui : Entity
     {

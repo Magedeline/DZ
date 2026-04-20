@@ -1,11 +1,11 @@
-using MaggyHelper.Entities;
+using Celeste.Entities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Monocle;
 using System;
 using System.Collections.Generic;
 
-namespace MaggyHelper
+namespace Celeste
 {
     // =============================================
     // MoltenLava - Hazardous lava pool (Water-like)

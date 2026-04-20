@@ -1,4 +1,4 @@
-namespace MaggyHelper
+namespace Celeste
 {
     [HotReloadable]
     public abstract class WaveFazeSlammerPage

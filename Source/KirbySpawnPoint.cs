@@ -1,9 +1,9 @@
 using System;
 using Microsoft.Xna.Framework;
 using Monocle;
-using MaggyHelper.Extensions;
+using Celeste.Extensions;
 
-namespace MaggyHelper.Entities;
+namespace Celeste.Entities;
 
 /// <summary>
 /// Spawn point for Kirby player mode. Ensures a Player exists and optionally enables Kirby mode.

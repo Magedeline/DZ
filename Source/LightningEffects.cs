@@ -1,4 +1,4 @@
-namespace MaggyHelper.Effects
+namespace Celeste.Effects
 {
     /// <summary>
     /// Advanced lightning elemental effects with electrical discharge, chain lightning, and electromagnetic fields

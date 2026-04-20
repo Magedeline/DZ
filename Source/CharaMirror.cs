@@ -1,12 +1,12 @@
 using System;
 using System.Collections;
-using MaggyHelper.Entities;
+using Celeste.Entities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Monocle;
-using PlayerSprite = Celeste.PlayerSprite; // Use Celeste.PlayerSprite for PlayerHair compatibility
+using PlayerSprite = global::Celeste.PlayerSprite; // Use global::Celeste.PlayerSprite for PlayerHair compatibility
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     [CustomEntity(ids: "MaggyHelper/CharaMirror")]
     [Tracked]
@@ -22,7 +22,7 @@ namespace MaggyHelper.Entities
         private float shineAlpha = 0.5f;
         private float shineOffset;
         private Entity reflection;
-        private Celeste.PlayerSprite reflectionSprite;
+        private global::Celeste.PlayerSprite reflectionSprite;
         private PlayerHair reflectionHair;
         private float reflectionAlpha = 0.7f;
         private bool autoUpdateReflection = true;
@@ -68,7 +68,7 @@ namespace MaggyHelper.Entities
             else
             {
                 reflection = new Entity();
-                reflectionSprite = new Celeste.PlayerSprite(PlayerSpriteMode.Badeline);
+                reflectionSprite = new global::Celeste.PlayerSprite(PlayerSpriteMode.Badeline);
                 reflectionHair = new PlayerHair(reflectionSprite);
                 reflectionHair.Color = BadelineOldsite.HairColor;
                 reflectionHair.Border = Color.Black;
@@ -153,7 +153,7 @@ namespace MaggyHelper.Entities
             Audio.SetMusic(null);
             while (cs02CharaMirror.hitbox.Collide(player))
                 yield return null;
-            Cutscenes.CS02_CharaMirror cs02CharaMirrorCutscene = new Cutscenes.CS02_CharaMirror((Celeste.Player)(object)player, cs02CharaMirror);
+            Cutscenes.CS02_CharaMirror cs02CharaMirrorCutscene = new Cutscenes.CS02_CharaMirror((global::Celeste.Player)(object)player, cs02CharaMirror);
             cs02CharaMirror.Scene.Add(cs02CharaMirrorCutscene);
         }
 

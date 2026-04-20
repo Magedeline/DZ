@@ -1,8 +1,8 @@
-using MaggyHelper.Entities;
+using Celeste.Entities;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper
+namespace Celeste
 {
     // Plan:
     // 1. Define a tracked projectile entity in the MaggyHelper namespace so Scene.Tracker can find it.

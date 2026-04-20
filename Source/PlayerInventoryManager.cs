@@ -1,7 +1,7 @@
-using MaggyHelper.Extensions;
+using Celeste.Extensions;
 using MonoMod.Utils;
 
-namespace MaggyHelper
+namespace Celeste
 {
     /// <summary>
     /// Manages player inventory states based on refill types from the Celeste mod.

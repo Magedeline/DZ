@@ -1,4 +1,4 @@
-namespace MaggyHelper.Triggers
+namespace Celeste.Triggers
 {
     [CustomEntity(ids: "MaggyHelper/OshiroTrigger")]
     public class OshiroTrigger : Trigger

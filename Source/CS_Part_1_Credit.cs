@@ -1,7 +1,7 @@
 #nullable enable
 
 
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
     /// <summary>
     /// Part 1 Credits cutscene implementation

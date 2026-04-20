@@ -1,10 +1,10 @@
 using System;
 using System.Collections;
-using MaggyHelper.Extensions;
+using Celeste.Extensions;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// Void Gate - Closes when player enters center, trapping them inside

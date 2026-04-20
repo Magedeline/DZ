@@ -1,4 +1,4 @@
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// Starfield backdrop for Asriel God of Hyperdeath boss fight.

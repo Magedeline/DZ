@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Monocle;
-using MaggyHelper.Entities;
-using CharaMirror = MaggyHelper.Entities.CharaMirror;
+using Celeste.Entities;
+using CharaMirror = Celeste.Entities.CharaMirror;
 
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
     [HotReloadable]
     public class CS02_CharaMirror : CutsceneEntity

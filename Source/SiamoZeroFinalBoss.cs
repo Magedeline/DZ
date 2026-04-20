@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using Microsoft.Xna.Framework;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// Split root for SiamoZeroFinalBoss. The heavy battle implementation lives in partial files;

@@ -1,18 +1,18 @@
 using System;
-using Celeste.Mod.MaggyHelper;
-using MaggyHelper.Extensions;
+using global::Celeste.Mod.MaggyHelper;
+using Celeste.Extensions;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper.Entities;
+namespace Celeste.Entities;
 
 /// <summary>
-/// Room-local controller that configures the vanilla Celeste.Player for Kirby
+/// Room-local controller that configures the vanilla global::Celeste.Player for Kirby
 /// gameplay at load time. Place this in a room via Lonn to enable Kirby mode,
 /// assign a starting copy ability, or snap the spawn to a specific marker.
 ///
 /// Unlike the older implementation, this does not create a second player entity.
-/// It keeps the real Celeste.Player authoritative and layers Kirby mechanics
+/// It keeps the real global::Celeste.Player authoritative and layers Kirby mechanics
 /// on top, which matches the common Everest modding pattern.
 /// </summary>
 [CustomEntity("MaggyHelper/KirbyPlayerSpawner")]
@@ -57,7 +57,7 @@ public sealed class KirbyPlayerSpawner : Entity
         var player = level.Tracker.GetEntity<CelestePlayer>();
         if (player == null)
         {
-            IngesteLogger.Info("[KirbyPlayerSpawner] Celeste.Player not available during Awake");
+            IngesteLogger.Info("[KirbyPlayerSpawner] global::Celeste.Player not available during Awake");
             return;
         }
 
@@ -74,7 +74,7 @@ public sealed class KirbyPlayerSpawner : Entity
             spawnCompanion);
 
         IngesteLogger.Info(
-            $"[KirbyPlayerSpawner] Configured Celeste.Player at {player.Position} " +
+            $"[KirbyPlayerSpawner] Configured global::Celeste.Player at {player.Position} " +
             $"(kirby={enableKirbyMode})");
     }
 
@@ -144,9 +144,7 @@ public sealed class KirbyPlayerSpawner : Entity
         if (enableKirbyMode)
         {
             healthManager.EnableKirbyMode(6);
-
-            if (level.Tracker.GetEntity<HealthBarUI>() == null)
-                level.Add(new HealthBarUI(level));
+            UniversalHealthUI.GetOrCreate(level).ShowPlayerHealth = true;
         }
         else
         {
@@ -166,6 +164,6 @@ public sealed class KirbyPlayerSpawner : Entity
         vanillaPlayer.DisableKirbyMode();
         EnsureRoomState(level, false);
 
-        IngesteLogger.Info("[KirbyPlayerSpawner] Celeste.Player restored to Madeline mode");
+        IngesteLogger.Info("[KirbyPlayerSpawner] global::Celeste.Player restored to Madeline mode");
     }
 }

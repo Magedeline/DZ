@@ -1,6 +1,6 @@
-using Celeste.Mod.MaggyHelper;
+using global::Celeste.Mod.MaggyHelper;
 
-namespace MaggyHelper.Cutscenes;
+namespace Celeste.Cutscenes;
 
 [HotReloadable]
 public class Cs17Epilogue : CutsceneEntity

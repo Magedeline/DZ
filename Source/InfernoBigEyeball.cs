@@ -1,4 +1,4 @@
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// A large eyeball boss entity for Chapter 7 (Infernal Reflections).
@@ -140,7 +140,7 @@ namespace MaggyHelper.Entities
                 endingChapterAfterCutscene: true);
             level.RegisterAreaComplete();
 
-            Celeste.Celeste.Freeze(0.1f);
+            CelesteGame.Freeze(0.1f);
             yield return null;
 
             // Reset glitch

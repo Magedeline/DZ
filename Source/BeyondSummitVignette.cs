@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace MaggyHelper.Entities;
+namespace Celeste.Entities;
 
 /// <summary>
 /// A vignette/intro screen for the beyond-summit chapter.

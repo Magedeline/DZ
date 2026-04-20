@@ -1,6 +1,6 @@
-using MaggyHelper.Triggers;
+using Celeste.Triggers;
 
-namespace MaggyHelper.Cutscenes {
+namespace Celeste.Cutscenes {
     [HotReloadable]
     public class Cs05MaddyPhone : CutsceneEntity 
     {

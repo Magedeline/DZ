@@ -1,4 +1,4 @@
-namespace MaggyHelper.Triggers
+namespace Celeste.Triggers
 {
     [CustomEntity("MaggyHelper/CharaZoomAppearTrigger")]
     [Tracked]
@@ -79,12 +79,12 @@ namespace MaggyHelper.Triggers
         {
             if (affectChara)
             {
-                foreach (Entity entity in Scene.Tracker.GetEntities<global::MaggyHelper.NPCs.Npc10Chara>())
+                foreach (Entity entity in Scene.Tracker.GetEntities<global::Celeste.NPCs.Npc10Chara>())
                 {
                     setEntityShown(entity, shown);
                 }
 
-                foreach (Entity entity in Scene.Tracker.GetEntities<global::MaggyHelper.NPCs.NPC_Chara>())
+                foreach (Entity entity in Scene.Tracker.GetEntities<global::Celeste.NPCs.NPC_Chara>())
                 {
                     setEntityShown(entity, shown);
                 }
@@ -92,7 +92,7 @@ namespace MaggyHelper.Triggers
 
             if (affectBadeline)
             {
-                foreach (Entity entity in Scene.Tracker.GetEntities<global::MaggyHelper.NPCs.Npc10Badeline>())
+                foreach (Entity entity in Scene.Tracker.GetEntities<global::Celeste.NPCs.Npc10Badeline>())
                 {
                     setEntityShown(entity, shown);
                 }

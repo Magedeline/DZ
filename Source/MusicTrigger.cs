@@ -1,4 +1,4 @@
-namespace MaggyHelper.Triggers
+namespace Celeste.Triggers
 {
     [CustomEntity("musicTrigger")]
     public class MusicTrigger : Trigger

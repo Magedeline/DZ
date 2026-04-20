@@ -1,9 +1,9 @@
-using MaggyHelper.Entities;
-using MaggyHelper.NPCs;
+using Celeste.Entities;
+using Celeste.NPCs;
 using FMOD.Studio;
-using BirdNPC = MaggyHelper.Entities.BirdNPC;
+using BirdNPC = Celeste.Entities.BirdNPC;
 
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
     public class Cs19TrapinLoop : CutsceneEntity
     {

@@ -1,9 +1,9 @@
 #nullable enable
-using MaggyHelper.Entities;
-using MaggyHelper.NPCs;
+using Celeste.Entities;
+using Celeste.NPCs;
 using FMOD.Studio;
 
-namespace MaggyHelper.Cutscenes;
+namespace Celeste.Cutscenes;
 
 // Token: 0x02000196 RID: 406
 [HotReloadable]

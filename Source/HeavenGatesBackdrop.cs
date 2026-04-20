@@ -1,6 +1,6 @@
 #nullable enable
 
-namespace MaggyHelper.Effects
+namespace Celeste.Effects
 {
     /// <summary>
     /// Heaven Gates backdrop with Void Astral Birth hovering above.

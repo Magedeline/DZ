@@ -1,10 +1,10 @@
-using MaggyHelper.Entities;
+using Celeste.Entities;
 using Microsoft.Xna.Framework;
 using Monocle;
 using System;
 using System.Collections;
 
-namespace MaggyHelper
+namespace Celeste
 {
     // =============================================
     // AbilitySwapTrigger - Grants/removes Kirby abilities

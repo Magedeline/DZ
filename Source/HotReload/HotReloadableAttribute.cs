@@ -1,6 +1,6 @@
 using System;
 
-namespace MaggyHelper.HotReload
+namespace Celeste.HotReload
 {
     /// <summary>
     /// Marks an entity class as supporting hot reload during development.

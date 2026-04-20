@@ -1,7 +1,7 @@
-using MaggyHelper.Entities;
+using Celeste.Entities;
 using FMOD.Studio;
 
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
     // Token: 0x0200016B RID: 363
     public class CS19_CharaHelps : CutsceneEntity

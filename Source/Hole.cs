@@ -1,4 +1,4 @@
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
 	[Tracked(false)]
 	public class Hole(bool active, bool visible) : Component(active, visible)

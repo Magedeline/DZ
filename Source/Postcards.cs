@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Monocle;
 
-namespace MaggyHelper
+namespace Celeste
 {
     /// <summary>
     /// A postcard entity that displays a postcard with custom text and plays custom sounds when appearing and disappearing.

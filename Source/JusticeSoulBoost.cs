@@ -1,11 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using MaggyHelper.Entities;
+using Celeste.Entities;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper.Entities.SoulBoosts
+namespace Celeste.Entities.SoulBoosts
 {
     /// <summary>
     /// Yellow Soul - Justice
@@ -52,7 +52,7 @@ namespace MaggyHelper.Entities.SoulBoosts
             this.spreadShot = spreadShot;
         }
 
-        protected override IEnumerator ApplyAbilityStart(Celeste.Player player)
+        protected override IEnumerator ApplyAbilityStart(global::Celeste.Player player)
         {
             // Visual feedback
             Level level = Scene as Level;
@@ -63,7 +63,7 @@ namespace MaggyHelper.Entities.SoulBoosts
             yield return 0.1f;
         }
 
-        protected override IEnumerator ApplyAbilityEnd(Celeste.Player player)
+        protected override IEnumerator ApplyAbilityEnd(global::Celeste.Player player)
         {
             // Fire projectiles in direction of travel
             Vector2 direction = player.Speed.SafeNormalize();
@@ -285,7 +285,7 @@ namespace MaggyHelper.Entities.SoulBoosts
             }
         }
 
-        private void OnPlayerCollide(Celeste.Player player)
+        private void OnPlayerCollide(global::Celeste.Player player)
         {
             // Projectiles don't hurt player
         }

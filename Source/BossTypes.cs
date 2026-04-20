@@ -1,8 +1,8 @@
-using MaggyHelper.Entities;
+using Celeste.Entities;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace MaggyHelper.Entities.Bosses
+namespace Celeste.Entities.Bosses
 {
     /// <summary>
     /// Interface for entities that can provide a copy ability when inhaled by Kirby.
@@ -53,7 +53,7 @@ namespace MaggyHelper.Entities.Bosses
             Collider = new Hitbox(16f, 16f, -8f, -8f);
             Depth = -100;
 
-            Add(new PlayerCollider((Celeste.Player player) => OnPlayer(player)));
+            Add(new PlayerCollider((global::Celeste.Player player) => OnPlayer(player)));
         }
 
         public override void Added(Scene scene)
@@ -73,7 +73,7 @@ namespace MaggyHelper.Entities.Bosses
             }
         }
 
-        private void OnPlayer(Celeste.Player player)
+        private void OnPlayer(global::Celeste.Player player)
         {
             // Grant the ability via session
             var session = MaggyHelperModule.Session;

@@ -1,11 +1,11 @@
 using System;
-using MaggyHelper.Entities;
+using Celeste.Entities;
 using FMOD.Studio;
 using Microsoft.Xna.Framework;
 using Monocle;
 using XnaColor = Microsoft.Xna.Framework.Color;
 
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// Heart Staff collectible inspired by Kirby Star Allies.
@@ -317,7 +317,7 @@ namespace MaggyHelper.Entities
             ambientSound?.Stop();
 
             // Freeze briefly
-            Celeste.Celeste.Freeze(0.1f);
+            CelesteGame.Freeze(0.1f);
             level?.Shake(0.3f);
             Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
 

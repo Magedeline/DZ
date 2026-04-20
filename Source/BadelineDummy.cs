@@ -1,5 +1,5 @@
 #pragma warning disable CS0436 // Type conflicts with imported type - intentional override
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// Optimized BadelineDummy entity - floating counterpart to CharaDummy

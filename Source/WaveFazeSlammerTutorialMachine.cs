@@ -1,6 +1,6 @@
 using FMOD.Studio;
 
-namespace MaggyHelper
+namespace Celeste
 {
     [CustomEntity(new string[] { "MaggyHelper/WaveFazeSlammerTutorialMachine", "MaggyHelper/WaveFazeSlammerMachine" })]
     [HotReloadable]

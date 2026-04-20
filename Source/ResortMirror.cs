@@ -1,4 +1,4 @@
-namespace MaggyHelper.Entities;
+namespace Celeste.Entities;
 [CustomEntity(ids: "MaggyHelper/ResortMirror")]
 [Tracked]
 public class ResortMirror : Entity

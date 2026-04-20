@@ -4,7 +4,7 @@ using System;
 using System.Collections;
 
 #nullable disable
-namespace MaggyHelper;
+namespace Celeste;
 
 [CustomEntity(ids: "MaggyHelper/StrawberryRemix")]
 [Tracked]

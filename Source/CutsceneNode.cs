@@ -1,4 +1,4 @@
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     // Note: Abstract class - cannot have [CustomEntity] attribute as Everest cannot instantiate abstract classes
     [Tracked(true)]

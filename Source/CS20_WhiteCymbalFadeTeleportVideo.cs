@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Monocle;
 
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
 	/// <summary>
 	/// Cutscene that plays the Undertale Respite flashback video before transitioning to the final ending.
@@ -197,7 +197,7 @@ namespace MaggyHelper.Cutscenes
 					if (assembly.GetName().Name == "VidPlayer")
 					{
 						vidPlayerAssembly = assembly;
-						vidPlayerEntityType = assembly.GetType("Celeste.Mod.VidPlayer.VidPlayerEntity");
+						vidPlayerEntityType = assembly.GetType("global::Celeste.Mod.VidPlayer.VidPlayerEntity");
 						break;
 					}
 				}

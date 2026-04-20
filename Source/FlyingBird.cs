@@ -1,4 +1,4 @@
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// A flying bird entity that can be used for ambient animations or scripted flight sequences.

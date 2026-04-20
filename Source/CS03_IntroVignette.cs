@@ -2,7 +2,7 @@
 
 using FMOD.Studio;
 
-namespace MaggyHelper.Cutscenes
+namespace Celeste.Cutscenes
 {
     /// <summary>
     /// Chapter 3 Intro Vignette - Postcard display before chapter starts
@@ -50,7 +50,7 @@ namespace MaggyHelper.Cutscenes
             {
                 postcard = new Image(GFX.Game["postcards/ch3_intro"]);
                 postcard.CenterOrigin();
-                postcard.Position = Celeste.Celeste.TargetCenter;
+                postcard.Position = CelesteGame.TargetCenter;
                 postcardHolder.Add(postcard);
             }
             else

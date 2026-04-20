@@ -1,4 +1,4 @@
-namespace MaggyHelper.Entities
+namespace Celeste.Entities
 {
     /// <summary>
     /// Character-themed refill crystals that restore dashes and provide character-specific effects.
@@ -508,7 +508,7 @@ namespace MaggyHelper.Entities
 
         private IEnumerator RefillRoutine(global::Celeste.Player player)
         {
-            Celeste.Celeste.Freeze(0.05f);
+            CelesteGame.Freeze(0.05f);
             yield return null;
 
             level?.Shake();

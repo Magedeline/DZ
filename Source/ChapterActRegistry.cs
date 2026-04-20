@@ -1,4 +1,4 @@
-namespace MaggyHelper;
+namespace Celeste;
 
 /// <summary>
 /// Groups chapters into narrative acts (I/II/III) and exposes per-chapter metadata

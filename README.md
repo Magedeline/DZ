@@ -1,19 +1,19 @@
 # Desolo Zantas
 
-**Desolo Zantas** is a massive, story-driven Celeste mod featuring a full 21-chapter campaign, over 800 source files of custom gameplay code, original music, Kirby-inspired mechanics, and an extended side system spanning A through DX difficulty tiers.
+**Desolo Zantas** is a massive, story-driven Celeste mod featuring an extensive campaign, over 800 source files of custom gameplay code, original music, and custom mechanics with extended difficulty tiers.
 
-Built on the `MaggyHelper` Everest module, this project includes campaign maps, C# gameplay code, dialogue, original art and audio, Spine animation support, Loenn editor integration, and full mod packaging. The mod requires Everest and a large helper stack (46+ dependencies) to run.
+Built on the `MaggyHelper` Everest module, this project includes campaign maps, C# gameplay code, dialogue, original art and audio, Spine animation support, Loenn editor integration, and full mod packaging. The mod requires Everest and a substantial helper stack to run.
 
 ## Key Features
 
-- **21-chapter story campaign** — from Prologue through Chapter 20 plus a post-epilogue chapter, each with custom dialogue, cutscenes, and progression.
-- **5-tier side system** — A-Side, B-Side, C-Side, D-Side, and DX-Side support with sequential unlock logic, heart gem requirements, and unlock postcards.
-- **Custom boss encounters** — including Apex Predator, Asriel God, Siamo Zero (the CH20 true final boss with knight clone summoning and multi-phase attack mechanics), Whispy Woods, and many more.
-- **Lobby & submap architecture** — Chapters 10–14 feature dedicated hub lobbies with fragment/shard routes, EX maps, and boss arenas, with CollabUtils2 as the supported mini-heart and lobby-map stack.
-- **Kirby crossover content** — custom Kirby player sprites, KirbyPlayerSpawner system, dedicated skin support, and crossover characters.
-- **Spine animation runtime** — integrated Spine MonoGame support for skeletal character animations and custom font rendering.
-- **Original audio** — FMOD sound banks with custom music and SFX, including dedicated DLC audio content.
-- **Loenn editor integration** — full entity, trigger, effect, and tooling plugins for map editing.
+- **Story-driven campaign** — A full narrative experience with custom dialogue, cutscenes, and progression across many chapters.
+- **Multiple difficulty tiers** — Extended side system with varied challenge levels for seasoned players.
+- **Custom boss encounters** — Unique encounters with distinct mechanics and designs.
+- **Hub and submap systems** — Dedicated lobby areas with varied routes and additional challenges.
+- **Custom crossover content** — Integrated guest character and sprite systems with dedicated support.
+- **Spine animation runtime** — Integrated Spine MonoGame support for skeletal character animations and custom font rendering.
+- **Original audio** — FMOD sound banks with custom music and sound effects.
+- **Loenn editor integration** — Full entity, trigger, effect, and tooling plugins for map editing.
 
 ## Ownership And Repository Policy
 
@@ -32,65 +32,38 @@ Public access does not grant permission to modify, reuse, redistribute, or publi
 
 ## Content Overview
 
-This repo currently includes:
+This mod includes:
 
-- A full story campaign with a Prologue, Chapters 1–20, and a post-epilogue chapter.
-- Separate side folders for A-Side, B-Side, C-Side, D-Side, and DX-Side support.
-- Chapter lobby and submap systems for later-game content, including fragment or shard routes, EX maps, and boss encounters.
-- Custom gameplay systems such as side unlock progression, unlock postcards, credits flows, mod intro routing, and chapter panel extensions.
-- A player compatibility shim layer for extended player spawner support and cross-mod interop.
+- A full story campaign with extensive narrative content.
+- Multiple difficulty tiers with separate maps and progression systems.
+- Hub and submap systems with varied challenge routes.
+- Custom gameplay systems such as unlock progression, unlock tracking, and extended difficulty support.
+- Cross-mod compatibility layers for player spawner support and interoperability.
 - Spine-based skeletal animation support via the SpineMonoGame library and custom font rendering pipeline.
 - Custom dialogue, sprites, portraits, sound effects, music events, and skin content.
 
-## Main Campaign
+## Campaign Structure
 
-- 00: Prologue
-- 01: Forbidden Metropolis
-- 02: Veil of Shadows
-- 03: Arrival
-- 04: Chronicles of Destiny
-- 05: Fractured Memories
-- 06: Fortress of Solitude
-- 07: Infernal Reflections
-- 08: Revelation's Edge
-- 09: Apex of Reality
-- 10: Echoes of the Past
-- 11: Frozen Sanctuary
-- 12: Cascading Depths
-- 13: Blazing Territories
-- 14: Cyber Nexus
-- 15: Ethereal Citadel
-- 16: Organ Garden of Despair
-- 17: Final Resonance
-- 18: Core of Existence
-- 19: Farewell to Stars
-- 20: Light Through the Dark
-- 21: Desolo Zantas True Finale
+The mod features an extensive story campaign with multiple chapters, each offering unique themes, mechanics, and challenges. Detailed chapter information is intentionally omitted to preserve the discovery experience for players. Players are encouraged to experience the campaign firsthand to enjoy the full narrative journey.
 
-Chapters 10-14 also include dedicated lobby maps plus submaps, EX routes, and boss maps for their respective themes.
+Extended difficulty tiers are available for each main chapter, allowing players to return for additional challenges after completing the base campaign.
 
 ## Repository Layout
 
-- `Source/`: C# gameplay code, cutscenes, entities, UI, unlock logic, and packaging project files.
-- `Maps/Maggy/ASide`: Main A-Side campaign maps.
-- `Maps/Maggy/BSide`: B-Side campaign maps.
-- `Maps/Maggy/CSide`: C-Side campaign maps.
-- `Maps/Maggy/DSide`: D-Side campaign maps.
-- `Maps/Maggy/DXSide`: DX-side folder reserved for extended content.
-- `Maps/Maggy/Lobby`: Chapter lobby maps for the later-game submap structure.
-- `Maps/Maggy/SmallMaps`: Fragment, shard, EX, and boss submaps.
+- `Source/`: C# gameplay code, cutscenes, entities, UI, progression systems, and packaging project files.
+- `Maps/Maggy/`: Campaign maps organized by difficulty tier (ASide, BSide, CSide, DSide, DXSide).
+- `Maps/Maggy/Lobby`: Hub and lobby maps.
+- `Maps/Maggy/SmallMaps`: Challenge routes, additional content, and boss encounter maps.
 - `Maps/Maggy/WIP`: In-progress maps and staging content.
-- `Dialog/`: In-game text, chapter names, UI strings, postcards, and credits strings.
+- `Dialog/`: In-game text, chapter names, UI strings, and dialogue content.
 - `Graphics/`: Atlases, portraits, sprites, tiles, color grading, and UI assets.
 - `Audio/`: FMOD banks and audio content.
 - `Loenn/`: Editor plugins, entities, triggers, effects, metadata, and tooling.
-- `Mountain/`: Mountain data used by the campaign.
+- `Mountain/`: Mountain progression data.
 
-## Collab Utils 2
+## CollabUtils2 Integration
 
-CollabUtils2 is now the supported path for mini hearts and lobby minimaps.
-
-The old MaggyHelper editor-side miniheart and submap lobby entities have been removed from Loenn so new content uses the community-standard CollabUtils2 entities instead:
+CollabUtils2 is the supported path for mini hearts and lobby minimaps. The mod uses community-standard CollabUtils2 entities for map editing:
 
 - `CollabUtils2/MiniHeart`
 - `CollabUtils2/FakeMiniHeart`
@@ -99,16 +72,15 @@ The old MaggyHelper editor-side miniheart and submap lobby entities have been re
 - `CollabUtils2/LobbyMapWarp`
 - `CollabUtils2/LobbyMapMarker`
 
-Legacy runtime code remains in the repository for backward compatibility with older map logic and cutscene flow, but it is no longer the recommended authoring path.
+Legacy runtime code remains in the repository for backward compatibility, but CollabUtils2 entities are the recommended authoring path for new content.
 
 ## Notable Systems
 
-- Custom first-launch selection screen that lets the player start Desolo Zantas directly or continue to the normal Celeste flow.
-- Extended chapter-side support up to D-Side and DX-Side through runtime area mode expansion.
-- Sequential side unlock logic with save data tracking and custom unlock postcards.
-- Chapter lobby and portal systems for Ruins, Snowdin, Wateredgefalls, Hotcliffland, and Cyber Nexus.
-- Custom credits sequences, cutscenes, bosses, and chapter-specific progression hooks.
-- PlayerCompatShim layer for robust player spawner compatibility across helper mods.
+- Custom launch systems for mod flow and progression.
+- Extended difficulty tier support with sequential unlock logic and progression tracking.
+- Hub and portal systems for navigating complex map structures.
+- Custom cutscenes, bosses, and chapter-specific progression hooks.
+- Cross-mod compatibility layer for robust player spawner interoperability.
 - Spine skeletal animation runtime (SpineMonoGame) and Nez framework integration for advanced rendering and gameplay systems.
 
 ## Building
@@ -156,14 +128,15 @@ This updates `loenn-mcp` inside `.venv` and prints the installed version.
 
 ## Current Map Structure
 
-The campaign uses a side-based folder layout instead of suffix-based filenames:
+The campaign uses a difficulty-tier-based folder layout for organizing maps:
 
-- `Maps/Maggy/ASide/01_City.bin`
-- `Maps/Maggy/BSide/01_City.bin`
-- `Maps/Maggy/CSide/01_City.bin`
-- `Maps/Maggy/DSide/01_City.bin`
+- `Maps/Maggy/ASide/` — Core campaign maps
+- `Maps/Maggy/BSide/` — First challenge tier maps
+- `Maps/Maggy/CSide/` — Second challenge tier maps
+- `Maps/Maggy/DSide/` — Third challenge tier maps
+- `Maps/Maggy/DXSide/` — Extended content tier
 
-This keeps side content separated cleanly while matching the runtime path logic used by `AreaModeExtender`.
+This keeps content organized by difficulty while matching the runtime path logic used by the mod's area management systems.
 
 ## Development Notes
 

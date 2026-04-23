@@ -31,8 +31,25 @@ public static class BossRosterRegistry
     private static readonly List<BossEntry> _roster = new();
     private static readonly Dictionary<string, BossEntry> _byId = new(StringComparer.OrdinalIgnoreCase);
     private static readonly Dictionary<int, List<BossEntry>> _byChapter = new();
+    private static bool _initialized;
 
-    public static IReadOnlyList<BossEntry> AllBosses => _roster;
+    public static IReadOnlyList<BossEntry> AllBosses
+    {
+        get
+        {
+            EnsureInitialized();
+            return _roster;
+        }
+    }
+
+    private static void EnsureInitialized()
+    {
+        if (!_initialized)
+        {
+            _initialized = true;
+            Initialize();
+        }
+    }
 
     public static void Initialize()
     {
@@ -328,24 +345,43 @@ public static class BossRosterRegistry
 
     // ── Queries ──────────────────────────────────────────────────────
 
-    public static BossEntry GetBoss(string id) =>
-        _byId.TryGetValue(id, out var entry) ? entry : null;
+    public static BossEntry GetBoss(string id)
+    {
+        EnsureInitialized();
+        return _byId.TryGetValue(id, out var entry) ? entry : null;
+    }
 
-    public static IReadOnlyList<BossEntry> GetBossesForChapter(int chapter) =>
-        _byChapter.TryGetValue(chapter, out var list)
+    public static IReadOnlyList<BossEntry> GetBossesForChapter(int chapter)
+    {
+        EnsureInitialized();
+        return _byChapter.TryGetValue(chapter, out var list)
             ? list
             : (IReadOnlyList<BossEntry>)Array.Empty<BossEntry>();
+    }
 
-    public static IEnumerable<BossEntry> GetBossesByTier(BossTier tier) =>
-        _roster.Where(b => b.Tier == tier);
+    public static IEnumerable<BossEntry> GetBossesByTier(BossTier tier)
+    {
+        EnsureInitialized();
+        return _roster.Where(b => b.Tier == tier);
+    }
 
-    public static IEnumerable<BossEntry> GetMainBosses() =>
-        _roster.Where(b => !b.IsMiniBoss && !b.IsSecretBoss);
+    public static IEnumerable<BossEntry> GetMainBosses()
+    {
+        EnsureInitialized();
+        return _roster.Where(b => !b.IsMiniBoss && !b.IsSecretBoss);
+    }
 
-    public static IEnumerable<BossEntry> GetSecretBosses() =>
-        _roster.Where(b => b.IsSecretBoss);
+    public static IEnumerable<BossEntry> GetSecretBosses()
+    {
+        EnsureInitialized();
+        return _roster.Where(b => b.IsSecretBoss);
+    }
 
-    public static int GetBossCount() => _roster.Count;
+    public static int GetBossCount()
+    {
+        EnsureInitialized();
+        return _roster.Count;
+    }
 
     // ── Internals ────────────────────────────────────────────────────
 

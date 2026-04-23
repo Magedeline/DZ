@@ -29,7 +29,23 @@ namespace Celeste.Mod.MaggyHelper
         // Shared resources
         public static SpriteBank SpriteBank { get; set; }
         public static ParticleType P_StarExplosion { get; set; }
-        public static global::Celeste.ProphecyFontRenderer ProphecyFont { get; private set; }
+
+        // Lazy-initialized font renderer to reduce startup time
+        private static global::Celeste.ProphecyFontRenderer _prophecyFont;
+        private static bool _prophecyFontInitialized;
+
+        public static global::Celeste.ProphecyFontRenderer ProphecyFont
+        {
+            get
+            {
+                if (!_prophecyFontInitialized)
+                {
+                    _prophecyFontInitialized = true;
+                    _prophecyFont = new global::Celeste.ProphecyFontRenderer();
+                }
+                return _prophecyFont;
+            }
+        }
 
         public MaggyHelperModule()
         {
@@ -39,9 +55,8 @@ namespace Celeste.Mod.MaggyHelper
         public override void Load()
         {
             BossesExampleModule.Load();
-            global::Celeste.AreaMapData.Initialize();
-            global::Celeste.ChapterActRegistry.Initialize();
-            global::Celeste.BossRosterRegistry.Initialize();
+            // Note: AreaMapData, ChapterActRegistry, and BossRosterRegistry
+            // use lazy initialization - they'll be populated on first access.
             global::Celeste.AreaModeExtender.Load();
             global::Celeste.AreaCompleteHooks.Load();
             global::Celeste.IntroRemixHooks.Load();
@@ -96,14 +111,15 @@ namespace Celeste.Mod.MaggyHelper
             // Reset credits state
             LaunchPart1Credits = false;
             LaunchPart2Credits = false;
-            ProphecyFont = null;
+            _prophecyFont = null;
+            _prophecyFontInitialized = false;
         }
 
         public override void LoadContent(bool firstLoad)
         {
             base.LoadContent(firstLoad);
             BossesExampleModule.LoadContent(firstLoad);
-            ProphecyFont = new global::Celeste.ProphecyFontRenderer();
+            // ProphecyFont is now lazy-initialized on first access
         }
 
         public static bool IsChapter17EpilogueCompleted()

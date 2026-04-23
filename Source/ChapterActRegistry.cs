@@ -31,7 +31,25 @@ public static class ChapterActRegistry
     private static readonly List<ChapterInfo> _chapters = new();
     private static readonly Dictionary<int, ChapterInfo> _byNumber = new();
 
-    public static IReadOnlyList<ChapterInfo> AllChapters => _chapters;
+    private static bool _initialized;
+
+    public static IReadOnlyList<ChapterInfo> AllChapters
+    {
+        get
+        {
+            EnsureInitialized();
+            return _chapters;
+        }
+    }
+
+    private static void EnsureInitialized()
+    {
+        if (!_initialized)
+        {
+            _initialized = true;
+            Initialize();
+        }
+    }
 
     public static void Initialize()
     {
@@ -229,14 +247,23 @@ public static class ChapterActRegistry
 
     // ── Queries ──────────────────────────────────────────────────────
 
-    public static ChapterInfo GetChapter(int number) =>
-        _byNumber.TryGetValue(number, out var info) ? info : null;
+    public static ChapterInfo GetChapter(int number)
+    {
+        EnsureInitialized();
+        return _byNumber.TryGetValue(number, out var info) ? info : null;
+    }
 
-    public static Act GetAct(int chapterNumber) =>
-        GetChapter(chapterNumber)?.Act ?? Act.ActI;
+    public static Act GetAct(int chapterNumber)
+    {
+        EnsureInitialized();
+        return GetChapter(chapterNumber)?.Act ?? Act.ActI;
+    }
 
-    public static IEnumerable<ChapterInfo> GetChaptersInAct(Act act) =>
-        _chapters.Where(c => c.Act == act);
+    public static IEnumerable<ChapterInfo> GetChaptersInAct(Act act)
+    {
+        EnsureInitialized();
+        return _chapters.Where(c => c.Act == act);
+    }
 
     public static (int first, int last) GetActRange(Act act) => act switch
     {
@@ -246,11 +273,17 @@ public static class ChapterActRegistry
         _ => (0, 20)
     };
 
-    public static bool HasSubmaps(int chapterNumber) =>
-        GetChapter(chapterNumber)?.HasSubmaps ?? false;
+    public static bool HasSubmaps(int chapterNumber)
+    {
+        EnsureInitialized();
+        return GetChapter(chapterNumber)?.HasSubmaps ?? false;
+    }
 
-    public static string[] GetBosses(int chapterNumber) =>
-        GetChapter(chapterNumber)?.Bosses ?? Array.Empty<string>();
+    public static string[] GetBosses(int chapterNumber)
+    {
+        EnsureInitialized();
+        return GetChapter(chapterNumber)?.Bosses ?? Array.Empty<string>();
+    }
 
     // ── Internals ────────────────────────────────────────────────────
 

@@ -105,7 +105,22 @@ public static class AreaMapData
     /// <summary>Lookup by side-agnostic chapter key (for A/B/C/D/DX variants).</summary>
     private static readonly Dictionary<string, ChapterDef> _byBaseKey = new(StringComparer.OrdinalIgnoreCase);
 
+    private static bool _initialized;
+
     // ── Initialization ───────────────────────────────────────────────────
+
+    /// <summary>
+    /// Ensures the registry is initialized before use. Lazy initialization
+    /// reduces startup time by deferring chapter registration until first access.
+    /// </summary>
+    private static void EnsureInitialized()
+    {
+        if (!_initialized)
+        {
+            _initialized = true;
+            Initialize();
+        }
+    }
 
     /// <summary>
     /// Registers all chapter definitions. Called during module initialization.
@@ -383,6 +398,7 @@ public static class AreaMapData
     /// </summary>
     public static void ApplyHardcodedRuntimeData()
     {
+        EnsureInitialized();
         RefreshAvailableSides();
 
         foreach (var chapter in Chapters.OrderBy(ch => ch.Number))
@@ -411,6 +427,7 @@ public static class AreaMapData
         if (!AreaModeExtender.IsOurMap(area))
             return;
 
+        EnsureInitialized();
         var chapter = FindByAnySID(area.SID);
         if (chapter == null)
             return;
@@ -430,6 +447,8 @@ public static class AreaMapData
     {
         if (string.IsNullOrWhiteSpace(sid))
             return;
+
+        EnsureInitialized();
 
         try
         {
@@ -543,6 +562,7 @@ public static class AreaMapData
 
     public static void RefreshAvailableSides()
     {
+        EnsureInitialized();
         foreach (ChapterDef chapter in Chapters)
         {
             string baseKey = ExtractBaseKey(chapter.SID);
@@ -706,16 +726,24 @@ public static class AreaMapData
     // ── Lookup Methods ───────────────────────────────────────────────────
 
     /// <summary>Gets a chapter by its number</summary>
-    public static ChapterDef GetByNumber(int number) =>
-        _byNumber.TryGetValue(number, out var ch) ? ch : null;
+    public static ChapterDef GetByNumber(int number)
+    {
+        EnsureInitialized();
+        return _byNumber.TryGetValue(number, out var ch) ? ch : null;
+    }
 
     /// <summary>Gets a chapter by its SID</summary>
-    public static ChapterDef GetBySID(string sid) =>
-        _bySID.TryGetValue(sid, out var ch) ? ch : null;
+    public static ChapterDef GetBySID(string sid)
+    {
+        EnsureInitialized();
+        return _bySID.TryGetValue(sid, out var ch) ? ch : null;
+    }
 
     /// <summary>Gets a chapter by matching any of its side SIDs</summary>
     public static ChapterDef FindByAnySID(string sid)
     {
+        EnsureInitialized();
+
         if (string.IsNullOrEmpty(sid))
             return null;
 
@@ -734,8 +762,11 @@ public static class AreaMapData
     }
 
     /// <summary>Gets the total number of chapters with alt-sides</summary>
-    public static int GetAltSideChapterCount() =>
-        Chapters.Count(c => c.HasBSide);
+    public static int GetAltSideChapterCount()
+    {
+        EnsureInitialized();
+        return Chapters.Count(c => c.HasBSide);
+    }
 
     private static string ExtractBaseKey(string sid)
     {

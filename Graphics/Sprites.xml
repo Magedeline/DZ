@@ -2832,4 +2832,439 @@
     <Loop id="oshiro" path="oshiro" delay="0.1" frames="0-101" />
     <Loop id="sweep" path="sweep" delay="0.1" frames="0-18" />
   </maggy_oshiro>
+  <ruins_sentinel path="characters/ruins_sentinel" id="ruins_sentinel">
+    <Anim id="dormant" path="dormant" loop="true" delay="0.1"/>
+    <Anim id="awakening" path="awakening" loop="false" delay="0.05"/>
+    <Anim id="patrol" path="patrol" loop="true" delay="0.08"/>
+    <Anim id="chase" path="chase" loop="true" delay="0.06"/>
+    <Anim id="attack" path="attack" loop="false" delay="0.05"/>
+    <Anim id="stunned" path="stunned" loop="true" delay="0.1"/>
+    <Anim id="defeat" path="defeat" loop="false" delay="0.08"/>
+  </ruins_sentinel>
+  <flowey_trap path="characters/flowey_trap" id="flowey_trap">
+    <Anim id="hidden" path="hidden" loop="true" delay="0.1"/>
+    <Anim id="emerging" path="emerging" loop="false" delay="0.05"/>
+    <Anim id="idle" path="idle" loop="true" delay="0.1"/>
+    <Anim id="attacking" path="attacking" loop="false" delay="0.05"/>
+    <Anim id="retracting" path="retracting" loop="false" delay="0.05"/>
+    <Anim id="defeat" path="defeat" loop="false" delay="0.08"/>
+  </flowey_trap>
+  <spider_baker path="characters/spider_baker" id="spider_baker">
+    <Anim id="hanging" path="hanging" loop="true" delay="0.1"/>
+    <Anim id="dropping" path="dropping" loop="false" delay="0.05"/>
+    <Anim id="friendly" path="friendly" loop="true" delay="0.08"/>
+    <Anim id="hostile" path="hostile" loop="true" delay="0.06"/>
+    <Anim id="fleeing" path="fleeing" loop="true" delay="0.07"/>
+    <Anim id="defeat" path="defeat" loop="false" delay="0.08"/>
+  </spider_baker>
+  <ghostly_echo path="characters/ghostly_echo" id="ghostly_echo">
+    <Anim id="dormant" path="dormant" loop="true" delay="0.15"/>
+    <Anim id="recording" path="recording" loop="true" delay="0.08"/>
+    <Anim id="mimic" path="mimic" loop="true" delay="0.1"/>
+    <Anim id="attacking" path="attacking" loop="false" delay="0.05"/>
+    <Anim id="fading" path="fading" loop="false" delay="0.06"/>
+    <Anim id="defeat" path="defeat" loop="false" delay="0.08"/>
+  </ghostly_echo>
+  <ruins_puzzle_switch path="objects/ruins_puzzle_switch" id="ruins_puzzle_switch">
+    <Anim id="off" path="off" loop="true" delay="0.1"/>
+    <Anim id="on" path="on" loop="true" delay="0.1"/>
+    <Anim id="activating" path="activating" loop="false" delay="0.05"/>
+    <Anim id="deactivating" path="deactivating" loop="false" delay="0.05"/>
+  </ruins_puzzle_switch>
+  <fallen_leaf_pile path="objects/fallen_leaf_pile" id="fallen_leaf_pile">
+    <Anim id="hidden" path="hidden" loop="true" delay="0.1"/>
+    <Anim id="revealed" path="revealed" loop="true" delay="0.1"/>
+    <Anim id="rustling" path="rustling" loop="false" delay="0.05"/>
+  </fallen_leaf_pile>
+  <echo_flower path="objects/echo_flower" id="echo_flower">
+    <Anim id="idle" path="idle" loop="true" delay="0.1"/>
+    <Anim id="recording" path="recording" loop="true" delay="0.08"/>
+    <Anim id="charging" path="charging" loop="false" delay="0.05"/>
+    <Anim id="firing" path="firing" loop="false" delay="0.05"/>
+    <Anim id="cooldown" path="cooldown" loop="true" delay="0.1"/>
+  </echo_flower>
+  <toriel_stove path="objects/toriel_stove" id="toriel_stove">
+    <Anim id="idle" path="idle" loop="true" delay="0.1"/>
+    <Anim id="cooking" path="cooking" loop="true" delay="0.08"/>
+    <Anim id="finished" path="finished" loop="true" delay="0.1"/>
+    <Anim id="interacting" path="interacting" loop="false" delay="0.05"/>
+  </toriel_stove>
+  <bandito_roller path="characters/bandito_roller" id="bandito_roller">
+    <Anim id="idle" path="idle" loop="true" delay="0.1"/>
+    <Anim id="rolling" path="rolling" loop="true" delay="0.05"/>
+    <Anim id="bounce" path="bounce" loop="false" delay="0.05"/>
+    <Anim id="dash" path="dash" loop="false" delay="0.05"/>
+    <Anim id="stunned" path="stunned" loop="true" delay="0.1"/>
+    <Anim id="defeat" path="defeat" loop="false" delay="0.08"/>
+  </bandito_roller>
+  <saloon_chandelier path="objects/saloon_chandelier" id="saloon_chandelier">
+    <Anim id="inactive" path="inactive" loop="true" delay="0.1"/>
+    <Anim id="swinging" path="swinging" loop="true" delay="0.08"/>
+    <Anim id="falling" path="falling" loop="false" delay="0.05"/>
+    <Anim id="crashed" path="crashed" loop="true" delay="0.1"/>
+  </saloon_chandelier>
+  <card_shark path="characters/card_shark" id="card_shark">
+    <Anim id="idle" path="idle" loop="true" delay="0.1"/>
+    <Anim id="walk" path="walk" loop="true" delay="0.08"/>
+    <Anim id="alert" path="alert" loop="false" delay="0.05"/>
+    <Anim id="throw" path="throw" loop="false" delay="0.05"/>
+    <Anim id="shuffle" path="shuffle" loop="false" delay="0.05"/>
+    <Anim id="stunned" path="stunned" loop="true" delay="0.1"/>
+    <Anim id="defeat" path="defeat" loop="false" delay="0.08"/>
+  </card_shark>
+  <barrel_bomber path="characters/barrel_bomber" id="barrel_bomber">
+    <Anim id="idle" path="idle" loop="true" delay="0.1"/>
+    <Anim id="peeking" path="peeking" loop="false" delay="0.05"/>
+    <Anim id="emerging" path="emerging" loop="false" delay="0.05"/>
+    <Anim id="attacking" path="attacking" loop="false" delay="0.05"/>
+    <Anim id="stunned" path="stunned" loop="true" delay="0.1"/>
+    <Anim id="defeat" path="defeat" loop="false" delay="0.08"/>
+  </barrel_bomber>
+  <swinging_door path="objects/swinging_door" id="swinging_door">
+    <Anim id="idle" path="idle" loop="true" delay="0.1"/>
+    <Anim id="opening" path="opening" loop="false" delay="0.05"/>
+    <Anim id="open" path="open" loop="true" delay="0.1"/>
+    <Anim id="closing" path="closing" loop="false" delay="0.05"/>
+  </swinging_door>
+  <tumbleweed_cluster path="objects/tumbleweed" id="tumbleweed_cluster">
+    <Anim id="idle" path="idle" loop="true" delay="0.1"/>
+    <Anim id="rolling" path="rolling" loop="true" delay="0.06"/>
+  </tumbleweed_cluster>
+  <wanted_poster path="objects/wanted_poster" id="wanted_poster">
+    <Anim id="unread" path="unread" loop="true" delay="0.1"/>
+    <Anim id="reading" path="reading" loop="false" delay="0.05"/>
+    <Anim id="read" path="read" loop="true" delay="0.1"/>
+    <Anim id="complete" path="complete" loop="true" delay="0.1"/>
+  </wanted_poster>
+  <revolver_target path="objects/revolver_target" id="revolver_target">
+    <Anim id="idle" path="idle" loop="true" delay="0.1"/>
+    <Anim id="showing" path="showing" loop="true" delay="0.08"/>
+    <Anim id="hit" path="hit" loop="false" delay="0.05"/>
+    <Anim id="hit_stun" path="hit_stun" loop="true" delay="0.1"/>
+  </revolver_target>
+  <horse_hitch path="objects/horse_hitch" id="horse_hitch">
+    <Anim id="inactive" path="inactive" loop="true" delay="0.1"/>
+    <Anim id="active" path="active" loop="true" delay="0.08"/>
+    <Anim id="mount" path="mount" loop="false" delay="0.05"/>
+    <Anim id="arrive" path="arrive" loop="false" delay="0.05"/>
+    <Anim id="dismount" path="dismount" loop="false" delay="0.05"/>
+  </horse_hitch>
+  <tower_gargoyle path="characters/tower_gargoyle" id="tower_gargoyle">
+    <Anim id="dormant" path="dormant" loop="true" delay="0.1"/>
+    <Anim id="awakening" path="awakening" loop="false" delay="0.05"/>
+    <Anim id="perch" path="perch" loop="true" delay="0.1"/>
+    <Anim id="swoop" path="swoop" loop="false" delay="0.05"/>
+    <Anim id="glide" path="glide" loop="true" delay="0.08"/>
+    <Anim id="attack" path="attack" loop="false" delay="0.05"/>
+    <Anim id="stunned" path="stunned" loop="true" delay="0.1"/>
+    <Anim id="defeat" path="defeat" loop="false" delay="0.08"/>
+  </tower_gargoyle>
+  <fountain_spirit path="characters/fountain_spirit" id="fountain_spirit">
+    <Anim id="dormant" path="dormant" loop="true" delay="0.1"/>
+    <Anim id="emerge" path="emerge" loop="false" delay="0.05"/>
+    <Anim id="active" path="active" loop="true" delay="0.08"/>
+    <Anim id="healing" path="healing" loop="true" delay="0.06"/>
+  </fountain_spirit>
+  <tower_elevator path="objects/tower_elevator" id="tower_elevator">
+    <Anim id="idle" path="idle" loop="true" delay="0.1"/>
+    <Anim id="moving" path="moving" loop="true" delay="0.08"/>
+  </tower_elevator>
+  <waterfall_climb path="objects/waterfall" id="waterfall_climb">
+    <Anim id="flowing" path="flowing" loop="true" delay="0.05"/>
+    <Anim id="rushing" path="rushing" loop="true" delay="0.03"/>
+    <Anim id="calm" path="calm" loop="true" delay="0.1"/>
+  </waterfall_climb>
+  <tower_lantern path="objects/tower_lantern" id="tower_lantern">
+    <Anim id="inactive" path="inactive" loop="true" delay="0.1"/>
+    <Anim id="lit" path="lit" loop="true" delay="0.08"/>
+    <Anim id="lighting" path="lighting" loop="false" delay="0.05"/>
+    <Anim id="extinguishing" path="extinguishing" loop="false" delay="0.05"/>
+  </tower_lantern>
+  <magic_fountain path="objects/magic_fountain" id="magic_fountain">
+    <Anim id="dormant" path="dormant" loop="true" delay="0.1"/>
+    <Anim id="awakening" path="awakening" loop="false" delay="0.05"/>
+    <Anim id="active" path="active" loop="true" delay="0.08"/>
+    <Anim id="surge" path="surge" loop="false" delay="0.05"/>
+    <Anim id="overflow" path="overflow" loop="false" delay="0.05"/>
+    <Anim id="complete" path="complete" loop="true" delay="0.1"/>
+  </magic_fountain>
+  <titan_statue path="objects/titan_statue" id="titan_statue">
+    <Anim id="inactive" path="inactive" loop="true" delay="0.1"/>
+    <Anim id="active" path="active" loop="true" delay="0.08"/>
+    <Anim id="attacking" path="attacking" loop="false" delay="0.05"/>
+    <Anim id="destroyed" path="destroyed" loop="false" delay="0.08"/>
+  </titan_statue>
+  <tower_window path="objects/tower_window" id="tower_window">
+    <Anim id="inactive" path="inactive" loop="true" delay="0.1"/>
+    <Anim id="active" path="active" loop="true" delay="0.08"/>
+    <Anim id="showing" path="showing" loop="false" delay="0.05"/>
+  </tower_window>
+  <spiral_staircase path="objects/spiral_staircase" id="spiral_staircase">
+    <Anim id="idle" path="idle" loop="true" delay="0.1"/>
+    <Anim id="rotating" path="rotating" loop="true" delay="0.06"/>
+  </spiral_staircase>
+  <lava_bubble path="objects/lava_bubble" id="lava_bubble">
+    <Anim id="forming" path="forming" loop="false" delay="0.05"/>
+    <Anim id="rising" path="rising" loop="true" delay="0.06"/>
+    <Anim id="bursting" path="bursting" loop="false" delay="0.05"/>
+  </lava_bubble>
+  <flame_geyser path="objects/flame_geyser" id="flame_geyser">
+    <Anim id="idle" path="idle" loop="true" delay="0.1"/>
+    <Anim id="warning" path="warning" loop="true" delay="0.08"/>
+    <Anim id="erupting" path="erupting" loop="true" delay="0.04"/>
+    <Anim id="cooling" path="cooling" loop="true" delay="0.1"/>
+  </flame_geyser>
+  <heat_wave path="objects/heat_wave" id="heat_wave">
+    <Anim id="dormant" path="dormant" loop="true" delay="0.1"/>
+    <Anim id="building" path="building" loop="false" delay="0.05"/>
+    <Anim id="expanding" path="expanding" loop="true" delay="0.06"/>
+  </heat_wave>
+  <axis_minion path="characters/axis_minion" id="axis_minion">
+    <Anim id="idle" path="idle" loop="true" delay="0.1"/>
+    <Anim id="walk" path="walk" loop="true" delay="0.08"/>
+    <Anim id="alert" path="alert" loop="false" delay="0.05"/>
+    <Anim id="chase" path="chase" loop="true" delay="0.06"/>
+    <Anim id="attack" path="attack" loop="false" delay="0.05"/>
+    <Anim id="stunned" path="stunned" loop="true" delay="0.1"/>
+    <Anim id="defeat" path="defeat" loop="false" delay="0.08"/>
+  </axis_minion>
+  <hot_platform path="objects/hot_platform" id="hot_platform">
+    <Anim id="cool" path="cool" loop="true" delay="0.1"/>
+    <Anim id="warming" path="warming" loop="true" delay="0.08"/>
+    <Anim id="hot" path="hot" loop="true" delay="0.08"/>
+    <Anim id="overheated" path="overheated" loop="true" delay="0.06"/>
+  </hot_platform>
+  <magma_pool path="objects/magma_pool" id="magma_pool">
+    <Anim id="idle" path="idle" loop="true" delay="0.1"/>
+    <Anim id="erupting" path="erupting" loop="false" delay="0.05"/>
+  </magma_pool>
+  <ash_pile path="objects/ash_pile" id="ash_pile">
+    <Anim id="stable" path="stable" loop="true" delay="0.1"/>
+    <Anim id="shifting" path="shifting" loop="true" delay="0.08"/>
+    <Anim id="collapsing" path="collapsing" loop="false" delay="0.05"/>
+  </ash_pile>
+  <volcanic_rock path="objects/volcanic_rock" id="volcanic_rock">
+    <Anim id="waiting" path="waiting" loop="true" delay="0.1"/>
+    <Anim id="shaking" path="shaking" loop="true" delay="0.05"/>
+    <Anim id="falling" path="falling" loop="false" delay="0.05"/>
+    <Anim id="impact" path="impact" loop="false" delay="0.05"/>
+  </volcanic_rock>
+  <sulfur_vent path="objects/sulfur_vent" id="sulfur_vent">
+    <Anim id="idle" path="idle" loop="true" delay="0.1"/>
+    <Anim id="venting" path="venting" loop="true" delay="0.06"/>
+  </sulfur_vent>
+  <obsidian_shard path="objects/obsidian_shard" id="obsidian_shard">
+    <Anim id="intact" path="intact" loop="true" delay="0.1"/>
+    <Anim id="cracking" path="cracking" loop="false" delay="0.05"/>
+    <Anim id="shattered" path="shattered" loop="false" delay="0.08"/>
+  </obsidian_shard>
+  <glitch_block path="objects/glitch_block" id="glitch_block">
+    <Anim id="inactive" path="inactive" loop="true" delay="0.1"/>
+    <Anim id="appearing" path="appearing" loop="false" delay="0.05"/>
+    <Anim id="active" path="active" loop="true" delay="0.08"/>
+    <Anim id="flickering" path="flickering" loop="true" delay="0.05"/>
+    <Anim id="disappearing" path="disappearing" loop="false" delay="0.05"/>
+    <Anim id="corrupted" path="corrupted" loop="true" delay="0.04"/>
+  </glitch_block>
+  <data_stream path="objects/data_stream" id="data_stream">
+    <Anim id="inactive" path="inactive" loop="true" delay="0.1"/>
+    <Anim id="flowing" path="flowing" loop="true" delay="0.06"/>
+  </data_stream>
+  <pixel_enemy path="characters/pixel_enemy" id="pixel_enemy">
+    <Anim id="idle" path="idle" loop="true" delay="0.1"/>
+    <Anim id="walk" path="walk" loop="true" delay="0.08"/>
+    <Anim id="alert" path="alert" loop="false" delay="0.05"/>
+    <Anim id="throw" path="throw" loop="false" delay="0.05"/>
+    <Anim id="dash" path="dash" loop="false" delay="0.05"/>
+    <Anim id="glitch" path="glitch" loop="false" delay="0.04"/>
+    <Anim id="stunned" path="stunned" loop="true" delay="0.1"/>
+    <Anim id="defeat" path="defeat" loop="false" delay="0.08"/>
+  </pixel_enemy>
+  <digital_portal path="objects/digital_portal" id="digital_portal">
+    <Anim id="inactive" path="inactive" loop="true" delay="0.1"/>
+    <Anim id="active" path="active" loop="true" delay="0.08"/>
+    <Anim id="transporting" path="transporting" loop="false" delay="0.05"/>
+  </digital_portal>
+  <virus_cloud path="characters/virus_cloud" id="virus_cloud">
+    <Anim id="dormant" path="dormant" loop="true" delay="0.1"/>
+    <Anim id="spreading" path="spreading" loop="false" delay="0.05"/>
+    <Anim id="hunting" path="hunting" loop="true" delay="0.06"/>
+    <Anim id="infecting" path="infecting" loop="true" delay="0.08"/>
+    <Anim id="dissolving" path="dissolving" loop="false" delay="0.05"/>
+    <Anim id="destroyed" path="destroyed" loop="false" delay="0.08"/>
+  </virus_cloud>
+  <firewall_barrier path="objects/firewall_barrier" id="firewall_barrier">
+    <Anim id="inactive" path="inactive" loop="true" delay="0.1"/>
+    <Anim id="activating" path="activating" loop="false" delay="0.05"/>
+    <Anim id="active" path="active" loop="true" delay="0.08"/>
+    <Anim id="flickering" path="flickering" loop="true" delay="0.05"/>
+    <Anim id="deactivating" path="deactivating" loop="false" delay="0.05"/>
+  </firewall_barrier>
+  <code_breaker path="objects/code_breaker" id="code_breaker">
+    <Anim id="locked" path="locked" loop="true" delay="0.1"/>
+    <Anim id="inputting" path="inputting" loop="true" delay="0.08"/>
+    <Anim id="checking" path="checking" loop="false" delay="0.05"/>
+    <Anim id="correct" path="correct" loop="false" delay="0.05"/>
+    <Anim id="incorrect" path="incorrect" loop="false" delay="0.05"/>
+    <Anim id="unlocked" path="unlocked" loop="true" delay="0.1"/>
+  </code_breaker>
+  <memory_fragment path="objects/memory_fragment" id="memory_fragment">
+    <Anim id="hidden" path="hidden" loop="true" delay="0.1"/>
+    <Anim id="appearing" path="appearing" loop="false" delay="0.05"/>
+    <Anim id="floating" path="floating" loop="true" delay="0.08"/>
+    <Anim id="collecting" path="collecting" loop="false" delay="0.05"/>
+  </memory_fragment>
+  <matrix_rain path="effects/matrix_rain" id="matrix_rain">
+    <Anim id="inactive" path="inactive" loop="true" delay="0.1"/>
+    <Anim id="light" path="light" loop="true" delay="0.08"/>
+    <Anim id="normal" path="normal" loop="true" delay="0.06"/>
+    <Anim id="heavy" path="heavy" loop="true" delay="0.04"/>
+    <Anim id="intense" path="intense" loop="true" delay="0.03"/>
+  </matrix_rain>
+  <core_fragment path="objects/core_fragment" id="core_fragment">
+    <Anim id="protected" path="protected" loop="true" delay="0.1"/>
+    <Anim id="active" path="active" loop="true" delay="0.08"/>
+    <Anim id="collecting" path="collecting" loop="false" delay="0.05"/>
+  </core_fragment>
+  <titan_squire path="characters/titan_squire" id="titan_squire">
+    <Anim id="idle" path="idle" loop="true" delay="0.1"/>
+    <Anim id="patrol" path="patrol" loop="true" delay="0.08"/>
+    <Anim id="alert" path="alert" loop="false" delay="0.05"/>
+    <Anim id="chase" path="chase" loop="true" delay="0.06"/>
+    <Anim id="sword_slash" path="sword_slash" loop="false" delay="0.05"/>
+    <Anim id="flame_thrust" path="flame_thrust" loop="false" delay="0.05"/>
+    <Anim id="shield_bash" path="shield_bash" loop="false" delay="0.05"/>
+    <Anim id="call_reinforcements" path="call_reinforcements" loop="false" delay="0.05"/>
+    <Anim id="stunned" path="stunned" loop="true" delay="0.1"/>
+    <Anim id="defeat" path="defeat" loop="false" delay="0.08"/>
+  </titan_squire>
+  <ember_wisp path="characters/ember_wisp" id="ember_wisp">
+    <Anim id="idle" path="idle" loop="true" delay="0.1"/>
+    <Anim id="floating" path="floating" loop="true" delay="0.08"/>
+    <Anim id="igniting" path="igniting" loop="false" delay="0.05"/>
+    <Anim id="burning" path="burning" loop="true" delay="0.06"/>
+    <Anim id="extinguishing" path="extinguishing" loop="false" delay="0.05"/>
+    <Anim id="defeated" path="defeated" loop="false" delay="0.08"/>
+  </ember_wisp>
+  <flame_cerberus path="characters/flame_cerberus" id="flame_cerberus">
+    <Anim id="idle" path="idle" loop="true" delay="0.1"/>
+    <Anim id="roaming" path="roaming" loop="true" delay="0.08"/>
+    <Anim id="attacking" path="attacking" loop="false" delay="0.05"/>
+    <Anim id="triple_attack" path="triple_attack" loop="false" delay="0.05"/>
+    <Anim id="stunned" path="stunned" loop="true" delay="0.1"/>
+    <Anim id="defeat" path="defeat" loop="false" delay="0.08"/>
+  </flame_cerberus>
+  <ash_phoenix path="characters/ash_phoenix" id="ash_phoenix">
+    <Anim id="flying" path="flying" loop="true" delay="0.08"/>
+    <Anim id="diving" path="diving" loop="false" delay="0.05"/>
+    <Anim id="attacking" path="attacking" loop="false" delay="0.05"/>
+    <Anim id="dying" path="dying" loop="false" delay="0.05"/>
+    <Anim id="ash_form" path="ash_form" loop="true" delay="0.1"/>
+    <Anim id="reviving" path="reviving" loop="false" delay="0.05"/>
+    <Anim id="reborn" path="reborn" loop="true" delay="0.08"/>
+    <Anim id="defeat" path="defeat" loop="false" delay="0.08"/>
+  </ash_phoenix>
+  <ceremony_flame path="objects/ceremony_flame" id="ceremony_flame">
+    <Anim id="dormant" path="dormant" loop="true" delay="0.1"/>
+    <Anim id="igniting" path="igniting" loop="false" delay="0.05"/>
+    <Anim id="burning" path="burning" loop="true" delay="0.06"/>
+    <Anim id="spreading" path="spreading" loop="true" delay="0.05"/>
+    <Anim id="extinguishing" path="extinguishing" loop="false" delay="0.05"/>
+    <Anim id="extinguished" path="extinguished" loop="true" delay="0.1"/>
+  </ceremony_flame>
+  <titan_footprint path="objects/titan_footprint" id="titan_footprint">
+    <Anim id="idle" path="idle" loop="true" delay="0.1"/>
+    <Anim id="warning" path="warning" loop="true" delay="0.08"/>
+    <Anim id="falling" path="falling" loop="false" delay="0.05"/>
+    <Anim id="crushing" path="crushing" loop="false" delay="0.05"/>
+    <Anim id="rising" path="rising" loop="false" delay="0.05"/>
+    <Anim id="cooldown" path="cooldown" loop="true" delay="0.1"/>
+  </titan_footprint>
+  <crown_bearing path="objects/crown_bearing" id="crown_bearing">
+    <Anim id="idle" path="idle" loop="true" delay="0.1"/>
+    <Anim id="pull" path="pull" loop="true" delay="0.08"/>
+    <Anim id="push" path="push" loop="true" delay="0.08"/>
+    <Anim id="orbit" path="orbit" loop="true" delay="0.06"/>
+  </crown_bearing>
+  <judgment_bell path="objects/judgment_bell" id="judgment_bell">
+    <Anim id="idle" path="idle" loop="true" delay="0.1"/>
+    <Anim id="swinging" path="swinging" loop="true" delay="0.08"/>
+    <Anim id="ringing" path="ringing" loop="false" delay="0.05"/>
+  </judgment_bell>
+  <wish_altar path="objects/wish_altar" id="wish_altar">
+    <Anim id="inactive" path="inactive" loop="true" delay="0.1"/>
+    <Anim id="active" path="active" loop="true" delay="0.08"/>
+    <Anim id="offering" path="offering" loop="true" delay="0.08"/>
+    <Anim id="wishing" path="wishing" loop="false" delay="0.05"/>
+    <Anim id="complete" path="complete" loop="true" delay="0.1"/>
+  </wish_altar>
+  <titan_throne path="objects/titan_throne" id="titan_throne">
+    <Anim id="inactive" path="inactive" loop="true" delay="0.1"/>
+    <Anim id="active" path="active" loop="true" delay="0.08"/>
+    <Anim id="arrive" path="arrive" loop="false" delay="0.05"/>
+  </titan_throne>
+  <corruption_crystal path="objects/corruption_crystal" id="corruption_crystal">
+    <Anim id="dormant" path="dormant" loop="true" delay="0.1"/>
+    <Anim id="awakened" path="awakened" loop="true" delay="0.08"/>
+    <Anim id="shattered" path="shattered" loop="false" delay="0.08"/>
+  </corruption_crystal>
+  <void_portal path="objects/void_portal" id="void_portal">
+    <Anim id="inactive" path="inactive" loop="true" delay="0.1"/>
+    <Anim id="opening" path="opening" loop="false" delay="0.05"/>
+    <Anim id="active" path="active" loop="true" delay="0.08"/>
+  </void_portal>
+  <shadow_figure path="characters/shadow_figure" id="shadow_figure">
+    <Anim id="hidden" path="hidden" loop="true" delay="0.1"/>
+    <Anim id="appearing" path="appearing" loop="false" delay="0.05"/>
+    <Anim id="watching" path="watching" loop="true" delay="0.08"/>
+    <Anim id="disappearing" path="disappearing" loop="false" delay="0.05"/>
+  </shadow_figure>
+  <reality_glitch path="effects/reality_glitch" id="reality_glitch">
+    <Anim id="stable" path="stable" loop="true" delay="0.1"/>
+    <Anim id="minor" path="minor" loop="true" delay="0.08"/>
+    <Anim id="major" path="major" loop="true" delay="0.06"/>
+    <Anim id="critical" path="critical" loop="true" delay="0.04"/>
+  </reality_glitch>
+  <dark_mirror path="objects/dark_mirror" id="dark_mirror">
+    <Anim id="intact" path="intact" loop="true" delay="0.1"/>
+    <Anim id="shattered" path="shattered" loop="false" delay="0.08"/>
+  </dark_mirror>
+  <nightmare_fragment path="objects/nightmare_fragment" id="nightmare_fragment">
+    <Anim id="hidden" path="hidden" loop="true" delay="0.1"/>
+    <Anim id="appearing" path="appearing" loop="false" delay="0.05"/>
+    <Anim id="floating" path="floating" loop="true" delay="0.08"/>
+    <Anim id="collecting" path="collecting" loop="false" delay="0.05"/>
+  </nightmare_fragment>
+  <abyssal_eye path="characters/abyssal_eye" id="abyssal_eye">
+    <Anim id="dormant" path="dormant" loop="true" delay="0.1"/>
+    <Anim id="opening" path="opening" loop="false" delay="0.05"/>
+    <Anim id="watching" path="watching" loop="true" delay="0.08"/>
+    <Anim id="gazing" path="gazing" loop="true" delay="0.06"/>
+    <Anim id="closing" path="closing" loop="false" delay="0.05"/>
+    <Anim id="destroyed" path="destroyed" loop="false" delay="0.08"/>
+  </abyssal_eye>
+  <distortion_field path="effects/distortion_field" id="distortion_field">
+    <Anim id="idle" path="idle" loop="true" delay="0.1"/>
+    <Anim id="active" path="active" loop="true" delay="0.08"/>
+  </distortion_field>
+  <soul_fragment path="objects/soul_fragment" id="soul_fragment">
+    <Anim id="hidden" path="hidden" loop="true" delay="0.1"/>
+    <Anim id="emerge" path="emerge" loop="false" delay="0.05"/>
+    <Anim id="floating" path="floating" loop="true" delay="0.08"/>
+    <Anim id="complete" path="complete" loop="true" delay="0.1"/>
+  </soul_fragment>
+  <final_core path="characters/final_core" id="final_core">
+    <Anim id="dormant" path="dormant" loop="true" delay="0.1"/>
+    <Anim id="awakening" path="awakening" loop="false" delay="0.05"/>
+    <Anim id="active" path="active" loop="true" delay="0.08"/>
+    <Anim id="phase1" path="phase1" loop="true" delay="0.06"/>
+    <Anim id="phase2" path="phase2" loop="true" delay="0.06"/>
+    <Anim id="phase3" path="phase3" loop="true" delay="0.04"/>
+    <Anim id="defeat" path="defeat" loop="false" delay="0.08"/>
+  </final_core>
+  <reality_anchor path="objects/reality_anchor" id="reality_anchor">
+    <Anim id="inactive" path="inactive" loop="true" delay="0.1"/>
+    <Anim id="stable" path="stable" loop="true" delay="0.08"/>
+    <Anim id="overloaded" path="overloaded" loop="false" delay="0.05"/>
+  </reality_anchor>
 </Sprites>

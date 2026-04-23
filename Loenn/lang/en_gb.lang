@@ -7963,3 +7963,771 @@ entities.MaggyHelper/KirbyPlayerSpawner.attributes.name.spawnCompanion=Spawn Com
 entities.MaggyHelper/KirbyPlayerSpawner.attributes.description.spawnCompanion=Whether to spawn a KirbyDummy companion that follows the player.
 entities.MaggyHelper/KirbyPlayerSpawner.attributes.name.startingAbility=Starting Ability
 entities.MaggyHelper/KirbyPlayerSpawner.attributes.description.startingAbility=Copy ability the player starts with (None for default).
+
+# ========================
+# Glitch Block
+# ========================
+entities.MaggyHelper/GlitchBlock.placements.name.normal=Glitch Block
+entities.MaggyHelper/GlitchBlock.placements.description.normal=Unstable digital block that flickers in and out of existence. Appears and disappears randomly, creating dynamic platforming challenges.
+entities.MaggyHelper/GlitchBlock.attributes.name.stability=Stability
+entities.MaggyHelper/GlitchBlock.attributes.description.stability=How stable the block is (0.0-1.0). Lower values cause more visual glitches and particles.
+entities.MaggyHelper/GlitchBlock.attributes.name.glitchInterval=Glitch Interval
+entities.MaggyHelper/GlitchBlock.attributes.description.glitchInterval=Base time interval between glitch state changes in seconds.
+entities.MaggyHelper/GlitchBlock.attributes.name.visibleTime=Visible Time
+entities.MaggyHelper/GlitchBlock.attributes.description.visibleTime=How long the block stays visible when stable (in seconds).
+entities.MaggyHelper/GlitchBlock.attributes.name.invisibleTime=Invisible Time
+entities.MaggyHelper/GlitchBlock.attributes.description.invisibleTime=How long the block stays invisible (in seconds).
+entities.MaggyHelper/GlitchBlock.attributes.name.isPattern=Use Pattern
+entities.MaggyHelper/GlitchBlock.attributes.description.isPattern=Whether to use a preset pattern for glitch timing instead of random intervals.
+entities.MaggyHelper/GlitchBlock.attributes.name.width=Width
+entities.MaggyHelper/GlitchBlock.attributes.description.width=Width of the glitch block in pixels.
+entities.MaggyHelper/GlitchBlock.attributes.name.height=Height
+entities.MaggyHelper/GlitchBlock.attributes.description.height=Height of the glitch block in pixels.
+
+# ========================
+# Glitch Block Controller
+# ========================
+entities.MaggyHelper/GlitchBlockController.placements.name.normal=Glitch Block Controller
+entities.MaggyHelper/GlitchBlockController.placements.description.normal=Synchronizes multiple GlitchBlocks in the room, forcing them to glitch simultaneously on a timer.
+entities.MaggyHelper/GlitchBlockController.attributes.name.syncInterval=Sync Interval
+entities.MaggyHelper/GlitchBlockController.attributes.description.syncInterval=Time interval in seconds between synchronized glitch toggles.
+
+# ========================
+# Chapter 10 - Ruins
+# ========================
+entities.MaggyHelper/EchoFlowerEntity.placements.name.normal=Echo Flower
+entities.MaggyHelper/EchoFlowerEntity.placements.description.normal=Flower that repeats the player's last dash as a delayed projectile. Records dash direction and fires an echo after a delay.
+entities.MaggyHelper/EchoFlowerEntity.attributes.name.echoDelay=Echo Delay
+entities.MaggyHelper/EchoFlowerEntity.attributes.description.echoDelay=Delay in seconds before firing the echo projectile.
+entities.MaggyHelper/EchoFlowerEntity.attributes.name.echoSpeed=Echo Speed
+entities.MaggyHelper/EchoFlowerEntity.attributes.description.echoSpeed=Speed of the echo projectile.
+entities.MaggyHelper/EchoFlowerEntity.attributes.name.cooldownTime=Cooldown Time
+entities.MaggyHelper/EchoFlowerEntity.attributes.description.cooldownTime=Time between echo shots.
+entities.MaggyHelper/EchoFlowerEntity.attributes.name.maxEchoes=Max Echoes
+entities.MaggyHelper/EchoFlowerEntity.attributes.description.maxEchoes=Maximum number of active echoes at once.
+
+entities.MaggyHelper/FallenLeafPile.placements.name.normal=Fallen Leaf Pile
+entities.MaggyHelper/FallenLeafPile.placements.name.spikes=Leaf Pile (Spikes)
+entities.MaggyHelper/FallenLeafPile.placements.name.enemy=Leaf Pile (Enemy)
+entities.MaggyHelper/FallenLeafPile.placements.name.collectible=Leaf Pile (Collectible)
+entities.MaggyHelper/FallenLeafPile.placements.description.normal=Decorative leaf pile that can hide hazards, enemies, or collectibles. Rustles when player approaches.
+entities.MaggyHelper/FallenLeafPile.attributes.name.hiddenContent=Hidden Content
+entities.MaggyHelper/FallenLeafPile.attributes.description.hiddenContent=Type of content hidden in the leaf pile.
+entities.MaggyHelper/FallenLeafPile.attributes.name.detectionRange=Detection Range
+entities.MaggyHelper/FallenLeafPile.attributes.description.detectionRange=Distance at which player triggers the pile.
+entities.MaggyHelper/FallenLeafPile.attributes.name.enemyType=Enemy Type
+entities.MaggyHelper/FallenLeafPile.attributes.description.enemyType=Entity ID of enemy to spawn if hiddenContent is Enemy.
+entities.MaggyHelper/FallenLeafPile.attributes.name.collectibleType=Collectible Type
+entities.MaggyHelper/FallenLeafPile.attributes.description.collectibleType=Entity ID of collectible to spawn if hiddenContent is Collectible.
+
+entities.MaggyHelper/FloweyTrap.placements.name.normal=Flowey Trap
+entities.MaggyHelper/FloweyTrap.placements.description.normal=Malicious flower that pops up and fires pellets in patterns. Has multiple attack patterns.
+entities.MaggyHelper/FloweyTrap.attributes.name.health=Health
+entities.MaggyHelper/FloweyTrap.attributes.description.health=Amount of damage required to defeat.
+entities.MaggyHelper/FloweyTrap.attributes.name.detectionRange=Detection Range
+entities.MaggyHelper/FloweyTrap.attributes.description.detectionRange=Range at which Flowey detects the player.
+entities.MaggyHelper/FloweyTrap.attributes.name.retractRange=Retract Range
+entities.MaggyHelper/FloweyTrap.attributes.description.retractRange=Distance at which Flowey retracts underground.
+entities.MaggyHelper/FloweyTrap.attributes.name.pelletCount=Pellet Count
+entities.MaggyHelper/FloweyTrap.attributes.description.pelletCount=Number of pellets per attack.
+entities.MaggyHelper/FloweyTrap.attributes.name.pelletSpeed=Pellet Speed
+entities.MaggyHelper/FloweyTrap.attributes.description.pelletSpeed=Speed of fired pellets.
+entities.MaggyHelper/FloweyTrap.attributes.name.attackInterval=Attack Interval
+entities.MaggyHelper/FloweyTrap.attributes.description.attackInterval=Time between attacks in seconds.
+entities.MaggyHelper/FloweyTrap.attributes.name.attackPattern=Attack Pattern
+entities.MaggyHelper/FloweyTrap.attributes.description.attackPattern=Pattern of pellet firing (Circular, Aimed, Spread, Spiral).
+
+entities.MaggyHelper/GhostlyEcho.placements.name.mirror=Ghostly Echo (Mirror)
+entities.MaggyHelper/GhostlyEcho.placements.name.chase=Ghostly Echo (Chase)
+entities.MaggyHelper/GhostlyEcho.placements.description.mirror=Semi-transparent spirit that mirrors player movement with delay. Phases through walls.
+entities.MaggyHelper/GhostlyEcho.attributes.name.behavior=Behavior
+entities.MaggyHelper/GhostlyEcho.attributes.description.behavior=How the echo behaves (Mirror, Reverse, Patrol, Chase).
+entities.MaggyHelper/GhostlyEcho.attributes.name.mirrorDelay=Mirror Delay
+entities.MaggyHelper/GhostlyEcho.attributes.description.mirrorDelay=Delay before echo copies player movement.
+entities.MaggyHelper/GhostlyEcho.attributes.name.fadeTime=Fade Time
+entities.MaggyHelper/GhostlyEcho.attributes.description.fadeTime=Time for echo to fade out.
+entities.MaggyHelper/GhostlyEcho.attributes.name.alpha=Alpha
+entities.MaggyHelper/GhostlyEcho.attributes.description.alpha=Base transparency of the echo (0-1).
+entities.MaggyHelper/GhostlyEcho.attributes.name.isDangerous=Is Dangerous
+entities.MaggyHelper/GhostlyEcho.attributes.description.isDangerous=Whether the echo can damage the player.
+entities.MaggyHelper/GhostlyEcho.attributes.name.isSolid=Is Solid
+entities.MaggyHelper/GhostlyEcho.attributes.description.isSolid=Whether the echo has solid collision.
+
+entities.MaggyHelper/RuinsPuzzleSwitch.placements.name.simple=Ruins Puzzle Switch (Simple)
+entities.MaggyHelper/RuinsPuzzleSwitch.placements.name.hold=Ruins Puzzle Switch (Hold)
+entities.MaggyHelper/RuinsPuzzleSwitch.placements.name.timed=Ruins Puzzle Switch (Timed)
+entities.MaggyHelper/RuinsPuzzleSwitch.placements.description.simple=Pressure plate requiring specific movement patterns. Activates connected BlockGates.
+entities.MaggyHelper/RuinsPuzzleSwitch.attributes.name.switchType=Switch Type
+entities.MaggyHelper/RuinsPuzzleSwitch.attributes.description.switchType=How the switch activates (Simple, Hold, Sequence, Timed, Dash).
+entities.MaggyHelper/RuinsPuzzleSwitch.attributes.name.gateId=Gate ID
+entities.MaggyHelper/RuinsPuzzleSwitch.attributes.description.gateId=ID of connected BlockGate(s) to control.
+entities.MaggyHelper/RuinsPuzzleSwitch.attributes.name.sequenceOrder=Sequence Order
+entities.MaggyHelper/RuinsPuzzleSwitch.attributes.description.sequenceOrder=Order in sequence puzzle (0 = not in sequence).
+entities.MaggyHelper/RuinsPuzzleSwitch.attributes.name.holdTime=Hold Time
+entities.MaggyHelper/RuinsPuzzleSwitch.attributes.description.holdTime=Time player must stand on switch.
+entities.MaggyHelper/RuinsPuzzleSwitch.attributes.name.timerDuration=Timer Duration
+entities.MaggyHelper/RuinsPuzzleSwitch.attributes.description.timerDuration=Time switch stays active for timed switches.
+
+entities.MaggyHelper/RuinsSentinel.placements.name.normal=Ruins Sentinel
+entities.MaggyHelper/RuinsSentinel.placements.description.normal=Stone guardian that awakens when player approaches. Patrols ruins corridors.
+entities.MaggyHelper/RuinsSentinel.attributes.name.health=Health
+entities.MaggyHelper/RuinsSentinel.attributes.description.health=Amount of damage required to defeat.
+entities.MaggyHelper/RuinsSentinel.attributes.name.detectionRange=Detection Range
+entities.MaggyHelper/RuinsSentinel.attributes.description.detectionRange=Range at which sentinel detects player.
+entities.MaggyHelper/RuinsSentinel.attributes.name.attackRange=Attack Range
+entities.MaggyHelper/RuinsSentinel.attributes.description.attackRange=Range at which sentinel attacks.
+entities.MaggyHelper/RuinsSentinel.attributes.name.moveSpeed=Move Speed
+entities.MaggyHelper/RuinsSentinel.attributes.description.moveSpeed=Patrol/chase speed.
+entities.MaggyHelper/RuinsSentinel.attributes.name.patrolDistance=Patrol Distance
+entities.MaggyHelper/RuinsSentinel.attributes.description.patrolDistance=Distance to patrol from starting point.
+
+entities.MaggyHelper/SpiderBaker.placements.name.neutral=Spider Baker (Neutral)
+entities.MaggyHelper/SpiderBaker.placements.name.friendly=Spider Baker (Friendly)
+entities.MaggyHelper/SpiderBaker.placements.description.neutral=Friendly spider that drops from webs. Can be befriended or become hostile.
+entities.MaggyHelper/SpiderBaker.attributes.name.health=Health
+entities.MaggyHelper/SpiderBaker.attributes.description.health=Amount of damage required to defeat.
+entities.MaggyHelper/SpiderBaker.attributes.name.detectionRange=Detection Range
+entities.MaggyHelper/SpiderBaker.attributes.description.detectionRange=Range at which spider detects player below.
+entities.MaggyHelper/SpiderBaker.attributes.name.webY=Web Y Offset
+entities.MaggyHelper/SpiderBaker.attributes.description.webY=Vertical offset of web attachment point.
+entities.MaggyHelper/SpiderBaker.attributes.name.startFriendly=Start Friendly
+entities.MaggyHelper/SpiderBaker.attributes.description.startFriendly=Whether spider starts in friendly mode.
+
+entities.MaggyHelper/TorielStoveEntity.placements.name.normal=Toriel's Stove
+entities.MaggyHelper/TorielStoveEntity.placements.description.normal=Interactive cooking station with dialogue. Can heal player.
+entities.MaggyHelper/TorielStoveEntity.attributes.name.canInteract=Can Interact
+entities.MaggyHelper/TorielStoveEntity.attributes.description.canInteract=Whether player can interact with stove.
+entities.MaggyHelper/TorielStoveEntity.attributes.name.hasPie=Has Pie
+entities.MaggyHelper/TorielStoveEntity.attributes.description.hasPie=Whether butterscotch pie is available.
+entities.MaggyHelper/TorielStoveEntity.attributes.name.healAmount=Heal Amount
+entities.MaggyHelper/TorielStoveEntity.attributes.description.healAmount=Amount of healing from eating pie.
+entities.MaggyHelper/TorielStoveEntity.attributes.name.dialogueId=Dialogue ID
+entities.MaggyHelper/TorielStoveEntity.attributes.description.dialogueId=Dialog key for stove interaction.
+entities.MaggyHelper/TorielStoveEntity.attributes.name.cookDuration=Cook Duration
+entities.MaggyHelper/TorielStoveEntity.attributes.description.cookDuration=Time for cooking animation.
+
+# ========================
+# Chapter 11 - Wild West
+# ========================
+entities.MaggyHelper/BanditoRoller.placements.name.normal=Bandito Roller
+entities.MaggyHelper/BanditoRoller.placements.description.normal=Enemy that rolls toward player and bounces off walls. Becomes faster after bounces.
+entities.MaggyHelper/BanditoRoller.attributes.name.health=Health
+entities.MaggyHelper/BanditoRoller.attributes.description.health=Amount of damage required to defeat.
+entities.MaggyHelper/BanditoRoller.attributes.name.rollSpeed=Roll Speed
+entities.MaggyHelper/BanditoRoller.attributes.description.rollSpeed=Base rolling speed.
+entities.MaggyHelper/BanditoRoller.attributes.name.bounceSpeed=Bounce Speed
+entities.MaggyHelper/BanditoRoller.attributes.description.bounceSpeed=Speed after bouncing off walls.
+entities.MaggyHelper/BanditoRoller.attributes.name.detectionRange=Detection Range
+entities.MaggyHelper/BanditoRoller.attributes.description.detectionRange=Range at which enemy detects player.
+
+entities.MaggyHelper/BarrelBomber.placements.name.normal=Barrel Bomber
+entities.MaggyHelper/BarrelBomber.placements.description.normal=Enemy that hides in barrels and explodes when player is near. Can be destroyed before exploding.
+entities.MaggyHelper/BarrelBomber.attributes.name.health=Health
+entities.MaggyHelper/BarrelBomber.attributes.description.health=Amount of damage required to defeat before explosion.
+entities.MaggyHelper/BarrelBomber.attributes.name.detectionRange=Detection Range
+entities.MaggyHelper/BarrelBomber.attributes.description.detectionRange=Range at which bomber detects player.
+entities.MaggyHelper/BarrelBomber.attributes.name.explosionRadius=Explosion Radius
+entities.MaggyHelper/BarrelBomber.attributes.description.explosionRadius=Radius of explosion damage.
+entities.MaggyHelper/BarrelBomber.attributes.name.fuseTime=Fuse Time
+entities.MaggyHelper/BarrelBomber.attributes.description.fuseTime=Time before explosion after detecting player.
+
+entities.MaggyHelper/CardShark.placements.name.normal=Card Shark
+entities.MaggyHelper/CardShark.placements.description.normal=Enemy that throws playing cards in curved arcs toward the player.
+entities.MaggyHelper/CardShark.attributes.name.health=Health
+entities.MaggyHelper/CardShark.attributes.description.health=Amount of damage required to defeat.
+entities.MaggyHelper/CardShark.attributes.name.detectionRange=Detection Range
+entities.MaggyHelper/CardShark.attributes.description.detectionRange=Range at which shark detects player.
+entities.MaggyHelper/CardShark.attributes.name.throwInterval=Throw Interval
+entities.MaggyHelper/CardShark.attributes.description.throwInterval=Time between card throws.
+entities.MaggyHelper/CardShark.attributes.name.cardsPerThrow=Cards Per Throw
+entities.MaggyHelper/CardShark.attributes.description.cardsPerThrow=Number of cards thrown per attack.
+entities.MaggyHelper/CardShark.attributes.name.patrolDistance=Patrol Distance
+entities.MaggyHelper/CardShark.attributes.description.patrolDistance=Distance to patrol from starting point.
+
+entities.MaggyHelper/HorseHitch.placements.name.locked=Horse Hitch (Locked)
+entities.MaggyHelper/HorseHitch.placements.name.unlocked=Horse Hitch (Unlocked)
+entities.MaggyHelper/HorseHitch.placements.description.locked=Fast-travel point between bar sections. Allows quick travel between connected hitches.
+entities.MaggyHelper/HorseHitch.attributes.name.hitchId=Hitch ID
+entities.MaggyHelper/HorseHitch.attributes.description.hitchId=Unique identifier for this hitch.
+entities.MaggyHelper/HorseHitch.attributes.name.destinationId=Destination ID
+entities.MaggyHelper/HorseHitch.attributes.description.destinationId=ID of destination hitch to travel to.
+entities.MaggyHelper/HorseHitch.attributes.name.isUnlocked=Is Unlocked
+entities.MaggyHelper/HorseHitch.attributes.description.isUnlocked=Whether this hitch is available for travel.
+
+entities.MaggyHelper/RevolverTarget.placements.name.static=Revolver Target (Static)
+entities.MaggyHelper/RevolverTarget.placements.name.popup=Revolver Target (Popup)
+entities.MaggyHelper/RevolverTarget.placements.name.moving=Revolver Target (Moving)
+entities.MaggyHelper/RevolverTarget.placements.description.static=Breakable target for gun training. Tracks accuracy for shooting galleries.
+entities.MaggyHelper/RevolverTarget.attributes.name.targetType=Target Type
+entities.MaggyHelper/RevolverTarget.attributes.description.targetType=Behavior type (Static, Popup, Moving, Swinging).
+entities.MaggyHelper/RevolverTarget.attributes.name.points=Points
+entities.MaggyHelper/RevolverTarget.attributes.description.points=Score value when hit.
+entities.MaggyHelper/RevolverTarget.attributes.name.showTime=Show Time
+entities.MaggyHelper/RevolverTarget.attributes.description.showTime=Time target stays visible for popup types.
+entities.MaggyHelper/RevolverTarget.attributes.name.resetTime=Reset Time
+entities.MaggyHelper/RevolverTarget.attributes.description.resetTime=Time before target resets after being hit.
+entities.MaggyHelper/RevolverTarget.attributes.name.moveSpeed=Move Speed
+entities.MaggyHelper/RevolverTarget.attributes.description.moveSpeed=Speed for moving targets.
+
+entities.MaggyHelper/SaloonChandelier.placements.name.normal=Saloon Chandelier
+entities.MaggyHelper/SaloonChandelier.placements.description.normal=Swinging hazard that can fall. Swings on a chain and can create platform or hazard.
+entities.MaggyHelper/SaloonChandelier.attributes.name.swingPeriod=Swing Period
+entities.MaggyHelper/SaloonChandelier.attributes.description.swingPeriod=Time for one complete swing cycle.
+entities.MaggyHelper/SaloonChandelier.attributes.name.swingAngle=Swing Angle
+entities.MaggyHelper/SaloonChandelier.attributes.description.swingAngle=Maximum swing angle in radians.
+entities.MaggyHelper/SaloonChandelier.attributes.name.chainLength=Chain Length
+entities.MaggyHelper/SaloonChandelier.attributes.description.chainLength=Length of chain from ceiling.
+entities.MaggyHelper/SaloonChandelier.attributes.name.canFall=Can Fall
+entities.MaggyHelper/SaloonChandelier.attributes.description.canFall=Whether chandelier can fall when shot.
+entities.MaggyHelper/SaloonChandelier.attributes.name.isHazard=Is Hazard
+entities.MaggyHelper/SaloonChandelier.attributes.description.isHazard=Whether fallen chandelier damages player.
+
+entities.MaggyHelper/SwingingDoor.placements.name.unlocked=Swinging Door (Unlocked)
+entities.MaggyHelper/SwingingDoor.placements.name.locked=Swinging Door (Locked)
+entities.MaggyHelper/SwingingDoor.placements.description.unlocked=Double doors that swing based on player momentum. Can knock player back.
+entities.MaggyHelper/SwingingDoor.attributes.name.swingSpeed=Swing Speed
+entities.MaggyHelper/SwingingDoor.attributes.description.swingSpeed=Speed of door swing animation.
+entities.MaggyHelper/SwingingDoor.attributes.name.knockbackForce=Knockback Force
+entities.MaggyHelper/SwingingDoor.attributes.description.knockbackForce=Force applied when door hits player.
+entities.MaggyHelper/SwingingDoor.attributes.name.isLocked=Is Locked
+entities.MaggyHelper/SwingingDoor.attributes.description.isLocked=Whether door is locked and cannot open.
+entities.MaggyHelper/SwingingDoor.attributes.name.isDoubleDoor=Is Double Door
+entities.MaggyHelper/SwingingDoor.attributes.description.isDoubleDoor=Whether this has two door panels.
+entities.MaggyHelper/SwingingDoor.attributes.name.autoCloseTime=Auto Close Time
+entities.MaggyHelper/SwingingDoor.attributes.description.autoCloseTime=Time before door automatically closes.
+
+entities.MaggyHelper/TumbleweedCluster.placements.name.normal=Tumbleweed Cluster
+entities.MaggyHelper/TumbleweedCluster.placements.description.normal=Fast-moving tumbleweeds that push player. Bounces off walls creating wind effects.
+entities.MaggyHelper/TumbleweedCluster.attributes.name.rollSpeed=Roll Speed
+entities.MaggyHelper/TumbleweedCluster.attributes.description.rollSpeed=Movement speed of tumbleweeds.
+entities.MaggyHelper/TumbleweedCluster.attributes.name.pushForce=Push Force
+entities.MaggyHelper/TumbleweedCluster.attributes.description.pushForce=Force applied when pushing player.
+entities.MaggyHelper/TumbleweedCluster.attributes.name.tumbleweedCount=Tumbleweed Count
+entities.MaggyHelper/TumbleweedCluster.attributes.description.tumbleweedCount=Number of tumbleweeds in cluster.
+entities.MaggyHelper/TumbleweedCluster.attributes.name.bounceChance=Bounce Chance
+entities.MaggyHelper/TumbleweedCluster.attributes.description.bounceChance=Chance to bounce off walls (0-1).
+
+entities.MaggyHelper/WantedPoster.placements.name.normal=Wanted Poster
+entities.MaggyHelper/WantedPoster.placements.description.normal=Trigger that spawns bounty enemies when read. Shows poster UI.
+entities.MaggyHelper/WantedPoster.attributes.name.bountyName=Bounty Name
+entities.MaggyHelper/WantedPoster.attributes.description.bountyName=Name displayed on wanted poster.
+entities.MaggyHelper/WantedPoster.attributes.name.bountyReward=Bounty Reward
+entities.MaggyHelper/WantedPoster.attributes.description.bountyReward=Score/currency reward for completing bounty.
+entities.MaggyHelper/WantedPoster.attributes.name.enemyType=Enemy Type
+entities.MaggyHelper/WantedPoster.attributes.description.enemyType=Entity ID of enemies to spawn.
+entities.MaggyHelper/WantedPoster.attributes.name.enemyCount=Enemy Count
+entities.MaggyHelper/WantedPoster.attributes.description.enemyCount=Number of enemies to spawn.
+
+# ========================
+# Chapter 12 - Tower
+# ========================
+entities.MaggyHelper/FountainSpirit.placements.name.healing=Fountain Spirit (Healing)
+entities.MaggyHelper/FountainSpirit.placements.name.buff=Fountain Spirit (Buff)
+entities.MaggyHelper/FountainSpirit.placements.description.healing=Water spirit that heals or grants buffs. Benevolent entity.
+entities.MaggyHelper/FountainSpirit.attributes.name.spiritType=Spirit Type
+entities.MaggyHelper/FountainSpirit.attributes.description.spiritType=Type of spirit (Healing, Platform, Buff, Guidance).
+entities.MaggyHelper/FountainSpirit.attributes.name.healAmount=Heal Amount
+entities.MaggyHelper/FountainSpirit.attributes.description.healAmount=Amount of healing provided.
+entities.MaggyHelper/FountainSpirit.attributes.name.buffDuration=Buff Duration
+entities.MaggyHelper/FountainSpirit.attributes.description.buffDuration=Duration of buff effect in seconds.
+
+entities.MaggyHelper/MagicFountain.placements.name.normal=Magic Fountain
+entities.MaggyHelper/MagicFountain.placements.description.normal=Central fountain with magical water effects. Main setpiece for tower chapter.
+entities.MaggyHelper/MagicFountain.attributes.name.maxWaterHeight=Max Water Height
+entities.MaggyHelper/MagicFountain.attributes.description.maxWaterHeight=Maximum height of water column.
+entities.MaggyHelper/MagicFountain.attributes.name.surgeInterval=Surge Interval
+entities.MaggyHelper/MagicFountain.attributes.description.surgeInterval=Time between water surges.
+
+entities.MaggyHelper/SpiralStaircase.placements.name.clockwise=Spiral Staircase (Clockwise)
+entities.MaggyHelper/SpiralStaircase.placements.name.counterclockwise=Spiral Staircase (Counter)
+entities.MaggyHelper/SpiralStaircase.placements.description.clockwise=Rotating staircase with moving platforms. Platforms rotate around central pillar.
+entities.MaggyHelper/SpiralStaircase.attributes.name.rotationSpeed=Rotation Speed
+entities.MaggyHelper/SpiralStaircase.attributes.description.rotationSpeed=Base rotation speed.
+entities.MaggyHelper/SpiralStaircase.attributes.name.maxSpeed=Max Speed
+entities.MaggyHelper/SpiralStaircase.attributes.description.maxSpeed=Maximum rotation speed.
+entities.MaggyHelper/SpiralStaircase.attributes.name.platformCount=Platform Count
+entities.MaggyHelper/SpiralStaircase.attributes.description.platformCount=Number of rotating platforms.
+entities.MaggyHelper/SpiralStaircase.attributes.name.radius=Radius
+entities.MaggyHelper/SpiralStaircase.attributes.description.radius=Radius of platform circle.
+entities.MaggyHelper/SpiralStaircase.attributes.name.clockwise=Clockwise
+entities.MaggyHelper/SpiralStaircase.attributes.description.clockwise=Rotation direction.
+
+entities.MaggyHelper/TitanStatue.placements.name.inactive=Titan Statue (Inactive)
+entities.MaggyHelper/TitanStatue.placements.name.can_awaken=Titan Statue (Can Awaken)
+entities.MaggyHelper/TitanStatue.placements.name.animated=Titan Statue (Animated)
+entities.MaggyHelper/TitanStatue.placements.description.inactive=Large decorative statue that can animate. May become active during events.
+entities.MaggyHelper/TitanStatue.attributes.name.health=Health
+entities.MaggyHelper/TitanStatue.attributes.description.health=Amount of damage required to destroy.
+entities.MaggyHelper/TitanStatue.attributes.name.canAwaken=Can Awaken
+entities.MaggyHelper/TitanStatue.attributes.description.canAwaken=Whether statue can awaken and attack.
+entities.MaggyHelper/TitanStatue.attributes.name.isAnimated=Is Animated
+entities.MaggyHelper/TitanStatue.attributes.description.isAnimated=Whether statue starts in animated state.
+
+entities.MaggyHelper/TowerElevator.placements.name.normal=Tower Elevator
+entities.MaggyHelper/TowerElevator.placements.description.normal=Vertical platform that moves between floors. Can be called by player.
+entities.MaggyHelper/TowerElevator.attributes.name.width=Width
+entities.MaggyHelper/TowerElevator.attributes.description.width=Width of elevator platform.
+entities.MaggyHelper/TowerElevator.attributes.name.height=Height
+entities.MaggyHelper/TowerElevator.attributes.description.height=Height of elevator platform.
+entities.MaggyHelper/TowerElevator.attributes.name.moveSpeed=Move Speed
+entities.MaggyHelper/TowerElevator.attributes.description.moveSpeed=Vertical movement speed.
+entities.MaggyHelper/TowerElevator.attributes.name.waitTime=Wait Time
+entities.MaggyHelper/TowerElevator.attributes.description.waitTime=Time elevator waits at each floor.
+entities.MaggyHelper/TowerElevator.attributes.name.elevatorId=Elevator ID
+entities.MaggyHelper/TowerElevator.attributes.description.elevatorId=Unique identifier for elevator system.
+
+entities.MaggyHelper/TowerGargoyle.placements.name.normal=Tower Gargoyle
+entities.MaggyHelper/TowerGargoyle.placements.description.normal=Stone guardian that awakens and swoops at player. Perches on tower walls.
+entities.MaggyHelper/TowerGargoyle.attributes.name.health=Health
+entities.MaggyHelper/TowerGargoyle.attributes.description.health=Amount of damage required to defeat.
+entities.MaggyHelper/TowerGargoyle.attributes.name.detectionRange=Detection Range
+entities.MaggyHelper/TowerGargoyle.attributes.description.detectionRange=Range at which gargoyle detects player.
+entities.MaggyHelper/TowerGargoyle.attributes.name.swoopSpeed=Swoop Speed
+entities.MaggyHelper/TowerGargoyle.attributes.description.swoopSpeed=Speed of swoop attack.
+entities.MaggyHelper/TowerGargoyle.attributes.name.glideSpeed=Glide Speed
+entities.MaggyHelper/TowerGargoyle.attributes.description.glideSpeed=Speed when gliding between attacks.
+
+entities.MaggyHelper/TowerLantern.placements.name.unlit=Tower Lantern (Unlit)
+entities.MaggyHelper/TowerLantern.placements.name.lit=Tower Lantern (Lit)
+entities.MaggyHelper/TowerLantern.placements.description.unlit=Light source that can be lit or extinguished. Can activate mechanisms.
+entities.MaggyHelper/TowerLantern.attributes.name.lightRadius=Light Radius
+entities.MaggyHelper/TowerLantern.attributes.description.lightRadius=Radius of light effect.
+entities.MaggyHelper/TowerLantern.attributes.name.flickerIntensity=Flicker Intensity
+entities.MaggyHelper/TowerLantern.attributes.description.flickerIntensity=Amount of light flicker (0-1).
+entities.MaggyHelper/TowerLantern.attributes.name.lanternId=Lantern ID
+entities.MaggyHelper/TowerLantern.attributes.description.lanternId=Unique identifier for lantern puzzles.
+entities.MaggyHelper/TowerLantern.attributes.name.startLit=Start Lit
+entities.MaggyHelper/TowerLantern.attributes.description.startLit=Whether lantern starts lit.
+entities.MaggyHelper/TowerLantern.attributes.name.lightColor=Light Color
+entities.MaggyHelper/TowerLantern.attributes.description.lightColor=Color of the lantern light.
+
+entities.MaggyHelper/TowerWindow.placements.name.sky=Tower Window (Sky)
+entities.MaggyHelper/TowerWindow.placements.name.stars=Tower Window (Stars)
+entities.MaggyHelper/TowerWindow.placements.name.dark=Tower Window (Dark)
+entities.MaggyHelper/TowerWindow.placements.description.sky=Decorative window with light effects. Shows different scenes.
+entities.MaggyHelper/TowerWindow.attributes.name.view=View
+entities.MaggyHelper/TowerWindow.attributes.description.view=Scene shown in window (Sky, Stars, Moon, Sunrise, Storm, City).
+entities.MaggyHelper/TowerWindow.attributes.name.lightIntensity=Light Intensity
+entities.MaggyHelper/TowerWindow.attributes.description.lightIntensity=Brightness of window light (0-1).
+entities.MaggyHelper/TowerWindow.attributes.name.startLit=Start Lit
+entities.MaggyHelper/TowerWindow.attributes.description.startLit=Whether window starts lit.
+
+entities.MaggyHelper/WaterfallClimb.placements.name.normal=Waterfall Climb
+entities.MaggyHelper/WaterfallClimb.placements.description.normal=Vertical climb section with water currents. Player must climb against flowing water.
+entities.MaggyHelper/WaterfallClimb.attributes.name.width=Width
+entities.MaggyHelper/WaterfallClimb.attributes.description.width=Width of waterfall area.
+entities.MaggyHelper/WaterfallClimb.attributes.name.height=Height
+entities.MaggyHelper/WaterfallClimb.attributes.description.height=Height of waterfall area.
+entities.MaggyHelper/WaterfallClimb.attributes.name.flowStrength=Flow Strength
+entities.MaggyHelper/WaterfallClimb.attributes.description.flowStrength=Strength of downward water current.
+entities.MaggyHelper/WaterfallClimb.attributes.name.rushInterval=Rush Interval
+entities.MaggyHelper/WaterfallClimb.attributes.description.rushInterval=Time between rush waves.
+entities.MaggyHelper/WaterfallClimb.attributes.name.rushDuration=Rush Duration
+entities.MaggyHelper/WaterfallClimb.attributes.description.rushDuration=Duration of rush waves.
+
+# ========================
+# Chapter 13 - Volcano
+# ========================
+entities.MaggyHelper/AshPile.placements.name.normal=Ash Pile
+entities.MaggyHelper/AshPile.placements.description.normal=Pile of volcanic ash that can be climbed. Creates climbing challenges.
+entities.MaggyHelper/AshPile.attributes.name.climbSlowFactor=Climb Slow Factor
+entities.MaggyHelper/AshPile.attributes.description.climbSlowFactor=Speed modifier when climbing (0-1).
+entities.MaggyHelper/AshPile.attributes.name.shiftInterval=Shift Interval
+entities.MaggyHelper/AshPile.attributes.description.shiftInterval=Time between ash pile shifts.
+entities.MaggyHelper/AshPile.attributes.name.isClimbable=Is Climbable
+entities.MaggyHelper/AshPile.attributes.description.isClimbable=Whether player can climb this pile.
+entities.MaggyHelper/AshPile.attributes.name.width=Width
+entities.MaggyHelper/AshPile.attributes.description.width=Width of ash pile in pixels.
+entities.MaggyHelper/AshPile.attributes.name.height=Height
+entities.MaggyHelper/AshPile.attributes.description.height=Height of ash pile in pixels.
+
+entities.MaggyHelper/AxisMinion.placements.name.normal=Axis Minion
+entities.MaggyHelper/AxisMinion.placements.description.normal=Small fire enemy that patrols and attacks. Basic enemy for Axis boss chapter.
+entities.MaggyHelper/AxisMinion.attributes.name.health=Health
+entities.MaggyHelper/AxisMinion.attributes.description.health=Amount of damage required to defeat.
+entities.MaggyHelper/AxisMinion.attributes.name.moveSpeed=Move Speed
+entities.MaggyHelper/AxisMinion.attributes.description.moveSpeed=Patrol/chase speed.
+entities.MaggyHelper/AxisMinion.attributes.name.detectionRange=Detection Range
+entities.MaggyHelper/AxisMinion.attributes.description.detectionRange=Range at which minion detects player.
+entities.MaggyHelper/AxisMinion.attributes.name.patrolDistance=Patrol Distance
+entities.MaggyHelper/AxisMinion.attributes.description.patrolDistance=Distance to patrol from starting point.
+
+entities.MaggyHelper/FlameGeyser.placements.name.normal=Flame Geyser
+entities.MaggyHelper/FlameGeyser.placements.description.normal=Geyser that erupts flames in timed intervals. Creates vertical fire hazards.
+entities.MaggyHelper/FlameGeyser.attributes.name.eruptInterval=Erupt Interval
+entities.MaggyHelper/FlameGeyser.attributes.description.eruptInterval=Time between eruptions.
+entities.MaggyHelper/FlameGeyser.attributes.name.eruptDuration=Erupt Duration
+entities.MaggyHelper/FlameGeyser.attributes.description.eruptDuration=Duration of flame eruption.
+entities.MaggyHelper/FlameGeyser.attributes.name.warningTime=Warning Time
+entities.MaggyHelper/FlameGeyser.attributes.description.warningTime=Warning period before eruption.
+entities.MaggyHelper/FlameGeyser.attributes.name.flameHeight=Flame Height
+entities.MaggyHelper/FlameGeyser.attributes.description.flameHeight=Height of flame column.
+entities.MaggyHelper/FlameGeyser.attributes.name.damageRadius=Damage Radius
+entities.MaggyHelper/FlameGeyser.attributes.description.damageRadius=Radius of damage zone.
+
+entities.MaggyHelper/HeatWave.placements.name.normal=Heat Wave
+entities.MaggyHelper/HeatWave.placements.description.normal=Expanding wave of heat that pushes player. Creates zone-based hazards.
+entities.MaggyHelper/HeatWave.attributes.name.maxRadius=Max Radius
+entities.MaggyHelper/HeatWave.attributes.description.maxRadius=Maximum expansion radius.
+entities.MaggyHelper/HeatWave.attributes.name.expansionSpeed=Expansion Speed
+entities.MaggyHelper/HeatWave.attributes.description.expansionSpeed=Speed of wave expansion.
+entities.MaggyHelper/HeatWave.attributes.name.pushForce=Push Force
+entities.MaggyHelper/HeatWave.attributes.description.pushForce=Force applied to player.
+entities.MaggyHelper/HeatWave.attributes.name.interval=Interval
+entities.MaggyHelper/HeatWave.attributes.description.interval=Time between wave pulses.
+entities.MaggyHelper/HeatWave.attributes.name.isActive=Is Active
+entities.MaggyHelper/HeatWave.attributes.description.isActive=Whether heat wave starts active.
+
+entities.MaggyHelper/HotPlatform.placements.name.normal=Hot Platform
+entities.MaggyHelper/HotPlatform.placements.description.normal=Platform that heats up over time. Becomes dangerous after being stood on too long.
+entities.MaggyHelper/HotPlatform.attributes.name.width=Width
+entities.MaggyHelper/HotPlatform.attributes.description.width=Width of platform in pixels.
+entities.MaggyHelper/HotPlatform.attributes.name.height=Height
+entities.MaggyHelper/HotPlatform.attributes.description.height=Height of platform in pixels.
+entities.MaggyHelper/HotPlatform.attributes.name.heatRate=Heat Rate
+entities.MaggyHelper/HotPlatform.attributes.description.heatRate=Rate at which platform heats up.
+entities.MaggyHelper/HotPlatform.attributes.name.coolRate=Cool Rate
+entities.MaggyHelper/HotPlatform.attributes.description.coolRate=Rate at which platform cools down.
+entities.MaggyHelper/HotPlatform.attributes.name.maxHeat=Max Heat
+entities.MaggyHelper/HotPlatform.attributes.description.maxHeat=Maximum heat before becoming dangerous.
+
+entities.MaggyHelper/MagmaPool.placements.name.deadly=Magma Pool (Deadly)
+entities.MaggyHelper/MagmaPool.placements.name.damage=Magma Pool (Damage)
+entities.MaggyHelper/MagmaPool.placements.description.deadly=Lava pool that kills on contact. Instant death hazard.
+entities.MaggyHelper/MagmaPool.attributes.name.width=Width
+entities.MaggyHelper/MagmaPool.attributes.description.width=Width of pool in pixels.
+entities.MaggyHelper/MagmaPool.attributes.name.height=Height
+entities.MaggyHelper/MagmaPool.attributes.description.height=Height of pool in pixels.
+entities.MaggyHelper/MagmaPool.attributes.name.bubbleInterval=Bubble Interval
+entities.MaggyHelper/MagmaPool.attributes.description.bubbleInterval=Time between bubble effects.
+entities.MaggyHelper/MagmaPool.attributes.name.eruptInterval=Erupt Interval
+entities.MaggyHelper/MagmaPool.attributes.description.eruptInterval=Time between major eruptions.
+entities.MaggyHelper/MagmaPool.attributes.name.isInstantDeath=Is Instant Death
+entities.MaggyHelper/MagmaPool.attributes.description.isInstantDeath=Whether contact is instant death or damage.
+
+entities.MaggyHelper/ObsidianShard.placements.name.normal=Obsidian Shard
+entities.MaggyHelper/ObsidianShard.placements.description.normal=Sharp volcanic glass shard. Decorative hazard.
+
+entities.MaggyHelper/SulfurVent.placements.name.normal=Sulfur Vent
+entities.MaggyHelper/SulfurVent.placements.description.normal=Vent releasing sulfur gas. Environmental detail.
+
+entities.MaggyHelper/VolcanicRock.placements.name.normal=Volcanic Rock
+entities.MaggyHelper/VolcanicRock.placements.description.normal=Falling rock hazard from ceiling. Falls when player is below.
+entities.MaggyHelper/VolcanicRock.attributes.name.fallSpeed=Fall Speed
+entities.MaggyHelper/VolcanicRock.attributes.description.fallSpeed=Speed of rock fall.
+entities.MaggyHelper/VolcanicRock.attributes.name.damageRadius=Damage Radius
+entities.MaggyHelper/VolcanicRock.attributes.description.damageRadius=Radius of impact damage.
+entities.MaggyHelper/VolcanicRock.attributes.name.triggerRange=Trigger Range
+entities.MaggyHelper/VolcanicRock.attributes.description.triggerRange=Horizontal range to trigger fall.
+
+# ========================
+# Chapter 14 - Digital Dimension
+# ========================
+entities.MaggyHelper/CodeBreaker.placements.name.normal=Code Breaker
+entities.MaggyHelper/CodeBreaker.placements.description.normal=Security puzzle device. Requires entering correct code to unlock.
+entities.MaggyHelper/CodeBreaker.attributes.name.code=Code
+entities.MaggyHelper/CodeBreaker.attributes.description.code=Correct code to unlock (string).
+entities.MaggyHelper/CodeBreaker.attributes.name.inputTimeout=Input Timeout
+entities.MaggyHelper/CodeBreaker.attributes.description.inputTimeout=Time before input resets.
+
+entities.MaggyHelper/CoreFragment.placements.name.protected=Core Fragment (Protected)
+entities.MaggyHelper/CoreFragment.placements.name.open=Core Fragment (Open)
+entities.MaggyHelper/CoreFragment.placements.description.protected=Central processing core fragment. Key item for digital dimension progression.
+entities.MaggyHelper/CoreFragment.attributes.name.fragmentId=Fragment ID
+entities.MaggyHelper/CoreFragment.attributes.description.fragmentId=Unique identifier for this fragment.
+entities.MaggyHelper/CoreFragment.attributes.name.fragmentIndex=Fragment Index
+entities.MaggyHelper/CoreFragment.attributes.description.fragmentIndex=Index for color/display variation.
+entities.MaggyHelper/CoreFragment.attributes.name.requiresProtection=Requires Protection
+entities.MaggyHelper/CoreFragment.attributes.description.requiresProtection=Whether shields must be destroyed first.
+entities.MaggyHelper/CoreFragment.attributes.name.requiredShields=Required Shields
+entities.MaggyHelper/CoreFragment.attributes.description.requiredShields=Number of shields to destroy.
+
+entities.MaggyHelper/DigitalPortal.placements.name.two_way=Digital Portal (Two Way)
+entities.MaggyHelper/DigitalPortal.placements.name.one_way=Digital Portal (One Way)
+entities.MaggyHelper/DigitalPortal.placements.description.two_way=Teleportation portal between digital zones. Creates visual distortion.
+entities.MaggyHelper/DigitalPortal.attributes.name.destinationId=Destination ID
+entities.MaggyHelper/DigitalPortal.attributes.description.destinationId=ID of destination portal.
+entities.MaggyHelper/DigitalPortal.attributes.name.transportDelay=Transport Delay
+entities.MaggyHelper/DigitalPortal.attributes.description.transportDelay=Time delay before teleport.
+entities.MaggyHelper/DigitalPortal.attributes.name.isTwoWay=Is Two Way
+entities.MaggyHelper/DigitalPortal.attributes.description.isTwoWay=Whether travel works in both directions.
+
+entities.MaggyHelper/FirewallBarrier.placements.name.active=Firewall Barrier (Active)
+entities.MaggyHelper/FirewallBarrier.placements.name.inactive=Firewall Barrier (Inactive)
+entities.MaggyHelper/FirewallBarrier.placements.description.active=Protective barrier that blocks enemies and damage. Can be toggled on/off.
+entities.MaggyHelper/FirewallBarrier.attributes.name.width=Width
+entities.MaggyHelper/FirewallBarrier.attributes.description.width=Width of barrier in pixels.
+entities.MaggyHelper/FirewallBarrier.attributes.name.height=Height
+entities.MaggyHelper/FirewallBarrier.attributes.description.height=Height of barrier in pixels.
+entities.MaggyHelper/FirewallBarrier.attributes.name.maxEnergy=Max Energy
+entities.MaggyHelper/FirewallBarrier.attributes.description.maxEnergy=Maximum energy capacity.
+entities.MaggyHelper/FirewallBarrier.attributes.name.energyDrain=Energy Drain
+entities.MaggyHelper/FirewallBarrier.attributes.description.energyDrain=Energy lost per second.
+entities.MaggyHelper/FirewallBarrier.attributes.name.startActive=Start Active
+entities.MaggyHelper/FirewallBarrier.attributes.description.startActive=Whether barrier starts active.
+
+entities.MaggyHelper/MatrixRain.placements.name.normal=Matrix Rain
+entities.MaggyHelper/MatrixRain.placements.description.normal=Falling code effect. Visual atmosphere for digital areas.
+entities.MaggyHelper/MatrixRain.attributes.name.rainWidth=Rain Width
+entities.MaggyHelper/MatrixRain.attributes.description.rainWidth=Width of rain effect area.
+entities.MaggyHelper/MatrixRain.attributes.name.rainHeight=Rain Height
+entities.MaggyHelper/MatrixRain.attributes.description.rainHeight=Height of rain effect area.
+entities.MaggyHelper/MatrixRain.attributes.name.dropSpeed=Drop Speed
+entities.MaggyHelper/MatrixRain.attributes.description.dropSpeed=Speed of falling code.
+entities.MaggyHelper/MatrixRain.attributes.name.density=Density
+entities.MaggyHelper/MatrixRain.attributes.description.density=Density of code drops (0-1).
+entities.MaggyHelper/MatrixRain.attributes.name.intensity=Intensity
+entities.MaggyHelper/MatrixRain.attributes.description.intensity=Intensity level (Inactive, Light, Normal, Heavy, Intense).
+
+entities.MaggyHelper/MemoryFragment.placements.name.normal=Memory Fragment
+entities.MaggyHelper/MemoryFragment.placements.description.normal=Collectible data fragment that reveals story. Floating crystal.
+entities.MaggyHelper/MemoryFragment.attributes.name.fragmentId=Fragment ID
+entities.MaggyHelper/MemoryFragment.attributes.description.fragmentId=Unique identifier for fragment.
+entities.MaggyHelper/MemoryFragment.attributes.name.dialogueKey=Dialogue Key
+entities.MaggyHelper/MemoryFragment.attributes.description.dialogueKey=Dialog key shown on collection.
+entities.MaggyHelper/MemoryFragment.attributes.name.fragmentNumber=Fragment Number
+entities.MaggyHelper/MemoryFragment.attributes.description.fragmentNumber=Number for color/display variation.
+entities.MaggyHelper/MemoryFragment.attributes.name.showDialogue=Show Dialogue
+entities.MaggyHelper/MemoryFragment.attributes.description.showDialogue=Whether to show dialog on collect.
+
+entities.MaggyHelper/PixelEnemy.placements.name.walker=Pixel Enemy (Walker)
+entities.MaggyHelper/PixelEnemy.placements.name.shooter=Pixel Enemy (Shooter)
+entities.MaggyHelper/PixelEnemy.placements.name.dasher=Pixel Enemy (Dasher)
+entities.MaggyHelper/PixelEnemy.placements.description.walker=Low-resolution enemy made of pixels. Moves in grid patterns.
+entities.MaggyHelper/PixelEnemy.attributes.name.enemyType=Enemy Type
+entities.MaggyHelper/PixelEnemy.attributes.description.enemyType=Behavior type (Walker, Shooter, Dasher, Glitcher).
+entities.MaggyHelper/PixelEnemy.attributes.name.health=Health
+entities.MaggyHelper/PixelEnemy.attributes.description.health=Amount of damage required to defeat.
+entities.MaggyHelper/PixelEnemy.attributes.name.moveSpeed=Move Speed
+entities.MaggyHelper/PixelEnemy.attributes.description.moveSpeed=Movement speed.
+entities.MaggyHelper/PixelEnemy.attributes.name.detectionRange=Detection Range
+entities.MaggyHelper/PixelEnemy.attributes.description.detectionRange=Range at which enemy detects player.
+entities.MaggyHelper/PixelEnemy.attributes.name.gridSize=Grid Size
+entities.MaggyHelper/PixelEnemy.attributes.description.gridSize=Size of movement grid.
+
+entities.MaggyHelper/VirusCloud.placements.name.normal=Virus Cloud
+entities.MaggyHelper/VirusCloud.placements.description.normal=Corrupted data cloud that damages and slows player. Moves erratically.
+entities.MaggyHelper/VirusCloud.attributes.name.health=Health
+entities.MaggyHelper/VirusCloud.attributes.description.health=Amount of damage required to defeat.
+entities.MaggyHelper/VirusCloud.attributes.name.spreadRadius=Spread Radius
+entities.MaggyHelper/VirusCloud.attributes.description.spreadRadius=Radius of corruption spread.
+entities.MaggyHelper/VirusCloud.attributes.name.moveSpeed=Move Speed
+entities.MaggyHelper/VirusCloud.attributes.description.moveSpeed=Movement speed.
+entities.MaggyHelper/VirusCloud.attributes.name.damageRate=Damage Rate
+entities.MaggyHelper/VirusCloud.attributes.description.damageRate=Damage per second inside cloud.
+
+# ========================
+# Chapter 15 - Titan's Domain
+# ========================
+entities.MaggyHelper/AshPhoenix.placements.name.normal=Ash Phoenix
+entities.MaggyHelper/AshPhoenix.placements.description.normal=Mythical bird of ash and flame. Can dive attack and spread fire.
+entities.MaggyHelper/AshPhoenix.attributes.name.health=Health
+entities.MaggyHelper/AshPhoenix.attributes.description.health=Amount of damage required to defeat.
+entities.MaggyHelper/AshPhoenix.attributes.name.flySpeed=Fly Speed
+entities.MaggyHelper/AshPhoenix.attributes.description.flySpeed=Flight movement speed.
+entities.MaggyHelper/AshPhoenix.attributes.name.detectionRange=Detection Range
+entities.MaggyHelper/AshPhoenix.attributes.description.detectionRange=Range at which phoenix detects player.
+
+entities.MaggyHelper/CeremonyFlame.placements.name.source=Ceremony Flame (Source)
+entities.MaggyHelper/CeremonyFlame.placements.name.static=Ceremony Flame (Static)
+entities.MaggyHelper/CeremonyFlame.placements.description.source=Eternal fire that spreads across platforms. Creates dynamic fire hazards.
+entities.MaggyHelper/CeremonyFlame.attributes.name.isSource=Is Source
+entities.MaggyHelper/CeremonyFlame.attributes.description.isSource=Whether this is the source of fire spread.
+entities.MaggyHelper/CeremonyFlame.attributes.name.spreadSpeed=Spread Speed
+entities.MaggyHelper/CeremonyFlame.attributes.description.spreadSpeed=Speed of fire spreading.
+entities.MaggyHelper/CeremonyFlame.attributes.name.maxSpreadDistance=Max Spread Distance
+entities.MaggyHelper/CeremonyFlame.attributes.description.maxSpreadDistance=Maximum distance fire can spread.
+entities.MaggyHelper/CeremonyFlame.attributes.name.canSpread=Can Spread
+entities.MaggyHelper/CeremonyFlame.attributes.description.canSpread=Whether this flame can spread to others.
+
+entities.MaggyHelper/CrownBearing.placements.name.pull=Crown Bearing (Pull)
+entities.MaggyHelper/CrownBearing.placements.name.push=Crown Bearing (Push)
+entities.MaggyHelper/CrownBearing.placements.description.pull=Floating crown that creates gravity wells. Affects player movement.
+entities.MaggyHelper/CrownBearing.attributes.name.gravityType=Gravity Type
+entities.MaggyHelper/CrownBearing.attributes.description.gravityType=Gravity mode (Pull, Push, Orbit).
+entities.MaggyHelper/CrownBearing.attributes.name.gravityRadius=Gravity Radius
+entities.MaggyHelper/CrownBearing.attributes.description.gravityRadius=Radius of gravity effect.
+entities.MaggyHelper/CrownBearing.attributes.name.gravityStrength=Gravity Strength
+entities.MaggyHelper/CrownBearing.attributes.description.gravityStrength=Strength of gravity force.
+entities.MaggyHelper/CrownBearing.attributes.name.isActive=Is Active
+entities.MaggyHelper/CrownBearing.attributes.description.isActive=Whether gravity effect is active.
+
+entities.MaggyHelper/EmberWisp.placements.name.normal=Ember Wisp
+entities.MaggyHelper/EmberWisp.placements.description.normal=Small flame spirit that ignites platforms temporarily. Floats around.
+entities.MaggyHelper/EmberWisp.attributes.name.health=Health
+entities.MaggyHelper/EmberWisp.attributes.description.health=Amount of damage required to defeat.
+entities.MaggyHelper/EmberWisp.attributes.name.floatSpeed=Float Speed
+entities.MaggyHelper/EmberWisp.attributes.description.floatSpeed=Floating movement speed.
+entities.MaggyHelper/EmberWisp.attributes.name.igniteRadius=Ignite Radius
+entities.MaggyHelper/EmberWisp.attributes.description.igniteRadius=Radius to ignite surfaces.
+entities.MaggyHelper/EmberWisp.attributes.name.burnDuration=Burn Duration
+entities.MaggyHelper/EmberWisp.attributes.description.burnDuration=Time platforms stay ignited.
+
+entities.MaggyHelper/FlameCerberus.placements.name.normal=Flame Cerberus
+entities.MaggyHelper/FlameCerberus.placements.description.normal=Three-headed fire beast. Each head has different attack patterns.
+entities.MaggyHelper/FlameCerberus.attributes.name.headHealth=Head Health
+entities.MaggyHelper/FlameCerberus.attributes.description.headHealth=Health of each individual head.
+entities.MaggyHelper/FlameCerberus.attributes.name.detectionRange=Detection Range
+entities.MaggyHelper/FlameCerberus.attributes.description.detectionRange=Range at which cerberus detects player.
+entities.MaggyHelper/FlameCerberus.attributes.name.moveSpeed=Move Speed
+entities.MaggyHelper/FlameCerberus.attributes.description.moveSpeed=Movement speed.
+
+entities.MaggyHelper/JudgmentBell.placements.name.normal=Judgment Bell
+entities.MaggyHelper/JudgmentBell.placements.description.normal=Massive bell that creates shockwaves when rung. Can be triggered by player.
+entities.MaggyHelper/JudgmentBell.attributes.name.shockwaveSpeed=Shockwave Speed
+entities.MaggyHelper/JudgmentBell.attributes.description.shockwaveSpeed=Speed of shockwave expansion.
+entities.MaggyHelper/JudgmentBell.attributes.name.shockwaveRadius=Shockwave Radius
+entities.MaggyHelper/JudgmentBell.attributes.description.shockwaveRadius=Maximum radius of shockwave.
+entities.MaggyHelper/JudgmentBell.attributes.name.cooldownTime=Cooldown Time
+entities.MaggyHelper/JudgmentBell.attributes.description.cooldownTime=Time between ringings.
+entities.MaggyHelper/JudgmentBell.attributes.name.maxRings=Max Rings
+entities.MaggyHelper/JudgmentBell.attributes.description.maxRings=Maximum times bell can ring.
+entities.MaggyHelper/JudgmentBell.attributes.name.canPlayerRing=Can Player Ring
+entities.MaggyHelper/JudgmentBell.attributes.description.canPlayerRing=Whether player can manually ring bell.
+
+entities.MaggyHelper/TitanFootprint.placements.name.normal=Titan Footprint
+entities.MaggyHelper/TitanFootprint.placements.description.normal=Massive crushing hazard with shadow warning. Foot comes down after warning.
+entities.MaggyHelper/TitanFootprint.attributes.name.warningDuration=Warning Duration
+entities.MaggyHelper/TitanFootprint.attributes.description.warningDuration=Time shadow warning is shown.
+entities.MaggyHelper/TitanFootprint.attributes.name.crushDuration=Crush Duration
+entities.MaggyHelper/TitanFootprint.attributes.description.crushDuration=Time foot stays down.
+entities.MaggyHelper/TitanFootprint.attributes.name.crushWidth=Crush Width
+entities.MaggyHelper/TitanFootprint.attributes.description.crushWidth=Width of foot impact area.
+entities.MaggyHelper/TitanFootprint.attributes.name.crushHeight=Crush Height
+entities.MaggyHelper/TitanFootprint.attributes.description.crushHeight=Height of foot impact area.
+entities.MaggyHelper/TitanFootprint.attributes.name.cooldownTime=Cooldown Time
+entities.MaggyHelper/TitanFootprint.attributes.description.cooldownTime=Time between attacks.
+entities.MaggyHelper/TitanFootprint.attributes.name.triggerDistance=Trigger Distance
+entities.MaggyHelper/TitanFootprint.attributes.description.triggerDistance=Range to trigger attack.
+
+entities.MaggyHelper/TitanSquire.placements.name.normal=Titan Squire
+entities.MaggyHelper/TitanSquire.placements.description.normal=Armored warrior serving the Titan King. Uses flame sword attacks.
+entities.MaggyHelper/TitanSquire.attributes.name.health=Health
+entities.MaggyHelper/TitanSquire.attributes.description.health=Amount of damage required to defeat.
+entities.MaggyHelper/TitanSquire.attributes.name.detectionRange=Detection Range
+entities.MaggyHelper/TitanSquire.attributes.description.detectionRange=Range at which squire detects player.
+entities.MaggyHelper/TitanSquire.attributes.name.attackRange=Attack Range
+entities.MaggyHelper/TitanSquire.attributes.description.attackRange=Range for sword attacks.
+entities.MaggyHelper/TitanSquire.attributes.name.moveSpeed=Move Speed
+entities.MaggyHelper/TitanSquire.attributes.description.moveSpeed=Movement speed.
+entities.MaggyHelper/TitanSquire.attributes.name.patrolDistance=Patrol Distance
+entities.MaggyHelper/TitanSquire.attributes.description.patrolDistance=Distance to patrol from starting point.
+
+entities.MaggyHelper/TitanThrone.placements.name.manual=Titan Throne (Manual)
+entities.MaggyHelper/TitanThrone.placements.name.auto=Titan Throne (Auto)
+entities.MaggyHelper/TitanThrone.placements.description.manual=Boss arena activator. Starts the Roaring Titan King battle.
+entities.MaggyHelper/TitanThrone.attributes.name.bossEntity=Boss Entity
+entities.MaggyHelper/TitanThrone.attributes.description.bossEntity=Entity ID of boss to spawn.
+entities.MaggyHelper/TitanThrone.attributes.name.activationRadius=Activation Radius
+entities.MaggyHelper/TitanThrone.attributes.description.activationRadius=Range for throne activation.
+entities.MaggyHelper/TitanThrone.attributes.name.autoActivate=Auto Activate
+entities.MaggyHelper/TitanThrone.attributes.description.autoActivate=Whether throne activates automatically.
+entities.MaggyHelper/TitanThrone.attributes.name.cutsceneId=Cutscene ID
+entities.MaggyHelper/TitanThrone.attributes.description.cutsceneId=Dialog key for boss cutscene.
+
+entities.MaggyHelper/WishAltar.placements.name.normal=Wish Altar
+entities.MaggyHelper/WishAltar.placements.description.normal=Interactive altar where player makes choices affecting ending. Presents dialogue options.
+entities.MaggyHelper/WishAltar.attributes.name.canInteract=Can Interact
+entities.MaggyHelper/WishAltar.attributes.description.canInteract=Whether player can interact with altar.
+entities.MaggyHelper/WishAltar.attributes.name.dialoguePrefix=Dialogue Prefix
+entities.MaggyHelper/WishAltar.attributes.description.dialoguePrefix=Base dialog key for altar interaction.
+entities.MaggyHelper/WishAltar.attributes.name.requiredHearts=Required Hearts
+entities.MaggyHelper/WishAltar.attributes.description.requiredHearts=Number of crystal hearts required to wish.
+
+# ========================
+# Chapter 16 - Void
+# ========================
+entities.MaggyHelper/AbyssalEye.placements.name.normal=Abyssal Eye
+entities.MaggyHelper/AbyssalEye.placements.description.normal=Floating eye that tracks player. Creates gaze beam that damages if looked at.
+entities.MaggyHelper/AbyssalEye.attributes.name.gazeRange=Gaze Range
+entities.MaggyHelper/AbyssalEye.attributes.description.gazeRange=Range of eye's gaze beam.
+entities.MaggyHelper/AbyssalEye.attributes.name.gazeWidth=Gaze Width
+entities.MaggyHelper/AbyssalEye.attributes.description.gazeWidth=Width of gaze beam.
+entities.MaggyHelper/AbyssalEye.attributes.name.health=Health
+entities.MaggyHelper/AbyssalEye.attributes.description.health=Amount of damage required to defeat.
+
+entities.MaggyHelper/CorruptionCrystal.placements.name.normal=Corruption Crystal
+entities.MaggyHelper/CorruptionCrystal.placements.description.normal=Dark crystal that corrupts nearby entities. Spreads corruption and transforms areas.
+entities.MaggyHelper/CorruptionCrystal.attributes.name.health=Health
+entities.MaggyHelper/CorruptionCrystal.attributes.description.health=Amount of damage required to destroy.
+entities.MaggyHelper/CorruptionCrystal.attributes.name.corruptionRadius=Corruption Radius
+entities.MaggyHelper/CorruptionCrystal.attributes.description.corruptionRadius=Radius of corruption spread.
+entities.MaggyHelper/CorruptionCrystal.attributes.name.spreadSpeed=Spread Speed
+entities.MaggyHelper/CorruptionCrystal.attributes.description.spreadSpeed=Speed of corruption spreading.
+
+entities.MaggyHelper/DarkMirror.placements.name.normal=Dark Mirror
+entities.MaggyHelper/DarkMirror.placements.name.secret=Dark Mirror (Secret)
+entities.MaggyHelper/DarkMirror.placements.description.normal=Mirror that shows corrupted reflection. Can be shattered to reveal secrets.
+entities.MaggyHelper/DarkMirror.attributes.name.health=Health
+entities.MaggyHelper/DarkMirror.attributes.description.health=Amount of damage required to shatter.
+entities.MaggyHelper/DarkMirror.attributes.name.revealsSecret=Reveals Secret
+entities.MaggyHelper/DarkMirror.attributes.description.revealsSecret=Whether shattering reveals hidden passage.
+
+entities.MaggyHelper/DistortionField.placements.name.reverse=Distortion Field (Reverse)
+entities.MaggyHelper/DistortionField.placements.name.random=Distortion Field (Random)
+entities.MaggyHelper/DistortionField.placements.name.gravity_flip=Distortion Field (Gravity)
+entities.MaggyHelper/DistortionField.placements.name.slow_motion=Distortion Field (Slow)
+entities.MaggyHelper/DistortionField.placements.description.reverse=Area that distorts player movement. Reverses controls or applies random forces.
+entities.MaggyHelper/DistortionField.attributes.name.width=Width
+entities.MaggyHelper/DistortionField.attributes.description.width=Width of field in pixels.
+entities.MaggyHelper/DistortionField.attributes.name.height=Height
+entities.MaggyHelper/DistortionField.attributes.description.height=Height of field in pixels.
+entities.MaggyHelper/DistortionField.attributes.name.distortionType=Distortion Type
+entities.MaggyHelper/DistortionField.attributes.description.distortionType=Type of distortion effect (Reverse, Random, GravityFlip, SlowMotion).
+entities.MaggyHelper/DistortionField.attributes.name.intensity=Intensity
+entities.MaggyHelper/DistortionField.attributes.description.intensity=Strength of distortion effect (0-1).
+
+entities.MaggyHelper/FinalCore.placements.name.normal=Final Core
+entities.MaggyHelper/FinalCore.placements.description.normal=Central core entity. Main boss or final challenge of the mod.
+entities.MaggyHelper/FinalCore.attributes.name.health=Health
+entities.MaggyHelper/FinalCore.attributes.description.health=Amount of damage required to defeat.
+entities.MaggyHelper/FinalCore.attributes.name.attackInterval=Attack Interval
+entities.MaggyHelper/FinalCore.attributes.description.attackInterval=Time between attacks.
+
+entities.MaggyHelper/NightmareFragment.placements.name.normal=Nightmare Fragment
+entities.MaggyHelper/NightmareFragment.placements.description.normal=Collectible nightmare memory fragment. Reveals story and unlocks final boss.
+entities.MaggyHelper/NightmareFragment.attributes.name.fragmentId=Fragment ID
+entities.MaggyHelper/NightmareFragment.attributes.description.fragmentId=Unique identifier for fragment.
+entities.MaggyHelper/NightmareFragment.attributes.name.fragmentNumber=Fragment Number
+entities.MaggyHelper/NightmareFragment.attributes.description.fragmentNumber=Number for ordering/display.
+
+entities.MaggyHelper/RealityAnchor.placements.name.normal=Reality Anchor
+entities.MaggyHelper/RealityAnchor.placements.description.normal=Anchor that stabilizes reality glitches. Provides safe zones in void.
+entities.MaggyHelper/RealityAnchor.attributes.name.stabilityRadius=Stability Radius
+entities.MaggyHelper/RealityAnchor.attributes.description.stabilityRadius=Radius of stabilization effect.
+
+entities.MaggyHelper/RealityGlitch.placements.name.minor=Reality Glitch (Minor)
+entities.MaggyHelper/RealityGlitch.placements.description.minor=Area where reality breaks down. Visual distortion and random teleportation.
+entities.MaggyHelper/RealityGlitch.attributes.name.width=Width
+entities.MaggyHelper/RealityGlitch.attributes.description.width=Width of glitch area in pixels.
+entities.MaggyHelper/RealityGlitch.attributes.name.height=Height
+entities.MaggyHelper/RealityGlitch.attributes.description.height=Height of glitch area in pixels.
+entities.MaggyHelper/RealityGlitch.attributes.name.glitchIntensity=Glitch Intensity
+entities.MaggyHelper/RealityGlitch.attributes.description.glitchIntensity=Visual distortion intensity (0-1).
+entities.MaggyHelper/RealityGlitch.attributes.name.teleportChance=Teleport Chance
+entities.MaggyHelper/RealityGlitch.attributes.description.teleportChance=Chance of random teleport (0-1).
+
+entities.MaggyHelper/ShadowFigure.placements.name.passive=Shadow Figure (Passive)
+entities.MaggyHelper/ShadowFigure.placements.name.hostile=Shadow Figure (Hostile)
+entities.MaggyHelper/ShadowFigure.placements.description.passive=Mysterious shadow entity that follows and haunts. Creates atmosphere.
+entities.MaggyHelper/ShadowFigure.attributes.name.detectionRange=Detection Range
+entities.MaggyHelper/ShadowFigure.attributes.description.detectionRange=Range at which figure detects player.
+entities.MaggyHelper/ShadowFigure.attributes.name.followDistance=Follow Distance
+entities.MaggyHelper/ShadowFigure.attributes.description.followDistance=Preferred distance when following.
+entities.MaggyHelper/ShadowFigure.attributes.name.isHostile=Is Hostile
+entities.MaggyHelper/ShadowFigure.attributes.description.isHostile=Whether figure can damage player.
+
+entities.MaggyHelper/SoulFragment.placements.name.normal=Soul Fragment
+entities.MaggyHelper/SoulFragment.placements.description.normal=Collectible soul piece for final boss. Required to access final confrontation.
+entities.MaggyHelper/SoulFragment.attributes.name.fragmentId=Fragment ID
+entities.MaggyHelper/SoulFragment.attributes.description.fragmentId=Unique identifier for fragment.
+entities.MaggyHelper/SoulFragment.attributes.name.requiredSouls=Required Souls
+entities.MaggyHelper/SoulFragment.attributes.description.requiredSouls=Number of soul fragments required.
+
+entities.MaggyHelper/VoidPortal.placements.name.normal=Void Portal
+entities.MaggyHelper/VoidPortal.placements.name.final=Void Portal (Final)
+entities.MaggyHelper/VoidPortal.placements.description.normal=Portal to the void dimension. Final chapter transportation.
+entities.MaggyHelper/VoidPortal.attributes.name.destinationId=Destination ID
+entities.MaggyHelper/VoidPortal.attributes.description.destinationId=ID of destination portal.
+entities.MaggyHelper/VoidPortal.attributes.name.isFinalPortal=Is Final Portal
+entities.MaggyHelper/VoidPortal.attributes.description.isFinalPortal=Whether this leads to final boss arena.

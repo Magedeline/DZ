@@ -407,7 +407,7 @@ namespace Celeste.Entities {
             Audio.SetMusicParam("boss_pitch", 0f);
             
             float from = timeRateModifier.CurrentTimeRate();
-            float assistAdjustedRate = Engine.EffectiveTimeRate / Math.Max(from, 0.0001f);
+            float assistAdjustedRate = Engine.TimeRate / Math.Max(from, 0.0001f);
             Tween tween3 = Tween.Create(Tween.TweenMode.Oneshot, null, 0.35f / assistAdjustedRate, start: true);
             tween3.UseRawDeltaTime = true;
             tween3.OnUpdate = (Tween t) =>
@@ -508,7 +508,7 @@ namespace Celeste.Entities {
             Audio.SetMusicParam("boss_pitch", 0f);
             
             float from = timeRateModifier.CurrentTimeRate();
-            float assistAdjustedRate = Engine.EffectiveTimeRate / Math.Max(from, 0.0001f);
+            float assistAdjustedRate = Engine.TimeRate / Math.Max(from, 0.0001f);
             Tween tween3 = Tween.Create(Tween.TweenMode.Oneshot, null, 0.35f / assistAdjustedRate, start: true);
             tween3.UseRawDeltaTime = true;
             tween3.OnUpdate = (Tween t) =>
@@ -1108,7 +1108,6 @@ namespace Celeste.Entities {
         }
     }
 }
-
 
 
 

@@ -9,6 +9,7 @@ namespace Celeste.NPCs
     [CustomEntity(ids: "MaggyHelper/NPC10_Madeline")]
     public class Npc10Madeline : Entity
     {
+        private MadelineDummy dummy;
         public Sprite sprite;
         public Sprite Sprite { get => sprite; set => sprite = value; }
 

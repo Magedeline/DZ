@@ -45,6 +45,7 @@ public class AngyOshiro : Entity
     private float cameraXOffset;
 
     private StateMachine state;
+    private int nextCustomState = 6;
 
     private int attackIndex;
 
@@ -492,7 +493,18 @@ public class AngyOshiro : Entity
     /// <returns>The index of the new state.</returns>
     public int AddState(string name, Func<AngyOshiro, int> onUpdate, Func<AngyOshiro, IEnumerator> coroutine = null, Action<AngyOshiro> begin = null, Action<AngyOshiro> end = null)
     {
-        return state.AddState(name, onUpdate, coroutine, begin, end);
+        return AddOshiroState(
+            () => onUpdate?.Invoke(this) ?? state.State,
+            coroutine != null ? () => coroutine(this) : null,
+            begin != null ? () => begin(this) : null,
+            end != null ? () => end(this) : null);
+    }
+
+    private int AddOshiroState(Func<int> onUpdate, Func<IEnumerator> coroutine = null, Action begin = null, Action end = null)
+    {
+        int id = nextCustomState++;
+        state.SetCallbacks(id, onUpdate, coroutine, begin, end);
+        return id;
     }
 }
 }

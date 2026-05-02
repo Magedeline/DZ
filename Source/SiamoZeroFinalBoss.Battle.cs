@@ -1274,7 +1274,7 @@ namespace Celeste.Entities
             yield return 0.05f;
             Audio.SetMusicParam("boss_pitch", 0.0f);
             float from1 = timeRateModifier.CurrentTimeRate();
-            float assistAdjustedRate = Engine.EffectiveTimeRate / Math.Max(from1, 0.0001f);
+            float assistAdjustedRate = Engine.TimeRate / Math.Max(from1, 0.0001f);
             Tween tween1 = Tween.Create(Tween.TweenMode.Oneshot, duration: (0.35f / assistAdjustedRate), start: true);
             tween1.UseRawDeltaTime = true;
             tween1.OnUpdate = t =>

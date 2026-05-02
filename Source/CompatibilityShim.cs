@@ -40,6 +40,11 @@ namespace Celeste.Utils
 
 namespace Celeste
 {
+    public sealed class TimeRateModifier(float multiplier = 1f, bool active = true) : Component(active, false)
+    {
+        public float Multiplier { get; set; } = multiplier;
+    }
+
     public static class ShapeRenderer
     {
         public static void DrawCircleOutline(Vector2 center, float radius, Color color, float thickness = 1f, int segments = 12)
@@ -596,6 +601,10 @@ namespace Celeste.Extensions
         public static Vector2 CorrectJoystickPrecision(this Vector2 value)
         {
             return value;
+        }
+
+        public static void SetStateName(this StateMachine stateMachine, int state, string name)
+        {
         }
 
         public static float CurrentTimeRate(this TimeRateModifier modifier)

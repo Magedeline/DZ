@@ -82,10 +82,6 @@ public class TapeBlockManager : Entity
         ticksPerSwap = MapMetaCassetteModifier.TicksPerSwap;
         beatIndexMax = MapMetaCassetteModifier.BeatsMax;
         beatIndexOffset = MapMetaCassetteModifier.BeatIndexOffset;
-        if (!MapMetaCassetteModifier.ActiveDuringTransitions)
-        {
-            return;
-        }
         TransitionListener transitionListener = Get<TransitionListener>();
         if (transitionListener == null)
         {
@@ -211,10 +207,6 @@ public class TapeBlockManager : Entity
         {
             entity.Finish();
         }
-        foreach (CassetteListener component in base.Scene.Tracker.GetComponents<CassetteListener>())
-        {
-            component.Finish();
-        }
         if (!isLevelMusic)
         {
             Audio.Stop(sfx);
@@ -263,13 +255,6 @@ public class TapeBlockManager : Entity
                 entity.SetActivatedSilently(entity.Index == currentIndex);
             }
         }
-        foreach (CassetteListener component in base.Scene.Tracker.GetComponents<CassetteListener>())
-        {
-            if (component.ID.ID == EntityID.None.ID || component.ID.Level == SceneAs<Level>().Session.Level)
-            {
-                component.Start(component.Index == currentIndex);
-            }
-        }
     }
 
     public void SetActiveIndex(int index)
@@ -277,10 +262,6 @@ public class TapeBlockManager : Entity
         foreach (TapeBlock entity in base.Scene.Tracker.GetEntities<TapeBlock>())
         {
             entity.Activated = entity.Index == index;
-        }
-        foreach (CassetteListener component in base.Scene.Tracker.GetComponents<CassetteListener>())
-        {
-            component.SetActivated(component.Index == index);
         }
     }
 
@@ -291,13 +272,6 @@ public class TapeBlockManager : Entity
             if (entity.Index == index || entity.Activated)
             {
                 entity.WillToggle();
-            }
-        }
-        foreach (CassetteListener component in base.Scene.Tracker.GetComponents<CassetteListener>())
-        {
-            if (component.Index == index || component.Activated)
-            {
-                component.WillToggle();
             }
         }
     }
@@ -320,7 +294,6 @@ public class TapeBlockManager : Entity
         tempoMult = SceneAs<Level>().CassetteBlockTempo;
     }
 }
-
 
 
 

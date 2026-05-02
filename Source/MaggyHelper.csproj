@@ -5,9 +5,13 @@
         <AssemblyName>MaggyHelper</AssemblyName>
         <RootNamespace>Celeste.Mod.MaggyHelper</RootNamespace>
         <LangVersion>latest</LangVersion>
+        <Features>preview</Features>
         <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
         <CelestePrefix Condition="'$(CelestePrefix)' == '' And Exists('..\..\..\Celeste.dll')">..\..\..</CelestePrefix>
         <CelestePrefix Condition="'$(CelestePrefix)' == ''">lib-stripped</CelestePrefix>
+        <CelesteAssemblyPath Condition="'$(CelesteAssemblyPath)' == '' And Exists('$(CelestePrefix)\Celeste.dll')">$(CelestePrefix)\Celeste.dll</CelesteAssemblyPath>
+        <CelesteAssemblyPath Condition="'$(CelesteAssemblyPath)' == '' And Exists('$(CelestePrefix)\Celeste-nstrip.exe')">$(CelestePrefix)\Celeste-nstrip.exe</CelesteAssemblyPath>
+        <CelesteAssemblyPath Condition="'$(CelesteAssemblyPath)' == ''">$(CelestePrefix)\Celeste.dll</CelesteAssemblyPath>
         <ZippedFiles>..\everest.yaml;..\bin\**\*.*;..\Audio\**\*.*;..\Dialog\**\*.*;..\Graphics\**\*.*;..\Ahorn\**\*.*;..\Loenn\**\*.*</ZippedFiles>
         <NoWarn>NU1701</NoWarn>
     </PropertyGroup>
@@ -36,9 +40,9 @@
     </ItemGroup>
 
     <ItemGroup>
-        <None Include="$(CelestePrefix)\Celeste.dll" Link="Celeste.dll" />
+        <None Include="$(CelesteAssemblyPath)" Link="Celeste.dll" Condition="Exists('$(CelesteAssemblyPath)')" />
         <None Include="..\bin\MaggyHelper.dll" Link="MaggyHelper.dll" />
-        <PackageReference Include="CelesteMod.Publicizer" Version="1.1.2" CelesteAssembly="$(CelestePrefix)\Celeste.dll" />
+        <PackageReference Include="CelesteMod.Publicizer" Version="1.1.2" CelesteAssembly="$(CelesteAssemblyPath)" />
         <Reference Include="$(CelestePrefix)\MMHOOK_Celeste.dll" Private="false" />
         <Reference Include="$(CelestePrefix)\FNA.dll" Private="false" />
         <!-- Spine MonoGame/FNA runtime (source-only, built from Libs/SpineMonoGame) -->

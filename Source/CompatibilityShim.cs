@@ -607,28 +607,6 @@ namespace Celeste.Extensions
         {
         }
 
-        public static int AddState(this StateMachine stateMachine, string name, Func<int> onUpdate = null, Func<IEnumerator> coroutine = null, Action begin = null, Action end = null)
-        {
-            return stateMachine.AddState(onUpdate, coroutine, begin, end);
-        }
-
-        public static int AddState<T>(this StateMachine stateMachine, string name, Func<T, int> onUpdate, Func<T, IEnumerator> coroutine = null, Action<T> begin = null, Action<T> end = null) where T : Entity
-        {
-            return stateMachine.AddState(
-                () => onUpdate != null && stateMachine.Entity is T entity ? onUpdate(entity) : stateMachine.State,
-                coroutine != null ? () => stateMachine.Entity is T entity ? coroutine(entity) : null : null,
-                begin != null ? () =>
-                {
-                    if (stateMachine.Entity is T entity)
-                        begin(entity);
-                } : null,
-                end != null ? () =>
-                {
-                    if (stateMachine.Entity is T entity)
-                        end(entity);
-                } : null);
-        }
-
         public static float CurrentTimeRate(this TimeRateModifier modifier)
         {
             return TimeRateStates.GetOrCreateValue(modifier).Value;

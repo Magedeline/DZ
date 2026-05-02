@@ -203,15 +203,7 @@ namespace Celeste.Cutscenes
 
 				Logger.Log(LogLevel.Info, "MaggyHelper", $"Loading MP4 video: {videoFile}");
 
-				this.video = Video.FromUri(videoFile, new Uri(videoFile, UriKind.Absolute));
-
-				if (this.video != null)
-				{
-					this.videoPlayer = new VideoPlayer();
-					this.usingMp4 = true;
-					Logger.Log(LogLevel.Info, "MaggyHelper", "MP4 video loaded successfully");
-					return true;
-				}
+				Logger.Log(LogLevel.Info, "MaggyHelper", "MP4 playback is unavailable; using frame fallback");
 			}
 			catch (Exception ex)
 			{

@@ -172,7 +172,7 @@ public static class KirbyPlayerStateController
 
     private static int GetRequestedKirbyAction(Player player)
     {
-        if (!IsKirbyFloatEnabled(player) || player.Scene is not Level)
+        if (player?.IsKirbyMode() != true || player.Scene is not Level)
             return Player.StNormal;
 
         if (Input.Dash.Pressed && Input.MoveY.Value > 0 && !player.OnGround() && StKirbyGroundPound >= 0)

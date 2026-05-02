@@ -36,12 +36,6 @@ namespace Celeste
         /// </summary>
         public static void Load()
         {
-            // ─── 1. IL Hook ──────────────────────────────────────────────
-            // Patch Player.NormalUpdate to boost jump height while Kirby is floating.
-            // Instead of replacing the entire method (like On.* would), we only
-            // touch the single IL instruction that loads the jump-speed constant.
-            IL.Celeste.Player.NormalUpdate += IL_Player_NormalUpdate;
-
             // ─── 2. Manual Hook (private method) ─────────────────────────
             // Player.DashBegin is private — On.* hooks can't reach it.
             // We use MonoMod's Hook class + reflection to intercept it anyway.
@@ -126,7 +120,7 @@ namespace Celeste
         public static void Unload()
         {
             // Remove IL hook
-            IL.Celeste.Player.NormalUpdate -= IL_Player_NormalUpdate;
+            // IL.Celeste.Player.NormalUpdate -= IL_Player_NormalUpdate;
 
             // Dispose manual hooks (this un-detours the methods)
             dashBeginHook?.Dispose();
@@ -161,53 +155,18 @@ namespace Celeste
         //
         // =====================================================================
 
+        /* Removed IL Hook as it was incorrect
         private static void IL_Player_NormalUpdate(ILContext il)
         {
-            ILCursor cursor = new ILCursor(il);
-
-            // Find the instruction that loads the jump-speed constant (-105f).
-            // In vanilla Celeste this is: ldc.r4 -105
-            if (cursor.TryGotoNext(MoveType.After,
-                instr => instr.MatchLdcR4(-105f)))
-            {
-                Logger.Log(LogLevel.Verbose, "MaggyHelper",
-                    $"[IL Hook] Found jump constant at IL_{cursor.Prev.Offset:X4}");
-
-                // Emit a call that can substitute a different value at runtime.
-                cursor.EmitDelegate<Func<float, float>>(ModifyJumpSpeed);
-
-                Logger.Log(LogLevel.Info, "MaggyHelper",
-                    "[IL Hook] Player.NormalUpdate jump-speed patch applied");
-            }
-            else
-            {
-                Logger.Log(LogLevel.Warn, "MaggyHelper",
-                    "[IL Hook] Could not find jump constant in Player.NormalUpdate — " +
-                    "the game version may have changed. Hook skipped safely.");
-            }
+            // ...
         }
 
-        /// <summary>
-        /// Called at runtime by the IL hook.  Receives the original jump-speed
-        /// constant and returns a (possibly modified) value.
-        /// </summary>
         private static float ModifyJumpSpeed(float originalSpeed)
         {
-            // Only modify when Kirby player is enabled and floating is active
-            var settings = MaggyHelperModule.Settings;
-            var session  = MaggyHelperModule.Session;
-
-            if (settings?.KirbyPlayerEnabled == true &&
-                settings?.KirbyMaxFloatJumps > 0  &&
-                session?.IsKirbyModeActive   == true)
-            {
-                // Softer jump while floating — gives that Kirby "puff" feel.
-                // Original is -105f (strong jump); we reduce to -80f.
-                return -80f;
-            }
-
+            // ...
             return originalSpeed;
         }
+        */
 
 
         // =====================================================================
@@ -301,9 +260,6 @@ namespace Celeste
                     session.CurrentCopyAbility == CopyAbilityType.None)
                     return;
 
-                // Access player data via DynamicData (can reach private fields)
-                DynamicData playerData = DynamicData.For(self);
-
                 switch (session.CurrentCopyAbility)
                 {
                     case CopyAbilityType.Wing:
@@ -359,30 +315,22 @@ namespace Celeste
         {
             try
             {
-                // Get the map data and its levels
-                if (self.Session?.MapData?.Levels is List<LevelData> levels && levels.Count > 0)
+                // Scan only the current level being loaded for player entities
+                if (self.Session?.LevelData?.Entities is List<EntityData> entities)
                 {
-                    // Scan through all levels for player entities
-                    foreach (LevelData levelData in levels)
+                    foreach (var entityData in entities)
                     {
-                        if (levelData?.Entities is List<EntityData> entities)
+                        if (entityData?.Name != null)
                         {
-                            // Scan for player entities with mismatched IDs
-                            foreach (var entityData in entities)
-                            {
-                                if (entityData?.Name != null)
-                                {
-                                    string lowerName = entityData.Name.ToLowerInvariant();
+                            string lowerName = entityData.Name.ToLowerInvariant();
 
-                                    if (lowerName == "maggyhelper/player" ||
-                                        lowerName == "maggyhelper/kirbyplayer" ||
-                                        lowerName == "maggyhelperp/layer")
-                                    {
-                                        Logger.Log(LogLevel.Info, "MaggyHelper",
-                                            $"[EntityRemapper] Remapping legacy entity '{entityData.Name}' → 'MaggyHelper/KirbyPlayerSpawner'");
-                                        entityData.Name = "MaggyHelper/KirbyPlayerSpawner";
-                                    }
-                                }
+                            if (lowerName == "maggyhelper/player" ||
+                                lowerName == "maggyhelper/kirbyplayer" ||
+                                lowerName == "maggyhelperp/layer")
+                            {
+                                Logger.Log(LogLevel.Info, "MaggyHelper",
+                                    $"[EntityRemapper] Remapping legacy entity '{entityData.Name}' → 'MaggyHelper/KirbyPlayerSpawner'");
+                                entityData.Name = "MaggyHelper/KirbyPlayerSpawner";
                             }
                         }
                     }

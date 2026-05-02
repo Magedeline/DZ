@@ -323,22 +323,53 @@ namespace Celeste.Entities
 
         private void CheckBarrierPiercing()
         {
+            // Only check if we have a scene
+            if (Scene == null) return;
+
             // Check for barriers that can be pierced (like lightning barriers)
-            foreach (Entity entity in Scene.Entities)
+            // We use the tracker for common barrier types to improve performance.
+            // If the entity is not a common type, we still check it but only if it's an Actor or Solid.
+            
+            // 1. Check tracked Lightning
+            foreach (Entity entity in Scene.Tracker.GetEntities<Lightning>())
             {
-                if (CollideCheck(entity) && IsBarrier(entity) && !barriersPierced.Contains(entity))
+                if (CollideCheck(entity) && !barriersPierced.Contains(entity))
                 {
                     PierceBarrier(entity);
                 }
             }
+            
+            // 2. Check tracked SeekerBarrier
+            foreach (Entity entity in Scene.Tracker.GetEntities<SeekerBarrier>())
+            {
+                if (CollideCheck(entity) && !barriersPierced.Contains(entity))
+                {
+                    PierceBarrier(entity);
+                }
+            }
+
+            // 3. Fallback for other potential barriers (only check Solids as most barriers are Solids)
+            foreach (Solid solid in Scene.Tracker.GetEntities<Solid>())
+            {
+                if (CollideCheck(solid) && IsBarrier(solid) && !barriersPierced.Contains(solid))
+                {
+                    PierceBarrier(solid);
+                }
+            }
         }
+
+        private static readonly Dictionary<Type, bool> IsBarrierCache = new();
 
         private bool IsBarrier(Entity entity)
         {
-            // Define what constitutes a barrier (can be customized)
-            return entity.GetType().Name.Contains("Lightning") ||
-                   entity.GetType().Name.Contains("Barrier") ||
-                   entity.GetType().Name.Contains("EnergyBarrier");
+            if (entity == null) return false;
+            Type type = entity.GetType();
+            if (IsBarrierCache.TryGetValue(type, out bool result)) return result;
+
+            string name = type.Name;
+            result = name.Contains("Lightning") || name.Contains("Barrier") || name.Contains("EnergyBarrier");
+            IsBarrierCache[type] = result;
+            return result;
         }
 
         private void PierceBarrier(Entity barrier)

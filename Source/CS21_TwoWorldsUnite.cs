@@ -1,12 +1,16 @@
 namespace Celeste.Cutscenes
 {
     /// <summary>
-    /// Human and monster working together cutscene
+    /// POST-EPILOGUE ONLY: Human and monster working together cutscene
     /// Ends with Planet Popstar arriving to Earth
+    /// 
+    /// This cutscene only triggers after completing CH21_EpilogueCredits.
+    /// It represents the true final sequence showing the unity of worlds.
     /// </summary>
     [Tracked]
     public class CS21_TwoWorldsUnite : CutsceneEntity
     {
+        public const string REQUIRES_FLAG = "epilogue_credits_complete";
         private global::Celeste.Player player;
         
         private List<Sprite> humanSprites = new List<Sprite>();

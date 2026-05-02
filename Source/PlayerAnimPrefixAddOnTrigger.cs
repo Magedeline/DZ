@@ -5,6 +5,64 @@ namespace Celeste.Triggers {
     [HotReloadable]
     public class PlayerAnimPrefixAddOnTrigger : Trigger {
 
+        private static readonly Dictionary<string, string> CharacterAnimationPrefixes = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+        {
+            { "king_ddd", "kingddd_" },
+            { "meta_knight", "metaknight_" },
+            { "bandana_waddle_dee", "bwdee_" },
+            { "magolor", "magolor_" },
+            { "susie_haltmann", "susie_" },
+            { "taranza", "taranza_" },
+            { "squeaker", "squeaker_" },
+            { "dark_meta_knight", "dmk_" },
+            { "marx", "marx_" },
+            { "francisca", "francisca_" },
+            { "flamberge", "flamberge_" },
+            { "zan_partizanne", "zan_" },
+            { "kirby_classic", "kirby_" },
+            { "gooey", "gooey_" },
+            { "asriel", "asriel_" },
+            { "frisk", "frisk_" },
+            { "charlo", "charlo_" },
+            { "clover", "clover_" },
+            { "melody", "melody_" },
+            { "batty", "batty_" },
+            { "emily", "emily_" },
+            { "cody", "cody_" },
+            { "odin", "odin_" },
+            { "adeleine", "adeleine_" },
+            { "ness", "ness_" }
+        };
+
+        private static readonly Dictionary<string, string> CharacterIdleAnimations = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+        {
+            { "king_ddd", "kingddd_idle" },
+            { "meta_knight", "metaknight_idle" },
+            { "bandana_waddle_dee", "bwdee_idle" },
+            { "magolor", "magolor_idle" },
+            { "susie_haltmann", "susie_idle" },
+            { "taranza", "taranza_idle" },
+            { "squeaker", "squeaker_idle" },
+            { "dark_meta_knight", "dmk_idle" },
+            { "marx", "marx_idle" },
+            { "francisca", "francisca_idle" },
+            { "flamberge", "flamberge_idle" },
+            { "zan_partizanne", "zan_idle" },
+            { "kirby_classic", "kirby_idle" },
+            { "gooey", "gooey_idle" },
+            { "asriel", "asriel_idle" },
+            { "frisk", "frisk_idle" },
+            { "charlo", "charlo_idle" },
+            { "clover", "clover_idle" },
+            { "melody", "melody_idle" },
+            { "batty", "batty_idle" },
+            { "emily", "emily_idle" },
+            { "cody", "cody_idle" },
+            { "odin", "odin_idle" },
+            { "adeleine", "adeleine_idle" },
+            { "ness", "ness_idle" }
+        };
+
         private string lastAnimPrefixAddOn;
         private readonly string animPrefixAddOn;
         private readonly bool revertOnLeave;
@@ -99,36 +157,8 @@ namespace Celeste.Triggers {
         
         private string GetCharacterAnimationPrefix(string charId)
         {
-            // Map character IDs to their animation prefixes
-            return charId switch
-            {
-                "king_ddd" => "kingddd_",
-                "meta_knight" => "metaknight_",
-                "bandana_waddle_dee" => "bwdee_",
-                "magolor" => "magolor_",
-                "susie_haltmann" => "susie_",
-                "taranza" => "taranza_",
-                "squeaker" => "squeaker_",
-                "dark_meta_knight" => "dmk_",
-                "marx" => "marx_",
-                "francisca" => "francisca_",
-                "flamberge" => "flamberge_",
-                "zan_partizanne" => "zan_",
-                "kirby_classic" => "kirby_",
-                "gooey" => "gooey_",
-                "asriel" => "asriel_",
-                "frisk" => "frisk_",
-                "charlo" => "charlo_",
-                "clover" => "clover_",
-                "melody" => "melody_",
-                "batty" => "batty_",
-                "emily" => "emily_",
-                "cody" => "cody_",
-                "odin" => "odin_",
-                "adeleine" => "adeleine_",
-                "ness" => "ness_",
-                _ => null
-            };
+            if (string.IsNullOrEmpty(charId)) return null;
+            return CharacterAnimationPrefixes.TryGetValue(charId, out string prefix) ? prefix : null;
         }
         
         private void ApplyAnimationPrefix(CelestePlayer player, string prefix)
@@ -154,36 +184,8 @@ namespace Celeste.Triggers {
         
         private string GetCharacterIdleAnimation(string charId)
         {
-            // Map character IDs to their idle animations
-            return charId switch
-            {
-                "king_ddd" => "kingddd_idle",
-                "meta_knight" => "metaknight_idle",
-                "bandana_waddle_dee" => "bwdee_idle",
-                "magolor" => "magolor_idle",
-                "susie_haltmann" => "susie_idle",
-                "taranza" => "taranza_idle",
-                "squeaker" => "squeaker_idle",
-                "dark_meta_knight" => "dmk_idle",
-                "marx" => "marx_idle",
-                "francisca" => "francisca_idle",
-                "flamberge" => "flamberge_idle",
-                "zan_partizanne" => "zan_idle",
-                "kirby_classic" => "kirby_idle",
-                "gooey" => "gooey_idle",
-                "asriel" => "asriel_idle",
-                "frisk" => "frisk_idle",
-                "charlo" => "charlo_idle",
-                "clover" => "clover_idle",
-                "melody" => "melody_idle",
-                "batty" => "batty_idle",
-                "emily" => "emily_idle",
-                "cody" => "cody_idle",
-                "odin" => "odin_idle",
-                "adeleine" => "adeleine_idle",
-                "ness" => "ness_idle",
-                _ => "idle"
-            };
+            if (string.IsNullOrEmpty(charId)) return "idle";
+            return CharacterIdleAnimations.TryGetValue(charId, out string animation) ? animation : "idle";
         }
     }
 }

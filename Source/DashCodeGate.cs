@@ -243,14 +243,18 @@ public class DashCodeGate : Solid
 			{
 				text += "right";
 			}
+			// TODO: Port DoonvHelper graphics to your mod
+			// After porting, change path from "objects/DoonvHelper/" to "objects/MaggyHelper/"
+			// Graphics to copy: dashcodegate/arrows/inactive-*.png and active-*.png
+			string spritePathPrefix = "objects/DoonvHelper"; // Change to "objects/MaggyHelper" after porting
 			this.inactiveIcons[i] = GFX.Game[String.Format(
-				"objects/DoonvHelper/dashcodegate/arrows/inactive-{0}",
-			text.Trim('-'))];
+				"{0}/dashcodegate/arrows/inactive-{1}",
+			spritePathPrefix, text.Trim('-'))];
 			this.activeIcons[i] = GFX.Game[String.Format(
-				"objects/DoonvHelper/dashcodegate/arrows/active-{0}",
-			text.Trim('-'))];
+				"{0}/dashcodegate/arrows/active-{1}",
+			spritePathPrefix, text.Trim('-'))];
 		}
-		Logger.Log(LogLevel.Info, "DoonvHelper", String.Join(", ", this.Code));
+		Logger.Log(LogLevel.Info, "MaggyHelper/DashCodeGate", String.Join(", ", this.Code));
 		this.node = node;
 		this.PersistenceFlag = persistenceFlag;
 		this.spriteName = spriteName;

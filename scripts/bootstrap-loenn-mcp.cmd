@@ -27,7 +27,7 @@ echo [3/3] Installed loenn-mcp version:
 if errorlevel 1 exit /b %errorlevel%
 
 echo.
-echo Done. If needed, set .vscode\mcp.json server command to:
-echo   ${workspaceFolder}\.venv\Scripts\python.exe
+echo Done. If needed, set mcp.json server command to:
+echo   .venv\Scripts\python.exe
 
 exit /b 0

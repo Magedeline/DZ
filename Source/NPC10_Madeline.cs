@@ -14,13 +14,15 @@ namespace Celeste.NPCs
 
         public Npc10Madeline(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            setupSprite();
+            setupDummy();
             Depth = 100;
         }
 
-        private void setupSprite()
+        private void setupDummy()
         {
-            Add(sprite = GFX.SpriteBank.Create("madeline"));
+            dummy = new MadelineDummy(Vector2.Zero);
+            sprite = dummy.Sprite;
+            Add(sprite);
             sprite.Play("idle");
         }
 

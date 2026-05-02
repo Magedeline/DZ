@@ -166,7 +166,8 @@ namespace Celeste.Extensions
         /// </summary>
         public static void EnableCombat(this Player player)
         {
-            new DynamicData(player).Set("CombatEnabled", true);
+            if (player == null) return;
+            new DynData<Player>(player).Set("CombatEnabled", true);
         }
 
         /// <summary>
@@ -174,12 +175,13 @@ namespace Celeste.Extensions
         /// </summary>
         public static void DisableCombat(this Player player)
         {
-            new DynamicData(player).Set("CombatEnabled", false);
+            if (player == null) return;
+            new DynData<Player>(player).Set("CombatEnabled", false);
         }
 
-        public static DynamicData GetData(this Player player)
+        public static DynData<Player> GetData(this Player player)
         {
-            return new DynamicData(player);
+            return player != null ? new DynData<Player>(player) : null;
         }
 
         private static void TryApplyPlayerSprite(Player player, string spriteId)

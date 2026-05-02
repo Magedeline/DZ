@@ -7,6 +7,24 @@ namespace Celeste.Entities
     [HotReloadable]
     public class AdvancedRefill : Actor
     {
+        private bool updateErrorLogged = false;
+
+        public override void Update()
+        {
+            try
+            {
+                base.Update();
+            }
+            catch (Exception ex)
+            {
+                if (!updateErrorLogged)
+                {
+                    updateErrorLogged = true;
+                    Logger.Log(LogLevel.Error, "MaggyHelper", $"AdvancedRefill.Update error (possible SkinModHelper clash): {ex}");
+                }
+            }
+        }
+
         public static ParticleType P_Shatter;
         public static ParticleType P_Regen;
         public static ParticleType P_Glow;
@@ -18,7 +36,6 @@ namespace Celeste.Entities
         private BloomPoint bloom;
         private VertexLight light;
         private bool oneUse;
-        private bool respawnTimer;
         private int dashCount;
         private bool respectInventoryLimits;
 
@@ -30,73 +47,65 @@ namespace Celeste.Entities
             oneUse = data.Bool("oneUse", false);
             respectInventoryLimits = data.Bool("respectInventoryLimits", true);
 
-            // Determine sprite based on dash count
-            string spriteName = GetSpriteNameForDashCount(dashCount);
-            string flashSpriteName = GetFlashSpriteNameForDashCount(dashCount);
+            sprite = CreateAndAddSprite(GetSpriteNameForDashCount(dashCount), "refill", true);
+            flash = CreateAndAddSprite(GetFlashSpriteNameForDashCount(dashCount), "refillFlash", false, false);
+            outline = CreateAndAddOutline(GetOutlineTextureForDashCount(dashCount), "objects/refill/outline", false);
 
-            // Create main sprite with fallback
-            try
+            Add(wiggler = Wiggler.Create(1f, 4f, v =>
             {
-                sprite = GFX.SpriteBank.Create(spriteName);
-                Add(sprite);
-            }
-            catch (Exception)
-            {
-                // Fallback to the base refill sprite if the requested sprite is missing
-                try
-                {
-                    sprite = GFX.SpriteBank.Create("refill");
-                    Add(sprite);
-                }
-                catch (Exception ex)
-                {
-                    Logger.Log(LogLevel.Error, "AdvancedRefill", $"Failed to create refill sprite '{spriteName}': {ex.Message}");
-                }
-            }
-
-            // Create flash sprite with fallback
-            try
-            {
-                flash = GFX.SpriteBank.Create(flashSpriteName);
-                Add(flash);
-            }
-            catch (Exception)
-            {
-                // Fallback to regular refill flash
-                try
-                {
-                    flash = GFX.SpriteBank.Create("refillFlash");
-                    Add(flash);
-                }
-                catch (Exception ex)
-                {
-                    Logger.Log(LogLevel.Error, "AdvancedRefill", $"Failed to create flash sprite '{flashSpriteName}': {ex.Message}");
-                }
-            }
-
-            // Outline texture with fallback
-            var outlineTexture = AtlasPathHelper.TryGetTexture(GetOutlineTextureForDashCount(dashCount))
-                ?? AtlasPathHelper.TryGetTexture("objects/refill/outline");
-            
-            if (outlineTexture != null)
-            {
-                Add(outline = new Image(outlineTexture));
-                outline.Visible = false;
-            }
-
-            Add(wiggler = Wiggler.Create(1f, 4f, delegate (float v)
-            {
-                if (sprite != null)
-                    sprite.Scale = Vector2.One * (1f + v * 0.2f);
-                if (flash != null)
-                    flash.Scale = Vector2.One * (1f + v * 0.2f);
-                if (outline != null)
-                    outline.Scale = Vector2.One * (1f + v * 0.2f);
+                Vector2 scale = Vector2.One * (1f + v * 0.2f);
+                if (sprite != null) sprite.Scale = scale;
+                if (flash != null) flash.Scale = scale;
+                if (outline != null) outline.Scale = scale;
             }));
 
             Add(new PlayerCollider(OnPlayer));
             Add(light = new VertexLight(GetColorForDashCount(dashCount), 1f, 16, 32));
             Add(bloom = new BloomPoint(0.8f, 16f));
+        }
+
+        private Monocle.Sprite CreateAndAddSprite(string id, string fallbackId, bool playIdle, bool visible = true)
+        {
+            Monocle.Sprite s = null;
+            try
+            {
+                s = GFX.SpriteBank.Create(id);
+            }
+            catch
+            {
+                try
+                {
+                    s = GFX.SpriteBank.Create(fallbackId);
+                }
+                catch (Exception ex)
+                {
+                    Logger.Log(LogLevel.Error, "AdvancedRefill", $"Failed to create sprite '{id}' (fallback: '{fallbackId}'): {ex.Message}");
+                }
+            }
+
+            if (s != null)
+            {
+                if (playIdle && s.Has("idle"))
+                {
+                    s.Play("idle");
+                }
+                s.Visible = visible;
+                Add(s);
+            }
+            return s;
+        }
+
+        private Image CreateAndAddOutline(string path, string fallbackPath, bool visible = false)
+        {
+            MTexture texture = AtlasPathHelper.TryGetTexture(path) ?? AtlasPathHelper.TryGetTexture(fallbackPath);
+            if (texture != null)
+            {
+                Image image = new Image(texture);
+                image.Visible = visible;
+                Add(image);
+                return image;
+            }
+            return null;
         }
 
         private static string GetFlashSpriteNameForDashCount(int dashCount)
@@ -149,35 +158,6 @@ namespace Celeste.Entities
                 >= 10 => Color.Gold,
                 _ => Color.White
             };
-        }
-
-        public override void Added(Scene scene)
-        {
-            base.Added(scene);
-            respawnTimer = false;
-        }
-
-        public override void Update()
-        {
-            base.Update();
-
-            if (respawnTimer)
-            {
-                // Only set animation frames if the animations exist on the sprites
-                if (flash != null && flash.Has("flash"))
-                {
-                    try { flash.SetAnimationFrame(0); } catch { }
-                }
-                if (sprite != null && sprite.CurrentAnimationID != null)
-                {
-                    try { sprite.SetAnimationFrame(0); } catch { }
-                }
-
-                if (sprite == null || sprite.CurrentAnimationID != "spin")
-                {
-                    respawnTimer = false;
-                }
-            }
         }
 
         private void OnPlayer(global::Celeste.Player player)
@@ -310,7 +290,7 @@ namespace Celeste.Entities
             // Flash and wiggle - with null checks
             if (flash != null && flash.Has("flash"))
             {
-                flash.Play("flash");
+                try { flash.Play("flash"); } catch { }
                 flash.Visible = true;
             }
             
@@ -359,7 +339,6 @@ namespace Celeste.Entities
                 
                 Collidable = true;
                 wiggler.Start();
-                respawnTimer = true;
             }
             else
             {

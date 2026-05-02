@@ -20,7 +20,8 @@ namespace Celeste.Entities.Projectiles
             Add(new PlayerCollider(OnPlayerCollide));
 
             // Add visual components
-            sprite = ((SpriteBank)IngesteModule.SpriteBank).Create("starProjectile");            sprite.Play("spin");
+            sprite = ((SpriteBank)IngesteModule.SpriteBank).Create("starProjectile");
+            sprite.Play("spin");
             Add(sprite);
 
             // Add light effect

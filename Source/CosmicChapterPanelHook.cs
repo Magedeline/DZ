@@ -218,14 +218,12 @@ public static class CosmicChapterPanelHook
     /// </summary>
     private static Vector2 GetPanelPosition(OuiChapterPanel panel)
     {
-        try
+        var dyn = MonoMod.Utils.DynamicData.For(panel);
+        if (dyn.TryGet("position", out object posObj) || dyn.TryGet("Position", out posObj))
         {
-            var dyn = MonoMod.Utils.DynamicData.For(panel);
-            object posObj = dyn.Get("position") ?? dyn.Get("Position");
             if (posObj is Vector2 v)
                 return v;
         }
-        catch { }
 
         return new Vector2(960f, 540f);
     }

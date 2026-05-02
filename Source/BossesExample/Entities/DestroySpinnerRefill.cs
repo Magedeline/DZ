@@ -112,7 +112,14 @@ internal class DestroySpinnerRefill : Entity
 
   public virtual void Update()
   {
-    base.Update();
+    try
+    {
+      base.Update();
+    }
+    catch (Exception ex)
+    {
+      Logger.Log(LogLevel.Error, "MaggyHelper", $"DestroySpinnerRefill.Update error: {ex}");
+    }
     if ((double) this.respawnTimer > 0.0)
     {
       this.respawnTimer -= Engine.DeltaTime;

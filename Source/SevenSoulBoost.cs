@@ -78,10 +78,10 @@ namespace Celeste.Entities.SoulBoosts
         protected int dashCount;
 
         // Ch20 Final boost fields
-        private bool finalCh20Boost;
-        private bool finalCh20GoldenBoost;
-        private string finalCh20Dialog;
-        public FMOD.Studio.EventInstance Ch20FinalBoostSfx;
+        private bool finalCh21Boost;
+        private bool finalCh21GoldenBoost;
+        private string finalCh21Dialog;
+        public FMOD.Studio.EventInstance Ch21FinalBoostSfx;
 
         // Soul orbit animation
         private float soulOrbitAngle = 0f;
@@ -106,9 +106,9 @@ namespace Celeste.Entities.SoulBoosts
                 data.Bool("refillDashes", true),
                 data.Bool("refillStamina", true),
                 data.Int("dashCount", 10),
-                data.Bool("finalCh20Boost"),
-                data.Bool("finalCh20GoldenBoost"),
-                data.Attr("finalCh20Dialog")
+                data.Bool("finalCh21Boost"),
+                data.Bool("finalCh21GoldenBoost"),
+                data.Attr("finalCh21Dialog")
             )
         {
         }
@@ -122,9 +122,9 @@ namespace Celeste.Entities.SoulBoosts
             bool refillDashes = true,
             bool refillStamina = true,
             int dashCount = 10,
-            bool finalCh20Boost = false,
-            bool finalCh20GoldenBoost = false,
-            string finalCh20Dialog = null
+            bool finalCh21Boost = false,
+            bool finalCh21GoldenBoost = false,
+            string finalCh21Dialog = null
         ) : base(NormalizeNodes(nodes)[0])
         {
             Depth = -1000000;
@@ -136,9 +136,9 @@ namespace Celeste.Entities.SoulBoosts
             this.refillDashes = refillDashes;
             this.refillStamina = refillStamina;
             this.dashCount = dashCount;
-            this.finalCh20Boost = finalCh20Boost;
-            this.finalCh20GoldenBoost = finalCh20GoldenBoost;
-            this.finalCh20Dialog = finalCh20Dialog;
+            this.finalCh21Boost = finalCh21Boost;
+            this.finalCh21GoldenBoost = finalCh21GoldenBoost;
+            this.finalCh21Dialog = finalCh21Dialog;
 
             Collider = new Circle(20f);
             Add(new PlayerCollider(player => OnPlayer(player)));
@@ -148,15 +148,15 @@ namespace Celeste.Entities.SoulBoosts
 
             // Sprite setup - use custom vessel soul sprite
             Add(sprite = new Sprite(GFX.Game, "characters/soul/soul/"));
-            sprite.AddLoop("boost", "vessel_soulA", 0.08f);
-            sprite.Play("boost");
+            sprite.AddLoop("madelineboost", "vessel_soulA", 0.08f);
+            sprite.Play("madelineboost");
             sprite.CenterOrigin();
             sprite.Scale.X = -1f;
             sprite.Position = spriteOffset;
             sprite.Color = Color.White;
 
             // Stretch image for travel
-            Add(stretch = new Image(GFX.Game["objects/sevensoulboost/stretch"]));
+            Add(stretch = new Image(GFX.Game["objects/madelinesevensoulboost/stretch"]));
             stretch.Visible = false;
             stretch.CenterOrigin();
             stretch.Color = Color.White;
@@ -353,7 +353,7 @@ namespace Celeste.Entities.SoulBoosts
                 soul.Visible = false;
             }
             bool endLevel;
-            if (finalBoost && finalCh20GoldenBoost)
+            if (finalBoost && finalCh21GoldenBoost)
             {
                 endLevel = true;
             }
@@ -368,21 +368,20 @@ namespace Celeste.Entities.SoulBoosts
                         break;
                     }
                 }
-                endLevel = finalBoost && finalCh20Boost && !flag;
+                endLevel = finalBoost && finalCh21Boost && !flag;
             }
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
-            if (finalCh20Boost)
+            Stopwatch sw = Stopwatch.StartNew();
+            if (finalCh21Boost)
             {
-                Audio.Play("event:/desolozantas/final_content/char/together/finalfinalfinalultra_part1", Position);
+                Audio.Play("event:/desolozantas/final_content/char/madeline/finalfinalfinalultra_part1", Position);
             }
             else if (!finalBoost)
             {
-                Audio.Play("event:/char/badeline/booster_begin", Position);
+                Audio.Play("event:/desolozantas/final_content/char/madeline/ready", Position);
             }
             else
             {
-                Audio.Play("event:/char/badeline/booster_final", Position);
+                Audio.Play("event:/desolozantas/final_content/char/madeline/launch", Position);
             }
             if (player.Holding != null)
             {
@@ -406,14 +405,14 @@ namespace Celeste.Entities.SoulBoosts
             {
                 num = -1;
             }
-            AsrielDummy asriel = new AsrielDummy(Position);
-            Scene.Add(asriel);
+            MadelineGodDummy madelinegod = new MadelineGodDummy(Position);
+            Scene.Add(madelinegod);
             player.Facing = (Facings)(-num);
-            asriel.Sprite.Scale.X = num;
+            madelinegod.Sprite.Scale.X = num;
             Vector2 playerFrom = player.Position;
             Vector2 playerTo = Position + new Vector2(num * 4, -3f);
-            Vector2 asrielFrom = asriel.Position;
-            Vector2 asrielTo = Position + new Vector2(-num * 4, 3f);
+            Vector2 madelinegodFrom = madelinegod.Position;
+            Vector2 madelinegodTo = Position + new Vector2(-num * 4, 3f);
             for (float p = 0f; p < 1f; p += Engine.DeltaTime / 0.2f)
             {
                 Vector2 vector = Vector2.Lerp(playerFrom, playerTo, p);
@@ -425,7 +424,7 @@ namespace Celeste.Entities.SoulBoosts
                 {
                     player.MoveToY(vector.Y);
                 }
-                asriel.Position = Vector2.Lerp(asrielFrom, asrielTo, p);
+                madelinegod.Position = Vector2.Lerp(madelinegodFrom, madelinegodTo, p);
                 yield return null;
             }
             if (finalBoost)
@@ -438,9 +437,9 @@ namespace Celeste.Entities.SoulBoosts
             {
                 Audio.Play("event:/char/badeline/booster_throw", Position);
             }
-            if (asriel.Sprite.Has("boost"))
+            if (madelinegod.Sprite.Has("boost"))
             {
-                asriel.Sprite.Play("boost");
+                madelinegod.Sprite.Play("boost");
             }
             yield return 0.1f;
             if (!player.Dead)
@@ -453,15 +452,15 @@ namespace Celeste.Entities.SoulBoosts
                 level.TimerStopped = true;
                 level.RegisterAreaComplete();
             }
-            if (finalBoost && finalCh20Boost)
+            if (finalBoost && finalCh21Boost)
             {
-                Scene.Add(new CS20_ElsDeathTrueLastUltraLaunch(player, this, finalCh20Dialog));
+                Scene.Add(new CS20_ElsDeathTrueLastUltraLaunch(player, this, finalCh21Dialog));
                 player.Active = false;
-                asriel.Active = false;
+                madelinegod.Active = false;
                 Active = false;
                 yield return null;
                 player.Active = true;
-                asriel.Active = true;
+                madelinegod.Active = true;
             }
             Add(Alarm.Create(Alarm.AlarmMode.Oneshot, [MethodImpl(MethodImplOptions.NoInlining)] () =>
             {
@@ -469,8 +468,8 @@ namespace Celeste.Entities.SoulBoosts
                 {
                     player.Dashes++;
                 }
-                Scene.Remove(asriel);
-                (Scene as Level)?.Displacement.AddBurst(asriel.Position, 0.25f, 8f, 32f, 0.5f);
+                Scene.Remove(madelinegod);
+                (Scene as Level)?.Displacement.AddBurst(madelinegod.Position, 0.25f, 8f, 32f, 0.5f);
             }, 0.15f, start: true));
             (Scene as Level)?.Shake();
             holding = null;
@@ -517,7 +516,7 @@ namespace Celeste.Entities.SoulBoosts
 
                         Collidable = true;
                         state = States.Wait;
-                        Audio.Play("event:/char/badeline/booster_reappear", Position);
+                        Audio.Play("event:/desolozantas/final_content/char/madeline/ready", Position);
                     }
                 };
                 Add(tween);
@@ -528,9 +527,9 @@ namespace Celeste.Entities.SoulBoosts
             }
             else
             {
-                if (finalCh20Boost)
+                if (finalCh21Boost)
                 {
-                    Ch20FinalBoostSfx = Audio.Play("event:/desolozantas/final_content/char/together/finalfinalfinalultra_part3", Position);
+                    Ch21FinalBoostSfx = Audio.Play("event:/desolozantas/final_content/char/madeline/finalfinalfinalultra_part2", Position);
                 }
                 Engine.FreezeTimer = 0.1f;
                 yield return true;
@@ -543,7 +542,6 @@ namespace Celeste.Entities.SoulBoosts
                 level.DirectionalShake(-Vector2.UnitY, 0.6f);
                 level.Displacement.AddBurst(Center, 0.6f, 8f, 64f, 0.5f);
                 level.ResetZoom();
-                // Apply all seven soul abilities before launching
                 yield return ApplyAllSoulsStart(player);
                 yield return ApplyAllSoulsEnd(player);
                 player.SummitLaunch(X);
@@ -580,8 +578,6 @@ namespace Celeste.Entities.SoulBoosts
                     Vector2.One * 4f
                 );
             }
-
-            Audio.Play("event:/game/general/crystalheart_pulse", player.Position);
 
             yield return 0.2f;
         }
@@ -657,7 +653,7 @@ namespace Celeste.Entities.SoulBoosts
                     
                     Collidable = true;
                     state = States.Wait;
-                    Audio.Play("event:/char/badeline/booster_reappear", Position);
+                    Audio.Play("event:/desolozantas/final_content/char/madeline/ready", Position);
                 }
             };
 
@@ -738,7 +734,6 @@ namespace Celeste.Entities.SoulBoosts
                     {
                         shieldHits--;
                         player.Speed *= -0.8f;
-                        Audio.Play("event:/game/general/crystalheart_pulse", player.Position);
                         
                         (Scene as Level)?.ParticlesFG.Emit(
                             new ParticleType

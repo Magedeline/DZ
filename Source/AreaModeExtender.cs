@@ -1278,13 +1278,12 @@ public static class AreaModeExtender
         if (dyn == null)
             return fallback;
 
-        try
+        if (dyn.TryGet(name, out object value))
         {
-            return dyn.Get<T>(name);
+            if (value is T typedValue)
+                return typedValue;
         }
-        catch
-        {
-            return fallback;
-        }
+
+        return fallback;
     }
 }

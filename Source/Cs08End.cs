@@ -9,11 +9,11 @@ namespace Celeste.Cutscenes
         private global::Celeste.Player player;
         private BadelineDummy badeline;
         private CharaDummy chara;
-        private NPC08_Madeline_Ending_Bandage madelineBandage;
-        private NPC08_Theo_Ending theo;
+        private Npc08MadelineEndingBandage madelineBandage;
+        private Npc08TheoEnding theo;
         private Npc08MaggyEnding magolor;
 
-        public Cs08End(global::Celeste.Player player, NPC08_Madeline_Ending_Bandage madelineBandage, NPC08_Theo_Ending theo, Npc08MaggyEnding magolor)
+        public Cs08End(global::Celeste.Player player, Npc08MadelineEndingBandage madelineBandage, Npc08TheoEnding theo, Npc08MaggyEnding magolor)
             : base(false, true)
         {
             this.player = player;

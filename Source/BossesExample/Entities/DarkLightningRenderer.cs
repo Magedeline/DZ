@@ -151,7 +151,11 @@ public class DarkLightningRenderer : Entity
       this.RebuildEdges();
     this.ToggleEdges();
     if (this.list.Count <= 0)
+    {
+      this.StopAmbience();
       return;
+    }
+    this.StartAmbience();
     foreach (DarkLightningRenderer.Bolt bolt in this.bolts)
       bolt.Update(this.Scene);
     if (!this.UpdateSeeds)

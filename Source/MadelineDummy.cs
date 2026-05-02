@@ -2,7 +2,7 @@
 namespace Celeste.Entities
 {
     /// <summary>
-    /// Optimized BadelineDummy entity - floating counterpart to CharaDummy
+    /// Optimized MadelineDummy entity - floating counterpart to CharaDummy
     /// Features proper initialization, error handling, and smooth floating movement
     /// Uses Madeline-specific sprite and effects
     /// </summary>
@@ -101,14 +101,14 @@ namespace Celeste.Entities
         {
             try
             {
-                Sprite = GFX.SpriteBank.Create("player_no_backpack");
+                Sprite = GFX.SpriteBank.Create("madeline");
             }
             catch
             {
                 // Fallback to madeline if no_backpack sprite bank fails
                 try
                 {
-                    Sprite = GFX.SpriteBank.Create("player");
+                    Sprite = GFX.SpriteBank.Create("madeline");
                 }
                 catch
                 {
@@ -154,7 +154,7 @@ namespace Celeste.Entities
             }
             catch (Exception ex)
             {
-                Logger.Log(LogLevel.Warn, "BadelineDummy", $"Failed to initialize auto animator: {ex.Message}");
+                Logger.Log(LogLevel.Warn, "MadelineDummy", $"Failed to initialize auto animator: {ex.Message}");
             }
         }
 
@@ -164,7 +164,7 @@ namespace Celeste.Entities
             {
                 Light = new VertexLight(
                     new Vector2(0f, -8f), 
-                    Color.IndianRed,  // Badeline's reddish light
+                    Color.IndianRed,  // Madeline's reddish light
                     1f, 
                     DEFAULT_LIGHT_START_RADIUS, 
                     DEFAULT_LIGHT_END_RADIUS
@@ -173,7 +173,7 @@ namespace Celeste.Entities
             }
             catch (Exception ex)
             {
-                Logger.Log(LogLevel.Warn, "BadelineDummy", $"Failed to initialize light: {ex.Message}");
+                Logger.Log(LogLevel.Warn, "MadelineDummy", $"Failed to initialize light: {ex.Message}");
             }
         }
 
@@ -187,7 +187,7 @@ namespace Celeste.Entities
             }
             catch (Exception ex)
             {
-                Logger.Log(LogLevel.Warn, "BadelineDummy", $"Failed to initialize wave system: {ex.Message}");
+                Logger.Log(LogLevel.Warn, "MadelineDummy", $"Failed to initialize wave system: {ex.Message}");
             }
         }
 
@@ -205,7 +205,7 @@ namespace Celeste.Entities
             }
             catch (Exception ex)
             {
-                Logger.Log(LogLevel.Warn, "BadelineDummy", $"Failed to initialize talk component: {ex.Message}");
+                Logger.Log(LogLevel.Warn, "MadelineDummy", $"Failed to initialize talk component: {ex.Message}");
             }
         }
 
@@ -228,14 +228,14 @@ namespace Celeste.Entities
             {
                 try
                 {
-                    Sprite = GFX.SpriteBank.Create("player_badeline");
-                    Sprite.Play("fallSlow");
+                    Sprite = GFX.SpriteBank.Create("madeline");
+                    Sprite.Play("idle");
                     Add(Sprite);
                     isInitialized = true;
                 }
                 catch
                 {
-                    Logger.Log(LogLevel.Error, "BadelineDummy", "Critical failure: Unable to create minimal sprite");
+                    Logger.Log(LogLevel.Error, "MadelineDummy", "Critical failure: Unable to create minimal sprite");
                 }
             }
         }
@@ -251,13 +251,13 @@ namespace Celeste.Entities
                 // Check for footstep frames in walking/running animations
                 if (IsFootstepFrame(animationName, currentFrame))
                 {
-                    // Use Badeline-specific footstep sound
+                    // Use Madeline-specific footstep sound
                     Audio.Play("event:/char/badeline/footstep", Position);
                 }
             }
             catch (Exception ex)
             {
-                Logger.Log(LogLevel.Warn, "BadelineDummy", $"Error in sprite frame change: {ex.Message}");
+                Logger.Log(LogLevel.Warn, "MadelineDummy", $"Error in sprite frame change: {ex.Message}");
             }
         }
 
@@ -277,7 +277,7 @@ namespace Celeste.Entities
             }
             catch (Exception ex)
             {
-                Logger.Log(LogLevel.Warn, "BadelineDummy", $"Error in wave update: {ex.Message}");
+                Logger.Log(LogLevel.Warn, "MadelineDummy", $"Error in wave update: {ex.Message}");
             }
         }
 
@@ -297,7 +297,7 @@ namespace Celeste.Entities
             }
             catch (Exception ex)
             {
-                Logger.Log(LogLevel.Error, "BadelineDummy", $"Error in Appear: {ex.Message}");
+                Logger.Log(LogLevel.Error, "MadelineDummy", $"Error in Appear: {ex.Message}");
             }
         }
 
@@ -317,7 +317,7 @@ namespace Celeste.Entities
             }
             catch (Exception ex)
             {
-                Logger.Log(LogLevel.Error, "BadelineDummy", $"Error in Vanish: {ex.Message}");
+                Logger.Log(LogLevel.Error, "MadelineDummy", $"Error in Vanish: {ex.Message}");
                 // Still try to remove self even if effects fail
                 try
                 {
@@ -325,7 +325,7 @@ namespace Celeste.Entities
                 }
                 catch (Exception fallbackEx)
                 {
-                    Logger.Log(LogLevel.Error, "BadelineDummy", $"Failed to remove self after vanish error: {fallbackEx.Message}");
+                    Logger.Log(LogLevel.Error, "MadelineDummy", $"Failed to remove self after vanish error: {fallbackEx.Message}");
                 }
             }
         }
@@ -339,7 +339,7 @@ namespace Celeste.Entities
             }
             catch (Exception ex)
             {
-                Logger.Log(LogLevel.Warn, "BadelineDummy", $"Error creating shockwave: {ex.Message}");
+                Logger.Log(LogLevel.Warn, "MadelineDummy", $"Error creating shockwave: {ex.Message}");
             }
         }
 
@@ -347,7 +347,7 @@ namespace Celeste.Entities
         {
             if (!isInitialized || Sprite == null) yield break;
 
-            Sprite.Play("fallSlow");
+            Sprite.Play("idle");
 
             // Set facing direction
             if (faceDirection && Math.Sign(target.X - X) != 0)

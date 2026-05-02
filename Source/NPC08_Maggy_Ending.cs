@@ -3,7 +3,7 @@ namespace Celeste.NPCs
     [CustomEntity(ids: "MaggyHelper/NPC08_Maggy_Ending")]
     public class Npc08MaggyEnding : Entity
     {
-        private const string donetalking = "ch8_endingmod";
+        private const string donetalking = "ch8_ending";
         
         private Sprite sprite;
         private TalkComponent talker;

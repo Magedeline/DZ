@@ -163,7 +163,7 @@ namespace Celeste.Entities {
             this.Add((Component)(this.Sprite = GFX.SpriteBank.Create("chara_boss")));
             this.Sprite.OnFrameChange = (anim =>
             {
-                if (anim == "idle" && this.Sprite.CurrentAnimationFrame == 18)
+                if (anim == "charaboss_idle" && this.Sprite.CurrentAnimationFrame == 18)
                     Audio.Play("event:/char/badeline/boss_idle_air", this.Position);
             });
             this.facing = -1;
@@ -258,7 +258,7 @@ namespace Celeste.Entities {
             if (Sprite == null)
                 CreateBossSprite();
             
-            Sprite.Play("getHit");
+            Sprite.Play("charaboss_getHit");
             Audio.Play("event:/char/badeline/boss_hug", Position);
             chargeSfx.Stop();
             if (laserSfx.EventName == "event:/char/badeline/boss_laser_charge" && laserSfx.Playing)
@@ -439,7 +439,7 @@ namespace Celeste.Entities {
             };
             tween4.OnComplete = (Tween t) =>
             {
-                Sprite.Play("recoverHit");
+                Sprite.Play("charaboss_recoverHit");
                 Moving = false;
                 Collidable = true;
                 global::Celeste.Player entity = Scene.Tracker.GetEntity<global::Celeste.Player>();
@@ -709,7 +709,7 @@ namespace Celeste.Entities {
 
         private void StartShootCharge()
         {
-            Sprite.Play("attack1Begin");
+            Sprite.Play("charaboss_attack1Begin");
             chargeSfx.Play("event:/char/badeline/boss_bullet");
         }
 
@@ -965,10 +965,10 @@ namespace Celeste.Entities {
                 yield break;
             }
 
+            string[] actions = attackSequence.Split(',');
+
             while (true)
             {
-                string[] actions = attackSequence.Split(',');
-                
                 foreach (string actionStr in actions)
                 {
                     string action = actionStr.Trim();
@@ -1041,7 +1041,7 @@ namespace Celeste.Entities {
             else
                 chargeSfx.Param("end", 1f);
             
-            Sprite.Play("attack1Recoil", restart: true);
+            Sprite.Play("charaboss_attack1Recoil", restart: true);
             global::Celeste.Player entity = level.Tracker.GetEntity<global::Celeste.Player>();
             if (entity != null)
                 level.Add(new CharaBossShot().Init(this, entity, angleOffset));
@@ -1054,43 +1054,43 @@ namespace Celeste.Entities {
             else
                 chargeSfx.Param("end", 1f);
             
-            Sprite.Play("attack1Recoil", restart: true);
+            Sprite.Play("charaboss_attack1Recoil", restart: true);
             level.Add(new CharaBossShot().Init(this, at));
         }
 
         private IEnumerator Beam()
         {
             laserSfx.Play("event:/char/badeline/boss_laser_charge");
-            Sprite.Play("attack2Begin", restart: true);
+            Sprite.Play("charaboss_attack2Begin", restart: true);
             yield return 0.1f;
             global::Celeste.Player entity = level.Tracker.GetEntity<global::Celeste.Player>();
             if (entity != null)
                 level.Add(new CharaBossBeam().Init(this, entity));
             
             yield return 0.9f;
-            Sprite.Play("attack2Lock", restart: true);
+            Sprite.Play("charaboss_attack2Lock", restart: true);
             yield return 0.5f;
             laserSfx.Stop();
             Audio.Play("event:/char/badeline/boss_laser_fire", Position);
-            Sprite.Play("attack2Recoil");
+            Sprite.Play("charaboss_attack2Recoil");
         }
 
         // Keep BiggerBeam method
         private IEnumerator BiggerBeam()
         {
             laserSfx.Play("event:/char/badeline/boss_laser_charge");
-            Sprite.Play("attack2Begin", restart: true);
+            Sprite.Play("charaboss_attack2Begin", restart: true);
             yield return 0.2f; // Longer charge setup
             global::Celeste.Player entity = level.Tracker.GetEntity<global::Celeste.Player>();
             if (entity != null)
                 level.Add(new CharaBossBiggerBeam().Init(this, entity));
             
             yield return 1.4f; // Wait for the bigger beam charge time
-            Sprite.Play("attack2Lock", restart: true);
+            Sprite.Play("charaboss_attack2Lock", restart: true);
             yield return 0.6f; // Wait for lock
             laserSfx.Stop();
             Audio.Play("event:/char/badeline/boss_laser_fire", Position);
-            Sprite.Play("attack2Recoil");
+            Sprite.Play("charaboss_attack2Recoil");
         }
 
         public override void Removed(Scene scene)

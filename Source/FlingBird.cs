@@ -28,17 +28,12 @@ internal class FlingBirdMod : Entity
 
     public static void Load()
     {
-        On.Celeste.Player.Update += (orig, self) =>
-        {
-            orig(self);
+        // Redundant Player.Update hook removed for performance.
+        // FlingBirdMod already uses PlayerCollider for collision detection.
+    }
 
-            // Check for FlingBirdMod instances in the scene
-            var flingBirds = self.Scene.Entities.FindAll<FlingBirdMod>();
-            foreach (var flingBird in flingBirds)
-                // Handle specific logic for FlingBirdMod instances
-                if (flingBird.state == States.Wait && self.CollideCheck(flingBird))
-                    flingBird.OnPlayer(self);
-        };
+    public static void Unload()
+    {
     }
 
     public FlingBirdMod(Vector2[] nodes, bool skippable, bool lightningRemoved)

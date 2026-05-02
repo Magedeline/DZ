@@ -2,75 +2,47 @@
   Name: MaggyHelper
   Version: 3.0.0
   Dependencies:
+    - Name: 2.5D Helper
+      Version: 0.1.0
     - Name: AdventureHelper
       Version: 1.6.0
-    - Name: Anonhelper
-      Version: 1.1.1
-    - Name: AxoHelper
-      Version: 1.0.0
-    - Name: BounceHelper
-      Version: 1.14.0
     - Name: BrokemiaHelper
       Version: 1.8.5
-    - Name: CherryHelper
-      Version: 1.8.2
     - Name: ChroniaHelper
-      Version: 1.47.49
-    - Name: CollabUtils2
+      Version: 1.49.24
     - Name: CommunalHelper
-      Version: 1.24.5
+      Version: 1.25.1
     - Name: ContortHelper
       Version: 1.5.5
-    - Name: CrystallineHelper
-      Version: 1.17.1
     - Name: DJMapHelper
       Version: 1.13.4
-    - Name: DoonvHelper
-      Version: 1.0.3
     - Name: EeveeHelper
-      Version: 1.12.3
+      Version: 1.12.5
     - Name: Everest
-      Version: 1.6249.0
+      Version: 1.6272.0
     - Name: Everest
-      Version: 1.6249.0
+      Version: 1.6272.0
+    - Name: Everest
+      Version: 1.6272.0
     - Name: ExtendedVariantMode
-      Version: 0.48.1
-    - Name: FemtoHelper
-      Version: 1.15.10
-    - Name: FlaglinesAndSuch
-      Version: 1.6.65
+      Version: 0.48.2
     - Name: FrostHelper
-      Version: 1.77.1
-    - Name: HonlyHelper
-      Version: 1.7.5
-    - Name: IsaGrabBag
-      Version: 1.7.3
+      Version: 1.78.1
     - Name: JackalHelper
       Version: 1.7.6
-    - Name: JungleHelper
-      Version: 1.4.7
-    - Name: LoennScripts
-      Version: 1.0.8
     - Name: LuaCutscenes
       Version: 0.2.13
-    - Name: LunaticHelper
-      Version: 1.1.1
     - Name: MaxHelpingHand
-      Version: 1.39.18
-    - Name: ModderToolkit
-      Version: 0.1.1
+      Version: 1.39.19
     - Name: MoreDasheline
       Version: 1.7.1
     - Name: NerdHelper
       Version: 1.6.3
-    - Name: OutbackHelper
-    - Name: ReverseHelper
-      Version: 1.15.20
-    - Name: SkinModHelperPlus
-      Version: 0.17.7
-    - Name: SorbetHelper
-      Version: 1.8.3
+    - Name: PCGHelper
+      Version: 0.1.0
+    - Name: PlatinumStrawberry
+      Version: 1.1.1.0
+    - Name: SkinModHelper
+      Version: 0.6.1
     - Name: VidPlayer
       Version: 0.5.2
-    - Name: VivHelper
-      Version: 1.14.10

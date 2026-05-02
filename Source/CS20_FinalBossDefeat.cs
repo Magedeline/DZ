@@ -53,16 +53,12 @@ namespace Celeste.Cutscenes
         private void setupSprites()
         {
             // Create sprites for the characters
-            madelineSprite = new Sprite(GFX.Game, "characters/player/");
-            madelineSprite.AddLoop("idle", "idle", 0.1f);
-            madelineSprite.AddLoop("laying", "sleep", 0.1f);
-            madelineSprite.Play("laying");
+            madelineSprite = GFX.SpriteBank.Create("madeline");
+            madelineSprite.Play("sleep");
             Add(madelineSprite);
             
-            badelineSprite = new Sprite(GFX.Game, "characters/badeline/");
-            badelineSprite.AddLoop("idle", "idle", 0.1f);
-            badelineSprite.AddLoop("laying", "sleep", 0.1f);
-            badelineSprite.Play("laying");
+            badelineSprite = GFX.SpriteBank.Create("maggy_badeline");
+            badelineSprite.Play("sleep");
             Add(badelineSprite);
             
             asrielSprite = new Sprite(GFX.Game, "characters/asriel/");

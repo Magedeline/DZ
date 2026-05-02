@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using Celeste;
 using global::Celeste.Mod.MaggyHelper;
 using Celeste.Extensions;
@@ -14,14 +15,21 @@ namespace Celeste;
 /// </summary>
 public static class KirbyPlayerStateController
 {
-    private const string FloatTimerKey = "MaggyHelper.KirbyFloatTimer";
+    private class KirbyPlayerData
+    {
+        public float FloatTimer;
+    }
 
-    private const float KirbyFloatSpeed = -40f;
+    private static readonly ConditionalWeakTable<Player, KirbyPlayerData> PlayerData = new();
+
+    private const float KirbyFloatSpeed = -80f;
     private const float KirbyFloatMaxTime = 3f;
-    private const float KirbyFloatGravity = 100f;
-    private const float KirbyFloatTargetFallSpeed = 20f;
+    private const float KirbyFloatGravity = 150f;
+    private const float KirbyFloatTargetFallSpeed = 30f;
     private const float KirbyFloatHSpeed = 70f;
     private const float KirbyFloatAccel = 600f;
+    private const float KirbyFloatJumpBurst = -120f;
+    private const float KirbyFloatFastFall = 200f;
 
     public static int StKirbyFloat { get; private set; } = -1;
 
@@ -98,10 +106,8 @@ public static class KirbyPlayerStateController
         if (!Input.Jump.Pressed)
             return false;
 
-        // Mirror the legacy Kirby player behavior closely: the float kicks in
-        // after a regular jump attempt fails, not while the player is still rising.
-        if (player.Speed.Y < 0f)
-            return false;
+        // Allow floating to start even while rising. Kirby can start floating at any time in the air.
+        // Removed: if (player.Speed.Y < 0f) return false;
 
         return GetFloatTimer(player) > 0f;
     }
@@ -111,7 +117,8 @@ public static class KirbyPlayerStateController
         if (GetFloatTimer(player) <= 0f)
             SetFloatTimer(player, KirbyFloatMaxTime);
 
-        player.Speed.Y = KirbyFloatSpeed;
+        if (player.Speed.Y > KirbyFloatSpeed)
+            player.Speed.Y = KirbyFloatSpeed;
 
         if (player.Sprite != null)
         {
@@ -141,12 +148,9 @@ public static class KirbyPlayerStateController
         if (Input.Dash.Pressed || Input.Grab.Pressed)
             return Player.StNormal;
 
-        // Allow players to cancel hover by pressing down on keyboard or stick.
         if (Input.MoveY.Value > 0)
         {
-            if (player.Speed.Y < 0f)
-                player.Speed.Y = 0f;
-
+            player.Speed.Y = KirbyFloatFastFall;
             return Player.StNormal;
         }
 
@@ -166,7 +170,7 @@ public static class KirbyPlayerStateController
         if (Input.Jump.Pressed)
         {
             Input.Jump.ConsumeBuffer();
-            player.Speed.Y = KirbyFloatSpeed;
+            player.Speed.Y = KirbyFloatJumpBurst;
             SetFloatTimer(player, Math.Max(0f, remaining - 0.15f));
 
             if (player.Scene is Level level)
@@ -178,9 +182,6 @@ public static class KirbyPlayerStateController
 
         if (moveX != 0)
             player.Facing = (Facings) moveX;
-
-        player.MoveH(player.Speed.X * Engine.DeltaTime);
-        player.MoveV(player.Speed.Y * Engine.DeltaTime);
 
         if (player.OnGround() && player.Speed.Y >= 0f)
             return Player.StNormal;
@@ -201,14 +202,17 @@ public static class KirbyPlayerStateController
 
     private static float GetFloatTimer(Player player)
     {
-        DynamicData data = DynamicData.For(player);
-        return data.TryGet<float>(FloatTimerKey, out float value)
-            ? value
-            : KirbyFloatMaxTime;
+        if (player == null)
+            return KirbyFloatMaxTime;
+
+        return PlayerData.TryGetValue(player, out var data) ? data.FloatTimer : KirbyFloatMaxTime;
     }
 
     private static void SetFloatTimer(Player player, float value)
     {
-        DynamicData.For(player).Set(FloatTimerKey, value);
+        if (player == null)
+            return;
+
+        PlayerData.GetOrCreateValue(player).FloatTimer = value;
     }
 }

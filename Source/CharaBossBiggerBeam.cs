@@ -33,7 +33,7 @@ public partial class CharaBossBiggerBeam : Entity
         Add(beamSprite = GFX.SpriteBank.Create("chara_beam"));
         beamSprite.OnLastFrame = anim =>
         {
-            if (anim != "shoot")
+            if (anim != "charaboss_shoot")
                 return;
             destroy();
         };
@@ -59,7 +59,7 @@ public partial class CharaBossBiggerBeam : Entity
         chargeTimer = CHARGE_TIME;
         followTimer = FOLLOW_TIME;
         activeTimer = ACTIVE_TIME;
-        beamSprite.Play("charge");
+        beamSprite.Play("charaboss_charge");
         sideFadeAlpha = 0.0f;
         beamAlpha = 0.0f;
         isLocked = false;
@@ -117,9 +117,9 @@ public partial class CharaBossBiggerBeam : Entity
                 
                 angle = Calc.Approach(angle, targetAngle, 2f * Engine.DeltaTime);
             }
-            else if (beamSprite.CurrentAnimationID == "charge" && followTimer <= 0.0)
+            else if (beamSprite.CurrentAnimationID == "charaboss_charge" && followTimer <= 0.0)
             {
-                beamSprite.Play("lock");
+                beamSprite.Play("charaboss_lock");
                 isLocked = true;
             }
             
@@ -136,10 +136,10 @@ public partial class CharaBossBiggerBeam : Entity
                 return;
                 
             sideFadeAlpha = Calc.Approach(sideFadeAlpha, 0.0f, Engine.DeltaTime * 6f);
-            if (beamSprite.CurrentAnimationID != "shoot")
+            if (beamSprite.CurrentAnimationID != "charaboss_shoot")
             {
-                beamSprite.Play("shoot");
-                beamStartSprite.Play("shoot", true);
+                beamSprite.Play("charaboss_shoot");
+                beamStartSprite.Play("charaboss_shoot", true);
             }
             
             activeTimer -= Engine.DeltaTime;

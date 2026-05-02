@@ -40,9 +40,9 @@ sevenSoulBoost.fieldOrder = {
     "refillDashes",
     "refillStamina",
     "dashCount",
-    "finalCh20Boost",
-    "finalCh20GoldenBoost",
-    "finalCh20Dialog"
+    "finalCh21Boost",
+    "finalCh21GoldenBoost",
+    "finalCh21Dialog"
 }
 
 sevenSoulBoost.placements = {
@@ -55,10 +55,10 @@ sevenSoulBoost.placements = {
             boostSpeed = 320.0,
             refillDashes = true,
             refillStamina = true,
-            dashCount = 1,
-            finalCh20Boost = false,
-            finalCh20GoldenBoost = false,
-            finalCh20Dialog = ""
+            dashCount = 10,
+            finalCh21Boost = false,
+            finalCh21GoldenBoost = false,
+            finalCh210Dialog = ""
         }
     },
     {
@@ -70,14 +70,29 @@ sevenSoulBoost.placements = {
             boostSpeed = 320.0,
             refillDashes = true,
             refillStamina = true,
-            dashCount = 1,
-            finalCh20Boost = false,
-            finalCh20GoldenBoost = false,
-            finalCh20Dialog = ""
+            dashCount = 10,
+            finalCh21Boost = false,
+            finalCh21GoldenBoost = false,
+            finalCh21Dialog = ""
         }
     },
     {
-        name = "seven_soul_boost_ch20_final",
+        name = "seven_soul_boost_ch21_final",
+        data = {
+            lockCamera = true,
+            canSkip = false,
+            oneUse = true,
+            boostSpeed = 320.0,
+            refillDashes = true,
+            refillStamina = true,
+            dashCount = 10,
+            finalCh21Boost = true,
+            finalCh21GoldenBoost = false,
+            finalCh21Dialog = "CH21_MADELINE_LAST_BOOST"
+        }
+    },
+    {
+        name = "seven_soul_boost_ch21_golden",
         data = {
             lockCamera = true,
             canSkip = false,
@@ -86,24 +101,9 @@ sevenSoulBoost.placements = {
             refillDashes = true,
             refillStamina = true,
             dashCount = 1,
-            finalCh20Boost = true,
-            finalCh20GoldenBoost = false,
-            finalCh20Dialog = "CH20_SEVEN_SOULS_LAST_BOOST"
-        }
-    },
-    {
-        name = "seven_soul_boost_ch20_golden",
-        data = {
-            lockCamera = true,
-            canSkip = false,
-            oneUse = true,
-            boostSpeed = 320.0,
-            refillDashes = true,
-            refillStamina = true,
-            dashCount = 1,
-            finalCh20Boost = true,
-            finalCh20GoldenBoost = true,
-            finalCh20Dialog = "CH20_SEVEN_SOULS_LAST_BOOST"
+            finalCh21Boost = true,
+            finalCh21GoldenBoost = true,
+            finalCh21Dialog = "CH21_MADELINE_LAST_BOOST"
         }
     }
 }

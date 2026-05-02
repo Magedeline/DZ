@@ -714,23 +714,23 @@ namespace Celeste.Effects
 
         private static void DamageEntitiesAt(Level level, Vector2 position, float radius, string damageType)
         {
-            foreach (Entity entity in level.Entities)
+            foreach (Actor actor in level.Tracker.GetEntities<Actor>())
             {
-                if (Vector2.Distance(entity.Position, position) <= radius)
+                if (Vector2.Distance(actor.Position, position) <= radius)
                 {
-                    ApplyElementalDamage(entity, position, damageType);
+                    ApplyElementalDamage(actor, position, damageType);
                 }
             }
         }
 
         private static void PushEntitiesInDirection(Level level, Vector2 origin, Vector2 direction, float force, float range)
         {
-            foreach (Entity entity in level.Entities)
+            foreach (Actor actor in level.Tracker.GetEntities<Actor>())
             {
-                if (Vector2.Distance(entity.Position, origin) <= range && entity is Actor actor)
+                if (Vector2.Distance(actor.Position, origin) <= range)
                 {
                     // Apply wind force (this would need entity-specific implementation)
-                    if (entity is global::Celeste.Player player)
+                    if (actor is global::Celeste.Player player)
                     {
                         // Simple knockback for player
                         Vector2 knockback = direction.SafeNormalize() * force * 0.5f;
@@ -742,63 +742,72 @@ namespace Celeste.Effects
 
         private static void LiftEntitiesInArea(Level level, Vector2 position, float radius, float height)
         {
-            foreach (Entity entity in level.Entities)
+            foreach (Actor actor in level.Tracker.GetEntities<Actor>())
             {
-                if (Vector2.Distance(entity.Position, position) <= radius && entity is Actor actor)
+                if (Vector2.Distance(actor.Position, position) <= radius)
                 {
                     // Apply upward force
-                    level.ParticlesFG.Emit(P_AirCurrent, 3, entity.Position, Vector2.One * 6f);
+                    level.ParticlesFG.Emit(P_AirCurrent, 3, actor.Position, Vector2.One * 6f);
                 }
             }
         }
 
         private static void CorruptEntitiesInRange(Level level, Vector2 center, float radius)
         {
-            foreach (Entity entity in level.Entities)
+            foreach (Actor actor in level.Tracker.GetEntities<Actor>())
             {
-                if (Vector2.Distance(entity.Position, center) <= radius)
+                if (Vector2.Distance(actor.Position, center) <= radius)
                 {
                     // Apply corruption effect
-                    level.ParticlesFG.Emit(P_Corruption, 3, entity.Position, Vector2.One * 6f);
+                    level.ParticlesFG.Emit(P_Corruption, 3, actor.Position, Vector2.One * 6f);
                 }
             }
         }
 
         private static void PurifyEntitiesAlongLine(Level level, Vector2 start, Vector2 end, float width)
         {
-            Vector2 direction = (end - start);
-            int segments = (int)(direction.Length() / 8f);
-            Vector2 step = direction / segments;
-            
-            for (int i = 0; i < segments; i++)
+            // Optimize: iterate once over actors and solids instead of multiple times in a loop
+            foreach (Actor actor in level.Tracker.GetEntities<Actor>())
             {
-                Vector2 position = start + step * i;
-                PurifyEntitiesInRange(level, position, width);
+                if (IsPointNearLine(actor.Position, start, end, width))
+                {
+                    level.ParticlesFG.Emit(P_Light, 2, actor.Position, Vector2.One * 4f);
+                }
             }
+        }
+
+        private static bool IsPointNearLine(Vector2 point, Vector2 start, Vector2 end, float width)
+        {
+            float lengthSq = Vector2.DistanceSquared(start, end);
+            if (lengthSq == 0) return Vector2.Distance(point, start) <= width;
+            
+            float t = MathHelper.Clamp(Vector2.Dot(point - start, end - start) / lengthSq, 0, 1);
+            Vector2 projection = start + t * (end - start);
+            return Vector2.Distance(point, projection) <= width;
         }
 
         private static void PurifyEntitiesInRange(Level level, Vector2 center, float radius)
         {
-            foreach (Entity entity in level.Entities)
+            foreach (Actor actor in level.Tracker.GetEntities<Actor>())
             {
-                if (Vector2.Distance(entity.Position, center) <= radius)
+                if (Vector2.Distance(actor.Position, center) <= radius)
                 {
                     // Remove negative effects, heal if applicable
-                    level.ParticlesFG.Emit(P_Light, 2, entity.Position, Vector2.One * 4f);
+                    level.ParticlesFG.Emit(P_Light, 2, actor.Position, Vector2.One * 4f);
                 }
             }
         }
 
         private static void HealEntitiesInRange(Level level, Vector2 center, float radius)
         {
-            foreach (Entity entity in level.Entities)
+            foreach (Actor actor in level.Tracker.GetEntities<Actor>())
             {
-                if (Vector2.Distance(entity.Position, center) <= radius)
+                if (Vector2.Distance(actor.Position, center) <= radius)
                 {
-                    if (entity is global::Celeste.Player)
+                    if (actor is global::Celeste.Player)
                     {
                         // Heal player (would need proper health system integration)
-                        level.ParticlesFG.Emit(P_Healing, 5, entity.Position, Vector2.One * 8f);
+                        level.ParticlesFG.Emit(P_Healing, 5, actor.Position, Vector2.One * 8f);
                     }
                 }
             }
@@ -870,18 +879,18 @@ namespace Celeste.Effects
 
         private void PullEntities()
         {
-            foreach (Entity entity in Scene.Entities)
+            foreach (Actor actor in Scene.Tracker.GetEntities<Actor>())
             {
-                float distance = Vector2.Distance(entity.Position, Position);
-                if (distance <= radius && entity is Actor actor)
+                float distance = Vector2.Distance(actor.Position, Position);
+                if (distance <= radius)
                 {
-                    Vector2 pullDirection = (Position - entity.Position).SafeNormalize();
+                    Vector2 pullDirection = (Position - actor.Position).SafeNormalize();
                     float pullStrength = (1f - distance / radius) * pullForce;
                     
                     // Apply pull force (would need entity-specific implementation)
                     if (Scene is Level level)
                     {
-                        level.ParticlesFG.Emit(AdditionalElementalEffects.P_Wind, 1, entity.Position, Vector2.One * 4f);
+                        level.ParticlesFG.Emit(AdditionalElementalEffects.P_Wind, 1, actor.Position, Vector2.One * 4f);
                     }
                 }
             }
@@ -927,20 +936,23 @@ namespace Celeste.Effects
 
         private void ConsumeEntities()
         {
-            foreach (Entity entity in Scene.Entities)
+            // Only consume actors and solids to avoid iterating over every single entity in the scene
+            // This significantly improves performance in large rooms.
+            foreach (Actor actor in Scene.Tracker.GetEntities<Actor>())
             {
-                if (Vector2.Distance(entity.Position, Position) <= consumeRadius)
+                if (!(actor is global::Celeste.Player) && Vector2.Distance(actor.Position, Position) <= consumeRadius)
                 {
-                    if (entity != this && !(entity is global::Celeste.Player))
-                    {
-                        // Consume entity with void effect
-                        entity.RemoveSelf();
-                        
-                        if (Scene is Level level)
-                        {
-                            level.ParticlesFG.Emit(AdditionalElementalEffects.P_Void, 5, entity.Position, Vector2.One * 8f);
-                        }
-                    }
+                    actor.RemoveSelf();
+                    (Scene as Level)?.ParticlesFG.Emit(AdditionalElementalEffects.P_Void, 5, actor.Position, Vector2.One * 8f);
+                }
+            }
+            
+            foreach (Solid solid in Scene.Tracker.GetEntities<Solid>())
+            {
+                if (Vector2.Distance(solid.Position, Position) <= consumeRadius)
+                {
+                    solid.RemoveSelf();
+                    (Scene as Level)?.ParticlesFG.Emit(AdditionalElementalEffects.P_Void, 5, solid.Position, Vector2.One * 8f);
                 }
             }
         }

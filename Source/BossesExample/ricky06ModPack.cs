@@ -59,7 +59,6 @@ public static class BossesExampleModule
         On.Celeste.Player.Die += Player_Die;
         On.Celeste.MapData.Reload += MapData_Reload;
         On.Celeste.Level.LoadLevel += Level_LoadLevel;
-        On.Celeste.Level.Update += Level_Update;
 
         TryHookPlayerMethod("DashBegin", nameof(Hook_Player_DashBegin), ref dashBeginHook);
         TryHookPlayerMethod("DashEnd", nameof(Hook_Player_DashEnd), ref dashEndHook);
@@ -81,7 +80,6 @@ public static class BossesExampleModule
         On.Celeste.Player.Die -= Player_Die;
         On.Celeste.MapData.Reload -= MapData_Reload;
         On.Celeste.Level.LoadLevel -= Level_LoadLevel;
-        On.Celeste.Level.Update -= Level_Update;
 
         dashBeginHook?.Dispose();
         dashBeginHook = null;
@@ -161,26 +159,6 @@ public static class BossesExampleModule
         }
 
         ClearDestroyDash();
-    }
-
-    private static void Level_Update(On.Celeste.Level.orig_Update orig, Level self)
-    {
-        orig(self);
-
-        DarkLightningRenderer renderer = self?.Tracker.GetEntity<DarkLightningRenderer>();
-        if (renderer == null)
-        {
-            return;
-        }
-
-        if (self.Tracker.GetEntity<DarkLightning>() != null)
-        {
-            renderer.StartAmbience();
-        }
-        else
-        {
-            renderer.StopAmbience();
-        }
     }
 
     private static void MapData_Reload(On.Celeste.MapData.orig_Reload orig, MapData self)

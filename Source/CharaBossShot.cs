@@ -71,7 +71,11 @@ public partial class CharaBossShot : Entity
 
     private void PlayProjectileCharge()
     {
-        if (sprite.Has("charge"))
+        if (sprite.Has("charaboss_charge"))
+            sprite.Play("charaboss_charge", true);
+        else if (sprite.Has("charaboss_loop"))
+            sprite.Play("charaboss_loop", true);
+        else if (sprite.Has("charge"))
             sprite.Play("charge", true);
         else if (sprite.Has("projectile"))
             sprite.Play("projectile", true);

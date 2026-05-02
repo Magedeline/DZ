@@ -1,4 +1,5 @@
 using Celeste.Cutscenes;
+using Celeste.Entities;
 
 namespace Celeste.NPCs;
 
@@ -7,12 +8,15 @@ public class Npc08MadelinePlateau : global::Celeste.NPC
 {
     private float speedY;
 
+    private MadelineNPCDummy dummy;
+
     public Npc08MadelinePlateau(EntityData data, Vector2 offset)
         : base(data.Position + offset)
     {
-        Add(Sprite = GFX.SpriteBank.Create("madeline"));
-        IdleAnim = "carryMaddyCollapse";
-        MoveAnim = "carryMaddyWalk";
+        dummy = new MadelineNPCDummy(Vector2.Zero);
+        Add(Sprite = dummy.Sprite);
+        IdleAnim = "idle";
+        MoveAnim = "walk";
         Maxspeed = 48f;
     }
 

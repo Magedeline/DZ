@@ -36,35 +36,25 @@ namespace Celeste.Cutscenes
                 return new Vector2(bounds.Left, bounds.Top);
             }
 
-            try
+            if (level != null)
             {
                 Rectangle bounds = level.Bounds;
                 return new Vector2(bounds.Left, bounds.Top);
             }
-            catch (NullReferenceException)
-            {
-                return Vector2.Zero;
-            }
+
+            return Vector2.Zero;
         }
 
         private static bool TryGetRoom(Level level, string roomName, out LevelData levelData)
         {
             levelData = null;
-            if (level?.Session?.MapData?.Levels == null || string.IsNullOrWhiteSpace(roomName))
+            if (level?.Session?.MapData == null || string.IsNullOrWhiteSpace(roomName))
             {
                 return false;
             }
 
-            foreach (LevelData currentLevelData in level.Session.MapData.Levels)
-            {
-                if (string.Equals(currentLevelData?.Name, roomName, StringComparison.OrdinalIgnoreCase))
-                {
-                    levelData = currentLevelData;
-                    return true;
-                }
-            }
-
-            return false;
+            levelData = level.Session.MapData.Get(roomName);
+            return levelData != null;
         }
     }
 }

@@ -13,10 +13,10 @@ public class FinalTitanSummitBackgroundManager : Entity
 {
     private const string BeginSwapFlag = "finaltitansummit_beginswap_";
     private const string BgSwapFlag = "finaltitansummit_bgswap_";
-    private const string PixelLabAssetRoot = "bgs/maggy/20/finaltitansummit/";
+    private const string PixelLabAssetRoot = "bgs/maggy/21/finaltitansummit/";
     private const float ScreenWidth = 320f;
     private const float ScreenHeight = 180f;
-    private const string ThunderSfx = "event:/desolozantas/final_content/game/20_last_push/multiple_lightning_strike";
+    private const string ThunderSfx = "event:/desolozantas/final_content/game/21_last_push/multiple_lightning_strike";
 
     private static readonly string[] BirdGonerNames =
     {
@@ -129,7 +129,7 @@ public class FinalTitanSummitBackgroundManager : Entity
 
     private static readonly string[] ActorCycle =
     {
-        "asriel",
+        "asriel_kid",
         "badeline",
         "seven_souls",
         "bird",
@@ -158,7 +158,7 @@ public class FinalTitanSummitBackgroundManager : Entity
     private readonly bool dark;
     private readonly bool introLaunch;
     private readonly int index;
-    private readonly int progressStage;
+    private readonly int progress;
     private readonly StageVisualProfile stageProfile;
     private readonly string cutscene;
     private readonly string ambience;
@@ -204,11 +204,12 @@ public class FinalTitanSummitBackgroundManager : Entity
     {
         Tag = (int)Tags.TransitionUpdate;
         Depth = 8900;
+        Collider = new Hitbox(data.Width, data.Height);
 
         index = data.Int(nameof(index));
-        progressStage = Math.Clamp(index, 0, 12);
-        stageProfile = GetStageProfile(progressStage);
-        progression = progressStage / 12f;
+        progress = Math.Clamp(index, 0, 12);
+        stageProfile = GetStageProfile(progress);
+        progression = progress / 12f;
         cloudStrengthMultiplier = Math.Max(0f, data.Float("cloudStrengthMultiplier", 1f));
         debrisStrengthMultiplier = Math.Max(0f, data.Float("debrisStrengthMultiplier", 1f));
         creatureStrengthMultiplier = Math.Max(0f, data.Float("creatureStrengthMultiplier", 1f));
@@ -239,7 +240,7 @@ public class FinalTitanSummitBackgroundManager : Entity
         );
         giygasTextures = GetAtlasSubtexturesWithFallback(
             PixelLabAssetRoot + "giygas",
-            "bgs/maggy/18/giygas/bg"
+            "bgs/maggy/21/finaltitansummit/giygasbg"
         );
         if (giygasTextures.Count == 0)
         {
@@ -277,9 +278,7 @@ public class FinalTitanSummitBackgroundManager : Entity
         }
         creatureTextures = GetCombinedAtlasSubtextures(
             PixelLabAssetRoot + "creature",
-            "characters/asrielgodboss/hypergoner_mainface",
-            "characters/asrielgodboss/hypergoner_jaws",
-            "characters/asrielgodboss/hypergoner_horns"
+            "characters/asrielgodboss/hypergoner_mainface"
         );
         if (creatureTextures.Count == 0)
         {
@@ -331,17 +330,17 @@ public class FinalTitanSummitBackgroundManager : Entity
     private IEnumerator Routine()
     {
         FinalTitanSummitBackgroundManager manager = this;
-        global::Celeste.Player currentPlayer = manager.Scene.Tracker.GetEntity<global::Celeste.Player>();
-        while (currentPlayer == null || currentPlayer.Y > manager.Y)
+        global::Celeste.Player currentPlayer;
+        
+        while ((currentPlayer = manager.Scene.Tracker.GetEntity<global::Celeste.Player>()) == null || !manager.CollideCheck(currentPlayer))
         {
-            currentPlayer = manager.Scene.Tracker.GetEntity<global::Celeste.Player>();
             yield return null;
         }
 
         player = currentPlayer;
 
-        manager.level.Session.SetFlag(GetBeginSwapFlag(progressStage));
-        manager.level.Session.SetFlag(GetActorFlag(progressStage));
+        manager.level.Session.SetFlag(GetBeginSwapFlag(progress));
+        manager.level.Session.SetFlag(GetActorFlag(progress));
 
         currentPlayer.Sprite.Play("launch");
         currentPlayer.Speed = Vector2.Zero;
@@ -371,9 +370,6 @@ public class FinalTitanSummitBackgroundManager : Entity
     public override void Update()
     {
         base.Update();
-
-        if (level == null)
-            level = Scene as Level;
 
         backgroundPulse += Engine.DeltaTime * (0.55f + progression * 0.8f);
         giygasPulse += Engine.DeltaTime * (0.9f + progression * 1.1f);
@@ -413,9 +409,9 @@ public class FinalTitanSummitBackgroundManager : Entity
     public override void Removed(Scene scene)
     {
         FadeSnapTo(0f);
-        level?.Session.SetFlag(GetBackgroundSwapFlag(progressStage), false);
-        level?.Session.SetFlag(GetBeginSwapFlag(progressStage), false);
-        level?.Session.SetFlag(GetActorFlag(progressStage), false);
+        level?.Session.SetFlag(GetBackgroundSwapFlag(progress), false);
+        level?.Session.SetFlag(GetBeginSwapFlag(progress), false);
+        level?.Session.SetFlag(GetActorFlag(progress), false);
         if (level != null)
             level.CanRetry = true;
 
@@ -456,7 +452,7 @@ public class FinalTitanSummitBackgroundManager : Entity
 
         yield return 0.25f;
 
-        global::Celeste.Cutscenes.CS20_TrueAscend ascendCutscene = new(progressStage, dialogId, dark);
+        global::Celeste.Cutscenes.CS20_TrueAscend ascendCutscene = new(progress, dialogId, dark);
         level.Add(ascendCutscene);
         yield return null;
 
@@ -471,7 +467,7 @@ public class FinalTitanSummitBackgroundManager : Entity
 
         level.CanRetry = false;
         player.Sprite.Play("launch");
-        Audio.Play("event:/desolozantas/char/kirby/summit_flytonext", player.Position);
+        Audio.Play("event:/desolozantas/final_content/char/kirby/final_titan_summit_flynext", player.Position);
         yield return 0.25f;
 
         Vector2 from = player.Position;
@@ -504,7 +500,7 @@ public class FinalTitanSummitBackgroundManager : Entity
         player.SummitLaunch(player.X);
         player.DummyGravity = true;
         player.DummyAutoAnimate = true;
-        level.Session.SetFlag(GetBackgroundSwapFlag(progressStage));
+        level.Session.SetFlag(GetBackgroundSwapFlag(progress));
         level.NextTransitionDuration = 0.05f;
     }
 
@@ -674,8 +670,8 @@ public class FinalTitanSummitBackgroundManager : Entity
 
         float thunderStrength = GetThunderStrength();
         thunderCooldown = Calc.Random.Range(
-            Math.Max(0.6f, (3.8f - progressStage * 0.18f) / Math.Max(0.4f, thunderStrength)),
-            Math.Max(1.0f, (6.4f - progressStage * 0.2f) / Math.Max(0.4f, thunderStrength))
+            Math.Max(0.6f, (3.8f - progress * 0.18f) / Math.Max(0.4f, thunderStrength)),
+            Math.Max(1.0f, (6.4f - progress * 0.2f) / Math.Max(0.4f, thunderStrength))
         );
         thunderFlash = Math.Min(1.2f, 0.85f + thunderStrength * 0.25f);
         thunderAlpha = Math.Min(1f, 0.55f + thunderStrength * 0.35f);
@@ -713,7 +709,7 @@ public class FinalTitanSummitBackgroundManager : Entity
             }
         }
 
-        for (int i = 0; i < 5 + progressStage / 3; i++)
+        for (int i = 0; i < 5 + progress / 3; i++)
         {
             float y = camera.Y + i * 38f - 22f;
             float wave = (float)Math.Sin(giygasPulse * 0.9f + i * 0.8f) * (8f + progression * 16f);
@@ -988,7 +984,7 @@ public class FinalTitanSummitBackgroundManager : Entity
         if (!string.IsNullOrWhiteSpace(cutscene))
             return cutscene;
 
-        return progressStage <= 12 ? $"CH20_ASCEND_VS_ELS_{progressStage}" : string.Empty;
+        return progress <= 12 ? $"CH21_ASCEND_VS_ELS_{progress}" : string.Empty;
     }
 
     private sealed class LaunchFader : Entity

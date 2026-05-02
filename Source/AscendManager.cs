@@ -26,12 +26,13 @@ public class AscendManagerBeyond : Entity
     {
         Tag = (int)Tags.TransitionUpdate;
         Depth = 8900;
+        Collider = new Hitbox(data.Width, data.Height);
         index = data.Int(nameof(index));
         cutscene = data.Attr(nameof(cutscene));
         introLaunch = data.Bool("intro_launch");
         Dark = data.Bool("dark");
         arrivial = data.Bool(nameof(arrivial));
-        Ch9Ending = cutscene.Equals("CH19_FREE_BIRD", StringComparison.InvariantCultureIgnoreCase);
+        Ch9Ending = cutscene.Equals("", StringComparison.InvariantCultureIgnoreCase);
         ambience = data.Attr(nameof(ambience));
         background = Dark ? Color.Black : Calc.HexToColor("75a0ab");
     }
@@ -47,7 +48,7 @@ public class AscendManagerBeyond : Entity
     {
         AscendManagerBeyond manager = this;
         global::Celeste.Player player = manager.Scene.Tracker.GetEntity<global::Celeste.Player>();
-        while (player == null || player.Y > (double)manager.Y)
+        while (player == null || !manager.CollideCheck(player))
         {
             player = manager.Scene.Tracker.GetEntity<global::Celeste.Player>();
             yield return null;

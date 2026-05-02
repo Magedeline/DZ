@@ -61,14 +61,12 @@ namespace Celeste.Cutscenes
             rainbowTreeBackground.CenterOrigin();
             
             // Character sprites
-            madelineSprite = new Sprite(GFX.Game, "characters/player/");
-            madelineSprite.AddLoop("sit", "idle", 0.1f);
-            madelineSprite.Play("sit");
+            madelineSprite = GFX.SpriteBank.Create("madeline");
+            madelineSprite.Play("idle");
             Add(madelineSprite);
             
-            badelineSprite = new Sprite(GFX.Game, "characters/badeline/");
-            badelineSprite.AddLoop("sit", "idle", 0.1f);
-            badelineSprite.Play("sit");
+            badelineSprite = GFX.SpriteBank.Create("maggy_badeline");
+            badelineSprite.Play("idle");
             Add(badelineSprite);
             
             kirbySprite = new Sprite(GFX.Game, "characters/kirby/");

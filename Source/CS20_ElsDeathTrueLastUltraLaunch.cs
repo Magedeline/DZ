@@ -48,6 +48,8 @@ namespace Celeste.Cutscenes
 
         private Coroutine wave;
 
+        private KirbyHeavenAscendManager.HeavenStreaks streaks;
+
         private bool hasGolden;
 
         private string dialog;
@@ -205,6 +207,20 @@ namespace Celeste.Cutscenes
             };
             ScreenWipe.WipeColor = Color.White;
 
+            Add(wave = new Coroutine(WaveCamera()));
+            Add(new Coroutine(BirdRoutine(0.8f)));
+            Level.Add(streaks = new KirbyHeavenAscendManager.HeavenStreaks(heavenManager));
+            for (p = 0f; p < 1f; p += Engine.DeltaTime / 12f)
+            {
+                fadeToWhite = p;
+                streaks.Alpha = p;
+                foreach (Parallax item in Level.Foreground.GetEach<Parallax>("elsbackdrop"))
+                {
+                    item.FadeAlphaMultiplier = 1f - p;
+                }
+                yield return null;
+            }
+
             if (!hasGolden)
             {
                 Audio.SetMusic("event:/desolozantas/final_content/music/lvl20/saved", startPlaying: true, allowFadeOut: true);
@@ -229,10 +245,10 @@ namespace Celeste.Cutscenes
         [MethodImpl(MethodImplOptions.NoInlining)]
         public override void OnEnd(Level level)
         {
-            if (WasSkipped && boost != null && boost.Ch20FinalBoostSfx != null)
+            if (WasSkipped && boost != null && boost.Ch21FinalBoostSfx != null)
             {
-                boost.Ch20FinalBoostSfx.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-                boost.Ch20FinalBoostSfx.release();
+                boost.Ch21FinalBoostSfx.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                boost.Ch21FinalBoostSfx.release();
             }
 
             // Clean up heaven manager and all its sub-entities

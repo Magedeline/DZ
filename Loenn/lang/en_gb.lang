@@ -1342,6 +1342,12 @@ mods.MaggyHelper.scripts.pcgTrainModel.description=Trains the Markov Chain model
 mods.MaggyHelper.scripts.pcgExportBin.name=PCG: Export .bin Map
 mods.MaggyHelper.scripts.pcgExportBin.description=Generates a PCG level and saves it as a standalone .bin map file. Can be loaded in Celeste via the Everest debug map menu.
 
+# Summit Builder Scripts (lastlevel.bin)
+mods.MaggyHelper.scripts.build_lastlevel_summit.name=Build: lastlevel Summit Map
+mods.MaggyHelper.scripts.build_lastlevel_summit.description=Builds the summit map structure for lastlevel.bin. Creates 12 checkpoints with 10 rooms each (120 total), vertical climb layout, with checkpoint triggers and chapter complete trigger.
+mods.MaggyHelper.scripts.add_summit_warp_triggers.name=Build: Add Summit Warp Triggers
+mods.MaggyHelper.scripts.add_summit_warp_triggers.description=Adds transition triggers between all summit rooms. Top-right exits advance, bottom-left returns to previous room. Run AFTER build_lastlevel_summit.
+
 # -- PCG Trigger --
 triggers.MaggyHelper/PCGTrigger.placements.name.default=PCG Trigger
 triggers.MaggyHelper/PCGTrigger.placements.description.default=Activates procedural content generation when the player enters this trigger. Generates a set of PCG rooms and teleports the player into the first generated room.
@@ -4647,6 +4653,14 @@ entities.MaggyHelper/NPC08_Maggy_Ending.attributes.name.flagName=Flag Name
 entities.MaggyHelper/NPC08_Maggy_Ending.attributes.description.flagName=
 entities.MaggyHelper/NPC08_Maggy_Ending.attributes.name.spriteId=Sprite Id
 entities.MaggyHelper/NPC08_Maggy_Ending.attributes.description.spriteId=
+
+# -- NPC08 Madeline Ending Bandage --
+entities.MaggyHelper/NPC08_Madeline_Ending_Bandage.placements.name.NPC08_Madeline_Ending_Bandage=NPC08 Madeline Ending Bandage
+entities.MaggyHelper/NPC08_Madeline_Ending_Bandage.placements.description.NPC08_Madeline_Ending_Bandage=
+
+# -- NPC08 Theo Ending --
+entities.MaggyHelper/NPC08_Theo_Ending.placements.name.NPC08_Theo_Ending=NPC08 Theo Ending
+entities.MaggyHelper/NPC08_Theo_Ending.placements.description.NPC08_Theo_Ending=
 
 # -- NPC09X Madeline and Badeline Ending --
 entities.MaggyHelper/NPC09X_Madeline_and_Badeline_Ending.placements.name.NPC09X_Madeline_and_Badeline_Ending=NPC09X Madeline and Badeline Ending

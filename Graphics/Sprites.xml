@@ -112,7 +112,7 @@
       <Frames path="idleA" hair="0,-2|-1,-2:1|-1,-2:2|-1,-2:2|-1,-2:2|-1,-1:2|-1,-1:2|-1,-1:2|-1,-1:1|-1,-1:1|-1,-1|0,-1|0,-1"/>
       <Frames path="idleB" hair="0,-2|-1,-2|-1,-2|-1,-2|-1,-2|-1,-2|-1,-2|-1,-2|-1,-2:1|-1,-2:2|-1,-2:2|-1,-2:2|-1,-2:2|-1,-2:1|-1,-2|-1,-2|-1,-2|0,-2|0,-2|0,-1|0,-1|0,-1|0,-1|0,-1"/>
       <Frames path="idleC" hair="0,-2|-1,-2|-2,-2|-2,-2|-2,-2|-2,-2|1,-1|2,0|0,0|-1,-1|0,-1|0,-1"/>
-      
+
       <Frames path="lookUp" hair="0,-2|0,-2|0,-2|0,-2|-1,-2:1|-1,-2:1|-1,-2:1|-1,-2:1|-1,-3:1"/>
       <Frames path="edge" hair="-1,-2|-1,-2|-1,-2|-1,-1|-1,-1|-1,-1|-1,-2|0,-2|1,-2|0,-2|0,-1|-1,-1|-1,-1|-1,-2"/>
       <Frames path="edge_back" hair="1,-2:1|1,-2:2|0,-2:2|0,-1:2|-1,-2:2|0,-2:2|1,-2:2|1,-2:2|1,-2:2|1,-2:2|2,-1|2,-1|2,-1|2,-2"/>
@@ -1741,13 +1741,12 @@
     <Anim id="blink" path="idle" frames="12-25" delay="0.08" goto="idle"/>
   </ralseiBoost>
 
-  <sevensoulboost path="objects/MaggyHelper/sevensoulboost/" start="idle">
+  <madelinesevensoulboost path="objects/MaggyHelper/madelinesevensoulboost/" start="idle">
     <Justify x="0.5" y="0.5"/>
-    <Anim id="idle" path="vessel_soul" frames="0-15" delay="0.08" goto="idle:10,flash:2,blink"/>
-    <Anim id="flash" path="vessel_soul" frames="0-6" delay="0.08" goto="idle"/>
-    <Anim id="blink" path="vessel_soul" frames="12-25" delay="0.08" goto="idle"/>
-    <Anim id="boost" path="boost" frames="0-11" delay="0.05"/>
-  </sevensoulboost>
+    <Anim id="idle" path="idle" frames="0-15" delay="0.08" goto="idle:10,flash:2,blink"/>
+    <Anim id="flash" path="idle" frames="0-6" delay="0.08" goto="idle"/>
+    <Anim id="blink" path="idle" frames="12-25" delay="0.08" goto="idle"/>
+  </madelinesevensoulboost>
 
   <dreamJellyfish path="objects/dreamjellyfish/mask/" start="idle">
       <Justify x="0.5" y="0.58"/>
@@ -1765,15 +1764,43 @@
   <madeline path="characters/madeline/" start="idle">
     <Justify x=".5" y="1" />
 
-    <Loop id="idle" path="maddy" delay="0.1" frames="15-22" />
-    <Loop id="walk" path="maddy" delay="0.08" frames="15-22" />
-    <Loop id="run" path="maddy" delay="0.06" frames="15-22" />
+    <Loop id="idle" path="idle" delay="0.1" frames="15-22" />
+    <Loop id="walk" path="walk" delay="0.08" frames="15-22" />
+    <Loop id="run" path="run" delay="0.06" frames="15-22" />
 
-    <Anim id="wakeup" path="maddy" delay="0.1" frames="0-5"/>
-    <Anim id="sleep" path="maddy" delay="0.1" frames="5-0"/>
+    <Anim id="wakeup" path="sleep" delay="0.1" frames="0-5"/>
+    <Anim id="sleep" path="sleep" delay="0.1" frames="5-0"/>
     
     <Anim id="alert" path="alert" delay="0.08"/>
+    <Anim id="boost" path="boost" delay="0.05"/>
+    <Metadata>
+      <Frames path="idle" hair="0,-2|0,-2|0,-2|0,-2|0,-1|0,-1|0,-1|0,-1|0,-1"/>
+      <Frames path="walk" hair="0,-2|0,-1|0,-1|0,-1|0,-3|0,-2|0,-1|0,-1|0,-1|0,-1|0,-3|0,-2"/>
+      <Frames path="sleep" hair=""/>
+      <Frames path="boost" hair="0,-2|0,-2|0,-2|0,-2|0,0|0,-6|0,-3|0,-1|0,-1|0,-2"/>
+    </Metadata>
   </madeline>
+
+  <madelinegod path="characters/madelinegod/" start="idle">
+    <Justify x=".5" y="1" />
+
+    <Loop id="idle" path="idle" delay="0.1" frames="15-22" />
+    <Loop id="walk" path="walk" delay="0.08" frames="15-22" />
+    <Loop id="run" path="run" delay="0.06" frames="15-22" />
+    <Loop id="float" path="float" delay="0.05" frames="15-22" />
+
+    <Anim id="wakeup" path="sleep" delay="0.1" frames="0-5"/>
+    <Anim id="sleep" path="sleep" delay="0.1" frames="5-0"/>
+    
+    <Anim id="alert" path="alert" delay="0.08"/>
+    <Anim id="boost" path="boost" delay="0.05"/>
+    <Metadata>
+      <Frames path="idle" hair="0,-2|0,-2|0,-2|0,-2|0,-1|0,-1|0,-1|0,-1|0,-1"/>
+      <Frames path="walk" hair="0,-2|0,-1|0,-1|0,-1|0,-3|0,-2|0,-1|0,-1|0,-1|0,-1|0,-3|0,-2"/>
+      <Frames path="sleep" hair=""/>
+      <Frames path="boost" hair="0,-2|0,-2|0,-2|0,-2|0,0|0,-6|0,-3|0,-1|0,-1|0,-2"/>
+    </Metadata>
+  </madelinegod>
 
     <gravestone path="characters/gravestones/" start="maddygrave00">
     <Justify x=".5" y="1" />
@@ -1918,12 +1945,16 @@
     <Anim id="release_souls_end" path="release_souls" delay="0.05" frames="9-7" goto="idle"/>
   </asriel_kid>
 
-    <madNtheo path="characters/theo_carry_maddy/" start="idle">
+  <madeline_bandage path="characters/madeline_bandage/" start="idle">
     <Justify x=".5" y="1" />
 
-    <Loop id="idle" path="idle" delay="0.7" />
-    <Loop id="walk" path="run" delay="0.2" />
-  </madNtheo>
+    <Loop id="idle" path="idle" delay="0.1" frames="0-7" />
+    <Loop id="walk" path="walk" delay="0.08" frames="0-11" />
+    <Metadata>
+      <Frames path="idle" hair="0,-2|0,-2|0,-2|0,-2|0,-1|0,-1|0,-1|0,-1|0,-1"/>
+      <Frames path="walk" hair="0,-2|0,-1|0,-1|0,-1|0,-3|0,-2|0,-1|0,-1|0,-1|0,-1|0,-3|0,-2"/>
+    </Metadata>
+  </madeline_bandage>
 
   <!-- Flowey NPC -->
   <maggy_flowey path="flowey/" start="idle">
@@ -2523,34 +2554,46 @@
     
   </asriel_angelofdeath>
 
-  <chara_boss path="characters/charaBoss/" start="idle">
-    <Justify x=".5" y="1" />
-    <Loop id="idle" path="boss" delay="0.06" frames="0-23"/>
-    
-    <Loop id="scaredIdle" path="scared" delay="0.06" frames="0-19"/>
-    <Anim id="scaredTransition" path="scared" delay="0.1" frames="20-29" goto="calm"/>
-    <Loop id="chara_beam" path="chara_beam" delay="0.1" frames="0-36" />
-    <Loop id="beamStart" path="beamStart" delay="0.1" frames="0-4" />
-    <Loop id="calm" path="scared" delay="0.06" frames="30"/>
-    <Anim id="lookUp" path="scared" delay="0.08" frames="30-30" goto="lookingUp"/>
-    <Loop id="lookingUp" path="scared" delay="0.08" frames="35"/>
-    
-    <Anim id="attack1Begin" path="boss" delay="0.06" frames="24-29" goto="attack1Loop"/>
-    <Anim id="attack1Loop" path="boss" delay="0.06" frames="30-36" goto="attack1Loop"/>
-    <Anim id="attack1Recoil" path="boss" delay="0.06" frames="40-45" goto="idle"/>
+  <chara_boss path="characters/charaBoss/" start="charaboss_idle">
+    <Justify x="0.5" y=".64" />
+    <Loop id="charaboss_idle" path="chara_boss" delay="0.06" frames="0-23"/>
 
-    <Anim id="attack2Begin" path="charge" delay="0.06" frames="0-17" goto="attack2Aim"/>
-    <Anim id="attack2Aim" path="charge" delay="0.06" frames="18-28" goto="attack2Aim"/>
-    <Anim id="attack2Lock" path="charge" delay="0.06" frames="29-39" goto="attack2Lock"/>
-    <Anim id="attack2Recoil" path="charge" delay="0.06" frames="40-45" goto="idle"/>
+    <Loop id="charaboss_scaredIdle" path="scared" delay="0.06" frames="0-19"/>
+    <Anim id="charaboss_scaredTransition" path="scared" delay="0.1" frames="20-29" goto="charaboss_calm"/>
+    <Loop id="charaboss_calm" path="scared" delay="0.06" frames="30"/>
+    <Anim id="charaboss_lookUp" path="scared" delay="0.08" frames="30-30" goto="charaboss_lookingUp"/>
+    <Loop id="charaboss_lookingUp" path="scared" delay="0.08" frames="35"/>
 
-    <Anim id="attack3Begin" path="lightning_aim_" delay="0.06" frames="0-19" goto="attack3Recoil"/>
-    <Anim id="attack3Recoil" path="lightning" delay="0.06" frames="0-5" goto="lightningidle"/>
+    <Anim id="charaboss_attack1Begin" path="boss" delay="0.06" frames="24-29" goto="charaboss_attack1Loop"/>
+    <Anim id="charaboss_attack1Loop" path="boss" delay="0.06" frames="30-36" goto="charaboss_attack1Loop"/>
+    <Anim id="charaboss_attack1Recoil" path="boss" delay="0.06" frames="40-45" goto="charaboss_idle"/>
 
-    <Anim id="getHit" path="hit" delay="0.06" frames="0-9" goto="star"/>
-    <Loop id="star" path="hit" delay="0.06" frames="10-15"/>
-    <Anim id="recoverHit" path="hit" delay="0.06" frames="16-19" goto="idle"/>
+    <Anim id="charaboss_attack2Begin" path="chara_charge" delay="0.06" frames="0-17" goto="charaboss_attack2Aim"/>
+    <Anim id="charaboss_attack2Aim" path="chara_charge" delay="0.06" frames="18-28" goto="charaboss_attack2Aim"/>
+    <Anim id="charaboss_attack2Lock" path="chara_charge" delay="0.06" frames="29-39" goto="charaboss_attack2Lock"/>
+    <Anim id="charaboss_attack2Recoil" path="chara_charge" delay="0.06" frames="40-45" goto="charaboss_idle"/>
+
+    <Anim id="charaboss_getHit" path="chara_hit" delay="0.06" frames="0-8" goto="star"/>
+    <Loop id="charaboss_star" path="chara_hit" delay="0.06" frames="3-5"/>
+    <Anim id="charaboss_recoverHit" path="chara_hit" delay="0.06" frames="6-8" goto="charaboss_idle"/>
   </chara_boss>
+
+  <chara_projectile path="characters/charaBoss/" start="charaboss_charge">
+    <Justify x=".5" y=".5" />
+    <Anim id="charaboss_charge" path="chara_projectile" delay="0.06" frames="0-3"  goto="charaboss_loop"/>
+    <Loop id="charaboss_loop" path="chara_projectile" delay="0.06" frames="4-12"/>
+  </chara_projectile>
+  <chara_beam path="characters/charaBoss/" start="charaboss_charge">
+    <Justify x="0" y=".5" />
+    <Loop id="charaboss_charge" path="chara_beam" delay="0.06" frames="0-13"/>
+    <Anim id="charaboss_lock" path="chara_beam" delay="0.03" frames="14-25"/>
+    <Anim id="charaboss_shoot" path="chara_beam" delay="0.04" frames="26-36"/>
+  </chara_beam>
+
+  <chara_beam_start path="characters/charaBoss/" start="charaboss_shoot">
+    <Justify x="0" y=".5" />
+    <Anim id="charaboss_shoot" path="chara_beamStart" delay="0.06"/>
+  </chara_beam_start>
 
   <!-- Els True Final Boss (Doppia Elillca / Penumbra Phantasm) -->
   <els_true_final_boss path="characters/els_true_final_boss/" start="idle">

@@ -5113,10 +5113,12 @@ Right, I'll let Susie and everyone else know.
 [Magolor right annoyed]
 {+thought}Man, this is a really bad idea. Are they gonna ask me if I'm an extraterrestrial?{+endthought}
 
+{trigger 3 theo raise hand}
+
 [THEO right yolo]
 YOLOOO! All six of us got this!
 
-{trigger 3 badeline turns right}
+{trigger 4 chara turns right}
 
 [CHARA left disapointed]
 ...
@@ -15532,23 +15534,16 @@ No door will remain closed to me!
 
 CH19_WRONG_HEART=
 [KIRBY left distracted]
-Wait... No... this heart is wrong...
-This isn't the answer. It was never the answer.
-
-[KIRBY left surprised]
-Those seven birds... they weren't mourning.
-They were pointing me somewhere.
+Wait... No...
+This isn't THE END.
 
 CH19_KEEP_GOING_KIRBY=
 [KIRBY left sad]
 They're still reaching out to me... I can feel it.
-Not ahead of me. Not behind me.
-Somewhere inside their past.
 {trigger 0 Step Forward}
 
 [KIRBY left determined]
 Then that's where I'll go next.
-If their memories are the path forward, I'll walk every step of it.
 
 CH19_MISS_THE_BIRD=
 [KIRBY left angry]
@@ -15561,30 +15556,29 @@ Why won't you let me help you?
 
 [KIRBY left distracted]
 None of this adds up.
-What's the truth here?
+What's actually going on here?
 Could it be... {+MADELINE} and {+BADELINE} survived somehow?
 
 [KIRBY left sad]
-Ralsei might have been onto something.
-What if they're still alive?
+If they are lost somewhere in the depth of this place...
 But then who took them...
 {trigger 1 take a step left}
 
 [KIRBY left surprised]
-Wait a moment...
+Wait a Fucking Minute...
 {trigger 2 take a step right}
 
 [KIRBY left angry]
-Did Els has broken free!!!
+Did Els Taken them and has Broken free!!!
 {trigger 3 black hole flickers}
 
 [ELS left normal]
 {# 560000}Precisely. Liberation at last.{#}
 {# 560000}Your interference granted me corporeal form once more.{#}
 {# 560000}Now then.{#}
-{# 560000}Follow the bird if you wish.{#}
-{# 560000}It will take you somewhere far more painful than truth.{#}
-{# 560000}Straight into their memories.{#}
+{# 560000}Relaxed.{#}
+{# 560000}Grab a Refreshments.{#}
+{# 560000}and Watch it all Burned.{#}
 
 [KIRBY left angry]
 YOU MONSTER!!!
@@ -15592,10 +15586,12 @@ WHAT HAVE YOU DONE WITH THEM!?
 
 [ELS left normal]
 {# 560000}...{#}
-{# 560000}Perhaps something... perhaps nothing.{#}
-{# 560000}Their past belongs to me now.{#}
-{# 560000}Their grief, their doubt, their worst day...{#}
-{# 560000}All of it makes such useful bait.{#}
+{# 560000}... Maybe... Maybe Not.{#}
+{# 560000}You as far I know have made so remarkably far.{#}
+{# 560000}We enter a new era, an era of infinite properparisty.{#}
+{# 560000}Also There One Last thing I need to mention.{#}
+{# 560000}The Reality Will Be Reset.{#}
+{# 560000}Enjoy The Destructions...{#}
 {trigger 4 black hole flickers more, and tiles to crack into the sci-fi one}
 
 [KIRBY left angry]
@@ -15880,7 +15876,7 @@ What do you mean by that?
 
 [SANS right normal]
 he's got an idea.
-let him talk.
+let him cook.
 
 [KIRBY right sad]
 That seven bird yearns to reach those girls just as desperately as I do.
@@ -15904,7 +15900,7 @@ That logic holds up.
 I'm with you.
 
 [CHARA left upset]
-Though once we arrive, the rest is between you two.
+Though once we arrive, the rest is between you all.
 
 [CHARA left sad]
 This dimension is {*}disturbing{/*}.{n}My parents warned me about its nightmarish nature.
@@ -15918,16 +15914,16 @@ For them.
 CH19_TRAP_IN_LOOP=
 {trigger 0 CameraZoomin}
 [CHARA left panic]
-WHAT! {0.3} What just occurred?
+WHAT! {0.3} What just Hell Happen?
 {trigger 1 CharaAppear}
 [KIRBY left distracted]
 That wasn't my doing either.
 {trigger 2 CharaTurnLeft}
 [CHARA right panic]
-This is absurd!
+This is Concerning!
 His power can't extend to destruction on this scale.
 
-[KIRBY left normal]
+[KIRBY left surprised]
 Wait... I understand now.
 He's not destroying anything.
 We're caught in a temporal loop.
@@ -15948,7 +15944,7 @@ Els didn't trap us. He just... {~}exploited{/~} what I broke.
 Then there must be some method to shatter the cycle.
 If you made it, you can unmake it.
 
-[KIRBY left normal]
+[KIRBY left distracted]
 In theory... but neither of us is strong enough alone.
 We need raw power beyond anything we possess.
 
@@ -15967,7 +15963,7 @@ How did you find us here?
 I didn't come alone.
 {trigger 5 DreamFriendsArrive}
 
-[KIRBY left surprised]
+[KIRBY right surprised]
 The Dream Friends?! ALL of you came?!
 
 [Magolor left happy]
@@ -15993,7 +15989,7 @@ Every hit you land drains their HP.
 Little by little, strike by strike...
 The loop weakens. The chains crack.
 
-[KIRBY right normal]
+[KIRBY right distracted]
 So we destroy them one at a time?
 
 [Magolor left happy]
@@ -16086,121 +16082,6 @@ Alright little one
 {trigger 0 bird flies offscreen}
 [KIRBY left determined]
 Lead me to them....
-
-azzyboss-02=
-[ASRIEL right normal]
-So you really made it this far.
-
-[KIRBY left determined]
-I did not come all this way just to turn back now.
-
-azzyboss-04=
-[ASRIEL right concerned]
-The stars around us are fading.
-Can you still carry hope in a place like this?
-
-[KIRBY left normal]
-Hope is exactly why I am still here.
-
-azzyboss-06=
-[ASRIEL right normal]
-Every step forward brings you closer to the truth.
-You may not like what waits for you.
-
-[KIRBY left sad]
-I don't need to like it.
-I just need to face it.
-
-azzyboss-08=
-[ASRIEL right worried]
-You keep fighting like loss means nothing to you.
-
-[KIRBY left sadder]
-It means everything to me.
-That is why I can't stop.
-
-azzyboss-10=
-[ASRIEL right normal]
-Tell me, Kirby...
-what are you really trying to save?
-
-[KIRBY left determined]
-Madeline. Badeline.
-Everyone Els tries to erase.
-
-azzyboss-12=
-[ASRIEL right sad]
-Sometimes the end comes quietly.
-Not with a scream, but with surrender.
-
-[KIRBY left angry]
-Then I won't surrender.
-Not to him. Not to despair.
-
-azzyboss-14=
-[ASRIEL right concerned]
-You are exhausted.
-I can hear it in the way your heart shakes.
-
-[KIRBY left determinedclosed]
-Maybe.
-But I am not done yet.
-
-azzyboss-16=
-[ASRIEL right sad]
-There was a time when I thought power alone could protect what I loved.
-
-[KIRBY left distracted]
-And now?
-
-[ASRIEL right normal]
-Now I know power without love only makes the fall worse.
-
-azzyboss-18=
-[ASRIEL right concerned]
-If Els offered you one perfect lie,
-would you take it just to see them again?
-
-[KIRBY left sad]
-No.
-I want the truth, even if it hurts.
-
-azzyboss-20=
-[ASRIEL right normal]
-Good.
-Then keep climbing.
-The truth is ugly, but it is still better than chains.
-
-[KIRBY left determined]
-Then I'll break those chains.
-
-azzyboss-22=
-[ASRIEL right worried]
-I can feel Els pressing closer.
-He knows you are almost here.
-
-[KIRBY left angry]
-Then he can wait.
-I'm coming for him.
-
-azzyboss-24=
-[ASRIEL right sad]
-If I falter...
-if I become part of his voice again...
-
-[KIRBY left normal]
-Then I'll remind you who you are.
-Just like my friends did for me.
-
-azzyboss-26=
-[ASRIEL right determined]
-Then let this be our promise.
-No more running.
-No more hiding.
-
-[KIRBY left togetherzoom]
-Right.
-We end this together.
 
 CH20_FAKE_MADELINE_AND_BADELINE=
 [KIRBY left surprised]
@@ -17266,7 +17147,7 @@ we will climb this mountain together.
 [MADELINE_SPIRIT left determined]
 then lets do this one last time, together.
 
-CH20_ASCEND_VS_ELS_0=
+CH21_ASCEND_VS_ELS_0=
 
 [ASRIEL left determined]
 I think we're all getting the hang of this climb.
@@ -17296,7 +17177,7 @@ Dreams never mattered because they were easy.
 Okay, Madeline, please stop jinxing us right now.
 We are already tempting fate enough.
 
-CH20_ASCEND_VS_ELS_1=
+CH21_ASCEND_VS_ELS_1=
 
 [BADELINE_SPIRIT right normal]
 Then stay close.
@@ -17320,7 +17201,7 @@ I have you all with me, and that gives me strength.
 [SEVEN_GONER left together]
 LETS HOPE THIS STRENGTH IS ENOUGH TO REACH THE TOP.
 
-CH20_ASCEND_VS_ELS_2=
+CH21_ASCEND_VS_ELS_2=
 
 [none left]
 Seven souls gather in a ring of light, each one burning with resolve.
@@ -17341,7 +17222,7 @@ I think not only he would be but everyone as well.
 but on the bright side you know what else sans said
 your gonna have a good time.
 
-CH20_ASCEND_VS_ELS_3=
+CH21_ASCEND_VS_ELS_3=
 
 [MADELINE_SPIRIT left distracted]
 I hope alex, theo, my parents, and oshiro and everyone else can see this too.
@@ -17363,7 +17244,7 @@ Don't be too hard on yourself, Asriel.
 You were in a very bad place, and you made mistakes.
 But you are here now, and you are trying to make things right.
 
-CH20_ASCEND_VS_ELS_4=
+CH21_ASCEND_VS_ELS_4=
 
 [KIRBY left surprised]
 Woah there that were way too much dakr matter army that I couldn't handle.
@@ -17395,7 +17276,7 @@ If you say so
 [MADELINE_SPIRIT left together_zoom]
 Keep Climbing.
 
-CH20_ASCEND_VS_ELS_5=
+CH21_ASCEND_VS_ELS_5=
 
 [MADELINE left sadder]
 those temples, so many worlds destroyed, lost so many people lives.
@@ -17423,7 +17304,7 @@ wait granny is within you?
 [MADELINE_SPIRIT right sad]
 it's {1.0} a long story...
 
-CH20_ASCEND_VS_ELS_6=
+CH21_ASCEND_VS_ELS_6=
 
 [KIRBY left determined]
 we pass through the ruins
@@ -17442,7 +17323,7 @@ whatever that things its something we have never faced before.
 [ASRIEL left nodded]
 I know, but we have to try.
 
-CH20_ASCEND_VS_ELS_7=
+CH21_ASCEND_VS_ELS_7=
 
 [KIRBY left distacred]
 hey uhh kids...
@@ -17464,7 +17345,7 @@ and the man who speaked hands has created us to give us hope, and we will not le
 [KIRBY left sad]
 lets hope you don't fall this again...
 
-CH20_ASCEND_VS_ELS_8=
+CH21_ASCEND_VS_ELS_8=
 
 [MADELINE_SPIRIT left sad]
 the weather is getting worse, the storm is getting stronger, and the darkness is getting thicker.
@@ -17485,7 +17366,7 @@ that's actually really helpful, thank you.
 [MADELINE_SPIRIT left normal]
 I was really scared before, but now I feel like we can do this.
 
-CH20_ASCEND_VS_ELS_9=
+CH21_ASCEND_VS_ELS_9=
 
 [KIRBY left determined]
 another one down, and two more to go.

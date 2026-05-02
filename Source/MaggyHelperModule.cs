@@ -10,13 +10,13 @@ namespace Celeste.Mod.MaggyHelper
         public static MaggyHelperModule Instance { get; private set; }
 
         public override Type SettingsType => typeof(MaggyHelperModuleSettings);
-        public static new MaggyHelperModuleSettings Settings => (MaggyHelperModuleSettings)Instance._Settings;
+        public static MaggyHelperModuleSettings Settings => (MaggyHelperModuleSettings)Instance._Settings;
 
         public override Type SessionType => typeof(MaggyHelperModuleSession);
-        public static new MaggyHelperModuleSession Session => (MaggyHelperModuleSession)Instance._Session;
+        public static MaggyHelperModuleSession Session => (MaggyHelperModuleSession)Instance._Session;
 
         public override Type SaveDataType => typeof(MaggyHelperModuleSaveData);
-        public static new MaggyHelperModuleSaveData SaveData => (MaggyHelperModuleSaveData)Instance._SaveData;
+        public static MaggyHelperModuleSaveData SaveData => (MaggyHelperModuleSaveData)Instance._SaveData;
 
         // Runtime flags
         public static bool LaunchPart1Credits { get; set; }
@@ -72,6 +72,12 @@ namespace Celeste.Mod.MaggyHelper
 
             // Kirby mechanics are layered onto the vanilla player via a custom state.
             global::Celeste.KirbyPlayerStateController.Load();
+
+            // Hot Reload Controller (Global)
+            Everest.Events.Level.OnLoadLevel += (level, playerIntro, isFromLoader) => {
+                if (level.Tracker.GetEntity<global::Celeste.Mod.MaggyHelper.HotReload.HotReloadController>() == null)
+                    level.Add(new global::Celeste.Mod.MaggyHelper.HotReload.HotReloadController());
+            };
 
             // Hook level exit to clean up static state
             Everest.Events.Level.OnExit += OnLevelExit;
@@ -152,21 +158,16 @@ namespace Celeste.Mod.MaggyHelper
             LevelEnter.Go(new Session(targetArea), false);
         }
 
+        private static Type _maggyPlayerType;
+        private static bool _maggyPlayerTypeChecked;
+
         /// <summary>
         /// Allows other mods (like BrokemiaHelper) to detect if MaggyHelper/Player is available.
         /// Returns true if the MaggyHelper Player type is loaded and available.
         /// </summary>
         public static bool IsMaggyPlayerAvailable()
         {
-            try
-            {
-                Type playerType = Type.GetType("MaggyHelper.Entities.Player, MaggyHelper");
-                return playerType != null;
-            }
-            catch
-            {
-                return false;
-            }
+            return GetMaggyPlayerType() != null;
         }
 
         /// <summary>
@@ -174,14 +175,19 @@ namespace Celeste.Mod.MaggyHelper
         /// </summary>
         public static Type GetMaggyPlayerType()
         {
-            try
+            if (!_maggyPlayerTypeChecked)
             {
-                return Type.GetType("MaggyHelper.Entities.Player, MaggyHelper");
+                try
+                {
+                    _maggyPlayerType = Type.GetType("MaggyHelper.Entities.Player, MaggyHelper");
+                }
+                catch
+                {
+                    _maggyPlayerType = null;
+                }
+                _maggyPlayerTypeChecked = true;
             }
-            catch
-            {
-                return null;
-            }
+            return _maggyPlayerType;
         }
 
         /// <summary>
@@ -246,6 +252,20 @@ namespace Celeste.Mod.MaggyHelper
 
             Engine.Commands?.Log("[MaggyHelper] Launching Chapter 17 credits...");
             LaunchCredits(level.Session);
+        }
+
+        [Command("maggy_hotreload_test", "Simulates a hot reload event for testing.")]
+        private static void Cmd_HotReloadTest()
+        {
+            Engine.Commands?.Log("[MaggyHelper] Simulating hot reload event...");
+            
+            // We simulate it by calling the handler directly with some types
+            Type[] mockTypes = new Type[] { 
+                typeof(global::Celeste.Mod.MaggyHelper.HotReload.ModHotReloadTest),
+                typeof(global::Celeste.HotReload.GameHotReloadTest)
+            };
+            
+            global::Celeste.HotReload.HotReloadHandler.UpdateApplication(mockTypes);
         }
     }
 }

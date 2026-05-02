@@ -1,4 +1,5 @@
 using System.Runtime.CompilerServices;
+using Celeste.Entities;
 
 namespace Celeste;
 
@@ -7,6 +8,8 @@ namespace Celeste;
 public class NPC09X_Madeline_and_Badeline_Ending : NPC
 {
     private CelestePlayer player;
+
+    private MadelineNPCDummy dummy;
 
     private TalkComponent talker;
 
@@ -30,8 +33,9 @@ public class NPC09X_Madeline_and_Badeline_Ending : NPC
     public NPC09X_Madeline_and_Badeline_Ending(EntityData data, Vector2 offset, bool ch15EasterEgg)
         : base(data.Position + offset)
     {
-        // Madeline sprite
-        Add(Sprite = GFX.SpriteBank.Create("madeline"));
+        // Madeline dummy
+        dummy = new MadelineNPCDummy(Vector2.Zero);
+        Add(Sprite = dummy.Sprite);
         Sprite.Play("idle");
         Sprite.Scale.X = -1f;
         MoveAnim = "walk";

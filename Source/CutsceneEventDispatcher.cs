@@ -206,9 +206,10 @@ internal static class CutsceneEventDispatcher
             return chara != null ? new Cs08CharaBossEnd(ctx.Player, chara) : null;
         });
         AddCutscene(handlers, "ch8_end", "ch8_end_trigger", ctx => {
-            var theoAndMaddy = FindEntity<Npc08MaddyAndTheoEnding>(ctx, "Npc08MaddyAndTheoEnding");
+            var madelineBandage = FindEntity<Npc08MadelineEndingBandage>(ctx, "NPC08_Madeline_Ending_Bandage");
+            var theo = FindEntity<Npc08TheoEnding>(ctx, "NPC08_Theo_Ending");
             var maggy = FindEntity<Npc08MaggyEnding>(ctx, "Npc08MaggyEnding");
-            return theoAndMaddy != null && maggy != null ? new Cs08End(ctx.Player, theoAndMaddy, maggy) : null;
+            return madelineBandage != null && theo != null && maggy != null ? new Cs08End(ctx.Player, madelineBandage, theo, maggy) : null;
         });
         AddCutscene(handlers, "ch8_theo", "ch8_theo_trigger", ctx => new Cs08Theo(ctx.Player));
         AddCutscene(handlers, "ch8_reflectionmod", "ch8_reflectionmod_trigger", ctx => new Cs08Reflection(ctx.Player, targetX: 0f));
@@ -219,7 +220,6 @@ internal static class CutsceneEventDispatcher
 
         AddCutscene(handlers, "ch9_arrivial", "ch9_arrival_trigger", ctx => new CS09_Arrivial(ctx.Player));
         AddCutscene(handlers, "ch9_goldenflower", "ch9_goldenflower_trigger", ctx => new CS09_GoldenFlower(ctx.Player));
-        AddCutscene(handlers, "ch9_fake_saved", "ch9_fake_saved_trigger", ctx => new CS09_FakeSavePoint(ctx.Player, CS09_FakeSavePoint.GetCurrentStage(ctx.Level)));
         AddCutscene(handlers, "ch9_credits", "ch9_credits_trigger", ctx => new CS09_Credits(ctx.Player));
         AddCutscene(handlers, "ch9_message_end", "ch9_message_end_trigger", ctx => new CS09_MessageEnd(ctx.Player));
         AddCutscene(handlers, "ch9_end", "ch9_end_trigger", ctx => new Cs09End(ctx.Player));
@@ -347,14 +347,8 @@ internal static class CutsceneEventDispatcher
         AddCutscene(handlers, "ch20_tess_fake_post_boss", "ch20_tess_fake_post_boss_trigger", ctx => new Cs20TessFakePostBoss(ctx.Player));
         AddCutscene(handlers, "ch20_nothiness", "ch20_nothingness_trigger", ctx => new Cs20Nothingness(ctx.Player));
         AddCutscene(handlers, "ch20_tess_pre_boss_for_real", "ch20_tess_pre_boss_for_real_trigger", ctx => new Cs20TessPreBossForReal(ctx.Player));
-        AddCutscene(handlers, "cs20_saved", "ch20_saved_trigger", ctx => new CS20_Saved(ctx.Player));
-        AddCutscene(handlers, "cs21_saved", "ch20_saved_trigger", ctx => new CS20_Saved(ctx.Player));
-        AddCutscene(handlers, "ch21_saved", "ch20_saved_trigger", ctx => new CS20_Saved(ctx.Player));
-        AddCutscene(handlers, "ch20_saved", "ch20_saved_trigger", ctx => new CS20_Saved(ctx.Player));
-        AddCutscene(handlers, "cs20_ending", "ch20_true_end_trigger", ctx => new CS20_Ending(ctx.Player));
-        AddCutscene(handlers, "cs21_ending", "ch20_true_end_trigger", ctx => new CS20_Ending(ctx.Player));
-        AddCutscene(handlers, "ch21_ending", "ch20_true_end_trigger", ctx => new CS20_Ending(ctx.Player));
-        AddCutscene(handlers, "ch20_ending", "ch20_true_end_trigger", ctx => new CS20_Ending(ctx.Player));
+        AddCutscene(handlers, new[] { "cs20_saved", "cs21_saved", "ch21_saved", "ch20_saved" }, "ch20_saved_trigger", ctx => new CS20_Saved(ctx.Player));
+        AddCutscene(handlers, new[] { "cs20_ending", "cs21_ending", "ch21_ending", "ch20_ending" }, "ch20_true_end_trigger", ctx => new CS20_Ending(ctx.Player));
         AddCutscene(handlers, new[] { "ch20_asriel_god_boss_identity_reveal", "ch20_asriel_god_boss_identity_reveal_trigger" }, "ch20_asriel_god_boss_identity_reveal_trigger", ctx => {
             var asrielBoss = FindEntity<AsrielGodBoss>(ctx, "AsrielGodBoss");
             return asrielBoss != null ? new CS20_AsrielRevealIdentity(ctx.Player, asrielBoss) : null;
@@ -363,30 +357,21 @@ internal static class CutsceneEventDispatcher
         AddCutscene(handlers, "ch20_boss_mid", "ch20_boss_mid_trigger", ctx => new CS20_BossMid());
         AddCutscene(handlers, "ch20_boss_end", "ch20_boss_end_trigger", ctx => new CS20_BossEnd());
         AddCutscene(handlers, "ch20_asriel_boss_end", CS20_AsrielBossEnd.Flag, ctx => new CS20_AsrielBossEnd(ctx.Player));
-        AddCutscene(handlers, "cs20_elsfinalboss", "ch20_asriel_angel_of_death_boss_intro_trigger", ctx => new CS20_AsrielAngelOfDeathBossIntro(ctx.Level.Session.Level));
-        AddCutscene(handlers, "cs21_elsfinalboss", "ch20_asriel_angel_of_death_boss_intro_trigger", ctx => new CS20_AsrielAngelOfDeathBossIntro(ctx.Level.Session.Level));
-        AddCutscene(handlers, "ch21_elsfinalboss", "ch20_asriel_angel_of_death_boss_intro_trigger", ctx => new CS20_AsrielAngelOfDeathBossIntro(ctx.Level.Session.Level));
+        AddCutscene(handlers, new[] { "cs20_elsfinalboss", "cs21_elsfinalboss", "ch21_elsfinalboss" }, "ch20_asriel_angel_of_death_boss_intro_trigger", ctx => new CS20_AsrielAngelOfDeathBossIntro(ctx.Level.Session.Level));
         AddCutscene(handlers, "ch20_final_boss_defeat", "ch20_final_boss_defeat_trigger", ctx => new CS20_FinalBossDefeat(ctx.Player));
-        AddCutscene(handlers, "cs20_farewell", "ch20_restoration_and_farewell_trigger", ctx => new CS20_RestorationAndFarewell(ctx.Player));
-        AddCutscene(handlers, "cs21_farewell", "ch20_restoration_and_farewell_trigger", ctx => new CS20_RestorationAndFarewell(ctx.Player));
-        AddCutscene(handlers, "ch21_farewell", "ch20_restoration_and_farewell_trigger", ctx => new CS20_RestorationAndFarewell(ctx.Player));
+        AddCutscene(handlers, new[] { "cs20_farewell", "cs21_farewell", "ch21_farewell", "ch20_restoration_and_farewell" }, "ch20_restoration_and_farewell_trigger", ctx => new CS20_RestorationAndFarewell(ctx.Player));
         AddCutscene(handlers, "ch20_rainbow_blossom_tree", "ch20_rainbow_blossom_tree_trigger", ctx => new CS20_RainbowBlossomTree(ctx.Player));
-        AddCutscene(handlers, "ch20_restoration_and_farewell", "ch20_restoration_and_farewell_trigger", ctx => new CS20_RestorationAndFarewell(ctx.Player));
-        AddCutscene(handlers, "cs20_later", "ch20_end_later_trigger", ctx => new CS20_Later(ctx.Player));
-        AddCutscene(handlers, "cs21_later", "ch20_end_later_trigger", ctx => new CS20_Later(ctx.Player));
-        AddCutscene(handlers, "ch21_later", "ch20_end_later_trigger", ctx => new CS20_Later(ctx.Player));
-        AddCutscene(handlers, "ch20_end_later", "ch20_end_later_trigger", ctx => new CS20_Later(ctx.Player));
+        AddCutscene(handlers, new[] { "cs20_later", "cs21_later", "ch21_later", "ch20_end_later" }, "ch20_end_later_trigger", ctx => new CS20_Later(ctx.Player));
         AddCutscene(handlers, "ch20_end_cinematic", "ch20_end_cinematic_trigger", ctx => new CS20_Ending(ctx.Player));
         AddCutscene(handlers, "ch20_white_cymbal_fade_teleport_video", "ch20_white_cymbal_fade_teleport_video_trigger", ctx => new CS20_WhiteCymbalFadeTeleportVideo(ctx.Player));
 
-        AddCutscene(handlers, "cs20_ascend", "ch20_ascend_alias_trigger", ctx => new CS20_TrueAscend(0, Dialog.Has("CH21_ASCEND_VS_ELS_0") ? "CH21_ASCEND_VS_ELS_0" : "CH20_ASCEND_VS_ELS_0", false));
-        AddCutscene(handlers, "cs21_ascend", "ch20_ascend_alias_trigger", ctx => new CS20_TrueAscend(0, Dialog.Has("CH21_ASCEND_VS_ELS_0") ? "CH21_ASCEND_VS_ELS_0" : "CH20_ASCEND_VS_ELS_0", false));
-        AddCutscene(handlers, "ch21_ascend", "ch20_ascend_alias_trigger", ctx => new CS20_TrueAscend(0, Dialog.Has("CH21_ASCEND_VS_ELS_0") ? "CH21_ASCEND_VS_ELS_0" : "CH20_ASCEND_VS_ELS_0", false));
+        AddCutscene(handlers, new[] { "cs20_ascend", "cs21_ascend", "ch21_ascend" }, "ch20_ascend_alias_trigger", ctx => new CS20_TrueAscend(0, Dialog.Has("CH21_ASCEND_VS_ELS_0") ? "CH21_ASCEND_VS_ELS_0" : "CH20_ASCEND_VS_ELS_0", false));
 
         AddCutscene(handlers, "ch21_beaches", "ch21_beaches_trigger", ctx => new Cs21Beaches(ctx.Player));
         AddCutscene(handlers, "ch21_special_thanks", "ch21_special_thanks_trigger", ctx => new Cs21SpecialThanks(ctx.Player));
         AddCutscene(handlers, "ch21_epilogue_credits", "ch21_epilogue_credits_trigger", ctx => new CS21_EpilogueCredits(ctx.Player));
         AddCutscene(handlers, "ch21_two_worlds_unite", "ch21_two_worlds_unite_trigger", ctx => new CS21_TwoWorldsUnite(ctx.Player));
+        AddCutscene(handlers, "cs21_titanascended", "cs21_titanascended_trigger", ctx => new CS21_FinalTitanSummit(ctx.Player));
 
         return handlers;
     }

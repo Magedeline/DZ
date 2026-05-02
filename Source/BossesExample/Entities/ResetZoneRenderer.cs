@@ -82,7 +82,7 @@ public class ResetZoneRenderer : Entity
     this.dirty = true;
   }
 
-  public virtual void Update()
+  public override void Update()
   {
     if (this.dirty)
       this.RebuildEdges();

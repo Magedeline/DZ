@@ -2,6 +2,7 @@
 namespace Celeste.Entities
 {
     [CustomEntity(new string[] { "MaggyHelper/PowerGenerator" })]
+    [Tracked]
     public class PowerGenerator : Solid
     {
         public static ParticleType PSmash;
@@ -524,11 +525,12 @@ namespace Celeste.Entities
             int result = orig(self);
 
             // Then perform our custom logic
-            if (self.Scene != null && self.Scene is Level)
+            if (self.Scene is Level level)
             {
-                foreach (var entity in self.Scene.Entities)
+                // Optimization: Use the tracker instead of iterating over all entities
+                foreach (PowerGenerator generator in level.Tracker.GetEntities<PowerGenerator>())
                 {
-                    if (entity is PowerGenerator generator && self.CollideCheck(generator))
+                    if (self.CollideCheck(generator))
                     {
                         generator.Dashed(self, self.DashDir);
                     }

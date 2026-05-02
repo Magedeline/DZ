@@ -620,11 +620,19 @@ namespace Celeste.Effects
 
         private void DamageEntitiesInField()
         {
-            foreach (Entity entity in Scene.Entities)
+            foreach (Actor actor in Scene.Tracker.GetEntities<Actor>())
             {
-                if (Vector2.Distance(entity.Position, Position) <= radius)
+                if (Vector2.Distance(actor.Position, Position) <= radius)
                 {
-                    LightningEffects.ChargeEntity(entity, 0.5f, 1f);
+                    LightningEffects.ChargeEntity(actor, 0.5f, 1f);
+                }
+            }
+
+            foreach (Solid solid in Scene.Tracker.GetEntities<Solid>())
+            {
+                if (Vector2.Distance(solid.Position, Position) <= radius)
+                {
+                    LightningEffects.ChargeEntity(solid, 0.5f, 1f);
                 }
             }
         }

@@ -165,7 +165,7 @@ public class NPC : global::Celeste.NPC
     /// <summary>
     /// Sets up Theo sprite sounds
     /// </summary>
-    protected void SetupTheoSpriteSounds()
+    protected new void SetupTheoSpriteSounds()
     {
         // Stub - override in derived classes if needed
     }
@@ -173,7 +173,7 @@ public class NPC : global::Celeste.NPC
     /// <summary>
     /// Move to a position and remove the NPC when done
     /// </summary>
-    public void MoveToAndRemove(Vector2 targetPosition)
+    public new void MoveToAndRemove(Vector2 targetPosition)
     {
         Add(new Coroutine(MoveToAndRemoveRoutine(targetPosition)));
     }

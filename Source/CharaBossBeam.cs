@@ -33,7 +33,7 @@ public partial class CharaBossBeam : Entity
         Add(beamSprite = GFX.SpriteBank.Create("chara_beam"));
         beamSprite.OnLastFrame = anim =>
         {
-            if (anim != "shoot")
+            if (anim != "charaboss_shoot")
                 return;
             destroy();
         };
@@ -59,7 +59,7 @@ public partial class CharaBossBeam : Entity
         chargeTimer = CHARGE_TIME;
         followTimer = FOLLOW_TIME;
         activeTimer = ACTIVE_TIME;
-        beamSprite.Play("charge");
+        beamSprite.Play("charaboss_charge");
         sideFadeAlpha = 0.0f;
         beamAlpha = 0.0f;
         int num = target.Y > charaboss.Y + 16.0f ? -1 : 1;
@@ -93,8 +93,8 @@ public partial class CharaBossBeam : Entity
             chargeTimer -= Engine.DeltaTime;
             if (followTimer > 0.0 && player.Center != charaboss.BeamOrigin)
                 angle = Calc.Angle(charaboss.BeamOrigin, Calc.Approach(Calc.ClosestPointOnLine(charaboss.BeamOrigin, charaboss.BeamOrigin + Calc.AngleToVector(angle, 2000f), player.Center), player.Center, 200f * Engine.DeltaTime));
-            else if (beamSprite.CurrentAnimationID == "charge")
-                beamSprite.Play("lock");
+            else if (beamSprite.CurrentAnimationID == "charaboss_charge")
+                beamSprite.Play("charaboss_lock");
             if (chargeTimer > 0.0)
                 return;
             SceneAs<Level>().DirectionalShake(Calc.AngleToVector(angle, 1f), 0.15f);
@@ -106,10 +106,10 @@ public partial class CharaBossBeam : Entity
             if (activeTimer <= 0.0)
                 return;
             sideFadeAlpha = Calc.Approach(sideFadeAlpha, 0.0f, Engine.DeltaTime * 8f);
-            if (beamSprite.CurrentAnimationID != "shoot")
+            if (beamSprite.CurrentAnimationID != "charaboss_shoot")
             {
-                beamSprite.Play("shoot");
-                beamStartSprite.Play("shoot", true);
+                beamSprite.Play("charaboss_shoot");
+                beamStartSprite.Play("charaboss_shoot", true);
             }
             activeTimer -= Engine.DeltaTime;
             if (activeTimer <= 0.0)

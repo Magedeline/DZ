@@ -1,3 +1,5 @@
+using Celeste.Entities;
+
 namespace Celeste.NPCs
 {
     [CustomEntity(ids: "MaggyHelper/NPC20_Madeline")]
@@ -5,22 +7,23 @@ namespace Celeste.NPCs
     {
         private const string donetalking = "madelineDoneTalking";
         
-        private Sprite sprite;
+        private MadelineDummy dummy;
         private TalkComponent talker;
         private Coroutine talkRoutine;
         private bool isInteracting = false;
 
         public Npc20Madeline(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            setupSprite();
+            setupDummy();
             setupCollision();
             Depth = 100;
         }
 
-        private void setupSprite()
+        private void setupDummy()
         {
-            Add(sprite = GFX.SpriteBank.Create("madeline"));
-            sprite.Play("idle");
+            dummy = new MadelineDummy(Vector2.Zero);
+            Add(dummy.Sprite);
+            dummy.Sprite.Play("idle");
         }
 
         private void setupCollision()
@@ -95,9 +98,9 @@ namespace Celeste.NPCs
         {
             base.Update();
             
-            if (sprite != null && !isInteracting)
+            if (dummy?.Sprite != null && !isInteracting)
             {
-                sprite.Play("idle");
+                dummy.Sprite.Play("idle");
             }
         }
 

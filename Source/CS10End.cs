@@ -101,7 +101,7 @@ public class CS10End : CutsceneEntity
         if (madelineNpc != null)
         {
             // Madeline bows respectfully
-            madelineNpc.Sprite.Play("thanks", false);
+            madelineNpc.Sprite.Play("idle", false);
             Audio.Play("event:/desolozantas/char/kirby/screenentry");
             yield return 0.8f;
             madelineNpc.Sprite.Play("idle", false);

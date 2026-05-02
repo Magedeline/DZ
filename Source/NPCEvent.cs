@@ -835,12 +835,10 @@ namespace Celeste.Entities
         }
         protected override void OnTalk(global::Celeste.Player player)
         {
-            var magolor = Scene.Tracker.GetEntity<Npc08MaggyEnding>();
             var madelineBandage = Scene.Tracker.GetEntity<Npc08MadelineEndingBandage>();
-            var theo = Scene.Tracker.GetEntity<Npc08TheoEnding>();
-            if (madelineBandage != null && theo != null && magolor != null)
+            if (madelineBandage != null)
             {
-                TryAddCutscene(new Cs08End(player, madelineBandage, theo, magolor));
+                TryAddCutscene(new Cs08End(player));
             }
         }
     }
@@ -874,11 +872,26 @@ namespace Celeste.Entities
         }
         protected override void OnTalk(global::Celeste.Player player)
         {
-            var theoNMaddy = Scene.Tracker.GetEntity<Npc08MaddyAndTheoEnding>();
             var magolor = Scene.Tracker.GetEntity<Npc08MaggyEnding>();
-            if (theoNMaddy != null && magolor != null)
+            if (magolor != null)
             {
-                TryAddCutscene(new Cs08End(player, theoNMaddy, magolor));
+                TryAddCutscene(new Cs08End(player));
+            }
+        }
+    }
+    
+    public partial class Npc08_Theo_Ending : NpcEvent
+    {
+        public Npc08_Theo_Ending(EntityData data, Vector2 offset) : base(data.Position + offset)
+        {
+            SetSpriteDirectory("characters/theo/");
+        }
+        protected override void OnTalk(global::Celeste.Player player)
+        {
+            var theo = Scene.Tracker.GetEntity<Npc08TheoEnding>();
+            if (theo != null)
+            {
+                TryAddCutscene(new Cs08End(player));
             }
         }
     }

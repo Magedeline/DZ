@@ -36,6 +36,8 @@
     </ItemGroup>
 
     <ItemGroup>
+        <None Include="$(CelestePrefix)\Celeste.dll" Link="Celeste.dll" />
+        <None Include="..\bin\MaggyHelper.dll" Link="MaggyHelper.dll" />
         <PackageReference Include="CelesteMod.Publicizer" Version="1.1.2" CelesteAssembly="$(CelestePrefix)\Celeste.dll" />
         <Reference Include="$(CelestePrefix)\MMHOOK_Celeste.dll" Private="false" />
         <Reference Include="$(CelestePrefix)\FNA.dll" Private="false" />

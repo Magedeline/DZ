@@ -8,11 +8,6 @@ using MonoMod.Utils;
 
 namespace Celeste;
 
-/// <summary>
-/// Registers a minimal Kirby-specific state on the vanilla global::Celeste.Player.
-/// This follows the common Everest pattern of extending the real player via
-/// custom states instead of swapping the player object at runtime.
-/// </summary>
 public static class KirbyPlayerStateController
 {
     private class KirbyPlayerData
@@ -20,6 +15,18 @@ public static class KirbyPlayerStateController
         public float FloatTimer;
         public float ActionTimer;
         public bool GroundPoundImpacted;
+        public KirbyAction CurrentAction;
+    }
+
+    private enum KirbyAction
+    {
+        None,
+        Float,
+        Punch,
+        Kick,
+        AirSpin,
+        Backflip,
+        GroundPound
     }
 
     private static readonly ConditionalWeakTable<Player, KirbyPlayerData> PlayerData = new();
@@ -45,16 +52,8 @@ public static class KirbyPlayerStateController
     private const float KirbyGroundPoundSpeed = 340f;
     private const float KirbyGroundPoundBounceSpeed = -150f;
 
-    public static int StKirbyFloat { get; private set; } = -1;
-    public static int StKirbyPunch { get; private set; } = -1;
-    public static int StKirbyKick { get; private set; } = -1;
-    public static int StKirbyAirSpin { get; private set; } = -1;
-    public static int StKirbyBackflip { get; private set; } = -1;
-    public static int StKirbyGroundPound { get; private set; } = -1;
-
     public static void Load()
     {
-        Everest.Events.Player.OnRegisterStates += RegisterStates;
         On.Celeste.Player.Update += Hook_Player_Update;
         On.Celeste.Player.NormalUpdate += Hook_Player_NormalUpdate;
 
@@ -66,61 +65,14 @@ public static class KirbyPlayerStateController
     {
         On.Celeste.Player.NormalUpdate -= Hook_Player_NormalUpdate;
         On.Celeste.Player.Update -= Hook_Player_Update;
-        Everest.Events.Player.OnRegisterStates -= RegisterStates;
-
-        StKirbyFloat = -1;
-        StKirbyPunch = -1;
-        StKirbyKick = -1;
-        StKirbyAirSpin = -1;
-        StKirbyBackflip = -1;
-        StKirbyGroundPound = -1;
 
         Logger.Log(LogLevel.Info, "MaggyHelper",
             "[KirbyPlayerStateController] Unloaded");
     }
 
-    private static void RegisterStates(Player player)
-    {
-        StKirbyFloat = player.AddState(
-            "MaggyHelperKirbyFloat",
-            KirbyFloatUpdate,
-            null,
-            KirbyFloatBegin,
-            KirbyFloatEnd);
-        StKirbyPunch = player.AddState(
-            "MaggyHelperKirbyPunch",
-            KirbyPunchUpdate,
-            null,
-            KirbyPunchBegin,
-            KirbyActionEnd);
-        StKirbyKick = player.AddState(
-            "MaggyHelperKirbyKick",
-            KirbyKickUpdate,
-            null,
-            KirbyKickBegin,
-            KirbyActionEnd);
-        StKirbyAirSpin = player.AddState(
-            "MaggyHelperKirbyAirSpin",
-            KirbyAirSpinUpdate,
-            null,
-            KirbyAirSpinBegin,
-            KirbyActionEnd);
-        StKirbyBackflip = player.AddState(
-            "MaggyHelperKirbyBackflip",
-            KirbyBackflipUpdate,
-            null,
-            KirbyBackflipBegin,
-            KirbyActionEnd);
-        StKirbyGroundPound = player.AddState(
-            "MaggyHelperKirbyGroundPound",
-            KirbyGroundPoundUpdate,
-            null,
-            KirbyGroundPoundBegin,
-            KirbyActionEnd);
-    }
-
     private static void Hook_Player_Update(On.Celeste.Player.orig_Update orig, Player self)
     {
+        UpdateKirbyAction(self);
         orig(self);
 
         if (self.Scene == null)
@@ -132,27 +84,13 @@ public static class KirbyPlayerStateController
 
     private static int Hook_Player_NormalUpdate(On.Celeste.Player.orig_NormalUpdate orig, Player self)
     {
-        int kirbyActionState = GetRequestedKirbyAction(self);
-        if (kirbyActionState != Player.StNormal)
-            return kirbyActionState;
-
         int nextState = orig(self);
-
-        if (nextState != Player.StNormal)
-            return nextState;
-
-        if (ShouldStartKirbyFloat(self))
-        {
-            Input.Jump.ConsumeBuffer();
-            return StKirbyFloat;
-        }
-
         return nextState;
     }
 
     private static bool ShouldStartKirbyFloat(Player player)
     {
-        if (!IsKirbyFloatEnabled(player) || StKirbyFloat < 0)
+        if (!IsKirbyFloatEnabled(player))
             return false;
 
         if (player.Scene is not Level)
@@ -170,30 +108,30 @@ public static class KirbyPlayerStateController
         return GetFloatTimer(player) > 0f;
     }
 
-    private static int GetRequestedKirbyAction(Player player)
+    private static KirbyAction GetRequestedKirbyAction(Player player)
     {
         if (player?.IsKirbyMode() != true || player.Scene is not Level)
-            return Player.StNormal;
+            return KirbyAction.None;
 
-        if (Input.Dash.Pressed && Input.MoveY.Value > 0 && !player.OnGround() && StKirbyGroundPound >= 0)
+        if (Input.Dash.Pressed && Input.MoveY.Value > 0 && !player.OnGround())
         {
             Input.Dash.ConsumeBuffer();
-            return StKirbyGroundPound;
+            return KirbyAction.GroundPound;
         }
 
         if (!Input.Grab.Pressed)
-            return Player.StNormal;
+            return KirbyAction.None;
 
-        if (Input.MoveY.Value < 0 && StKirbyBackflip >= 0)
-            return StKirbyBackflip;
+        if (Input.MoveY.Value < 0)
+            return KirbyAction.Backflip;
 
-        if (!player.OnGround() && StKirbyAirSpin >= 0)
-            return StKirbyAirSpin;
+        if (!player.OnGround())
+            return KirbyAction.AirSpin;
 
-        if (Input.MoveX.Value != 0 && StKirbyKick >= 0)
-            return StKirbyKick;
+        if (Input.MoveX.Value != 0)
+            return KirbyAction.Kick;
 
-        return StKirbyPunch >= 0 ? StKirbyPunch : Player.StNormal;
+        return KirbyAction.Punch;
     }
 
     private static void KirbyFloatBegin(Player player)
@@ -224,22 +162,25 @@ public static class KirbyPlayerStateController
             level.Particles.Emit(ParticleTypes.Dust, 3, player.BottomCenter, Vector2.One * 4f, Calc.Down);
     }
 
-    private static int KirbyFloatUpdate(Player player)
+    private static bool KirbyFloatUpdate(Player player)
     {
         if (!IsKirbyFloatEnabled(player))
-            return Player.StNormal;
+            return false;
 
-        int kirbyActionState = GetRequestedKirbyAction(player);
-        if (kirbyActionState != Player.StNormal)
-            return kirbyActionState;
+        KirbyAction kirbyAction = GetRequestedKirbyAction(player);
+        if (kirbyAction != KirbyAction.None)
+        {
+            StartAction(player, kirbyAction);
+            return true;
+        }
 
         if (Input.Dash.Pressed || Input.Grab.Pressed)
-            return Player.StNormal;
+            return false;
 
         if (Input.MoveY.Value > 0)
         {
             player.Speed.Y = KirbyFloatFastFall;
-            return Player.StNormal;
+            return false;
         }
 
         float remaining = Math.Max(0f, GetFloatTimer(player) - Engine.DeltaTime);
@@ -272,11 +213,9 @@ public static class KirbyPlayerStateController
             player.Facing = (Facings) moveX;
 
         if (player.OnGround() && player.Speed.Y >= 0f)
-            return Player.StNormal;
+            return false;
 
-        return GetFloatTimer(player) <= 0f
-            ? Player.StNormal
-            : StKirbyFloat;
+        return GetFloatTimer(player) > 0f;
     }
 
     private static void KirbyPunchBegin(Player player)
@@ -285,12 +224,12 @@ public static class KirbyPlayerStateController
         player.Speed.X = 30f * (int) player.Facing;
     }
 
-    private static int KirbyPunchUpdate(Player player)
+    private static bool KirbyPunchUpdate(Player player)
     {
         UpdateActionTimer(player);
         player.Speed.X = Calc.Approach(player.Speed.X, 0f, 800f * Engine.DeltaTime);
         EmitMeleeParticles(player, 10f);
-        return GetActionTimer(player) <= 0f ? Player.StNormal : StKirbyPunch;
+        return GetActionTimer(player) > 0f;
     }
 
     private static void KirbyKickBegin(Player player)
@@ -302,12 +241,12 @@ public static class KirbyPlayerStateController
         player.Speed.X = KirbyKickSpeed * (int) player.Facing;
     }
 
-    private static int KirbyKickUpdate(Player player)
+    private static bool KirbyKickUpdate(Player player)
     {
         UpdateActionTimer(player);
         player.Speed.X = Calc.Approach(player.Speed.X, 0f, 600f * Engine.DeltaTime);
         EmitMeleeParticles(player, 14f);
-        return GetActionTimer(player) <= 0f ? Player.StNormal : StKirbyKick;
+        return GetActionTimer(player) > 0f;
     }
 
     private static void KirbyAirSpinBegin(Player player)
@@ -316,7 +255,7 @@ public static class KirbyPlayerStateController
         player.Speed.Y = Math.Min(player.Speed.Y, KirbyFloatTargetFallSpeed);
     }
 
-    private static int KirbyAirSpinUpdate(Player player)
+    private static bool KirbyAirSpinUpdate(Player player)
     {
         UpdateActionTimer(player);
 
@@ -329,9 +268,9 @@ public static class KirbyPlayerStateController
         EmitMeleeParticles(player, 12f);
 
         if (player.OnGround() && player.Speed.Y >= 0f)
-            return Player.StNormal;
+            return false;
 
-        return GetActionTimer(player) <= 0f ? Player.StNormal : StKirbyAirSpin;
+        return GetActionTimer(player) > 0f;
     }
 
     private static void KirbyBackflipBegin(Player player)
@@ -341,11 +280,11 @@ public static class KirbyPlayerStateController
         player.Speed.Y = KirbyBackflipYSpeed;
     }
 
-    private static int KirbyBackflipUpdate(Player player)
+    private static bool KirbyBackflipUpdate(Player player)
     {
         UpdateActionTimer(player);
         player.Speed.Y = Calc.Approach(player.Speed.Y, KirbyFloatTargetFallSpeed, KirbyFloatGravity * Engine.DeltaTime);
-        return GetActionTimer(player) <= 0f ? Player.StNormal : StKirbyBackflip;
+        return GetActionTimer(player) > 0f;
     }
 
     private static void KirbyGroundPoundBegin(Player player)
@@ -356,7 +295,7 @@ public static class KirbyPlayerStateController
         player.Speed = Vector2.Zero;
     }
 
-    private static int KirbyGroundPoundUpdate(Player player)
+    private static bool KirbyGroundPoundUpdate(Player player)
     {
         UpdateActionTimer(player);
         var data = PlayerData.GetOrCreateValue(player);
@@ -365,7 +304,7 @@ public static class KirbyPlayerStateController
         if (elapsed < KirbyGroundPoundWindupTime)
         {
             player.Speed = Vector2.Zero;
-            return StKirbyGroundPound;
+            return true;
         }
 
         if (!data.GroundPoundImpacted)
@@ -381,15 +320,91 @@ public static class KirbyPlayerStateController
             DoGroundPoundImpact(player);
         }
 
-        return data.GroundPoundImpacted || data.ActionTimer <= 0f
-            ? Player.StNormal
-            : StKirbyGroundPound;
+        return !data.GroundPoundImpacted && data.ActionTimer > 0f;
     }
 
     private static void KirbyActionEnd(Player player)
     {
         if (player.Sprite != null)
             player.Sprite.Scale = Vector2.One;
+    }
+
+    private static void UpdateKirbyAction(Player player)
+    {
+        if (player == null)
+            return;
+
+        var data = PlayerData.GetOrCreateValue(player);
+        if (data.CurrentAction == KirbyAction.None)
+        {
+            KirbyAction requestedAction = GetRequestedKirbyAction(player);
+            if (requestedAction != KirbyAction.None)
+                StartAction(player, requestedAction);
+            else if (ShouldStartKirbyFloat(player))
+            {
+                Input.Jump.ConsumeBuffer();
+                StartAction(player, KirbyAction.Float);
+            }
+        }
+
+        if (data.CurrentAction == KirbyAction.None)
+            return;
+
+        bool keepAction = data.CurrentAction switch
+        {
+            KirbyAction.Float => KirbyFloatUpdate(player),
+            KirbyAction.Punch => KirbyPunchUpdate(player),
+            KirbyAction.Kick => KirbyKickUpdate(player),
+            KirbyAction.AirSpin => KirbyAirSpinUpdate(player),
+            KirbyAction.Backflip => KirbyBackflipUpdate(player),
+            KirbyAction.GroundPound => KirbyGroundPoundUpdate(player),
+            _ => false
+        };
+
+        if (!keepAction)
+            EndAction(player);
+    }
+
+    private static void StartAction(Player player, KirbyAction action)
+    {
+        var data = PlayerData.GetOrCreateValue(player);
+        if (data.CurrentAction != KirbyAction.None)
+            EndAction(player);
+
+        data.CurrentAction = action;
+        switch (action)
+        {
+            case KirbyAction.Float:
+                KirbyFloatBegin(player);
+                break;
+            case KirbyAction.Punch:
+                KirbyPunchBegin(player);
+                break;
+            case KirbyAction.Kick:
+                KirbyKickBegin(player);
+                break;
+            case KirbyAction.AirSpin:
+                KirbyAirSpinBegin(player);
+                break;
+            case KirbyAction.Backflip:
+                KirbyBackflipBegin(player);
+                break;
+            case KirbyAction.GroundPound:
+                KirbyGroundPoundBegin(player);
+                break;
+        }
+    }
+
+    private static void EndAction(Player player)
+    {
+        var data = PlayerData.GetOrCreateValue(player);
+        KirbyAction action = data.CurrentAction;
+        data.CurrentAction = KirbyAction.None;
+
+        if (action == KirbyAction.Float)
+            KirbyFloatEnd(player);
+        else
+            KirbyActionEnd(player);
     }
 
     private static void BeginKirbyAction(Player player, float duration, params string[] animations)

@@ -210,7 +210,7 @@ namespace Celeste.Entities
                 {
                     return null;
                 }
-                return metadata.GetMeta<MapMeta>()?.Mountain?.MarkerTexture;
+                return null;
             }
             catch
             {

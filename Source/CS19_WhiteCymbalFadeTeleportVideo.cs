@@ -203,8 +203,7 @@ namespace Celeste.Cutscenes
 
 				Logger.Log(LogLevel.Info, "MaggyHelper", $"Loading MP4 video: {videoFile}");
 
-				// Load the video using FNA's Video.FromUriEXT for Ogg Theora videos
-				this.video = Video.FromUriEXT(new Uri(videoFile, UriKind.Absolute), CelesteGame.Instance.GraphicsDevice);
+				this.video = Video.FromUri(videoFile, new Uri(videoFile, UriKind.Absolute));
 
 				if (this.video != null)
 				{

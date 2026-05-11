@@ -42,8 +42,9 @@ kirbySpawnPoint.fieldInformation = {
 }
 
 function kirbySpawnPoint.sprite(room, entity)
-    local texture = "objects/kirby/spawnPoint/icon"
+    local texture = "objects/Maggy/DesoloZantas/kirby/spawnPoint/icon"
     return drawableSprite.fromTexture(texture, entity)
 end
 
 return kirbySpawnPoint
+

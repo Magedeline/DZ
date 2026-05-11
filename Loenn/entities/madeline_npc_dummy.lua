@@ -3,7 +3,7 @@ local madelineNPCDummy = {}
 madelineNPCDummy.name = "MaggyHelper/MadelineNPCDummy"
 madelineNPCDummy.depth = 0
 madelineNPCDummy.justification = {0.5, 1.0}
-madelineNPCDummy.texture = "characters/madeline/maddy00"
+madelineNPCDummy.texture = "characters/Maggy/DesoloZantas/madeline/maddy00"
 
 madelineNPCDummy.fieldInformation = {
     facing = {
@@ -62,7 +62,7 @@ function madelineNPCDummy.sprite(room, entity)
     local alpha = entity.alpha or 1.0
 
     return {
-        texture = "characters/madeline/maddy00",
+        texture = "characters/Maggy/DesoloZantas/madeline/maddy00",
         x = entity.x,
         y = entity.y,
         justificationX = 0.5,
@@ -74,3 +74,4 @@ function madelineNPCDummy.sprite(room, entity)
 end
 
 return madelineNPCDummy
+

@@ -2,7 +2,7 @@ local dialogNPC = {}
 
 dialogNPC.name = "MaggyHelper/DialogNPC"
 dialogNPC.depth = -8500
-dialogNPC.texture = "characters/player/idle00"
+dialogNPC.texture = "characters/Maggy/DesoloZantas/Kglobal::Player/idle00"
 dialogNPC.justification = {0.5, 1.0}
 
 dialogNPC.placements = {

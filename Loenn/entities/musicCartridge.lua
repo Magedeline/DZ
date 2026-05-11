@@ -1,8 +1,8 @@
 local musicCartridge = {}
 
-musicCartridge.name = "DesoloZantas/MusicCartridge"
+musicCartridge.name = "Maggy_DesoloZantas/MusicCartridge"
 musicCartridge.depth = -100
-musicCartridge.texture = "collectibles/desolozantas/musiccartridge/idle00"
+musicCartridge.texture = "collectibles/Maggy_DesoloZantas/musiccartridge/idle00"
 musicCartridge.placements = {
     {
         name = "music_cartridge",

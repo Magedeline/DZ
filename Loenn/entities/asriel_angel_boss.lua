@@ -25,10 +25,10 @@ asrielAngelBoss.placements = {
             enableFlashback = true,
             enableFinalBeam = true,
             -- Music tracks
-            musicBurnInDespair = "event:/desolozantas/final_content/music/lvl20/burn_in_despair",
-            musicHisTheme01 = "event:/desolozantas/final_content/music/lvl20/his_theme01",
-            musicHisTheme02 = "event:/desolozantas/final_content/music/lvl20/his_theme02",
-            musicKirbyVsAsriel = "event:/desolozantas/final_content/music/lvl20/kirby_vs_asriel_fight_02",
+            musicBurnInDespair = "event:/desolo_zantas/final_content/music/lvl20/burn_in_despair",
+            musicHisTheme01 = "event:/desolo_zantas/final_content/music/lvl20/his_theme01",
+            musicHisTheme02 = "event:/desolo_zantas/final_content/music/lvl20/his_theme02",
+            musicKirbyVsAsriel = "event:/desolo_zantas/final_content/music/lvl20/kirby_vs_asriel_fight_02",
             -- Phase configuration
             barrierWidth = 400,
             barrierHeight = 300,
@@ -49,10 +49,10 @@ asrielAngelBoss.placements = {
             enableLostSouls = true,
             enableFlashback = true,
             enableFinalBeam = true,
-            musicBurnInDespair = "event:/desolozantas/final_content/music/lvl20/burn_in_despair",
-            musicHisTheme01 = "event:/desolozantas/final_content/music/lvl20/his_theme01",
-            musicHisTheme02 = "event:/desolozantas/final_content/music/lvl20/his_theme02",
-            musicKirbyVsAsriel = "event:/desolozantas/final_content/music/lvl20/kirby_vs_asriel_fight_02",
+            musicBurnInDespair = "event:/desolo_zantas/final_content/music/lvl20/burn_in_despair",
+            musicHisTheme01 = "event:/desolo_zantas/final_content/music/lvl20/his_theme01",
+            musicHisTheme02 = "event:/desolo_zantas/final_content/music/lvl20/his_theme02",
+            musicKirbyVsAsriel = "event:/desolo_zantas/final_content/music/lvl20/kirby_vs_asriel_fight_02",
             barrierWidth = 350,
             barrierHeight = 280,
             riseSpeed = 2.0,
@@ -71,10 +71,10 @@ asrielAngelBoss.placements = {
             enableLostSouls = false,
             enableFlashback = true,
             enableFinalBeam = false,
-            musicBurnInDespair = "event:/desolozantas/final_content/music/lvl20/burn_in_despair",
-            musicHisTheme01 = "event:/desolozantas/final_content/music/lvl20/his_theme01",
-            musicHisTheme02 = "event:/desolozantas/final_content/music/lvl20/his_theme02",
-            musicKirbyVsAsriel = "event:/desolozantas/final_content/music/lvl20/kirby_vs_asriel_fight_02",
+            musicBurnInDespair = "event:/desolo_zantas/final_content/music/lvl20/burn_in_despair",
+            musicHisTheme01 = "event:/desolo_zantas/final_content/music/lvl20/his_theme01",
+            musicHisTheme02 = "event:/desolo_zantas/final_content/music/lvl20/his_theme02",
+            musicKirbyVsAsriel = "event:/desolo_zantas/final_content/music/lvl20/kirby_vs_asriel_fight_02",
             barrierWidth = 400,
             barrierHeight = 300,
             riseSpeed = 3.0,
@@ -211,7 +211,7 @@ function asrielAngelBoss.sprite(room, entity)
     
     -- If no sprites loaded, use fallback
     if #sprites == 0 then
-        local fallback = drawableSprite.fromTexture("characters/asriel/idle00", entity)
+        local fallback = drawableSprite.fromTexture("characters/Maggy/DesoloZantas/asriel/idle00", entity)
         if fallback then
             fallback:setJustification(0.5, 1.0)
             table.insert(sprites, fallback)
@@ -227,3 +227,4 @@ function asrielAngelBoss.selection(room, entity)
 end
 
 return asrielAngelBoss
+

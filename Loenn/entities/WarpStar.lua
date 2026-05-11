@@ -4,7 +4,7 @@ local warpStar = {}
 
 warpStar.name = "MaggyHelper/WarpStar"
 warpStar.depth = -1000000
-warpStar.texture = "objects/warpstars/idle00"
+warpStar.texture = "objects/Maggy/DesoloZantas/warpstars/idle00"
 
 warpStar.placements = {
     {
@@ -52,7 +52,7 @@ warpStar.fieldInformation = {
     },
     isKirbyWarpStar = {
         fieldType = "boolean",
-        description = "If true, uses Kirby-themed visuals and sounds, optimized for KirbyPlayer"
+        description = "If true, uses Kirby-themed visuals and sounds, optimized for KirbyKglobal::Player"
     }
 }
 
@@ -62,9 +62,9 @@ warpStar.fieldOrder = {
 
 function warpStar.texture(room, entity)
     if entity.isKirbyWarpStar then
-        return "objects/warpstars_kirby/idle00"
+        return "objects/warpstars_Maggy/DesoloZantas/kirby/idle00"
     else
-        return "objects/warpstars/idle00"
+        return "objects/Maggy/DesoloZantas/warpstars/idle00"
     end
 end
 

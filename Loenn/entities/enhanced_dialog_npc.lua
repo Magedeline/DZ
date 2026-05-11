@@ -8,14 +8,14 @@ dialogNPC.depth = 0
 local aiTypes = {
     "None", "Swim", "Fly", "Fly (Tied)", "Smart Fly", "Node Walk", 
     "Chase Walk", "Wander", "Walk & Climb", "Chase Jump", "Pathfind",
-    "Follow Player", "Patrol", "Guard Point", "Flee Player", "Circle Player", "Hover"
+    "Follow Kglobal::Player", "Patrol", "Guard Point", "Flee Kglobal::Player", "Circle Kglobal::Player", "Hover"
 }
 
 dialogNPC.placements = {
     {
         name = "normal",
         data = {
-            sprite = "characters/player/idle00",
+            sprite = "characters/Maggy/DesoloZantas/Kglobal::Player/idle00",
             aiType = "None",
             hitboxXOffset = 0,
             hitboxYOffset = 0,
@@ -39,7 +39,7 @@ dialogNPC.placements = {
             isStunned = false,
             isHostile = false,
             isFriendly = true,
-            isFollowingPlayer = false,
+            isFollowingKglobal::global::Celeste.Player= false,
             isInvincible = false,
             isGrounded = true,
             isAirborne = false,
@@ -55,7 +55,7 @@ dialogNPC.placements = {
     {
         name = "theo_style", 
         data = {
-            sprite = "characters/theo/idle00",
+            sprite = "characters/Maggy/DesoloZantas/theo/idle00",
             aiType = "Wander",
             basicDialogID = "THEO_GREETING",
             XSpeed = 80.0,
@@ -67,7 +67,7 @@ dialogNPC.placements = {
     {
         name = "chara_style",
         data = {
-            sprite = "characters/chara/idle00",
+            sprite = "characters/Maggy/DesoloZantas/chara/idle00",
             aiType = "Chase Walk",
             basicDialogID = "CHARA_TAUNT", 
             XSpeed = 150.0,
@@ -114,7 +114,7 @@ dialogNPC.fieldInformation = {
 }
 
 function dialogNPC.sprite(room, entity)
-    local texture = entity.sprite or "characters/player/idle00"
+    local texture = entity.sprite or "characters/Maggy/DesoloZantas/Kglobal::Player/idle00"
     local color = {0.2, 0.8, 0.2, 1.0}
     
     if entity.isHostile then
@@ -138,3 +138,5 @@ function dialogNPC.selection(room, entity)
 end
 
 return dialogNPC
+
+

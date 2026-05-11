@@ -29,7 +29,7 @@ redLightning.fieldInformation = {
         fieldType = "color",
         allowAlpha = true
     },
-    followPlayer = {
+    followKglobal::global::Celeste.Player= {
         fieldType = "boolean"
     },
     soundEffect = {
@@ -52,7 +52,7 @@ redLightning.placements = {
             duration = 2.0,
             intensity = 1.0,
             color = "FF0000FF",
-            followPlayer = false,
+            followKglobal::global::Celeste.Player= false,
             soundEffect = "event:/game/general/lightning"
         }
     },
@@ -64,7 +64,7 @@ redLightning.placements = {
             duration = 1.5,
             intensity = 1.5,
             color = "FF4444AA",
-            followPlayer = true,
+            followKglobal::global::Celeste.Player= true,
             soundEffect = "event:/char/badeline/disappear"
         }
     },
@@ -76,7 +76,7 @@ redLightning.placements = {
             duration = 0.5,
             intensity = 0.7,
             color = "DD0000BB",
-            followPlayer = false,
+            followKglobal::global::Celeste.Player= false,
             soundEffect = ""
         }
     }

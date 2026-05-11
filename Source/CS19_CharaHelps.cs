@@ -169,6 +169,3 @@ namespace Celeste.Cutscenes
         private EventInstance entrySfx;
     }
 }
-
-
-

@@ -3,7 +3,7 @@ local npc07_chara = {}
 npc07_chara.name = "MaggyHelper/NPC07_Chara"
 npc07_chara.depth = 0
 npc07_chara.justification = {0.5, 1.0}
-npc07_chara.texture = "characters/chara/idle00"
+npc07_chara.texture = "characters/Maggy/DesoloZantas/chara/idle00"
 
 npc07_chara.placements = {
     {
@@ -31,7 +31,7 @@ npc07_chara.fieldInformation = {
         options = {
             "chara",
             "theo",
-            "player",
+            "Kglobal::Player",
             "madeline"
         }
     },
@@ -46,3 +46,4 @@ npc07_chara.fieldInformation = {
 }
 
 return npc07_chara
+

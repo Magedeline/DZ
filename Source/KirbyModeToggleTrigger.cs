@@ -531,7 +531,3 @@ namespace Celeste.Triggers
         #endregion
     }
 }
-
-
-
-

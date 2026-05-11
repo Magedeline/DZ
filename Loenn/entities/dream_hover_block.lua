@@ -1,7 +1,7 @@
 -- MaggyHelper/DreamHoverBlock
 -- A dream-styled solid that ONLY Kirby can hover / float through.
--- Normal players are stopped by it (unless requireKirbyMode is false, in which case
--- any player holding the hover input can pass through — useful for tutorials).
+-- Normal Kglobal::Players are stopped by it (unless requireKirbyMode is false, in which case
+-- any Kglobal::global::Celeste.Playerholding the hover input can pass through — useful for tutorials).
 
 return {
     name = "MaggyHelper/DreamHoverBlock",

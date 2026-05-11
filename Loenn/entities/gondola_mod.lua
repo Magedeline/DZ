@@ -25,12 +25,12 @@ gondola_mod.fieldInformation = {
     }
 }
 
-local frontTexture = "objects/gondola/front"
-local backTexture = "objects/gondola/back"
-local topTexture = "objects/gondola/top"
-local leverTexture = "objects/gondola/lever01"
-local leftTexture = "objects/gondola/cliffsideLeft"
-local rightTexture = "objects/gondola/cliffsideRight"
+local frontTexture = "objects/Maggy/DesoloZantas/gondola/front"
+local backTexture = "objects/Maggy/DesoloZantas/gondola/back"
+local topTexture = "objects/Maggy/DesoloZantas/gondola/top"
+local leverTexture = "objects/Maggy/DesoloZantas/gondola/lever01"
+local leftTexture = "objects/Maggy/DesoloZantas/gondola/cliffsideLeft"
+local rightTexture = "objects/Maggy/DesoloZantas/gondola/cliffsideRight"
 
 local renderOffsetY = -64
 

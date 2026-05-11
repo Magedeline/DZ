@@ -34,7 +34,3 @@ namespace Celeste.Entities
     }
   }
 }
-
-
-
-

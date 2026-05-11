@@ -3,7 +3,7 @@ local madelineGodDummy = {}
 madelineGodDummy.name = "MaggyHelper/MadelineGodDummy"
 madelineGodDummy.depth = -100
 madelineGodDummy.justification = {0.5, 1.0}
-madelineGodDummy.texture = "characters/madeline/maddy00"
+madelineGodDummy.texture = "characters/Maggy/DesoloZantas/madeline/maddy00"
 
 madelineGodDummy.fieldInformation = {
     facing = {
@@ -66,7 +66,7 @@ function madelineGodDummy.sprite(room, entity)
     local alpha = entity.alpha or 1.0
 
     return {
-        texture = "characters/madeline/maddy00",
+        texture = "characters/Maggy/DesoloZantas/madeline/maddy00",
         x = entity.x,
         y = entity.y,
         justificationX = 0.5,
@@ -78,3 +78,4 @@ function madelineGodDummy.sprite(room, entity)
 end
 
 return madelineGodDummy
+

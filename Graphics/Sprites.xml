@@ -2114,13 +2114,13 @@
   </void_dreamer>
 
   <!-- Granny NPC (Gray square placeholder) -->
-  <maggy_granny path="characters/MaggyHelper/granny/" start="idle">
+  <granny path="characters/MaggyHelper/granny/" start="idle">
     <Justify x=".5" y="1" />
 
     <Loop id="idle" path="idle" delay="0.1" frames="0" />
     <Loop id="walk" path="walk" delay="0.08" frames="0" />
     <Loop id="run" path="run" delay="0.06" frames="0" />
-  </maggy_granny>
+  </granny>
 
   <!-- Bird Goner - Clover -->
   <birdgoner_clover path="characters/birdgoner/" start="idle">

@@ -114,6 +114,3 @@ namespace Celeste
         }
     }
 }
-
-
-

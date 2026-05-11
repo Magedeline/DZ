@@ -3,7 +3,7 @@ local npc_ralsei = {}
 npc_ralsei.name = "DesoloZantas/NPC_Ralsei"
 npc_ralsei.depth = 0
 npc_ralsei.justification = {0.5, 1.0}
-npc_ralsei.texture = "characters/ralsei/idle00"
+npc_ralsei.texture = "characters/Maggy/DesoloZantas/ralsei/idle00"
 
 npc_ralsei.placements = {
     {

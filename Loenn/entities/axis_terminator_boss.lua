@@ -3,7 +3,7 @@ local axisTerminatorBoss = {}
 
 axisTerminatorBoss.name = "MaggyHelper/AxisTerminatorBoss"
 axisTerminatorBoss.depth = 0
-axisTerminatorBoss.texture = "characters/axis/terminator_idle00"
+axisTerminatorBoss.texture = "characters/Maggy/DesoloZantas/axis/terminator_idle00"
 axisTerminatorBoss.justification = {0.5, 1.0}
 
 axisTerminatorBoss.placements = {
@@ -18,3 +18,4 @@ axisTerminatorBoss.placements = {
 }
 
 return axisTerminatorBoss
+

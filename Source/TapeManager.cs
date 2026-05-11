@@ -508,7 +508,3 @@ namespace Celeste
         }
     }
 }
-
-
-
-

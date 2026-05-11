@@ -85,9 +85,9 @@ local function getThemePath(theme)
     if theme == "Moon" then
         return "moon/"
     elseif theme == "FoundLevels" then
-        return "foundlevels/"
+        return "foundlevMaggy/DesoloZantas/els/"
     elseif theme == "FinalLevels" then
-        return "finallevels/"
+        return "finallevMaggy/DesoloZantas/els/"
     else
         return ""
     end
@@ -248,3 +248,4 @@ function zoomMover.selection(room, entity)
 end
 
 return zoomMover
+

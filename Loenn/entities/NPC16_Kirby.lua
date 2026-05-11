@@ -3,7 +3,7 @@ local npc16_kirby = {}
 npc16_kirby.name = "MaggyHelper/NPC17_Kirby"
 npc16_kirby.depth = 0
 npc16_kirby.justification = {0.5, 1.0}
-npc16_kirby.texture = "characters/kirby/idle00"
+npc16_kirby.texture = "characters/Maggy/DesoloZantas/kirby/idle00"
 
 npc16_kirby.placements = {
     {
@@ -30,7 +30,7 @@ npc16_kirby.fieldInformation = {
         options = {
             "kirby",
             "theo",
-            "player",
+            "Kglobal::Player",
             "madeline"
         }
     },
@@ -40,3 +40,4 @@ npc16_kirby.fieldInformation = {
 }
 
 return npc16_kirby
+

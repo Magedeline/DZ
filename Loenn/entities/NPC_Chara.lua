@@ -3,7 +3,7 @@ local npc_chara = {}
 npc_chara.name = "DesoloZantas/NPC_Chara"
 npc_chara.depth = 0
 npc_chara.justification = {0.5, 1.0}
-npc_chara.texture = "characters/chara/idle00"
+npc_chara.texture = "characters/Maggy/DesoloZantas/chara/idle00"
 
 npc_chara.placements = {
     {

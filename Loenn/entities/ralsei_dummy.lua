@@ -3,7 +3,7 @@ local ralseiDummy = {}
 ralseiDummy.name = "MaggyHelper/RalseiDummy"
 ralseiDummy.depth = 0
 ralseiDummy.justification = {0.5, 1.0}
-ralseiDummy.texture = "characters/ralsei/ralsei00"
+ralseiDummy.texture = "characters/Maggy/DesoloZantas/ralsei/ralsei00"
 
 ralseiDummy.fieldInformation = {
     facing = {
@@ -85,7 +85,7 @@ function ralseiDummy.sprite(room, entity)
     local alpha = entity.alpha or 1.0
     
     return {
-        texture = "characters/ralsei/ralsei00",
+        texture = "characters/Maggy/DesoloZantas/ralsei/ralsei00",
         x = entity.x,
         y = entity.y,
         justificationX = 0.5,

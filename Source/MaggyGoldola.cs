@@ -232,5 +232,3 @@ namespace Celeste.Entities
 		}
 	}
 }
-
-

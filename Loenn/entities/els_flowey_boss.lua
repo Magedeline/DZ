@@ -117,7 +117,7 @@ function elsFloweyBoss.sprite(room, entity)
     local corruptionLevel = entity.corruptionLevel or 5.0
     
     -- Choose sprite based on phase and corruption level
-    local spritePath = "characters/flowey/"
+    local spritePath = "characters/Maggy/DesoloZantas/flowey/"
     
     if phase == "Intro" then
         spritePath = spritePath .. "flowey_glitchy_idle"

@@ -2,7 +2,7 @@ local gooeyDummy = {}
 
 gooeyDummy.name = "MaggyHelper/GooeyDummy"
 gooeyDummy.depth = 0
-gooeyDummy.texture = "characters/kirby/gooey/idle00"
+gooeyDummy.texture = "characters/kirby/Maggy/DesoloZantas/gooey/idle00"
 gooeyDummy.justification = {0.5, 1.0}
 
 gooeyDummy.fieldInformation = {
@@ -68,7 +68,7 @@ function gooeyDummy.sprite(room, entity)
     local alpha = entity.alpha or 1.0
 
     return {
-        texture = "characters/kirby/gooey/idle00",
+        texture = "characters/kirby/Maggy/DesoloZantas/gooey/idle00",
         x = entity.x,
         y = entity.y,
         justificationX = 0.5,

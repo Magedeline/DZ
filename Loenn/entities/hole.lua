@@ -20,7 +20,7 @@ hole.fieldInformation = {
         minimumValue = 0.1,
         maximumValue = 10.0
     },
-    affectsPlayer = {
+    affectsKglobal::global::Celeste.Player= {
         fieldType = "boolean"
     },
     affectsEntities = {
@@ -32,7 +32,7 @@ hole.fieldInformation = {
     teleportDestination = {
         fieldType = "string"
     },
-    killPlayer = {
+    killKglobal::global::Celeste.Player= {
         fieldType = "boolean"
     },
     soundEffect = {
@@ -47,11 +47,11 @@ hole.placements = {
             holeType = "black",
             radius = 64.0,
             strength = 5.0,
-            affectsPlayer = true,
+            affectsKglobal::global::Celeste.Player= true,
             affectsEntities = true,
             spawnParticles = true,
             teleportDestination = "",
-            killPlayer = false,
+            killKglobal::global::Celeste.Player= false,
             soundEffect = "event:/game/general/thing_booped"
         }
     },
@@ -61,11 +61,11 @@ hole.placements = {
             holeType = "white",
             radius = 48.0,
             strength = 3.0,
-            affectsPlayer = true,
+            affectsKglobal::global::Celeste.Player= true,
             affectsEntities = true,
             spawnParticles = true,
             teleportDestination = "",
-            killPlayer = false,
+            killKglobal::global::Celeste.Player= false,
             soundEffect = ""
         }
     },
@@ -75,11 +75,11 @@ hole.placements = {
             holeType = "void",
             radius = 80.0,
             strength = 8.0,
-            affectsPlayer = true,
+            affectsKglobal::global::Celeste.Player= true,
             affectsEntities = true,
             spawnParticles = false,
             teleportDestination = "",
-            killPlayer = true,
+            killKglobal::global::Celeste.Player= true,
             soundEffect = "event:/char/badeline/disappear"
         }
     },
@@ -89,11 +89,11 @@ hole.placements = {
             holeType = "portal",
             radius = 32.0,
             strength = 1.0,
-            affectsPlayer = true,
+            affectsKglobal::global::Celeste.Player= true,
             affectsEntities = false,
             spawnParticles = true,
             teleportDestination = "spawn",
-            killPlayer = false,
+            killKglobal::global::Celeste.Player= false,
             soundEffect = "event:/game/general/seed_touch"
         }
     }

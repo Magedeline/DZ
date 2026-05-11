@@ -1,0 +1,54 @@
+Icon: areas/Maggy/hell
+SID: Maggy/DESOLO_ZANTAS/7-Hell
+Interlude: false
+TitleBaseColor: 761008
+TitleAccentColor: e0201d
+TitleTextColor: ffffff
+IntroType: Jump
+Dreaming: false
+ColorGrade: none
+Wipe: Celeste.DropWipe
+DarknessAlpha: 0.1
+BloomBase: 0.0
+BloomStrength: 1.0
+CassetteNoteColor: e0201d
+CassetteSong: event:/desolo_zantas/music/Cassette/07_inferno
+
+Modes:
+  - AudioState:
+      Music: event:/desolo_zantas/music/lvl07/main
+      Ambience: event:/desolo_zantas/env/07_interior_main
+    Inventory: Default
+    HeartIsEnd: false
+    SeekerSlowdown: false
+  - AudioState:
+      Music: event:/desolo_zantas/music/BSide/07_hell
+      Ambience: event:/desolo_zantas/env/07_interior_main
+    Inventory: Default
+    HeartIsEnd: true
+    SeekerSlowdown: false
+  - AudioState:
+      Music: event:/desolo_zantas/music/CSide/07_hell
+      Ambience: event:/desolo_zantas/env/07_interior_main
+    Inventory: Default
+    HeartIsEnd: true
+    SeekerSlowdown: false
+  - AudioState:
+      Music: event:/desolo_zantas/music/CSide/07_hell
+      Ambience: event:/desolo_zantas/env/07_interior_main
+    Inventory: Default
+    HeartIsEnd: true
+    SeekerSlowdown: false
+
+Mountain:
+    Idle:
+        Position: [-3.500, 6.500, 14.000]
+        Target: [-2.800, 5.800, 12.500]
+    Select:
+        Position: [-3.000, 5.000, 14.300]
+        Target: [-2.000, 4.900, 12.800]
+    Zoom:
+        Position: [-1.500, 5.400, 11.500]
+        Target: [-1.600, 4.300, 9.800]
+    Cursor: [-1.600, 5.000, 9.500]
+    State: 1

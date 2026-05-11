@@ -3930,8 +3930,3 @@ namespace Celeste.Entities
         }
     }
 }
-
-
-
-
-

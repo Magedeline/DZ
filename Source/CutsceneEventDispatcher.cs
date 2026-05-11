@@ -6,7 +6,7 @@ using Celeste.Entities;
 using Celeste.NPCs;
 using Microsoft.Xna.Framework;
 using Monocle;
-using FlingBirdIntroMod = Celeste.Entities.FlingBirdIntro;
+using FlingBirdIntroMod = Celeste.Entities.FlingBirdIntroMod;
 using NPC = Celeste.NPCs.NPC;
 
 namespace Celeste.Triggers;

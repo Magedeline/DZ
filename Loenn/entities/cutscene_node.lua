@@ -6,7 +6,7 @@ cutsceneNode.texture = "@Internal@/cutscene_node"
 cutsceneNode.placements = {
     name = "cutscene_node",
     data = {
-        nodeName = "player_skip"
+        nodeName = "Kglobal::Player_skip"
     }
 }
 

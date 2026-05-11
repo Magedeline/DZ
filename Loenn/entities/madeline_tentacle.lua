@@ -99,7 +99,7 @@ madelineTentacle.fieldInformation = {
         options = {
             "flowey",
             "none",
-            "player",
+            "Kglobal::Player",
             "environment"
         }
     },
@@ -153,7 +153,7 @@ function madelineTentacle.sprite(room, entity)
     local tentacleType = entity.tentacleType or "appear"
     local growthStage = entity.growthStage or 1
     
-    local spritePath = "characters/madeline/tentacles/"
+    local spritePath = "characters/Maggy/DesoloZantas/madeline/tentacles/"
     
     if tentacleType == "appear" then
         spritePath = spritePath .. "tentacle_appear_01"

@@ -821,6 +821,19 @@ public static class IntroRemixHooks
 {
     private static bool _hooked = false;
 
+    /// <summary>
+    /// Hookable delegate for D-Side chapter entry.
+    /// Subscribe to this to customize D-Side intro behavior.
+    /// Return true to skip default entry (handled by subscriber).
+    /// </summary>
+    public delegate bool DSideEnterHandler(Session session);
+
+    /// <summary>
+    /// Event invoked when entering a D-Side chapter.
+    /// Hook this from anywhere in AreaMapData or other classes to customize entry.
+    /// </summary>
+    public static event DSideEnterHandler OnDSideEnter;
+
     public static void Load()
     {
         if (_hooked) return;
@@ -882,6 +895,26 @@ public static class IntroRemixHooks
                     Engine.Scene = new CS_Gen_IntroRemix_CSide(session);
                     return;
                 }
+                break;
+            case AreaModeExtender.MODE_DSIDE:
+                // D-Side: Invoke hookable event, fall through to default if not handled
+                if (OnDSideEnter != null)
+                {
+                    bool handled = false;
+                    foreach (DSideEnterHandler handler in OnDSideEnter.GetInvocationList())
+                    {
+                        if (handler(session))
+                        {
+                            handled = true;
+                            break;
+                        }
+                    }
+                    if (handled)
+                    {
+                        return; // Custom handler took over
+                    }
+                }
+                // No intro, quick entry to chapter map
                 break;
         }
 

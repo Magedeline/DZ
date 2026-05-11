@@ -1,4 +1,4 @@
-namespace Celeste.Entities.Chapters.Ch12
+namespace Celeste
 {
     /// <summary>
     /// MagicFountain - Central fountain with magical water effects

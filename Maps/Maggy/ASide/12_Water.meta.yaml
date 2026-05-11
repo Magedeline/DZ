@@ -1,0 +1,54 @@
+Icon: areas/Maggy/water
+SID: Maggy/DESOLO_ZANTAS/12-Water
+Interlude: false
+TitleBaseColor: 1a8b9e
+TitleAccentColor: 6ae8f0
+TitleTextColor: ffffff
+IntroType: Jump
+Dreaming: false
+ColorGrade: none
+Wipe: Celeste.FishWipe
+DarknessAlpha: 0.1
+BloomBase: 0.2
+BloomStrength: 1.0
+CassetteNoteColor: 1a8b9e
+CassetteSong: event:/desolo_zantas/music/Cassette/12_depth
+
+Modes:
+  - AudioState:
+      Music: event:/desolo_zantas/music/lvl12/main
+      Ambience: event:/desolo_zantas/env/12_waterfall
+    Inventory: Default
+    HeartIsEnd: false
+    SeekerSlowdown: false
+  - AudioState:
+      Music: event:/desolo_zantas/music/BSide/12_water
+      Ambience: event:/desolo_zantas/env/12_waterfall
+    Inventory: Default
+    HeartIsEnd: true
+    SeekerSlowdown: false
+  - AudioState:
+      Music: event:/desolo_zantas/music/CSide/12_water
+      Ambience: event:/desolo_zantas/env/12_waterfall
+    Inventory: Default
+    HeartIsEnd: true
+    SeekerSlowdown: false
+  - AudioState:
+      Music: event:/desolo_zantas/music/CSide/12_water
+      Ambience: event:/desolo_zantas/env/12_waterfall
+    Inventory: Default
+    HeartIsEnd: true
+    SeekerSlowdown: false
+
+Mountain:
+    Idle:
+        Position: [-0.300, 8.200, 13.000]
+        Target: [-0.300, 7.500, 11.500]
+    Select:
+        Position: [-0.300, 7.800, 13.300]
+        Target: [-0.300, 7.500, 11.800]
+    Zoom:
+        Position: [-0.300, 7.700, 11.000]
+        Target: [-0.300, 7.300, 9.500]
+    Cursor: [-0.300, 7.500, 9.500]
+    State: 0

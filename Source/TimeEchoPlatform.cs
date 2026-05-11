@@ -149,5 +149,3 @@ namespace Celeste.Entities
         }
     }
 }
-
-

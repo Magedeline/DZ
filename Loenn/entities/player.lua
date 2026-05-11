@@ -1,14 +1,14 @@
-local player = {}
+local Kglobal::global::Celeste.Player= {}
 
-player.name = "MaggyHelper/Player"
-player.depth = 0
-player.justification = {0.5, 1.0}
-player.texture = "characters/player/sitDown00"
-player.placements = {
-    name = "MaggyHelper/Player",
+Kglobal::Player.name = "MaggyHelper/Kglobal::Player"
+Kglobal::Player.depth = 0
+Kglobal::Player.justification = {0.5, 1.0}
+Kglobal::Player.texture = "characters/Maggy/DesoloZantas/Kglobal::Player/sitDown00"
+Kglobal::Player.placements = {
+    name = "MaggyHelper/Kglobal::Player",
     data = {
         isDefaultSpawn = false
     }
 }
 
-return player
+return Kglobal::Player

@@ -34,7 +34,7 @@ starJumpCutsceneControlV2.fieldOrder = {
 starJumpCutsceneControlV2.placements = {
     name = "StarJumpControlCutscenesV2",
     data = {
-        musicEvent = "event:/desolozantas/music/lvl8/starjump",
+        musicEvent = "event:/desolo_zantas/music/lvl8/starjump",
         cutsceneFlag = "plateaumod_2",
         triggerHeight = 32,
         triggerWidth = 64,
@@ -81,11 +81,11 @@ function starJumpCutsceneControlV2.draw(room, entity, viewport)
     love.graphics.rectangle("line", boxX, boxY, boxW, boxH)
     
     -- Draw entry zone indicator (bottom of trigger box)
-    -- This shows where the player should enter from (below)
+    -- This shows where the Kglobal::global::Celeste.Playershould enter from (below)
     love.graphics.setColor(0.0, 1.0, 0.5, 0.5)  -- Green for entry zone
     love.graphics.rectangle("fill", boxX, boxY + boxH - 4, boxW, 4)
     
-    -- Draw ascending arrow to indicate vertical hit direction (player enters from below)
+    -- Draw ascending arrow to indicate vertical hit direction (Kglobal::global::Celeste.Playerenters from below)
     love.graphics.setColor(1.0, 1.0, 0.0, 0.9)  -- Yellow for arrow
     local arrowX = boxX + boxW / 2
     local arrowY = boxY + boxH + 20  -- Below the trigger box

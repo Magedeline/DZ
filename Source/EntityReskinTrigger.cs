@@ -144,6 +144,3 @@ namespace Celeste.Triggers
 
     }
 }
-
-
-

@@ -3,7 +3,7 @@ local npc08_madeline_plateau = {}
 npc08_madeline_plateau.name = "MaggyHelper/NPC08_Madeline_Plateau"
 npc08_madeline_plateau.depth = 0
 npc08_madeline_plateau.justification = {0.5, 1.0}
-npc08_madeline_plateau.texture = "characters/madeline/idle00"
+npc08_madeline_plateau.texture = "characters/Maggy/DesoloZantas/madeline/idle00"
 
 npc08_madeline_plateau.placements = {
     {
@@ -28,7 +28,7 @@ npc08_madeline_plateau.fieldInformation = {
         editable = true,
         options = {
             "madeline",
-            "player",
+            "Kglobal::Player",
             "badeline",
             "theo"
         }
@@ -36,3 +36,4 @@ npc08_madeline_plateau.fieldInformation = {
 }
 
 return npc08_madeline_plateau
+

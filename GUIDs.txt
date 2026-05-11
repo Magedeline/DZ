@@ -479,13 +479,14 @@
 {54a27498-9f95-4469-966c-e43febc9bf19} event:/desolozantas/final_content/env/19_armageddon
 {70f867b8-dc40-45e1-ba66-a63c0e35b711} event:/desolozantas/final_content/env/19_churchbell
 {f4c9fe1a-2c05-4fda-9b17-38d8e561a908} event:/desolozantas/final_content/env/19_dont_forget
-{accc8b0b-135e-41d2-899f-e60057bf4d7c} event:/desolozantas/final_content/env/19_electricity
+{accc8b0b-135e-41d2-899f-e60057bf4d7c} event:/desolozantas/final_content/env/19_giygas_static
 {61907dea-6861-4b4b-b964-9a8f493e9419} event:/desolozantas/final_content/env/19_vortex
 {622ee2bf-6833-4df2-8df7-060e44c72064} event:/desolozantas/final_content/env/20_asriel
 {745f533a-b98a-426c-b04d-7f81ea6a3854} event:/desolozantas/final_content/env/20_darkness
 {28fa66b0-40ad-4918-960b-2ae38b8e0149} event:/desolozantas/final_content/env/20_hopes
 {776e017b-23a6-4d14-a4ac-1e6782f3cbc7} event:/desolozantas/final_content/env/20_world_is_ending
 {7bdd08dd-c7fe-4b3d-bc52-de1856ab3b2f} event:/desolozantas/final_content/env/21_beaches
+{d47c9d2e-2392-467a-b28f-991cf7ba400e} event:/desolozantas/final_content/env/21_giygas_zero
 {1b592bc6-cfa2-445e-88c9-7e0fbdea1521} event:/desolozantas/final_content/env/21_whitespaces
 {6dd0bf95-e640-4627-acf8-d4be81f7352c} event:/desolozantas/final_content/env/gen_last_push
 {fdf9ef95-e3b0-4f96-bf14-4d46e3f021f4} event:/desolozantas/final_content/game/19_the_end/fakeheart_bounce
@@ -541,6 +542,8 @@
 {fcbbfba0-db6d-4116-ae97-2e5f2116ab37} event:/desolozantas/final_content/game/19_the_end/wfz_mouseclick
 {65d85c07-b860-4d39-8efd-8544d2249fa6} event:/desolozantas/final_content/game/19_the_end/wfz_spinning_transition
 {c1c5cac6-afb9-4c7c-b9de-cf65973e5de7} event:/desolozantas/final_content/game/19_the_end/wfz_wavefaze_whoosh
+{c925a703-e1a4-4753-8ec6-a3033b4f9d8b} event:/desolozantas/final_content/game/19_the_end/killscene_start
+{98b79bd5-ee3a-472f-a066-771ad24e3af9} event:/desolozantas/final_content/game/19_the_end/flappybird
 {03ebb6f7-01d6-4c8e-9a6e-40dd85231f06} event:/desolozantas/final_content/game/20_last_push/decend
 {867b5d4e-a93b-43b8-8491-281deda84550} event:/desolozantas/final_content/game/20_last_push/els_freakout_1
 {945597ad-61fa-458d-b03d-96a4f6be7012} event:/desolozantas/final_content/game/20_last_push/els_freakout_2
@@ -567,7 +570,6 @@
 {e7e005a2-e966-4e3b-889a-30c940392b19} event:/desolozantas/final_content/game/21_desolo_zantas/woosh_reverb
 {9ed6075c-232d-41cf-ae1b-87d0c1149ef5} event:/desolozantas/final_content/game/general/riser
 {ae7e8ef9-7ba1-47d6-845a-c6fd859a1d13} event:/desolozantas/final_content/music/lobby/main9
-{d26dc52a-8692-456a-93de-a47132d61701} event:/desolozantas/final_content/music/lvl19/cinematic/BEB_cutscenes
 {7fb474db-3404-4cca-96e3-95ad3020d25b} event:/desolozantas/final_content/music/lvl19/cinematic/bird_crash_first
 {a429b37b-21ad-4b03-90fb-8415c4186e5b} event:/desolozantas/final_content/music/lvl19/cinematic/bird_crash_second
 {4cf92893-cac1-4d81-868b-421d3f9d24fa} event:/desolozantas/final_content/music/lvl19/cinematic/els_intro_laugh
@@ -599,13 +601,10 @@
 {604e47bc-c922-4c35-80f1-fd914009ef22} event:/desolozantas/final_content/music/lvl20/zvo1
 {ecf3765b-637c-4625-8fc9-60d3c4afa53f} event:/desolozantas/final_content/music/lvl20/zvo2
 {a60b335f-ea75-43f9-b339-a64b53add2a5} event:/desolozantas/final_content/music/lvl20/zvo3
-{4bef26ba-e579-4a06-a5c8-85bba1fb1efc} event:/desolozantas/final_content/music/lvl21/cinematic/break_fourth_wall_part1
-{4a36757a-937c-4ebf-a6e2-87b76c1cfd5c} event:/desolozantas/final_content/music/lvl21/cinematic/break_fourth_wall_part2
-{2153d4d8-52a1-479a-a169-657fa2e6e099} event:/desolozantas/final_content/music/lvl21/cinematic/break_fourth_wall_part3
 {34edf9aa-36b1-4325-bee0-da182054408b} event:/desolozantas/final_content/music/lvl21/cinematic/end
 {490a0cc6-7d6d-4458-ad36-f8a75c2a42d9} event:/desolozantas/final_content/music/lvl21/cinematic/end_intro
 {6231c2f3-f5b8-465c-8dc4-49361963a687} event:/desolozantas/final_content/music/lvl21/cinematic/end_outro
-{d549664a-b83f-4f01-a895-da2eaf2b8433} event:/desolozantas/final_content/music/lvl21/back
+{4bef26ba-e579-4a06-a5c8-85bba1fb1efc} event:/desolozantas/final_content/music/lvl21/cinematic/giygas
 {a96fbee3-2a8f-421f-9ba8-0395fc973af9} event:/desolozantas/final_content/music/lvl21/climb
 {7acd7171-269c-4bde-8cc9-60b7eda27172} event:/desolozantas/final_content/music/lvl21/climb_alt
 {2fdc4ad6-8001-406d-aa7c-b118446774b3} event:/desolozantas/final_content/music/lvl21/dark_spawn
@@ -870,6 +869,7 @@
 {2e7ef8f2-083f-4a3c-a2b4-0d45ff157407} event:/desolozantas/game/18_heart/darkmatter_sideway_intro
 {69c3523e-0831-4c89-94a5-08f8717ca23a} event:/desolozantas/game/18_heart/frontdoor_heartfill
 {772dfe92-96f0-4637-aa96-214152199704} event:/desolozantas/game/18_heart/frontdoor_unlock
+{4ca1f1ff-54c0-4c13-a75e-37550fbdbb68} event:/desolozantas/game/18_heart/glitch_loop
 {8bc4da10-a7c2-4264-a659-71343af52db7} event:/desolozantas/game/18_heart/hotpinball_activate
 {56b5a69d-de52-4c7f-bb74-df0e3ba001e5} event:/desolozantas/game/18_heart/iceball_break
 {52125c68-6ecd-43a5-81e8-8b7226c25e2a} event:/desolozantas/game/18_heart/iceblock_reappear
@@ -1252,8 +1252,12 @@
 {0541cb1a-dd04-477d-832c-6cb4767eb428} event:/desolozantas/ui/main/postcard_ch12_out
 {f81f1da9-d9f9-440d-ab15-89879626d88d} event:/desolozantas/ui/main/postcard_ch13_in
 {d3d68830-9554-4dfb-8a85-1a3851483698} event:/desolozantas/ui/main/postcard_ch13_out
+{6cef1097-7f90-42e5-a39c-7d399c5e100e} event:/desolozantas/ui/main/postcard_ch14_in
+{b7107ff6-5f45-44e7-87b1-23d5a5e2a631} event:/desolozantas/ui/main/postcard_ch14_out
 {dc2f772f-85a4-43e2-bab8-c8f699934b24} event:/desolozantas/ui/main/postcard_ch15_in
 {de1feee7-d4d6-44cd-a0aa-1f7377a2af4d} event:/desolozantas/ui/main/postcard_ch15_out
+{920b5562-462c-4863-80d9-6a55096ef2cb} event:/desolozantas/ui/main/postcard_ch16_in
+{d5913ac7-882e-45bc-8d87-87b33ffa3049} event:/desolozantas/ui/main/postcard_ch16_out
 {1ff107e7-65d4-4a2d-9421-deb0146b1b60} event:/desolozantas/ui/main/postcard_ch1_in
 {8cc3dd46-ba1f-4fbb-825c-30efb23a48a1} event:/desolozantas/ui/main/postcard_ch1_out
 {7b19fdae-b604-4038-8987-a4cd0d98d2ab} event:/desolozantas/ui/main/postcard_ch2_in
@@ -1270,8 +1274,8 @@
 {2e5a19de-21d8-40d5-9294-93a6c5aa628f} event:/desolozantas/ui/main/postcard_ch7_out
 {ef0d3aa3-6d75-4610-981c-697b4d10e61d} event:/desolozantas/ui/main/postcard_ch8_in
 {bf7f0264-cc56-4856-9154-0959921955b4} event:/desolozantas/ui/main/postcard_ch8_out
-{5f1191d5-41e5-439a-a1e9-531d2b74e493} event:/desolozantas/ui/main/postcard_csides_in
-{701bcb7e-3299-4fe7-b510-80822e004712} event:/desolozantas/ui/main/postcard_csides_out
+{5c77a5b5-4e54-498f-b739-0efc1798d621} event:/desolozantas/ui/main/postcard_ch9_in
+{0a671181-1dd9-4777-8b0e-827c4c278421} event:/desolozantas/ui/main/postcard_ch9_out
 {c69f5763-ccdc-469b-8cbb-aaba1f7cd1da} event:/desolozantas/ui/main/postcard_dsides_in
 {34a87233-0b5d-4cb3-bb22-23dd94f48437} event:/desolozantas/ui/main/postcard_dsides_out
 {e1e42a93-fc0b-4168-a0a4-32e1b42643ca} event:/desolozantas/ui/main/swipe_left
@@ -1977,6 +1981,7 @@
 {f98999e6-b618-4e25-ba47-c8979b91d280} bus:/gameplay_sfx/ambience/maggy/16_myworld
 {d75d0d52-661f-4ea5-acd4-df2ac1d536c2} bus:/gameplay_sfx/ambience/maggy/18_heart
 {925cdf9d-888b-4d89-a9d5-14601fbe9a42} bus:/gameplay_sfx/ambience/maggy/19_goodbye
+{55657d6f-4a15-4ebe-bd53-680e2f3e9dfc} bus:/gameplay_sfx/ambience/maggy/19_goodbye/maggypc
 {cd7d9e15-2482-457e-a4d4-6043bc49b22a} bus:/gameplay_sfx/ambience/maggy/20_last_push
 {f52e9717-5cd0-4b0b-9613-9843d35c053b} bus:/gameplay_sfx/ambience/maggy/worldmap
 {71710caf-9227-413f-ac6a-261cf6e0cb5b} bus:/gameplay_sfx/ambience/shared_local
@@ -2092,6 +2097,7 @@
 {9bebdba3-d621-4355-9273-df3368b27182} bus:/gameplay_sfx/kevinpc_verb
 {74728fec-f0ab-42ad-aeb9-03d95a119e42} bus:/gameplay_sfx/prologue_verb
 {d457df36-9eb7-45c7-a624-6e74d6f10ec9} bus:/gameplay_sfx/sfx_in_space
+{bb416527-cee7-4600-8ae3-9998377a1eed} bus:/gameplay_sfx/sfx_in_void
 {c66382b2-56ff-461e-8062-7f881794db85} bus:/music
 {2cf5046e-8b34-4d1e-9bde-cb34c2c82607} bus:/music/stings
 {9e807038-91cd-466d-a129-ce31b828c72b} bus:/music/stings/maggy
@@ -2280,7 +2286,7 @@
 {3c8bfc3d-ddfa-4931-9e89-b8ff1a470edd} snapshot:/mus_lv3_taj_transition
 {2e54d8d9-3b7f-4485-aaf8-cf4a669042da} snapshot:/game_19_in_void
 {6e0a28a3-da01-4abb-bb35-3cec1085094f} snapshot:/game_20_els
-{78d98236-b7e9-47ff-b8b2-400c7bddfdab} snapshot:/game_maggy_00_lastpush_amb_down
+{78d98236-b7e9-47ff-b8b2-400c7bddfdab} snapshot:/game_maggy_20_lastpush_amb_down
 {2b1e1ff2-6a4a-4408-a913-bf39e2f47752} snapshot:/game_maggy_21_finalfinalfinalultra
 {df75cc48-86f4-4adf-91d7-d50d708f5c75} snapshot:/assist_game_speed/assist_speed_90
 {feedddf6-0cfd-4e09-bd66-d1259261651e} snapshot:/assist_game_speed/assist_speed_80

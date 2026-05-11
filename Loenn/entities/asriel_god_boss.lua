@@ -3,7 +3,7 @@ local asrielGodBoss = {}
 
 asrielGodBoss.name = "MaggyHelper/AsrielGodBoss"
 asrielGodBoss.depth = 0
-asrielGodBoss.texture = "characters/asrielgodboss/boss00"
+asrielGodBoss.texture = "characters/Maggy/DesoloZantas/asrielgodboss/boss00"
 asrielGodBoss.justification = {0.5, 0.5}
 
 asrielGodBoss.nodeLimits = {0, -1}
@@ -80,3 +80,4 @@ asrielGodBoss.fieldInformation = {
 }
 
 return asrielGodBoss
+

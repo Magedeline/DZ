@@ -36,8 +36,8 @@ krackoBoss.fieldOrder = {
 
 function krackoBoss.sprite(room, entity)
     local textures = {
-        "bosses/kirby/kracko/idle00",
-        "characters/player/sitDown00"
+        "bosses/kirby/Maggy/DesoloZantas/kracko/idle00",
+        "characters/Maggy/DesoloZantas/Kglobal::Player/sitDown00"
     }
 
     for _, texture in ipairs(textures) do
@@ -56,3 +56,4 @@ function krackoBoss.selection(room, entity)
 end
 
 return krackoBoss
+

@@ -1,0 +1,54 @@
+Icon: areas/Maggy/city
+SID: Maggy/DESOLO_ZANTAS/1-City
+Interlude: false
+TitleBaseColor: 6c7c81
+TitleAccentColor: 2f344b
+TitleTextColor: ffffff
+IntroType: Jump
+Dreaming: false
+ColorGrade: none
+Wipe: Celeste.AngledWipe
+DarknessAlpha: 0.05
+BloomBase: 0.0
+BloomStrength: 1.0
+CassetteNoteColor: 33a9ee
+CassetteSong: event:/desolo_zantas/music/Cassette/01_metro
+
+Modes:
+  - AudioState:
+      Music: event:/desolo_zantas/music/lvl01/main
+      Ambience: event:/desolo_zantas/env/01_main
+    Inventory: Default
+    HeartIsEnd: false
+    SeekerSlowdown: false
+  - AudioState:
+      Music: event:/desolo_zantas/music/BSide/01_city
+      Ambience: event:/desolo_zantas/env/01_main
+    Inventory: Default
+    HeartIsEnd: true
+    SeekerSlowdown: false
+  - AudioState:
+      Music: event:/desolo_zantas/music/CSide/01_city
+      Ambience: event:/desolo_zantas/env/01_main
+    Inventory: Default
+    HeartIsEnd: true
+    SeekerSlowdown: false
+  - AudioState:
+      Music: event:/desolo_zantas/music/CSide/01_city
+      Ambience: event:/desolo_zantas/env/01_main
+    Inventory: Default
+    HeartIsEnd: true
+    SeekerSlowdown: false
+
+Mountain:
+    Idle:
+        Position: [2.450, 6.120, 14.250]
+        Target: [1.680, 5.390, 12.800]
+    Select:
+        Position: [1.850, 3.750, 14.580]
+        Target: [2.950, 3.620, 13.120]
+    Zoom:
+        Position: [3.280, 4.150, 11.650]
+        Target: [3.180, 3.080, 9.950]
+    Cursor: [3.140, 3.800, 9.730]
+    State: 0

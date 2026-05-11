@@ -56,7 +56,7 @@ local blackDarkMatterBoss = {}
 
 blackDarkMatterBoss.name = "MaggyHelper/BlackDarkMatterBoss"
 blackDarkMatterBoss.depth = 0
-blackDarkMatterBoss.texture = "characters/darkmatter/dm_idle00"
+blackDarkMatterBoss.texture = "characters/Maggy/DesoloZantas/darkmatter/dm_idle00"
 blackDarkMatterBoss.justification = {0.5, 0.5}
 
 blackDarkMatterBoss.placements = {
@@ -73,7 +73,7 @@ local darkMatterKnifeBoss = {}
 
 darkMatterKnifeBoss.name = "MaggyHelper/DarkMatterKnifeBoss"
 darkMatterKnifeBoss.depth = 0
-darkMatterKnifeBoss.texture = "characters/darkmatter/dmk_idle00"
+darkMatterKnifeBoss.texture = "characters/Maggy/DesoloZantas/darkmatter/dmk_idle00"
 darkMatterKnifeBoss.justification = {0.5, 0.5}
 
 darkMatterKnifeBoss.placements = {
@@ -92,3 +92,4 @@ return {
     blackDarkMatterBoss,
     darkMatterKnifeBoss
 }
+

@@ -98,7 +98,7 @@ kirbyNPC.placements = {
         }
     },
     {
-        name = "Companion (Follows Player)",
+        name = "Companion (Follows Kglobal::Player)",
         data = {
             character = 0,
             behavior = 2,
@@ -130,18 +130,20 @@ function kirbyNPC.texture(room, entity)
         [0] = "characters/kirby_npc/bandana_dee/idle00",
         [1] = "characters/kirby_npc/king_dedede/idle00",
         [2] = "characters/kirby_npc/meta_knight/idle00",
-        [3] = "characters/kirby_npc/magolor/idle00",
-        [4] = "characters/kirby/idle00",
-        [5] = "characters/kirby/idle00",
-        [6] = "characters/kirby/idle00",
-        [7] = "characters/kirby/idle00",
-        [8] = "characters/kirby/idle00",
+        [3] = "characters/kirby_npc/Maggy/DesoloZantas/magolor/idle00",
+        [4] = "characters/Maggy/DesoloZantas/kirby/idle00",
+        [5] = "characters/Maggy/DesoloZantas/kirby/idle00",
+        [6] = "characters/Maggy/DesoloZantas/kirby/idle00",
+        [7] = "characters/Maggy/DesoloZantas/kirby/idle00",
+        [8] = "characters/Maggy/DesoloZantas/kirby/idle00",
         [9] = "characters/kirby_npc/gooey/idle00",
-        [10] = "characters/kirby/idle00",
-        [11] = "characters/kirby/idle00",
-        [12] = "characters/player/sitDown00"
+        [10] = "characters/Maggy/DesoloZantas/kirby/idle00",
+        [11] = "characters/Maggy/DesoloZantas/kirby/idle00",
+        [12] = "characters/Maggy/DesoloZantas/Kglobal::Player/sitDown00"
     }
-    return textures[character] or "characters/player/sitDown00"
+    return textures[character] or "characters/Maggy/DesoloZantas/Kglobal::Player/sitDown00"
 end
 
 return kirbyNPC
+
+

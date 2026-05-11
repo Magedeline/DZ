@@ -2,7 +2,7 @@ local questGiver = {}
 questGiver.name = "MaggyHelper/QuestGiver"
 questGiver.depth = -100
 questGiver.justification = {0.5, 1.0}
-questGiver.texture = "characters/oldlady/idle00"
+questGiver.texture = "characters/Maggy/DesoloZantas/oldlady/idle00"
 questGiver.placements = {
     { name = "QuestGiver", data = { questId = "quest_1", dialogId = "", completionFlag = "quest_1_done", rewardType = "ability" } }
 }
@@ -14,3 +14,4 @@ questGiver.fieldInformation = {
 }
 questGiver.fieldOrder = { "x", "y", "questId", "dialogId", "completionFlag", "rewardType" }
 return questGiver
+

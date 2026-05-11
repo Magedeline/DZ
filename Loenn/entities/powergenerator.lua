@@ -5,7 +5,7 @@ local PowerGenerator = {}
 
 PowerGenerator.name = "MaggyHelper/PowerGenerator"
 PowerGenerator.depth = -10550
-PowerGenerator.texture = "objects/powergen/Idle00"
+PowerGenerator.texture = "objects/Maggy/DesoloZantas/powergen/Idle00"
 PowerGenerator.nodeLimits = {0, 1}
 PowerGenerator.fieldInformation = {
     music_progress = {

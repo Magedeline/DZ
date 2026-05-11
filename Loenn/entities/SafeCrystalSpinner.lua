@@ -41,10 +41,10 @@ safeCrystalSpinner.fieldInformation = {
 }
 
 local colorToTexture = {
-    Blue = "danger/crystal/fg_blue00",
-    Red = "danger/crystal/fg_red00",
-    Purple = "danger/crystal/fg_purple00",
-    Rainbow = "danger/crystal/fg_rainbow00"
+    Blue = "Maggy/DesoloZantas/danger/crystal/fg_blue00",
+    Red = "Maggy/DesoloZantas/danger/crystal/fg_red00",
+    Purple = "Maggy/DesoloZantas/danger/crystal/fg_purple00",
+    Rainbow = "Maggy/DesoloZantas/danger/crystal/fg_rainbow00"
 }
 
 function safeCrystalSpinner.texture(room, entity)
@@ -53,3 +53,4 @@ function safeCrystalSpinner.texture(room, entity)
 end
 
 return safeCrystalSpinner
+

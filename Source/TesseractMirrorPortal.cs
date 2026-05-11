@@ -359,7 +359,3 @@ namespace Celeste.Entities
     }
   }
 }
-
-
-
-

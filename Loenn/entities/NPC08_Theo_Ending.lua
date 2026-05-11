@@ -3,7 +3,7 @@ local npc08_theo_ending = {}
 npc08_theo_ending.name = "MaggyHelper/NPC08_Theo_Ending"
 npc08_theo_ending.depth = 100
 npc08_theo_ending.justification = {0.5, 1.0}
-npc08_theo_ending.texture = "characters/theo/theo00"
+npc08_theo_ending.texture = "characters/Maggy/DesoloZantas/theo/theo00"
 
 npc08_theo_ending.placements = {
     {
@@ -14,3 +14,4 @@ npc08_theo_ending.placements = {
 }
 
 return npc08_theo_ending
+

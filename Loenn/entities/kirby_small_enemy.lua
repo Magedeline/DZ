@@ -188,21 +188,23 @@ kirbySmallEnemy.placements = {
 function kirbySmallEnemy.texture(room, entity)
     local variant = entity.variant or 0
     local textures = {
-        [0] = "characters/kirby/waddle_dee/idle00",
-        [1] = "characters/kirby/waddle_doo/idle00",
-        [2] = "characters/kirby/hot_head/idle00",
-        [3] = "characters/kirby/chilly/idle00",
-        [4] = "characters/kirby/sparky/idle00",
-        [5] = "characters/kirby/rocky/idle00",
-        [6] = "characters/kirby/sir_kibble/idle00",
-        [7] = "characters/kirby/poppy/idle00",
-        [8] = "characters/kirby/wheelie/idle00",
-        [9] = "characters/kirby/needlous/idle00",
-        [10] = "characters/kirby/simirror/idle00",
-        [11] = "characters/kirby/scarfy/idle00",
-        [12] = "characters/kirby/gordo/idle00"
+        [0] = "characters/Maggy/DesoloZantas/kirby/waddle_dee/idle00",
+        [1] = "characters/Maggy/DesoloZantas/kirby/waddle_doo/idle00",
+        [2] = "characters/Maggy/DesoloZantas/kirby/hot_head/idle00",
+        [3] = "characters/Maggy/DesoloZantas/kirby/chilly/idle00",
+        [4] = "characters/Maggy/DesoloZantas/kirby/sparky/idle00",
+        [5] = "characters/Maggy/DesoloZantas/kirby/rocky/idle00",
+        [6] = "characters/Maggy/DesoloZantas/kirby/sir_kibble/idle00",
+        [7] = "characters/Maggy/DesoloZantas/kirby/poppy/idle00",
+        [8] = "characters/Maggy/DesoloZantas/kirby/wheelie/idle00",
+        [9] = "characters/Maggy/DesoloZantas/kirby/needlous/idle00",
+        [10] = "characters/Maggy/DesoloZantas/kirby/simirror/idle00",
+        [11] = "characters/Maggy/DesoloZantas/kirby/scarfy/idle00",
+        [12] = "characters/Maggy/DesoloZantas/kirby/gordo/idle00"
     }
-    return textures[variant] or "characters/player/sitDown00"
+    return textures[variant] or "characters/Maggy/DesoloZantas/Kglobal::Player/sitDown00"
 end
 
 return kirbySmallEnemy
+
+

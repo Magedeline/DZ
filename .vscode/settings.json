@@ -1,3 +1,8 @@
 {
-    "dotnet.defaultSolution": "MaggyHelper.sln"
+    "dotnet.defaultSolution": "MaggyHelper.sln",
+    "mcpServers": {
+        "pixel-mcp": {
+            "command": "C:\\Users\\warsh\\pixel-mcp\\bin\\pixel-mcp.exe"
+        }
+    }
 }

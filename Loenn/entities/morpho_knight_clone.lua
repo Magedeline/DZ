@@ -17,8 +17,8 @@ morphoKnightClone.placements = {
             orbitRadius = 66.0,
             dashSpeed = 320.0,
             playMusicOnStart = false,
-            bossMusic = "event:/desolozantas/music/lvl15/morpho_knight",
-            spritePath = "characters/els_true_final_boss/siamo_zero_morpho_knight_fake/",
+            bossMusic = "event:/desolo_zantas/music/lvl15/morpho_knight",
+            spritePath = "characters/els_true_final_boss/Maggy/DesoloZantas/siamo_zero_morpho_knight_fake/",
             idleAnimationPath = "swords",
             moveAnimationPath = "swords",
             chargeAnimationPath = "vortex_summon",
@@ -96,7 +96,7 @@ morphoKnightClone.fieldOrder = {
 }
 
 local fallbackPreviewTextures = {
-    "characters/els_true_final_boss/siamo_zero_morpho_knight_fake/swords00",
+    "characters/els_true_final_boss/Maggy/DesoloZantas/siamo_zero_morpho_knight_fake/swords00",
     "objects/bosses/metaKnightBoss/idle00"
 }
 

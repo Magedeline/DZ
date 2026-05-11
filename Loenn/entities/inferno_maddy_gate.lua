@@ -9,19 +9,19 @@ infernoMaddyGate.canResize = {false, true}
 
 infernoMaddyGate.placements = {
     {
-        name = "close_behind_player",
+        name = "close_behind_Kglobal::Player",
         data = {
             height = 48,
             sprite = "default",
-            type = "CloseBehindPlayer"
+            type = "CloseBehindKglobal::Player"
         }
     },
     {
-        name = "close_behind_player_always",
+        name = "close_behind_Kglobal::Player_always",
         data = {
             height = 48,
             sprite = "default",
-            type = "CloseBehindPlayerAlways"
+            type = "CloseBehindKglobal::PlayerAlways"
         }
     },
     {
@@ -58,8 +58,8 @@ infernoMaddyGate.fieldInformation = {
     type = {
         options = {
             "NearestSwitch",
-            "CloseBehindPlayer",
-            "CloseBehindPlayerAlways",
+            "CloseBehindKglobal::Player",
+            "CloseBehindKglobal::PlayerAlways",
             "HoldingTheo",
             "TouchSwitches"
         },
@@ -74,13 +74,13 @@ infernoMaddyGate.fieldOrder = {
 function infernoMaddyGate.sprite(room, entity)
     local sprites = {}
     local height = entity.height or 48
-    local texture = "objects/door/templeDoor00"
+    local texture = "objects/Maggy/DesoloZantas/door/templeDoor00"
     local spriteType = entity.sprite or "default"
 
     if spriteType == "mirror" then
-        texture = "objects/door/templeDoorB00"
+        texture = "objects/Maggy/DesoloZantas/door/templeDoorB00"
     elseif spriteType == "theo" then
-        texture = "objects/door/templeDoorC00"
+        texture = "objects/Maggy/DesoloZantas/door/templeDoorC00"
     end
 
     local sprite = drawableSprite.fromTexture(texture, entity)
@@ -97,3 +97,4 @@ function infernoMaddyGate.selection(room, entity)
 end
 
 return infernoMaddyGate
+

@@ -3,7 +3,7 @@ local darkMatterEnemy = {}
 darkMatterEnemy.name = "MaggyHelper/DarkMatterEnemy"
 darkMatterEnemy.depth = -10000
 darkMatterEnemy.justification = {0.5, 1.0}
-darkMatterEnemy.texture = "characters/darkmatter/idle00"
+darkMatterEnemy.texture = "characters/Maggy/DesoloZantas/darkmatter/idle00"
 
 darkMatterEnemy.placements = {
     {
@@ -59,3 +59,4 @@ darkMatterEnemy.fieldInformation = {
 }
 
 return darkMatterEnemy
+

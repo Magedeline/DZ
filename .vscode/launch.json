@@ -7,9 +7,8 @@
       "request": "attach",
       "processId": "${command:pickProcess}",
       "preLaunchTask": "build",
-      "justMyCode": false,
-      "requireExactSource": false,
-      "symbolSearchPath": "${workspaceFolder}/bin"
+      "justMyCode": true,
+      "requireExactSource": true
     }
   ]
 }

@@ -57,7 +57,3 @@ namespace Celeste.Entities
     }
   }
 }
-
-
-
-

@@ -557,4 +557,3 @@ namespace Celeste.Cutscenes
 		private float timer;
 	}
 }
-

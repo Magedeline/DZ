@@ -2,7 +2,7 @@ local npc_event_interact = {}
 
 npc_event_interact.name = "MaggyHelper/NPCEventInteract"
 npc_event_interact.depth = 0
-npc_event_interact.texture = "characters/player/idle00"
+npc_event_interact.texture = "characters/Maggy/DesoloZantas/Kglobal::Player/idle00"
 
 -- Reference to C# NPCs in Source/Entities/ folder
 -- NPCs 00-21 integrated with cs flag support
@@ -18,7 +18,7 @@ npc_event_interact.texture = "characters/player/idle00"
 -- Graphics/Atlases/Gameplay/characters/:
 -- asriel, badeline, bird, boss, chara, charaBoss, finalboss, flowey, Kirby, Kirby_No_Backpack,
 -- Kirby_Playback, Kirby_with_weapon, MaddyCrystal, madeline, Magolor, monsters, npcs, oldlady,
--- oshiro, Phase1Boss, player, player_badeline, player_no_backpack, player_playback, ralsei,
+-- oshiro, Phase1Boss, Kglobal::Player, Kglobal::Player_badeline, Kglobal::Player_no_backpack, Kglobal::Player_playback, ralsei,
 -- ralsei_gl, ralsei_playback, savepoint, space_monster, theo, theo_carry_maddy, toriel,
 -- vessel_boss, vessel_you, ZeroBoss, zfinal_boss
 
@@ -748,37 +748,37 @@ function npc_event_interact.sprite(room, entity)
     local currentSprite = spriteId
     if enableSpriteSwap then
         -- Add your sprite swap logic here
-        -- For example, swap based on game state, player position, etc.
+        -- For example, swap based on game state, Kglobal::global::Celeste.Playerposition, etc.
         currentSprite = alternateSprite
     end
     
     -- Map sprite IDs to texture paths (expanded for all NPC types)
     local spriteTextures = {
-        theo = "characters/theo/idle00",
-        chara = "characters/chara/idle00", 
-        kirby = "characters/kirby/idle00",
-        ralsei = "characters/ralsei/idle00",
-        madeline = "characters/player/idle00",
-        toriel = "characters/toriel/idle00",
-        asriel = "characters/asriel/idle00",
-        maggy = "characters/magolor/idle00",
-        oshiro = "characters/oshiro/idle00",
-        granny = "characters/oldlady/idle00",
+        theo = "characters/Maggy/DesoloZantas/theo/idle00",
+        chara = "characters/Maggy/DesoloZantas/chara/idle00", 
+        kirby = "characters/Maggy/DesoloZantas/kirby/idle00",
+        ralsei = "characters/Maggy/DesoloZantas/ralsei/idle00",
+        madeline = "characters/Maggy/DesoloZantas/Kglobal::Player/idle00",
+        toriel = "characters/Maggy/DesoloZantas/toriel/idle00",
+        asriel = "characters/Maggy/DesoloZantas/asriel/idle00",
+        maggy = "characters/Maggy/DesoloZantas/magolor/idle00",
+        oshiro = "characters/Maggy/DesoloZantas/oshiro/idle00",
+        granny = "characters/Maggy/DesoloZantas/oldlady/idle00",
         badeline = "characters/badeline/idle00",
-        flowey = "characters/flowey/idle00",
-        gaster = "characters/gaster/idle00",
-        papyrus = "characters/papyrus/idle00",
-        sans = "characters/sans/idle00",
-        undyne = "characters/undyne/idle00",
-        asgore = "characters/asgore/idle00",
-        alphys = "characters/alphys/idle00",
+        flowey = "characters/Maggy/DesoloZantas/flowey/idle00",
+        gaster = "characters/Maggy/DesoloZantas/gaster/idle00",
+        papyrus = "characters/Maggy/DesoloZantas/papyrus/idle00",
+        sans = "characters/Maggy/DesoloZantas/sans/idle00",
+        undyne = "characters/Maggy/DesoloZantas/undyne/idle00",
+        asgore = "characters/Maggy/DesoloZantas/asgore/idle00",
+        alphys = "characters/Maggy/DesoloZantas/alphys/idle00",
         mettaton = "characters/mettaton/idle00",
-        ghost = "characters/ghost/idle00",
-        mom = "characters/mom/idle00",
-        bird = "characters/bird/idle00",
-        monsters = "characters/monsters/idle00",
+        ghost = "characters/Maggy/DesoloZantas/ghost/idle00",
+        mom = "characters/Maggy/DesoloZantas/mom/idle00",
+        bird = "characters/Maggy/DesoloZantas/bird/idle00",
+        monsters = "characters/Maggy/DesoloZantas/monsters/idle00",
         boss = "characters/boss/idle00",
-        maddydead = "characters/gravestones/maddygrave00",
+        maddydead = "characters/Maggy/DesoloZantas/gravestones/maddygrave00",
         finalboss = "characters/finalboss/idle00"
     }
     
@@ -804,3 +804,5 @@ function npc_event_interact.shouldShow(entity, session)
 end
 
 return npc_event_interact
+
+

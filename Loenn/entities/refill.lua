@@ -56,28 +56,28 @@ refill.placements = {
 function refill.texture(room, entity)
     local dashCount = entity.dashCount or 1
     if dashCount == 2 then
-        return "objects/refillTwo/idle00"
+        return "objects/Maggy/DesoloZantas/refillTwo/idle00"
     elseif dashCount == 3 then
-        return "objects/solarrefill/idle00"
+        return "objects/Maggy/DesoloZantas/solarrefill/idle00"
     elseif dashCount == 4 then
-        return "objects/lunarrefill/idle00"
+        return "objects/Maggy/DesoloZantas/lunarrefill/idle00"
     elseif dashCount == 5 then
-        return "objects/blackholerefill/idle00"
+        return "objects/Maggy/DesoloZantas/blackholerefill/idle00"
     elseif dashCount == 10 then
-        return "objects/savestarrefill/idle00"
+        return "objects/Maggy/DesoloZantas/savestarrefill/idle00"
     else
-        return "objects/refill/idle00"
+        return "objects/Maggy/DesoloZantas/refill/idle00"
     end
 end
 
 function refill.playDashSfx(dashCount)
     local sfx
     if dashCount == 3 then
-        sfx = "event:/char/kirby/firediamond_touch"
+        sfx = ""
     elseif dashCount == 4 then
-        sfx = "event:/char/kirby/icediamond_touch"
+        sfx = ""
     elseif dashCount == 5 then
-        sfx = "event:/final_content/game/19_TheEnd/gigadiamond_touch"
+        sfx = "event:/desolo_zantas/final_content/game/19_the_end/gigadiamond_touch"
     elseif dashCount == 10 then
         sfx = "event:/new_content/game/10_farewell/pinkrefill_touch"
     else

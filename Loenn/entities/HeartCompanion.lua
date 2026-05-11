@@ -14,7 +14,7 @@ end
 
 local function textureForSlot(slotIndex)
 	local suffix = string.char(string.byte("A") + clampedSlotIndex(slotIndex))
-	return "characters/soul/soul/vessel_soul" .. suffix
+	return "characters/soul/Maggy/DesoloZantas/soul/vessel_soul" .. suffix
 end
 
 heartCompanion.placements = {
@@ -91,3 +91,4 @@ function heartCompanion.selection(room, entity)
 end
 
 return heartCompanion
+

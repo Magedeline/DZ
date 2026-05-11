@@ -41,7 +41,7 @@ strawberryRemix.fieldOrder = {
 
 local function getTexture(entity)
     if entity.popstar then
-        return "collectables/maggy/popstarberry/spin/000"
+        return "collectables/maggy/popstarberry/Maggy/DesoloZantas/spin/000"
     end
 
     if entity.moon then
@@ -155,3 +155,4 @@ strawberryRemix.placements = {
 }
 
 return strawberryRemix
+

@@ -11,7 +11,7 @@ forsakenCitySatellite.placements = {
     name = "satellite"
 }
 
-local birdTexture = "scenery/flutterbird/flap01"
+local birdTexture = "scenery/Maggy/DesoloZantas/flutterbird/flap01"
 local gemTexture = "collectables/heartGem/0/00"
 
 local dishTexture = "objects/citysatellite/dish"

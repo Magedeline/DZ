@@ -3,7 +3,7 @@ local npc17_toriel_inside = {}
 npc17_toriel_inside.name = "MaggyHelper/NPC18_Toriel_Inside"
 npc17_toriel_inside.depth = 0
 npc17_toriel_inside.justification = {0.5, 1.0}
-npc17_toriel_inside.texture = "characters/toriel/idle00"
+npc17_toriel_inside.texture = "characters/Maggy/DesoloZantas/toriel/idle00"
 
 npc17_toriel_inside.placements = {
     {
@@ -29,7 +29,7 @@ npc17_toriel_inside.fieldInformation = {
         options = {
             "toriel",
             "theo",
-            "player",
+            "Kglobal::Player",
             "madeline",
             "asriel"
         }
@@ -37,3 +37,4 @@ npc17_toriel_inside.fieldInformation = {
 }
 
 return npc17_toriel_inside
+

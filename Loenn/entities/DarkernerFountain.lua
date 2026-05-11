@@ -51,7 +51,7 @@ darkernerFountain.fieldInformation = {
         fieldType = "string",
         options = {}
     },
-    transformsPlayer = {
+    transformsKglobal::global::Celeste.Player= {
         fieldType = "boolean"
     },
     persistentEffect = {
@@ -61,7 +61,7 @@ darkernerFountain.fieldInformation = {
         fieldType = "string",
         options = {
             "event:/game/general/thing_booped",
-            "event:/char/madeline/dreamblock_enter",
+            "event:/desolo_zantas/char/kirby/dreamblock_enter",
             "event:/game/general/seed_poof"
         },
         editable = true
@@ -81,7 +81,7 @@ darkernerFountain.placements = {
             particleCount = 50,
             autoActivate = false,
             requiresFlag = "",
-            transformsPlayer = true,
+            transformsKglobal::global::Celeste.Player= true,
             persistentEffect = false,
             soundEffect = "event:/game/general/thing_booped"
         }
@@ -98,9 +98,9 @@ darkernerFountain.placements = {
             particleCount = 30,
             autoActivate = true,
             requiresFlag = "",
-            transformsPlayer = false,
+            transformsKglobal::global::Celeste.Player= false,
             persistentEffect = true,
-            soundEffect = "event:/char/madeline/dreamblock_enter"
+            soundEffect = "event:/char/Maggy/DesoloZantas/madeline/dreamblock_enter"
         }
     },
     {
@@ -115,7 +115,7 @@ darkernerFountain.placements = {
             particleCount = 75,
             autoActivate = false,
             requiresFlag = "shadow_fountain_unlocked",
-            transformsPlayer = true,
+            transformsKglobal::global::Celeste.Player= true,
             persistentEffect = false,
             soundEffect = "event:/game/general/seed_poof"
         }

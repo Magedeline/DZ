@@ -133,27 +133,27 @@ kirbyFood.placements = {
 function kirbyFood.texture(room, entity)
     local foodType = entity.foodType or 0
     local textures = {
-        [0] = "items/kirby/food/apple/idle00",
-        [1] = "items/kirby/food/orange/idle00",
-        [2] = "items/kirby/food/cherry/idle00",
-        [3] = "items/kirby/food/banana/idle00",
-        [4] = "items/kirby/food/watermelon/idle00",
-        [5] = "items/kirby/food/pineapple/idle00",
-        [6] = "items/kirby/food/grapes/idle00",
-        [7] = "items/kirby/food/strawberry/idle00",
-        [8] = "items/kirby/food/meat/idle00",
-        [9] = "items/kirby/food/fish/idle00",
-        [10] = "items/kirby/food/icecream/idle00",
-        [11] = "items/kirby/food/cake/idle00",
-        [12] = "items/kirby/food/hamburger/idle00",
-        [13] = "items/kirby/food/hotdog/idle00",
-        [14] = "items/kirby/food/pizza/idle00",
-        [15] = "items/kirby/food/sandwich/idle00",
-        [16] = "items/kirby/food/cherrybunch/idle00",
-        [17] = "items/kirby/food/maxtomato/idle00",
-        [18] = "items/kirby/star/idle00",
-        [19] = "items/kirby/oneup/idle00",
-        [20] = "items/kirby/pointstar/idle00"
+        [0] = "items/kirby/food/Maggy/DesoloZantas/apple/idle00",
+        [1] = "items/Maggy/DesoloZantas/kirby/food/orange/idle00",
+        [2] = "items/Maggy/DesoloZantas/kirby/food/cherry/idle00",
+        [3] = "items/Maggy/DesoloZantas/kirby/food/banana/idle00",
+        [4] = "items/Maggy/DesoloZantas/kirby/food/watermelon/idle00",
+        [5] = "items/Maggy/DesoloZantas/kirby/food/pineapple/idle00",
+        [6] = "items/Maggy/DesoloZantas/kirby/food/grapes/idle00",
+        [7] = "items/Maggy/DesoloZantas/kirby/food/strawberry/idle00",
+        [8] = "items/Maggy/DesoloZantas/kirby/food/meat/idle00",
+        [9] = "items/Maggy/DesoloZantas/kirby/food/fish/idle00",
+        [10] = "items/Maggy/DesoloZantas/kirby/food/icecream/idle00",
+        [11] = "items/Maggy/DesoloZantas/kirby/food/cake/idle00",
+        [12] = "items/Maggy/DesoloZantas/kirby/food/hamburger/idle00",
+        [13] = "items/Maggy/DesoloZantas/kirby/food/hotdog/idle00",
+        [14] = "items/Maggy/DesoloZantas/kirby/food/pizza/idle00",
+        [15] = "items/Maggy/DesoloZantas/kirby/food/sandwich/idle00",
+        [16] = "items/Maggy/DesoloZantas/kirby/food/cherrybunch/idle00",
+        [17] = "items/kirby/food/Maggy/DesoloZantas/maxtomato/idle00",
+        [18] = "items/kirby/Maggy/DesoloZantas/star/idle00",
+        [19] = "items/kirby/Maggy/DesoloZantas/oneup/idle00",
+        [20] = "items/Maggy/DesoloZantas/kirby/pointMaggy/DesoloZantas/star/idle00"
     }
     return textures[foodType] or "collectables/strawberry/normal00"
 end
@@ -167,3 +167,4 @@ function kirbyFood.color(room, entity)
 end
 
 return kirbyFood
+

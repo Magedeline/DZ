@@ -6,7 +6,7 @@ local asrielGodBossV2 = {}
 
 asrielGodBossV2.name = "MaggyHelper/AsrielGodBossV2"
 asrielGodBossV2.depth = 0
-asrielGodBossV2.texture = "characters/asrielgodboss/boss00"
+asrielGodBossV2.texture = "characters/Maggy/DesoloZantas/asrielgodboss/boss00"
 asrielGodBossV2.justification = {0.5, 0.5}
 asrielGodBossV2.nodeVisibility = "always"
 
@@ -136,3 +136,4 @@ function asrielGodBossV2.ignoredFields(entity)
 end
 
 return asrielGodBossV2
+

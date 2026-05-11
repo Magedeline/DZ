@@ -27,23 +27,23 @@ local spriteOptions = {
 }
 
 local textureMap = {
-    theo = "characters/theo/idle00",
-    chara = "characters/chara/idle00",
-    kirby = "characters/kirby/idle00",
-    ralsei = "characters/ralsei/idle00",
-    madeline = "characters/madeline/idle00",
+    theo = "characters/Maggy/DesoloZantas/theo/idle00",
+    chara = "characters/Maggy/DesoloZantas/chara/idle00",
+    kirby = "characters/Maggy/DesoloZantas/kirby/idle00",
+    ralsei = "characters/Maggy/DesoloZantas/ralsei/idle00",
+    madeline = "characters/Maggy/DesoloZantas/madeline/idle00",
     badeline = "characters/badeline/idle00",
-    maggy = "characters/maggy/idle00",
-    magolor = "characters/magolor/idle00",
-    granny = "characters/granny/idle00",
-    oshiro = "characters/oshiro/oshiro00",
-    toriel = "characters/toriel/idle00",
-    asriel = "characters/asriel/idle00",
+    maggy = "characters/Maggy/DesoloZantas/maggy/idle00",
+    magolor = "characters/Maggy/DesoloZantas/magolor/idle00",
+    granny = "characters/Maggy/DesoloZantas/granny/idle00",
+    oshiro = "characters/Maggy/DesoloZantas/oshiro/oshiro00",
+    toriel = "characters/Maggy/DesoloZantas/toriel/idle00",
+    asriel = "characters/Maggy/DesoloZantas/asriel/idle00",
     meta_knight = "characters/metaknight/idle00",
     roxus = "characters/roxus/idle00",
     temmie = "characters/temmie/idle00",
-    axis = "characters/axis/idle00",
-    els = "characters/els/idle00",
+    axis = "characters/Maggy/DesoloZantas/axis/idle00",
+    els = "characters/Maggy/DesoloZantas/els/idle00",
     digital_guide = "characters/digitalguide/idle00",
     phone = "characters/phone/idle00",
     titan_council_member = "characters/titancouncil/idle00"
@@ -52,7 +52,7 @@ local textureMap = {
 npcEvent.name = "MaggyHelper/NPC_Event"
 npcEvent.depth = 1000
 npcEvent.justification = {0.5, 1.0}
-npcEvent.texture = "characters/theo/idle00"
+npcEvent.texture = "characters/Maggy/DesoloZantas/theo/idle00"
 
 npcEvent.placements = {
     {
@@ -90,15 +90,6 @@ npcEvent.placements = {
             spriteId = "chara",
             eventId = ""
         }
-    },
-    {
-        name = "kirby",
-        data = {
-            dialogKey = "CH1_KIRBY_INTRO",
-            flagName = "ch1_kirby_npc_talked",
-            spriteId = "kirby",
-            eventId = ""
-        }
     }
 }
 
@@ -121,3 +112,5 @@ function npcEvent.texture(room, entity)
 end
 
 return npcEvent
+
+

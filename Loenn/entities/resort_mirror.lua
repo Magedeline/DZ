@@ -1,7 +1,7 @@
 local drawableSprite = require("structs.drawable_sprite")
 
-local glassTexture = "objects/mirror/glassbreak00"
-local frameTexture = "objects/mirror/resortframe"
+local glassTexture = "objects/Maggy/DesoloZantas/mirror/glassbreak00"
+local frameTexture = "objects/Maggy/DesoloZantas/mirror/resortframe"
 
 local resortMirror = {}
 

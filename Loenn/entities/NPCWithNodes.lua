@@ -30,8 +30,8 @@ npcWithNodes.placements = {
             animationIdle = "idle",
             animationWalk = "walk",
             animationTalk = "talk",
-            soundFootsteps = "event:/char/theo/footstep",
-            soundInteraction = "event:/char/theo/talk"
+            soundFootsteps = "",
+            soundInteraction = ""
         }
     },
     {
@@ -56,7 +56,7 @@ npcWithNodes.placements = {
             animationWalk = "",
             animationTalk = "talk",
             soundFootsteps = "",
-            soundInteraction = "event:/char/granny/talk"
+            soundInteraction = ""
         }
     },
     {
@@ -80,8 +80,8 @@ npcWithNodes.placements = {
             animationIdle = "idle",
             animationWalk = "walk",
             animationTalk = "talk",
-            soundFootsteps = "event:/char/madeline/footstep",
-            soundInteraction = "event:/char/madeline/talk"
+            soundFootsteps = "",
+            soundInteraction = ""
         }
     },
     {
@@ -105,8 +105,8 @@ npcWithNodes.placements = {
             animationIdle = "menacing",
             animationWalk = "stalk",
             animationTalk = "threaten",
-            soundFootsteps = "event:/char/chara/footstep",
-            soundInteraction = "event:/char/chara/threaten"
+            soundFootsteps = "",
+            soundInteraction = ""
         }
     },
     {
@@ -130,8 +130,8 @@ npcWithNodes.placements = {
             animationIdle = "nervous",
             animationWalk = "walk",
             animationTalk = "excited",
-            soundFootsteps = "event:/char/oshiro/footstep",
-            soundInteraction = "event:/char/oshiro/excited"
+            soundFootsteps = "",
+            soundInteraction = ""
         }
     }
 }
@@ -142,7 +142,7 @@ npcWithNodes.fieldInformation = {
         editable = false
     },
     movementType = {
-        options = {"stationary", "patrol", "follow_path", "follow_player", "aggressive", "scripted", "random"},
+        options = {"stationary", "patrol", "follow_path", "follow_Kglobal::Player", "aggressive", "scripted", "random"},
         editable = false
     },
     movementSpeed = {
@@ -179,21 +179,21 @@ npcWithNodes.fieldInformation.interactionDialog = npcDialogKeys
 npcWithNodes.fieldInformation.flagToSet = npcSessionFlags
 npcWithNodes.fieldInformation.requiredFlag = npcSessionFlags
 
-npcWithNodes.texture = "characters/theo/idle00"
+npcWithNodes.texture = "characters/Maggy/DesoloZantas/theo/idle00"
 
 -- Sprite texture lookup for characters that don't use idle00 naming
 local spriteTextureLookup = {
-    theo = "characters/theo/idle00",
-    oshiro = "characters/oshiro/idle00",
-    granny = "characters/oldlady/idle00",
-    madeline = "characters/player/idle00",
-    asgore = "characters/asgore/idle00",
-    bird = "characters/bird/idle00",
-    flowey = "characters/flowey/idle00",
-    sans = "characters/sans/idle00",
-    maggy = "characters/magolor/idle00",
-    magolor = "characters/magolor/idle00",
-    monsters = "characters/monsters/idle00"
+    theo = "characters/Maggy/DesoloZantas/theo/idle00",
+    oshiro = "characters/Maggy/DesoloZantas/oshiro/idle00",
+    granny = "characters/Maggy/DesoloZantas/oldlady/idle00",
+    madeline = "characters/Maggy/DesoloZantas/Kglobal::Player/idle00",
+    asgore = "characters/Maggy/DesoloZantas/asgore/idle00",
+    bird = "characters/Maggy/DesoloZantas/bird/idle00",
+    flowey = "characters/Maggy/DesoloZantas/flowey/idle00",
+    sans = "characters/Maggy/DesoloZantas/sans/idle00",
+    maggy = "characters/Maggy/DesoloZantas/magolor/idle00",
+    magolor = "characters/Maggy/DesoloZantas/magolor/idle00",
+    monsters = "characters/Maggy/DesoloZantas/monsters/idle00"
 }
 
 local function getSpriteTexture(spriteId)
@@ -301,3 +301,4 @@ function npcWithNodes.nodeRectangle(room, entity, node, nodeIndex)
 end
 
 return npcWithNodes
+

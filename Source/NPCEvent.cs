@@ -1088,7 +1088,3 @@ namespace Celeste.Entities
         }
     }
 }
-
-
-
-

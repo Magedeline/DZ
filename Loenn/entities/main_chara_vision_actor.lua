@@ -13,7 +13,7 @@ mainCharaVisionActor.placements = {
         data = {
             facing = "down",
             genocideMode = true,
-            playerControlled = false,
+            Kglobal::PlayerControlled = false,
             clampToRoomBounds = true,
             driveCameraWhenControlled = true,
             maxMoveSpeed = 90.0,
@@ -26,7 +26,7 @@ mainCharaVisionActor.placements = {
         data = {
             facing = "down",
             genocideMode = false,
-            playerControlled = false,
+            Kglobal::PlayerControlled = false,
             clampToRoomBounds = true,
             driveCameraWhenControlled = true,
             maxMoveSpeed = 90.0,
@@ -35,11 +35,11 @@ mainCharaVisionActor.placements = {
         }
     },
     {
-        name = "player_controlled",
+        name = "Kglobal::Player_controlled",
         data = {
             facing = "down",
             genocideMode = true,
-            playerControlled = true,
+            Kglobal::PlayerControlled = true,
             clampToRoomBounds = true,
             driveCameraWhenControlled = true,
             maxMoveSpeed = 90.0,
@@ -52,7 +52,7 @@ mainCharaVisionActor.placements = {
         data = {
             facing = "right",
             genocideMode = true,
-            playerControlled = false,
+            Kglobal::PlayerControlled = false,
             clampToRoomBounds = true,
             driveCameraWhenControlled = true,
             maxMoveSpeed = 90.0,
@@ -65,7 +65,7 @@ mainCharaVisionActor.placements = {
         data = {
             facing = "left",
             genocideMode = true,
-            playerControlled = false,
+            Kglobal::PlayerControlled = false,
             clampToRoomBounds = true,
             driveCameraWhenControlled = true,
             maxMoveSpeed = 90.0,
@@ -78,7 +78,7 @@ mainCharaVisionActor.placements = {
         data = {
             facing = "down",
             genocideMode = true,
-            playerControlled = true,
+            Kglobal::PlayerControlled = true,
             clampToRoomBounds = true,
             driveCameraWhenControlled = false,
             maxMoveSpeed = 90.0,
@@ -102,7 +102,7 @@ mainCharaVisionActor.fieldInformation = {
     genocideMode = {
         fieldType = "boolean"
     },
-    playerControlled = {
+    Kglobal::PlayerControlled = {
         fieldType = "boolean"
     },
     clampToRoomBounds = {
@@ -135,12 +135,12 @@ local facingTextures = {
 function mainCharaVisionActor.sprite(room, entity)
     local facing = entity.facing or "down"
     local genocideMode = entity.genocideMode ~= false
-    local playerControlled = entity.playerControlled or false
+    local Kglobal::PlayerControlled = entity.Kglobal::PlayerControlled or false
 
     local sprite = drawableSprite.fromTexture(facingTextures[facing] or facingTextures.down, entity)
     sprite:setJustification(0.5, 1.0)
 
-    if playerControlled then
+    if Kglobal::PlayerControlled then
         sprite:setColor(genocideMode and {1.0, 0.9, 0.55, 1.0} or {0.8, 1.0, 0.75, 1.0})
     elseif genocideMode then
         sprite:setColor({1.0, 0.82, 0.82, 1.0})

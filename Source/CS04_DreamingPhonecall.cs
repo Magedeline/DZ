@@ -174,7 +174,3 @@ namespace Celeste.Cutscenes
     }
   }
 }
-
-
-
-

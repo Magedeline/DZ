@@ -3,7 +3,7 @@ local flyingBird = {}
 flyingBird.name = "MaggyHelper/FlyingBird"
 flyingBird.depth = -1000000
 flyingBird.nodeLineRenderType = "line"
-flyingBird.texture = "characters/bird/Hover04"
+flyingBird.texture = "characters/Maggy/DesoloZantas/bird/Hover04"
 flyingBird.nodeLimits = {0, -1}
 flyingBird.justification = {0.5, 1.0}
 
@@ -50,3 +50,4 @@ function flyingBird.scale(room, entity)
 end
 
 return flyingBird
+

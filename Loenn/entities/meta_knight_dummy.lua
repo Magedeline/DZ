@@ -2,7 +2,7 @@ local metaKnightDummy = {}
 
 metaKnightDummy.name = "MaggyHelper/MetaKnightDummy"
 metaKnightDummy.depth = 0
-metaKnightDummy.texture = "characters/kirby/meta_knight/idle00"
+metaKnightDummy.texture = "characters/kirby/Maggy/DesoloZantas/meta_knight/idle00"
 metaKnightDummy.justification = {0.5, 1.0}
 
 metaKnightDummy.fieldInformation = {
@@ -69,7 +69,7 @@ function metaKnightDummy.sprite(room, entity)
     local alpha = entity.alpha or 1.0
     
     return {
-        texture = "characters/kirby/meta_knight/idle00",
+        texture = "characters/kirby/Maggy/DesoloZantas/meta_knight/idle00",
         x = entity.x,
         y = entity.y,
         justificationX = 0.5,

@@ -119,7 +119,6 @@ namespace Celeste.Cutscenes
 
             // Fountain starts to emerge from the ground
             fountainSfx = Audio.Play("event:/game/general/crystalheart_blue_get", fountainPosition);
-            fountain.Emerge();
 
             var timer = 0f;
             var startPos = fountainPosition;
@@ -319,6 +318,3 @@ namespace Celeste.Cutscenes
         }
     }
 }
-
-
-

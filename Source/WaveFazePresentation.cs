@@ -459,7 +459,3 @@ namespace Celeste
         }
     }
 }
-
-
-
-

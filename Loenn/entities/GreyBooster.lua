@@ -3,7 +3,7 @@ local utils = require("utils")
 return {
     name = "DesoloZatnas/GreyBooster",
     depth = -8500,
-    texture = "objects/greybooster/gasterbooster00",
+    texture = "objects/Maggy/DesoloZantas/greybooster/gasterbooster00",
     fieldInformation = {
         red = {
             fieldType = "boolean",
@@ -28,3 +28,4 @@ return {
         return utils.rectangle(entity.x - 8, entity.y - 8, 16, 16)
     end
 }
+

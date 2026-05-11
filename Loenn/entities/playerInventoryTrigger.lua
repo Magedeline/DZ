@@ -1,9 +1,9 @@
-local playerInventoryTrigger = {}
+local Kglobal::PlayerInventoryTrigger = {}
 
-playerInventoryTrigger.name = "MaggyHelper/PlayerInventoryTrigger"
-playerInventoryTrigger.depth = 0
+Kglobal::PlayerInventoryTrigger.name = "MaggyHelper/Kglobal::PlayerInventoryTrigger"
+Kglobal::PlayerInventoryTrigger.depth = 0
 
-playerInventoryTrigger.placements = {
+Kglobal::PlayerInventoryTrigger.placements = {
     {
         name = "heart_power",
         data = {
@@ -14,11 +14,11 @@ playerInventoryTrigger.placements = {
         }
     },
     {
-        name = "kirby_player",
+        name = "kirby_Kglobal::Player",
         data = {
             width = 16,
             height = 16,
-            inventoryType = "KirbyPlayer",
+            inventoryType = "KirbyKglobal::Player",
             oneUse = true
         }
     },
@@ -69,12 +69,12 @@ playerInventoryTrigger.placements = {
     }
 }
 
-playerInventoryTrigger.fieldInformation = {
+Kglobal::PlayerInventoryTrigger.fieldInformation = {
     inventoryType = {
         options = {
             "Default",
             "Heart",
-            "KirbyPlayer", 
+            "KirbyKglobal::Player", 
             "SayGoodbye",
             "TitanTowerClimbing",
             "Corruption",
@@ -84,12 +84,12 @@ playerInventoryTrigger.fieldInformation = {
     }
 }
 
-function playerInventoryTrigger.color(room, entity)
+function Kglobal::PlayerInventoryTrigger.color(room, entity)
     local inventoryType = entity.inventoryType or "Default"
     
     if inventoryType == "Heart" then
         return {1.0, 0.2, 0.2, 0.8} -- Red
-    elseif inventoryType == "KirbyPlayer" then
+    elseif inventoryType == "KirbyKglobal::Player" then
         return {1.0, 1.0, 0.2, 0.8} -- Yellow
     elseif inventoryType == "SayGoodbye" then
         return {1.0, 0.4, 0.8, 0.8} -- Pink
@@ -104,4 +104,4 @@ function playerInventoryTrigger.color(room, entity)
     end
 end
 
-return playerInventoryTrigger
+return Kglobal::PlayerInventoryTrigger

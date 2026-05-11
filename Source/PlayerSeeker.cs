@@ -421,4 +421,3 @@ namespace Celeste.Entities
 		private Shaker shaker;
 	}
 }
-

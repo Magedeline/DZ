@@ -15289,21 +15289,21 @@ The light within you both... it shimmers brightly...
 Remember this feeling... when darkness comes...
 
 CH18_OUTRO=
-[MADELINE left sad]
+[MADELINE right sad]
 God... I'm completely exhausted.
 
-[BADELINE right simple_sigh]
+[BADELINE left simple_sigh]
 Yeah... same here.
 That was way more intense than I expected.
 
-[MADELINE left tired]
+[MADELINE right deadpan]
 At least we made it through in one piece.
 {trigger 0 CellPhone Rumbling}
 
-[MADELINE left surprised]
+[MADELINE right surprised]
 Huh? Hold on... someone's calling me.
 
-[madeline_phone left distracted]
+[madeline_phone right distracted]
 Hello? Who is this?
 ... Is someone there?
 
@@ -15316,10 +15316,10 @@ Everything {0.4} has finally fallen into place.
 Chara... {1.0} I will see you soon.
 {trigger 1 doorshut}
 
-[MADELINE left surprised]
+[MADELINE right surprised]
 What the--?! Hey!!!
 
-[MADELINE left angry]
+[MADELINE right angry]
 Don't you dare lock us out!
 Let us through!
 {trigger 0}
@@ -15327,10 +15327,10 @@ Let us through!
 [BADELINE right worried]
 {# 76428a}Madeline... what's happening to the room?!{#}
 
-[MADELINE left surprised]
+[MADELINE right surprised]
 Oh god no... it's collapsing!
 
-[MADELINE left panic]
+[MADELINE right panic]
 What is happ-- {1.0}e-- {2.0}n-- {5.0}ing--?!
 
 CH19_GRAVESTONE=
@@ -15682,7 +15682,7 @@ Want to abandon us? {*}Then go!{/*}
 Fine.
 Best of luck.
 
-CH19_BROKEN_STAR_WARRIOR=
+CH19_KILL_THE BIRD=
 [KIRBY left surprised]
 Caught you at last!
 
@@ -17821,6 +17821,633 @@ CH20_MONTHS_LATER=
 		[MADELINE left peaceful]
 		{>> 0.3}That {~}is{/~} nice.{>>}
 
+# ================================
+# GOLDEN BERRY & PINK PLATINUM BERRY - FINAL REMIX (CH19-21)
+# Asriel, Granny, and Kirby - The Final Promise
+# ================================
+
+CH19_21_GOLDEN_BERRY=
+{trigger 0 fade in soft golden light - asriel and granny appears}
+
+[ASRIEL left normal]
+Oh Hey There I didn't Expected you to come all the way back to us
+So What you brought you here Anyways?
+
+[KIRBY right distracted]
+I Am Curious About a longest time I would like to know...?
+Who Got you sick when chara was here?
+
+[ASRIEL left normal]
+That,s would Be ELS
+Hes the one who put a darkness know as fecto 86 into the pie
+I was not thinking of what he did, but I do know one things
+Els... hates deltarune.
+According to the ancient text it was describe that the void becaome a better and more brighter than he was
+and it lead els overwhelming to be out throwned because of someone like you.
+
+[KIRBY right upset]
+then why he hate deltarune so much...?
+[KIRBY right sadder]
+you know that he has exploited me and manipulate back then.
+
+[ASRIEL left normal]
+That would be on him, not you, not madeline, and not even chara nor everyone
+it's els who did this all these millennia ago.
+he not doesn't want to make me sick but use me as his power to control my body as the host.
+
+[KIRBY right sadder]
+I am so sorry that I didn't know he did this to overthrown the deltarune for him to reclaim it.
+[KIRBY right upset]
+and to be honest he was a coward.
+[KIRBY right sadder]
+but he will have to learn that this isn't always he wanted
+I just need to know of what determination, and love is...
+
+[ASRIEL left sadder]
+{0.8}I understand kirby...
+{0.5}Since because there is no cure for what Els did to me, Kirby...
+{0.4}I didn't want anyone to worry about something they couldn't fix.
+{0.6}Especially not {+CHARA}.
+{0.8}He already lost me once... I couldn't bear to see that look in his eyes again.
+{0.5}So I kept quiet... and pretended I was okay... while Els's poison slowly tore me apart.
+
+[ASRIEL left crying]
+{0.6}But that was my biggest mistake, Kirby...
+{0.4}While I was lying here... too weak to even stand...
+{0.8}{+CHARA} was out there... {*}alone{/*}.
+{0.5}Facing dangers I should have been there to protect him from.
+
+[ASRIEL left sadder]
+{0.6}He nearly got hurt so many times...
+{0.4}and I couldn't do {*}anything{/*}.
+{0.8}I was supposed to be his brother... his protector...
+{0.5}and instead I was coughing up dust in a dark corner feeling sorry for myself.
+
+[KIRBY right sad]
+Azzy... it's not your fault you got sick...
+
+[ASRIEL left upset]
+{0.5}Maybe not... but it {*}is{/*} my fault I tried to hide it.
+{0.4}I thought I was being strong by keeping it secret.
+{0.6}But real strength isn't hiding your pain...
+{0.8}real strength is letting the people who love you {~}help{/~}.
+
+[ASRIEL left sadder]
+{1.0}I learned that lesson the hard way...
+{0.5}lying in bed... hearing about the battles {+CHARA} fought without me...
+{0.8}wondering if each one would be the last time I'd ever hear his voice.
+
+[ASRIEL left serious]
+{0.6}Kirby... that's why I need to ask you something.
+{0.4}Something important.
+{trigger 1 asriel reaches out and grabs kirby's hand}
+
+[ASRIEL left determined]
+{0.8}I might not always be there for {+CHARA}...
+{0.5}this sickness... it comes and goes... and each time it's harder to bounce back.
+{0.6}But {+CHARA} needs someone who will {*}always{/*} be there.
+
+[ASRIEL left sad]
+{0.5}Someone who won't let pride or fear get in the way.
+{0.4}Someone who will look out for him... not just as a friend...
+{0.8}but as a {~}brother{/~}.
+
+[KIRBY right surprised]
+A brother...? You mean...
+
+[ASRIEL left normal]
+{0.6}Yes, Kirby.
+{0.4}I'm asking you to be {+CHARA}'s brother.
+{0.8}Not in blood... but in {~}spirit{/~}... in {~}heart{/~}... in {~}soul{/~}.
+{0.5}Look after him the way I should have been looking after him all along.
+
+[ASRIEL left worried]
+{0.5}When he's angry... be patient with him.
+{0.4}When he's sad... sit with him even if he tells you to go away.
+{0.6}When he's scared... remind him that he's {*}never{/*} alone.
+{0.8}And when he tries to push everyone away... {~}don't let him{/~}.
+
+[KIRBY right determined]
+{0.5}Azzy... I...
+{0.8}I promise. I'll look after {+CHARA} like he's my own brother.
+{0.4}No matter what happens.
+
+[ASRIEL left thankyou]
+{1.0}Thank you, Kirby...
+{0.5}That means more to me than you'll ever know.
+
+CH19_21_GOLDEN_BERRY_GRANNY_ARRIVES=
+{trigger 2 granny slowly walks in from the right}
+
+[GRANNY right normal]
+{0.5}My my... what a touching scene.
+{0.4}I hope you don't mind an old woman joining in.
+
+[KIRBY right surprised]
+Granny! What are you doing here?
+
+[GRANNY right normal]
+{0.6}I've been watching over all of you for quite some time now.
+{0.4}And there's something I need to tell you, Kirby.
+{0.8}Something about {+MADELINE}.
+
+[KIRBY right distracted]
+About Madeline? What do you mean?
+
+[GRANNY right concerned]
+{0.6}Kirby... my granddaughter has been through more than most people could ever imagine.
+{0.4}When she was young, the anxiety started creeping in...
+{0.8}like a shadow that followed her everywhere she went.
+{0.5}It whispered terrible things to her... told her she wasn't good enough...
+{0.4}told her she'd never amount to anything.
+
+[GRANNY right sad]
+{0.6}And then the depression came...
+{0.4}It was like a heavy blanket that smothered everything bright in her life.
+{0.8}Some days she couldn't even get out of bed.
+{0.5}Some days she didn't want to.
+{0.4}She felt like the whole world was against her...
+{0.6}like she was drowning and nobody could see her struggling.
+
+[KIRBY right sadder]
+I... I had no idea it was that bad...
+
+[GRANNY right worried]
+{0.5}It was worse than bad, dear.
+{0.4}She had panic attacks that left her gasping for air in the middle of the night.
+{0.6}She lost friends because she was too scared to leave her apartment.
+{0.8}She pushed away everyone who tried to help because she thought she was a burden.
+{0.5}Her self-doubt was so crippling that she almost gave up on everything...
+{0.4}on her dreams, on her relationships, on {~}herself{/~}.
+
+[GRANNY right sad]
+{0.6}And the worst part? She smiled through all of it.
+{0.4}She hid her pain behind jokes and forced laughter...
+{0.8}because she didn't want anyone else to feel responsible for her suffering.
+{0.5}That girl carried the weight of the world on her shoulders...
+{0.4}and never once asked for help until it nearly destroyed her.
+
+[GRANNY right normal]
+{0.8}But Kirby... here's the part that matters most.
+{0.5}Madeline didn't just survive all of that...
+{0.4}she {*}overcame{/*} it.
+
+[GRANNY right peaceful]
+{0.6}She climbed that mountain even when every fiber of her being screamed at her to turn back.
+{0.4}She faced {+BADELINE}... the living embodiment of all her fears and insecurities...
+{0.8}and instead of destroying her, she {~}embraced{/~} her.
+{0.5}She accepted that the darkness inside her wasn't something to be defeated...
+{0.4}it was something to be {~}understood{/~}.
+
+[GRANNY right normal]
+{0.6}And through that journey... through all that pain and struggle and growth...
+{0.4}Madeline didn't just get better.
+{0.8}She became a {*}better woman{/*} than she ever was before.
+{0.5}Stronger. Kinder. More compassionate.
+{0.4}She learned that asking for help isn't weakness... it's {~}courage{/~}.
+{0.6}She learned that falling down doesn't define you... {~}getting back up{/~} does.
+
+[GRANNY right peaceful]
+{0.8}And now she stands taller than she ever imagined possible.
+{0.5}Not because she's perfect...
+{0.4}but because she {~}accepts{/~} her imperfections.
+{0.6}That is what makes her truly extraordinary.
+
+[KIRBY right sad]
+{0.5}Granny... thank you for telling me all of this.
+{0.4}I'll make sure to always be there for her too.
+
+{trigger 3 asriel looks at granny}
+
+[ASRIEL left worried]
+{0.6}Granny... I have a question.
+{0.4}What should we do... when we come across people who are mean to others?
+{0.8}Or mean to us?
+{0.5}People who hurt and bully and try to break the people we care about?
+{0.4}What's the right thing to do?
+
+[GRANNY right serious]
+{1.0}...
+{0.8}That's a heavy question, child.
+{0.6}And the answer might surprise you.
+
+[GRANNY right normal]
+{0.5}Don't kill... and don't {~}be{/~} killed.
+{0.8}That's the only way.
+
+[ASRIEL left surprised]
+{0.6}...!
+{0.4}That's... that's what I said...
+{0.8}Back then... during the ascent... when I was back from last reality.
+{0.5}I told Frisk about that then I glad you use my scentences.
+{0.4}and Those were {*}my{/*} words.
+
+[GRANNY right peaceful]
+{0.5}I know, dear. And they were the right words then... and they're the right words now.
+{0.4}Violence only breeds more violence.
+{0.6}Hatred only plants seeds for more hatred.
+{0.8}But {~}mercy{/~}... mercy breaks the cycle.
+
+[ASRIEL left nodded]
+{0.5}Don't kill and don't be killed...
+{0.4}I told Frisk that back then when I turn into a flower before... and I meant every word.
+{0.8}Even when the mountain was harsh and dangerous...
+{0.6}even when it would have been so easy to give in to rage...
+{0.5}I knew that wasn't the answer.
+
+[GRANNY right normal]
+{0.6}And it still isn't.
+{0.4}There will always be people who are cruel, who are selfish, who try to tear others down.
+{0.8}But the strongest thing you can do is refuse to become like them.
+{0.5}Stand firm in who you are... protect those you love...
+{0.4}but never lose your {~}compassion{/~}.
+
+{trigger 4 asriel turns to kirby with tears in his eyes}
+
+[ASRIEL left crying]
+{0.8}Kirby... one last thing.
+{0.5}And this is the most important promise of all.
+
+[ASRIEL left determined]
+{0.6}Promise me... that you'll look after {~}monsterkind{/~}.
+{0.4}Promise me you'll look after {~}humanity{/~}.
+{0.8}Promise me you'll look after the {~}dream friends{/~}... every last one of them.
+
+[ASRIEL left serious]
+{0.5}As long as they support you... as long as they stand beside you...
+{0.4}you stand beside {*}them{/*}.
+{0.6}That's what a true hero does, Kirby.
+{0.8}A true hero doesn't just fight the bad guys...
+{0.5}a true hero {~}protects{/~} the people who believe in them.
+
+[KIRBY right determined]
+{1.0}...
+{0.5}Azzy... Granny...
+{0.8}I promise.
+
+[KIRBY right together]
+{0.6}I promise to look after {+CHARA}... as my brother... always.
+{0.4}I promise to look after {+MADELINE} and be there when she needs me.
+{0.8}I promise to protect {~}monsterkind{/~} and {~}humanity{/~} and every single {~}dream friend{/~}.
+{0.5}As long as they support me... I will {*}never{/*} let them down.
+{0.4}That's my word. And a star warrior {~}never{/~} breaks their word.
+
+[ASRIEL left thankyou]
+{1.0}That's all I needed to hear.
+
+[GRANNY right peaceful]
+{0.8}Then our work here is done.
+{0.5}The rest... is up to you, Kirby.
+
+CH19_21_PINK_PLATINUM_BERRY=
+{trigger 0 fade in soft golden light - asriel appears sitting against a wall looking weak}
+
+[ASRIEL left normal]
+Oh Hey There I didn't Expected you to come all the way back to us
+So What you brought you here Anyways?
+
+[KIRBY right distracted]
+I Am Curious About a longest time I would like to know...?
+Who Got you sick when chara was here?
+
+[ASRIEL left normal]
+That,s would Be ELS
+Hes the one who put a darkness know as fecto 86 into the pie
+I was not thinking of what he did, but I do know one things
+Els... hates deltarune.
+According to the ancient text it was describe that the void becaome a better and more brighter than he was
+and it lead els overwhelming to be out throwned because of someone like you.
+
+[KIRBY right upset]
+then why he hate deltarune so much...?
+[KIRBY right sadder]
+you know that he has exploited me and manipulate back then.
+
+[ASRIEL left normal]
+That would be on him, not you, not madeline, and not even chara nor everyone
+it's els who did this all these millennia ago.
+he not doesn't want to make me sick but use me as his power to control my body as the host.
+
+[KIRBY right sadder]
+I am so sorry that I didn't know he did this to overthrown the deltarune for him to reclaim it.
+[KIRBY right upset]
+and to be honest he was a coward.
+[KIRBY right sadder]
+but he will have to learn that this isn't always he wanted
+I just need to know of what determination, and love is...
+
+[ASRIEL left sadder]
+{0.8}I understand kirby...
+{0.5}At first I thought I was fine... just tired from the fight.
+{0.4}But then my body started shutting down... piece by piece.
+{0.6}Els's curse was eating away at me... like venom in my veins.
+{0.8}Every day I got weaker... and there was nothing anyone could do about it.
+{0.5}The worst part is... Els {*}knew{/*} exactly what he was doing.
+{0.4}He wanted me to suffer {~}slowly{/~}... to watch myself fade away...
+{0.6}while everyone I loved was right there... unable to save me.
+
+[KIRBY right panic]
+Why didn't you tell anyone?! We could have helped you!
+
+[ASRIEL left sadder]
+{0.5}Because there is no cure for what Els did to me, Kirby...
+{0.4}I didn't want anyone to worry about something they couldn't fix.
+{0.6}Especially not {+CHARA}.
+{0.8}He already lost me once... I couldn't bear to see that look in his eyes again.
+{0.5}So I kept quiet... and pretended I was okay... while Els's poison slowly tore me apart.
+{0.4}That coward couldn't beat us face to face... so he made sure I'd crumble from within.
+
+[ASRIEL left crying]
+{0.6}But that was my biggest mistake, Kirby...
+{0.4}While I was lying here... too weak to even stand...
+{0.8}{+CHARA} was out there... {*}alone{/*}.
+{0.5}Facing dangers I should have been there to protect him from.
+
+[ASRIEL left sadder]
+{0.6}He nearly got hurt so many times...
+{0.4}and I couldn't do {*}anything{/*}.
+{0.8}I was supposed to be his brother... his protector...
+{0.5}and instead I was coughing up dust in a dark corner feeling sorry for myself.
+
+[KIRBY right sad]
+Azzy... it's not your fault you got sick...
+
+[ASRIEL left upset]
+{0.5}Maybe not... but it {*}is{/*} my fault I tried to hide it.
+{0.4}I thought I was being strong by keeping it secret.
+{0.6}But real strength isn't hiding your pain...
+{0.8}real strength is letting the people who love you {~}help{/~}.
+
+[ASRIEL left sadder]
+{1.0}I learned that lesson the hard way...
+{0.5}lying in bed... hearing about the battles {+CHARA} fought without me...
+{0.8}wondering if each one would be the last time I'd ever hear his voice.
+
+[ASRIEL left serious]
+{0.6}Kirby... that's why I need to ask you something.
+{0.4}Something important.
+{trigger 1 asriel reaches out and grabs kirby's hand}
+
+[ASRIEL left determined]
+{0.8}I might not always be there for {+CHARA}...
+{0.5}this sickness... it comes and goes... and each time it's harder to bounce back.
+{0.6}But {+CHARA} needs someone who will {*}always{/*} be there.
+
+[ASRIEL left sad]
+{0.5}Someone who won't let pride or fear get in the way.
+{0.4}Someone who will look out for him... not just as a friend...
+{0.8}but as a {~}brother{/~}.
+
+[KIRBY right surprised]
+A brother...? You mean...
+
+[ASRIEL left normal]
+{0.6}Yes, Kirby.
+{0.4}I'm asking you to be {+CHARA}'s brother.
+{0.8}Not in blood... but in {~}spirit{/~}... in {~}heart{/~}... in {~}soul{/~}.
+{0.5}Look after him the way I should have been looking after him all along.
+
+[ASRIEL left worried]
+{0.5}When he's angry... be patient with him.
+{0.4}When he's sad... sit with him even if he tells you to go away.
+{0.6}When he's scared... remind him that he's {*}never{/*} alone.
+{0.8}And when he tries to push everyone away... {~}don't let him{/~}.
+
+[KIRBY right determined]
+{0.5}Azzy... I...
+{0.8}I promise. I'll look after {+CHARA} like he's my own brother.
+{0.4}No matter what happens.
+
+[ASRIEL left thankyou]
+{1.0}Thank you, Kirby...
+{0.5}That means more to me than you'll ever know.
+
+{trigger 2 granny slowly walks in from the right}
+
+[GRANNY right normal]
+{0.5}My my... what a touching scene.
+{0.4}I hope you don't mind an old woman joining in.
+
+[KIRBY right surprised]
+Granny! What are you doing here?
+
+[GRANNY right normal]
+{0.6}I've been watching over all of you for quite some time now.
+{0.4}And there's something I need to tell you, Kirby.
+{0.8}Something about {+MADELINE}.
+
+[KIRBY right distracted]
+About Madeline? What do you mean?
+
+[GRANNY right concerned]
+{0.6}Kirby... my granddaughter has been through more than most people could ever imagine.
+{0.4}When she was young, the anxiety started creeping in...
+{0.8}like a shadow that followed her everywhere she went.
+{0.5}It whispered terrible things to her... told her she wasn't good enough...
+{0.4}told her she'd never amount to anything.
+
+[GRANNY right sad]
+{0.6}And then the depression came...
+{0.4}It was like a heavy blanket that smothered everything bright in her life.
+{0.8}Some days she couldn't even get out of bed.
+{0.5}Some days she didn't want to.
+{0.4}She felt like the whole world was against her...
+{0.6}like she was drowning and nobody could see her struggling.
+
+[GRANNY right worried]
+{0.5}There were nights she would cry herself to sleep...
+{0.4}and mornings where she would stare at the ceiling for hours...
+{0.6}wondering if there was even a point to getting up.
+{0.8}The panic attacks were the worst...
+{0.5}her heart racing, her chest tightening, the room spinning around her...
+{0.4}feeling like she was dying when nothing was even wrong.
+
+[KIRBY right sadder]
+I... I had no idea it was that bad...
+
+[GRANNY right worried]
+{0.5}It was worse than bad, dear.
+{0.4}She had panic attacks that left her gasping for air in the middle of the night.
+{0.6}She lost friends because she was too scared to leave her apartment.
+{0.8}She pushed away everyone who tried to help because she thought she was a burden.
+{0.5}Her relationships fell apart one by one...
+{0.4}not because people stopped caring about her...
+{0.6}but because she stopped believing she {~}deserved{/~} to be cared for.
+
+[GRANNY right sad]
+{0.6}She dropped out of college because the pressure was crushing her.
+{0.4}She lost her job because she couldn't focus through the fog in her head.
+{0.8}She spent months alone in her apartment barely eating, barely sleeping...
+{0.5}convincing herself that the world was better off without her in it.
+{0.4}And the worst part? She smiled through all of it.
+{0.6}She hid her pain behind jokes and forced laughter...
+{0.8}because she didn't want anyone else to feel responsible for her suffering.
+{0.5}That girl carried the weight of the world on her shoulders...
+{0.4}and never once asked for help until it nearly destroyed her.
+
+[GRANNY right normal]
+{0.8}But Kirby... here's the part that matters most.
+{0.5}Madeline didn't just survive all of that...
+{0.4}she {*}overcame{/*} it.
+
+[GRANNY right peaceful]
+{0.6}She climbed that mountain even when every fiber of her being screamed at her to turn back.
+{0.4}She faced {+BADELINE}... the living embodiment of all her fears and insecurities...
+{0.8}and instead of destroying her, she {~}embraced{/~} her.
+{0.5}She accepted that the darkness inside her wasn't something to be defeated...
+{0.4}it was something to be {~}understood{/~}.
+
+[GRANNY right normal]
+{0.6}She went to therapy. She took medication when she needed it.
+{0.4}She started writing in a journal to process her feelings.
+{0.8}She reached out to {+THEO} and let him back into her life.
+{0.5}She forgave herself for all the times she thought she'd failed.
+{0.4}Slowly... painfully... beautifully... she rebuilt herself from the ground up.
+
+[GRANNY right peaceful]
+{0.6}And through that journey... through all that pain and struggle and growth...
+{0.4}Madeline didn't just get better.
+{0.8}She became a {*}better woman{/*} than she ever was before.
+{0.5}Stronger. Kinder. More compassionate. More resilient.
+{0.4}She learned that asking for help isn't weakness... it's {~}courage{/~}.
+{0.6}She learned that falling down doesn't define you... {~}getting back up{/~} does.
+{0.8}She learned that the cracks in her heart weren't flaws...
+{0.5}they were the places where the {~}light{/~} got in.
+
+[GRANNY right peaceful]
+{0.8}And now she stands taller than she ever imagined possible.
+{0.5}Not because she's perfect...
+{0.4}but because she {~}accepts{/~} her imperfections.
+{0.6}Not because the anxiety and depression are gone forever...
+{0.8}but because she finally learned that she's {~}bigger{/~} than they are.
+{0.5}That is what makes her truly extraordinary, Kirby.
+{0.4}That is why I am so {*}proud{/*} to call her my granddaughter.
+
+[KIRBY right sad]
+{0.5}Granny... thank you for telling me all of this.
+{0.4}Madeline really is incredible...
+{0.6}I promise I'll always be there for her too.
+
+{trigger 3 asriel slowly sits up and looks at granny}
+
+[ASRIEL left worried]
+{0.6}Granny... I have a question.
+{0.4}What should we do... when we come across people who are mean to others?
+{0.8}Or mean to us?
+{0.5}People who hurt and bully and try to break the people we care about?
+{0.4}What's the right thing to do?
+
+[GRANNY right serious]
+{1.0}...
+{0.8}That's a heavy question, child.
+{0.6}And the answer might surprise you.
+
+[GRANNY right normal]
+{0.5}Don't kill... and don't {~}be{/~} killed.
+{0.8}That's the only way.
+
+[ASRIEL left surprised]
+{0.6}...!
+{0.4}That's... that's what I said...
+{0.8}Back then... during the ascent... when we were all climbing together for the first time.
+{0.5}When Kirby, Madeline, Chara, Theo, Ralsei and I were heading towards Desolo Zantas.
+{0.4}Those were {*}my{/*} words.
+{0.6}I told everyone that when we were about to enter the vortex...
+{0.5}when the mountain ahead was harsh and unknown...
+{0.4}Don't kill and don't be killed.
+
+[GRANNY right peaceful]
+{0.5}I know, dear. And they were the right words then... and they're the right words now.
+{0.4}Violence only breeds more violence.
+{0.6}Hatred only plants seeds for more hatred.
+{0.8}But {~}mercy{/~}... mercy breaks the cycle.
+{0.5}It takes far more strength to show mercy than to strike someone down.
+
+[ASRIEL left nodded]
+{0.5}Don't kill and don't be killed...
+{0.4}I told everyone that back then when we were ascending together... and I meant every word.
+{0.8}Even when the mountain was harsh and dangerous...
+{0.6}even when we didn't know what was waiting for us on the other side...
+{0.5}I knew that wasn't the answer.
+{0.4}And it's still not.
+
+[GRANNY right normal]
+{0.6}Exactly, child.
+{0.4}There will always be people who are cruel, who are selfish, who try to tear others down.
+{0.8}But the strongest thing you can do is refuse to become like them.
+{0.5}Stand firm in who you are... protect those you love...
+{0.4}but never lose your {~}compassion{/~}.
+{0.6}That is what separates a {~}hero{/~} from a {~}monster{/~}.
+
+{trigger 4 asriel turns to kirby with tears in his eyes}
+
+[ASRIEL left crying]
+{0.8}Kirby... one last thing.
+{0.5}And this is the most important promise of all.
+
+[ASRIEL left determined]
+{0.6}Promise me... that you'll look after {~}monsterkind{/~}.
+{0.4}Every monster who has ever believed in you... who has ever supported your cause.
+{0.8}Promise me you'll look after {~}humanity{/~}.
+{0.5}Every human who dared to see good in a world full of darkness.
+{0.4}Promise me you'll look after the {~}dream friends{/~}... every last one of them.
+{0.6}Bandana Dee, Gooey, Adeline, Ribbon, Meta Knight, King Dedede... all of them.
+
+[ASRIEL left serious]
+{0.5}As long as they support you... as long as they stand beside you...
+{0.4}you stand beside {*}them{/*}.
+{0.6}That's what a true hero does, Kirby.
+{0.8}A true hero doesn't just fight the bad guys...
+{0.5}a true hero {~}protects{/~} the people who believe in them.
+{0.4}A true hero gives everything they have... not for glory... not for fame...
+{0.6}but because it's the {~}right thing to do{/~}.
+
+[KIRBY right thankyou]
+{1.0}...
+{0.5}Azzy... Granny...
+{0.8}I promise.
+{0.6}I promise to look after {+CHARA}... as my brother... always and forever.
+{0.4}I promise to look after {+MADELINE} and {+BADELINE} and be there whenever they need me.
+{0.8}I promise to protect {~}monsterkind{/~} and {~}humanity{/~} and every single {~}dream friend{/~}.
+{0.5}As long as they support me... as long as they walk beside me...
+{0.4}I will {*}never{/*}... {*}EVER{/*}... let them down.
+{0.6}That's my word. And a star warrior {~}never{/~} breaks their word.
+
+[ASRIEL left thankyou]
+{1.0}That's all I needed to hear.
+{0.5}You've grown so much, Kirby...
+{0.8}I'm proud to call you my friend... my brother in arms.
+
+[GRANNY right peaceful]
+{0.8}Then our work here is done.
+{0.5}The rest... is up to you, Kirby.
+{0.4}We believe in you... {~}always{/~}.
+
+{trigger 5 a brilliant heart gem materializes in the center of the room bathed in golden light}
+
+[KIRBY right surprised]
+{0.5}What... what is that?!
+
+[ASRIEL left peaceful]
+{0.6}That's the heart of everything we've been through.
+{0.4}Every battle, every tear, every promise...
+{0.8}it all comes together in that single gem.
+
+[GRANNY right normal]
+{0.5}Go on, Kirby. Take it.
+{0.4}You've earned it.
+
+[KIRBY right determined]
+{1.0}...For {+CHARA}. For {+MADELINE}. For {+BADELINE}.
+{0.5}For monsterkind. For humanity. For every dream friend.
+{0.8}For everyone who believed in me.
+{trigger 6 kirby walks forward and collects the heart gem - bright flash of light}
+
+CH19_21_HEARTGEM_SOUL=
+{~}Don't kill and don't be killed.{/~}
+{~}A promise forged in starlight.{/~}
+{~}The final remix ends here.{/~}
+
 WAVEFAZE_PAGE_TITLE=Wave Faze Presentation
 
 WAVEFAZE_DESKTOP_MYPC=My New Mountain
@@ -17853,7 +18480,7 @@ WAVEFAZE_PAGE2_LIST=
 
 WAVEFAZE_PAGE2_IMPOSSIBLE=AM I Stupid???!
 
-WAVEFAZE_PAGE3_TITLE=Introducing... Wavefazing!!
+WAVEFAZE_PAGE3_TITLE=Introducing... Wavefazing!!!:3
 
 WAVEFAZE_PAGE3_INFO=
 With Wavefazing, you can jump very far

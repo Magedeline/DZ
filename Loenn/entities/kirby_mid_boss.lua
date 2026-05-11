@@ -139,18 +139,18 @@ kirbyMidBoss.placements = {
 function kirbyMidBoss.texture(room, entity)
     local bossType = entity.bossType or 0
     local textures = {
-        [0] = "bosses/kirby/whispy_woods/idle00",
-        [1] = "bosses/kirby/kracko/idle00",
-        [2] = "bosses/kirby/mr_frosty/idle00",
-        [3] = "bosses/kirby/bonkers/idle00",
-        [4] = "bosses/kirby/bugzzy/idle00",
-        [5] = "bosses/kirby/fire_lion/idle00",
-        [6] = "bosses/kirby/iron_mam/idle00",
-        [7] = "bosses/kirby/grand_wheely/idle00",
-        [8] = "bosses/kirby/box_boxer/idle00",
-        [9] = "bosses/kirby/master_hand/idle00"
+        [0] = "bosses/kirby/Maggy/DesoloZantas/whispy_woods/idle00",
+        [1] = "bosses/kirby/Maggy/DesoloZantas/kracko/idle00",
+        [2] = "bosses/kirby/Maggy/DesoloZantas/mr_frosty/idle00",
+        [3] = "bosses/kirby/Maggy/DesoloZantas/bonkers/idle00",
+        [4] = "bosses/Maggy/DesoloZantas/kirby/bugzzy/idle00",
+        [5] = "bosses/Maggy/DesoloZantas/kirby/fire_lion/idle00",
+        [6] = "bosses/Maggy/DesoloZantas/kirby/iron_mam/idle00",
+        [7] = "bosses/Maggy/DesoloZantas/kirby/grand_wheely/idle00",
+        [8] = "bosses/Maggy/DesoloZantas/kirby/box_boxer/idle00",
+        [9] = "bosses/Maggy/DesoloZantas/kirby/master_hand/idle00"
     }
-    return textures[bossType] or "characters/player/sitDown00"
+    return textures[bossType] or "characters/Maggy/DesoloZantas/Kglobal::Player/sitDown00"
 end
 
 -- Rectangle selection for bosses
@@ -180,3 +180,5 @@ function kirbyMidBoss.selection(room, entity)
 end
 
 return kirbyMidBoss
+
+

@@ -3,7 +3,7 @@ local npc_kirby = {}
 npc_kirby.name = "DesoloZantas/NPC_Kirby"
 npc_kirby.depth = 0
 npc_kirby.justification = {0.5, 1.0}
-npc_kirby.texture = "characters/kirby/idle00"
+npc_kirby.texture = "characters/Maggy/DesoloZantas/kirby/idle00"
 
 npc_kirby.placements = {
     {

@@ -3,7 +3,7 @@ local npc00_theo = {}
 npc00_theo.name = "MaggyHelper/NPC00_Theo"
 npc00_theo.depth = 0
 npc00_theo.justification = {0.5, 1.0}
-npc00_theo.texture = "characters/theo/theo00"
+npc00_theo.texture = "characters/Maggy/DesoloZantas/theo/theo00"
 
 npc00_theo.placements = {
     {
@@ -28,10 +28,11 @@ npc00_theo.fieldInformation = {
         editable = true,
         options = {
             "theo",
-            "player",
+            "Kglobal::Player",
             "madeline"
         }
     }
 }
 
 return npc00_theo
+

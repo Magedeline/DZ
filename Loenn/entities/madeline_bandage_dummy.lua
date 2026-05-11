@@ -3,7 +3,7 @@ local madelineBandageDummy = {}
 madelineBandageDummy.name = "MaggyHelper/MadelineBandageDummy"
 madelineBandageDummy.depth = 0
 madelineBandageDummy.justification = {0.5, 1.0}
-madelineBandageDummy.texture = "characters/madeline_bandage/idle00"
+madelineBandageDummy.texture = "characters/Maggy/DesoloZantas/madeline_bandage/idle00"
 
 madelineBandageDummy.fieldInformation = {
     facing = {
@@ -57,7 +57,7 @@ function madelineBandageDummy.sprite(room, entity)
     local alpha = entity.alpha or 1.0
 
     return {
-        texture = "characters/madeline_bandage/idle00",
+        texture = "characters/Maggy/DesoloZantas/madeline_bandage/idle00",
         x = entity.x,
         y = entity.y,
         justificationX = 0.5,
@@ -69,3 +69,4 @@ function madelineBandageDummy.sprite(room, entity)
 end
 
 return madelineBandageDummy
+

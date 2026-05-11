@@ -22,9 +22,9 @@ for k, v in pairs({
     isTalking = { fieldType = "boolean", tooltip = "True if the NPC is currently in a talking state" },
     isInCutscene = { fieldType = "boolean", tooltip = "True if the NPC is currently in a cutscene state" },
     isStunned = { fieldType = "boolean", tooltip = "True if the NPC is currently stunned or unable to act" },
-    isHostile = { fieldType = "boolean", tooltip = "True if the NPC is currently hostile to the player" },
-    isFriendly = { fieldType = "boolean", tooltip = "True if the NPC is currently friendly to the player" },
-    isFollowingPlayer = { fieldType = "boolean", tooltip = "True if the NPC is currently following the player" },
+    isHostile = { fieldType = "boolean", tooltip = "True if the NPC is currently hostile to the Kglobal::Player" },
+    isFriendly = { fieldType = "boolean", tooltip = "True if the NPC is currently friendly to the Kglobal::Player" },
+    isFollowingKglobal::global::Celeste.Player= { fieldType = "boolean", tooltip = "True if the NPC is currently following the Kglobal::Player" },
     isInvincible = { fieldType = "boolean", tooltip = "True if the NPC is currently invincible" },
     isGrounded = { fieldType = "boolean", tooltip = "True if the NPC is currently grounded" },
     isAirborne = { fieldType = "boolean", tooltip = "True if the NPC is currently airborne" },
@@ -32,10 +32,10 @@ for k, v in pairs({
 
     -- Cutscene (CS) Flags
     cutsceneActive = { fieldType = "boolean", tooltip = "True if a cutscene is currently playing for this NPC" },
-    cutsceneSkippable = { fieldType = "boolean", tooltip = "True if the cutscene can be skipped by the player" },
+    cutsceneSkippable = { fieldType = "boolean", tooltip = "True if the cutscene can be skipped by the Kglobal::Player" },
     cutscenePlayed = { fieldType = "boolean", tooltip = "True if the cutscene has already been played" },
     cutscenePaused = { fieldType = "boolean", tooltip = "True if the cutscene is currently paused" },
-    cutsceneWaitingForInput = { fieldType = "boolean", tooltip = "True if the cutscene is waiting for player input to continue" },
+    cutsceneWaitingForInput = { fieldType = "boolean", tooltip = "True if the cutscene is waiting for Kglobal::global::Celeste.Playerinput to continue" },
     cutsceneLocked = { fieldType = "boolean", tooltip = "True if the cutscene is currently locked (cannot be interrupted)" }
 }) do dialogNPC.fieldInformation[k] = v end
 
@@ -68,7 +68,7 @@ for k, v in pairs({
     isStunned = false,
     isHostile = false,
     isFriendly = true,
-    isFollowingPlayer = false,
+    isFollowingKglobal::global::Celeste.Player= false,
     isInvincible = false,
     isGrounded = true,
     isAirborne = false,

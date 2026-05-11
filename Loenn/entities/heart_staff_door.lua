@@ -71,7 +71,7 @@ heartStaffDoor.fieldInformation = {
     },
     startHidden = {
         fieldType = "boolean",
-        description = "Door starts hidden and appears when player approaches"
+        description = "Door starts hidden and appears when Kglobal::global::Celeste.Playerapproaches"
     },
     doorId = {
         fieldType = "string",

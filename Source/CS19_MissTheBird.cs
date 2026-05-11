@@ -6,7 +6,7 @@ using FMOD.Studio;
 using IL.Celeste;
 using Microsoft.Xna.Framework;
 using Monocle;
-using FlingBirdIntroMod = Celeste.Entities.FlingBirdIntro;
+using FlingBirdIntroMod = Celeste.Entities.FlingBirdIntroMod;
 
 namespace Celeste;
 

@@ -13,7 +13,7 @@ moltenLava.placements = {
             height = 32,
             hasTop = true,
             hasBottom = false,
-            killsPlayer = true,
+            killsKglobal::global::Celeste.Player= true,
             damageGracePeriod = 0.0
         }
     },
@@ -24,7 +24,7 @@ moltenLava.placements = {
             height = 64,
             hasTop = true,
             hasBottom = true,
-            killsPlayer = true,
+            killsKglobal::global::Celeste.Player= true,
             damageGracePeriod = 0.0
         }
     }
@@ -34,7 +34,7 @@ moltenLava.fieldInformation = {
     damageGracePeriod = { fieldType = "number", minimumValue = 0.0 }
 }
 
-moltenLava.fieldOrder = { "x", "y", "width", "height", "hasTop", "hasBottom", "killsPlayer", "damageGracePeriod" }
+moltenLava.fieldOrder = { "x", "y", "width", "height", "hasTop", "hasBottom", "killsKglobal::Player", "damageGracePeriod" }
 
 local fillColor = { 0.8, 0.2, 0.0, 0.55 }
 local surfaceColor = { 1.0, 0.4, 0.0, 0.9 }

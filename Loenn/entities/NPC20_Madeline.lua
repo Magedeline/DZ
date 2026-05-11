@@ -3,7 +3,7 @@ local npc20_madeline = {}
 npc20_madeline.name = "MaggyHelper/NPC20_Madeline"
 npc20_madeline.depth = 0
 npc20_madeline.justification = {0.5, 1.0}
-npc20_madeline.texture = "characters/madeline/idle00"
+npc20_madeline.texture = "characters/Maggy/DesoloZantas/madeline/idle00"
 
 npc20_madeline.placements = {
     {
@@ -29,7 +29,7 @@ npc20_madeline.fieldInformation = {
         editable = true,
         options = {
             "madeline",
-            "player",
+            "Kglobal::Player",
             "badeline",
             "theo"
         }
@@ -40,3 +40,4 @@ npc20_madeline.fieldInformation = {
 }
 
 return npc20_madeline
+

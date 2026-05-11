@@ -3,7 +3,7 @@ local npc_theo = {}
 npc_theo.name = "DesoloZantas/NPC_Theo"
 npc_theo.depth = 0
 npc_theo.justification = {0.5, 1.0}
-npc_theo.texture = "characters/theo/idle00"
+npc_theo.texture = "characters/Maggy/DesoloZantas/theo/idle00"
 
 npc_theo.placements = {
     {

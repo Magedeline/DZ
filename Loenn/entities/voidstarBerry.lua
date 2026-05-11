@@ -59,15 +59,15 @@ function customBerry.texture(room, entity)
         end
     elseif berryType == "voidstarberry" then
         if winged or hasNodes then
-            return "collectables/maggy/voidstarberry/ghost/000"
+            return "collectables/maggy/voidstarberry/Maggy/DesoloZantas/ghost/000"
         else
             return "collectables/maggy/voidstarberry/spin/000"
         end
     elseif berryType == "popstarberry" then
         if winged or hasNodes then
-            return "collectables/maggy/popstarberry/ghost/000"
+            return "collectables/maggy/popstarberry/Maggy/DesoloZantas/ghost/000"
         else
-            return "collectables/maggy/popstarberry/spin/000"
+            return "collectables/maggy/popstarberry/Maggy/DesoloZantas/spin/000"
         end
     elseif berryType == "pinkplatinumberry" then
         if winged or hasNodes then
@@ -169,7 +169,7 @@ customBerry.placements = {
             order = -1,
             collectSound = "Custom",
             customCollectSound = "",
-            levelSet = "Maggy/ASide/19Space_A",
+            levelSet = "Maggy/DESOLO_ZANTAS/19-Space",
             maps = "",
             requires = ""
         },
@@ -183,7 +183,7 @@ customBerry.placements = {
             order = -1,
             collectSound = "Custom",
             customCollectSound = "",
-            levelSet = "Maggy/ASide/19Space_A",
+            levelSet = "Maggy/DESOLO_ZANTAS/19-Space",
             maps = "",
             requires = ""
         },

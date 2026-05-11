@@ -3,7 +3,7 @@ local npc16_oshiro = {}
 npc16_oshiro.name = "MaggyHelper/NPC17_Oshiro"
 npc16_oshiro.depth = 0
 npc16_oshiro.justification = {0.5, 1.0}
-npc16_oshiro.texture = "characters/oshiro/oshiro00"
+npc16_oshiro.texture = "characters/Maggy/DesoloZantas/oshiro/oshiro00"
 
 npc16_oshiro.placements = {
     {
@@ -30,7 +30,7 @@ npc16_oshiro.fieldInformation = {
         options = {
             "oshiro",
             "theo",
-            "player",
+            "Kglobal::Player",
             "madeline"
         }
     },
@@ -40,3 +40,4 @@ npc16_oshiro.fieldInformation = {
 }
 
 return npc16_oshiro
+

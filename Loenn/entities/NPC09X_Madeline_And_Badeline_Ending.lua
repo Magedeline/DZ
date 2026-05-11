@@ -3,7 +3,7 @@ local npc09x_madeline_and_badeline_ending = {}
 npc09x_madeline_and_badeline_ending.name = "MaggyHelper/NPC09X_Madeline_and_Badeline_Ending"
 npc09x_madeline_and_badeline_ending.depth = 0
 npc09x_madeline_and_badeline_ending.justification = {0.5, 1.0}
-npc09x_madeline_and_badeline_ending.texture = "characters/madeline/idle00"
+npc09x_madeline_and_badeline_ending.texture = "characters/Maggy/DesoloZantas/madeline/idle00"
 
 npc09x_madeline_and_badeline_ending.placements = {
     {
@@ -22,3 +22,4 @@ npc09x_madeline_and_badeline_ending.fieldInformation = {
 }
 
 return npc09x_madeline_and_badeline_ending
+

@@ -11,7 +11,7 @@ moltenLavafall.placements = {
         data = {
             width = 8,
             height = 64,
-            killsPlayer = true,
+            killsKglobal::global::Celeste.Player= true,
             flowSpeed = 60.0
         }
     },
@@ -20,7 +20,7 @@ moltenLavafall.placements = {
         data = {
             width = 16,
             height = 64,
-            killsPlayer = true,
+            killsKglobal::global::Celeste.Player= true,
             flowSpeed = 60.0
         }
     }
@@ -30,7 +30,7 @@ moltenLavafall.fieldInformation = {
     flowSpeed = { fieldType = "number", minimumValue = 10.0 }
 }
 
-moltenLavafall.fieldOrder = { "x", "y", "width", "height", "killsPlayer", "flowSpeed" }
+moltenLavafall.fieldOrder = { "x", "y", "width", "height", "killsKglobal::Player", "flowSpeed" }
 
 local fillColor = { 0.8, 0.2, 0.0, 0.6 }
 local edgeColor = { 1.0, 0.4, 0.0, 0.8 }

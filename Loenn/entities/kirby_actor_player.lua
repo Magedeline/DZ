@@ -1,12 +1,12 @@
-local kirbyActorPlayer = {}
+local kirbyActorKglobal::global::Celeste.Player= {}
 local drawableSprite = require("structs.drawable_sprite")
 
-kirbyActorPlayer.name = "MaggyHelper/KirbyActorPlayer"
-kirbyActorPlayer.depth = 0
-kirbyActorPlayer.texture = "characters/kirby/idle00"
-kirbyActorPlayer.justification = {0.5, 1.0}
+kirbyActorKglobal::Player.name = "MaggyHelper/KirbyActorKglobal::Player"
+kirbyActorKglobal::Player.depth = 0
+kirbyActorKglobal::Player.texture = "characters/Maggy/DesoloZantas/kirby/idle00"
+kirbyActorKglobal::Player.justification = {0.5, 1.0}
 
-kirbyActorPlayer.placements = {
+kirbyActorKglobal::Player.placements = {
     {
         name = "default",
         data = {
@@ -27,7 +27,7 @@ kirbyActorPlayer.placements = {
     }
 }
 
-kirbyActorPlayer.fieldInformation = {
+kirbyActorKglobal::Player.fieldInformation = {
     startAnimation = {
         fieldType = "string",
         options = {
@@ -68,7 +68,7 @@ kirbyActorPlayer.fieldInformation = {
     }
 }
 
-function kirbyActorPlayer.sprite(room, entity)
+function kirbyActorKglobal::Player.sprite(room, entity)
     local faceLeft = entity.faceLeft or false
     local scaleX = faceLeft and -1 or 1
     local showSweat = entity.showSweat or false
@@ -76,7 +76,7 @@ function kirbyActorPlayer.sprite(room, entity)
     local sprites = {}
 
     -- Main actor preview sprite.
-    local kirbySprite = drawableSprite.fromTexture("characters/kirby/idle00", entity)
+    local kirbySprite = drawableSprite.fromTexture("characters/Maggy/DesoloZantas/kirby/idle00", entity)
     kirbySprite:setJustification(0.5, 1.0)
     kirbySprite:setScale(scaleX, 1.0)
     table.insert(sprites, kirbySprite)
@@ -91,7 +91,7 @@ function kirbyActorPlayer.sprite(room, entity)
 
     -- Show sweat state at a glance in Loenn.
     if showSweat then
-        local sweatSprite = drawableSprite.fromTexture("characters/kirby/sweat/idle00", entity)
+        local sweatSprite = drawableSprite.fromTexture("characters/kirby/Maggy/DesoloZantas/sweat/idle00", entity)
         sweatSprite:setJustification(0.5, 1.0)
         sweatSprite:setScale(scaleX, 1.0)
         sweatSprite:setColor({1.0, 1.0, 1.0, 0.75})
@@ -101,4 +101,5 @@ function kirbyActorPlayer.sprite(room, entity)
     return sprites
 end
 
-return kirbyActorPlayer
+return kirbyActorKglobal::Player
+

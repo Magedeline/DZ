@@ -40,6 +40,3 @@ namespace Celeste.Triggers
         }
     }
 }
-
-
-

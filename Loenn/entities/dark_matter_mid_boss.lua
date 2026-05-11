@@ -3,7 +3,7 @@ local darkMatterMidBoss = {}
 darkMatterMidBoss.name = "MaggyHelper/DarkMatterMidBoss"
 darkMatterMidBoss.depth = -10000
 darkMatterMidBoss.justification = {0.5, 1.0}
-darkMatterMidBoss.texture = "characters/darkmatter_boss/idle00"
+darkMatterMidBoss.texture = "characters/Maggy/DesoloZantas/darkmatter_boss/idle00"
 darkMatterMidBoss.nodeLimits = {0, -1}
 darkMatterMidBoss.nodeLineRenderType = "line"
 
@@ -46,3 +46,4 @@ function darkMatterMidBoss.nodeSprite(room, entity, node, nodeIndex, viewport)
 end
 
 return darkMatterMidBoss
+

@@ -3,7 +3,7 @@ local magolorDummy = {}
 magolorDummy.name = "MaggyHelper/MagolorDummy"
 magolorDummy.depth = 0
 magolorDummy.justification = {0.5, 1.0}
-magolorDummy.texture = "characters/kirby/magolor/idle00"
+magolorDummy.texture = "characters/kirby/Maggy/DesoloZantas/magolor/idle00"
 
 magolorDummy.fieldInformation = {
     facing = {
@@ -69,7 +69,7 @@ function magolorDummy.sprite(room, entity)
     local alpha = entity.alpha or 1.0
     
     return {
-        texture = "characters/kirby/magolor/idle00",
+        texture = "characters/kirby/Maggy/DesoloZantas/magolor/idle00",
         x = entity.x,
         y = entity.y,
         justificationX = 0.5,

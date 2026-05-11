@@ -16,6 +16,16 @@ public static class KirbyPlayerStateController
         public float ActionTimer;
         public bool GroundPoundImpacted;
         public KirbyAction CurrentAction;
+        
+        // Enhanced agility mechanics
+        public float CoyoteTimeTimer;
+        public float JumpBufferTimer;
+        public float WallJumpTimer;
+        public bool WasOnGround;
+        public Vector2 LastWallDirection;
+        public bool CanWallJump;
+        public float EnhancedDashTimer;
+        public int DashCount;
     }
 
     private enum KirbyAction
@@ -31,26 +41,39 @@ public static class KirbyPlayerStateController
 
     private static readonly ConditionalWeakTable<Player, KirbyPlayerData> PlayerData = new();
 
-    private const float KirbyFloatSpeed = -80f;
-    private const float KirbyFloatMaxTime = 3f;
+    private const float KirbyFloatSpeed = -100f;
+    private const float KirbyFloatMaxTime = 5f;
     private const float KirbyFloatGravity = 150f;
     private const float KirbyFloatTargetFallSpeed = 30f;
-    private const float KirbyFloatHSpeed = 70f;
-    private const float KirbyFloatAccel = 600f;
-    private const float KirbyFloatJumpBurst = -120f;
-    private const float KirbyFloatFastFall = 200f;
+    private const float KirbyFloatHSpeed = 90f; // Increased from 70f
+    private const float KirbyFloatAccel = 800f; // Increased from 600f
+    private const float KirbyFloatJumpBurst = -260f; // Increased from -240f
+    private const float KirbyFloatFastFall = 120f; // Increased from 100f
     private const float KirbyPunchTime = 0.16f;
     private const float KirbyKickTime = 0.20f;
-    private const float KirbyKickSpeed = 130f;
+    private const float KirbyKickSpeed = 150f; // Increased from 130f
     private const float KirbyAirSpinTime = 0.34f;
-    private const float KirbyAirSpinSpeed = 90f;
+    private const float KirbyAirSpinSpeed = 110f; // Increased from 90f
     private const float KirbyBackflipTime = 0.28f;
-    private const float KirbyBackflipXSpeed = 100f;
-    private const float KirbyBackflipYSpeed = -150f;
+    private const float KirbyBackflipXSpeed = 120f; // Increased from 100f
+    private const float KirbyBackflipYSpeed = -170f; // Increased from -150f
     private const float KirbyGroundPoundWindupTime = 0.08f;
     private const float KirbyGroundPoundTime = 0.40f;
     private const float KirbyGroundPoundSpeed = 340f;
     private const float KirbyGroundPoundBounceSpeed = -150f;
+    
+    // Enhanced agility constants
+    private const float CoyoteTimeDuration = 0.12f;
+    private const float JumpBufferDuration = 0.15f;
+    private const float WallJumpCooldown = 0.1f;
+    private const float WallJumpXSpeed = 180f;
+    private const float WallJumpYSpeed = -200f;
+    private const float EnhancedGroundSpeed = 120f; // Enhanced ground movement
+    private const float EnhancedGroundAccel = 1000f; // Enhanced ground acceleration
+    private const float EnhancedAirSpeed = 100f; // Enhanced air movement
+    private const float EnhancedAirAccel = 700f; // Enhanced air acceleration
+    private const float EnhancedDashDuration = 0.25f; // Extended dash duration
+    private const float EnhancedDashSpeed = 280f; // Enhanced dash speed
 
     public static void Load()
     {
@@ -73,6 +96,7 @@ public static class KirbyPlayerStateController
     private static void Hook_Player_Update(On.Celeste.Player.orig_Update orig, Player self)
     {
         UpdateKirbyAction(self);
+        UpdateEnhancedMovement(self);
         orig(self);
 
         if (self.Scene == null)
@@ -84,6 +108,15 @@ public static class KirbyPlayerStateController
 
     private static int Hook_Player_NormalUpdate(On.Celeste.Player.orig_NormalUpdate orig, Player self)
     {
+        // Enhanced movement hooks for Kirby mode
+        if (self.IsKirbyMode())
+        {
+            HandleKirbyJumpBuffering(self);
+            HandleKirbyCoyoteTime(self);
+            HandleKirbyWallJump(self);
+            HandleKirbyEnhancedDash(self);
+        }
+        
         int nextState = orig(self);
         return nextState;
     }
@@ -333,6 +366,10 @@ public static class KirbyPlayerStateController
     {
         if (player == null)
             return;
+            
+        // Don't interfere with cutscene states (state 11 is dummy state)
+        if (player.StateMachine.State == 11)
+            return;
 
         var data = PlayerData.GetOrCreateValue(player);
         if (data.CurrentAction == KirbyAction.None)
@@ -490,5 +527,236 @@ public static class KirbyPlayerStateController
             return;
 
         PlayerData.GetOrCreateValue(player).FloatTimer = value;
+    }
+
+    // Enhanced agility mechanics
+    private static void UpdateEnhancedMovement(Player player)
+    {
+        if (!player.IsKirbyMode())
+            return;
+            
+        // Don't interfere with cutscene states (state 11 is dummy state)
+        if (player.StateMachine.State == 11)
+            return;
+
+        var data = PlayerData.GetOrCreateValue(player);
+        
+        // Update timers
+        data.CoyoteTimeTimer = Math.Max(0f, data.CoyoteTimeTimer - Engine.DeltaTime);
+        data.JumpBufferTimer = Math.Max(0f, data.JumpBufferTimer - Engine.DeltaTime);
+        data.WallJumpTimer = Math.Max(0f, data.WallJumpTimer - Engine.DeltaTime);
+        data.EnhancedDashTimer = Math.Max(0f, data.EnhancedDashTimer - Engine.DeltaTime);
+        
+        // Track ground state for coyote time
+        bool currentlyOnGround = player.OnGround();
+        if (currentlyOnGround && !data.WasOnGround)
+        {
+            data.CoyoteTimeTimer = CoyoteTimeDuration;
+        }
+        data.WasOnGround = currentlyOnGround;
+        
+        // Enhanced horizontal movement
+        ApplyEnhancedHorizontalMovement(player);
+    }
+
+    private static void ApplyEnhancedHorizontalMovement(Player player)
+    {
+        if (!player.IsKirbyMode())
+            return;
+            
+        // Don't interfere with cutscene states
+        if (player.StateMachine.State == 11)
+            return;
+            
+        var data = PlayerData.GetOrCreateValue(player);
+        
+        // Skip if in a Kirby action that controls movement
+        if (data.CurrentAction != KirbyAction.None && data.CurrentAction != KirbyAction.Float)
+            return;
+            
+        int moveX = Input.MoveX.Value;
+        if (moveX == 0)
+            return;
+            
+        float targetSpeed = player.OnGround() ? EnhancedGroundSpeed : EnhancedAirSpeed;
+        float accel = player.OnGround() ? EnhancedGroundAccel : EnhancedAirAccel;
+        
+        player.Speed.X = Calc.Approach(player.Speed.X, targetSpeed * moveX, accel * Engine.DeltaTime);
+        player.Facing = (Facings)moveX;
+    }
+
+    private static void HandleKirbyJumpBuffering(Player player)
+    {
+        if (!player.IsKirbyMode())
+            return;
+            
+        // Don't interfere with cutscene states
+        if (player.StateMachine.State == 11)
+            return;
+            
+        var data = PlayerData.GetOrCreateValue(player);
+        
+        if (Input.Jump.Pressed)
+        {
+            data.JumpBufferTimer = JumpBufferDuration;
+        }
+        
+        // Check if we should jump with buffer
+        if (data.JumpBufferTimer > 0f && (player.OnGround() || data.CoyoteTimeTimer > 0f))
+        {
+            // Check if player can jump (using state machine instead of CanJump)
+            if (player.StateMachine.State == 0 || player.StateMachine.State == 4)
+            {
+                player.Jump();
+                data.JumpBufferTimer = 0f;
+                data.CoyoteTimeTimer = 0f;
+            }
+        }
+    }
+
+    private static void HandleKirbyCoyoteTime(Player player)
+    {
+        if (!player.IsKirbyMode())
+            return;
+            
+        // Don't interfere with cutscene states
+        if (player.StateMachine.State == 11)
+            return;
+            
+        var data = PlayerData.GetOrCreateValue(player);
+        
+        // Allow jumping during coyote time
+        if (data.CoyoteTimeTimer > 0f && Input.Jump.Pressed && !player.OnGround())
+        {
+            // Check if player can jump (using state machine instead of CanJump)
+            if (player.StateMachine.State == 0 || player.StateMachine.State == 4)
+            {
+                player.Jump();
+                data.CoyoteTimeTimer = 0f;
+            }
+        }
+    }
+
+    private static void HandleKirbyWallJump(Player player)
+    {
+        if (!player.IsKirbyMode())
+            return;
+            
+        // Don't interfere with cutscene states
+        if (player.StateMachine.State == 11)
+            return;
+            
+        var data = PlayerData.GetOrCreateValue(player);
+        
+        // Check for wall collision
+        if (player.OnGround() || data.WallJumpTimer > 0f)
+        {
+            data.CanWallJump = false;
+            return;
+        }
+        
+        // Detect wall on left or right
+        Vector2 checkLeft = player.CenterLeft - Vector2.UnitX * 2f;
+        Vector2 checkRight = player.CenterRight + Vector2.UnitX * 2f;
+        
+        bool wallLeft = player.Scene.CollideCheck<Solid>(checkLeft);
+        bool wallRight = player.Scene.CollideCheck<Solid>(checkRight);
+        
+        Vector2 wallDirection = Vector2.Zero;
+        if (wallLeft) wallDirection.X = -1;
+        else if (wallRight) wallDirection.X = 1;
+        
+        data.LastWallDirection = wallDirection;
+        data.CanWallJump = wallDirection != Vector2.Zero;
+        
+        // Handle wall jump input
+        if (data.CanWallJump && Input.Jump.Pressed && !player.OnGround())
+        {
+            PerformWallJump(player, wallDirection);
+        }
+    }
+
+    private static void PerformWallJump(Player player, Vector2 wallDirection)
+    {
+        var data = PlayerData.GetOrCreateValue(player);
+        
+        // Set wall jump velocity
+        player.Speed.X = -wallDirection.X * WallJumpXSpeed;
+        player.Speed.Y = WallJumpYSpeed;
+        
+        // Set cooldown
+        data.WallJumpTimer = WallJumpCooldown;
+        data.CanWallJump = false;
+        
+        // Face away from wall
+        player.Facing = wallDirection.X > 0 ? Facings.Left : Facings.Right;
+        
+        // Visual feedback
+        if (player.Scene is Level level)
+        {
+            level.Particles.Emit(ParticleTypes.Dust, 3, player.Center, Vector2.One * 4f, Calc.Angle(-wallDirection));
+        }
+        
+        Input.Jump.ConsumeBuffer();
+    }
+
+    private static void HandleKirbyEnhancedDash(Player player)
+    {
+        if (!player.IsKirbyMode())
+            return;
+            
+        // Don't interfere with cutscene states
+        if (player.StateMachine.State == 11)
+            return;
+            
+        var data = PlayerData.GetOrCreateValue(player);
+        
+        // Enhanced dash mechanics
+        if (Input.Dash.Pressed && player.Dashes > 0 && data.EnhancedDashTimer <= 0f)
+        {
+            // Allow dash in more directions and with enhanced speed
+            Vector2 dashDir = GetEightWayDashDirection();
+            
+            if (dashDir != Vector2.Zero)
+            {
+                PerformEnhancedDash(player, dashDir);
+            }
+        }
+    }
+
+    private static Vector2 GetEightWayDashDirection()
+    {
+        Vector2 dir = Vector2.Zero;
+        
+        if (Input.MoveX.Value != 0) dir.X = Math.Sign(Input.MoveX.Value);
+        if (Input.MoveY.Value != 0) dir.Y = Math.Sign(Input.MoveY.Value);
+        
+        return dir != Vector2.Zero ? Vector2.Normalize(dir) : Vector2.Zero;
+    }
+
+    private static void PerformEnhancedDash(Player player, Vector2 direction)
+    {
+        var data = PlayerData.GetOrCreateValue(player);
+        
+        // Set enhanced dash velocity
+        player.Speed = direction * EnhancedDashSpeed;
+        
+        // Consume dash and set timer
+        player.Dashes--;
+        data.EnhancedDashTimer = EnhancedDashDuration;
+        
+        // Visual and audio feedback
+        if (player.Sprite != null)
+        {
+            player.Sprite.Scale = new Vector2(1.4f, 0.6f);
+        }
+        
+        if (player.Scene is Level level)
+        {
+            level.ParticlesFG.Emit(Player.P_DashA, 10, player.Center, Vector2.One * 12f);
+        }
+        
+        Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
+        Input.Dash.ConsumeBuffer();
     }
 }

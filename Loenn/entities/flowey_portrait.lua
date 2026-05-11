@@ -17,7 +17,7 @@ floweyPortrait.placements = {
             glitchIntensity = 5.0,
             enableDistortion = true,
             enableParticles = true,
-            soundEffect = "event:/desolozantas/char/flowey_glitch"
+            soundEffect = ""
         }
     },
     {
@@ -31,7 +31,7 @@ floweyPortrait.placements = {
             glitchIntensity = 6.0,
             enableDistortion = true,
             enableParticles = true,
-            soundEffect = "event:/desolozantas/char/flowey_creepy"
+            soundEffect = ""
         }
     },
     {
@@ -45,7 +45,7 @@ floweyPortrait.placements = {
             glitchIntensity = 8.0,
             enableDistortion = true,
             enableParticles = true,
-            soundEffect = "event:/desolozantas/char/flowey_panic"
+            soundEffect = ""
         }
     },
     {
@@ -59,7 +59,7 @@ floweyPortrait.placements = {
             glitchIntensity = 9.0,
             enableDistortion = true,
             enableParticles = true,
-            soundEffect = "event:/desolozantas/char/flowey_revenge"
+            soundEffect = ""
         }
     },
     {
@@ -73,7 +73,7 @@ floweyPortrait.placements = {
             glitchIntensity = 7.0,
             enableDistortion = true,
             enableParticles = true,
-            soundEffect = "event:/desolozantas/char/flowey_angry"
+            soundEffect = ""
         }
     },
     {
@@ -87,7 +87,7 @@ floweyPortrait.placements = {
             glitchIntensity = 4.0,
             enableDistortion = true,
             enableParticles = false,
-            soundEffect = "event:/desolozantas/char/flowey_smirk"
+            soundEffect = ""
         }
     },
     {
@@ -101,7 +101,7 @@ floweyPortrait.placements = {
             glitchIntensity = 6.0,
             enableDistortion = true,
             enableParticles = true,
-            soundEffect = "event:/desolozantas/char/flowey_glitch_generic"
+            soundEffect = ""
         }
     }
 }
@@ -162,7 +162,7 @@ function floweyPortrait.sprite(room, entity)
     local portraitType = entity.portraitType or "glitchyfreak"
     local glitchIntensity = entity.glitchIntensity or 5.0
     
-    local spritePath = "characters/flowey/portraits/"
+    local spritePath = "characters/Maggy/DesoloZantas/flowey/portraits/"
     
     if portraitType == "glitchyfreak" then
         spritePath = spritePath .. "flowey_glitchy_freak"
@@ -242,9 +242,9 @@ function floweyPortrait.nodeSprite(room, entity, node, nodeIndex)
     local portraitType = entity.portraitType or "glitchyfreak"
     
     if portraitType:find("glitchy") then
-        return "objects/DesoloZantas/glitch_keyframe"
+        return "objects/Maggy_DesoloZantas/glitch_keyframe"
     else
-        return "objects/DesoloZantas/portrait_keyframe"
+        return "objects/Maggy_DesoloZantas/portrait_keyframe"
     end
 end
 
@@ -257,3 +257,4 @@ function floweyPortrait.nodeLimits()
 end
 
 return floweyPortrait
+

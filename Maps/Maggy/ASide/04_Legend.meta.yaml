@@ -1,0 +1,54 @@
+Icon: areas/Maggy/legend
+SID: Maggy/DESOLO_ZANTAS/4-Legend
+Interlude: false
+TitleBaseColor: 2d1b00
+TitleAccentColor: f0a030
+TitleTextColor: ffffff
+IntroType: Jump
+Dreaming: true
+ColorGrade: none
+Wipe: Celeste.DreamWipe
+DarknessAlpha: 0.05
+BloomBase: 0.0
+BloomStrength: 1.0
+CassetteNoteColor: f0a030
+CassetteSong: event:/desolo_zantas/music/Cassette/04_destiny
+
+Modes:
+  - AudioState:
+      Music: event:/desolo_zantas/music/lvl04/main
+      Ambience: event:/desolo_zantas/env/04_awake
+    Inventory: Default
+    HeartIsEnd: false
+    SeekerSlowdown: false
+  - AudioState:
+      Music: event:/desolo_zantas/music/BSide/04_legend
+      Ambience: event:/desolo_zantas/env/04_awake
+    Inventory: Default
+    HeartIsEnd: true
+    SeekerSlowdown: false
+  - AudioState:
+      Music: event:/desolo_zantas/music/CSide/04_legend
+      Ambience: event:/desolo_zantas/env/04_awake
+    Inventory: Default
+    HeartIsEnd: true
+    SeekerSlowdown: false
+  - AudioState:
+      Music: event:/desolo_zantas/music/CSide/04_legend
+      Ambience: event:/desolo_zantas/env/04_awake
+    Inventory: Default
+    HeartIsEnd: true
+    SeekerSlowdown: false
+
+Mountain:
+    Idle:
+        Position: [5.200, 8.500, 16.000]
+        Target: [4.500, 7.800, 14.500]
+    Select:
+        Position: [4.500, 6.000, 16.300]
+        Target: [5.500, 5.900, 14.800]
+    Zoom:
+        Position: [5.900, 6.400, 13.400]
+        Target: [5.800, 5.300, 11.700]
+    Cursor: [5.700, 6.000, 11.500]
+    State: 0

@@ -28,7 +28,7 @@ eyeBomb.placements = {
 eyeBomb.fieldInformation = {
     detectionRadius = {
         fieldType = "number",
-        description = "Radius at which the eye bomb detects the player"
+        description = "Radius at which the eye bomb detects the Kglobal::Player"
     },
     explosionRadius = {
         fieldType = "number",

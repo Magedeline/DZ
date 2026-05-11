@@ -3,7 +3,7 @@ local npc08_chara_crying = {}
 npc08_chara_crying.name = "MaggyHelper/NPC08_Chara_Crying"
 npc08_chara_crying.depth = 0
 npc08_chara_crying.justification = {0.5, 1.0}
-npc08_chara_crying.texture = "characters/chara/idle00"
+npc08_chara_crying.texture = "characters/Maggy/DesoloZantas/chara/idle00"
 
 npc08_chara_crying.placements = {
     {
@@ -29,10 +29,11 @@ npc08_chara_crying.fieldInformation = {
         options = {
             "chara",
             "theo",
-            "player",
+            "Kglobal::Player",
             "madeline"
         }
     }
 }
 
 return npc08_chara_crying
+

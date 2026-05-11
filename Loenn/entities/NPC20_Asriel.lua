@@ -3,7 +3,7 @@ local npc20_asriel = {}
 npc20_asriel.name = "MaggyHelper/NPC20_Asriel"
 npc20_asriel.depth = 0
 npc20_asriel.justification = {0.5, 1.0}
-npc20_asriel.texture = "characters/asriel/idle00"
+npc20_asriel.texture = "characters/Maggy/DesoloZantas/asriel/idle00"
 
 npc20_asriel.placements = {
     {
@@ -31,7 +31,7 @@ npc20_asriel.fieldInformation = {
             "asriel",
             "toriel",
             "theo",
-            "player",
+            "Kglobal::Player",
             "madeline"
         }
     },
@@ -41,3 +41,4 @@ npc20_asriel.fieldInformation = {
 }
 
 return npc20_asriel
+

@@ -11,6 +11,7 @@ namespace Celeste.Entities
         public static ParticleType PGoldShine;
         public static ParticleType PFakeShine;
         public static ParticleType PPinkShine;
+        public static ParticleType PRainbowShine;
         private readonly TimeRateModifier timeRateModifier;
         
       // Static constructor to initialize particle types
@@ -117,7 +118,26 @@ PFakeShine = new ParticleType
       SpeedMultiplier = 0.01f,
   Acceleration = Vector2.UnitY * 5f
             };
-  }
+
+            // Rainbow shine (Astral/Final Remix)
+            PRainbowShine = new ParticleType
+            {
+                Color = Calc.HexToColor("ff0000"),
+                Color2 = Calc.HexToColor("ff8000"),
+                ColorMode = ParticleType.ColorModes.Choose,
+                FadeMode = ParticleType.FadeModes.Late,
+                Size = 1f,
+                SizeRange = 0.5f,
+                Direction = -(float)Math.PI / 2f,
+                DirectionRange = (float)Math.PI / 8f,
+                LifeMin = 0.8f,
+                LifeMax = 1.2f,
+                SpeedMin = 4f,
+                SpeedMax = 12f,
+                SpeedMultiplier = 0.01f,
+                Acceleration = Vector2.UnitY * 5f
+            };
+        }
 
         public HeartGem(Vector2 position) : base(position) {
           Add(this.timeRateModifier = new TimeRateModifier(1f, false));
@@ -126,42 +146,47 @@ PFakeShine = new ParticleType
  }
 
         public HeartGem(EntityData data, Vector2 offset) : this(data.Position + offset) {
-  this.removeCameraTriggers = data.Bool(nameof(removeCameraTriggers), false);
-      this.IsFake = data.Bool("fake", false);
-        this.endLevelOnCollect = data.Bool(nameof(endLevelOnCollect), false);
-        this.entityId = new EntityID(data.Level.Name, data.ID);
-      }
+            this.removeCameraTriggers = data.Bool(nameof(removeCameraTriggers), false);
+            this.IsFake = data.Bool("fake", false);
+            this.IsAstral = data.Bool("astral", false);
+            this.endLevelOnCollect = data.Bool(nameof(endLevelOnCollect), false);
+            this.entityId = new EntityID(data.Level.Name, data.ID);
+        }
 
         public override void Awake(Scene scene) {
-         base.Awake(scene);
-     AreaKey area = (Scene as Level).Session.Area;
-        this.IsGhost = (!this.IsFake && SaveData.Instance.Areas[area.ID].Modes[(int)area.Mode].HeartGem);
-     string id;
-         if (this.IsFake) {
-            id = "heartgem4"; // Grey heartgem for fake/wrong heart
-     } else if (this.IsGhost) {
-  id = "heartgem5";
- } else if (area.Mode == AreaMode.Normal) {
-            id = "maggy_heartgem0"; // A-Side - Blue heartgem
+            base.Awake(scene);
+            AreaKey area = (Scene as Level).Session.Area;
+            this.IsGhost = (!this.IsFake && !this.IsAstral && SaveData.Instance.Areas[area.ID].Modes[(int)area.Mode].HeartGem);
+            string id;
+            if (this.IsAstral) {
+                id = "maggy_heartgem4"; // Astral/Final Remix - Rainbow heartgem
+            } else if (this.IsFake) {
+                id = "heartgem4"; // Grey heartgem for fake/wrong heart
+            } else if (this.IsGhost) {
+                id = "heartgem5";
+            } else if (area.Mode == AreaMode.Normal) {
+                id = "maggy_heartgem0"; // A-Side - Blue heartgem
             } else if (area.Mode == AreaMode.BSide) {
-            id = "maggy_heartgem1"; // B-Side - Red heartgem
+                id = "maggy_heartgem1"; // B-Side - Red heartgem
             } else if (area.Mode == AreaMode.CSide) {
-            id = "maggy_heartgem2"; // C-Side - Golden heartgem
+                id = "maggy_heartgem2"; // C-Side - Golden heartgem
             } else if (area.Mode == (AreaMode)3) {
-            id = "maggy_heartgem3"; // D-Side - Pink heartgem
+                id = "maggy_heartgem3"; // D-Side - Pink heartgem
             } else {
-          id = "maggy_heartgem0"; // Default to blue
-      }
-       Add(this.sprite = GFX.SpriteBank.Create(id));
+                id = "maggy_heartgem0"; // Default to blue
+            }
+            Add(this.sprite = GFX.SpriteBank.Create(id));
           this.sprite.Play("spin", false, false);
             this.sprite.OnLoop = delegate (string anim) {
-        if (this.Visible && anim == "spin" && this.autoPulse) {
-    if (this.IsFake) {
-            Audio.Play("event:/desolozantas/final_content/game/19_the_end/fakeheart_pulse", this.Position);
-    } else {
-   Audio.Play("event:/game/general/crystalheart_pulse", this.Position);
-           }
-    this.ScaleWiggler.Start();
+                if (this.Visible && anim == "spin" && this.autoPulse) {
+                    if (this.IsAstral) {
+                        Audio.Play("event:/game/general/crystalheart_pulse", this.Position);
+                    } else if (this.IsFake) {
+                        Audio.Play("event:/desolozantas/final_content/game/19_the_end/fakeheart_pulse", this.Position);
+                    } else {
+                        Audio.Play("event:/game/general/crystalheart_pulse", this.Position);
+                    }
+                    this.ScaleWiggler.Start();
  (Scene as Level).Displacement.AddBurst(this.Position, 0.35f, 8f, 48f, 0.25f, null, null);
          }
   };
@@ -175,33 +200,44 @@ PFakeShine = new ParticleType
             }, false, false));
         Add(this.bloom = new BloomPoint(0.75f, 16f));
   Color color;
-     if (this.IsFake) {
-         color = Calc.HexToColor("dad8cc");
-        this.shineParticle = HeartGem.PFakeShine;
+     if (this.IsAstral) {
+                // Astral/Final Remix - Rainbow colors
+                color = Calc.HexToColor("ff4080");
+                this.shineParticle = HeartGem.PRainbowShine;
+            } else if (this.IsFake) {
+                color = Calc.HexToColor("dad8cc");
+                this.shineParticle = HeartGem.PFakeShine;
             } else if (area.Mode == AreaMode.Normal) {
-          color = Color.Aqua;
-              this.shineParticle = HeartGem.PBlueShine;
-    } else if (area.Mode == AreaMode.BSide) {
-  color = Color.Red;
-      this.shineParticle = HeartGem.PRedShine;
+                color = Color.Aqua;
+                this.shineParticle = HeartGem.PBlueShine;
+            } else if (area.Mode == AreaMode.BSide) {
+                color = Color.Red;
+                this.shineParticle = HeartGem.PRedShine;
             } else if (area.Mode == AreaMode.CSide) {
-      color = Color.Gold;
-this.shineParticle = HeartGem.PGoldShine;
-   } else if (area.Mode == (AreaMode)3) {
-         // D-Side - Pink heart
-        color = Color.Pink;
-   this.shineParticle = HeartGem.PPinkShine;
-          } else {
-  color = Color.White;
-         this.shineParticle = HeartGem.PBlueShine;
-       }
-         color = Color.Lerp(color, Color.White, 0.5f);
+                color = Color.Gold;
+                this.shineParticle = HeartGem.PGoldShine;
+            } else if (area.Mode == (AreaMode)3) {
+                // D-Side - Pink heart
+                color = Color.Pink;
+                this.shineParticle = HeartGem.PPinkShine;
+            } else {
+                color = Color.White;
+                this.shineParticle = HeartGem.PBlueShine;
+            }
+            color = Color.Lerp(color, Color.White, 0.5f);
     Add(this.light = new VertexLight(color, 1f, 32, 64));
-    if (this.IsFake) {
-       this.bloom.Alpha = 0f;
-          this.light.Alpha = 0f;
-      }
-    this.moveWiggler = Wiggler.Create(0.8f, 2f, null, false, false);
+            if (this.IsFake) {
+                this.bloom.Alpha = 0f;
+                this.light.Alpha = 0f;
+            }
+            if (this.IsAstral) {
+                this.bloom.Alpha = 1f;
+                this.bloom.Radius = 32f;
+                this.light.Alpha = 1f;
+                this.light.StartRadius = 48f;
+                this.light.EndRadius = 96f;
+            }
+            this.moveWiggler = Wiggler.Create(0.8f, 2f, null, false, false);
   this.moveWiggler.StartZero = true;
             Add(this.moveWiggler);
             if (this.IsFake) {
@@ -226,7 +262,9 @@ scene.Add(this.fakeRightWall = new InvisibleBarrier(new Vector2(X + 160f, Y - 20
                return;
    }
       if (this.bounceSfxDelay <= 0f) {
-           if (this.IsFake) {
+           if (this.IsAstral) {
+      Audio.Play("event:/game/general/crystalheart_bounce", this.Position);
+          } else if (this.IsFake) {
       Audio.Play("event:/desolozantas/final_content/game/19_the_end/fakeheart_bounce", this.Position);
           } else {
         Audio.Play("event:/game/general/crystalheart_bounce", this.Position);
@@ -244,6 +282,18 @@ scene.Add(this.fakeRightWall = new InvisibleBarrier(new Vector2(X + 160f, Y - 20
   public override void Update() {
          this.bounceSfxDelay -= Engine.DeltaTime;
   this.timer += Engine.DeltaTime;
+
+            // Rainbow color cycling for astral heartgem
+            if (this.IsAstral && !this.collected) {
+                this.rainbowHue += Engine.DeltaTime * 0.5f;
+                if (this.rainbowHue > 1f) {
+                    this.rainbowHue -= 1f;
+                }
+                Color rainbowColor = Calc.HsvToColor(this.rainbowHue, 0.8f, 1f);
+                this.sprite.Color = rainbowColor;
+                this.light.Color = rainbowColor;
+            }
+
             this.sprite.Position = Vector2.UnitY * (float)Math.Sin((double)(this.timer * 2f)) * 2f + this.moveWiggleDir * this.moveWiggler.Value * -8f;
     if (this.white != null) {
           this.white.Position = this.sprite.Position;
@@ -318,15 +368,17 @@ foreach (Follower follower in player.Leader.Followers) {
             }
  }
      string text = "event:/game/general/crystalheart_blue_get";
-          if (this.IsFake) {
+          if (this.IsAstral) {
+                text = "event:/desolozantas/game/general/crystalheart_astral_void_get";
+            } else if (this.IsFake) {
                 text = "event:/desolozantas/final_content/game/19_the_end/fakeheart_get";
-   } else if (area.Mode == AreaMode.BSide) {
-    text = "event:/game/general/crystalheart_red_get";
+            } else if (area.Mode == AreaMode.BSide) {
+                text = "event:/game/general/crystalheart_red_get";
             } else if (area.Mode == AreaMode.CSide) {
-    text = "event:/game/general/crystalheart_gold_get";
+                text = "event:/game/general/crystalheart_gold_get";
             } else if (area.Mode == (AreaMode)3) {
-    text = "event:/desolozantas/game/general/crystalheart_rainbow_get";
-     }
+                text = "event:/desolozantas/game/general/crystalheart_rainbow_get";
+            }
      this.sfx = SoundEmitter.Play(text, this, null);
             Add(new LevelEndingHook(delegate () {
     this.sfx.Source.Stop(true);
@@ -365,18 +417,22 @@ foreach (Follower follower in player.Leader.Followers) {
   this.timeRateModifier.ResetTimeRateMultiplier();
     Tag = Tags.FrozenUpdate;
       level.Frozen = true;
-   if (!this.IsFake) {
+   if (!this.IsFake && !this.IsAstral) {
                 this.registerAsCollected(level, poemId);
-         if (completeArea) {
-         level.TimerStopped = true;
-         level.RegisterAreaComplete();
-           }
+                if (completeArea) {
+                    level.TimerStopped = true;
+                    level.RegisterAreaComplete();
+                }
+            }
+            if (this.IsAstral && completeArea) {
+                level.TimerStopped = true;
+                level.RegisterAreaComplete();
             }
    string text2 = null;
             if (!string.IsNullOrEmpty(poemId)) {
              text2 = Dialog.Clean("soul_" + poemId, null);
      }
-     this.poem = new Poem(text2, (int)(this.IsFake ? ((AreaMode)3) : area.Mode), (area.Mode == AreaMode.CSide || area.Mode == (AreaMode)3 || this.IsFake) ? 1f : 0.6f);
+     this.poem = new Poem(text2, (int)(this.IsAstral ? ((AreaMode)4) : (this.IsFake ? ((AreaMode)3) : area.Mode)), (area.Mode == AreaMode.CSide || area.Mode == (AreaMode)3 || this.IsAstral || this.IsFake) ? 1f : 0.6f);
       this.poem.Alpha = 0f;
          Scene.Add(this.poem);
  for (float t = 0f; t < 1f; t += Engine.RawDeltaTime) {
@@ -718,8 +774,10 @@ Level level = Scene as Level;
 
         public bool IsGhost;
         public const float GHOST_ALPHA = 0.8f;
-     public bool IsFake;
-    private bool endLevelOnCollect;
+        public bool IsFake;
+        public bool IsAstral;
+        private float rainbowHue;
+        private bool endLevelOnCollect;
     private Sprite sprite;
      private Sprite white;
   private ParticleType shineParticle;

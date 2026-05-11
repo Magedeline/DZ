@@ -65,7 +65,3 @@ namespace Celeste.Cutscenes
         public override void OnEnd(Level level) => level.CompleteArea(true, true, false);
   }
 }
-
-
-
-

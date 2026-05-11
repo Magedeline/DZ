@@ -10,7 +10,7 @@ local npc09_savepoint = {}
 npc09_savepoint.name = "MaggyHelper/NPC09_SavePoint"
 npc09_savepoint.depth = 100
 npc09_savepoint.justification = {0.5, 1.0}
-npc09_savepoint.texture = "characters/savepoint/save00"
+npc09_savepoint.texture = "characters/Maggy/DesoloZantas/savepoint/save00"
 
 -- Placements for Loenn
 npc09_savepoint.placements = {
@@ -42,7 +42,7 @@ function npc09_savepoint.sprite(room, entity)
     local sprites = {}
     
     -- Main save point sprite
-    local mainSprite = drawableSprite.fromTexture("characters/savepoint/save00", entity)
+    local mainSprite = drawableSprite.fromTexture("characters/Maggy/DesoloZantas/savepoint/save00", entity)
     mainSprite:setJustification(0.5, 1.0)
     table.insert(sprites, mainSprite)
     
@@ -58,3 +58,4 @@ function npc09_savepoint.sprite(room, entity)
 end
 
 return npc09_savepoint
+

@@ -26,7 +26,7 @@ dxDarkMatter.placements = {
             echoFlowey = true,
             echoAsriel = true,
             echoDedede = true,
-            bossMusic = "event:/desolozantas/dx_content/music/dx_darkmatter_emergence"
+            bossMusic = ""
         }
     },
     {
@@ -42,7 +42,7 @@ dxDarkMatter.placements = {
             echoFlowey = true,
             echoAsriel = true,
             echoDedede = true,
-            bossMusic = "event:/desolozantas/dx_content/music/dx_darkmatter_emergence"
+            bossMusic = ""
         }
     }
 }

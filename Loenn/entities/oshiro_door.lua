@@ -14,7 +14,7 @@ oshiroDoor.placements = {
 
 local fillColor = {74 / 255, 71 / 255, 135 / 255, 153}
 local borderColor = {1.0, 1.0, 1.0, 1.0}
-local oshiroTexture = "characters/oshiro/oshiro24"
+local oshiroTexture = "characters/Maggy/DesoloZantas/oshiro/oshiro24"
 local oshiroColor = {1.0, 1.0, 1.0, 0.8}
 
 function oshiroDoor.sprite(room, entity)

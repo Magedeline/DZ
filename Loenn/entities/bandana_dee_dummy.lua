@@ -2,7 +2,7 @@ local bandanaDeeDummy = {}
 
 bandanaDeeDummy.name = "MaggyHelper/BandanaDeeDummy"
 bandanaDeeDummy.depth = 0
-bandanaDeeDummy.texture = "characters/kirby/bandana_dee/idle00"
+bandanaDeeDummy.texture = "characters/kirby/Maggy/DesoloZantas/bandana_dee/idle00"
 bandanaDeeDummy.justification = {0.5, 1.0}
 
 bandanaDeeDummy.fieldInformation = {
@@ -69,7 +69,7 @@ function bandanaDeeDummy.sprite(room, entity)
     local alpha = entity.alpha or 1.0
 
     return {
-        texture = "characters/kirby/bandana_dee/idle00",
+        texture = "characters/kirby/Maggy/DesoloZantas/bandana_dee/idle00",
         x = entity.x,
         y = entity.y,
         justificationX = 0.5,

@@ -37,9 +37,10 @@ dxVoidDashRefill.fieldInformation = {
 dxVoidDashRefill.fieldOrder = { "x", "y", "respawnTime", "oneUse" }
 
 function dxVoidDashRefill.sprite(room, entity)
-    local sprite = drawableSprite.fromTexture("objects/refill/idle00", entity)
+    local sprite = drawableSprite.fromTexture("objects/Maggy/DesoloZantas/refill/idle00", entity)
     sprite:setColor({0.5, 0.0, 0.8, 1.0})
     return sprite
 end
 
 return dxVoidDashRefill
+

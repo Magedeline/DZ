@@ -19,9 +19,9 @@ startingInventory.placements = {
         }
     },
     {
-        name = "kirby_player",
+        name = "kirby_Kglobal::Player",
         data = {
-            inventoryType = "KirbyPlayer",
+            inventoryType = "KirbyKglobal::Player",
             debugVisible = false
         }
     },
@@ -60,7 +60,7 @@ startingInventory.fieldInformation = {
         options = {
             "Default",
             "Heart",
-            "KirbyPlayer", 
+            "KirbyKglobal::Player", 
             "SayGoodbye",
             "TitanTowerClimbing",
             "Corruption",
@@ -76,7 +76,7 @@ function startingInventory.sprite(room, entity)
     -- Use different sprites based on inventory type
     if inventoryType == "Heart" then
         return "ahorn/starting_inventory_heart"
-    elseif inventoryType == "KirbyPlayer" then
+    elseif inventoryType == "KirbyKglobal::Player" then
         return "ahorn/starting_inventory_kirby"
     elseif inventoryType == "SayGoodbye" then
         return "ahorn/starting_inventory_goodbye"
@@ -96,7 +96,7 @@ function startingInventory.color(room, entity)
     
     if inventoryType == "Heart" then
         return {1.0, 0.2, 0.2, 0.9} -- Red
-    elseif inventoryType == "KirbyPlayer" then
+    elseif inventoryType == "KirbyKglobal::Player" then
         return {1.0, 1.0, 0.2, 0.9} -- Yellow
     elseif inventoryType == "SayGoodbye" then
         return {1.0, 0.4, 0.8, 0.9} -- Pink
@@ -117,7 +117,7 @@ function startingInventory.texture(room, entity)
     -- Fallback to simple colored rectangles if sprites aren't available
     if inventoryType == "Heart" then
         return "@Internal@/starting_inventory_heart"
-    elseif inventoryType == "KirbyPlayer" then
+    elseif inventoryType == "KirbyKglobal::Player" then
         return "@Internal@/starting_inventory_kirby"
     elseif inventoryType == "SayGoodbye" then
         return "@Internal@/starting_inventory_goodbye"

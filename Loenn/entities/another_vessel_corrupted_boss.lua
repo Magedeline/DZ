@@ -38,7 +38,7 @@ function anotherVesselCorruptedBoss.sprite(room, entity)
     local textures = {
         "characters/anothervesselcorrupted/idle00",
         "bgs/maggy/00/anotherhuman/VESSEL",
-        "characters/player/sitDown00"
+        "characters/Maggy/DesoloZantas/Kglobal::Player/sitDown00"
     }
 
     for _, texture in ipairs(textures) do

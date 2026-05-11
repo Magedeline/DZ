@@ -3,7 +3,7 @@ local npc20_granny = {}
 npc20_granny.name = "MaggyHelper/NPC20_Granny"
 npc20_granny.depth = 0
 npc20_granny.justification = {0.5, 1.0}
-npc20_granny.texture = "characters/oldlady/idle00"
+npc20_granny.texture = "characters/Maggy/DesoloZantas/oldlady/idle00"
 
 npc20_granny.placements = {
     {
@@ -31,7 +31,7 @@ npc20_granny.fieldInformation = {
             "oldlady",
             "granny",
             "theo",
-            "player",
+            "Kglobal::Player",
             "madeline"
         }
     },
@@ -41,3 +41,4 @@ npc20_granny.fieldInformation = {
 }
 
 return npc20_granny
+

@@ -16,11 +16,11 @@ function infernoBigEyeball.sprite(room, entity)
     local sprites = {}
 
     -- Use the temple eyeball body sprite
-    local bodySprite = drawableSprite.fromTexture("danger/templeeye/body00", entity)
+    local bodySprite = drawableSprite.fromTexture("danger/Maggy/DesoloZantas/templeeye/body00", entity)
     table.insert(sprites, bodySprite)
 
     -- Add the pupil on top
-    local pupilSprite = drawableSprite.fromTexture("danger/templeeye/pupil", entity)
+    local pupilSprite = drawableSprite.fromTexture("danger/Maggy/DesoloZantas/templeeye/pupil", entity)
     table.insert(sprites, pupilSprite)
 
     return sprites
@@ -32,3 +32,4 @@ function infernoBigEyeball.selection(room, entity)
 end
 
 return infernoBigEyeball
+

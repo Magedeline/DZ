@@ -1,23 +1,23 @@
-local kirbyPlayer = {}
+local kirbyKglobal::global::Celeste.Player= {}
 
-kirbyPlayer.name = "MaggyHelper/KirbyPlayer"
-kirbyPlayer.depth = -1000000
-kirbyPlayer.texture = "characters/kirby/idle00"
-kirbyPlayer.justification = {0.5, 1.0}
+kirbyKglobal::Player.name = "MaggyHelper/KirbyKglobal::Player"
+kirbyKglobal::Player.depth = -1000000
+kirbyKglobal::Player.texture = "characters/Maggy/DesoloZantas/kirby/idle00"
+kirbyKglobal::Player.justification = {0.5, 1.0}
 
 -- Simple spawn marker entity
-kirbyPlayer.nodeLineRenderType = "line"
-kirbyPlayer.nodeLimits = {0, 0}
+kirbyKglobal::Player.nodeLineRenderType = "line"
+kirbyKglobal::Player.nodeLimits = {0, 0}
 
-kirbyPlayer.placements = {
+kirbyKglobal::Player.placements = {
     {
-        name = "kirby_player",
+        name = "kirby_Kglobal::Player",
         data = {
         }
     }
 }
 
-kirbyPlayer.fieldInformation = {
+kirbyKglobal::Player.fieldInformation = {
     facing = {
         fieldType = "integer",
         options = {-1, 1},
@@ -25,4 +25,4 @@ kirbyPlayer.fieldInformation = {
     }
 }
 
-return kirbyPlayer
+return kirbyKglobal::Player

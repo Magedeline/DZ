@@ -1,0 +1,54 @@
+Icon: areas/Maggy/castle
+SID: Maggy/DESOLO_ZANTAS/15-Castle
+Interlude: false
+TitleBaseColor: 4a1a6b
+TitleAccentColor: df72f9
+TitleTextColor: ffffff
+IntroType: Jump
+Dreaming: false
+ColorGrade: none
+Wipe: Celeste.BellWipe
+DarknessAlpha: 0.1
+BloomBase: 0.0
+BloomStrength: 1.0
+CassetteNoteColor: df72f9
+CassetteSong: event:/desolo_zantas/music/Cassette/15_citadel
+
+Modes:
+  - AudioState:
+      Music: event:/desolo_zantas/music/lvl15/main
+      Ambience: event:/desolo_zantas/env/15_castle
+    Inventory: Default
+    HeartIsEnd: false
+    SeekerSlowdown: false
+  - AudioState:
+      Music: event:/desolo_zantas/music/BSide/15_castle
+      Ambience: event:/desolo_zantas/env/15_castle
+    Inventory: Default
+    HeartIsEnd: true
+    SeekerSlowdown: false
+  - AudioState:
+      Music: event:/desolo_zantas/music/CSide/15_castle
+      Ambience: event:/desolo_zantas/env/15_castle
+    Inventory: Default
+    HeartIsEnd: true
+    SeekerSlowdown: false
+  - AudioState:
+      Music: event:/desolo_zantas/music/CSide/15_castle
+      Ambience: event:/desolo_zantas/env/15_castle
+    Inventory: Default
+    HeartIsEnd: true
+    SeekerSlowdown: false
+
+Mountain:
+    Idle:
+        Position: [0.400, 11.200, 15.000]
+        Target: [0.400, 10.500, 13.500]
+    Select:
+        Position: [0.400, 10.800, 15.300]
+        Target: [0.400, 10.500, 13.800]
+    Zoom:
+        Position: [0.400, 10.700, 13.000]
+        Target: [0.400, 10.300, 11.500]
+    Cursor: [0.400, 10.500, 11.500]
+    State: 0

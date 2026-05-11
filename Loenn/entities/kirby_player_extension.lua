@@ -1,18 +1,18 @@
-﻿local drawableSprite = require("structs.drawable_sprite")
+local drawableSprite = require("structs.drawable_sprite")
 
-local kirbyPlayerExtension = {}
+local kirbyKglobal::PlayerExtension = {}
 
-kirbyPlayerExtension.name = "MaggyHelper/KirbyPlayerExtension"
-kirbyPlayerExtension.depth = -100
-kirbyPlayerExtension.texture = "characters/kirby/idle00"
-kirbyPlayerExtension.justification = {0.5, 1.0}
+kirbyKglobal::PlayerExtension.name = "MaggyHelper/KirbyKglobal::PlayerExtension"
+kirbyKglobal::PlayerExtension.depth = -100
+kirbyKglobal::PlayerExtension.texture = "characters/Maggy/DesoloZantas/kirby/idle00"
+kirbyKglobal::PlayerExtension.justification = {0.5, 1.0}
 
 -- Node support for spawn points
-kirbyPlayerExtension.nodeLineRenderType = "line"
-kirbyPlayerExtension.nodeLimits = {0, -1}
-kirbyPlayerExtension.nodeVisibility = "always"
+kirbyKglobal::PlayerExtension.nodeLineRenderType = "line"
+kirbyKglobal::PlayerExtension.nodeLimits = {0, -1}
+kirbyKglobal::PlayerExtension.nodeVisibility = "always"
 
--- Full list of Kirby power states matching KirbyPlayerExtension.KirbyPowerState enum
+-- Full list of Kirby power states matching KirbyKglobal::PlayerExtension.KirbyPowerState enum
 local kirbyPowerStates = {
     "None",
     "Fire",
@@ -54,7 +54,7 @@ local kirbyPowerStates = {
     "Knight"
 }
 
--- Kirby intro types matching KirbyPlayerExtension.KirbyIntroType enum
+-- Kirby intro types matching KirbyKglobal::PlayerExtension.KirbyIntroType enum
 local kirbyIntroTypes = {
     "None",
     "WalkIn",
@@ -71,13 +71,13 @@ local kirbyIntroTypes = {
     "PipeExit"
 }
 
-kirbyPlayerExtension.placements = {
+kirbyKglobal::PlayerExtension.placements = {
     {
         name = "default",
         data = {
             maxHealth = 6,
             power = "None",
-            inventory = "KirbyPlayer",
+            inventory = "KirbyKglobal::Player",
             introType = "None",
             useSpawnPoints = true
         }
@@ -87,7 +87,7 @@ kirbyPlayerExtension.placements = {
         data = {
             maxHealth = 6,
             power = "None",
-            inventory = "KirbyPlayer",
+            inventory = "KirbyKglobal::Player",
             introType = "WalkIn",
             useSpawnPoints = true
         }
@@ -97,7 +97,7 @@ kirbyPlayerExtension.placements = {
         data = {
             maxHealth = 6,
             power = "None",
-            inventory = "KirbyPlayer",
+            inventory = "KirbyKglobal::Player",
             introType = "WarpStar",
             useSpawnPoints = true
         }
@@ -107,7 +107,7 @@ kirbyPlayerExtension.placements = {
         data = {
             maxHealth = 6,
             power = "None",
-            inventory = "KirbyPlayer",
+            inventory = "KirbyKglobal::Player",
             introType = "FloatDown",
             useSpawnPoints = true
         }
@@ -117,7 +117,7 @@ kirbyPlayerExtension.placements = {
         data = {
             maxHealth = 6,
             power = "Fire",
-            inventory = "KirbyPlayer",
+            inventory = "KirbyKglobal::Player",
             introType = "None",
             useSpawnPoints = true
         }
@@ -127,7 +127,7 @@ kirbyPlayerExtension.placements = {
         data = {
             maxHealth = 6,
             power = "Sword",
-            inventory = "KirbyPlayer",
+            inventory = "KirbyKglobal::Player",
             introType = "None",
             useSpawnPoints = true
         }
@@ -137,14 +137,14 @@ kirbyPlayerExtension.placements = {
         data = {
             maxHealth = 8,
             power = "Knight",
-            inventory = "KirbyPlayer",
+            inventory = "KirbyKglobal::Player",
             introType = "WarpStar",
             useSpawnPoints = true
         }
     }
 }
 
-kirbyPlayerExtension.fieldInformation = {
+kirbyKglobal::PlayerExtension.fieldInformation = {
     maxHealth = {
         fieldType = "integer",
         minimumValue = 1,
@@ -157,7 +157,7 @@ kirbyPlayerExtension.fieldInformation = {
     inventory = {
         options = {
             "Default",
-            "KirbyPlayer",
+            "KirbyKglobal::Player",
             "Heart"
         },
         editable = false
@@ -171,7 +171,7 @@ kirbyPlayerExtension.fieldInformation = {
     }
 }
 
-kirbyPlayerExtension.fieldOrder = {
+kirbyKglobal::PlayerExtension.fieldOrder = {
     "x", "y",
     "maxHealth",
     "power",
@@ -181,8 +181,8 @@ kirbyPlayerExtension.fieldOrder = {
 }
 
 -- Node rendering for spawn points
-function kirbyPlayerExtension.nodeSprite(room, entity, node, nodeIndex)
-    local sprite = drawableSprite.fromTexture("characters/player/sitDown00", {x = node.x, y = node.y})
+function kirbyKglobal::PlayerExtension.nodeSprite(room, entity, node, nodeIndex)
+    local sprite = drawableSprite.fromTexture("characters/Maggy/DesoloZantas/Kglobal::Player/sitDown00", {x = node.x, y = node.y})
     sprite:setColor({1.0, 0.6, 0.8, 0.8})
     sprite:setJustification(0.5, 1.0)
     sprite:setScale(0.7, 0.7)
@@ -190,7 +190,7 @@ function kirbyPlayerExtension.nodeSprite(room, entity, node, nodeIndex)
 end
 
 -- Color based on power for visual distinction
-function kirbyPlayerExtension.color(room, entity)
+function kirbyKglobal::PlayerExtension.color(room, entity)
     local power = entity.power or "None"
 
     if power == "Knight" then
@@ -210,4 +210,6 @@ function kirbyPlayerExtension.color(room, entity)
     return {1.0, 0.41, 0.71}  -- Default pink
 end
 
-return kirbyPlayerExtension
+return kirbyKglobal::PlayerExtension
+
+

@@ -212,7 +212,3 @@ namespace Celeste.Cutscenes
         #endregion
     }
 }
-
-
-
-

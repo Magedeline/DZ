@@ -37,8 +37,8 @@ tumbleKevinBoss.fieldOrder = {
 function tumbleKevinBoss.sprite(room, entity)
     local textures = {
         "objects/crushblock/block00",
-        "characters/kirby/stone/crush00",
-        "characters/player/sitDown00"
+        "characters/Maggy/DesoloZantas/kirby/stone/crush00",
+        "characters/Maggy/DesoloZantas/Kglobal::Player/sitDown00"
     }
 
     for _, texture in ipairs(textures) do
@@ -57,3 +57,4 @@ function tumbleKevinBoss.selection(room, entity)
 end
 
 return tumbleKevinBoss
+

@@ -24,7 +24,7 @@ sparkeyDust.fieldInformation = {
         minimumValue = 8.0,
         maximumValue = 100.0
     },
-    followPlayer = {
+    followKglobal::global::Celeste.Player= {
         fieldType = "boolean"
     },
     isActive = {
@@ -49,7 +49,7 @@ sparkeyDust.placements = {
             particleCount = 10,
             sparkFrequency = 2.0,
             radius = 32.0,
-            followPlayer = false,
+            followKglobal::global::Celeste.Player= false,
             isActive = true,
             soundEffect = "event:/game/general/thing_booped"
         }
@@ -61,7 +61,7 @@ sparkeyDust.placements = {
             particleCount = 20,
             sparkFrequency = 5.0,
             radius = 48.0,
-            followPlayer = true,
+            followKglobal::global::Celeste.Player= true,
             isActive = true,
             soundEffect = "event:/game/general/seed_touch"
         }

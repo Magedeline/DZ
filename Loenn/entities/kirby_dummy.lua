@@ -3,7 +3,7 @@ local kirbyDummy = {}
 kirbyDummy.name = "MaggyHelper/KirbyDummy"
 kirbyDummy.depth = 0
 kirbyDummy.justification = {0.5, 1.0}
-kirbyDummy.texture = "characters/kirby/idle00"
+kirbyDummy.texture = "characters/Maggy/DesoloZantas/kirby/idle00"
 
 kirbyDummy.fieldInformation = {
     facing = {
@@ -68,7 +68,7 @@ function kirbyDummy.sprite(room, entity)
     local alpha = entity.alpha or 1.0
 
     return {
-        texture = "characters/kirby/idle00",
+        texture = "characters/Maggy/DesoloZantas/kirby/idle00",
         x = entity.x,
         y = entity.y,
         justificationX = 0.5,
@@ -80,3 +80,4 @@ function kirbyDummy.sprite(room, entity)
 end
 
 return kirbyDummy
+

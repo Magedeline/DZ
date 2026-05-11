@@ -76,7 +76,7 @@ function kirbyAudio.tooltip(room, entity)
     if entity.autoPlay then
         tooltip = tooltip .. "Auto-plays on level start"
     elseif entity.triggerOnContact then
-        tooltip = tooltip .. "Plays on player contact"
+        tooltip = tooltip .. "Plays on Kglobal::global::Celeste.Playercontact"
     else
         tooltip = tooltip .. "Manual trigger only"
     end

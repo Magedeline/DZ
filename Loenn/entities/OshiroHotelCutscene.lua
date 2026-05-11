@@ -3,7 +3,7 @@ local oshiro_hotel_cutscene = {}
 oshiro_hotel_cutscene.name = "DesoloZantas/OshiroHotelCutscene"
 oshiro_hotel_cutscene.depth = 0
 oshiro_hotel_cutscene.justification = {0.5, 0.5}
-oshiro_hotel_cutscene.texture = "characters/oshiro/idle00"
+oshiro_hotel_cutscene.texture = "characters/Maggy/DesoloZantas/oshiro/idle00"
 oshiro_hotel_cutscene.nodeLimits = {0, 0}
 
 oshiro_hotel_cutscene.placements = {

@@ -56,13 +56,16 @@ namespace Celeste.Cutscenes
 
             // Main dialog with triggers
             yield return Textbox.Say("CH18_OUTRO", 
-                cellPhoneRumble,     // trigger 0 - phone rumbling
-                doorShut,            // trigger 1 - door shut
-                glitchEffectStart    // trigger 0 again - glitch start
+                madelineWalkRight,     // trigger 0 - madeline walk to right 4 step
+                badelineAppear,        // trigger 1 - badeline appear attach to madeline
+                cellPhoneRumble,       // trigger 2 - cellPhoneRumble
+                doorShut,              // trigger 3 - doorshut
+                madelineRunLeft,       // trigger 4 - madeline run to left 3 step
+                glitchEffectStart,     // trigger 5 - glitcheffect start
+                fadeToWhite,           // trigger 6 - fade to white
+                closeGame,             // trigger 7 - close game
+                unlockChapter19        // trigger 8 - unlock chapter 19 in overworld map
             );
-
-            // After dialog, start the game closing sequence
-            yield return gameClosingSequence();
         }
 
         private void SetupPlayer()
@@ -82,15 +85,53 @@ namespace Celeste.Cutscenes
             player.DummyGravity = true;
         }
 
-        // Trigger 0: Cell phone rumbling effect
+        // Trigger 0: Madeline walk to right 4 steps
+        private IEnumerator madelineWalkRight()
+        {
+            if (player == null)
+                yield break;
+
+            // Walk right 4 steps
+            for (int i = 0; i < 4; i++)
+            {
+                player.Facing = Facings.Right;
+                yield return 0.5f;
+            }
+        }
+
+        // Trigger 1: Badeline appear attach to Madeline
+        private IEnumerator badelineAppear()
+        {
+            if (player == null)
+                yield break;
+
+            // Create Badeline entity attached to player
+            var badeline = new BadelineOldsite(player.Position, 0);
+            Scene.Add(badeline);
+            
+            // Play appearance sound
+            try
+            {
+                Audio.Play("event:/char/badeline/madeline_appear", player.Position);
+            }
+            catch
+            {
+                Audio.Play("event:/game/general/thing_booped", player.Position);
+            }
+            
+            level?.Shake(0.3f);
+            yield return 1f;
+        }
+
+        // Trigger 2: Cell phone rumbling effect
         private IEnumerator cellPhoneRumble()
         {
             phoneRinging = true;
             
-            // Play phone rumble sound if available
+            // Play phone rumble sound with "end" parameter at 1f
             try
             {
-                Audio.Play("event:/game/02_old_site/sequence_phone_ring_loop", player.Position);
+                Audio.Play("event:/desolozantas/char/madeline/cell_phone_ringing", player.Position, "end", 1f);
             }
             catch
             {
@@ -109,7 +150,7 @@ namespace Celeste.Cutscenes
             phoneRinging = false;
         }
 
-        // Trigger 1: Door shutting and locking sound
+        // Trigger 3: Door shutting and locking sound
         private IEnumerator doorShut()
         {
             doorLocked = true;
@@ -130,12 +171,20 @@ namespace Celeste.Cutscenes
             // Play locking sound
             try
             {
-                Audio.Play("event:/game/03_resort/key_unlock", player.Position);
+                Audio.Play("event:/desolozantas/final_content/game/19_the_end/locked_door_appear_1", player.Position);
             }
             catch
             {
                 // Fallback sound
                 Audio.Play("event:/game/general/touchswitch_any", player.Position);
+            }
+            
+            // Create a drawable solid for the locked door
+            if (level != null)
+            {
+                var doorSolid = new Solid(new Vector2((int)player.X - 20, (int)player.Y - 40), 40f, 80f, safe: false);
+                doorSolid.Visible = true;
+                level.Add(doorSolid);
             }
             
             // Screen shake for emphasis
@@ -145,13 +194,54 @@ namespace Celeste.Cutscenes
             yield return 1f;
         }
 
-        // Trigger 0 (second call): Start glitch effects
+        // Trigger 4: Madeline run to left 3 steps
+        private IEnumerator madelineRunLeft()
+        {
+            if (player == null)
+                yield break;
+
+            // Run left 3 steps
+            for (int i = 0; i < 3; i++)
+            {
+                player.Facing = Facings.Left;
+                yield return 0.3f; // Faster than walking
+            }
+        }
+
+        // Trigger 5: Start glitch effects
         private IEnumerator glitchEffectStart()
         {
             gameClosing = true;
             
             // Begin glitch effects sequence
             yield return beginGlitchSequence();
+        }
+
+        // Trigger 6: Fade to white
+        private IEnumerator fadeToWhite()
+        {
+            ScreenWipe.WipeColor = Color.White;
+            yield return 2f;
+        }
+
+        // Trigger 7: Close game
+        private IEnumerator closeGame()
+        {
+            IngesteLogger.Info("Closing game via CH18_OUTRO cutscene");
+            Engine.Instance.Exit();
+            yield return 3f;
+        }
+
+        // Trigger 8: Unlock chapter 19 in overworld map
+        private IEnumerator unlockChapter19()
+        {
+            var saveData = IngesteModule.SaveData;
+            if (saveData != null)
+            {
+                saveData.UnlockedChapter19 = true;
+                IngesteLogger.Info("Chapter 19 unlocked via CH18_OUTRO cutscene");
+            }
+            yield return 0.5f;
         }
 
         private IEnumerator beginGlitchSequence()
@@ -172,10 +262,10 @@ namespace Celeste.Cutscenes
                 level?.Shake(0.5f);
                 Input.Rumble(RumbleStrength.Strong, RumbleLength.Short);
                 
-                // Play glitch sound if available
+                // Play glitch sound with "crash_pitch" parameter
                 try
                 {
-                    Audio.Play("event:/classic/sfx38", player.Position);
+                    Audio.Play("event:/desolozantas/game/16_myworld/destroyed_c", player.Position, "crash_pitch", 1f);
                 }
                 catch
                 {
@@ -191,71 +281,8 @@ namespace Celeste.Cutscenes
 
         private IEnumerator gameClosingSequence()
         {
-            // Save progress before closing
-            var saveData = IngesteModule.SaveData;
-            if (saveData != null)
-            {
-                saveData.UnlockedChapter19 = true;
-                IngesteLogger.Info("Chapter 19 unlocked via CH18_OUTRO cutscene");
-            }
-
-            // Heavy glitch effects
-            for (int i = 0; i < 10; i++)
-            {
-                level?.Shake(1.0f);
-                Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
-                
-                // Rapid fire glitch sounds
-                try
-                {
-                    Audio.Play("event:/classic/sfx38", player.Position);
-                }
-                catch
-                {
-                    Audio.Play("event:/game/general/thing_booped", player.Position);
-                }
-                
-                yield return 0.1f;
-                
-                level?.Shake(0.5f);
-                yield return 0.05f;
-            }
-
-            // Final massive glitch
-            level?.Shake(2.0f);
-            Input.Rumble(RumbleStrength.Strong, RumbleLength.Long);
-            
-            // Play multiple overlapping glitch sounds
-            try
-            {
-                Audio.Play("event:/classic/sfx38", player.Position);
-                Audio.Play("event:/classic/sfx37", player.Position);
-            }
-            catch
-            {
-                Audio.Play("event:/game/general/thing_booped", player.Position);
-            }
-            
-            yield return 2f;
-
-            // Fade to black with a message
-            ScreenWipe.WipeColor = Color.Black;
-            
-            yield return 1f;
-
-            // Show "New Content Unlocked" message (similar to Farewell)
-            IngesteLogger.Info("Displaying Chapter 19 unlock notification");
-            
-            // This would be where you'd show a "Chapter 19 Unlocked!" message
-            // For now, we'll just fade out and close
-            
-            yield return 2f;
-
-            // Close the game (keeping save intact)
-            IngesteLogger.Info("Closing game via CH18_OUTRO cutscene");
-            Engine.Instance.Exit();
-
-            yield return 3f;
+            // This method is no longer used - sequence is now handled by individual triggers
+            yield break;
         }
 
         public override void OnEnd(Level level)
@@ -301,8 +328,41 @@ namespace Celeste.Cutscenes
             // Add visual glitch effects if the game is closing
             if (gameClosing)
             {
-                // You could add custom rendering effects here
-                // For now, we rely on the shake effects
+                // Random screen flicker effect
+                if (Calc.Random.Chance(0.3f))
+                {
+                    Draw.Rect(new Rectangle(0, 0, 320, 180), new Color(Calc.Random.NextFloat(), Calc.Random.NextFloat(), Calc.Random.NextFloat(), 0.1f));
+                }
+
+                // Chromatic aberration effect (RGB split)
+                if (Calc.Random.Chance(0.5f))
+                {
+                    int offset = (int)Calc.Random.Range(-2f, 2f);
+                    Draw.Rect(new Rectangle(offset, 0, 320, 180), new Color(1, 0, 0, 0.05f));
+                    Draw.Rect(new Rectangle(-offset, 0, 320, 180), new Color(0, 0, 1, 0.05f));
+                }
+
+                // Random horizontal glitch lines
+                if (Calc.Random.Chance(0.4f))
+                {
+                    int y = Calc.Random.Next(0, 180);
+                    int height = Calc.Random.Range(1, 5);
+                    Draw.Rect(new Rectangle(0, y, 320, height), Color.White * 0.2f);
+                }
+
+                // Random vertical glitch bars
+                if (Calc.Random.Chance(0.3f))
+                {
+                    int x = Calc.Random.Next(0, 320);
+                    int width = Calc.Random.Range(1, 10);
+                    Draw.Rect(new Rectangle(x, 0, width, 180), new Color(Calc.Random.NextFloat(), Calc.Random.NextFloat(), Calc.Random.NextFloat(), 0.15f));
+                }
+
+                // Color inversion flicker
+                if (Calc.Random.Chance(0.1f))
+                {
+                    Draw.Rect(new Rectangle(0, 0, 320, 180), new Color(1, 1, 1, 0.1f));
+                }
             }
         }
     }

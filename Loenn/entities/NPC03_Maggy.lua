@@ -3,7 +3,7 @@ local npc03_maggy = {}
 npc03_maggy.name = "MaggyHelper/NPC03_Maggy"
 npc03_maggy.depth = 0
 npc03_maggy.justification = {0.5, 1.0}
-npc03_maggy.texture = "characters/magolor/idle00"
+npc03_maggy.texture = "characters/Maggy/DesoloZantas/magolor/idle00"
 
 npc03_maggy.placements = {
     {
@@ -29,9 +29,10 @@ npc03_maggy.fieldInformation = {
         options = {
             "magolor",
             "theo",
-            "player"
+            "Kglobal::Player"
         }
     }
 }
 
 return npc03_maggy
+

@@ -27,7 +27,7 @@ judgmentBell.placements = {
             shockwaveRadius = 300,
             cooldownTime = 2.0,
             maxRings = 3,
-            canPlayerRing = true
+            canKglobal::PlayerRing = true
         }
     }
 }

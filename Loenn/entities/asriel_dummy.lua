@@ -2,7 +2,7 @@ local asrielDummy = {}
 
 asrielDummy.name = "MaggyHelper/AsrielDummy"
 asrielDummy.depth = 0
-asrielDummy.texture = "characters/asriel/idle00"
+asrielDummy.texture = "characters/Maggy/DesoloZantas/asriel/idle00"
 asrielDummy.justification = {0.5, 1.0}
 
 asrielDummy.fieldInformation = {
@@ -83,7 +83,7 @@ function asrielDummy.sprite(room, entity)
     local alpha = entity.alpha or 1.0
     
     return {
-        texture = "characters/asriel/idle00",
+        texture = "characters/Maggy/DesoloZantas/asriel/idle00",
         x = entity.x,
         y = entity.y,
         justificationX = 0.5,

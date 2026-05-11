@@ -24,7 +24,7 @@ divingBoard.placements = {
 divingBoard.fieldInformation = {
     launchSpeed = {
         fieldType = "number",
-        description = "Vertical launch speed when player jumps (negative = up)"
+        description = "Vertical launch speed when Kglobal::global::Celeste.Playerjumps (negative = up)"
     }
 }
 

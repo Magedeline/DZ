@@ -239,7 +239,3 @@ namespace Celeste
         }
     }
 }
-
-
-
-

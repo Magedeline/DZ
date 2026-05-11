@@ -7,7 +7,7 @@ local siamoZeroFinalBoss = {}
 
 siamoZeroFinalBoss.name = "MaggyHelper/SiamoZeroFinalBoss"
 siamoZeroFinalBoss.depth = 0
-siamoZeroFinalBoss.texture = "characters/els_true_final_boss/boss00"
+siamoZeroFinalBoss.texture = "characters/Maggy/DesoloZantas/els_true_final_boss/boss00"
 siamoZeroFinalBoss.justification = {0.5, 1.0}
 siamoZeroFinalBoss.nodeVisibility = "always"
 
@@ -206,7 +206,7 @@ siamoTier scales this phase: Pink is slower and lighter, soulBlack is the defaul
 • EnergySwordCombo - 6-hit teleporting sword combo + shockwave
 • TornadoSlash - Spiraling tornado with trailing blade projectiles
 • RevolutionSword - 3 waves of expanding blade rings
-• RisingSpine - 8 spine pillars rising from ground below player
+• RisingSpine - 8 spine pillars rising from ground below Kglobal::Player
 • DownThrust - Rise + dive thrust with ground shockwave (10 blades)
 • DrillStab - Rapid forward drill with bilateral blade trail
 • EnergyShower - 30 energy projectiles raining from above
@@ -336,14 +336,14 @@ Projectile: SiamoZeroCrescentProjectile (speed 280, cyan color)]],
     EnergySwordCombo = [[6-hit teleporting sword combo with final shockwave
 Sprite: energy_sword (6 sub-anims a-f)
 SFX: Els_Teleport (per teleport), Els_Slice (per slash), Els_BigHit (finale)
-Effects: 0.18s between hits, random offset teleports near player (80x60px)
+Effects: 0.18s between hits, random offset teleports near Kglobal::global::Celeste.Player(80x60px)
   Each hit: displacement burst (128px), 8 burst particles, energy blade projectile
   Finale: screen shake (1.5), displacement (256px), 16-directional particle burst]],
 
     TornadoSlash = [[2.5s spiraling tornado attack with trailing slash projectiles
 Sprite: tornado_attack, tornado_slash
 SFX: Els_Shell_Screamer (start), Els_Slice (per trail), Els_BigHit (landing)
-Effects: Spiral path toward player (200px→20px radius, 3 rotations)
+Effects: Spiral path toward Kglobal::global::Celeste.Player(200px→20px radius, 3 rotations)
   Trail: energy blade every 0.15s, 4 burst particles, constant displacement
   Landing: screen shake (2.0), displacement (384px), 8 crescent projectiles in ring]],
 
@@ -353,14 +353,14 @@ SFX: Els_Slice (per wave)
 Effects: 0.5s between waves, displacement per wave (expanding radius 60/100/140px)
   3 shoot particles per blade, increasing range per wave]],
 
-    RisingSpine = [[8 spine pillars rising from ground in a line below player
+    RisingSpine = [[8 spine pillars rising from ground in a line below Kglobal::Player
 Sprite: rising_spine (13 sub-anims a-m)
 SFX: Els_Rift (start), Els_Rift (per pillar, 0.12s apart)
 Effects: Displacement burst per pillar (64px), 6 burst particles each
-  Pillars: 40px spacing, rise from ground at player Y position
+  Pillars: 40px spacing, rise from ground at Kglobal::global::Celeste.PlayerY position
   Final: screen shake (1.0)]],
 
-    DownThrust = [[Rise up 120px, pause, then dive thrust to player with ground shockwave
+    DownThrust = [[Rise up 120px, pause, then dive thrust to Kglobal::global::Celeste.Playerwith ground shockwave
 Sprite: down_thrust (2 sub-anims a-b)
 SFX: Els_Build (rise), Els_BigHit (dive + impact)
 Effects:
@@ -372,7 +372,7 @@ Effects:
     DrillStab = [[Rapid forward drill attack (300px distance) leaving bilateral blade trail
 Sprite: drill_stab (3 sub-anims a-c)
 SFX: Els_Build (start), Els_BigHit (end)
-Effects: 0.35s cubic ease-in toward player direction
+Effects: 0.35s cubic ease-in toward Kglobal::global::Celeste.Playerdirection
   Trail: perpendicular blade pairs every 0.05s, cyan color
   3 burst particles per pair
   End: screen shake (1.5), displacement (192px)]],
@@ -383,11 +383,11 @@ SFX: Els_Charge (charge), Els_BeamSlash (fire), Els_Rift_Bullet (every 5th proje
 Effects:
   Charge: gold flash, displacement (256px)
   Rain: 30 projectiles over 1.5s (0.05s apart)
-  Spawn: ±200px of player X, above camera top, varied angles and speeds
+  Spawn: ±200px of Kglobal::global::Celeste.PlayerX, above camera top, varied angles and speeds
   Final: screen shake (1.0)]],
 
         ConqueredPeakCascade = [[Celeste FinalBoss-inspired diagonal rush chain.
-Teleports to alternating corners around the player, telegraphs with dash markers, then slices through the arena with crossing sword dives.
+Teleports to alternating corners around the Kglobal::Player, telegraphs with dash markers, then slices through the arena with crossing sword dives.
 Best suited for Delta and Celestial variants where the form is larger and more aggressive.]],
 
     -- Phase 3 (Siamo Zero) - Morpho Knight Fake attacks
@@ -409,12 +409,12 @@ Effects:
   Right slash: 6 crescent projectiles in 180° arc from right (magenta), displacement
   Screen shake (1.0) per slash]],
 
-    MorphoEmerge = [[Vanish (0.8s) then emerge from below player with massive upward pillar strike
+    MorphoEmerge = [[Vanish (0.8s) then emerge from below Kglobal::global::Celeste.Playerwith massive upward pillar strike
 Sprite: emerge, c_emerge
 SFX: Els_Teleport (vanish), Els_Darkmatter_Spawn (emerge), Els_BigHit (impact)
 Effects:
   Vanish: boss turns invisible, displacement (128px)
-  Emerge: teleport below player (+80px Y), full visibility restore
+  Emerge: teleport below Kglobal::global::Celeste.Player(+80px Y), full visibility restore
   Impact: screen shake (2.5), magenta flash, displacement (384px)
   Pillar: 6 spine pillars rising upward (48px spacing), 4 burst particles each
   Rise: cubic ease-out rise 140px over 0.4s]],
@@ -448,3 +448,4 @@ function siamoZeroFinalBoss.ignoredFields(entity)
 end
 
 return siamoZeroFinalBoss
+

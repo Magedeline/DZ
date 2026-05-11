@@ -134,7 +134,7 @@ local function getPreviewTextures(entity)
         combineTexturePath(entity.eyeFormSpriteRoot, entity.eyeIdleAnimationPath),
         combineTexturePath(entity.swordsmanFormSpriteRoot, entity.swordsmanIdleAnimationPath),
         "characters/darkmatter_boss_runtime/idle00",
-        "characters/darkmatter/idle00"
+        "characters/Maggy/DesoloZantas/darkmatter/idle00"
     }
 end
 

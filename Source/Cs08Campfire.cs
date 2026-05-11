@@ -606,6 +606,3 @@ namespace Celeste.Cutscenes
         #endregion
     }
 }
-
-
-

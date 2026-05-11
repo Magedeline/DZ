@@ -40,4 +40,3 @@ namespace Celeste.NPCs
 		private bool started;
 	}
 }
-

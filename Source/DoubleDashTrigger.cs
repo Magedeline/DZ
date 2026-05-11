@@ -23,7 +23,3 @@ namespace Celeste.Entities
     public override void OnEnter(global::Celeste.Player player) => level.Session.Inventory.Dashes = 2;
   }
 }
-
-
-
-

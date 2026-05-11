@@ -2,7 +2,7 @@ local kingDDDDummy = {}
 
 kingDDDDummy.name = "MaggyHelper/KingDDDDummy"
 kingDDDDummy.depth = 0
-kingDDDDummy.texture = "characters/kirby/king_dedede/idle00"
+kingDDDDummy.texture = "characters/kirby/Maggy/DesoloZantas/king_dedede/idle00"
 kingDDDDummy.justification = {0.5, 1.0}
 
 kingDDDDummy.fieldInformation = {
@@ -69,7 +69,7 @@ function kingDDDDummy.sprite(room, entity)
     local alpha = entity.alpha or 1.0
     
     return {
-        texture = "characters/kirby/king_dedede/idle00",
+        texture = "characters/kirby/Maggy/DesoloZantas/king_dedede/idle00",
         x = entity.x,
         y = entity.y,
         justificationX = 0.5,

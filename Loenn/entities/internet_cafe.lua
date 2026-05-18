@@ -6,7 +6,7 @@ internetCafeKirby.name = "MaggyHelper/WaveFazeMachine"
 internetCafeKirby.depth = 1000
 internetCafeKirby.placements = {
     name = "WaveFazeMachine",
-}
+    }
 
 local backTexture = "objects/wavefazetutorial/building_back"
 local leftTexture = "objects/wavefazetutorial/building_front_left"

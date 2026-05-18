@@ -17,7 +17,7 @@ local DEFAULT_REPLACEMENTS = {
     ["DoonvHelper/DashCodeGate"] = "MaggyHelper/DashCodeGate",
     -- Add more replacements as needed
     -- ["MaxHelpingHand/SomeEntity"] = "MaggyHelper/SomeEntity",
-}
+    }
 
 script.parameters = {
     dryRun = true,
@@ -43,7 +43,7 @@ script.fieldInformation = {
         fieldType = "string",
         description = "Specific entity name to replace (empty = all entities from oldPrefix)"
     },
-}
+    }
 
 script.fieldOrder = {"dryRun", "oldPrefix", "newPrefix", "specificEntity"}
 

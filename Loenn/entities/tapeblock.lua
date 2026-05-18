@@ -9,7 +9,7 @@ local colors = {
     {240 / 255, 73 / 255, 190 / 255},
     {252 / 255, 220 / 255, 58 / 255},
     {56 / 255, 224 / 255, 78 / 255},
-}
+    }
 
 local frames = {
     "objects/cassetteblock/solid",

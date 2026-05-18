@@ -15,7 +15,7 @@ local InteractTrigger = {
                 event_2 = "ch3_diary", -- Optional additional events
                 event_3 = "ch3_guestbook", -- Add more as needed
             },
-        },
+    },
     },
     fieldInformation = {
         prompt = {

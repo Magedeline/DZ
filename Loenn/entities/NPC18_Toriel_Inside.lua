@@ -37,4 +37,3 @@ npc17_toriel_inside.fieldInformation = {
 }
 
 return npc17_toriel_inside
-

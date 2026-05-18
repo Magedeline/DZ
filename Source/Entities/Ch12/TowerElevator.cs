@@ -187,7 +187,7 @@ namespace Celeste.Entities.Chapters.Ch12
             particles.RemoveAll(p => p == null || p.Scene == null);
         }
 
-        private Player GetPlayerOnTop()
+        private new Player GetPlayerOnTop()
         {
             var player = Scene.Tracker.GetEntity<Player>();
             if (player != null)

@@ -41,4 +41,3 @@ npc20_granny.fieldInformation = {
 }
 
 return npc20_granny
-

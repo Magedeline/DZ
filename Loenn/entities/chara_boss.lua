@@ -16,7 +16,7 @@ charaBoss.placements = {
             dialog = false,
             startHit = false,
             cameraLockY = true,
-        }
+    }
     }
 }
 

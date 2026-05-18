@@ -155,4 +155,3 @@ strawberryRemix.placements = {
 }
 
 return strawberryRemix
-

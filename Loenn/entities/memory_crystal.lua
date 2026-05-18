@@ -1,6 +1,6 @@
 local memory_crystal = {}
 
-memory_crystal.name = "DesoloZantas/MemoryCrystal"
+memory_crystal.name = "MaggyHelper/MemoryCrystal"
 memory_crystal.depth = -100
 memory_crystal.placements = {
     {

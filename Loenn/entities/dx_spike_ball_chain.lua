@@ -70,4 +70,3 @@ function dxSpikeBallChain.sprite(room, entity)
 end
 
 return dxSpikeBallChain
-

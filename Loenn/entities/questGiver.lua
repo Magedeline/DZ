@@ -14,4 +14,3 @@ questGiver.fieldInformation = {
 }
 questGiver.fieldOrder = { "x", "y", "questId", "dialogId", "completionFlag", "rewardType" }
 return questGiver
-

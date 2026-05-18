@@ -136,7 +136,7 @@ namespace Celeste.Entities.Chapters.Ch13
             steamParticles.RemoveAll(s => s == null || s.Scene == null);
         }
 
-        private Player GetPlayerOnTop()
+        private new Player GetPlayerOnTop()
         {
             var player = Scene.Tracker.GetEntity<Player>();
             if (player != null)

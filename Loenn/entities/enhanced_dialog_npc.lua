@@ -138,5 +138,3 @@ function dialogNPC.selection(room, entity)
 end
 
 return dialogNPC
-
-

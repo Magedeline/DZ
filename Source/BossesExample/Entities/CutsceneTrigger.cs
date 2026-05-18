@@ -24,13 +24,13 @@ internal class CutsceneTrigger : Trigger
     this.cutscene = data.Attr(nameof (cutscene), "");
   }
 
-  public virtual void Added(Scene scene)
+  public override void Added(Scene scene)
   {
     ((Entity) this).Added(scene);
     this.level = ((Entity) this).SceneAs<Level>();
   }
 
-  public virtual void OnEnter(Player player)
+  public override void OnEnter(Player player)
   {
     base.OnEnter(player);
     if (this.cutscene.Length == 0 || this.cutscene == "intro")

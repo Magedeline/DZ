@@ -41,4 +41,3 @@ npc16_toriel.fieldInformation = {
 }
 
 return npc16_toriel
-

@@ -39,7 +39,7 @@ reflectionHeartStatue.fieldInformation = {
     heartAppearSound = {
         fieldType = "string",
     },
-}
+    }
 
 reflectionHeartStatue.placements = {
     {
@@ -55,7 +55,7 @@ reflectionHeartStatue.placements = {
             dashSound = "event:/game/06_reflection/supersecret_dashflavour",
             torchSoundPrefix = "event:/game/06_reflection/supersecret_torch_",
             heartAppearSound = "event:/game/06_reflection/supersecret_heartappear",
-        }
+    }
     }
 }
 

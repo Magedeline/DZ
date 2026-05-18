@@ -35,4 +35,3 @@ npc05_oshiro_clutter.fieldInformation = {
 }
 
 return npc05_oshiro_clutter
-

@@ -14,4 +14,3 @@ npc08_madeline_ending_bandage.placements = {
 }
 
 return npc08_madeline_ending_bandage
-

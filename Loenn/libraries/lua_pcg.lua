@@ -213,6 +213,6 @@ local lua_pcg = {
     has32bitinteger  = true,
     has64bitinteger  = false,
     pcg32            = pcg32,
-}
+    }
 
 return lua_pcg

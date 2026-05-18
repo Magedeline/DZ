@@ -1,0 +1,5 @@
+Sides:
+- Map: "Maggy/DSide/12_Water"
+  Preset: "d-side"
+  UnlockMode: consecutively
+  ShowBerriesAsGolden: true

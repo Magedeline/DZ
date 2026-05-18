@@ -64,7 +64,7 @@ namespace Celeste.Entities.Chapters.Ch13
             State = WaveState.Dormant;
             currentRadius = 0f;
             stateTimer = Interval;
-            isActive = isActive;
+            this.isActive = isActive;
             particles = new List<HeatParticle>();
             
             Collider = new Hitbox(8f, 8f, -4f, -4f);

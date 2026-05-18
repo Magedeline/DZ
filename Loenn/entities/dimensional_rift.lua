@@ -1,6 +1,6 @@
 local dimensional_rift = {}
 
-dimensional_rift.name = "DesoloZantas/DimensionalRift"
+dimensional_rift.name = "MaggyHelper/DimensionalRift"
 dimensional_rift.depth = 2000
 dimensional_rift.nodeLimits = {1, 1}
 dimensional_rift.nodeLineRenderType = "line"

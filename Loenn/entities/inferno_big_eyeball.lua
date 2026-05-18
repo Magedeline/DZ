@@ -32,4 +32,3 @@ function infernoBigEyeball.selection(room, entity)
 end
 
 return infernoBigEyeball
-

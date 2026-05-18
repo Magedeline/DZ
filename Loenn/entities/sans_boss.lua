@@ -13,7 +13,7 @@ sansBoss.placements = {
         data = {
             health = 1100,
             maxHealth = 1100,
-        }
+    }
     }
 }
 
@@ -56,4 +56,3 @@ function sansBoss.selection(room, entity)
 end
 
 return sansBoss
-

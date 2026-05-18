@@ -7,9 +7,9 @@ local sampleEntity = {
             name = "SampleEntity",
             data = {
                 sampleProperty = 0,
-            },
-        },
     },
-}
+    },
+    },
+    }
 
 return sampleEntity

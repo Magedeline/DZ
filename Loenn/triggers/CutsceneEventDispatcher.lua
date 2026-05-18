@@ -190,15 +190,8 @@ local eventOptions = {
     "ch21_later",
     "ch20_end_later",
     "ch20_end_cinematic",
-    "ch20_white_cymbal_fade_teleport_video",
-    "cs20_ascend",
-    "cs21_ascend",
-    "ch21_ascend",
-    "ch21_beaches",
-    "ch21_special_thanks",
-    "ch21_epilogue_credits",
-    "ch21_two_worlds_unite"
-}
+    "ch20_cast",
+    }
 
 local cutsceneEventDispatcher = {}
 
@@ -243,6 +236,16 @@ cutsceneEventDispatcher.placements = {
             width = 16,
             height = 16,
             event = "ch20_boss_mid"
+        }
+    },
+    {
+        name = "asriel_angel_boss_intro",
+        data = {
+            x = 0,
+            y = 0,
+            width = 32,
+            height = 16,
+            event = "ch20_asriel_angel_of_death_boss_intro"
         }
     },
     {

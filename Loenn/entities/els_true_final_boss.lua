@@ -467,4 +467,3 @@ function siamoZeroFinalBoss.ignoredFields(entity)
 end
 
 return siamoZeroFinalBoss
-

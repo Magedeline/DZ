@@ -40,4 +40,3 @@ npc20_madeline.fieldInformation = {
 }
 
 return npc20_madeline
-

@@ -48,19 +48,19 @@ internal class Shockwave : Entity
     return this;
   }
 
-  public virtual void Added(Scene scene)
+  public override void Added(Scene scene)
   {
     base.Added(scene);
     this.level = this.SceneAs<Level>();
   }
 
-  public virtual void Removed(Scene scene)
+  public override void Removed(Scene scene)
   {
     base.Removed(scene);
     this.level = (Level) null;
   }
 
-  public virtual void Update()
+  public override void Update()
   {
     base.Update();
     this.X += (float) ((double) this.speed * (double) Engine.DeltaTime * (this.flipped ? -1.0 : 1.0));

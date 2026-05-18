@@ -13,4 +13,3 @@ flingAsrielGod.placements = {
 }
 
 return flingAsrielGod
-

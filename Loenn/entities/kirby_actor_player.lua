@@ -102,4 +102,3 @@ function kirbyActorKglobal::Player.sprite(room, entity)
 end
 
 return kirbyActorKglobal::Player
-

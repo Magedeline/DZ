@@ -87,4 +87,3 @@ function ancientSwitch.selection(room, entity)
 end
 
 return ancientSwitch
-

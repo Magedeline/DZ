@@ -6,7 +6,7 @@ templeMirrorPortal.name = "MaggyHelper/TesseractMirrorPortal"
 templeMirrorPortal.depth = -1999
 templeMirrorPortal.placements = {
     name = "tesseract_mirror",
-}
+    }
 
 local frameTexture = "objects/Maggy/DesoloZantas/temple/portal/portalframe"
 local curtainTexture = "objects/Maggy/DesoloZantas/temple/portal/portalcurtain00"
@@ -35,6 +35,5 @@ function templeMirrorPortal.sprite(room, entity)
 
     return sprites
 end
-
 
 return templeMirrorPortal

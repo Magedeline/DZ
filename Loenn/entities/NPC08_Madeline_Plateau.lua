@@ -36,4 +36,3 @@ npc08_madeline_plateau.fieldInformation = {
 }
 
 return npc08_madeline_plateau
-

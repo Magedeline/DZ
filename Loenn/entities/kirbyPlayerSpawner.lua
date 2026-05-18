@@ -85,4 +85,3 @@ function kirbyKglobal::PlayerSpawner.sprite(room, entity)
 end
 
 return kirbyKglobal::PlayerSpawner
-

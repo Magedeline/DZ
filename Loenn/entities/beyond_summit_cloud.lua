@@ -24,7 +24,7 @@ beyondSummitCloud.placements = {
             particleCount = 16,
             color = "b64a86",
             highlightColor = "d988b7",
-        }
+    }
     },
     {
         name = "BeyondSummitCloud (Dark)",
@@ -34,7 +34,7 @@ beyondSummitCloud.placements = {
             particleCount = 16,
             color = "082644",
             highlightColor = "0a3a6b",
-        }
+    }
     }
 }
 

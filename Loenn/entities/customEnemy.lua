@@ -23,7 +23,7 @@ for k, v in pairs({
     bounceboxHeight = { minimumValue = 0.0 },
     bounceboxWidth = { minimumValue = 0.0 },
     bulletFacing = customEnemy.fieldInformation["facing"],
-}) do customEnemy.fieldInformation[k] = v end
+    }) do customEnemy.fieldInformation[k] = v end
 for k, v in pairs({
     health = 1,
     deathSound = "event:/-",
@@ -37,6 +37,6 @@ for k, v in pairs({
     bounceboxWidth = 0.0,
     bounceboxXOffset = 0.0,
     bounceboxYOffset = 0.0,
-}) do customEnemy.placements.data[k] = v end
+    }) do customEnemy.placements.data[k] = v end
 
 return customEnemy

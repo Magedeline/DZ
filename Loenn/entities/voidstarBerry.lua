@@ -13,7 +13,7 @@ customBerry.fieldInformation = {
             ["voidstarberry"] = "voidstarberry",
             ["popstarberry"] = "popstarberry",
             ["pinkplatinumberry"] = "pinkplatinumberry",
-        }
+    }
     },
     order = {
         fieldType = "integer",

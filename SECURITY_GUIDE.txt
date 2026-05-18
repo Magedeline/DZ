@@ -1,0 +1,188 @@
+# Desolo Zantas - Mod Security Implementation Guide
+# Nintendo-Style Anti-Decompilation & Anti-Dumping Protection
+# ================================================================================
+
+## Overview
+
+This security system implements multiple layers of protection to prevent
+decompilation, code dumping, and unauthorized modification of the Desolo Zantas
+Celeste mod before publication.
+
+## Security Layers
+
+### 1. CODE OBFUSCATION (Obfuscar)
+   Tool: Obfuscar v2.2.40 (NuGet package)
+   Config: obfuscar.xml
+
+   Features Enabled:
+   - Rename obfuscation (fields, properties, methods, types)
+   - Unicode naming (1-4 char names like 䐀䑅)
+   - String encryption (hides narrative text & keys)
+   - Control flow obfuscation
+   - SuppressIldasm attribute
+   - Anti-tamper attributes
+
+   Protected:
+   - Private/internal methods and variables
+   - String literals (dialog, secrets)
+   - Method logic flow
+
+   Preserved (Everest compatible):
+   - Public API (Module, Settings, Session, SaveData)
+   - Entity/Trigger types (loaded by name)
+   - Hook/Patch classes (MonoMod discovery)
+   - Namespace structure
+
+### 2. DEBUG SYMBOL STRIPPING
+   PDB files are automatically removed from Release builds.
+   This prevents easy debugging and source-level decompilation.
+
+   Build Target: StripDebugSymbols (runs after Obfuscate)
+
+### 3. ASSET ENCRYPTION
+   Files: Source/Security/AssetProtector.cs, AssetPackerTool.cs
+
+   Plain-text assets (Dialog/*.txt) can be converted to encrypted binary.
+   - XOR encryption with embedded key (obfuscated by Obfuscar)
+   - Binary format with magic header (0x444D5A44 = "DMZD")
+   - Version control for format evolution
+
+### 4. INTEGRITY CHECKING
+   File: Source/Security/IntegrityChecker.cs
+
+   Features:
+   - SHA256 checksum verification
+   - Anti-debug timing checks
+   - Debugger detection
+   - File tampering detection
+
+   Note: Disabled in DEBUG builds
+
+### 5. BUILD AUTOMATION
+   File: build_secure_release.cmd
+
+   Steps:
+   1. Clean previous builds
+   2. Restore NuGet packages
+   3. Build Release configuration
+   4. Run Obfuscar obfuscation
+   5. Strip PDB symbols
+   6. Generate SHA256 checksum
+
+## Usage Instructions
+
+### Building a Secure Release
+
+1. Open PowerShell or CMD in project root
+
+2. Run the secure build script:
+   > build_secure_release.cmd
+
+3. Verify output:
+   - bin/MaggyHelper.dll (obfuscated)
+   - No .pdb file in bin/
+   - checksum_sha256.txt generated
+
+4. The MaggyHelper.zip will be created automatically for distribution.
+
+### Manual Obfuscation (if needed)
+
+1. Build Release normally:
+   > dotnet build -c Release
+
+2. Run Obfuscar manually:
+   > dotnet obfuscar obfuscar.xml
+
+3. Copy obfuscated DLL:
+   From: Source/bin/Release/net8.0/obfuscated/MaggyHelper.dll
+   To: bin/MaggyHelper.dll
+
+### Integrating Security Checks in Code
+
+Example: Initialize integrity checking in your Module:
+
+```csharp
+public override void Load() {
+    // Verify assembly integrity
+    if (!IntegrityChecker.VerifyAssemblyIntegrity()) {
+        Logger.Log(LogLevel.Warn, "MaggyHelper", "Integrity check failed - possible tampering");
+    }
+
+    // Perform timing check
+    if (!IntegrityChecker.PerformTimingCheck()) {
+        Logger.Log(LogLevel.Warn, "MaggyHelper", "Debugger detected");
+    }
+}
+```
+
+### Packing Assets for Distribution
+
+To convert Dialog/English.txt to binary:
+
+1. Build and run AssetPackerTool:
+   > cd Source
+   > dotnet run --project MaggyHelper.csproj -- Security.AssetPackerTool
+      ../../Dialog/English.txt ../../Dialog/English.bin
+
+2. Update everest.yaml to reference .bin instead of .txt
+
+3. Add unpacking code in your Module to load at runtime.
+
+## File Structure
+
+Source/Security/
+  AssetProtector.cs       - Runtime asset decryption
+  AssetPackerTool.cs      - Build-time asset encryption
+  IntegrityChecker.cs     - Assembly integrity verification
+
+obfuscar.xml              - Obfuscar configuration
+build_secure_release.cmd  - Automated secure build script
+MaggyHelper.csproj        - MSBuild integration (targets added)
+
+## Important Notes
+
+1. Obfuscation runs ONLY on Release builds (Debug builds are unobfuscated)
+2. Entity/Trigger class names are preserved for Everest compatibility
+3. The obfuscated key in AssetProtector will be renamed by Obfuscar
+4. First build will generate a placeholder hash - embed the real hash after
+5. Everest mods require public APIs to be accessible - don't over-obfuscate
+
+## Testing Obfuscated Builds
+
+1. Build with build_secure_release.cmd
+2. Test in Celeste with Everest loader
+3. Verify all entities/triggers load correctly
+4. Test game functionality (movement, dialog, triggers)
+5. Use ILSpy/dnSpy to verify obfuscation was applied
+
+## Troubleshooting
+
+Obfuscation breaks mod loading:
+  - Check SkipType rules in obfuscar.xml
+  - Ensure Entity/Trigger class names are preserved
+  - Verify public APIs are not renamed
+
+Everest can't find hooks:
+  - Hook classes need *Hook* or *Patch* skip patterns
+  - Check MonoMod.RuntimeDetour compatibility
+
+String encryption causing issues:
+  - Increase HideStringsMinimumLength
+  - Skip strings that need to remain readable
+
+## Security Limitations
+
+This system provides "Nintendo-style" protection which means:
+- Deters casual decompilation
+- Slows down determined reverse engineers
+- Makes code dumps harder to read
+- Does NOT provide absolute protection
+
+A determined attacker with sufficient resources can eventually
+reverse any client-side protection. This system raises the bar.
+
+## References
+
+Obfuscar: https://github.com/obfuscar/obfuscar
+Everest: https://everestapi.github.io/
+MonoMod: https://github.com/MonoMod/MonoMod

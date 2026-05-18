@@ -67,7 +67,7 @@ public class DestructableSpinner : Entity
     global::Celeste.Mod.MaggyHelper.BossesExample.BossesExampleModule.noResetDict.Add((Entity) this, new EntityID(data.Level.Name, data.ID));
   }
 
-  public virtual void Awake(Scene scene) => this.orig_Awake(scene);
+  public override void Awake(Scene scene) => this.orig_Awake(scene);
 
   public void ForceInstantiate()
   {
@@ -75,7 +75,7 @@ public class DestructableSpinner : Entity
     this.Visible = true;
   }
 
-  public virtual void Update()
+  public override void Update()
   {
     if (!this.Visible)
     {
@@ -193,7 +193,7 @@ public class DestructableSpinner : Entity
 
   private void OnHoldable(Holdable h) => h.HitSpinner((Entity) this);
 
-  public virtual void Removed(Scene scene)
+  public override void Removed(Scene scene)
   {
     if (this.filler != null && this.filler.Scene == scene)
       this.filler.RemoveSelf();
@@ -245,7 +245,7 @@ public class DestructableSpinner : Entity
       this.Depth = parent.Depth + 2;
     }
 
-    public virtual void Render()
+    public override void Render()
     {
       if (!this.drawing[0].Visible)
         return;

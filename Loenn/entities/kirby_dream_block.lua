@@ -34,7 +34,7 @@ return {
                 oneUse     = false,
                 fastMoving = false,
                 below      = false,
-            }
+    }
         }
     }
 }

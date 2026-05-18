@@ -13,7 +13,7 @@ local kirbyPowers = {
     "TripleSwap", "TimeCrash", "Umbrella", "Mirror", "Recycler",
     "Mini", "InfernoLight", "GrandHammer", "MechanizeRanger",
     "FrostMind", "UltraSword", "Knight",
-}
+    }
 
 return {
     name      = "MaggyHelper/DreamPowerRefillBlock",
@@ -33,7 +33,7 @@ return {
             fieldType = "string",
             options   = kirbyPowers,
             editable  = false,
-        },
+    },
     },
     fieldOrder = {
         "x", "y",
@@ -46,7 +46,7 @@ return {
                 oneUse     = false,
                 refillDash = true,
                 grantPower = "None",
-            }
+    }
         },
         {
             name = "Dream Power Refill (one-use)",
@@ -54,8 +54,7 @@ return {
                 oneUse     = true,
                 refillDash = true,
                 grantPower = "None",
-            }
+    }
         }
     }
 }
-

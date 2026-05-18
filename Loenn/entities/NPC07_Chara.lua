@@ -46,4 +46,3 @@ npc07_chara.fieldInformation = {
 }
 
 return npc07_chara
-

@@ -23,7 +23,7 @@ internal class LevelResetZone : SeekerBarrier
   private int spawnY;
   private List<Vector2> particles1 = new List<Vector2>();
   private List<Vector2> particles2 = new List<Vector2>();
-  private float[] speeds = new float[3]{ 12f, 20f, 40f };
+  private new float[] speeds = new float[3]{ 12f, 20f, 40f };
   private float opacity = 1f;
   private bool grow = true;
   private float appear_opacity = 0.0f;
@@ -41,20 +41,20 @@ internal class LevelResetZone : SeekerBarrier
       this.particles2.Add(new Vector2(Calc.NextFloat(Calc.Random, ((Entity) this).Width - 5f), Calc.NextFloat(Calc.Random, ((Entity) this).Height - 9f)));
   }
 
-  public virtual void Added(Scene scene)
+  public override void Added(Scene scene)
   {
     base.Added(scene);
     scene.Tracker.GetEntity<SeekerBarrierRenderer>()?.Untrack((SeekerBarrier) this);
     scene.Tracker.GetEntity<ResetZoneRenderer>()?.Track((SeekerBarrier) this);
   }
 
-  public virtual void Removed(Scene scene)
+  public override void Removed(Scene scene)
   {
     base.Removed(scene);
     scene.Tracker.GetEntity<ResetZoneRenderer>().Untrack((SeekerBarrier) this);
   }
 
-  public virtual void Update()
+  public override void Update()
   {
     base.Update();
     if (((Entity) this).Scene.OnInterval(1f))
@@ -219,7 +219,7 @@ internal class LevelResetZone : SeekerBarrier
     });
   }
 
-  public virtual void Render()
+  public override void Render()
   {
     if ((double) this.respawnTimer > 0.0)
       return;

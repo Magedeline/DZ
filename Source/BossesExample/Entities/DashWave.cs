@@ -25,7 +25,7 @@ public class DashWave : Entity
     this.AddTag(((int) (Tags.Global)));
   }
 
-  public virtual void Update()
+  public override void Update()
   {
     base.Update();
     if (global::Celeste.Mod.MaggyHelper.BossesExample.BossesExampleModule.hasDestroyDash)

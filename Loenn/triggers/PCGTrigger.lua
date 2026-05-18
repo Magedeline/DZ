@@ -13,16 +13,16 @@ trigger.placements = {
             targetRoom = "",
             width = 16,
             height = 16,
-        },
     },
-}
+    },
+    }
 
 trigger.fieldInformation = {
     preset = {
         options = {
             "default", "open", "tight", "space", "deepSpace",
             "resort", "temple", "summit", "core", "wind", "farewell",
-        },
+    },
         editable = true,
     },
     roomCount = {
@@ -34,11 +34,11 @@ trigger.fieldInformation = {
         fieldType = "integer",
         minimumValue = -1,
     },
-}
+    }
 
 trigger.fieldOrder = {
     "x", "y", "width", "height",
     "preset", "roomCount", "seed", "trainFromMap", "targetRoom",
-}
+    }
 
 return trigger

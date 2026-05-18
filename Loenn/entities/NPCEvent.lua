@@ -112,5 +112,3 @@ function npcEvent.texture(room, entity)
 end
 
 return npcEvent
-
-

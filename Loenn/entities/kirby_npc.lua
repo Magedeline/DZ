@@ -145,5 +145,3 @@ function kirbyNPC.texture(room, entity)
 end
 
 return kirbyNPC
-
-

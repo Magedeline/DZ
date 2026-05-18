@@ -69,4 +69,3 @@ function madelineBandageDummy.sprite(room, entity)
 end
 
 return madelineBandageDummy
-

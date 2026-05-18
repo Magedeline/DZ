@@ -180,5 +180,3 @@ function kirbyMidBoss.selection(room, entity)
 end
 
 return kirbyMidBoss
-
-

@@ -24,7 +24,7 @@ internal class InstantFallingBlock : FallingBlock
     this.manualTrigger = data.Bool(nameof (manualTrigger), false);
   }
 
-  public virtual void Added(Scene scene)
+  public override void Added(Scene scene)
   {
     ((Entity) this).Added(scene);
     if (this.manualTrigger)
@@ -37,7 +37,7 @@ internal class InstantFallingBlock : FallingBlock
       this.Triggered = true;
   }
 
-  public virtual void OnShake(Vector2 amount)
+  public override void OnShake(Vector2 amount)
   {
     base.OnShake(amount);
     if (this.manualTrigger)

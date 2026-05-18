@@ -6,6 +6,8 @@
       Version: 0.1.0
     - Name: AdventureHelper
       Version: 1.6.0
+    - Name: AltSidesHelper
+      Version: 1.7.1
     - Name: BrokemiaHelper
       Version: 1.8.5
     - Name: ChroniaHelper
@@ -18,10 +20,6 @@
       Version: 1.13.4
     - Name: EeveeHelper
       Version: 1.12.5
-    - Name: Everest
-      Version: 1.6272.0
-    - Name: Everest
-      Version: 1.6272.0
     - Name: Everest
       Version: 1.6272.0
     - Name: ExtendedVariantMode
@@ -38,11 +36,7 @@
       Version: 1.7.1
     - Name: NerdHelper
       Version: 1.6.3
-    - Name: PCGHelper
-      Version: 0.1.0
     - Name: PlatinumStrawberry
       Version: 1.1.1.0
-    - Name: SkinModHelper
-      Version: 0.6.1
     - Name: VidPlayer
       Version: 0.5.2

@@ -40,4 +40,3 @@ npc16_kirby.fieldInformation = {
 }
 
 return npc16_kirby
-

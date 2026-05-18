@@ -87,7 +87,7 @@ internal class DestroySpinnerRefill : Entity
   {
   }
 
-  public virtual void Awake(Scene scene)
+  public override void Awake(Scene scene)
   {
     base.Awake(scene);
     this.level = this.SceneAs<Level>();
@@ -110,7 +110,7 @@ internal class DestroySpinnerRefill : Entity
     this.sprite.Play("idle", false, false);
   }
 
-  public virtual void Update()
+  public override void Update()
   {
     try
     {
@@ -155,7 +155,7 @@ internal class DestroySpinnerRefill : Entity
     float num = ((GraphicsComponent) this.flash).Y = ((GraphicsComponent) this.sprite).Y = this.bloom.Y = this.sine.Value * 2f;
   }
 
-  public virtual void Render()
+  public override void Render()
   {
     if (((Component) this.sprite).Visible)
       ((GraphicsComponent) this.sprite).DrawOutline(1);

@@ -43,4 +43,3 @@ function dxVoidDashRefill.sprite(room, entity)
 end
 
 return dxVoidDashRefill
-

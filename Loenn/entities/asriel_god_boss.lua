@@ -3,7 +3,7 @@ local asrielGodBoss = {}
 
 asrielGodBoss.name = "MaggyHelper/AsrielGodBoss"
 asrielGodBoss.depth = 0
-asrielGodBoss.texture = "characters/Maggy/DesoloZantas/asrielgodboss/boss00"
+asrielGodBoss.texture = "characters/asrielgodboss/boss00"
 asrielGodBoss.justification = {0.5, 0.5}
 
 asrielGodBoss.nodeLimits = {0, -1}
@@ -11,17 +11,85 @@ asrielGodBoss.nodeLineRenderType = "line"
 
 asrielGodBoss.placements = {
     {
-        name = "asriel_god_boss",
+        name = "normal",
         data = {
             patternIndex = 0,
             cameraPastY = 120.0,
             dialog = true,
             startHit = false,
             cameraLockY = true,
-            attackSequence = "",
-            health = 1000,
-            maxHealth = 1000
+            attackSequence = ""
         }
+    },
+    {
+        name = "intro_cutscene",
+        data = {
+            patternIndex = 0,
+            cameraPastY = 120.0,
+            dialog = true,
+            startHit = false,
+            cameraLockY = true,
+            attackSequence = ""
+        }
+    },
+    {
+        name = "hard_mode",
+        data = {
+            patternIndex = 30,
+            cameraPastY = 120.0,
+            dialog = true,
+            startHit = true,
+            cameraLockY = true,
+            attackSequence = ""
+        }
+    },
+    {
+        name = "hypergoner_finale",
+        data = {
+            patternIndex = 61,
+            cameraPastY = 120.0,
+            dialog = true,
+            startHit = true,
+            cameraLockY = true,
+            attackSequence = "HyperGoner"
+        }
+    }
+}
+
+asrielGodBoss.fieldOrder = {
+    "x", "y",
+    "patternIndex", "cameraPastY", "cameraLockY",
+    "dialog", "startHit",
+    "attackSequence"
+}
+
+asrielGodBoss.fieldInformation = {
+    patternIndex = {
+        fieldType = "integer",
+        options = celesteEnums.asriel_god_boss_patterns,
+        editable = true,
+        description = "Attack pattern index (0-60). Different patterns have different attack combinations and dialog triggers."
+    },
+    cameraPastY = {
+        fieldType = "number",
+        description = "Camera Y offset for boss arena bounds"
+    },
+    cameraLockY = {
+        fieldType = "boolean",
+        description = "Whether to lock camera Y position during the fight"
+    },
+    dialog = {
+        fieldType = "boolean",
+        description = "Enable Chapter 20 story dialog sequences"
+    },
+    startHit = {
+        fieldType = "boolean",
+        description = "Start attacking immediately (skips waiting for player movement)"
+    },
+    attackSequence = {
+        fieldType = "string",
+        options = celesteEnums.asriel_god_boss_attacks,
+        description = "Custom attack sequence (optional). Overrides patternIndex when set."
     }
 }
 
@@ -80,4 +148,3 @@ asrielGodBoss.fieldInformation = {
 }
 
 return asrielGodBoss
-

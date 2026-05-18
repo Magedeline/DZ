@@ -14,29 +14,8 @@ BloomStrength: 1.0
 
 Modes:
   - AudioState:
-      Music: event:/desolo_zantas/music/menu/level_select
-      Ambience: event:/desolo_zantas/env/00_main
+      Music: event:/
+      Ambience: event:/
     Inventory: Default
     HeartIsEnd: false
     SeekerSlowdown: false
-  - AudioState:
-      Music: event:/desolo_zantas/music/menu/level_select
-      Ambience: event:/desolo_zantas/env/00_main
-    Inventory: Default
-    HeartIsEnd: true
-    SeekerSlowdown: false
-  - AudioState:
-      Music: event:/desolo_zantas/music/menu/level_select
-      Ambience: event:/desolo_zantas/env/00_main
-    Inventory: Default
-    HeartIsEnd: true
-    SeekerSlowdown: false
-  - AudioState:
-      Music: event:/desolo_zantas/music/menu/level_select
-      Ambience: event:/desolo_zantas/env/00_main
-    Inventory: Default
-    HeartIsEnd: true
-    SeekerSlowdown: false
-
-LoadingVignetteText:
-    Dialog: "CH0_INTRO"

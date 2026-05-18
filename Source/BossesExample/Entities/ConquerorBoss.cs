@@ -868,7 +868,7 @@ public class ConquerorBoss : Actor
       tween.OnUpdate = (Action<Tween>) (t =>
       {
         if (((Entity) player).CollideCheck<Solid>(((((Entity) this).Position) + (new Vector2(-5f, 0.0f)))))
-          ;
+          { }
         Vector2 vector2 = ((from) + (((((to) - (from))) * (t.Eased))));
         ((Actor) player).MoveToX(vector2.X, (Collision) null);
         ((Actor) player).MoveToY(vector2.Y, (Collision) null);

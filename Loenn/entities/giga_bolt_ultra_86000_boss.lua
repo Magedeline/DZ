@@ -13,7 +13,7 @@ gigaBoltUltraBoss.placements = {
         data = {
             health = 1100,
             maxHealth = 1100,
-        }
+    }
     }
 }
 

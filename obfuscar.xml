@@ -1,0 +1,87 @@
+<?xml version='1.0'?>
+<!--
+  Obfuscar Configuration for Desolo Zantas Celeste Mod
+  Nintendo-style obfuscation for .NET 8.0 assembly
+-->
+<Obfuscator>
+  <!-- Input: Build output directory -->
+  <Var name="InPath" value=".\Source\bin\Release\net8.0" />
+  <!-- Output: Obfuscated assembly goes here (msbuild will copy it) -->
+  <Var name="OutPath" value=".\Source\bin\Release\net8.0\obfuscated" />
+
+  <!-- ============================================ -->
+  <!-- Core Obfuscation Settings                    -->
+  <!-- ============================================ -->
+
+  <!-- Keep public API accessible (Everest needs this) -->
+  <Var name="KeepPublicApi" value="true" />
+  <!-- Hide/obfuscate internal/private members -->
+  <Var name="HidePrivateApi" value="true" />
+  <!-- Add SuppressIldasm attribute -->
+  <Var name="SuppressIldasm" value="true" />
+
+  <!-- ============================================ -->
+  <!-- Renaming Rules (1-4 character unicode names) -->
+  <!-- ============================================ -->
+  <Var name="RenameFields" value="true" />
+  <Var name="RenameProperties" value="true" />
+  <Var name="RenameEvents" value="true" />
+  <Var name="RenameMethods" value="true" />
+  <Var name="RenameNamespaces" value="false" /> <!-- Keep for Everest compatibility -->
+  <Var name="RenameTypes" value="true" />
+  <!-- Don't reuse names - harder to reverse engineer -->
+  <Var name="ReuseNames" value="false" />
+  <!-- Use unicode names like 䐀䑅 or Korean characters -->
+  <Var name="UseUnicodeNames" value="true" />
+  <Var name="UseKoreanNames" value="false" />
+
+  <!-- ============================================ -->
+  <!-- String Encryption - Hide narrative text    -->
+  <!-- ============================================ -->
+  <Var name="HideStrings" value="true" />
+  <!-- Encrypt strings longer than this threshold -->
+  <Var name="HideStringsMinimumLength" value="3" />
+
+  <!-- ============================================ -->
+  <!-- Control Flow Obfuscation                     -->
+  <!-- ============================================ -->
+  <Var name="ControlFlowObfuscation" value="true" />
+
+  <!-- ============================================ -->
+  <!-- Resource Protection                          -->
+  <!-- ============================================ -->
+  <Var name="EncryptResources" value="false" />
+
+  <!-- ============================================ -->
+  <!-- Module to Obfuscate                          -->
+  <!-- ============================================ -->
+  <Module file="$(InPath)\MaggyHelper.dll">
+    <!-- Keep Everest/MonoMod accessible types -->
+    <SkipType name="*Module" skipChildren="false" />
+    <SkipType name="* Everest*" skipChildren="true" />
+
+    <!-- Keep hook classes discoverable by MonoMod -->
+    <SkipType name="*Hook*" skipChildren="true" />
+    <SkipType name="*Patch*" skipChildren="true" />
+
+    <!-- Keep entity/trigger types (Everest loads these by name) -->
+    <SkipType name="*Entity*" skipChildren="false" />
+    <SkipType name="*Trigger*" skipChildren="false" />
+    <SkipType name="*Component*" skipChildren="false" />
+
+    <!-- Keep public mod API -->
+    <SkipType name="MaggyHelperSettings" skipChildren="false" />
+    <SkipType name="MaggyHelperSession" skipChildren="false" />
+    <SkipType name="MaggyHelperSaveData" skipChildren="false" />
+
+    <!-- Keep entry point -->
+    <SkipType name="MaggyHelperModule" skipChildren="false" />
+  </Module>
+
+  <!-- ============================================ -->
+  <!-- Assembly References (needed for resolution)  -->
+  <!-- ============================================ -->
+  <AssemblySearchPath path=".\lib-stripped" />
+  <AssemblySearchPath path="C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.0" />
+
+</Obfuscator>

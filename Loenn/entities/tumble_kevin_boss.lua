@@ -13,7 +13,7 @@ tumbleKevinBoss.placements = {
         data = {
             health = 1200,
             maxHealth = 1200,
-        }
+    }
     }
 }
 
@@ -57,4 +57,3 @@ function tumbleKevinBoss.selection(room, entity)
 end
 
 return tumbleKevinBoss
-

@@ -6,7 +6,7 @@ internetCafe.name = "MaggyHelper/WaveFazeMachine"
 internetCafe.depth = 1000
 internetCafe.placements = {
     name = "WaveFazeMachine",
-}
+    }
 
 local backTexture = "objects/wavefazetutorial/building_back"
 local leftTexture = "objects/wavefazetutorial/building_front_left"

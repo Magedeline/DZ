@@ -90,6 +90,24 @@ bossTier5.placements = {
     }
 }
 
+-- Tier 6 Boss (Final Boss)
+local bossTier6 = {}
+bossTier6.name = "MaggyHelper/BossTier6"
+bossTier6.depth = 0
+bossTier6.placements = {
+    {
+        name = "boss_tier_6",
+        data = {
+            bossType = "BlackholeAngel",
+            tier = 6,
+            gimmick = 6,
+            health = 1000,
+            speed = 100.0,
+            arenaRadius = 300.0
+        }
+    }
+}
+
 -- Common field information for all tiers
 local commonFieldInfo = {
     tier = {
@@ -120,17 +138,20 @@ bossTier2.fieldInformation = commonFieldInfo
 bossTier3.fieldInformation = commonFieldInfo
 bossTier4.fieldInformation = commonFieldInfo
 bossTier5.fieldInformation = commonFieldInfo
+bossTier6.fieldInformation = commonFieldInfo
 
 bossTier1.texture = "objects/boss/tier1"
 bossTier2.texture = "objects/boss/tier2"
 bossTier3.texture = "objects/boss/tier3"
 bossTier4.texture = "objects/boss/tier4"
 bossTier5.texture = "objects/boss/tier5"
+bossTier6.texture = "objects/boss/tier6"
 
 return {
     bossTier1,
     bossTier2,
     bossTier3,
     bossTier4,
-    bossTier5
+    bossTier5,
+    bossTier6
 }

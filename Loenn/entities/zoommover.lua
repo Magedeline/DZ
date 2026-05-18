@@ -248,4 +248,3 @@ function zoomMover.selection(room, entity)
 end
 
 return zoomMover
-

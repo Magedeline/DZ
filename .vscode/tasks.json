@@ -4,7 +4,7 @@
 		{
 			"label": "build",
 			"type": "shell",
-			"command": "${env:ProgramFiles}\\dotnet\\dotnet.exe",
+			"command": "E:/Celeste Desolo Zantas/Celeste.exe",
 			"args": [
 				"build",
 				"MaggyHelper.sln"
@@ -20,7 +20,7 @@
 		{
 			"label": "watch",
 			"type": "shell",
-			"command": "${env:ProgramFiles}\\dotnet\\dotnet.exe",
+			"command": "E:/Celeste Desolo Zantas/Celeste.exe",
 			"args": [
 				"watch",
 				"--project",

@@ -3,7 +3,7 @@
 
 local introPresentsTrigger = {}
 
-introPresentsTrigger.name = "DesoloZatnas/IntroPresentsTrigger"
+introPresentsTrigger.name = "MaggyHelper/IntroPresentsTrigger"
 introPresentsTrigger.placements = {
     {
         name = "IntroPresentsTrigger",

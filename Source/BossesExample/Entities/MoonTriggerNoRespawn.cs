@@ -23,7 +23,7 @@ internal class MoonTriggerNoRespawn : MoonGlitchBackgroundTrigger
     this.id = entId;
   }
 
-  public virtual void OnEnter(Player player)
+  public override void OnEnter(Player player)
   {
     EntityID id = this.id;
     Session session = (((Entity) this).Scene as Level).Session;

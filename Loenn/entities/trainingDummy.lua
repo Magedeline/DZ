@@ -13,4 +13,3 @@ trainingDummy.fieldInformation = {
 }
 trainingDummy.fieldOrder = { "x", "y", "maxHealth", "showDamage", "resetTime" }
 return trainingDummy
-

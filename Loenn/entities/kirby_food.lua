@@ -167,4 +167,3 @@ function kirbyFood.color(room, entity)
 end
 
 return kirbyFood
-

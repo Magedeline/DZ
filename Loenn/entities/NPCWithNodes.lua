@@ -301,4 +301,3 @@ function npcWithNodes.nodeRectangle(room, entity, node, nodeIndex)
 end
 
 return npcWithNodes
-

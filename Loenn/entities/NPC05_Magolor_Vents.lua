@@ -35,4 +35,3 @@ npc05_magolor_vents.fieldInformation = {
 }
 
 return npc05_magolor_vents
-

@@ -13,7 +13,7 @@ alphaApexPredatorBoss.placements = {
         data = {
             health = 1600,
             maxHealth = 1600,
-        }
+    }
     }
 }
 
@@ -57,4 +57,3 @@ function alphaApexPredatorBoss.selection(room, entity)
 end
 
 return alphaApexPredatorBoss
-

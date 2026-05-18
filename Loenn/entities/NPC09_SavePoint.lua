@@ -58,4 +58,3 @@ function npc09_savepoint.sprite(room, entity)
 end
 
 return npc09_savepoint
-

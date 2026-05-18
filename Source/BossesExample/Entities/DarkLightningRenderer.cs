@@ -59,7 +59,7 @@ public class DarkLightningRenderer : Entity
 
   private static void onLevelLoadingThread(On.Celeste.LevelLoader.orig_LoadingThread orig, LevelLoader self)
   {
-    orig.Invoke(self);
+    orig(self);
     MapData mapData = self.Level.Session.MapData;
     bool? nullable;
     if (mapData == null)
@@ -281,7 +281,7 @@ public class DarkLightningRenderer : Entity
     Draw.SpriteBatch.End();
   }
 
-  public virtual void Render()
+  public override void Render()
   {
     if (this.list.Count <= 0)
       return;

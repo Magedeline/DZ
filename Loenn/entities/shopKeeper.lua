@@ -12,4 +12,3 @@ shopKeeper.fieldInformation = {
 }
 shopKeeper.fieldOrder = { "x", "y", "shopId", "dialogId" }
 return shopKeeper
-

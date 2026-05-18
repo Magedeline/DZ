@@ -14,4 +14,3 @@ npc08_theo_ending.placements = {
 }
 
 return npc08_theo_ending
-

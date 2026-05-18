@@ -17,11 +17,11 @@ internal class DoubleDashTrigger(EntityData data, Vector2 offset) : Trigger(data
 {
   private Level level;
 
-  public virtual void Added(Scene scene)
+  public override void Added(Scene scene)
   {
     ((Entity) this).Added(scene);
     this.level = ((Entity) this).SceneAs<Level>();
   }
 
-  public virtual void OnEnter(Player player) => this.level.Session.Inventory.Dashes = 2;
+  public override void OnEnter(Player player) => this.level.Session.Inventory.Dashes = 2;
 }

@@ -136,4 +136,3 @@ function asrielGodBossV2.ignoredFields(entity)
 end
 
 return asrielGodBossV2
-

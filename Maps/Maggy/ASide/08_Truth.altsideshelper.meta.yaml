@@ -1,0 +1,5 @@
+Sides:
+- Map: "Maggy/DSide/08_Truth"
+  Preset: "d-side"
+  UnlockMode: consecutively
+  ShowBerriesAsGolden: true

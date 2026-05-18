@@ -91,4 +91,3 @@ function heartCompanion.selection(room, entity)
 end
 
 return heartCompanion
-

@@ -16,7 +16,7 @@ local CONFIG = {
     CHECKPOINT_SPACING_Y = 2400,  -- Vertical spacing between checkpoints
     START_X = 0,
     START_Y = 0,
-}
+    }
 
 function buildSummitMap()
     local map = state.map

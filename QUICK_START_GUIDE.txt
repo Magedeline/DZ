@@ -1,0 +1,126 @@
+═══════════════════════════════════════════════════════════════════════════════
+                    LOENN MAP ADJUSTER - QUICK START
+═══════════════════════════════════════════════════════════════════════════════
+
+THREE WAYS TO USE:
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 🖱️  EASIEST: One-Click Launcher                                             │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│ 1. Find: run_loenn_adjuster.bat                                            │
+│ 2. Double-click it                                                          │
+│ 3. Watch it process your maps                                              │
+│ 4. View report when done                                                   │
+│                                                                              │
+│ ✅ Fully automatic - handles everything                                    │
+│                                                                              │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ ⚙️  MANUAL: Command Line                                                     │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│ Open Command Prompt and run:                                               │
+│                                                                              │
+│   python loenn_map_adjuster.py                                             │
+│                                                                              │
+│ Or with custom path:                                                       │
+│                                                                              │
+│   python loenn_map_adjuster.py "C:\path\to\your\maps"                      │
+│                                                                              │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 🔄 AUTOMATED: Daily Scheduler (Advanced)                                    │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│ 1. Open Windows Task Scheduler                                             │
+│ 2. Create Basic Task                                                       │
+│ 3. Name: "Loenn Map Adjuster"                                              │
+│ 4. Trigger: Daily at 12:00 PM (or your preferred time)                    │
+│ 5. Action: Start program → run_loenn_adjuster.bat                          │
+│                                                                              │
+│ ✅ Runs automatically - you focus on music & sprites                       │
+│                                                                              │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+═══════════════════════════════════════════════════════════════════════════════
+
+WHAT IT DOES:
+
+  📋 Layout Fixes
+     • Cleans entity formatting
+     • Fixes property typos
+     • Removes invalid positions
+
+  🧩 Tileset Optimization
+     • Consolidates tiles
+     • Removes redundancy
+     • Improves spacing
+
+  🏷️  Property Updates
+     • Normalizes booleans
+     • Standardizes formatting
+     • Validates structure
+
+═══════════════════════════════════════════════════════════════════════════════
+
+WHAT YOU GET:
+
+  ✓ Maps automatically optimized
+  ✓ Detailed report of changes
+  ✓ Console output showing progress
+  ✓ Safe - nothing gets broken
+
+═══════════════════════════════════════════════════════════════════════════════
+
+FILES PROVIDED:
+
+  📄 loenn_map_adjuster.py      ← Main adjustment script
+  🎯 run_loenn_adjuster.bat     ← Quick launcher (double-click!)
+  📖 LOENN_ADJUSTER_README.md   ← Full documentation
+  📋 QUICK_START_GUIDE.txt      ← This file
+
+═══════════════════════════════════════════════════════════════════════════════
+
+REQUIREMENTS:
+
+  ✓ Python 3.8+ installed
+  ✓ Maps in .lua format
+  ✓ Loenn closed while running (recommended)
+
+═══════════════════════════════════════════════════════════════════════════════
+
+RECOMMENDED WORKFLOW:
+
+  While you work on music & sprite art:
+
+  1. Save your map work
+  2. Close Loenn
+  3. Run: double-click run_loenn_adjuster.bat
+  4. Grab a coffee ☕ while it processes
+  5. Check the report (optional)
+  6. Reload maps in Loenn
+  7. Continue working!
+
+═══════════════════════════════════════════════════════════════════════════════
+
+TROUBLESHOOTING:
+
+  ❌ "Python not found"
+     → Install Python from python.org (check "Add to PATH")
+
+  ❌ "No maps found"
+     → Check that maps are in .lua files
+     → Verify your project path is correct
+
+  ❌ "Script failed"
+     → Check the report for error details
+     → Make sure Loenn is closed
+
+═══════════════════════════════════════════════════════════════════════════════
+
+For more info, read: LOENN_ADJUSTER_README.md
+
+Happy modding! 🎮✨

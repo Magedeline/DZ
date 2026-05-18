@@ -28,9 +28,8 @@ npc19_gravestone.fieldInformation = {
         editable = true,
         options = {
             "maddygrave00",
-        }
+    }
     }
 }
 
 return npc19_gravestone
-

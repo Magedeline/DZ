@@ -40,4 +40,3 @@ npc16_oshiro.fieldInformation = {
 }
 
 return npc16_oshiro
-

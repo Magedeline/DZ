@@ -46,4 +46,3 @@ function darkMatterMidBoss.nodeSprite(room, entity, node, nodeIndex, viewport)
 end
 
 return darkMatterMidBoss
-

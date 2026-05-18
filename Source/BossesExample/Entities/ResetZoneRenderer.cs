@@ -38,7 +38,7 @@ public class ResetZoneRenderer : Entity
 
   private static void onLevelLoadingThread(On.Celeste.LevelLoader.orig_LoadingThread orig, LevelLoader self)
   {
-    orig.Invoke(self);
+    orig(self);
     ((Scene) self.Level).Add((Entity) new ResetZoneRenderer());
   }
 
@@ -183,7 +183,7 @@ public class ResetZoneRenderer : Entity
     }
   }
 
-  public virtual void Render()
+  public override void Render()
   {
     if (this.list.Count <= 0)
       return;

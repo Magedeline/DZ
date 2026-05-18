@@ -1,6 +1,6 @@
 local cassetteTape = {}
 
-cassetteTape.name = "DesoloZantas/CassetteTape"
+cassetteTape.name = "MaggyHelper/CassetteTape"
 cassetteTape.depth = -100
 cassetteTape.texture = "collectibles/desolozantas/cassettetape/idle00"
 cassetteTape.placements = {

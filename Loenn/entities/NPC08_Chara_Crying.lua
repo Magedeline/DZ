@@ -36,4 +36,3 @@ npc08_chara_crying.fieldInformation = {
 }
 
 return npc08_chara_crying
-

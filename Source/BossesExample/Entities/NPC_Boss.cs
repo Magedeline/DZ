@@ -50,7 +50,7 @@ internal class NPC_Boss : NPC
   {
   }
 
-  public virtual void Render()
+  public override void Render()
   {
     ((Entity) this).Render();
     if (!this.lightningVisible)
@@ -99,7 +99,7 @@ internal class NPC_Boss : NPC
     ((Entity) this).Scene.Add((Entity) new CS_BossOver((NPC) this, entity));
   }
 
-  public virtual void Added(Scene scene)
+  public override void Added(Scene scene)
   {
     base.Added(scene);
     this.level = ((Entity) this).SceneAs<Level>();

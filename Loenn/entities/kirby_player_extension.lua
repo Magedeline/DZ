@@ -211,5 +211,3 @@ function kirbyKglobal::PlayerExtension.color(room, entity)
 end
 
 return kirbyKglobal::PlayerExtension
-
-

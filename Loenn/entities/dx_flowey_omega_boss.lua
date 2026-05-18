@@ -92,4 +92,3 @@ function dxFloweyOmega.sprite(room, entity)
 end
 
 return dxFloweyOmega
-

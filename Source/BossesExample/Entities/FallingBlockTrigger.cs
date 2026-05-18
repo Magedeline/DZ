@@ -15,7 +15,7 @@ namespace Celeste.Mod.MaggyHelper.BossesExample.Entities;
 [Tracked(false)]
 internal class FallingBlockTrigger(EntityData data, Vector2 offset) : Trigger(data, offset)
 {
-  public virtual void OnEnter(Player player)
+  public override void OnEnter(Player player)
   {
     Level level = ((Entity) this).SceneAs<Level>();
     if (level.Session.GetFlag("c-08-fallen"))

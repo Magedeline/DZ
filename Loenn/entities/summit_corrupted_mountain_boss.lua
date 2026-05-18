@@ -13,7 +13,7 @@ summitCorruptedMountainBoss.placements = {
         data = {
             health = 1500,
             maxHealth = 1500,
-        }
+    }
     }
 }
 

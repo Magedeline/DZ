@@ -46,4 +46,3 @@ function floweyNPC.texture(room, entity)
 end
 
 return floweyNPC
-

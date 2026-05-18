@@ -42,6 +42,10 @@ namespace Celeste.Extensions
                 var healthManager = PlayerHealthManager.GetOrCreate(level, 6);
                 healthManager.EnableKirbyMode(healthManager.MaxHP);
                 UniversalHealthUI.GetOrCreate(level).ShowPlayerHealth = true;
+
+                // Also enable the Kirby health controller for hazard damage integration
+                var healthController = KirbyHealthController.GetOrCreate(level);
+                healthController.Enable(6);
             }
 
             TryApplyPlayerSprite(player, "kirby_player");

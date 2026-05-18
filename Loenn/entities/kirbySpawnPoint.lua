@@ -47,4 +47,3 @@ function kirbySpawnPoint.sprite(room, entity)
 end
 
 return kirbySpawnPoint
-

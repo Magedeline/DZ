@@ -14,10 +14,10 @@ local sessionFlagTrigger = {
                 requiredFlag = "",
                 requiredFlagState = true,
                 sampleProperty = 0,
-            },
-        },
     },
-}
+    },
+    },
+    }
 
 sessionFlagTrigger.fieldInformation = {
     sessionFlag = { fieldType = "string" },
@@ -28,7 +28,7 @@ sessionFlagTrigger.fieldInformation = {
     requiredFlag = { fieldType = "string" },
     requiredFlagState = { fieldType = "boolean" },
     sampleProperty = { fieldType = "integer" },
-}
+    }
 
 sessionFlagTrigger.fieldOrder = {
     "x",
@@ -43,6 +43,6 @@ sessionFlagTrigger.fieldOrder = {
     "requiredFlag",
     "requiredFlagState",
     "sampleProperty",
-}
+    }
 
 return sessionFlagTrigger

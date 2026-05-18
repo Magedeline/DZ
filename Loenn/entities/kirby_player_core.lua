@@ -60,4 +60,3 @@ kirbyKglobal::PlayerCore.fieldOrder = {
 }
 
 return kirbyKglobal::PlayerCore
-

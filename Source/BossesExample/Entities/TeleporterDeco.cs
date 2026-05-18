@@ -40,7 +40,7 @@ internal class TeleporterDeco : Entity
     this.eid = id;
   }
 
-  public virtual void Added(Scene scene)
+  public override void Added(Scene scene)
   {
     base.Added(scene);
     this.level = this.SceneAs<Level>();
@@ -50,7 +50,7 @@ internal class TeleporterDeco : Entity
     TeleporterDeco.P_Dissipate.Color = Calc.HexToColor(this.colorHex);
   }
 
-  public virtual void Update()
+  public override void Update()
   {
     base.Update();
     if (this.Scene.OnInterval(1f))

@@ -44,13 +44,13 @@ local EXTERNAL_MOD_PREFIXES = {
     "ReverseHelper/",
     "SorbetHelper/",
     "VivHelper/",
-}
+    }
 
 script.parameters = {
     dryRun = true,  -- Default to safe mode (preview only)
     includeDoonvHelper = false,  -- Set to true only after porting graphics
     backupMaps = true,
-}
+    }
 
 script.fieldInformation = {
     dryRun = {
@@ -65,7 +65,7 @@ script.fieldInformation = {
         fieldType = "boolean",
         description = "Recommend keeping backups enabled"
     },
-}
+    }
 
 script.fieldOrder = {"dryRun", "includeDoonvHelper", "backupMaps"}
 

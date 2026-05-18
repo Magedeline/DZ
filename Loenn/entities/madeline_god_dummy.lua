@@ -78,4 +78,3 @@ function madelineGodDummy.sprite(room, entity)
 end
 
 return madelineGodDummy
-

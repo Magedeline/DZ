@@ -53,4 +53,3 @@ function safeCrystalSpinner.texture(room, entity)
 end
 
 return safeCrystalSpinner
-

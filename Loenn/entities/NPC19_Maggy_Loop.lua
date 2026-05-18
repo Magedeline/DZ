@@ -36,4 +36,3 @@ npc19_maggy_loop.fieldInformation = {
 }
 
 return npc19_maggy_loop
-

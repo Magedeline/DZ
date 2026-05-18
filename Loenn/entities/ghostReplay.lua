@@ -13,4 +13,3 @@ ghostReplay.fieldInformation = {
 }
 ghostReplay.fieldOrder = { "x", "y", "recordOnFlag", "replayOnFlag", "ghostAlpha" }
 return ghostReplay
-

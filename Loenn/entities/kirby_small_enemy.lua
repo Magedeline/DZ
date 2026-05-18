@@ -206,5 +206,3 @@ function kirbySmallEnemy.texture(room, entity)
 end
 
 return kirbySmallEnemy
-
-

@@ -18,4 +18,3 @@ axisTerminatorBoss.placements = {
 }
 
 return axisTerminatorBoss
-

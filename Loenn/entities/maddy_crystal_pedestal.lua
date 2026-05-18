@@ -6,7 +6,7 @@ maddyCrystalPedestal.name = "MaggyHelper/MaddyCrystalPedestal"
 maddyCrystalPedestal.depth = 8998
 maddyCrystalPedestal.placements = {
     name = "maddy_crystal_pedestal",
-}
+    }
 
 local texture = "characters/MaddyCrystal/pedestal"
 

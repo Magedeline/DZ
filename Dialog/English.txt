@@ -14842,54 +14842,75 @@ Everything will end for the nightmare to never end...
 EPMOD_CABIN=
 [THEO right normal]
 Welcome back {+MADELINE}!
-Did you finally free those monster and darkeners?
+Did you finally free those monsters and darkeners?
 {trigger 0 Badeline and Chara emerges}
 [MADELINE left normal]
 Yeah, we did.
 
 [BADELINE left normal]
-and It was incredible.
+And it was incredible.
 
 [TORIEL right normal]
-That is amazing that you able to cure Asgore would ya think?
+That is amazing that you were able to cure Asgore, wouldn't you think?
 
 [Asgore right normal]
-Yeah I would be more humble if I were you.
+Yeah, I would be more humble if I were you.
 
 [CHARA left upset]
 I thought that we wouldn't defeat that monster...
 
 [CHARA left happy]
-But at the end it totally was worth it.
+But in the end it totally was worth it.
+
+[SANS right normal]
+I mean, it wasn't exactly a walk in the park.
+But hey, you all pulled through.
 
 [KIRBY right normal]
-Yeah but should we at least gather many of people.
-I have tone of strawberrys in my back pack and getting tired of it.
+Yeah, but shouldn't we at least get everyone together?
+I have a ton of strawberries in my backpack and I'm getting tired of carrying them.
 
 [MADELINE right sad]
-Oh Right here let me carry that for you.
+Oh, right. Here, let me carry some of that for you.
+
+[PAPYRUS right normal]
+I, THE GREAT PAPYRUS, WOULD ALSO OFFER TO CARRY SOME!
+NO STRAWBERRY SHALL BE LEFT BEHIND!
 
 [THEO right thinking]
 I should've given you my phone so{n}you could take {~}The One Final Ultimate Selfie.{/~}
 
 [MADELINE right distracted]
-Hang on i think He is here.
+Theo, we were a little busy saving the world.
+
+[THEO right excited]
+That's exactly when you NEED the selfie!
+
+[MADELINE right distracted]
+Hang on, I think he is here.
 {trigger 1 Fade out, hear knock on door, fade in and Oshiro enters}
 
 [OSHIRO left normal]
 Good evening, everyone.
 
 [BADELINE right normal]
-Hey there {+OSHIRO} How are you?
+Hey there, {+OSHIRO}! How are you?
 
 [OSHIRO left normal]
-Good thanks for asking.
+Good, thanks for asking.
+
+[UNDYNE right normal]
+OSHIRO! Didn't expect to see you here!
+The more the merrier, am I right?!
+
+[OSHIRO left sidehappy]
+Ah, {+UNDYNE}! What a delightful surprise.
 
 [CHARA right angry]
-The Heck is he doing here?
+The heck is he doing here?
 
 [OSHIRO left normal]
-Oh that there was a {~}little bird{/~} told me there was to be a party.
+Oh, a {~}little bird{/~} told me there was to be a party.
 
 [OSHIRO left sidehappy]
 {+thought}RSVP-by-bird, positively magical!{+endthought}
@@ -14902,12 +14923,16 @@ No no you can stay, {+OSHIRO}.
 It's nice that you came here to visit.
 {trigger 2 Oshiro settles in}
 [KIRBY left normal]
-Y'know, this is my first time That I climb and free those monster.
-and I'm glad we all did.
-also {+MADELINE} can you bake a pie for all of us?
+Y'know, this is my first time climbing and freeing those monsters.
+And I'm glad we all did it together.
+Also, {+MADELINE}, can you bake a pie for all of us?
+
+[ALPHYS right normal]
+Oh! Oh! I can help with that!
+I've been practicing baking ever since Undyne showed me how!
 
 [OSHIRO left normal]
-Oh, that's wonderful idea, {+KIRBY}.
+Oh, that's a wonderful idea, {+KIRBY}.
 
 [THEO right normal]
 I haven't had {# F94A4A}strawberry pie{#} since I was a kid.
@@ -14919,15 +14944,23 @@ This is gonna be amazing!
 Don't get your hopes up, she's not much of a baker.
 {trigger 3 Maddy Turns}
 [BADELINE left angryalt]
-You also said I your just a kid.
+You also said that you're just a kid.
 
 [CHARA right worried]
 True.
 {trigger 3 Maddy Turns}
 [MADELINE right sad]
-But we can't promise it'll live up to the hype, Everyone.
+But we can't promise it'll live up to the hype, everyone.
 [MADELINE right normal]
-But We'll tried our best.
+We'll try our best.
+
+[TORIEL right normalalt]
+I am sure it will be wonderful, {+MADELINE}.
+Baking is about love, and you clearly have plenty of that.
+
+[MAGOLOR left happy]
+And if it's terrible, well...
+At least we have the strawberries as backup!
 
 EP_PIE_START=
 [MADELINE right normal]
@@ -16510,19 +16543,39 @@ now go fourth as a star warrior and save everyone!
 {# 560000}I can't believe this... that you are all too stupid.{#}
 {# 560000}all of there soul are now mine!!!!!{#}
 
-CH20_ASRIEL_REVEAL_IDENTITY=
-[asriel right none]
-finally...
-I was soo tired of hiding in the darkness of shadows
-{trigger 1 rift flicker for a moment glitch effect}
-Howdy there, little one.
-Frisk, Chara, anyone? are you all here?
-it's me, your best friend, your brother, your everything.
-{trigger 2 rift flicker again to appear glitch effects and asriel kid turn into a adult like godhood similar to void termina}
+# Phase 1.1: "Finally..." - Asriel breaks free momentarily
+CH20_ASRIEL_FINALLY=
+[ASRIEL_GOD right glitch]
+Finally...
+I was so tired of being in the shadows.
+[KIRBY left surprised]
+...!
+[ASRIEL_GOD right glitch]
+Trapped in that form...
+Unable to feel anything...
+But now...
+Now I can feel again!
+{trigger glitch effect}
 
-# Distorted name reveal text for the AsrielTurnIntoGodAndFinalWriter sequence
-CH20_ASRIEL_NAME_REVEAL=
-{~}A S R I E L   D R E E M U R R n T H E   F I N A L   Z E R O{/~}
+# Phase 5-6: "Howdy!" - Kid Asriel appearance
+CH20_ASRIEL_HOWDY=
+[ASRIEL_KID right normal]
+Howdy!
+[KIRBY left surprised]
+Asriel...?
+[ASRIEL_KID right smile]
+Are you there?
+It's me...
+Your best friend.
+{trigger kid form animation}
+
+# Phase 12: Final name reveal
+CH20_ASRIEL_NAME_FINAL=
+[ASRIEL_GOD center godform]
+{~}A S R I E L   D R E E M U R R{/~}
+[ASRIEL_GOD center godform glow]
+{~}T H E   F I N A L   Z E R O{/~}
+{trigger final transformation}
 
 # ====================================================================
 # ASRIEL GOD BOSS - MID FIGHT DIALOG
@@ -16616,14 +16669,16 @@ CH20_ASRIEL_GOD_SECOND_SPECIAL_ATTACK=
 UGH! This is getting old, and very Tiring.
 Time to end this universe once and for all!
 
-CH20_ASRIEL_GOD_SECOND_SPECIAL_ATTACK_END=
+CH20_ASRIEL_HYPERGONER_IMPRESSED=
 [ASRIEL_GOD left shocked]
-Wh-, Even with that attack, you still won't die?
+Wh-, you still stand after all that?
 
+CH20_MADELINE_BADELINE_RETURN=
 [KIRBY left determined]
 It's because Madeline and Badeine and I have something that they don't and include you have something too
 It's Called Determination and Love, and that is what keeps us going, and that is what makes us strong, and that is what makes us undefeatable!
 
+CH20_ASRIEL_MOCKING_HEROES=
 [ASRIEL_GOD left mocking]
 {# 990000}Determination and Love?{#}
 {# 990000}How pathetic!{#}
@@ -16631,12 +16686,26 @@ It's Called Determination and Love, and that is what keeps us going, and that is
 {# 990000}They have no power here!{#}
 {# 990000}However Don't get me wrong, I do find it amusing that you think those things can stop me!{#}
 {# 990000}Up until now I thought you were just a joke, but now I see that you're just a delusional fool!{#}
+
+CH20_ASRIEL_FRACTION_POWER=
+[ASRIEL_GOD left mocking]
 {# 990000}And after all it's only a fraction of my power, I haven't even shown you my true power yet!{#}
 [MADELINE_SPIRIT left surprised]
 wait you haven't even shown your true power yet?
 [ASRIEL_GOD left fine]
 {# 990000}Oh you have not seen a combination of zero, void, giygas and me?{#}
 {# 990000}Well then see this for yourself{#}
+
+CH20_ASRIEL_ANGEL_TRANSFORMATION=
+[ASRIEL_GOD left fine]
+{# 990000}Behold my TRUE form!{#}
+{trigger 0 asriel god transformation begins}
+[KIRBY left panic]
+What... what is happening to him!?
+[MADELINE_SPIRIT left surprised]
+{# AAAAFF}Asriel... he's... transforming!{#}
+[ASRIEL_GOD center godform glow]
+{~}I AM THE ANGEL OF DEATH!!!{/~}
 
 # ====================================================================
 # CHAPTER 20: ASRIEL ZERO - ANGEL OF DEATH BOSS PHASE 2
@@ -16872,6 +16941,21 @@ I know you're in there!
 Remember who you {~}WERE{/~}!
 Remember the people who {*}LOVED{/*} you!
 
+CH20_ASRIEL_REMEMBER_A=
+[ASRIEL_ZERO left glitching]
+{# 880088}Th-that voice...{#}
+{# 000000}SILENCE! YOU ARE {*}NOTHING{/*}!{#}
+{# 880088}Someone... calling me...?{#}
+{# 000000}I SAID {~}SHUT UP{/~}!{#}
+
+CH20_ASRIEL_REMEMBER_B=
+[ASRIEL_ZERO left struggling]
+{# 880088}K-Kirby...?{#}
+{# 880088}I... I can {~}REMEMBER{/~}...{#}
+{# 000000}STOP! YOU'RE RUINING EVERYTHING!{#}
+{# 880088}The flowers... the {~}sunlight{/~}...{#}
+{# 880088}Chara... my best friend...{#}
+
 # ====================================================================
 # PHASE 7: ELS LOSING CONTROL - ASRIEL FIGHTS BACK
 # ====================================================================
@@ -16912,6 +16996,50 @@ CH20_ASRIEL_ZERO_REMEMBER=
 {# 880088}Now... I'm so {*}SCARED{/*} of losing it again...{#}
 {# 880088}So please...{#}
 {# 880088}{~}Please{/~}...{#}
+
+CH20_ASRIEL_REMEMBER_C=
+[ASRIEL_ZERO left remembering]
+{# 880088}The golden flowers... Chara's {~}SMILE{/~}...{#}
+{# 880088}I remember when we first {~}MET{/~}...{#}
+{# 880088}You weren't afraid of me... even though I was a {~}MONSTER{/~}...{#}
+{# 880088}You just wanted to be my {*}FRIEND{/*}...{#}
+
+CH20_ASRIEL_REMEMBER_D=
+[ASRIEL_ZERO left crying]
+{# 880088}I remember the {~}DETERMINATION{/~}...{#}
+{# 880088}How I tried to SAVE everyone...{#}
+{# 880088}How I became so {*}DESPERATE{/*}...{#}
+{# 880088}I just didn't want to lose the person I {*}LOVED{/*}...{#}
+
+CH20_ASRIEL_REMEMBER_E=
+[ASRIEL_ZERO left determined]
+{# 880088}But that's not who I am {~}ANYMORE{/~}...{#}
+{# 880088}I don't want to hurt anyone... I want to {*}PROTECT{/*} them!{#}
+{# 880088}Els... I {~}REJECT{/~} you!{#}
+{# 000000}FOOLISH CHILD! YOU CAN'T RESIST ME!{#}
+
+# ====================================================================
+# PHASE 8: FINAL BEAM - ELS'S LAST ATTACK
+# ====================================================================
+
+CH20_ASRIEL_REMEMBER_FINAL=
+[ELS left furious]
+{# 560000}IF I CANNOT HAVE THIS {~}BODY{/~}...{#}
+{# 560000}THEN I WILL DESTROY {*}EVERYTHING{/*}!{#}
+{# 560000}{~}ASRIEL{/~}! LEND ME YOUR {~}POWER{/~}!{#}
+{# 560000}UNLEASH THE {*}FINAL BEAM{/*}!{#}
+
+[ASRIEL_ZERO left horrified]
+{# 880088}N-NO! STOP! I DON'T WANT TO {~}HURT{/~} THEM!{#}
+{# 000000}OBEY ME! YOU ARE {~}NOTHING{/~} WITHOUT MY POWER!{#}
+
+CH20_ASRIEL_REMEMBER_F=
+[ASRIEL_ZERO left determined]
+{# 880088}I... I {~}REFUSE{/~}!{#}
+{# 880088}These are my {*}FRIENDS{/*}! I won't let you hurt them!{#}
+{# 880088}I choose {~}LOVE{/~} over {~}POWER{/~}!{#}
+{# 000000}NO! {*}IMPOSSIBLE{/*}!{#}
+{# 000000}HOW CAN A WEAK CHILD RESIST ME?!{#}
 
 # ====================================================================
 # CHAPTER 20: ASRIEL ANGEL OF DEATH BOSS FIGHT - DIALOG INTEGRATION
@@ -19802,3 +19930,32 @@ YOLO! WAIT UP!
 well I guess I can come too, but I am not going to be the one who lead the way.
 [MADELINE right peaceful]
 then lets do this...
+
+CH21_FAKE_ASRIEL_GOD_OF_HD=
+[ASRIEL left panic]
+Hahaha
+Do you really think is this over
+
+CH21_ASRIEL_JOKING=
+[ASRIEL left awkard]
+I mean We haven't finish to special thanks just yet
+ready lets finish this for good!!!
+
+CH21_FAKE_THE_END=
+{trigger 0 the light flickers and dims}
+[NME left none]
+It's about time
+
+CH21_ENDING_GOOD=
+[MADELINE left peaceful]
+Sweet Dream Chara...
+
+CH21_ENDING_NORMAL=
+[MADELINE left peaceful]
+Sweet Dream Chara...
+
+CH21_REAL_END_GOOD=
+THE END
+
+CH21_REAL_END_NORMAL=
+THE END

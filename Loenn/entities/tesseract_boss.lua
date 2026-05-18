@@ -13,7 +13,7 @@ tesseractBoss.placements = {
         data = {
             health = 1350,
             maxHealth = 1350,
-        }
+    }
     }
 }
 

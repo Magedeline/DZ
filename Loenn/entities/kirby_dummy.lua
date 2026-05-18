@@ -80,4 +80,3 @@ function kirbyDummy.sprite(room, entity)
 end
 
 return kirbyDummy
-

@@ -29,5 +29,4 @@ flower_vines.placements = {
     }
 }
 
-
 return flower_vines

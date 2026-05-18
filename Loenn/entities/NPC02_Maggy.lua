@@ -35,4 +35,3 @@ npc02_maggy.fieldInformation = {
 }
 
 return npc02_maggy
-

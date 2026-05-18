@@ -13,7 +13,7 @@ galactaKnightBoss.placements = {
         data = {
             health = 1700,
             maxHealth = 1700,
-        }
+    }
     }
 }
 
@@ -56,4 +56,3 @@ function galactaKnightBoss.selection(room, entity)
 end
 
 return galactaKnightBoss
-

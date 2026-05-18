@@ -23,4 +23,3 @@ portalDoor.fieldInformation = {
 portalDoor.fieldOrder = { "x", "y", "portalId", "color" }
 
 return portalDoor
-

@@ -5,7 +5,7 @@ local textures = {
     default = "objects/Maggy/DesoloZantas/temple/dashButton00",
     mirror = "objects/Maggy/DesoloZantas/temple/dashButtonMirror00",
     tesseract = "objects/Maggy/DesoloZantas/temple/dashButtonTesseract00",
-}
+    }
 local textureOptions = {}
 
 for texture, _ in pairs(textures) do
@@ -16,7 +16,7 @@ end
 local dashSwitchDirectionLookup = {
     {"TesseractSwitchV", "ceiling", false},
     {"TesseractSwitchV", "ceiling", true},
-}
+    }
 
 local function rotateCommon(entity, sideIndex, direction)
     -- Only two directions are defined, so use modulo 2
@@ -81,7 +81,7 @@ end
 local placementsInfo = {
     {"up", "ceiling", false},
     {"down", "ceiling", true},
-}
+    }
 
 for name, texture in pairs(textures) do
     for _, info in ipairs(placementsInfo) do

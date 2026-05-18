@@ -50,4 +50,3 @@ function flyingBird.scale(room, entity)
 end
 
 return flyingBird
-

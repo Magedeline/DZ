@@ -90,59 +90,88 @@ asrielAngelBoss.fieldInformation = {
     health = {
         fieldType = "integer",
         minimumValue = 1,
-        maximumValue = 10000
+        maximumValue = 10000,
+        description = "Boss current health (2500 default)"
     },
     maxHealth = {
         fieldType = "integer",
         minimumValue = 1,
-        maximumValue = 10000
+        maximumValue = 10000,
+        description = "Boss maximum health (2500 default)"
+    },
+    enableBarrier = {
+        fieldType = "boolean",
+        description = "Enable Undertale-style barrier that traps the player"
+    },
+    enableLostSouls = {
+        fieldType = "boolean",
+        description = "Enable lost souls salvation mechanic (saving souls weakens Asriel)"
+    },
+    enableFlashback = {
+        fieldType = "boolean",
+        description = "Enable flashback sequence where Asriel remembers his identity"
+    },
+    enableFinalBeam = {
+        fieldType = "boolean",
+        description = "Enable final beam attack sequence (Els possessing Asriel)"
     },
     barrierWidth = {
         fieldType = "integer",
         minimumValue = 100,
-        maximumValue = 1000
+        maximumValue = 1000,
+        description = "Width of the Undertale-style barrier"
     },
     barrierHeight = {
         fieldType = "integer",
         minimumValue = 100,
-        maximumValue = 800
+        maximumValue = 800,
+        description = "Height of the Undertale-style barrier"
     },
     riseSpeed = {
         fieldType = "number",
         minimumValue = 0.5,
-        maximumValue = 10.0
+        maximumValue = 10.0,
+        description = "Speed at which boss rises from below screen (seconds)"
     },
     musicBurnInDespair = {
         fieldType = "string",
-        editable = true
+        editable = true,
+        description = "FMOD event path for 'Burn in Despair' music phase"
     },
     musicHisTheme01 = {
         fieldType = "string",
-        editable = true
+        editable = true,
+        description = "FMOD event path for hopeful 'His Theme' phase"
     },
     musicHisTheme02 = {
         fieldType = "string",
-        editable = true
+        editable = true,
+        description = "FMOD event path for emotional 'His Theme' climax"
     },
     musicKirbyVsAsriel = {
         fieldType = "string",
-        editable = true
+        editable = true,
+        description = "FMOD event path for intense final battle music"
     },
     dialogPhase1 = {
         fieldType = "string",
-        editable = true
+        editable = true,
+        description = "Dialog key for Phase 1 (boss rise/kill sequence)"
     },
     dialogStruggle = {
         fieldType = "string",
-        editable = true
+        editable = true,
+        description = "Dialog key for struggle phase (player trapped, calling for help)"
     },
     dialogVoidAnswer = {
         fieldType = "string",
-        editable = true
+        editable = true,
+        description = "Dialog key when Astral Birth Void answers the call"
     },
     dialogFlashback = {
         fieldType = "string",
-        editable = true
+        editable = true,
+        description = "Dialog key for flashback trigger (calling 'Azzy')"
     }
 }
 
@@ -227,4 +256,3 @@ function asrielAngelBoss.selection(room, entity)
 end
 
 return asrielAngelBoss
-

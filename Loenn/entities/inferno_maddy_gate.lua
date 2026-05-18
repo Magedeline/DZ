@@ -97,4 +97,3 @@ function infernoMaddyGate.selection(room, entity)
 end
 
 return infernoMaddyGate
-

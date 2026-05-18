@@ -36,4 +36,3 @@ npc08_maggy_ending.fieldInformation = {
 }
 
 return npc08_maggy_ending
-

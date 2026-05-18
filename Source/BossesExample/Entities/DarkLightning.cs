@@ -54,19 +54,19 @@ public class DarkLightning : Entity
   {
   }
 
-  public virtual void Added(Scene scene)
+  public override void Added(Scene scene)
   {
     base.Added(scene);
     scene.Tracker.GetEntity<DarkLightningRenderer>()?.Track(this);
   }
 
-  public virtual void Removed(Scene scene)
+  public override void Removed(Scene scene)
   {
     base.Removed(scene);
     scene.Tracker.GetEntity<DarkLightningRenderer>().Untrack(this);
   }
 
-  public virtual void Update()
+  public override void Update()
   {
     if (this.Collidable && this.Scene.OnInterval(0.25f, this.toggleOffset))
       this.ToggleCheck();

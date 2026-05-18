@@ -77,7 +77,6 @@ local iEnumerator = {}
 
 --#region Generic
 
-
 --#region Dictionary
 
 ---@class Dictionary<K, V> : Object
@@ -113,9 +112,7 @@ function hashSet:Remove(value) end
 
 --#endregion
 
-
 --#endregion
-
 
 --#endregion
 

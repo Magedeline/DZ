@@ -164,7 +164,7 @@ namespace Celeste.Entities.Chapters.Ch10
                 // Gentle swinging animation
                 swingAngle += swingSpeed * Engine.DeltaTime;
                 float swingOffset = (float)Math.Sin(swingAngle) * 8f;
-                Position.X = Position.X; // Base position maintained
+                _ = swingOffset; // TODO: apply swing to a stored base X once anchor is tracked
                 
                 // Check for player below
                 targetPlayer = Scene.Tracker.GetEntity<Player>();

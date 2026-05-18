@@ -38,49 +38,65 @@ asrielGodBackdrop.fieldInformation = {
         fieldType = "number",
         minimumValue = 0.0,
         maximumValue = 2.0,
-        defaultValue = 1.0
+        defaultValue = 1.0,
+        description = "Overall intensity of the backdrop effect (0-2)"
     },
     speed = {
         fieldType = "number",
         minimumValue = 0.0,
         maximumValue = 5.0,
-        defaultValue = 1.0
+        defaultValue = 1.0,
+        description = "Animation speed multiplier (0-5)"
     },
     starIntensity = {
         fieldType = "number",
         minimumValue = 0.0,
         maximumValue = 3.0,
-        defaultValue = 1.0
+        defaultValue = 1.0,
+        description = "Brightness/intensity of rainbow stars (0-3)"
     },
     gridExpansionSpeed = {
         fieldType = "number",
         minimumValue = 0.0,
         maximumValue = 2.0,
-        defaultValue = 0.3
+        defaultValue = 0.3,
+        description = "Speed of the expanding perspective grid (0-2)"
     },
     rainbowSpeed = {
         fieldType = "number",
         minimumValue = 0.0,
         maximumValue = 10.0,
-        defaultValue = 2.0
+        defaultValue = 2.0,
+        description = "Speed of rainbow color cycling (0-10)"
     },
     scrollX = {
         fieldType = "number",
         minimumValue = -10.0,
         maximumValue = 10.0,
-        defaultValue = 1.0
+        defaultValue = 1.0,
+        description = "Horizontal scroll speed"
     },
     scrollY = {
         fieldType = "number",
         minimumValue = -10.0,
         maximumValue = 10.0,
-        defaultValue = 1.0
+        defaultValue = 1.0,
+        description = "Vertical scroll speed"
     },
     alpha = {
         fieldType = "number",
         minimumValue = 0.0,
         maximumValue = 1.0,
-        defaultValue = 1.0
+        defaultValue = 1.0,
+        description = "Base opacity (0-1)"
+    },
+    rotspeed = {
+        fieldType = "number",
+        description = "Rotation speed in degrees per second (default: 0 = no rotation, backdrop expands outward instead)"
+    },
+    vk = {
+        fieldType = "number",
+        description = "GML vk parameter - scale velocity/expansion multiplier"
     }
 }
 

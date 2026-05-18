@@ -251,7 +251,7 @@
     <Loop id="starjump_hopeful" path="ralsei" delay="0.15" frames="0" />
   </ralsei>
 
-  <maggy_chara path="characters/MaggyHelper/chara/">
+  <chara path="characters/chara/">
     <Justify x=".5" y="1" />
     
     <Loop id="idle" path="idle" delay="0.1" />
@@ -295,7 +295,7 @@
     <Loop id="pretendDead" path="sleep" delay="0" frames="13" />
     <Loop id="spins" path="spin" delay="0.1" />
     <Loop id="hug" path="hug" delay="0.08"/>
-  </maggy_chara>
+  </chara>
 
   <maggy_mainchara_vision path="characters/MaggyHelper/mainchara_vision/" start="idle_down">
     <Justify x=".5" y="1" />
@@ -2700,6 +2700,9 @@
     <Loop id="hg_debrisB" path="hg_debrisB" delay="0.1"/>
     <Loop id="hg_debrisC" path="hg_debrisC" delay="0.1"/>
     
+    <!-- Fire Bullet Projectile -->
+    <Loop id="firebullet" path="firebullet" delay="0.06"/>
+    
     <!-- Other Effects -->
     <Loop id="blackhole" path="blackhole" delay="0.1"/>
     <Loop id="trails" path="trails" delay="0.1"/>
@@ -2865,16 +2868,24 @@
   </mr_frosty>
 
   <!-- OSHIRO - Auto-generated -->
-  <maggy_oshiro path="characters/MaggyHelper/oshiro/" start="idle">
+  <oshiro path="characters/oshiro/" start="idle">
     <Justify x=".5" y="1" />
 
     <Loop id="idle" path="idle" delay="0.1" />
+    <Loop id="idle_ground" path="idle" delay="0.1" />
+    <Loop id="side" path="idle" delay="0.1" />
+    <Loop id="move" path="idle" delay="0.1" />
+    <Loop id="walk" path="idle" delay="0.1" />
+    <Loop id="fall" path="idle" delay="0.1" />
+    <Loop id="recover" path="idle" delay="0.1" />
+    <Loop id="appear" path="idle" delay="0.1" />
     <Loop id="boss" path="boss" delay="0.1" frames="0-72" />
     <Loop id="broom" path="broom" delay="0.1" />
     <Loop id="lightning" path="lightning" delay="0.1" frames="0-6" />
     <Loop id="oshiro" path="oshiro" delay="0.1" frames="0-101" />
     <Loop id="sweep" path="sweep" delay="0.1" frames="0-18" />
-  </maggy_oshiro>
+  </oshiro>
+  
   <ruins_sentinel path="characters/ruins_sentinel" id="ruins_sentinel">
     <Anim id="dormant" path="dormant" loop="true" delay="0.1"/>
     <Anim id="awakening" path="awakening" loop="false" delay="0.05"/>

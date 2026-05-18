@@ -39,7 +39,7 @@ internal class VanishingWall : Solid
   {
   }
 
-  public virtual void Added(Scene scene)
+  public override void Added(Scene scene)
   {
     ((Entity) this).Added(scene);
     int num1 = (int) ((Entity) this).Width / 8;
@@ -54,7 +54,7 @@ internal class VanishingWall : Solid
     ((Entity) this).Add((Component) new TileInterceptor(this.tiles, false));
   }
 
-  public virtual void Awake(Scene scene)
+  public override void Awake(Scene scene)
   {
     base.Awake(scene);
     if (((Entity) this).CollideCheck<Player>())
@@ -112,7 +112,7 @@ internal class VanishingWall : Solid
     this.tiles.Alpha = percent;
   }
 
-  public virtual void Update()
+  public override void Update()
   {
     base.Update();
     if (this.fade)
@@ -144,7 +144,7 @@ internal class VanishingWall : Solid
     Audio.Play("event:/game/general/secret_revealed", ((Entity) this).Center);
   }
 
-  public virtual void Render()
+  public override void Render()
   {
     Level scene = ((Entity) this).Scene as Level;
     int num1;

@@ -45,7 +45,7 @@ internal class LevelGlitchTrigger : Trigger
     this.lowPassValue = data.Float(nameof (lowPassValue), 0.0f);
   }
 
-  public virtual void OnEnter(Player player)
+  public override void OnEnter(Player player)
   {
     base.OnEnter(player);
     if ((((Entity) this).Scene as Level).Session.GetFlag("DoNotLoad" + this.id.ToString()) || this.delay && (double) this.time >= 0.0 || this.newRoomID.Length == 0)
@@ -122,7 +122,7 @@ internal class LevelGlitchTrigger : Trigger
     ((Entity) player).Add((Component) tween1);
   }
 
-  public virtual void OnStay(Player player)
+  public override void OnStay(Player player)
   {
     base.OnStay(player);
     if (this.delay && (double) this.time >= 0.0 || !this.delay)
@@ -130,7 +130,7 @@ internal class LevelGlitchTrigger : Trigger
     base.OnEnter(player);
   }
 
-  public virtual void Update()
+  public override void Update()
   {
     ((Entity) this).Update();
     if ((double) this.time < 0.0)

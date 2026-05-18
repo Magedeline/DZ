@@ -23,7 +23,7 @@ beyondSummitGem.fieldInformation = {
             ["Gold (4)"] = 4,
             ["Orange (5)"] = 5,
             ["Pink (6)"] = 6,
-        }
+    }
     }
 }
 
@@ -35,7 +35,7 @@ for i = 0, 6 do
         data = {
             gem = i,
             sprite = "",
-        }
+    }
     }
 end
 

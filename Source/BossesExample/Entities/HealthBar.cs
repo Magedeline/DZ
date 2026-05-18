@@ -32,7 +32,7 @@ internal class HealthBar : Entity
     this.Tag = ((int) (Tags.HUD));
   }
 
-  public virtual void Awake(Scene scene)
+  public override void Awake(Scene scene)
   {
     base.Awake(scene);
     this.level = this.SceneAs<Level>();
@@ -62,7 +62,7 @@ internal class HealthBar : Entity
       Logger.Log("Health Render", "No StrawberryIcon to remove");
   }
 
-  public virtual void Removed(Scene scene)
+  public override void Removed(Scene scene)
   {
     base.Removed(scene);
     foreach (Entity berry in this.berryList)
@@ -70,7 +70,7 @@ internal class HealthBar : Entity
     this.berryList.Clear();
   }
 
-  public virtual void Render()
+  public override void Render()
   {
     base.Render();
     if (this.Scene.Paused)
@@ -110,7 +110,7 @@ internal class HealthBar : Entity
       this.RemoveSelf();
     }
 
-    public virtual void Render()
+    public override void Render()
     {
       base.Render();
       if (this.Scene.Paused)

@@ -13,7 +13,7 @@ krackoBoss.placements = {
         data = {
             health = 900,
             maxHealth = 900,
-        }
+    }
     }
 }
 
@@ -56,4 +56,3 @@ function krackoBoss.selection(room, entity)
 end
 
 return krackoBoss
-

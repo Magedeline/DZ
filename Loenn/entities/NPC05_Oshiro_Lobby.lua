@@ -35,4 +35,3 @@ npc05_oshiro_lobby.fieldInformation = {
 }
 
 return npc05_oshiro_lobby
-

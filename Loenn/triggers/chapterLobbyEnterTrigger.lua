@@ -13,12 +13,12 @@ chapterLobbyEnterTrigger.fieldInformation = {
     lobbyRoom       = { fieldType = "string" },
     requiredFlag    = { fieldType = "string" },
     lockedDialogKey = { fieldType = "string" },
-}
+    }
 
 chapterLobbyEnterTrigger.fieldOrder = {
     "x", "y", "width", "height",
     "lobbySid", "lobbyRoom", "requiredFlag", "lockedDialogKey",
-}
+    }
 
 chapterLobbyEnterTrigger.placements = {
     -- ── Chapter 11 – Snowdin City ─────────────────────────────────────────
@@ -30,7 +30,7 @@ chapterLobbyEnterTrigger.placements = {
             lobbyRoom       = "lvl_lobby_hub",
             requiredFlag    = "ch11_main_completed",
             lockedDialogKey = "SNOWDIN_LOBBY_LOCKED",
-        }
+    }
     },
     -- ── Chapter 12 – Wateredgefalls ───────────────────────────────────────
     {
@@ -41,7 +41,7 @@ chapterLobbyEnterTrigger.placements = {
             lobbyRoom       = "lvl_lobby_hub",
             requiredFlag    = "ch12_main_completed",
             lockedDialogKey = "WATER_LOBBY_LOCKED",
-        }
+    }
     },
     -- ── Chapter 13 – Hotcliffland ─────────────────────────────────────────
     {
@@ -52,7 +52,7 @@ chapterLobbyEnterTrigger.placements = {
             lobbyRoom       = "lvl_lobby_hub",
             requiredFlag    = "ch13_main_completed",
             lockedDialogKey = "FIRE_LOBBY_LOCKED",
-        }
+    }
     },
     -- ── Chapter 14 – Cyber Nexus ──────────────────────────────────────────
     {
@@ -63,8 +63,8 @@ chapterLobbyEnterTrigger.placements = {
             lobbyRoom       = "lvl_lobby_hub",
             requiredFlag    = "ch14_main_completed",
             lockedDialogKey = "DIGITAL_LOBBY_LOCKED",
-        }
+    }
     },
-}
+    }
 
 return chapterLobbyEnterTrigger

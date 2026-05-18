@@ -35,4 +35,3 @@ npc05_oshiro_hallway1.fieldInformation = {
 }
 
 return npc05_oshiro_hallway1
-

@@ -74,4 +74,3 @@ function madelineNPCDummy.sprite(room, entity)
 end
 
 return madelineNPCDummy
-

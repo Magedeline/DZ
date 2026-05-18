@@ -28,4 +28,3 @@ return {
         return utils.rectangle(entity.x - 8, entity.y - 8, 16, 16)
     end
 }
-

@@ -36,4 +36,3 @@ npc07_maddy_mirror.fieldInformation = {
 }
 
 return npc07_maddy_mirror
-

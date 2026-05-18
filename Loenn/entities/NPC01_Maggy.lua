@@ -41,4 +41,3 @@ npc01_maggy.fieldInformation = {
 }
 
 return npc01_maggy
-

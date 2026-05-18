@@ -14,10 +14,10 @@ local sampleTrigger = {
                 requiredFlag = "",
                 requiredFlagState = true,
                 sampleProperty = 0,
-            },
-        },
     },
-}
+    },
+    },
+    }
 
 sampleTrigger.fieldInformation = {
     sessionFlag = { fieldType = "string" },
@@ -28,7 +28,7 @@ sampleTrigger.fieldInformation = {
     requiredFlag = { fieldType = "string" },
     requiredFlagState = { fieldType = "boolean" },
     sampleProperty = { fieldType = "integer" },
-}
+    }
 
 sampleTrigger.fieldOrder = {
     "x",
@@ -43,6 +43,6 @@ sampleTrigger.fieldOrder = {
     "requiredFlag",
     "requiredFlagState",
     "sampleProperty",
-}
+    }
 
 return sampleTrigger

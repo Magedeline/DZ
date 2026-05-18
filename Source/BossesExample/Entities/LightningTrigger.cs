@@ -18,7 +18,7 @@ internal class LightningTrigger(EntityData data, Vector2 offset) : Trigger(data,
   private bool triggered = false;
   private Level level;
 
-  public virtual void Added(Scene scene)
+  public override void Added(Scene scene)
   {
     ((Entity) this).Added(scene);
     this.level = ((Entity) this).SceneAs<Level>();
@@ -27,7 +27,7 @@ internal class LightningTrigger(EntityData data, Vector2 offset) : Trigger(data,
     ((Entity) this).RemoveSelf();
   }
 
-  public virtual void OnEnter(Player player)
+  public override void OnEnter(Player player)
   {
     if (this.triggered)
       return;

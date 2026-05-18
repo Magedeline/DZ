@@ -41,4 +41,3 @@ npc20_asriel.fieldInformation = {
 }
 
 return npc20_asriel
-

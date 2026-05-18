@@ -13,7 +13,7 @@ anotherVesselCorruptedBoss.placements = {
         data = {
             health = 1000,
             maxHealth = 1000,
-        }
+    }
     }
 }
 

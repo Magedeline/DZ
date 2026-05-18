@@ -59,4 +59,3 @@ darkMatterEnemy.fieldInformation = {
 }
 
 return darkMatterEnemy
-

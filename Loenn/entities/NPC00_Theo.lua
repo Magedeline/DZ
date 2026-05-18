@@ -35,4 +35,3 @@ npc00_theo.fieldInformation = {
 }
 
 return npc00_theo
-

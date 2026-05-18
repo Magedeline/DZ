@@ -22,4 +22,3 @@ npc15x_madeline_and_badeline_ending.fieldInformation = {
 }
 
 return npc15x_madeline_and_badeline_ending
-

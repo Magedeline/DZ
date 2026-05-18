@@ -804,5 +804,3 @@ function npc_event_interact.shouldShow(entity, session)
 end
 
 return npc_event_interact
-
-

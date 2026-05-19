@@ -26,6 +26,8 @@ namespace Celeste.Mod.MaggyHelper
         // Progression flags
         public bool HasSeenModIntro { get; set; }
         public bool VoidMoonUnlocked { get; set; }
+        public bool PendingUnlockChapter10OnRestart { get; set; }
+        public bool UnlockedChapter10 { get; set; }
         public bool PendingUnlockChapter16OnRestart { get; set; }
         public bool PendingUnlockChapter19OnRestart { get; set; }
         public bool PendingUnlockChapter20OnRestart { get; set; }
@@ -40,6 +42,7 @@ namespace Celeste.Mod.MaggyHelper
         // Unlock tracking
         public HashSet<string> UnlockedBSideIDs { get; set; } = new HashSet<string>();
         public HashSet<string> UnlockedCSideIDs { get; set; } = new HashSet<string>();
+        public List<string> PendingCSideUnlockIDs { get; set; } = new List<string>();
         public HashSet<string> UnlockedRemixExtraIDs { get; set; } = new HashSet<string>();
         public HashSet<string> UnlockedModes { get; set; } = new HashSet<string>();
 

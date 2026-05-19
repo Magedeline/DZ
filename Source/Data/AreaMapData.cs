@@ -133,6 +133,7 @@ public static class AreaMapData
         _byBaseKey.Clear();
 
         // ── Prologue (Chapter 0) ──
+        // Image 1: position=(-1.374, 1.224, 7.971) target=(-0.440, 0.499, 6.358)
         Register(new ChapterDef
         {
             Number = 0,
@@ -146,144 +147,148 @@ public static class AreaMapData
             MountainState = 0,
             MountainData = new MountainCameraData
             {
-                IdlePos = new Vector3(0.658f, 2.872f, 7.876f),
-                IdleTarget = new Vector3(0.658f, 2.572f, 6.876f),
-                SelectPos = new Vector3(0.658f, 2.572f, 7.876f),
-                SelectTarget = new Vector3(0.658f, 2.272f, 6.376f),
-                ZoomPos = new Vector3(0.658f, 2.372f, 6.876f),
-                ZoomTarget = new Vector3(0.658f, 2.072f, 5.876f),
-                Cursor = new Vector3(0.658f, 2.872f, 7.876f)
+                IdlePos    = new Vector3(-1.374f, 1.224f, 9.371f),
+                IdleTarget = new Vector3(-0.440f, 0.499f, 7.758f),
+                SelectPos    = new Vector3(-1.374f, 1.224f, 7.971f),
+                SelectTarget = new Vector3(-0.440f, 0.499f, 6.358f),
+                ZoomPos    = new Vector3(-1.007f, 0.862f, 6.965f),
+                ZoomTarget = new Vector3(-0.073f, 0.137f, 5.352f),
+                Cursor = new Vector3(-0.440f, 0.499f, 6.358f)
             }
         });
 
         // ── Chapter 1: Forbidden Metropolis ──
+        // Image 9: position=(-1.234, 0.677, 7.598) target=(-0.221, 0.734, 5.875)
         RegisterStandardChapter(1, "forbiddenmetro", "01_City",
             "areas/city", 0,
-            idle: (new Vector3(2.45f, 6.12f, 14.25f), new Vector3(1.68f, 5.39f, 12.8f)),
-            select: (new Vector3(1.85f, 3.75f, 14.58f), new Vector3(2.95f, 3.62f, 13.12f)),
-            zoom: (new Vector3(3.28f, 4.15f, 11.65f), new Vector3(3.18f, 3.08f, 9.95f)),
-            cursor: new Vector3(3.14f, 3.80f, 9.73f));
+            idle:   (new Vector3(-1.234f,  0.677f,  9.198f), new Vector3(-0.221f,  0.734f,  7.475f)),
+            select: (new Vector3(-1.234f,  0.677f,  7.598f), new Vector3(-0.221f,  0.734f,  5.875f)),
+            zoom:   (new Vector3(-0.867f,  0.315f,  6.592f), new Vector3( 0.146f,  0.372f,  4.869f)),
+            cursor:  new Vector3(-0.221f,  0.734f,  5.875f));
 
         // ── Chapter 2: Veil of Shadows ──
+        // Image 2: position=(-0.952, 4.218, 9.744) target=(-0.111, 3.393, 8.128)
         RegisterStandardChapter(2, "shadowofveil", "02_Nightmare",
             "areas/nightmare", 0,
-            idle: (new Vector3(-1.2f, 4.8f, 12.5f), new Vector3(-0.5f, 4.2f, 11.0f)),
-            select: (new Vector3(-0.8f, 3.5f, 12.8f), new Vector3(0.2f, 3.3f, 11.3f)),
-            zoom: (new Vector3(0.5f, 3.8f, 10.0f), new Vector3(0.4f, 2.9f, 8.3f)),
-            cursor: new Vector3(0.4f, 3.5f, 8.0f));
+            idle:   (new Vector3(-0.952f,  4.218f, 11.344f), new Vector3(-0.111f,  3.393f,  9.728f)),
+            select: (new Vector3(-0.952f,  4.218f,  9.744f), new Vector3(-0.111f,  3.393f,  8.128f)),
+            zoom:   (new Vector3(-0.585f,  3.856f,  8.738f), new Vector3( 0.256f,  3.031f,  7.122f)),
+            cursor:  new Vector3(-0.111f,  3.393f,  8.128f));
 
         // ── Chapter 3: Arrival ──
+        // Image 3: position=(-3.431, 5.512, 4.284) target=(-2.287, 4.359, 3.118)
         RegisterStandardChapter(3, "arrivial", "03_Stars",
             "areas/stars", 0,
-            idle: (new Vector3(3.5f, 7.2f, 15.0f), new Vector3(2.8f, 6.5f, 13.5f)),
-            select: (new Vector3(2.8f, 4.8f, 15.3f), new Vector3(3.8f, 4.7f, 13.8f)),
-            zoom: (new Vector3(4.2f, 5.2f, 12.4f), new Vector3(4.1f, 4.1f, 10.7f)),
-            cursor: new Vector3(4.0f, 4.8f, 10.5f));
+            idle:   (new Vector3(-3.431f,  5.512f,  5.884f), new Vector3(-2.287f,  4.359f,  4.718f)),
+            select: (new Vector3(-3.431f,  5.512f,  4.284f), new Vector3(-2.287f,  4.359f,  3.118f)),
+            zoom:   (new Vector3(-3.064f,  5.150f,  3.278f), new Vector3(-1.920f,  3.997f,  2.112f)),
+            cursor:  new Vector3(-2.287f,  4.359f,  3.118f));
 
         // ── Chapter 4: Chronicles of Destiny ──
+        // Image 8: position=(-14.620, 3.606, 19.135) target=(-13.134, 4.115, 17.897)
         RegisterStandardChapter(4, "thelegend", "04_Legend",
             "areas/legend", 0,
-            idle: (new Vector3(5.2f, 8.5f, 16.0f), new Vector3(4.5f, 7.8f, 14.5f)),
-            select: (new Vector3(4.5f, 6.0f, 16.3f), new Vector3(5.5f, 5.9f, 14.8f)),
-            zoom: (new Vector3(5.9f, 6.4f, 13.4f), new Vector3(5.8f, 5.3f, 11.7f)),
-            cursor: new Vector3(5.7f, 6.0f, 11.5f));
+            idle:   (new Vector3(-14.620f,  3.606f, 20.735f), new Vector3(-13.134f,  4.115f, 19.497f)),
+            select: (new Vector3(-14.620f,  3.606f, 19.135f), new Vector3(-13.134f,  4.115f, 17.897f)),
+            zoom:   (new Vector3(-14.253f,  3.244f, 18.129f), new Vector3(-12.767f,  3.753f, 16.891f)),
+            cursor:  new Vector3(-13.134f,  4.115f, 17.897f));
 
         // ── Chapter 5: Fractured Memories ──
+        // Image 10: position=(-4.473, 7.158, 5.463) target=(-3.630, 6.660, 3.719)
         RegisterStandardChapter(5, "fractureresort", "05_Restore",
             "areas/restore", 0,
-            idle: (new Vector3(-2.5f, 5.5f, 13.0f), new Vector3(-1.8f, 4.8f, 11.5f)),
-            select: (new Vector3(-2.0f, 4.0f, 13.3f), new Vector3(-1.0f, 3.9f, 11.8f)),
-            zoom: (new Vector3(-0.5f, 4.4f, 10.5f), new Vector3(-0.6f, 3.3f, 8.8f)),
-            cursor: new Vector3(-0.6f, 4.0f, 8.5f));
+            idle:   (new Vector3(-4.473f,  7.158f,  7.063f), new Vector3(-3.630f,  6.660f,  5.319f)),
+            select: (new Vector3(-4.473f,  7.158f,  5.463f), new Vector3(-3.630f,  6.660f,  3.719f)),
+            zoom:   (new Vector3(-4.106f,  6.796f,  4.457f), new Vector3(-3.263f,  6.298f,  2.713f)),
+            cursor:  new Vector3(-3.630f,  6.660f,  3.719f));
 
         // ── Chapter 6: Fortress of Solitude ──
+        // Image 4: position=(5.961, 8.823, 5.058) target=(5.061, 7.757, 3.625)
         RegisterStandardChapter(6, "stronghold", "06_Stronghold",
             "areas/stronghold", 0,
-            idle: (new Vector3(6.5f, 9.5f, 17.0f), new Vector3(5.8f, 8.8f, 15.5f)),
-            select: (new Vector3(5.8f, 7.0f, 17.3f), new Vector3(6.8f, 6.9f, 15.8f)),
-            zoom: (new Vector3(7.2f, 7.4f, 14.4f), new Vector3(7.1f, 6.3f, 12.7f)),
-            cursor: new Vector3(7.0f, 7.0f, 12.5f));
+            idle:   (new Vector3( 5.961f,  8.823f,  6.658f), new Vector3( 5.061f,  7.757f,  5.225f)),
+            select: (new Vector3( 5.961f,  8.823f,  5.058f), new Vector3( 5.061f,  7.757f,  3.625f)),
+            zoom:   (new Vector3( 6.328f,  8.461f,  4.052f), new Vector3( 5.428f,  7.395f,  2.619f)),
+            cursor:  new Vector3( 5.061f,  7.757f,  3.625f));
 
         // ── Chapter 7: Infernal Reflections ──
+        // Image 5: position=(9.626, 8.824, -4.140) target=(7.924, 8.240, -3.267)
         RegisterStandardChapter(7, "infornoreflection", "07_Hell",
             "areas/hell", 1,
-            idle: (new Vector3(-3.5f, 6.5f, 14.0f), new Vector3(-2.8f, 5.8f, 12.5f)),
-            select: (new Vector3(-3.0f, 5.0f, 14.3f), new Vector3(-2.0f, 4.9f, 12.8f)),
-            zoom: (new Vector3(-1.5f, 5.4f, 11.5f), new Vector3(-1.6f, 4.3f, 9.8f)),
-            cursor: new Vector3(-1.6f, 5.0f, 9.5f));
+            idle:   (new Vector3( 9.626f,  8.824f, -2.540f), new Vector3( 7.924f,  8.240f, -1.667f)),
+            select: (new Vector3( 9.626f,  8.824f, -4.140f), new Vector3( 7.924f,  8.240f, -3.267f)),
+            zoom:   (new Vector3( 9.993f,  8.462f, -5.146f), new Vector3( 8.291f,  7.878f, -4.273f)),
+            cursor:  new Vector3( 7.924f,  8.240f, -3.267f));
 
         // ── Chapter 8: Revelation's Edge ──
+        // Image 6: position=(-0.963, 10.542, -5.314) target=(-0.178, 9.588, -3.741)
         RegisterStandardChapter(8, "revelationedge", "08_Truth",
             "areas/truth", 0,
-            idle: (new Vector3(7.5f, 10.5f, 18.0f), new Vector3(6.8f, 9.8f, 16.5f)),
-            select: (new Vector3(6.8f, 8.0f, 18.3f), new Vector3(7.8f, 7.9f, 16.8f)),
-            zoom: (new Vector3(8.2f, 8.4f, 15.4f), new Vector3(8.1f, 7.3f, 13.7f)),
-            cursor: new Vector3(8.0f, 8.0f, 13.5f));
+            idle:   (new Vector3(-0.963f, 10.542f, -3.714f), new Vector3(-0.178f,  9.588f, -2.141f)),
+            select: (new Vector3(-0.963f, 10.542f, -5.314f), new Vector3(-0.178f,  9.588f, -3.741f)),
+            zoom:   (new Vector3(-0.596f, 10.180f, -6.320f), new Vector3( 0.189f,  9.226f, -4.747f)),
+            cursor:  new Vector3(-0.178f,  9.588f, -3.741f));
 
         // ── Chapter 9: Apex of Reality (Summit) ──
+        // Image 7: position=(1.113, 12.154, 6.334) target=(-0.086, 11.118, 5.115)
         RegisterStandardChapter(9, "beyondsummit", "09_Summit",
             "areas/summit", 0,
-            idle: (new Vector3(0.0f, 12.0f, 20.0f), new Vector3(0.0f, 11.0f, 18.0f)),
-            select: (new Vector3(0.0f, 10.0f, 20.0f), new Vector3(0.0f, 9.5f, 18.5f)),
-            zoom: (new Vector3(0.0f, 10.5f, 17.0f), new Vector3(0.0f, 9.5f, 15.0f)),
-            cursor: new Vector3(0.0f, 10.0f, 15.0f));
+            idle:   (new Vector3( 1.113f, 12.154f,  7.934f), new Vector3(-0.086f, 11.118f,  6.715f)),
+            select: (new Vector3( 1.113f, 12.154f,  6.334f), new Vector3(-0.086f, 11.118f,  5.115f)),
+            zoom:   (new Vector3( 1.480f, 11.792f,  5.328f), new Vector3( 0.281f, 10.756f,  4.109f)),
+            cursor:  new Vector3(-0.086f, 11.118f,  5.115f));
 
         // ── Chapter 10: Echoes of the Past ──
-        // Climb path: base of mountain, ancient ruins biome
+        // Blend between img7 and img11 — mid climb, slight upward shift
         RegisterStandardChapter(10, "echosofpast", "10_Ruins",
             "areas/ruins", 0,
-            idle: (new Vector3(-0.5f, 6.2f, 12.0f), new Vector3(-0.5f, 5.5f, 10.5f)),
-            select: (new Vector3(-0.5f, 5.8f, 12.3f), new Vector3(-0.5f, 5.5f, 10.8f)),
-            zoom: (new Vector3(-0.5f, 5.7f, 10.0f), new Vector3(-0.5f, 5.3f, 8.5f)),
-            cursor: new Vector3(-0.5f, 5.5f, 8.5f));
+            idle:   (new Vector3( 0.514f, 14.102f,  8.460f), new Vector3(-0.462f, 13.157f,  6.891f)),
+            select: (new Vector3( 0.514f, 14.102f,  7.860f), new Vector3(-0.462f, 13.157f,  6.291f)),
+            zoom:   (new Vector3( 0.881f, 13.740f,  6.854f), new Vector3(-0.095f, 12.795f,  5.285f)),
+            cursor:  new Vector3(-0.462f, 13.157f,  6.291f));
 
         // ── Chapter 11: Frozen Sanctuary ──
-        // Climb path: ascending into snow biome
         RegisterStandardChapter(11, "frozensanctuary", "11_Snow",
             "areas/snow", 0,
-            idle: (new Vector3(0.3f, 7.2f, 12.5f), new Vector3(0.3f, 6.5f, 11.0f)),
-            select: (new Vector3(0.3f, 6.8f, 12.8f), new Vector3(0.3f, 6.5f, 11.3f)),
-            zoom: (new Vector3(0.3f, 6.7f, 10.5f), new Vector3(0.3f, 6.3f, 9.0f)),
-            cursor: new Vector3(0.3f, 6.5f, 9.0f));
+            idle:   (new Vector3(-0.185f, 16.051f,  9.185f), new Vector3(-0.838f, 15.230f,  7.315f)),
+            select: (new Vector3(-0.185f, 16.051f,  8.585f), new Vector3(-0.838f, 15.230f,  6.715f)),
+            zoom:   (new Vector3( 0.182f, 15.689f,  7.579f), new Vector3(-0.471f, 14.868f,  5.709f)),
+            cursor:  new Vector3(-0.838f, 15.230f,  6.715f));
 
         // ── Chapter 12: Cascading Depths ──
-        // Climb path: waterfall region, mid-mountain
         RegisterStandardChapter(12, "cascadingdepths", "12_Water",
             "areas/water", 0,
-            idle: (new Vector3(-0.3f, 8.2f, 13.0f), new Vector3(-0.3f, 7.5f, 11.5f)),
-            select: (new Vector3(-0.3f, 7.8f, 13.3f), new Vector3(-0.3f, 7.5f, 11.8f)),
-            zoom: (new Vector3(-0.3f, 7.7f, 11.0f), new Vector3(-0.3f, 7.3f, 9.5f)),
-            cursor: new Vector3(-0.3f, 7.5f, 9.5f));
+            idle:   (new Vector3(-0.884f, 18.000f,  9.910f), new Vector3(-1.214f, 17.303f,  7.539f)),
+            select: (new Vector3(-0.884f, 18.000f,  9.310f), new Vector3(-1.214f, 17.303f,  6.939f)),
+            zoom:   (new Vector3(-0.517f, 17.638f,  8.304f), new Vector3(-0.847f, 16.941f,  5.933f)),
+            cursor:  new Vector3(-1.214f, 17.303f,  6.939f));
 
         // ── Chapter 13: Blazing Territories ──
-        // Climb path: hotland/fire biome, upper-mid mountain
         RegisterStandardChapter(13, "balzingteritory", "13_Fire",
             "areas/fire", 1,
-            idle: (new Vector3(0.5f, 9.2f, 13.5f), new Vector3(0.5f, 8.5f, 12.0f)),
-            select: (new Vector3(0.5f, 8.8f, 13.8f), new Vector3(0.5f, 8.5f, 12.3f)),
-            zoom: (new Vector3(0.5f, 8.7f, 11.5f), new Vector3(0.5f, 8.3f, 10.0f)),
-            cursor: new Vector3(0.5f, 8.5f, 10.0f));
+            idle:   (new Vector3(-1.583f, 19.949f, 10.635f), new Vector3(-1.590f, 19.376f,  8.163f)),
+            select: (new Vector3(-1.583f, 19.949f, 10.035f), new Vector3(-1.590f, 19.376f,  7.563f)),
+            zoom:   (new Vector3(-1.216f, 19.587f,  9.029f), new Vector3(-1.223f, 19.014f,  6.557f)),
+            cursor:  new Vector3(-1.590f, 19.376f,  7.563f));
 
         // ── Chapter 14: Cyber Nexus ──
-        // Climb path: digital realm, higher up
         RegisterStandardChapter(14, "cybernexus", "14_Digital",
             "areas/digital", 0,
-            idle: (new Vector3(-0.2f, 10.2f, 14.0f), new Vector3(-0.2f, 9.5f, 12.5f)),
-            select: (new Vector3(-0.2f, 9.8f, 14.3f), new Vector3(-0.2f, 9.5f, 12.8f)),
-            zoom: (new Vector3(-0.2f, 9.7f, 12.0f), new Vector3(-0.2f, 9.3f, 10.5f)),
-            cursor: new Vector3(-0.2f, 9.5f, 10.5f));
+            idle:   (new Vector3(-1.660f, 22.498f, 10.160f), new Vector3(-1.966f, 21.449f,  7.987f)),
+            select: (new Vector3(-1.660f, 22.498f,  9.560f), new Vector3(-1.966f, 21.449f,  7.387f)),
+            zoom:   (new Vector3(-1.293f, 22.136f,  8.554f), new Vector3(-1.599f, 21.087f,  6.381f)),
+            cursor:  new Vector3(-1.966f, 21.449f,  7.387f));
 
         // ── Chapter 15: Ethereal Citadel ──
-        // Climb path: castle biome, near summit
         RegisterStandardChapter(15, "etheraealcitadel", "15_Castle",
             "areas/castle", 0,
-            idle: (new Vector3(0.4f, 11.2f, 15.0f), new Vector3(0.4f, 10.5f, 13.5f)),
-            select: (new Vector3(0.4f, 10.8f, 15.3f), new Vector3(0.4f, 10.5f, 13.8f)),
-            zoom: (new Vector3(0.4f, 10.7f, 13.0f), new Vector3(0.4f, 10.3f, 11.5f)),
-            cursor: new Vector3(0.4f, 10.5f, 11.5f));
+            idle:   (new Vector3(-1.737f, 25.047f,  9.685f), new Vector3(-1.722f, 24.522f,  7.411f)),
+            select: (new Vector3(-1.737f, 25.047f,  9.085f), new Vector3(-1.722f, 24.522f,  6.811f)),
+            zoom:   (new Vector3(-1.370f, 24.685f,  8.079f), new Vector3(-1.355f, 24.160f,  5.805f)),
+            cursor:  new Vector3(-1.722f, 24.522f,  6.811f));
 
         // ── Chapter 16: Organ Garden of Despair (A-Side only) ──
-        // Climb path: corruption biome, summit approach
+        // Image 11: position=(-1.916, 33.050, 9.585) target=(-1.479, 32.938, 7.636)
         Register(new ChapterDef
         {
             Number = 16,
@@ -297,17 +302,18 @@ public static class AreaMapData
             MountainState = 1,
             MountainData = new MountainCameraData
             {
-                IdlePos = new Vector3(0.0f, 12.2f, 15.5f),
-                IdleTarget = new Vector3(0.0f, 11.5f, 14.0f),
-                SelectPos = new Vector3(0.0f, 11.8f, 15.8f),
-                SelectTarget = new Vector3(0.0f, 11.5f, 14.3f),
-                ZoomPos = new Vector3(0.0f, 11.7f, 13.5f),
-                ZoomTarget = new Vector3(0.0f, 11.3f, 12.0f),
-                Cursor = new Vector3(0.0f, 11.5f, 12.0f)
+                IdlePos    = new Vector3(-1.916f, 33.050f, 11.185f),
+                IdleTarget = new Vector3(-1.479f, 32.938f,  9.236f),
+                SelectPos    = new Vector3(-1.916f, 33.050f,  9.585f),
+                SelectTarget = new Vector3(-1.479f, 32.938f,  7.636f),
+                ZoomPos    = new Vector3(-1.549f, 32.688f,  8.579f),
+                ZoomTarget = new Vector3(-1.112f, 32.576f,  6.630f),
+                Cursor = new Vector3(-1.479f, 32.938f,  7.636f)
             }
         });
 
         // ── Chapter 17: Epilogue (A-Side only) ──
+        // Above ch16 — further up the same high tower area
         Register(new ChapterDef
         {
             Number = 17,
@@ -321,23 +327,23 @@ public static class AreaMapData
             MountainState = 0,
             MountainData = new MountainCameraData
             {
-                IdlePos = new Vector3(0.0f, 13.0f, 22.0f),
-                IdleTarget = new Vector3(0.0f, 12.0f, 20.0f),
-                SelectPos = new Vector3(0.0f, 12.0f, 22.0f),
-                SelectTarget = new Vector3(0.0f, 11.5f, 20.5f),
-                ZoomPos = new Vector3(0.0f, 12.0f, 19.0f),
-                ZoomTarget = new Vector3(0.0f, 11.0f, 17.0f),
-                Cursor = new Vector3(0.0f, 12.0f, 17.0f)
+                IdlePos    = new Vector3(-1.916f, 35.450f, 11.185f),
+                IdleTarget = new Vector3(-1.479f, 35.338f,  9.236f),
+                SelectPos    = new Vector3(-1.916f, 35.450f,  9.585f),
+                SelectTarget = new Vector3(-1.479f, 35.338f,  7.636f),
+                ZoomPos    = new Vector3(-1.549f, 35.088f,  8.579f),
+                ZoomTarget = new Vector3(-1.112f, 34.976f,  6.630f),
+                Cursor = new Vector3(-1.479f, 35.338f,  7.636f)
             }
         });
 
         // ── Chapter 18: Core of Existence ──
         RegisterStandardChapter(18, "coreexistence", "18_Heart",
             "areas/heart", 1,
-            idle: (new Vector3(0.0f, 14.0f, 24.0f), new Vector3(0.0f, 13.0f, 22.0f)),
-            select: (new Vector3(0.0f, 12.0f, 24.0f), new Vector3(0.0f, 11.5f, 22.5f)),
-            zoom: (new Vector3(0.0f, 12.5f, 21.0f), new Vector3(0.0f, 11.5f, 19.0f)),
-            cursor: new Vector3(0.0f, 12.0f, 19.0f));
+            idle:   (new Vector3(-1.916f, 37.850f, 11.185f), new Vector3(-1.479f, 37.738f,  9.236f)),
+            select: (new Vector3(-1.916f, 37.850f,  9.585f), new Vector3(-1.479f, 37.738f,  7.636f)),
+            zoom:   (new Vector3(-1.549f, 37.488f,  8.579f), new Vector3(-1.112f, 37.376f,  6.630f)),
+            cursor:  new Vector3(-1.479f, 37.738f,  7.636f));
 
         // ── Chapter 19: Farewell to Stars (A-Side only) ──
         Register(new ChapterDef
@@ -353,13 +359,13 @@ public static class AreaMapData
             MountainState = 0,
             MountainData = new MountainCameraData
             {
-                IdlePos = new Vector3(0.0f, 15.0f, 26.0f),
-                IdleTarget = new Vector3(0.0f, 14.0f, 24.0f),
-                SelectPos = new Vector3(0.0f, 14.0f, 26.0f),
-                SelectTarget = new Vector3(0.0f, 13.5f, 24.5f),
-                ZoomPos = new Vector3(0.0f, 14.0f, 23.0f),
-                ZoomTarget = new Vector3(0.0f, 13.0f, 21.0f),
-                Cursor = new Vector3(0.0f, 14.0f, 21.0f)
+                IdlePos    = new Vector3(-1.916f, 40.250f, 11.185f),
+                IdleTarget = new Vector3(-1.479f, 40.138f,  9.236f),
+                SelectPos    = new Vector3(-1.916f, 40.250f,  9.585f),
+                SelectTarget = new Vector3(-1.479f, 40.138f,  7.636f),
+                ZoomPos    = new Vector3(-1.549f, 39.888f,  8.579f),
+                ZoomTarget = new Vector3(-1.112f, 39.776f,  6.630f),
+                Cursor = new Vector3(-1.479f, 40.138f,  7.636f)
             }
         });
 
@@ -377,13 +383,13 @@ public static class AreaMapData
             MountainState = 1,
             MountainData = new MountainCameraData
             {
-                IdlePos = new Vector3(0.0f, 16.0f, 28.0f),
-                IdleTarget = new Vector3(0.0f, 15.0f, 26.0f),
-                SelectPos = new Vector3(0.0f, 15.0f, 28.0f),
-                SelectTarget = new Vector3(0.0f, 14.5f, 26.5f),
-                ZoomPos = new Vector3(0.0f, 15.0f, 25.0f),
-                ZoomTarget = new Vector3(0.0f, 14.0f, 23.0f),
-                Cursor = new Vector3(0.0f, 15.0f, 23.0f)
+                IdlePos    = new Vector3(-1.916f, 42.650f, 11.185f),
+                IdleTarget = new Vector3(-1.479f, 42.538f,  9.236f),
+                SelectPos    = new Vector3(-1.916f, 42.650f,  9.585f),
+                SelectTarget = new Vector3(-1.479f, 42.538f,  7.636f),
+                ZoomPos    = new Vector3(-1.549f, 42.288f,  8.579f),
+                ZoomTarget = new Vector3(-1.112f, 42.176f,  6.630f),
+                Cursor = new Vector3(-1.479f, 42.538f,  7.636f)
             }
         });
 

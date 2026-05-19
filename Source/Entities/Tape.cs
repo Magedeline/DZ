@@ -357,7 +357,11 @@ public class DesoloZantasTape : Entity
         level.Session.UpdateLevelStartDashes();
 
         if (!string.IsNullOrEmpty(_cSideToUnlock))
+        {
             IngesteModule.SaveData.UnlockedCSideIDs.Add(_cSideToUnlock);
+            if (!IngesteModule.SaveData.PendingCSideUnlockIDs.Contains(_cSideToUnlock))
+                IngesteModule.SaveData.PendingCSideUnlockIDs.Add(_cSideToUnlock);
+        }
 
         MaggyProgressionManager.RecordCassette(level);
         if (level.Session.RespawnPoint.HasValue)

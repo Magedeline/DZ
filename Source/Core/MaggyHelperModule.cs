@@ -77,6 +77,8 @@ namespace Celeste.Mod.MaggyHelper
             // Kirby mechanics are layered onto the vanilla player via a custom state.
             global::Celeste.KirbyPlayerStateController.Load();
 
+            global::Celeste.MountainOverworldManager.Load();
+
             // Kirby health system hooks for hazard damage integration
             global::Celeste.KirbyHealthSystemHooks.Load();
 
@@ -114,6 +116,7 @@ namespace Celeste.Mod.MaggyHelper
             global::Celeste.CosmicChapterPanelHook.Unload();
             global::Celeste.ChapterMasteryTracker.Unload();
             global::Celeste.KirbyPlayerStateController.Unload();
+            global::Celeste.MountainOverworldManager.Unload();
             global::Celeste.KirbyHealthSystemHooks.Unload();
             global::Celeste.MountainOverworldManager.Unload();
             global::Celeste.OverworldMusicManager.Unload();

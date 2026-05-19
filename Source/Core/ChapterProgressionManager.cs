@@ -1,5 +1,9 @@
 namespace Celeste;
 
+using System.Collections;
+using System.Runtime.CompilerServices;
+using MonoMod.Utils;
+
 /// <summary>
 /// Hardcoded chapter progression rules for late-game chapters.
 /// Implements restart-gated unlock flow:
@@ -10,8 +14,11 @@ namespace Celeste;
 /// </summary>
 public static class ChapterProgressionManager
 {
+    private static readonly string Ch9Sid  = AreaModeExtender.BuildASideSID("09_Summit");
+    private static readonly string Ch10Sid = AreaModeExtender.BuildASideSID("10_Ruins");
     private static readonly string Ch15Sid = AreaModeExtender.BuildASideSID("15_Castle");
     private static readonly string Ch16Sid = AreaModeExtender.BuildASideSID("16_Corruption");
+    private static readonly string Ch18Sid = AreaModeExtender.BuildASideSID("18_Heart");
     private static readonly string Ch19Sid = AreaModeExtender.BuildASideSID("19_Space");
     private static readonly string Ch20Sid = AreaModeExtender.BuildASideSID("20_TheEnd");
     private static readonly string Ch21Sid = AreaModeExtender.BuildASideSID("lastlevel");
@@ -31,6 +38,9 @@ public static class ChapterProgressionManager
         On.Celeste.Overworld.Begin += OnOverworldBegin;
         On.Celeste.LevelExit.ctor += OnLevelExitCtor;
         On.Celeste.OuiChapterSelect.Update += OnChapterSelectUpdate;
+        On.Celeste.OuiChapterSelect.PerformCh8Unlock += OnPerformCh8Unlock;
+        On.Celeste.OuiChapterSelect.PerformCh9Unlock += OnPerformCh9Unlock;
+        On.Celeste.OuiChapterSelect.Enter += OnChapterSelectEnter;
 
         Logger.Log(LogLevel.Info, "MaggyHelper", "ChapterProgressionManager loaded");
     }
@@ -45,6 +55,9 @@ public static class ChapterProgressionManager
         On.Celeste.Overworld.Begin -= OnOverworldBegin;
         On.Celeste.LevelExit.ctor -= OnLevelExitCtor;
         On.Celeste.OuiChapterSelect.Update -= OnChapterSelectUpdate;
+        On.Celeste.OuiChapterSelect.PerformCh8Unlock -= OnPerformCh8Unlock;
+        On.Celeste.OuiChapterSelect.PerformCh9Unlock -= OnPerformCh9Unlock;
+        On.Celeste.OuiChapterSelect.Enter -= OnChapterSelectEnter;
 
         Logger.Log(LogLevel.Info, "MaggyHelper", "ChapterProgressionManager unloaded");
     }
@@ -63,6 +76,203 @@ public static class ChapterProgressionManager
         ProcessPendingUnlocks();
         EnforceChapterSelectLock();
         AreaMapData.ApplyHardcodedRuntimeData();
+    }
+
+    private static IEnumerator OnChapterSelectEnter(On.Celeste.OuiChapterSelect.orig_Enter orig, OuiChapterSelect self, Oui from)
+    {
+        yield return new SwapImmediately(orig(self, from));
+
+        var save = MaggyHelperModule.SaveData;
+        if (save == null || save.PendingCSideUnlockIDs.Count == 0)
+            yield break;
+
+        var pending = new List<string>(save.PendingCSideUnlockIDs);
+        save.PendingCSideUnlockIDs.Clear();
+
+        DynamicData dd = new DynamicData(self);
+        var icons = dd.Get<List<OuiChapterSelectIcon>>("icons");
+        if (icons == null)
+            yield break;
+
+        foreach (string cSideId in pending)
+        {
+            OuiChapterSelectIcon icon = FindCSideIcon(icons, cSideId);
+            if (icon == null)
+                continue;
+
+            Audio.Play("event:/desolozantas/ui/postgame/unlock_cside");
+
+            bool ready = false;
+            icon.HighlightUnlock(delegate { ready = true; });
+            while (!ready)
+                yield return null;
+
+            yield return 0.2f;
+
+            Logger.Log(LogLevel.Info, "MaggyHelper", $"C-Side unlock animation played for: {cSideId}");
+        }
+    }
+
+    private static OuiChapterSelectIcon FindCSideIcon(List<OuiChapterSelectIcon> icons, string cSideId)
+    {
+        for (int i = 0; i < icons.Count; i++)
+        {
+            var icon = icons[i];
+            DynamicData iconData = new DynamicData(icon);
+            int area = iconData.Get<int>("area");
+            int mode = iconData.Get<int>("mode");
+
+            if (mode != 2)
+                continue;
+
+            if (area < 0 || area >= AreaData.Areas.Count)
+                continue;
+
+            string sid = AreaData.Areas[area].SID ?? string.Empty;
+            if (sid.Equals(cSideId, StringComparison.OrdinalIgnoreCase) ||
+                sid.Contains(cSideId, StringComparison.OrdinalIgnoreCase))
+                return icon;
+        }
+        return null;
+    }
+
+    private static IEnumerator OnPerformCh8Unlock(On.Celeste.OuiChapterSelect.orig_PerformCh8Unlock orig, OuiChapterSelect self)
+    {
+        IEnumerator inner = orig(self);
+        while (inner.MoveNext())
+            yield return inner.Current;
+
+        var save = MaggyHelperModule.SaveData;
+        if (save == null || MaggySaveFacade.IsChapterUnlocked(Ch18Sid))
+            yield break;
+
+        Audio.Play("event:/desolozantas/ui/postgame/unlock_newchapter");
+        Audio.Play("event:/desolozantas/ui/postgame/unlock_newchapter");
+        Audio.Play("event:/ui/world_map/icon/roll_right");
+
+        DynamicData dd = new DynamicData(self);
+        dd.Set("area", 18);
+        EaseCamera(self);
+        self.Overworld.Maddy.Hide();
+
+        bool ready = false;
+        var icons = dd.Get<List<OuiChapterSelectIcon>>("icons");
+        if (icons != null && icons.Count > 9)
+        {
+            icons[9].HighlightUnlock(delegate { ready = true; });
+            while (!ready)
+                yield return null;
+        }
+
+        save.BossRushUnlocked = true;
+        UnlockChapter(Ch18Sid);
+        Logger.Log(LogLevel.Info, "MaggyHelper", "PerformCh8Unlock: new content (Ch18) unlocked via chapter select animation.");
+    }
+
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    private static IEnumerator OnPerformCh9Unlock(On.Celeste.OuiChapterSelect.orig_PerformCh9Unlock orig, OuiChapterSelect self, bool easeCamera = true)
+    {
+        IEnumerator inner = orig(self, easeCamera);
+        while (inner.MoveNext())
+            yield return inner.Current;
+
+        var save = MaggyHelperModule.SaveData;
+        if (save == null || MaggySaveFacade.IsChapterUnlocked(Ch19Sid))
+            yield break;
+
+        Audio.Play("event:/desolozantas/ui/postgame/unlock_newchapter");
+        Audio.Play("event:/desolozantas/ui/postgame/unlock_finalchapter_icon");
+        Audio.Play("event:/ui/world_map/icon/roll_right");
+
+        DynamicData dd = new DynamicData(self);
+        dd.Set("area", 19);
+
+        yield return 0.25f;
+
+        bool ready = false;
+        var icons = dd.Get<List<OuiChapterSelectIcon>>("icons");
+        if (icons != null && icons.Count > 10)
+        {
+            icons[10].HighlightUnlock(delegate { ready = true; });
+            while (!ready)
+                yield return null;
+        }
+
+        if (easeCamera)
+            EaseCamera(self);
+
+        self.Overworld.Maddy.Hide();
+
+        save.FinalDlcContentUnlocked = true;
+        save.UnlockedChapter19 = true;
+        UnlockChapter(Ch19Sid);
+        UnlockChapter(Ch20Sid);
+        UnlockChapter(Ch21Sid);
+        save.VoidMoonUnlocked = true;
+        save.TrueFinaleUnlocked = true;
+        save.UnlockedChapter21 = true;
+        SaveData.Instance.RevealedChapter9 = true;
+        Logger.Log(LogLevel.Info, "MaggyHelper", "PerformCh9Unlock: final content (Ch19-21) unlocked via chapter select animation.");
+
+        // Chain into the Ch10 (Ruins) flipped unlock if it hasn't happened yet
+        if (!MaggySaveFacade.IsChapterUnlocked(Ch10Sid))
+        {
+            IEnumerator ch10 = PerformCh10Unlock(self);
+            while (ch10.MoveNext())
+                yield return ch10.Current;
+        }
+    }
+
+    private static IEnumerator PerformCh10Unlock(OuiChapterSelect self)
+    {
+        Audio.Play("event:/desolozantas/ui/postgame/unlock_newchapter");
+        Audio.Play("event:/desolozantas/ui/postgame/unlock_newchapter");
+        Audio.Play("event:/ui/world_map/icon/roll_left");
+
+        DynamicData dd = new DynamicData(self);
+        dd.Set("area", 10);
+
+        // Flipped order: camera eases first, then the delay, then icon animates, Maddy hides last
+        EaseCamera(self);
+
+        yield return 0.25f;
+
+        bool ready = false;
+        var icons = dd.Get<List<OuiChapterSelectIcon>>("icons");
+        if (icons != null && icons.Count > 10)
+        {
+            icons[10].HighlightUnlock(delegate { ready = true; });
+            while (!ready)
+                yield return null;
+        }
+
+        // Flipped ending: Maggy appears on the DZ mountain instead of Maddy hiding
+        self.Overworld.Maddy.Running();
+        var connector = self.Overworld.Entities.FindFirst<global::Celeste.OverworldConnector>();
+        connector?.EnableMaggyMarker();
+
+        var save = MaggyHelperModule.SaveData;
+        if (save != null)
+        {
+            save.UnlockedChapter10 = true;
+            save.PendingUnlockChapter10OnRestart = false;
+        }
+        UnlockChapter(Ch10Sid);
+        Logger.Log(LogLevel.Info, "MaggyHelper", "PerformCh10Unlock: Chapter 10 (Ruins) unlocked via flipped chapter select animation.");
+    }
+
+    private static void EaseCamera(OuiChapterSelect self)
+    {
+        DynamicData dd = new DynamicData(self);
+        if (dd.TryGet<System.Action>("EaseCamera", out var easeCam) && easeCam != null)
+        {
+            easeCam();
+            return;
+        }
+        // Fallback: invoke via reflection
+        self.GetType()
+            .GetMethod("EaseCamera", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
+            ?.Invoke(self, null);
     }
 
     private static void OnChapterSelectUpdate(On.Celeste.OuiChapterSelect.orig_Update orig, OuiChapterSelect self)
@@ -86,6 +296,17 @@ public static class ChapterProgressionManager
         var save = MaggyHelperModule.SaveData;
         if (save == null)
             return;
+
+        if (session.Area.SID.Equals(Ch9Sid, StringComparison.OrdinalIgnoreCase))
+        {
+            if (!MaggySaveFacade.IsChapterUnlocked(Ch10Sid))
+            {
+                save.PendingUnlockChapter10OnRestart = true;
+                Logger.Log(LogLevel.Info, "MaggyHelper",
+                    "Chapter 9 completed: queued Chapter 10 (Ruins) unlock for next launch.");
+            }
+            return;
+        }
 
         if (session.Area.SID.Equals(Ch15Sid, StringComparison.OrdinalIgnoreCase))
         {
@@ -123,6 +344,14 @@ public static class ChapterProgressionManager
 
         ApplyProgressionUnlocks(save);
 
+        if (save.PendingUnlockChapter10OnRestart)
+        {
+            UnlockChapter(Ch10Sid);
+            save.UnlockedChapter10 = true;
+            save.PendingUnlockChapter10OnRestart = false;
+            Logger.Log(LogLevel.Info, "MaggyHelper", "Processed pending unlock: Chapter 10 (Ruins)");
+        }
+
         if (save.PendingUnlockChapter16OnRestart)
         {
             UnlockChapter(Ch16Sid);
@@ -158,6 +387,13 @@ public static class ChapterProgressionManager
 
     private static void ApplyProgressionUnlocks(MaggyHelperModuleSaveData save)
     {
+        if (save.UnlockedChapter10 && !MaggySaveFacade.IsChapterUnlocked(Ch10Sid))
+        {
+            UnlockChapter(Ch10Sid);
+            save.PendingUnlockChapter10OnRestart = false;
+            Logger.Log(LogLevel.Info, "MaggyHelper", "Chapter 9 progression unlocked Chapter 10 (Ruins).");
+        }
+
         if (save.BossRushUnlocked && !MaggySaveFacade.IsChapterUnlocked(Ch19Sid))
         {
             UnlockChapter(Ch19Sid);
@@ -231,6 +467,10 @@ public static class ChapterProgressionManager
             return false;
 
         var save = MaggyHelperModule.SaveData;
+
+        if (sid.Equals(Ch10Sid, StringComparison.OrdinalIgnoreCase))
+            return !MaggySaveFacade.IsChapterUnlocked(Ch10Sid)
+                && save?.UnlockedChapter10 != true;
 
         if (sid.Equals(Ch16Sid, StringComparison.OrdinalIgnoreCase))
             return !MaggySaveFacade.IsChapterUnlocked(Ch16Sid);
@@ -433,5 +673,174 @@ public static class ChapterProgressionManager
             $"[MaggyHelper] D-Side unlocked for {unlocked} chapter(s)" +
             (unlockDX ? " (and DX-Side)" : "") +
             ". Reopen the chapter select to see changes.");
+    }
+
+    [Command("maggy_unlock_all", "Unlock all late chapters (18-21) at once.")]
+    private static void CmdUnlockAll()
+    {
+        var save = MaggyHelperModule.SaveData;
+        if (save == null)
+        {
+            Engine.Commands?.Log("[MaggyHelper] SaveData is null — load a save file first.");
+            return;
+        }
+
+        // Unlock all chapters immediately
+        UnlockChapter(Ch18Sid);
+        save.BossRushUnlocked = true;
+
+        UnlockChapter(Ch19Sid);
+        save.UnlockedChapter19 = true;
+        save.FinalDlcContentUnlocked = true;
+
+        UnlockChapter(Ch20Sid);
+        save.VoidMoonUnlocked = true;
+
+        UnlockChapter(Ch21Sid);
+        save.UnlockedChapter21 = true;
+        save.TrueFinaleUnlocked = true;
+
+        // Clear any pending flags
+        save.PendingUnlockChapter19OnRestart = false;
+        save.PendingUnlockChapter20OnRestart = false;
+        save.PendingUnlockChapter21OnRestart = false;
+
+        Engine.Commands?.Log("[MaggyHelper] All chapters (18, 19, 20, 21) unlocked!");
+        Engine.Commands?.Log("  - Chapter 18 (Heart): Boss Rush unlocked");
+        Engine.Commands?.Log("  - Chapter 19 (Space): Unlocked");
+        Engine.Commands?.Log("  - Chapter 20 (The End): Void Moon unlocked");
+        Engine.Commands?.Log("  - Chapter 21 (Last Level): True Finale unlocked");
+        Engine.Commands?.Log("Reopen chapter select to see changes.");
+    }
+
+    [Command("maggy_reset_chapters", "Reset all chapter unlocks (18-21) for testing. Usage: maggy_reset_chapters [confirm]")]
+    private static void CmdResetChapters(string confirm = "")
+    {
+        var save = MaggyHelperModule.SaveData;
+        var vanillaSave = SaveData.Instance;
+        if (save == null || vanillaSave == null)
+        {
+            Engine.Commands?.Log("[MaggyHelper] SaveData is null — load a save file first.");
+            return;
+        }
+
+        if (confirm.ToLowerInvariant() != "confirm")
+        {
+            Engine.Commands?.Log("[MaggyHelper] WARNING: This will reset chapter 18-21 unlocks!");
+            Engine.Commands?.Log("Run 'maggy_reset_chapters confirm' to proceed.");
+            return;
+        }
+
+        // Reset save flags
+        save.BossRushUnlocked = false;
+        save.UnlockedChapter19 = false;
+        save.FinalDlcContentUnlocked = false;
+        save.VoidMoonUnlocked = false;
+        save.UnlockedChapter21 = false;
+        save.TrueFinaleUnlocked = false;
+
+        // Reset pending flags
+        save.PendingUnlockChapter16OnRestart = false;
+        save.PendingUnlockChapter19OnRestart = false;
+        save.PendingUnlockChapter20OnRestart = false;
+        save.PendingUnlockChapter21OnRestart = false;
+
+        // Lock chapters by removing from UnlockedModes
+        void LockChapter(string sid)
+        {
+            string unlockKey = "chapter_unlocked:" + sid;
+            save.UnlockedModes.Remove(unlockKey);
+        }
+
+        LockChapter(Ch10Sid);
+        LockChapter(Ch16Sid);
+        LockChapter(Ch18Sid);
+        LockChapter(Ch19Sid);
+        LockChapter(Ch20Sid);
+        LockChapter(Ch21Sid);
+
+        Engine.Commands?.Log("[MaggyHelper] Chapter unlocks (18-21) have been reset!");
+        Engine.Commands?.Log("Reopen chapter select to see changes.");
+    }
+
+    [Command("maggy_mountain_warp", "Warp to the Desolo Zantas mountain (A-Side).")]
+    private static void CmdMountainWarp()
+    {
+        var save = MaggyHelperModule.SaveData;
+        var vanillaSave = SaveData.Instance;
+        if (save == null || vanillaSave == null)
+        {
+            Engine.Commands?.Log("[MaggyHelper] SaveData is null — load a save file first.");
+            return;
+        }
+
+        // Find first Maggy chapter to warp to
+        AreaData targetArea = null;
+        foreach (var area in AreaData.Areas)
+        {
+            if (area?.SID != null && AreaModeExtender.IsOurMap(area))
+            {
+                targetArea = area;
+                break;
+            }
+        }
+
+        if (targetArea == null)
+        {
+            Engine.Commands?.Log("[MaggyHelper] No Maggy chapters found!");
+            return;
+        }
+
+        // Set the last area to our chapter
+        vanillaSave.LastArea = targetArea.ToKey();
+        vanillaSave.LastArea_Safe = targetArea.ToKey();
+
+        // If in overworld, force camera to update
+        if (Engine.Scene is Overworld overworld)
+        {
+            overworld.Mountain?.EaseCamera(targetArea.ID, targetArea.MountainSelect, null, false);
+            Engine.Commands?.Log($"[MaggyHelper] Warped to DZ mountain at chapter: {targetArea.SID}");
+        }
+        else
+        {
+            Engine.Commands?.Log($"[MaggyHelper] Set target to DZ mountain: {targetArea.SID}");
+            Engine.Commands?.Log("Return to overworld to see the DZ mountain.");
+        }
+    }
+
+    [Command("maggy_unlock_dz", "Unlock the Desolo Zantas campaign/mountain access.")]
+    private static void CmdUnlockDZ()
+    {
+        var save = MaggyHelperModule.SaveData;
+        var vanillaSave = SaveData.Instance;
+        if (save == null || vanillaSave == null)
+        {
+            Engine.Commands?.Log("[MaggyHelper] SaveData is null — load a save file first.");
+            return;
+        }
+
+        // Unlock Chapter 10 (Ruins) which acts as entry point to DZ
+        save.UnlockedChapter10 = true;
+        save.PendingUnlockChapter10OnRestart = false;
+        UnlockChapter(Ch10Sid);
+
+        // Also unlock early Maggy chapters by finding them
+        int unlocked = 0;
+        foreach (var area in AreaData.Areas)
+        {
+            if (area?.SID != null && AreaModeExtender.IsOurMap(area))
+            {
+                if (!MaggySaveFacade.IsChapterUnlocked(area.SID))
+                {
+                    UnlockChapter(area.SID);
+                    unlocked++;
+                }
+            }
+        }
+
+        Engine.Commands?.Log($"[MaggyHelper] Desolo Zantas campaign unlocked!");
+        Engine.Commands?.Log($"  - Unlocked {unlocked} Maggy chapter(s)");
+        Engine.Commands?.Log($"  - Chapter 10 (Ruins) accessible");
+        Engine.Commands?.Log("Reopen chapter select or restart the game to see the DZ mountain.");
     }
 }

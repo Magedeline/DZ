@@ -179,7 +179,7 @@ public class CS20_RestorationAndFarewell : CutsceneEntity
         player.Sprite.Play("idle");
         
         // Set the music for this emotional finale
-        Audio.SetMusic("event:/desolozantas/final_content/music/lvl20/saved");
+        Audio.SetMusic("event:/desolozantas/final_content/music/lvl21/saved");
         
         // Fade in from white (after defeating Els)
         FadeWipe fadeWipe = new FadeWipe(Level, wipeIn: true);
@@ -265,7 +265,7 @@ public class CS20_RestorationAndFarewell : CutsceneEntity
         Scene.Add(madeline);
         yield return null;
         
-        badeline = CreateNPC("badeline", player.Position + new Vector2(rightOffset + 20f, 0f), "maggy_badeline");
+        badeline = CreateNPC("badeline", player.Position + new Vector2(rightOffset + 20f, 0f), "badeline");
         asriel = new Npc20_Asriel(new EntityData(), player.Position + new Vector2(rightOffset + 40f, 0f));
         SetupNpcSprite(asriel, "asriel");
         Scene.Add(asriel);
@@ -274,7 +274,7 @@ public class CS20_RestorationAndFarewell : CutsceneEntity
         // Create other characters further off-screen
         float farRight = 300f;
         granny = new Npc20_Granny(new EntityData(), player.Position + new Vector2(farRight, 0f));
-        SetupNpcSprite(granny, "maggy_granny");
+        SetupNpcSprite(granny, "granny");
         Scene.Add(granny);
         yield return null;
         

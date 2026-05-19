@@ -24,6 +24,14 @@ public static class MountainOverworldManager
     public const int STATE_DARK = 1;
     public const int STATE_VOID = 2;
 
+    // ── Custom Mountain Models ────────────────────────────────────────────
+
+    /// <summary>Base path for Desolo Zantas mountain OBJ models.</summary>
+    private const string MOUNTAIN_MODEL_DIR = "Mountain/Maggy/Desolo_Zantas";
+
+    /// <summary>Whether custom mountain models have been registered.</summary>
+    private static bool _modelsRegistered;
+
     // ── Camera Lock State ────────────────────────────────────────────────
     // Prevents the mountain's idle camera rotation from drifting away from
     // the designed viewing angle for DZ chapters.
@@ -36,14 +44,6 @@ public static class MountainOverworldManager
 
     /// <summary>How long to allow the camera ease transition before locking.</summary>
     private const float EASE_WINDOW = 1.6f;
-
-    // ── Custom Mountain Models ───────────────────────────────────────────
-
-    /// <summary>Base path for Desolo Zantas mountain OBJ models.</summary>
-    private const string MOUNTAIN_MODEL_DIR = "Mountain/Maggy/Desolo_Zantas";
-
-    /// <summary>Whether custom mountain models have been registered.</summary>
-    private static bool _modelsRegistered;
 
     // ── Hook Management ──────────────────────────────────────────────────
 
@@ -86,11 +86,12 @@ public static class MountainOverworldManager
     {
         orig();
 
+        // Register custom mountain models (must happen after AreaData loads so SIDs are known)
+        RegisterMountainModels();
+
         // Apply mountain data to our chapters
         ApplyMountainCameraData();
 
-        // Register custom Desolo Zantas mountain models for all our chapters
-        RegisterMountainModels();
     }
 
     /// <summary>
@@ -153,73 +154,60 @@ public static class MountainOverworldManager
             $"MountainOverworld: Applied mountain data for {AreaMapData.Chapters.Count} chapters");
     }
 
-    // ── Custom Mountain Model Registration ───────────────────────────────
+    // ── Custom Mountain Model Registration ────────────────────────────────
 
     /// <summary>
-    /// Registers custom Desolo Zantas mountain OBJ models for all MaggyHelper chapters
-    /// via Everest's MTNExt.MountainMappings system. When a MaggyHelper chapter is
-    /// selected in the overworld, the patched MountainModel.BeforeRender will use
-    /// our custom mountain terrain, bird, wall, and moon instead of vanilla models.
+    /// Registers the Desolo Zantas OBJ mountain models for every MaggyHelper chapter
+    /// via MTNExt.MountainMappings. The meta.yaml MountainModelDirectory approach cannot
+    /// be used because it requires textures named mountain_0/mountain_1/buildings_0 etc.
+    /// in the MTN.Mountain atlas, which this mod's assets don't follow.
     /// </summary>
     private static void RegisterMountainModels()
     {
         if (_modelsRegistered) return;
-
-        // Ensure AreaMapData is initialized before accessing its data
-        AreaMapData.Initialize();
-
-        if (AreaMapData.Chapters == null || AreaMapData.Chapters.Count == 0)
-            return;
+        if (AreaData.Areas == null || AreaData.Areas.Count == 0) return;
 
         try
         {
-            // Load alt mirror models from same directory (Desolo_Zantas serves both)
-            ObjModel mirrorTerrain = TryLoadObjModel(MOUNTAIN_MODEL_DIR, "building")
-                                  ?? TryLoadObjModel(MOUNTAIN_MODEL_DIR, "mountain");
-            ObjModel mirrorWall = TryLoadObjModel(MOUNTAIN_MODEL_DIR, "mountain_wall");
-            ObjModel mirrorBird = TryLoadObjModel(MOUNTAIN_MODEL_DIR, "bird");
-            ObjModel mirrorMoon = TryLoadObjModel(MOUNTAIN_MODEL_DIR, "moon");
-            ObjModel mirrorBuildings = TryLoadObjModel(MOUNTAIN_MODEL_DIR, "buildings");
+            ObjModel terrain = TryLoadObjModel(MOUNTAIN_MODEL_DIR, "building")
+                            ?? TryLoadObjModel(MOUNTAIN_MODEL_DIR, "mountain");
+            ObjModel wall    = TryLoadObjModel(MOUNTAIN_MODEL_DIR, "mountain_wall");
+            ObjModel bird    = TryLoadObjModel(MOUNTAIN_MODEL_DIR, "bird");
+            ObjModel moon    = TryLoadObjModel(MOUNTAIN_MODEL_DIR, "moon");
+            ObjModel buildings = TryLoadObjModel(MOUNTAIN_MODEL_DIR, "buildings");
 
-            if (mirrorTerrain == null)
+            if (terrain == null)
             {
                 Logger.Log(LogLevel.Warn, "MaggyHelper",
                     "MountainOverworld: building.obj / mountain.obj not found — skipping model registration");
                 return;
             }
 
-            // Build mirror resources
-            MountainResources mirrorResources = new MountainResources
+            var resources = new MountainResources
             {
-                MountainTerrain = mirrorTerrain,
-                MountainBuildings = mirrorBuildings,
-                MountainCoreWall = mirrorWall,
-                MountainBird = mirrorBird,
-                MountainMoon = mirrorMoon
+                MountainTerrain    = terrain,
+                MountainBuildings  = buildings,
+                MountainCoreWall   = wall,
+                MountainBird       = bird,
+                MountainMoon       = moon
             };
-            Logger.Log(LogLevel.Info, "MaggyHelper",
-                "MountainOverworld: Alt mirror mountain models loaded");
 
-            // Register a MountainResources entry for each chapter SID so the
-            // patched MountainModel.BeforeRender draws our geometry.
             int registered = 0;
-            foreach (var chapter in AreaMapData.Chapters)
+            // Iterate AreaData.Areas directly — BeforeRender uses area.GetSID() as the key,
+            // which comes from meta.yaml SID field, not from AreaMapData.Chapters.
+            foreach (var areaData in AreaData.Areas)
             {
-                if (string.IsNullOrEmpty(chapter.SID))
-                    continue;
+                if (!AreaModeExtender.IsOurMap(areaData)) continue;
+                if (string.IsNullOrEmpty(areaData.SID)) continue;
 
-                // Find the matching AreaData to get the canonical SID
-                AreaData areaData = FindAreaData(chapter.SID);
-                string sid = areaData?.SID ?? chapter.SID;
+                // MountainModel.BeforeRender looks up Path.Combine("Maps", area.GetSID())
+                string key = $"Maps/{areaData.SID}";
 
-                if (MTNExt.MountainMappings.ContainsKey(sid))
-                    continue; // another mod already registered this SID
-
-                // Use mirror models for all chapters
-                var resources = mirrorResources;
-
-                MTNExt.MountainMappings[sid] = resources;
-                registered++;
+                if (!MTNExt.MountainMappings.ContainsKey(key))
+                {
+                    MTNExt.MountainMappings[key] = resources;
+                    registered++;
+                }
             }
 
             _modelsRegistered = true;
@@ -233,23 +221,17 @@ public static class MountainOverworldManager
         }
     }
 
-    /// <summary>
-    /// Attempts to load an ObjModel from the Mountain/Maggy/Celeste/ directory.
-    /// Returns null if the content file is not found.
-    /// </summary>
+    /// <summary>Attempts to load an ObjModel; returns null if not found.</summary>
     private static ObjModel TryLoadObjModel(string dir, string name)
     {
         string path = $"{dir}/{name}";
         if (Everest.Content.TryGet(path, out _))
         {
             var model = ObjModel.Create(path);
-            Logger.Log(LogLevel.Debug, "MaggyHelper",
-                $"MountainOverworld: Loaded {name}.obj from {dir}");
+            Logger.Log(LogLevel.Debug, "MaggyHelper", $"MountainOverworld: Loaded {name}.obj");
             return model;
         }
-
-        Logger.Log(LogLevel.Debug, "MaggyHelper",
-            $"MountainOverworld: {name}.obj not found at {path}");
+        Logger.Log(LogLevel.Debug, "MaggyHelper", $"MountainOverworld: {name}.obj not found at {path}");
         return null;
     }
 

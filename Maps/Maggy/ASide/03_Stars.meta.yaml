@@ -41,6 +41,8 @@ Modes:
     SeekerSlowdown: false
 
 Mountain:
+    MountainModelDirectory: Mountain/Maggy/Desolo_Zantas
+    MountainTextureDirectory: Mountain/Maggy/Desolo_Zantas
     Idle:
         Position: [3.500, 7.200, 15.000]
         Target: [2.800, 6.500, 13.500]

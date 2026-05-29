@@ -118,63 +118,73 @@ namespace Celeste
 
             // ─── 6. Enhanced Map Editor with PCG Integration ─────────────────────
             // Hook Celeste.Editor.MapEditor constructor to replace with EnhancedMapEditor
-            try
-            {
-                Type mapEditorType = Type.GetType("Celeste.Editor.MapEditor, Celeste");
-                if (mapEditorType != null)
-                {
-                    ConstructorInfo mapEditorCtor = mapEditorType.GetConstructor(
-                        new[] { typeof(AreaKey), typeof(bool) });
-
-                    if (mapEditorCtor != null)
-                    {
-                        mapEditorCtorHook = new Hook(
-                            mapEditorCtor,
-                            typeof(MonoModHooks).GetMethod(
-                                nameof(Hook_MapEditor_Ctor),
-                                BindingFlags.Static | BindingFlags.NonPublic));
-
-                        Logger.Log(LogLevel.Info, "MaggyHelper",
-                            "[MonoModHooks] Hook on MapEditor constructor registered");
-                    }
-                    else
-                    {
-                        Logger.Log(LogLevel.Warn, "MaggyHelper",
-                            "[MonoModHooks] MapEditor constructor not found — skipping hook");
-                    }
-
-                    // Also hook the Update method to make F5 exit the vanilla editor
-                    MethodInfo mapEditorUpdate = mapEditorType.GetMethod(
-                        "Update",
-                        BindingFlags.Instance | BindingFlags.Public);
-
-                    if (mapEditorUpdate != null)
-                    {
-                        mapEditorUpdateHook = new Hook(
-                            mapEditorUpdate,
-                            typeof(MonoModHooks).GetMethod(
-                                nameof(Hook_MapEditor_Update),
-                                BindingFlags.Static | BindingFlags.NonPublic));
-
-                        Logger.Log(LogLevel.Info, "MaggyHelper",
-                            "[MonoModHooks] Hook on MapEditor.Update registered");
-                    }
-                    else
-                    {
-                        Logger.Log(LogLevel.Warn, "MaggyHelper",
-                            "[MonoModHooks] MapEditor.Update not found — skipping hook");
-                    }
-                }
-                else
-                {
-                    Logger.Log(LogLevel.Warn, "MaggyHelper",
-                        "[MonoModHooks] MapEditor type not found — skipping hook");
-                }
-            }
-            catch (Exception ex)
+            // NOTE: Disabled when ConditionHelper is loaded due to Scene.Begin() incompatibility
+            bool conditionHelperLoaded = Type.GetType("Celeste.Mod.ConditionHelper.ConditionHelperModule, ConditionHelper") != null;
+            if (conditionHelperLoaded)
             {
                 Logger.Log(LogLevel.Warn, "MaggyHelper",
-                    $"[MonoModHooks] Failed to hook MapEditor: {ex.Message}");
+                    "[MonoModHooks] ConditionHelper detected - Enhanced Map Editor disabled to avoid Scene.Begin() crash");
+            }
+            else
+            {
+                try
+                {
+                    Type mapEditorType = Type.GetType("Celeste.Editor.MapEditor, Celeste");
+                    if (mapEditorType != null)
+                    {
+                        ConstructorInfo mapEditorCtor = mapEditorType.GetConstructor(
+                            new[] { typeof(AreaKey), typeof(bool) });
+
+                        if (mapEditorCtor != null)
+                        {
+                            mapEditorCtorHook = new Hook(
+                                mapEditorCtor,
+                                typeof(MonoModHooks).GetMethod(
+                                    nameof(Hook_MapEditor_Ctor),
+                                    BindingFlags.Static | BindingFlags.NonPublic));
+
+                            Logger.Log(LogLevel.Info, "MaggyHelper",
+                                "[MonoModHooks] Hook on MapEditor constructor registered");
+                        }
+                        else
+                        {
+                            Logger.Log(LogLevel.Warn, "MaggyHelper",
+                                "[MonoModHooks] MapEditor constructor not found — skipping hook");
+                        }
+
+                        // Also hook the Update method to make F5 exit the vanilla editor
+                        MethodInfo mapEditorUpdate = mapEditorType.GetMethod(
+                            "Update",
+                            BindingFlags.Instance | BindingFlags.Public);
+
+                        if (mapEditorUpdate != null)
+                        {
+                            mapEditorUpdateHook = new Hook(
+                                mapEditorUpdate,
+                                typeof(MonoModHooks).GetMethod(
+                                    nameof(Hook_MapEditor_Update),
+                                    BindingFlags.Static | BindingFlags.NonPublic));
+
+                            Logger.Log(LogLevel.Info, "MaggyHelper",
+                                "[MonoModHooks] Hook on MapEditor.Update registered");
+                        }
+                        else
+                        {
+                            Logger.Log(LogLevel.Warn, "MaggyHelper",
+                                "[MonoModHooks] MapEditor.Update not found — skipping hook");
+                        }
+                    }
+                    else
+                    {
+                        Logger.Log(LogLevel.Warn, "MaggyHelper",
+                            "[MonoModHooks] MapEditor type not found — skipping hook");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Logger.Log(LogLevel.Warn, "MaggyHelper",
+                        $"[MonoModHooks] Failed to hook MapEditor: {ex.Message}");
+                }
             }
 
             // ─── 7. LevelTemplate Color Expansion ───────────────────────────────

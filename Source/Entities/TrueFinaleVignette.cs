@@ -44,16 +44,11 @@ public class TrueFinaleVignette : Scene
     {
         this.session = session;
         this.snow = snow ?? new HiresSnow();
+        Add(snow);
 
         titleText = Dialog.Has("MaggyHelper_TRUEFINALE_TITLE")
             ? Dialog.Clean("MaggyHelper_TRUEFINALE_TITLE")
             : "THE LAST PUSH";
-    }
-
-    public override void Begin()
-    {
-        base.Begin();
-        Add(snow);
 
         // Force the intended Chapter 20 music for this intro vignette.
         Audio.SetMusic(VignetteMusicEvent, true, true);

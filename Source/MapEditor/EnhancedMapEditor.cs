@@ -60,9 +60,38 @@ public class EnhancedMapEditor : Scene
 
     private List<Vector2[]> redoStack;
 
-    private const string ManualText = "Right Click:  Teleport to the room\nConfirm:      Teleport to the room\nHold Control: Restart Chapter before teleporting\nHold Shift:   Teleport to the mouse position\nCancel:       Exit debug map\nQ:            Show red berries\nF1:           Show keys\nF2:           Center on current respawn point\nF5:           Exit debug map\nP:            Toggle PCG Mode\nG:            Generate PCG Content";
+    private const string ManualText = "Right Click:  Teleport to the room\nConfirm:      Teleport to the room\nHold Control: Restart Chapter before teleporting\nHold Shift:   Teleport to the mouse position\nCancel:       Exit debug map\nQ:            Show red berries\nF1:           Show keys\nF2:           Center on current respawn point\nF6:           Exit debug map\nP:            Toggle PCG Mode\nG:            Generate PCG Content";
 
-    private const string MinimalManualText = "F5: Exit debug map";
+    private struct KeyInstruction
+    {
+        public string Key;
+        public string Description;
+        public string Modifier;
+
+        public KeyInstruction(string key, string description, string modifier = null)
+        {
+            Key = key;
+            Description = description;
+            Modifier = modifier;
+        }
+    }
+
+    private static readonly KeyInstruction[] VisualInstructions = new KeyInstruction[]
+    {
+        new KeyInstruction("RMB", "Teleport to room"),
+        new KeyInstruction("Enter", "Teleport to room"),
+        new KeyInstruction("Ctrl", "Restart chapter", "Hold"),
+        new KeyInstruction("Shift", "Teleport to mouse", "Hold"),
+        new KeyInstruction("ESC", "Exit debug map"),
+        new KeyInstruction("Q", "Show red berries"),
+        new KeyInstruction("F1", "Show keys"),
+        new KeyInstruction("F2", "Center on respawn"),
+        new KeyInstruction("F6", "Exit debug map"),
+        new KeyInstruction("P", "Toggle PCG Mode"),
+        new KeyInstruction("G", "Generate PCG Content")
+    };
+
+    private const string MinimalManualText = "F6: Exit debug map";
 
     private static readonly int ZoomIntervalFrames = 6;
 
@@ -206,7 +235,6 @@ public class EnhancedMapEditor : Scene
     public override void Render()
     {
         orig_Render();
-        RenderManualText();
         RenderKeys();
         RenderHighlightCurrentRoom();
         
@@ -214,6 +242,9 @@ public class EnhancedMapEditor : Scene
         {
             RenderPCGMenu();
         }
+        
+        // Render our visual manual text on top of everything
+        RenderManualText();
     }
 
     [MethodImpl(MethodImplOptions.NoInlining)]
@@ -787,8 +818,8 @@ public class EnhancedMapEditor : Scene
 
     private void HandlePCGControls()
     {
-        // F5 exits the map editor (disables it)
-        if (MInput.Keyboard.Pressed(Keys.F5))
+        // F6 exits the map editor (disables it)
+        if (MInput.Keyboard.Pressed(Keys.F6))
         {
             if (CurrentSession != null)
             {
@@ -1147,12 +1178,76 @@ public class EnhancedMapEditor : Scene
 
     private void RenderManualText()
     {
-        Draw.SpriteBatch.Begin();
-        string text = ManualText;
-        Vector2 vector = Draw.DefaultFont.MeasureString(text);
-        Draw.Rect((float)Engine.ViewWidth - vector.X - 20f, (float)Engine.ViewHeight - vector.Y - 20f, vector.X + 20f, vector.Y + 20f, Color.Black * 0.8f);
-        Draw.SpriteBatch.DrawString(Draw.DefaultFont, text, new Vector2((float)Engine.ViewWidth - vector.X - 10f, (float)Engine.ViewHeight - vector.Y - 10f), Color.White);
+        Draw.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, RasterizerState.CullNone, null, Engine.ScreenMatrix);
+
+        // First, cover the original text area with black
+        Vector2 originalTextSize = Draw.DefaultFont.MeasureString(ManualText);
+        float originalX = Engine.ViewWidth - originalTextSize.X - 10f;
+        float originalY = Engine.ViewHeight - originalTextSize.Y - 10f;
+        Draw.Rect(originalX - 10f, originalY - 10f, originalTextSize.X + 20f, originalTextSize.Y + 20f, Color.Black);
+
+        // Calculate panel dimensions
+        const float keyWidth = 50f;
+        const float keyHeight = 24f;
+        const float keySpacing = 8f;
+        const float rowSpacing = 32f;
+        const float padding = 16f;
+        const float modifierOffset = 45f;
+
+        float panelWidth = 380f;
+        float panelHeight = padding * 2 + (VisualInstructions.Length * rowSpacing) - rowSpacing + padding + 20f;
+        float panelX = Engine.ViewWidth - panelWidth - 10f;
+        float panelY = Engine.ViewHeight - panelHeight - 10f;
+
+        // Draw opaque background panel to cover original text
+        Draw.Rect(panelX, panelY, panelWidth, panelHeight, Color.Black);
+        Draw.HollowRect(panelX, panelY, panelWidth, panelHeight, Color.Cyan * 0.6f);
+
+        // Draw title
+        ActiveFont.DrawOutline("DEBUG MAP CONTROLS", new Vector2(panelX + padding, panelY + padding - 5f),
+            Vector2.Zero, Vector2.One * 0.6f, Color.Cyan, 2f, Color.Black);
+
+        // Draw each instruction with visual key representation
+        for (int i = 0; i < VisualInstructions.Length; i++)
+        {
+            KeyInstruction instruction = VisualInstructions[i];
+            float rowY = panelY + padding + 20f + (i * rowSpacing);
+            float keyX = panelX + padding;
+
+            // Draw modifier if present
+            if (!string.IsNullOrEmpty(instruction.Modifier))
+            {
+                DrawKeySprite(keyX, rowY, instruction.Modifier, keyWidth * 0.7f, keyHeight, Color.Orange);
+                keyX += modifierOffset;
+            }
+
+            // Draw main key
+            DrawKeySprite(keyX, rowY, instruction.Key, keyWidth, keyHeight, Color.White);
+
+            // Draw description text
+            Vector2 textPos = new Vector2(keyX + keyWidth + keySpacing, rowY + keyHeight / 2f);
+            ActiveFont.Draw(instruction.Description, textPos, Vector2.Zero, Vector2.One * 0.5f, Color.LightGray);
+        }
+
         Draw.SpriteBatch.End();
+    }
+
+    private void DrawKeySprite(float x, float y, string text, float width, float height, Color color)
+    {
+        // Draw key background with rounded corners effect
+        Color bgColor = color * 0.3f;
+        Color borderColor = color * 0.8f;
+
+        // Main key body
+        Draw.Rect(x, y, width, height, bgColor);
+        Draw.HollowRect(x, y, width, height, borderColor);
+
+        // Draw key text centered
+        Vector2 textPos = new Vector2(x + width / 2f, y + height / 2f + 2f);
+        ActiveFont.Draw(text, textPos, new Vector2(0.5f, 0.5f), Vector2.One * 0.5f, color);
+
+        // Add subtle highlight for 3D effect
+        Draw.Rect(x + 2f, y + 2f, width - 4f, 2f, color * 0.15f);
     }
 
     private void RenderKeys()

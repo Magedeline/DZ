@@ -48,16 +48,11 @@ public class BeyondSummitVignette : Scene
     {
         this.session = session;
         this.snow = snow ?? new HiresSnow();
-
-        titleText = Dialog.Has("MaggyHelper_BEYONDSUMMIT_TITLE") 
-            ? Dialog.Clean("MaggyHelper_BEYONDSUMMIT_TITLE") 
-            : "BEYOND THE SUMMIT";
-    }
-
-    public override void Begin()
-    {
-        base.Begin();
         Add(snow);
+
+        titleText = Dialog.Has("MaggyHelper_BEYONDSUMMIT_TITLE")
+            ? Dialog.Clean("MaggyHelper_BEYONDSUMMIT_TITLE")
+            : "BEYOND THE SUMMIT";
 
         // Force the intended Chapter 9 music for this intro vignette.
         Audio.SetMusic(VignetteMusicEvent, true, true);

@@ -127,6 +127,14 @@ public class InGameMapEditor : Entity
         Visible = false;
     }
 
+    /// <summary>
+    /// Public method to toggle the editor on/off
+    /// </summary>
+    public void Toggle()
+    {
+        ToggleEditor();
+    }
+
     public override void Update()
     {
         base.Update();

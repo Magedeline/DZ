@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Celeste;
 using Monocle;
 
-namespace Celeste.Editor;
+namespace Celeste.Mod.MaggyHelper;
 
 /// <summary>
 /// PCG Service for procedural content generation using loenn-mcp integration
@@ -241,6 +241,128 @@ public static class PCGService
             "creative",
             "deterministic",
             "architect"
+        };
+    }
+    
+    /// <summary>
+    /// Generate a hybrid PCG map using room templates + procedural elements
+    /// </summary>
+    public static async Task<bool> GenerateHybridMapAsync(
+        string templateLibraryPath,
+        string outputPath,
+        int seed = -1,
+        int roomCount = 10,
+        int difficulty = 3,
+        string connectionStrategy = "pathway",
+        string placementStrategy = "balanced")
+    {
+        try
+        {
+            Logger.Log(LogLevel.Info, LogTag, 
+                $"Starting hybrid PCG generation: seed={seed}, rooms={roomCount}, difficulty={difficulty}");
+            
+            // Convert string parameters to enums
+            DifficultyTier diffTier = (DifficultyTier)difficulty;
+            ConnectionStrategy connStrategy = ParseConnectionStrategy(connectionStrategy);
+            PlacementStrategy placeStrategy = ParsePlacementStrategy(placementStrategy);
+            
+            // Call the hybrid generator
+            bool success = await HybridPCGGenerator.GenerateHybridMapAsync(
+                templateLibraryPath,
+                outputPath,
+                seed,
+                roomCount,
+                diffTier,
+                connStrategy,
+                placeStrategy);
+            
+            return success;
+        }
+        catch (Exception ex)
+        {
+            Logger.Log(LogLevel.Error, LogTag, $"Hybrid PCG generation failed: {ex.Message}");
+            return false;
+        }
+    }
+    
+    /// <summary>
+    /// Build template library from existing maps for hybrid PCG
+    /// </summary>
+    public static async Task<bool> BuildTemplateLibraryAsync(
+        string[] mapPaths,
+        string outputPath = "PCG/Templates/library.json")
+    {
+        try
+        {
+            Logger.Log(LogLevel.Info, LogTag, 
+                $"Building template library from {mapPaths.Length} maps");
+            
+            bool success = await HybridPCGGenerator.BuildTemplateLibraryAsync(mapPaths, outputPath);
+            
+            return success;
+        }
+        catch (Exception ex)
+        {
+            Logger.Log(LogLevel.Error, LogTag, $"Template library build failed: {ex.Message}");
+            return false;
+        }
+    }
+    
+    /// <summary>
+    /// Get available connection strategies for hybrid PCG
+    /// </summary>
+    public static string[] GetConnectionStrategies()
+    {
+        return new string[]
+        {
+            "pathway",
+            "labyrinth",
+            "branching",
+            "linear"
+        };
+    }
+    
+    /// <summary>
+    /// Get available placement strategies for hybrid PCG
+    /// </summary>
+    public static string[] GetPlacementStrategies()
+    {
+        return new string[]
+        {
+            "minimal",
+            "balanced",
+            "dense",
+            "chaotic"
+        };
+    }
+    
+    /// <summary>
+    /// Parse connection strategy string to enum
+    /// </summary>
+    private static ConnectionStrategy ParseConnectionStrategy(string strategy)
+    {
+        return strategy.ToLower() switch
+        {
+            "pathway" => ConnectionStrategy.Pathway,
+            "labyrinth" => ConnectionStrategy.Labyrinth,
+            "branching" => ConnectionStrategy.Branching,
+            "linear" => ConnectionStrategy.Linear,
+            _ => ConnectionStrategy.Pathway
+        };
+    }
+    
+    /// <summary>
+    /// Parse placement strategy string to enum
+    /// </summary>
+    private static PlacementStrategy ParsePlacementStrategy(string strategy)
+    {
+        return strategy.ToLower() switch
+        {
+            "minimal" => PlacementStrategy.Minimal,
+            "balanced" => PlacementStrategy.Balanced,
+            "dense" => PlacementStrategy.Dense,
+            "chaotic" => PlacementStrategy.Chaotic,
+            _ => PlacementStrategy.Balanced
         };
     }
 }

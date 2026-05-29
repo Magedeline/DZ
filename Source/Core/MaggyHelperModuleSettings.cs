@@ -43,6 +43,12 @@ namespace Celeste.Mod.MaggyHelper
         [DefaultButtonBinding(Buttons.RightStick, Keys.F8)]
         public ButtonBinding HotReloadUI { get; set; }
 
+        [DefaultButtonBinding(Buttons.BigButton, Keys.F9)]
+        public ButtonBinding DebugMapEditor { get; set; }
+
+        [DefaultButtonBinding(Buttons.LeftTrigger, Keys.F10)]
+        public ButtonBinding InGameMapEditor { get; set; }
+
         #endregion
 
         public bool BossesExampleResetKeysForSession { get; set; }

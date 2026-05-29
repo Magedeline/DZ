@@ -1321,6 +1321,151 @@ namespace Celeste.Mod.MaggyHelper
             Engine.Commands?.Log("Return to overworld to see the changes.");
         }
 
+        // =====================================================================
+        //  PCG Console Commands
+        // =====================================================================
+
+        /// <summary>
+        /// Console command: maggy_pcg_generate - Generate a hybrid PCG map.
+        /// Usage: maggy_pcg_generate [seed] [roomCount] [difficulty] [outputPath]
+        /// </summary>
+        [Command("maggy_pcg_generate", "Generate a hybrid PCG map. Usage: maggy_pcg_generate [seed] [roomCount] [difficulty] [outputPath]")]
+        private static async void CmdPcgGenerate(int seed = -1, int roomCount = 8, int difficulty = 2, string outputPath = "")
+        {
+            if (string.IsNullOrEmpty(outputPath))
+            {
+                outputPath = $"PCG/Generated/pcg_map_{DateTime.Now:yyyyMMdd_HHmmss}.bin";
+            }
+
+            string templateLibrary = "PCG/Templates/library.json";
+            if (!File.Exists(templateLibrary))
+            {
+                // Try to build a library from existing maps
+                string mapsDir = "Maps";
+                if (Directory.Exists(mapsDir))
+                {
+                    var mapFiles = Directory.GetFiles(mapsDir, "*.bin", SearchOption.AllDirectories).Take(5).ToArray();
+                    if (mapFiles.Length > 0)
+                    {
+                        Engine.Commands?.Log("[MaggyHelper] Building template library from existing maps...");
+                        await PCGService.BuildTemplateLibraryAsync(mapFiles, templateLibrary);
+                    }
+                }
+            }
+
+            if (!File.Exists(templateLibrary))
+            {
+                Engine.Commands?.Log("[MaggyHelper] No template library found. Use maggy_pcg_extract to build one from existing maps first.");
+                return;
+            }
+
+            Engine.Commands?.Log($"[MaggyHelper] Generating hybrid PCG map: seed={seed}, rooms={roomCount}, difficulty={difficulty}...");
+            bool success = await PCGService.GenerateHybridMapAsync(
+                templateLibrary,
+                outputPath,
+                seed,
+                roomCount,
+                difficulty,
+                "pathway",
+                "balanced");
+
+            if (success)
+            {
+                string fullPath = Path.GetFullPath(outputPath);
+                Engine.Commands?.Log($"[MaggyHelper] Map generated successfully!");
+                Engine.Commands?.Log($"  Path: {fullPath}");
+                Engine.Commands?.Log($"  Load with: maggy_pcg_load {outputPath}");
+            }
+            else
+            {
+                Engine.Commands?.Log("[MaggyHelper] Map generation failed. Check log for details.");
+            }
+        }
+
+        /// <summary>
+        /// Console command: maggy_pcg_load - Load a generated .bin map for playtesting.
+        /// Usage: maggy_pcg_load [mapPath]
+        /// </summary>
+        [Command("maggy_pcg_load", "Load a generated PCG map for playtesting. Usage: maggy_pcg_load [mapPath]")]
+        private static void CmdPcgLoad(string mapPath = "")
+        {
+            if (string.IsNullOrEmpty(mapPath))
+            {
+                var generatedDir = "PCG/Generated";
+                if (Directory.Exists(generatedDir))
+                {
+                    var newest = Directory.GetFiles(generatedDir, "*.bin")
+                        .Select(f => new FileInfo(f))
+                        .OrderByDescending(fi => fi.LastWriteTime)
+                        .FirstOrDefault();
+                    if (newest != null)
+                        mapPath = newest.FullName;
+                }
+            }
+
+            if (string.IsNullOrEmpty(mapPath) || !File.Exists(mapPath))
+            {
+                Engine.Commands?.Log("[MaggyHelper] No generated map found. Generate one first with maggy_pcg_generate.");
+                return;
+            }
+
+            // For playtesting, copy the generated map into the mod's map folder
+            // and launch it via a temporary session using the current chapter's SID
+            // with a direct level loader approach.
+            string testMapName = $"pcg_test_{Path.GetFileName(mapPath)}";
+            string testMapDir = Path.Combine("Maps", "PCG_Test");
+            Directory.CreateDirectory(testMapDir);
+            string destPath = Path.Combine(testMapDir, testMapName);
+            File.Copy(mapPath, destPath, true);
+
+            Engine.Commands?.Log($"[MaggyHelper] Copied map to {destPath}");
+            Engine.Commands?.Log("[MaggyHelper] To playtest: register this map in your everest.yaml or load it through the Enhanced Map Editor.");
+        }
+
+        /// <summary>
+        /// Console command: maggy_pcg_extract - Extract room templates from an existing map.
+        /// Usage: maggy_pcg_extract [mapPath] [outputDir]
+        /// </summary>
+        [Command("maggy_pcg_extract", "Extract room templates from a map. Usage: maggy_pcg_extract [mapPath] [outputDir]")]
+        private static void CmdPcgExtract(string mapPath = "", string outputDir = "PCG/Templates")
+        {
+            if (string.IsNullOrEmpty(mapPath))
+            {
+                // Default to current session map if in a level
+                if (Engine.Scene is Level level && level.Session?.MapData?.Filename != null)
+                {
+                    mapPath = level.Session.MapData.Filename + ".bin";
+                    // Filename is usually relative like "Maps/Maggy/ASide/01_City"
+                    mapPath = Path.Combine(Everest.Content.Path, mapPath);
+                }
+                else
+                {
+                    Engine.Commands?.Log("[MaggyHelper] Usage: maggy_pcg_extract [mapPath] [outputDir]");
+                    Engine.Commands?.Log("  Or run while in a level to extract from the current map.");
+                    return;
+                }
+            }
+
+            if (!File.Exists(mapPath))
+            {
+                Engine.Commands?.Log($"[MaggyHelper] Map file not found: {mapPath}");
+                return;
+            }
+
+            Engine.Commands?.Log($"[MaggyHelper] Extracting templates from: {mapPath} ...");
+            var templates = RoomTemplateLoader.ExtractTemplatesFromMap(mapPath, outputDir);
+            if (templates.Count > 0)
+            {
+                Engine.Commands?.Log($"[MaggyHelper] Extracted {templates.Count} templates to {outputDir}");
+                foreach (var t in templates.Take(5))
+                    Engine.Commands?.Log($"  - {t.Name} ({t.Width}x{t.Height}, {t.Type}, {t.Difficulty})");
+            }
+            else
+            {
+                Engine.Commands?.Log("[MaggyHelper] No templates extracted. Check log for errors.");
+            }
+        }
+
         /// <summary>
         /// Checks if Chapter 10 (Ruins) is unlocked.
         /// </summary>

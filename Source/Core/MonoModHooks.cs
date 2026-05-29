@@ -3,6 +3,7 @@ using System.Reflection;
 using Celeste.Entities;
 using Celeste.Extensions;
 using Celeste;
+using Celeste.Editor;
 using Microsoft.Xna.Framework;
 using Mono.Cecil.Cil;
 using Monocle;
@@ -30,6 +31,7 @@ namespace Celeste
         private static Hook mapEditorCtorHook;
         private static Hook mapEditorUpdateHook;
         private static Hook levelTemplateCctorHook;
+        private static On.Celeste.Level.hook_Update levelUpdateHook;
 
         // ── Public API ───────────────────────────────────────────────────────────
 
@@ -114,6 +116,14 @@ namespace Celeste
             {
                 levelLoadLevelHook = new On.Celeste.Level.hook_LoadLevel(Hook_Level_LoadLevel);
                 On.Celeste.Level.LoadLevel += levelLoadLevelHook;
+            }
+
+            // ─── 5.5. Debug Mode Map Editor Hook ────────────────────────────────
+            // Hook Level.Update to handle F9 key press for opening enhanced map editor in debug mode
+            if (levelUpdateHook == null)
+            {
+                levelUpdateHook = new On.Celeste.Level.hook_Update(Hook_Level_Update);
+                On.Celeste.Level.Update += levelUpdateHook;
             }
 
             // ─── 6. Enhanced Map Editor with PCG Integration ─────────────────────
@@ -252,6 +262,11 @@ namespace Celeste
             if (levelLoadLevelHook != null)
                 On.Celeste.Level.LoadLevel -= levelLoadLevelHook;
             levelLoadLevelHook = null;
+
+            // Remove debug mode map editor hook
+            if (levelUpdateHook != null)
+                On.Celeste.Level.Update -= levelUpdateHook;
+            levelUpdateHook = null;
 
             // Remove MapEditor hook
             mapEditorCtorHook?.Dispose();
@@ -483,11 +498,48 @@ namespace Celeste
             {
                 self.Tracker.GetEntity<global::Celeste.Player>()?.RestorePersistentState();
                 KirbyPlayerSpawner.EnsureRoomState(self);
+
+                // Add InGameMapEditor entity if not already present
+                if (self.Entities.FindFirst<InGameMapEditor>() == null)
+                {
+                    self.Add(new InGameMapEditor());
+                    Logger.Log(LogLevel.Info, "MaggyHelper", "[InGameMapEditor] Added to level");
+                }
             }
             catch (Exception ex)
             {
                 Logger.Log(LogLevel.Warn, "MaggyHelper",
                     $"[PlayerState] Error restoring persistent player state: {ex.Message}\n{ex.StackTrace}");
+            }
+        }
+
+        private static void Hook_Level_Update(On.Celeste.Level.orig_Update orig, Level self)
+        {
+            // Call the original Update first
+            orig(self);
+
+            var settings = MaggyHelperModule.Settings;
+
+            // Check if debug mode is enabled and F9 key is pressed
+            if (settings?.DebugMode == true && settings.DebugMapEditor.Pressed)
+            {
+                // Open the enhanced map editor
+                if (self.Session != null)
+                {
+                    Engine.Scene = new Editor.EnhancedMapEditor(self.Session.Area);
+                    Logger.Log(LogLevel.Info, "MaggyHelper", "[DebugMapEditor] Enhanced map editor opened via F9");
+                }
+            }
+
+            // Check if F10 key is pressed to toggle in-game map editor
+            if (settings.InGameMapEditor.Pressed == true)
+            {
+                var inGameEditor = self.Entities.FindFirst<InGameMapEditor>();
+                if (inGameEditor != null)
+                {
+                    inGameEditor.Toggle();
+                    Logger.Log(LogLevel.Info, "MaggyHelper", "[InGameMapEditor] Toggled via F10");
+                }
             }
         }
 

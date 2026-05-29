@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Celeste.Mod.Core;
+using Celeste.Mod.MaggyHelper;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -86,12 +87,12 @@ public class EnhancedMapEditor : Scene
         new KeyInstruction("Q", "Show red berries"),
         new KeyInstruction("F1", "Show keys"),
         new KeyInstruction("F2", "Center on respawn"),
-        new KeyInstruction("F6", "Exit debug map"),
+        new KeyInstruction("L", "Toggle debug map"),
         new KeyInstruction("P", "Toggle PCG Mode"),
         new KeyInstruction("G", "Generate PCG Content")
     };
 
-    private const string MinimalManualText = "F6: Exit debug map";
+    private const string MinimalManualText = "L: Toggle debug map";
 
     private static readonly int ZoomIntervalFrames = 6;
 
@@ -456,6 +457,7 @@ public class EnhancedMapEditor : Scene
     static EnhancedMapEditor()
     {
         orig_ctor_EnhancedMapEditor();
+        orig_RenderManualText();
     }
 
     [MethodImpl(MethodImplOptions.NoInlining)]
@@ -818,14 +820,23 @@ public class EnhancedMapEditor : Scene
 
     private void HandlePCGControls()
     {
-        // F6 exits the map editor (disables it)
-        if (MInput.Keyboard.Pressed(Keys.F6))
+        // L toggles the map editor - opens if closed, exits if open
+        if (MInput.Keyboard.Pressed(Keys.L))
         {
             if (CurrentSession != null)
             {
+                // Exit debug map
                 Input.ESC.ConsumePress();
                 Input.MenuCancel.ConsumePress();
                 Engine.Scene = new LevelLoader(CurrentSession);
+                return;
+            }
+            else if (Engine.Scene is Level level)
+            {
+                // Open debug map
+                Input.ESC.ConsumePress();
+                Input.MenuCancel.ConsumePress();
+                Engine.Scene = new EnhancedMapEditor(level.Session.Area);
                 return;
             }
         }
@@ -1176,15 +1187,16 @@ public class EnhancedMapEditor : Scene
         Draw.SpriteBatch.End();
     }
 
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    private static void orig_RenderManualText()
+    {
+        // Hook to prevent original text rendering
+        // This method is called by the base MapEditor class
+    }
+
     private void RenderManualText()
     {
         Draw.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, RasterizerState.CullNone, null, Engine.ScreenMatrix);
-
-        // First, cover the original text area with black
-        Vector2 originalTextSize = Draw.DefaultFont.MeasureString(ManualText);
-        float originalX = Engine.ViewWidth - originalTextSize.X - 10f;
-        float originalY = Engine.ViewHeight - originalTextSize.Y - 10f;
-        Draw.Rect(originalX - 10f, originalY - 10f, originalTextSize.X + 20f, originalTextSize.Y + 20f, Color.Black);
 
         // Calculate panel dimensions
         const float keyWidth = 50f;
@@ -1197,9 +1209,12 @@ public class EnhancedMapEditor : Scene
         float panelWidth = 380f;
         float panelHeight = padding * 2 + (VisualInstructions.Length * rowSpacing) - rowSpacing + padding + 20f;
         float panelX = Engine.ViewWidth - panelWidth - 10f;
-        float panelY = Engine.ViewHeight - panelHeight - 10f;
+        float panelY = 10f;
 
-        // Draw opaque background panel to cover original text
+        // Draw large black rectangle to cover entire bottom-right area where original text appears
+        Draw.Rect(panelX - 50f, panelY - 50f, panelWidth + 100f, panelHeight + 100f, Color.Black);
+        
+        // Draw opaque background panel
         Draw.Rect(panelX, panelY, panelWidth, panelHeight, Color.Black);
         Draw.HollowRect(panelX, panelY, panelWidth, panelHeight, Color.Cyan * 0.6f);
 

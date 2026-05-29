@@ -17,6 +17,7 @@
         <ZipFiles_Audio>..\Audio\**\*.*</ZipFiles_Audio>
         <ZipFiles_Maps>..\Maps\**\*.*;..\Dialog\**\*.*;..\Tutorials\**\*.*;..\Graphics\AnimatedTiles.xml;..\Graphics\BackgroundTiles.xml;..\Graphics\ForegroundTiles.xml;..\DecalRegistry.xml</ZipFiles_Maps>
         <NoWarn>NU1701;CS0414;CS0649;CS0169;CS0618</NoWarn>
+        <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     </PropertyGroup>
 
     <!--Disable copy-local for direct assembly references only. Package runtime assets are needed by Everest at load time. -->
@@ -56,6 +57,10 @@
         <Reference Include="$(CelestePrefix)\FNA.dll" Private="false" />
         <!-- Spine MonoGame/FNA runtime (source-only, built from Libs/SpineMonoGame) -->
         <ProjectReference Include="..\Libs\SpineMonoGame\SpineMonoGame.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Include="**\*.cs" Exclude="obj\**\*.cs" />
     </ItemGroup>
 
     <Target Name="CopyFiles" AfterTargets="Build">

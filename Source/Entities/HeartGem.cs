@@ -182,7 +182,7 @@ PFakeShine = new ParticleType
                     if (this.IsAstral) {
                         Audio.Play("event:/game/general/crystalheart_pulse", this.Position);
                     } else if (this.IsFake) {
-                        Audio.Play("event:/desolo_zantas/final_content/game/19_the_end/fakeheart_pulse", this.Position);
+                        Audio.Play("event:/pusheen/final_content/game/19_the_end/fakeheart_pulse", this.Position);
                     } else {
                         Audio.Play("event:/game/general/crystalheart_pulse", this.Position);
                     }
@@ -265,7 +265,7 @@ scene.Add(this.fakeRightWall = new InvisibleBarrier(new Vector2(X + 160f, Y - 20
            if (this.IsAstral) {
       Audio.Play("event:/game/general/crystalheart_bounce", this.Position);
           } else if (this.IsFake) {
-      Audio.Play("event:/desolo_zantas/final_content/game/19_the_end/fakeheart_bounce", this.Position);
+      Audio.Play("event:/pusheen/final_content/game/19_the_end/fakeheart_bounce", this.Position);
           } else {
         Audio.Play("event:/game/general/crystalheart_bounce", this.Position);
          }
@@ -369,15 +369,15 @@ foreach (Follower follower in player.Leader.Followers) {
  }
      string text = "event:/game/general/crystalheart_blue_get";
           if (this.IsAstral) {
-                text = "event:/desolo_zantas/game/general/crystalheart_astral_void_get";
+                text = "event:/pusheen/game/general/crystalheart_astral_void_get";
             } else if (this.IsFake) {
-                text = "event:/desolo_zantas/final_content/game/19_the_end/fakeheart_get";
+                text = "event:/pusheen/final_content/game/19_the_end/fakeheart_get";
             } else if (area.Mode == AreaMode.BSide) {
                 text = "event:/game/general/crystalheart_red_get";
             } else if (area.Mode == AreaMode.CSide) {
                 text = "event:/game/general/crystalheart_gold_get";
             } else if (area.Mode == (AreaMode)3) {
-                text = "event:/desolo_zantas/game/general/crystalheart_rainbow_get";
+                text = "event:/pusheen/game/general/crystalheart_rainbow_get";
             }
      this.sfx = SoundEmitter.Play(text, this, null);
             Add(new LevelEndingHook(delegate () {
@@ -565,7 +565,7 @@ Glitch.Value = 0.75f;
      yield return null;
      }
             yield return 0.25f;
-            level.Session.Audio.Music.Event = "event:/desolo_zantas/final_content/music/lvl19/inmyway";
+            level.Session.Audio.Music.Event = "event:/pusheen/final_content/music/lvl19/inmyway";
    level.Session.Audio.Apply(false);
             player.Active = true;
     player.Depth = 0;
@@ -646,7 +646,7 @@ Glitch.Value = 0.75f;
        level.Session.SetFlag("wrong_heart");
 level.Frozen = false;
          level.FormationBackdrop.Display = false;
-      level.Session.Audio.Music.Event = "event:/desolo_zantas/final_content/music/lvl19/inmyway";
+      level.Session.Audio.Music.Event = "event:/pusheen/final_content/music/lvl19/inmyway";
             level.Session.Audio.Apply();
 
             global::Celeste.Player entity1 = this.Scene.Tracker.GetEntity<global::Celeste.Player>();

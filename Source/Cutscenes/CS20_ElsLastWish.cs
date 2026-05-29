@@ -23,11 +23,11 @@ namespace Celeste
         private const string FLAG_ELS_LAST_WISH_DONE = "ch20_els_last_wish_done";
 
         // SFX
-        private const string SFX_PUNCH_IMPACT      = "event:/desolo_zantas/final_content/game/20_last_push/els_punch_impact";
-        private const string SFX_HEART_PULLED       = "event:/desolo_zantas/final_content/game/20_last_push/els_heart_pull";
-        private const string SFX_HEART_SHATTERED    = "event:/desolo_zantas/final_content/game/20_last_push/els_heart_shatter";
-        private const string SFX_TESSERACT_GRAB     = "event:/desolo_zantas/final_content/game/20_last_push/tesseract_grab";
-        private const string SFX_DARK_AMBIENCE      = "event:/desolo_zantas/final_content/game/20_last_push/els_last_wish_ambience";
+        private const string SFX_PUNCH_IMPACT      = "event:/pusheen/final_content/game/20_last_push/els_punch_impact";
+        private const string SFX_HEART_PULLED       = "event:/pusheen/final_content/game/20_last_push/els_heart_pull";
+        private const string SFX_HEART_SHATTERED    = "event:/pusheen/final_content/game/20_last_push/els_heart_shatter";
+        private const string SFX_TESSERACT_GRAB     = "event:/pusheen/final_content/game/20_last_push/tesseract_grab";
+        private const string SFX_DARK_AMBIENCE      = "event:/pusheen/final_content/game/20_last_push/els_last_wish_ambience";
 
         #endregion
 
@@ -319,7 +319,7 @@ namespace Celeste
 
             // Thud
             level.Shake(0.3f);
-            Audio.Play("event:/desolo_zantas/char/kirby/landing", player.Position);
+            Audio.Play("event:/pusheen/char/kirby/landing", player.Position);
 
             // Brief beat of silence — scene ends
             yield return 1.5f;

@@ -159,7 +159,7 @@ public class CS05_Ending : CutsceneEntity
         oshiro.Add(new VertexLight(new Vector2(0f, -8f), Color.White, 1f, 16, 32));
         yield return CutsceneEntity.CameraTo(player.CameraTarget + new Vector2(0f, 40f), 1f, Ease.CubeOut);
         yield return 1.5f;
-        Audio.SetMusic("event:/desolo_zantas/music/lvl5/intro");
+        Audio.SetMusic("event:/pusheen/music/lvl5/intro");
         yield return 3f;
         Audio.Play("event:/char/oshiro/chat_get_up", oshiro.Position);
         oshiroSprite.Play("recover");
@@ -295,7 +295,7 @@ public class CS05_Ending : CutsceneEntity
     public override void OnEnd(Level level)
     {
         timeRateModifier.ResetTimeRateMultiplier();
-        Audio.SetMusic("event:/desolo_zantas/music/lvl5/intro");
+        Audio.SetMusic("event:/pusheen/music/lvl5/intro");
         Audio.Stop(smashSfx);
         Level.CompleteArea(true, true);
         SpotlightWipe.FocusPoint = new Vector2(192f, 120f);

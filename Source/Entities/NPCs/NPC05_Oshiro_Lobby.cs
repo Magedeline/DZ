@@ -41,7 +41,7 @@ public class NPC05_Oshiro_Lobby : NPC
         base.Added(scene);
         if (base.Session.GetFlag("oshiro_resort_talked_1"))
         {
-            base.Session.Audio.Music.Event = "event:/desolo_zantas/music/lvl5/explore";
+            base.Session.Audio.Music.Event = "event:/pusheen/music/lvl5/explore";
             base.Session.Audio.Music.Progress = 1;
             base.Session.Audio.Apply(forceSixteenthNoteHack: false);
             RemoveSelf();

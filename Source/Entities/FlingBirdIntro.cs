@@ -101,7 +101,7 @@ namespace Celeste.Entities
     [MethodImpl(MethodImplOptions.NoInlining)]
     private IEnumerator FlyTo(Vector2 to)
     {
-        Add(new SoundSource().Play("event:/desolo_zantas/final_content/game/19_the_end/flappybird"));
+        Add(new SoundSource().Play("event:/pusheen/final_content/game/19_the_end/flappybird"));
         Sprite.Play("fly");
         Vector2 from = Position;
         for (float p = 0f; p < 1f; p += Engine.DeltaTime * 0.3f)
@@ -202,11 +202,11 @@ namespace Celeste.Entities
         inCutscene = true;
         if (!crashes)
         {
-            CrashSfxEmitter = SoundEmitter.Play("event:/desolo_zantas/final_content/game/19_the_end/flappybird", this);
+            CrashSfxEmitter = SoundEmitter.Play("event:/pusheen/final_content/game/19_the_end/flappybird", this);
         }
         else
         {
-            CrashSfxEmitter = SoundEmitter.Play("event:/desolo_zantas/final_content/game/19_the_end/killscene_start", this);
+            CrashSfxEmitter = SoundEmitter.Play("event:/pusheen/final_content/game/19_the_end/killscene_start", this);
         }
         player.StateMachine.State = Player.StDummy;
         player.DummyGravity = false;

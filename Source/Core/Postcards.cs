@@ -186,13 +186,13 @@ public class PostcardMaggy : Entity
     }
 
     public PostcardMaggy(string msg)
-        : this(msg, "event:/desolo_zantas/ui/main/postcard_csides_in", "event:/desolo_zantas/ui/main/postcard_csides_out")
+        : this(msg, "event:/pusheen/ui/main/postcard_csides_in", "event:/pusheen/ui/main/postcard_csides_out")
     {
     }
 
     public static PostcardMaggy CreateDSides(string msg)
     {
-        return new PostcardMaggy(msg, "event:/desolo_zantas/ui/main/postcard_dsides_in", "event:/desolo_zantas/ui/main/postcard_dsides_out");
+        return new PostcardMaggy(msg, "event:/pusheen/ui/main/postcard_dsides_in", "event:/pusheen/ui/main/postcard_dsides_out");
     }
 
     public PostcardMaggy(string msg, string soundId)
@@ -223,7 +223,7 @@ public class PostcardMaggy : Entity
         }
         else if (soundId == "variants")
         {
-            return "event:/desolo_zantas/final_content/ui/postcard_desolo_variants";
+            return "event:/pusheen/final_content/ui/postcard_desolo_variants";
         }
         else
         {

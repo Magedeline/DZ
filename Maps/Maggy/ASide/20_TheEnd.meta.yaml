@@ -14,43 +14,43 @@ BloomStrength: 1.0
 
 Modes:
   - AudioState:
-      Music: event:/desolo_zantas/music/lvl20/main
-      Ambience: event:/desolo_zantas/env/20_main
+      Music: event:/pusheen/music/lvl20/main
+      Ambience: event:/pusheen/env/20_main
     Inventory: Default
     HeartIsEnd: false
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/desolo_zantas/music/lvl20/main
-      Ambience: event:/desolo_zantas/env/20_main
+      Music: event:/pusheen/music/lvl20/main
+      Ambience: event:/pusheen/env/20_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/desolo_zantas/music/lvl20/main
-      Ambience: event:/desolo_zantas/env/20_main
+      Music: event:/pusheen/music/lvl20/main
+      Ambience: event:/pusheen/env/20_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/desolo_zantas/music/lvl20/main
-      Ambience: event:/desolo_zantas/env/20_main
+      Music: event:/pusheen/music/lvl20/main
+      Ambience: event:/pusheen/env/20_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/desolo_zantas/music/DSide/20_theend
-      Ambience: event:/desolo_zantas/env/20_main
+      Music: event:/pusheen/music/DSide/20_theend
+      Ambience: event:/pusheen/env/20_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/desolo_zantas/music/DXSide/20_theend
-      Ambience: event:/desolo_zantas/env/20_main
+      Music: event:/pusheen/music/DXSide/20_theend
+      Ambience: event:/pusheen/env/20_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
-    BackgroundMusic: event:/desolo_zantas/music/menu/level_select
-    BackgroundAmbience: event:/desolo_zantas/final_content/env/gen_last_push
+    BackgroundMusic: event:/pusheen/music/menu/level_select
+    BackgroundAmbience: event:/pusheen/final_content/env/gen_last_push
     BackgroundMusicParams:
         moon_and_blackhole: 1
     MarkerTexture: marker/runNoBackpack

@@ -113,7 +113,7 @@ namespace Celeste
             
             if (audioPlaying)
             {
-                Audio.Play("event:/desolo_zantas/final_content/music/lvl19/part01");
+                Audio.Play("event:/pusheen/final_content/music/lvl19/part01");
             }
             
             while (pageIndex < pages.Count)

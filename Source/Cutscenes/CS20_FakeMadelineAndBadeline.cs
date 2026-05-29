@@ -66,7 +66,7 @@ namespace Celeste.Cutscenes
             // ── Els' reveal: flash and screen shake before the "final act" ──────────
             yield return 0.2f;
 
-            Audio.Play("event:/desolo_zantas/final_content/game/19_the_end/glitch_long",
+            Audio.Play("event:/pusheen/final_content/game/19_the_end/glitch_long",
                        player.Position);
 
             level.Shake(0.8f);

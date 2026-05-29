@@ -6,7 +6,7 @@ namespace Celeste.Entities
     [CustomEntity(ids: "MaggyHelper/GalactaKnightClone,MaggyHelper/GalacticKnightClone")]
     [Tracked]
     [HotReloadable]
-    [ElsKnightCloneVariant(ElsKnightCloneKind.Galacta, "Galacta Knight Clone", "event:/desolo_zantas/music/lvl18/galacta_knight")]
+    [ElsKnightCloneVariant(ElsKnightCloneKind.Galacta, "Galacta Knight Clone", "event:/pusheen/music/lvl18/galacta_knight")]
     public class GalactaKnightClone : ElsKnightCloneBoss
     {
         private static readonly ElsKnightCloneCombatProfile DefaultCombat = new ElsKnightCloneCombatProfile(

@@ -131,7 +131,7 @@ namespace Celeste.Entities
             Dust.Burst(player.Position, player.Speed.Angle(), 16);
             
             // Play exit sound
-            Audio.Play("event:/desolo_zantas/char/kirby/dreamblock_exit", player.Position);
+            Audio.Play("event:/pusheen/char/kirby/dreamblock_exit", player.Position);
             
             // Defuse the bomb - player made it out in time!
             bombActive = false;

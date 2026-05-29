@@ -257,7 +257,7 @@ namespace Celeste.Entities
                 // Use custom audio if provided, otherwise use cartridge-specific sound
                 string collectSfx = !string.IsNullOrEmpty(customAudio) 
                     ? customAudio 
-                    : "event:/desolo_zantas/game/general/cartridge_get";
+                    : "event:/pusheen/game/general/cartridge_get";
                 Audio.Play(collectSfx, Position);
                 
                 collected = true;
@@ -328,7 +328,7 @@ namespace Celeste.Entities
             Visible = false;
             
             // Play remix extra preview music
-            remixSfx = Audio.Play("event:/desolo_zantas/game/general/cartridge_preview");
+            remixSfx = Audio.Play("event:/pusheen/game/general/cartridge_preview");
             
             UnlockedRemixExtra message = new UnlockedRemixExtra(unlockText, menuSprite);
             Scene.Add(message);

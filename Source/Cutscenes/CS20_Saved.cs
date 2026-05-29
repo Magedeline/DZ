@@ -179,7 +179,7 @@ public class CS20_RestorationAndFarewell : CutsceneEntity
         player.Sprite.Play("idle");
         
         // Set the music for this emotional finale
-        Audio.SetMusic("event:/desolo_zantas/final_content/music/lvl21/saved");
+        Audio.SetMusic("event:/pusheen/final_content/music/lvl21/saved");
         
         // Fade in from white (after defeating Els)
         FadeWipe fadeWipe = new FadeWipe(Level, wipeIn: true);
@@ -386,7 +386,7 @@ public class CS20_RestorationAndFarewell : CutsceneEntity
         
         // Emotional moment - screen shake
         Level.Shake(0.2f);
-        Audio.Play("event:/desolo_zantas/final_content/char/asriel/emotional_reunion");
+        Audio.Play("event:/pusheen/final_content/char/asriel/emotional_reunion");
         
         yield return 0.5f;
     }
@@ -434,7 +434,7 @@ public class CS20_RestorationAndFarewell : CutsceneEntity
         
         // Emotional hug moment
         Level.Shake(0.1f);
-        Audio.Play("event:/desolo_zantas/final_content/char/kirby/emotional_reunion");
+        Audio.Play("event:/pusheen/final_content/char/kirby/emotional_reunion");
         
         // Particle effects for the reunion
         for (int i = 0; i < 20; i++)
@@ -502,7 +502,7 @@ public class CS20_RestorationAndFarewell : CutsceneEntity
     private IEnumerator ReleaseSouls()
     {
         // Dramatic buildup
-        Audio.SetMusic("event:/desolo_zantas/final_content/music/lvl20/back");
+        Audio.SetMusic("event:/pusheen/final_content/music/lvl20/back");
 
         yield return 0.5f;
 
@@ -565,7 +565,7 @@ public class CS20_RestorationAndFarewell : CutsceneEntity
     // {trigger 1 asriel slowly fades away into the flower form}
     private IEnumerator AsrielFadesAway()
     {
-        Audio.Play("event:/desolo_zantas/final_content/char/asriel/fade_to_flower");
+        Audio.Play("event:/pusheen/final_content/char/asriel/fade_to_flower");
         
         // Slowly fade Asriel
         for (float p = 1f; p > 0f; p -= Engine.DeltaTime / 3f)
@@ -606,7 +606,7 @@ public class CS20_RestorationAndFarewell : CutsceneEntity
     // {trigger 4 asriel granny titan king and kirby parent begin to fade away}
     private IEnumerator SpiritsFadeAway()
     {
-        Audio.Play("event:/desolo_zantas/final_content/char/spirits/fade_away");
+        Audio.Play("event:/pusheen/final_content/char/spirits/fade_away");
         
         // Fade out all spirit characters
         for (float p = 1f; p > 0f; p -= Engine.DeltaTime / 4f)

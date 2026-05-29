@@ -28,8 +28,8 @@ namespace Celeste.Cutscenes
         private const float DIALOG_OPTION_WIDTH = 1400f;
         private const float DIALOG_OPTION_HEIGHT = 140f;
         private const float DIALOG_OPTION_EASE_SPEED = 4f;
-        private const string music_event = "event:/desolo_zantas/music/lvl8/intro";
-        private const string collapse_audio_event = "event:/desolo_zantas/sfx/player_collapse";
+        private const string music_event = "event:/pusheen/music/lvl8/intro";
+        private const string collapse_audio_event = "event:/pusheen/sfx/player_collapse";
         #endregion
 
         #region Fields
@@ -219,7 +219,7 @@ namespace Celeste.Cutscenes
             level.ResetZoom();
             level.Camera.Position = new Vector2(bonfire.X - 160f, bonfire.Y - 140f);
             yield return 3f;
-            Audio.SetMusic("event:/desolo_zantas/music/lvl8/intro");
+            Audio.SetMusic("event:/pusheen/music/lvl8/intro");
             yield return 1.5f;
             // Particle effects
             Level.Particles.Emit(NPC01_Theo.P_YOLO, 4, madeline.Position + new Vector2(-4f, -14f), Vector2.One * 3f);

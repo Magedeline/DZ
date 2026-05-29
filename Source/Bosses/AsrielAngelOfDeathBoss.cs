@@ -136,10 +136,10 @@ namespace Celeste
         private bool barrierActive;
         
         // Audio - FMOD Events
-        private const string MUSIC_BURN_IN_DESPAIR = "event:/desolo_zantas/final_content/music/lvl20/burn_in_despair";
-        private const string MUSIC_HIS_THEME_01 = "event:/desolo_zantas/final_content/music/lvl20/his_theme01";
-        private const string MUSIC_HIS_THEME_02 = "event:/desolo_zantas/final_content/music/lvl20/his_theme02";
-        private const string MUSIC_KIRBY_VS_ASRIEL = "event:/desolo_zantas/final_content/music/lvl20/kirby_vs_asriel_fight_2";
+        private const string MUSIC_BURN_IN_DESPAIR = "event:/pusheen/final_content/music/lvl20/burn_in_despair";
+        private const string MUSIC_HIS_THEME_01 = "event:/pusheen/final_content/music/lvl20/his_theme01";
+        private const string MUSIC_HIS_THEME_02 = "event:/pusheen/final_content/music/lvl20/his_theme02";
+        private const string MUSIC_KIRBY_VS_ASRIEL = "event:/pusheen/final_content/music/lvl20/kirby_vs_asriel_fight_2";
         
         // Lost soul tracking
         private Dictionary<string, bool> soulsSaved;
@@ -486,7 +486,7 @@ namespace Celeste
             Position = basePosition;
             
             // Play dramatic sfx
-            Audio.Play("event:/desolo_zantas/sfx/boss/asriel_rise", Position);
+            Audio.Play("event:/pusheen/sfx/boss/asriel_rise", Position);
             level.DirectionalShake(Vector2.One, 0.5f);
             
             // AFTER REFUSAL - Kill player with overwhelming power
@@ -578,7 +578,7 @@ namespace Celeste
                         Vector2 spawnPos = new Vector2(x, level.Camera.Top - 16f);
                         Vector2 vel = new Vector2(Calc.Random.Range(-20f, 20f), Calc.Random.Range(140f, 200f));
                         level.Add(new AsrielBossProjectile(spawnPos, vel, Color.Cyan, 5f, 2f));
-                        Audio.Play("event:/desolo_zantas/sfx/boss/star_fall", spawnPos);
+                        Audio.Play("event:/pusheen/sfx/boss/star_fall", spawnPos);
                         yield return 0.12f;
                     }
                     yield return 0.45f;
@@ -603,7 +603,7 @@ namespace Celeste
             level.Add(activeBarrier);
             barrierActive = true;
             
-            Audio.Play("event:/desolo_zantas/sfx/boss/barrier_create", Position);
+            Audio.Play("event:/pusheen/sfx/boss/barrier_create", Position);
         }
         #endregion
 
@@ -934,7 +934,7 @@ namespace Celeste
             level?.DirectionalShake(Vector2.One, 2f);
             
             // Audio
-            Audio.Play("event:/desolo_zantas/sfx/boss/asriel_final_beam", Position);
+            Audio.Play("event:/pusheen/sfx/boss/asriel_final_beam", Position);
             
             // Create beam hitbox (player should dodge this)
             // In actual implementation, this would spawn a beam entity
@@ -1006,7 +1006,7 @@ namespace Celeste
                     Vector2 vel = new Vector2((float)Math.Cos(a), (float)Math.Sin(a)) * speed;
                     level.Add(new AsrielBossProjectile(Position, vel, Color.Gold, 5f, 3f));
                 }
-                Audio.Play("event:/desolo_zantas/sfx/boss/bullet_fire", Position);
+                Audio.Play("event:/pusheen/sfx/boss/bullet_fire", Position);
                 level.DirectionalShake(Vector2.One * 0.15f, 0.1f);
                 yield return 0.45f;
             }
@@ -1034,7 +1034,7 @@ namespace Celeste
                     level.Add(new AsrielBossProjectile(Position, vel, Color.Yellow, 6f, 2.5f));
                 }
                 level.DirectionalShake(Vector2.UnitY, 0.4f);
-                Audio.Play("event:/desolo_zantas/sfx/boss/lightning", Position);
+                Audio.Play("event:/pusheen/sfx/boss/lightning", Position);
                 yield return 0.4f;
             }
 
@@ -1055,7 +1055,7 @@ namespace Celeste
 
             var beam = new AsrielSweepBeam(Position, level, Color.Cyan * 0.85f, sweepDuration: 2.5f);
             level.Add(beam);
-            Audio.Play("event:/desolo_zantas/sfx/boss/asriel_final_beam", Position);
+            Audio.Play("event:/pusheen/sfx/boss/asriel_final_beam", Position);
             level.DirectionalShake(Vector2.UnitX, 0.3f);
 
             yield return 2.8f;
@@ -1094,7 +1094,7 @@ namespace Celeste
                     new Vector2(strikeXs[i], level.Camera.Top - 8f),
                     new Vector2(0f, 600f),
                     Color.White, 4f, 1.2f));
-                Audio.Play("event:/desolo_zantas/sfx/boss/lightning", new Vector2(strikeXs[i], Position.Y));
+                Audio.Play("event:/pusheen/sfx/boss/lightning", new Vector2(strikeXs[i], Position.Y));
                 level.DirectionalShake(Vector2.UnitY, 0.5f);
                 yield return 0.12f;
             }
@@ -1122,7 +1122,7 @@ namespace Celeste
                     Vector2 vel = new Vector2((float)Math.Cos(a), (float)Math.Sin(a)) * speed;
                     level.Add(new AsrielBossProjectile(Position, vel, Color.Magenta, 4f, 3.5f));
                 }
-                Audio.Play("event:/desolo_zantas/sfx/boss/lightning", Position);
+                Audio.Play("event:/pusheen/sfx/boss/lightning", Position);
                 level.DirectionalShake(Vector2.One * 0.2f, 0.15f);
                 yield return 0.55f;
             }
@@ -1158,7 +1158,7 @@ namespace Celeste
                 yield return 0.07f;
             }
 
-            Audio.Play("event:/desolo_zantas/sfx/boss/bullet_fire", Position);
+            Audio.Play("event:/pusheen/sfx/boss/bullet_fire", Position);
             Sprite?.Play("idle");
             yield return 0.8f;
         }
@@ -1174,7 +1174,7 @@ namespace Celeste
             if (level == null) { yield break; }
 
             level.DirectionalShake(Vector2.One, 0.8f);
-            Audio.Play("event:/desolo_zantas/sfx/boss/asriel_final_beam", Position);
+            Audio.Play("event:/pusheen/sfx/boss/asriel_final_beam", Position);
 
             var beam = new AsrielHyperBeam(Position, level);
             level.Add(beam);
@@ -1209,7 +1209,7 @@ namespace Celeste
                 Vector2 vel = new Vector2((float)Math.Cos(a), (float)Math.Sin(a)) * 150f;
                 level.Add(new AsrielBossProjectile(Position, vel, rainbow[i], 5f, 3f));
             }
-            Audio.Play("event:/desolo_zantas/sfx/boss/bullet_fire", Position);
+            Audio.Play("event:/pusheen/sfx/boss/bullet_fire", Position);
             yield return 0.5f;
 
             // Eight bouncing diagonals
@@ -1219,7 +1219,7 @@ namespace Celeste
                 Vector2 vel = new Vector2((float)Math.Cos(a), (float)Math.Sin(a)) * 100f;
                 level.Add(new AsrielBossProjectile(Position, vel, rainbow[i % 5], 5f, 4f, bounces: 2));
             }
-            Audio.Play("event:/desolo_zantas/sfx/boss/bullet_fire", Position);
+            Audio.Play("event:/pusheen/sfx/boss/bullet_fire", Position);
 
             Sprite?.Play("idle");
             yield return 0.8f;
@@ -1302,7 +1302,7 @@ namespace Celeste
                 if (ucon == 1)
                 {
                     // GML: caster_play(psfx, 0.7, 1.2); arf = 30; ucon = 2;
-                    Audio.Play("event:/desolo_zantas/sfx/boss/asriel_ultimate_charge");
+                    Audio.Play("event:/pusheen/sfx/boss/asriel_ultimate_charge");
                     arf = 30f;
                     ucon = 2;
                 }
@@ -1555,7 +1555,7 @@ namespace Celeste
                 // Create beam at arm position
                 Vector2 beamPos = Position + new Vector2(56 + armx, 56 + army) - new Vector2(0, 20);
                 // level.Add(new AsrielFinalBeam(beamPos));
-                Audio.Play("event:/desolo_zantas/sfx/boss/asriel_final_beam", beamPos);
+                Audio.Play("event:/pusheen/sfx/boss/asriel_final_beam", beamPos);
             }
         }
 
@@ -2076,7 +2076,7 @@ namespace Celeste
                 }
             }
             
-            Audio.Play("event:/desolo_zantas/sfx/soul_saved", Position);
+            Audio.Play("event:/pusheen/sfx/soul_saved", Position);
             
             // Fade out
             float fadeTime = 1f;

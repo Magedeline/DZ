@@ -12,13 +12,13 @@ namespace Celeste.Mod.MaggyHelper.AudioHandlers
     public class DSideCompletionMusicHandler
     {
         private static readonly string[] ChapterCompletionEvents = {
-            "event:/desolo_zantas/music/menu/complete_area",
-            "event:/desolo_zantas/music/menu/complete_bside", 
-            "event:/desolo_zantas/music/menu/complete_bside_summit",
-            "event:/desolo_zantas/music/menu/complete_cside",
-            "event:/desolo_zantas/music/menu/complete_cside_summit",
-            "event:/desolo_zantas/music/menu/complete_dside_void",
-            "event:/desolo_zantas/music/menu/complete_summit"
+            "event:/pusheen/music/menu/complete_area",
+            "event:/pusheen/music/menu/complete_bside", 
+            "event:/pusheen/music/menu/complete_bside_summit",
+            "event:/pusheen/music/menu/complete_cside",
+            "event:/pusheen/music/menu/complete_cside_summit",
+            "event:/pusheen/music/menu/complete_dside_void",
+            "event:/pusheen/music/menu/complete_summit"
         };
 
         /// <summary>
@@ -32,14 +32,14 @@ namespace Celeste.Mod.MaggyHelper.AudioHandlers
         {
             return areaMode switch
             {
-                AreaMode.Normal => "event:/desolo_zantas/music/menu/complete_area",
+                AreaMode.Normal => "event:/pusheen/music/menu/complete_area",
                 AreaMode.BSide => isSummit ? 
-                    "event:/desolo_zantas/music/menu/complete_bside_summit" : 
-                    "event:/desolo_zantas/music/menu/complete_bside",
+                    "event:/pusheen/music/menu/complete_bside_summit" : 
+                    "event:/pusheen/music/menu/complete_bside",
                 AreaMode.CSide => isSummit ? 
-                    "event:/desolo_zantas/music/menu/complete_cside_summit" : 
-                    "event:/desolo_zantas/music/menu/complete_cside",
-                _ => "event:/desolo_zantas/music/menu/complete_area"
+                    "event:/pusheen/music/menu/complete_cside_summit" : 
+                    "event:/pusheen/music/menu/complete_cside",
+                _ => "event:/pusheen/music/menu/complete_area"
             };
         }
 
@@ -49,7 +49,7 @@ namespace Celeste.Mod.MaggyHelper.AudioHandlers
         /// <returns>The FMOD event path for D-Side completion</returns>
         public static string GetDSideCompletionEvent()
         {
-            return "event:/desolo_zantas/music/menu/complete_dside_void";
+            return "event:/pusheen/music/menu/complete_dside_void";
         }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace Celeste.Mod.MaggyHelper.AudioHandlers
         /// <returns>The FMOD event path for summit completion</returns>
         public static string GetSummitCompletionEvent()
         {
-            return "event:/desolo_zantas/music/menu/complete_summit";
+            return "event:/pusheen/music/menu/complete_summit";
         }
 
         /// <summary>

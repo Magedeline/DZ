@@ -12,42 +12,42 @@ DarknessAlpha: 0.1
 BloomBase: 0.2
 BloomStrength: 1.0
 CassetteNoteColor: 1a8b9e
-CassetteSong: event:/desolo_zantas/music/Cassette/12_depth
+CassetteSong: event:/pusheen/music/Cassette/12_depth
 
 Modes:
   - AudioState:
-      Music: event:/desolo_zantas/music/lvl12/main
-      Ambience: event:/desolo_zantas/env/12_waterfall
+      Music: event:/pusheen/music/lvl12/main
+      Ambience: event:/pusheen/env/12_waterfall
     Inventory: Default
     HeartIsEnd: false
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/desolo_zantas/music/BSide/12_water
-      Ambience: event:/desolo_zantas/env/12_waterfall
+      Music: event:/pusheen/music/BSide/12_water
+      Ambience: event:/pusheen/env/12_waterfall
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/desolo_zantas/music/CSide/12_water
-      Ambience: event:/desolo_zantas/env/12_waterfall
+      Music: event:/pusheen/music/CSide/12_water
+      Ambience: event:/pusheen/env/12_waterfall
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/desolo_zantas/music/CSide/12_water
-      Ambience: event:/desolo_zantas/env/12_waterfall
+      Music: event:/pusheen/music/CSide/12_water
+      Ambience: event:/pusheen/env/12_waterfall
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/desolo_zantas/music/DSide/12_water
-      Ambience: event:/desolo_zantas/env/12_main
+      Music: event:/pusheen/music/DSide/12_water
+      Ambience: event:/pusheen/env/12_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/desolo_zantas/music/DXSide/12_water
-      Ambience: event:/desolo_zantas/env/12_main
+      Music: event:/pusheen/music/DXSide/12_water
+      Ambience: event:/pusheen/env/12_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false

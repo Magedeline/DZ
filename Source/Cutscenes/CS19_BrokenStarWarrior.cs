@@ -49,7 +49,7 @@ namespace Celeste.Cutscenes
         private IEnumerator KirbyDropsToKnees()
         {
             player.DummyAutoAnimate = false;
-            Audio.Play("event:/desolo_zantas/final_content/char/kirby/heartbreak", player.Position);
+            Audio.Play("event:/pusheen/final_content/char/kirby/heartbreak", player.Position);
             Input.Rumble(RumbleStrength.Medium, RumbleLength.Medium);
             yield return 0.6f;
         }

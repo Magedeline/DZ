@@ -20,10 +20,10 @@ namespace Celeste
         private const string DIALOGUE_HOWDY = "CH20_ASRIEL_HOWDY";
         private const string FLAG_REVEAL_COMPLETE = "asriel_true_reveal_done";
 
-        private const string SFX_CREATE = "event:/desolo_zantas/final_content/char/asriel/Asriel_Create";
-        private const string SFX_GLITCH = "event:/desolo_zantas/final_content/game/19_the_end/glitch_long";
+        private const string SFX_CREATE = "event:/pusheen/final_content/char/asriel/Asriel_Create";
+        private const string SFX_GLITCH = "event:/pusheen/final_content/game/19_the_end/glitch_long";
         private const string SFX_REVEAL = "event:/new_content/game/general/dramatic_reveal";
-        private const string MUSIC_REVEAL = "event:/desolo_zantas/final_content/music/lvl20/asriel_reveal";
+        private const string MUSIC_REVEAL = "event:/pusheen/final_content/music/lvl20/asriel_reveal";
 
         // Animation timing (in seconds, converted from frames at 60fps)
         private const float FRAME_30 = 0.5f;
@@ -473,7 +473,7 @@ namespace Celeste
             }
 
             // Start boss fight music
-            level.Session.Audio.Music.Event = "event:/desolo_zantas/final_content/music/lvl20/kirby_vs_asriel_fight_1";
+            level.Session.Audio.Music.Event = "event:/pusheen/final_content/music/lvl20/kirby_vs_asriel_fight_1";
             level.Session.Audio.Apply();
 
             // Signal to boss that reveal is complete

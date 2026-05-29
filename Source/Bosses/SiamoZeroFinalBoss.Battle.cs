@@ -29,36 +29,36 @@ namespace Celeste.Entities
         #region Constants and Audio Events
         
         // Audio Events
-        private const string SFX_BOSS_HIT = "event:/desolo_zantas/final_content/char/els/Els_Scream_Hit";
-        private const string SFX_ELS_ACTIVATE = "event:/desolo_zantas/final_content/char/els/Els_Activate";
-        private const string SFX_ELS_BEAMSLASH = "event:/desolo_zantas/final_content/char/els/Els_BeamSlash";
-        private const string SFX_ELS_BIGHIT = "event:/desolo_zantas/final_content/char/els/Els_BigHit";
-        private const string SFX_ELS_BUBBLE = "event:/desolo_zantas/final_content/char/els/Els_Bubble";
-        private const string SFX_ELS_BUILD = "event:/desolo_zantas/final_content/char/els/Els_Build";
-        private const string SFX_ELS_CHARGE = "event:/desolo_zantas/final_content/char/els/Els_Charge";
-        private const string SFX_ELS_CREATE = "event:/desolo_zantas/final_content/char/els/Els_Create";
-        private const string SFX_ELS_DARKMATTER_SPAWN = "event:/desolo_zantas/final_content/char/els/Els_Darkmatter_Spawn";
-        private const string SFX_ELS_FINAL_CRY = "event:/desolo_zantas/final_content/char/els/Els_Final_Cry";
-        private const string SFX_ELS_IMPACT = "event:/desolo_zantas/final_content/char/els/Els_Impact";
-        private const string SFX_ELS_KNOCKOUT = "event:/desolo_zantas/final_content/char/els/Els_Knockout";
-        private const string SFX_ELS_PRECREATE = "event:/desolo_zantas/final_content/char/els/Els_Precreate";
-        private const string SFX_ELS_PREDEATH = "event:/desolo_zantas/final_content/char/els/Els_Predeath";
-        private const string SFX_ELS_PREIMPACT = "event:/desolo_zantas/final_content/char/els/Els_PreImpact";
-        private const string SFX_ELS_REVIVAL = "event:/desolo_zantas/final_content/char/els/Els_Revival";
-        private const string SFX_ELS_RIFT = "event:/desolo_zantas/final_content/char/els/Els_Rift";
-        private const string SFX_ELS_RIFT_BULLET = "event:/desolo_zantas/final_content/char/els/Els_Rift_Bullet";
-        private const string SFX_ELS_SCREAM_HIT = "event:/desolo_zantas/final_content/char/els/Els_Scream_Hit";
-        private const string SFX_ELS_SHELL_SCREAMER = "event:/desolo_zantas/final_content/char/els/Els_Shell_Screamer";
-        private const string SFX_ELS_SHELLCRACK = "event:/desolo_zantas/final_content/char/els/Els_Shellcrack";
-        private const string SFX_ELS_SLICE = "event:/desolo_zantas/final_content/char/els/Els_Slice";
-        private const string SFX_ELS_SPAWN = "event:/desolo_zantas/final_content/char/els/Els_Spawn";
-        private const string SFX_ELS_STARDEATH = "event:/desolo_zantas/final_content/char/els/Els_StarDeath";
-        private const string SFX_ELS_TELEPORT = "event:/desolo_zantas/final_content/char/els/Els_Teleport";
-        private const string SFX_ELS_TIME_MANIPULATOR_END = "event:/desolo_zantas/final_content/char/els/Els_Time_Manipulator_End";
-        private const string SFX_ELS_TIME_MANIPULATOR_START = "event:/desolo_zantas/final_content/char/els/Els_Time_Manipulator_Start";
-        private const string MUSIC_SIAMO_ZERO = "event:/desolo_zantas/final_content/music/lvl20/siamo_zero_finale";
-        private const string MUSIC_SIAMO_ZERO_DELTA = "event:/desolo_zantas/final_content/music/lvl20/siamo_zero_delta";
-        private const string MUSIC_CELESTIAL_ZERO = "event:/desolo_zantas/final_content/music/lvl20/celestial_zero";
+        private const string SFX_BOSS_HIT = "event:/pusheen/final_content/char/els/Els_Scream_Hit";
+        private const string SFX_ELS_ACTIVATE = "event:/pusheen/final_content/char/els/Els_Activate";
+        private const string SFX_ELS_BEAMSLASH = "event:/pusheen/final_content/char/els/Els_BeamSlash";
+        private const string SFX_ELS_BIGHIT = "event:/pusheen/final_content/char/els/Els_BigHit";
+        private const string SFX_ELS_BUBBLE = "event:/pusheen/final_content/char/els/Els_Bubble";
+        private const string SFX_ELS_BUILD = "event:/pusheen/final_content/char/els/Els_Build";
+        private const string SFX_ELS_CHARGE = "event:/pusheen/final_content/char/els/Els_Charge";
+        private const string SFX_ELS_CREATE = "event:/pusheen/final_content/char/els/Els_Create";
+        private const string SFX_ELS_DARKMATTER_SPAWN = "event:/pusheen/final_content/char/els/Els_Darkmatter_Spawn";
+        private const string SFX_ELS_FINAL_CRY = "event:/pusheen/final_content/char/els/Els_Final_Cry";
+        private const string SFX_ELS_IMPACT = "event:/pusheen/final_content/char/els/Els_Impact";
+        private const string SFX_ELS_KNOCKOUT = "event:/pusheen/final_content/char/els/Els_Knockout";
+        private const string SFX_ELS_PRECREATE = "event:/pusheen/final_content/char/els/Els_Precreate";
+        private const string SFX_ELS_PREDEATH = "event:/pusheen/final_content/char/els/Els_Predeath";
+        private const string SFX_ELS_PREIMPACT = "event:/pusheen/final_content/char/els/Els_PreImpact";
+        private const string SFX_ELS_REVIVAL = "event:/pusheen/final_content/char/els/Els_Revival";
+        private const string SFX_ELS_RIFT = "event:/pusheen/final_content/char/els/Els_Rift";
+        private const string SFX_ELS_RIFT_BULLET = "event:/pusheen/final_content/char/els/Els_Rift_Bullet";
+        private const string SFX_ELS_SCREAM_HIT = "event:/pusheen/final_content/char/els/Els_Scream_Hit";
+        private const string SFX_ELS_SHELL_SCREAMER = "event:/pusheen/final_content/char/els/Els_Shell_Screamer";
+        private const string SFX_ELS_SHELLCRACK = "event:/pusheen/final_content/char/els/Els_Shellcrack";
+        private const string SFX_ELS_SLICE = "event:/pusheen/final_content/char/els/Els_Slice";
+        private const string SFX_ELS_SPAWN = "event:/pusheen/final_content/char/els/Els_Spawn";
+        private const string SFX_ELS_STARDEATH = "event:/pusheen/final_content/char/els/Els_StarDeath";
+        private const string SFX_ELS_TELEPORT = "event:/pusheen/final_content/char/els/Els_Teleport";
+        private const string SFX_ELS_TIME_MANIPULATOR_END = "event:/pusheen/final_content/char/els/Els_Time_Manipulator_End";
+        private const string SFX_ELS_TIME_MANIPULATOR_START = "event:/pusheen/final_content/char/els/Els_Time_Manipulator_Start";
+        private const string MUSIC_SIAMO_ZERO = "event:/pusheen/final_content/music/lvl20/siamo_zero_finale";
+        private const string MUSIC_SIAMO_ZERO_DELTA = "event:/pusheen/final_content/music/lvl20/siamo_zero_delta";
+        private const string MUSIC_CELESTIAL_ZERO = "event:/pusheen/final_content/music/lvl20/celestial_zero";
         private const string ENTITY_SIAMO_ZERO_FINAL_BOSS = "MaggyHelper/SiamoZeroFinalBoss";
         private const string ENTITY_SIAMO_ZERO_DELTA = "MaggyHelper/SiamoZeroDelta";
         private const string ENTITY_CELESTIAL_ZERO = "MaggyHelper/CelestialZero";
@@ -1167,7 +1167,7 @@ namespace Celeste.Entities
             PlayActiveBossAnimation("getHit", "idle");
             if (Sprite != null && Sprite != GetActiveBossSprite() && Sprite.Has("getHit"))
                 Sprite.Play("getHit");
-            Audio.Play("event:/desolo_zantas/final_content/char/els/Els_Scream_Hit", Position);
+            Audio.Play("event:/pusheen/final_content/char/els/Els_Scream_Hit", Position);
             chargeSfx.Stop();
             if (laserSfx.EventName == "event:/char/badeline/boss_laser_charge" && laserSfx.Playing)
                 laserSfx.Stop();
@@ -1578,7 +1578,7 @@ namespace Celeste.Entities
             CreateShockwaveEffect(Center, pushDirection, isKirbyMode);
             
             // Play pushback sound
-            Audio.Play("event:/desolo_zantas/final_content/char/els/Els_Scream_Hit", Center);
+            Audio.Play("event:/pusheen/final_content/char/els/Els_Scream_Hit", Center);
             
             // Screen shake - more intense for Kirby mode
             level.Shake(isKirbyMode ? 0.5f : 0.3f);

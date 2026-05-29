@@ -25,8 +25,8 @@ namespace Celeste.Cutscenes
         private const float ZOOM_LEVEL = 2f;
         private const float ZOOM_DURATION = 0.5f;
         private const float CAMERA_TRANSITION_TIME = 0.5f;
-        private const string MUSIC_EVENT = "event:/desolo_zantas/music/lvl2/chara_intro";
-        private const string AUDIO_EVENT = "event:/desolo_zantas/game/02_nightmare/sequence_chara_intro";
+        private const string MUSIC_EVENT = "event:/pusheen/music/lvl2/chara_intro";
+        private const string AUDIO_EVENT = "event:/pusheen/game/02_nightmare/sequence_chara_intro";
         private const string CHARA_DISAPPEAR_SOUND = "event:/char/chara/disappear";
         #endregion
 

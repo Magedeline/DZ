@@ -22,7 +22,7 @@ namespace Celeste.Entities.Items
 
         // Sound effect paths
         protected const string SFX_COLLECT = "event:/game/general/thing_booped";
-        protected const string SFX_HEAL = "event:/desolo_zantas/char/kirby/heal";
+        protected const string SFX_HEAL = "event:/pusheen/char/kirby/heal";
 
         #endregion
 

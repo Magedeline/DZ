@@ -12,42 +12,42 @@ DarknessAlpha: 0.1
 BloomBase: 0.2
 BloomStrength: 1.0
 CassetteNoteColor: ff4488
-CassetteSong: event:/desolo_zantas/music/Cassette/18_core
+CassetteSong: event:/pusheen/music/Cassette/18_core
 
 Modes:
   - AudioState:
-      Music: event:/desolo_zantas/music/lvl18/main
-      Ambience: event:/desolo_zantas/env/18_main
+      Music: event:/pusheen/music/lvl18/main
+      Ambience: event:/pusheen/env/18_main
     Inventory: Default
     HeartIsEnd: false
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/desolo_zantas/music/BSide/18_heart
-      Ambience: event:/desolo_zantas/env/18_main
+      Music: event:/pusheen/music/BSide/18_heart
+      Ambience: event:/pusheen/env/18_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/desolo_zantas/music/CSide/18_heart
-      Ambience: event:/desolo_zantas/env/18_main
+      Music: event:/pusheen/music/CSide/18_heart
+      Ambience: event:/pusheen/env/18_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/desolo_zantas/music/CSide/18_heart
-      Ambience: event:/desolo_zantas/env/18_main
+      Music: event:/pusheen/music/CSide/18_heart
+      Ambience: event:/pusheen/env/18_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/desolo_zantas/music/DSide/18_heart
-      Ambience: event:/desolo_zantas/env/18_main
+      Music: event:/pusheen/music/DSide/18_heart
+      Ambience: event:/pusheen/env/18_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/desolo_zantas/music/DXSide/18_heart
-      Ambience: event:/desolo_zantas/env/18_main
+      Music: event:/pusheen/music/DXSide/18_heart
+      Ambience: event:/pusheen/env/18_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false

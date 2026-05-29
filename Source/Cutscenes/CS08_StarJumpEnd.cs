@@ -168,7 +168,7 @@ namespace Celeste.Cutscenes
                 new Func<IEnumerator>(this.BreakHeartMinigame),     // trigger 8: Break Heart minigame
                 new Func<IEnumerator>(this.CharaFlyDown)     // trigger 9: Chara Fly Down
             });
-            Audio.Play("event:/desolo_zantas/game/08_truth/chara_pull_whooshdown");
+            Audio.Play("event:/pusheen/game/08_truth/chara_pull_whooshdown");
             base.Add(new Coroutine(this.CharaFlyDown(), true));
             yield return 0.7f;
             foreach (FlyFeather feather in level.Entities.FindAll<FlyFeather>())
@@ -215,7 +215,7 @@ namespace Celeste.Cutscenes
                 Input.Rumble(RumbleStrength.Strong, RumbleLength.Short);
                 yield return null;
             }
-            Audio.Play("event:/desolo_zantas/game/08_truth/chara_pull_impact");
+            Audio.Play("event:/pusheen/game/08_truth/chara_pull_impact");
             FallEffects.Show(false);
             Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
             level.Flash(Color.White, false);
@@ -244,9 +244,9 @@ namespace Celeste.Cutscenes
             }
             this.shaking = true;
             base.Add(this.shakingLoopSfx = new SoundSource());
-            this.shakingLoopSfx.Play("event:/desolo_zantas/game/08_truth/chara_pull_rumble_loop", null, 0f);
+            this.shakingLoopSfx.Play("event:/pusheen/game/08_truth/chara_pull_rumble_loop", null, 0f);
             yield return Textbox.Say("CH8_WATCHOUT", new Func<IEnumerator>[0]);
-            Audio.Play("event:/desolo_zantas/game/08_truth/chara_pull_cliffbreak");
+            Audio.Play("event:/pusheen/game/08_truth/chara_pull_cliffbreak");
             Input.Rumble(RumbleStrength.Medium, RumbleLength.Long);
             this.shakingLoopSfx.Stop(true);
             this.shaking = false;
@@ -301,7 +301,7 @@ namespace Celeste.Cutscenes
         private IEnumerator VinesAppear()
         {
             Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
-            Audio.Play("event:/desolo_zantas/game/08_truth/chara_freakout_1");
+            Audio.Play("event:/pusheen/game/08_truth/chara_freakout_1");
             
             if (!this.hidingNorthernLights)
             {
@@ -323,7 +323,7 @@ namespace Celeste.Cutscenes
         private IEnumerator VinesAppearMore()
         {
             Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
-            Audio.Play("event:/desolo_zantas/game/08_truth/chara_freakout_2");
+            Audio.Play("event:/pusheen/game/08_truth/chara_freakout_2");
             this.Level.Shake(0.3f);
             this.anxietyFade += 0.1f;
             
@@ -336,7 +336,7 @@ namespace Celeste.Cutscenes
         private IEnumerator VinesAppearMore2()
         {
             Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
-            Audio.Play("event:/desolo_zantas/game/08_truth/chara_freakout_3");
+            Audio.Play("event:/pusheen/game/08_truth/chara_freakout_3");
             this.Level.Shake(0.4f);
             this.anxietyFade += 0.1f;
             
@@ -349,7 +349,7 @@ namespace Celeste.Cutscenes
         private IEnumerator VinesAppearEvenMore()
         {
             Input.Rumble(RumbleStrength.Strong, RumbleLength.Long);
-            Audio.Play("event:/desolo_zantas/game/08_truth/chara_freakout_4");
+            Audio.Play("event:/pusheen/game/08_truth/chara_freakout_4");
             this.Level.Shake(0.5f);
             this.anxietyFade += 0.15f;
             
@@ -362,7 +362,7 @@ namespace Celeste.Cutscenes
         private IEnumerator VinesAppearEvenEvenMore()
         {
             Input.Rumble(RumbleStrength.Strong, RumbleLength.Long);
-            Audio.Play("event:/desolo_zantas/game/08_truth/chara_freakout_5");
+            Audio.Play("event:/pusheen/game/08_truth/chara_freakout_5");
             this.Level.Shake(1f);
             this.anxietyFade += 0.2f;
             
@@ -396,7 +396,7 @@ namespace Celeste.Cutscenes
         private IEnumerator VinesGrabMadeline()
         {
             this.maddySineTarget = 0f;
-            Audio.Play("event:/desolo_zantas/game/08_truth/chara_freakout_6");
+            Audio.Play("event:/pusheen/game/08_truth/chara_freakout_6");
             this.player.Sprite.Play("tentacle_grab", true, true);
             yield return 0.1f;
             Input.Rumble(RumbleStrength.Strong, RumbleLength.Long);
@@ -598,7 +598,7 @@ namespace Celeste.Cutscenes
                     level.Session.RespawnPoint = new Vector2?(level.GetSpawnPoint(new Vector2((float)level.Bounds.Left, (float)level.Bounds.Bottom)));
                     level.LoadLevel(global::Celeste.Player.IntroTypes.None, false);
                     FallEffects.Show(false);
-                    level.Session.Audio.Music.Event = "event:/desolo_zantas/Music/lvl8/main";
+                    level.Session.Audio.Music.Event = "event:/pusheen/Music/lvl8/main";
                     level.Session.Audio.Apply(false);
                 };
                 return;

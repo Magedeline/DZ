@@ -135,7 +135,7 @@ public class CS_Gen_IntroRemix_CSide : Scene
     /// <summary>Heavy static with increasing VHS distortion</summary>
     private IEnumerator DamagedStaticIntro()
     {
-        Audio.Play("event:/desolo_zantas/ui/vhs_tape_damaged");
+        Audio.Play("event:/pusheen/ui/vhs_tape_damaged");
 
         for (float t = 0f; t < STATIC_INTRO_DURATION; t += Engine.DeltaTime)
         {
@@ -191,7 +191,7 @@ public class CS_Gen_IntroRemix_CSide : Scene
     private IEnumerator TapeJamSequence()
     {
         tapeJammed = true;
-        Audio.Play("event:/desolo_zantas/ui/vhs_tape_jam");
+        Audio.Play("event:/pusheen/ui/vhs_tape_jam");
 
         // Freeze frame with heavy static
         staticNoise = 0.7f;
@@ -201,7 +201,7 @@ public class CS_Gen_IntroRemix_CSide : Scene
 
         // Tape unjams with a pop
         tapeJammed = false;
-        Audio.Play("event:/desolo_zantas/ui/vhs_tape_resume");
+        Audio.Play("event:/pusheen/ui/vhs_tape_resume");
 
         // Quick tracking recovery
         for (float t = 0f; t < 0.5f; t += Engine.DeltaTime)

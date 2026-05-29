@@ -12,42 +12,42 @@ DarknessAlpha: 0.1
 BloomBase: 0.0
 BloomStrength: 1.0
 CassetteNoteColor: 359fe0
-CassetteSong: event:/desolo_zantas/music/Cassette/08_edge
+CassetteSong: event:/pusheen/music/Cassette/08_edge
 
 Modes:
   - AudioState:
-      Music: event:/desolo_zantas/music/lvl08/main
-      Ambience: event:/desolo_zantas/env/08_main
+      Music: event:/pusheen/music/lvl08/main
+      Ambience: event:/pusheen/env/08_main
     Inventory: Default
     HeartIsEnd: false
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/desolo_zantas/music/BSide/08_truth
-      Ambience: event:/desolo_zantas/env/08_main
+      Music: event:/pusheen/music/BSide/08_truth
+      Ambience: event:/pusheen/env/08_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/desolo_zantas/music/CSide/08_truth
-      Ambience: event:/desolo_zantas/env/08_main
+      Music: event:/pusheen/music/CSide/08_truth
+      Ambience: event:/pusheen/env/08_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/desolo_zantas/music/CSide/08_truth
-      Ambience: event:/desolo_zantas/env/08_main
+      Music: event:/pusheen/music/CSide/08_truth
+      Ambience: event:/pusheen/env/08_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/desolo_zantas/music/DSide/08_truth
-      Ambience: event:/desolo_zantas/env/08_main
+      Music: event:/pusheen/music/DSide/08_truth
+      Ambience: event:/pusheen/env/08_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/desolo_zantas/music/DXSide/08_truth
-      Ambience: event:/desolo_zantas/env/08_main
+      Music: event:/pusheen/music/DXSide/08_truth
+      Ambience: event:/pusheen/env/08_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false

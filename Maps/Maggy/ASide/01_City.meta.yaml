@@ -12,42 +12,42 @@ DarknessAlpha: 0.05
 BloomBase: 0.0
 BloomStrength: 1.0
 CassetteNoteColor: 33a9ee
-CassetteSong: event:/desolo_zantas/music/Cassette/01_metro
+CassetteSong: event:/pusheen/music/Cassette/01_metro
 
 Modes:
   - AudioState:
-      Music: event:/desolo_zantas/music/lvl01/main
-      Ambience: event:/desolo_zantas/env/01_main
+      Music: event:/pusheen/music/lvl01/main
+      Ambience: event:/pusheen/env/01_main
     Inventory: Default
     HeartIsEnd: false
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/desolo_zantas/music/BSide/01_city
-      Ambience: event:/desolo_zantas/env/01_main
+      Music: event:/pusheen/music/BSide/01_city
+      Ambience: event:/pusheen/env/01_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/desolo_zantas/music/CSide/01_city
-      Ambience: event:/desolo_zantas/env/01_main
+      Music: event:/pusheen/music/CSide/01_city
+      Ambience: event:/pusheen/env/01_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/desolo_zantas/music/CSide/01_city
-      Ambience: event:/desolo_zantas/env/01_main
+      Music: event:/pusheen/music/CSide/01_city
+      Ambience: event:/pusheen/env/01_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/desolo_zantas/music/DSide/01_city
-      Ambience: event:/desolo_zantas/env/01_main
+      Music: event:/pusheen/music/DSide/01_city
+      Ambience: event:/pusheen/env/01_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/desolo_zantas/music/DXSide/01_city
-      Ambience: event:/desolo_zantas/env/01_main
+      Music: event:/pusheen/music/DXSide/01_city
+      Ambience: event:/pusheen/env/01_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false

@@ -34,7 +34,7 @@ public class UnlockEverythingThingy : CheatListener
         level.PauseLock = true;
         level.Frozen = true;
         level.Flash(Color.White);
-        Audio.Play("event:/desolo_zantas/final_content/game/general/cheat_activate", level.Camera.Position + new Vector2(160f, 90f));
+        Audio.Play("event:/pusheen/final_content/game/general/cheat_activate", level.Camera.Position + new Vector2(160f, 90f));
         new FadeWipe(level, wipeIn: false, delegate
         {
             UnlockEverything(level);

@@ -536,55 +536,55 @@ namespace Celeste.Entities
         private static class Sfxs
         {
             // Character - Madeline
-            public const string char_mad_footstep = "event:/desolo_zantas/char/kirby/footstep";
-            public const string char_mad_handhold = "event:/desolo_zantas/char/kirby/handhold";
-            public const string char_mad_campfire_stand = "event:/desolo_zantas/char/kirby/campfire_stand";
-            public const string char_mad_summit_sit = "event:/desolo_zantas/char/kirby/summit_sit";
-            public const string char_mad_idle_scratch = "event:/desolo_zantas/char/kirby/idle_scratch";
-            public const string char_mad_idle_sneeze = "event:/desolo_zantas/char/kirby/idle_sneeze";
-            public const string char_mad_idle_crackknuckles = "event:/desolo_zantas/char/kirby/idle_crackknuckles";
-            public const string char_mad_jump = "event:/desolo_zantas/char/kirby/jump";
-            public const string char_mad_jump_assisted = "event:/desolo_zantas/char/kirby/jump_assisted";
-            public const string char_mad_jump_dreamblock = "event:/desolo_zantas/char/kirby/jump_dreamblock";
-            public const string char_mad_jump_super = "event:/desolo_zantas/char/kirby/jump_super";
-            public const string char_mad_jump_superslide = "event:/desolo_zantas/char/kirby/jump_superslide";
-            public const string char_mad_jump_superwall = "event:/desolo_zantas/char/kirby/jump_superwall";
-            public const string char_mad_jump_wall_left = "event:/desolo_zantas/char/kirby/jump_wall_left";
-            public const string char_mad_jump_wall_right = "event:/desolo_zantas/char/kirby/jump_wall_right";
-            public const string char_mad_jump_climb_left = "event:/desolo_zantas/char/kirby/jump_climb_left";
-            public const string char_mad_jump_climb_right = "event:/desolo_zantas/char/kirby/jump_climb_right";
-            public const string char_mad_land = "event:/desolo_zantas/char/kirby/land";
-            public const string char_mad_grab = "event:/desolo_zantas/char/kirby/grab";
-            public const string char_mad_grab_letgo = "event:/desolo_zantas/char/kirby/grab_letgo";
-            public const string char_mad_climb_ledge = "event:/desolo_zantas/char/kirby/climb_ledge";
-            public const string char_mad_wallslide = "event:/desolo_zantas/char/kirby/wallslide";
-            public const string char_mad_dash_red_right = "event:/desolo_zantas/char/kirby/dash_red_right";
-            public const string char_mad_dash_red_left = "event:/desolo_zantas/char/kirby/dash_red_left";
-            public const string char_mad_dash_pink_right = "event:/desolo_zantas/char/kirby/dash_pink_right";
-            public const string char_mad_dash_pink_left = "event:/desolo_zantas/char/kirby/dash_pink_left";
-            public const string char_mad_duck = "event:/desolo_zantas/char/kirby/duck";
-            public const string char_mad_stand = "event:/desolo_zantas/char/kirby/stand";
-            public const string char_mad_water_dash_gen = "event:/desolo_zantas/char/kirby/water_dash_gen";
-            public const string char_mad_water_move_shallow = "event:/desolo_zantas/char/kirby/water_move_shallow";
-            public const string char_mad_dreamblock_enter = "event:/desolo_zantas/char/kirby/dreamblock_enter";
-            public const string char_mad_dreamblock_exit = "event:/desolo_zantas/char/kirby/dreamblock_exit";
-            public const string char_mad_dreamblock_travel = "event:/desolo_zantas/char/kirby/dreamblock_travel";
-            public const string char_mad_revive = "event:/desolo_zantas/char/kirby/revive";
-            public const string char_mad_mirrortemple_landing = "event:/desolo_zantas/char/kirby/mirrortemple_landing";
-            public const string char_mad_summit_areastart = "event:/desolo_zantas/char/kirby/summit_areastart";
-            public const string char_mad_crystaltheo_lift = "event:/desolo_zantas/char/kirby/crystalmaddy_lift";
-            public const string char_mad_crystaltheo_throw = "event:/desolo_zantas/char/kirby/crystalmaddy_throw";
+            public const string char_mad_footstep = "event:/pusheen/char/kirby/footstep";
+            public const string char_mad_handhold = "event:/pusheen/char/kirby/handhold";
+            public const string char_mad_campfire_stand = "event:/pusheen/char/kirby/campfire_stand";
+            public const string char_mad_summit_sit = "event:/pusheen/char/kirby/summit_sit";
+            public const string char_mad_idle_scratch = "event:/pusheen/char/kirby/idle_scratch";
+            public const string char_mad_idle_sneeze = "event:/pusheen/char/kirby/idle_sneeze";
+            public const string char_mad_idle_crackknuckles = "event:/pusheen/char/kirby/idle_crackknuckles";
+            public const string char_mad_jump = "event:/pusheen/char/kirby/jump";
+            public const string char_mad_jump_assisted = "event:/pusheen/char/kirby/jump_assisted";
+            public const string char_mad_jump_dreamblock = "event:/pusheen/char/kirby/jump_dreamblock";
+            public const string char_mad_jump_super = "event:/pusheen/char/kirby/jump_super";
+            public const string char_mad_jump_superslide = "event:/pusheen/char/kirby/jump_superslide";
+            public const string char_mad_jump_superwall = "event:/pusheen/char/kirby/jump_superwall";
+            public const string char_mad_jump_wall_left = "event:/pusheen/char/kirby/jump_wall_left";
+            public const string char_mad_jump_wall_right = "event:/pusheen/char/kirby/jump_wall_right";
+            public const string char_mad_jump_climb_left = "event:/pusheen/char/kirby/jump_climb_left";
+            public const string char_mad_jump_climb_right = "event:/pusheen/char/kirby/jump_climb_right";
+            public const string char_mad_land = "event:/pusheen/char/kirby/land";
+            public const string char_mad_grab = "event:/pusheen/char/kirby/grab";
+            public const string char_mad_grab_letgo = "event:/pusheen/char/kirby/grab_letgo";
+            public const string char_mad_climb_ledge = "event:/pusheen/char/kirby/climb_ledge";
+            public const string char_mad_wallslide = "event:/pusheen/char/kirby/wallslide";
+            public const string char_mad_dash_red_right = "event:/pusheen/char/kirby/dash_red_right";
+            public const string char_mad_dash_red_left = "event:/pusheen/char/kirby/dash_red_left";
+            public const string char_mad_dash_pink_right = "event:/pusheen/char/kirby/dash_pink_right";
+            public const string char_mad_dash_pink_left = "event:/pusheen/char/kirby/dash_pink_left";
+            public const string char_mad_duck = "event:/pusheen/char/kirby/duck";
+            public const string char_mad_stand = "event:/pusheen/char/kirby/stand";
+            public const string char_mad_water_dash_gen = "event:/pusheen/char/kirby/water_dash_gen";
+            public const string char_mad_water_move_shallow = "event:/pusheen/char/kirby/water_move_shallow";
+            public const string char_mad_dreamblock_enter = "event:/pusheen/char/kirby/dreamblock_enter";
+            public const string char_mad_dreamblock_exit = "event:/pusheen/char/kirby/dreamblock_exit";
+            public const string char_mad_dreamblock_travel = "event:/pusheen/char/kirby/dreamblock_travel";
+            public const string char_mad_revive = "event:/pusheen/char/kirby/revive";
+            public const string char_mad_mirrortemple_landing = "event:/pusheen/char/kirby/mirrortemple_landing";
+            public const string char_mad_summit_areastart = "event:/pusheen/char/kirby/summit_areastart";
+            public const string char_mad_crystaltheo_lift = "event:/pusheen/char/kirby/crystalmaddy_lift";
+            public const string char_mad_crystaltheo_throw = "event:/pusheen/char/kirby/crystalmaddy_throw";
 
             // Game
-            public const string game_06_feather_state_bump = "event:/desolo_zantas/game/08_truth/warpstar_state_bump";
-            public const string game_06_feather_state_end = "event:/desolo_zantas/game/08_truth/warpstar_state_end";
-            public const string game_06_feather_state_loop = "event:/desolo_zantas/game/08_truth/warpstar_state_loop";
-            public const string game_06_feather_state_warning = "event:/desolo_zantas/game/08_truth/warpstar_state_warning";
-            public const string game_09_conveyor_activate = "event:/desolo_zantas/game/09_core/conveyor_activate";
-            public const string game_assist_dreamblockbounce = "event:/desolo_zantas/game/general/assist_dreamblockbounce";
+            public const string game_06_feather_state_bump = "event:/pusheen/game/08_truth/warpstar_state_bump";
+            public const string game_06_feather_state_end = "event:/pusheen/game/08_truth/warpstar_state_end";
+            public const string game_06_feather_state_loop = "event:/pusheen/game/08_truth/warpstar_state_loop";
+            public const string game_06_feather_state_warning = "event:/pusheen/game/08_truth/warpstar_state_warning";
+            public const string game_09_conveyor_activate = "event:/pusheen/game/09_core/conveyor_activate";
+            public const string game_assist_dreamblockbounce = "event:/pusheen/game/general/assist_dreamblockbounce";
 
             // Music
-            public const string music_reflection_main = "event:/desolo_zantas/music/lvl8/main";
+            public const string music_reflection_main = "event:/pusheen/music/lvl8/main";
 
             // Badeline sound mapping
             public static readonly Dictionary<string, string> MadelineToBadelineSound = new Dictionary<string, string>
@@ -6860,7 +6860,7 @@ namespace Celeste.Entities
             if (level != null)
             {
                 level.Particles.Emit(ParticleTypes.SparkyDust, 6, Center, Vector2.One * 12f);
-                Audio.Play("event:/desolo_zantas/char/kirby/dash_charge", Position);
+                Audio.Play("event:/pusheen/char/kirby/dash_charge", Position);
             }
         }
 
@@ -6925,7 +6925,7 @@ namespace Celeste.Entities
             {
                 level.Particles.Emit(ParticleTypes.SparkyDust, 12, Center, Vector2.One * 20f);
                 level.Shake(0.15f);
-                Audio.Play("event:/desolo_zantas/char/kirby/kirby_knight/spin", Position);
+                Audio.Play("event:/pusheen/char/kirby/kirby_knight/spin", Position);
             }
 
             DealCombatDamageInRadius(Center, CycloneSlashRadius, 1);
@@ -6997,7 +6997,7 @@ namespace Celeste.Entities
             }
 
             if (level != null)
-                Audio.Play("event:/desolo_zantas/char/kirby/inhale_start", Position);
+                Audio.Play("event:/pusheen/char/kirby/inhale_start", Position);
         }
 
         private void StarShotEnd()
@@ -7064,7 +7064,7 @@ namespace Celeste.Entities
                 level.Particles.Emit(ParticleTypes.SparkyDust, 2, trailPos, Vector2.One * 8f);
             }
 
-            Audio.Play("event:/desolo_zantas/char/kirby/spit", Position);
+            Audio.Play("event:/pusheen/char/kirby/spit", Position);
             Speed = -direction * 80f * charge;
 
             // Deal damage along path
@@ -7101,7 +7101,7 @@ namespace Celeste.Entities
             {
                 level.Particles.Emit(ParticleTypes.SparkyDust, 8, Center, Vector2.One * 16f);
                 level.Shake(0.1f);
-                Audio.Play("event:/desolo_zantas/char/kirby/kirby_knight/punch_A", Position);
+                Audio.Play("event:/pusheen/char/kirby/kirby_knight/punch_A", Position);
             }
         }
 
@@ -7181,7 +7181,7 @@ namespace Celeste.Entities
                     );
                     level.Particles.Emit(ParticleTypes.SparkyDust, 2, shieldPos, Vector2.One * 8f);
                 }
-                Audio.Play("event:/desolo_zantas/char/kirby/core_hair_charged", Position);
+                Audio.Play("event:/pusheen/char/kirby/core_hair_charged", Position);
             }
         }
 
@@ -7270,7 +7270,7 @@ namespace Celeste.Entities
             level.Particles.Emit(ParticleTypes.SparkyDust, 16, Center, Vector2.One * 24f);
             level.Flash(Color.Gold * 0.4f, true);
             level.Shake(0.3f);
-            Audio.Play("event:/desolo_zantas/char/kirby/transform_in", Position);
+            Audio.Play("event:/pusheen/char/kirby/transform_in", Position);
 
             CounterStanceEnd();
         }
@@ -7299,7 +7299,7 @@ namespace Celeste.Entities
             {
                 level.Particles.Emit(ParticleTypes.SparkyDust, 10, Center, Vector2.One * 20f);
                 level.Shake(0.2f);
-                Audio.Play("event:/desolo_zantas/char/kirby/kirby_knight/punch_Final", Position);
+                Audio.Play("event:/pusheen/char/kirby/kirby_knight/punch_Final", Position);
             }
         }
 
@@ -7314,7 +7314,7 @@ namespace Celeste.Entities
             {
                 level.Particles.Emit(ParticleTypes.SparkyDust, 12, BottomCenter, Vector2.One * 24f);
                 level.Shake(0.3f);
-                Audio.Play("event:/desolo_zantas/char/kirby/kirby_knight/punch_Final", Position);
+                Audio.Play("event:/pusheen/char/kirby/kirby_knight/punch_Final", Position);
                 DealCombatDamageInRadius(BottomCenter, 40f, 2);
             }
 
@@ -7393,7 +7393,7 @@ namespace Celeste.Entities
                 level.Particles.Emit(ParticleTypes.SparkyDust, 10, Center, Vector2.One * 16f);
                 level.Particles.Emit(ParticleTypes.SparkyDust, 8, skillGrappleTarget, Vector2.One * 12f);
                 level.Shake(0.1f);
-                Audio.Play("event:/desolo_zantas/char/kirby/kirby_knight/punch_A", Position);
+                Audio.Play("event:/pusheen/char/kirby/kirby_knight/punch_A", Position);
             }
         }
 
@@ -7415,7 +7415,7 @@ namespace Celeste.Entities
             if (level != null)
             {
                 level.Particles.Emit(ParticleTypes.SparkyDust, 12, Center, Vector2.One * 20f);
-                Audio.Play("event:/desolo_zantas/char/kirby/spit", Position);
+                Audio.Play("event:/pusheen/char/kirby/spit", Position);
             }
         }
 
@@ -7535,7 +7535,7 @@ namespace Celeste.Entities
             {
                 level.Particles.Emit(ParticleTypes.SparkyDust, 20, Center, Vector2.One * 24f);
                 level.Flash(Color.Cyan * 0.3f, true);
-                Audio.Play("event:/desolo_zantas/char/kirby/transform_in", Position);
+                Audio.Play("event:/pusheen/char/kirby/transform_in", Position);
             }
         }
 

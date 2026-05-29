@@ -35,7 +35,7 @@ namespace Celeste.Triggers
             level.Session.SetFlag("kirb_flag_collected", true);
 
             // Play the final flag sound effect
-            Audio.Play("event:/desolo_zantas/final_content/game/19_the_end/kirb_flag", player.Center);
+            Audio.Play("event:/pusheen/final_content/game/19_the_end/kirb_flag", player.Center);
 
             // Visual effects
             Add(new Coroutine(CollectRoutine(player)));

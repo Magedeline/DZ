@@ -61,13 +61,13 @@ namespace Celeste.Cutscenes
       yield return payphone.Sprite.PlayRoutine("pickUp");
       yield return 1f;
       if (level.Session.Area.Mode == AreaMode.Normal)
-        Audio.SetMusic("event:/desolo_zantas/music/lvl2/phone_loop");
+        Audio.SetMusic("event:/pusheen/music/lvl2/phone_loop");
       payphone.Sprite.Play("talkPhone");
       yield return Textbox.Say("CH2_DREAM_PHONECALLPORTAL", showChara);
       if (evil != null)
       {
         if (level.Session.Area.Mode == AreaMode.Normal)
-          Audio.SetMusic("event:/desolo_zantas/music/lvl2/phone_end");
+          Audio.SetMusic("event:/pusheen/music/lvl2/phone_end");
         evil.Any();
         evil = null;
         yield return 1f;
@@ -80,7 +80,7 @@ namespace Celeste.Cutscenes
       Tween tween = Tween.Create(Tween.TweenMode.Oneshot, duration: 2f, start: true);
       tween.OnUpdate = t => light.Alpha = t.Eased;
       this.Add(tween);
-      Audio.Play("event:/desolo_zantas/game/02_nightmare/sequence_phone_portal", payphone.Position);
+      Audio.Play("event:/pusheen/game/02_nightmare/sequence_phone_portal", payphone.Position);
       yield return payphone.Sprite.PlayRoutine("transform");
       yield return 0.4f;
       yield return payphone.Sprite.PlayRoutine("eat");
@@ -166,8 +166,8 @@ namespace Celeste.Cutscenes
       Rectangle bounds = level.Bounds;
       Vector2 from = new Vector2(bounds.Left, bounds.Bottom);
       session.RespawnPoint = level.GetSpawnPoint(from);
-      level.Session.Audio.Music.Event = "event:/desolo_zantas/music/lvl2/awake";
-      level.Session.Audio.Ambience.Event = "event:/desolo_zantas/env/02_awake";
+      level.Session.Audio.Music.Event = "event:/pusheen/music/lvl2/awake";
+      level.Session.Audio.Ambience.Event = "event:/pusheen/env/02_awake";
       level.LoadLevel(global::Celeste.Player.IntroTypes.WakeUp);
       level.EndCutscene();
       Leader.RestoreStrawberries(level.Tracker.GetEntity<global::Celeste.Player>().Leader);

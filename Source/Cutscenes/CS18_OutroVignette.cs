@@ -82,7 +82,7 @@ namespace Celeste.Cutscenes
             phoneRinging = true;
 
             // Play phone rumble sound with EventInstance
-            phoneRumbleSfx = Audio.Play("event:/desolo_zantas/char/madeline/cell_phone_ringing", Vector2.Zero);
+            phoneRumbleSfx = Audio.Play("event:/pusheen/char/madeline/cell_phone_ringing", Vector2.Zero);
 
             // Add screen shake for phone vibration
             for (int i = 0; i < 20; i++)

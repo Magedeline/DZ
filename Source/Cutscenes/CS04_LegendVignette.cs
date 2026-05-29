@@ -48,7 +48,7 @@ namespace Celeste.Cutscenes {
             yield return 1f;
 
             // Start the legend music using FMOD EventInstance
-            legendMusic = Audio.Play("event:/desolo_zantas/music/lvl4/legend");
+            legendMusic = Audio.Play("event:/pusheen/music/lvl4/legend");
             yield return 2f;
 
             // Show each part of the legend

@@ -12,42 +12,42 @@ DarknessAlpha: 0.1
 BloomBase: 0.0
 BloomStrength: 1.0
 CassetteNoteColor: e0201d
-CassetteSong: event:/desolo_zantas/music/Cassette/07_inferno
+CassetteSong: event:/pusheen/music/Cassette/07_inferno
 
 Modes:
   - AudioState:
-      Music: event:/desolo_zantas/music/lvl07/main
-      Ambience: event:/desolo_zantas/env/07_interior_main
+      Music: event:/pusheen/music/lvl07/main
+      Ambience: event:/pusheen/env/07_interior_main
     Inventory: Default
     HeartIsEnd: false
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/desolo_zantas/music/BSide/07_hell
-      Ambience: event:/desolo_zantas/env/07_interior_main
+      Music: event:/pusheen/music/BSide/07_hell
+      Ambience: event:/pusheen/env/07_interior_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/desolo_zantas/music/CSide/07_hell
-      Ambience: event:/desolo_zantas/env/07_interior_main
+      Music: event:/pusheen/music/CSide/07_hell
+      Ambience: event:/pusheen/env/07_interior_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/desolo_zantas/music/CSide/07_hell
-      Ambience: event:/desolo_zantas/env/07_interior_main
+      Music: event:/pusheen/music/CSide/07_hell
+      Ambience: event:/pusheen/env/07_interior_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/desolo_zantas/music/DSide/07_hell
-      Ambience: event:/desolo_zantas/env/07_main
+      Music: event:/pusheen/music/DSide/07_hell
+      Ambience: event:/pusheen/env/07_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/desolo_zantas/music/DXSide/07_hell
-      Ambience: event:/desolo_zantas/env/07_main
+      Music: event:/pusheen/music/DXSide/07_hell
+      Ambience: event:/pusheen/env/07_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false

@@ -173,7 +173,7 @@ public class CustomCharaBoost : Entity
             {
                 level.Session.SetFlag(finalCh19Dialog, true);
             }
-            Audio.Play("event:/desolo_zantas/final_content/char/chara/booster_finalfinal_part1", Position);
+            Audio.Play("event:/pusheen/final_content/char/chara/booster_finalfinal_part1", Position);
         }
         else if (!finalBoost)
         {
@@ -322,7 +322,7 @@ public class CustomCharaBoost : Entity
         {
             if (finalCh19Boost)
             {
-                Ch19FinalBoostSfx = Audio.Play("event:/desolo_zantas/final_content/char/chara/booster_finalfinal_part2", Position);
+                Ch19FinalBoostSfx = Audio.Play("event:/pusheen/final_content/char/chara/booster_finalfinal_part2", Position);
             }
             Engine.FreezeTimer = 0.1f;
             yield return null;

@@ -164,7 +164,7 @@ namespace Celeste.Cutscenes
             yield return 0.3f;
             player.DummyAutoAnimate = false;
             player.Sprite.Play("duck");
-            Audio.Play("event:/desolo_zantas/char/kirby/jump_superslide", player.Position);
+            Audio.Play("event:/pusheen/char/kirby/jump_superslide", player.Position);
             yield return 0.5f;
         }
 
@@ -173,7 +173,7 @@ namespace Celeste.Cutscenes
             for (int i = 0; i < 3; i++)
             {
                 Level.Displacement.AddBurst(player.Center, 0.5f, 8f, 64f, 0.5f);
-                Audio.Play("event:/desolo_zantas/final_content/game/19_the_end/lightning_strike", player.Position);
+                Audio.Play("event:/pusheen/final_content/game/19_the_end/lightning_strike", player.Position);
                 yield return 0.3f;
             }
             yield return 0.2f;

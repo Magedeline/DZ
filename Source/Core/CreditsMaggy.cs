@@ -23,7 +23,7 @@ namespace Celeste.UI
         private const float SCROLL_ACCELERATION = 1800f;
         private const float HEIGHT_PADDING = 476f;
 
-        private const string CREDIT_MUSIC_EVENT = "event:/desolo_zantas/music/menu/credits";
+        private const string CREDIT_MUSIC_EVENT = "event:/pusheen/music/menu/credits";
         private const string BACK_SFX = "event:/ui/main/button_back";
 
         private static readonly Color BorderColor = Color.Black;

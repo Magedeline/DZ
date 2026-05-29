@@ -1160,7 +1160,7 @@ namespace Celeste.Mod.MaggyHelper
                 MaggyHelperModule.Session.CreditsCompleted = false;
             }
 
-            creditsSession.Audio.Music.Event = "event:/desolo_zantas/music/lvl17/main";
+            creditsSession.Audio.Music.Event = "event:/pusheen/music/lvl17/main";
             creditsSession.Audio.Apply(false);
 
             Engine.Scene = new LevelLoader(creditsSession)

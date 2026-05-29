@@ -14,38 +14,38 @@ BloomStrength: 1.0
 
 Modes:
   - AudioState:
-      Music: event:/desolo_zantas/music/lvl17/main
-      Ambience: event:/desolo_zantas/env/00_main
+      Music: event:/pusheen/music/lvl17/main
+      Ambience: event:/pusheen/env/00_main
     Inventory: Default
     HeartIsEnd: false
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/desolo_zantas/music/lvl17/main
-      Ambience: event:/desolo_zantas/env/00_main
+      Music: event:/pusheen/music/lvl17/main
+      Ambience: event:/pusheen/env/00_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/desolo_zantas/music/lvl17/main
-      Ambience: event:/desolo_zantas/env/00_main
+      Music: event:/pusheen/music/lvl17/main
+      Ambience: event:/pusheen/env/00_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/desolo_zantas/music/lvl17/main
-      Ambience: event:/desolo_zantas/env/00_main
+      Music: event:/pusheen/music/lvl17/main
+      Ambience: event:/pusheen/env/00_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/desolo_zantas/music/DSide/17_epilogue
-      Ambience: event:/desolo_zantas/env/17_main
+      Music: event:/pusheen/music/DSide/17_epilogue
+      Ambience: event:/pusheen/env/17_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/desolo_zantas/music/DXSide/17_epilogue
-      Ambience: event:/desolo_zantas/env/17_main
+      Music: event:/pusheen/music/DXSide/17_epilogue
+      Ambience: event:/pusheen/env/17_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false

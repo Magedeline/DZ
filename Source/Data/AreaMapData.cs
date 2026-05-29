@@ -150,8 +150,8 @@ public static class AreaMapData
             Icon = "areas/prologue",
             IsInterlude = true,
             HasBSide = false, HasCSide = false, HasDSide = false, HasDXSide = false,
-            MusicEvents = new[] { "event:/desolo_zantas/music/lvl0/intro" },
-            AmbienceEvents = new[] { "event:/desolo_zantas/env/00_prologue" },
+            MusicEvents = new[] { "event:/pusheen/music/lvl0/intro" },
+            AmbienceEvents = new[] { "event:/pusheen/env/00_prologue" },
             MountainState = 0,
             MountainData = new MountainCameraData
             {
@@ -305,8 +305,8 @@ public static class AreaMapData
             Icon = "areas/corruption",
             IsInterlude = false,
             HasBSide = false, HasCSide = false, HasDSide = false, HasDXSide = false,
-            MusicEvents = new[] { "event:/desolo_zantas/music/lvl16/cinematic/intro01" },
-            AmbienceEvents = new[] { "event:/desolo_zantas/env/16_myworld" },
+            MusicEvents = new[] { "event:/pusheen/music/lvl16/cinematic/intro01" },
+            AmbienceEvents = new[] { "event:/pusheen/env/16_myworld" },
             MountainState = MountainOverworldManager.STATE_DARK,
             MountainData = new MountainCameraData
             {
@@ -330,8 +330,8 @@ public static class AreaMapData
             Icon = "areas/epilogue",
             IsInterlude = true,
             HasBSide = false, HasCSide = false, HasDSide = false, HasDXSide = false,
-            MusicEvents = new[] { "event:/desolo_zantas/music/lvl17/main" },
-            AmbienceEvents = new[] { "event:/desolo_zantas/env/00_main" },
+            MusicEvents = new[] { "event:/pusheen/music/lvl17/main" },
+            AmbienceEvents = new[] { "event:/pusheen/env/00_main" },
             MountainState = 0,
             MountainData = new MountainCameraData
             {
@@ -362,8 +362,8 @@ public static class AreaMapData
             Icon = "areas/space",
             IsInterlude = false,
             HasBSide = false, HasCSide = false, HasDSide = false, HasDXSide = false,
-            MusicEvents = new[] { "event:/desolo_zantas/music/lvl18/main" },
-            AmbienceEvents = new[] { "event:/desolo_zantas/env/18_main" },
+            MusicEvents = new[] { "event:/pusheen/music/lvl18/main" },
+            AmbienceEvents = new[] { "event:/pusheen/env/18_main" },
             MountainState = MountainOverworldManager.STATE_VOID,
             MountainData = new MountainCameraData
             {
@@ -508,7 +508,7 @@ public static class AreaMapData
         Vector3 cursor)
     {
         string numStr = number.ToString("D2");
-        string mainMusic = $"event:/desolo_zantas/music/lvl{numStr}/main";
+        string mainMusic = $"event:/pusheen/music/lvl{numStr}/main";
         string ambience = GetStandardAmbienceEvent(number);
 
         Register(new ChapterDef
@@ -557,20 +557,20 @@ public static class AreaMapData
     {
         return chapterNumber switch
         {
-            2 => "event:/desolo_zantas/env/02_awake",
-            4 => "event:/desolo_zantas/env/04_awake",
-            5 => "event:/desolo_zantas/env/05_exterior",
-            7 => "event:/desolo_zantas/env/07_interior_main",
-            8 => "event:/desolo_zantas/env/08_main",
-            9 => "event:/desolo_zantas/env/09_summit",
-            10 => "event:/desolo_zantas/env/10_ruins",
-            11 => "event:/desolo_zantas/env/11_snow_daytime",
-            12 => "event:/desolo_zantas/env/12_waterfall",
-            13 => "event:/desolo_zantas/env/13_factory",
-            14 => "event:/desolo_zantas/env/14_digital",
-            15 => "event:/desolo_zantas/env/15_castle",
-            18 => "event:/desolo_zantas/env/18_main",
-            _ => $"event:/desolo_zantas/env/{chapterNumber:D2}_main"
+            2 => "event:/pusheen/env/02_awake",
+            4 => "event:/pusheen/env/04_awake",
+            5 => "event:/pusheen/env/05_exterior",
+            7 => "event:/pusheen/env/07_interior_main",
+            8 => "event:/pusheen/env/08_main",
+            9 => "event:/pusheen/env/09_summit",
+            10 => "event:/pusheen/env/10_ruins",
+            11 => "event:/pusheen/env/11_snow_daytime",
+            12 => "event:/pusheen/env/12_waterfall",
+            13 => "event:/pusheen/env/13_factory",
+            14 => "event:/pusheen/env/14_digital",
+            15 => "event:/pusheen/env/15_castle",
+            18 => "event:/pusheen/env/18_main",
+            _ => $"event:/pusheen/env/{chapterNumber:D2}_main"
         };
     }
 

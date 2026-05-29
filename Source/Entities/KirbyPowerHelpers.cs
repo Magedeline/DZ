@@ -8,9 +8,9 @@ namespace Celeste.Entities
     /// </summary>
     public static class WarperDashHelper
     {
-        private const string SFX_DASH_LEFT = "event:/desolo_zantas/char/kirby/dash_red_left";
-        private const string SFX_DASH_RIGHT = "event:/desolo_zantas/char/kirby/dash_red_right";
-        private const string SFX_DASH_CHARGE = "event:/desolo_zantas/char/kirby/dash_charge";
+        private const string SFX_DASH_LEFT = "event:/pusheen/char/kirby/dash_red_left";
+        private const string SFX_DASH_RIGHT = "event:/pusheen/char/kirby/dash_red_right";
+        private const string SFX_DASH_CHARGE = "event:/pusheen/char/kirby/dash_charge";
         
         /// <summary>
         /// Perform a warper-style dash effect
@@ -88,9 +88,9 @@ namespace Celeste.Entities
     /// </summary>
     public static class KirbyKnightHelper
     {
-        private const string SFX_KNIGHT_TRANSFORM = "event:/desolo_zantas/char/kirby/kirby_knight/backflip";
-        private const string SFX_KNIGHT_ATTACK = "event:/desolo_zantas/char/kirby/kirby_knight/punch_A";
-        private const string SFX_KNIGHT_SPECIAL = "event:/desolo_zantas/char/kirby/kirby_knight/spin";
+        private const string SFX_KNIGHT_TRANSFORM = "event:/pusheen/char/kirby/kirby_knight/backflip";
+        private const string SFX_KNIGHT_ATTACK = "event:/pusheen/char/kirby/kirby_knight/punch_A";
+        private const string SFX_KNIGHT_SPECIAL = "event:/pusheen/char/kirby/kirby_knight/spin";
         
         /// <summary>
         /// Whether the knight form is currently active

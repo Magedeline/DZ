@@ -34,10 +34,10 @@ public static class PostcardUnlockSystem
     {
         DialogKey = "POSTCARD_CSIDE_UNLOCK",
         TexturePath = "postcards/cside_unlock",
-        SfxIn = "event:/desolo_zantas/ui/main/postcard_csides_in",
-        SfxOut = "event:/desolo_zantas/ui/main/postcard_csides_out",
+        SfxIn = "event:/pusheen/ui/main/postcard_csides_in",
+        SfxOut = "event:/pusheen/ui/main/postcard_csides_out",
         TintColor = new Color(255, 215, 0),  // Gold tint
-        UnlockMusic = "event:/desolo_zantas/music/menu/complete_cside"
+        UnlockMusic = "event:/pusheen/music/menu/complete_cside"
     };
 
     /// <summary>Postcard config for D-Side unlock (shown after completing C-Side)</summary>
@@ -45,10 +45,10 @@ public static class PostcardUnlockSystem
     {
         DialogKey = "POSTCARD_DSIDE_UNLOCK",
         TexturePath = "postcards/dside_unlock",
-        SfxIn = "event:/desolo_zantas/ui/main/postcard_dsides_in",
-        SfxOut = "event:/desolo_zantas/ui/main/postcard_dsides_out",
+        SfxIn = "event:/pusheen/ui/main/postcard_dsides_in",
+        SfxOut = "event:/pusheen/ui/main/postcard_dsides_out",
         TintColor = new Color(180, 100, 255),  // Rainbow/purple tint
-        UnlockMusic = "event:/desolo_zantas/music/menu/complete_cside_summit"
+        UnlockMusic = "event:/pusheen/music/menu/complete_cside_summit"
     };
 
     /// <summary>Postcard config for DX-Side unlock (shown after completing D-Side)</summary>
@@ -56,10 +56,10 @@ public static class PostcardUnlockSystem
     {
         DialogKey = "POSTCARD_DXSIDE_UNLOCK",
         TexturePath = "postcards/dxside_unlock",
-        SfxIn = "event:/desolo_zantas/ui/main/postcard_dsides_in",
-        SfxOut = "event:/desolo_zantas/ui/main/postcard_dsides_out",
+        SfxIn = "event:/pusheen/ui/main/postcard_dsides_in",
+        SfxOut = "event:/pusheen/ui/main/postcard_dsides_out",
         TintColor = new Color(50, 0, 80),  // Dark void tint
-        UnlockMusic = "event:/desolo_zantas/music/menu/complete_cside_summit"
+        UnlockMusic = "event:/pusheen/music/menu/complete_cside_summit"
     };
 
     /// <summary>Postcard config for the 100% ultra completion postcard.</summary>
@@ -67,10 +67,10 @@ public static class PostcardUnlockSystem
     {
         DialogKey = "POSTCARD_ULTRA_VARIANT_UNLOCK",
         TexturePath = "postcards/ultra_variant_unlock",
-        SfxIn = "event:/desolo_zantas/final_content/ui/postcard_desolo_variants_in",
-        SfxOut = "event:/desolo_zantas/final_content/ui/postcard_desolo_variants_out",
+        SfxIn = "event:/pusheen/final_content/ui/postcard_desolo_variants_in",
+        SfxOut = "event:/pusheen/final_content/ui/postcard_desolo_variants_out",
         TintColor = new Color(255, 160, 220),
-        UnlockMusic = "event:/desolo_zantas/music/menu/complete_cside_summit"
+        UnlockMusic = "event:/pusheen/music/menu/complete_cside_summit"
     };
 
     // ── Postcard Display ─────────────────────────────────────────────────

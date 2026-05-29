@@ -21,8 +21,8 @@ Modes:
     SeekerSlowdown: false
 
 Mountain:
-    BackgroundMusic: event:/desolo_zantas/music/menu/level_select
-    BackgroundAmbience: event:/desolo_zantas/final_content/env/gen_last_push
+    BackgroundMusic: event:/pusheen/music/menu/level_select
+    BackgroundAmbience: event:/pusheen/final_content/env/gen_last_push
     BackgroundMusicParams:
         moon_and_blackhole: 1
     MarkerTexture: marker/runNoBackpack

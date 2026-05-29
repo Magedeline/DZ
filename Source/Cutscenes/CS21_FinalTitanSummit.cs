@@ -58,7 +58,7 @@ public class CS21_FinalTitanSummit : CutsceneEntity
         yield return 1f;
 
         // Environmental effects intensify
-        Audio.Play("event:/desolo_zantas/final_content/game/21_desolo_zantas/multiple_lightning_strike");
+        Audio.Play("event:/pusheen/final_content/game/21_desolo_zantas/multiple_lightning_strike");
 
         yield return 2f;
 

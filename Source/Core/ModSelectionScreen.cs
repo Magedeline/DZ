@@ -35,7 +35,7 @@ namespace Celeste.UI
         // ── Audio ──
         private const string CHOICE_MOVE_SFX   = "event:/ui/main/rollover_down";
         private const string CHOICE_SELECT_SFX = "event:/ui/main/button_select";
-        private const string TITLE_MUSIC_EVENT = "event:/desolo_zantas/music/lvl0/intro";
+        private const string TITLE_MUSIC_EVENT = "event:/pusheen/music/lvl0/intro";
         #endregion
 
         #region Fields

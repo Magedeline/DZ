@@ -143,8 +143,8 @@ namespace Celeste.Entities
             Level level = Scene as Level;
             inCutscene = true;
             CrashSfxEmitter = crashes
-                ? SoundEmitter.Play("event:/desolo_zantas/final_content/game/19_the_end/killscene_start", this)
-                : SoundEmitter.Play("event:/desolo_zantas/final_content/game/19_the_end/flappybird", this);
+                ? SoundEmitter.Play("event:/pusheen/final_content/game/19_the_end/killscene_start", this)
+                : SoundEmitter.Play("event:/pusheen/final_content/game/19_the_end/flappybird", this);
             player.StateMachine.State = Player.StDummy;
             player.DummyGravity = false;
             player.DummyAutoAnimate = false;

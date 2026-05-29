@@ -31,9 +31,9 @@ namespace Celeste
         private const string FLAG_TRAP_DONE = "ch20_tesseract_soul_trap_done";
 
         // SFX
-        private const string SFX_FAKE_HEARTGEM_PULSE   = "event:/desolo_zantas/final_content/game/20_last_push/fake_heartgem_pulse";
-        private const string SFX_FAKE_HEARTGEM_SHATTER = "event:/desolo_zantas/final_content/game/20_last_push/fake_heartgem_shatter";
-        private const string SFX_ELS_LAUGH              = "event:/desolo_zantas/final_content/game/20_last_push/els_reveal_laugh";
+        private const string SFX_FAKE_HEARTGEM_PULSE   = "event:/pusheen/final_content/game/20_last_push/fake_heartgem_pulse";
+        private const string SFX_FAKE_HEARTGEM_SHATTER = "event:/pusheen/final_content/game/20_last_push/fake_heartgem_shatter";
+        private const string SFX_ELS_LAUGH              = "event:/pusheen/final_content/game/20_last_push/els_reveal_laugh";
 
         #endregion
 

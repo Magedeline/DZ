@@ -19,7 +19,7 @@ tape.placements = {
         floatRange       = 2.0,
         -- Audio
         collectSfx        = "",
-        previewEvent      = "event:/desolo_zantas/game/general/cassette_preview",
+        previewEvent      = "event:/pusheen/game/general/cassette_preview",
         previewParamName  = "remix",
         previewParamValue = -1.0,
         -- Unlock

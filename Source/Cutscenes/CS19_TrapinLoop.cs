@@ -287,7 +287,7 @@ namespace Celeste.Cutscenes
                 foreach (var lightning in Scene.Entities.FindAll<Lightning>())
                     lightning.ToggleCheck();
                 Scene.Tracker.GetEntity<LightningRenderer>()?.ToggleEdges(true);
-                level.Session.Audio.Ambience.Event = "event:/desolo_zantas/final_content/env/19_vortex";
+                level.Session.Audio.Ambience.Event = "event:/pusheen/final_content/env/19_vortex";
                 level.Session.Audio.Apply();
             }
             if (chara != null)

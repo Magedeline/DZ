@@ -49,7 +49,7 @@ public class CS19_BirdIntroCutscene : CutsceneEntity
     {
         if (crashes)
         {
-            Audio.SetMusic("event:/desolo_zantas/final_content/music/lvl19/cinematic/bird_crash_second");
+            Audio.SetMusic("event:/pusheen/final_content/music/lvl19/cinematic/bird_crash_second");
             CustomCharaBoost boost = Scene.Entities.FindFirst<CustomCharaBoost>();
             if (boost != null)
             {
@@ -78,7 +78,7 @@ public class CS19_BirdIntroCutscene : CutsceneEntity
         else
         {
             Audio.SetMusicParam("bird_grab", 1f);
-            crashMusicSfx = Audio.Play("event:/desolo_zantas/final_content/music/lvl19/cinematic/bird_crash_first");
+            crashMusicSfx = Audio.Play("event:/pusheen/final_content/music/lvl19/cinematic/bird_crash_first");
             yield return flingBird.DoGrabbingRoutine(player);
             yield return MissSequence(level);
             StartMusic();
@@ -128,7 +128,7 @@ public class CS19_BirdIntroCutscene : CutsceneEntity
         yield return 0.6f;
         player.Sprite.Play("rollGetUp");
         yield return 0.8f;
-        level.Session.Audio.Music.Event = "event:/desolo_zantas/final_content/music/lvl19/tragiclost";
+        level.Session.Audio.Music.Event = "event:/pusheen/final_content/music/lvl19/tragiclost";
         level.Session.Audio.Apply(false);
         yield return Textbox.Say("CH19_KILL_THE_BIRD", BirdLooksHurt, BirdSquakOnGround, ApproachBird, ApproachBirdAgain, BadelineAppears, WaitABeat, MadelineSits, BadelineHugs, StandUp, ShiftCameraToBird);
     }
@@ -350,8 +350,8 @@ public class CS19_BirdIntroCutscene : CutsceneEntity
     private IEnumerator FlickerBlackhole()
     {
         yield return 0.5f;
-        Audio.Play("event:/desolo_zantas/final_content/game/19_farewell/glitch_medium");
-        Audio.Play("event:/desolo_zantas/final_content/music/lvl19/cinematic/els_intro_laugh");
+        Audio.Play("event:/pusheen/final_content/game/19_farewell/glitch_medium");
+        Audio.Play("event:/pusheen/final_content/music/lvl19/cinematic/els_intro_laugh");
         yield return MoonGlitchBackgroundTrigger.GlitchRoutine(0.5f, stayOn: false);
         yield return player.DummyWalkTo(player.X - 8f, walkBackwards: true);
         yield return 0.4f;
@@ -365,10 +365,10 @@ public class CS19_BirdIntroCutscene : CutsceneEntity
         Level.Shake(0.4f);
         Level.Add(new LightningStrike(new Vector2(player.X, Level.Bounds.Top), 80, 240f));
         Level.Add(new LightningStrike(new Vector2(player.X - 100f, Level.Bounds.Top), 90, 240f, 0.5f));
-        Audio.Play("event:/desolo_zantas/final_content/music/lvl19/cinematic/els_intro_scream");
+        Audio.Play("event:/pusheen/final_content/music/lvl19/cinematic/els_intro_scream");
         yield return MoonGlitchBackgroundTrigger.GlitchRoutine(1.0f, stayOn: false);
         yield return 2.4f;
-        Audio.Play("event:/desolo_zantas/final_content/game/19_farewell/lightning_strike");
+        Audio.Play("event:/pusheen/final_content/game/19_farewell/lightning_strike");
         TriggerEnvironmentalEvents();
         StartMusic();
         yield return 1.2f;
@@ -377,8 +377,8 @@ public class CS19_BirdIntroCutscene : CutsceneEntity
     [MethodImpl(MethodImplOptions.NoInlining)]
     private void StartMusic()
     {
-        Level.Session.Audio.Music.Event = "event:/desolo_zantas/final_content/music/lvl19/part03";
-        Level.Session.Audio.Ambience.Event = "event:/desolo_zantas/final_content/env/19_vortex";
+        Level.Session.Audio.Music.Event = "event:/pusheen/final_content/music/lvl19/part03";
+        Level.Session.Audio.Ambience.Event = "event:/pusheen/final_content/env/19_vortex";
         Level.Session.Audio.Apply(false);
     }
 
@@ -447,7 +447,7 @@ public class CS19_BirdIntroCutscene : CutsceneEntity
                 bird.FlyAwayUp = false;
                 bird.WaitForLightningPostDelay = 1f;
                 level.SnapColorGrade("none");
-                level.Session.Audio.Music.Event = "event:/desolo_zantas/final_content/music/lvl19/tragiclost";
+                level.Session.Audio.Music.Event = "event:/pusheen/final_content/music/lvl19/tragiclost";
                 level.Session.Audio.Apply(false);
             }
         }

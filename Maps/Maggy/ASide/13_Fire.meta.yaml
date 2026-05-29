@@ -12,42 +12,42 @@ DarknessAlpha: 0.05
 BloomBase: 0.3
 BloomStrength: 1.0
 CassetteNoteColor: ff6a00
-CassetteSong: event:/desolo_zantas/music/Cassette/13_blazing
+CassetteSong: event:/pusheen/music/Cassette/13_blazing
 
 Modes:
   - AudioState:
-      Music: event:/desolo_zantas/music/lvl13/main
-      Ambience: event:/desolo_zantas/env/13_factory
+      Music: event:/pusheen/music/lvl13/main
+      Ambience: event:/pusheen/env/13_factory
     Inventory: Default
     HeartIsEnd: false
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/desolo_zantas/music/BSide/13_fire
-      Ambience: event:/desolo_zantas/env/13_factory
+      Music: event:/pusheen/music/BSide/13_fire
+      Ambience: event:/pusheen/env/13_factory
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/desolo_zantas/music/CSide/13_fire
-      Ambience: event:/desolo_zantas/env/13_factory
+      Music: event:/pusheen/music/CSide/13_fire
+      Ambience: event:/pusheen/env/13_factory
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/desolo_zantas/music/CSide/13_fire
-      Ambience: event:/desolo_zantas/env/13_factory
+      Music: event:/pusheen/music/CSide/13_fire
+      Ambience: event:/pusheen/env/13_factory
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/desolo_zantas/music/DSide/13_fire
-      Ambience: event:/desolo_zantas/env/13_main
+      Music: event:/pusheen/music/DSide/13_fire
+      Ambience: event:/pusheen/env/13_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/desolo_zantas/music/DXSide/13_fire
-      Ambience: event:/desolo_zantas/env/13_main
+      Music: event:/pusheen/music/DXSide/13_fire
+      Ambience: event:/pusheen/env/13_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false

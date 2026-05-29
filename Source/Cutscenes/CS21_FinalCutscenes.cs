@@ -27,8 +27,8 @@ namespace Celeste.Cutscenes
         private const string DIALOGUE_NORMAL  = "CH21_ENDING_NORMAL";
 
         // Music
-        private const string MUSIC_GOOD_END   = "event:/desolo_zantas/music/menu/goodnight";
-        private const string MUSIC_NORMAL_END  = "event:/desolo_zantas/music/menu/els_win";
+        private const string MUSIC_GOOD_END   = "event:/pusheen/music/menu/goodnight";
+        private const string MUSIC_NORMAL_END  = "event:/pusheen/music/menu/els_win";
 
         private Player player;
         private bool goodEnding;
@@ -140,7 +140,7 @@ namespace Celeste.Cutscenes
             yield return 2f;
 
             // A distant rumble — Els is not truly gone
-            Audio.Play("event:/desolo_zantas/final_content/game/21_desolo_zantas/falling_into_the_void");
+            Audio.Play("event:/pusheen/final_content/game/21_desolo_zantas/falling_into_the_void");
 
             yield return 1f;
 
@@ -151,7 +151,7 @@ namespace Celeste.Cutscenes
                 overlayAlpha = Ease.CubeIn(t / 3f);
                 yield return null;
             }
-            Audio.Play("event:/desolo_zantas/final_content/game/21_desolo_zantas/final_laugh");
+            Audio.Play("event:/pusheen/final_content/game/21_desolo_zantas/final_laugh");
             overlayAlpha = 1f;
 
             yield return 0.5f;

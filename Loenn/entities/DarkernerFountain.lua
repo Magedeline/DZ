@@ -61,7 +61,7 @@ darkernerFountain.fieldInformation = {
         fieldType = "string",
         options = {
             "event:/game/general/thing_booped",
-            "event:/desolo_zantas/char/kirby/dreamblock_enter",
+            "event:/pusheen/char/kirby/dreamblock_enter",
             "event:/game/general/seed_poof"
         },
         editable = true

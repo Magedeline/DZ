@@ -12,42 +12,42 @@ DarknessAlpha: 0.1
 BloomBase: 0.0
 BloomStrength: 1.0
 CassetteNoteColor: 8b6914
-CassetteSong: event:/desolo_zantas/music/Cassette/10_ruins
+CassetteSong: event:/pusheen/music/Cassette/10_ruins
 
 Modes:
   - AudioState:
-      Music: event:/desolo_zantas/music/lvl10/main
-      Ambience: event:/desolo_zantas/env/10_ruins
+      Music: event:/pusheen/music/lvl10/main
+      Ambience: event:/pusheen/env/10_ruins
     Inventory: Default
     HeartIsEnd: false
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/desolo_zantas/music/BSide/10_ruins
-      Ambience: event:/desolo_zantas/env/10_ruins
+      Music: event:/pusheen/music/BSide/10_ruins
+      Ambience: event:/pusheen/env/10_ruins
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/desolo_zantas/music/CSide/10_ruins
-      Ambience: event:/desolo_zantas/env/10_ruins
+      Music: event:/pusheen/music/CSide/10_ruins
+      Ambience: event:/pusheen/env/10_ruins
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/desolo_zantas/music/CSide/10_ruins
-      Ambience: event:/desolo_zantas/env/10_ruins
+      Music: event:/pusheen/music/CSide/10_ruins
+      Ambience: event:/pusheen/env/10_ruins
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/desolo_zantas/music/DSide/10_ruins
-      Ambience: event:/desolo_zantas/env/10_main
+      Music: event:/pusheen/music/DSide/10_ruins
+      Ambience: event:/pusheen/env/10_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/desolo_zantas/music/DXSide/10_ruins
-      Ambience: event:/desolo_zantas/env/10_main
+      Music: event:/pusheen/music/DXSide/10_ruins
+      Ambience: event:/pusheen/env/10_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false

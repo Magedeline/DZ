@@ -14,8 +14,8 @@ BloomStrength: 1.0
 
 Modes:
   - AudioState:
-      Music: event:/desolo_zantas/music/lvl16/cinematic/intro01
-      Ambience: event:/desolo_zantas/env/16_myworld
+      Music: event:/pusheen/music/lvl16/cinematic/intro01
+      Ambience: event:/pusheen/env/16_myworld
     Inventory: Default
     HeartIsEnd: false
     SeekerSlowdown: false

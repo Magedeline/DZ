@@ -65,7 +65,7 @@ namespace Celeste
             Add(new Coroutine(cameraUp(), true));
 
             if (!string.IsNullOrEmpty(text) && index >= 0)
-                Audio.Play("event:/desolo_zantas/game/09_beyondsummit/altitude_count");
+                Audio.Play("event:/pusheen/game/09_beyondsummit/altitude_count");
 
             while ((ease += Engine.DeltaTime / 0.15f) < 1f)
                 yield return null;
@@ -98,12 +98,12 @@ namespace Celeste
 
             if (progress < 12)
             {
-                session.Audio.Music.Event = "event:/desolo_zantas/final_content/music/lvl20/climb";
+                session.Audio.Music.Event = "event:/pusheen/final_content/music/lvl20/climb";
                 session.Audio.Music.Progress = progress;
             }
             else
             {
-                session.Audio.Music.Event = "event:/desolo_zantas/final_content/music/lvl20/final_titan";
+                session.Audio.Music.Event = "event:/pusheen/final_content/music/lvl20/final_titan";
             }
 
             session.Audio.Apply(false);

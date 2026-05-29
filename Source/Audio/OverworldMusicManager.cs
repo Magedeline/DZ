@@ -16,61 +16,61 @@ public static class OverworldMusicManager
     // ── Custom Music Events (from GUIDs.txt) ─────────────────────────────
 
     /// <summary>Level select screen music (replaces event:/music/menu/level_select)</summary>
-    public const string MUSIC_LEVEL_SELECT = "event:/desolo_zantas/music/menu/level_select";
+    public const string MUSIC_LEVEL_SELECT = "event:/pusheen/music/menu/level_select";
 
     /// <summary>A-Side / Normal completion music</summary>
-    public const string MUSIC_COMPLETE_AREA = "event:/desolo_zantas/music/menu/complete_area";
+    public const string MUSIC_COMPLETE_AREA = "event:/pusheen/music/menu/complete_area";
 
     /// <summary>Summit completion music (A-Side final chapters)</summary>
-    public const string MUSIC_COMPLETE_SUMMIT = "event:/desolo_zantas/music/menu/complete_summit";
+    public const string MUSIC_COMPLETE_SUMMIT = "event:/pusheen/music/menu/complete_summit";
 
     /// <summary>B-Side completion music</summary>
-    public const string MUSIC_COMPLETE_BSIDE = "event:/desolo_zantas/music/menu/complete_bside";
+    public const string MUSIC_COMPLETE_BSIDE = "event:/pusheen/music/menu/complete_bside";
 
     /// <summary>B-Side summit completion music</summary>
-    public const string MUSIC_COMPLETE_BSIDE_SUMMIT = "event:/desolo_zantas/music/menu/complete_bside_summit";
+    public const string MUSIC_COMPLETE_BSIDE_SUMMIT = "event:/pusheen/music/menu/complete_bside_summit";
 
     /// <summary>C-Side completion music</summary>
-    public const string MUSIC_COMPLETE_CSIDE = "event:/desolo_zantas/music/menu/complete_cside";
+    public const string MUSIC_COMPLETE_CSIDE = "event:/pusheen/music/menu/complete_cside";
 
     /// <summary>C-Side summit completion music</summary>
-    public const string MUSIC_COMPLETE_CSIDE_SUMMIT = "event:/desolo_zantas/music/menu/complete_cside_summit";
+    public const string MUSIC_COMPLETE_CSIDE_SUMMIT = "event:/pusheen/music/menu/complete_cside_summit";
 
     /// <summary>D-Side and DX-Side completion music</summary>
-    public const string MUSIC_COMPLETE_DSIDE_VOID = "event:/desolo_zantas/music/menu/complete_dside_void";
+    public const string MUSIC_COMPLETE_DSIDE_VOID = "event:/pusheen/music/menu/complete_dside_void";
 
     /// <summary>Credits music</summary>
-    public const string MUSIC_CREDIT = "event:/desolo_zantas/music/menu/credit";
+    public const string MUSIC_CREDIT = "event:/pusheen/music/menu/credit";
 
     /// <summary>Dodge credits music</summary>
-    public const string MUSIC_DODGE_CREDIT = "event:/desolo_zantas/music/menu/dodge_credit";
+    public const string MUSIC_DODGE_CREDIT = "event:/pusheen/music/menu/dodge_credit";
 
     /// <summary>Game over screen</summary>
-    public const string MUSIC_GAMEOVER = "event:/desolo_zantas/music/menu/gameover";
+    public const string MUSIC_GAMEOVER = "event:/pusheen/music/menu/gameover";
 
     /// <summary>Game over slow version</summary>
-    public const string MUSIC_GAMEOVER_SLOW = "event:/desolo_zantas/music/menu/gameover_slow";
+    public const string MUSIC_GAMEOVER_SLOW = "event:/pusheen/music/menu/gameover_slow";
 
     /// <summary>Goodnight / end of session music</summary>
-    public const string MUSIC_GOODNIGHT = "event:/desolo_zantas/music/menu/goodnight";
+    public const string MUSIC_GOODNIGHT = "event:/pusheen/music/menu/goodnight";
 
     /// <summary>Last push / final chapters menu music</summary>
-    public const string MUSIC_LAST_PUSH = "event:/desolo_zantas/music/menu/last_push";
+    public const string MUSIC_LAST_PUSH = "event:/pusheen/music/menu/last_push";
 
     /// <summary>Respite / save point music</summary>
-    public const string MUSIC_RESPITE = "event:/desolo_zantas/music/menu/respite";
+    public const string MUSIC_RESPITE = "event:/pusheen/music/menu/respite";
 
     /// <summary>Trailer music</summary>
-    public const string MUSIC_TRAILER = "event:/desolo_zantas/music/menu/trailer";
+    public const string MUSIC_TRAILER = "event:/pusheen/music/menu/trailer";
 
     /// <summary>True legend / all-clear music</summary>
-    public const string MUSIC_TRUE_LEGEND = "event:/desolo_zantas/music/menu/true_legend";
+    public const string MUSIC_TRUE_LEGEND = "event:/pusheen/music/menu/true_legend";
 
     /// <summary>Candy parade music</summary>
-    public const string MUSIC_CANDY = "event:/desolo_zantas/music/menu/candy";
+    public const string MUSIC_CANDY = "event:/pusheen/music/menu/candy";
 
     /// <summary>Cast screen music</summary>
-    public const string MUSIC_CAST = "event:/desolo_zantas/music/menu/cast";
+    public const string MUSIC_CAST = "event:/pusheen/music/menu/cast";
 
     // ── Vanilla → Custom mapping ─────────────────────────────────────────
 

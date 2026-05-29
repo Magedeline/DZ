@@ -246,7 +246,7 @@ namespace Celeste.Entities
             ralseiMirror.Add((Component)(ralseiMirror.sfx = new SoundSource()));
             ralseiMirror.sfx.Play("event:/game/02_old_site/sequence_mirror");
             yield return 0.15f;
-            ralseiMirror.Add((Component)(ralseiMirror.sfxSting = new SoundSource("event:/desolo_zantas/music/lvl4/dreamblock_sting_pt2")));
+            ralseiMirror.Add((Component)(ralseiMirror.sfxSting = new SoundSource("event:/pusheen/music/lvl4/dreamblock_sting_pt2")));
             Input.Rumble(RumbleStrength.Light, RumbleLength.FullSecond);
             ralseiMirror.updateShine = false;
             while ((double)ralseiMirror.shineOffset != 33.0 || (double)ralseiMirror.shineAlpha < 1.0)

@@ -320,10 +320,10 @@ namespace Celeste
             return inventoryType switch
             {
                 RefillInventoryType.TwoDash => "event:/game/general/refill_two_get",
-                RefillInventoryType.Solar => "event:/desolo_zantas/game/general/reddiamond_touch",
-                RefillInventoryType.Lunar => "event:/desolo_zantas/game/general/cyandiamond_touch",
-                RefillInventoryType.BlackHole => "event:/desolo_zantas/final_content/game/19_the_end/gigadiamond_touch",
-                RefillInventoryType.SaveStar => "event:/desolo_zantas/final_content/game/20_last_push/savediamond_touch",
+                RefillInventoryType.Solar => "event:/pusheen/game/general/reddiamond_touch",
+                RefillInventoryType.Lunar => "event:/pusheen/game/general/cyandiamond_touch",
+                RefillInventoryType.BlackHole => "event:/pusheen/final_content/game/19_the_end/gigadiamond_touch",
+                RefillInventoryType.SaveStar => "event:/pusheen/final_content/game/20_last_push/savediamond_touch",
                 _ => "event:/game/general/refill_get"
             };
         }

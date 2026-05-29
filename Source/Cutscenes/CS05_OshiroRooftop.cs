@@ -83,7 +83,7 @@ namespace Celeste.Cutscenes
             Level level = Scene as Level;
             Add(new Coroutine(player.DummyWalkTo((float)level.Bounds.Left + 170f)));
             yield return 0.2f;
-            Audio.Play("event:/desolo_zantas/game/05_restore/suite_bad_moveroof", chara.Position);
+            Audio.Play("event:/pusheen/game/05_restore/suite_bad_moveroof", chara.Position);
             Add(new Coroutine(chara.FloatTo(chara.Position + new Vector2(80f, 30f))));
             yield return 0.5f;
         }
@@ -183,7 +183,7 @@ namespace Celeste.Cutscenes
         private void SetChaseMusic()
         {
             Level obj = base.Scene as Level;
-            obj.Session.Audio.Music.Event = "event:/desolo_zantas/music/lvl5/oshiro_chase";
+            obj.Session.Audio.Music.Event = "event:/pusheen/music/lvl5/oshiro_chase";
             obj.Session.Audio.Apply(forceSixteenthNoteHack: false);
         }
         public override void OnEnd(Level level)

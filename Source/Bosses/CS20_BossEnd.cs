@@ -81,7 +81,7 @@ namespace Celeste.Cutscenes
             // Dramatic screen shake and flash
             level.Shake(1.5f);
             level.Flash(Color.Purple * 0.6f, false);
-            Audio.Play("event:/desolo_zantas/final_content/char/asriel/Asriel_Segapower01", asriel?.Position ?? player.Position);
+            Audio.Play("event:/pusheen/final_content/char/asriel/Asriel_Segapower01", asriel?.Position ?? player.Position);
 
             yield return 0.4f;
 
@@ -95,7 +95,7 @@ namespace Celeste.Cutscenes
             // Begin transformation sequence
             level.Shake(2.0f);
             level.Flash(Color.Gold * 0.8f, false);
-            Audio.Play("event:/desolo_zantas/final_content/char/asriel/Asriel_Segapower02", asriel?.Position ?? player.Position);
+            Audio.Play("event:/pusheen/final_content/char/asriel/Asriel_Segapower02", asriel?.Position ?? player.Position);
 
             // Multiple bursts for transformation
             for (int i = 0; i < 3; i++)
@@ -113,7 +113,7 @@ namespace Celeste.Cutscenes
             // Massive screen flash for transformation
             level.Flash(Color.White, true);
             level.Shake(3.0f);
-            Audio.Play("event:/desolo_zantas/final_content/char/asriel/Asriel_BarrierShatter", asriel?.Position ?? player.Position);
+            Audio.Play("event:/pusheen/final_content/char/asriel/Asriel_BarrierShatter", asriel?.Position ?? player.Position);
 
             yield return 1.0f;
 
@@ -159,7 +159,7 @@ namespace Celeste.Cutscenes
             level.Session.SetFlag("asriel_angel_phase_started");
             
             // Update music for Angel of Death phase
-            level.Session.Audio.Music.Event = "event:/desolo_zantas/final_content/music/lvl20/burn_in_despair";
+            level.Session.Audio.Music.Event = "event:/pusheen/final_content/music/lvl20/burn_in_despair";
             level.Session.Audio.Apply();
         }
     }

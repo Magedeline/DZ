@@ -35,9 +35,10 @@ namespace Celeste.Entities
             // Holographic display spectogram
             spectogram = AtlasPathHelper.GetTexture("objects/maggypc/spectogram");
             subtex = spectogram.GetSubtexture(0, 0, SPECTOGRAM_WIDTH, SPECTOGRAM_HEIGHT, subtex);
-            
+
             // Ambient sci-fi computer sound
-            Add(sfx = new SoundSource("event:/pusheen/extra_content/env/19_maggypc"));
+            Add(sfx = new SoundSource("event:/pusheen/extra_content/env/19_pusheenpc"));
+            sfx.Param("pusheenpc_distance", 1f);
             sfx.Position = new Vector2(0f, -16f);
             
             timer = 0f;

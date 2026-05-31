@@ -1,0 +1,261 @@
+=== PORTRAIT ASSET ARTIST REPORT ===
+
+Total portrait directories: 31
+Total dialogue characters: 147
+
+
+=== CHARACTERS NEEDING NEW PORTRAIT DIRECTORIES ===
+(Create a folder under Graphics/Atlases/Portraits/ with these names)
+
+  adeline/
+    Required expressions: determined, happy
+  alex/
+    Required expressions: concerned
+  alphys/
+    Required expressions: blinded, nervous, normal, remembering, sad, smile, thinking, worried
+  apex_predator/
+    Required expressions: angry, angryalt, dying, evil, furious, laughing, menacing, surprised, wounded
+  asirel/
+    Required expressions: none
+  asriel_god/
+    Required expressions: fine, frustrated, godform, mocking, normal, shocked
+  asriel_kid/
+    Required expressions: crying, glitch, normal, smile
+  asriel_zero/
+    Required expressions: crying, determined, glitching, horrified, omnipotent, remembering, struggling, transcendent
+  axis/
+    Required expressions: angry, disapointed
+  badeline/
+    Required expressions: alarmed, amused, angry, angryalt, awed, calm, concerned, concernedalt, confident, confused, conrened, crying, defensive, determined, firm, freaka, frustrated, holding, hopeful, horrified, hurt, normal, quiet, sad, sadder, scoff, screaming, shaken, shocked, sigh, sigh_simple, simple_sigh, smile, soft, suspicious, teasing, terrified, thinking, thoughtful, tired, uncertain, upset, weak, worried, worriedalt, worritedalt, yell
+  badeline_spirit/
+    Required expressions: angryalt, normal, scoff, worried, worriedalt
+  bandana_dee/
+    Required expressions: celebrating, proud, saluting, trust
+  berdly/
+    Required expressions: defensive, embarrassed, explaining, mortified, proud, sad, smug
+  bob/
+    Required expressions: none
+  burgerpants/
+    Required expressions: exhausted, resigned, tired
+  castle_guardian/
+    Required expressions: normal, serious
+  classic/
+    Required expressions: npc
+  coo/
+    Required expressions: normal, sharp
+  cyber_queen/
+    Required expressions: angry, bitter, determined, dismissive, furious, honest, offended, regal, reminiscing, scheming
+  dark_meta_knight/
+    Required expressions: cool
+  darker_dark_matter/
+    Required expressions: angry, fading, none
+  darkmatter/
+    Required expressions: normal
+  daroach/
+    Required expressions: bruh, sly
+  digital_ai/
+    Required expressions: curious, informative, neutral, quoting, sad, solemn, somber
+  digital_dedede/
+    Required expressions: angry, concerned, normal, sad
+  digital_guide/
+    Required expressions: concerned, happy, normal
+  digital_merchant/
+    Required expressions: glitchy, sad
+  digital_waddle_dee/
+    Required expressions: determined, grateful
+  doppia/
+    Required expressions: elica
+  doppiaelica/
+    Required expressions: omnipotent, omnipotenta
+  echo_flower/
+    Required expressions: none
+  eight_souls/
+    Required expressions: harmonious, offering
+  elfilin/
+    Required expressions: hopeful
+  els_flowey/
+    Required expressions: annoyed, arms_spread, ecstatic, grinning, menacing, reveal
+  els_revived/
+    Required expressions: normal
+  ethereal_voice/
+    Required expressions: none
+  everyone/
+    Required expressions: shocked, surprised
+  ex_phone/
+    Required expressions: normal
+  flamberge/
+    Required expressions: angry, confused, normal, shocked, upset
+  floweyels/
+    Required expressions: ignored, normal, unignored, unignoredalt, unignoredaltalt, unignoredaltaltalt, wtf, wtfalt, wut
+  francisca/
+    Required expressions: concerned, determined, normal, sad, surprised, worried
+  friendly_virus/
+    Required expressions: happy, sad
+  froggit/
+    Required expressions: normal
+  gaster_follower/
+    Required expressions: none
+  gerson/
+    Required expressions: happy, normal
+  giant_axis/
+    Required expressions: angry, normal
+  gooey/
+    Required expressions: bruh, confused, excited, happy, idea
+  grand_doomer/
+    Required expressions: looming
+  greater_dog/
+    Required expressions: excited, happy
+  gyftrot/
+    Required expressions: annoyed, happy, sad
+  human/
+    Required expressions: news
+  hyness/
+    Required expressions: broken, confused, crying, distressed, dramatic, grateful, hopeful, normal, ranting, sad, tearful, upset
+  ice_cap/
+    Required expressions: excited, proud
+  jade/
+    Required expressions: again, bruh, eye_closed, eye_flash, eye_roll, finalpowerfade, flash_eyes_alt, flashing_eyes, frustrated, heknowsit_a, heknowsit_b, heknowsit_c, omnia, omnib, omnic, omnid, omnifinal, sad, shruggle, smirkle, smuggle, stink_eyes, what
+  jade_teen/
+    Required expressions: normal
+  jades/
+    Required expressions: feelings, huh, omnifeelings, sad, wut
+  jades_teen/
+    Required expressions: feltthis, grateful, guilt, mytimeisup, uh
+  kine/
+    Required expressions: scared
+  king_ddd/
+    Required expressions: loyal
+  king_dedede/
+    Required expressions: agreeing, angry, anguished, concerned, confused, crying_happy, curious, defensive, determined, distressed, emotional, grateful, groggy, hopeful, normal, overjoyed, sad, serious, worried
+  king_titan/
+    Required expressions: defeated, desperate, noble, presenting, resigned, serious, shocked, warning, wise
+  kirbyparents/
+    Required expressions: normal
+  loox/
+    Required expressions: happy, normal
+  madeline_mirror/
+    Required expressions: determined, determinedclosed, distracted, normal, panic, sad, upset
+  madeline_phone/
+    Required expressions: angry, distracted, sad, upset
+  madeline_spirit/
+    Required expressions: determined, distracted, normal, sad, sadder, shocked, surprised, together, together_zoom, upset
+  madelineroped/
+    Required expressions: normal
+  maggy/
+    Required expressions: annoyed, normal
+  marlet/
+    Required expressions: angry, concerned, determined, normal, notfeelingwell, sad, scared, upset, worried
+  marx/
+    Required expressions: grin, hetryed, normal, smirk
+  meta_knight/
+    Required expressions: angry, approving, concerned, determined, grim, normal, reminiscing, sad, serious, shocked
+  metaminator_knight/
+    Required expressions: angry, concerned, normal, sad
+  mettaton/
+    Required expressions: dramatic, fabulous, posing
+  mom_phone/
+    Required expressions: concerned, normal
+  muffet/
+    Required expressions: happy, normal
+  mysterious_music/
+    Required expressions: none
+  napstablook/
+    Required expressions: normal, sad
+  nice_cream_guy/
+    Required expressions: happy
+  nme/
+    Required expressions: none
+  noelle/
+    Required expressions: beaming, blushing, concentrating, giggling, happy, nervous, surprised, upset
+  ohsiro/
+    Required expressions: normal
+  old_program/
+    Required expressions: ancient, nostalgic
+  onionsan/
+    Required expressions: happy, overjoyed
+  rebel_ai/
+    Required expressions: determined, whispering
+  rg01/
+    Required expressions: agreeing, confused, normal, stoic
+  rg02/
+    Required expressions: confused, normal, stoic
+  ribbon/
+    Required expressions: determined, normal, shocked
+  rick/
+    Required expressions: determined, worried
+  roaring_titan_king/
+    Required expressions: crying, cryingalt, cryinghappy, determined, emotional, impressed, normal, peaceful, sad, serious
+  rock/
+    Required expressions: normal
+  roxus/
+    Required expressions: happy, normal, sad, sidenormal
+  seven_goner/
+    Required expressions: together
+  shyren/
+    Required expressions: happy, shy
+  snake/
+    Required expressions: boss
+  snowdrake/
+    Required expressions: excited, proud
+  snowman/
+    Required expressions: happy, normal
+  starlo/
+    Required expressions: angry, excited, normal, piss, proud, unsettle, wink
+  starrsi/
+    Required expressions: concerned, excited
+  stars/
+    Required expressions: determined
+  starsei/
+    Required expressions: blinded, remembering
+  starsi/
+    Required expressions: angry, comfert, happy, none, normal, sadder, surprised, terrified, veryunhappy, worried
+  starwalker/
+    Required expressions: none
+  stellar/
+    Required expressions: normal
+  suitedman_follower/
+    Required expressions: none
+  suzy/
+    Required expressions: amused, angry, annoyed, bruh, concerning, confused, cringe, embarrassed, fakebite, frustrated, hellya, impressed, interested, none, normal, prefakebite, serious, shocked, uncomfortable
+  system_voice/
+    Required expressions: none
+  tech/
+    Required expressions: shop
+  temmie/
+    Required expressions: excited, none, wise
+  tenna/
+    Required expressions: conflicted, nervous, none, sad, scared
+  titan_council_leader/
+    Required expressions: angry, happy, normal, sad, serious
+  titan_council_member_1/
+    Required expressions: normal, sad
+  titan_council_member_2/
+    Required expressions: normal, sad
+  titanking/
+    Required expressions: awkard
+  training_dummy/
+    Required expressions: normal
+  tsunderplane/
+    Required expressions: embarrassed, flustered
+  undyne_hyper/
+    Required expressions: fierce, powerful, transforming
+  vegetoid/
+    Required expressions: happy, normal
+  vulkin/
+    Required expressions: happy, overjoyed, sad
+  waddle_dees/
+    Required expressions: grateful
+  webcam_flowey/
+    Required expressions: concerning, normal, sidethink, sorry
+  webcam_kirby/
+    Required expressions: distracted, normal, suprised, thankyou
+  webcam_theo/
+    Required expressions: excited, normal, thinking, upset
+  whimsun/
+    Required expressions: happy, worried
+  wispy_woods/
+    Required expressions: angry, normal
+  zan_partizanne/
+    Required expressions: comforting, concerned, confused, horrified, proud, shocked, struck, thoughtful
+  zeroreal/
+    Required expressions: normal

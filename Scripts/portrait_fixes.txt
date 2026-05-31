@@ -1,0 +1,17 @@
+=== AUTOMATED FIX SUGGESTIONS ===
+
+Line 16796: Replace '[MAGOLOR left blinded]'
+  With: '[MAGOLOR left blinded]'
+
+Line 16841: Replace '[TORIEL left blinded]'
+  With: '[TORIEL left blinded]'
+
+Line 16852: Replace '[ASGORE left blinded]'
+  With: '[ASGORE left blinded]'
+
+Line 16874: Replace '[PAPYRUS left blinded]'
+  With: '[PAPYRUS left blinded]'
+
+Line 16885: Replace '[SANS left blinded]'
+  With: '[SANS left blinded]'
+

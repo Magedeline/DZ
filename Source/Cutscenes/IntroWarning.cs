@@ -103,6 +103,7 @@ namespace Celeste.Cutscenes
 
         /// <summary>
         /// Returns true if the warning should be shown.
+        /// Skipped if DeveloperBypass is enabled for testing cycles.
         /// </summary>
         public static bool ShouldShow()
         {
@@ -111,6 +112,10 @@ namespace Celeste.Cutscenes
 
             var settings = global::Celeste.Mod.MaggyHelper.MaggyHelperModule.Settings;
             if (settings == null)
+                return false;
+
+            // Developer bypass: skip all introductory sequences
+            if (settings.DeveloperBypass || settings.DebugMode)
                 return false;
 
             if (settings.SkipModIntro)

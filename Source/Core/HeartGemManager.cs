@@ -192,19 +192,92 @@ public static class HeartGemManager
     }
 
     /// <summary>
+    /// Builds the localized poetry string key for a heart gem collection.
+    /// Maps to soul_Maggy_{Side}_{Chapter}_{Suffix} entries in English.txt.
+    /// </summary>
+    public static string BuildPoemId(Session session)
+    {
+        var area = AreaData.Get(session.Area);
+        if (area == null) return "";
+
+        string sid = area.SID;
+        int lastSlash = sid.LastIndexOf('/');
+        string chapterName = lastSlash >= 0 ? sid.Substring(lastSlash + 1) : sid;
+
+        string sideName = session.Area.Mode switch
+        {
+            AreaMode.BSide => "BSide",
+            AreaMode.CSide => "CSide",
+            _ when (int)session.Area.Mode == AreaModeExtender.MODE_DSIDE => "DSide",
+            _ when (int)session.Area.Mode == AreaModeExtender.MODE_DXSIDE => "DXSide",
+            _ => "ASide"
+        };
+
+        // Construct the registry key: soul_Maggy_ASide_01_City_A
+        // The suffix pattern matches the English.txt keys
+        string suffix = session.Area.Mode switch
+        {
+            AreaMode.BSide => "_B",
+            AreaMode.CSide => "_C",
+            _ when (int)session.Area.Mode == AreaModeExtender.MODE_DSIDE => "_D",
+            _ when (int)session.Area.Mode == AreaModeExtender.MODE_DXSIDE => "_DX",
+            _ => "_A"
+        };
+
+        return $"soul_Maggy_{sideName}_{chapterName}{suffix}";
+    }
+
+    /// <summary>
+    /// Checks if a localized poetry string exists in the dialog registry.
+    /// </summary>
+    public static bool HasLocalizedPoem(Session session)
+    {
+        string poemId = BuildPoemId(session);
+        if (string.IsNullOrEmpty(poemId)) return false;
+
+        // Dialog.Clean returns the key itself if not found, so check if it differs
+        string cleaned = Dialog.Clean(poemId);
+        return cleaned != poemId;
+    }
+
+    /// <summary>
     /// When the heart gem registers as collected, track it in our save data
-    /// for extended modes.
+    /// for extended modes. Overrides poemId with localized registry values.
     /// </summary>
     private static void OnHeartGemRegisterAsCollected(
         On.Celeste.HeartGem.orig_RegisterAsCollected orig, HeartGem self, Level level, string poemId)
     {
-        // Call original for vanilla tracking
-        orig(self, level, poemId);
-
-        if (level?.Session == null) return;
+        if (level?.Session == null)
+        {
+            orig(self, level, poemId);
+            return;
+        }
 
         var area = AreaData.Get(level.Session.Area);
-        if (!AreaModeExtender.IsOurMap(area))
+        bool isOurMap = area != null && AreaModeExtender.IsOurMap(area);
+
+        // For our maps, resolve poem from localized registry instead of using hardcoded/default values
+        string resolvedPoemId = poemId;
+        if (isOurMap)
+        {
+            string localizedPoem = BuildPoemId(level.Session);
+            if (!string.IsNullOrEmpty(localizedPoem) && HasLocalizedPoem(level.Session))
+            {
+                resolvedPoemId = localizedPoem;
+                Logger.Log(LogLevel.Info, "MaggyHelper",
+                    $"HeartGem poem resolved from registry: {resolvedPoemId}");
+            }
+            else
+            {
+                Logger.Log(LogLevel.Warn, "MaggyHelper",
+                    $"No localized poem found for {localizedPoem}, falling back to: {poemId}");
+            }
+        }
+
+        // Call original with potentially overridden poemId
+        orig(self, level, resolvedPoemId);
+
+        if (!isOurMap)
             return;
 
         int mode = (int)level.Session.Area.Mode;

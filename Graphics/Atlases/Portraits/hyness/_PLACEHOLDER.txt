@@ -1,0 +1,7 @@
+PLACEHOLDER: Portrait assets for character 'HYNESS'
+Required expressions: broken, confused, crying, distressed, dramatic, grateful, hopeful, normal, ranting, sad, tearful, upset
+
+Add PNG files in format: {expression}{frame}.png
+Example: normal00.png, angry01.png, happy02.png
+
+Each expression typically needs 1-12 frames for animation.

@@ -122,12 +122,22 @@ public static class PCGAreaRegistrar
                 Mode = new ModeProperties[1]
             };
 
+            // Use AudioController to determine appropriate music/ambience for PCG maps
+            // Default to lvl1 explore music and prologue ambience, but allow AudioController override
+            string defaultMusic = "event:/pusheen/music/lvl1/explore";
+            string defaultAmbience = "event:/pusheen/ambience/ruins";
+            
             var mode = new ModeProperties
             {
                 Inventory = PlayerInventory.Default,
-                AudioState = new AudioState("event:/music/lvl1/main", "event:/env/amb/00_prologue"),
+                AudioState = new AudioState(defaultMusic, defaultAmbience),
                 Checkpoints = null
             };
+            
+            // Store PCG metadata for AudioController to pick up on level load
+            var audioDyn = new DynData<ModeProperties>(mode);
+            audioDyn["PCGDynamicAudio"] = true;
+            audioDyn["PCGSourcePath"] = fullPath;
 
             // Attempt to attach MapData from the generated .bin
             try

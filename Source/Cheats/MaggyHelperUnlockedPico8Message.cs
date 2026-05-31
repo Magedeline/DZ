@@ -10,7 +10,7 @@ namespace Celeste;
 /// Displays a message when Pico8 Classic is unlocked for Ingeste.
 /// Similar to the vanilla Pico8 unlock message but customized for the mod.
 /// </summary>
-public class UnlockedPico8Message : Entity
+public class MaggyHelperUnlockedPico8Message : Entity
 {
     private float alpha;
     private string text;
@@ -18,7 +18,7 @@ public class UnlockedPico8Message : Entity
     private float timer;
     private Action callback;
 
-    public UnlockedPico8Message(Action callback = null)
+    public MaggyHelperUnlockedPico8Message(Action callback = null)
     {
         this.callback = callback;
     }

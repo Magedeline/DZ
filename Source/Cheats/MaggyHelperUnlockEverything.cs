@@ -9,10 +9,10 @@ namespace Celeste;
 /// Code: lrLRuudlRA (left, right, L, R, up, up, down, left, R, A)
 /// For returning players who have played the mod before and want to skip progression.
 /// </summary>
-public class UnlockEverythingThingy : CheatListener
+public class MaggyHelperUnlockEverything : CheatListener
 {
     [MethodImpl(MethodImplOptions.NoInlining)]
-    public UnlockEverythingThingy()
+    public MaggyHelperUnlockEverything()
     {
         // MIDI-derived input pattern: C7=l, D7=r, E7=d, F7=r, G7=u, high=L/R/A
         // Sequence: l,u,u,l,l,u,r,d,r,r,L,R,A

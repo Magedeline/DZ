@@ -64,6 +64,13 @@ namespace Celeste.Mod.MaggyHelper
         public bool SkipModIntro { get; set; }
         public bool HasSeenIntroWarning { get; set; }
 
+        /// <summary>
+        /// Developer bypass flag: skips all introductory sequences and enables room-warp debug menus.
+        /// Set this to true during testing cycles to bypass the mod selection screen, intro warning, and vessel creation.
+        /// </summary>
+        [SettingIgnore]
+        public bool DeveloperBypass { get; set; }
+
         #region Overworld 3D Settings
 
         [SettingSubHeader("MAGGYHELPER_OVERWORLD_HEADER")]

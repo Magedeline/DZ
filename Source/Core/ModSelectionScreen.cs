@@ -38,6 +38,11 @@ namespace Celeste.UI
         private const string TITLE_MUSIC_EVENT = "event:/pusheen/music/lvl0/intro";
         #endregion
 
+        #region Static Hook State
+        private static bool _hooked;
+        private static bool _shownThisSession;
+        #endregion
+
         #region Fields
         private enum SelectionState { FadingIn, Selecting, FadingOut }
 
@@ -66,6 +71,64 @@ namespace Celeste.UI
 
             sequenceCoroutine = new Coroutine(screenSequence());
             Add(new HiresSnow());
+        }
+        #endregion
+
+        #region Static Hook Management
+        public static void Load()
+        {
+            if (_hooked) return;
+            _hooked = true;
+            _shownThisSession = false;
+
+            On.Celeste.Overworld.Begin += OnOverworldBegin;
+            Logger.Log(LogLevel.Info, "MaggyHelper", "ModSelectionScreen hooks loaded");
+        }
+
+        public static void Unload()
+        {
+            if (!_hooked) return;
+            _hooked = false;
+
+            On.Celeste.Overworld.Begin -= OnOverworldBegin;
+            Logger.Log(LogLevel.Info, "MaggyHelper", "ModSelectionScreen hooks unloaded");
+        }
+
+        private static void OnOverworldBegin(On.Celeste.Overworld.orig_Begin orig, Overworld self)
+        {
+            orig(self);
+
+            if (!ShouldShow())
+                return;
+
+            _shownThisSession = true;
+            Logger.Log(LogLevel.Info, "MaggyHelper", "ModSelectionScreen: showing mod selection overlay");
+            Engine.Scene = new ModSelectionScreen();
+        }
+
+        /// <summary>
+        /// Returns true if the mod selection screen should be shown.
+        /// Skipped if DeveloperBypass is enabled for testing cycles.
+        /// </summary>
+        public static bool ShouldShow()
+        {
+            if (_shownThisSession)
+                return false;
+
+            var settings = global::Celeste.Mod.MaggyHelper.MaggyHelperModule.Settings;
+            var saveData = global::Celeste.Mod.MaggyHelper.MaggyHelperModule.SaveData;
+
+            if (settings == null || saveData == null)
+                return false;
+
+            // Developer bypass: skip all introductory sequences
+            if (settings.DeveloperBypass || settings.DebugMode)
+                return false;
+
+            if (settings.SkipModIntro)
+                return false;
+
+            return !saveData.HasSeenModIntro;
         }
         #endregion
 

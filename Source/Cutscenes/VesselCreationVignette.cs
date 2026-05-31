@@ -569,58 +569,66 @@ namespace Celeste.Cutscenes
         private IEnumerator showChoiceMenu(string[] choices, Action<string> onSelect)
             => showChoiceMenu(choices, (choice, _) => onSelect(choice));
 
+        /// <summary>
+        /// Shows a choice menu using Celeste's built-in TextMenu instead of manual rendering.
+        /// This replaces low-level ActiveFont.Draw calls with high-level UI components.
+        /// </summary>
         private IEnumerator showChoiceMenu(string[] choices, Action<string, int> onSelect)
         {
-            currentChoices = new List<string>(choices);
-            currentChoiceIndex = 0;
-            IngesteLogger.Debug($"[VesselCreation] Showing choice menu with {choices.Length} options: [{string.Join(", ", choices)}]");
-            
-            // Create choice menu
+            IngesteLogger.Debug($"[VesselCreation] Showing TextMenu choice with {choices.Length} options");
             Audio.Play(CHOICE_APPEAR_EVENT);
-            
-            // Animate choices appearing
-            while ((choiceEase += Engine.DeltaTime * CHOICE_EASE_SPEED) < 1.0)
-                yield return null;
-            
-            choiceEase = 1f;
-            yield return 0.25f;
-            
-            // Handle input
-            while (!Input.MenuConfirm.Pressed)
+
+            var menu = new TextMenu();
+            menu.CompactWidthMode = true;
+
+            for (int i = 0; i < choices.Length; i++)
             {
-                if (Input.MenuUp.Pressed && currentChoiceIndex > 0)
+                int index = i;
+                string label = choices[i];
+                menu.Add(new TextMenu.Button(label).Pressed(() =>
                 {
-                    Audio.Play(CHOICE_MOVE_EVENT);
-                    currentChoiceIndex--;
-                }
-                else if (Input.MenuDown.Pressed && currentChoiceIndex < currentChoices.Count - 1)
+                    menu.OnCancel -= menu.Close;
+                    menu.Close();
+                    Audio.Play(CHOICE_SELECT_EVENT);
+                    onSelect(label, index);
+                }));
+            }
+
+            // Add a title if we're in a vessel part selection phase
+            string title = currentPhase switch
+            {
+                CreationPhase.LegSelection   => Dialog.Clean("VESSEL_CREATION_LEG_CHOICE"),
+                CreationPhase.TorsoSelection => Dialog.Clean("VESSEL_CREATION_TORSO_CHOICE"),
+                CreationPhase.HeadSelection  => Dialog.Clean("VESSEL_CREATION_HEAD_CHOICE"),
+                _                            => ""
+            };
+
+            if (!string.IsNullOrEmpty(title))
+            {
+                menu.Insert(0, new TextMenu.Header(title));
+            }
+
+            // Open the menu as an overlay
+            menu.OnCancel = () =>
+            {
+                // Prevent cancel on vessel selections - must pick something
+                if (currentPhase != CreationPhase.LegSelection &&
+                    currentPhase != CreationPhase.TorsoSelection &&
+                    currentPhase != CreationPhase.HeadSelection)
                 {
-                    Audio.Play(CHOICE_MOVE_EVENT);
-                    currentChoiceIndex++;
+                    menu.Close();
                 }
+            };
+
+            Add(menu);
+
+            // Wait until the menu is closed
+            while (menu.Focused)
+            {
                 yield return null;
             }
-            
-            // Selection made
-            Audio.Play(CHOICE_SELECT_EVENT);
-            
-            // Play heart change on final selection for vessel parts
-            if (currentPhase == CreationPhase.LegSelection || 
-                currentPhase == CreationPhase.TorsoSelection || 
-                currentPhase == CreationPhase.HeadSelection)
-            {
-                Audio.Play(HEART_CHANGE_EVENT);
-            }
-            
-            // Animate choices disappearing
-            while ((choiceEase -= Engine.DeltaTime * CHOICE_EASE_SPEED) > 0.0)
-                yield return null;
-            
-            string selectedChoice = currentChoices[currentChoiceIndex];
-            int confirmedIndex = currentChoiceIndex;
-            IngesteLogger.Debug($"[VesselCreation] Choice confirmed: '{selectedChoice}' (index: {confirmedIndex})");
-            currentChoices.Clear();
-            onSelect(selectedChoice, confirmedIndex);
+
+            yield return null; // one extra frame for cleanup
         }
 
         private IEnumerator showTextInput(string prompt, Action<string> onComplete, int maxLength = NAME_INPUT_MAX_LENGTH)
@@ -1160,11 +1168,7 @@ namespace Celeste.Cutscenes
                 renderVesselCycler();
             }
 
-            // Render choice menu if active
-            if (currentChoices.Count > 0 && choiceEase > 0f)
-            {
-                renderChoiceMenu();
-            }
+            // Choice menu now uses Celeste TextMenu (high-level UI) - no manual rendering needed
             
             // Render fade overlay if transitioning
             if (backgroundFade < 1f && currentPhase == CreationPhase.Transition)
@@ -1188,108 +1192,21 @@ namespace Celeste.Cutscenes
 
         private void renderVesselGraphics()
         {
-            Draw.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, null, RasterizerState.CullNone, null, Engine.ScreenMatrix);
-            
-            // Render depth layer as full-screen background at full opacity
-            if (depthTexture != null)
-            {
-                float depthScaleX = 1920f / depthTexture.Width;
-                float depthScaleY = 1080f / depthTexture.Height;
-                float depthScale = Math.Max(depthScaleX, depthScaleY);
-                depthTexture.Draw(Vector2.Zero, Vector2.Zero, Color.White * vesselAlpha, depthScale);
-            }
-            
-            // Render soul blur effects slightly enlarged (1.5x) but not screen-filling
-            const float SOUL_BLUR_SCALE = 1.5f;
-            if (soulBlurTexture != null)
-            {
-                Vector2 blurPos = vesselPosition - new Vector2(soulBlurTexture.Width * SOUL_BLUR_SCALE / 2f, soulBlurTexture.Height * SOUL_BLUR_SCALE / 2f);
-                soulBlurTexture.Draw(blurPos, Vector2.Zero, Color.White * soulBlurAlpha, SOUL_BLUR_SCALE);
-            }
-            
-            if (pinkSoulBlurTexture != null)
-            {
-                Vector2 pinkBlurPos = vesselPosition - new Vector2(pinkSoulBlurTexture.Width * SOUL_BLUR_SCALE / 2f, pinkSoulBlurTexture.Height * SOUL_BLUR_SCALE / 2f);
-                pinkSoulBlurTexture.Draw(pinkBlurPos, Vector2.Zero, Color.White * (soulBlurAlpha * 0.6f), SOUL_BLUR_SCALE);
-            }
-            
-            // Render vessel parts stacked: legs at bottom, body in center, head at top
-            MTexture? bodyTex = (gonerBodyTextures.Length > 0) ? gonerBodyTextures[Math.Clamp(selectedBodyIndex, 0, gonerBodyTextures.Length - 1)] : null;
-            MTexture? headTex = (gonerHeadTextures.Length > 0) ? gonerHeadTextures[Math.Clamp(selectedHeadIndex, 0, gonerHeadTextures.Length - 1)] : null;
-            MTexture? legTex  = (gonerLegTextures.Length  > 0) ? gonerLegTextures [Math.Clamp(selectedLegIndex,  0, gonerLegTextures.Length  - 1)] : null;
-            float bodyHalfH = bodyTex != null ? bodyTex.Height / 2f : 60f;
-            
-            // Legs (bottom)
-            if (legTex != null)
-            {
-                Vector2 legPos = new Vector2(
-                    vesselPosition.X - legTex.Width / 2f,
-                    vesselPosition.Y + bodyHalfH);
-                legTex.Draw(legPos, Vector2.Zero, Color.White * vesselAlpha);
-            }
-            
-            // Body (center)
-            if (bodyTex != null)
-            {
-                Vector2 bodyPos = vesselPosition - new Vector2(bodyTex.Width / 2f, bodyTex.Height / 2f);
-                bodyTex.Draw(bodyPos, Vector2.Zero, Color.White * vesselAlpha);
-            }
-            
-            // Head (top)
-            if (headTex != null)
-            {
-                Vector2 headPos = new Vector2(
-                    vesselPosition.X - headTex.Width / 2f,
-                    vesselPosition.Y - bodyHalfH - headTex.Height);
-                headTex.Draw(headPos, Vector2.Zero, Color.White * vesselAlpha);
-            }
-            
-            Draw.SpriteBatch.End();
+            VesselCreationUIHelper.RenderVesselGraphics(
+                vesselAlpha, soulBlurAlpha, vesselPosition,
+                depthTexture, soulBlurTexture, pinkSoulBlurTexture,
+                gonerBodyTextures, gonerHeadTextures, gonerLegTextures,
+                selectedBodyIndex, selectedHeadIndex, selectedLegIndex);
         }
 
-        private void renderChoiceMenu()
-        {
-            Draw.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, null, RasterizerState.CullNone, null, Engine.ScreenMatrix);
-            
-            Vector2 basePosition = new Vector2(Engine.Width / 2f, Engine.Height / 2f);
-            float optionHeight = 60f;
-            float totalHeight = currentChoices.Count * optionHeight;
-            Vector2 startPosition = basePosition - new Vector2(0, totalHeight / 2f);
-            
-            for (int i = 0; i < currentChoices.Count; i++)
-            {
-                Vector2 position = startPosition + new Vector2(0, i * optionHeight);
-                Color color = i == currentChoiceIndex ? Color.White : Color.Gray;
-                color *= choiceEase;
-                
-                // Simple text rendering for choices
-                ActiveFont.Draw(currentChoices[i], position, new Vector2(0.5f, 0.5f), Vector2.One * 0.8f, color);
-            }
-            
-            Draw.SpriteBatch.End();
-        }
+        // Choice menu now uses TextMenu - renderChoiceMenu removed (replaced by high-level UI)
 
         /// <summary>Renders the Deltarune-style Left/Right vessel part cycler HUD.</summary>
         private void renderVesselCycler()
         {
-            Draw.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, null, RasterizerState.CullNone, null, Engine.ScreenMatrix);
-
-            string label = currentPhase switch
-            {
-                CreationPhase.LegSelection   => $"< Legs {selectedLegIndex + 1} / {vesselCyclerCount} >",
-                CreationPhase.TorsoSelection => $"< Body {selectedBodyIndex + 1} / {vesselCyclerCount} >",
-                CreationPhase.HeadSelection  => $"< Head {selectedHeadIndex + 1} / {vesselCyclerCount} >",
-                _                            => string.Empty
-            };
-
-            if (!string.IsNullOrEmpty(label))
-            {
-                Vector2 center = new Vector2(Engine.Width / 2f, vesselPosition.Y + 145f);
-                ActiveFont.DrawOutline(label, center, new Vector2(0.5f, 0.5f), Vector2.One * 0.65f, Color.White, 2f, Color.Black);
-                ActiveFont.DrawOutline("Left / Right  •  Confirm to select", center + new Vector2(0f, 42f), new Vector2(0.5f, 0.5f), Vector2.One * 0.4f, Color.Gray, 2f, Color.Black);
-            }
-
-            Draw.SpriteBatch.End();
+            VesselCreationUIHelper.RenderVesselCycler(
+                (int)currentPhase, selectedLegIndex, selectedBodyIndex, selectedHeadIndex,
+                vesselCyclerCount, vesselPosition);
         }
 
         private void renderTextInput()

@@ -370,7 +370,7 @@ MAGGY_CREDIT_COMPANY_RIGHT_BY_5=WarpStar.inc
 
 # Final Thanks
 MAGGY_CREDIT_FINAL_THANK_BY=Final Thanks By
-MAGGY_CREDIT_FINAL_THANK_BY_1=Desolo Zantas & Gabbia
+MAGGY_CREDIT_FINAL_THANK_BY_1=Desolo Zantas aka Gabbia
 MAGGY_CREDIT_FINAL_THANK_BY_SUB=My Good Friend Since 2018
 
 # ================================
@@ -1486,7 +1486,7 @@ There was a child behind that mirror and broke out of it.
 [MADELINE left distracted]
 What ever that is, we need to get out of here as soon as possible!
 
-[MADELINE left concerned]
+[MADELINE left angry]
 {trigger 0 Music starts}
 
 CH2_CHARA_INTRO=
@@ -2173,7 +2173,7 @@ But make it quick.
 [RALSEI right normal]
 Okay here it goes.
 
-[RALSEI right determinedclosed]
+[RALSEI right angry]
 This is the legend of Celeste Mountain and Mount DesoloZantas.
 
 CH4_LEGEND_A=
@@ -3566,26 +3566,26 @@ What was that?!
 [RALSEI right distracted]
 I didn't mean to it must be that were stalled out.
 
-[MAGOLOR right surprised]
+[MAGOLOR right happy]
 Wait... do you all feel that cold presence?
 
 [CHARA left angry]
 I TOLD YOU TO GO BACK.
 
-[RALSEI right shocked]
+[RALSEI right angry]
 CHARA?! Where did you come from?!
 
 [BADELINE left terrified]
 He just... appeared out of nowhere!
 
-[MAGOLOR right alarmed]
+[MAGOLOR right happy]
 What... what does he want?!
 
-[CHARA left disapointed]
+[CHARA left laughing]
 I HAVE BEEN WATCHING... AND WARNING YOU...
 IF YOU DON'T TURN BACK NOW... YOU WON'T SURVIVE THIS...
 
-[RALSEI right panicked]
+[RALSEI right angry]
 The gondola stopped moving completely!
 
 [CHARA left creepy]
@@ -3594,7 +3594,7 @@ GOOD LUCK...
 [BADELINE left confused]
 Wait, he's... he's fading away!
 
-[MAGOLOR right bewildered]
+[MAGOLOR right happy]
 Did he just... disappear?
 
 [RALSEI right surprised]
@@ -3603,17 +3603,17 @@ What was that about? That was terrifying!
 [BADELINE left worried]
 He mentioned the darkness... I don't like this place.
 
-[MAGOLOR right uneasy]
+[MAGOLOR right happy]
 That was definitely not normal.
 Even for someone who's traveled across dimensions like me.
 
-[RALSEI right concerned]
+[RALSEI right angry]
 At least He's gone now... but why did the gondola stop?
 
 [BADELINE left worriedAlt]
 Maybe his presence somehow affected the mechanism?
 
-[MAGOLOR right determined]
+[MAGOLOR right happy]
 Well, we can't stay stuck here.
 Let's see if we can get this thing moving again.
 
@@ -3631,7 +3631,7 @@ Maybe if I...
 SHIT!, {0.4}This is really bad.
 Like really really bad!
 
-[MAGOLOR left wtf]
+[MAGOLOR left happy]
 RALSEI WHAT DID YOU JUST DO?!
 
 [RALSEI right surprised]
@@ -3648,7 +3648,7 @@ But this really the stupid thing I ever met you.
 
 {trigger 10 DarknessAppears}
 
-[MAGOLOR right worried]
+[MAGOLOR right happy]
 Badeline, you okay?
 
 [BADELINE left worried]
@@ -3663,7 +3663,7 @@ I can't breathe.
 [RALSEI right sad]
 Crap! You're having a panic attack?!
 
-[MAGOLOR left concerned]
+[MAGOLOR left happy]
 Hey, it's going to be okay, Badeline.
 
 [BADELINE left sad]
@@ -3743,7 +3743,7 @@ We make a pretty good team, don't we?
 [RALSEI left sad]
 Now lets get moving.
 
-[RALSEI left determinedclosed]
+[RALSEI left angry]
 I can feel it from over there.
 
 [MAGOLOR right normal]
@@ -3808,7 +3808,7 @@ Yes I'm pretty sure about this places has many origin.
 [RALSEI left sad]
 But some legend said that those who ascend, would {~}would never return{/~}
 
-[MAGOLOR right concerned]
+[MAGOLOR right happy]
 That doesn't sound very reassuring, but we've come too far to turn back now.
 
 {trigger 2 Baddy turns right}
@@ -3828,7 +3828,7 @@ Just don't get into anything that you shouldn't be in.
 [RALSEI left sad]
 {+KIRBY} just keep an eye on her okay?
 
-[MAGOLOR right determined]
+[MAGOLOR right happy]
 Don't worry, we'll all look out for each other in there.
 
 CH7_MADDY_PHONE=
@@ -3846,7 +3846,7 @@ If she left it there then were must be not so far.
 Do not get your hopes up, BADELINE.
 There's plenty of dark corner that we have not yet found.
 
-[RALSEI left determinedclosed]
+[RALSEI left angry]
 But I can promise that were close to something.
 
 CH7_MADELINE_MIRROR=
@@ -3912,22 +3912,22 @@ It tears.
 ...?
 
 CH7_GENO_KNIFE_PICKUP=
-[FLOWEY right uneasy]
+[FLOWEY right makeadeal]
 That knife...
 No.
 This isn't the same feeling as before.
 
 CH7_GENO_LOCKET_PICKUP=
-[FLOWEY right uneasy]
+[FLOWEY right makeadeal]
 And the locket too...?
 You already know how this is supposed to end.
 
 CH7_GENO_FLOWEY_WRONGNESS=
-[FLOWEY right panic]
+[FLOWEY right makeadeal]
 Something's wrong.
 You're not just a human anymore.
 
-[FLOWEY right sad]
+[FLOWEY right makeadeal]
 ...
 So that's it then.
 
@@ -3958,7 +3958,7 @@ CH7_PRE_INGESTE_0=
 {*}Hey!{/*} Where are we?
 {!}What did you do to {+PART_OF_HER}?{/!}
 
-[CHARA right disapionted]
+[CHARA right laughing]
 You guys think {~}I'm{/~} for me do this to take you there?
 Then why are you yelling at me?
 
@@ -3966,7 +3966,7 @@ CH7_PRE_INGESTE_1=
 [BADELINE left freakA]
 Don't you think that we yell at you first!
 
-[CHARA right disapionted]
+[CHARA right laughing]
 Then so are you gonna do?
 Fight with bare fist to my faces?
 
@@ -3982,7 +3982,7 @@ I...
 ...
 I do not know of how we suppose to save her.
 
-[CHARA right disapointed]
+[CHARA right laughing]
 That's what I thought of you were.
 
 CH7_PRE_INGESTE_2=
@@ -3994,24 +3994,24 @@ AWNSER ME!
 Truthfully, {0.3}I try to warn all of you.
 but you didn't listen.
 
-[CHARA right sadA]
+[CHARA right laughing]
 All I wanted is to have a sister who can look after me.
 
 [RALSEI left angry]
 Then what's that big of deal.
 
-[CHARA right upsetB]
+[CHARA right laughing]
 ...
 
 [CHARA right upset]
 The big deal is about this.
 If your not proven to be a fighter or a warrior.
 
-[CHARA right disapionted]
+[CHARA right laughing]
 You would died in this fight.
 
 CH7_PRE_INGESTE_3=
-[CHARA right concerned]
+[CHARA right laughing]
 Huh? what this?
 You won't give up?
 ...
@@ -4019,7 +4019,7 @@ You won't give up?
 [CHARA right interested]
 Interesting.
 
-[CHARA right concerned]
+[CHARA right laughing]
 I never seen someone who willing to stand up them.
 so then {0.5} Prove to me Pink fella
 Prove it that you are determined to find madeline.
@@ -4128,7 +4128,7 @@ CH7_SEE_MADDY_B=
 [BADELINE left angry]
 Okay I do not think that place is more like darker than dark...
 
-[MADELINE left concerned]
+[MADELINE left angry]
 ...and if so then where there monster?
 
 [MADELINE right angry]
@@ -4204,7 +4204,7 @@ CH7_MADDY_SAVING_DUNK=
 Get Dunked ON!!!
 
 CH7_MADDY_SAVING_D=
-[MADELINE left determinedclosed]
+[MADELINE left angry]
 Were must be close, I can feel it.
 
 CH7_CSIDE_MADDY_A=
@@ -4735,7 +4735,7 @@ I've been thinking about you. About who you really are.
 [MADELINE left sad]
 You're not just some lost child, are you?
 
-[CHARA right worriedalt]
+[CHARA right worried]
 What do you mean...?
 
 [MADELINE left sad]
@@ -4953,7 +4953,7 @@ you already lost.
 ...
 What if i told you that Kirby Have beaten dozen of demons.
 
-[CHARA right disgust]
+[CHARA right laughing]
 I'm sorry, what?
 
 [BADELINE left normal]
@@ -5120,7 +5120,7 @@ YOLOOO! All six of us got this!
 
 {trigger 4 chara turns right}
 
-[CHARA left disapointed]
+[CHARA left laughing]
 ...
 Let's just get over with it.
 
@@ -5292,7 +5292,7 @@ Because you got us almost killed.
 [RALSEI left upset]
 And you shouldn't done that at him, you probably need to apologized to him after this.
 
-[CHARA right dispointed]
+[CHARA right laughing]
 Okay Fine...
 
 [CHARA right upset]
@@ -5322,7 +5322,7 @@ Maybe you were right {+CHARA}.
 [MADELINE left sad]
 Maybe {~}were{/~} not the fighter.
 
-[CHARA right disgust]
+[CHARA right laughing]
 ...
 
 [CHARA right angry]
@@ -5372,13 +5372,13 @@ It will be beautiful this time.
 This Mountain is called {~}Desolo Zantas{/~}.
 and there is also floating small mountain that is so absolutely gorgeous.
 
-[CHARA right concerned]
+[CHARA right laughing]
 To be honest I heard many humans who came to the forgotten mountian, and I know what type of soul they have.
 
 [BADELINE right concerned]
 your sure?
 
-[CHARA right concerned]
+[CHARA right laughing]
 Yeah I do know there soul but never knew there name.
 I'll tell you this...
 ...
@@ -5411,7 +5411,7 @@ But I'm pretty sure that we can find the way to defeated him.
 [CHARA right disappointed]
 ...
 
-[CHARA right concerned]
+[CHARA right laughing]
 To be clear I now understand why you need to climb.
 and we do not have much time tho...
 
@@ -5464,13 +5464,13 @@ are sure about this places?
 Like what if there no oxygen over there?
 and then what would it happen that we freeze to dead, isn't it?
 
-[CHARA left disapointed]
+[CHARA left laughing]
 Nahh Do not worry about it.
 
 [CHARA left interested]
 Infact there is air over there.
 
-[CHARA left disapointed]
+[CHARA left laughing]
 ...
 but it's a very harsh mountain if i am not mistaken
 
@@ -5529,7 +5529,7 @@ you want to be outside mountian celeste... Right?
 [BADELINE right worriedalt]
 ... I am so sorry for getting myself out of your way
 and yes I really want to be with her
-[CHARA left confess]
+[CHARA left laughing]
 well theres one thing that I can give you freedom
 my behalf determination soul that would give you some outside world to follow here freely
 [MADELINE right normal]
@@ -5556,7 +5556,7 @@ I'll toy you around later.
 {trigger 3 teleported to creditroom}
 
 CH9_GOLDENFLOWER=
-[FLOWEY left none]
+[FLOWEY left makeadeal]
 howdy... long time no see {Name#/}""{/}
 It's been awhile since we have last spoken hadn't it
 well then with this game is complete you can now go down the hill
@@ -5721,7 +5721,7 @@ CH9_SANS_MESSAGE_END=
 	over at mt. desolo zantas.
 	there's been some... {0.4} strange activity.
 
-	[SANS left serious]
+	[SANS left dudewtfalt]
 	and i don't mean the usual weird stuff.
 	i'm talking about... {0.5} really bad vibes.
 
@@ -5744,7 +5744,7 @@ CH9_SANS_MESSAGE_END=
 	because uh... {0.5} i got a feeling.
 	this next one's gonna be a doozy.
 
-	[SANS left serious]
+	[SANS left dudewtfalt]
 	something big is coming, {+MADELINE}.
 	and we're gonna need all the help we can get.
 
@@ -5759,10 +5759,10 @@ CH9_SANS_MESSAGE_END=
 	*shuffling sounds*
 	{trigger0}
 
-	[PAPYRUS left excited]
+	[PAPYRUS left blush]
 	HUMAN!! {0.5} IT IS I, THE GREAT PAPYRUS!!
 
-	[PAPYRUS left happy]
+	[PAPYRUS left blush]
 	SANS TOLD ME ABOUT YOUR ADVENTURE!
 	AND I MUST SAY, YOU ARE VERY BRAVE!
 
@@ -5770,7 +5770,7 @@ CH9_SANS_MESSAGE_END=
 	BUT DON'T WORRY! {0.4} WE'RE ALL ROOTING FOR YOU!
 	THE GREAT PAPYRUS BELIEVES IN YOU!!
 
-	[PAPYRUS left happy]
+	[PAPYRUS left blush]
 	NYEH HEH HEH! {0.5} SHOW THAT MOUNTAIN WHO'S BOSS!
 	AND REMEMBER TO EAT SPAGHETTI FOR STRENGTH!
 	{trigger1}
@@ -5778,18 +5778,18 @@ CH9_SANS_MESSAGE_END=
 	[left left]
 	*phone shuffling*
 
-	[UNDYNE left fierce]
+	[UNDYNE left uwu]
 	HEY PUNK!! {0.5} UNDYNE HERE!!
 
-	[UNDYNE left grin]
+	[UNDYNE left uwu]
 	I heard you've been kicking some serious butt!
 	THAT'S WHAT I LIKE TO SEE!!
 
-	[UNDYNE left determined]
+	[UNDYNE left uwu]
 	Listen, {0.4} whatever's up on that mountain...
 	you give it EVERYTHING you've got!!
 
-	[UNDYNE left fierce]
+	[UNDYNE left uwu]
 	NO HOLDING BACK!! {0.5} FULL POWER!!
 	NGAHHH!! {0.4} YOU GOT THIS!!
 	{trigger2}
@@ -5817,19 +5817,19 @@ CH9_SANS_MESSAGE_END=
 	[left left]
 	*gentle rustling*
 
-	[ASGORE left calm]
+	[ASGORE left concernedalt]
 	Howdy, {+MADELINE}.
 	It's Asgore.
 
-	[ASGORE left thoughtful]
+	[ASGORE left concernedalt]
 	I know the path ahead seems daunting.
 	But I've seen your determination firsthand.
 
-	[ASGORE left warm]
+	[ASGORE left concernedalt]
 	You have a strength within you...
 	one that has touched many hearts.
 
-	[ASGORE left calm]
+	[ASGORE left concernedalt]
 	We believe in you, child.
 	All of us do.
 	{trigger4}
@@ -5837,22 +5837,22 @@ CH9_SANS_MESSAGE_END=
 	[left left]
 	*soft footsteps approaching*
 
-	[TORIEL left gentle]
+	[TORIEL left goawaykingtitan]
 	My young ladie... {0.5} it's Toriel.
 
-	[TORIEL left concerned]
+	[TORIEL left goawaykingtitan]
 	I heard about what happened.
 	That trap... {0.4} I'm so relieved you're safe.
 
-	[TORIEL left warm]
+	[TORIEL left goawaykingtitan]
 	Please, {0.4} take care of yourself.
 	Remember that you are not alone in this.
 
-	[TORIEL left motherly]
+	[TORIEL left goawaykingtitan]
 	We are all here for you, {+MADELINE}.
 	Whatever challenges lie ahead...
 
-	[TORIEL left gentle]
+	[TORIEL left goawaykingtitan]
 	Know that you carry our hopes with you.
 	And our love.
 	{trigger5}
@@ -5901,7 +5901,7 @@ SEROIUSLY!, Just stop it, Okay?
 You really pissing me off!
 
 CH9_CSIDE_ASCEND=
-[TORIEL right normalalt]
+[TORIEL right goawaykingtitan]
 It's funny of somehow that you Chara and Madeline has a same curiosity as you Kirby.
 Even tho you would have a nudge.
 But either in way {0.4} Promise me this.
@@ -5911,7 +5911,7 @@ and what about you?
 [TORIEL right whatB]
 ...
 
-[TORIEL right normalalt]
+[TORIEL right goawaykingtitan]
 No need to worry I got this for you and you have earn it my young youth.
 Don't tell madeline that you have this okay?
 
@@ -5998,7 +5998,7 @@ if your asking this where on a another mountain called Desolo Zantas.
 [BADELINE right angryalt]
 a what?
 
-[CHARA right disapointed]
+[CHARA right laughing]
 She said were on the mountain you dufess.
 
 [MADELINE left angry]
@@ -6095,7 +6095,7 @@ CH10_FLOWEY_INTRO=
 [FLOWEY right normal]
 Howdy {0.2}I'm Flowey {0.2} FLOWEY The {# ffc800}Flower{#}
 
-[FLOWEY right thinking]
+[FLOWEY right makeadeal]
 hmmm... you must familiar of who you are,{0.2} your Madeline{0.3} right?
 
 {trigger 1 madeline step forward and omnius zoom in}
@@ -6107,35 +6107,35 @@ Yeah that is my name.
 [MADELINE left angry]
 {*}HOW DO YOU KNOW THAT YOU KNOW MY NAME!?{/*}
 
-[FLOWEY right serious]
+[FLOWEY right makeadeal]
 Seriously?!
 Listen up you young lady
 You have no idea about this mountian you just came back to.
 If your gonna yell at me then fine!
 I'll say this...!
 
-[FLOWEY right eyeclosed]
+[FLOWEY right makeadeal]
 In This World.
 
 [none left]
 
 {trigger 2 flowey caught madeline and music dropped}
 
-[FLOWEY right creep]
+[FLOWEY right makeadeal]
 {%}{big}It's Kill{/big}{/%}
 
 [none left]
 
 {trigger 3 circle madeline with seed and heal}
 
-[FLOWEY right creep]
+[FLOWEY right makeadeal]
 {%}{big}Or Be {2.0}Killed!!!{/big}{/%}
 
 [none left]
 
 {trigger 4 flowey laugh}
 
-[FLOWEY right serious]
+[FLOWEY right makeadeal]
 {0.3}... What the?
 
 {trigger 5 star bullet hit flowey and flowey knock out to the ground}
@@ -6171,15 +6171,15 @@ Lets do this!
 CH10_FLOWEY_INTRO_RETURNING=
 {trigger 0 Flowey emerges and Start music Alt}
 
-[FLOWEY right creep]
+[FLOWEY right makeadeal]
 Well, well, well... Look who's {# ff0000#}BACK{#}.
 
-[FLOWEY right serious]
+[FLOWEY right makeadeal]
 I REMEMBER you, Madeline.
 You climbed higher, didn't you?
 You saw things... experienced things...
 
-[FLOWEY right eyeclosed]
+[FLOWEY right makeadeal]
 And now you've come crawling back to Chapter 10.
 {trigger 1 madeline step forward and omnius zoom in}
 
@@ -6190,30 +6190,30 @@ How do you...?
 [MADELINE left angry]
 {*}How do you remember that?!{/*}
 
-[FLOWEY right creep]
+[FLOWEY right makeadeal]
 Oh, you thought you could just {# ffc800#}RESET{#} everything?
 That you could pretend it never happened?
 I remember {# ff0000#}EVERYTHING{#}, Madeline.
 
-[FLOWEY right serious]
+[FLOWEY right makeadeal]
 Every death, every success, every secret you discovered...
 I know you've been to the void chapters.
 I know what you've seen beyond this mountain.
 
-[FLOWEY right eyeclosed]
+[FLOWEY right makeadeal]
 In This World.
 {trigger 2 flowey caught madeline and music dropped}
 
-[FLOWEY right creep]
+[FLOWEY right makeadeal]
 {%}{big}Nothing stays {2.0}FORGOTTEN!!!{/big}{/%}
 {trigger 3 circle madeline with seed and heal}
 
-[FLOWEY right creep]
+[FLOWEY right makeadeal]
 {%}{big}I ALWAYS {2.0}REMEMBER!!!{/big}{/%}
 
 {trigger 4 flowey laugh}
 
-[FLOWEY right serious]
+[FLOWEY right makeadeal]
 {0.3}... Oh Great Here we go again...
 {trigger 5 star bullet hit flowey and flowey knock out to the ground}
 
@@ -6246,15 +6246,15 @@ Let's keep going!
 CH10_FLOWEY_INTRO_ASSIST=
 {trigger 0 Flowey emerges and Start music}
 
-[FLOWEY right creep]
+[FLOWEY right makeadeal]
 Oh ho ho ho... What do we have here?
 
-[FLOWEY right serious]
+[FLOWEY right makeadeal]
 I can {# ffc800#}FEEL{#} it, Madeline.
 You're using those little {# 00ff00#}CHEATS{#}, aren't you?
 Those "assists" that make everything easier?
 
-[FLOWEY right thinking]
+[FLOWEY right makeadeal]
 Infinite stamina... slowing down time... extra dashes...
 {trigger 1 madeline step forward and omnius zoom in}
 
@@ -6264,28 +6264,28 @@ How... how do you know about that?
 [MADELINE left angry]
 {*}What are you talking about?!{/*}
 
-[FLOWEY right creep]
+[FLOWEY right makeadeal]
 Don't play dumb with me!
 I can sense when someone's bending the {# ff0000#}RULES{#}!
 When reality itself is being... {# ffc800#}MODIFIED{#}.
 
-[FLOWEY right serious]
+[FLOWEY right makeadeal]
 You think those assists will save you here?
 You think you can just cheat your way through MY domain?
 
-[FLOWEY right eyeclosed]
+[FLOWEY right makeadeal]
 Well, let me tell you something about this world...
 {trigger 2 flowey caught madeline and music dropped}
 
-[FLOWEY right creep]
+[FLOWEY right makeadeal]
 {%}{big}Your cheats won't {2.0}WORK{/big}{/%}
 {trigger 3 circle madeline with seed and heal}
 
-[FLOWEY right creep]
+[FLOWEY right makeadeal]
 {%}{big}On {2.0}ME!!!{/big}{/%}
 {trigger 4 flowey laugh}
 
-[FLOWEY right serious]
+[FLOWEY right makeadeal]
 {0.3}... What the?
 {trigger 5 star bullet hit flowey and flowey knock out to the ground}
 
@@ -6316,7 +6316,7 @@ But we're not giving up.
 Assists or not, let's do this!
 
 CH10_FLOWEY_EASTER_CH1_FORSAKEN_CITY=
-[FLOWEY right creep]
+[FLOWEY right makeadeal]
 Oh, I remember your first steps in Forsaken City...
 You died {# ff0000#}SO MANY TIMES{#} on those simple platforms!
 
@@ -6324,7 +6324,7 @@ You died {# ff0000#}SO MANY TIMES{#} on those simple platforms!
 Wait... you were WATCHING me back then?
 That was... that was my first time climbing!
 
-[FLOWEY right thinking]
+[FLOWEY right makeadeal]
 And that B-Side... tsk tsk tsk...
 Those floating blocks made you rage quit, didn't they?
 
@@ -6332,7 +6332,7 @@ Those floating blocks made you rage quit, didn't they?
 {*}How could you possibly know that?!{/*}
 I thought I was alone in my struggles!
 
-[FLOWEY right serious]
+[FLOWEY right makeadeal]
 Don't even get me started on the C-Side.
 That single screen took you {# ffc800#}HOW LONG{#}?
 
@@ -6342,7 +6342,7 @@ Hours... I remember crying after that one.
 [MADELINE left panic]
 I almost gave up climbing completely.
 
-[FLOWEY right creep]
+[FLOWEY right makeadeal]
 But the D-Side... oh, the {# ff0000#}D-SIDE{#}!
 I watched you suffer through those impossible jumps for {# ffc800#}HOURS{#}!
 
@@ -6353,14 +6353,14 @@ Those jumps... they changed how I thought about precision.
 But you shouldn't have been able to see any of that...
 
 CH10_FLOWEY_EASTER_CH2_OLD_SITE=
-[FLOWEY right serious]
+[FLOWEY right makeadeal]
 Ah, the Old Site... where you first met your {# 8000ff#}dark side{#}.
 
-[MADELINE left concerned]
+[MADELINE left angry]
 My... my anxiety? You saw that too?
 How are you everywhere I've been?
 
-[FLOWEY right thinking]
+[FLOWEY right makeadeal]
 You thought those dream blocks were confusing?
 Wait until you see what I have planned!
 
@@ -6368,7 +6368,7 @@ Wait until you see what I have planned!
 The dream blocks were hard enough to understand...
 What do you mean "what you have planned"?!
 
-[FLOWEY right creep]
+[FLOWEY right makeadeal]
 And that B-Side with all the moving platforms...
 I loved watching you {# ff0000#}FALL{#} over and over again!
 
@@ -6376,7 +6376,7 @@ I loved watching you {# ff0000#}FALL{#} over and over again!
 You {*}ENJOYED{/*} watching me struggle?!
 Those platforms were a nightmare!
 
-[FLOWEY right eyeclosed]
+[FLOWEY right makeadeal]
 The C-Side's mirror temple mechanics...
 You spent forever figuring out that ONE room!
 
@@ -6386,7 +6386,7 @@ I remember that room... the frustration, the confusion...
 [MADELINE left sadder]
 I thought I was going crazy trying to solve it.
 
-[FLOWEY right creep]
+[FLOWEY right makeadeal]
 But the D-Side... those {# ff0000#}NIGHTMARE{#} sequences...
 Even I was impressed by your determination to suffer!
 
@@ -6397,14 +6397,14 @@ Those nightmares felt so real...
 Wait, if you saw all that, then you know about my panic attacks...
 
 CH10_FLOWEY_EASTER_CH3_CELESTIAL_RESORT=
-[FLOWEY right thinking]
+[FLOWEY right makeadeal]
 The Celestial Resort... such a "relaxing" vacation spot!
 
 [MADELINE left upset]
 That place was anything BUT relaxing!
 How do you know about the hotel?
 
-[FLOWEY right creep]
+[FLOWEY right makeadeal]
 Remember Oshiro? That poor, {# 8000ff#}obsessed{#} ghost?
 You destroyed his hotel... {# ff0000#}AGAIN{#} and {# ff0000#}AGAIN{#}!
 
@@ -6414,7 +6414,7 @@ Oshiro was just trying to help...
 [MADELINE left sadder]
 I felt terrible about what happened to his hotel.
 
-[FLOWEY right serious]
+[FLOWEY right makeadeal]
 The B-Side's housekeeping madness...
 Those dust bunnies gave you nightmares, didn't they?
 
@@ -6422,7 +6422,7 @@ Those dust bunnies gave you nightmares, didn't they?
 Those dust bunnies were {*}EVIL{/*}!
 And you're talking like you were right there watching!
 
-[FLOWEY right eyeclosed]
+[FLOWEY right makeadeal]
 And the C-Side... one room, {# ffc800#}MAXIMUM SUFFERING{#}!
 I counted every death... 247 times!
 
@@ -6432,23 +6432,23 @@ You... you counted? Every single death?
 [MADELINE left panic]
 That's... that's terrifying.
 
-[FLOWEY right creep]
+[FLOWEY right makeadeal]
 The D-Side brought {# ff0000#}CHAOS{#} to that poor hotel...
 Even Oshiro couldn't clean up that mess!
 
-[MADELINE left concerned]
+[MADELINE left angry]
 Stop it! You're making me remember all the pain...
 Why are you doing this to me?
 
 CH10_FLOWEY_EASTER_CH4_GOLDEN_RIDGE=
-[FLOWEY right serious]
+[FLOWEY right makeadeal]
 Golden Ridge... where the wind tried to blow you away!
 
 [MADELINE left upset]
 The wind was so unpredictable there...
 How could you see through all that chaos?
 
-[FLOWEY right thinking]
+[FLOWEY right makeadeal]
 Those gondolas... you fell off {# ff0000#}SO MANY{#} of them!
 I have a highlight reel of your failures!
 
@@ -6456,7 +6456,7 @@ I have a highlight reel of your failures!
 A highlight reel?! You're {*}SICK{/*}!
 Those falls were genuinely scary!
 
-[FLOWEY right creep]
+[FLOWEY right makeadeal]
 The B-Side made you question your platforming skills...
 All those precise wind-jumps... {# ffc800#}DELICIOUS{#} frustration!
 
@@ -6466,7 +6466,7 @@ I did question everything after that...
 [MADELINE left distracted]
 I thought I wasn't good enough to continue.
 
-[FLOWEY right eyeclosed]
+[FLOWEY right makeadeal]
 C-Side's golden feathers... you chased them like a fool!
 Round and round in circles!
 
@@ -6476,23 +6476,23 @@ Those feathers... I got so dizzy and disoriented...
 [MADELINE left distracted]
 But I needed them to progress.
 
-[FLOWEY right creep]
+[FLOWEY right makeadeal]
 And the D-Side... the wind became your {# ff0000#}ENEMY{#}!
 Nature itself tried to stop you!
 
-[MADELINE left concerned]
+[MADELINE left angry]
 It felt like the mountain was fighting against me...
 Like it didn't want me to succeed.
 
 CH10_FLOWEY_EASTER_CH5_MIRROR_TEMPLE=
-[FLOWEY right eyeclosed]
+[FLOWEY right makeadeal]
 The Mirror Temple... where {# 8000ff#}Theo{#} learned about anxiety...
 
-[MADELINE left concerned]
+[MADELINE left angry]
 Theo... he was going through so much there.
 You saw his panic attacks too?
 
-[FLOWEY right serious]
+[FLOWEY right makeadeal]
 You guided him through his panic attacks...
 How {# ffc800#}SWEET{#}... and naive.
 
@@ -6500,7 +6500,7 @@ How {# ffc800#}SWEET{#}... and naive.
 I was trying to help him! That's what friends do!
 There's nothing naive about caring!
 
-[FLOWEY right creep]
+[FLOWEY right makeadeal]
 The B-Side's temple mechanics broke your brain!
 Those mirror puzzles... you rage-quit {# ff0000#}THREE TIMES{#}!
 
@@ -6508,7 +6508,7 @@ Those mirror puzzles... you rage-quit {# ff0000#}THREE TIMES{#}!
 Those puzzles were {*}IMPOSSIBLE{/*}!
 And you were counting my rage quits too?!
 
-[FLOWEY right thinking]
+[FLOWEY right makeadeal]
 C-Side made you both question reality...
 Was it real? Was it a dream? Did it matter?
 
@@ -6518,7 +6518,7 @@ I remember that confusion... the way everything felt...
 [MADELINE left upset]
 Like nothing was certain anymore.
 
-[FLOWEY right creep]
+[FLOWEY right makeadeal]
 The D-Side shattered every mirror...
 Including your {# ff0000#}SANITY{#}!
 
@@ -6527,14 +6527,14 @@ Stop... please stop reminding me...
 Those were some of my darkest moments.
 
 CH10_FLOWEY_EASTER_CH6_REFLECTION=
-[FLOWEY right serious]
+[FLOWEY right makeadeal]
 Reflection... where you faced your {# 8000ff#}true self{#}.
 
 [MADELINE left upset]
 My reflection... Badeline... that was the hardest part.
 You watched me fight myself?
 
-[FLOWEY right eyeclosed]
+[FLOWEY right makeadeal]
 Badeline... your anxiety made manifest...
 Such beautiful {# ff0000#}SELF-DESTRUCTION{#}!
 
@@ -6542,7 +6542,7 @@ Such beautiful {# ff0000#}SELF-DESTRUCTION{#}!
 That wasn't beautiful! It was {*}TERRIFYING{/*}!
 She tried to kill me!
 
-[FLOWEY right creep]
+[FLOWEY right makeadeal]
 The B-Side's feather mechanics...
 You and Badeline, working together... {# ffc800#}DISGUSTING{#}!
 
@@ -6552,7 +6552,7 @@ Working together saved both of us...
 [MADELINE left sadder]
 It taught me to accept my anxiety.
 
-[FLOWEY right thinking]
+[FLOWEY right makeadeal]
 C-Side tested your newfound unity...
 But I saw the cracks in your resolve!
 
@@ -6562,7 +6562,7 @@ There were still struggles, yes...
 [MADELINE left distracted]
 But we were learning to cooperate.
 
-[FLOWEY right creep]
+[FLOWEY right makeadeal]
 The D-Side brought back the {# ff0000#}CONFLICT{#}!
 Your inner demons... they're still there, Madeline!
 
@@ -6571,14 +6571,14 @@ No... I've made peace with that part of myself...
 She's not my enemy anymore!
 
 CH10_FLOWEY_EASTER_CH7_SUMMIT=
-[FLOWEY right eyeclosed]
+[FLOWEY right makeadeal]
 The Summit... where you thought you'd "won"...
 
 [MADELINE left upset]
 I did win! I reached the top with Badeline!
 That was my greatest achievement!
 
-[FLOWEY right serious]
+[FLOWEY right makeadeal]
 Climbing that final wall with Badeline...
 You felt so {# ffc800#}PROUD{#}, didn't you?
 
@@ -6586,15 +6586,15 @@ You felt so {# ffc800#}PROUD{#}, didn't you?
 I was proud! It represented everything I'd overcome!
 My anxiety, my fears, my self-doubt!
 
-[FLOWEY right creep]
+[FLOWEY right makeadeal]
 But the B-Side revealed the truth...
 The mountain wasn't done with you!
 
-[MADELINE left determinedclosed]
+[MADELINE left angry]
 The B-Side was... different. Harder.
 Like the mountain was testing my resolve.
 
-[FLOWEY right thinking]
+[FLOWEY right makeadeal]
 C-Side's vertical challenges...
 Every screen a {# ff0000#}DEATH TRAP{#}!
 
@@ -6602,7 +6602,7 @@ Every screen a {# ff0000#}DEATH TRAP{#}!
 Those vertical sections were brutal...
 I fell so many times I lost count.
 
-[FLOWEY right creep]
+[FLOWEY right makeadeal]
 And the D-Side... the summit became your {# ff0000#}GRAVE{#}!
 You died at the peak of your journey!
 
@@ -6611,14 +6611,14 @@ Even at the summit... the challenges never ended...
 But I kept climbing anyway.
 
 CH10_FLOWEY_EASTER_CH8_CORE=
-[FLOWEY right serious]
+[FLOWEY right makeadeal]
 The Core... where everything got {# ff0000#}HOT{#}!
 
 [MADELINE left upset]
 The heat was unbearable...
 How were you watching from inside a volcano?!
 
-[FLOWEY right creep]
+[FLOWEY right makeadeal]
 Those lava blocks burned you alive!
 I could smell your determination {# ffc800#}MELTING{#}!
 
@@ -6626,7 +6626,7 @@ I could smell your determination {# ffc800#}MELTING{#}!
 That's {*}DISGUSTING{/*}!
 Those burns were real! They hurt!
 
-[FLOWEY right thinking]
+[FLOWEY right makeadeal]
 The B-Side's core mechanics...
 Fire and ice, life and death!
 
@@ -6634,7 +6634,7 @@ Fire and ice, life and death!
 The temperature changes were so extreme...
 I thought I might not make it out.
 
-[FLOWEY right eyeclosed]
+[FLOWEY right makeadeal]
 C-Side made you dance with destruction...
 Every jump a gamble with {# ff0000#}DEATH{#}!
 
@@ -6642,7 +6642,7 @@ Every jump a gamble with {# ff0000#}DEATH{#}!
 Every movement had to be perfect...
 One mistake meant starting over.
 
-[FLOWEY right creep]
+[FLOWEY right makeadeal]
 The D-Side turned the core into {# ff0000#}HELL{#}!
 You burned... and burned... and {# ff0000#}BURNED{#}!
 
@@ -6653,14 +6653,14 @@ Stop it! I can still feel the heat sometimes...
 Those memories are painful enough!
 
 CH10_FLOWEY_EASTER_CH9_FAREWELL=
-[FLOWEY right eyeclosed]
+[FLOWEY right makeadeal]
 Farewell... the {# 8000ff#}DLC{#} that broke so many players...
 
 [MADELINE left upset]
 That chapter was the hardest thing I've ever done...
 You watched me struggle through all of that?
 
-[FLOWEY right serious]
+[FLOWEY right makeadeal]
 You thought you were prepared...
 {# ff0000#}YOU WERE WRONG{#}!
 
@@ -6668,7 +6668,7 @@ You thought you were prepared...
 Nothing could have prepared me for that difficulty!
 It pushed me beyond my limits!
 
-[FLOWEY right creep]
+[FLOWEY right makeadeal]
 Those wavedashing mechanics...
 You practiced for {# ffc800#}WEEKS{#} just to progress!
 
@@ -6676,7 +6676,7 @@ You practiced for {# ffc800#}WEEKS{#} just to progress!
 I remember the muscle memory training...
 Hours and hours of the same movements.
 
-[FLOWEY right thinking]
+[FLOWEY right makeadeal]
 The jellyfish, the space blocks, the impossible jumps...
 Each room designed to {# ff0000#}CRUSH{#} your spirit!
 
@@ -6684,7 +6684,7 @@ Each room designed to {# ff0000#}CRUSH{#} your spirit!
 Some rooms took days to complete...
 I questioned if I was even capable.
 
-[FLOWEY right creep]
+[FLOWEY right makeadeal]
 And Moon Berry... oh, that {# ffc800#}GOLDEN{#} torture!
 You spent {# ff0000#}DAYS{#} on that single collectible!
 
@@ -6694,7 +6694,7 @@ The Moon Berry... that was pure obsession.
 [MADELINE left sad]
 I couldn't give up even when I should have.
 
-[FLOWEY right eyeclosed]
+[FLOWEY right makeadeal]
 Granny's story about Madeline's mother...
 Even {# 8000ff#}I{#} felt something... but then I remembered...
 {# ff0000#}PAIN IS ETERNAL{#}!
@@ -6714,7 +6714,7 @@ GRANNY_GASTER_MEETING_INTRO=
 {0.5}Sometimes I wonder what else life has in store.
 
 {trigger 0 mysterious presence}
-[GRANNY left surprised]
+[GRANNY left creepa]
 ...?
 {0.3}What was that?
 
@@ -6724,7 +6724,7 @@ GRANNY_GASTER_MEETING_APPEARANCE=
 DO NOT BE ALARMED.
 I MEAN YOU NO HARM.
 
-[GRANNY left worried]
+[GRANNY left creepa]
 Who... who are you?
 How did you get up here?
 
@@ -6733,7 +6733,7 @@ MY NAME... IS NOT IMPORTANT.
 BUT YOU MAY CALL ME... {~}GASTER{/~}.
 I HAVE TRAVELED FAR TO FIND YOU.
 
-[GRANNY left distracted]
+[GRANNY left creepa]
 Find me? Why would anyone be looking for an old woman like me?
 
 [GASTER right normal]
@@ -6742,7 +6742,7 @@ YOUR GRANDDAUGHTER... {+MADELINE}...
 SHE WILL PLAY A CRUCIAL ROLE IN THE FUTURE.
 
 GRANNY_GASTER_MEETING_PROPHECY=
-[GRANNY left surprised]
+[GRANNY left creepa]
 Madeline? But she's just a child! What do you mean?
 
 [GASTER right normal]
@@ -6756,7 +6756,7 @@ WHEN THAT TIME COMES...
 SHE MUST FACE HER INNER DEMONS.
 SHE MUST BE... {~}READY{/~}.
 
-[GRANNY left worried]
+[GRANNY left creepa]
 Ready? Ready for what?
 I won't put my granddaughter in danger!
 
@@ -6767,7 +6767,7 @@ WITHOUT HER... THIS WORLD... AND MANY OTHERS...
 WILL FALL TO THE DARKNESS.
 
 GRANNY_GASTER_MEETING_EXPLANATION=
-[GRANNY left sad]
+[GRANNY left creepa]
 {0.5}...
 I don't understand any of this.
 Why Madeline? Why must she carry this burden?
@@ -6782,7 +6782,7 @@ YOU HAVE SEEN IT YOURSELF, HAVE YOU NOT?
 HER SPIRIT... HER REFUSAL TO GIVE UP.
 THAT IS WHAT MAKES HER... {~}SPECIAL{/~}.
 
-[GRANNY left distracted]
+[GRANNY left creepa]
 She does have that fire in her...
 Even when things get tough, she never quits.
 
@@ -6793,7 +6793,7 @@ DO NOT TELL HER OF THIS CONVERSATION.
 SHE MUST COME TO THE MOUNTAIN... {~}OF HER OWN WILL{/~}.
 
 GRANNY_GASTER_MEETING_PROMISE=
-[GRANNY left worried]
+[GRANNY left creepa]
 And what about you? Will you be there to help her?
 
 [GASTER right normal]
@@ -6807,7 +6807,7 @@ WHEN THE TIME IS RIGHT...
 TELL HER ABOUT HER MOTHER.
 SHE WILL NEED THAT STRENGTH... THAT CONNECTION.
 
-[GRANNY left sad]
+[GRANNY left creepa]
 Her mother...
 {0.5}Yes, I suppose she deserves to know the truth.
 
@@ -6833,7 +6833,7 @@ SHE WILL {~}NEVER{/~} TRULY BE ALONE.
 THOSE WHO CARE FOR HER WILL FIND THEIR WAY TO HER SIDE.
 AND TOGETHER... THEY WILL FACE THE DARKNESS.
 
-[GRANNY left peaceful]
+[GRANNY left creepa]
 {0.5}Then I'll trust in that.
 {0.3}And I'll trust in Madeline.
 
@@ -6843,18 +6843,18 @@ THE FATE OF MANY... NOW RESTS IN YOUR HANDS.
 {1.0}FAREWELL... {~}UNTIL WE MEET AGAIN{/~}.
 
 {trigger 1 gaster disappears}
-[GRANNY left distracted]
+[GRANNY left creepa]
 {1.0}...
 {0.5}Ten years...
 {0.8}What have I just agreed to?
 
 GRANNY_GASTER_MEETING_EPILOGUE=
-[GRANNY left sad]
+[GRANNY left creepa]
 {0.5}But if what he says is true...
 {0.4}Then Madeline truly is meant for something greater.
 {1.0}I only hope... I'll be there to see it.
 
-[GRANNY left peaceful]
+[GRANNY left creepa]
 {0.8}Stay strong, my dear child.
 {0.5}Your grandmother believes in you.
 {1.0}Always.
@@ -6864,13 +6864,13 @@ GRANNY_GASTER_MEETING_EPILOGUE=
 # Gaster returns to explain the painful truth
 
 GRANNY_DEATH_GASTER_RETURNS=
-[GRANNY left worried]
+[GRANNY left creepa]
 {0.8}*cough* {0.5}*cough*
 {0.6}My strength... it's fading.
 {0.5}I don't have much time left.
 
 {trigger 0 gaster materializes}
-[GRANNY left distracted]
+[GRANNY left creepa]
 ...You.
 {0.4}You've returned.
 
@@ -6879,7 +6879,7 @@ GRANNY_DEATH_GASTER_RETURNS=
 I HAVE COME... AS I SAID I WOULD.
 THE TIME... HAS COME.
 
-[GRANNY left sad]
+[GRANNY left creepa]
 I'm dying, aren't I?
 {0.5}I can feel it.
 {0.6}But Madeline... she's still so young.
@@ -6891,7 +6891,7 @@ YOUR DEATH... WAS ALWAYS PART OF THE PATH.
 I AM... SORRY.
 BUT IT IS {~}NECESSARY{/~}.
 
-[GRANNY left surprised]
+[GRANNY left creepa]
 What?! You... you knew this would happen?
 
 [GASTER right normal]
@@ -6904,7 +6904,7 @@ YOUR PASSING... PAINFUL AS IT IS...
 WILL FORGE {+MADELINE} INTO WHO SHE NEEDS TO BECOME.
 IT WILL GIVE HER... {~}STRENGTH{/~}.
 
-[GRANNY left angry]
+[GRANNY left creepa]
 How dare you! You're saying my death is... is just a tool?!
 To make her stronger?!
 
@@ -6921,7 +6921,7 @@ SHE WOULD NOT HAVE THE DRIVE.
 THE {~}DETERMINATION{/~} TO FACE WHAT LIES AHEAD.
 LOSS... IS WHAT MAKES US {~}HUMAN{/~}.
 
-[GRANNY left sad]
+[GRANNY left creepa]
 {0.8}...
 {0.5}So this was always the plan.
 {0.6}Since the moment you came to me.
@@ -6933,7 +6933,7 @@ TIME IS... COMPLICATED.
 SOME EVENTS... CANNOT BE CHANGED.
 
 GRANNY_DEATH_ACCEPTANCE=
-[GRANNY left sadder]
+[GRANNY left creepa]
 {1.0}...
 {0.8}Will she be okay?
 {0.5}Without me?
@@ -6949,7 +6949,7 @@ THEY WILL STAY WITH HER.
 EVEN AFTER YOU ARE GONE.
 ESPECIALLY... IN THE {~}FAREWELL{/~}.
 
-[GRANNY left distracted]
+[GRANNY left creepa]
 The Farewell...
 {0.5}She'll return to this mountain, won't she?
 {0.4}Looking for me.
@@ -6961,12 +6961,12 @@ SHE WILL FIND THE STRENGTH TO LET GO.
 TO ACCEPT... THAT SOME THINGS CANNOT BE UNDONE.
 
 GRANNY_DEATH_FINAL_WORDS=
-[GRANNY left peaceful]
+[GRANNY left creepa]
 {0.8}Then I suppose...
 {0.5}This is goodbye.
 {0.6}Take care of her, mysterious stranger.
 
-[GRANNY left sad]
+[GRANNY left creepa]
 Make sure she knows...
 {0.4}That I loved her.
 {0.5}That I was proud of her.
@@ -6983,7 +6983,7 @@ YOUR ROLE IN THIS STORY...
 MAY BE ENDING...
 BUT YOUR IMPACT... WILL {~}NEVER{/~} FADE.
 
-[GRANNY left peaceful]
+[GRANNY left creepa]
 {1.0}Madeline...
 {0.8}My sweet Madeline...
 {1.5}Be strong...
@@ -7012,7 +7012,7 @@ SHE WILL SAVE... {~}EVERYONE{/~}.
 # ========== END OF GRANNY AND GASTER BACKSTORY ==========
 
 CH10_FLOWEY_EASTER_STRAWBERRIES=
-[FLOWEY right thinking]
+[FLOWEY right makeadeal]
 Oh, and those {# ff0000#}STRAWBERRIES{#}...
 You collected them all, didn't you?
 
@@ -7020,7 +7020,7 @@ You collected them all, didn't you?
 The strawberries were optional! I didn't have to get them!
 But... I couldn't leave them behind.
 
-[FLOWEY right creep]
+[FLOWEY right makeadeal]
 Every. Single. One.
 Even the ones that required {# ffc800#}HUNDREDS{#} of deaths!
 
@@ -7028,7 +7028,7 @@ Even the ones that required {# ffc800#}HUNDREDS{#} of deaths!
 Some of those strawberries were {*}IMPOSSIBLE{/*}!
 But I kept trying anyway!
 
-[FLOWEY right serious]
+[FLOWEY right makeadeal]
 Those golden strawberries...
 You're either {# 8000ff#}INSANE{#} or {# ff0000#}OBSESSED{#}!
 
@@ -7036,7 +7036,7 @@ You're either {# 8000ff#}INSANE{#} or {# ff0000#}OBSESSED{#}!
 Maybe both... I just couldn't leave anything incomplete.
 It was like a compulsion.
 
-[FLOWEY right eyeclosed]
+[FLOWEY right makeadeal]
 But you know what's funny?
 They don't actually {# ffc800#}DO{#} anything!
 
@@ -7045,7 +7045,7 @@ I know... but they meant something to me.
 They were proof I could overcome anything.
 
 CH10_FLOWEY_EASTER_DEATHS=
-[FLOWEY right creep]
+[FLOWEY right makeadeal]
 I've been counting your deaths, Madeline...
 The number is... {# ff0000#}IMPRESSIVE{#}.
 
@@ -7053,7 +7053,7 @@ The number is... {# ff0000#}IMPRESSIVE{#}.
 You've been... counting my deaths?!
 That's incredibly morbid!
 
-[FLOWEY right serious]
+[FLOWEY right makeadeal]
 Every spike, every pit, every lava block...
 I was there for {# ffc800#}ALL{#} of it!
 
@@ -7061,7 +7061,7 @@ I was there for {# ffc800#}ALL{#} of it!
 Every death was a learning experience!
 You make it sound like entertainment!
 
-[FLOWEY right thinking]
+[FLOWEY right makeadeal]
 You know what the best part is?
 You always came {# ff0000#}BACK{#}!
 
@@ -7069,7 +7069,7 @@ You always came {# ff0000#}BACK{#}!
 Of course I came back... I had to keep trying.
 Each death taught me something new.
 
-[FLOWEY right creep]
+[FLOWEY right makeadeal]
 Determination? Or just plain {# 8000ff#}STUPIDITY{#}?
 
 [MADELINE left distracted]
@@ -7077,22 +7077,22 @@ Maybe a little of both...
 But I never gave up, did I?
 
 CH10_FLOWEY_EASTER_SPEEDRUN=
-[FLOWEY right eyeclosed]
+[FLOWEY right makeadeal]
 I see you've been practicing your {# ffc800#}SPEED{#}...
 
 [MADELINE left upset]
 How could you know about my speedrun attempts?
 I thought I was alone during those practice sessions!
 
-[FLOWEY right thinking]
+[FLOWEY right makeadeal]
 Wavedashing, hyperdashing, cornerboosting...
 Such {# ff0000#}TECHNICAL{#} mastery!
 
-[MADELINE left concerned]
+[MADELINE left angry]
 Those techniques took months to perfect...
 The precision required was exhausting.
 
-[FLOWEY right creep]
+[FLOWEY right makeadeal]
 But you know what?
 I can make you go even {# ff0000#}FASTER{#}...
 
@@ -7100,7 +7100,7 @@ I can make you go even {# ff0000#}FASTER{#}...
 Don't you dare threaten me!
 My speed is about mastery, not danger!
 
-[FLOWEY right serious]
+[FLOWEY right makeadeal]
 Straight down a {# ffc800#}BOTTOMLESS PIT{#}!
 
 [MADELINE left distracted]
@@ -7108,7 +7108,7 @@ That's... that's not funny.
 I've fallen down enough pits already.
 
 CH10_FLOWEY_EASTER_CASSETTES=
-[FLOWEY right thinking]
+[FLOWEY right makeadeal]
 Those B-Side cassette tapes...
 You hunted them down like {# ffc800#}TREASURE{#}!
 
@@ -7116,7 +7116,7 @@ You hunted them down like {# ffc800#}TREASURE{#}!
 The cassettes unlocked new challenges...
 I thought they would help me grow stronger.
 
-[FLOWEY right creep]
+[FLOWEY right makeadeal]
 Each one unlocked more {# ff0000#}SUFFERING{#}!
 And you {# 8000ff#}LOVED{#} every second of it!
 
@@ -7124,7 +7124,7 @@ And you {# 8000ff#}LOVED{#} every second of it!
 I didn't love the suffering!
 I loved overcoming the challenges!
 
-[FLOWEY right serious]
+[FLOWEY right makeadeal]
 The remix music... the harder challenges...
 You signed your own {# ff0000#}DEATH WARRANT{#}!
 
@@ -7137,14 +7137,14 @@ I guess I did seek out the hardest challenges...
 Maybe you're right about that.
 
 CH10_FLOWEY_EASTER_CRYSTAL_HEARTS=
-[FLOWEY right eyeclosed]
+[FLOWEY right makeadeal]
 Crystal Hearts... those {# 8000ff#}BLUE{#} fragments of power...
 
 [MADELINE left upset]
 The Crystal Hearts were hidden so well...
 How did you see me finding them?
 
-[FLOWEY right serious]
+[FLOWEY right makeadeal]
 You solved every puzzle, found every secret...
 All to unlock even {# ff0000#}HARDER{#} challenges!
 
@@ -7152,7 +7152,7 @@ All to unlock even {# ff0000#}HARDER{#} challenges!
 I thought solving puzzles would make me better...
 More capable of handling difficult situations.
 
-[FLOWEY right creep]
+[FLOWEY right makeadeal]
 C-Sides... the ultimate test of patience!
 One screen, {# ffc800#}INFINITE{#} ways to die!
 
@@ -7160,7 +7160,7 @@ One screen, {# ffc800#}INFINITE{#} ways to die!
 Those single-screen levels were {*}TORTURE{/*}!
 But I couldn't leave them unfinished!
 
-[FLOWEY right thinking]
+[FLOWEY right makeadeal]
 But you persisted... why?
 What drives you to such {# ff0000#}MASOCHISM{#}?
 
@@ -7169,14 +7169,14 @@ It's not masochism... it's perseverance.
 I needed to prove to myself I could do it.
 
 CH10_FLOWEY_EASTER_THEO=
-[FLOWEY right serious]
+[FLOWEY right makeadeal]
 That {# 8000ff#}THEO{#} boy... your "friend"...
 
 [MADELINE left upset]
 Theo IS my friend! He's been nothing but supportive!
 How can you talk about him like that?
 
-[FLOWEY right thinking]
+[FLOWEY right makeadeal]
 Taking selfies while you {# ff0000#}SUFFERED{#}!
 How delightfully {# ffc800#}OBLIVIOUS{#}!
 
@@ -7184,7 +7184,7 @@ How delightfully {# ffc800#}OBLIVIOUS{#}!
 He was trying to document our journey!
 Those photos meant a lot to both of us!
 
-[FLOWEY right creep]
+[FLOWEY right makeadeal]
 His panic attacks in Mirror Temple...
 I fed on that {# ff0000#}ANXIETY{#}!
 
@@ -7192,7 +7192,7 @@ I fed on that {# ff0000#}ANXIETY{#}!
 You... you fed on his pain?
 That's horrible! He was genuinely struggling!
 
-[FLOWEY right eyeclosed]
+[FLOWEY right makeadeal]
 But he got better... unfortunately.
 I prefer my humans {# 8000ff#}BROKEN{#}!
 
@@ -7203,14 +7203,14 @@ Theo getting better was the best thing that happened...
 How can you see healing as unfortunate?
 
 CH10_FLOWEY_EASTER_BADELINE=
-[FLOWEY right serious]
+[FLOWEY right makeadeal]
 Your "other self"... {# 8000ff#}BADELINE{#}...
 
 [MADELINE left upset]
 Badeline is part of me now...
 She's not separate anymore.
 
-[FLOWEY right creep]
+[FLOWEY right makeadeal]
 She tried to stop you, hurt you, {# ff0000#}DESTROY{#} you!
 Finally, someone who understood!
 
@@ -7218,7 +7218,7 @@ Finally, someone who understood!
 She was trying to protect me in her own way!
 She thought the mountain was too dangerous!
 
-[FLOWEY right thinking]
+[FLOWEY right makeadeal]
 But then you "made peace" with her...
 How {# ffc800#}BORING{#}!
 
@@ -7226,7 +7226,7 @@ How {# ffc800#}BORING{#}!
 Making peace wasn't boring... it was necessary.
 It's how I learned to accept myself.
 
-[FLOWEY right eyeclosed]
+[FLOWEY right makeadeal]
 I liked her better when she was trying to {# ff0000#}KILL{#} you!
 
 [MADELINE left distracted]
@@ -7234,7 +7234,7 @@ I'm glad we're not fighting anymore...
 Working together made us both stronger.
 
 CH10_FLOWEY_EASTER_MECHANICS=
-[FLOWEY right thinking]
+[FLOWEY right makeadeal]
 All those {# ffc800#}TECHNIQUES{#} you learned...
 Dashing, climbing, wall-jumping...
 
@@ -7242,7 +7242,7 @@ Dashing, climbing, wall-jumping...
 Those techniques took so much practice...
 How were you there for all of it?
 
-[FLOWEY right creep]
+[FLOWEY right makeadeal]
 But my favorite was watching you {# ff0000#}FALL{#}!
 Gravity never gets old!
 
@@ -7250,7 +7250,7 @@ Gravity never gets old!
 Every fall taught me something!
 I learned from every mistake!
 
-[FLOWEY right serious]
+[FLOWEY right makeadeal]
 Those moving platforms, dream blocks, zip movers...
 Each one a new way to {# 8000ff#}SUFFER{#}!
 
@@ -7258,7 +7258,7 @@ Each one a new way to {# 8000ff#}SUFFER{#}!
 They were obstacles to overcome...
 Each one made me more skilled.
 
-[FLOWEY right eyeclosed]
+[FLOWEY right makeadeal]
 And the best part? You {# ff0000#}ENJOYED{#} it!
 
 [MADELINE left distracted]
@@ -7266,23 +7266,23 @@ I... I did enjoy the challenge.
 The satisfaction of finally succeeding...
 
 CH10_FLOWEY_EASTER_MADELINE_PRETEND_TO_BE_AN_IDIOT=
-[FLOWEY right creep]
+[FLOWEY right makeadeal]
 Oh, look at you! The big, tough mountain climber!
 Pretending you?re not scared at all!
 
 [MADELINE left angry]
 I?m not pretending! I?m just focused!
 
-[FLOWEY right serious]
+[FLOWEY right makeadeal]
 Focused? More like {# ff0000#}DENYING{#} your fears
 
-[MADELINE left idiotdeline]
+[MADELINE left angry]
 Focus, Focus Focus!
 
 [MADELINE left angry]
 I don't give a damn about anything!
 
-[FLOWEY right eyeclosed]
+[FLOWEY right makeadeal]
 Seriously? You think that?s going to help you?
 {# ffc800#}DENIAL{/#} is not a strategy!
 
@@ -7305,7 +7305,7 @@ You got it right this really is mt Desolo Zantas.
 CH10_HOUSE=
 {trigger 0 madeline step forward twice and zoom in to madeline}
 
-[MADELINE left determinedclosed]
+[MADELINE left angry]
 okay this is it
 {trigger 1 madeline turn left}
 
@@ -7332,10 +7332,10 @@ Hellloooo Tori
 [TORIEL right what]
 ...
 
-[TORIEL right embarrassed]
+[TORIEL right goawaykingtitan]
 What an unexpected guest who you just came back darling...
 
-[TORIEL right sidethink]
+[TORIEL right goawaykingtitan]
 or a mountian climber?
 
 [SANS right normal]
@@ -7372,14 +7372,14 @@ well in any cases.[TORIEL right normal]followed me...
 [BADELINE left concerned]
 Wow... &she must have many children &with those picture back then...
 
-[CHARA right concerned]
+[CHARA right laughing]
 Yes she did have alot of picture.
 But there was one time when I was taken only one photos of me and asriel.
 
 [BADELINE left worriedAlt]
 and do they see you? or not...
 
-[CHARA right concerned]
+[CHARA right laughing]
 Well not really since I am a ghost and your just a reflections.
 
 [BADELINE left normal]
@@ -7427,10 +7427,10 @@ well that just so pricked darling.
 [MADELINE left angry]
 well whatever but I don't care.
 
-[TORIEL left serious]
+[TORIEL left goawaykingtitan]
 alright I think I understand enough this time.
 
-[TORIEL left concerned]
+[TORIEL left goawaykingtitan]
 I deeply apologized for not guiding you properly.
 
 [TORIEL left normal]
@@ -7481,7 +7481,7 @@ Just shut up already part of me...
 I think I reconized that there was an Industry Lab within that stage?
 what was it doing here for tori?
 
-[TORIEL left normalalt]
+[TORIEL left goawaykingtitan]
 ah I see you must reconized it.
 
 [KIRBY left distracted]
@@ -7493,7 +7493,7 @@ she use to work with the haltman company
 but fourtaunly she left the company
 and do the right thing to stop bad company from harming the ecosystem nor the socieity
 
-[TORIEL left normalalt]
+[TORIEL left goawaykingtitan]
 well thats wonder for that your friend did the right things
 because that lab was made by a bad company called the haltman company
 I hope she isn't made out of pedal
@@ -7508,7 +7508,7 @@ my bad kirby...
 [THEO left serious]
 do you know why there a parade stage within that gateway?
 
-[TORIEL left damnit]
+[TORIEL left goawaykingtitan]
 oh that parade stage was made by asgore and I
 when we were still together
 but he somehow forgot to put it down since last month
@@ -7520,7 +7520,7 @@ because I saw those weird ah goof clowned and it terrified me the most
 and kind of lame as childish
 so not for kids I should say.
 
-[TORIEL left regret]
+[TORIEL left goawaykingtitan]
 I am so sorry about that
 but I will make sure that asgore remove this parade stage for good this time.
 
@@ -7887,7 +7887,7 @@ CH11_GATEWAY_LIFTED=
 {~}*PERFECT BALANCE ACHIEVED*{/~}
 {~}*The mechanical door begins to unlock...*{/~}
 
-[RALSEI left happy]
+[RALSEI left angry]
 Excellent work! The water pressure is perfect!
 
 [KIRBY left together]
@@ -8042,7 +8042,7 @@ although I was only capture to a few days ago.
 [MADELINE left normal]
 and then being saved by pink blob.
 
-[UNDYNE left akward]
+[UNDYNE left uwu]
 the who?
 
 [KIRBY left normal]
@@ -8426,26 +8426,26 @@ Till next time my little Cow-Star Warriors
 # ========== PAPYRUS HANGOUT DATE ==========
 
 CH11_EXTRA_PAPYRUS_DATE_START=
-[PAPYRUS left excited]
+[PAPYRUS left blush]
 HUMAN! AND PINK BLOB! AND OTHER HUMANS!
 I, THE GREAT PAPYRUS, INVITE YOU TO A HANGOUT!
 
 [MADELINE right normal]
 A hangout? That sounds fun!
 
-[PAPYRUS left proud]
+[PAPYRUS left blush]
 OF COURSE IT DOES! EVERYTHING I DO IS FUN!
 FOLLOW ME TO MY COOL HANGOUT SPOT!
 
 CH11_EXTRA_PAPYRUS_DATE_KITCHEN=
-[PAPYRUS left excited]
+[PAPYRUS left blush]
 WELCOME TO THE KITCHEN!
 WHERE I, THE GREAT PAPYRUS, MAKE MY FAMOUS SPAGHETTI!
 
 [KIRBY right normal]
 Food!
 
-[PAPYRUS left proud]
+[PAPYRUS left blush]
 AH! SOMEONE WHO APPRECIATES FINE CUISINE!
 HERE, TRY MY MASTERPIECE!
 {trigger 0 papyrus serves spaghetti}
@@ -8457,18 +8457,18 @@ HERE, TRY MY MASTERPIECE!
 [KIRBY right thankyou]
 It's great!
 
-[PAPYRUS left happy]
+[PAPYRUS left blush]
 WOWIE! A TRUE CONNOISSEUR!
 
 CH11_EXTRA_PAPYRUS_DATE_BEDROOM=
-[PAPYRUS left excited]
+[PAPYRUS left blush]
 AND THIS IS MY ROOM!
 NOTICE MY COOL RACE CAR BED!
 
 [THEO right excited]
 Dude, that bed is awesome!
 
-[PAPYRUS left proud]
+[PAPYRUS left blush]
 I KNOW, RIGHT?!
 SANS SAYS I'M TOO OLD FOR IT BUT...
 I THINK HE'S JUST JEALOUS!
@@ -8478,19 +8478,19 @@ HE SLEEPS ON A MATTRESS ON THE FLOOR.
 IT'S... CONCERNING, ACTUALLY.
 
 CH11_EXTRA_PAPYRUS_DATE_PUZZLE_CHALLENGE=
-[PAPYRUS left excited]
+[PAPYRUS left blush]
 NOW! FOR THE MAIN EVENT!
 A PUZZLE CHALLENGE!
 
 [BADELINE right scoff]
 Oh great, more puzzles.
 
-[PAPYRUS left proud]
+[PAPYRUS left blush]
 NOT JUST ANY PUZZLE, EDGY HUMAN!
 THIS IS MY MOST CHALLENGING CREATION YET!
 {trigger 0 papyrus reveals puzzle}
 
-[PAPYRUS left excited]
+[PAPYRUS left blush]
 A JUNIOR JUMBLE! NYEH HEH HEH!
 
 [CHARA right bruh]
@@ -8500,20 +8500,20 @@ A JUNIOR JUMBLE! NYEH HEH HEH!
 EXACTLY! ONLY A TRUE GENIUS CAN SOLVE IT!
 
 CH11_EXTRA_PAPYRUS_DATE_END=
-[PAPYRUS left happy]
+[PAPYRUS left blush]
 HUMAN! THIS HAS BEEN THE BEST HANGOUT EVER!
 I FEEL LIKE WE'VE REALLY BONDED!
 
-[MADELINE right happy]
+[MADELINE right angry]
 I had a great time too, Papyrus.
 
-[PAPYRUS left excited]
+[PAPYRUS left blush]
 WOWIE! DOES THIS MEAN WE'RE FRIENDS NOW?!
 
 [MADELINE right normal]
 Of course we are!
 
-[PAPYRUS left proud]
+[PAPYRUS left blush]
 NYEH HEH HEH! THE GREAT PAPYRUS HAS MADE MORE FRIENDS!
 SANS WILL BE SO IMPRESSED!
 
@@ -8601,12 +8601,12 @@ That's not funny!
 heh. it's a little funny.
 
 CH11_EXTRA_SANS_BAR_SERIOUS_TALK=
-[SANS left serious]
+[SANS left dudewtfalt]
 hey, can i talk to you for a sec?
 in private.
 {trigger 0 sans leads madeline aside}
 
-[SANS left serious]
+[SANS left dudewtfalt]
 i know what you're up against.
 the darkness, the void, all that stuff.
 just... be careful, okay?
@@ -8693,7 +8693,7 @@ use it well, partner.
 # ========== UNDYNE HANGOUT LGBTQ FRIENDSHIP ==========
 
 CH11_EXTRA_UNDYNE_HANGOUT_START=
-[UNDYNE left excited]
+[UNDYNE left uwu]
 MADELINE! Let's hang out!
 Just us girls! No boys allowed!
 {trigger 0 undyne kicks theo out}
@@ -8701,19 +8701,19 @@ Just us girls! No boys allowed!
 [THEO left wtf]
 Hey! What the?
 
-[UNDYNE left proud]
+[UNDYNE left uwu]
 Don't worry, he'll be fine!
 Now then... GIRL TALK TIME!
 
 CH11_EXTRA_UNDYNE_HANGOUT_COOKING=
-[UNDYNE left excited]
+[UNDYNE left uwu]
 FIRST! We're gonna cook!
 And by cook, I mean SET THINGS ON FIRE!
 
 [MADELINE right distracted]
 Is that... safe?
 
-[UNDYNE left proud]
+[UNDYNE left uwu]
 SAFETY IS FOR NERDS!
 NOW GRAB THAT SPATULA AND FOLLOW MY LEAD!
 {trigger 0 cooking montage with fire}
@@ -8721,18 +8721,18 @@ NOW GRAB THAT SPATULA AND FOLLOW MY LEAD!
 [BADELINE right angryAlt]
 The kitchen is on fire.
 
-[UNDYNE left laughing]
+[UNDYNE left uwu]
 THAT MEANS IT'S WORKING!
 
 CH11_EXTRA_UNDYNE_HANGOUT_TRAINING=
-[UNDYNE left determined]
+[UNDYNE left uwu]
 NOW! COMBAT TRAINING!
 Show me your best moves!
 
 [MADELINE right normal]
 I'm more of a climber than a fighter...
 
-[UNDYNE left excited]
+[UNDYNE left uwu]
 CLIMBING IS JUST VERTICAL FIGHTING!
 AGAINST GRAVITY!
 Now SHOW ME THAT DETERMINATION!
@@ -8745,7 +8745,7 @@ Something... personal?
 [MADELINE right normal]
 Of course, Undyne.
 
-[UNDYNE left embarrassed]
+[UNDYNE left uwu]
 I've never had many friends before.
 Everyone was always scared of me.
 The "scary fish lady with the spear."
@@ -8760,19 +8760,19 @@ Finding someone who truly sees you...
 It changes everything.
 
 CH11_EXTRA_UNDYNE_HANGOUT_ALPHYS_TALK=
-[UNDYNE left embarrassed]
+[UNDYNE left uwu]
 Speaking of Alphys...
 We're, um... we're dating now.
 
 [MADELINE right normal]
 That's wonderful! I'm so happy for you!
 
-[UNDYNE left happy]
+[UNDYNE left uwu]
 Thanks! She's the coolest nerd ever!
 She showed me this anime about two girls...
 And I realized... that was US!
 
-[UNDYNE left proud]
+[UNDYNE left uwu]
 Now we watch anime together every night!
 It's the BEST!
 
@@ -8785,24 +8785,24 @@ Monsters, humans, whoever.
 [MADELINE right normal]
 Everyone deserves to be who they are.
 
-[UNDYNE left happy]
+[UNDYNE left uwu]
 EXACTLY! That's what I've been trying to tell everyone!
 Love is love! Whether it's between humans...
 Monsters... or anything in between!
 
-[UNDYNE left determined]
+[UNDYNE left uwu]
 And anyone who says otherwise...
 Can FIGHT ME!
 
 CH11_EXTRA_UNDYNE_HANGOUT_END=
-[UNDYNE left happy]
+[UNDYNE left uwu]
 This was fun, Madeline!
 We should do this more often!
 
-[MADELINE right happy]
+[MADELINE right angry]
 Definitely! You're a great friend, Undyne.
 
-[UNDYNE left excited]
+[UNDYNE left uwu]
 FRIEND?! MORE LIKE BESTIE!
 Now let's go destroy something together!
 
@@ -8827,7 +8827,7 @@ When we purified the corrupted creatures...
 The darkness had to go somewhere.
 It gathered together, feeding on itself.
 
-[CHARA right concerned]
+[CHARA right laughing]
 What do you mean "feeding on itself"?
 
 [MARLET left scared]
@@ -8857,7 +8857,7 @@ CH11_EXTRA_DARKERDARK_INTRO=
 [DARKER_DARK_MATTER left none]
 {big}{# ff0000}SO... YOU ARE THE ONES WHO FREED MY PREY.{#}{/big}
 
-[MADELINE right shocked]
+[MADELINE right angry]
 What... what is that thing?!
 
 [DARKER_DARK_MATTER left angry]
@@ -8946,7 +8946,7 @@ CH11_EXTRA_NPC_GREATER_DOG_PET=
 {~}*Greater Dog bounds toward you excitedly!*{/~}
 {~}*Its armor clanks loudly!*{/~}
 
-[KIRBY right surprise]
+[KIRBY right angry]
 Puppy!
 {trigger 0 kirby pets greater dog}
 
@@ -9016,7 +9016,7 @@ CH11_SUSIE_HALTMANN_ANALYSIS=
 I've been analyzing the data from both prophecies.
 My father's company had extensive research on void energy.
 
-[susiehaltmann right concerned]
+[susiehaltmann right normal]
 The mathematical signatures are identical.
 The "Roaring" from Deltarune and the "Jamba Heart" from our dimension...
 They share the same void frequency.
@@ -9096,7 +9096,7 @@ But what I cannot comprehend...
 What makes no sense to me...
 Is why this conflict CONTINUES!
 
-[KIRBY left ditracted]
+[KIRBY left angry]
 What do you mean, Hyness?
 
 [HYNESS left ranting]
@@ -9138,14 +9138,14 @@ According to my calculations...
 If the schism had never occurred...
 The original Void Astral Birth prophecy would have been fulfilled peacefully.
 
-[susiehaltmann right concerned]
+[susiehaltmann right normal]
 The void was never meant to be unleashed OR sealed.
 It was meant to be... understood. Balanced.
 
 [KIRBY left sad]
 So everyone's been fighting the wrong battle all along...
 
-[susiehaltmann right sad]
+[susiehaltmann right normal]
 Essentially, yes.
 Two halves of a whole, each convinced the other is wrong.
 When in truth... they're both incomplete.
@@ -9761,7 +9761,7 @@ Have you Dream or Seen of darker than dark?
 [KIRBY right distracted]
 No not really... What is it?
 
-[SANS right worried]
+[SANS right dudewtfalt]
 Never heard of it before huh?
 Well then I'll tell you this.
 It's mostly called the {~}{big}VESSEL{/big}{/~}
@@ -9814,10 +9814,10 @@ you have collected enough mini hearts to open the door
 Great! Let's move on.
 
 CH12_PRE_PRE_INTRO_TITAN_TOWER=
-[UNDYNE left yell]
+[UNDYNE left uwu]
 Hey Wait up ahead!
 
-[MADELINE left surprise]
+[MADELINE left angry]
 Undyne what are you doing here?
 
 [UNDYNE left normal]
@@ -9832,7 +9832,7 @@ Well... I guess it's good to see a familiar face.
 But this time, we have to be careful. The Water Edge Fall is no joke.
 Unlike Papyrus, who put me in danger, I was forced to get them out of there.
 
-[UNDYNE left concerning]
+[UNDYNE left uwu]
 I understand. We all have our burdens to bear.
 
 CH12_PRE_INTRO_TITAN_TOWER=
@@ -9845,7 +9845,7 @@ and the treacherous icy cliffs
 Part of me it is necessary
 rather you like it or not, you would need to suck it up.
 
-[CHARA left worrired]
+[CHARA left laughing]
 She's right, Badeline.
 I think that climbing and fighting to this edge is our worth a shot.
 
@@ -9986,7 +9986,7 @@ CH12_TITAN_TOWER_SUMMIT_APPROACH=
 [MADELINE left surprised]
 We made it... The top of the titan tower.
 
-[CHARA left amazed]
+[CHARA left laughing]
 Look at that platform... It's glowing with raw power.
 
 [BADELINE left worried]
@@ -10031,7 +10031,7 @@ YES! WE DID IT!
 [KIRBY left sad]
 wait what is he doing!?
 
-[RALSEI left worried]
+[RALSEI left angry]
 He's regenerating!
 
 [BADELINE left angryAlt]
@@ -10068,7 +10068,7 @@ are you just giving up already kiddo?
 [MADELINE right surprised]
 Sans!? Undyne!? What are you doing here!?
 
-[UNDYNE left determined]
+[UNDYNE left uwu]
 We saw you were in trouble from afar.
 so i call out sans and we ran and climb as fast as we could
 
@@ -10079,7 +10079,7 @@ Hehe... You didn't think we'd let you have all the fun, did you?
 Thank you both... We couldn't have done this without you.
 but we need to break the core!
 
-[SANS left serious]
+[SANS left dudewtfalt]
 Leave that to me.
 
 [BADELINE left normal]
@@ -10136,7 +10136,7 @@ BELLY OF THE BEAST
 [SANS left normal]
 Nice work back there.
 
-[UNDYNE left determined]
+[UNDYNE left uwu]
 You two were amazing!
 I thought you two would be ingested for sure!
 but you somehow made it out alive!
@@ -10248,17 +10248,17 @@ And we'll make sure that suited man pays for what he's done from the last game.
 [RALSEI left determined]
 DESPITE THAT WOULD YOU LIKE TO COME WITH US?
 
-[SANS left worrired]
+[SANS left dudewtfalt]
 I think I should stay behind for now.
 There are still things I need to take care of here.
 
-[UNDYNE left determined]
+[UNDYNE left uwu]
 But we'll be rooting for you from afar!
 
 [MADELINE left normal]
 Thank you both for everything.
 
-[UNDYNE left determined]
+[UNDYNE left uwu]
 Take care, Madeline. And stay safe out and up there.
 
 [SANS left normal]
@@ -10290,7 +10290,7 @@ I wasn't always a pirate, you know.
 I was a Darkener. A knight of the kingdom.
 Served under the old King's guard.
 
-[CHARA right surprised]
+[CHARA right laughing]
 You were a Darkener knight?
 
 [ROXUS left normal]
@@ -10362,7 +10362,7 @@ Deltarune was what this world was called.
 Before        Desolo Zantas.
 Before everything changed.
 
-[MADELINE right curious]
+[MADELINE right angry]
 What was it like?
 
 [STARWALKER left none]
@@ -10406,12 +10406,12 @@ Welcome, welcome! I'm Starsie!
 You... you look like me.
 But different.
 
-[STARSIE left curious]
+[STARSIE left unhappy]
 Do I? How interesting!
 I've always looked like this!
 
 CH12_EXTRA_STARSIE_EXPRESSIONS_HAPPY=
-[STARSIE left overjoyed]
+[STARSIE left unhappy]
 This is SO exciting!
 New friends! New adventures!
 I love meeting new people!
@@ -10419,12 +10419,12 @@ I love meeting new people!
 [KIRBY right thankyou]
 You're really cheerful!
 
-[STARSIE left blushing]
+[STARSIE left unhappy]
 Aww, thank you!
 Positivity is my specialty!
 
 CH12_EXTRA_STARSIE_EXPRESSIONS_SAD=
-[STARSIE left tearful]
+[STARSIE left unhappy]
 Sometimes... I get sad too.
 When I think about what we've lost.
 All the worlds that fell to darkness.
@@ -10432,12 +10432,12 @@ All the worlds that fell to darkness.
 [MADELINE right normal]
 It's okay to feel sad sometimes.
 
-[STARSIE left grateful]
+[STARSIE left unhappy]
 Thank you for understanding.
 Not everyone gets that.
 
 CH12_EXTRA_STARSIE_EXPRESSIONS_DETERMINED=
-[STARSIE left fierce]
+[STARSIE left unhappy]
 But I won't let sadness stop me!
 We have to keep fighting!
 For everyone who can't fight anymore!
@@ -10446,15 +10446,15 @@ For everyone who can't fight anymore!
 She's got spirit. I like that.
 
 CH12_EXTRA_RALSEI_JEALOUSY_START=
-[RALSEI left concerned]
+[RALSEI left angry]
 Starsie... your story.
 It's very similar to mine.
 Almost... too similar.
 
-[STARSIE left curious]
+[STARSIE left unhappy]
 Is it? I didn't notice!
 
-[RALSEI left suspicious]
+[RALSEI left angry]
 The prophecy. The hero. The darkness.
 You speak of them as if...
 As if YOU were the original.
@@ -10465,22 +10465,22 @@ I've dedicated my entire life to the prophecy!
 I've waited in the castle alone for years!
 And now you appear, claiming the same things?!
 
-[STARSIE left sad]
+[STARSIE left unhappy]
 I'm not claiming anything, Ralsei.
 I'm just telling my truth.
 
-[MADELINE right concerned]
+[MADELINE right angry]
 Hey, maybe you both can be right?
 
 CH12_EXTRA_RALSEI_JEALOUSY_TRUTH_REVEALED=
-[STARSIE left serious]
+[STARSIE left unhappy]
 I have proof, Ralsei.
 Ancient texts from before the Roaring.
 They speak of multiple prophecies. Multiple heroes.
 and most heros are from each world.
 Including four star warrior clasher
 
-[STARSIE left sad]
+[STARSIE left unhappy]
 I'm not trying to replace you.
 The light needs ALL of us.
 
@@ -10492,7 +10492,7 @@ CH12_EXTRA_RALSEI_REALIZES_TRUTH=
 Here, look.
 {trigger 0 starsie shows ancient scroll}
 
-[RALSEI left shocked]
+[RALSEI left angry]
 This is... this predates my own records.
 By centuries.
 
@@ -10501,16 +10501,16 @@ I... I owe you an apology, Starsie.
 I let my insecurities cloud my judgment.
 
 CH12_RALSEI_ASK_ABOUT_THE_STAR_WARRIOR_CLASHER=
-[RALSEI left curious]
+[RALSEI left angry]
 You mentioned "four star warrior clasher."
 What does that mean?
 
-[STARSIE left thoughtful]
+[STARSIE left unhappy]
 It's an ancient term.
 It refers to heroes who wield the power of stars.
 Each from different worlds.
 
-[RALSEI left intrigued]
+[RALSEI left angry]
 So... there are more like us?
 
 [STARSIE left normal]
@@ -10519,12 +10519,12 @@ where kirby use to be here before his arrival
 These four heros were legendary warriors
 who thought brave and detemination to take out the known villian as parrallel nightmare
 
-[RALSEI left distacred]
+[RALSEI left angry]
 That's incredible.
 I never knew there were others like us.
 but what come after that?
 
-[STARSIE left serious]
+[STARSIE left unhappy]
 After the battle, the four star warrior clasher
 he summon the greatest warrior in the galaxy as the last Resort
 but his plan...
@@ -10534,7 +10534,7 @@ until the galaxy itself was nearly destroyed
 eventutally he was defeated and sealed away from the jamba heart crystal prison
 trap in there for enternity into another dimension
 
-[RALSEI left shocked]
+[RALSEI left angry]
 wow that was shocking, but nostalgically... pretty impressive.
 
 CH12_EXTRA_STARSIE_FORGIVENESS=
@@ -10543,25 +10543,25 @@ It's okay, Ralsei!
 I understand why you felt that way.
 We've both been alone for so long.
 
-[STARSIE left overjoyed]
+[STARSIE left unhappy]
 But now we have each other!
 And all these wonderful friends!
 
-[RALSEI left happy]
+[RALSEI left angry]
 You're right. Thank you, Starsie.
 Perhaps... we can learn from each other.
 
 # ========== APEX PREDATOR SECRET BOSS FIGHT ==========
 
 CH12_EXTRA_APEX_SECRET_APPROACH=
-[SANS right serious]
+[SANS right dudewtfalt]
 Wait. Something's wrong.
 The titan's defeat... it wasn't the end.
 
-[MADELINE left concerned]
+[MADELINE left angry]
 What do you mean?
 
-[SANS right concerned]
+[SANS right dudewtfalt]
 I sense another presence.
 Something far more dangerous lurking in the shadows.
 
@@ -10572,7 +10572,7 @@ CH12_EXTRA_APEX_SECRET_REVEAL=
 Did you think destroying my titan would stop me?
 {big}PATHETIC.{/big}
 
-[MADELINE left shocked]
+[MADELINE left angry]
 The Apex Predator! But you escaped!
 
 [APEX_PREDATOR left evil]
@@ -10610,17 +10610,17 @@ Let me show you what happens to "togetherness"!
 CH12_EXTRA_UNDYNE_REFUSED_TO_DIE=
 {trigger 0 undyne gets hit by apex predator attack}
 
-[UNDYNE left injured]
+[UNDYNE left uwu]
 NGH...!
 
 [MADELINE right surprised]
 UNDYNE! NO!
 
-[UNDYNE left determined]
+[UNDYNE left uwu]
 I'm... not... done... yet...
 {trigger 1 undyne starts glowing}
 
-[UNDYNE left fierce]
+[UNDYNE left uwu]
 You think... one hit... will stop ME?!
 I REFUSE!
 
@@ -10664,7 +10664,7 @@ I am... the apex... the pinnacle...
 You fools! You have no idea what you've done!
 By destroying me, you've only delayed the inevitable!
 
-[MADELINE right serious]
+[MADELINE right angry]
 What are you talking about?
 
 CH12_EXTRA_APEX_EVIL_SPEECH=
@@ -10696,10 +10696,10 @@ EVERYONE GET DOWN!
 {trigger 1 explosion aftermath}
 
 CH12_EXTRA_APEX_AFTERMATH=
-[UNDYNE left exhausted]
+[UNDYNE left uwu]
 Is... is it over...?
 
-[SANS right concerned]
+[SANS right dudewtfalt]
 The Apex Predator is destroyed.
 But his words... they trouble me.
 
@@ -10781,7 +10781,7 @@ CH12_EXTRA_NPC_SHYREN_SINGING=
 {~}*Shyren hums softly...*{/~}
 {~}*She seems too nervous to sing louder.*{/~}
 
-[KIRBY right encouraging]
+[KIRBY right angry]
 That's a nice melody!
 
 [SHYREN left happy]
@@ -10954,7 +10954,7 @@ What about you, Kirby? What class would you choose?
 [KIRBY left deadpan]
 I think I would like to be a mage this might be a mistake.
 
-[RALSEI left excited]
+[RALSEI left angry]
 Hey! thats my ability.
 
 [TENNA left none]
@@ -11038,7 +11038,7 @@ CH13_AREA1_FIRSTRPGBATTLE=
 [none left]
 FROGGIT DREW NEAR!
 
-[CHARA left RIGHT]
+[CHARA left laughing]
 Now the rule is simple
 we each take one time per caharcter for each turn
 and attack the enemy until it is defeated
@@ -11077,7 +11077,7 @@ hello there travellers
 welcome to my humble shop
 feel free to browse my weapons and potions and healables
 
-[RALSEI left excited]
+[RALSEI left angry]
 Oh wow! This shop has so many useful items!
 
 [BADELINE left normal]
@@ -11132,7 +11132,7 @@ I could definitely use some upgrades for my gear.
 [TECH left SHOP]
 Sure! What kind of upgrades are you looking for?
 
-[CHARA left LEFT]
+[CHARA left laughing]
 I need a new weapon and some armor.
 
 [KIRBY left sad]
@@ -11162,7 +11162,7 @@ Thanks! We'll put it to good use.
 Great! Now that you have the camera, head to the Whale Tale and record your video.
 Remember to capture the best angles!
 
-[RALSEI left excited]
+[RALSEI left angry]
 THIS IS GOING TO BE MORE FUN TO RECORD IT
 
 CH13_WHALE_TALE_waiting=
@@ -11264,7 +11264,7 @@ CH13_AFTER_SUZY=
 [BADELINE left normal]
 I can't believe we just went through that...
 
-[RALSEI left worried]
+[RALSEI left angry]
 WHAT YOU SAID?
 
 [BADELINE left simple_sigh]
@@ -11412,7 +11412,7 @@ NO
 [CHARA left sad]
 what the heck is this place...
 
-[RALSEI left worried]
+[RALSEI left angry]
 YEAH WONDERING THE SAME THING
 
 [BADELINE left angryalt]
@@ -11500,7 +11500,7 @@ We made it out of there!
 but how we suppose to get back into the game show now?
 and save madeline...?
 
-[CHARA left concerning]
+[CHARA left laughing]
 I have an idea
 but it might be sneaky...
 
@@ -11534,7 +11534,7 @@ It's too quiet.
 Thats Okay badeline
 It's just  a false alarmed
 
-[CHARA left what]
+[CHARA left laughing]
 what is that sound?
 
 {trigger 0 chara running to right}
@@ -11550,7 +11550,7 @@ CH13_META_KNIGHT_ENCOUNTER=
 Wait... is that...?
 {dz_flash_screen 0000FF 0.5}
 
-[CHARA left shocked]
+[CHARA left laughing]
 that's Meta Knight!
 
 [META_KNIGHT right normal]
@@ -11720,7 +11720,7 @@ now where is she?
 [SUZY left normal]
 I don't see her anywhere...
 
-[MADELINE left none]
+[MADELINE left angry]
 I am over here...
 
 [BADELINE left normal]
@@ -11815,7 +11815,7 @@ This ELs the force of nature is causing destruction!
 [CHARA left worried]
 We have to stop him before he causes more damage!
 
-[MADELINE left RIGHT]
+[MADELINE left angry]
 We need to find a way to reach him and put an end to this chaos!
 
 [SUZY left angry]
@@ -11904,7 +11904,7 @@ CH13_EXTRA_TENNA_SECRET_HINT_1=
 Anyway! Let's keep the game going!
 Nothing to see here! Just fun and games!
 
-[MADELINE right suspicious]
+[MADELINE right angry]
 Tenna... is something wrong?
 
 [TENNA left none]
@@ -11913,7 +11913,7 @@ Everything is PERFECTLY FINE!
 {~}*Tenna's screen flickers briefly.*{/~}
 
 CH13_EXTRA_TENNA_SECRET_HINT_2=
-[KIRBY left concerned]
+[KIRBY left angry]
 Your screen glitched just now.
 
 [TENNA left nervous]
@@ -11934,7 +11934,7 @@ There are things I can't tell you.
 Not because I don't want to.
 Because... if I do... bad things will happen.
 
-[MADELINE right understanding]
+[MADELINE right angry]
 Someone's threatening you?
 
 [TENNA left sad]
@@ -11948,7 +11948,7 @@ CH13_EXTRA_METAKNIGHT_ARRIVAL_INTRO=
 [META_KNIGHT left serious]
 I suppose you're wondering how I arrived here.
 
-[KIRBY right curious]
+[KIRBY right angry]
 I was going to ask! You just... appeared!
 
 [META_KNIGHT left normal]
@@ -11985,7 +11985,7 @@ I barely escaped into the void between worlds.
 Drifting for what felt like eternity.
 Until I sensed Kirby's presence here.
 
-[KIRBY right emotional]
+[KIRBY right angry]
 Meta Knight...
 
 [META_KNIGHT left normal]
@@ -12107,7 +12107,7 @@ Determination exposure did not heal the damaged sample.
 It locked the body into survival mode and kept the tissue moving after structural collapse.
 Every heartbeat made the dark matter spread faster through the host.
 
-[MADELINE left concerned]
+[MADELINE left angry]
 She wrote that like she was measuring weather.
 
 [KIRBY right sad]
@@ -12126,7 +12126,7 @@ It is improvising under fear.
 Improvising under fear...
 that's not adaptation, that's panic.
 
-[KIRBY right concerned]
+[KIRBY right angry]
 And she kept watching it happen.
 
 CH13_ENTRYLOG_10=
@@ -12170,7 +12170,7 @@ I believe they feel each other.
 [KIRBY right distracted]
 They were all connected...
 
-[MADELINE left concerned]
+[MADELINE left angry]
 That would make every experiment even crueler.
 
 CH13_ENTRYLOG_13=
@@ -12226,7 +12226,7 @@ The other refuses to stay one shape.
 Together they create persistence without mercy.
 Recovery is impossible once the cycle begins.
 
-[KIRBY right concerned]
+[KIRBY right angry]
 Then every dose made them harder to save.
 
 [MADELINE left determined]
@@ -12380,11 +12380,11 @@ Signal origin no longer matches the recorder.
 [zero]
 Hello Kirby... Nice seeing you again...
 
-[KIRBY right shocked]
+[KIRBY right angry]
 That voice...
 It's looking right at us.
 
-[MADELINE left concerned]
+[MADELINE left angry]
 Back away from the terminal. Now.
 
 CH13_ALPHYS_LAB_TRUTH=
@@ -12462,13 +12462,13 @@ Ahn~ Ahn~
 I'm helping!
 My lava makes everyone HEALTHY!
 
-[KIRBY right concerned]
+[KIRBY right angry]
 I don't think lava works that way...
 
 [VULKIN left sad]
 But... I just want to help...
 
-[KIRBY right reassuring]
+[KIRBY right angry]
 Your kindness is what helps!
 Not the lava!
 
@@ -12517,7 +12517,7 @@ Welcome to MTT Brand Burger Emporium.
 Home of the Glamburger.
 Can I take your order.
 
-[THEO right sympathetic]
+[THEO right nailedit]
 Rough day?
 
 [BURGERPANTS left exhausted]
@@ -12537,13 +12537,13 @@ Whoa... everything looks... pixelated?
 We're not in the physical world anymore.
 and my body is cube...shaped...
 
-[CHARA left amazed]
+[CHARA left laughing]
 Yeah I Guest so.
 
 [KIRBY right surprised]
 Why are you look at that direction?
 
-[CHARA left what]
+[CHARA left laughing]
 oh that well I have four directional movement now
 it's abit akward when I see you move sideways
 but for me I move all 8 directions now.
@@ -12597,7 +12597,7 @@ That throne... it looks like King Dedede's!
 [DIGITAL_DEDEDE left angry]
 {~}Well, well, well... if it isn't my old nemesis...{/~}
 
-[KIRBY right shocked]
+[KIRBY right angry]
 King Dedede?! But you look... different...
 
 [DIGITAL_DEDEDE left normal]
@@ -12693,7 +12693,7 @@ The whole dimension is shaking!
 {big}SECONDARY PROTOCOL ACTIVATED.{/big}
 {big}DEPLOYING TITAN-CLASS CHASSIS.{/big}
 
-[Starsie right shocked]
+[Starsie right unhappy]
 He's... enormous! Twenty times larger than before than the titan!
 
 [BADELINE left concerned]
@@ -12729,10 +12729,10 @@ CH14_GIANT_AXIS_MID_BATTLE=
 {big}ARMOR INTEGRITY COMPROMISED.{/big}
 {big}ACCESSING EMERGENCY POWER RESERVES.{/big}
 
-[MADELINE left concerned]
+[MADELINE left angry]
 He's drawing power from the entire digital dimension!
 
-[RALSEI right nroamal]
+[RALSEI right angry]
 If he drains too much, this whole realm could collapse!
 
 [GIANT_AXIS left angry]
@@ -12741,7 +12741,7 @@ If he drains too much, this whole realm could collapse!
 
 {trigger 0 giant axis transform into bigger robot form}
 
-[KIRBY right surprirsed]
+[KIRBY right angry]
 Watch out!
 
 trigger 0 meta knight warp in to help kirby
@@ -12763,7 +12763,7 @@ The corruption is clearing! Our world is being restored!
 [KING_DEDEDE right normal]
 I can feel the digital energy stabilizing.
 
-[MADELINE left happy]
+[MADELINE left angry]
 Another dimension saved. But something tells me we're not done yet.
 
 [CHARA left normal]
@@ -12789,7 +12789,7 @@ There's something about you that resonates with this digital realm.
 [KING_DEDEDE right curious]
 Yes, indeed. You have a unique energy.
 What do you think it is, Madeline?
-[MADELINE left thoughtful]
+[MADELINE left angry]
 I'm not sure... but I feel like I belong here.
 but somewhere and some outer there granny knows about it
 and she knows that she never have told me about it
@@ -12821,7 +12821,7 @@ CH14_EXTRA_DEDEDE_DEFEAT_WAKEUP=
 Ugh... my head...
 What... what happened?
 
-[KIRBY right relieved]
+[KIRBY right angry]
 Dedede! You're back to normal!
 
 [KING_DEDEDE left confused]
@@ -12835,7 +12835,7 @@ It started back in Dream Land.
 There was this... portal. A dark one.
 It appeared right in my throne room.
 
-[MADELINE right listening]
+[MADELINE right angry]
 What happened when you saw it?
 
 [KING_DEDEDE left worried]
@@ -12866,7 +12866,7 @@ Then we'll save them! All of them!
 [KING_DEDEDE left hopeful]
 You'd do that? For my people?
 
-[MADELINE right confident]
+[MADELINE right angry]
 That's what friends do.
 
 CH14_EXTRA_DEDEDE_WADDLE_DEE_RESCUE_QUEST=
@@ -12936,7 +12936,7 @@ CH14_EXTRA_CYBER_QUEEN_INTRO=
 Ah. More visitors to my former domain.
 How... delightful.
 
-[MADELINE right cautious]
+[MADELINE right angry]
 Who are you?
 
 [CYBER_QUEEN left bitter]
@@ -12966,7 +12966,7 @@ This world was perfect under my rule.
 Everyone had battery acid to drink!
 Giant robot battles every Tuesday!
 
-[CHARA right unimpressed]
+[CHARA right laughing]
 That... doesn't sound perfect.
 
 [CYBER_QUEEN left dismissive]
@@ -12979,7 +12979,7 @@ But... perhaps we can help each other.
 I want my throne back.
 You want to stop Axis.
 
-[MADELINE right skeptical]
+[MADELINE right angry]
 Why should we trust you?
 
 [CYBER_QUEEN left honest]
@@ -13013,7 +13013,7 @@ Species classification: Star Warrior.
 Subspecies: Dream Being.
 Estimated age: Unknown. Potentially infinite.
 
-[MADELINE right shocked]
+[MADELINE right angry]
 Infinite?!
 
 [DIGITAL_AI left neutral]
@@ -13027,10 +13027,10 @@ Warning: Following information may be distressing.
 Subject: Kirby's biological origins.
 Proceed?
 
-[KIRBY right uncertain]
+[KIRBY right angry]
 I... I want to know.
 
-[MADELINE right supportive]
+[MADELINE right angry]
 We're here for you, Kirby.
 
 CH14_EXTRA_AI_KIRBY_PARENTS_REVEALED=
@@ -13039,7 +13039,7 @@ Records indicate two parent entities.
 Mother: STELLAR. A guardian of the cosmic nursery.
 Father: VOID DREAMER. A being of pure creation.
 
-[KIRBY right emotional]
+[KIRBY right angry]
 I had... parents?
 
 [DIGITAL_AI left sad]
@@ -13058,30 +13058,30 @@ Her final words, recorded in stardust:
 And know that wherever you go...
 We will always love you."
 
-[KIRBY right crying]
+[KIRBY right angry]
 Mom... Dad...
 
 CH14_EXTRA_MADELINE_COMFORTS_KIRBY=
-[MADELINE right kneeling]
+[MADELINE right angry]
 Oh, Kirby...
 {trigger 0 madeline hugs kirby}
 
-[MADELINE right gentle]
+[MADELINE right angry]
 I'm so sorry.
 I know what it's like to carry that weight.
 The not knowing. The loss.
 
-[KIRBY right sobbing]
+[KIRBY right angry]
 They... they loved me...
 I never knew...
 
-[MADELINE right comforting]
+[MADELINE right angry]
 They gave everything so you could live.
 So you could become the hero you are today.
 They'd be so proud of you.
 
 CH14_EXTRA_KIRBY_RESOLUTION=
-[KIRBY right wiping_tears]
+[KIRBY right angry]
 Thank you, Madeline.
 I... I'm glad I finally know.
 
@@ -13185,7 +13185,7 @@ W-W-WELCOME TO THE D-D-DATA STORE!
 We sell BITS and BYTES!
 {~}*The merchant's form flickers unstably.*{/~}
 
-[THEO right concerned]
+[THEO right nailedit]
 Are you okay?
 
 [DIGITAL_MERCHANT left sad]
@@ -13210,7 +13210,7 @@ I remember when this world was just ones and zeros.
 Before the upgrade. Before the Queen.
 Simpler times...
 
-[MADELINE right curious]
+[MADELINE right angry]
 What was it like?
 
 [OLD_PROGRAM left nostalgic]
@@ -13248,7 +13248,7 @@ CH15_MOUNTAIN_PEAK_ARRIVAL=
 [MADELINE left normal]
 We've reached the peak... but look at that!
 
-[CHARA left surprised]
+[CHARA left laughing]
 A bridge... suspended in mid-air, leading to...
 
 [BADELINE left concerned]
@@ -13274,7 +13274,7 @@ This is where everything began... and where it must end.
 [BADELINE left worriedAlt]
 What do you mean?
 
-[CHARA left determined]
+[CHARA left laughing]
 The roaring titan council... they're waiting for us in that castle.
 They will judge whether we're worthy of the final wish.
 
@@ -13288,14 +13288,14 @@ This bridge... it's made of pure starlight.
 [META_KNIGHT right concerned]
 Stay close. The magic here is powerful but unstable.
 
-[KIRBY right worried]
+[KIRBY right angry]
 I can hear voices singing...
 
 [ETHEREAL_VOICE left none]
 {~}Those who seek the final truth must first be judged...{/~}
 
 CH15_HOVERING_CASTLE_ENTRANCE=
-[MADELINE left amazed]
+[MADELINE left angry]
 The castle is even more magnificent up close.
 
 [CASTLE_GUARDIAN left normal]
@@ -13341,7 +13341,7 @@ There are so many of them...
 [TITAN_COUNCIL_MEMBER_2 left normal]
 {big}YOUR INTENTIONS HAVE BEEN WEIGHED.{/big}
 
-[CHARA left nervous]
+[CHARA left laughing]
 This is it... the moment of truth.
 
 CH15_COUNCIL_JUDGMENT_RESULTS=
@@ -13565,7 +13565,7 @@ CH15_FOUNTAIN_OF_DREAMS_MADELINE_CHOICE=
 [MADELINE left surprised]
 A... wish?
 {0.3}
-[MADELINE left thinking]
+[MADELINE left angry]
 I could wish for anything?
 {0.4}
 [KING_TITAN right noble]
@@ -13575,7 +13575,7 @@ The fountain reads the soul...
 {0.2}
 and grants what is {~}genuinely{/~} wished for.
 {0.5}
-[MADELINE left hopeful]
+[MADELINE left angry]
 I... I could finally...
 {0.3}
 {trigger madeline_approaches Madeline walks toward the fountain}
@@ -13592,7 +13592,7 @@ A wish this powerful... it could change everything.
 [MADELINE right determined]
 I know, Badeline.
 {0.3}
-[MADELINE right soft]
+[MADELINE right angry]
 But if I can help everyone...
 {0.2}
 If I can undo all the suffering...
@@ -13603,7 +13603,7 @@ Count me in!
 {trigger kirby_encourages Kirby bounces encouragingly}
 
 CH15_FOUNTAIN_OF_DREAMS_ABOUT_TO_WISH=
-[MADELINE center reaching]
+[MADELINE center normal]
 Okay... here goes...
 {0.3}
 I wish for--
@@ -13611,7 +13611,7 @@ I wish for--
 {trigger sudden_darkness Screen suddenly darkens}
 {0.3}
 {trigger earthquake The ground shakes violently}
-[MADELINE center shocked]
+[MADELINE center normal]
 What?!
 {0.4}
 {trigger everyone_falls Everyone staggers from the impact}
@@ -13620,17 +13620,17 @@ CH15_FOUNTAIN_OF_DREAMS_FLOWEY_STRIKE=
 {trigger flowey_attack_sfx Flowey attack sound effect}
 {0.2}
 {trigger vine_eruption Massive vines erupt from the ground}
-[FLOWEY center creep]
+[FLOWEY center normal]
 {# ff0000}AHAHAHAHA!{#}
 {0.5}
 {trigger everyone_struck Vines strike down Madeline, Badeline, Kirby, and King Titan}
-[MADELINE left hurt]
+[MADELINE left angry]
 AAGH!
 {0.2}
 [BADELINE left hurt]
 NO!
 {0.2}
-[KIRBY center hurt]
+[KIRBY center normal]
 Impossible...!
 {0.3}
 {trigger king_titan_hit King Titan is knocked down}
@@ -13641,32 +13641,32 @@ CH15_FOUNTAIN_OF_DREAMS_FLOWEY_REVEAL=
 [FLOWEY center evil]
 {# ff0000}You IDIOTS!{#}
 {0.4}
-[FLOWEY center mocking]
+[FLOWEY center normal]
 Did you really think I'd let you
 make a wish that easily?
 {0.5}
 {trigger flowey_approaches_fountain Flowey moves toward the fountain}
-[FLOWEY center sinister]
+[FLOWEY center normal]
 I've been waiting for this moment...
 {0.3}
 {~}Planning{/~} for this moment!
 {0.4}
-[FLOWEY center triumphant]
+[FLOWEY center normal]
 All that fighting... all that struggling...
 {0.2}
 It was all to lead you {~}HERE{/~}!
 
 CH15_FOUNTAIN_OF_DREAMS_FLOWEY_TAKES_POWER=
-[MADELINE left struggling]
+[MADELINE left angry]
 N-No... don't...!
 {0.3}
-[FLOWEY right creep]
+[FLOWEY right makeadeal]
 {# ff0000}Too late, Madeline!{#}
 {0.4}
 {trigger flowey_absorbs_fountain Flowey plunges roots into the Fountain of Dreams}
 {0.5}
 {trigger fountain_corrupts The fountain's light turns from blue to sickly purple}
-[FLOWEY right absorbing]
+[FLOWEY right makeadeal]
 {# ff00ff}YESSS!{#}
 {0.3}
 {# ff00ff}I CAN FEEL IT!{#}
@@ -13685,7 +13685,7 @@ No... that's the {#560000}Forbidden Blade{#}!
 The weapon sealed away in the {~}Void Between Stars{/~}!
 {0.5}
 {trigger katana_resonates The katana pulses with dark energy}
-[FLOWEY center reaching]
+[FLOWEY center normal]
 {# 560000}Come to me...{#}
 {0.3}
 {# 560000}DARKER THAN DARK BLACK BIG KATANA!{#}
@@ -13693,7 +13693,7 @@ The weapon sealed away in the {~}Void Between Stars{/~}!
 CH15_FOUNTAIN_OF_DREAMS_FUSION_BEGIN=
 {trigger katana_merges The katana fuses with Flowey and the fountain's power}
 {0.5}
-[FLOWEY center transforming]
+[FLOWEY center normal]
 {# 560000}AAAAAAAHHHHH!{#}
 {0.8}
 {trigger massive_explosion A massive explosion of dark energy}
@@ -13709,7 +13709,7 @@ CH15_FOUNTAIN_OF_DREAMS_ELS_FLOWEY_BIRTH=
 [ELS_FLOWEY center menacing]
 {# 560000}...{#}
 {0.5}
-[MADELINE left terrified]
+[MADELINE left angry]
 What... what {~}IS{/~} that?!
 {0.4}
 [BADELINE left horrified]
@@ -13758,7 +13758,7 @@ CH15_FOUNTAIN_OF_DREAMS_ELS_FLOWEY_WISH=
 {# ff0000}ABSOLUTE DOMINION OVER ALL WORLDS!{#}
 {0.6}
 {trigger reality_shatters Reality cracks like glass around them}
-[MADELINE left desperate]
+[MADELINE left angry]
 NO!
 {0.3}
 {trigger dark_void_opens A swirling vortex of pure darkness tears open above them}
@@ -13766,21 +13766,21 @@ NO!
 CH15_ELS_INTRO=
 {trigger els_intro_music Start Els intro music}
 {0.5}
-[ELS left none]
+[ELS left normal]
 who summon me
 
-[FLOWEY left none]
+[FLOWEY left makeadeal]
 {# ff0000}IT IS I WHO HAVE SUMMON YOU!{#}
 
 [MADELINE left surprised]
 flowey please don't do this
 this demon will use your power to destroy everything
 
-[FLOWEY left determined]
+[FLOWEY left makeadeal]
 {# ff0000}I DON'T CARE ANYMORE!{#}
 {# ff0000}IF THIS WORLD IS GOING TO END, THEN SO BE IT!{#}
 
-[els left none]
+[els left normal]
 {# 560000}ACTAULLY i HAVE SOMETHING ELSE IN MIND...{#}
 {# 560000}WITH THE POWER OF FOUNTAIN OF DREAMS AND DARKER THAN DARK BLACK BIG KATANA...{#}
 {# 560000}I WILL CREATE A NEW WORLD...{#}
@@ -13789,22 +13789,22 @@ this demon will use your power to destroy everything
 {# 560000}AND YOU WILL ALL SERVE ME...{#}
 AND YOU LITTLE FLOWER WILL BE CONSUMED BY MY POWER
 
-[flowey left shocked]
+[flowey left makeadeal]
 {# ff0000}WHAT?! NO! I JUST WANTED TO BE HAPPY!{#}
 not you to consume me
 
-[els left none]
+[els left normal]
 your happiness is meaningless
 but the work you have done is finnaly pay off
 now then enjoy from your destruction
 
-[flowey left scream]
+[flowey left makeadeal]
 NOOOO!!!!!
 
-[chara left shocked]
+[chara left laughing]
 what have you done... flowey...
 
-[els left none]
+[els left normal]
 {# 560000}or you rather say asriel!{#}
 
 [badeline left shocked]
@@ -14028,7 +14028,7 @@ CH15_EXTRA_KING_TITAN_FINAL_WARNING=
 {big}ELS WILL COME FOR YOU NEXT...{/big}
 {big}HE ALWAYS DOES...{/big}
 
-[KIRBY right worried]
+[KIRBY right angry]
 How do we stop him?
 
 [ROARING_TITAN_KING left sad]
@@ -14140,14 +14140,14 @@ ELS IS WEAKENED
 NOW IS YOUR CHANCE TO STRIKE BACK
 
 CH16_ELS_FAKE_DEFEAT=
-[ELS left none]
+[ELS left normal]
 {# 560000}NOOOO! HOW COULD THIS BE?!{#}
 {# 560000}I WAS SUPPOSED TO BE ALL-POWERFUL!{#}
 {# 560000}THIS CANNOT BE!{#}
 {# 560000}YOU... YOU!{#}
 
 CH16_ELS_DEFEAT_TROLLS=
-[ELS left none]
+[ELS left normal]
 YOU SKIBIDI BOPPED ME
 NOW IM GONNA SKIBIDI BOP YOUR FRIENDS
 
@@ -14195,25 +14195,25 @@ WELL ALLOW M-
 CH16_ELS_FILE_FAIL=
 File Corruptted... Fatal Error Detected
 
-[ELS left wtf]
+[ELS left normal]
 wh-
 my power is... GONE?!
 
 {trigger 1 everyone soul and power stars appear around madeline against els}
 
-[ELS left shocked]
+[ELS left normal]
 {# 560000}NO... THIS CANNOT BE...!{#}
 {# 560000}HOW DID YOU...!?{#}
 {# 560000}WAIT THE SECOND...{#}
 
 {trigger 2 spotlight to els}
 
-[ELS left ohno]
+[ELS left normal]
 OH FUCK.... N-
 
 {trigger 3 everyone soul and power stars start attacking els}
 
-[ELS left nonono]
+[ELS left normal]
 NO!!! YOU SUPPOSE TO DEMAND ME
 YOU SUPPOSE TO CEASE HER!
 STOP! STOP IT!
@@ -14290,16 +14290,16 @@ wh- what happen?
 [BADELINE left sadder]
 I don't know of what really happen, but I sadly think were back on mountian celeste.
 
-[MADELINE left confused]
+[MADELINE left angry]
 How long... was I out?
 
 [BADELINE left worried]
 I don't know... but the sky looks different somehow.
 
-[KIRBY right worried]
+[KIRBY right angry]
 Madeline! You're awake!
 
-[CHARA right relieved]
+[CHARA right laughing]
 We thought we lost you back there...
 
 [MADELINE left sad]
@@ -14317,35 +14317,35 @@ I... I'm not sure. Everything went white and then...
 # ================================
 
 CH16_OUTRO_CHECK_KIRBY=
-[MADELINE left concerned]
+[MADELINE left angry]
 Kirby, are you okay?
 
-[KIRBY right tired]
+[KIRBY right angry]
 I used... a lot of my power back there...
 But I'll be fine. I'm more worried about you.
 
-[MADELINE left grateful]
+[MADELINE left angry]
 Thank you for fighting alongside us.
 
-[KIRBY right happy]
+[KIRBY right angry]
 That's what friends are for!
 
 CH16_OUTRO_CHECK_CHARA=
-[MADELINE left concerned]
+[MADELINE left angry]
 Chara... how are you holding up?
 
 [CHARA right sad]
 Seeing Asriel like that... as Flowey...
 It brought back so many painful memories.
 
-[MADELINE left comforting]
+[MADELINE left angry]
 I'm sorry you had to go through that again.
 
-[CHARA right determined]
+[CHARA right laughing]
 No... I needed to face it. For both of us.
 
 CH16_OUTRO_CHECK_BADELINE=
-[MADELINE left worried]
+[MADELINE left angry]
 Badeline, you look exhausted.
 
 [BADELINE left tired]
@@ -14392,13 +14392,13 @@ Days?! It felt like only hours...
 The whole mountain was glowing purple!
 Everyone in town was freaking out!
 
-[MADELINE left tired]
+[MADELINE left angry]
 We stopped Els... I think. We're okay now.
 
 [THEO phone relieved]
 Thank god... Where are you? I'm coming to get you!
 
-[MADELINE left grateful]
+[MADELINE left angry]
 We're near the summit... I think.
 Theo... thank you for caring.
 
@@ -14409,7 +14409,7 @@ Stay put, I'm on my way!
 [BADELINE left teasing]
 He really does worry about you, doesn't he?
 
-[MADELINE left embarrassed]
+[MADELINE left angry]
 Shut up...
 
 # -------- MOM PHONE CALL --------
@@ -14424,13 +14424,13 @@ CH16_OUTRO_PHONE_MOM=
 MADELINE?! Oh honey, I've been so worried!
 The news said there were strange lights on the mountain!
 
-[MADELINE left guilty]
+[MADELINE left angry]
 Mom... I'm sorry I worried you.
 
 [MOM phone crying]
 Are you hurt? Are you safe? Please tell me you're okay!
 
-[MADELINE left tearful]
+[MADELINE left angry]
 I'm okay, Mom. I promise.
 I... I did something really important up here.
 
@@ -14438,20 +14438,20 @@ I... I did something really important up here.
 I don't understand what's going on, but...
 I'm just so glad to hear your voice.
 
-[MADELINE left emotional]
+[MADELINE left angry]
 Mom... I love you.
 
 [MOM phone loving]
 I love you too, sweetheart. So much.
 Please come home soon, okay?
 
-[MADELINE left crying]
+[MADELINE left angry]
 I will, Mom. I promise.
 
 [BADELINE left quiet]
 ...You should call her more often.
 
-[MADELINE left nodding]
+[MADELINE left angry]
 Yeah... I really should.
 
 # -------- TORIEL PHONE CALL --------
@@ -14465,7 +14465,7 @@ CH16_OUTRO_PHONE_TORIEL=
 [TORIEL phone relieved]
 Oh thank goodness! Madeline, you're alive!
 
-[MADELINE left tired]
+[MADELINE left angry]
 Toriel... we did it. Els is gone.
 
 [TORIEL phone crying]
@@ -14485,10 +14485,10 @@ Is everyone okay down there?
 Yes, everyone is safe. Sans has been keeping watch.
 Come back to us when you're ready. There's pie waiting.
 
-[CHARA right smiling]
+[CHARA right laughing]
 ...Pie sounds really good right now.
 
-[KIRBY right excited]
+[KIRBY right angry]
 Did someone say pie?!
 
 # -------- SANS PHONE CALL --------
@@ -14510,14 +14510,14 @@ Thanks for the enthusiasm, Sans.
 you went toe-to-toe with something that shouldn't exist.
 and you won.
 
-[MADELINE left humble]
+[MADELINE left angry]
 We almost didn't make it.
 
 [SANS phone knowing]
 but you did. that's what matters.
 also, your friend kirby ate my hot dog stand.
 
-[KIRBY right embarrassed]
+[KIRBY right angry]
 I was hungry!
 
 [SANS phone amused]
@@ -14547,10 +14547,10 @@ Look at that sunrise...
 [BADELINE left awed]
 It's beautiful...
 
-[CHARA right hopeful]
+[CHARA right laughing]
 Maybe this is a new beginning... for all of us.
 
-[KIRBY right happy]
+[KIRBY right angry]
 The mountain feels... lighter somehow.
 
 [none left none]
@@ -14561,7 +14561,7 @@ The mountain feels... lighter somehow.
 {big}YOU HAVE DONE WELL, YOUNG WARRIOR...{/big}
 {big}THE MOUNTAIN'S HEART BEATS STRONG ONCE MORE...{/big}
 
-[MADELINE left tearful]
+[MADELINE left angry]
 Thank you... all of you.
 
 [none left none]
@@ -14574,10 +14574,10 @@ So... what now?
 [MADELINE left determined]
 Now? We go home. Together.
 
-[CHARA right smiling]
+[CHARA right laughing]
 And maybe get some of that pie Toriel mentioned.
 
-[KIRBY right excited]
+[KIRBY right angry]
 PIE!
 
 [none left none]
@@ -14593,16 +14593,16 @@ CH16_ENDING_GOOD=
 {~}*The storm clouds begin to part...*{/~}
 {~}*Revealing a gentle dawn...*{/~}
 
-[MADELINE left relieved]
+[MADELINE left angry]
 It's over... it's really over.
 
 [BADELINE left tired]
 We did it, Madeline. We actually did it.
 
-[KIRBY right happy]
+[KIRBY right angry]
 The bad flower man is gone!
 
-[CHARA right thoughtful]
+[CHARA right laughing]
 Els won't stay gone forever though... will he?
 
 [MADELINE left determined]
@@ -14625,19 +14625,19 @@ CH16_ENDING_NEUTRAL=
 {~}*The mountain grows quiet...*{/~}
 {~}*But something feels... incomplete.*{/~}
 
-[MADELINE left uncertain]
+[MADELINE left angry]
 Did we... actually win?
 
 [BADELINE left worried]
 I don't know. Something doesn't feel right.
 
-[CHARA right uneasy]
+[CHARA right laughing]
 Els is gone but... the mountain still feels wounded.
 
 [KIRBY right sad]
 So many places we didn't get to help...
 
-[MADELINE left guilty]
+[MADELINE left angry]
 Maybe if we had done more...
 
 [BADELINE left firm]
@@ -14659,14 +14659,14 @@ CH16_ENDING_BITTERSWEET=
 [FLOWEY weak normal]
 ...why?
 
-[MADELINE left compassionate]
+[MADELINE left angry]
 Flowey...
 
 [FLOWEY weak confused]
 Why did you spare me...?
 After everything I did...?
 
-[CHARA right tearful]
+[CHARA right laughing]
 Because... you're still my brother.
 Somewhere in there... Asriel is still alive.
 
@@ -14674,7 +14674,7 @@ Somewhere in there... Asriel is still alive.
 I don't... I can't feel anything anymore...
 But... thank you.
 
-[MADELINE left hopeful]
+[MADELINE left angry]
 Maybe someday we'll find a way to help you too.
 
 [FLOWEY weak fading]
@@ -14698,19 +14698,19 @@ CH16_ENDING_SAD=
 [none left none]
 {~}*Victory came... but at a terrible price...*{/~}
 
-[MADELINE left devastated]
+[MADELINE left angry]
 We lost so many...
 
 [BADELINE left crying]
 I'm so sorry, Madeline... I couldn't protect everyone...
 
-[CHARA right grieving]
+[CHARA right laughing]
 The mountain will remember their sacrifice...
 
-[KIRBY right somber]
+[KIRBY right angry]
 ...
 
-[MADELINE left broken]
+[MADELINE left angry]
 Was it worth it...? All this pain...?
 
 [BADELINE left holding]
@@ -14718,7 +14718,7 @@ Madeline... look at me.
 They didn't die for nothing. Because of them... because of you...
 The world is safe.
 
-[MADELINE left tearful]
+[MADELINE left angry]
 I just wish... I could have saved them all.
 
 [none left none]
@@ -14737,7 +14737,7 @@ CH16_ENDING_SECRET=
 [GASTER mysterious appearing]
 ...Interesting.
 
-[MADELINE left startled]
+[MADELINE left angry]
 Who... who are you?!
 
 [GASTER mysterious calm]
@@ -14753,7 +14753,7 @@ You have collected every fragment of hope on this mountain.
 You have reached out to every soul who cared for you.
 Such connection... such determination... deserves reward.
 
-[MADELINE left confused]
+[MADELINE left angry]
 What kind of reward?
 
 [GASTER mysterious revealing]
@@ -14762,7 +14762,7 @@ Els is not the true enemy.
 He is merely a servant... of something far older.
 Something that waits beyond the void.
 
-[CHARA right shocked]
+[CHARA right laughing]
 Beyond the void...?
 
 [GASTER mysterious fading]
@@ -14773,7 +14773,7 @@ Until then... rest. You have earned it.
 [BADELINE left shaken]
 What the hell was that about?
 
-[MADELINE left worried]
+[MADELINE left angry]
 I don't know... but I have a feeling...
 Our journey isn't over yet.
 
@@ -14799,7 +14799,7 @@ CH16_POSTCREDITS_PHONE=
 ...eline... Mad...ine...
 Can you... hear me...?
 
-[MADELINE left confused]
+[MADELINE left angry]
 Hello? Who is this?
 
 [UNKNOWN phone distorted]
@@ -14811,7 +14811,7 @@ Don't... forget...
 [BADELINE left concerned]
 Madeline? What was that?
 
-[MADELINE left haunted]
+[MADELINE left angry]
 I don't know...
 But whoever it was... they sounded scared.
 
@@ -14918,7 +14918,7 @@ Oh, a {~}little bird{/~} told me there was to be a party.
 [OSHIRO left drama]
 But if I am unwelcome, I shall take my leave.
 
-[TORIEL right normalalt]
+[TORIEL right goawaykingtitan]
 No no you can stay, {+OSHIRO}.
 It's nice that you came here to visit.
 {trigger 2 Oshiro settles in}
@@ -14954,7 +14954,7 @@ But we can't promise it'll live up to the hype, everyone.
 [MADELINE right normal]
 We'll try our best.
 
-[TORIEL right normalalt]
+[TORIEL right goawaykingtitan]
 I am sure it will be wonderful, {+MADELINE}.
 Baking is about love, and you clearly have plenty of that.
 
@@ -15031,7 +15031,7 @@ This is so tasty.
 [OSHIRO left normal]
 {+BADELINE} and {+MS_MADELINE}, are you available to{n}cater our re-opening banquet?
 
-[TORIEL left normalalt]
+[TORIEL left goawaykingtitan]
 I can take one home for Asgore?
 He will die when he tastes this.
 
@@ -15064,7 +15064,7 @@ CH17_TORIEL_OUTSIDE=
 Good You Two just in time.
 This is the entrance to the core of the fallen angle of this mountain.
 
-[TORIEL right normalalt]
+[TORIEL right goawaykingtitan]
 I have prepare some supplies for you to take along the way.
 
 [TORIEL right normal]
@@ -15086,7 +15086,7 @@ Yeah me too even tho {+GRANNY} have look after me from what I heard of.
 [TORIEL right normal]
 I'm sure that you know about a familiar places of this {+MOUNTAIN}.
 
-[TORIEL right normalalt]
+[TORIEL right goawaykingtitan]
 Since you three very a stronger as I know.
 and you said you wanted to come{n}back and explore deeper about it's origin.
 
@@ -15102,7 +15102,7 @@ Yeah, I already noticed some of that...
 [BADELINE left worried]
 and you sure that it's safe to go deeper inside?
 
-[TORIEL right normalalt]
+[TORIEL right goawaykingtitan]
 Yes it is safe but be careful.
 This mountain is very unpredictable and unstable.
 Now with that out of the way Good luck all of you in there.
@@ -15114,7 +15114,7 @@ CH18_TORIEL_OUTSIDE=
 Good You Two just in time.
 This is the entrance to the core of the fallen angle of this mountain.
 
-[TORIEL right normalalt]
+[TORIEL right goawaykingtitan]
 I have prepare some supplies for you to take along the way.
 
 [TORIEL right normal]
@@ -15136,7 +15136,7 @@ Yeah me too even tho {+GRANNY} have look after me from what I heard of.
 [TORIEL right normal]
 I'm sure that you know about a familiar places of this {+MOUNTAIN}.
 
-[TORIEL right normalalt]
+[TORIEL right goawaykingtitan]
 Since you three very a stronger as I know.
 and you said you wanted to come{n}back and explore deeper about it's origin.
 
@@ -15152,7 +15152,7 @@ Yeah, I already noticed some of that...
 [BADELINE left worried]
 and you sure that it's safe to go deeper inside?
 
-[TORIEL right normalalt]
+[TORIEL right goawaykingtitan]
 Yes it is safe but be careful.
 This mountain is very unpredictable and unstable.
 Now with that out of the way Good luck all of you in there.
@@ -15164,7 +15164,7 @@ So where's is {+CHARA}?
 [MADELINE right distracted]
 Same for {+RALSEI}.. you think they coming?
 
-[TORIEL left normalalt]
+[TORIEL left goawaykingtitan]
 I don't know... I expected him to show up by now.
 
 [TORIEL left normal]
@@ -15187,7 +15187,7 @@ I like that of how you supporting and finding a new friend MADELINE.
 Aww {1.0} Thank You Tori.
 
 CH18_TORIEL_C=
-[TORIEL right normalalt]
+[TORIEL right goawaykingtitan]
 Do you keep in touch with {+KIRBY}?
 
 [MADELINE right normal]
@@ -15226,7 +15226,7 @@ But either in way, He knows about the mountain very well and to the world.
 ...
 But he also know about reset.
 
-[TORIEL right normalalt]
+[TORIEL right goawaykingtitan]
 Which it's complicated but I'll explain to you later after this.
 
 [MADELINE right sad]
@@ -15236,7 +15236,7 @@ CH18_TORIEL_LOCKED=
 [MADELINE right sad]
 I know that Granny said that there no other way out to get to the other door.
 
-[TORIEL right normalalt]
+[TORIEL right goawaykingtitan]
 Yes I can understand that too.
 But an order to get out you must go into the core of the fallen angle.
 which it's contained a heart itself.
@@ -15249,7 +15249,7 @@ Yeah I understand that this {+MOUNTAIN} also have a connection to Celeste too?
 [MADELINE right upset]
 But boy know of what is like over there too {~}"don't ya",{/~}?
 
-[TORIEL right normalalt]
+[TORIEL right goawaykingtitan]
 It doesn't think like for me.
 but either in way keep your eye sharp.
 and concentrated to the Heart of Determination.
@@ -15384,7 +15384,7 @@ Every laugh... every smile... every moment we shared...
 It all flashes before my eyes like torture!
 They were my EVERYTHING... my reason to keep fighting!
 
-[CHARA left disgust]
+[CHARA left laughing]
 THIS IS WRONG! THE UNIVERSE IS WRONG!
 I should be the one in that cold ground, NOT THEM!
 They had DREAMS! They had a FUTURE! They had ME!
@@ -15396,11 +15396,11 @@ I don't care if I have to TEAR APART REALITY ITSELF!
 WHOEVER DID THIS WILL {*}SUFFER{/*}!
 {trigger 3 Chara appears through the darkness}
 
-[CHARA left concerned]
+[CHARA left laughing]
 {+KIRBY}... I felt your heartbreak across infinite dimensions.
 Your grief is so {*}devastating{/*} that reality itself is {~}weeping{/~}.
 
-[KIRBY left broken]
+[KIRBY left angry]
 They're GONE, {+CHARA}... truly, completely GONE...
 The two souls who taught me what love means...
 And I... I let them DIE while I stood helpless!
@@ -15420,7 +15420,7 @@ Then maybe it DESERVES to burn with my grief!
 Kid... when I heard about {+MADELINE} and {+BADELINE}...
 I ran so fast my legs nearly gave out. This CAN'T be real!
 
-[TORIEL right tears]
+[TORIEL right goawaykingtitan]
 My beautiful children... my heart is {~}shattering{/~}...
 We watched them TRIUMPH over impossible odds... how could fate be so CRUEL?!
 
@@ -15428,7 +15428,7 @@ We watched them TRIUMPH over impossible odds... how could fate be so CRUEL?!
 No... no no no NO! This is INSANE!
 Three months ago we were laughing together... THIS ISN'T HAPPENING!
 
-[ASGORE left mourning]
+[ASGORE left concernedalt]
 Two brilliant stars... extinguished forever...
 Even the ancient mountain itself seems to {~}weep{/~} alongside us.
 
@@ -15448,11 +15448,11 @@ but this... this feels like something that can never be undone...
 THEY WERE THE KINDEST, BRAVEST, MOST WONDERFUL FRIENDS!
 WHY DOES THE UNIVERSE PUNISH THOSE WHO DESERVE IT LEAST?!
 
-[MAGOLOR left downcast]
+[MAGOLOR left happy]
 Their determination could move mountains... literally...
 Seeing them here... motionless... it breaks something inside me.
 
-[ALPHY left nervous]
+[ALPHY left smarmy]
 I-I should have SEEN this coming! I should have DONE SOMETHING!
 If my research had been better... m-maybe they'd still be...
 
@@ -15470,7 +15470,7 @@ My heart feels like it's been ripped from my chest.
 {trigger 7 Birds fly up and Chara boost appears}
 
 CH19_BEYOND_THE_VOID=
-[CHARA left concern]
+[CHARA left laughing]
 Kirby, where exactly are you leading us?
 
 [KIRBY left sad]
@@ -15489,7 +15489,7 @@ I really hope we remember the way home.
 [Theo left worried]
 What happens if we get stranded out here?
 
-[Toriel left normalalt]
+[Toriel left goawaykingtitan]
 This environment seems incredibly volatile.
 Should we really be venturing this deep?
 
@@ -15533,7 +15533,7 @@ I can feel their presence... they're somewhere above us.
 [TORIEL left what]
 We wish we could assist further but...
 
-[TORIEL left normalalt]
+[TORIEL left goawaykingtitan]
 This is beyond what ASGORE or I can manage.
 
 [CHARA left upset]
@@ -15638,7 +15638,7 @@ CH19_HELPING_HAND=
 [KIRBY left upset]
 I never requested assistance, {+CHARA}.
 
-[CHARA right concerned]
+[CHARA right laughing]
 Sure, but listen {+KIRBY}...
 Consider the bigger picture here.
 What's your ultimate objective?
@@ -15760,7 +15760,7 @@ This is your doing!!!
 {# 560000}Regardless, enjoy the catastrophe.{#}
 {trigger 1 bird squaks}
 
-[KIRBY left shocked]
+[KIRBY left angry]
 Thank heavens {0.4} you're still breathing.
 
 [KIRBY left sad]
@@ -15782,7 +15782,7 @@ Are you all I have left of them?
 If you're leaving too, then...
 ...
 
-[KIRBY left struggle]
+[KIRBY left angry]
 They're really gone, aren't they?
 And I still couldn't let them go...
 I still reached out anyway.
@@ -15861,20 +15861,20 @@ Because you should not have to bear it alone.
 Kid... come on.
 You don't have to keep pretending you're okay.
 
-[UNDYNE left concerned]
+[UNDYNE left uwu]
 If you need to scream, then scream.
 If you need to cry, then cry.
 Just don't shut us out.
 
-[TORIEL right tears]
+[TORIEL right goawaykingtitan]
 Come here, my child.
 No one should have to mourn alone.
 
-[TORIEL right gentle]
+[TORIEL right goawaykingtitan]
 Even if we cannot undo this moment,
 we can still stay beside you through it.
 
-[THEO left sad]
+[THEO left nailedit]
 We're here, Kirby.
 Even if we can't fix this, we're still here.
 
@@ -15904,7 +15904,7 @@ Then I don't want my last thought of them to be this mistake.
 [KIRBY right determined]
 I don't want their memory to end with me giving in.
 
-[Papyrus left Huh]
+[Papyrus left blush]
 What do you mean by that?
 
 [SANS right normal]
@@ -15965,7 +15965,7 @@ We're caught in a temporal loop.
 But that's not the worst part...
 I think... {*}I{/*} created this loop.
 
-[CHARA right shocked]
+[CHARA right laughing]
 YOU created it?!
 
 [KIRBY left sad]
@@ -15985,7 +15985,7 @@ We need raw power beyond anything we possess.
 Perhaps we can provide assistance.
 {trigger 3 KirbyTurnLeft}
 
-[CHARA right disgust]
+[CHARA right laughing]
 MAGOLOR?!
 {trigger 4 MagolorWalkin}
 
@@ -16012,7 +16012,7 @@ And we found something critical.
 Notice those structures over there?
 {trigger 7 ShiftCameraToElsPowerGenerators}
 
-[Magolor left determined]
+[Magolor left happy]
 Those are {*}Els Power Generators{/*}.
 They're the anchors keeping this loop running.
 Each one has a finite amount of energy.
@@ -16044,13 +16044,13 @@ That generator... it's down!
 onto the last generator!
 {trigger 1 Blinding light pours through the cracks}
 
-[CHARA right shocked]
+[CHARA right laughing]
 Kirby... LOOK!
 
-[Magolor left amazed]
+[Magolor left happy]
 The loop is collapsing! The boundary is opening!
 
-[KIRBY left amazed]
+[KIRBY left angry]
 I can see it... beyond the edge of the universe...
 {trigger 2 Camera pans to reveal the void beyond}
 
@@ -16059,14 +16059,14 @@ There's... {~}something{/~} out there.
 A space that shouldn't exist.
 Beyond every star, every dimension, every reality...
 
-[CHARA right concerned]
+[CHARA right laughing]
 This is where Els drew his power from.
 The {~}true darkness{/~} that feeds him.
 
 [KIRBY left determined]
 And that's exactly where I need to go.
 
-[Magolor left worried]
+[Magolor left happy]
 The Dream Friends and I will hold the breach open.
 But beyond that threshold... you're on your own.
 
@@ -16076,20 +16076,20 @@ Whatever waits at the edge of everything...
 I'll face it head on.
 
 CH19_LAST_ROOM_ALT=
-[CHARA right concerned]
+[CHARA right laughing]
 How are you holding up, {+KIRBY}?
 
 [KIRBY left sad]
 So close to the end, yet it feels unreachable...
 
-[CHARA right concerned]
+[CHARA right laughing]
 Don't lose heart, a few more attempts.
 
 [CHARA right happy]
 Determination is your strength, {+KIRBY}.
 
 CH19_LAST_ROOM_ALT_2=
-[SANS right worried]
+[SANS right dudewtfalt]
 Hanging in there, buddy?
 
 [KIRBY left sadder]
@@ -16099,14 +16099,14 @@ Surviving, but reaching the finale seems nearly impossible.
 Nah, we'll be right beside you until the very end.
 Trust me, things will work out
 
-[KIRBY left determinedclosed]
+[KIRBY left angry]
 Very well.
 
 [KIRBY left determined]
 Our Choice Matters.
 
 CH19_CHARA_LAST_BOOST=
-[CHARA right thankful]
+[CHARA right laughing]
 Bring them home Kirby!!!
 
 CH20_INTRO=
@@ -16123,15 +16123,15 @@ Wait... is that...?
 [KIRBY left surprised]
 It's them! They're alive!
 {trigger 1 approach them}
-[KIRBY left happy]
+[KIRBY left angry]
 I knew it! I never doubted you for a second!
 [MADELINE right sad]
 Kirby...
-[KIRBY left happy]
+[KIRBY left angry]
 I was worried sick about you! I'm so glad you're okay!
 [BADELINE right sad]
 Kirby...
-[KIRBY left happy]
+[KIRBY left angry]
 I I thought I lost you forever! I'm so relieved you're safe!
 [MADELINE right sad]
 Kirby... follow us...
@@ -16317,7 +16317,7 @@ But... this plane... pure emptiness pervades it.
 
 [MADELINE left determined]
 My memories surface... the overwhelming radiance... the excruciating agony...
-[MADELINE left ditracted]
+[MADELINE left angry]
 Followed by... absolute void.
 [MADELINE left surprised]
 Does this mean... we've...?
@@ -16338,7 +16338,7 @@ This realm lies beyond, {+MADELINE}.
 
 [MADELINE left determined]
 Unacceptable! Solutions must exist!
-[MADELINE left determinedclosed]
+[MADELINE left angry]
 Surrender is not my nature!
 {+KIRBY} wages war for everyone's tomorrow, while we... drift aimlessly?!
 
@@ -16356,7 +16356,7 @@ His profound impact on our existence...
 Hold... do you witness that?
 That luminescence... foreign to this emptiness.
 
-[MADELINE left hopeful]
+[MADELINE left angry]
 Is it possible...?
 Could rescue be approaching?
 
@@ -16364,20 +16364,20 @@ CH20_GRANNY_GASTER_TITANKING_AND_KIRBYPARENTS_ARRIVAL=
 [none left]
 {trigger 2 The void trembles as a Dream Fountain blooms, spilling light across the darkness}
 
-[GRANNY right warm]
+[GRANNY right creepa]
 There... a fountain born of dreams.
 It turns the void to dawn.
 
-[MADELINE left shocked]
+[MADELINE left angry]
 {+GRANNY}?! Your rest was supposed to be eternal!
 And... that fountain... it's real?
 
-[GRANNY right wise]
+[GRANNY right creepa]
 Real enough for a final wish.
 It's kirby who made the wish come true.
 Peace returns when the light is carried forward.
 
-[GASTER left mysterious]
+[GASTER left normal]
 {# 808080}* THE DREAM FOUNTAIN OPENS...{#}
 {# 808080}* DARKNESS YIELDS TO LIGHT...{#}
 {# 808080}* POSSIBILITY REAWAKENS.{#}
@@ -16398,7 +16398,7 @@ My corporeal form was sacrificed for your preservation.
 [MADELINE left sad]
 So you communicated with me through dreams on mount desolo zantas....
 
-[GASTER left formal]
+[GASTER left normal]
 {# 808080}* AFFIRMATIVE, CONTACT WAS ESTABLISHED VIA SUBCONSCIOUS{#}
 {# 808080}* I AM DR. W.D. GASTER.{#}
 {# 808080}* ONCE ROYAL SCIENTIST...{#}
@@ -16409,17 +16409,17 @@ So you communicated with me through dreams on mount desolo zantas....
 {# RAINBOW}Anticipation, Bravery, Justice, Kindness, Patience, Integrity, Perseverance, and Hope...{#}
 {# RAINBOW}Our strength awaits your acceptance.{#}
 
-[MADELINE left confused]
+[MADELINE left angry]
 Your strength? For what purpose?
 Death claimed us... what actions remain possible?
 
-[GRANNY right gentle]
+[GRANNY right creepa]
 Death merely transforms, dear.
 Never terminates.
 This is your last wish: take the fountain's light and help {+KIRBY}.
 Carry it into the fight.
 
-[GASTER left urgent]
+[GASTER left normal]
 {# 808080}* BUT WE DO NOT HAVE MUCH TIME.{#}
 {# 808080}* THE PHYSICAL WORLD AND THE PEOPLE WILL PERISH WITHOUT YOUR HELP.{#}
 {# 808080}* YOU HAVE THE POWER TO DEFEAT ELS AND YOU MUST MAKE THE DECISION NOW.{#}
@@ -16444,7 +16444,7 @@ Any sacrifice for our son's success.
 My forces and my being merge with you willingly.
 whatever the price, companionship ensures victory.
 
-[MADELINE left determinedclosed]
+[MADELINE left angry]
 Alright then.
 Any opportunity to help {+KIRBY}...
 Any chance for saving the reality...
@@ -16458,7 +16458,7 @@ The Dream Fountain's Wish Has Been Taken....
 
 CH20_DREAM_FRIENDS_CAPTURED=
 {trigger 0 Scene shifts back to Kirby struggling against Els}
-[KIRBY left exhausted]
+[KIRBY left angry]
 My body... screaming... can't hold on much longer...
 Please... ANYONE... I need help!
 [ELS left normal]
@@ -16793,68 +16793,68 @@ you {#NAMEREMEMBER}
 
 # Individual Lost Soul Dialogs
 CH20_ASRIEL_ZERO_SOUL_MAGOLOR_LOST=
-[MAGOLOR left blinded]
+[MAGOLOR left normal]
 You always hated me, didn't you Kirby? I deserved it...
 I betrayed everyone... I'm nothing but a {~}TRAITOR{/~}...
 
 CH20_ASRIEL_ZERO_SOUL_MAGOLOR_SAVED=
-[MAGOLOR left remembering]
+[MAGOLOR left happy]
 Wait... that's not right!
 You're my {*}BEST FRIEND{/*}, Kirby!
 You and everyone else... you {~}SAVED{/~} me!
 I remember now... I remember what {*}FRIENDSHIP{/*} feels like!
 
 CH20_ASRIEL_ZERO_SOUL_CHARA_LOST=
-[CHARA left blinded]
+[CHARA left sad]
 Monsters should be extinct... humanity must pay for their sins...
 There's no point in {~}MERCY{/~}... only {*}POWER{/*} matters...
 
 CH20_ASRIEL_ZERO_SOUL_CHARA_SAVED=
-[CHARA left remembering]
+[CHARA left happy]
 Wait... that's wrong.
 I don't hate humans OR monsters. I {~}LOVE{/~} them both.
 I love YOU, Kirby! I remember {*}EVERYTHING{/*} now!
 
 CH20_ASRIEL_ZERO_SOUL_THEO_LOST=
-[THEO left blinded]
+[THEO left worried]
 Sorry Madeline... I'd rather just keep climbing alone...
 No one really {~}CARES{/~} about me anyway...
 
 CH20_ASRIEL_ZERO_SOUL_THEO_SAVED=
-[THEO left remembering]
+[THEO left normal]
 Climbing is scary... but with {*}FRIENDS{/*} by my side...
 I can do {~}ANYTHING{/~}!
 Madeline, Kirby... I remember our {*}JOURNEY{/*} together!
 
 CH20_ASRIEL_ZERO_SOUL_OSHIRO_LOST=
-[OSHIRO left blinded]
+[OSHIRO left worried]
 I'm worthless garbage... that's all I'll ever be...
 The hotel is {~}RUINED{/~}... just like {*}ME{/*}...
 
 CH20_ASRIEL_ZERO_SOUL_OSHIRO_SAVED=
-[OSHIRO left remembering]
+[OSHIRO left normal]
 You... you actually {*}WANT{/*} to help me?
 This makes me so {~}HAPPY{/~}!
 I remember... I remember being {*}NEEDED{/*}!
 
 CH20_ASRIEL_ZERO_SOUL_TORIEL_LOST=
-[TORIEL left blinded]
+[TORIEL left normal]
 I failed to protect everyone I loved...
 I'm not {~}STRONG{/~} enough... I never was...
 
 CH20_ASRIEL_ZERO_SOUL_TORIEL_SAVED=
-[TORIEL left remembering]
+[TORIEL left normal]
 My child! I remember now... I remember {~}EVERYTHING{/~}!
 You mean the {*}WORLD{/*} to me.
 I will ALWAYS protect you. You will ALWAYS have a home with me!
 
 CH20_ASRIEL_ZERO_SOUL_ASGORE_LOST=
-[ASGORE left blinded]
+[ASGORE left normal]
 So many hopes and dreams... crushed by my own hands...
 How can I ever be {~}FORGIVEN{/~}...?
 
 CH20_ASRIEL_ZERO_SOUL_ASGORE_SAVED=
-[ASGORE left remembering]
+[ASGORE left happy]
 Howdy! I... I remember who I am!
 I'm not a destroyer... I'm a {*}LOVING{/*} king!
 Thank you for reminding me of my true {~}HEART{/~}!
@@ -16871,45 +16871,45 @@ I've made mistakes, but I ALSO {*}SAVED{/*} the mountain!
 My friends never gave up on me... so I won't give up on {~}MYSELF{/~}!
 
 CH20_ASRIEL_ZERO_SOUL_PAPYRUS_LOST=
-[PAPYRUS left blinded]
+[PAPYRUS left normal]
 I'll never be in the Royal Guard...
 I'm not cool or {~}STRONG{/~} enough...
 
 CH20_ASRIEL_ZERO_SOUL_PAPYRUS_SAVED=
-[PAPYRUS left remembering]
+[PAPYRUS left normal]
 NYEH HEH HEH! {*}OBVIOUSLY{/*}!
 I, THE GREAT PAPYRUS, {~}NEVER{/~} GIVE UP ON ANYONE!
 Believing in others is my GREATEST superpower!
 
 CH20_ASRIEL_ZERO_SOUL_SANS_LOST=
-[SANS left blinded]
+[SANS left normal]
 heh... what's the point of anything...?
 nothing matters... everyone i care about always...
 
 CH20_ASRIEL_ZERO_SOUL_SANS_SAVED=
-[SANS left remembering]
+[SANS left normal]
 heh... yeah, you're right, kiddo.
 i remember now... protecting the people i {~}love{/~}...
 that's what REALLY matters.
 
 CH20_ASRIEL_ZERO_SOUL_UNDYNE_LOST=
-[UNDYNE left blinded]
+[UNDYNE left sad]
 I couldn't protect anyone... some hero I turned out to be...
 I'm just a {~}FAILURE{/~}... a fake warrior...
 
 CH20_ASRIEL_ZERO_SOUL_UNDYNE_SAVED=
-[UNDYNE left remembering]
+[UNDYNE left normal]
 NGAHHHHH! You're {*}DAMN{/*} right!
 I am UNDYNE THE {~}UNDYING{/~}! I NEVER give up!
 My determination burns {*}FOREVER{/*}!
 
 CH20_ASRIEL_ZERO_SOUL_RALSEI_LOST=
-[RALSEI left blinded]
+[RALSEI left sad]
 I failed as a prince... I couldn't bring everyone together...
 Maybe the prophecy was {~}WRONG{/~} about me...
 
 CH20_ASRIEL_ZERO_SOUL_RALSEI_SAVED=
-[RALSEI left remembering]
+[RALSEI left normal]
 You're right... I remember my {*}PURPOSE{/*}!
 I'm here to spread {~}HOPE{/~} and healing... not to be perfect!
 Thank you for reminding me what truly {*}MATTERS{/*}!
@@ -16963,7 +16963,7 @@ CH20_ASRIEL_REMEMBER_B=
 # PHASE 7: ELS LOSING CONTROL - ASRIEL FIGHTS BACK
 # ====================================================================
 CH20_ASRIEL_ZERO_ELS_CONTROL=
-[ELS left furious]
+[ELS left normal]
 {# 560000}NO! {*}SILENCE{/*}!{#}
 {# 560000}I WILL NOT LOSE THIS {~}HOST{/~}!{#}
 {# 560000}ASRIEL IS {*}MINE{/*}!{#}
@@ -16983,7 +16983,7 @@ CH20_ASRIEL_ZERO_LOSING_CONTROL=
 {# 880088}Chara... my best {*}FRIEND{/*}...{#}
 {# 880088}I... I don't want to {~}HURT{/~} anyone...!{#}
 
-[ELS left panicking]
+[ELS left normal]
 {# 560000}WORTHLESS {*}CHILD{/*}! OBEY ME!{#}
 {# 560000}I WON'T HOLD MUCH {~}LONGER{/~}...{#}
 {# 560000}THEN I'LL USE THE {*}FINAL{/*} BEAM!{#}
@@ -17026,7 +17026,7 @@ CH20_ASRIEL_REMEMBER_E=
 # ====================================================================
 
 CH20_ASRIEL_REMEMBER_FINAL=
-[ELS left furious]
+[ELS left normal]
 {# 560000}IF I CANNOT HAVE THIS {~}BODY{/~}...{#}
 {# 560000}THEN I WILL DESTROY {*}EVERYTHING{/*}!{#}
 {# 560000}{~}ASRIEL{/~}! LEND ME YOUR {~}POWER{/~}!{#}
@@ -17087,7 +17087,7 @@ ASRIEL'S CORRUPTOR REVEALS ITSELF.
 
 {trigger 2 madeline walk forward and confront els}
 
-[ASRIEL left disapointed]
+[ASRIEL left sad]
 {# 000000}Els... the darkness controlling me throughout.{#}
 {# 000000}Deception was your method!{#}
 {# 000000}Better expectations existed for you.{#}
@@ -17100,12 +17100,12 @@ ASRIEL'S CORRUPTOR REVEALS ITSELF.
 
 {trigger 3 els start angry with disortion effect}
 
-[ELS left furious]
+[ELS left normal]
 {# 000000}HONESTLY ALL FIVE OF YOU GENERATE ABSOLUTE DISGUSTING!{#}
 
 {trigger 4 els calm down and disapointed}
 
-[ELS left furious]
+[ELS left normal]
 {# 000000}TEMPORAL LIMITATIONS APPROACH!{#}
 {# 000000}.... YOU WANT TO KNOW THE TRUTH?{#}
 {# 000000}FINE, SO BE IF SO THEN...{#}
@@ -17125,7 +17125,7 @@ ASRIEL'S CORRUPTOR REVEALS ITSELF.
 
 CH20_FALLEN_PATH_VISION=
 {trigger 0 Reality distorts - Els pulls Kirby into a vision of an alternate timeline}
-[ELS left omnipotent]
+[ELS left normal]
 {# 000000}Before we begin... let me show you something.{#}
 {# 000000}A truth you have always feared to face.{#}
 
@@ -17133,7 +17133,7 @@ CH20_FALLEN_PATH_VISION=
 What... what is this place?!
 The air itself feels like it's {*}DYING{/*}!
 
-[ELS left omnipotent]
+[ELS left normal]
 {# 000000}Universes like yours are {~}DESTINED{/~} to end.{#}
 {# 000000}There is no escape from this {*}FATE{/*}.{#}
 {# 000000}Let me show you... {~}one possible scenario{/~}.{#}
@@ -17143,7 +17143,7 @@ The air itself feels like it's {*}DYING{/*}!
 That... that thing... it looks like {*}ME{/*}?!
 But twisted... broken... no longer shaped like...
 
-[ELS left omnipotent]
+[ELS left normal]
 {# 000000}You became your {*}DARKEST NIGHTMARE{/*}.{#}
 {# 000000}{~}Ohne{/~} my presence...{#}
 {# 000000}You would have grown more {*}SINISTER{/*} over time.{#}
@@ -17156,7 +17156,7 @@ But twisted... broken... no longer shaped like...
 [BADELINE_SPIRIT right angryalt]
 {# DDAAFF}What did you DO to him in that timeline?!{#}
 
-[ELS left omnipotent]
+[ELS left normal]
 {# 000000}I did {~}NOTHING{/~}. That is the point.{#}
 {# 000000}Without love... without friends... without gentle breezes...{#}
 {# 000000}Without a sweet treat at the end of the day...{#}
@@ -17176,7 +17176,7 @@ Proving this really IS its worst nightmare...
 {# FFAAAA}It's when the darkness takes everything and you finally see what you've {~}BECOME{/~}...{#}
 {# FFAAAA}As it for me I become too a acurrate deltarune to clash with kirby and madeline and badeline against you...{#}
 
-[ELS left omnipotent]
+[ELS left normal]
 {# 000000}{~}SIAMO ZERO{/~}... "We Are Zero."{#}
 {# 000000}The deteriorated paragon. An eternal constant from a universe long {*}EXTINGUISHED{/*}.{#}
 {# 000000}All it takes is {~}ONE{/~} hero to fall... for the story to {*}END{/*}.{#}
@@ -17190,7 +17190,7 @@ Why I need {+MADELINE}! Why I need {+BADELINE}! Why I need {+ASRIEL}!
 You've shown me the one thing that {*}SEPARATES{/*} me from that nightmare!
 {~}LOVE{/~}!
 
-[ELS left furious]
+[ELS left normal]
 {# 000000}FOOLISH SENTIMENT! Then face the TRUE end!{#}
 
 CH20_DOPPIA_ELICA_BOSS_START=
@@ -17220,13 +17220,13 @@ My very SOUL is screaming in terror!
 [BADELINE_SPIRIT right angryalt]
 {# DDAAFF}You want to end our story?! Too bad! We're {*}WRITING{/*} a new ending!{#}
 
-[ASRIEL left determined]
+[ASRIEL left sad]
 {# FFDDAA}I was lost in the darkness... but they {~}FOUND{/~} me!{#}
 {# FFDDAA}I am {*}ASRIEL DREEMURR{/*}... and I choose to fight for {~}LOVE{/~}!{#}
 {# FFDDAA}For EVERYONE! For {*}CHARA{/*}, my best friend!{#}
 {# FFDDAA}This time... I won't run away!{#}
 
-[KIRBY left determinedclosed]
+[KIRBY left angry]
 You think you're unbeatable...
 But we have something {*}STRONGER{/*} than darkness!
 A light that will {~}NEVER{/~} be extinguished!
@@ -17252,7 +17252,7 @@ Toby Fox's greatest musical {~}MASTERPIECE{/~}!
 {# 000000}FINE! I ACCEPT YOUR {~}RIDICULOUS{/~} CHALLENGE!{#}
 
 CH20_ELS_SUMMON_THE_FINAL_MOUNTIAN=
-[ELS left furious]
+[ELS left normal]
 {# 000000}IF YOU WON'T ACCEPT YOUR FATE... THEN I WILL FORCE IT UPON YOU!{#}
 {# 000000}BEHOLD THE FINAL CLIMB!{#}
 {# 000000}THIS WILL BE YOUR LAST CHANCES TO REACH TO THE TOP!{#}
@@ -17265,7 +17265,7 @@ God damn it, he is getting away.
 [SEVEN_GONER left together]
 NOT WITHOUT US, KIRBY!
 
-[ASRIEL left determined]
+[ASRIEL left sad]
 I may lost my way
 but I remembered something very important as one lesson
 I as asriel dreemurr, I fight for kirby, I fight for chara, I fight for mad and bad, I fight for everyon for the sake of hope and dreams.
@@ -17280,7 +17280,7 @@ then lets do this one last time, together.
 
 CH21_ASCEND_VS_ELS_0=
 
-[ASRIEL left determined]
+[ASRIEL left sad]
 I think we're all getting the hang of this climb.
 Even with everything we lost, we are still moving.
 
@@ -17319,7 +17319,7 @@ That is how we survive this mountain.
 When I fell before, I thought I was alone.
 Now I know I was wrong.
 
-[ASRIEL left hopeful]
+[ASRIEL left sad]
 I thought I was alone too.
 but you found me, and you saved me.
 I won't forget that, and I won't let it happen again.
@@ -17339,17 +17339,17 @@ Seven souls gather in a ring of light, each one burning with resolve.
 Their glow carries the memory of everyone who was lost.
 Their glow also carries the promise that no one is forgotten.
 
-[ASRIEL left hopeful]
+[ASRIEL left sad]
 Loss is not the end of a story.
 Sometimes it is the reason we find each other again.
 
 [KIRBY left determined]
 To be honest, I hope chara would see this and be proud of us.
 
-[ASRIEL left hopeful]
+[ASRIEL left sad]
 I think not only he would be but everyone as well.
 
-[KIRBY left nomral]
+[KIRBY left angry]
 but on the bright side you know what else sans said
 your gonna have a good time.
 
@@ -17358,7 +17358,7 @@ CH21_ASCEND_VS_ELS_3=
 [MADELINE_SPIRIT left distracted]
 I hope alex, theo, my parents, and oshiro and everyone else can see this too.
 
-[ASRIEL left hopeful]
+[ASRIEL left sad]
 What you mean by that exactly?
 
 [KIRBY left distracted]
@@ -17380,13 +17380,13 @@ CH21_ASCEND_VS_ELS_4=
 [KIRBY left surprised]
 Woah there that were way too much dakr matter army that I couldn't handle.
 
-[ASRIEL left thinking]
+[ASRIEL left sad]
 ...
 
 [KIRBY left distracted]
 Maybe els is right, maybe we are not strong enough to win this.
 
-[ASRIEL left thinking]
+[ASRIEL left sad]
 ...
 
 [ASRIEL left normal]
@@ -17398,7 +17398,7 @@ I have no doubt that we can do this together.
 [MADELINE_SPIRIT left normal]
 awww, Asriel, that's so sweet of you to say.
 
-[ASRIEL left skeptical]
+[ASRIEL left sad]
 I mean it.
 
 [MADELINE_SPIRIT left normal]
@@ -17423,7 +17423,7 @@ and if I could have done something to save her, I would have.
 [MADELINE_SPIRIT left determined]
 which mean els will pay for it.
 
-[ASRIEL left together]
+[ASRIEL left sad]
 I hope she is with us.
 
 [MADELINE_SPIRIT right normal]
@@ -17442,7 +17442,7 @@ we pass through the ruins
 and we see the storm getting stronger and stronger.
 and more violent.
 
-[ASRIEL left truthful]
+[ASRIEL left sad]
 I know that thing is terrifying, but we have to keep going.
 infact the truth that he is the force of nature, the storm is just a reflection of his rage and desperation.
 if we can keep climbing, we can reach him and stop him.
@@ -17451,12 +17451,12 @@ if we can keep climbing, we can reach him and stop him.
 I hope you're right, Asriel.
 whatever that things its something we have never faced before.
 
-[ASRIEL left nodded]
+[ASRIEL left sad]
 I know, but we have to try.
 
 CH21_ASCEND_VS_ELS_7=
 
-[KIRBY left distacred]
+[KIRBY left angry]
 hey uhh kids...
 I know this is a bit of a weird question but do you think we can win this?
 
@@ -17465,7 +17465,7 @@ yes, we can win this.
 
 [KIRBY left upset]
 not just that, but do you think we can win this without losing anyone else?
-[KIRBY left distacred]
+[KIRBY left angry]
 I was wondering, were you created
 
 [SEVEN_GONER left together]
@@ -17485,7 +17485,7 @@ and I can barley see anything ahead.
 [SEVEN_GONER left together]
 BUT PERHAPS WE CAN SHINE THE WAY THROUGH THE DARKNESS.
 
-[ASRIEL left huh]
+[ASRIEL left sad]
 wait you can do that?
 
 [SEVEN_GONER left together]
@@ -17532,7 +17532,7 @@ I know you can feel us.
 I know you can sense our hope, our love, our determination.
 And I know you can feel our fear, our doubt, our pain.
 I won't lie, I'm really scared right now.
-[els left furious]
+[els left normal]
 {# 000000}HAHAHA! YOU THINK YOUR FEAR AND DOUBT CAN STOP ME?!{#}
 {# 000000}I AM THE FORCE OF NATURE! I AM THE END OF ALL THINGS!{#}
 {# 000000}YOUR HOPE IS NOTHING TO ME!{#}
@@ -17541,17 +17541,17 @@ I won't lie, I'm really scared right now.
 your hope is not nothing, els.
 it is the light that guides us through the darkness.
 
-[ELS left furious]
+[ELS left normal]
 {# 000000}LIGHT?! YOU REALLY THINK YOUR LIGHT CAN SHINE THROUGH THIS STORM?!{#}
 {# 000000}HOW DARE YOU CHALLENGE ME?!{#}
 
-[KIRBY left determined_closed]
+[KIRBY left angry]
 it's not a challenge, els.
 it's a promise.
 
 CH20_ASCEND_VS_ELS_11=
 
-[ELS left furious]
+[ELS left normal]
 {# 000000}HOW DID YOU GET THIS FAR?!{#}
 {# 000000}UGH STUPID LITTLE MITES!{#}
 {# 000000}AND STUPID LIKE LADYBUG!{#}
@@ -17582,7 +17582,7 @@ CH20_ASCEND_VS_ELS_11=
 {# AAAAFF}Granny's spirit is with us!{#}
 {# AAAAFF}She's cheering us on from the sidelines!{#}
 
-[GRANNY left concerned]
+[GRANNY left creepa]
 {# AAAAFF}Just be careful, Els is really strong!{#}
 {# AAAAFF}I also must say something about you my dear grand daughter{#}
 {# AAAAFF}I know you have been through a lot, and I know you have made some mistakes...{#}
@@ -17600,7 +17600,7 @@ CH20_ASCEND_VS_ELS_11=
 {# AAAAFF}It's time to finish this once and for all!{#}
 
 CH21_ASCEND_VS_ELS_FINAL=
-[ELS left furious]
+[ELS left normal]
 {# 000000}HOW DISAPPOINTING...{#}
 {# 000000}I EXPECTED MORE FROM YOU....{#}
 {# 000000}darker than darkness, colder than cold, more desolate than desolation itself!{#}
@@ -17616,14 +17616,14 @@ CH21_ASCEND_VS_ELS_FINAL=
 To Be clear we have something that you may not gonna Like
 and that is deltarune and star warrior
 
-[ELS right furious]
+[ELS right normal]
 DELTARUNE!?... STAR WARRIOR!!!?
 How did you know of I have witness
 
 [KIRBY left angry]
 It's because it's the way that it were design
 
-[ELS right thinking]
+[ELS right normal]
 ...
 I know since you already knew it that blew my secrets from them
 I will tell you about my origin and at the very beginnging
@@ -17656,11 +17656,11 @@ however the royal scientist wouldn't allowed them to be taken,
 he sacrafice himself to seal the barrier of the even horizon leaving no dark matter escape,
 standing in the blackhole alone waiting for a victim to lower them in
 
-[ELS right truthful]
+[ELS right normal]
 as you know they want your soul to take as full admin control
 and they wanted back from what he has taken
 
-[ASRIEL left Iknewit]
+[ASRIEL left sad]
 more dark matter...
 so this is why that zero keep reincarnating himself
 
@@ -17669,20 +17669,20 @@ listen you dark creep
 you may think that your gonna manipulated us
 well try harder than that you freak
 
-[els right breakingpoint]
+[els right normal]
 you seriously absoloutly pathetic bitch...
 how dar you say that to us...
 [madeline left angry]
 to be clear since they want our heart that made of pure love and determination
 then come at us and fight...!
 
-[els right finalheh]
+[els right normal]
 ...
 alright then
 lets see if your soul can fight against THIS!
 
 CH21_ELS_TERMINA_BOSS_INTRO=
-[els right none]
+[els right normal]
 I am no longer the dark matter you have seen, no longer zero.
 I am els termina
 I am the titan of the size as the mountian, as you have climb
@@ -17692,13 +17692,13 @@ that is what we were made of
 ELS TERMINA
 THE FORCE OF NATURE
 
-[ELS right none]
+[ELS right normal]
 don't forget...
 when I have your determination I will reshape this universe
 and reset everything into a new world.
 
 CH20_PENUMBRA_PHASTASM_INTRO=
-[ELS left none]
+[ELS left normal]
 my shell... has been broken, you little shithead just only reveal my true idenity.
 behold I gave you the absoloute of INFINITE...
 the one, and only.
@@ -17707,7 +17707,7 @@ the one, and only.
 PENUMBRA PHASTASM.
 
 {trigger 1 instant transation black}
-[ELS left none]
+[ELS left normal]
 as I always said, in our little perfect world
 no one will choose or make choices of who they are.
 
@@ -17736,24 +17736,24 @@ I belived you finally pay it off and I own you too my grand daughter.
 {trigger 1 granny and titan king walk in right}
 [THEO right wtf]
 What the... Granny?!
-[Granny left laughing]
+[Granny left creepa]
 Hehe... Surprised to see me, Theo?
 [THEO right normal]
 and I see you all are in one pieces with those people.
-[Toriel left happy]
+[Toriel left goawaykingtitan]
 Yeah, thanks to Kirby and Madeline here.
 also it's pleasure to meet you elder lady.
-[ASRIEL left happy]
+[ASRIEL left sad]
 mom? dad? is that you?
 {trigger 2 pan to the right to see asgore and toriel}
 [ASGORE left happy]
 My child... you've returned to us...
 {trigger 3 tori and asgore run and hug asriel}
-[Toriel left crying]
+[Toriel left goawaykingtitan]
 Asriel... my dear son...
 [titan_king left happy]
 Well uhh I got alot of explaining to so uh I gave him a little life for you all to see your sons one last time.
-[ASRIEL left crying]
+[ASRIEL left sad]
 I... I remember everything now...
 {trigger 4 pan to badeline and madeline look at right}
 [badeline right angryalt]
@@ -17763,7 +17763,7 @@ Wow what a baby...
 but either in way at least you're back to us.
 [stellar left none]
 Kirby is that you?
-[KIRBY left happy]
+[KIRBY left angry]
 mom? dad? is that really you?
 {trigger 6 pan to the kirby parents to the left and kirby turn left}
 [void_dreamer left none]
@@ -17779,7 +17779,7 @@ we have to say goodbye again.
 [badeline left scoff]
 not goodbye but more like, see ya later.
 {trigger 9 sans walk left and look at madeline and badeline}
-[sans right worried]
+[sans right dudewtfalt]
 madeline are you sure about this?
 you been through alot with asriel, and against els
 {trigger 10 madeline turn right}
@@ -17826,16 +17826,16 @@ so everyone please remember
 stay determined, stay strongs, and never give up hopes
 thats what we are and who are, as from starwarrior, to deltarune.
 {trigger 1 asriel slowly fades away into the flower form}
-[toriel right proud]
+[toriel right goawaykingtitan]
 thank you asriel for what you did from whats right.
 
-[undyne right pride]
+[undyne right uwu]
 yeah you punk rocker I wouldn't be able to be here if it wasn't for kirby and you.
 
-[papyrus right excited]
+[papyrus right blush]
 nhhheeey heh heh! you did great asriel I would honesntly say that you put a great potiential for kirby to be a great hero!
 
-[sans right smirk]
+[sans right dudewtfalt]
 heh... you did good, kid. real good, and don't lose that determination of yours, just keep that in mind when your in the afterlife.
 
 [suzy right sastified]
@@ -17848,18 +17848,18 @@ you were amazing asriel, I mean you saved the world and all that jazz, so yeah, 
 [noelle right mad]
 berdly don't say that to him!
 
-[alphy right amazed]
+[alphy right smarmy]
 according to my reasearch your determineation level is off the charts asriel, you are one of the most determined being I have ever met.
 
-[asgore right proud]
+[asgore right concernedalt]
 you know son, one day instead of you going back to the flower, maybe you can stay with kirby on dreamland for sometimes.
 
-[asriel left thankyou]
+[asriel left sad]
 actaully thats is even better dad then I rather than going back to the flower, I think I will stay with kirby for a while.
 
 {trigger 3 chara walk in left and look at asriel}
 
-[chara left proud]
+[chara left laughing]
 asriel I glad you finally remember who you are, your my best friend after all.
 from the last reality, to the present, to the future, I will always be here for you.
 and I hope that the real player would understand that you are a good person and you deserve to be happy, and I hope that you will find your own happiness in the afterlife.
@@ -18060,7 +18060,7 @@ and to be honest he was a coward.
 but he will have to learn that this isn't always he wanted
 I just need to know of what determination, and love is...
 
-[ASRIEL left sadder]
+[ASRIEL left sad]
 {0.8}I understand kirby...
 {0.5}Since because there is no cure for what Els did to me, Kirby...
 {0.4}I didn't want anyone to worry about something they couldn't fix.
@@ -18068,13 +18068,13 @@ I just need to know of what determination, and love is...
 {0.8}He already lost me once... I couldn't bear to see that look in his eyes again.
 {0.5}So I kept quiet... and pretended I was okay... while Els's poison slowly tore me apart.
 
-[ASRIEL left crying]
+[ASRIEL left sad]
 {0.6}But that was my biggest mistake, Kirby...
 {0.4}While I was lying here... too weak to even stand...
 {0.8}{+CHARA} was out there... {*}alone{/*}.
 {0.5}Facing dangers I should have been there to protect him from.
 
-[ASRIEL left sadder]
+[ASRIEL left sad]
 {0.6}He nearly got hurt so many times...
 {0.4}and I couldn't do {*}anything{/*}.
 {0.8}I was supposed to be his brother... his protector...
@@ -18083,23 +18083,23 @@ I just need to know of what determination, and love is...
 [KIRBY right sad]
 Azzy... it's not your fault you got sick...
 
-[ASRIEL left upset]
+[ASRIEL left sad]
 {0.5}Maybe not... but it {*}is{/*} my fault I tried to hide it.
 {0.4}I thought I was being strong by keeping it secret.
 {0.6}But real strength isn't hiding your pain...
 {0.8}real strength is letting the people who love you {~}help{/~}.
 
-[ASRIEL left sadder]
+[ASRIEL left sad]
 {1.0}I learned that lesson the hard way...
 {0.5}lying in bed... hearing about the battles {+CHARA} fought without me...
 {0.8}wondering if each one would be the last time I'd ever hear his voice.
 
-[ASRIEL left serious]
+[ASRIEL left sad]
 {0.6}Kirby... that's why I need to ask you something.
 {0.4}Something important.
 {trigger 1 asriel reaches out and grabs kirby's hand}
 
-[ASRIEL left determined]
+[ASRIEL left sad]
 {0.8}I might not always be there for {+CHARA}...
 {0.5}this sickness... it comes and goes... and each time it's harder to bounce back.
 {0.6}But {+CHARA} needs someone who will {*}always{/*} be there.
@@ -18118,7 +18118,7 @@ A brother...? You mean...
 {0.8}Not in blood... but in {~}spirit{/~}... in {~}heart{/~}... in {~}soul{/~}.
 {0.5}Look after him the way I should have been looking after him all along.
 
-[ASRIEL left worried]
+[ASRIEL left sad]
 {0.5}When he's angry... be patient with him.
 {0.4}When he's sad... sit with him even if he tells you to go away.
 {0.6}When he's scared... remind him that he's {*}never{/*} alone.
@@ -18129,7 +18129,7 @@ A brother...? You mean...
 {0.8}I promise. I'll look after {+CHARA} like he's my own brother.
 {0.4}No matter what happens.
 
-[ASRIEL left thankyou]
+[ASRIEL left sad]
 {1.0}Thank you, Kirby...
 {0.5}That means more to me than you'll ever know.
 
@@ -18151,14 +18151,14 @@ Granny! What are you doing here?
 [KIRBY right distracted]
 About Madeline? What do you mean?
 
-[GRANNY right concerned]
+[GRANNY right creepa]
 {0.6}Kirby... my granddaughter has been through more than most people could ever imagine.
 {0.4}When she was young, the anxiety started creeping in...
 {0.8}like a shadow that followed her everywhere she went.
 {0.5}It whispered terrible things to her... told her she wasn't good enough...
 {0.4}told her she'd never amount to anything.
 
-[GRANNY right sad]
+[GRANNY right creepa]
 {0.6}And then the depression came...
 {0.4}It was like a heavy blanket that smothered everything bright in her life.
 {0.8}Some days she couldn't even get out of bed.
@@ -18169,7 +18169,7 @@ About Madeline? What do you mean?
 [KIRBY right sadder]
 I... I had no idea it was that bad...
 
-[GRANNY right worried]
+[GRANNY right creepa]
 {0.5}It was worse than bad, dear.
 {0.4}She had panic attacks that left her gasping for air in the middle of the night.
 {0.6}She lost friends because she was too scared to leave her apartment.
@@ -18177,7 +18177,7 @@ I... I had no idea it was that bad...
 {0.5}Her self-doubt was so crippling that she almost gave up on everything...
 {0.4}on her dreams, on her relationships, on {~}herself{/~}.
 
-[GRANNY right sad]
+[GRANNY right creepa]
 {0.6}And the worst part? She smiled through all of it.
 {0.4}She hid her pain behind jokes and forced laughter...
 {0.8}because she didn't want anyone else to feel responsible for her suffering.
@@ -18189,7 +18189,7 @@ I... I had no idea it was that bad...
 {0.5}Madeline didn't just survive all of that...
 {0.4}she {*}overcame{/*} it.
 
-[GRANNY right peaceful]
+[GRANNY right creepa]
 {0.6}She climbed that mountain even when every fiber of her being screamed at her to turn back.
 {0.4}She faced {+BADELINE}... the living embodiment of all her fears and insecurities...
 {0.8}and instead of destroying her, she {~}embraced{/~} her.
@@ -18204,7 +18204,7 @@ I... I had no idea it was that bad...
 {0.4}She learned that asking for help isn't weakness... it's {~}courage{/~}.
 {0.6}She learned that falling down doesn't define you... {~}getting back up{/~} does.
 
-[GRANNY right peaceful]
+[GRANNY right creepa]
 {0.8}And now she stands taller than she ever imagined possible.
 {0.5}Not because she's perfect...
 {0.4}but because she {~}accepts{/~} her imperfections.
@@ -18216,14 +18216,14 @@ I... I had no idea it was that bad...
 
 {trigger 3 asriel looks at granny}
 
-[ASRIEL left worried]
+[ASRIEL left sad]
 {0.6}Granny... I have a question.
 {0.4}What should we do... when we come across people who are mean to others?
 {0.8}Or mean to us?
 {0.5}People who hurt and bully and try to break the people we care about?
 {0.4}What's the right thing to do?
 
-[GRANNY right serious]
+[GRANNY right creepa]
 {1.0}...
 {0.8}That's a heavy question, child.
 {0.6}And the answer might surprise you.
@@ -18232,20 +18232,20 @@ I... I had no idea it was that bad...
 {0.5}Don't kill... and don't {~}be{/~} killed.
 {0.8}That's the only way.
 
-[ASRIEL left surprised]
+[ASRIEL left sad]
 {0.6}...!
 {0.4}That's... that's what I said...
 {0.8}Back then... during the ascent... when I was back from last reality.
 {0.5}I told Frisk about that then I glad you use my scentences.
 {0.4}and Those were {*}my{/*} words.
 
-[GRANNY right peaceful]
+[GRANNY right creepa]
 {0.5}I know, dear. And they were the right words then... and they're the right words now.
 {0.4}Violence only breeds more violence.
 {0.6}Hatred only plants seeds for more hatred.
 {0.8}But {~}mercy{/~}... mercy breaks the cycle.
 
-[ASRIEL left nodded]
+[ASRIEL left sad]
 {0.5}Don't kill and don't be killed...
 {0.4}I told Frisk that back then when I turn into a flower before... and I meant every word.
 {0.8}Even when the mountain was harsh and dangerous...
@@ -18261,16 +18261,16 @@ I... I had no idea it was that bad...
 
 {trigger 4 asriel turns to kirby with tears in his eyes}
 
-[ASRIEL left crying]
+[ASRIEL left sad]
 {0.8}Kirby... one last thing.
 {0.5}And this is the most important promise of all.
 
-[ASRIEL left determined]
+[ASRIEL left sad]
 {0.6}Promise me... that you'll look after {~}monsterkind{/~}.
 {0.4}Promise me you'll look after {~}humanity{/~}.
 {0.8}Promise me you'll look after the {~}dream friends{/~}... every last one of them.
 
-[ASRIEL left serious]
+[ASRIEL left sad]
 {0.5}As long as they support you... as long as they stand beside you...
 {0.4}you stand beside {*}them{/*}.
 {0.6}That's what a true hero does, Kirby.
@@ -18289,10 +18289,10 @@ I... I had no idea it was that bad...
 {0.5}As long as they support me... I will {*}never{/*} let them down.
 {0.4}That's my word. And a star warrior {~}never{/~} breaks their word.
 
-[ASRIEL left thankyou]
+[ASRIEL left sad]
 {1.0}That's all I needed to hear.
 
-[GRANNY right peaceful]
+[GRANNY right creepa]
 {0.8}Then our work here is done.
 {0.5}The rest... is up to you, Kirby.
 
@@ -18333,7 +18333,7 @@ and to be honest he was a coward.
 but he will have to learn that this isn't always he wanted
 I just need to know of what determination, and love is...
 
-[ASRIEL left sadder]
+[ASRIEL left sad]
 {0.8}I understand kirby...
 {0.5}At first I thought I was fine... just tired from the fight.
 {0.4}But then my body started shutting down... piece by piece.
@@ -18346,7 +18346,7 @@ I just need to know of what determination, and love is...
 [KIRBY right panic]
 Why didn't you tell anyone?! We could have helped you!
 
-[ASRIEL left sadder]
+[ASRIEL left sad]
 {0.5}Because there is no cure for what Els did to me, Kirby...
 {0.4}I didn't want anyone to worry about something they couldn't fix.
 {0.6}Especially not {+CHARA}.
@@ -18354,13 +18354,13 @@ Why didn't you tell anyone?! We could have helped you!
 {0.5}So I kept quiet... and pretended I was okay... while Els's poison slowly tore me apart.
 {0.4}That coward couldn't beat us face to face... so he made sure I'd crumble from within.
 
-[ASRIEL left crying]
+[ASRIEL left sad]
 {0.6}But that was my biggest mistake, Kirby...
 {0.4}While I was lying here... too weak to even stand...
 {0.8}{+CHARA} was out there... {*}alone{/*}.
 {0.5}Facing dangers I should have been there to protect him from.
 
-[ASRIEL left sadder]
+[ASRIEL left sad]
 {0.6}He nearly got hurt so many times...
 {0.4}and I couldn't do {*}anything{/*}.
 {0.8}I was supposed to be his brother... his protector...
@@ -18369,23 +18369,23 @@ Why didn't you tell anyone?! We could have helped you!
 [KIRBY right sad]
 Azzy... it's not your fault you got sick...
 
-[ASRIEL left upset]
+[ASRIEL left sad]
 {0.5}Maybe not... but it {*}is{/*} my fault I tried to hide it.
 {0.4}I thought I was being strong by keeping it secret.
 {0.6}But real strength isn't hiding your pain...
 {0.8}real strength is letting the people who love you {~}help{/~}.
 
-[ASRIEL left sadder]
+[ASRIEL left sad]
 {1.0}I learned that lesson the hard way...
 {0.5}lying in bed... hearing about the battles {+CHARA} fought without me...
 {0.8}wondering if each one would be the last time I'd ever hear his voice.
 
-[ASRIEL left serious]
+[ASRIEL left sad]
 {0.6}Kirby... that's why I need to ask you something.
 {0.4}Something important.
 {trigger 1 asriel reaches out and grabs kirby's hand}
 
-[ASRIEL left determined]
+[ASRIEL left sad]
 {0.8}I might not always be there for {+CHARA}...
 {0.5}this sickness... it comes and goes... and each time it's harder to bounce back.
 {0.6}But {+CHARA} needs someone who will {*}always{/*} be there.
@@ -18404,7 +18404,7 @@ A brother...? You mean...
 {0.8}Not in blood... but in {~}spirit{/~}... in {~}heart{/~}... in {~}soul{/~}.
 {0.5}Look after him the way I should have been looking after him all along.
 
-[ASRIEL left worried]
+[ASRIEL left sad]
 {0.5}When he's angry... be patient with him.
 {0.4}When he's sad... sit with him even if he tells you to go away.
 {0.6}When he's scared... remind him that he's {*}never{/*} alone.
@@ -18415,7 +18415,7 @@ A brother...? You mean...
 {0.8}I promise. I'll look after {+CHARA} like he's my own brother.
 {0.4}No matter what happens.
 
-[ASRIEL left thankyou]
+[ASRIEL left sad]
 {1.0}Thank you, Kirby...
 {0.5}That means more to me than you'll ever know.
 
@@ -18436,14 +18436,14 @@ Granny! What are you doing here?
 [KIRBY right distracted]
 About Madeline? What do you mean?
 
-[GRANNY right concerned]
+[GRANNY right creepa]
 {0.6}Kirby... my granddaughter has been through more than most people could ever imagine.
 {0.4}When she was young, the anxiety started creeping in...
 {0.8}like a shadow that followed her everywhere she went.
 {0.5}It whispered terrible things to her... told her she wasn't good enough...
 {0.4}told her she'd never amount to anything.
 
-[GRANNY right sad]
+[GRANNY right creepa]
 {0.6}And then the depression came...
 {0.4}It was like a heavy blanket that smothered everything bright in her life.
 {0.8}Some days she couldn't even get out of bed.
@@ -18451,7 +18451,7 @@ About Madeline? What do you mean?
 {0.4}She felt like the whole world was against her...
 {0.6}like she was drowning and nobody could see her struggling.
 
-[GRANNY right worried]
+[GRANNY right creepa]
 {0.5}There were nights she would cry herself to sleep...
 {0.4}and mornings where she would stare at the ceiling for hours...
 {0.6}wondering if there was even a point to getting up.
@@ -18462,7 +18462,7 @@ About Madeline? What do you mean?
 [KIRBY right sadder]
 I... I had no idea it was that bad...
 
-[GRANNY right worried]
+[GRANNY right creepa]
 {0.5}It was worse than bad, dear.
 {0.4}She had panic attacks that left her gasping for air in the middle of the night.
 {0.6}She lost friends because she was too scared to leave her apartment.
@@ -18471,7 +18471,7 @@ I... I had no idea it was that bad...
 {0.4}not because people stopped caring about her...
 {0.6}but because she stopped believing she {~}deserved{/~} to be cared for.
 
-[GRANNY right sad]
+[GRANNY right creepa]
 {0.6}She dropped out of college because the pressure was crushing her.
 {0.4}She lost her job because she couldn't focus through the fog in her head.
 {0.8}She spent months alone in her apartment barely eating, barely sleeping...
@@ -18487,7 +18487,7 @@ I... I had no idea it was that bad...
 {0.5}Madeline didn't just survive all of that...
 {0.4}she {*}overcame{/*} it.
 
-[GRANNY right peaceful]
+[GRANNY right creepa]
 {0.6}She climbed that mountain even when every fiber of her being screamed at her to turn back.
 {0.4}She faced {+BADELINE}... the living embodiment of all her fears and insecurities...
 {0.8}and instead of destroying her, she {~}embraced{/~} her.
@@ -18501,7 +18501,7 @@ I... I had no idea it was that bad...
 {0.5}She forgave herself for all the times she thought she'd failed.
 {0.4}Slowly... painfully... beautifully... she rebuilt herself from the ground up.
 
-[GRANNY right peaceful]
+[GRANNY right creepa]
 {0.6}And through that journey... through all that pain and struggle and growth...
 {0.4}Madeline didn't just get better.
 {0.8}She became a {*}better woman{/*} than she ever was before.
@@ -18511,7 +18511,7 @@ I... I had no idea it was that bad...
 {0.8}She learned that the cracks in her heart weren't flaws...
 {0.5}they were the places where the {~}light{/~} got in.
 
-[GRANNY right peaceful]
+[GRANNY right creepa]
 {0.8}And now she stands taller than she ever imagined possible.
 {0.5}Not because she's perfect...
 {0.4}but because she {~}accepts{/~} her imperfections.
@@ -18527,14 +18527,14 @@ I... I had no idea it was that bad...
 
 {trigger 3 asriel slowly sits up and looks at granny}
 
-[ASRIEL left worried]
+[ASRIEL left sad]
 {0.6}Granny... I have a question.
 {0.4}What should we do... when we come across people who are mean to others?
 {0.8}Or mean to us?
 {0.5}People who hurt and bully and try to break the people we care about?
 {0.4}What's the right thing to do?
 
-[GRANNY right serious]
+[GRANNY right creepa]
 {1.0}...
 {0.8}That's a heavy question, child.
 {0.6}And the answer might surprise you.
@@ -18543,7 +18543,7 @@ I... I had no idea it was that bad...
 {0.5}Don't kill... and don't {~}be{/~} killed.
 {0.8}That's the only way.
 
-[ASRIEL left surprised]
+[ASRIEL left sad]
 {0.6}...!
 {0.4}That's... that's what I said...
 {0.8}Back then... during the ascent... when we were all climbing together for the first time.
@@ -18553,14 +18553,14 @@ I... I had no idea it was that bad...
 {0.5}when the mountain ahead was harsh and unknown...
 {0.4}Don't kill and don't be killed.
 
-[GRANNY right peaceful]
+[GRANNY right creepa]
 {0.5}I know, dear. And they were the right words then... and they're the right words now.
 {0.4}Violence only breeds more violence.
 {0.6}Hatred only plants seeds for more hatred.
 {0.8}But {~}mercy{/~}... mercy breaks the cycle.
 {0.5}It takes far more strength to show mercy than to strike someone down.
 
-[ASRIEL left nodded]
+[ASRIEL left sad]
 {0.5}Don't kill and don't be killed...
 {0.4}I told everyone that back then when we were ascending together... and I meant every word.
 {0.8}Even when the mountain was harsh and dangerous...
@@ -18578,11 +18578,11 @@ I... I had no idea it was that bad...
 
 {trigger 4 asriel turns to kirby with tears in his eyes}
 
-[ASRIEL left crying]
+[ASRIEL left sad]
 {0.8}Kirby... one last thing.
 {0.5}And this is the most important promise of all.
 
-[ASRIEL left determined]
+[ASRIEL left sad]
 {0.6}Promise me... that you'll look after {~}monsterkind{/~}.
 {0.4}Every monster who has ever believed in you... who has ever supported your cause.
 {0.8}Promise me you'll look after {~}humanity{/~}.
@@ -18590,7 +18590,7 @@ I... I had no idea it was that bad...
 {0.4}Promise me you'll look after the {~}dream friends{/~}... every last one of them.
 {0.6}Bandana Dee, Gooey, Adeline, Ribbon, Meta Knight, King Dedede... all of them.
 
-[ASRIEL left serious]
+[ASRIEL left sad]
 {0.5}As long as they support you... as long as they stand beside you...
 {0.4}you stand beside {*}them{/*}.
 {0.6}That's what a true hero does, Kirby.
@@ -18610,12 +18610,12 @@ I... I had no idea it was that bad...
 {0.4}I will {*}never{/*}... {*}EVER{/*}... let them down.
 {0.6}That's my word. And a star warrior {~}never{/~} breaks their word.
 
-[ASRIEL left thankyou]
+[ASRIEL left sad]
 {1.0}That's all I needed to hear.
 {0.5}You've grown so much, Kirby...
 {0.8}I'm proud to call you my friend... my brother in arms.
 
-[GRANNY right peaceful]
+[GRANNY right creepa]
 {0.8}Then our work here is done.
 {0.5}The rest... is up to you, Kirby.
 {0.4}We believe in you... {~}always{/~}.
@@ -18625,7 +18625,7 @@ I... I had no idea it was that bad...
 [KIRBY right surprised]
 {0.5}What... what is that?!
 
-[ASRIEL left peaceful]
+[ASRIEL left sad]
 {0.6}That's the heart of everything we've been through.
 {0.4}Every battle, every tear, every promise...
 {0.8}it all comes together in that single gem.
@@ -18988,19 +18988,19 @@ Kirby Must I have Something to tell you and I want you to hear about this.
 okay, I am listening.
 [kirby left upset]
 but it better not be assistance.
-[alphy right nervous]
+[alphy right smarmy]
 hi kirby, I know that your still mad at us and we get it that it was a mistake
 but we know we won't reject from you this time.
 [kirby left sad]
 and you know how this would stop els from happening?
-[undyne right concerned]
+[undyne right uwu]
 well we realize that your power with ours power isn't enough.
-[alphy right sidenervous]
+[alphy right smarmy]
 yeah thank for that but I ran into one possible simiulation
 and it's not to kill everyone but to gain actual level of violences
 [kirby left upset]
 seriously?, you think that I woukd kill innocent people?
-[sans right worried]
+[sans right dudewtfalt]
 well not this time and were with you,
 we need you and your dreams friend to gain up enough execution points to the real enemies that you have pastly dealt with.
 [kirby left sad]
@@ -19134,7 +19134,7 @@ my body is flowing through me, thank you.
 [first_titan]
 don't thank me you should be proud of it.
 your level will increased over time through out your second trials.
-[chara left concerned]
+[chara left laughing]
 and what about you?
 will you help us to defeat els too?
 [first_titan]
@@ -19322,7 +19322,7 @@ DXAREA3_REMIX_GRANDDOOMER=
 [GRAND_DOOMER left looming]
 FOOLISH STAR WARRIOR!
 YOU TRESPASS IN THE REALM BEYOND!
-[KIRBY left unflinching]
+[KIRBY left angry]
 I've beaten you before.
 I can do it again!
 [GRAND_DOOMER left looming]
@@ -19347,7 +19347,7 @@ prove to me that you are worthy of the heart staff.
 and give you a heads up that it require you to use element ability to match up the enemy element and use it against them.
 
 DXAREA3_REMIX_THIRD_TITAN_END=
-[KIRBY left on_knees_breathing_hard]
+[KIRBY left angry]
 ...hah... hah...
 ...I felt... all of it...
 but I'm still here.
@@ -19380,7 +19380,7 @@ DXAREA4_REMIX_INTRO=
 [zan_partizanne left prime]
 this is it.
 our final chances to help our little friend.
-[susiehaltmann left analytical]
+[susiehaltmann left normal]
 the energy signature is off the charts.
 theres a super ability sealed up ahead.
 [elfilin left shut]
@@ -19392,7 +19392,7 @@ DXAREA4_REMIX_A=
 Holy crap this barrier is way too big!
 
 DXAREA4_REMIX_B=
-[MAGOLOR left serious]
+[MAGOLOR left happy]
 yeah this is why you shouldn't have any doubts about this.
 [MAGOLOR left happy]
 luckly I know a trick of how to get through this.
@@ -19437,7 +19437,7 @@ DXAREA4_REMIX_FOURTH_TITAN_END=
 ...
 Impressive.
 {trigger 1 the super ability descends from above wrapped in all three power auras crystal blue heart gold and cosmic white and settles into kirby}
-[KIRBY left transcendent]
+[KIRBY left angry]
 I... I can feel everything...
 every ally... every battle... every hope...
 it's all inside me right now...
@@ -19464,7 +19464,7 @@ I won't let you down.
 
 DXFINALAREA_CH20_ROARING_TITAN_GATE=
 {trigger 0 kirby reaches the threshold between the fourth area and els domain and the ground begins to quake violently}
-[KIRBY left stopping]
+[KIRBY left angry]
 ...this is it.
 [roaring_titan left booming]
 who the name of deltarune dares to enter the realm of the roaring titan?
@@ -19535,7 +19535,7 @@ we will help you out.
 [kirby left surprised]
 titan look out!
 {trigger 1 the titans chain themselves to kirby to help him endure els attacks}
-[els right smuckle]
+[els right normal]
 well how very touching.
 you brought your power and your titan to rescue her.
 I honestly think that you also gather ever gimmick ability as we speak?
@@ -19565,7 +19565,7 @@ theres nothing left to hide from us.
 [kirby left angry]
 you seriously using there power to become something more powerful then me?
 how disgusting you peice of pedophile!
-[els left pissed]
+[els left normal]
 shut up you little pink pest!
 you have no idea what I have been through.
 and I have no problem using them to become something greater than you.
@@ -19574,7 +19574,7 @@ I'll consume them two that you love so much and use them to become something gre
 no don't you dare touch them els!
 [madeline_and_badeline left panic]
 help us kirby!
-[kirby left surpried]
+[kirby left angry]
 what you have done!
 {trigger 0 fade to black}
 
@@ -19756,11 +19756,11 @@ well then lets climb this mountain one last time and save you girls.
 DXFINALAREA_CH20_KIRBY_SEE_MAD_AND_BAD=
 [KIRBY left surprised]
 wait I see them!
-[MADELINE left weak]
+[MADELINE left angry]
 kirby... is that you?
 [BADELINE left weak]
 kirby... thank you for coming back for us...
-[MADELINE left weak]
+[MADELINE left angry]
 we need you to get us out of here?
 [BADELINE left weak]
 please save us kirby...
@@ -19928,7 +19928,7 @@ DXFINALAREA_CH20_WAKE_UP=
 Madeline, my little strawberry, your rest is over.
 Wake up...
 
-[MADELINE left surpriesed]
+[MADELINE left angry]
 Granny what are you doing here?
 [GRANNY left normal]
 I came here just to check up on you three.
@@ -20006,12 +20006,12 @@ well I guess I can come too, but I am not going to be the one who lead the way.
 then lets do this...
 
 CH21_FAKE_ASRIEL_GOD_OF_HD=
-[ASRIEL left panic]
+[ASRIEL left sad]
 Hahaha
 Do you really think is this over
 
 CH21_ASRIEL_JOKING=
-[ASRIEL left awkard]
+[ASRIEL left sad]
 I mean We haven't finish to special thanks just yet
 ready lets finish this for good!!!
 

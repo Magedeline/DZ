@@ -21,7 +21,7 @@ public static class ChapterProgressionManager
     private static readonly string Ch18Sid = AreaModeExtender.BuildASideSID("18_Heart");
     private static readonly string Ch19Sid = AreaModeExtender.BuildASideSID("19_Space");
     private static readonly string Ch20Sid = AreaModeExtender.BuildASideSID("20_TheEnd");
-    private static readonly string Ch21Sid = AreaModeExtender.BuildASideSID("lastlevel");
+    private static readonly string Ch21Sid = AreaModeExtender.BuildASideSID("21_LastLevel");
 
     private static bool _hooked;
     private static bool _processedLaunchPendingUnlocks;

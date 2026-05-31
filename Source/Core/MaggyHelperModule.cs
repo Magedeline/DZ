@@ -125,8 +125,8 @@ namespace Celeste.Mod.MaggyHelper
         //
         //   19. Cheat Mode System (Unlock Everything / Pico8 Classic)
         //      - Konami-code style cheat input (lrLRuudlRA)
-        //      - UnlockEverythingThingy cheat listener
-        //      - UnlockedPico8Message display entity
+        //      - MaggyHelperUnlockEverything cheat listener
+        //      - MaggyHelperUnlockedPico8Message display entity
         //      - All chapters, C-Sides, D-Sides, DX-Sides unlock
         //      - Ingeste Pico8 classic unlock message
         //      - Cheat mode flag persistence in save data
@@ -215,6 +215,7 @@ namespace Celeste.Mod.MaggyHelper
             InitializeVignetteHooks();
 
             global::Celeste.TitleScreen_ExtHook.Load();
+            global::Celeste.UI.ModSelectionScreen.Load();
             global::Celeste.OverworldMusicManager.Load();
             global::Celeste.MountainOverworldManager.Load();
             global::Celeste.Cutscenes.IntroWarning.Load();
@@ -265,6 +266,22 @@ namespace Celeste.Mod.MaggyHelper
 
             // Initialize PCG area registrar (CelesteRandomizer-style dynamic area registration)
             PCGAreaRegistrar.Load();
+
+            // Validate and auto-repair save data on load
+            global::Celeste.Mod.MaggyHelper.SaveDataValidator.ValidateOnLoad();
+
+            // Register save data debugging console commands
+            global::Celeste.Mod.MaggyHelper.SaveDataValidator.RegisterConsoleCommands();
+
+            // Initialize level load validator for entity/trigger validation
+            global::Celeste.Mod.MaggyHelper.LevelLoadValidator.Initialize();
+            global::Celeste.Mod.MaggyHelper.LevelLoadValidator.HookIntoLevelLoad();
+
+            // Register in-game test runner
+            global::Celeste.Mod.MaggyHelper.Tests.MaggyHelperTestRunner.RegisterConsoleCommand();
+
+            // Register performance profiler commands
+            global::Celeste.Mod.MaggyHelper.PerformanceProfiler.RegisterConsoleCommands();
         }
 
         private static void OnLevelExit(Level level, LevelExit exit, LevelExit.Mode mode, Session session, HiresSnow snow)
@@ -273,6 +290,7 @@ namespace Celeste.Mod.MaggyHelper
             global::Celeste.Effects.LightningEffects.ClearAll();
             global::Celeste.Effects.ElementalEffectsManager.StopAllEffects();
             global::Celeste.Entities.EnemyBossManager.Reset();
+            global::Celeste.Mod.MaggyHelper.AudioController.OnLevelExit();
         }
 
         // Named handler for Everest.Events.Level.OnLoadLevel so Unload() can
@@ -282,6 +300,18 @@ namespace Celeste.Mod.MaggyHelper
         {
             if (level.Tracker.GetEntity<global::Celeste.Mod.MaggyHelper.HotReload.HotReloadController>() == null)
                 level.Add(new global::Celeste.Mod.MaggyHelper.HotReload.HotReloadController());
+
+            // Initialize audio controller for this level
+            global::Celeste.Mod.MaggyHelper.AudioController.Initialize();
+            global::Celeste.Mod.MaggyHelper.AudioController.OnLevelLoad(level);
+
+            // Add debug room warp menu when DeveloperBypass or DebugMode is enabled
+            var settings = Settings;
+            if ((settings?.DeveloperBypass ?? false) || (settings?.DebugMode ?? false))
+            {
+                if (level.Tracker.GetEntity<global::Celeste.UI.DebugRoomWarpMenu>() == null)
+                    level.Add(new global::Celeste.UI.DebugRoomWarpMenu());
+            }
         }
 
         /// <summary>
@@ -310,6 +340,7 @@ namespace Celeste.Mod.MaggyHelper
             global::Celeste.KirbyHealthSystemHooks.Unload();
             global::Celeste.OverworldMusicManager.Unload();
             global::Celeste.TitleScreen_ExtHook.Unload();
+            global::Celeste.UI.ModSelectionScreen.Unload();
             global::Celeste.Cutscenes.IntroWarning.Unload();
             // Unhook Vignette System
             UnloadVignetteHooks();
@@ -357,7 +388,7 @@ namespace Celeste.Mod.MaggyHelper
         //  Cheat Mode System (Unlock Everything / Pico8 Classic)
         // =====================================================================
 
-        private static UnlockEverythingThingy _cheatListener;
+        private static MaggyHelperUnlockEverything _cheatListener;
 
         private static void InitializeCheatMode()
         {
@@ -375,9 +406,9 @@ namespace Celeste.Mod.MaggyHelper
         private static void OnLevelLoad_EnableCheatListener(Level level, Player.IntroTypes playerIntro, bool isFromLoader)
         {
             // Add cheat listener to levels for returning players
-            if (level.Entities.FindFirst<UnlockEverythingThingy>() == null)
+            if (level.Entities.FindFirst<MaggyHelperUnlockEverything>() == null)
             {
-                _cheatListener = new UnlockEverythingThingy();
+                _cheatListener = new MaggyHelperUnlockEverything();
                 level.Add(_cheatListener);
             }
         }
@@ -416,9 +447,9 @@ namespace Celeste.Mod.MaggyHelper
         /// </summary>
         public static void ShowPico8UnlockMessage(Level level, Action callback = null)
         {
-            if (level.Tracker.GetEntity<UnlockedPico8Message>() == null)
+            if (level.Tracker.GetEntity<MaggyHelperUnlockedPico8Message>() == null)
             {
-                level.Add(new UnlockedPico8Message(callback));
+                level.Add(new MaggyHelperUnlockedPico8Message(callback));
             }
         }
 
@@ -1213,7 +1244,7 @@ namespace Celeste.Mod.MaggyHelper
         private static readonly string Ch18HeartSid = AreaModeExtender.BuildASideSID("18_Heart");
         private static readonly string Ch19SpaceSid = AreaModeExtender.BuildASideSID("19_Space");
         private static readonly string Ch20TheEndSid = AreaModeExtender.BuildASideSID("20_TheEnd");
-        private static readonly string Ch21LastLevelSid = AreaModeExtender.BuildASideSID("lastlevel");
+        private static readonly string Ch21LastLevelSid = AreaModeExtender.BuildASideSID("21_LastLevel");
 
         /// <summary>
         /// Unlocks Chapter 10 (Ruins) and grants access to the Desolo Zantas mountain.

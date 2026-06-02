@@ -30,8 +30,6 @@
     Version: 1.1.1.0
   - Name: ConditionHelper
     Version: 1.0.0
-  - Name: DesoloZantas_Audio
-    Version: 3.0.0
   OptionalDependencies:
   - Name: VidPlayer
     Version: 0.5.2

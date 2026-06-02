@@ -87,8 +87,8 @@ public static class AreaModeExtender
         if (string.IsNullOrWhiteSpace(mapName))
             return MAP_PREFIX;
 
-        // Map files are now organized by side: Maps/Maggy/ASide/01_City, Maps/Maggy/BSide/01_City, etc.
-        return $"Maps/{MAP_PREFIX}/{sideFolder}/{mapName}";
+        // SIDs do not include the Maps/ prefix — Everest strips it when registering .bin files.
+        return $"{MAP_PREFIX}/{sideFolder}/{mapName}";
     }
 
     public static string BuildASideSID(string mapName)

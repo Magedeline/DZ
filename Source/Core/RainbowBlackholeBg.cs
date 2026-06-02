@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Monocle;
 
 namespace Celeste;
-    [CustomBackdrop("MaggyHelper/RainbowBlackholeBG")]
+    [CustomBackdrop("MaggyHelper/RainbowBlackholeBg")]
     [HotReloadable]
 public class RainbowBlackholeBG : Backdrop
 {

@@ -1089,6 +1089,10 @@ namespace Celeste.Mod.MaggyHelper
             base.LoadContent(firstLoad);
             BossesExampleModule.LoadContent(firstLoad);
             // ProphecyFont is now lazy-initialized on first access
+
+            // Audio.Init hook doesn't fire reliably in this Everest version;
+            // LoadContent runs after FMOD and IngestBank are done.
+            global::Celeste.OverworldMusicManager.LoadBanks();
         }
 
         public static bool IsChapter17EpilogueCompleted()

@@ -108,8 +108,6 @@ public static class OverworldMusicManager
         if (_hooked) return;
         _hooked = true;
 
-        On.Celeste.Audio.Init += OnAudioInit;
-
         // Hook Audio.Play to intercept music events when in our maps
         On.Celeste.Audio.Play_string += OnAudioPlayString;
         On.Celeste.Audio.SetMusic += OnAudioSetMusic;
@@ -126,7 +124,6 @@ public static class OverworldMusicManager
         if (!_hooked) return;
         _hooked = false;
 
-        On.Celeste.Audio.Init -= OnAudioInit;
         On.Celeste.Audio.Play_string -= OnAudioPlayString;
         On.Celeste.Audio.SetMusic -= OnAudioSetMusic;
         On.Celeste.Audio.SetAmbience -= OnAudioSetAmbience;
@@ -143,40 +140,45 @@ public static class OverworldMusicManager
 
     // ── Bank Loading ─────────────────────────────────────────────────────
 
-    private static void OnAudioInit(On.Celeste.Audio.orig_Init orig)
+    public static void LoadBanks()
     {
-        orig();
-        if (_loadedBanks.Count > 0 || global::Celeste.Audio.System == null) return;
+        if (_loadedBanks.Count > 0) return;
 
-        string modsDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Mods");
-        if (!Directory.Exists(modsDir)) return;
-
-        // Load strings bank first so FMOD can resolve event:/pusheen/* paths,
-        // then load each dz_*.bank file that contains the actual audio data.
-        string[] patterns = { "Master_Bank.strings.bank", "dz_*.bank" };
-
-        foreach (string pattern in patterns)
+        // Everest's IngestBank loads dz_*.bank successfully but rejects
+        // Master_Bank.strings.bank as "conflicting". Without the strings bank
+        // FMOD cannot resolve event:/pusheen/* paths by name, so we load it manually.
+        foreach (var mod in global::Celeste.Mod.Everest.Modules)
         {
-            foreach (string bankFile in Directory.GetFiles(modsDir, pattern, SearchOption.AllDirectories))
-            {
-                // Skip Celeste's own Master_Bank.strings.bank in the Content folder
-                if (bankFile.Contains(Path.Combine("Content", "FMOD"))) continue;
+            if (mod.Metadata?.Name != "DesoloZantas_Audio") continue;
 
+            string stringsBank = Path.Combine(mod.Metadata.PathDirectory, "Audio", "Master_Bank.strings.bank");
+            if (!File.Exists(stringsBank))
+            {
+                Logger.Log(LogLevel.Warn, "MaggyHelper", $"Strings bank not found at: {stringsBank}");
+                break;
+            }
+
+            try
+            {
                 FMOD.RESULT result = global::Celeste.Audio.System.loadBankFile(
-                    bankFile, LOAD_BANK_FLAGS.NORMAL, out Bank bank);
+                    stringsBank, LOAD_BANK_FLAGS.NORMAL, out Bank bank);
 
                 if (result == FMOD.RESULT.OK && bank.isValid())
                 {
                     bank.loadSampleData();
                     _loadedBanks.Add(bank);
-                    Logger.Log(LogLevel.Info, "MaggyHelper", $"Loaded audio bank: {Path.GetFileName(bankFile)}");
+                    Logger.Log(LogLevel.Info, "MaggyHelper", "Loaded pusheen strings bank — event:/pusheen/* paths now resolvable");
                 }
-                else if (result != FMOD.RESULT.ERR_EVENT_ALREADY_LOADED)
+                else
                 {
-                    Logger.Log(LogLevel.Warn, "MaggyHelper",
-                        $"Failed to load bank {Path.GetFileName(bankFile)}: {result}");
+                    Logger.Log(LogLevel.Warn, "MaggyHelper", $"Failed to load pusheen strings bank: {result}");
                 }
             }
+            catch (Exception ex)
+            {
+                Logger.Log(LogLevel.Error, "MaggyHelper", $"Exception loading pusheen strings bank: {ex.Message}");
+            }
+            break;
         }
     }
 

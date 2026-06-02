@@ -156,16 +156,20 @@ public static class OverworldMusicManager
 
             foreach (var bankFile in Directory.GetFiles(audioPath, "dz_*.bank"))
             {
-                if (global::Celeste.Audio.System.loadBankFile(
-                    bankFile, LOAD_BANK_FLAGS.NORMAL, out Bank bank) == FMOD.RESULT.OK
-                    && bank.isValid())
+                FMOD.RESULT result = global::Celeste.Audio.System.loadBankFile(
+                    bankFile, LOAD_BANK_FLAGS.NORMAL, out Bank bank);
+
+                if (result == FMOD.RESULT.OK && bank.isValid())
                 {
                     bank.loadSampleData();
                     _loadedBanks.Add(bank);
+                    Logger.Log(LogLevel.Info, "MaggyHelper", $"Loaded audio bank: {Path.GetFileName(bankFile)}");
+                }
+                else
+                {
+                    Logger.Log(LogLevel.Warn, "MaggyHelper", $"Failed to load bank {Path.GetFileName(bankFile)}: {result}");
                 }
             }
-
-            Logger.Log(LogLevel.Info, "MaggyHelper", $"Loaded {_loadedBanks.Count} dz_*.bank file(s) from DesoloZantas_Audio");
             break;
         }
     }

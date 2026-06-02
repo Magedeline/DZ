@@ -32,31 +32,7 @@
     Version: 1.0.0
   - Name: DesoloZantas_Audio
     Version: 3.0.0
-  - Name: FancyTileEntities
-    Version: 1.6.2
-  - Name: FancyTileEntitiesLoenn
-    Version: 1.3.0
-  - Name: LoennBrushes
-    Version: 1.0.1
-  - Name: LoennExtended
-    Version: 1.4.0
-  - Name: LoennPresets
-    Version: 1.1.14
-  - Name: LoennProjectManager
-    Version: 0.4.5
-  - Name: LoennScripts
-    Version: 1.0.8
-  - Name: ModderToolkit
-    Version: 0.1.2
-  - Name: Rysy
-    Version: 0.0.12.0
-  - Name: SteamTimeline
-    Version: 0.2.0
-  - Name: Celeste
-    Version: 1.4.0.0
   OptionalDependencies:
-  - Name: snowberry
-    Version: 1.0.0
   - Name: VidPlayer
     Version: 0.5.2
   - Name: CelesteNet.Client

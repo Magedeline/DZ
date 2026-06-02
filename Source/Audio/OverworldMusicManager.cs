@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using FMOD.Studio;
@@ -147,15 +148,20 @@ public static class OverworldMusicManager
         orig();
         if (_loadedBanks.Count > 0 || global::Celeste.Audio.System == null) return;
 
-        foreach (var mod in global::Celeste.Mod.Everest.Modules)
+        string modsDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Mods");
+        if (!Directory.Exists(modsDir)) return;
+
+        // Load strings bank first so FMOD can resolve event:/pusheen/* paths,
+        // then load each dz_*.bank file that contains the actual audio data.
+        string[] patterns = { "Master_Bank.strings.bank", "dz_*.bank" };
+
+        foreach (string pattern in patterns)
         {
-            if (mod.Metadata?.Name != "DesoloZantas_Audio") continue;
-
-            string audioPath = Path.Combine(mod.Metadata.PathDirectory, "Audio");
-            if (!Directory.Exists(audioPath)) break;
-
-            foreach (var bankFile in Directory.GetFiles(audioPath, "dz_*.bank"))
+            foreach (string bankFile in Directory.GetFiles(modsDir, pattern, SearchOption.AllDirectories))
             {
+                // Skip Celeste's own Master_Bank.strings.bank in the Content folder
+                if (bankFile.Contains(Path.Combine("Content", "FMOD"))) continue;
+
                 FMOD.RESULT result = global::Celeste.Audio.System.loadBankFile(
                     bankFile, LOAD_BANK_FLAGS.NORMAL, out Bank bank);
 
@@ -165,12 +171,12 @@ public static class OverworldMusicManager
                     _loadedBanks.Add(bank);
                     Logger.Log(LogLevel.Info, "MaggyHelper", $"Loaded audio bank: {Path.GetFileName(bankFile)}");
                 }
-                else
+                else if (result != FMOD.RESULT.ERR_EVENT_ALREADY_LOADED)
                 {
-                    Logger.Log(LogLevel.Warn, "MaggyHelper", $"Failed to load bank {Path.GetFileName(bankFile)}: {result}");
+                    Logger.Log(LogLevel.Warn, "MaggyHelper",
+                        $"Failed to load bank {Path.GetFileName(bankFile)}: {result}");
                 }
             }
-            break;
         }
     }
 

@@ -35,6 +35,8 @@
   - Name: PlatinumStrawberry
     Version: 1.1.1.0
   OptionalDependencies:
+  - Name: DesoloZantas_Audio
+    Version: 3.0.0
   - Name: snowberry
     Version: 1.0.0
   - Name: VidPlayer

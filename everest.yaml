@@ -2,8 +2,6 @@
   DLL: bin/MaggyHelper.dll
   Version: 3.0.0
   Dependencies:
-  - Name: DesoloZantas_Audio
-    Version: 3.0.0
   - Name: AdventureHelper
     Version: 1.6.0
   - Name: AltSidesHelper

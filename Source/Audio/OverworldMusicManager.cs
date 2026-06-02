@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.IO;
 using FMOD.Studio;
 using Monocle;
 
@@ -11,6 +13,7 @@ namespace Celeste;
 public static class OverworldMusicManager
 {
     private static bool _hooked = false;
+    private static readonly List<Bank> _loadedBanks = new();
     private const int SummitChapterNumber = 9;
 
     // ── Custom Music Events (from GUIDs.txt) ─────────────────────────────
@@ -104,6 +107,8 @@ public static class OverworldMusicManager
         if (_hooked) return;
         _hooked = true;
 
+        On.Celeste.Audio.Init += OnAudioInit;
+
         // Hook Audio.Play to intercept music events when in our maps
         On.Celeste.Audio.Play_string += OnAudioPlayString;
         On.Celeste.Audio.SetMusic += OnAudioSetMusic;
@@ -120,12 +125,49 @@ public static class OverworldMusicManager
         if (!_hooked) return;
         _hooked = false;
 
+        On.Celeste.Audio.Init -= OnAudioInit;
         On.Celeste.Audio.Play_string -= OnAudioPlayString;
         On.Celeste.Audio.SetMusic -= OnAudioSetMusic;
         On.Celeste.Audio.SetAmbience -= OnAudioSetAmbience;
         On.Celeste.OuiChapterSelect.Enter -= OnChapterSelectEnter;
 
+        foreach (var bank in _loadedBanks)
+        {
+            try { bank.unload(); } catch { }
+        }
+        _loadedBanks.Clear();
+
         Logger.Log(LogLevel.Info, "MaggyHelper", "OverworldMusicManager unloaded");
+    }
+
+    // ── Bank Loading ─────────────────────────────────────────────────────
+
+    private static void OnAudioInit(On.Celeste.Audio.orig_Init orig)
+    {
+        orig();
+        if (_loadedBanks.Count > 0 || global::Celeste.Audio.System == null) return;
+
+        foreach (var mod in global::Celeste.Mod.Everest.Modules)
+        {
+            if (mod.Metadata?.Name != "DesoloZantas_Audio") continue;
+
+            string audioPath = Path.Combine(mod.Metadata.PathDirectory, "Audio");
+            if (!Directory.Exists(audioPath)) break;
+
+            foreach (var bankFile in Directory.GetFiles(audioPath, "dz_*.bank"))
+            {
+                if (global::Celeste.Audio.System.loadBankFile(
+                    bankFile, LOAD_BANK_FLAGS.NORMAL, out Bank bank) == FMOD.RESULT.OK
+                    && bank.isValid())
+                {
+                    bank.loadSampleData();
+                    _loadedBanks.Add(bank);
+                }
+            }
+
+            Logger.Log(LogLevel.Info, "MaggyHelper", $"Loaded {_loadedBanks.Count} dz_*.bank file(s) from DesoloZantas_Audio");
+            break;
+        }
     }
 
     // ── Audio.Play Hook ──────────────────────────────────────────────────

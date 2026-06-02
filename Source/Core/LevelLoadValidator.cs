@@ -225,16 +225,6 @@ namespace Celeste.Mod.MaggyHelper
                     }
                     break;
 
-                case "MusicTrigger":
-                    string musicEvent = data.Attr("music", "");
-                    if (!string.IsNullOrEmpty(musicEvent) && !musicEvent.StartsWith("event:/"))
-                    {
-                        Logger.Log(LogLevel.Warn, "MaggyHelper/LevelValidator",
-                            $"[{roomName}] MusicTrigger has invalid event path: '{musicEvent}'");
-                        warnings++;
-                    }
-                    break;
-
                 case "NPC":
                     string npcDialog = data.Attr("dialogId", "");
                     if (string.IsNullOrEmpty(npcDialog))

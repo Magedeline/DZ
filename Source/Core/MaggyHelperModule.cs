@@ -202,9 +202,6 @@ namespace Celeste.Mod.MaggyHelper
 
         public override void Load()
         {
-            // Initialize custom audio bank loader to register dz_*.bank files with pusheen events
-            global::Celeste.Mod.MaggyHelper.Audio.AudioBankLoader.Load();
-
             BossesExampleModule.Load();
             // Note: AreaMapData, ChapterActRegistry, and BossRosterRegistry
             // use lazy initialization - they'll be populated on first access.
@@ -380,9 +377,6 @@ namespace Celeste.Mod.MaggyHelper
 
             // Unhook Cheat Mode system
             UnloadCheatMode();
-
-            // Unload custom audio banks
-            global::Celeste.Mod.MaggyHelper.Audio.AudioBankLoader.Unload();
 
         }
 

@@ -53,12 +53,34 @@ jobs:
           $items = @("Maps", "Dialog")
           Compress-Archive -Path $items -DestinationPath "DesoloZantas_MapsDialog.zip" -Force
 
+      - name: Package DesoloZantas.zip (full mod)
+        shell: pwsh
+        run: |
+          $candidates = @(
+            "everest.yaml",
+            ".everestignore",
+            "DecalRegistry.xml",
+            "Audio",
+            "Dialog",
+            "Graphics",
+            "Maps",
+            "Mountain",
+            "bin",
+            "Libs",
+            "Loenn",
+            "Ahorn",
+            "Tutorials"
+          )
+          $existing = $candidates | Where-Object { Test-Path $_ }
+          Compress-Archive -Path $existing -DestinationPath "DesoloZantas.zip" -Force
+
       - name: Create Pre-Release
         uses: softprops/action-gh-release@v2
         with:
           prerelease: true
           generate_release_notes: true
           files: |
+            DesoloZantas.zip
             DesoloZantas_Code.zip
             DesoloZantas_Audio.zip
             DesoloZantas_MapsDialog.zip

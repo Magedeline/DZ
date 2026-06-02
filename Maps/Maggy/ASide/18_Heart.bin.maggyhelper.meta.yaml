@@ -1,0 +1,8 @@
+schema: maggyhelper-map-meta-v1
+sid: Maggy/ASide/18_Heart
+baseKey: 18_Heart
+side: A
+modeIndex: 0
+isMainChapterEntry: true
+mainChapterSid: Maggy/ASide/18_Heart
+showInChapterSelect: true

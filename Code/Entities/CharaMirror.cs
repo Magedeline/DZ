@@ -1,0 +1,277 @@
+using System;
+using System.Collections;
+using Celeste.Entities;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Monocle;
+using PlayerSprite = global::Celeste.PlayerSprite; // Use global::Celeste.PlayerSprite for PlayerHair compatibility
+
+namespace Celeste.Entities
+{
+    [CustomEntity(ids: "MaggyHelper/CharaMirror")]
+    [Tracked]
+    [HotReloadable]
+    public class CharaMirror : Entity
+    {
+        private Image frame;
+        private MTexture glassbg = GFX.Game["objects/mirror/glassbg"];
+        private MTexture glassfg = GFX.Game["objects/mirror/glassfg"];
+        private Sprite breakingGlass;
+        private Hitbox hitbox;
+        private VirtualRenderTarget mirror;
+        private float shineAlpha = 0.5f;
+        private float shineOffset;
+        private Entity reflection;
+        private global::Celeste.PlayerSprite reflectionSprite;
+        private PlayerHair reflectionHair;
+        private float reflectionAlpha = 0.7f;
+        private bool autoUpdateReflection = true;
+        private CharaDummy chara;
+        private bool smashed;
+        private bool smashEnded;
+        private bool updateShine = true;
+        private Coroutine smashCoroutine;
+        private SoundSource sfx;
+        private SoundSource sfxSting;
+
+        public CharaMirror(EntityData data, Vector2 offset)
+            : this(data.Position + offset)
+        {
+        }
+
+        public CharaMirror(Vector2 position)
+            : base(position)
+        {
+            Depth = 9500;
+            Add(breakingGlass = GFX.SpriteBank.Create("glass"));
+            breakingGlass.Play("idle");
+            Add(new BeforeRenderHook(BeforeRender));
+            foreach (MTexture atlasSubtexture in GFX.Game.GetAtlasSubtextures("objects/mirror/mirrormask"))
+            {
+                MTexture shard = atlasSubtexture;
+                MirrorSurface surface = new MirrorSurface();
+                surface.OnRender = () => shard.DrawJustified(Position, new Vector2(0.5f, 1f), surface.ReflectionColor * (smashEnded ? 1f : 0.0f));
+                surface.ReflectionOffset = new Vector2(9 + Calc.Random.Range(-4, 4), 4 + Calc.Random.Range(-2, 2));
+                Add(surface);
+            }
+        }
+
+        public override void Added(Scene scene)
+        {
+            base.Added(scene);
+            smashed = SceneAs<Level>().Session.Inventory.DreamDash;
+            if (smashed)
+            {
+                breakingGlass.Play("broken");
+                smashEnded = true;
+            }
+            else
+            {
+                reflection = new Entity();
+                reflectionSprite = new global::Celeste.PlayerSprite(PlayerSpriteMode.Badeline);
+                reflectionHair = new PlayerHair(reflectionSprite);
+                reflectionHair.Color = BadelineOldsite.HairColor;
+                reflectionHair.Border = Color.Black;
+                reflection.Add(reflectionHair);
+                reflection.Add(reflectionSprite);
+                reflectionHair.Start();
+                reflectionSprite.OnFrameChange = anim =>
+                {
+                    if (smashed || !CollideCheck<Player>())
+                        return;
+                    int currentAnimationFrame = reflectionSprite.CurrentAnimationFrame;
+                    if ((!(anim == "walk") || currentAnimationFrame != 0 && currentAnimationFrame != 6) && (!(anim == "runSlow") || currentAnimationFrame != 0 && currentAnimationFrame != 6) && (!(anim == "runFast") || currentAnimationFrame != 0 && currentAnimationFrame != 6))
+                        return;
+                    Audio.Play("event:/char/badeline/footstep", Center);
+                };
+                Add(smashCoroutine = new Coroutine(InteractRoutine()));
+            }
+            Entity entity = new Entity(Position)
+            {
+                Depth = 9000
+            };
+            entity.Add(frame = new Image(GFX.Game["objects/mirror/frame"]));
+            frame.JustifyOrigin(0.5f, 1f);
+            Scene.Add(entity);
+            Collider = hitbox = new Hitbox((int) frame.Width - 16, (int) frame.Height + 32, -(int) frame.Width / 2 + 8, -(int) frame.Height - 32);
+        }
+
+        public override void Update()
+        {
+            base.Update();
+            if (reflection == null)
+                return;
+            reflection.Update();
+            reflectionHair.Facing = (Facings) Math.Sign(reflectionSprite.Scale.X);
+            reflectionHair.AfterUpdate();
+        }
+
+        private void BeforeRender()
+        {
+            if (smashed)
+                return;
+            Level scene = Scene as Level;
+            Player entity = Scene.Tracker.GetEntity<Player>();
+            if (entity == null)
+                return;
+            if (autoUpdateReflection && reflection != null)
+            {
+                reflection.Position = new Vector2(X - entity.X, entity.Y - Y) + breakingGlass.Origin;
+                reflectionSprite.Scale.X = -(int) entity.Facing * Math.Abs(entity.Sprite.Scale.X);
+                reflectionSprite.Scale.Y = entity.Sprite.Scale.Y;
+                if (reflectionSprite.CurrentAnimationID != entity.Sprite.CurrentAnimationID && entity.Sprite.CurrentAnimationID != null && reflectionSprite.Has(entity.Sprite.CurrentAnimationID))
+                    reflectionSprite.Play(entity.Sprite.CurrentAnimationID);
+            }
+            if (mirror == null)
+                mirror = VirtualContent.CreateRenderTarget("dream-mirror", glassbg.Width, glassbg.Height);
+            Engine.Graphics.GraphicsDevice.SetRenderTarget(mirror);
+            Engine.Graphics.GraphicsDevice.Clear(Color.Transparent);
+            Draw.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullNone);
+            if (updateShine)
+                shineOffset = glassfg.Height - (int) (scene.Camera.Y * 0.800000011920929 % glassfg.Height);
+            glassbg.Draw(Vector2.Zero);
+            if (reflection != null)
+                reflection.Render();
+            glassfg.Draw(new Vector2(0.0f, shineOffset), Vector2.Zero, Color.White * shineAlpha);
+            glassfg.Draw(new Vector2(0.0f, shineOffset - glassfg.Height), Vector2.Zero, Color.White * shineAlpha);
+            Draw.SpriteBatch.End();
+        }
+
+        private IEnumerator InteractRoutine()
+        {
+            CharaMirror cs02CharaMirror = this;
+            Player player = null;
+            while (player == null)
+            {
+                player = cs02CharaMirror.Scene.Tracker.GetEntity<Player>();
+                yield return null;
+            }
+            while (!cs02CharaMirror.hitbox.Collide(player))
+                yield return null;
+            cs02CharaMirror.hitbox.Width += 32f;
+            cs02CharaMirror.hitbox.Position.X -= 16f;
+            Audio.SetMusic(null);
+            while (cs02CharaMirror.hitbox.Collide(player))
+                yield return null;
+            Cutscenes.CS02_CharaMirror cs02CharaMirrorCutscene = new Cutscenes.CS02_CharaMirror((global::Celeste.Player)(object)player, cs02CharaMirror);
+            cs02CharaMirror.Scene.Add(cs02CharaMirrorCutscene);
+        }
+
+        public IEnumerator BreakRoutine(int direction)
+        {
+            CharaMirror charaMirror = this;
+            charaMirror.autoUpdateReflection = false;
+            charaMirror.reflectionSprite.Play("runFast");
+            Input.Rumble(RumbleStrength.Strong, RumbleLength.Short);
+            while (Math.Abs(charaMirror.reflection.X - charaMirror.breakingGlass.Width / 2f) > 3.0)
+            {
+                charaMirror.reflection.X += direction * 32 * Engine.DeltaTime;
+                yield return null;
+            }
+            charaMirror.reflectionSprite.Play("idle");
+            yield return 0.65f;
+            charaMirror.Add(charaMirror.sfx = new SoundSource());
+            charaMirror.sfx.Play("event:/pusheen/game/02_nightmare/sequence_mirror");
+            yield return 0.15f;
+            charaMirror.Add(charaMirror.sfxSting = new SoundSource("event:/pusheen/music/lvl2/dreamblock_sting_pt2"));
+            Input.Rumble(RumbleStrength.Light, RumbleLength.FullSecond);
+            charaMirror.updateShine = false;
+            while (charaMirror.shineOffset != 33.0 || charaMirror.shineAlpha < 1.0)
+            {
+                charaMirror.shineOffset = Calc.Approach(charaMirror.shineOffset, 33f, Engine.DeltaTime * 120f);
+                charaMirror.shineAlpha = Calc.Approach(charaMirror.shineAlpha, 1f, Engine.DeltaTime * 4f);
+                yield return null;
+            }
+            charaMirror.smashed = true;
+            charaMirror.breakingGlass.Play("break");
+            yield return 0.6f;
+            Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
+            (charaMirror.Scene as Level).Shake();
+            for (float x = (float) (-(double) charaMirror.breakingGlass.Width / 2.0); x < charaMirror.breakingGlass.Width / 2.0; x += 8f)
+            {
+                for (float y = -charaMirror.breakingGlass.Height; y < 0.0; y += 8f)
+                {
+                    if (Calc.Random.Chance(0.5f))
+                        (charaMirror.Scene as Level).Particles.Emit(DreamMirror.P_Shatter, 2, charaMirror.Position + new Vector2(x + 4f, y + 4f), new Vector2(8f, 8f), new Vector2(x, y).Angle());
+                }
+            }
+            charaMirror.smashEnded = true;
+            charaMirror.chara = new CharaDummy(charaMirror.reflection.Position + charaMirror.Position - charaMirror.breakingGlass.Origin);
+            charaMirror.chara.Floatness = 0.0f;
+            charaMirror.Scene.Add(charaMirror.chara);
+            charaMirror.chara.Sprite.Play("idle");
+            charaMirror.chara.Sprite.Scale = charaMirror.reflectionSprite.Scale;
+            charaMirror.reflection = null;
+            yield return 1.2f;
+            float speed = -direction * 32f;
+            charaMirror.chara.Sprite.Scale.X = -direction;
+            charaMirror.chara.Sprite.Play("runFast");
+            while (Math.Abs(charaMirror.chara.X - charaMirror.X) < 60.0)
+            {
+                speed += (float) (Engine.DeltaTime * (double) -direction * 128.0);
+                charaMirror.chara.X += speed * Engine.DeltaTime;
+                yield return null;
+            }
+            charaMirror.chara.Sprite.Play("jumpFast");
+            while (Math.Abs(charaMirror.chara.X - charaMirror.X) < 128.0)
+            {
+                speed += (float) (Engine.DeltaTime * (double) -direction * 128.0);
+                charaMirror.chara.X += speed * Engine.DeltaTime;
+                charaMirror.chara.Y -= (float) (Math.Abs(speed) * (double) Engine.DeltaTime * 0.800000011920929);
+                yield return null;
+            }
+            charaMirror.chara.RemoveSelf();
+            charaMirror.chara = null;
+            yield return 1.5f;
+        }
+
+        public void Broken(bool wasSkipped)
+        {
+            updateShine = false;
+            smashed = true;
+            smashEnded = true;
+            breakingGlass.Play("broken");
+            if (wasSkipped && chara != null)
+                chara.RemoveSelf();
+            if (wasSkipped && sfx != null)
+                sfx.Stop();
+            if (!wasSkipped || sfxSting == null)
+                return;
+            sfxSting.Stop();
+        }
+
+        public override void Render()
+        {
+            try
+            {
+                if (smashed)
+                    breakingGlass?.Render();
+                else if (mirror?.Target != null && breakingGlass != null)
+                    Draw.SpriteBatch.Draw(mirror.Target, Position - breakingGlass.Origin, Color.White * reflectionAlpha);
+                frame?.Render();
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        public override void SceneEnd(Scene scene)
+        {
+            Dispose();
+            base.SceneEnd(scene);
+        }
+
+        public override void Removed(Scene scene)
+        {
+            Dispose();
+            base.Removed(scene);
+        }
+
+        private void Dispose()
+        {
+            if (mirror != null)
+                mirror.Dispose();
+            mirror = null;
+        }
+    }
+}

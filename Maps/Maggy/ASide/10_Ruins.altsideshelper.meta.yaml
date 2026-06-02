@@ -1,0 +1,5 @@
+Sides:
+- Map: "Maggy/DSide/10_Ruins"
+  Preset: "d-side"
+  UnlockMode: consecutively
+  ShowBerriesAsGolden: true

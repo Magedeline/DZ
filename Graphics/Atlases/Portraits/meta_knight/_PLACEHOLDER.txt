@@ -1,0 +1,7 @@
+PLACEHOLDER: Portrait assets for character 'META_KNIGHT'
+Required expressions: angry, approving, concerned, determined, grim, normal, reminiscing, sad, serious, shocked
+
+Add PNG files in format: {expression}{frame}.png
+Example: normal00.png, angry01.png, happy02.png
+
+Each expression typically needs 1-12 frames for animation.

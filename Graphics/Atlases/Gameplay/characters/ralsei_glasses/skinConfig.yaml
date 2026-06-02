@@ -1,0 +1,35 @@
+# Ralsei (Glasses) Skin Configuration for SkinModHelperPlus
+
+skinName: "Ralsei (Glasses)"
+spritePath: "Ralsei/RalseiGL"
+
+# Hair configuration specific to Ralsei with Glasses
+hair:
+  enabled: true
+  color: "#4A4A4A"
+  style: "fluffy"
+  
+# Special effects
+effects:
+  - name: "heal_prayer"
+    trigger: "dash"
+    color: "#90EE90"
+  - name: "pacify"
+    trigger: "jump"
+    color: "#FFB6C1"
+
+# Animation overrides
+animations:
+  idle: "idle"
+  walk: "runSlow"
+  run: "runFast" 
+  jump: "jumpSlow"
+  dash: "dashAttack"
+  climb: "climbUp"
+  fall: "fallSlow"
+
+# Special properties
+properties:
+  showHat: true
+  showGlasses: true
+  magicEffects: true

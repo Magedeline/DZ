@@ -1,0 +1,8 @@
+﻿schema: maggyhelper-map-meta-v1
+sid: Maggy/CSide/06_Stronghold
+baseKey: 06_Stronghold
+side: C
+modeIndex: 2
+isMainChapterEntry: false
+mainChapterSid: Maggy/ASide/06_Stronghold
+showInChapterSelect: false

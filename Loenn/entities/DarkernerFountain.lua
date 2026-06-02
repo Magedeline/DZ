@@ -1,0 +1,149 @@
+-- Loenn integration for Darkener Fountain entity
+-- Creates a fountain effect that darkens or transforms the environment
+
+local selectionBounds = require("libraries.selection_bounds")
+
+local darkernerFountain = {}
+
+local defaultBounds = {
+    width = 24,
+    height = 36
+}
+
+darkernerFountain.name = "MaggyHelper/DarkernerFountain"
+darkernerFountain.depth = -5
+darkernerFountain.texture = "objects/fountain_darkener"
+
+darkernerFountain.fieldInformation = {
+    fountainType = {
+        fieldType = "string",
+        options = {
+            "Chaos",
+            "Pure",
+            "Shadow",
+            "Void"
+        }
+    },
+    activationRadius = {
+        fieldType = "number",
+        minimumValue = 16,
+        maximumValue = 256
+    },
+    intensity = {
+        fieldType = "number",
+        minimumValue = 0.1,
+        maximumValue = 3.0
+    },
+    duration = {
+        fieldType = "number",
+        minimumValue = 1.0,
+        maximumValue = 30.0
+    },
+    particleCount = {
+        fieldType = "integer",
+        minimumValue = 10,
+        maximumValue = 100
+    },
+    autoActivate = {
+        fieldType = "boolean"
+    },
+    requiresFlag = {
+        fieldType = "string",
+        options = {}
+    },
+    transformsKglobal::global::Celeste.Player= {
+        fieldType = "boolean"
+    },
+    persistentEffect = {
+        fieldType = "boolean"
+    },
+    soundEffect = {
+        fieldType = "string",
+        options = {
+            "event:/game/general/thing_booped",
+            "event:/pusheen/char/kirby/dreamblock_enter",
+            "event:/game/general/seed_poof"
+        },
+        editable = true
+    }
+}
+
+darkernerFountain.placements = {
+    {
+        name = "chaos_fountain",
+        data = {
+            width = 32,
+            height = 48,
+            fountainType = "Chaos",
+            activationRadius = 64,
+            intensity = 1.5,
+            duration = 10.0,
+            particleCount = 50,
+            autoActivate = false,
+            requiresFlag = "",
+            transformsKglobal::global::Celeste.Player= true,
+            persistentEffect = false,
+            soundEffect = "event:/game/general/thing_booped"
+        }
+    },
+    {
+        name = "pure_fountain",
+        data = {
+            width = 24,
+            height = 36,
+            fountainType = "Pure",
+            activationRadius = 48,
+            intensity = 1.0,
+            duration = 15.0,
+            particleCount = 30,
+            autoActivate = true,
+            requiresFlag = "",
+            transformsKglobal::global::Celeste.Player= false,
+            persistentEffect = true,
+            soundEffect = "event:/char/Maggy/DesoloZantas/madeline/dreamblock_enter"
+        }
+    },
+    {
+        name = "shadow_fountain",
+        data = {
+            width = 40,
+            height = 56,
+            fountainType = "Shadow",
+            activationRadius = 96,
+            intensity = 2.0,
+            duration = 8.0,
+            particleCount = 75,
+            autoActivate = false,
+            requiresFlag = "shadow_fountain_unlocked",
+            transformsKglobal::global::Celeste.Player= true,
+            persistentEffect = false,
+            soundEffect = "event:/game/general/seed_poof"
+        }
+    }
+}
+
+function darkernerFountain.sprite(room, entity)
+    local bounds = selectionBounds.resolve(entity, defaultBounds)
+    local sprite = {}
+    
+    sprite.texture = darkernerFountain.texture
+    sprite.x = bounds.x
+    sprite.y = bounds.y
+    sprite.scaleX = bounds.width / 24
+    sprite.scaleY = bounds.height / 36
+    
+    -- Add visual indicator for fountain type
+    if entity.fountainType == "Chaos" then
+        sprite.color = {1.0, 0.2, 0.8, 0.8}  -- Pink/magenta
+    elseif entity.fountainType == "Pure" then
+        sprite.color = {0.9, 0.9, 1.0, 0.9}  -- Light blue/white
+    elseif entity.fountainType == "Shadow" then
+        sprite.color = {0.3, 0.1, 0.5, 0.9}  -- Dark purple
+    elseif entity.fountainType == "Void" then
+        sprite.color = {0.1, 0.1, 0.1, 0.9}  -- Very dark
+    end
+    
+    return sprite
+end
+
+return darkernerFountain

@@ -1,0 +1,226 @@
+================================================================================
+DESOLOZANTAS CELESTE MAP EDITOR - IN-GAME HELP GUIDE
+================================================================================
+
+OVERVIEW
+--------
+The DESOLOZANTAS Celeste Map Editor is an in-game editor that allows you to
+edit maps while playing. It features procedural content generation (PCG) and
+path spline systems for creating smooth room connections.
+
+
+ACTIVATING THE EDITOR
+---------------------
+The editor automatically loads when:
+- You enter the DESOLOZANTAS_CELESTE_MAP map
+- You enter any DESOLO_ZANTAS map while Debug Mode is enabled
+
+To manually toggle the editor:
+- Press F1 to toggle the editor on/off
+- Press Ctrl+Shift+E for global toggle (works from anywhere)
+
+
+EDITOR MODES (Press 1-6)
+------------------------
+1. SELECT MODE (Press 1)
+   - Click on rooms to select them
+   - Selected rooms are highlighted in cyan
+   - Use this to inspect rooms before editing
+
+2. TILE MODE (Press 2)
+   - Left-click and drag to paint tiles
+   - Press 0 for Air tile
+   - Press 1 for Solid tile
+   - Press 2 for other tile types
+   - Tiles are painted in the foreground layer
+
+3. ENTITY MODE (Press 3)
+   - Left-click to place entities
+   - Current entity type is displayed at top-left
+   - Entities are placed relative to the selected room
+   - Common entities: Kglobal::Player, strawberry, spring, spike, dashblock
+
+4. TRIGGER MODE (Press 4)
+   - Left-click and drag to create trigger rectangles
+   - Current trigger type is displayed at top-left
+   - Triggers are used for events like dialog, camera moves, etc.
+   - Common triggers: everest/dialogTrigger, cameraTargetTrigger
+
+5. PCG MODE (Press 5) - Procedural Content Generation
+   - Press G to generate a new room
+   - Press Q for Balanced strategy
+   - Press W for Exploration strategy
+   - Press E for Challenge strategy
+   - Press R for Speedrun strategy
+   - Press T for Puzzle strategy
+   - Generated rooms are placed to the right of existing rooms
+
+6. SPLINE MODE (Press 6) - Path Connections
+   - Click on a room to set as starting point
+   - Click on another room to create a path
+   - Press Q for Linear spline
+   - Press W for Quadratic Bézier
+   - Press E for Cubic Bézier
+   - Press R for Catmull-Rom spline
+   - Paths are displayed as magenta lines
+
+
+GENERAL CONTROLS
+---------------
+F1           - Toggle editor on/off
+Ctrl+Shift+E - Global toggle (works from anywhere)
+Ctrl+S       - Save the current map
+1-6          - Switch between editor modes
+Mouse        - Interact with the editor
+
+
+PCG STRATEGIES EXPLAINED
+------------------------
+Balanced (Q)
+  - Mix of platforming and puzzles
+  - Good for general level design
+  - Moderate difficulty
+
+Exploration (W)
+  - More open, exploration-focused
+  - Includes secrets and alternate paths
+  - Lower difficulty
+  - Adds hidden strawberries and refills
+
+Challenge (E)
+  - High difficulty, precision-focused
+  - More hazards and spike placement
+  - Requires precise movement
+
+Speedrun (R)
+  - Fast-paced, flow-focused
+  - Adds springs and dash refills
+  - Optimized for continuous movement
+
+Puzzle (T)
+  - Puzzle-focused, slower pace
+  - Includes movable blocks and switches
+  - Requires thinking over reflexes
+
+
+SPLINE TYPES EXPLAINED
+----------------------
+Linear (Q)
+  - Straight line connection
+  - Fastest to calculate
+  - Simplest path
+
+Quadratic Bézier (W)
+  - 3-point curve
+  - One control point
+  - Gentle curves
+
+Cubic Bézier (E)
+  - 4-point curve
+  - Two control points
+  - More complex curves
+  - Best for smooth transitions
+
+Catmull-Rom (R)
+  - Smooth spline through all points
+  - Best for multi-room paths
+  - Most natural-looking curves
+
+
+WORKFLOW EXAMPLE
+---------------
+1. Load the game and enter a DESOLO_ZANTAS map
+2. Press F1 to activate the editor
+3. Press 5 (PCG mode) and press G to generate a room
+4. Press 6 (Spline mode) and click two rooms to connect them
+5. Press 2 (Tile mode) to edit the room layout
+6. Press 3 (Entity mode) to add entities
+7. Press Ctrl+S to save your changes
+8. Press F1 to deactivate the editor and test the level
+
+
+TIPS
+----
+- The editor shows a grid overlay (8x8 tile grid)
+- Room bounds are displayed as yellow rectangles
+- Selected rooms are highlighted in cyan
+- Current mode and tool info is displayed at top-left
+- Use Debug Mode for easier testing
+- Save frequently with Ctrl+S
+
+
+TROUBLESHOOTING
+---------------
+Q: Editor won't activate
+A: Make sure you're in a DESOLO_ZANTAS map or enable Debug Mode
+
+Q: Can't place tiles
+A: Make sure a room is selected first (Select Mode, click room)
+
+Q: Generated rooms overlap
+A: Manually adjust room positions or delete and regenerate
+
+Q: Path splines look wrong
+A: Try a different spline type or adjust control points
+
+Q: Changes not saving
+A: Make sure to press Ctrl+S, check console for errors
+
+
+ADVANCED FEATURES
+----------------
+PCG Seed System:
+  - Set a seed for reproducible generation
+  - Use the same seed to get the same room
+  - Useful for sharing room designs
+
+Path Entity Placement:
+  - Place entities along spline paths
+  - Useful for creating enemy patterns
+  - Works with any entity type
+
+Multi-Room Paths:
+  - Create paths through multiple rooms
+  - Use for complex level layouts
+  - Catmull-Rom works best for this
+
+
+LIMITATIONS
+-----------
+- Editor only works with DESOLO_ZANTAS maps
+- Some entity types may require custom properties
+- PCG patterns are basic (can be expanded)
+- .bin file parsing is simplified
+- Always backup your maps before editing
+
+
+FUTURE ENHANCEMENTS
+-------------------
+- More PCG patterns and strategies
+- Entity property editor UI
+- Trigger property editor UI
+- Undo/Redo system
+- Copy/Paste rooms
+- Room templates
+- Visual spline editing
+- Collision detection preview
+
+
+CREDITS
+-------
+Based on research from:
+- Lönn (Celeste map editor in Lua/Love2D)
+- Maple (Celeste map editing library in Julia)
+- Ahorn (Visual map editor, predecessor to Lönn)
+- Starforge (C# with FNA)
+- Various Celeste modding tools from GitHub
+
+Integrated into DESOLOZANTAS mod with:
+- PCG (Procedural Content Generation)
+- Path Spline System (Bézier and Catmull-Rom)
+- In-game UI with Monocle
+- Everest mod loader integration
+
+
+For questions or issues, check the console logs for error messages.
+================================================================================

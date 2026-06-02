@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Sprites>
+  <!-- Placeholder GUI sprites for ricky06ModPack -->
+  <!-- These are placeholder entries to prevent crashes -->
+  
+  <placeholder_gui path="placeholder/" start="idle">
+    <Justify x=".5" y=".5" />
+    <Loop id="idle" path="idle" delay="0.1" />
+  </placeholder_gui>
+  
+</Sprites>

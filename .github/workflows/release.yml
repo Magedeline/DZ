@@ -1,0 +1,87 @@
+name: release
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: windows-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Set up .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Fetch latest Everest stripped libs
+        shell: pwsh
+        run: |
+          $release = Invoke-RestMethod "https://api.github.com/repos/EverestAPI/Everest/releases/latest"
+          $ver = $release.tag_name
+          Write-Host "Latest Everest: $ver"
+          $url = "https://github.com/EverestAPI/Everest/releases/download/$ver/lib-stripped.zip"
+          Invoke-WebRequest $url -OutFile lib-stripped.zip
+          Expand-Archive lib-stripped.zip -DestinationPath lib-stripped -Force
+          Remove-Item lib-stripped.zip
+
+      - name: Restore
+        run: dotnet restore VoidDreamAscent.sln
+
+      - name: Build Release
+        run: dotnet build VoidDreamAscent.sln --configuration Release --no-restore
+
+      - name: Package DesoloZantas_Code.zip
+        run: |
+          Compress-Archive -Path "bin\*" -DestinationPath "DesoloZantas_Code.zip" -Force
+
+      - name: Package DesoloZantas_Audio.zip
+        run: |
+          Compress-Archive -Path "Audio\*" -DestinationPath "DesoloZantas_Audio.zip" -Force
+
+      - name: Package DesoloZantas_MapsDialog.zip
+        run: |
+          $items = @("Maps", "Dialog")
+          Compress-Archive -Path $items -DestinationPath "DesoloZantas_MapsDialog.zip" -Force
+
+      - name: Package DesoloZantas.zip (full mod)
+        shell: pwsh
+        run: |
+          $candidates = @(
+            "everest.yaml",
+            ".everestignore",
+            "DecalRegistry.xml",
+            "Audio",
+            "Dialog",
+            "Graphics",
+            "Maps",
+            "Mountain",
+            "bin",
+            "Libs",
+            "Loenn",
+            "Ahorn",
+            "Tutorials"
+          )
+          $existing = $candidates | Where-Object { Test-Path $_ }
+          Compress-Archive -Path $existing -DestinationPath "DesoloZantas.zip" -Force
+
+      - name: Create Pre-Release
+        uses: softprops/action-gh-release@v2
+        with:
+          prerelease: true
+          generate_release_notes: true
+          files: |
+            DesoloZantas.zip
+            DesoloZantas_Code.zip
+            DesoloZantas_Audio.zip
+            DesoloZantas_MapsDialog.zip

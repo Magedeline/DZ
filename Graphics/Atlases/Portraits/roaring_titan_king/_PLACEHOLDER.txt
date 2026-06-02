@@ -1,0 +1,7 @@
+PLACEHOLDER: Portrait assets for character 'ROARING_TITAN_KING'
+Required expressions: crying, cryingalt, cryinghappy, determined, emotional, impressed, normal, peaceful, sad, serious
+
+Add PNG files in format: {expression}{frame}.png
+Example: normal00.png, angry01.png, happy02.png
+
+Each expression typically needs 1-12 frames for animation.

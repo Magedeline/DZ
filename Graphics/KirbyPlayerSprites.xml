@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- ======================================================================
+     KirbyPlayerSprites.xml
+     Dedicated sprite bank for Kirby player controller states.
+     These animations are driven by <see cref="KirbyPlayerSpriteController"/>
+     when the player is in Kirby mode.
+
+     Atlas path prefix: Graphics/Atlases/Gameplay/characters/kirby/
+     ====================================================================== -->
+<Sprites>
+
+  <!-- ==================================================================== -->
+  <!--  KIRBY PLAYER — Sprite bank driven by KirbyPlayerSpriteController     -->
+  <!--  Base path: characters/kirby/                                        -->
+  <!-- ==================================================================== -->
+  <kirby_player path="characters/kirby/" start="idle">
+    <Justify x=".5" y="1" />
+
+    <!-- ── Core Movement ───────────────────────────────────────────────── -->
+    <Anim id="idle"      path="idle"      delay="0.1"  frames="0-8"  goto="idle" />
+    <Anim id="idleA"     path="idleA"     delay="0.12" frames="0-11" goto="idle" />
+    <Anim id="idleB"     path="idleB"     delay="0.16" frames="0-23" goto="idle" />
+    <Anim id="idleC"     path="idleC"     delay="0.05" frames="0-14" goto="idle" />
+    <Loop id="walk"       path="walk"       delay="0.06" frames="0-11" />
+    <Anim id="runSlow"    path="runSlow"    delay="0.07" frames="0-11" goto="runFast" />
+    <Loop id="runFast"    path="runFast"    delay="0.05" frames="0-11" />
+    <Anim id="runStumble" path="runStumble" delay="0.05" frames="0-11" goto="runFast" />
+
+    <!-- ── Jump & Fall ────────────────────────────────────────────────── -->
+    <Loop id="jumpSlow"  path="jumpSlow"  delay="0.1"  frames="0,1" />
+    <Loop id="jumpFast"  path="jumpFast"  delay="0.08" frames="0,1" />
+    <Anim id="fallSlow"  path="jumpSlow"  delay="0.1"  frames="2,3" />
+    <Anim id="fallFast"  path="jumpFast"  delay="0.08" frames="2,3" />
+    <Anim id="fall"      path="fall"      delay="0.06" frames="0-7" />
+    <Anim id="fallPose"  path="fallPose"  delay="0.1"  frames="0-10" goto="idle" />
+    <Loop id="bigFall"   path="bigfall"   delay="0.06" frames="0-4" />
+    <Anim id="bigFallRecover" path="bigfall" delay="0.08" frames="5*3,6*2,7*2,8,9,10" goto="idle" />
+    <Anim id="land"      path="land"      delay="0.06" frames="0-1" goto="idle" />
+
+    <!-- ── Dash, Flip & Slide ────────────────────────────────────────── -->
+    <Loop id="dash"  path="dash"  delay="0.09" frames="0-3" />
+    <Anim id="flip"  path="flip"  delay="0.04" frames="0-7" goto="runFast" />
+    <Loop id="skid"  path="flip"  delay="0.04" frames="8" />
+    <Loop id="slide" path="slide" delay="0.03" frames="0-2" />
+    <Loop id="duck"  path="duck"  delay="0"    frames="0" />
+    <Loop id="roll"  path="roll"  delay="0.05" frames="0-16" />
+
+    <!-- ── Dream Dash ────────────────────────────────────────────────── -->
+    <Anim id="dreamDashIn"   path="dreamDash" frames="0-3"   delay="0.04" goto="dreamDashLoop" />
+    <Loop id="dreamDashLoop" path="dreamDash" frames="4-16"  delay="0.03" />
+    <Anim id="dreamDashOut"  path="dreamDash" frames="17-20" delay="0.04" goto="idle" />
+
+    <!-- ── Climbing ───────────────────────────────────────────────────── -->
+    <Loop id="wallslide"          path="wallslide" frames="0"   delay="0.1" />
+    <Loop id="climbup"            path="climb"     delay="0.04" frames="0-5" />
+    <Anim id="climbLookBackStart" path="climb"     delay="0.08" frames="6,7,8" goto="climbLookBack" />
+    <Loop id="climbLookBack"      path="climb"     frames="8" />
+    <Anim id="climbPush"          path="climb"     delay="0.04" frames="0,9-11" />
+    <Anim id="climbPull"          path="climb"     delay="0.04" frames="0,12-14" />
+
+    <!-- ── Edge & Tired ───────────────────────────────────────────────── -->
+    <Loop id="edge"       path="edge"      delay="0.25" frames="0-13" />
+    <Loop id="edgeBack"   path="edge_back" delay="0.25" frames="0-13" />
+    <Loop id="tired"      path="tired"     delay="0.18" frames="0-3" />
+    <Anim id="tiredStill" path="tired"     frames="0" />
+
+    <!-- ── Death & Dangling ──────────────────────────────────────────── -->
+    <Anim id="faint"    path="faint"    delay="0.1"  frames="0-10" goto="fainted" />
+    <Loop id="fainted"  path="faint"    delay="0.1"  frames="10" />
+    <Anim id="deadside" path="death_h"  delay="0.02" frames="0-12" />
+    <Anim id="deadup"   path="death_h"  delay="0.02" frames="0-12" />
+    <Anim id="deaddown" path="death_h"  delay="0.02" frames="0-12" />
+    <Loop id="dangling" path="dangling" delay="0.11" frames="0-9" />
+    <Loop id="shaking"  path="shaking"  delay="0.1"  frames="0" />
+
+    <!-- ── Carry ──────────────────────────────────────────────────────── -->
+    <Loop id="idle_carry"     path="idle_carry"       delay="0.1"  frames="0-8" />
+    <Loop id="runSlow_carry"  path="run_carry"        delay="0.07" frames="0-11" />
+    <Loop id="jumpSlow_carry" path="jump_carry"       delay="0.1"  frames="0,1" />
+    <Anim id="fallSlow_carry" path="jump_carry"       delay="0.1"  frames="2,3" />
+    <Anim id="pickUp"         path="pickup"           delay="0.06" frames="0-4" />
+    <Anim id="throw"          path="throw"            delay="0.06" frames="0-3" goto="idle" />
+
+    <!-- ── Swim ───────────────────────────────────────────────────────── -->
+    <Loop id="swimIdle" path="swim" frames="0-5"   delay="0.08" />
+    <Loop id="swimUp"   path="swim" frames="6-11"  delay="0.08" />
+    <Loop id="swimDown" path="swim" frames="12-17" delay="0.08" />
+
+    <!-- ── Star Fly & Bubble ─────────────────────────────────────────── -->
+    <Anim id="startStarFly" path="startStarFly" delay="0.08" frames="0-3" goto="starFly" />
+    <Loop id="starFly"      path="starFly"      delay="0.08" frames="0" />
+    <Loop id="bubble"       path="bubble"       delay="0.08" frames="0" />
+
+    <!-- ── Sleep & Wake ───────────────────────────────────────────────── -->
+    <Anim id="sleep"      path="sleep"      delay="0.1"  frames="0-10,10*5,11-23" />
+    <Anim id="bagdown"    path="sleep"      delay="0.1"  frames="0-10" />
+    <Anim id="asleep"     path="wakeUp/"    frames="0" />
+    <Anim id="wakeUp"     path="wakeUp/"    delay="0.1"  frames="0-14" />
+    <Anim id="halfWakeUp" path="halfWakeUp" delay="0.1"  frames="0" />
+
+    <!-- ── Misc ───────────────────────────────────────────────────────── -->
+    <Loop id="hug"   path="hug"   delay="0.08" frames="0" />
+    <Loop id="spin"  path="spin"  delay="0.1"  frames="0-15" />
+    <Anim id="sitDown"      path="sitDown"      delay="0.1"  frames="0-17" />
+    <Loop id="launch"       path="launch"       delay="0.06" frames="0-7" />
+    <Anim id="launchRecover" path="launchRecover" delay="0.06" frames="0-10" />
+
+    <!-- ── Kirby-specific: Float / Hover / Crouch ─────────────────────── -->
+    <Loop id="float"  path="float"  delay="0.2" frames="0-1" />
+    <Loop id="hover"  path="hover"  delay="0.1" frames="0-1" />
+    <Loop id="crouch" path="crouch" delay="0.1" frames="0" />
+
+    <!-- ── Kirby-specific: Inhale / Exhale / Spit ─────────────────────── -->
+    <Loop id="inhale"      path="inhale"      delay="0.1"  frames="0-6" />
+    <Anim id="inhalebegin" path="inhalebegin" delay="0.08" frames="0-6" goto="inhaleloop" />
+    <Loop id="inhaleloop"  path="inhaleloop"  delay="0.08" frames="0-2" />
+    <Anim id="inhaleend"   path="inhaleend"   delay="0.08" frames="0-3" goto="idle" />
+    <Anim id="exhale"      path="exhale"      delay="0.08" frames="0-3" goto="idle" />
+    <Anim id="spit"        path="spit"        delay="0.08" frames="0"   goto="idle" />
+
+    <!-- ── Kirby-specific: Combat ─────────────────────────────────────── -->
+    <Anim id="parry"      path="parry"      delay="0.05" frames="0-2" goto="idle" />
+    <Anim id="hurt"       path="hurt"       delay="0.08" frames="0-1" goto="idle" />
+    <Anim id="attack"     path="attack"     delay="0.06" frames="0"   goto="idle" />
+    <Loop id="determined" path="determined" delay="0.08" frames="0-8" />
+
+    <!-- ── Copy Ability: Fire ───────────────────────────────────────── -->
+    <Loop id="fire_idle"   path="fire/idle"   delay="0.15" frames="0-3" />
+    <Loop id="fire_walk"   path="fire/walk"   delay="0.08" frames="0-5" />
+    <Anim id="fire_attack" path="fire/attack" delay="0.04" frames="0"   goto="fire_idle" />
+    <Anim id="fire_burst"  path="fire/burst"  delay="0.05" frames="0-3" goto="fire_idle" />
+    <Loop id="fire_dash"   path="fire/dash"   delay="0.03" frames="0-3" />
+
+    <!-- ── Copy Ability: Ice ──────────────────────────────────────────── -->
+    <Loop id="ice_idle"    path="ice/idle"    delay="0.15" frames="0-3" />
+    <Loop id="ice_walk"    path="ice/walk"    delay="0.08" frames="0-5" />
+    <Anim id="ice_attack"  path="ice/attack"  delay="0.06" frames="0"   goto="ice_idle" />
+    <Anim id="ice_freeze"  path="ice/freeze"  delay="0.08" frames="0-1" goto="ice_idle" />
+    <Loop id="ice_glide"   path="ice/glide"   delay="0.1"  frames="0-1" />
+    <Anim id="ice_shatter" path="ice/shatter" delay="0.05" frames="0-1" goto="ice_idle" />
+
+    <!-- ── Copy Ability: Spark ────────────────────────────────────────── -->
+    <Loop id="spark_idle"   path="spark/idle"   delay="0.12" frames="0-3" />
+    <Loop id="spark_walk"   path="spark/walk"   delay="0.08" frames="0-5" />
+    <Anim id="spark_attack" path="spark/attack" delay="0.03" frames="0"   goto="spark_idle" />
+    <Anim id="spark_chain"  path="spark/chain"  delay="0.04" frames="0-2" goto="spark_idle" />
+    <Loop id="spark_pulse"  path="spark/pulse"  delay="0.05" frames="0-3" />
+
+    <!-- ── Copy Ability: Stone ────────────────────────────────────────── -->
+    <Loop id="stone_idle"      path="stone/idle"      delay="0.2"  frames="0" />
+    <Loop id="stone_walk"      path="stone/walk"      delay="0.1"  frames="0-3" />
+    <Anim id="stone_transform" path="stone/transform" delay="0.05" frames="0-5" />
+    <Loop id="stone_form"      path="stone/form"      delay="0.3"  frames="0" />
+    <Anim id="stone_crush"     path="stone/crush"     delay="0.08" frames="0"   goto="stone_idle" />
+    <Anim id="stone_attack"    path="stone/crush"     delay="0.08" frames="0"   goto="stone_idle" />
+    <Anim id="stone_counter"   path="stone/counter"   delay="0.06" frames="0-2" goto="stone_idle" />
+
+    <!-- ── Copy Ability: Sword ────────────────────────────────────────── -->
+    <Loop id="sword_idle"    path="sword/idle"    delay="0.15" frames="0-3" />
+    <Loop id="sword_walk"    path="sword/walk"    delay="0.08" frames="0-5" />
+    <Anim id="sword_attack"  path="sword/attack"  delay="0.04" frames="0"   goto="sword_idle" />
+    <Anim id="sword_attack1" path="sword/attack1" delay="0.04" frames="0"   goto="sword_idle" />
+    <Anim id="sword_attack2" path="sword/attack2" delay="0.05" frames="0-2" goto="sword_idle" />
+    <Anim id="sword_spin"    path="sword/spin"    delay="0.03" frames="0-7" goto="sword_idle" />
+    <Anim id="sword_thrust"  path="sword/thrust"  delay="0.05" frames="0-3" goto="sword_idle" />
+    <Anim id="sword_combo"   path="sword/combo"   delay="0.04" frames="0-5" goto="sword_idle" />
+
+    <!-- ── Copy Ability: Beam ─────────────────────────────────────────── -->
+    <Loop id="beam_idle"   path="beam/idle"   delay="0.12" frames="0-3" />
+    <Loop id="beam_walk"   path="beam/walk"   delay="0.08" frames="0-5" />
+    <Anim id="beam_attack" path="beam/attack" delay="0.04" frames="0"   goto="beam_idle" />
+    <Anim id="beam_whip"   path="beam/whip"   delay="0.05" frames="0-2" goto="beam_idle" />
+    <Loop id="beam_cycle"  path="beam/cycle"  delay="0.06" frames="0-5" />
+
+    <!-- ── Copy Ability: Cutter ─────────────────────────────────────── -->
+    <Loop id="cutter_idle"      path="cutter/idle"      delay="0.15" frames="0-3" />
+    <Loop id="cutter_walk"      path="cutter/walk"      delay="0.08" frames="0-5" />
+    <Anim id="cutter_throw"     path="cutter/throw"     delay="0.05" frames="0"   goto="cutter_idle" />
+    <Anim id="cutter_attack"    path="cutter/throw"     delay="0.05" frames="0"   goto="cutter_idle" />
+    <Anim id="cutter_boomerang" path="cutter/boomerang" delay="0.04" frames="0-2" goto="cutter_idle" />
+
+    <!-- ── Copy Ability: Hammer ───────────────────────────────────────── -->
+    <Loop id="hammer_idle"   path="hammer/idle"   delay="0.15" frames="0-3" />
+    <Loop id="hammer_walk"   path="hammer/walk"   delay="0.1"  frames="0-5" />
+    <Anim id="hammer_attack" path="hammer/attack" delay="0.06" frames="0"   goto="hammer_idle" />
+    <Anim id="hammer_spin"   path="hammer/spin"   delay="0.04" frames="0-7" goto="hammer_idle" />
+    <Anim id="hammer_slam"   path="hammer/slam"   delay="0.08" frames="0-3" goto="hammer_idle" />
+
+    <!-- ── Copy Ability: Wing ───────────────────────────────────────── -->
+    <Loop id="wing_idle"   path="wing/idle"   delay="0.15" frames="0-3" />
+    <Loop id="wing_fly"    path="wing/fly"    delay="0.08" frames="0-1" />
+    <Anim id="wing_attack" path="wing/attack" delay="0.05" frames="0-3" goto="wing_idle" />
+    <Anim id="wing_dive"   path="wing/dive"   delay="0.06" frames="0-3" />
+    <Loop id="wing_glide"  path="wing/glide"  delay="0.1"  frames="0-1" />
+
+    <!-- ── Transformations ──────────────────────────────────────────── -->
+    <Anim id="starMorph"      path="starMorph"   delay="0.06" frames="0-9"  goto="starMorphIdle" />
+    <Loop id="starMorphIdle"  path="starMorph"   delay="0.06" frames="10" />
+    <Anim id="transform_in"   path="transform_in"  delay="0.05" frames="0-19" goto="idle" />
+    <Anim id="transform_out"  path="transform_out" delay="0.05" frames="0-17" />
+    <Anim id="transformToKirby"   path="kirby_transform_in"  delay="0.05" frames="0-19" />
+    <Anim id="transformFromKirby" path="kirby_transform_out" delay="0.05" frames="0-17" goto="idle" />
+
+    <!-- ── Level Up ──────────────────────────────────────────────────── -->
+    <Anim id="levelUp" path="levelUp/levelUp" delay="0.06" frames="0-26" goto="idle" />
+
+    <!-- ── Expression ─────────────────────────────────────────────────── -->
+    <Loop id="angry" path="extra/angry" delay="0.1" frames="0-5" />
+
+    <!-- ── CommunalHelper Elytra compat ───────────────────────────────── -->
+    <Loop id="anim_player_elytra_fly" path="wing/fly" delay="0.08" frames="0-1" />
+
+    <!-- ── Hair metadata (mirrors vanilla player offsets for Kirby size) ── -->
+    <Metadata>
+      <Frames path="idle"  hair="0,-2|0,-2|0,-2|0,-2|0,-1|0,-1|0,-1|0,-1|0,-1"/>
+      <Frames path="walk"  hair="0,-2|0,-1|0,-1|0,-1|0,-3|0,-2|0,-1|0,-1|0,-1|0,-1|0,-3|0,-2"/>
+      <Frames path="runSlow"  hair="1,-2|1,-1|1,-1|1,-1|1,-3|1,-2|1,-1|1,-1|1,-1|1,-1|1,-3|1,-2"/>
+      <Frames path="runFast"  hair="1,-2|1,-1|1,-1|1,-1|1,-3|1,-2|1,-1|1,-1|1,-1|1,-1|1,-3|1,-2"/>
+      <Frames path="dash"  hair="2,0|2,0|2,0|2,1"/>
+      <Frames path="jumpSlow" hair="1,-3|1,-3|1,-2|0,-2"/>
+      <Frames path="jumpFast" hair="1,-3|1,-3|1,-2|0,-2"/>
+      <Frames path="duck" hair="0,3"/>
+      <Frames path="climb" hair="0,-2|0,-2|0,-2|0,-2|-1,-2|-1,-2|0,-1|1,-2:1|2,-2:2"/>
+      <Frames path="tired" hair="0,1|0,2|0,1|0,0"/>
+      <Frames path="faint" hair="0,1|0,1|0,1|0,1|1,1|2,1|2,2|5,5|6,8|6,7"/>
+      <Frames path="fainted" hair="6,7"/>
+      <Frames path="hug" hair="0,2"/>
+      <Frames path="swim" hair="0,-2|0,-2|0,-2|0,-2|0,-2|0,-2|0,-3|0,-3|0,-2|0,-2|0,-2|0,-2|1,-1|1,-1|1,0|1,0|1,0|1,0"/>
+    </Metadata>
+  </kirby_player>
+
+</Sprites>

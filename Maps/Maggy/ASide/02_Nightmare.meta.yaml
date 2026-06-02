@@ -1,0 +1,66 @@
+Icon: areas/Maggy/nightmare
+SID: Maggy/DESOLO_ZANTAS/2-Nightmare
+Interlude: false
+TitleBaseColor: 1a0a2e
+TitleAccentColor: 8b0045
+TitleTextColor: ffffff
+IntroType: WakeUp
+Dreaming: true
+ColorGrade: none
+Wipe: Celeste.ScreatchingWipe
+DarknessAlpha: 0.2
+BloomBase: 0.3
+BloomStrength: 1.0
+CassetteNoteColor: cc66ff
+CassetteSong: event:/pusheen/music/Cassette/02_shadow
+
+Modes:
+  - AudioState:
+      Music: event:/pusheen/music/lvl02/main
+      Ambience: event:/pusheen/env/02_nightmare
+    Inventory: Default
+    HeartIsEnd: false
+    SeekerSlowdown: false
+  - AudioState:
+      Music: event:/pusheen/music/BSide/02_nightmare
+      Ambience: event:/pusheen/env/02_nightmare
+    Inventory: Default
+    HeartIsEnd: true
+    SeekerSlowdown: false
+  - AudioState:
+      Music: event:/pusheen/music/CSide/02_nightmare
+      Ambience: event:/pusheen/env/02_nightmare
+    Inventory: Default
+    HeartIsEnd: true
+    SeekerSlowdown: false
+  - AudioState:
+      Music: event:/pusheen/music/CSide/02_nightmare
+      Ambience: event:/pusheen/env/02_nightmare
+    Inventory: Default
+    HeartIsEnd: true
+    SeekerSlowdown: false
+  - AudioState:
+      Music: event:/pusheen/music/DSide/02_nightmare
+      Ambience: event:/pusheen/env/02_main
+    Inventory: Default
+    HeartIsEnd: true
+    SeekerSlowdown: false
+  - AudioState:
+      Music: event:/pusheen/music/DXSide/02_nightmare
+      Ambience: event:/pusheen/env/02_main
+    Inventory: Default
+    HeartIsEnd: true
+    SeekerSlowdown: false
+    MountainModelDirectory: Mountain/Maggy/ASide
+    MountainTextureDirectory: Maggy/ASide
+    Idle:
+        Position: [-1.200, 4.800, 12.500]
+        Target: [-0.500, 4.200, 11.000]
+    Select:
+        Position: [-0.800, 3.500, 12.800]
+        Target: [0.200, 3.300, 11.300]
+    Zoom:
+        Position: [0.500, 3.800, 10.000]
+        Target: [0.400, 2.900, 8.300]
+    Cursor: [0.400, 3.500, 8.000]
+    State: 0

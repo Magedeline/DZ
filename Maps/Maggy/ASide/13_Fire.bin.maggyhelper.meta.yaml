@@ -1,0 +1,8 @@
+schema: maggyhelper-map-meta-v1
+sid: Maggy/ASide/13_Fire
+baseKey: 13_Fire
+side: A
+modeIndex: 0
+isMainChapterEntry: true
+mainChapterSid: Maggy/ASide/13_Fire
+showInChapterSelect: true

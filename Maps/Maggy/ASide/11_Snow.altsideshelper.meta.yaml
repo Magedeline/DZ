@@ -1,0 +1,5 @@
+Sides:
+- Map: "Maggy/DSide/11_Snow"
+  Preset: "d-side"
+  UnlockMode: consecutively
+  ShowBerriesAsGolden: true

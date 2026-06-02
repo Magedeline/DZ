@@ -1,0 +1,752 @@
+using System;
+using System.Reflection;
+using Celeste.Entities;
+using Celeste.Extensions;
+using Celeste;
+using Celeste.Editor;
+using Microsoft.Xna.Framework;
+using Mono.Cecil.Cil;
+using Monocle;
+using MonoMod.Cil;
+using MonoMod.RuntimeDetour;
+using MonoMod.Utils;
+
+using CopyAbilityType = Celeste.Entities.Bosses.CopyAbilityType;
+
+namespace Celeste
+{
+    /// <summary>
+    /// Demonstrates advanced MonoMod hooking techniques:
+    ///   1. IL Hooks  — Surgically modify individual instructions inside a method
+    ///   2. Manual Hook class — Hook private/internal methods that On.* can't reach
+    ///
+    /// These complement the On.* hooks already used throughout the mod.
+    /// </summary>
+    public static class MonoModHooks
+    {
+        // ── Manual Hook references (must be stored so they aren't GC'd) ──────────
+        private static Hook dashBeginHook;
+        private static Hook wallJumpHook;
+        private static On.Celeste.Level.hook_LoadLevel levelLoadLevelHook;
+        private static Hook mapEditorCtorHook;
+        private static Hook mapEditorUpdateHook;
+        private static Hook levelTemplateCctorHook;
+        private static On.Celeste.Level.hook_Update levelUpdateHook;
+
+        // ── Public API ───────────────────────────────────────────────────────────
+
+        /// <summary>
+        /// Call from <see cref="MaggyHelperModule.Load"/> to register all
+        /// advanced MonoMod hooks.
+        /// </summary>
+        public static void Load()
+        {
+            // ─── 2. Manual Hook (private method) ─────────────────────────
+            // Player.DashBegin is private — On.* hooks can't reach it.
+            // We use MonoMod's Hook class + reflection to intercept it anyway.
+            try
+            {
+                MethodInfo dashBegin = typeof(Player).GetMethod(
+                    "DashBegin",
+                    BindingFlags.Instance | BindingFlags.NonPublic);
+
+                if (dashBegin != null)
+                {
+                    dashBeginHook = new Hook(
+                        dashBegin,
+                        typeof(MonoModHooks).GetMethod(
+                            nameof(Hook_Player_DashBegin),
+                            BindingFlags.Static | BindingFlags.NonPublic));
+
+                    Logger.Log(LogLevel.Info, "MaggyHelper",
+                        "[MonoModHooks] Manual Hook on Player.DashBegin registered");
+                }
+                else
+                {
+                    Logger.Log(LogLevel.Warn, "MaggyHelper",
+                        "[MonoModHooks] Player.DashBegin not found — skipping manual hook");
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(LogLevel.Warn, "MaggyHelper",
+                    $"[MonoModHooks] Failed to hook Player.DashBegin: {ex.Message}");
+            }
+
+            // ─── 3. Manual Hook on WallJump (another private method) ─────
+            // Modifies wall-jump behavior when Kirby has a copy ability active.
+            try
+            {
+                MethodInfo wallJump = typeof(Player).GetMethod(
+                    "WallJump",
+                    BindingFlags.Instance | BindingFlags.NonPublic);
+
+                if (wallJump != null)
+                {
+                    wallJumpHook = new Hook(
+                        wallJump,
+                        typeof(MonoModHooks).GetMethod(
+                            nameof(Hook_Player_WallJump),
+                            BindingFlags.Static | BindingFlags.NonPublic));
+
+                    Logger.Log(LogLevel.Info, "MaggyHelper",
+                        "[MonoModHooks] Manual Hook on Player.WallJump registered");
+                }
+                else
+                {
+                    Logger.Log(LogLevel.Warn, "MaggyHelper",
+                        "[MonoModHooks] Player.WallJump not found — skipping manual hook");
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(LogLevel.Warn, "MaggyHelper",
+                    $"[MonoModHooks] Failed to hook Player.WallJump: {ex.Message}");
+            }
+
+            // ─── 3. OuiMapList null-MapData guard ───────────────────────────
+            MapListExt.Load();
+
+            // ─── 4. Dream-block Madeline ↔ Kirby player swap ────────────────────
+            DreamBlockPlayerSwapHooks.Load();
+
+            // ─── 5. Entity Name Remapping (player entity ID normalization) ──────
+            // Hook Level.LoadLevel to remap player entity IDs from binary maps
+            if (levelLoadLevelHook == null)
+            {
+                levelLoadLevelHook = new On.Celeste.Level.hook_LoadLevel(Hook_Level_LoadLevel);
+                On.Celeste.Level.LoadLevel += levelLoadLevelHook;
+            }
+
+            // ─── 5.5. Debug Mode Map Editor Hook ────────────────────────────────
+            // Hook Level.Update to handle F9 key press for opening enhanced map editor in debug mode
+            if (levelUpdateHook == null)
+            {
+                levelUpdateHook = new On.Celeste.Level.hook_Update(Hook_Level_Update);
+                On.Celeste.Level.Update += levelUpdateHook;
+            }
+
+            // ─── 6. Enhanced Map Editor with PCG Integration ─────────────────────
+            // Hook Celeste.Editor.MapEditor constructor to replace with EnhancedMapEditor
+            // NOTE: Disabled when ConditionHelper is loaded due to Scene.Begin() incompatibility
+            bool conditionHelperLoaded = Type.GetType("Celeste.Mod.ConditionHelper.ConditionHelperModule, ConditionHelper") != null;
+            if (conditionHelperLoaded)
+            {
+                Logger.Log(LogLevel.Warn, "MaggyHelper",
+                    "[MonoModHooks] ConditionHelper detected - Enhanced Map Editor disabled to avoid Scene.Begin() crash");
+            }
+            else
+            {
+                try
+                {
+                    Type mapEditorType = Type.GetType("Celeste.Editor.MapEditor, Celeste");
+                    if (mapEditorType != null)
+                    {
+                        ConstructorInfo mapEditorCtor = mapEditorType.GetConstructor(
+                            new[] { typeof(AreaKey), typeof(bool) });
+
+                        if (mapEditorCtor != null)
+                        {
+                            mapEditorCtorHook = new Hook(
+                                mapEditorCtor,
+                                typeof(MonoModHooks).GetMethod(
+                                    nameof(Hook_MapEditor_Ctor),
+                                    BindingFlags.Static | BindingFlags.NonPublic));
+
+                            Logger.Log(LogLevel.Info, "MaggyHelper",
+                                "[MonoModHooks] Hook on MapEditor constructor registered");
+                        }
+                        else
+                        {
+                            Logger.Log(LogLevel.Warn, "MaggyHelper",
+                                "[MonoModHooks] MapEditor constructor not found — skipping hook");
+                        }
+
+                        // Also hook the Update method to make F5 exit the vanilla editor
+                        MethodInfo mapEditorUpdate = mapEditorType.GetMethod(
+                            "Update",
+                            BindingFlags.Instance | BindingFlags.Public);
+
+                        if (mapEditorUpdate != null)
+                        {
+                            mapEditorUpdateHook = new Hook(
+                                mapEditorUpdate,
+                                typeof(MonoModHooks).GetMethod(
+                                    nameof(Hook_MapEditor_Update),
+                                    BindingFlags.Static | BindingFlags.NonPublic));
+
+                            Logger.Log(LogLevel.Info, "MaggyHelper",
+                                "[MonoModHooks] Hook on MapEditor.Update registered");
+                        }
+                        else
+                        {
+                            Logger.Log(LogLevel.Warn, "MaggyHelper",
+                                "[MonoModHooks] MapEditor.Update not found — skipping hook");
+                        }
+                    }
+                    else
+                    {
+                        Logger.Log(LogLevel.Warn, "MaggyHelper",
+                            "[MonoModHooks] MapEditor type not found — skipping hook");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Logger.Log(LogLevel.Warn, "MaggyHelper",
+                        $"[MonoModHooks] Failed to hook MapEditor: {ex.Message}");
+                }
+            }
+
+            // ─── 7. LevelTemplate Color Expansion ───────────────────────────────
+            // Hook LevelTemplate static constructor to expand color array from 7 to 24
+            try
+            {
+                Type levelTemplateType = Type.GetType("Celeste.Editor.LevelTemplate, Celeste");
+                if (levelTemplateType != null)
+                {
+                    ConstructorInfo levelTemplateCctor = levelTemplateType.GetConstructor(
+                        BindingFlags.Static | BindingFlags.NonPublic,
+                        null,
+                        Type.EmptyTypes,
+                        null);
+
+                    if (levelTemplateCctor != null)
+                    {
+                        levelTemplateCctorHook = new Hook(
+                            levelTemplateCctor,
+                            typeof(MonoModHooks).GetMethod(
+                                nameof(Hook_LevelTemplate_Cctor),
+                                BindingFlags.Static | BindingFlags.NonPublic));
+
+                        Logger.Log(LogLevel.Info, "MaggyHelper",
+                            "[MonoModHooks] Hook on LevelTemplate static constructor registered");
+                    }
+                    else
+                    {
+                        Logger.Log(LogLevel.Warn, "MaggyHelper",
+                            "[MonoModHooks] LevelTemplate static constructor not found — skipping hook");
+                    }
+                }
+                else
+                {
+                    Logger.Log(LogLevel.Warn, "MaggyHelper",
+                        "[MonoModHooks] LevelTemplate type not found — skipping hook");
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(LogLevel.Warn, "MaggyHelper",
+                    $"[MonoModHooks] Failed to hook LevelTemplate: {ex.Message}");
+            }
+
+            Logger.Log(LogLevel.Info, "MaggyHelper",
+                "[MonoModHooks] All advanced MonoMod hooks loaded");
+        }
+
+        /// <summary>
+        /// Call from <see cref="MaggyHelperModule.Unload"/> to clean up.
+        /// </summary>
+        public static void Unload()
+        {
+            // Remove IL hook
+            // IL.Celeste.Player.NormalUpdate -= IL_Player_NormalUpdate;
+
+            // Dispose manual hooks (this un-detours the methods)
+            dashBeginHook?.Dispose();
+            dashBeginHook = null;
+
+            wallJumpHook?.Dispose();
+            wallJumpHook = null;
+
+            // Remove entity name remapping hook
+            if (levelLoadLevelHook != null)
+                On.Celeste.Level.LoadLevel -= levelLoadLevelHook;
+            levelLoadLevelHook = null;
+
+            // Remove debug mode map editor hook
+            if (levelUpdateHook != null)
+                On.Celeste.Level.Update -= levelUpdateHook;
+            levelUpdateHook = null;
+
+            // Remove MapEditor hook
+            mapEditorCtorHook?.Dispose();
+            mapEditorCtorHook = null;
+
+            // Remove MapEditor.Update hook
+            mapEditorUpdateHook?.Dispose();
+            mapEditorUpdateHook = null;
+
+            // Remove LevelTemplate static constructor hook
+            levelTemplateCctorHook?.Dispose();
+            levelTemplateCctorHook = null;
+
+            // Remove OuiMapList guard
+            MapListExt.Unload();
+
+            // Remove dream-block swap hooks
+            DreamBlockPlayerSwapHooks.Unload();
+
+            Logger.Log(LogLevel.Info, "MaggyHelper",
+                "[MonoModHooks] All advanced MonoMod hooks unloaded");
+        }
+
+
+        // =====================================================================
+        //  1.  IL HOOK — Modify Player.NormalUpdate jump constant
+        // =====================================================================
+        //
+        //  HOW IT WORKS:
+        //  Celeste's Player.NormalUpdate loads a float constant for jump speed
+        //  (–105f). Our IL hook scans for that value and replaces it with a
+        //  softer value (–80f) when Kirby float mode is active. This is
+        //  *far* more surgical than an On.* hook — we don't need to duplicate
+        //  the entire NormalUpdate method, we just tweak one number.
+        //
+        // =====================================================================
+
+        /* Removed IL Hook as it was incorrect
+        private static void IL_Player_NormalUpdate(ILContext il)
+        {
+            // ...
+        }
+
+        private static float ModifyJumpSpeed(float originalSpeed)
+        {
+            // ...
+            return originalSpeed;
+        }
+        */
+
+
+        // =====================================================================
+        //  2.  MANUAL HOOK — Player.DashBegin (private method)
+        // =====================================================================
+        //
+        //  HOW IT WORKS:
+        //  On.Celeste.Player.DashBegin doesn't exist because the method is
+        //  private.  We use MonoMod's Hook class with reflection to intercept
+        //  it anyway.  The delegate signature must match:
+        //      orig(Player self)  →  our method(orig, Player self)
+        //
+        //  We use this to spawn copy-ability particle effects when Kirby dashes.
+        //
+        // =====================================================================
+
+        // Delegate matching the original method signature
+        private delegate void orig_DashBegin(Player self);
+
+        private static void Hook_Player_DashBegin(orig_DashBegin orig, Player self)
+        {
+            // Call original first (let the dash start normally)
+            orig(self);
+
+            try
+            {
+                var settings = MaggyHelperModule.Settings;
+                var session  = MaggyHelperModule.Session;
+
+                if (settings?.KirbyPlayerEnabled != true ||
+                    session == null ||
+                    session.CurrentCopyAbility == CopyAbilityType.None)
+                    return;
+
+                // Spawn themed particles based on Kirby's current copy ability
+                Color particleColor = GetAbilityColor(session.CurrentCopyAbility);
+
+                Level level = self.SceneAs<Level>();
+                if (level == null) return;
+
+                // Burst of colored particles at the player position
+                for (int i = 0; i < 8; i++)
+                {
+                    float angle = Calc.Random.NextFloat((float)Math.PI * 2f);
+                    float speed = 40f + Calc.Random.NextFloat(60f);
+
+                    level.Particles.Emit(
+                        ParticleTypes.Dust,
+                        self.Center + Calc.AngleToVector(angle, 4f),
+                        particleColor,
+                        angle);
+                }
+
+                if (settings.DebugMode)
+                {
+                    Logger.Log(LogLevel.Verbose, "MaggyHelper",
+                        $"[Hook] Dash particles spawned for ability: {session.CurrentCopyAbility}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(LogLevel.Warn, "MaggyHelper",
+                    $"[Hook] Error in DashBegin hook: {ex.Message}");
+            }
+        }
+
+
+        // =====================================================================
+        //  3.  MANUAL HOOK — Player.WallJump (private method)
+        // =====================================================================
+        //
+        //  Adjusts wall-jump force when Kirby has certain copy abilities.
+        //  For example, Wing gives extra horizontal boost; Stone reduces it.
+        //
+        // =====================================================================
+
+        private delegate void orig_WallJump(Player self, int dir);
+
+        private static void Hook_Player_WallJump(orig_WallJump orig, Player self, int dir)
+        {
+            // Call the original wall jump
+            orig(self, dir);
+
+            try
+            {
+                var settings = MaggyHelperModule.Settings;
+                var session  = MaggyHelperModule.Session;
+
+                if (settings?.KirbyPlayerEnabled != true ||
+                    session == null ||
+                    session.CurrentCopyAbility == CopyAbilityType.None)
+                    return;
+
+                switch (session.CurrentCopyAbility)
+                {
+                    case CopyAbilityType.Wing:
+                        // Wing ability: extra horizontal boost on wall jump
+                        self.Speed.X *= 1.25f;
+                        if (settings.DebugMode)
+                            Logger.Log(LogLevel.Verbose, "MaggyHelper",
+                                "[Hook] Wing wall-jump boost applied");
+                        break;
+
+                    case CopyAbilityType.Stone:
+                        // Stone ability: heavier, slower wall jump
+                        self.Speed.X *= 0.7f;
+                        self.Speed.Y *= 0.85f;
+                        if (settings.DebugMode)
+                            Logger.Log(LogLevel.Verbose, "MaggyHelper",
+                                "[Hook] Stone wall-jump weight applied");
+                        break;
+
+                    case CopyAbilityType.Wheel:
+                        // Wheel ability: much faster horizontal wall jump
+                        self.Speed.X *= 1.5f;
+                        if (settings.DebugMode)
+                            Logger.Log(LogLevel.Verbose, "MaggyHelper",
+                                "[Hook] Wheel wall-jump speed boost applied");
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(LogLevel.Warn, "MaggyHelper",
+                    $"[Hook] Error in WallJump hook: {ex.Message}");
+            }
+        }
+
+
+        // =====================================================================
+        //  4.  ENTITY NAME REMAPPING — Legacy Kirby player entity normalization
+        // =====================================================================
+        //
+        //  HOW IT WORKS:
+        //  Older map files can contain custom player entities from the now-
+        //  retired second-player architecture. This hook rewrites only those
+        //  legacy IDs to the room-local KirbyPlayerSpawner before the room loads.
+        //
+        //  This preserves backwards compatibility while keeping the real
+        //  global::Celeste.Player authoritative in-game.
+        //
+        // =====================================================================
+
+        private static void Hook_Level_LoadLevel(On.Celeste.Level.orig_LoadLevel orig, Level self,
+            global::Celeste.Player.IntroTypes playerIntro, bool isFromLoader)
+        {
+            try
+            {
+                // Scan only the current level being loaded for player entities
+                if (self.Session?.LevelData?.Entities is List<EntityData> entities)
+                {
+                    foreach (var entityData in entities)
+                    {
+                        if (entityData?.Name != null)
+                        {
+                            string lowerName = entityData.Name.ToLowerInvariant();
+
+                            if (lowerName == "maggyhelper/player" ||
+                                lowerName == "maggyhelper/kirbyplayer" ||
+                                lowerName == "maggyhelperp/layer")
+                            {
+                                Logger.Log(LogLevel.Info, "MaggyHelper",
+                                    $"[EntityRemapper] Remapping legacy entity '{entityData.Name}' → 'MaggyHelper/KirbyPlayerSpawner'");
+                                entityData.Name = "MaggyHelper/KirbyPlayerSpawner";
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(LogLevel.Warn, "MaggyHelper",
+                    $"[EntityRemapper] Error in entity remapping hook: {ex.Message}\n{ex.StackTrace}");
+            }
+
+            // Call the original LoadLevel
+            orig(self, playerIntro, isFromLoader);
+
+            try
+            {
+                self.Tracker.GetEntity<global::Celeste.Player>()?.RestorePersistentState();
+                KirbyPlayerSpawner.EnsureRoomState(self);
+
+                // Add InGameMapEditor entity if not already present
+                if (self.Entities.FindFirst<InGameMapEditor>() == null)
+                {
+                    self.Add(new InGameMapEditor());
+                    Logger.Log(LogLevel.Info, "MaggyHelper", "[InGameMapEditor] Added to level");
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(LogLevel.Warn, "MaggyHelper",
+                    $"[PlayerState] Error restoring persistent player state: {ex.Message}\n{ex.StackTrace}");
+            }
+        }
+
+        private static void Hook_Level_Update(On.Celeste.Level.orig_Update orig, Level self)
+        {
+            // Call the original Update first
+            orig(self);
+
+            var settings = MaggyHelperModule.Settings;
+
+            // Check if debug mode is enabled and F9 key is pressed
+            if (settings?.DebugMode == true && settings.DebugMapEditor.Pressed)
+            {
+                // Open the enhanced map editor
+                if (self.Session != null)
+                {
+                    Engine.Scene = new Editor.EnhancedMapEditor(self.Session.Area);
+                    Logger.Log(LogLevel.Info, "MaggyHelper", "[DebugMapEditor] Enhanced map editor opened via F9");
+                }
+            }
+
+            // Check if F10 key is pressed to toggle in-game map editor
+            if (settings.InGameMapEditor.Pressed == true)
+            {
+                var inGameEditor = self.Entities.FindFirst<InGameMapEditor>();
+                if (inGameEditor != null)
+                {
+                    inGameEditor.Toggle();
+                    Logger.Log(LogLevel.Info, "MaggyHelper", "[InGameMapEditor] Toggled via F10");
+                }
+            }
+        }
+
+
+        // =====================================================================
+        //  Helpers
+        // =====================================================================
+
+        /// <summary>
+        /// Maps a copy ability to its signature particle color.
+        /// </summary>
+        private static Color GetAbilityColor(CopyAbilityType ability)
+        {
+            return ability switch
+            {
+                CopyAbilityType.Fire    => Color.OrangeRed,
+                CopyAbilityType.Ice     => Color.LightCyan,
+                CopyAbilityType.Spark   => Color.Yellow,
+                CopyAbilityType.Sword   => Color.Silver,
+                CopyAbilityType.Cutter  => Color.Gold,
+                CopyAbilityType.Beam    => Color.Cyan,
+                CopyAbilityType.Stone   => Color.SaddleBrown,
+                CopyAbilityType.Needle  => Color.White,
+                CopyAbilityType.Parasol => Color.LightPink,
+                CopyAbilityType.Wheel   => Color.Red,
+                CopyAbilityType.Bomb    => Color.DarkGray,
+                CopyAbilityType.Fighter => Color.Orange,
+                CopyAbilityType.Suplex  => Color.DarkRed,
+                CopyAbilityType.Ninja   => Color.Purple,
+                CopyAbilityType.Mirror  => Color.LightGoldenrodYellow,
+                CopyAbilityType.Hammer  => Color.Brown,
+                CopyAbilityType.Wing    => Color.LightSkyBlue,
+                CopyAbilityType.UFO     => Color.LimeGreen,
+                CopyAbilityType.Sleep   => Color.LavenderBlush,
+                _                       => Color.White,
+            };
+        }
+
+
+        // =====================================================================
+        //  6.  ENHANCED MAP EDITOR HOOK — Replace original MapEditor
+        // =====================================================================
+        //
+        //  HOW IT WORKS:
+        //  When the game tries to create a MapEditor (debug map view), we
+        //  intercept the constructor and create an EnhancedMapEditor instead.
+        //  This adds PCG (Procedural Content Generation) capabilities via
+        //  the loenn-mcp integration.
+        //
+        // =====================================================================
+
+        private delegate void orig_MapEditorCtor(object self, AreaKey area, bool reloadMapData);
+
+        private static void Hook_MapEditor_Ctor(orig_MapEditorCtor orig, object self, AreaKey area, bool reloadMapData)
+        {
+            try
+            {
+                Logger.Log(LogLevel.Info, "MaggyHelper",
+                    "[MapEditorHook] Intercepting MapEditor creation, redirecting to EnhancedMapEditor");
+
+                // Create the enhanced map editor instead using reflection to avoid namespace issues
+                Type enhancedEditorType = Type.GetType("Celeste.Editor.EnhancedMapEditor, MaggyHelper");
+                if (enhancedEditorType != null)
+                {
+                    var enhancedEditor = Activator.CreateInstance(enhancedEditorType, area, reloadMapData) as Scene;
+                    if (enhancedEditor != null)
+                    {
+                        Engine.Scene = enhancedEditor;
+                        Logger.Log(LogLevel.Info, "MaggyHelper",
+                            "[MapEditorHook] EnhancedMapEditor created successfully");
+                        return;
+                    }
+                }
+
+                // Fallback if type not found or creation failed
+                Logger.Log(LogLevel.Warn, "MaggyHelper",
+                    "[MapEditorHook] EnhancedMapEditor type not found, using original");
+                orig(self, area, reloadMapData);
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(LogLevel.Error, "MaggyHelper",
+                    $"[MapEditorHook] Failed to create EnhancedMapEditor: {ex.Message}\n{ex.StackTrace}");
+
+                // Fallback to original if enhanced fails
+                orig(self, area, reloadMapData);
+            }
+        }
+
+        private delegate void orig_MapEditorUpdate(object self);
+
+        private static void Hook_MapEditor_Update(orig_MapEditorUpdate orig, object self)
+        {
+            // Check for F5 press to exit the vanilla map editor
+            if (MInput.Keyboard.Pressed(Microsoft.Xna.Framework.Input.Keys.F5))
+            {
+                try
+                {
+                    // Try to get the current session from the map editor
+                    Type mapEditorType = self.GetType();
+                    var currentSessionField = mapEditorType.GetField("CurrentSession", 
+                        BindingFlags.Instance | BindingFlags.NonPublic);
+                    
+                    if (currentSessionField != null)
+                    {
+                        var session = currentSessionField.GetValue(self) as Session;
+                        if (session != null)
+                        {
+                            Logger.Log(LogLevel.Info, "MaggyHelper",
+                                "[MapEditorHook] F5 pressed, exiting vanilla map editor");
+                            Engine.Scene = new LevelLoader(session);
+                            return;
+                        }
+                    }
+                    
+                    // If no session, try to exit to overworld
+                    Logger.Log(LogLevel.Info, "MaggyHelper",
+                        "[MapEditorHook] F5 pressed, exiting to overworld");
+                    Engine.Scene = new OverworldLoader(Overworld.StartMode.MainMenu);
+                    return;
+                }
+                catch (Exception ex)
+                {
+                    Logger.Log(LogLevel.Warn, "MaggyHelper",
+                        $"[MapEditorHook] Failed to exit on F5: {ex.Message}");
+                }
+            }
+
+            // Call original update
+            orig(self);
+        }
+
+        // =====================================================================
+        //  7.  LEVEL TEMPLATE COLOR EXPANSION — 24 colors instead of 7
+        // =====================================================================
+        //
+        //  HOW IT WORKS:
+        //  Hooks the LevelTemplate static constructor to expand the fgTilesColor
+        //  array from 7 colors to 24 colors, allowing for more room color options.
+        //
+        // =====================================================================
+
+        private delegate void orig_LevelTemplateCctor();
+
+        private static void Hook_LevelTemplate_Cctor(orig_LevelTemplateCctor orig)
+        {
+            // Call original static constructor first
+            orig();
+
+            try
+            {
+                // Get the fgTilesColor field and expand it
+                Type levelTemplateType = Type.GetType("Celeste.Editor.LevelTemplate, Celeste");
+                if (levelTemplateType != null)
+                {
+                    var fgTilesColorField = levelTemplateType.GetField("fgTilesColor", 
+                        BindingFlags.Static | BindingFlags.NonPublic);
+                    
+                    if (fgTilesColorField != null)
+                    {
+                        // Get the original 7-color array
+                        var originalColors = fgTilesColorField.GetValue(null) as Color[];
+                        if (originalColors != null && originalColors.Length == 7)
+                        {
+                            // Create expanded 24-color array
+                            Color[] expandedColors = new Color[24];
+                            Array.Copy(originalColors, expandedColors, 7);
+                            
+                            // Add additional colors (indices 7-9)
+                            expandedColors[7] = Calc.HexToColor("ff8c00");
+                            expandedColors[8] = Calc.HexToColor("ffd700");
+                            expandedColors[9] = Calc.HexToColor("00ff7f");
+                            
+                            // Shift + D1-D9 colors (indices 10-18)
+                            expandedColors[10] = Calc.HexToColor("ff6347");
+                            expandedColors[11] = Calc.HexToColor("ff4500");
+                            expandedColors[12] = Calc.HexToColor("dc143c");
+                            expandedColors[13] = Calc.HexToColor("b22222");
+                            expandedColors[14] = Calc.HexToColor("8b0000");
+                            expandedColors[15] = Calc.HexToColor("ff1493");
+                            expandedColors[16] = Calc.HexToColor("ff69b4");
+                            expandedColors[17] = Calc.HexToColor("db7093");
+                            expandedColors[18] = Calc.HexToColor("c71585");
+                            
+                            // Shift + D0 color (index 19)
+                            expandedColors[19] = Calc.HexToColor("ff00ff");
+                            
+                            // Ctrl + D1-D5 colors (indices 20-24)
+                            expandedColors[20] = Calc.HexToColor("9400d3");
+                            expandedColors[21] = Calc.HexToColor("8a2be2");
+                            expandedColors[22] = Calc.HexToColor("7b68ee");
+                            expandedColors[23] = Calc.HexToColor("6a5acd");
+                            
+                            // Set the expanded array back
+                            fgTilesColorField.SetValue(null, expandedColors);
+                            
+                            Logger.Log(LogLevel.Info, "MaggyHelper",
+                                "[LevelTemplateHook] Expanded fgTilesColor from 7 to 24 colors");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(LogLevel.Warn, "MaggyHelper",
+                    $"[LevelTemplateHook] Failed to expand color array: {ex.Message}");
+            }
+        }
+    }
+}

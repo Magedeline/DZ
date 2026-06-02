@@ -1,0 +1,7 @@
+PLACEHOLDER: Portrait assets for character 'KING_DEDEDE'
+Required expressions: agreeing, angry, anguished, concerned, confused, crying_happy, curious, defensive, determined, distressed, emotional, grateful, groggy, hopeful, normal, overjoyed, sad, serious, worried
+
+Add PNG files in format: {expression}{frame}.png
+Example: normal00.png, angry01.png, happy02.png
+
+Each expression typically needs 1-12 frames for animation.

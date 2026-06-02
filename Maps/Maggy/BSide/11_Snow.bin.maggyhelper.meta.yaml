@@ -1,0 +1,8 @@
+﻿schema: maggyhelper-map-meta-v1
+sid: Maggy/BSide/11_Snow
+baseKey: 11_Snow
+side: B
+modeIndex: 1
+isMainChapterEntry: false
+mainChapterSid: Maggy/ASide/11_Snow
+showInChapterSelect: false

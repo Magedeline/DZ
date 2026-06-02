@@ -1,0 +1,201 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <AssemblyName>KIRBY_CELESTE</AssemblyName>
+        <RootNamespace>Celeste.Mod.KIRBY_CELESTE</RootNamespace>
+        <LangVersion>latest</LangVersion>
+        <Features>preview</Features>
+        <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+        <CelestePrefix Condition="'$(CelestePrefix)' == '' And Exists('..\..\..\Celeste.dll')">..\..\..</CelestePrefix>
+        <CelestePrefix Condition="'$(CelestePrefix)' == ''">lib-stripped</CelestePrefix>
+        <CelesteAssemblyPath Condition="'$(CelesteAssemblyPath)' == '' And Exists('$(CelestePrefix)\Celeste.dll')">$(CelestePrefix)\Celeste.dll</CelesteAssemblyPath>
+        <CelesteAssemblyPath Condition="'$(CelesteAssemblyPath)' == '' And Exists('$(CelestePrefix)\Celeste-nstrip.exe')">$(CelestePrefix)\Celeste-nstrip.exe</CelesteAssemblyPath>
+        <CelesteAssemblyPath Condition="'$(CelesteAssemblyPath)' == ''">$(CelestePrefix)\Celeste.dll</CelesteAssemblyPath>
+        <!-- Split zip file sets for release packaging -->
+        <ZipFiles_Code>..\everest.yaml;..\bin\**\*.*;..\Graphics\**\*.*;..\Loenn\**\*.*;..\Ahorn\**\*.*</ZipFiles_Code>
+        <ZipFiles_Audio>..\Audio\**\*.*</ZipFiles_Audio>
+        <ZipFiles_Maps>..\Maps\**\*.*;..\Dialog\**\*.*;..\Tutorials\**\*.*;..\Graphics\AnimatedTiles.xml;..\Graphics\BackgroundTiles.xml;..\Graphics\ForegroundTiles.xml;..\DecalRegistry.xml</ZipFiles_Maps>
+        <NoWarn>NU1701;CS0414;CS0649;CS0169;CS0618</NoWarn>
+        <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    </PropertyGroup>
+
+    <!--Disable copy-local for direct assembly references only. Package runtime assets are needed by Everest at load time. -->
+    <ItemDefinitionGroup>
+        <Reference Private="false" />
+    </ItemDefinitionGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Monocle" Version="0.9.4.5" />
+        <PackageReference Include="MonoGame.Extended" Version="5.5.0" />
+        <PackageReference Include="MonoMod.Backports" Version="1.1.2" />
+        <PackageReference Include="MonoMod.Core" Version="1.3.4" />
+        <PackageReference Include="MonoMod.ILHelpers" Version="1.1.0" />
+        <PackageReference Include="MonoMod.Patcher" Version="25.0.1" />
+        <PackageReference Include="MonoMod.RuntimeDetour" Version="25.0.2" />
+        <PackageReference Include="MonoMod.Utils" Version="25.0.12" />
+        <PackageReference Include="Mono.Cecil" Version="0.11.6" />
+        <PackageReference Include="CelesteAnalyzer" Version="*" />
+        <PackageReference Include="YamlDotNet" Version="16.3.0" />
+        <!-- Physics2D: pure C# Box2D port, no native deps -->
+        <PackageReference Include="nkast.Aether.Physics2D" Version="2.0.0" />
+        <!-- ImGui.NET: Dear ImGui wrapper; ships cimgui.dll native binary -->
+        <PackageReference Include="ImGui.NET" Version="1.91.6.1" />
+        <!-- Obfuscar: C# obfuscator for Release builds (renaming, string encryption) -->
+        <PackageReference Include="Obfuscar" Version="2.2.40" PrivateAssets="all" ExcludeAssets="runtime" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <!-- Obfuscar configuration for Release obfuscation -->
+        <None Include="..\obfuscar.xml" Condition="Exists('..\obfuscar.xml')">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Include="$(CelesteAssemblyPath)" Link="Celeste.dll" Condition="Exists('$(CelesteAssemblyPath)')" />
+        <None Include="..\bin\KIRBY_CELESTE.dll" Link="KIRBY_CELESTE.dll" />
+        <PackageReference Include="CelesteMod.Publicizer" Version="1.1.2" CelesteAssembly="$(CelesteAssemblyPath)" />
+        <Reference Include="$(CelestePrefix)\MMHOOK_Celeste.dll" Private="false" />
+        <Reference Include="$(CelestePrefix)\FNA.dll" Private="false" />
+        <!-- Spine MonoGame/FNA runtime (source-only, built from Libs/SpineMonoGame) -->
+        <ProjectReference Include="..\Libs\SpineMonoGame\SpineMonoGame.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Include="**\*.cs" Exclude="obj\**\*.cs" />
+    </ItemGroup>
+
+    <Target Name="CopyFiles" AfterTargets="Build">
+        <ItemGroup>
+            <FilesToCopy Include="$(OutputPath)\$(AssemblyName).dll" />
+            <FilesToCopy Include="$(OutputPath)\$(AssemblyName).pdb" />
+            <FilesToCopy Include="lib-stripped\KIRBY_CELESTE.xml" Condition="Exists('lib-stripped\KIRBY_CELESTE.xml')" />
+            <FilesToCopy Include="@(ReferenceCopyLocalPaths)" Condition="'%(Filename)' == 'YamlDotNet' Or '%(Filename)' == 'Mono.Cecil' Or '%(Filename)' == 'Mono.Cecil.Mdb' Or '%(Filename)' == 'Mono.Cecil.Pdb' Or '%(Filename)' == 'Mono.Cecil.Rocks' Or '%(Filename)' == 'MonoMod.RuntimeDetour' Or '%(Filename)' == 'MonoMod.Utils' Or '%(Filename)' == 'MonoMod.Backports' Or '%(Filename)' == 'MonoMod.Core' Or '%(Filename)' == 'MonoMod.ILHelpers' Or '%(Filename)' == 'MonoMod.Iced' Or '%(Filename)' == 'Aether.Physics2D' Or '%(Filename)' == 'ImGui.NET' Or '%(Filename)' == 'SpineMonoGame'" />
+            <!-- Copy native cimgui.dll (ImGui.NET dependency) to bin -->
+            <FilesToCopy Include="$(OutputPath)cimgui.dll" Condition="Exists('$(OutputPath)cimgui.dll')" />
+        </ItemGroup>
+
+        <Copy SourceFiles="@(FilesToCopy)" DestinationFolder="..\bin" SkipUnchangedFiles="true" />
+    </Target>
+
+    <!-- Security: Obfuscate Release builds -->
+    <Target Name="Obfuscate" AfterTargets="CopyFiles" Condition="'$(Configuration)' == 'Release' And Exists('$(ObfuscarToolsPath)..\..\obfuscar.xml')">
+        <PropertyGroup>
+            <ObfuscarPath>$(NuGetPackageRoot)\obfuscar\2.2.40\tools\Obfuscar.Console.exe</ObfuscarPath>
+            <ObfuscarInPath>$(OutputPath)</ObfuscarInPath>
+            <ObfuscarOutPath>$(OutputPath)obfuscated</ObfuscarOutPath>
+        </PropertyGroup>
+        
+        <Message Text="[Security] Running Obfuscar obfuscation..." Importance="high" />
+        
+        <!-- Create obfuscated output directory -->
+        <MakeDir Directories="$(ObfuscarOutPath)" />
+        
+        <!-- Copy original assembly for backup -->
+        <Copy SourceFiles="$(OutputPath)$(AssemblyName).dll" DestinationFiles="$(ObfuscarOutPath)\$(AssemblyName).original.dll" SkipUnchangedFiles="true" />
+        
+        <!-- Run Obfuscar with configuration -->
+        <Exec Command="$(ObfuscarPath) ..\obfuscar.xml" WorkingDirectory="$(ProjectDir)" ContinueOnError="false">
+            <Output TaskParameter="ExitCode" PropertyName="ObfuscarExitCode" />
+        </Exec>
+        
+        <Message Text="[Security] Obfuscation complete. Exit code: $(ObfuscarExitCode)" Importance="high" />
+        
+        <!-- Copy obfuscated DLL back to output -->
+        <Copy SourceFiles="$(ObfuscarOutPath)\$(AssemblyName).dll" DestinationFiles="$(OutputPath)$(AssemblyName).dll" OverwriteReadOnlyFiles="true" />
+        
+        <!-- Clean up temp files -->
+        <RemoveDir Directories="$(ObfuscarOutPath)" />
+    </Target>
+
+    <!-- Security: Strip PDB symbols from Release builds -->
+    <Target Name="StripDebugSymbols" AfterTargets="Obfuscate" Condition="'$(Configuration)' == 'Release'">
+        <Message Text="[Security] Stripping debug symbols (PDB)..." Importance="high" />
+        <Delete Files="$(OutputPath)$(AssemblyName).pdb" Condition="Exists('$(OutputPath)$(AssemblyName).pdb')" />
+        <Delete Files="..\bin\$(AssemblyName).pdb" Condition="Exists('..\bin\$(AssemblyName).pdb')" />
+        <Message Text="[Security] Debug symbols removed from Release." Importance="high" />
+    </Target>
+
+    <!-- Part 1: Code + Assets (everest.yaml, bin, Graphics, Loenn) -->
+    <Target Name="PackageMod_Code" AfterTargets="StripDebugSymbols" Condition="'$(Configuration)' == 'Release'">
+        <ItemGroup>
+            <FilesToPackage_Code Include="$(ZipFiles_Code)" />
+        </ItemGroup>
+        <PackageMod Files="@(FilesToPackage_Code)" OutputPath="..\KIRBY_CELESTE_Code.zip" />
+        <Message Text="[Package] KIRBY_CELESTE_Code.zip written." Importance="high" />
+    </Target>
+
+    <!-- Part 2: Audio banks (user sets A/B/C/Final DLC banks manually) -->
+    <Target Name="PackageMod_Audio" AfterTargets="PackageMod_Code" Condition="'$(Configuration)' == 'Release'">
+        <ItemGroup>
+            <FilesToPackage_Audio Include="$(ZipFiles_Audio)" />
+        </ItemGroup>
+        <PackageMod Files="@(FilesToPackage_Audio)" OutputPath="..\KIRBY_CELESTE_Audio.zip" />
+        <Message Text="[Package] KIRBY_CELESTE_Audio.zip written." Importance="high" />
+    </Target>
+
+    <!-- Part 3: Maps, Dialog, Tutorials, tile XMLs, DecalRegistry -->
+    <Target Name="PackageMod_Maps" AfterTargets="PackageMod_Audio" Condition="'$(Configuration)' == 'Release'">
+        <ItemGroup>
+            <FilesToPackage_Maps Include="$(ZipFiles_Maps)" />
+        </ItemGroup>
+        <PackageMod Files="@(FilesToPackage_Maps)" OutputPath="..\KIRBY_CELESTE_MapsDialog.zip" />
+        <Message Text="[Package] KIRBY_CELESTE_MapsDialog.zip written." Importance="high" />
+    </Target>
+    
+    <PropertyGroup>
+        <PathMap>$(MSBuildProjectDirectory)=KIRBY_CELESTE/</PathMap>
+    </PropertyGroup>
+
+    <!-- Inline task used to create a .zip for the mod -->
+    <UsingTask TaskName="PackageMod" TaskFactory="RoslynCodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+        <ParameterGroup>
+            <Files ParameterType="Microsoft.Build.Framework.ITaskItem[]" Required="true" />
+            <OutputPath ParameterType="System.String" Required="true" />
+        </ParameterGroup>
+        <Task>
+            <Using Namespace="System.IO" />
+            <Using Namespace="System.IO.Compression" />
+            <Code Type="Fragment" Language="cs">
+            <![CDATA[
+                var projectDir = Path.Combine(@"$(ProjectDir)", ".."); // Go one level up, since we're inside the 'Source' directory
+                projectDir = Uri.UnescapeDataString(projectDir);
+            
+                if (File.Exists(OutputPath))
+                    File.Delete(OutputPath);
+
+                using (ZipArchive zip = ZipFile.Open(OutputPath, ZipArchiveMode.Create))
+                {
+                    foreach (var file in Files)
+                    {
+                        string filePath = file.GetMetadata("FullPath");
+                        string entryName = GetRelativePath(projectDir, filePath);
+                        
+                        zip.CreateEntryFromFile(filePath, entryName);
+                    }
+                }
+    
+                string GetRelativePath(string fromPath, string toPath)
+                {
+                    if (string.IsNullOrEmpty(fromPath)) throw new ArgumentNullException(nameof(fromPath));
+                    if (string.IsNullOrEmpty(toPath))   throw new ArgumentNullException(nameof(toPath));
+                
+                    Uri fromUri = new Uri(fromPath);
+                    Uri toUri = new Uri(toPath);
+                
+                    if (fromUri.Scheme != toUri.Scheme) { return toPath; } // path can't be made relative.
+                
+                    Uri relativeUri = fromUri.MakeRelativeUri(toUri);
+                    string relativePath = Uri.UnescapeDataString(relativeUri.ToString());
+                
+                    if (toUri.Scheme.Equals("file", StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        relativePath = relativePath.Replace(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+                    }
+                
+                    return relativePath;
+                }
+            ]]>
+            </Code>
+        </Task>
+    </UsingTask>
+
+</Project>

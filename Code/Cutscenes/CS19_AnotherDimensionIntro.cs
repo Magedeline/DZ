@@ -1,0 +1,193 @@
+// Decompiled with JetBrains decompiler
+// Type: Celeste.CS10_MoonIntro
+// Assembly: Celeste, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: FAF6CA25-5C06-43EB-A08F-9CCF291FE6A3
+// Assembly location: C:\Users\User\OneDrive\Desktop\Celeste!\Celeste\Celeste.exe
+
+#nullable disable
+using Celeste.Entities;
+using BirdNPC = Celeste.Entities.BirdNPC;
+using System.Collections.Generic;
+
+namespace Celeste.Cutscenes
+{
+  public class CS19_AnotherDimensionIntro : CutsceneEntity
+  {
+    public const string FLAG = "another_dimension_intro";
+    private global::Celeste.Player player;
+    private CharaDummy chara;
+    private readonly List<CharaDummy> monsterKinds = new List<CharaDummy>();
+    private BirdNPC bird;
+    private float fade = 1f;
+    private float targetX;
+
+    public CS19_AnotherDimensionIntro(global::Celeste.Player player)
+      : base()
+    {
+      this.Depth = -8500;
+      this.player = player;
+      this.targetX = player.CameraTarget.X + 8f;
+    }
+
+    public override void OnBegin(Level level)
+    {
+      this.bird = this.Scene.Entities.FindFirst<BirdNPC>();
+      this.player.StateMachine.State = Player.StDummy;
+      if (level.Wipe != null)
+        level.Wipe.Cancel();
+      level.Wipe = (ScreenWipe) new FadeWipe((Scene) level, true);
+      this.Add((Component) new Coroutine(this.cutscene(level)));
+    }
+
+    private IEnumerator cutscene(Level level)
+    {
+      CS19_AnotherDimensionIntro cs10MoonIntro = this;
+      cs10MoonIntro.player.StateMachine.State = Player.StDummy;
+      cs10MoonIntro.player.Visible = false;
+      cs10MoonIntro.player.Active = false;
+      cs10MoonIntro.player.Dashes = 2;
+      for (float t = 0.0f; (double) t < 1.0; t += Engine.DeltaTime / 0.9f)
+      {
+        level.Wipe.Percent = 0.0f;
+        yield return (object) null;
+      }
+      cs10MoonIntro.Add((Component) new Coroutine(cs10MoonIntro.fadeIn(5f)));
+      level.Camera.Position = level.LevelOffset + new Vector2(-100f, 0.0f);
+      yield return (object) CutsceneEntity.CameraTo(new Vector2(cs10MoonIntro.targetX, level.Camera.Y), 6f, Ease.SineOut);
+      level.Camera.Position = new Vector2(cs10MoonIntro.targetX, level.Camera.Y);
+      if (cs10MoonIntro.bird != null)
+      {
+        yield return (object) cs10MoonIntro.bird.StartleAndFlyAway();
+        level.Session.DoNotLoad.Add(cs10MoonIntro.bird.EntityID);
+        cs10MoonIntro.bird = (BirdNPC) null;
+      }
+      yield return (object) 0.5f;
+      cs10MoonIntro.player.Speed = Vector2.Zero;
+      cs10MoonIntro.player.Position = level.GetSpawnPoint(cs10MoonIntro.player.Position);
+      cs10MoonIntro.player.Active = true;
+      cs10MoonIntro.player.StateMachine.State = 23;
+      while ((double) cs10MoonIntro.player.Top > (double) level.Bounds.Bottom)
+        yield return (object) null;
+      yield return (object) 0.2f;
+      Audio.Play("event:/new_content/char/madeline/screenentry_lowgrav", cs10MoonIntro.player.Position);
+      while (cs10MoonIntro.player.StateMachine.State == 23)
+        yield return (object) null;
+      cs10MoonIntro.player.X = (float) (int) cs10MoonIntro.player.X;
+      cs10MoonIntro.player.Y = (float) (int) cs10MoonIntro.player.Y;
+      while (!cs10MoonIntro.player.OnGround() && (double) cs10MoonIntro.player.Bottom < (double) level.Bounds.Bottom)
+        cs10MoonIntro.player.MoveVExact(16);
+      cs10MoonIntro.player.StateMachine.State = Player.StDummy;
+      yield return (object) 0.5f;
+      yield return (object) cs10MoonIntro.charaAppears();
+      yield return (object) Textbox.Say("CH19_SPACE_INTRO", new Func<IEnumerator>(cs10MoonIntro.charaTurns), new Func<IEnumerator>(cs10MoonIntro.charaVanishes));
+      cs10MoonIntro.EndCutscene(level);
+    }
+
+    private IEnumerator charaTurns()
+    {
+      CS19_AnotherDimensionIntro cs10MoonIntro = this;
+      yield return (object) 0.1f;
+      if (cs10MoonIntro.chara == null || cs10MoonIntro.chara.Sprite == null)
+        yield break;
+      int target = Math.Sign(cs10MoonIntro.chara.Sprite.Scale.X) * -1;
+      Wiggler wiggler = Wiggler.Create(0.5f, 3f, (Action<float>) (v => this.chara.Sprite.Scale = new Vector2((float) target, 1f) * (float) (1.0 + 0.20000000298023224 * (double) v)), true, true);
+      cs10MoonIntro.Add((Component) wiggler);
+      Audio.Play(target < 0 ? "event:/char/badeline/jump_wall_left" : "event:/char/badeline/jump_wall_left", cs10MoonIntro.chara.Position);
+      yield return (object) 0.6f;
+    }
+
+    private IEnumerable charaAppears()
+    {
+      CS19_AnotherDimensionIntro cs10MoonIntro = this;
+      cs10MoonIntro.Level.Session.Inventory.Dashes = 1;
+      cs10MoonIntro.player.Dashes = 1;
+      Vector2 basePos = cs10MoonIntro.player.Position;
+      cs10MoonIntro.Level.Add((Entity) (cs10MoonIntro.chara = new CharaDummy(basePos + new Vector2(-20f, -8f))));
+
+      Vector2[] monsterOffsets = new Vector2[3]
+      {
+        new Vector2(-56f, -8f),
+        new Vector2(-84f, -8f),
+        new Vector2(16f, -8f)
+      };
+
+      foreach (Vector2 offset in monsterOffsets)
+      {
+        CharaDummy monster = new CharaDummy(basePos + offset);
+        cs10MoonIntro.monsterKinds.Add(monster);
+        cs10MoonIntro.Level.Add((Entity) monster);
+      }
+
+      cs10MoonIntro.Level.Displacement.AddBurst(cs10MoonIntro.player.Center, 0.5f, 8f, 32f, 0.5f);
+      Audio.Play("event:/char/badeline/maddy_split", cs10MoonIntro.player.Position);
+      cs10MoonIntro.chara.Sprite.Scale.X = 1f;
+      foreach (CharaDummy monster in cs10MoonIntro.monsterKinds)
+      {
+        if (monster?.Sprite != null)
+          monster.Sprite.Scale.X = 1f;
+      }
+      cs10MoonIntro.player.Facing = Facings.Left;
+      yield return (object) null;
+    }
+
+    private IEnumerator charaVanishes()
+    {
+      yield return (object) 0.5f;
+      this.chara?.Vanish();
+      foreach (CharaDummy monster in this.monsterKinds)
+        monster?.Vanish();
+      Input.Rumble(RumbleStrength.Medium, RumbleLength.Medium);
+      this.chara = (CharaDummy) null;
+      this.monsterKinds.Clear();
+      yield return (object) 0.8f;
+      this.player.Facing = Facings.Right;
+      yield return (object) 0.6f;
+    }
+
+    private IEnumerator fadeIn(float duration)
+    {
+      while ((double) this.fade > 0.0)
+      {
+        this.fade = Calc.Approach(this.fade, 0.0f, Engine.DeltaTime / duration);
+        yield return (object) null;
+      }
+    }
+
+    public override void OnEnd(Level level)
+    {
+      level.Session.Inventory.Dashes = 1;
+      this.player.Dashes = 1;
+      this.player.Depth = 0;
+      this.player.Speed = Vector2.Zero;
+      this.player.Position = level.GetSpawnPoint(this.player.Position) + new Vector2(0.0f, -32f);
+      this.player.Active = true;
+      this.player.Visible = true;
+      this.player.StateMachine.State = Player.StNormal;
+      this.player.X = (float) (int) this.player.X;
+      this.player.Y = (float) (int) this.player.Y;
+      while (!this.player.OnGround() && (double) this.player.Bottom < (double) level.Bounds.Bottom)
+        this.player.MoveVExact(16);
+      if (this.chara != null)
+        this.chara.RemoveSelf();
+      foreach (CharaDummy monster in this.monsterKinds)
+      {
+        if (monster != null)
+          monster.RemoveSelf();
+      }
+      this.monsterKinds.Clear();
+      if (this.bird != null)
+      {
+        this.bird.RemoveSelf();
+        level.Session.DoNotLoad.Add(this.bird.EntityID);
+      }
+      level.Camera.Position = new Vector2(this.targetX, level.Camera.Y);
+      level.Session.SetFlag("another_dimension_intro");
+    }
+
+    public override void Render()
+    {
+      Camera camera = (this.Scene as Level).Camera;
+      Draw.Rect(camera.X - 10f, camera.Y - 10f, 340f, 200f, Color.Black * this.fade);
+    }
+  }
+}

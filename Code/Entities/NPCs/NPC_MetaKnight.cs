@@ -38,7 +38,7 @@ namespace Celeste.NPCs
                 {
                     // Corrupted Meta Knight - darker, more mechanical look
                     sprite.Color = Color.DarkBlue;
-                    cutsceneId = "CH13_METAMINATOR_KNIGHT_INTRO";
+                    cutsceneId = "MAGGYHELPER_CH13_METAMINATOR_KNIGHT_INTRO";
                 }
                 else
                 {
@@ -105,7 +105,7 @@ namespace Celeste.NPCs
             {
                 // Normal Meta Knight dialogue
                 // MultiCharacterCutscene doesn't exist
-                // Scene.Add(new MultiCharacterCutscene(player, "CH13_META_KNIGHT_NORMAL"));
+                // Scene.Add(new MultiCharacterCutscene(player, "MAGGYHELPER_CH13_META_KNIGHT_NORMAL"));
             }
 
             isInteracting = false;

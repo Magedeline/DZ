@@ -33,7 +33,7 @@ for i, variant in ipairs(variants) do
         name = variant,
         data = {
             type = variant,
-            musicEvent = "event:/pusheen/music/lvl5/clean",
+            musicEvent = "event:/music/pusheen/lvl5/clean",
             absorbCutsceneSound = "event:/game/03_resort/clutterswitch_books",
             progressMusic = true,
             lightingAlphaAdd = 0.05

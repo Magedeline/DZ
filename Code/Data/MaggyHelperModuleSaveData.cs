@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 
-namespace Celeste.Mod.KIRBY_CELESTE
+namespace Celeste.Mod.MaggyHelper
 {
     /// <summary>
     /// Per-chapter mountain camera data saved for 3D overworld persistence.
@@ -43,7 +43,7 @@ namespace Celeste.Mod.KIRBY_CELESTE
     /// Tracks: Progression flags, unlocks, achievements, boss defeats,
     /// overworld 3D state, chapter completion, mastery records.
     /// </summary>
-    public class KIRBY_CELESTEModuleSaveData : EverestModuleSaveData
+    public class MaggyHelperModuleSaveData : EverestModuleSaveData
     {
         // Progression flags
         public bool HasSeenModIntro { get; set; }

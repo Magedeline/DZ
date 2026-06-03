@@ -85,7 +85,7 @@ namespace Celeste.Cutscenes
             yield return 1f;
 
             // Play outro music
-            outroMusic = Audio.Play("event:/pusheen/music/lvl3/outro");
+            outroMusic = Audio.Play("event:/music/pusheen/lvl3/outro");
             yield return 1f;
 
             // Show postcard with zoom in effect
@@ -110,7 +110,7 @@ namespace Celeste.Cutscenes
             yield return 1.5f;
 
             // Display outro dialog
-            var outroTextbox = new Textbox("CH3_POSTCARD_OUTRO");
+            var outroTextbox = new Textbox("MAGGYHELPER_CH3_POSTCARD_OUTRO");
             yield return say(outroTextbox);
 
             yield return 2f;

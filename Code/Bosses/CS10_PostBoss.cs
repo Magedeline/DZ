@@ -23,7 +23,7 @@ public class Cs10PostBoss : CutsceneEntity
         player.StateMachine.State = Player.StDummy; // Dummy state
         yield return 0.5f;
 
-        yield return Textbox.Say("CH10_POST_BOSS");
+        yield return Textbox.Say("MAGGYHELPER_CH10_POST_BOSS");
 
         yield return 0.5f;
         EndCutscene(level);

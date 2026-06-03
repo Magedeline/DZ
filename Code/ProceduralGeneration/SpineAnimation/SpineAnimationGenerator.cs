@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Celeste;
-using Celeste.Mod.KIRBY_CELESTE.ProceduralGeneration.MarkovChain;
+using Celeste.Mod.MaggyHelper.ProceduralGeneration.MarkovChain;
 using Microsoft.Xna.Framework;
 using Monocle;
 using Spine;
 
-namespace Celeste.Mod.KIRBY_CELESTE.ProceduralGeneration.SpineAnimation;
+namespace Celeste.Mod.MaggyHelper.ProceduralGeneration.SpineAnimation;
 
 /// <summary>
 /// Procedural Spine animation variant generator using Markov chains

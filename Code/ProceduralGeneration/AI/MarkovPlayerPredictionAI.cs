@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Celeste;
-using Celeste.Mod.KIRBY_CELESTE.ProceduralGeneration.MarkovChain;
+using Celeste.Mod.MaggyHelper.ProceduralGeneration.MarkovChain;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace Celeste.Mod.KIRBY_CELESTE.ProceduralGeneration.AI;
+namespace Celeste.Mod.MaggyHelper.ProceduralGeneration.AI;
 
 /// <summary>
 /// Enhanced AI system using Markov chains for player pattern prediction

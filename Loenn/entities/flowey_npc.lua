@@ -8,7 +8,7 @@ floweyNPC.placements = {
     {
         name = "Flowey (Hidden - Cutscene)",
         data = {
-            dialogId = "CH10_FLOWEY_INTRO",
+            dialogId = "MAGGYHELPER_CH10_FLOWEY_INTRO",
             startHidden = true,
             autoEmerge = false,
             emergeDelay = 0.5
@@ -17,7 +17,7 @@ floweyNPC.placements = {
     {
         name = "Flowey (Visible)",
         data = {
-            dialogId = "CH10_FLOWEY_INTRO",
+            dialogId = "MAGGYHELPER_CH10_FLOWEY_INTRO",
             startHidden = false,
             autoEmerge = false,
             emergeDelay = 0.5
@@ -26,7 +26,7 @@ floweyNPC.placements = {
     {
         name = "Flowey (Auto Emerge)",
         data = {
-            dialogId = "CH10_FLOWEY_INTRO",
+            dialogId = "MAGGYHELPER_CH10_FLOWEY_INTRO",
             startHidden = true,
             autoEmerge = true,
             emergeDelay = 0.5

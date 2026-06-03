@@ -83,16 +83,16 @@ namespace Celeste.NPCs
                 case 1:
                     level?.Session.SetFlag("temmie_shop_1");
                     // MultiCharacterCutscene doesn't exist
-                    // Scene.Add(new MultiCharacterCutscene(player, "CH12_TEMMIE_ROOM_TEM_SHOP_1"));
+                    // Scene.Add(new MultiCharacterCutscene(player, "MAGGYHELPER_CH12_TEMMIE_ROOM_TEM_SHOP_1"));
                     break;
                 case 2:
                     level?.Session.SetFlag("temmie_shop_2");
                     // MultiCharacterCutscene doesn't exist
-                    // Scene.Add(new MultiCharacterCutscene(player, "CH12_TEMMIE_ROOM_TEM_SHOP_2"));
+                    // Scene.Add(new MultiCharacterCutscene(player, "MAGGYHELPER_CH12_TEMMIE_ROOM_TEM_SHOP_2"));
                     break;
                 default:
                     // MultiCharacterCutscene doesn't exist
-                    // Scene.Add(new MultiCharacterCutscene(player, "CH12_TEMMIE_ROOM_TEM_SHOP_END"));
+                    // Scene.Add(new MultiCharacterCutscene(player, "MAGGYHELPER_CH12_TEMMIE_ROOM_TEM_SHOP_END"));
                     break;
             }
             

@@ -86,11 +86,11 @@ public class NPC06_Theo : NPC
         yield return Level.ZoomTo(new Vector2((player.X + X) / 2f - Level.Camera.X, 116f), 2f, 0.5f);
         if (!Session.GetFlag("theo_2"))
         {
-            yield return Textbox.Say("CH6_THEO_2");
+            yield return Textbox.Say("MAGGYHELPER_CH6_THEO_2");
         }
         else
         {
-            yield return Textbox.Say("CH6_THEO_3");
+            yield return Textbox.Say("MAGGYHELPER_CH6_THEO_3");
         }
         yield return Level.ZoomBack(0.5f);
         Level.EndCutscene();

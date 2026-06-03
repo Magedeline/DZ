@@ -114,11 +114,11 @@ namespace Celeste.Cutscenes
             yield return 1f;
             
             // Dialog: Humans and monsters express hope
-            yield return Textbox.Say("CH21_HUMAN_HOPE");
+            yield return Textbox.Say("MAGGYHELPER_CH21_HUMAN_HOPE");
             
             yield return 1f;
             
-            yield return Textbox.Say("CH21_MONSTER_UNITY");
+            yield return Textbox.Say("MAGGYHELPER_CH21_MONSTER_UNITY");
             
             yield return 1f;
             
@@ -135,18 +135,18 @@ namespace Celeste.Cutscenes
             yield return 2f;
             
             // More dialog
-            yield return Textbox.Say("CH21_COOPERATION_SUCCESS");
+            yield return Textbox.Say("MAGGYHELPER_CH21_COOPERATION_SUCCESS");
             
             yield return 1f;
             
-            yield return Textbox.Say("CH21_NEW_FUTURE");
+            yield return Textbox.Say("MAGGYHELPER_CH21_NEW_FUTURE");
             
             yield return 2f;
             
             // Suddenly, something in the sky
             Audio.Play("event:/cutscene/sky_phenomenon");
             
-            yield return Textbox.Say("CH21_LOOK_TO_SKY");
+            yield return Textbox.Say("MAGGYHELPER_CH21_LOOK_TO_SKY");
             
             // All characters look up
             foreach (var human in humanSprites)
@@ -196,7 +196,7 @@ namespace Celeste.Cutscenes
             yield return 2f;
             
             // Characters react with wonder
-            yield return Textbox.Say("CH21_PLANET_WONDER");
+            yield return Textbox.Say("MAGGYHELPER_CH21_PLANET_WONDER");
             
             foreach (var human in humanSprites)
             {
@@ -210,7 +210,7 @@ namespace Celeste.Cutscenes
             yield return 2f;
             
             // Final dialog
-            yield return Textbox.Say("CH21_TWO_WORLDS_ONE");
+            yield return Textbox.Say("MAGGYHELPER_CH21_TWO_WORLDS_ONE");
             
             yield return 2f;
             

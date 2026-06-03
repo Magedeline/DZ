@@ -66,7 +66,7 @@ public class Cs03Meetup(
                         }
                     }
 
-                    yield return Textbox.Say("CH3_MAGGY_A");
+                    yield return Textbox.Say("MAGGYHELPER_CH3_MAGGY_A");
 
                     // Merge Badeline after dialog and give dashes
                     {
@@ -94,15 +94,15 @@ public class Cs03Meetup(
                     break;
 
                 case 2:
-                    yield return Textbox.Say("CH3_MAGGY_B");
+                    yield return Textbox.Say("MAGGYHELPER_CH3_MAGGY_B");
                     break;
 
                 case 3:
-                    yield return Textbox.Say("CH3_MAGGY_C");
+                    yield return Textbox.Say("MAGGYHELPER_CH3_MAGGY_C");
                     break;
 
                 case 4:
-                    yield return Textbox.Say("CH3_MAGGY_D");
+                    yield return Textbox.Say("MAGGYHELPER_CH3_MAGGY_D");
                     break;
             }
 

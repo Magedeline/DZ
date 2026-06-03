@@ -43,7 +43,7 @@ namespace Celeste.Entities
             // Restore persistent progress so fragments can be collected across rooms/sessions.
             if (!string.IsNullOrEmpty(barrierId))
             {
-                fragmentsCollected = global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModule.SaveData?.GetCollectedSoulFragmentsForBarrier(barrierId) ?? 0;
+                fragmentsCollected = global::Celeste.Mod.MaggyHelper.MaggyHelperModule.SaveData?.GetCollectedSoulFragmentsForBarrier(barrierId) ?? 0;
             }
             
             // Register with the session for fragment tracking
@@ -225,7 +225,7 @@ namespace Celeste.Entities
                 string key = $"SoulFragment_{barrierId}_{Position.X}_{Position.Y}_collected";
                 session.SetFlag(key, true);
 
-                global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModule.SaveData?.CollectSoulFragment(key, barrierId);
+                global::Celeste.Mod.MaggyHelper.MaggyHelperModule.SaveData?.CollectSoulFragment(key, barrierId);
             }
             
             // Find and notify the linked barrier

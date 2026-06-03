@@ -23,7 +23,7 @@ public class Cs21ELSTerminaBossIntro : CutsceneEntity
         player.StateMachine.State = Player.StDummy;
         yield return 0.5f;
 
-        yield return Textbox.Say("CH21_ELS_TERMINA_BOSS_INTRO");
+        yield return Textbox.Say("MAGGYHELPER_CH21_ELS_TERMINA_BOSS_INTRO");
 
         yield return 0.5f;
         EndCutscene(level);

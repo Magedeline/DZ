@@ -28,18 +28,18 @@ namespace Celeste.Cutscenes
             // Save file corruption attempt
             level.Flash(Color.Red, false);
             
-            yield return Textbox.Say("CH16_SAVE_FILE_CORRUPTION");
+            yield return Textbox.Say("MAGGYHELPER_CH16_SAVE_FILE_CORRUPTION");
 
             // Save file restoration by lost souls
             level.Flash(Color.White, false);
             yield return 1f;
             
-            yield return Textbox.Say("CH16_SAVE_FILE_RESTORATION");
+            yield return Textbox.Say("MAGGYHELPER_CH16_SAVE_FILE_RESTORATION");
 
             // Final confrontation with Els
             level.Shake(5.0f);
             
-            yield return Textbox.Say("CH16_FINAL_CONFRONTATION");
+            yield return Textbox.Say("MAGGYHELPER_CH16_FINAL_CONFRONTATION");
 
             // After final blow - Flowey reloads and restores HP
             yield return FloweyReloadSequence(level);
@@ -302,7 +302,7 @@ namespace Celeste.Cutscenes
             }
             
             // Display the "Take the L" dialog
-            yield return Textbox.Say("CH16_TAKE_THE_L");
+            yield return Textbox.Say("MAGGYHELPER_CH16_TAKE_THE_L");
             
             yield return 0.5f;
         }
@@ -323,7 +323,7 @@ namespace Celeste.Cutscenes
             yield return 1.5f;
             
             // Flowey responds with the iconic line
-            yield return Textbox.Say("CH16_YOU_CALL_HELP");
+            yield return Textbox.Say("MAGGYHELPER_CH16_YOU_CALL_HELP");
             
             yield return 0.5f;
         }
@@ -494,7 +494,7 @@ namespace Celeste.Cutscenes
             IngesteLogger.Info("FINAL WISH TO UNDO FLOWEY'S LAST WISH");
             
             // Madeline makes the wish
-            yield return Textbox.Say("CH16_FINAL_DEFEAT");
+            yield return Textbox.Say("MAGGYHELPER_CH16_FINAL_DEFEAT");
             
             // Dramatic pause
             yield return 1.5f;

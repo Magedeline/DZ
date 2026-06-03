@@ -23,7 +23,7 @@ public class Cs14IntroCore : CutsceneEntity
         player.StateMachine.State = Player.StDummy; // Dummy state
         yield return 0.5f;
 
-        yield return Textbox.Say("CH14_INTRO_CORE");
+        yield return Textbox.Say("MAGGYHELPER_CH14_INTRO_CORE");
 
         yield return 0.5f;
         EndCutscene(level);

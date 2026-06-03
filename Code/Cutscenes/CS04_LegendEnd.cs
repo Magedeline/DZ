@@ -48,7 +48,7 @@ namespace Celeste.Cutscenes {
             yield return 1f;
 
             // Display Ralsei's outro dialog
-            var outroTextbox = new Textbox("CH4_LEGENDOUTRO");
+            var outroTextbox = new Textbox("MAGGYHELPER_CH4_LEGENDOUTRO");
             yield return say(outroTextbox);
 
             yield return 1.5f;

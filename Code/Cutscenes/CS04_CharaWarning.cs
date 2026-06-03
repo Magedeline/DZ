@@ -29,7 +29,7 @@ namespace Celeste.Cutscenes
         private const float ZOOM_LEVEL = 1.8f;
         private const float ZOOM_DURATION = 0.4f;
         private const float CAMERA_TRANSITION_TIME = 0.4f;
-        private const string MUSIC_EVENT = "event:/pusheen/music/lvl4/chara_warning";
+        private const string MUSIC_EVENT = "event:/music/pusheen/lvl4/chara_warning";
         private const string AUDIO_EVENT = "event:/game/02_old_site/sequence_badeline_intro";
         private const string CHARA_APPEAR_SOUND = "event:/char/chara/appear";
         private const string CHARA_DISAPPEAR_SOUND = "event:/char/chara/disappear";
@@ -123,7 +123,7 @@ namespace Celeste.Cutscenes
             yield return RevealChara(level);
 
             // Play warning dialog
-            yield return Textbox.Say("CH4_CHARA_WARNING", new Func<IEnumerator>[] {
+            yield return Textbox.Say("MAGGYHELPER_CH4_CHARA_WARNING", new Func<IEnumerator>[] {
                 CharaLaugh,
                 CharaDisappear,
             });

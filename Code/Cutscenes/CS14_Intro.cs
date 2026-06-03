@@ -28,13 +28,13 @@ namespace Celeste.Cutscenes
             // Digital world introduction
             level.Flash(Color.Purple, false);
             
-            yield return Textbox.Say("CH14_INTRO");
+            yield return Textbox.Say("MAGGYHELPER_CH14_INTRO");
 
             // Digital guide introduction
             yield return 0.5f;
             Audio.Play("event:/game/general/touchswitch_any");
             
-            yield return Textbox.Say("CH14_DIGITAL_WORLD_EXPLORATION");
+            yield return Textbox.Say("MAGGYHELPER_CH14_DIGITAL_WORLD_EXPLORATION");
 
             EndCutscene(level);
         }

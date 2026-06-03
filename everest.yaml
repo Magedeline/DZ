@@ -1,6 +1,6 @@
-- Name: KIRBY_CELESTE
-  DLL: bin/KIRBY_CELESTE.dll
-  Version: 3.0.0-beta
+- Name: MaggyHelper
+  DLL: bin/MaggyHelper.dll
+  Version: 3.0.0
   Dependencies:
   - Name: ChroniaHelper
     Version: 1.51.6

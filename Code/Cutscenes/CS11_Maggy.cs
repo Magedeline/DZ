@@ -20,7 +20,7 @@ namespace Celeste.Cutscenes
         private const string FLAG_MAGGY_ARRIVED = "ch11_maggy_arrived";
         private const string FLAG_EARTH_CRISIS_REVEALED = "ch11_earth_crisis_revealed";
         
-        private const string DIALOG_KEY = "CH11_MAGGY";
+        private const string DIALOG_KEY = "MAGGYHELPER_CH11_MAGGY";
         #endregion
 
         #region Fields

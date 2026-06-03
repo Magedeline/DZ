@@ -55,7 +55,7 @@ namespace Celeste.Cutscenes
 
             yield return 0.3f;
             yield return level.ZoomTo(new Vector2(160f, 90f), 2f, 0.4f);
-            yield return Textbox.Say("CH7_GENO_VORTEX_START");
+            yield return Textbox.Say("MAGGYHELPER_CH7_GENO_VORTEX_START");
 
             mainChara.EnablePlayerControl(true);
 
@@ -63,11 +63,11 @@ namespace Celeste.Cutscenes
             {
                 if (!knifeCollected && mainChara.ConfirmPressed && Vector2.Distance(mainChara.Position, realKnife.Position) <= 16f)
                 {
-                    yield return CollectProp(level, realKnife, "CH7_GENO_KNIFE_PICKUP", () => knifeCollected = true);
+                    yield return CollectProp(level, realKnife, "MAGGYHELPER_CH7_GENO_KNIFE_PICKUP", () => knifeCollected = true);
                 }
                 else if (!locketCollected && mainChara.ConfirmPressed && Vector2.Distance(mainChara.Position, heartLocket.Position) <= 16f)
                 {
-                    yield return CollectProp(level, heartLocket, "CH7_GENO_LOCKET_PICKUP", () =>
+                    yield return CollectProp(level, heartLocket, "MAGGYHELPER_CH7_GENO_LOCKET_PICKUP", () =>
                     {
                         locketCollected = true;
                         level.Session.SetFlag(CH7GenocideMirrorState.EquipmentTakenFlag);
@@ -83,7 +83,7 @@ namespace Celeste.Cutscenes
             flowey.FaceTarget(mainChara.Position);
             level.Session.SetFlag(CH7GenocideMirrorState.FloweySeenFlag);
             yield return 0.15f;
-            yield return Textbox.Say("CH7_GENO_FLOWEY_WRONGNESS");
+            yield return Textbox.Say("MAGGYHELPER_CH7_GENO_FLOWEY_WRONGNESS");
 
             level.Session.SetFlag(CH7GenocideMirrorState.VisionIntroPlayedFlag);
             EndCutscene(level);

@@ -28,31 +28,31 @@ namespace Celeste.Cutscenes
             // Dedede corruption discovery
             level.Flash(Color.Purple, false);
             
-            yield return Textbox.Say("CH14_DEDEDE_CORRUPTION_DISCOVERY");
+            yield return Textbox.Say("MAGGYHELPER_CH14_DEDEDE_CORRUPTION_DISCOVERY");
 
             // Hollow Programmer confrontation
             level.Shake(1.0f);
             level.Flash(Color.Magenta, false);
             
-            yield return Textbox.Say("CH14_HOLLOW_PROGRAMMER_CONFRONTATION");
+            yield return Textbox.Say("MAGGYHELPER_CH14_HOLLOW_PROGRAMMER_CONFRONTATION");
 
             // Battle sequence
             yield return 1f;
             level.Flash(Color.Magenta, false);
             level.Shake(1.2f);
             
-            yield return Textbox.Say("CH14_HOLLOW_PROGRAMMER_BATTLE");
+            yield return Textbox.Say("MAGGYHELPER_CH14_HOLLOW_PROGRAMMER_BATTLE");
 
             // Mid-battle restoration attempts
             yield return 0.5f;
             
-            yield return Textbox.Say("CH14_HOLLOW_PROGRAMMER_MID_BATTLE");
+            yield return Textbox.Say("MAGGYHELPER_CH14_HOLLOW_PROGRAMMER_MID_BATTLE");
 
             // Final defeat and restoration
             level.Flash(Color.White, false);
             yield return 0.5f;
             
-            yield return Textbox.Say("CH14_HOLLOW_PROGRAMMER_DEFEATED");
+            yield return Textbox.Say("MAGGYHELPER_CH14_HOLLOW_PROGRAMMER_DEFEATED");
 
             EndCutscene(level);
         }

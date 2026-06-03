@@ -23,7 +23,7 @@ public class Cs15IntroRoaringTitan : CutsceneEntity
         player.StateMachine.State = Player.StDummy; // Dummy state
         yield return 0.5f;
 
-        yield return Textbox.Say("CH15_INTRO_ROARING_TITAN");
+        yield return Textbox.Say("MAGGYHELPER_CH15_INTRO_ROARING_TITAN");
 
         yield return 0.5f;
         EndCutscene(level);

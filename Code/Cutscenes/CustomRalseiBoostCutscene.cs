@@ -31,7 +31,7 @@ internal class CustomRalseiBoostCutscene : CutsceneEntity
 	public CustomRalseiBoostCutscene(
 		global::Celeste.Player player,
         CustomRalseiBoost boost,
-		string sayDialog = "CH9_LAST_BOOST",
+		string sayDialog = "MAGGYHELPER_CH9_LAST_BOOST",
 		string teleportTo = "",
 		string goldenTeleportTo = "",
 		bool haveBird = true

@@ -22,7 +22,7 @@ namespace Celeste.Cutscenes
         {
             yield return 0.3f;
 
-            yield return Textbox.Say("CH19_ELS_BREAKS_FREE",
+            yield return Textbox.Say("MAGGYHELPER_CH19_ELS_BREAKS_FREE",
                 new Func<IEnumerator>(BlackholeFlickers),
                 new Func<IEnumerator>(ZeroEnergyPulses),
                 new Func<IEnumerator>(BlackholeIntensifies),

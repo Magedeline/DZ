@@ -28,7 +28,7 @@ namespace Celeste.Cutscenes
                 (player.Position + new Vector2(0f, -16f)) - level.Camera.Position,
                 2f, 0.5f);
 
-            yield return Textbox.Say("CH19_SOULS_DISCARDED",
+            yield return Textbox.Say("MAGGYHELPER_CH19_SOULS_DISCARDED",
                 new Func<IEnumerator>(KirbyKneelsAtGravestone),
                 new Func<IEnumerator>(KirbyStandsFacesVoid)
             );

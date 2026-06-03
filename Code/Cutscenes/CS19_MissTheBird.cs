@@ -47,7 +47,7 @@ public class CS19_MissTheBird : CutsceneEntity
     private IEnumerator Cutscene(Level level)
     {
         Audio.SetMusicParam("bird_grab", 1f);
-        crashMusicSfx = Audio.Play("event:/pusheen/extra_content/music/lvl19/cinematic/bird_crash_first");
+        crashMusicSfx = Audio.Play("event:/new_content/music/pusheen/lvl19/cinematic/bird_crash_first");
         yield return flingBird?.DoGrabbingRoutine(player);
         bird = new BirdNPC(flingBird.Position, BirdNPC.Modes.None);
         level.Add(bird);
@@ -100,7 +100,7 @@ public class CS19_MissTheBird : CutsceneEntity
         player.Sprite.Play("rollGetUp");
         yield return 0.5f;
         player.ForceCameraUpdate = false;
-        yield return Textbox.Say("CH19_MISS_THE_BIRD", StandUpFaceLeft, TakeStepLeft, TakeStepRight, FlickerBlackhole, OpenBlackhole);
+        yield return Textbox.Say("MAGGYHELPER_CH19_MISS_THE_BIRD", StandUpFaceLeft, TakeStepLeft, TakeStepRight, FlickerBlackhole, OpenBlackhole);
         StartMusic();
         EndCutscene(level);
     }
@@ -133,8 +133,8 @@ public class CS19_MissTheBird : CutsceneEntity
     private IEnumerator FlickerBlackhole()
     {
         yield return 0.5f;
-        Audio.Play("event:/pusheen/extra_content/game/19_spaces/glitch_medium");
-        Audio.Play("event:/pusheen/extra_content/music/lvl19/cinematic/els_intro_laugh");
+        Audio.Play("event:/new_content/game/pusheen/19_spaces/glitch_medium");
+        Audio.Play("event:/new_content/music/pusheen/lvl19/cinematic/els_intro_laugh");
         yield return MoonGlitchBackgroundTrigger.GlitchRoutine(0.5f, stayOn: false);
         yield return player.DummyWalkTo(player.X - 8f, walkBackwards: true);
         yield return 0.4f;
@@ -148,10 +148,10 @@ public class CS19_MissTheBird : CutsceneEntity
         Level.Shake(0.4f);
         Level.Add(new LightningStrike(new Vector2(player.X, Level.Bounds.Top), 80, 240f));
         Level.Add(new LightningStrike(new Vector2(player.X - 100f, Level.Bounds.Top), 90, 240f, 0.5f));
-        Audio.Play("event:/pusheen/extra_content/music/lvl19/cinematic/els_intro_scream");
+        Audio.Play("event:/new_content/music/pusheen/lvl19/cinematic/els_intro_scream");
         yield return MoonGlitchBackgroundTrigger.GlitchRoutine(1.0f, stayOn: false);
         yield return 2.4f;
-        Audio.Play("event:/pusheen/extra_content/game/19_spaces/lightning_strike");
+        Audio.Play("event:/new_content/game/pusheen/19_spaces/lightning_strike");
         TriggerEnvironmentalEvents();
         StartMusic();
         yield return 1.2f;
@@ -160,8 +160,8 @@ public class CS19_MissTheBird : CutsceneEntity
     [MethodImpl(MethodImplOptions.NoInlining)]
     private void StartMusic()
     {
-        Level.Session.Audio.Music.Event = "event:/pusheen/extra_content/music/lvl19/part03";
-        Level.Session.Audio.Ambience.Event = "event:/pusheen/extra_content/env/19_voidspiral";
+        Level.Session.Audio.Music.Event = "event:/new_content/music/pusheen/lvl19/part03";
+        Level.Session.Audio.Ambience.Event = "event:/new_content/env/pusheen/19_voidspiral";
         Level.Session.Audio.Apply(false);
     }
 

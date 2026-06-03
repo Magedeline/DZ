@@ -23,7 +23,7 @@ public class Cs13HotLava : CutsceneEntity
         player.StateMachine.State = Player.StDummy; // Dummy state
         yield return 0.5f;
 
-        yield return Textbox.Say("CH13_HOT_LAVA");
+        yield return Textbox.Say("MAGGYHELPER_CH13_HOT_LAVA");
 
         yield return 0.5f;
         EndCutscene(level);

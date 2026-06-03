@@ -23,7 +23,7 @@ public class Cs12TitanTower : CutsceneEntity
         player.StateMachine.State = Player.StDummy; // Dummy state
         yield return 0.5f;
 
-        yield return Textbox.Say("CH12_TITAN_TOWER");
+        yield return Textbox.Say("MAGGYHELPER_CH12_TITAN_TOWER");
 
         yield return 0.5f;
         EndCutscene(level);

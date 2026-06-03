@@ -5,7 +5,7 @@ using System.Linq;
 using Celeste;
 using Monocle;
 
-namespace Celeste.Mod.KIRBY_CELESTE;
+namespace Celeste.Mod.MaggyHelper;
 
 /// <summary>
 /// Loads and analyzes existing rooms to create room templates

@@ -50,7 +50,7 @@ public class NPC05_Oshiro_Suite : NPC
     {
         int conversation = Session.GetCounter("oshiroSuiteSadConversation");
         yield return PlayerApproach(player, turnToFace: false, 12f);
-        yield return Textbox.Say("CH5_OSHIRO_SUITE_SAD" + conversation);
+        yield return Textbox.Say("MAGGYHELPER_CH5_OSHIRO_SUITE_SAD" + conversation);
         yield return PlayerLeave(player);
         EndTalking(SceneAs<Level>());
     }

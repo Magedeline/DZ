@@ -26,7 +26,7 @@ namespace Celeste.Cutscenes
                 (player.Position + new Vector2(0f, -16f)) - level.Camera.Position,
                 2f, 0.5f);
 
-            yield return Textbox.Say("CH19_EDGE_OF_UNIVERSE",
+            yield return Textbox.Say("MAGGYHELPER_CH19_EDGE_OF_UNIVERSE",
                 new Func<IEnumerator>(GeneratorShatters),
                 new Func<IEnumerator>(BlindingLight),
                 new Func<IEnumerator>(CameraPansVoid)

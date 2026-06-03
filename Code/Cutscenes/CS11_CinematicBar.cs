@@ -22,7 +22,7 @@ namespace Celeste.Cutscenes
         private const string FLAG_MOUNTAIN_ERUPTED = "ch11_mountain_erupted";
         private const string FLAG_DARK_FOUNTAIN_SPAWNED = "ch11_dark_fountain_spawned";
         
-        private const string DIALOG_KEY = "CH11_CINEMATIC_BAR";
+        private const string DIALOG_KEY = "MAGGYHELPER_CH11_CINEMATIC_BAR";
         
         // Audio event paths
         private const string SFX_POWER_BLACKOUT = "event:/game_06_boss_badeline_respawn";

@@ -79,7 +79,7 @@ namespace Celeste.Cutscenes
       cs10MoonIntro.player.StateMachine.State = Player.StDummy;
       yield return (object) 0.5f;
       yield return (object) cs10MoonIntro.charaAppears();
-      yield return (object) Textbox.Say("CH19_SPACE_INTRO", new Func<IEnumerator>(cs10MoonIntro.charaTurns), new Func<IEnumerator>(cs10MoonIntro.charaVanishes));
+      yield return (object) Textbox.Say("MAGGYHELPER_CH19_SPACE_INTRO", new Func<IEnumerator>(cs10MoonIntro.charaTurns), new Func<IEnumerator>(cs10MoonIntro.charaVanishes));
       cs10MoonIntro.EndCutscene(level);
     }
 

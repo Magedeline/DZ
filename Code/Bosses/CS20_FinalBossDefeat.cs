@@ -121,7 +121,7 @@ namespace Celeste.Cutscenes
             yield return 1f;
             
             // Asriel approaches Madeline and Badeline
-            yield return Textbox.Say("CH20_ASRIEL_RESTORATION_START");
+            yield return Textbox.Say("MAGGYHELPER_CH20_ASRIEL_RESTORATION_START");
             
             // Asriel kneels beside them
             Audio.Play("event:/cutscene/asriel_kneels");
@@ -130,7 +130,7 @@ namespace Celeste.Cutscenes
             yield return 1f;
             
             // Asriel gives them life back with beating heart
-            yield return Textbox.Say("CH20_ASRIEL_GIVES_LIFE");
+            yield return Textbox.Say("MAGGYHELPER_CH20_ASRIEL_GIVES_LIFE");
             
             // Healing light appears
             restorationLight.Position = asrielPos + new Vector2(0f, -32f);
@@ -159,7 +159,7 @@ namespace Celeste.Cutscenes
             yield return 1f;
             
             // Madeline and Badeline begin to stir
-            yield return Textbox.Say("CH20_MADELINE_AWAKENING");
+            yield return Textbox.Say("MAGGYHELPER_CH20_MADELINE_AWAKENING");
             
             madelineSprite.Play("idle");
             badelineSprite.Play("idle");
@@ -176,12 +176,12 @@ namespace Celeste.Cutscenes
             yield return 0.5f;
             
             // They look at each other, then at Asriel
-            yield return Textbox.Say("CH20_MADELINE_BADELINE_GRATEFUL");
+            yield return Textbox.Say("MAGGYHELPER_CH20_MADELINE_BADELINE_GRATEFUL");
             
             // Asriel stands
             asrielSprite.Play("idle");
             
-            yield return Textbox.Say("CH20_ASRIEL_RESPONSE");
+            yield return Textbox.Say("MAGGYHELPER_CH20_ASRIEL_RESPONSE");
             
             yield return 1f;
             

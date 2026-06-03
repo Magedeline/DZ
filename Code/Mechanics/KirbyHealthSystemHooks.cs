@@ -2,7 +2,7 @@ using System;
 using Celeste.Entities;
 using Celeste.Extensions;
 using Celeste.Mod;
-using Celeste.Mod.KIRBY_CELESTE;
+using Celeste.Mod.MaggyHelper;
 using Microsoft.Xna.Framework;
 using Monocle;
 using MonoMod.RuntimeDetour;

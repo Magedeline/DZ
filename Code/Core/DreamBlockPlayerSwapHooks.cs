@@ -18,8 +18,8 @@ namespace Celeste
     internal static class DreamBlockPlayerSwapHooks
     {
         // DynamicData key used to store the pre-entry sprite mode on the player instance
-        private const string PreEnterSpriteModeKey  = "KIRBY_CELESTE_DreamSwap_OrigSpriteMode";
-        private const string PreEnterKirbyActiveKey = "KIRBY_CELESTE_DreamSwap_OrigKirbyActive";
+        private const string PreEnterSpriteModeKey  = "MaggyHelper_DreamSwap_OrigSpriteMode";
+        private const string PreEnterKirbyActiveKey = "MaggyHelper_DreamSwap_OrigKirbyActive";
 
         // Manual hook reference — must be kept alive to avoid GC disposal
         // Manual hook reference — must be kept alive to avoid GC disposal
@@ -36,7 +36,7 @@ namespace Celeste
             // Prevent loading twice
             if (isLoaded)
             {
-                Logger.Log(LogLevel.Warn, "KIRBY_CELESTE",
+                Logger.Log(LogLevel.Warn, "MaggyHelper",
                     "[DreamBlockPlayerSwap] Load() called while already loaded — skipping");
                 return;
             }
@@ -56,31 +56,31 @@ namespace Celeste
                             nameof(Hook_Player_DreamDashBegin),
                             BindingFlags.Static | BindingFlags.NonPublic));
 
-                    Logger.Log(LogLevel.Info, "KIRBY_CELESTE",
+                    Logger.Log(LogLevel.Info, "MaggyHelper",
                         "[DreamBlockPlayerSwap] Manual hook on Player.DreamDashBegin registered");
                 }
                 else
                 {
-                    Logger.Log(LogLevel.Warn, "KIRBY_CELESTE",
+                    Logger.Log(LogLevel.Warn, "MaggyHelper",
                         "[DreamBlockPlayerSwap] Player.DreamDashBegin not found — enter swap skipped");
                 }
             }
             catch (Exception ex)
             {
-                Logger.Log(LogLevel.Warn, "KIRBY_CELESTE",
+                Logger.Log(LogLevel.Warn, "MaggyHelper",
                     $"[DreamBlockPlayerSwap] Failed to hook DreamDashBegin: {ex.Message}");
             }
 
             On.Celeste.DreamBlock.OnPlayerExit += OnDreamBlockExit;
             isLoaded = true;
-            Logger.Log(LogLevel.Info, "KIRBY_CELESTE", "[DreamBlockPlayerSwap] Hooks loaded");
+            Logger.Log(LogLevel.Info, "MaggyHelper", "[DreamBlockPlayerSwap] Hooks loaded");
         }
 
         internal static void Unload()
         {
             if (!isLoaded)
             {
-                Logger.Log(LogLevel.Warn, "KIRBY_CELESTE",
+                Logger.Log(LogLevel.Warn, "MaggyHelper",
                     "[DreamBlockPlayerSwap] Unload() called while not loaded — skipping");
                 return;
             }
@@ -90,7 +90,7 @@ namespace Celeste
 
             On.Celeste.DreamBlock.OnPlayerExit -= OnDreamBlockExit;
             isLoaded = false;
-            Logger.Log(LogLevel.Info, "KIRBY_CELESTE", "[DreamBlockPlayerSwap] Hooks unloaded");
+            Logger.Log(LogLevel.Info, "MaggyHelper", "[DreamBlockPlayerSwap] Hooks unloaded");
         }
 
         // ── Enter — hooked via Player.DreamDashBegin ──────────────────────────
@@ -102,7 +102,7 @@ namespace Celeste
 
             try
             {
-                var session = global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModule.Session;
+                var session = global::Celeste.Mod.MaggyHelper.MaggyHelperModule.Session;
                 if (session == null) return;
 
                 var dyn = DynamicData.For(self);
@@ -114,19 +114,19 @@ namespace Celeste
                 if (session.IsKirbyModeActive)
                 {
                     SwapToMadeline(self, session);
-                    Logger.Log(LogLevel.Verbose, "KIRBY_CELESTE",
+                    Logger.Log(LogLevel.Verbose, "MaggyHelper",
                         "[DreamBlockPlayerSwap] Enter: Kirby → Madeline swap");
                 }
                 else
                 {
                     SwapToKirby(self, session);
-                    Logger.Log(LogLevel.Verbose, "KIRBY_CELESTE",
+                    Logger.Log(LogLevel.Verbose, "MaggyHelper",
                         "[DreamBlockPlayerSwap] Enter: Madeline → Kirby swap");
                 }
             }
             catch (Exception ex)
             {
-                Logger.Log(LogLevel.Warn, "KIRBY_CELESTE",
+                Logger.Log(LogLevel.Warn, "MaggyHelper",
                     $"[DreamBlockPlayerSwap] Error in DreamDashBegin hook: {ex.Message}");
             }
         }
@@ -140,7 +140,7 @@ namespace Celeste
 
             try
             {
-                var session = global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModule.Session;
+                var session = global::Celeste.Mod.MaggyHelper.MaggyHelperModule.Session;
                 if (session == null || player == null) return;
 
                 var dyn = DynamicData.For(player);
@@ -156,20 +156,20 @@ namespace Celeste
                     dyn.Set(PreEnterSpriteModeKey,  (object)null);
                     dyn.Set(PreEnterKirbyActiveKey, (object)null);
 
-                    Logger.Log(LogLevel.Verbose, "KIRBY_CELESTE",
+                    Logger.Log(LogLevel.Verbose, "MaggyHelper",
                         $"[DreamBlockPlayerSwap] Exit: restored to {(origKirbyActive ? "Kirby" : "Madeline")}");
                 }
             }
             catch (Exception ex)
             {
-                Logger.Log(LogLevel.Warn, "KIRBY_CELESTE",
+                Logger.Log(LogLevel.Warn, "MaggyHelper",
                     $"[DreamBlockPlayerSwap] Error in OnPlayerExit: {ex.Message}");
             }
         }
 
         // ── Swap helpers ──────────────────────────────────────────────────────
 
-        private static void SwapToKirby(global::Celeste.Player player, global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModuleSession session)
+        private static void SwapToKirby(global::Celeste.Player player, global::Celeste.Mod.MaggyHelper.MaggyHelperModuleSession session)
         {
             session.IsKirbyModeActive = true;
 
@@ -185,7 +185,7 @@ namespace Celeste
             EmitSwapParticles(player, Color.HotPink);
         }
 
-        private static void SwapToMadeline(global::Celeste.Player player, global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModuleSession session)
+        private static void SwapToMadeline(global::Celeste.Player player, global::Celeste.Mod.MaggyHelper.MaggyHelperModuleSession session)
         {
             session.IsKirbyModeActive = false;
             session.CurrentCopyAbility = CopyAbilityType.None;

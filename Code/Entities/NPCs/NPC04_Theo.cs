@@ -69,12 +69,12 @@ namespace Celeste.NPCs
             var magolor = Scene.Tracker.GetEntity<NPC04_Magolor>();
             if (magolor != null && Scene is Level lvl && !lvl.Session.GetFlag(sharedCutsceneDone))
             {
-                yield return Textbox.Say("CH4_MAGOLOR_AND_THEO", onMagolorFlyoff, onTheoWalkoff);
+                yield return Textbox.Say("MAGGYHELPER_CH4_MAGOLOR_AND_THEO", onMagolorFlyoff, onTheoWalkoff);
                 lvl.Session.SetFlag(sharedCutsceneDone, true);
             }
             else
             {
-                yield return Textbox.Say("CH4_MAGOLOR_AND_THEO");
+                yield return Textbox.Say("MAGGYHELPER_CH4_MAGOLOR_AND_THEO");
             }
             
             endcutscene();

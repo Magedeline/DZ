@@ -57,7 +57,7 @@ public class CS10IntroductionStage : CutsceneEntity
         player.Sprite.Play("idle");
 
         // Set music for exploration/ruins
-        Audio.SetMusic("event:/pusheen/music/lvl10/main");
+        Audio.SetMusic("event:/music/pusheen/lvl10/main");
 
         // Fade in
         FadeWipe fadeWipe = new FadeWipe(level, wipeIn: true);
@@ -72,7 +72,7 @@ public class CS10IntroductionStage : CutsceneEntity
 
         // Main introduction stage dialog
         yield return Textbox.Say(
-            "CH10_INTRODUCTION_STAGE",
+            "MAGGYHELPER_CH10_INTRODUCTION_STAGE",
             CheckFirstMiniHeart, OnKirbySelected
         );
 
@@ -143,7 +143,7 @@ public class CS10IntroductionStage : CutsceneEntity
         yield return WaitForMiniHeartCollection(1);
         if (collectedMiniHearts >= 1)
         {
-            yield return Textbox.Say("CH10_ASK_TORIEL_AFTER_FIRST_MINIHEART", OnFirstHeartDialog);
+            yield return Textbox.Say("MAGGYHELPER_CH10_ASK_TORIEL_AFTER_FIRST_MINIHEART", OnFirstHeartDialog);
             yield return 0.5f;
         }
 
@@ -151,7 +151,7 @@ public class CS10IntroductionStage : CutsceneEntity
         yield return WaitForMiniHeartCollection(2);
         if (collectedMiniHearts >= 2)
         {
-            yield return Textbox.Say("CH10_ASK_TORIEL_AFTER_SECOND_MINIHEART", OnSecondHeartDialog);
+            yield return Textbox.Say("MAGGYHELPER_CH10_ASK_TORIEL_AFTER_SECOND_MINIHEART", OnSecondHeartDialog);
             yield return 0.5f;
         }
 
@@ -159,7 +159,7 @@ public class CS10IntroductionStage : CutsceneEntity
         yield return WaitForMiniHeartCollection(3);
         if (collectedMiniHearts >= 3)
         {
-            yield return Textbox.Say("CH10_ASK_TORIEL_AFTER_THIRD_MINIHEART", OnThirdHeartDialog);
+            yield return Textbox.Say("MAGGYHELPER_CH10_ASK_TORIEL_AFTER_THIRD_MINIHEART", OnThirdHeartDialog);
             yield return 0.5f;
         }
 
@@ -167,7 +167,7 @@ public class CS10IntroductionStage : CutsceneEntity
         yield return WaitForMiniHeartCollection(4);
         if (collectedMiniHearts >= 4)
         {
-            yield return Textbox.Say("CH10_ASK_TORIEL_AFTER_LAST_MINIHEART", OnLastHeartDialog);
+            yield return Textbox.Say("MAGGYHELPER_CH10_ASK_TORIEL_AFTER_LAST_MINIHEART", OnLastHeartDialog);
             yield return 0.8f;
         }
 
@@ -266,7 +266,7 @@ public class CS10IntroductionStage : CutsceneEntity
         // This would trigger the extra difficult stage intro if collected
         if (collectedMiniHearts > MINI_HEARTS_REQUIRED)
         {
-            yield return Textbox.Say("CH10_ASK_TORIEL_AFTER_EXTRA_MINIHEART", OnExtraHeartDialog);
+            yield return Textbox.Say("MAGGYHELPER_CH10_ASK_TORIEL_AFTER_EXTRA_MINIHEART", OnExtraHeartDialog);
             yield return 0.8f;
         }
         yield return null;

@@ -11,7 +11,7 @@ namespace Celeste.Cutscenes
     {
         public static class LoadingVignetteText
         {
-            public const string Dialog = "CH18_INTRO";
+            public const string Dialog = "MAGGYHELPER_CH18_INTRO";
         }
 
         private readonly Session session;
@@ -67,7 +67,7 @@ namespace Celeste.Cutscenes
 
             // Play the intro dialog
             textAlpha = 1f;
-            yield return Textbox.Say("CH18_INTRO");
+            yield return Textbox.Say("MAGGYHELPER_CH18_INTRO");
 
             yield return 0.5f;
 

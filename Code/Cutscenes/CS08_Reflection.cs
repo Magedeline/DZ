@@ -28,7 +28,7 @@ public class Cs08Reflection : CutsceneEntity
         cs06Reflection.player.Facing = Facings.Right;
         yield return 0.1f;
         yield return cs06Reflection.Level.ZoomTo(new Vector2(200f, 90f), 2f, 1f);
-        yield return Textbox.Say("CH8_MADDY_HURT_FOR_REAL");
+        yield return Textbox.Say("MAGGYHELPER_CH8_MADDY_HURT_FOR_REAL");
         yield return cs06Reflection.Level.ZoomBack(0.5f);
         cs06Reflection.EndCutscene(new global::Celeste.Level { level });
     }

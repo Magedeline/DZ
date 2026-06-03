@@ -257,12 +257,12 @@ public static class BossesExampleModule
 
     public sealed class BossesExampleSettingsProxy
     {
-        public bool ResetKeysForSession => KIRBY_CELESTEModule.Settings?.BossesExampleResetKeysForSession == true;
+        public bool ResetKeysForSession => MaggyHelperModule.Settings?.BossesExampleResetKeysForSession == true;
     }
 
     public sealed class BossesExampleSaveDataProxy
     {
-        public HashSet<string> StoneFlags => KIRBY_CELESTEModule.SaveData?.BossesExampleStoneFlags ?? FallbackStoneFlags;
+        public HashSet<string> StoneFlags => MaggyHelperModule.SaveData?.BossesExampleStoneFlags ?? FallbackStoneFlags;
     }
 
     public sealed class BossesExampleSpriteBankProxy

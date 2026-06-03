@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using Celeste;
-using Celeste.Mod.KIRBY_CELESTE.ProceduralGeneration.MarkovChain;
+using Celeste.Mod.MaggyHelper.ProceduralGeneration.MarkovChain;
 using Monocle;
 
-namespace Celeste.Mod.KIRBY_CELESTE.ProceduralGeneration.AudioGeneration;
+namespace Celeste.Mod.MaggyHelper.ProceduralGeneration.AudioGeneration;
 
 /// <summary>
 /// Markov-based audio transition system for dynamic music and sound effects

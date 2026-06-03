@@ -82,7 +82,7 @@ public class Cs05Memo : CutsceneEntity
             paper = atlas[nameof(memo)];
             title = !atlas.Has("title_" + Dialog.Language) ? atlas["title_english"] : atlas["title_" + Dialog.Language];
             float num1 = (float)(paper.Width * 1.5 - 120.0);
-            text = FancyText.Parse(Dialog.Get("CH5_MEMO"), (int)(num1 / 0.75), -1, defaultColor: Color.Black * 0.6f);
+            text = FancyText.Parse(Dialog.Get("MAGGYHELPER_CH5_MEMO"), (int)(num1 / 0.75), -1, defaultColor: Color.Black * 0.6f);
             float num2 = text.WidestLine() * 0.75f;
             if (num2 > (double)num1)
                 textDownscale = num1 / num2;
@@ -106,7 +106,7 @@ public class Cs05Memo : CutsceneEntity
 
             // Calculates the width for the text box and parses the text content.
             float textAreaWidth = (float)(paper.Width * paper_scale - 120.0);
-            text = FancyText.Parse(Dialog.Get("CH5_MEMO"), (int)(textAreaWidth / text_scale), -1,
+            text = FancyText.Parse(Dialog.Get("MAGGYHELPER_CH5_MEMO"), (int)(textAreaWidth / text_scale), -1,
                 defaultColor: Color.Black * 0.6f);
 
             // Adjusts text scale if necessary, based on the widest text line.

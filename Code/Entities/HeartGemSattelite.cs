@@ -33,19 +33,19 @@ namespace Celeste.Entities
         {
             {
                 "D",
-                "event:/pusheen/game/01_metro/console_blue"
+                "event:/game/pusheen/01_metro/console_blue"
             },
             {
                 "U",
-                "event:/pusheen/game/01_metro/console_red"
+                "event:/game/pusheen/01_metro/console_red"
             },
             {
                 "L",
-                "event:/pusheen/game/01_metro/console_purple"
+                "event:/game/pusheen/01_metro/console_purple"
             },
             {
                 "R",
-                "event:/pusheen/game/01_metro/console_yellow"
+                "event:/game/pusheen/01_metro/console_yellow"
             }
         };
         public static readonly Dictionary<string, ParticleType> Particles = new Dictionary<string, ParticleType>
@@ -251,7 +251,7 @@ namespace Celeste.Entities
                     Audio.Play(HeartGemSattelite.Sounds[HeartGemSattelite.Code[i]], heartGemSattelite.Position + heartGemSattelite.computer.Position);
                     yield return 0.5f;
                     heartGemSattelite.pulseBloom.Visible = heartGemSattelite.pulse.Visible = false;
-                    Audio.Play(i < HeartGemSattelite.Code.Length - 1 ? "event:/pusheen/game/01_metro/console_static_short" : "event:/pusheen/game/01_metro/console_static_long", heartGemSattelite.Position + heartGemSattelite.computer.Position);
+                    Audio.Play(i < HeartGemSattelite.Code.Length - 1 ? "event:/game/pusheen/01_metro/console_static_short" : "event:/game/pusheen/01_metro/console_static_long", heartGemSattelite.Position + heartGemSattelite.computer.Position);
                     yield return 0.2f;
                 }
                 // ISSUE: reference to a compiler-generated method
@@ -260,7 +260,7 @@ namespace Celeste.Entities
                         if (enabled)
                         {
                                 birdThrustSfx.Position = birdFlyPosition - Position;
-                                birdThrustSfx.Play("event:/pusheen/game/01_metro/birdbros_thrust");
+                                birdThrustSfx.Play("event:/game/pusheen/01_metro/birdbros_thrust");
                         }
                 }, 1.1f, true));
                 heartGemSattelite.birds.Shuffle();
@@ -281,8 +281,8 @@ namespace Celeste.Entities
             HeartGemSattelite heartGemSattelite = this;
             heartGemSattelite.level.Session.SetFlag("unlocked_azzy_theme");
             heartGemSattelite.birdFinishSfx.Position = heartGemSattelite.birdFlyPosition - heartGemSattelite.Position;
-            heartGemSattelite.birdFinishSfx.Play("event:/pusheen/game/01_metro/birdbros_finish");
-            heartGemSattelite.staticLoopSfx.Play("event:/pusheen/game/01_metro/console_static_loop");
+            heartGemSattelite.birdFinishSfx.Play("event:/game/pusheen/01_metro/birdbros_finish");
+            heartGemSattelite.staticLoopSfx.Play("event:/game/pusheen/01_metro/console_static_loop");
             heartGemSattelite.enabled = false;
             yield return 0.25f;
             heartGemSattelite.level.Displacement.Clear();

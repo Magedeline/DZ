@@ -11,7 +11,7 @@ namespace Celeste.Cutscenes
     {
         public static class LoadingVignetteText
         {
-            public const string Dialog = "CH18_OUTRO";
+            public const string Dialog = "MAGGYHELPER_CH18_OUTRO";
         }
 
         private readonly Session session;
@@ -66,7 +66,7 @@ namespace Celeste.Cutscenes
             yield return 1f;
 
             // Play outro dialog with triggers
-            yield return Textbox.Say("CH18_OUTRO",
+            yield return Textbox.Say("MAGGYHELPER_CH18_OUTRO",
                 cellPhoneRumble,     // trigger 0 - phone rumbling
                 doorShut,            // trigger 1 - door shut
                 glitchEffectStart    // trigger 2 - glitch start
@@ -82,7 +82,7 @@ namespace Celeste.Cutscenes
             phoneRinging = true;
 
             // Play phone rumble sound with EventInstance
-            phoneRumbleSfx = Audio.Play("event:/pusheen/char/madeline/cell_phone_ringing", Vector2.Zero);
+            phoneRumbleSfx = Audio.Play("event:/char/pusheen/madeline/cell_phone_ringing", Vector2.Zero);
 
             // Add screen shake for phone vibration
             for (int i = 0; i < 20; i++)
@@ -155,7 +155,7 @@ namespace Celeste.Cutscenes
         private IEnumerator gameClosingSequence()
         {
             // Save progression before closing (unlock on next launch)
-            var saveData = KIRBY_CELESTEModule.SaveData;
+            var saveData = MaggyHelperModule.SaveData;
             if (saveData != null)
             {
                 saveData.PendingUnlockChapter19OnRestart = true;

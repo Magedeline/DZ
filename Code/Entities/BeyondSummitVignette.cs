@@ -12,7 +12,7 @@ namespace Celeste.Entities;
 public class BeyondSummitVignette : Scene
 {
     private const int TotalGems = BeyondSummitGem.GemCount;
-    private const string VignetteMusicEvent = "event:/pusheen/music/lvl9/main";
+    private const string VignetteMusicEvent = "event:/music/pusheen/lvl9/main";
 
     private Session session;
     private HiresSnow snow;
@@ -104,7 +104,7 @@ public class BeyondSummitVignette : Scene
         {
             if (gemCollected[i])
             {
-                Audio.Play("event:/pusheen/game/09_beyondsummit/gem_unlock_" + (i + 1));
+                Audio.Play("event:/game/pusheen/09_beyondsummit/gem_unlock_" + (i + 1));
 
                 float revealT = 0f;
                 while (revealT < 1f)
@@ -149,7 +149,7 @@ public class BeyondSummitVignette : Scene
         // If all gems collected, play completion fanfare
         if (BeyondSummitGem.CheckAllCollected(session))
         {
-            Audio.Play("event:/pusheen/game/09_beyondsummit/gem_unlock_complete");
+            Audio.Play("event:/game/pusheen/09_beyondsummit/gem_unlock_complete");
 
             // Pulse all gems
             for (int pulse = 0; pulse < 3; pulse++)

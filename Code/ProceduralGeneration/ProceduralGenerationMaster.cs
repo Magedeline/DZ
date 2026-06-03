@@ -1,22 +1,22 @@
 using System;
 using Celeste;
-using Celeste.Mod.KIRBY_CELESTE.ProceduralGeneration.AI;
-using Celeste.Mod.KIRBY_CELESTE.ProceduralGeneration.Achievements;
-using Celeste.Mod.KIRBY_CELESTE.ProceduralGeneration.AudioGeneration;
-using Celeste.Mod.KIRBY_CELESTE.ProceduralGeneration.BackgroundGeneration;
-using Celeste.Mod.KIRBY_CELESTE.ProceduralGeneration.BossBehavior;
-using Celeste.Mod.KIRBY_CELESTE.ProceduralGeneration.BossPhase;
-using Celeste.Mod.KIRBY_CELESTE.ProceduralGeneration.Dialogue;
-using Celeste.Mod.KIRBY_CELESTE.ProceduralGeneration.Difficulty;
-using Celeste.Mod.KIRBY_CELESTE.ProceduralGeneration.EnemyGeneration;
-using Celeste.Mod.KIRBY_CELESTE.ProceduralGeneration.MarkovChain;
-using Celeste.Mod.KIRBY_CELESTE.ProceduralGeneration.ParticleSystem;
-using Celeste.Mod.KIRBY_CELESTE.ProceduralGeneration.PlatformGeneration;
-using Celeste.Mod.KIRBY_CELESTE.ProceduralGeneration.RoomGeneration;
-using Celeste.Mod.KIRBY_CELESTE.ProceduralGeneration.SpineAnimation;
+using Celeste.Mod.MaggyHelper.ProceduralGeneration.AI;
+using Celeste.Mod.MaggyHelper.ProceduralGeneration.Achievements;
+using Celeste.Mod.MaggyHelper.ProceduralGeneration.AudioGeneration;
+using Celeste.Mod.MaggyHelper.ProceduralGeneration.BackgroundGeneration;
+using Celeste.Mod.MaggyHelper.ProceduralGeneration.BossBehavior;
+using Celeste.Mod.MaggyHelper.ProceduralGeneration.BossPhase;
+using Celeste.Mod.MaggyHelper.ProceduralGeneration.Dialogue;
+using Celeste.Mod.MaggyHelper.ProceduralGeneration.Difficulty;
+using Celeste.Mod.MaggyHelper.ProceduralGeneration.EnemyGeneration;
+using Celeste.Mod.MaggyHelper.ProceduralGeneration.MarkovChain;
+using Celeste.Mod.MaggyHelper.ProceduralGeneration.ParticleSystem;
+using Celeste.Mod.MaggyHelper.ProceduralGeneration.PlatformGeneration;
+using Celeste.Mod.MaggyHelper.ProceduralGeneration.RoomGeneration;
+using Celeste.Mod.MaggyHelper.ProceduralGeneration.SpineAnimation;
 using Monocle;
 
-namespace Celeste.Mod.KIRBY_CELESTE.ProceduralGeneration;
+namespace Celeste.Mod.MaggyHelper.ProceduralGeneration;
 
 /// <summary>
 /// Master integration system for all procedural generation components

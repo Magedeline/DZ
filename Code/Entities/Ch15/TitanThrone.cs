@@ -50,12 +50,12 @@ namespace Celeste.Entities.Chapters.Ch15
                 data.Attr("bossEntity", "MaggyHelper/KingTitanBoss"),
                 data.Float("activationRadius", 100f),
                 data.Bool("autoActivate", false),
-                data.Attr("cutsceneId", "CH15_ROARING_TITAN_KING_BATTLE")
+                data.Attr("cutsceneId", "MAGGYHELPER_CH15_ROARING_TITAN_KING_BATTLE")
             );
         }
 
         public TitanThrone(Vector2 position, string bossEntity = "MaggyHelper/KingTitanBoss",
-            float activationRadius = 100f, bool autoActivate = false, string cutsceneId = "CH15_ROARING_TITAN_KING_BATTLE")
+            float activationRadius = 100f, bool autoActivate = false, string cutsceneId = "MAGGYHELPER_CH15_ROARING_TITAN_KING_BATTLE")
             : base(position)
         {
             Initialize(bossEntity, activationRadius, autoActivate, cutsceneId);
@@ -218,7 +218,7 @@ namespace Celeste.Entities.Chapters.Ch15
             yield return 1f;
             
             // Victory dialogue
-            yield return Textbox.Say("CH15_VICTORY");
+            yield return Textbox.Say("MAGGYHELPER_CH15_VICTORY");
             
             // Set completion flag
             level?.Session.SetFlag("ch15_titan_king_defeated", true);

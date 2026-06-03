@@ -13,7 +13,7 @@ namespace Celeste
 		{
 			base.Tag = (Tags.HUD | Tags.Persistent);
 			this.index = index;
-			string name = "CH9_HEIGHT_" + ((index < 0) ? "START" : index.ToString());
+			string name = "MAGGYHELPER_CH9_HEIGHT_" + ((index < 0) ? "START" : index.ToString());
 			if (index >= 0 && Dialog.Has(name, null))
 			{
 				this.text = Dialog.Get(name, null);
@@ -57,7 +57,7 @@ namespace Celeste
 			base.Add(new Coroutine(this.cameraUp(), true));
 			if (!string.IsNullOrEmpty(this.text) && this.index >= 0)
 			{
-				Audio.Play("event:/pusheen/game/09_beyondsummit/altitude_count");
+				Audio.Play("event:/game/pusheen/09_beyondsummit/altitude_count");
 			}
 			while ((this.ease += Engine.DeltaTime / 0.15f) < 1f)
 			{
@@ -106,12 +106,12 @@ namespace Celeste
 				int num = this.index + 1;
 				if (num <= 5)
 				{
-					session.Audio.Music.Event = "event:/pusheen/music/lvl9/main";
+					session.Audio.Music.Event = "event:/music/pusheen/lvl9/main";
 					session.Audio.Music.Progress = num;
 				}
 				else
 				{
-					session.Audio.Music.Event = "event:/pusheen/music/lvl9/final_ascent";
+					session.Audio.Music.Event = "event:/music/pusheen/lvl9/final_ascent";
 				}
 				session.Audio.Apply(false);
 			}

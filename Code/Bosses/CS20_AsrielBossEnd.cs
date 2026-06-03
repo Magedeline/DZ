@@ -27,10 +27,10 @@ namespace Celeste.Cutscenes
     {
         public const string Flag = "ch20_asriel_boss_end";
 
-        private const string DIALOG_KEY = "CH20_ASRIEL_BOSS_END";
-        private const string MUSIC_HIS_THEME = "event:/pusheen/extra_content/music/lvl20/musicbox";
-        private const string SFX_GLITCH_LONG = "event:/pusheen/extra_content/game/19_spaces/glitch_long";
-        private const string SFX_POWER = "event:/pusheen/extra_content/char/asriel/Asriel_Segapower01";
+        private const string DIALOG_KEY = "MAGGYHELPER_CH20_ASRIEL_BOSS_END";
+        private const string MUSIC_HIS_THEME = "event:/new_content/music/pusheen/lvl20/musicbox";
+        private const string SFX_GLITCH_LONG = "event:/new_content/game/pusheen/19_spaces/glitch_long";
+        private const string SFX_POWER = "event:/new_content/char/pusheen/asriel/Asriel_Segapower01";
 
         private global::Celeste.Player player;
         private AsrielAngelOfDeathBoss asrielBoss;

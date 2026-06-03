@@ -9,7 +9,7 @@ namespace Celeste.Cutscenes
     [HotReloadable]
     public class CS07_GenocideVisionFinale : CutsceneEntity
     {
-        private const string MainCharaRevealMusicEvent = "event:/pusheen/music/lvl7/him";
+        private const string MainCharaRevealMusicEvent = "event:/music/pusheen/lvl7/him";
         private const string MainCharaRevealParam = "him";
 
         private readonly global::Celeste.Player player;
@@ -59,7 +59,7 @@ namespace Celeste.Cutscenes
 
             yield return 0.2f;
             yield return level.ZoomTo(new Vector2(160f, 90f), 2f, 0.35f);
-            yield return Textbox.Say("CH7_GENO_KIRBY_BADELINE_PANIC");
+            yield return Textbox.Say("MAGGYHELPER_CH7_GENO_KIRBY_BADELINE_PANIC");
 
             Vector2 kirbyTarget = kirbyStart + new Vector2(64f, 0f);
             Vector2 badelineTarget = kirbyTarget + new Vector2(20f, -6f);
@@ -78,7 +78,7 @@ namespace Celeste.Cutscenes
             level.Camera.Position = player.CameraTarget;
             player.ForceCameraUpdate = true;
             mainChara.PlayAttack();
-            Audio.Play("event:/pusheen/game/08_edge/chara_heartgem_slice", kirbyTarget);
+            Audio.Play("event:/game/pusheen/08_edge/chara_heartgem_slice", kirbyTarget);
 
             fader.Target = 1f;
             Glitch.Value = 0.15f;

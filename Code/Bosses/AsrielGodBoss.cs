@@ -18,21 +18,21 @@ namespace Celeste.Entities
         #region Constants and Audio Events
         
         // Audio Events
-        private const string SFX_BARRIER_SHATTER = "event:/pusheen/extra_content/char/asriel/Asriel_BarrierShatter";
-        private const string SFX_BIG_BULLET_FIRE = "event:/pusheen/extra_content/char/asriel/Asriel_Big_Bullet_Fire";
-        private const string SFX_BIGGER_GUN_FIRE = "event:/pusheen/extra_content/char/asriel/Asriel_Bigger_Gun_Fire";
-        private const string SFX_BIGGER_LIGHTNING_HIT = "event:/pusheen/extra_content/char/asriel/Asriel_Bigger_Lightninghit";
-        private const string SFX_BIGGER_GUN_MECHANIZED = "event:/pusheen/extra_content/char/asriel/Asriel_BiggerGunMechanized";
-        private const string SFX_CINEMATIC_CUT = "event:/pusheen/extra_content/char/asriel/Asriel_Cinematiccut";
-        private const string SFX_GRAB = "event:/pusheen/extra_content/char/asriel/Asriel_Grab";
-        private const string SFX_GUNSHOT = "event:/pusheen/extra_content/char/asriel/Asriel_Gunshot";
-        private const string SFX_HYPERGONER_CHARGE = "event:/pusheen/extra_content/char/asriel/Asriel_Hypergoner_Charge";
-        private const string SFX_LIGHTNING_HIT = "event:/pusheen/extra_content/char/asriel/Asriel_Lightninghit";
-        private const string SFX_SEGA_POWER_01 = "event:/pusheen/extra_content/char/asriel/Asriel_Segapower01";
-        private const string SFX_SEGA_POWER_02 = "event:/pusheen/extra_content/char/asriel/Asriel_Segapower02";
-        private const string SFX_SPARKLES = "event:/pusheen/extra_content/char/asriel/Asriel_Sparkles";
-        private const string SFX_SPELLCAST_GLITCH = "event:/pusheen/extra_content/char/asriel/Asriel_Spellcast_Glitch";
-        private const string SFX_STAR = "event:/pusheen/extra_content/char/asriel/Asriel_Star";
+        private const string SFX_BARRIER_SHATTER = "event:/new_content/char/pusheen/asriel/Asriel_BarrierShatter";
+        private const string SFX_BIG_BULLET_FIRE = "event:/new_content/char/pusheen/asriel/Asriel_Big_Bullet_Fire";
+        private const string SFX_BIGGER_GUN_FIRE = "event:/new_content/char/pusheen/asriel/Asriel_Bigger_Gun_Fire";
+        private const string SFX_BIGGER_LIGHTNING_HIT = "event:/new_content/char/pusheen/asriel/Asriel_Bigger_Lightninghit";
+        private const string SFX_BIGGER_GUN_MECHANIZED = "event:/new_content/char/pusheen/asriel/Asriel_BiggerGunMechanized";
+        private const string SFX_CINEMATIC_CUT = "event:/new_content/char/pusheen/asriel/Asriel_Cinematiccut";
+        private const string SFX_GRAB = "event:/new_content/char/pusheen/asriel/Asriel_Grab";
+        private const string SFX_GUNSHOT = "event:/new_content/char/pusheen/asriel/Asriel_Gunshot";
+        private const string SFX_HYPERGONER_CHARGE = "event:/new_content/char/pusheen/asriel/Asriel_Hypergoner_Charge";
+        private const string SFX_LIGHTNING_HIT = "event:/new_content/char/pusheen/asriel/Asriel_Lightninghit";
+        private const string SFX_SEGA_POWER_01 = "event:/new_content/char/pusheen/asriel/Asriel_Segapower01";
+        private const string SFX_SEGA_POWER_02 = "event:/new_content/char/pusheen/asriel/Asriel_Segapower02";
+        private const string SFX_SPARKLES = "event:/new_content/char/pusheen/asriel/Asriel_Sparkles";
+        private const string SFX_SPELLCAST_GLITCH = "event:/new_content/char/pusheen/asriel/Asriel_Spellcast_Glitch";
+        private const string SFX_STAR = "event:/new_content/char/pusheen/asriel/Asriel_Star";
         private const string SFX_BOSS_HIT = "event:/char/badeline/boss_hug";
         private const string SFX_BOSS_LASER_CHARGE = "event:/char/badeline/boss_laser_charge";
         private const string SFX_BOSS_LASER_FIRE = "event:/char/badeline/boss_laser_fire";
@@ -398,10 +398,10 @@ namespace Celeste.Entities
 
         // Music progression
         private string[] musicTracks = {
-            "event:/pusheen/extra_content/music/lvl20/kirby_vs_asriel_fight_1",
+            "event:/new_content/music/pusheen/lvl20/kirby_vs_asriel_fight_1",
         };
         
-        private const string ASRIEL_REMEMBER_PART_2 = "event:/pusheen/extra_content/music/lvl20/kirby_vs_asriel_fight_1";
+        private const string ASRIEL_REMEMBER_PART_2 = "event:/new_content/music/pusheen/lvl20/kirby_vs_asriel_fight_1";
         private bool asrielRememberTriggered = false;
         private bool hyperGonerPhaseTransitionTriggered = false;
         
@@ -884,7 +884,7 @@ namespace Celeste.Entities
         private IEnumerator PlayStruckDownDialog()
         {
             stopAttacking();
-            yield return Textbox.Say("CH20_KIRBY_STRUCK_DOWN");
+            yield return Textbox.Say("MAGGYHELPER_CH20_KIRBY_STRUCK_DOWN");
             yield return 0.5f;
             startAttacking();
         }
@@ -1178,7 +1178,7 @@ namespace Celeste.Entities
             CreateShockwaveEffect(isKirbyMode);
             
             // Play pushback sound
-            Audio.Play("event:/pusheen/extra_content/char/asriel/Asriel_scream_hit", Center);
+            Audio.Play("event:/new_content/char/pusheen/asriel/Asriel_scream_hit", Center);
             
             // Screen shake
             level.Shake(0.3f);
@@ -1734,7 +1734,7 @@ namespace Celeste.Entities
             {
                 dialogTriggered_AskWhy = true;
                 stopAttacking();
-                yield return Textbox.Say("CH20_KIRBY_ASK_WHY");
+                yield return Textbox.Say("MAGGYHELPER_CH20_KIRBY_ASK_WHY");
                 yield return 0.5f;
             }
             yield return 0.2f;
@@ -1819,7 +1819,7 @@ namespace Celeste.Entities
             {
                 dialogTriggered_AskWhat = true;
                 stopAttacking();
-                yield return Textbox.Say("CH20_KIRBY_ASK_WHAT");
+                yield return Textbox.Say("MAGGYHELPER_CH20_KIRBY_ASK_WHAT");
                 yield return 0.5f;
             }
             yield break;
@@ -1875,7 +1875,7 @@ namespace Celeste.Entities
             {
                 dialogTriggered_DoNotWantToFight = true;
                 stopAttacking();
-                yield return Textbox.Say("CH20_KIRBY_DO_NOT_WANT_TO_FIGHT");
+                yield return Textbox.Say("MAGGYHELPER_CH20_KIRBY_DO_NOT_WANT_TO_FIGHT");
                 yield return 0.5f;
             }
             while (true)
@@ -2078,15 +2078,15 @@ namespace Celeste.Entities
             {
                 dialogTriggered_RefusedToDie = true;
                 stopAttacking();
-                yield return Textbox.Say("CH20_KIRBY_REFUSED_TO_DIE");
+                yield return Textbox.Say("MAGGYHELPER_CH20_KIRBY_REFUSED_TO_DIE");
                 yield return 0.3f;
 
                 if (!dialogTriggered_FirstSpecialAttack)
                 {
                     dialogTriggered_FirstSpecialAttack = true;
-                    yield return Textbox.Say("CH20_ASRIEL_FIRST_SPECIAL_ATTACK");
+                    yield return Textbox.Say("MAGGYHELPER_CH20_ASRIEL_FIRST_SPECIAL_ATTACK");
                     yield return 0.3f;
-                    yield return Textbox.Say("CH20_MADELINE_AND_BADELINE_SAVE_KIRBY_FROM_ASRIEL_FIRST_SPECIAL_ATTACK");
+                    yield return Textbox.Say("MAGGYHELPER_CH20_MADELINE_AND_BADELINE_SAVE_KIRBY_FROM_ASRIEL_FIRST_SPECIAL_ATTACK");
                     yield return 0.5f;
                 }
             }
@@ -2546,9 +2546,9 @@ namespace Celeste.Entities
             {
                 dialogTriggered_SecondSpecialAttack = true;
                 stopAttacking();
-                yield return Textbox.Say("CH20_ASRIEL_GOD_SECOND_SPECIAL_ATTACK");
+                yield return Textbox.Say("MAGGYHELPER_CH20_ASRIEL_GOD_SECOND_SPECIAL_ATTACK");
                 yield return 0.3f;
-                yield return Textbox.Say("CH20_ASRIEL_GOD_SECOND_SPECIAL_ATTACK_END");
+                yield return Textbox.Say("MAGGYHELPER_CH20_ASRIEL_GOD_SECOND_SPECIAL_ATTACK_END");
                 yield return 0.5f;
             }
             startShootCharge();
@@ -2784,7 +2784,7 @@ namespace Celeste.Entities
         {
             var asrielboss = this;
             currentAttackPhase = AttackPhase.Charging;
-            Audio.Play("event:/pusheen/extra_content/char/els/Els_StarDeath", asrielboss.Position);
+            Audio.Play("event:/new_content/char/pusheen/els/Els_StarDeath", asrielboss.Position);
             yield return 0.5f;
             var entity = asrielboss.level.Tracker.GetEntity<global::Celeste.Player>();
             if (entity != null)
@@ -3076,70 +3076,70 @@ namespace Celeste.Entities
         {
             switch (dialogKey)
             {
-                case "CH20_ASRIEL_REVEAL_IDENTITY":
+                case "MAGGYHELPER_CH20_ASRIEL_REVEAL_IDENTITY":
                     yield return PlayDialog_RevealIdentity();
                     break;
-                case "CH20_HEART_REFUSAL_PHASE4":
+                case "MAGGYHELPER_CH20_HEART_REFUSAL_PHASE4":
                     yield return PlayDialog_HeartRefusalPhase4();
                     break;
-                case "CH20_MADELINE_BADELINE_RETURN":
+                case "MAGGYHELPER_CH20_MADELINE_BADELINE_RETURN":
                     yield return PlayDialog_MadelineBadelineReturn();
                     break;
-                case "CH20_ASRIEL_ZERO_TRANSFORMATION":
+                case "MAGGYHELPER_CH20_ASRIEL_ZERO_TRANSFORMATION":
                     yield return PlayDialog_AsrielZeroTransformation();
                     break;
-                case "CH20_ASRIEL_HEART_LOST_SOUL":
+                case "MAGGYHELPER_CH20_ASRIEL_HEART_LOST_SOUL":
                     yield return PlayDialog_AsrielHeartLostSoul();
                     break;
-                case "CH20_ASRIEL_REMEMBER_A":
+                case "MAGGYHELPER_CH20_ASRIEL_REMEMBER_A":
                     yield return PlayDialog_AsrielRememberA();
                     break;
-                case "CH20_ASRIEL_REMEMBER_B":
+                case "MAGGYHELPER_CH20_ASRIEL_REMEMBER_B":
                     yield return PlayDialog_AsrielRememberB();
                     break;
-                case "CH20_ASRIEL_REMEMBER_C":
+                case "MAGGYHELPER_CH20_ASRIEL_REMEMBER_C":
                     yield return PlayDialog_AsrielRememberC();
                     break;
-                case "CH20_ASRIEL_REMEMBER_D":
+                case "MAGGYHELPER_CH20_ASRIEL_REMEMBER_D":
                     yield return PlayDialog_AsrielRememberD();
                     break;
-                case "CH20_ASRIEL_REMEMBER_E":
+                case "MAGGYHELPER_CH20_ASRIEL_REMEMBER_E":
                     yield return PlayDialog_AsrielRememberE();
                     break;
-                case "CH20_ASRIEL_REMEMBER_FINAL":
+                case "MAGGYHELPER_CH20_ASRIEL_REMEMBER_FINAL":
                     yield return PlayDialog_AsrielRememberFinal();
                     break;
-                case "CH20_ASRIEL_REMEMBER_F":
+                case "MAGGYHELPER_CH20_ASRIEL_REMEMBER_F":
                     yield return PlayDialog_AsrielRememberF();
                     break;
-                case "CH20_ASRIEL_BOSS_END":
+                case "MAGGYHELPER_CH20_ASRIEL_BOSS_END":
                     yield return PlayDialog_AsrielBossEnd();
                     break;
-                case "CH20_KIRBY_ASK_WHY":
+                case "MAGGYHELPER_CH20_KIRBY_ASK_WHY":
                     yield return PlayDialog_KirbyAskWhy();
                     break;
-                case "CH20_KIRBY_ASK_WHAT":
+                case "MAGGYHELPER_CH20_KIRBY_ASK_WHAT":
                     yield return PlayDialog_KirbyAskWhat();
                     break;
-                case "CH20_KIRBY_DO_NOT_WANT_TO_FIGHT":
+                case "MAGGYHELPER_CH20_KIRBY_DO_NOT_WANT_TO_FIGHT":
                     yield return PlayDialog_KirbyDoNotWantToFight();
                     break;
-                case "CH20_KIRBY_STRUCK_DOWN":
+                case "MAGGYHELPER_CH20_KIRBY_STRUCK_DOWN":
                     yield return PlayDialog_KirbyStruckDown();
                     break;
-                case "CH20_KIRBY_REFUSED_TO_DIE":
+                case "MAGGYHELPER_CH20_KIRBY_REFUSED_TO_DIE":
                     yield return PlayDialog_KirbyRefusedToDie();
                     break;
-                case "CH20_ASRIEL_FIRST_SPECIAL_ATTACK":
+                case "MAGGYHELPER_CH20_ASRIEL_FIRST_SPECIAL_ATTACK":
                     yield return PlayDialog_AsrielFirstSpecialAttack();
                     break;
-                case "CH20_MADELINE_AND_BADELINE_SAVE_KIRBY_FROM_ASRIEL_FIRST_SPECIAL_ATTACK":
+                case "MAGGYHELPER_CH20_MADELINE_AND_BADELINE_SAVE_KIRBY_FROM_ASRIEL_FIRST_SPECIAL_ATTACK":
                     yield return PlayDialog_MadelineSaveKirbyFromFirstSpecialAttack();
                     break;
-                case "CH20_ASRIEL_GOD_SECOND_SPECIAL_ATTACK":
+                case "MAGGYHELPER_CH20_ASRIEL_GOD_SECOND_SPECIAL_ATTACK":
                     yield return PlayDialog_AsrielGodSecondSpecialAttack();
                     break;
-                case "CH20_ASRIEL_GOD_SECOND_SPECIAL_ATTACK_END":
+                case "MAGGYHELPER_CH20_ASRIEL_GOD_SECOND_SPECIAL_ATTACK_END":
                     yield return PlayDialog_AsrielGodSecondSpecialAttackEnd();
                     break;
             }
@@ -3161,118 +3161,118 @@ namespace Celeste.Entities
         private IEnumerator PlayDialog_HeartRefusalPhase4()
         {
             // CH20_HEART_REFUSAL_PHASE4 dialog sequence
-            yield return Textbox.Say("CH20_HEART_REFUSAL_PHASE4");
+            yield return Textbox.Say("MAGGYHELPER_CH20_HEART_REFUSAL_PHASE4");
         }
 
         private IEnumerator PlayDialog_MadelineBadelineReturn()
         {
             // CH20_MADELINE_BADELINE_RETURN dialog sequence
-            yield return Textbox.Say("CH20_MADELINE_BADELINE_RETURN");
+            yield return Textbox.Say("MAGGYHELPER_CH20_MADELINE_BADELINE_RETURN");
         }
 
         private IEnumerator PlayDialog_AsrielZeroTransformation()
         {
             // CH20_ASRIEL_ZERO_TRANSFORMATION dialog sequence
-            yield return Textbox.Say("CH20_ASRIEL_ZERO_TRANSFORMATION");
+            yield return Textbox.Say("MAGGYHELPER_CH20_ASRIEL_ZERO_TRANSFORMATION");
         }
 
         private IEnumerator PlayDialog_AsrielHeartLostSoul()
         {
             // CH20_ASRIEL_HEART_LOST_SOUL dialog sequence
-            yield return Textbox.Say("CH20_ASRIEL_HEART_LOST_SOUL");
+            yield return Textbox.Say("MAGGYHELPER_CH20_ASRIEL_HEART_LOST_SOUL");
         }
 
         private IEnumerator PlayDialog_AsrielRememberA()
         {
             // CH20_ASRIEL_REMEMBER_A dialog sequence
-            yield return Textbox.Say("CH20_ASRIEL_REMEMBER_A");
+            yield return Textbox.Say("MAGGYHELPER_CH20_ASRIEL_REMEMBER_A");
         }
 
         private IEnumerator PlayDialog_AsrielRememberB()
         {
             // CH20_ASRIEL_REMEMBER_B dialog sequence
-            yield return Textbox.Say("CH20_ASRIEL_REMEMBER_B");
+            yield return Textbox.Say("MAGGYHELPER_CH20_ASRIEL_REMEMBER_B");
         }
 
         private IEnumerator PlayDialog_AsrielRememberC()
         {
             // CH20_ASRIEL_REMEMBER_C dialog sequence
-            yield return Textbox.Say("CH20_ASRIEL_REMEMBER_C");
+            yield return Textbox.Say("MAGGYHELPER_CH20_ASRIEL_REMEMBER_C");
         }
 
         private IEnumerator PlayDialog_AsrielRememberD()
         {
             // CH20_ASRIEL_REMEMBER_D dialog sequence
-            yield return Textbox.Say("CH20_ASRIEL_REMEMBER_D");
+            yield return Textbox.Say("MAGGYHELPER_CH20_ASRIEL_REMEMBER_D");
         }
 
         private IEnumerator PlayDialog_AsrielRememberE()
         {
             // CH20_ASRIEL_REMEMBER_E dialog sequence
-            yield return Textbox.Say("CH20_ASRIEL_REMEMBER_E");
+            yield return Textbox.Say("MAGGYHELPER_CH20_ASRIEL_REMEMBER_E");
         }
 
         private IEnumerator PlayDialog_AsrielRememberFinal()
         {
             // CH20_ASRIEL_REMEMBER_FINAL dialog sequence
-            yield return Textbox.Say("CH20_ASRIEL_REMEMBER_FINAL");
+            yield return Textbox.Say("MAGGYHELPER_CH20_ASRIEL_REMEMBER_FINAL");
         }
 
         private IEnumerator PlayDialog_AsrielRememberF()
         {
             // CH20_ASRIEL_REMEMBER_F dialog sequence
-            yield return Textbox.Say("CH20_ASRIEL_REMEMBER_F");
+            yield return Textbox.Say("MAGGYHELPER_CH20_ASRIEL_REMEMBER_F");
         }
 
         private IEnumerator PlayDialog_AsrielBossEnd()
         {
             // CH20_ASRIEL_BOSS_END dialog sequence
-            yield return Textbox.Say("CH20_ASRIEL_BOSS_END");
+            yield return Textbox.Say("MAGGYHELPER_CH20_ASRIEL_BOSS_END");
         }
 
         private IEnumerator PlayDialog_KirbyAskWhy()
         {
-            yield return Textbox.Say("CH20_KIRBY_ASK_WHY");
+            yield return Textbox.Say("MAGGYHELPER_CH20_KIRBY_ASK_WHY");
         }
 
         private IEnumerator PlayDialog_KirbyAskWhat()
         {
-            yield return Textbox.Say("CH20_KIRBY_ASK_WHAT");
+            yield return Textbox.Say("MAGGYHELPER_CH20_KIRBY_ASK_WHAT");
         }
 
         private IEnumerator PlayDialog_KirbyDoNotWantToFight()
         {
-            yield return Textbox.Say("CH20_KIRBY_DO_NOT_WANT_TO_FIGHT");
+            yield return Textbox.Say("MAGGYHELPER_CH20_KIRBY_DO_NOT_WANT_TO_FIGHT");
         }
 
         private IEnumerator PlayDialog_KirbyStruckDown()
         {
-            yield return Textbox.Say("CH20_KIRBY_STRUCK_DOWN");
+            yield return Textbox.Say("MAGGYHELPER_CH20_KIRBY_STRUCK_DOWN");
         }
 
         private IEnumerator PlayDialog_KirbyRefusedToDie()
         {
-            yield return Textbox.Say("CH20_KIRBY_REFUSED_TO_DIE");
+            yield return Textbox.Say("MAGGYHELPER_CH20_KIRBY_REFUSED_TO_DIE");
         }
 
         private IEnumerator PlayDialog_AsrielFirstSpecialAttack()
         {
-            yield return Textbox.Say("CH20_ASRIEL_FIRST_SPECIAL_ATTACK");
+            yield return Textbox.Say("MAGGYHELPER_CH20_ASRIEL_FIRST_SPECIAL_ATTACK");
         }
 
         private IEnumerator PlayDialog_MadelineSaveKirbyFromFirstSpecialAttack()
         {
-            yield return Textbox.Say("CH20_MADELINE_AND_BADELINE_SAVE_KIRBY_FROM_ASRIEL_FIRST_SPECIAL_ATTACK");
+            yield return Textbox.Say("MAGGYHELPER_CH20_MADELINE_AND_BADELINE_SAVE_KIRBY_FROM_ASRIEL_FIRST_SPECIAL_ATTACK");
         }
 
         private IEnumerator PlayDialog_AsrielGodSecondSpecialAttack()
         {
-            yield return Textbox.Say("CH20_ASRIEL_GOD_SECOND_SPECIAL_ATTACK");
+            yield return Textbox.Say("MAGGYHELPER_CH20_ASRIEL_GOD_SECOND_SPECIAL_ATTACK");
         }
 
         private IEnumerator PlayDialog_AsrielGodSecondSpecialAttackEnd()
         {
-            yield return Textbox.Say("CH20_ASRIEL_GOD_SECOND_SPECIAL_ATTACK_END");
+            yield return Textbox.Say("MAGGYHELPER_CH20_ASRIEL_GOD_SECOND_SPECIAL_ATTACK_END");
         }
 
         // Dialog trigger flags
@@ -3372,7 +3372,7 @@ namespace Celeste.Entities
             yield return 0.5f;
 
             // Start boss music now that the god boss has appeared
-            level.Session.Audio.Music.Event = "event:/pusheen/extra_content/music/lvl20/kirby_vs_asriel_fight_1";
+            level.Session.Audio.Music.Event = "event:/new_content/music/pusheen/lvl20/kirby_vs_asriel_fight_1";
             level.Session.Audio.Apply();
 
             // Restore player control
@@ -3473,7 +3473,7 @@ namespace Celeste.Entities
         {
             Logger.Log(LogLevel.Info, "MaggyHelper", "AsrielGodBoss: Trigger 2 - RevealIdentity_AsrielTurnIntoGodAndFinalWriter started");
             // Play the Asriel create sound effect
-            Audio.Play("event:/pusheen/extra_content/char/asriel/Asriel_Create");
+            Audio.Play("event:/new_content/char/pusheen/asriel/Asriel_Create");
 
             // Screen flash for dramatic effect
             if (level != null)

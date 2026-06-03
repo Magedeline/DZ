@@ -125,7 +125,7 @@ public sealed class KirbyPlayerSpawner : Entity
 
     internal static void EnsureRoomState(Level level)
     {
-        bool enableKirbyMode = KIRBY_CELESTEModule.Session?.IsKirbyModeActive == true;
+        bool enableKirbyMode = MaggyHelperModule.Session?.IsKirbyModeActive == true;
         EnsureRoomState(level, enableKirbyMode);
     }
 

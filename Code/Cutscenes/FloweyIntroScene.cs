@@ -19,13 +19,13 @@ namespace Celeste.Cutscenes
         #region Constants
         private const string FLAG_CUTSCENE_COMPLETE = "ch10_flowey_intro_complete";
 
-        private const string DIALOG_NORMAL = "CH10_FLOWEY_INTRO";
-        private const string DIALOG_RETURNING = "CH10_FLOWEY_INTRO_RETURNING";
-        private const string DIALOG_ASSIST = "CH10_FLOWEY_INTRO_ASSIST";
+        private const string DIALOG_NORMAL = "MAGGYHELPER_CH10_FLOWEY_INTRO";
+        private const string DIALOG_RETURNING = "MAGGYHELPER_CH10_FLOWEY_INTRO_RETURNING";
+        private const string DIALOG_ASSIST = "MAGGYHELPER_CH10_FLOWEY_INTRO_ASSIST";
 
         // Audio
-        private const string MUSIC_FLOWEY = "event:/pusheen/music/lvl10/flowey";
-        private const string MUSIC_FLOWEY_ALT = "event:/pusheen/music/lvl10/flowey_alt";
+        private const string MUSIC_FLOWEY = "event:/music/pusheen/lvl10/flowey";
+        private const string MUSIC_FLOWEY_ALT = "event:/music/pusheen/lvl10/flowey_alt";
         private const string SFX_FLOWEY_EMERGE = "event:/pusheen/sfx/lvl10/flowey_emerge";
         private const string SFX_MUSIC_DROP = "event:/pusheen/sfx/lvl10/music_drop";
         private const string SFX_SEED_CIRCLE = "event:/pusheen/sfx/lvl10/seed_circle";

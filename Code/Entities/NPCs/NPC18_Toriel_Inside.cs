@@ -81,7 +81,7 @@ namespace Celeste.NPCs
             {
                 Sprite.Scale.X = -1f;
                 yield return Level.ZoomTo(zoomPoint, 2f, 0.5f);
-                yield return Textbox.Say("CH18_Toriel_Locked");
+                yield return Textbox.Say("MAGGYHELPER_CH18_Toriel_Locked");
             }
             else if (conversation == 0)
             {
@@ -89,25 +89,25 @@ namespace Celeste.NPCs
                 Sprite.Scale.X = -1f;
                 yield return 0.25f;
                 yield return Level.ZoomTo(zoomPoint, 2f, 0.5f);
-                yield return Textbox.Say("CH18_Toriel_A", StartLaughing, StopLaughing);
+                yield return Textbox.Say("MAGGYHELPER_CH18_Toriel_A", StartLaughing, StopLaughing);
             }
             else if (conversation == 1)
             {
                 Sprite.Scale.X = -1f;
                 yield return Level.ZoomTo(zoomPoint, 2f, 0.5f);
-                yield return Textbox.Say("CH18_Toriel_B", StartLaughing, StopLaughing);
+                yield return Textbox.Say("MAGGYHELPER_CH18_Toriel_B", StartLaughing, StopLaughing);
             }
             else if (conversation == 2)
             {
                 Sprite.Scale.X = -1f;
                 yield return Level.ZoomTo(zoomPoint, 2f, 0.5f);
-                yield return Textbox.Say("CH18_Toriel_C", StartLaughing, StopLaughing);
+                yield return Textbox.Say("MAGGYHELPER_CH18_Toriel_C", StartLaughing, StopLaughing);
             }
             else if (conversation == 3)
             {
                 Sprite.Scale.X = -1f;
                 yield return Level.ZoomTo(zoomPoint, 2f, 0.5f);
-                yield return Textbox.Say("CH18_Toriel_D", StartLaughing, StopLaughing);
+                yield return Textbox.Say("MAGGYHELPER_CH18_Toriel_D", StartLaughing, StopLaughing);
             }
             talker.Enabled = talkerEnabled;
             yield return Level.ZoomBack(0.5f);

@@ -35,7 +35,7 @@ namespace Celeste.Cutscenes
             yield return 0.3f;
 
             // Initialize the dialog
-            yield return Textbox.Say("CH7_INTRO_DIALOG",
+            yield return Textbox.Say("MAGGYHELPER_CH7_INTRO_DIALOG",
                 new Func<IEnumerator>(cs07Intro.BadelineTurnsRight),
                 new Func<IEnumerator>(cs07Intro.BadelineVanishes));
 

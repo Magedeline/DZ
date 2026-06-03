@@ -8,7 +8,7 @@ namespace Celeste.Cutscenes
     {
         public static class LoadingVignetteText
         {
-            public const string Dialog = "CH10_RUINS_INTRO";
+            public const string Dialog = "MAGGYHELPER_CH10_RUINS_INTRO";
         }
 
         private readonly Session session;
@@ -36,7 +36,7 @@ namespace Celeste.Cutscenes
             Audio.CurrentMusic = null;
             Add(hud = new HudRenderer());
             RendererList.UpdateLists();
-            textbox = new Textbox("CH10_RUINS_INTRO");
+            textbox = new Textbox("MAGGYHELPER_CH10_RUINS_INTRO");
             textCoroutine = new Coroutine(TextSequence());
         }
 
@@ -50,7 +50,7 @@ namespace Celeste.Cutscenes
         {
             yield return 1f;
             // Use FMOD EventInstance for intro music
-            introMusic = Audio.Play("event:/pusheen/music/lvl10/intro");
+            introMusic = Audio.Play("event:/music/pusheen/lvl10/intro");
             yield return 4f;
             // Stop ringtone using FMOD EventInstance
             if (ringtoneActive && ringtone != null)

@@ -73,16 +73,16 @@ namespace Celeste.NPCs
             switch (currentConversation)
             {
                 case 0:
-                    yield return Textbox.Say("CH1_MAGGY_INTRO");
+                    yield return Textbox.Say("MAGGYHELPER_CH1_MAGGY_INTRO");
                     break;
                 case 1:
-                    yield return Textbox.Say("CH1_MAGGY_A");
+                    yield return Textbox.Say("MAGGYHELPER_CH1_MAGGY_A");
                     break;
                 case 2:
-                    yield return Textbox.Say("CH1_MAGGY_B");
+                    yield return Textbox.Say("MAGGYHELPER_CH1_MAGGY_B");
                     break;
                 default:
-                    yield return Textbox.Say("CH1_MAGGY_DEFAULT");
+                    yield return Textbox.Say("MAGGYHELPER_CH1_MAGGY_DEFAULT");
                     break;
             }
 

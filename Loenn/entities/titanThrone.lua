@@ -17,7 +17,7 @@ titanThrone.placements = {
             bossEntity = "MaggyHelper/KingTitanBoss",
             activationRadius = 100,
             autoActivate = false,
-            cutsceneId = "CH15_ROARING_TITAN_KING_BATTLE"
+            cutsceneId = "MAGGYHELPER_CH15_ROARING_TITAN_KING_BATTLE"
         }
     },
     {
@@ -26,7 +26,7 @@ titanThrone.placements = {
             bossEntity = "MaggyHelper/KingTitanBoss",
             activationRadius = 100,
             autoActivate = true,
-            cutsceneId = "CH15_ROARING_TITAN_KING_BATTLE"
+            cutsceneId = "MAGGYHELPER_CH15_ROARING_TITAN_KING_BATTLE"
         }
     }
 }

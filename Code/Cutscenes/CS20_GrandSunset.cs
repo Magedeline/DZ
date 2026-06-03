@@ -15,7 +15,7 @@ namespace Celeste
     {
         #region Constants
 
-        private const string DIALOGUE_KEY = "CH20_GRAND_SUNSET";
+        private const string DIALOGUE_KEY = "MAGGYHELPER_CH20_GRAND_SUNSET";
         private const string FLAG_DONE    = "ch20_grand_sunset_done";
 
         private const float ZOOM_IN_TARGET = 1.6f;

@@ -55,7 +55,7 @@ public class CS10IndoorIntro : CutsceneEntity
         player.Sprite.Play("idle");
 
         // Set music for indoor scene
-        Audio.SetMusic("event:/pusheen/music/lvl10/home");
+        Audio.SetMusic("event:/music/pusheen/lvl10/home");
 
         // Fade in from previous cutscene
         FadeWipe fadeWipe = new FadeWipe(level, wipeIn: true);
@@ -68,39 +68,39 @@ public class CS10IndoorIntro : CutsceneEntity
         yield return SpawnInsideCharacters();
 
         // Initial dialog about the house and photos
-        yield return Textbox.Say("CH10_INDOOR_INTRO", ExamineButterscotchPie, ExamineAsgore, ExamineAsriel);
+        yield return Textbox.Say("MAGGYHELPER_CH10_INDOOR_INTRO", ExamineButterscotchPie, ExamineAsgore, ExamineAsriel);
 
         yield return 0.5f;
 
         // Examine items in the house (sub-dialogs)
         if (!hasExaminedButterscotchPie)
         {
-            yield return Textbox.Say("CH10_INDOOR_A", OnExamineButterscotchPie);
+            yield return Textbox.Say("MAGGYHELPER_CH10_INDOOR_A", OnExamineButterscotchPie);
         }
 
         yield return 0.3f;
 
         if (!hasExaminedAsgoreTrophy)
         {
-            yield return Textbox.Say("CH10_INDOOR_B", OnExamineAsgoreT);
+            yield return Textbox.Say("MAGGYHELPER_CH10_INDOOR_B", OnExamineAsgoreT);
         }
 
         yield return 0.3f;
 
         if (!hasExaminedAsrielPlushie)
         {
-            yield return Textbox.Say("CH10_INDOOR_C", OnExamineAsrielPlushie);
+            yield return Textbox.Say("MAGGYHELPER_CH10_INDOOR_C", OnExamineAsrielPlushie);
         }
 
         yield return 0.8f;
 
         // Pre-meeting setup
-        yield return Textbox.Say("CH10_INDOOR_PREMEETING", PrepareForMeeting);
+        yield return Textbox.Say("MAGGYHELPER_CH10_INDOOR_PREMEETING", PrepareForMeeting);
 
         yield return 0.5f;
 
         // Main meeting with Toriel
-        yield return Textbox.Say("CH10_INDOOR_MEETING", MeetToriel, OnMeetingComplete);
+        yield return Textbox.Say("MAGGYHELPER_CH10_INDOOR_MEETING", MeetToriel, OnMeetingComplete);
 
         yield return 1f;
 
@@ -197,7 +197,7 @@ public class CS10IndoorIntro : CutsceneEntity
         if (player != null)
         {
             player.Sprite.Play("laugh", false);
-            Audio.Play("event:/pusheen/char/kirby/laugh");
+            Audio.Play("event:/char/pusheen/kirby/laugh");
         }
         yield return 1.2f;
         if (player != null)

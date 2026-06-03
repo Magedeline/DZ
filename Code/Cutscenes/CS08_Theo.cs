@@ -23,7 +23,7 @@ public class Cs08Theo : CutsceneEntity
         player.StateMachine.State = Player.StDummy; // Dummy state
         yield return 0.5f;
 
-        yield return Textbox.Say("CH8_THEO");
+        yield return Textbox.Say("MAGGYHELPER_CH8_THEO");
 
         yield return 0.5f;
         EndCutscene(level);

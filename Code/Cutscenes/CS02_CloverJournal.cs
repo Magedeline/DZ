@@ -77,7 +77,7 @@ namespace Celeste.Cutscenes
       {
         Tag = (int) Tags.HUD;
         paper = GFX.Gui["poempage"];
-        text = FancyText.Parse(Dialog.Get("CH2_CLOVER_POEM"), (int) ( (paper.Width - 120) / 0.699999988079071), -1, defaultColor: new Color?(Color.Black * 0.6f));
+        text = FancyText.Parse(Dialog.Get("MAGGYHELPER_CH2_CLOVER_POEM"), (int) ( (paper.Width - 120) / 0.699999988079071), -1, defaultColor: new Color?(Color.Black * 0.6f));
         Add( new BeforeRenderHook(new Action(BeforeRender)));
       }
 

@@ -77,12 +77,12 @@ namespace Celeste.Cutscenes
 
             yield return 1.5f;
 
-            yield return Textbox.Say("CH21_FAKE_ASRIEL_GOD_OF_HD");
+            yield return Textbox.Say("MAGGYHELPER_CH21_FAKE_ASRIEL_GOD_OF_HD");
 
             yield return 1f;
 
             // "Ascension" flash â€” screen goes pure white again, then blacks out
-            Audio.Play("event:/pusheen/extra_content/char/asriel/Asriel_Segapower02");
+            Audio.Play("event:/new_content/char/pusheen/asriel/Asriel_Segapower02");
 
             for (float t = 0f; t < 1f; t += Engine.DeltaTime)
             {

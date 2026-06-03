@@ -16,9 +16,9 @@ namespace Celeste.Entities
     public class FloweyNPC : Entity
     {
         #region Constants
-        private const string DEFAULT_DIALOG = "CH10_FLOWEY_INTRO";
+        private const string DEFAULT_DIALOG = "MAGGYHELPER_CH10_FLOWEY_INTRO";
         private const string SFX_EMERGE = "event:/pusheen/sfx/lvl10/flowey_emerge";
-        private const string SFX_LAUGH = "event:/pusheen/char/others/Flowey_Laugh";
+        private const string SFX_LAUGH = "event:/char/pusheen/others/Flowey_Laugh";
         private const float EMERGE_DURATION = 0.5f;
         #endregion
 
@@ -364,7 +364,7 @@ namespace Celeste.Entities
                 flowey.PlayExpression("idlecreepy");
             }
 
-            yield return Textbox.Say(flowey != null ? "CH10_FLOWEY_INTRO" : "CH10_FLOWEY_INTRO");
+            yield return Textbox.Say(flowey != null ? "MAGGYHELPER_CH10_FLOWEY_INTRO" : "MAGGYHELPER_CH10_FLOWEY_INTRO");
 
             yield return 0.3f;
             EndCutscene(level);

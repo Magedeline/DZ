@@ -14,8 +14,8 @@ BloomStrength: 1.0
 
 Modes:
   - AudioState:
-      Music: event:/pusheen/music/lvl16/cinematic/intro01
-      Ambience: event:/pusheen/env/16_myworld
+      Music: event:/music/pusheen/lvl16/cinematic/intro01
+      Ambience: event:/env/pusheen/16_myworld
     Inventory: Default
     HeartIsEnd: false
     SeekerSlowdown: false

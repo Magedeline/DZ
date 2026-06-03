@@ -6,7 +6,7 @@ using Celeste;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace Celeste.Mod.KIRBY_CELESTE;
+namespace Celeste.Mod.MaggyHelper;
 
 /// <summary>
 /// An in-game menu for the Hybrid PCG system, opened with a keybind.
@@ -251,7 +251,7 @@ public class PCGQuickMenu : Entity
                 return;
             }
 
-            var tree = KIRBY_CELESTEModule.SerializeElementStatic(root);
+            var tree = MaggyHelperModule.SerializeElementStatic(root);
             var json = System.Text.Json.JsonSerializer.Serialize(tree, new System.Text.Json.JsonSerializerOptions
             {
                 WriteIndented = true,

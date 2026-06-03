@@ -160,8 +160,8 @@ public class DesoloZantasTape : Entity
 
     // ─────────────────────────── Audio/Visual Defaults ───────────────────────────
 
-    private const string DefaultCollectSfx      = "event:/pusheen/game/general/tape_unlocked";
-    private const string DefaultPreviewEvent     = "event:/pusheen/game/general/tape_preview";
+    private const string DefaultCollectSfx      = "event:/game/pusheen/general/tape_unlocked";
+    private const string DefaultPreviewEvent     = "event:/game/pusheen/general/tape_preview";
     private const string DefaultPreviewParamName = "remix";
 
     // ──────────────────────────── Particle Types ─────────────────────────────────
@@ -363,9 +363,9 @@ public class DesoloZantasTape : Entity
                 IngesteModule.SaveData.PendingCSideUnlockIDs.Add(_cSideToUnlock);
         }
 
-        KIRBY_CELESTEProgressionManager.RecordCassette(level);
+        MaggyHelperProgressionManager.RecordCassette(level);
         if (level.Session.RespawnPoint.HasValue)
-            KIRBY_CELESTEProgressionManager.RecordCheckpoint(level, level.Session.RespawnPoint.Value, _cSideToUnlock);
+            MaggyHelperProgressionManager.RecordCheckpoint(level, level.Session.RespawnPoint.Value, _cSideToUnlock);
 
         cbm?.StopBlocks();
         Depth = -1000000;

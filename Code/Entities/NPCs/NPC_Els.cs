@@ -13,7 +13,7 @@ namespace Celeste.NPCs
         private float corruptionEffect;
         private Sprite sprite;
 
-        public NPC_Els(EntityData data, Vector2 offset) : base(data.Position + offset, "CH16_CORRUPTED_REALITY_INTRO")
+        public NPC_Els(EntityData data, Vector2 offset) : base(data.Position + offset, "MAGGYHELPER_CH16_CORRUPTED_REALITY_INTRO")
         {
             elsForm = data.Attr("elsForm", "flowey");
             isPowerful = elsForm == "genocider" || elsForm == "corrupted";
@@ -37,17 +37,17 @@ namespace Celeste.NPCs
                     case "flowey":
                         sprite.Color = Color.Yellow;
                         sprite.Scale = Vector2.One * 1.0f;
-                        CutsceneId = "CH15_FLOWEY_ATTACK";
+                        CutsceneId = "MAGGYHELPER_CH15_FLOWEY_ATTACK";
                         break;
                     case "genocider":
                         sprite.Color = Color.DarkRed;
                         sprite.Scale = Vector2.One * 1.5f;
-                        CutsceneId = "CH16_CORRUPTED_REALITY_INTRO";
+                        CutsceneId = "MAGGYHELPER_CH16_CORRUPTED_REALITY_INTRO";
                         break;
                     case "corrupted":
                         sprite.Color = Color.Purple;
                         sprite.Scale = Vector2.One * 2.0f;
-                        CutsceneId = "CH16_FINAL_CONFRONTATION";
+                        CutsceneId = "MAGGYHELPER_CH16_FINAL_CONFRONTATION";
                         break;
                 }
                 
@@ -71,9 +71,9 @@ namespace Celeste.NPCs
                 // Use simple cutscene trigger instead of complex cutscene classes
                 string cutsceneToPlay = elsForm switch
                 {
-                    "flowey" => "CH15_FLOWEY_ATTACK",
-                    "genocider" => "CH16_CORRUPTED_REALITY_INTRO", 
-                    "corrupted" => "CH16_FINAL_CONFRONTATION",
+                    "flowey" => "MAGGYHELPER_CH15_FLOWEY_ATTACK",
+                    "genocider" => "MAGGYHELPER_CH16_CORRUPTED_REALITY_INTRO", 
+                    "corrupted" => "MAGGYHELPER_CH16_FINAL_CONFRONTATION",
                     _ => CutsceneId
                 };
                 

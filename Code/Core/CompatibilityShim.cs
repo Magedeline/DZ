@@ -88,7 +88,7 @@ namespace Celeste
                 return;
             }
 
-            Logger.Log(LogLevel.Info, "KIRBY_CELESTE", $"LuaCutsceneManager compatibility call: {command}");
+            Logger.Log(LogLevel.Info, "MaggyHelper", $"LuaCutsceneManager compatibility call: {command}");
         }
     }
 
@@ -216,13 +216,13 @@ namespace Celeste
             }
 
             List<string> updatedParts = new List<string>(parts);
-            if (string.Equals(updatedParts[1], "KIRBY_CELESTE", StringComparison.OrdinalIgnoreCase))
+            if (string.Equals(updatedParts[1], "MaggyHelper", StringComparison.OrdinalIgnoreCase))
             {
                 updatedParts.RemoveAt(1);
             }
             else
             {
-                updatedParts.Insert(1, "KIRBY_CELESTE");
+                updatedParts.Insert(1, "MaggyHelper");
             }
 
             string updatedPath = string.Join("/", updatedParts);
@@ -252,12 +252,12 @@ namespace Celeste
         }
     }
 
-    public static class KIRBY_CELESTESaveFacade
+    public static class MaggyHelperSaveFacade
     {
         private const string ChapterUnlockPrefix = "chapter_unlocked:";
 
         public static bool IsLoaded => SaveData.Instance != null;
-        public static bool HasModSave => KIRBY_CELESTEModule.SaveData != null;
+        public static bool HasModSave => MaggyHelperModule.SaveData != null;
 
         public static int SelectedAreaId
         {
@@ -290,14 +290,14 @@ namespace Celeste
         {
             if (!string.IsNullOrWhiteSpace(sid))
             {
-                KIRBY_CELESTEModule.SaveData?.UnlockedModes.Add(ChapterUnlockPrefix + sid);
+                MaggyHelperModule.SaveData?.UnlockedModes.Add(ChapterUnlockPrefix + sid);
             }
         }
 
         public static bool IsChapterUnlocked(string sid)
         {
             return !string.IsNullOrWhiteSpace(sid)
-                && KIRBY_CELESTEModule.SaveData?.UnlockedModes.Contains(ChapterUnlockPrefix + sid) == true;
+                && MaggyHelperModule.SaveData?.UnlockedModes.Contains(ChapterUnlockPrefix + sid) == true;
         }
 
         public static string BuildExtendedHeartId(string sid, int mode)
@@ -315,7 +315,7 @@ namespace Celeste
             string sid = AreaData.Get(session.Area)?.SID;
             if (!string.IsNullOrEmpty(sid))
             {
-                KIRBY_CELESTEModule.SaveData?.CollectHeartGem(BuildExtendedHeartId(sid, (int)session.Area.Mode));
+                MaggyHelperModule.SaveData?.CollectHeartGem(BuildExtendedHeartId(sid, (int)session.Area.Mode));
             }
         }
 
@@ -335,7 +335,7 @@ namespace Celeste
             int mode = (int)session.Area.Mode;
             if (mode >= AreaModeExtender.MODE_DSIDE)
             {
-                return KIRBY_CELESTEModule.SaveData?.HasCollectedHeartGem(BuildExtendedHeartId(area.SID, mode)) == true;
+                return MaggyHelperModule.SaveData?.HasCollectedHeartGem(BuildExtendedHeartId(area.SID, mode)) == true;
             }
 
             return TryGetVanillaHeartGem(area.ID, mode);
@@ -355,7 +355,7 @@ namespace Celeste
             {
                 if (mode >= AreaModeExtender.MODE_DSIDE)
                 {
-                    if (KIRBY_CELESTEModule.SaveData?.HasCollectedHeartGem(BuildExtendedHeartId(area.SID, mode)) == true)
+                    if (MaggyHelperModule.SaveData?.HasCollectedHeartGem(BuildExtendedHeartId(area.SID, mode)) == true)
                     {
                         total++;
                     }
@@ -443,7 +443,7 @@ namespace Celeste
         }
     }
 
-    public static class KIRBY_CELESTEProgressionManager
+    public static class MaggyHelperProgressionManager
     {
         public static void RefreshProgression()
         {
@@ -460,7 +460,7 @@ namespace Celeste
             if (!string.IsNullOrEmpty(checkpointId))
             {
                 level.Session.SetFlag($"checkpoint_{checkpointId}", true);
-                KIRBY_CELESTEModule.SaveData?.UnlockAchievement($"checkpoint:{level.Session.Area.SID}:{checkpointId}");
+                MaggyHelperModule.SaveData?.UnlockAchievement($"checkpoint:{level.Session.Area.SID}:{checkpointId}");
             }
         }
 
@@ -468,7 +468,7 @@ namespace Celeste
         {
             if (level?.Session != null && !string.IsNullOrEmpty(berryId))
             {
-                KIRBY_CELESTEModule.SaveData?.UnlockAchievement($"pink_platinum:{level.Session.Area.SID}:{berryId}");
+                MaggyHelperModule.SaveData?.UnlockAchievement($"pink_platinum:{level.Session.Area.SID}:{berryId}");
             }
         }
 
@@ -476,7 +476,7 @@ namespace Celeste
         {
             if (level?.Session != null && !string.IsNullOrEmpty(gemId))
             {
-                KIRBY_CELESTEModule.SaveData?.UnlockAchievement($"mini_heart:{level.Session.Area.SID}:{gemId}");
+                MaggyHelperModule.SaveData?.UnlockAchievement($"mini_heart:{level.Session.Area.SID}:{gemId}");
             }
         }
 
@@ -484,13 +484,13 @@ namespace Celeste
         {
             if (level?.Session != null)
             {
-                KIRBY_CELESTEModule.SaveData?.UnlockAchievement($"cassette:{level.Session.Area.SID}");
+                MaggyHelperModule.SaveData?.UnlockAchievement($"cassette:{level.Session.Area.SID}");
             }
         }
     }
 }
 
-namespace Celeste.Mod.KIRBY_CELESTE
+namespace Celeste.Mod.MaggyHelper
 {
     public static class Util
     {

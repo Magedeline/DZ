@@ -23,7 +23,7 @@ public class Cs10House : CutsceneEntity
         player.StateMachine.State = Player.StDummy; // Dummy state
         yield return 0.5f;
 
-        yield return Textbox.Say("CH10_HOUSE");
+        yield return Textbox.Say("MAGGYHELPER_CH10_HOUSE");
 
         yield return 0.5f;
         EndCutscene(level);

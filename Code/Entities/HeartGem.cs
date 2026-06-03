@@ -185,7 +185,7 @@ PFakeShine = new ParticleType
                     if (this.IsAstral) {
                         Audio.Play("event:/game/general/crystalheart_pulse", this.Position);
                     } else if (this.IsFake) {
-                        Audio.Play("event:/pusheen/extra_content/game/19_spaces/fakeheart_pulse", this.Position);
+                        Audio.Play("event:/new_content/game/pusheen/19_spaces/fakeheart_pulse", this.Position);
                     } else {
                         Audio.Play("event:/game/general/crystalheart_pulse", this.Position);
                     }
@@ -268,7 +268,7 @@ scene.Add(this.fakeRightWall = new InvisibleBarrier(new Vector2(X + 160f, Y - 20
            if (this.IsAstral) {
       Audio.Play("event:/game/general/crystalheart_bounce", this.Position);
           } else if (this.IsFake) {
-      Audio.Play("event:/pusheen/extra_content/game/19_spaces/fakeheart_bounce", this.Position);
+      Audio.Play("event:/new_content/game/pusheen/19_spaces/fakeheart_bounce", this.Position);
           } else {
         Audio.Play("event:/game/general/crystalheart_bounce", this.Position);
          }
@@ -374,15 +374,15 @@ foreach (Follower follower in player.Leader.Followers) {
           if (!string.IsNullOrEmpty(this.customSfx)) {
                 text = this.customSfx;
             } else if (this.IsAstral) {
-                text = "event:/pusheen/game/general/crystalheart_astral_void_get";
+                text = "event:/game/pusheen/general/crystalheart_astral_void_get";
             } else if (this.IsFake) {
-                text = "event:/pusheen/extra_content/game/19_spaces/fakeheart_get";
+                text = "event:/new_content/game/pusheen/19_spaces/fakeheart_get";
             } else if (area.Mode == AreaMode.BSide) {
                 text = "event:/game/general/crystalheart_red_get";
             } else if (area.Mode == AreaMode.CSide) {
                 text = "event:/game/general/crystalheart_gold_get";
             } else if (area.Mode == (AreaMode)3) {
-                text = "event:/pusheen/game/general/crystalheart_rainbow_get";
+                text = "event:/game/pusheen/general/crystalheart_rainbow_get";
             }
      this.sfx = SoundEmitter.Play(text, this, null);
             Add(new LevelEndingHook(delegate () {
@@ -564,7 +564,7 @@ Glitch.Value = 0.75f;
       yield return null;
      }
    this.timeRateModifier.ResetTimeRateMultiplier();
-            yield return Textbox.Say("CH19_WRONG_HEART", new Func<IEnumerator>[]
+            yield return Textbox.Say("MAGGYHELPER_CH19_WRONG_HEART", new Func<IEnumerator>[]
             {
                 this.SevenBirdGonersFlyPast
             });
@@ -604,7 +604,7 @@ Glitch.Value = 0.75f;
      yield return null;
      }
             yield return 0.25f;
-            level.Session.Audio.Music.Event = "event:/pusheen/extra_content/music/lvl19/inmyway";
+            level.Session.Audio.Music.Event = "event:/new_content/music/pusheen/lvl19/inmyway";
    level.Session.Audio.Apply(false);
             player.Active = true;
     player.Depth = 0;
@@ -614,7 +614,7 @@ Glitch.Value = 0.75f;
           }
          player.Facing = Facings.Right;
   yield return 0.5f;
-        yield return Textbox.Say("CH19_KEEP_GOING_KIRBY", new Func<IEnumerator>[]
+        yield return Textbox.Say("MAGGYHELPER_CH19_KEEP_GOING_KIRBY", new Func<IEnumerator>[]
    {
              this.playerStepForward
    });
@@ -685,7 +685,7 @@ Glitch.Value = 0.75f;
        level.Session.SetFlag("wrong_heart");
 level.Frozen = false;
          level.FormationBackdrop.Display = false;
-      level.Session.Audio.Music.Event = "event:/pusheen/extra_content/music/lvl19/inmyway";
+      level.Session.Audio.Music.Event = "event:/new_content/music/pusheen/lvl19/inmyway";
             level.Session.Audio.Apply();
 
             global::Celeste.Player entity1 = this.Scene.Tracker.GetEntity<global::Celeste.Player>();
@@ -887,7 +887,7 @@ Level level = Scene as Level;
 
         private bool CheckAllCrystalHeartsCollected()
         {
-            var saveData = KIRBY_CELESTEModule.SaveData;
+            var saveData = MaggyHelperModule.SaveData;
             if (saveData == null) return false;
 
             int collectedCount = 0;
@@ -932,8 +932,8 @@ Level level = Scene as Level;
                 dialogText = "D-Side Unlocked!\nPink Platinum Berries now available.";
 
             var postcard = new PostcardMaggy(dialogText,
-                "event:/pusheen/ui/main/postcard_dsides_in",
-                "event:/pusheen/ui/main/postcard_dsides_out");
+                "event:/ui/pusheen/main/postcard_dsides_in",
+                "event:/ui/pusheen/main/postcard_dsides_out");
 
             if (GFX.Gui.Has("postcards/dside_crystal_unlock"))
                 postcard.Postcard = GFX.Gui["postcards/dside_crystal_unlock"];
@@ -970,8 +970,8 @@ Level level = Scene as Level;
                 dialogText = "All Crystal Hearts Collected!\nThe ultimate challenge awaits.";
 
             var postcard = new PostcardMaggy(dialogText,
-                "event:/pusheen/extra_content/ui/postcard_desolo_variants_in",
-                "event:/pusheen/extra_content/ui/postcard_desolo_variants_out");
+                "event:/new_content/ui/pusheen/postcard_desolo_variants_in",
+                "event:/new_content/ui/pusheen/postcard_desolo_variants_out");
 
             if (GFX.Gui.Has("postcards/ultra_variant_unlock"))
                 postcard.Postcard = GFX.Gui["postcards/ultra_variant_unlock"];
@@ -985,7 +985,7 @@ Level level = Scene as Level;
 
             yield return postcard.DisplayRoutine();
 
-            KIRBY_CELESTEModule.SaveData?.UnlockAchievement("ultra_crystal_hearts_postcard_shown");
+            MaggyHelperModule.SaveData?.UnlockAchievement("ultra_crystal_hearts_postcard_shown");
 
             yield return 0.5f;
             Engine.Scene = new OverworldLoader(Overworld.StartMode.AreaComplete, new HiresSnow());

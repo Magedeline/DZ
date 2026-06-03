@@ -24,16 +24,16 @@ namespace Celeste
     {
         #region Constants
 
-        private const string DIALOGUE_KEY_KIRBY_DOUBT  = "CH20_TESSERACT_SOUL";
+        private const string DIALOGUE_KEY_KIRBY_DOUBT  = "MAGGYHELPER_CH20_TESSERACT_SOUL";
         private const string DIALOGUE_KEY_ELS_GOTCHA    = "SOUL_Maggy_CSide_20_THEEND_A";
 
         // Session flag written when this cutscene completes
         private const string FLAG_TRAP_DONE = "ch20_tesseract_soul_trap_done";
 
         // SFX
-        private const string SFX_FAKE_HEARTGEM_PULSE   = "event:/pusheen/extra_content/game/20_last_push/fake_heartgem_pulse";
-        private const string SFX_FAKE_HEARTGEM_SHATTER = "event:/pusheen/extra_content/game/20_last_push/fake_heartgem_shatter";
-        private const string SFX_ELS_LAUGH              = "event:/pusheen/extra_content/game/20_last_push/els_reveal_laugh";
+        private const string SFX_FAKE_HEARTGEM_PULSE   = "event:/new_content/game/pusheen/20_last_push/fake_heartgem_pulse";
+        private const string SFX_FAKE_HEARTGEM_SHATTER = "event:/new_content/game/pusheen/20_last_push/fake_heartgem_shatter";
+        private const string SFX_ELS_LAUGH              = "event:/new_content/game/pusheen/20_last_push/els_reveal_laugh";
 
         #endregion
 

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using Celeste;
-using Celeste.Mod.KIRBY_CELESTE.ProceduralGeneration.MarkovChain;
+using Celeste.Mod.MaggyHelper.ProceduralGeneration.MarkovChain;
 
-namespace Celeste.Mod.KIRBY_CELESTE.ProceduralGeneration.Achievements;
+namespace Celeste.Mod.MaggyHelper.ProceduralGeneration.Achievements;
 
 /// <summary>
 /// Procedural achievement system using Markov chains for unique challenges

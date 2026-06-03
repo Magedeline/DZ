@@ -21,7 +21,7 @@ namespace Celeste.Cutscenes
     public override void OnBegin(Level level)
     {   
       this.flag = level.Session;
-      this.flag.Flags.Contains("CH4_ENDING_DONE");
+      this.flag.Flags.Contains("MAGGYHELPER_CH4_ENDING_DONE");
       level.RegisterAreaComplete();
       this.payphone = this.Scene.Tracker.GetEntity<Payphone>();
       this.Add((Component) new Coroutine(this.cutscene(level)));
@@ -51,7 +51,7 @@ namespace Celeste.Cutscenes
       yield return (object) 6f;
       cs04Ending.phoneSfx.Stop();
       cs04Ending.payphone.Sprite.Play("talkPhone");
-      yield return (object) Textbox.Say("CH4_CALLING_MOM_ENDING");
+      yield return (object) Textbox.Say("MAGGYHELPER_CH4_CALLING_MOM_ENDING");
       yield return (object) 0.3f;
       cs04Ending.endCutscene(level);
     }

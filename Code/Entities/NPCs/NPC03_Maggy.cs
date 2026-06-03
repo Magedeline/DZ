@@ -81,27 +81,27 @@ namespace Celeste.NPCs
             if (currentConversation == 1)
             {
                 yield return playerapproach(player, 48f);
-                yield return Textbox.Say("CH3_MAGGY_A");
+                yield return Textbox.Say("MAGGYHELPER_CH3_MAGGY_A");
             }
             else if (currentConversation == 2)
             {
                 yield return playerapproach(player, 48f);
-                yield return Textbox.Say("CH3_MAGGY_B");
+                yield return Textbox.Say("MAGGYHELPER_CH3_MAGGY_B");
             }
             else if (currentConversation == 3)
             {
                 yield return playerapproach(player, 48f);
-                yield return Textbox.Say("CH3_MAGGY_C");
+                yield return Textbox.Say("MAGGYHELPER_CH3_MAGGY_C");
             }
             else if (currentConversation == 4)
             {
                 yield return playerapproach(player, 48f);
-                yield return Textbox.Say("CH3_MAGGY_D");
+                yield return Textbox.Say("MAGGYHELPER_CH3_MAGGY_D");
             }
             else
             {
                 yield return playerapproach(player, 48f);
-                yield return Textbox.Say("CH3_MAGGY_DEFAULT");
+                yield return Textbox.Say("MAGGYHELPER_CH3_MAGGY_DEFAULT");
             }
 
             currentConversation++;

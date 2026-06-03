@@ -2,8 +2,8 @@
 
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
-        <AssemblyName>KIRBY_CELESTE</AssemblyName>
-        <RootNamespace>Celeste.Mod.KIRBY_CELESTE</RootNamespace>
+        <AssemblyName>MaggyHelper</AssemblyName>
+        <RootNamespace>Celeste.Mod.MaggyHelper</RootNamespace>
         <LangVersion>latest</LangVersion>
         <Features>preview</Features>
         <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
@@ -51,7 +51,7 @@
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
         <None Include="$(CelesteAssemblyPath)" Link="Celeste.dll" Condition="Exists('$(CelesteAssemblyPath)')" />
-        <None Include="..\bin\KIRBY_CELESTE.dll" Link="KIRBY_CELESTE.dll" />
+        <None Include="..\bin\MaggyHelper.dll" Link="MaggyHelper.dll" />
         <PackageReference Include="CelesteMod.Publicizer" Version="1.1.2" CelesteAssembly="$(CelesteAssemblyPath)" />
         <Reference Include="$(CelestePrefix)\MMHOOK_Celeste.dll" Private="false" />
         <Reference Include="$(CelestePrefix)\FNA.dll" Private="false" />
@@ -67,7 +67,7 @@
         <ItemGroup>
             <FilesToCopy Include="$(OutputPath)\$(AssemblyName).dll" />
             <FilesToCopy Include="$(OutputPath)\$(AssemblyName).pdb" />
-            <FilesToCopy Include="lib-stripped\KIRBY_CELESTE.xml" Condition="Exists('lib-stripped\KIRBY_CELESTE.xml')" />
+            <FilesToCopy Include="lib-stripped\MaggyHelper.xml" Condition="Exists('lib-stripped\MaggyHelper.xml')" />
             <FilesToCopy Include="@(ReferenceCopyLocalPaths)" Condition="'%(Filename)' == 'YamlDotNet' Or '%(Filename)' == 'Mono.Cecil' Or '%(Filename)' == 'Mono.Cecil.Mdb' Or '%(Filename)' == 'Mono.Cecil.Pdb' Or '%(Filename)' == 'Mono.Cecil.Rocks' Or '%(Filename)' == 'MonoMod.RuntimeDetour' Or '%(Filename)' == 'MonoMod.Utils' Or '%(Filename)' == 'MonoMod.Backports' Or '%(Filename)' == 'MonoMod.Core' Or '%(Filename)' == 'MonoMod.ILHelpers' Or '%(Filename)' == 'MonoMod.Iced' Or '%(Filename)' == 'Aether.Physics2D' Or '%(Filename)' == 'ImGui.NET' Or '%(Filename)' == 'SpineMonoGame'" />
             <!-- Copy native cimgui.dll (ImGui.NET dependency) to bin -->
             <FilesToCopy Include="$(OutputPath)cimgui.dll" Condition="Exists('$(OutputPath)cimgui.dll')" />
@@ -83,20 +83,20 @@
             <ObfuscarInPath>$(OutputPath)</ObfuscarInPath>
             <ObfuscarOutPath>$(OutputPath)obfuscated</ObfuscarOutPath>
         </PropertyGroup>
-        
+
         <Message Text="[Security] Running Obfuscar obfuscation..." Importance="high" />
-        
+
         <!-- Create obfuscated output directory -->
         <MakeDir Directories="$(ObfuscarOutPath)" />
-        
+
         <!-- Copy original assembly for backup -->
         <Copy SourceFiles="$(OutputPath)$(AssemblyName).dll" DestinationFiles="$(ObfuscarOutPath)\$(AssemblyName).original.dll" SkipUnchangedFiles="true" />
-        
+
         <!-- Run Obfuscar with configuration -->
         <Exec Command="$(ObfuscarPath) ..\obfuscar.xml" WorkingDirectory="$(ProjectDir)" ContinueOnError="false">
             <Output TaskParameter="ExitCode" PropertyName="ObfuscarExitCode" />
         </Exec>
-        
+
         <Message Text="[Security] Obfuscation complete. Exit code: $(ObfuscarExitCode)" Importance="high" />
         
         <!-- Copy obfuscated DLL back to output -->
@@ -119,8 +119,8 @@
         <ItemGroup>
             <FilesToPackage_Code Include="$(ZipFiles_Code)" />
         </ItemGroup>
-        <PackageMod Files="@(FilesToPackage_Code)" OutputPath="..\KIRBY_CELESTE_Code.zip" />
-        <Message Text="[Package] KIRBY_CELESTE_Code.zip written." Importance="high" />
+        <PackageMod Files="@(FilesToPackage_Code)" OutputPath="..\MaggyHelper_Code.zip" />
+        <Message Text="[Package] MaggyHelper_Code.zip written." Importance="high" />
     </Target>
 
     <!-- Part 2: Audio banks (user sets A/B/C/Final DLC banks manually) -->
@@ -128,8 +128,8 @@
         <ItemGroup>
             <FilesToPackage_Audio Include="$(ZipFiles_Audio)" />
         </ItemGroup>
-        <PackageMod Files="@(FilesToPackage_Audio)" OutputPath="..\KIRBY_CELESTE_Audio.zip" />
-        <Message Text="[Package] KIRBY_CELESTE_Audio.zip written." Importance="high" />
+        <PackageMod Files="@(FilesToPackage_Audio)" OutputPath="..\MaggyHelper_Audio.zip" />
+        <Message Text="[Package] MaggyHelper_Audio.zip written." Importance="high" />
     </Target>
 
     <!-- Part 3: Maps, Dialog, Tutorials, tile XMLs, DecalRegistry -->
@@ -137,12 +137,12 @@
         <ItemGroup>
             <FilesToPackage_Maps Include="$(ZipFiles_Maps)" />
         </ItemGroup>
-        <PackageMod Files="@(FilesToPackage_Maps)" OutputPath="..\KIRBY_CELESTE_MapsDialog.zip" />
-        <Message Text="[Package] KIRBY_CELESTE_MapsDialog.zip written." Importance="high" />
+        <PackageMod Files="@(FilesToPackage_Maps)" OutputPath="..\MaggyHelper_MapsDialog.zip" />
+        <Message Text="[Package] MaggyHelper_MapsDialog.zip written." Importance="high" />
     </Target>
     
     <PropertyGroup>
-        <PathMap>$(MSBuildProjectDirectory)=KIRBY_CELESTE/</PathMap>
+        <PathMap>$(MSBuildProjectDirectory)=MaggyHelper/</PathMap>
     </PropertyGroup>
 
     <!-- Inline task used to create a .zip for the mod -->

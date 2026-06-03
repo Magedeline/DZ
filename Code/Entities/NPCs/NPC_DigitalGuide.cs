@@ -80,7 +80,7 @@ namespace Celeste.NPCs
             {
                 // Post-corruption dialogue
                 // MultiCharacterCutscene doesn't exist
-                // Scene.Add(new MultiCharacterCutscene(player, "CH14_DIGITAL_DIMENSION_RESTORED"));
+                // Scene.Add(new MultiCharacterCutscene(player, "MAGGYHELPER_CH14_DIGITAL_DIMENSION_RESTORED"));
             }
             else
             {

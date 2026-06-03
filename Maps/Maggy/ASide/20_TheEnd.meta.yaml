@@ -14,43 +14,43 @@ BloomStrength: 1.0
 
 Modes:
   - AudioState:
-      Music: event:/pusheen/music/lvl20/main
-      Ambience: event:/pusheen/env/20_main
+      Music: event:/music/pusheen/lvl20/main
+      Ambience: event:/env/pusheen/20_main
     Inventory: Default
     HeartIsEnd: false
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/pusheen/music/lvl20/main
-      Ambience: event:/pusheen/env/20_main
+      Music: event:/music/pusheen/lvl20/main
+      Ambience: event:/env/pusheen/20_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/pusheen/music/lvl20/main
-      Ambience: event:/pusheen/env/20_main
+      Music: event:/music/pusheen/lvl20/main
+      Ambience: event:/env/pusheen/20_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/pusheen/music/lvl20/main
-      Ambience: event:/pusheen/env/20_main
+      Music: event:/music/pusheen/lvl20/main
+      Ambience: event:/env/pusheen/20_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/pusheen/music/DSide/20_theend
-      Ambience: event:/pusheen/env/20_main
+      Music: event:/music/pusheen/DSide/20_theend
+      Ambience: event:/env/pusheen/20_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/pusheen/music/DXSide/20_theend
-      Ambience: event:/pusheen/env/20_main
+      Music: event:/music/pusheen/DXSide/20_theend
+      Ambience: event:/env/pusheen/20_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
-    BackgroundMusic: event:/pusheen/music/menu/level_select
-    BackgroundAmbience: event:/pusheen/extra_content/env/gen_last_push
+    BackgroundMusic: event:/music/pusheen/menu/level_select
+    BackgroundAmbience: event:/new_content/env/pusheen/gen_last_push
     BackgroundMusicParams:
         moon_and_blackhole: 1
     MarkerTexture: marker/runNoBackpack

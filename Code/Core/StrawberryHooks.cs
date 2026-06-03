@@ -109,19 +109,19 @@ namespace Celeste
         {
             if (string.IsNullOrEmpty(id))
                 return false;
-            return global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModule.SaveData?.CollectedPopstarBerries?.Contains(id) == true;
+            return global::Celeste.Mod.MaggyHelper.MaggyHelperModule.SaveData?.CollectedPopstarBerries?.Contains(id) == true;
         }
 
         public static void MarkDeltaBerryAsCollected(string id)
         {
             if (string.IsNullOrEmpty(id))
                 return;
-            global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModule.SaveData?.CollectedPopstarBerries?.Add(id);
+            global::Celeste.Mod.MaggyHelper.MaggyHelperModule.SaveData?.CollectedPopstarBerries?.Add(id);
         }
 
         public static void ClearDeltaBerries()
         {
-            global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModule.SaveData?.CollectedPopstarBerries?.Clear();
+            global::Celeste.Mod.MaggyHelper.MaggyHelperModule.SaveData?.CollectedPopstarBerries?.Clear();
         }
     }
 }

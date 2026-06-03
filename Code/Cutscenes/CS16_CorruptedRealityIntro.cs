@@ -28,19 +28,19 @@ namespace Celeste.Cutscenes
             // Corrupted reality introduction
             level.Flash(Color.DarkRed, false);
             
-            yield return Textbox.Say("CH16_CORRUPTED_REALITY_INTRO");
+            yield return Textbox.Say("MAGGYHELPER_CH16_CORRUPTED_REALITY_INTRO");
 
             // Horrific battle begins
             level.Flash(Color.Purple, false);
             level.Shake(4.0f);
             
-            yield return Textbox.Say("CH16_HORRIFIC_BATTLE_BEGIN");
+            yield return Textbox.Say("MAGGYHELPER_CH16_HORRIFIC_BATTLE_BEGIN");
 
             // First phase battle
             yield return 1f;
             level.Shake(2.0f);
             
-            yield return Textbox.Say("CH16_FIRST_PHASE_BATTLE");
+            yield return Textbox.Say("MAGGYHELPER_CH16_FIRST_PHASE_BATTLE");
 
             EndCutscene(level);
         }

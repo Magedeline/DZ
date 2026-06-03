@@ -191,7 +191,7 @@ kirbyModeToggleTrigger.placements = {
             particleCount = 30,
             screenShake = true,
             shakeIntensity = 0.3,
-            transformSound = "event:/pusheen/char/kirby/transform",
+            transformSound = "event:/char/pusheen/kirby/transform",
             playSound = true
         }
     },
@@ -216,7 +216,7 @@ kirbyModeToggleTrigger.placements = {
             particleCount = 30,
             screenShake = true,
             shakeIntensity = 0.3,
-            transformSound = "event:/pusheen/char/kirby/transform",
+            transformSound = "event:/char/pusheen/kirby/transform",
             playSound = true
         }
     },
@@ -241,7 +241,7 @@ kirbyModeToggleTrigger.placements = {
             particleCount = 30,
             screenShake = true,
             shakeIntensity = 0.3,
-            transformSound = "event:/pusheen/char/kirby/transform",
+            transformSound = "event:/char/pusheen/kirby/transform",
             playSound = true
         }
     },
@@ -266,7 +266,7 @@ kirbyModeToggleTrigger.placements = {
             particleCount = 40,
             screenShake = true,
             shakeIntensity = 0.4,
-            transformSound = "event:/pusheen/char/kirby/transform",
+            transformSound = "event:/char/pusheen/kirby/transform",
             playSound = true
         }
     },
@@ -291,7 +291,7 @@ kirbyModeToggleTrigger.placements = {
             particleCount = 35,
             screenShake = true,
             shakeIntensity = 0.3,
-            transformSound = "event:/pusheen/char/kirby/transform",
+            transformSound = "event:/char/pusheen/kirby/transform",
             playSound = true
         }
     },
@@ -316,7 +316,7 @@ kirbyModeToggleTrigger.placements = {
             particleCount = 60,
             screenShake = true,
             shakeIntensity = 0.6,
-            transformSound = "event:/pusheen/char/kirby/transform",
+            transformSound = "event:/char/pusheen/kirby/transform",
             playSound = true
         }
     },
@@ -341,7 +341,7 @@ kirbyModeToggleTrigger.placements = {
             particleCount = 50,
             screenShake = true,
             shakeIntensity = 0.5,
-            transformSound = "event:/pusheen/char/kirby/transform",
+            transformSound = "event:/char/pusheen/kirby/transform",
             playSound = true
         }
     },
@@ -366,7 +366,7 @@ kirbyModeToggleTrigger.placements = {
             particleCount = 40,
             screenShake = false,
             shakeIntensity = 0.2,
-            transformSound = "event:/pusheen/char/kirby/transform",
+            transformSound = "event:/char/pusheen/kirby/transform",
             playSound = true
         }
     },
@@ -416,7 +416,7 @@ kirbyModeToggleTrigger.placements = {
             particleCount = 36,
             screenShake = true,
             shakeIntensity = 0.4,
-            transformSound = "event:/pusheen/char/kirby/transform",
+            transformSound = "event:/char/pusheen/kirby/transform",
             playSound = true
         }
     },
@@ -441,7 +441,7 @@ kirbyModeToggleTrigger.placements = {
             particleCount = 25,
             screenShake = false,
             shakeIntensity = 0.2,
-            transformSound = "event:/pusheen/char/kirby/transform",
+            transformSound = "event:/char/pusheen/kirby/transform",
             playSound = true
         }
     }

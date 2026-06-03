@@ -23,7 +23,7 @@ public class Cs14GigaAxisPreBoss : CutsceneEntity
         player.StateMachine.State = Player.StDummy; // Dummy state
         yield return 0.5f;
 
-        yield return Textbox.Say("CH14_GIGA_AXIS_PRE_BOSS");
+        yield return Textbox.Say("MAGGYHELPER_CH14_GIGA_AXIS_PRE_BOSS");
 
         yield return 0.5f;
         EndCutscene(level);

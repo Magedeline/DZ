@@ -93,16 +93,16 @@ namespace Celeste.NPCs
             // Play appropriate dialog based on berry type (Pink Platinum takes priority)
             if (hasPinkPlat)
             {
-                yield return Textbox.Say("CH19_21_PINK_PLATINUM_BERRY");
+                yield return Textbox.Say("MAGGYHELPER_CH19_21_PINK_PLATINUM_BERRY");
             }
             else if (hasGolden)
             {
-                yield return Textbox.Say("CH19_21_GOLDEN_BERRY");
+                yield return Textbox.Say("MAGGYHELPER_CH19_21_GOLDEN_BERRY");
             }
             else
             {
                 // Default dialog if no berry
-                yield return Textbox.Say("CH19_21_GOLDEN_BERRY");
+                yield return Textbox.Say("MAGGYHELPER_CH19_21_GOLDEN_BERRY");
             }
 
             endcutscene();

@@ -22,7 +22,7 @@ namespace Celeste.Triggers
             : base(data, offset)
         {
             CutsceneId = data.Attr("cutsceneId", "ch16_default");
-            DialogKey = data.Attr("dialogKey", "CH16_DEFAULT");
+            DialogKey = data.Attr("dialogKey", "MAGGYHELPER_CH16_DEFAULT");
             TriggerOnce = data.Bool("triggerOnce", true);
             PlayerOnly = data.Bool("playerOnly", true);
             AutoStart = data.Bool("autoStart", false);
@@ -130,7 +130,7 @@ namespace Celeste.Triggers
         public Chapter16DialogTrigger(EntityData data, Vector2 offset) 
             : base(data, offset)
         {
-            DialogKey = data.Attr("dialogKey", "CH16_DEFAULT");
+            DialogKey = data.Attr("dialogKey", "MAGGYHELPER_CH16_DEFAULT");
             CharacterState = data.Attr("characterState", "madeline_default");
             EnableCharacterStates = data.Bool("enableCharacterStates", true);
             EnablePortraitChanges = data.Bool("enablePortraitChanges", true);

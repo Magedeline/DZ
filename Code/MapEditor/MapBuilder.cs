@@ -6,7 +6,7 @@ using Celeste;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace Celeste.Mod.KIRBY_CELESTE;
+namespace Celeste.Mod.MaggyHelper;
 
 /// <summary>
 /// Builds a <see cref="BinaryPacker.Element"/> tree from PCG data that can be

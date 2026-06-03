@@ -27,7 +27,7 @@ public class CS05_OshiroHallway1(global::Celeste.Player player, NPC oshiro) : Cu
         level.Session.Audio.Apply(forceSixteenthNoteHack: false);
         player.StateMachine.State = Player.StDummy;
         player.StateMachine.Locked = true;
-        yield return Textbox.Say("CH5_OSHIRO_HALLWAY_A");
+        yield return Textbox.Say("MAGGYHELPER_CH5_OSHIRO_HALLWAY_A");
         oshiro.MoveToAndRemove(new Vector2(SceneAs<Level>().Bounds.Right + 64, oshiro.Y));
         oshiro.Add(new SoundSource("event:/char/oshiro/move_02_03a_exit"));
         yield return 1f;

@@ -49,7 +49,7 @@ public class CS19_Gravestone : CutsceneEntity
         yield return Level.ZoomTo(new Vector2(160f, 90f), 2f, 3f);
         player.ForceCameraUpdate = false;
         yield return 0.5f;
-        yield return Textbox.Say("CH19_GRAVESTONE", StepForward, BadelineAppears, SitDown);
+        yield return Textbox.Say("MAGGYHELPER_CH19_GRAVESTONE", StepForward, BadelineAppears, SitDown);
         yield return 1f;
         yield return BirdStuff();
         yield return BadelineRejoin();

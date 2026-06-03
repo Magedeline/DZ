@@ -56,14 +56,14 @@ namespace Celeste.Cutscenes
         {
             Audio.BusMuted("bus:/gameplay_sfx", true);
 
-            if (KIRBY_CELESTEModule.Session != null)
+            if (MaggyHelperModule.Session != null)
             {
-                KIRBY_CELESTEModule.Session.InCredits = true;
-                KIRBY_CELESTEModule.Session.CreditsPhase = 1;
-                KIRBY_CELESTEModule.Session.CreditsCompleted = false;
+                MaggyHelperModule.Session.InCredits = true;
+                MaggyHelperModule.Session.CreditsPhase = 1;
+                MaggyHelperModule.Session.CreditsCompleted = false;
             }
 
-            this.gotoEpilogue = !KIRBY_CELESTEModule.IsChapter17EpilogueCompleted();
+            this.gotoEpilogue = !MaggyHelperModule.IsChapter17EpilogueCompleted();
             this.Add(new Coroutine(this.Routine(), true));
             this.Add(new PostUpdateHook(new Action(this.PostUpdate)));
         }
@@ -1516,18 +1516,18 @@ namespace Celeste.Cutscenes
             MInput.Disabled = false;
             if (!this.gotoEpilogue)
             {
-                if (KIRBY_CELESTEModule.Session != null)
+                if (MaggyHelperModule.Session != null)
                 {
-                    KIRBY_CELESTEModule.Session.InCredits = false;
-                    KIRBY_CELESTEModule.Session.CreditsPhase = 0;
-                    KIRBY_CELESTEModule.Session.CreditsCompleted = KIRBY_CELESTEModule.IsChapter17EpilogueCompleted();
+                    MaggyHelperModule.Session.InCredits = false;
+                    MaggyHelperModule.Session.CreditsPhase = 0;
+                    MaggyHelperModule.Session.CreditsCompleted = MaggyHelperModule.IsChapter17EpilogueCompleted();
                 }
 
                 Engine.Scene = new OverworldLoader(Overworld.StartMode.AreaComplete, this.snow);
             }
             else
             {
-                KIRBY_CELESTEModule.LaunchChapter17Epilogue();
+                MaggyHelperModule.LaunchChapter17Epilogue();
             }
         }
 

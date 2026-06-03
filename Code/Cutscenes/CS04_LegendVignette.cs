@@ -18,12 +18,12 @@ namespace Celeste.Cutscenes {
         private int currentLegendPart = 0;
 
         private readonly string[] legendParts = {
-            "CH4_LEGEND_A",    // The void and broken star warrior
-            "CH4_LEGEND_B",    // The FALL and El's emergence
-            "CH4_LEGEND_C",    // Six heroes and star warrior
-            "CH4_LEGEND_D",    // The Desolo Zantas
-            "CH4_LEGEND_E",    // Banishment to the void
-            "CH4_LEGEND_F"     // El's eventual return
+            "MAGGYHELPER_CH4_LEGEND_A",    // The void and broken star warrior
+            "MAGGYHELPER_CH4_LEGEND_B",    // The FALL and El's emergence
+            "MAGGYHELPER_CH4_LEGEND_C",    // Six heroes and star warrior
+            "MAGGYHELPER_CH4_LEGEND_D",    // The Desolo Zantas
+            "MAGGYHELPER_CH4_LEGEND_E",    // Banishment to the void
+            "MAGGYHELPER_CH4_LEGEND_F"     // El's eventual return
         };
 
         public bool CanPause => menu == null;
@@ -48,7 +48,7 @@ namespace Celeste.Cutscenes {
             yield return 1f;
 
             // Start the legend music using FMOD EventInstance
-            legendMusic = Audio.Play("event:/pusheen/music/lvl4/legend");
+            legendMusic = Audio.Play("event:/music/pusheen/lvl4/legend");
             yield return 2f;
 
             // Show each part of the legend

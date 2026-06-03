@@ -51,7 +51,7 @@ namespace Celeste.UI
             }
 
             roomNames.Sort();
-            Logger.Log(LogLevel.Info, "KIRBY_CELESTE/Debug", $"DebugRoomWarpMenu: scanned {roomNames.Count} rooms");
+            Logger.Log(LogLevel.Info, "MaggyHelper/Debug", $"DebugRoomWarpMenu: scanned {roomNames.Count} rooms");
         }
 
         public override void Update()
@@ -61,7 +61,7 @@ namespace Celeste.UI
             if (!active)
             {
                 // Only allow opening if DeveloperBypass or DebugMode is enabled
-                var settings = global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModule.Settings;
+                var settings = global::Celeste.Mod.MaggyHelper.MaggyHelperModule.Settings;
                 if ((settings?.DeveloperBypass ?? false) || (settings?.DebugMode ?? false))
                 {
                     if (MInput.Keyboard.Pressed(WARP_MENU_KEY))
@@ -102,7 +102,7 @@ namespace Celeste.UI
             level.Paused = true;
             ScanRooms(); // Refresh room list
             selectedIndex = Math.Max(0, roomNames.IndexOf(level.Session.Level));
-            Logger.Log(LogLevel.Info, "KIRBY_CELESTE/Debug", "DebugRoomWarpMenu opened");
+            Logger.Log(LogLevel.Info, "MaggyHelper/Debug", "DebugRoomWarpMenu opened");
         }
 
         private void Close()
@@ -112,7 +112,7 @@ namespace Celeste.UI
             {
                 level.Paused = false;
             }
-            Logger.Log(LogLevel.Info, "KIRBY_CELESTE/Debug", "DebugRoomWarpMenu closed");
+            Logger.Log(LogLevel.Info, "MaggyHelper/Debug", "DebugRoomWarpMenu closed");
         }
 
         private void WarpToRoom(string roomName)
@@ -121,13 +121,13 @@ namespace Celeste.UI
 
             try
             {
-                Logger.Log(LogLevel.Info, "KIRBY_CELESTE/Debug", $"Warping to room: {roomName}");
+                Logger.Log(LogLevel.Info, "MaggyHelper/Debug", $"Warping to room: {roomName}");
 
                 // Find the room's spawn point
                 var targetLevelData = level.Session.MapData.Get(roomName);
                 if (targetLevelData == null)
                 {
-                    Logger.Log(LogLevel.Warn, "KIRBY_CELESTE/Debug", $"Room '{roomName}' not found in map data");
+                    Logger.Log(LogLevel.Warn, "MaggyHelper/Debug", $"Room '{roomName}' not found in map data");
                     return;
                 }
 
@@ -142,11 +142,11 @@ namespace Celeste.UI
                     level.TeleportTo(level.Tracker.GetEntity<Player>(), roomName, Player.IntroTypes.Transition);
                 };
 
-                Logger.Log(LogLevel.Info, "KIRBY_CELESTE/Debug", $"Warp to '{roomName}' scheduled");
+                Logger.Log(LogLevel.Info, "MaggyHelper/Debug", $"Warp to '{roomName}' scheduled");
             }
             catch (Exception ex)
             {
-                Logger.Log(LogLevel.Error, "KIRBY_CELESTE/Debug", $"Failed to warp to '{roomName}': {ex.Message}");
+                Logger.Log(LogLevel.Error, "MaggyHelper/Debug", $"Failed to warp to '{roomName}': {ex.Message}");
             }
         }
 

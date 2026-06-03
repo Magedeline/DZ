@@ -68,12 +68,12 @@ namespace Celeste.Cutscenes
             yield return 0.5f;
 
             // Part 1: Asriel impressed
-            yield return Textbox.Say("CH20_ASRIEL_HYPERGONER_IMPRESSED");
+            yield return Textbox.Say("MAGGYHELPER_CH20_ASRIEL_HYPERGONER_IMPRESSED");
 
             yield return 0.3f;
 
             // Part 2: Asriel mocks them
-            yield return Textbox.Say("CH20_ASRIEL_MOCKING_HEROES");
+            yield return Textbox.Say("MAGGYHELPER_CH20_ASRIEL_MOCKING_HEROES");
 
             yield return 0.5f;
 
@@ -81,21 +81,21 @@ namespace Celeste.Cutscenes
             // Dramatic screen shake and flash
             level.Shake(1.5f);
             level.Flash(Color.Purple * 0.6f, false);
-            Audio.Play("event:/pusheen/extra_content/char/asriel/Asriel_Segapower01", asriel?.Position ?? player.Position);
+            Audio.Play("event:/new_content/char/pusheen/asriel/Asriel_Segapower01", asriel?.Position ?? player.Position);
 
             yield return 0.4f;
 
             // Displacement burst for power reveal
             level.Displacement.AddBurst(asriel?.Position ?? (player.Position + new Vector2(0, -100f)), 2f, 192f, 384f, 2.5f);
 
-            yield return Textbox.Say("CH20_ASRIEL_FRACTION_POWER");
+            yield return Textbox.Say("MAGGYHELPER_CH20_ASRIEL_FRACTION_POWER");
 
             yield return 0.5f;
 
             // Begin transformation sequence
             level.Shake(2.0f);
             level.Flash(Color.Gold * 0.8f, false);
-            Audio.Play("event:/pusheen/extra_content/char/asriel/Asriel_Segapower02", asriel?.Position ?? player.Position);
+            Audio.Play("event:/new_content/char/pusheen/asriel/Asriel_Segapower02", asriel?.Position ?? player.Position);
 
             // Multiple bursts for transformation
             for (int i = 0; i < 3; i++)
@@ -105,7 +105,7 @@ namespace Celeste.Cutscenes
             }
 
             // Final transformation dialog
-            yield return Textbox.Say("CH20_ASRIEL_ANGEL_TRANSFORMATION");
+            yield return Textbox.Say("MAGGYHELPER_CH20_ASRIEL_ANGEL_TRANSFORMATION");
 
             // Zoom out for the transformation
             yield return level.ZoomBack(0.8f);
@@ -113,7 +113,7 @@ namespace Celeste.Cutscenes
             // Massive screen flash for transformation
             level.Flash(Color.White, true);
             level.Shake(3.0f);
-            Audio.Play("event:/pusheen/extra_content/char/asriel/Asriel_BarrierShatter", asriel?.Position ?? player.Position);
+            Audio.Play("event:/new_content/char/pusheen/asriel/Asriel_BarrierShatter", asriel?.Position ?? player.Position);
 
             yield return 1.0f;
 
@@ -159,7 +159,7 @@ namespace Celeste.Cutscenes
             level.Session.SetFlag("asriel_angel_phase_started");
             
             // Update music for Angel of Death phase
-            level.Session.Audio.Music.Event = "event:/pusheen/extra_content/music/lvl20/burn_in_despair";
+            level.Session.Audio.Music.Event = "event:/new_content/music/pusheen/lvl20/burn_in_despair";
             level.Session.Audio.Apply();
         }
     }

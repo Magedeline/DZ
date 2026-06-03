@@ -13,7 +13,7 @@ namespace Celeste.Cutscenes
     {
         public static class LoadingVignetteText
         {
-            public const string Dialog = "CH3_KIRBY_INTRO";
+            public const string Dialog = "MAGGYHELPER_CH3_KIRBY_INTRO";
         }
 
         private readonly Session session;
@@ -83,7 +83,7 @@ namespace Celeste.Cutscenes
             yield return 0.5f;
 
             // Play intro vignette sound effect
-            introVignetteSfx = Audio.Play("event:/pusheen/game/03_star/intro_vignette", Vector2.Zero);
+            introVignetteSfx = Audio.Play("event:/game/pusheen/03_star/intro_vignette", Vector2.Zero);
             // Show postcard with zoom in effect
             postcardVisible = true;
             float timer = 0f;
@@ -106,7 +106,7 @@ namespace Celeste.Cutscenes
             yield return 2f;
 
             // Display intro dialog on the postcard
-            var postcardTextbox = new Textbox("CH3_POSTCARD_INTRO");
+            var postcardTextbox = new Textbox("MAGGYHELPER_CH3_POSTCARD_INTRO");
             yield return say(postcardTextbox);
 
             yield return 1f;

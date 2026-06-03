@@ -16,7 +16,7 @@ namespace Celeste.Cutscenes;
             Cs05Diary cs03Diary = this;
             cs03Diary.player.StateMachine.State = Player.StDummy;
             cs03Diary.player.StateMachine.Locked = true;
-            yield return Textbox.Say("CH5_DIARY");
+            yield return Textbox.Say("MAGGYHELPER_CH5_DIARY");
             yield return 0.1f;
             cs03Diary.endCutscene(cs03Diary.Level);
         }

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using Celeste;
-using Celeste.Mod.KIRBY_CELESTE.ProceduralGeneration.MarkovChain;
+using Celeste.Mod.MaggyHelper.ProceduralGeneration.MarkovChain;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace Celeste.Mod.KIRBY_CELESTE.ProceduralGeneration.Difficulty;
+namespace Celeste.Mod.MaggyHelper.ProceduralGeneration.Difficulty;
 
 /// <summary>
 /// Dynamic difficulty balancer using Markov chains for adaptive difficulty scaling

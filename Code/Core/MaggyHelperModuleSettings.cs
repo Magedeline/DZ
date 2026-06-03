@@ -1,17 +1,17 @@
 using Microsoft.Xna.Framework.Input;
 
-namespace Celeste.Mod.KIRBY_CELESTE
+namespace Celeste.Mod.MaggyHelper
 {
     /// <summary>
     /// Persistent settings for KIRBY_CELESTE mod.
     /// Includes: Hot reload config, key bindings, boss/Kirby settings,
     /// overworld 3D preferences, area data display options.
     /// </summary>
-    public class KIRBY_CELESTEModuleSettings : EverestModuleSettings
+    public class MaggyHelperModuleSettings : EverestModuleSettings
     {
         #region Hot Reload Settings (Development)
 
-        [SettingSubHeader("KIRBY_CELESTE_HOTRELOAD_HEADER")]
+        [SettingSubHeader("MaggyHelper_HOTRELOAD_HEADER")]
         public bool HotReloadEnabled { get; set; } = true;
 
         public bool HotReloadAuto { get; set; } = true;
@@ -73,7 +73,7 @@ namespace Celeste.Mod.KIRBY_CELESTE
 
         #region Overworld 3D Settings
 
-        [SettingSubHeader("KIRBY_CELESTE_OVERWORLD_HEADER")]
+        [SettingSubHeader("MaggyHelper_OVERWORLD_HEADER")]
         public bool EnableCustomMountainModels { get; set; } = true;
 
         public bool LockMountainCameraRotation { get; set; } = true;
@@ -91,7 +91,7 @@ namespace Celeste.Mod.KIRBY_CELESTE
 
         #region Area Data Display Settings
 
-        [SettingSubHeader("KIRBY_CELESTE_AREADATA_HEADER")]
+        [SettingSubHeader("MaggyHelper_AREADATA_HEADER")]
         public bool ShowSideUnlockNotifications { get; set; } = true;
 
         public bool ShowChapterMasteryOnPanel { get; set; } = true;
@@ -107,7 +107,7 @@ namespace Celeste.Mod.KIRBY_CELESTE
 
         #region Chapter Progression Settings
 
-        [SettingSubHeader("KIRBY_CELESTE_PROGRESSION_HEADER")]
+        [SettingSubHeader("MaggyHelper_PROGRESSION_HEADER")]
         public bool EnableLateChapterUnlockFlow { get; set; } = true;
 
         public bool AutoUnlockBSides { get; set; } = false;
@@ -126,9 +126,9 @@ namespace Celeste.Mod.KIRBY_CELESTE
 
         #region PCG Settings
 
-        [SettingSubHeader("KIRBY_CELESTE_PCG_HEADER")]
+        [SettingSubHeader("MaggyHelper_PCG_HEADER")]
         [SettingRange(1, 20)]
-        [SettingName("KIRBY_CELESTE_PCG_FADE")]
+        [SettingName("MaggyHelper_PCG_FADE")]
         public int PCGWarpFadeDurationTenths { get; set; } = 5;
 
         public float PCGWarpFadeDuration => PCGWarpFadeDurationTenths / 10f;
@@ -137,8 +137,8 @@ namespace Celeste.Mod.KIRBY_CELESTE
 
         #region Mod Integration Settings
 
-        [SettingSubHeader("KIRBY_CELESTE_INTEGRATIONS_HEADER")]
-        [SettingName("KIRBY_CELESTE_DEATHLINK_DAMAGE")]
+        [SettingSubHeader("MaggyHelper_INTEGRATIONS_HEADER")]
+        [SettingName("MaggyHelper_DEATHLINK_DAMAGE")]
         public bool DeathlinkDamageEnabled
         {
             get => global::Celeste.DeathlinkIntegration.IsDamageModeEnabled();

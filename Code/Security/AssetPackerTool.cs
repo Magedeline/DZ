@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Text;
 
-namespace Celeste.Mod.KIRBY_CELESTE.Security
+namespace Celeste.Mod.MaggyHelper.Security
 {
     /// <summary>
     /// Build-time tool for packing text assets into binary format.

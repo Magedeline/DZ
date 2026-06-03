@@ -72,7 +72,7 @@ public class CS10BossOutro : CutsceneEntity
         yield return 0.8f;
 
         // Victory dialog with Wispy acknowledging defeat
-        yield return Textbox.Say("CH10_BOSS_OUTRO", OnWispyApologizes);
+        yield return Textbox.Say("MAGGYHELPER_CH10_BOSS_OUTRO", OnWispyApologizes);
 
         yield return 0.5f;
 

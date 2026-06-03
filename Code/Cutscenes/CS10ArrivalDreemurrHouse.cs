@@ -75,7 +75,7 @@ public class CS10ArrivalDreemurrHouse : CutsceneEntity
 
         // Dialog section 1
         yield return Textbox.Say(
-            "CH10_ARRIVIAL_DREEMURR_HOUSE",
+            "MAGGYHELPER_CH10_ARRIVIAL_DREEMURR_HOUSE",
             null, TheoWalkIn, null, TorielTurnRight
             // MadelineTurnLeftThenRight and MadelineTurnRight don't exist
         );

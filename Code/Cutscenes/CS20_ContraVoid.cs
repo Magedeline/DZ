@@ -15,7 +15,7 @@ namespace Celeste
     {
         #region Constants
 
-        private const string DIALOGUE_KEY = "CH20_CONTRA_VOID";
+        private const string DIALOGUE_KEY = "MAGGYHELPER_CH20_CONTRA_VOID";
         private const string FLAG_DONE    = "ch20_contra_void_done";
 
         // The zoom surges further than Grand Sunset to sell the forced pull.

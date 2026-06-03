@@ -133,7 +133,7 @@ public class CS_Gen_IntroRemix_BSide : Scene
     private IEnumerator VHSStaticIntro()
     {
         // Play VHS tape insert SFX
-        Audio.Play("event:/pusheen/ui/vhs_tape_insert");
+        Audio.Play("event:/ui/pusheen/vhs_tape_insert");
 
         for (float t = 0f; t < STATIC_INTRO_DURATION; t += Engine.DeltaTime)
         {

@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 using Monocle;
 using Celeste.Entities;
 
-namespace Celeste.Mod.KIRBY_CELESTE.Bosses
+namespace Celeste.Mod.MaggyHelper.Bosses
 {
     /// <summary>
     /// Provides safe, validated EntityData accessors for boss configuration.

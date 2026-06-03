@@ -1,14 +1,14 @@
 
 using Microsoft.Xna.Framework;
 
-namespace Celeste.Mod.KIRBY_CELESTE
+namespace Celeste.Mod.MaggyHelper
 {
     /// <summary>
     /// Per-session state for KIRBY_CELESTE mod.
     /// Tracks: Boss fights, Kirby abilities, credits state,
     /// overworld 3D state, current area/chapter state, mastery tracking.
     /// </summary>
-    public class KIRBY_CELESTEModuleSession : EverestModuleSession
+    public class MaggyHelperModuleSession : EverestModuleSession
     {
         private string currentKirbyPower = global::Celeste.Extensions.KirbyMode.KirbyPowerState.None.ToString();
 

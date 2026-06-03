@@ -169,29 +169,29 @@ namespace Celeste.Entities
             if (accuracy >= 90f && targetsHit >= requiredTargets)
             {
                 resultRank = "truely_passed";
-                setSessionFlag("CH11_COWBOY_GUN_PRACTICES_TRUELY_PASSED");
+                setSessionFlag("MAGGYHELPER_CH11_COWBOY_GUN_PRACTICES_TRUELY_PASSED");
                 Audio.Play("event:/ui/game/perfect_complete");
             }
             else if (accuracy >= 70f && targetsHit >= requiredTargets)
             {
                 resultRank = "passed";
-                setSessionFlag("CH11_COWBOY_GUN_PRACTICES_PASSED");
+                setSessionFlag("MAGGYHELPER_CH11_COWBOY_GUN_PRACTICES_PASSED");
                 Audio.Play("event:/ui/game/complete");
             }
             else if (accuracy >= 50f)
             {
                 resultRank = "B";
-                setSessionFlag($"CH11_COWBOY_GUN_PRACTICES_TRY_AGAIN_B");
+                setSessionFlag($"MAGGYHELPER_CH11_COWBOY_GUN_PRACTICES_TRY_AGAIN_B");
             }
             else if (accuracy >= 30f)
             {
                 resultRank = "C";
-                setSessionFlag($"CH11_COWBOY_GUN_PRACTICES_TRY_AGAIN_C");
+                setSessionFlag($"MAGGYHELPER_CH11_COWBOY_GUN_PRACTICES_TRY_AGAIN_C");
             }
             else
             {
                 resultRank = "A";
-                setSessionFlag($"CH11_COWBOY_GUN_PRACTICES_TRY_AGAIN_A");
+                setSessionFlag($"MAGGYHELPER_CH11_COWBOY_GUN_PRACTICES_TRY_AGAIN_A");
             }
             
             yield return 2f;
@@ -226,7 +226,7 @@ namespace Celeste.Entities
             if (level == null) return;
             
             // Trigger dialog based on result
-            string dialogKey = $"CH11_COWBOY_GUN_PRACTICES_{resultRank.ToUpper()}";
+            string dialogKey = $"MAGGYHELPER_CH11_COWBOY_GUN_PRACTICES_{resultRank.ToUpper()}";
             
             // This would normally trigger a cutscene/dialog
             // For now, just set the flag

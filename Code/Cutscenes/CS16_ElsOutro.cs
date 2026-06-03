@@ -23,7 +23,7 @@ public class CS16_ElsOutro : CutsceneEntity
         player.StateMachine.State = Player.StDummy; // Dummy state
         yield return 0.5f;
 
-        yield return Textbox.Say("CH16_ELS_OUTRO");
+        yield return Textbox.Say("MAGGYHELPER_CH16_ELS_OUTRO");
 
         yield return 0.5f;
         EndCutscene(level);

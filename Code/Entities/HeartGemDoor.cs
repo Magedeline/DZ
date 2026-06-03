@@ -95,7 +95,7 @@ internal class HeartGemDoor : Entity
             global::Celeste.Player player = this.Scene.Tracker.GetEntity<global::Celeste.Player>();
             if (player != null && Math.Abs(player.X - this.Center.X) < 80.0)
             {                if (this.counter == 0.0f && this.heartGems > 0)
-                    Audio.Play("event:/pusheen/game/18_heart/frontdoor_heartfill", this.Position);
+                    Audio.Play("event:/game/pusheen/18_heart/frontdoor_heartfill", this.Position);
                 if (this.heartGems < this.requires)
                     level.Session.SetFlag("toriel_door", false);
                 int was = (int)this.counter;
@@ -104,7 +104,7 @@ internal class HeartGemDoor : Entity
                 if (was != (int)this.counter)
                 {
                     yield return 0.1f;                    if (this.counter < target)
-                        Audio.Play("event:/pusheen/game/18_heart/frontdoor_heartfill", this.Position);
+                        Audio.Play("event:/game/pusheen/18_heart/frontdoor_heartfill", this.Position);
                 }
             }
             else
@@ -115,7 +115,7 @@ internal class HeartGemDoor : Entity
         this.Scene.Add(new WhiteLine(this.Position, this.size));
         level.Shake(0.3f);
         level.Flash(Color.White * 0.5f, false);
-        Audio.Play("event:/pusheen/game/18_heart/frontdoor_unlock", this.Position);
+        Audio.Play("event:/game/pusheen/18_heart/frontdoor_unlock", this.Position);
         this.opened = true;
         level.Session.SetFlag("opened_heartgem_mod_door_" + this.requires, true);
         this.offset = 0.0f;

@@ -11,7 +11,7 @@ mysteryManCoreMessage.placements = {
     {
         name = "MysteryManCoreMessage",
         data = {
-            dialogKey = "CH18_ENDING",
+            dialogKey = "MAGGYHELPER_CH18_ENDING",
             line = 0,
             shimmerSpeed = 2.0,
             textScale = 1.25,
@@ -24,7 +24,7 @@ mysteryManCoreMessage.placements = {
     {
         name = "mystery_man_cyan",
         data = {
-            dialogKey = "CH18_ENDING",
+            dialogKey = "MAGGYHELPER_CH18_ENDING",
             line = 0,
             shimmerSpeed = 2.5,
             textScale = 1.25,
@@ -37,7 +37,7 @@ mysteryManCoreMessage.placements = {
     {
         name = "mystery_man_golden",
         data = {
-            dialogKey = "CH18_ENDING",
+            dialogKey = "MAGGYHELPER_CH18_ENDING",
             line = 0,
             shimmerSpeed = 1.5,
             textScale = 1.25,
@@ -50,7 +50,7 @@ mysteryManCoreMessage.placements = {
     {
         name = "mystery_man_rainbow",
         data = {
-            dialogKey = "CH18_ENDING",
+            dialogKey = "MAGGYHELPER_CH18_ENDING",
             line = 0,
             shimmerSpeed = 3.0,
             textScale = 1.25,
@@ -63,7 +63,7 @@ mysteryManCoreMessage.placements = {
     {
         name = "mystery_man_void",
         data = {
-            dialogKey = "CH18_ENDING",
+            dialogKey = "MAGGYHELPER_CH18_ENDING",
             line = 0,
             shimmerSpeed = 1.0,
             textScale = 1.5,
@@ -76,7 +76,7 @@ mysteryManCoreMessage.placements = {
     {
         name = "madeline",
         data = {
-            dialogKey = "CH18_ENDING",
+            dialogKey = "MAGGYHELPER_CH18_ENDING",
             line = 0,
             shimmerSpeed = 2.0,
             textScale = 1.25,
@@ -89,7 +89,7 @@ mysteryManCoreMessage.placements = {
     {
         name = "badeline",
         data = {
-            dialogKey = "CH18_ENDING",
+            dialogKey = "MAGGYHELPER_CH18_ENDING",
             line = 0,
             shimmerSpeed = 2.0,
             textScale = 1.25,

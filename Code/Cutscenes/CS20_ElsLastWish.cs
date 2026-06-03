@@ -17,17 +17,17 @@ namespace Celeste
     {
         #region Constants
 
-        private const string DIALOGUE_KEY = "CH20_ELS_LAST_WISH";
+        private const string DIALOGUE_KEY = "MAGGYHELPER_CH20_ELS_LAST_WISH";
 
         // Session flags
         private const string FLAG_ELS_LAST_WISH_DONE = "ch20_els_last_wish_done";
 
         // SFX
-        private const string SFX_PUNCH_IMPACT      = "event:/pusheen/extra_content/game/20_last_push/els_punch_impact";
-        private const string SFX_HEART_PULLED       = "event:/pusheen/extra_content/game/20_last_push/els_heart_pull";
-        private const string SFX_HEART_SHATTERED    = "event:/pusheen/extra_content/game/20_last_push/els_heart_shatter";
-        private const string SFX_TESSERACT_GRAB     = "event:/pusheen/extra_content/game/20_last_push/tesseract_grab";
-        private const string SFX_DARK_AMBIENCE      = "event:/pusheen/extra_content/game/20_last_push/els_last_wish_ambience";
+        private const string SFX_PUNCH_IMPACT      = "event:/new_content/game/pusheen/20_last_push/els_punch_impact";
+        private const string SFX_HEART_PULLED       = "event:/new_content/game/pusheen/20_last_push/els_heart_pull";
+        private const string SFX_HEART_SHATTERED    = "event:/new_content/game/pusheen/20_last_push/els_heart_shatter";
+        private const string SFX_TESSERACT_GRAB     = "event:/new_content/game/pusheen/20_last_push/tesseract_grab";
+        private const string SFX_DARK_AMBIENCE      = "event:/new_content/game/pusheen/20_last_push/els_last_wish_ambience";
 
         #endregion
 
@@ -319,7 +319,7 @@ namespace Celeste
 
             // Thud
             level.Shake(0.3f);
-            Audio.Play("event:/pusheen/char/kirby/landing", player.Position);
+            Audio.Play("event:/char/pusheen/kirby/landing", player.Position);
 
             // Brief beat of silence â€” scene ends
             yield return 1.5f;

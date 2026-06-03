@@ -40,18 +40,18 @@ namespace Celeste.NPCs
             case "leader":
          sprite.Color = Color.Gold;
         sprite.Scale = Vector2.One * 1.5f;
-   cutsceneId = "CH15_ROARING_TITAN_COUNCIL_ENTRANCE";
+   cutsceneId = "MAGGYHELPER_CH15_ROARING_TITAN_COUNCIL_ENTRANCE";
      break;
          case "king":
         sprite.Color = Color.Purple;
          sprite.Scale = Vector2.One * 1.8f;
-     cutsceneId = "CH15_CEREMONY_OF_FLAME";
+     cutsceneId = "MAGGYHELPER_CH15_CEREMONY_OF_FLAME";
              break;
               case "member1":
                case "member2":
    sprite.Color = Color.Silver;
   sprite.Scale = Vector2.One * 1.3f;
-    cutsceneId = "CH15_COUNCIL_JUDGMENT_RESULTS";
+    cutsceneId = "MAGGYHELPER_CH15_COUNCIL_JUDGMENT_RESULTS";
        break;
     }
      
@@ -114,12 +114,12 @@ namespace Celeste.NPCs
  else
          {
            // MultiCharacterCutscene doesn't exist
-            // Scene.Add(new MultiCharacterCutscene(player, "CH15_KING_NOT_READY"));
+            // Scene.Add(new MultiCharacterCutscene(player, "MAGGYHELPER_CH15_KING_NOT_READY"));
             }
   break;
  default:
      // MultiCharacterCutscene doesn't exist
-     // Scene.Add(new MultiCharacterCutscene(player, "CH15_COUNCIL_MEMBER_TALK"));
+     // Scene.Add(new MultiCharacterCutscene(player, "MAGGYHELPER_CH15_COUNCIL_MEMBER_TALK"));
   break;
    }
           

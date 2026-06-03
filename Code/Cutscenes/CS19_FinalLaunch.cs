@@ -72,7 +72,7 @@ public class CS19_FinalLaunch : CutsceneEntity
         yield return null;
         if (sayDialog)
         {
-            yield return Textbox.Say("CH19_CHARA_LAST_BOOST");
+            yield return Textbox.Say("MAGGYHELPER_CH19_CHARA_LAST_BOOST");
         }
         else
         {

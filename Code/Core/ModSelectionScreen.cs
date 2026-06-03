@@ -35,7 +35,7 @@ namespace Celeste.UI
         // ── Audio ──
         private const string CHOICE_MOVE_SFX   = "event:/ui/main/rollover_down";
         private const string CHOICE_SELECT_SFX = "event:/ui/main/button_select";
-        private const string TITLE_MUSIC_EVENT = "event:/pusheen/music/lvl0/intro";
+        private const string TITLE_MUSIC_EVENT = "event:/music/pusheen/lvl0/intro";
         #endregion
 
         #region Static Hook State
@@ -115,8 +115,8 @@ namespace Celeste.UI
             if (_shownThisSession)
                 return false;
 
-            var settings = global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModule.Settings;
-            var saveData = global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModule.SaveData;
+            var settings = global::Celeste.Mod.MaggyHelper.MaggyHelperModule.Settings;
+            var saveData = global::Celeste.Mod.MaggyHelper.MaggyHelperModule.SaveData;
 
             if (settings == null || saveData == null)
                 return false;
@@ -381,14 +381,14 @@ namespace Celeste.UI
         private void markIntroSeen()
         {
             // Flag so this screen won't appear again for this save
-            var saveData = KIRBY_CELESTEModule.SaveData;
+            var saveData = MaggyHelperModule.SaveData;
             if (saveData != null)
             {
                 saveData.HasSeenModIntro = true;
             }
 
             // Also persist the choice so the module knows at future launches
-            var settings = KIRBY_CELESTEModule.Settings;
+            var settings = MaggyHelperModule.Settings;
             if (settings != null)
             {
                 settings.SkipModIntro = !choiceIsDesoloZantas;

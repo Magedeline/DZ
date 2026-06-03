@@ -23,7 +23,7 @@ chapterLobbyEnterTrigger.fieldOrder = {
 chapterLobbyEnterTrigger.placements = {
     -- ── Chapter 11 – Snowdin City ─────────────────────────────────────────
     {
-        name = "CH11 – Enter Snowdin City Lobby",
+        name = "MAGGYHELPER_CH11 – Enter Snowdin City Lobby",
         data = {
             width           = 16, height          = 64,
             lobbySid        = "Maggy/Lobby/11_Snowdin_Lobby",
@@ -34,7 +34,7 @@ chapterLobbyEnterTrigger.placements = {
     },
     -- ── Chapter 12 – Wateredgefalls ───────────────────────────────────────
     {
-        name = "CH12 – Enter Wateredgefalls Lobby",
+        name = "MAGGYHELPER_CH12 – Enter Wateredgefalls Lobby",
         data = {
             width           = 16, height          = 64,
             lobbySid        = "Maggy/Lobby/12_Water_Lobby",
@@ -45,7 +45,7 @@ chapterLobbyEnterTrigger.placements = {
     },
     -- ── Chapter 13 – Hotcliffland ─────────────────────────────────────────
     {
-        name = "CH13 – Enter Hotcliffland Lobby",
+        name = "MAGGYHELPER_CH13 – Enter Hotcliffland Lobby",
         data = {
             width           = 16, height          = 64,
             lobbySid        = "Maggy/Lobby/13_Fire_Lobby",
@@ -56,7 +56,7 @@ chapterLobbyEnterTrigger.placements = {
     },
     -- ── Chapter 14 – Cyber Nexus ──────────────────────────────────────────
     {
-        name = "CH14 – Enter Cyber Nexus Lobby",
+        name = "MAGGYHELPER_CH14 – Enter Cyber Nexus Lobby",
         data = {
             width           = 16, height          = 64,
             lobbySid        = "Maggy/Lobby/14_Digital_Lobby",

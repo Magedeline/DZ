@@ -13,7 +13,7 @@ namespace Celeste.Cutscenes
         [MethodImpl(MethodImplOptions.NoInlining)]
         private IEnumerator Cutscene(Level level)
         {
-            yield return Textbox.Say("CH19_FREE_BIRD");
+            yield return Textbox.Say("MAGGYHELPER_CH19_FREE_BIRD");
             FadeWipe fadeWipe = new FadeWipe(level, wipeIn: false);
             fadeWipe.Duration = 3f;
             yield return fadeWipe.Duration;

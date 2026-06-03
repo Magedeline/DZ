@@ -23,7 +23,7 @@ public class Cs03FirstStep : CutsceneEntity
         player.StateMachine.State = Player.StDummy; // Dummy state
         yield return 0.5f;
 
-        yield return Textbox.Say("CH3_FIRST_STEP");
+        yield return Textbox.Say("MAGGYHELPER_CH3_FIRST_STEP");
 
         yield return 0.5f;
         EndCutscene(level);

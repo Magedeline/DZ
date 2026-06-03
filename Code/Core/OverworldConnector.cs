@@ -143,7 +143,7 @@ namespace Celeste
 
             try
             {
-                bool unlocked = KIRBY_CELESTEModule.SaveData?.VoidMoonUnlocked == true;
+                bool unlocked = MaggyHelperModule.SaveData?.VoidMoonUnlocked == true;
 
                 if (!unlocked && primary != null)
                 {
@@ -245,7 +245,7 @@ namespace Celeste
 
             secondaryVisible = true;
             secondary.Visible = true;
-            Audio.Play("event:/pusheen/ui/unlock_newmountian_icon");
+            Audio.Play("event:/ui/pusheen/unlock_newmountian_icon");
             Add(new Coroutine(UnlockAnimationRoutine()));
         }
 

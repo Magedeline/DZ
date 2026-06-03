@@ -26,7 +26,7 @@ namespace Celeste.Cutscenes {
                 cs05TheoPhone.player.Facing = (Facings)Math.Sign(cs05TheoPhone.targetX - cs05TheoPhone.player.X);
             yield return 0.5f;
             yield return cs05TheoPhone.Level.ZoomTo(new Vector2(80f, 60f), 2f, 0.5f);
-            yield return global::Celeste.Textbox.Say("CH7_PHONE", cs05TheoPhone.walkToPhone, cs05TheoPhone.standBackUp);
+            yield return global::Celeste.Textbox.Say("MAGGYHELPER_CH7_PHONE", cs05TheoPhone.walkToPhone, cs05TheoPhone.standBackUp);
             yield return cs05TheoPhone.Level.ZoomBack(0.5f);
             cs05TheoPhone.EndCutscene(cs05TheoPhone.Level, false);
         }

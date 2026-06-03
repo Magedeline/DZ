@@ -53,7 +53,7 @@ namespace Celeste.Cutscenes {
             if (!cs08CharaBossIntro.Player.Dead)
                 yield return cs08CharaBossIntro.Player.DummyWalkToExact((int)((double)cs08CharaBossIntro.playerTargetX - 8.0));
             cs08CharaBossIntro.Player.Facing = Facings.Right;
-            yield return Textbox.Say("CH8_CHARA_BOSS_START", new Func<IEnumerator>(cs08CharaBossIntro.CharaFloat), new Func<IEnumerator>(cs08CharaBossIntro.PlayerStepForward));
+            yield return Textbox.Say("MAGGYHELPER_CH8_CHARA_BOSS_START", new Func<IEnumerator>(cs08CharaBossIntro.CharaFloat), new Func<IEnumerator>(cs08CharaBossIntro.PlayerStepForward));
             yield return level.ZoomBack(0.5f);
             cs08CharaBossIntro.EndCutscene(level);
         }

@@ -14,9 +14,9 @@ namespace Celeste.Cutscenes
     [Tracked]
     public class CS21_RealTheEnd : CutsceneEntity
     {
-        private const string MUSIC_THE_END = "event:/pusheen/music/menu/goodnight";
+        private const string MUSIC_THE_END = "event:/music/pusheen/menu/goodnight";
 
-        private const string MUSIC_FAKE_THE_END = "event:/pusheen/music/menu/els_win";
+        private const string MUSIC_FAKE_THE_END = "event:/music/pusheen/menu/els_win";
 
         private Player player;
         private bool wasGoodEnding;
@@ -80,12 +80,12 @@ namespace Celeste.Cutscenes
             if (wasGoodEnding)
             {
                 // Good ending: final hopeful line
-                yield return Textbox.Say("CH21_REAL_END_GOOD");
+                yield return Textbox.Say("MAGGYHELPER_CH21_REAL_END_GOOD");
             }
             else
             {
                 // Normal ending: open-ended last line
-                yield return Textbox.Say("CH21_REAL_END_NORMAL");
+                yield return Textbox.Say("MAGGYHELPER_CH21_REAL_END_NORMAL");
             }
 
             yield return 2f;
@@ -114,11 +114,11 @@ namespace Celeste.Cutscenes
             level.Session.SetFlag("real_end_complete");
             level.Session.SetFlag("ch21_complete");
 
-            if (KIRBY_CELESTEModule.Session != null)
+            if (MaggyHelperModule.Session != null)
             {
-                KIRBY_CELESTEModule.Session.InCredits   = false;
-                KIRBY_CELESTEModule.Session.CreditsPhase = 0;
-                KIRBY_CELESTEModule.Session.CreditsCompleted = true;
+                MaggyHelperModule.Session.InCredits   = false;
+                MaggyHelperModule.Session.CreditsPhase = 0;
+                MaggyHelperModule.Session.CreditsCompleted = true;
             }
 
             level.TimerStopped = false;

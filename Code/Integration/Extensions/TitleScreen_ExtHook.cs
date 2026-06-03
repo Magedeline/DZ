@@ -12,7 +12,7 @@ public static class TitleScreen_ExtHook
     private static bool _hooked;
 
     private const string VANILLA_TITLE_FIRSTINPUT = "event:/ui/main/title_firstinput";
-    private const string CUSTOM_TITLE_FIRSTINPUT = "event:/pusheen/ui/main/title_firstinput";
+    private const string CUSTOM_TITLE_FIRSTINPUT = "event:/ui/pusheen/main/title_firstinput";
 
     public static void Load()
     {
@@ -21,7 +21,7 @@ public static class TitleScreen_ExtHook
 
         On.Celeste.Audio.Play_string += OnAudioPlayString;
 
-        Logger.Log(LogLevel.Info, "KIRBY_CELESTE", "TitleScreen_ExtHook loaded");
+        Logger.Log(LogLevel.Info, "MaggyHelper", "TitleScreen_ExtHook loaded");
     }
 
     public static void Unload()
@@ -31,14 +31,14 @@ public static class TitleScreen_ExtHook
 
         On.Celeste.Audio.Play_string -= OnAudioPlayString;
 
-        Logger.Log(LogLevel.Info, "KIRBY_CELESTE", "TitleScreen_ExtHook unloaded");
+        Logger.Log(LogLevel.Info, "MaggyHelper", "TitleScreen_ExtHook unloaded");
     }
 
     private static EventInstance OnAudioPlayString(On.Celeste.Audio.orig_Play_string orig, string path)
     {
         if (path == VANILLA_TITLE_FIRSTINPUT)
         {
-            Logger.Log(LogLevel.Debug, "KIRBY_CELESTE",
+            Logger.Log(LogLevel.Debug, "MaggyHelper",
                 $"TitleScreen_ExtHook: Replaced '{path}' → '{CUSTOM_TITLE_FIRSTINPUT}'");
             return orig(CUSTOM_TITLE_FIRSTINPUT);
         }

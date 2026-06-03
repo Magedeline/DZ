@@ -23,12 +23,12 @@ namespace Celeste.Cutscenes
         private const string FLAG_ELS_DEFEATED = "siamo_zero_final_boss_defeated";
 
         // Dialogue keys
-        private const string DIALOGUE_GOOD    = "CH21_ENDING_GOOD";
-        private const string DIALOGUE_NORMAL  = "CH21_ENDING_NORMAL";
+        private const string DIALOGUE_GOOD    = "MAGGYHELPER_CH21_ENDING_GOOD";
+        private const string DIALOGUE_NORMAL  = "MAGGYHELPER_CH21_ENDING_NORMAL";
 
         // Music
-        private const string MUSIC_GOOD_END   = "event:/pusheen/music/menu/goodnight";
-        private const string MUSIC_NORMAL_END  = "event:/pusheen/music/menu/els_win";
+        private const string MUSIC_GOOD_END   = "event:/music/pusheen/menu/goodnight";
+        private const string MUSIC_NORMAL_END  = "event:/music/pusheen/menu/els_win";
 
         private Player player;
         private bool goodEnding;
@@ -140,7 +140,7 @@ namespace Celeste.Cutscenes
             yield return 2f;
 
             // A distant rumble â€” Els is not truly gone
-            Audio.Play("event:/pusheen/extra_content/game/21_desolo_zantas/falling_into_the_void");
+            Audio.Play("event:/new_content/game/pusheen/21_desolo_zantas/falling_into_the_void");
 
             yield return 1f;
 
@@ -151,7 +151,7 @@ namespace Celeste.Cutscenes
                 overlayAlpha = Ease.CubeIn(t / 3f);
                 yield return null;
             }
-            Audio.Play("event:/pusheen/extra_content/game/21_desolo_zantas/final_laugh");
+            Audio.Play("event:/new_content/game/pusheen/21_desolo_zantas/final_laugh");
             overlayAlpha = 1f;
 
             yield return 0.5f;

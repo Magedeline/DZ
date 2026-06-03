@@ -48,7 +48,7 @@ namespace Celeste.Entities
             Tag = Tags.HUD;
             
             // Get configuration from entity data
-            dialogKey = data.Attr("dialogKey", "CH18_ENDING");
+            dialogKey = data.Attr("dialogKey", "MAGGYHELPER_CH18_ENDING");
             lineIndex = data.Int("line", 0);
             shimmerSpeed = data.Float("shimmerSpeed", 2.0f);
             textScale = data.Float("textScale", 1.25f);

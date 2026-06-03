@@ -61,7 +61,7 @@ public class CS10BossIntro : CutsceneEntity
         yield return 0.5f;
 
         // Dialog: Party notices the forest
-        yield return Textbox.Say("CH10_BOSS_INTRO", OnTreeFaceEmerge, OnTheoReaction);
+        yield return Textbox.Say("MAGGYHELPER_CH10_BOSS_INTRO", OnTreeFaceEmerge, OnTheoReaction);
 
         yield return 0.8f;
 
@@ -135,7 +135,7 @@ public class CS10BossIntro : CutsceneEntity
         yield return ScreenShakeEffect(0.3f, 1.2f);
 
         // Wispy speaks its threatening words via dialog
-        yield return Textbox.Say("CH10_BOSS_INTRO_WISPY", OnWispyThreats);
+        yield return Textbox.Say("MAGGYHELPER_CH10_BOSS_INTRO_WISPY", OnWispyThreats);
 
         yield return null;
     }

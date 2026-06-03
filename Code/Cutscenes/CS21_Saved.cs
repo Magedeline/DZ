@@ -48,7 +48,7 @@ public class CS21_Saved : CutsceneEntity
         player.StateMachine.State = Player.StDummy; // StDummy
         player.Sprite.Play("idle");
         
-        yield return Textbox.Say("CH20_SAVED");
+        yield return Textbox.Say("MAGGYHELPER_CH20_SAVED");
         
         EndCutscene(level);
     }
@@ -179,7 +179,7 @@ public class CS21_RestorationAndFarewell : CutsceneEntity
         player.Sprite.Play("idle");
         
         // Set the music for this emotional finale
-        Audio.SetMusic("event:/pusheen/extra_content/music/lvl21/saved");
+        Audio.SetMusic("event:/new_content/music/pusheen/lvl21/saved");
         
         // Fade in from white (after defeating Els)
         FadeWipe fadeWipe = new FadeWipe(Level, wipeIn: true);
@@ -193,7 +193,7 @@ public class CS21_RestorationAndFarewell : CutsceneEntity
         
         // Main dialog with all triggers
         yield return Textbox.Say(
-            "CH20_RESTORATION_AND_FAREWELL",
+            "MAGGYHELPER_CH20_RESTORATION_AND_FAREWELL",
             EveryoneWalksIn,
             GrannyAndTitanKingWalkIn,
             PanToAsgoreAndToriel,
@@ -214,12 +214,12 @@ public class CS21_RestorationAndFarewell : CutsceneEntity
         yield return 0.5f;
         Level.Flash(Color.White, true);
         Level.Shake(2f);
-        yield return Textbox.Say("CH20_GIYGAS_IS_DESTROYED");
+        yield return Textbox.Say("MAGGYHELPER_CH20_GIYGAS_IS_DESTROYED");
         yield return 1f;
         
         // Goodbye sequence
         yield return Textbox.Say(
-            "CH20_GOODBYE",
+            "MAGGYHELPER_CH20_GOODBYE",
             AsrielPowerDown,
             AsrielFadesAway,
             CharaWalksIn,
@@ -229,7 +229,7 @@ public class CS21_RestorationAndFarewell : CutsceneEntity
         
         // Decades later title card
         yield return 2f;
-        yield return Textbox.Say("CH20_DECADES_LATER");
+        yield return Textbox.Say("MAGGYHELPER_CH20_DECADES_LATER");
         
         yield return 1f;
         EndCutscene(level);
@@ -404,7 +404,7 @@ public class CS21_RestorationAndFarewell : CutsceneEntity
         
         // Emotional moment - screen shake
         Level.Shake(0.2f);
-        Audio.Play("event:/pusheen/extra_content/char/asriel/emotional_reunion");
+        Audio.Play("event:/new_content/char/pusheen/asriel/emotional_reunion");
         
         yield return 0.5f;
     }
@@ -452,7 +452,7 @@ public class CS21_RestorationAndFarewell : CutsceneEntity
         
         // Emotional hug moment
         Level.Shake(0.1f);
-        Audio.Play("event:/pusheen/extra_content/char/kirby/emotional_reunion");
+        Audio.Play("event:/new_content/char/pusheen/kirby/emotional_reunion");
         
         // Particle effects for the reunion
         for (int i = 0; i < 20; i++)
@@ -520,7 +520,7 @@ public class CS21_RestorationAndFarewell : CutsceneEntity
     private IEnumerator ReleaseSouls()
     {
         // Dramatic buildup
-        Audio.SetMusic("event:/pusheen/extra_content/music/lvl20/back");
+        Audio.SetMusic("event:/new_content/music/pusheen/lvl20/back");
 
         yield return 0.5f;
 
@@ -583,7 +583,7 @@ public class CS21_RestorationAndFarewell : CutsceneEntity
     // {trigger 1 asriel slowly fades away into the flower form}
     private IEnumerator AsrielFadesAway()
     {
-        Audio.Play("event:/pusheen/extra_content/char/asriel/fade_to_flower");
+        Audio.Play("event:/new_content/char/pusheen/asriel/fade_to_flower");
         
         // Slowly fade Asriel
         for (float p = 1f; p > 0f; p -= Engine.DeltaTime / 3f)
@@ -624,7 +624,7 @@ public class CS21_RestorationAndFarewell : CutsceneEntity
     // {trigger 4 asriel granny titan king and kirby parent begin to fade away}
     private IEnumerator SpiritsFadeAway()
     {
-        Audio.Play("event:/pusheen/extra_content/char/spirits/fade_away");
+        Audio.Play("event:/new_content/char/pusheen/spirits/fade_away");
         
         // Fade out all spirit characters
         for (float p = 1f; p > 0f; p -= Engine.DeltaTime / 4f)

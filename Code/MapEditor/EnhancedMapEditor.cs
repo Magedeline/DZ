@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Celeste.Mod.Core;
-using Celeste.Mod.KIRBY_CELESTE;
+using Celeste.Mod.MaggyHelper;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;

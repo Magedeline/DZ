@@ -6,7 +6,7 @@ using System.Linq;
 using Celeste;
 using Monocle;
 
-namespace Celeste.Mod.KIRBY_CELESTE;
+namespace Celeste.Mod.MaggyHelper;
 
 /// <summary>
 /// Writes a <see cref="BinaryPacker.Element"/> tree to a Celeste .bin file.

@@ -130,7 +130,7 @@ public class CS00_EndingMod : CutsceneEntity
             yield return null;
         }
         yield return 2f;
-        Audio.SetMusic("event:/pusheen/music/lvl0/title_ping", true, true);
+        Audio.SetMusic("event:/music/pusheen/lvl0/title_ping", true, true);
         yield return 2f;
         endingText = new PrologueEndingVignetteText(instant: false);
         Scene.Add(endingText);

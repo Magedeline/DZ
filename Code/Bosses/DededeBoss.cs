@@ -31,7 +31,7 @@ namespace Celeste.Entities.Bosses
         
         public DededeBoss(EntityData data, Vector2 offset) : base(data, offset)
         {
-            maxHealth = data.Int("health", 25) * MaggyHelperModule.Settings.BossDifficultyMultiplier;
+            maxHealth = data.Int("health", 25) * KIRBY_CELESTEModule.Settings.BossDifficultyMultiplier;
             currentHealth = maxHealth;
             attackCooldown = data.Float("attackCooldown", 1.5f);
             

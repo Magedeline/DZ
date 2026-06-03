@@ -196,7 +196,7 @@ The enhanced editor is hooked via MonoMod in `Source/Core/MonoModHooks.cs`:
 ## Troubleshooting
 
 ### Enhanced Editor Not Loading
-- Check that `MonoModHooks.Load()` is called in `MaggyHelperModule.Load()`
+- Check that `MonoModHooks.Load()` is called in `KIRBY_CELESTEModule.Load()`
 - Verify the hook is registered in the logs
 - Ensure no namespace conflicts exist
 

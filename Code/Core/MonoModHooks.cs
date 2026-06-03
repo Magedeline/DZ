@@ -36,7 +36,7 @@ namespace Celeste
         // ── Public API ───────────────────────────────────────────────────────────
 
         /// <summary>
-        /// Call from <see cref="MaggyHelperModule.Load"/> to register all
+        /// Call from <see cref="KIRBY_CELESTEModule.Load"/> to register all
         /// advanced MonoMod hooks.
         /// </summary>
         public static void Load()
@@ -58,18 +58,18 @@ namespace Celeste
                             nameof(Hook_Player_DashBegin),
                             BindingFlags.Static | BindingFlags.NonPublic));
 
-                    Logger.Log(LogLevel.Info, "MaggyHelper",
+                    Logger.Log(LogLevel.Info, "KIRBY_CELESTE",
                         "[MonoModHooks] Manual Hook on Player.DashBegin registered");
                 }
                 else
                 {
-                    Logger.Log(LogLevel.Warn, "MaggyHelper",
+                    Logger.Log(LogLevel.Warn, "KIRBY_CELESTE",
                         "[MonoModHooks] Player.DashBegin not found — skipping manual hook");
                 }
             }
             catch (Exception ex)
             {
-                Logger.Log(LogLevel.Warn, "MaggyHelper",
+                Logger.Log(LogLevel.Warn, "KIRBY_CELESTE",
                     $"[MonoModHooks] Failed to hook Player.DashBegin: {ex.Message}");
             }
 
@@ -89,18 +89,18 @@ namespace Celeste
                             nameof(Hook_Player_WallJump),
                             BindingFlags.Static | BindingFlags.NonPublic));
 
-                    Logger.Log(LogLevel.Info, "MaggyHelper",
+                    Logger.Log(LogLevel.Info, "KIRBY_CELESTE",
                         "[MonoModHooks] Manual Hook on Player.WallJump registered");
                 }
                 else
                 {
-                    Logger.Log(LogLevel.Warn, "MaggyHelper",
+                    Logger.Log(LogLevel.Warn, "KIRBY_CELESTE",
                         "[MonoModHooks] Player.WallJump not found — skipping manual hook");
                 }
             }
             catch (Exception ex)
             {
-                Logger.Log(LogLevel.Warn, "MaggyHelper",
+                Logger.Log(LogLevel.Warn, "KIRBY_CELESTE",
                     $"[MonoModHooks] Failed to hook Player.WallJump: {ex.Message}");
             }
 
@@ -132,7 +132,7 @@ namespace Celeste
             bool conditionHelperLoaded = Type.GetType("Celeste.Mod.ConditionHelper.ConditionHelperModule, ConditionHelper") != null;
             if (conditionHelperLoaded)
             {
-                Logger.Log(LogLevel.Warn, "MaggyHelper",
+                Logger.Log(LogLevel.Warn, "KIRBY_CELESTE",
                     "[MonoModHooks] ConditionHelper detected - Enhanced Map Editor disabled to avoid Scene.Begin() crash");
             }
             else
@@ -153,12 +153,12 @@ namespace Celeste
                                     nameof(Hook_MapEditor_Ctor),
                                     BindingFlags.Static | BindingFlags.NonPublic));
 
-                            Logger.Log(LogLevel.Info, "MaggyHelper",
+                            Logger.Log(LogLevel.Info, "KIRBY_CELESTE",
                                 "[MonoModHooks] Hook on MapEditor constructor registered");
                         }
                         else
                         {
-                            Logger.Log(LogLevel.Warn, "MaggyHelper",
+                            Logger.Log(LogLevel.Warn, "KIRBY_CELESTE",
                                 "[MonoModHooks] MapEditor constructor not found — skipping hook");
                         }
 
@@ -175,24 +175,24 @@ namespace Celeste
                                     nameof(Hook_MapEditor_Update),
                                     BindingFlags.Static | BindingFlags.NonPublic));
 
-                            Logger.Log(LogLevel.Info, "MaggyHelper",
+                            Logger.Log(LogLevel.Info, "KIRBY_CELESTE",
                                 "[MonoModHooks] Hook on MapEditor.Update registered");
                         }
                         else
                         {
-                            Logger.Log(LogLevel.Warn, "MaggyHelper",
+                            Logger.Log(LogLevel.Warn, "KIRBY_CELESTE",
                                 "[MonoModHooks] MapEditor.Update not found — skipping hook");
                         }
                     }
                     else
                     {
-                        Logger.Log(LogLevel.Warn, "MaggyHelper",
+                        Logger.Log(LogLevel.Warn, "KIRBY_CELESTE",
                             "[MonoModHooks] MapEditor type not found — skipping hook");
                     }
                 }
                 catch (Exception ex)
                 {
-                    Logger.Log(LogLevel.Warn, "MaggyHelper",
+                    Logger.Log(LogLevel.Warn, "KIRBY_CELESTE",
                         $"[MonoModHooks] Failed to hook MapEditor: {ex.Message}");
                 }
             }
@@ -218,33 +218,33 @@ namespace Celeste
                                 nameof(Hook_LevelTemplate_Cctor),
                                 BindingFlags.Static | BindingFlags.NonPublic));
 
-                        Logger.Log(LogLevel.Info, "MaggyHelper",
+                        Logger.Log(LogLevel.Info, "KIRBY_CELESTE",
                             "[MonoModHooks] Hook on LevelTemplate static constructor registered");
                     }
                     else
                     {
-                        Logger.Log(LogLevel.Warn, "MaggyHelper",
+                        Logger.Log(LogLevel.Warn, "KIRBY_CELESTE",
                             "[MonoModHooks] LevelTemplate static constructor not found — skipping hook");
                     }
                 }
                 else
                 {
-                    Logger.Log(LogLevel.Warn, "MaggyHelper",
+                    Logger.Log(LogLevel.Warn, "KIRBY_CELESTE",
                         "[MonoModHooks] LevelTemplate type not found — skipping hook");
                 }
             }
             catch (Exception ex)
             {
-                Logger.Log(LogLevel.Warn, "MaggyHelper",
+                Logger.Log(LogLevel.Warn, "KIRBY_CELESTE",
                     $"[MonoModHooks] Failed to hook LevelTemplate: {ex.Message}");
             }
 
-            Logger.Log(LogLevel.Info, "MaggyHelper",
+            Logger.Log(LogLevel.Info, "KIRBY_CELESTE",
                 "[MonoModHooks] All advanced MonoMod hooks loaded");
         }
 
         /// <summary>
-        /// Call from <see cref="MaggyHelperModule.Unload"/> to clean up.
+        /// Call from <see cref="KIRBY_CELESTEModule.Unload"/> to clean up.
         /// </summary>
         public static void Unload()
         {
@@ -286,7 +286,7 @@ namespace Celeste
             // Remove dream-block swap hooks
             DreamBlockPlayerSwapHooks.Unload();
 
-            Logger.Log(LogLevel.Info, "MaggyHelper",
+            Logger.Log(LogLevel.Info, "KIRBY_CELESTE",
                 "[MonoModHooks] All advanced MonoMod hooks unloaded");
         }
 
@@ -342,8 +342,8 @@ namespace Celeste
 
             try
             {
-                var settings = MaggyHelperModule.Settings;
-                var session  = MaggyHelperModule.Session;
+                var settings = global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModule.Settings;
+                var session  = global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModule.Session;
 
                 if (settings?.KirbyPlayerEnabled != true ||
                     session == null ||
@@ -371,13 +371,13 @@ namespace Celeste
 
                 if (settings.DebugMode)
                 {
-                    Logger.Log(LogLevel.Verbose, "MaggyHelper",
+                    Logger.Log(LogLevel.Verbose, "KIRBY_CELESTE",
                         $"[Hook] Dash particles spawned for ability: {session.CurrentCopyAbility}");
                 }
             }
             catch (Exception ex)
             {
-                Logger.Log(LogLevel.Warn, "MaggyHelper",
+                Logger.Log(LogLevel.Warn, "KIRBY_CELESTE",
                     $"[Hook] Error in DashBegin hook: {ex.Message}");
             }
         }
@@ -401,8 +401,8 @@ namespace Celeste
 
             try
             {
-                var settings = MaggyHelperModule.Settings;
-                var session  = MaggyHelperModule.Session;
+                var settings = global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModule.Settings;
+                var session  = global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModule.Session;
 
                 if (settings?.KirbyPlayerEnabled != true ||
                     session == null ||
@@ -415,7 +415,7 @@ namespace Celeste
                         // Wing ability: extra horizontal boost on wall jump
                         self.Speed.X *= 1.25f;
                         if (settings.DebugMode)
-                            Logger.Log(LogLevel.Verbose, "MaggyHelper",
+                            Logger.Log(LogLevel.Verbose, "KIRBY_CELESTE",
                                 "[Hook] Wing wall-jump boost applied");
                         break;
 
@@ -424,7 +424,7 @@ namespace Celeste
                         self.Speed.X *= 0.7f;
                         self.Speed.Y *= 0.85f;
                         if (settings.DebugMode)
-                            Logger.Log(LogLevel.Verbose, "MaggyHelper",
+                            Logger.Log(LogLevel.Verbose, "KIRBY_CELESTE",
                                 "[Hook] Stone wall-jump weight applied");
                         break;
 
@@ -432,14 +432,14 @@ namespace Celeste
                         // Wheel ability: much faster horizontal wall jump
                         self.Speed.X *= 1.5f;
                         if (settings.DebugMode)
-                            Logger.Log(LogLevel.Verbose, "MaggyHelper",
+                            Logger.Log(LogLevel.Verbose, "KIRBY_CELESTE",
                                 "[Hook] Wheel wall-jump speed boost applied");
                         break;
                 }
             }
             catch (Exception ex)
             {
-                Logger.Log(LogLevel.Warn, "MaggyHelper",
+                Logger.Log(LogLevel.Warn, "KIRBY_CELESTE",
                     $"[Hook] Error in WallJump hook: {ex.Message}");
             }
         }
@@ -518,7 +518,7 @@ namespace Celeste
             // Call the original Update first
             orig(self);
 
-            var settings = MaggyHelperModule.Settings;
+            var settings = KIRBY_CELESTEModule.Settings;
 
             // Check if debug mode is enabled and F9 key is pressed
             if (settings?.DebugMode == true && settings.DebugMapEditor.Pressed)

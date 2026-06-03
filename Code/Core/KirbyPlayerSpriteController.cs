@@ -104,7 +104,7 @@ namespace Celeste.Entities
             }
 
             // ── Copy-ability overrides for idle/walk ──
-            var session = MaggyHelperModule.Session;
+            var session = KIRBY_CELESTEModule.Session;
             CopyAbilityType ability = session?.CurrentCopyAbility ?? CopyAbilityType.None;
             string abilityPrefix = AbilityToPrefix(ability);
 

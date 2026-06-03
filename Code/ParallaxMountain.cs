@@ -5,7 +5,7 @@ using Monocle;
 using System;
 using System.Collections.Generic;
 
-namespace Celeste.Mod.MaggyHelper
+namespace Celeste.Mod.KIRBY_CELESTE
 {
     public class ParallaxMountain : Parallax
     {

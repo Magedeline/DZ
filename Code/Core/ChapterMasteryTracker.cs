@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Celeste.Mod.MaggyHelper;
+using Celeste.Mod.KIRBY_CELESTE;
 using Celeste.Entities;
 
 namespace Celeste;
@@ -88,7 +88,7 @@ public static class ChapterMasteryTracker
 
     private static void OnLevelEnter(Level level)
     {
-        var modSession = MaggyHelperModule.Session;
+        var modSession = KIRBY_CELESTEModule.Session;
         if (modSession == null) return;
 
         string sid = level?.Session?.Area.SID;
@@ -96,7 +96,7 @@ public static class ChapterMasteryTracker
             return;
 
         // Determine if this is the first-ever attempt at this chapter
-        bool firstAttempt = !(MaggyHelperModule.SaveData?.IsChapterCompleted(sid) ?? false);
+        bool firstAttempt = !(KIRBY_CELESTEModule.SaveData?.IsChapterCompleted(sid) ?? false);
         modSession.IsTrackingFirstTry  = firstAttempt;
         modSession.DiedThisRun         = false;
         modSession.TookDamageThisRun   = false;
@@ -117,8 +117,8 @@ public static class ChapterMasteryTracker
         if (!AreaModeExtender.IsOurMap(AreaData.Get(session.Area)))
             return;
 
-        var saveData   = MaggyHelperModule.SaveData;
-        var modSession = MaggyHelperModule.Session;
+        var saveData   = KIRBY_CELESTEModule.SaveData;
+        var modSession = KIRBY_CELESTEModule.Session;
         if (saveData == null || modSession == null) return;
 
         var mastery = saveData.GetOrCreateMastery(sid);
@@ -135,16 +135,16 @@ public static class ChapterMasteryTracker
         On.Celeste.Player.orig_Die orig, Player self,
         Microsoft.Xna.Framework.Vector2 dir, bool evenIfInvincible, bool registerDeathInStats)
     {
-        if (MaggyHelperModule.Session?.IsTrackingFirstTry == true)
-            MaggyHelperModule.Session.DiedThisRun = true;
+        if (KIRBY_CELESTEModule.Session?.IsTrackingFirstTry == true)
+            KIRBY_CELESTEModule.Session.DiedThisRun = true;
 
         return orig(self, dir, evenIfInvincible, registerDeathInStats);
     }
 
     private static void OnDamageTaken(int _amount)
     {
-        if (MaggyHelperModule.Session?.IsTrackingFirstTry == true)
-            MaggyHelperModule.Session.TookDamageThisRun = true;
+        if (KIRBY_CELESTEModule.Session?.IsTrackingFirstTry == true)
+            KIRBY_CELESTEModule.Session.TookDamageThisRun = true;
     }
 
     // ── Damage event subscription (instance-level) ──────────────────────────
@@ -170,7 +170,7 @@ public static class ChapterMasteryTracker
     // ── Mastery evaluation ──────────────────────────────────────────────────
 
     private static void EvaluateMastery(ChapterMasteryRecord mastery, string sid,
-        Session session, MaggyHelperModuleSaveData saveData, MaggyHelperModuleSession modSession)
+        Session session, KIRBY_CELESTEModuleSaveData saveData, KIRBY_CELESTEModuleSession modSession)
     {
         AreaData area = AreaData.Get(session.Area);
 

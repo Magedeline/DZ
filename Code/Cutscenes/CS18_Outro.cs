@@ -301,7 +301,7 @@ namespace Celeste.Cutscenes
             }
 
             // Queue Chapter 19 unlock for next launch (restart-gated progression)
-            var saveData = MaggyHelperModule.SaveData;
+            var saveData = KIRBY_CELESTEModule.SaveData;
             if (saveData != null)
             {
                 saveData.PendingUnlockChapter19OnRestart = true;

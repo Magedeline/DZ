@@ -256,7 +256,7 @@ namespace Celeste
         private static void executeLevelTapeScript(AreaKey areaKey, string levelName)
         {
             // Look for level-specific tape scripts
-            var scriptPath = Path.Combine("Mods", "MaggyHelper", "TapeScripts", $"{areaKey.SID}_{levelName}.lua");
+            var scriptPath = Path.Combine("Mods", "KIRBY_CELESTE", "TapeScripts", $"{areaKey.SID}_{levelName}.lua");
 
             if (File.Exists(scriptPath))
             {

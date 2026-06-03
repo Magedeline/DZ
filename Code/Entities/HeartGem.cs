@@ -887,7 +887,7 @@ Level level = Scene as Level;
 
         private bool CheckAllCrystalHeartsCollected()
         {
-            var saveData = MaggyHelperModule.SaveData;
+            var saveData = KIRBY_CELESTEModule.SaveData;
             if (saveData == null) return false;
 
             int collectedCount = 0;
@@ -985,7 +985,7 @@ Level level = Scene as Level;
 
             yield return postcard.DisplayRoutine();
 
-            MaggyHelperModule.SaveData?.UnlockAchievement("ultra_crystal_hearts_postcard_shown");
+            KIRBY_CELESTEModule.SaveData?.UnlockAchievement("ultra_crystal_hearts_postcard_shown");
 
             yield return 0.5f;
             Engine.Scene = new OverworldLoader(Overworld.StartMode.AreaComplete, new HiresSnow());

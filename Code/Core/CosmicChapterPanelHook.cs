@@ -1,5 +1,5 @@
 using System;
-using Celeste.Mod.MaggyHelper;
+using Celeste.Mod.KIRBY_CELESTE;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Monocle;
@@ -63,7 +63,7 @@ public static class CosmicChapterPanelHook
         On.Celeste.OuiChapterPanel.Render += OnChapterPanelRender;
         On.Celeste.OuiChapterPanel.Update += OnChapterPanelUpdate;
 
-        Logger.Log(LogLevel.Info, "MaggyHelper", "CosmicChapterPanelHook loaded");
+        Logger.Log(LogLevel.Info, "KIRBY_CELESTE", "CosmicChapterPanelHook loaded");
     }
 
     public static void Unload()
@@ -74,7 +74,7 @@ public static class CosmicChapterPanelHook
         On.Celeste.OuiChapterPanel.Render -= OnChapterPanelRender;
         On.Celeste.OuiChapterPanel.Update -= OnChapterPanelUpdate;
 
-        Logger.Log(LogLevel.Info, "MaggyHelper", "CosmicChapterPanelHook unloaded");
+        Logger.Log(LogLevel.Info, "KIRBY_CELESTE", "CosmicChapterPanelHook unloaded");
     }
 
     // ── Panel update — advance timers ───────────────────────────────────────
@@ -89,7 +89,7 @@ public static class CosmicChapterPanelHook
 
         _cosmicTimer += Engine.DeltaTime * CosmicCycleSpeed;
 
-        bool hasMastery = MaggyHelperModule.SaveData?.HasFullMastery(self.Area.SID) ?? false;
+        bool hasMastery = global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModule.SaveData?.HasFullMastery(self.Area.SID) ?? false;
         _masteryAlphaTarget = hasMastery ? 1f : 0f;
         _masteryAlpha = Calc.Approach(_masteryAlpha, _masteryAlphaTarget, Engine.DeltaTime * 2.5f);
     }

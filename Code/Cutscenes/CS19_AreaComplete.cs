@@ -125,11 +125,11 @@ public class CS19_AreaComplete : CutsceneEntity
                 if (currentSid.Equals(Chapter19Sid, StringComparison.OrdinalIgnoreCase))
                 {
                     // Unlock the Void Moon on the overworld mountain
-                    if (MaggyHelperModule.SaveData != null)
+                    if (KIRBY_CELESTEModule.SaveData != null)
                     {
-                        MaggyHelperModule.SaveData.VoidMoonUnlocked = true;
-                        MaggyHelperModule.SaveData.PendingUnlockChapter20OnRestart = true;
-                        Logger.Log(LogLevel.Info, "MaggyHelper", "Void Moon unlocked on overworld mountain (Chapter 19 → 20 transition)");
+                        KIRBY_CELESTEModule.SaveData.VoidMoonUnlocked = true;
+                        KIRBY_CELESTEModule.SaveData.PendingUnlockChapter20OnRestart = true;
+                        Logger.Log(LogLevel.Info, "KIRBY_CELESTE", "Void Moon unlocked on overworld mountain (Chapter 19 → 20 transition)");
                     }
 
                     // Force close so chapter 20 is only available after restart.

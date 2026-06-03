@@ -18,7 +18,7 @@ namespace Celeste.Mod.MaggyHelper.HotReload
         {
             base.Update();
 
-            var settings = MaggyHelperModule.Settings;
+            var settings = KIRBY_CELESTEModule.Settings;
             bool isEnabled = settings != null && settings.HotReloadEnabled;
 
             // Only process input when hot reload is enabled or was just toggled

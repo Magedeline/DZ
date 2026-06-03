@@ -42,7 +42,7 @@ public static class ChapterProgressionManager
         On.Celeste.OuiChapterSelect.PerformCh9Unlock += OnPerformCh9Unlock;
         On.Celeste.OuiChapterSelect.Enter += OnChapterSelectEnter;
 
-        Logger.Log(LogLevel.Info, "MaggyHelper", "ChapterProgressionManager loaded");
+        Logger.Log(LogLevel.Info, "KIRBY_CELESTE", "ChapterProgressionManager loaded");
     }
 
     public static void Unload()
@@ -59,7 +59,7 @@ public static class ChapterProgressionManager
         On.Celeste.OuiChapterSelect.PerformCh9Unlock -= OnPerformCh9Unlock;
         On.Celeste.OuiChapterSelect.Enter -= OnChapterSelectEnter;
 
-        Logger.Log(LogLevel.Info, "MaggyHelper", "ChapterProgressionManager unloaded");
+        Logger.Log(LogLevel.Info, "KIRBY_CELESTE", "ChapterProgressionManager unloaded");
     }
 
     private static void OnOverworldBegin(On.Celeste.Overworld.orig_Begin orig, Overworld self)
@@ -82,7 +82,7 @@ public static class ChapterProgressionManager
     {
         yield return new SwapImmediately(orig(self, from));
 
-        var save = MaggyHelperModule.SaveData;
+        var save = global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModule.SaveData;
         if (save == null || save.PendingCSideUnlockIDs.Count == 0)
             yield break;
 
@@ -167,8 +167,8 @@ public static class ChapterProgressionManager
         while (inner.MoveNext())
             yield return inner.Current;
 
-        var save = MaggyHelperModule.SaveData;
-        if (save == null || MaggySaveFacade.IsChapterUnlocked(Ch18Sid))
+        var save = global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModule.SaveData;
+        if (save == null || global::Celeste.KIRBY_CELESTESaveFacade.IsChapterUnlocked(Ch18Sid))
             yield break;
 
         Audio.Play("event:/pusheen/ui/postgame/unlock_newchapter");
@@ -191,7 +191,7 @@ public static class ChapterProgressionManager
 
         save.BossRushUnlocked = true;
         UnlockChapter(Ch18Sid);
-        Logger.Log(LogLevel.Info, "MaggyHelper", "PerformCh8Unlock: new content (Ch18) unlocked via chapter select animation.");
+        Logger.Log(LogLevel.Info, "KIRBY_CELESTE", "PerformCh8Unlock: new content (Ch18) unlocked via chapter select animation.");
     }
 
     [MethodImpl(MethodImplOptions.NoInlining)]
@@ -201,8 +201,8 @@ public static class ChapterProgressionManager
         while (inner.MoveNext())
             yield return inner.Current;
 
-        var save = MaggyHelperModule.SaveData;
-        if (save == null || MaggySaveFacade.IsChapterUnlocked(Ch19Sid))
+        var save = global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModule.SaveData;
+        if (save == null || global::Celeste.KIRBY_CELESTESaveFacade.IsChapterUnlocked(Ch19Sid))
             yield break;
 
         Audio.Play("event:/pusheen/ui/postgame/unlock_newchapter");
@@ -237,10 +237,10 @@ public static class ChapterProgressionManager
         save.TrueFinaleUnlocked = true;
         save.UnlockedChapter21 = true;
         SaveData.Instance.RevealedChapter9 = true;
-        Logger.Log(LogLevel.Info, "MaggyHelper", "PerformCh9Unlock: final content (Ch19-21) unlocked via chapter select animation.");
+        Logger.Log(LogLevel.Info, "KIRBY_CELESTE", "PerformCh9Unlock: final content (Ch19-21) unlocked via chapter select animation.");
 
         // Chain into the Ch10 (Ruins) flipped unlock if it hasn't happened yet
-        if (!MaggySaveFacade.IsChapterUnlocked(Ch10Sid))
+        if (!global::Celeste.KIRBY_CELESTESaveFacade.IsChapterUnlocked(Ch10Sid))
         {
             IEnumerator ch10 = PerformCh10Unlock(self);
             while (ch10.MoveNext())
@@ -276,14 +276,14 @@ public static class ChapterProgressionManager
         var connector = self.Overworld.Entities.FindFirst<global::Celeste.OverworldConnector>();
         connector?.EnableMaggyMarker();
 
-        var save = MaggyHelperModule.SaveData;
+        var save = global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModule.SaveData;
         if (save != null)
         {
             save.UnlockedChapter10 = true;
             save.PendingUnlockChapter10OnRestart = false;
         }
         UnlockChapter(Ch10Sid);
-        Logger.Log(LogLevel.Info, "MaggyHelper", "PerformCh10Unlock: Chapter 10 (Ruins) unlocked via flipped chapter select animation.");
+        Logger.Log(LogLevel.Info, "KIRBY_CELESTE", "PerformCh10Unlock: Chapter 10 (Ruins) unlocked via flipped chapter select animation.");
     }
 
     private static void EaseCamera(OuiChapterSelect self)
@@ -318,16 +318,16 @@ public static class ChapterProgressionManager
         if ((int)session.Area.Mode != 0)
             return;
 
-        var save = MaggyHelperModule.SaveData;
+        var save = global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModule.SaveData;
         if (save == null)
             return;
 
         if (session.Area.SID.Equals(Ch9Sid, StringComparison.OrdinalIgnoreCase))
         {
-            if (!MaggySaveFacade.IsChapterUnlocked(Ch10Sid))
+            if (!global::Celeste.KIRBY_CELESTESaveFacade.IsChapterUnlocked(Ch10Sid))
             {
                 save.PendingUnlockChapter10OnRestart = true;
-                Logger.Log(LogLevel.Info, "MaggyHelper",
+                Logger.Log(LogLevel.Info, "KIRBY_CELESTE",
                     "Chapter 9 completed: queued Chapter 10 (Ruins) unlock for next launch.");
             }
             return;
@@ -338,7 +338,7 @@ public static class ChapterProgressionManager
             save.CompleteChapter(Ch15Sid);
             save.PendingUnlockChapter16OnRestart = true;
 
-            Logger.Log(LogLevel.Info, "MaggyHelper",
+            Logger.Log(LogLevel.Info, "KIRBY_CELESTE",
                 "Chapter 15 completed: queued Chapter 16 unlock for next launch and closing game now.");
 
             Engine.Instance.Exit();
@@ -351,7 +351,7 @@ public static class ChapterProgressionManager
             save.TrueFinaleUnlocked = true;
             save.PendingUnlockChapter21OnRestart = true;
 
-            Logger.Log(LogLevel.Info, "MaggyHelper",
+            Logger.Log(LogLevel.Info, "KIRBY_CELESTE",
                 "Chapter 20 completed: queued Chapter 21 unlock for next launch and closing game now.");
 
             Engine.Instance.Exit();
@@ -361,9 +361,9 @@ public static class ChapterProgressionManager
 
     private static void ProcessPendingUnlocks()
     {
-        MaggySaveDataMigration.Run();
+        global::Celeste.Helpers.KIRBY_CELESTESaveDataMigration.Run();
 
-        var save = MaggyHelperModule.SaveData;
+        var save = global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModule.SaveData;
         if (save == null)
             return;
 
@@ -374,14 +374,14 @@ public static class ChapterProgressionManager
             UnlockChapter(Ch10Sid);
             save.UnlockedChapter10 = true;
             save.PendingUnlockChapter10OnRestart = false;
-            Logger.Log(LogLevel.Info, "MaggyHelper", "Processed pending unlock: Chapter 10 (Ruins)");
+            Logger.Log(LogLevel.Info, "KIRBY_CELESTE", "Processed pending unlock: Chapter 10 (Ruins)");
         }
 
         if (save.PendingUnlockChapter16OnRestart)
         {
             UnlockChapter(Ch16Sid);
             save.PendingUnlockChapter16OnRestart = false;
-            Logger.Log(LogLevel.Info, "MaggyHelper", "Processed pending unlock: Chapter 16");
+            Logger.Log(LogLevel.Info, "KIRBY_CELESTE", "Processed pending unlock: Chapter 16");
         }
 
         if (save.PendingUnlockChapter19OnRestart)
@@ -389,7 +389,7 @@ public static class ChapterProgressionManager
             UnlockChapter(Ch19Sid);
             save.UnlockedChapter19 = true;
             save.PendingUnlockChapter19OnRestart = false;
-            Logger.Log(LogLevel.Info, "MaggyHelper", "Processed pending unlock: Chapter 19");
+            Logger.Log(LogLevel.Info, "KIRBY_CELESTE", "Processed pending unlock: Chapter 19");
         }
 
         if (save.PendingUnlockChapter20OnRestart)
@@ -397,7 +397,7 @@ public static class ChapterProgressionManager
             UnlockChapter(Ch20Sid);
             save.VoidMoonUnlocked = true;
             save.PendingUnlockChapter20OnRestart = false;
-            Logger.Log(LogLevel.Info, "MaggyHelper", "Processed pending unlock: Chapter 20");
+            Logger.Log(LogLevel.Info, "KIRBY_CELESTE", "Processed pending unlock: Chapter 20");
         }
 
         if (save.PendingUnlockChapter21OnRestart)
@@ -406,47 +406,47 @@ public static class ChapterProgressionManager
             save.UnlockedChapter21 = true;
             save.TrueFinaleUnlocked = true;
             save.PendingUnlockChapter21OnRestart = false;
-            Logger.Log(LogLevel.Info, "MaggyHelper", "Processed pending unlock: Chapter 21");
+            Logger.Log(LogLevel.Info, "KIRBY_CELESTE", "Processed pending unlock: Chapter 21");
         }
     }
 
-    private static void ApplyProgressionUnlocks(MaggyHelperModuleSaveData save)
+    private static void ApplyProgressionUnlocks(global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModuleSaveData save)
     {
-        if (save.UnlockedChapter10 && !MaggySaveFacade.IsChapterUnlocked(Ch10Sid))
+        if (save.UnlockedChapter10 && !global::Celeste.KIRBY_CELESTESaveFacade.IsChapterUnlocked(Ch10Sid))
         {
             UnlockChapter(Ch10Sid);
             save.PendingUnlockChapter10OnRestart = false;
-            Logger.Log(LogLevel.Info, "MaggyHelper", "Chapter 9 progression unlocked Chapter 10 (Ruins).");
+            Logger.Log(LogLevel.Info, "KIRBY_CELESTE", "Chapter 9 progression unlocked Chapter 10 (Ruins).");
         }
 
-        if (save.BossRushUnlocked && !MaggySaveFacade.IsChapterUnlocked(Ch19Sid))
+        if (save.BossRushUnlocked && !global::Celeste.KIRBY_CELESTESaveFacade.IsChapterUnlocked(Ch19Sid))
         {
             UnlockChapter(Ch19Sid);
             save.UnlockedChapter19 = true;
             save.PendingUnlockChapter19OnRestart = false;
-            Logger.Log(LogLevel.Info, "MaggyHelper", "Boss rush progression unlocked Chapter 19.");
+            Logger.Log(LogLevel.Info, "KIRBY_CELESTE", "Boss rush progression unlocked Chapter 19.");
         }
 
-        if (save.FinalDlcContentUnlocked && !MaggySaveFacade.IsChapterUnlocked(Ch20Sid))
+        if (save.FinalDlcContentUnlocked && !global::Celeste.KIRBY_CELESTESaveFacade.IsChapterUnlocked(Ch20Sid))
         {
             UnlockChapter(Ch20Sid);
             save.VoidMoonUnlocked = true;
             save.PendingUnlockChapter20OnRestart = false;
-            Logger.Log(LogLevel.Info, "MaggyHelper", "Final DLC progression unlocked Chapter 20.");
+            Logger.Log(LogLevel.Info, "KIRBY_CELESTE", "Final DLC progression unlocked Chapter 20.");
         }
 
-        if (save.TrueFinaleUnlocked && !MaggySaveFacade.IsChapterUnlocked(Ch21Sid))
+        if (save.TrueFinaleUnlocked && !global::Celeste.KIRBY_CELESTESaveFacade.IsChapterUnlocked(Ch21Sid))
         {
             UnlockChapter(Ch21Sid);
             save.UnlockedChapter21 = true;
             save.PendingUnlockChapter21OnRestart = false;
-            Logger.Log(LogLevel.Info, "MaggyHelper", "True finale progression unlocked Chapter 21.");
+            Logger.Log(LogLevel.Info, "KIRBY_CELESTE", "True finale progression unlocked Chapter 21.");
         }
     }
 
     private static void UnlockChapter(string sid)
     {
-        MaggySaveFacade.UnlockChapter(sid);
+        global::Celeste.KIRBY_CELESTESaveFacade.UnlockChapter(sid);
     }
 
     public static bool IsChapterLockedForUI(string sid)
@@ -456,10 +456,10 @@ public static class ChapterProgressionManager
 
     private static void EnforceChapterSelectLock()
     {
-        if (_forcingSelection || !MaggySaveFacade.IsLoaded)
+        if (_forcingSelection || !global::Celeste.KIRBY_CELESTESaveFacade.IsLoaded)
             return;
 
-        int selectedArea = MaggySaveFacade.SelectedAreaId;
+        int selectedArea = global::Celeste.KIRBY_CELESTESaveFacade.SelectedAreaId;
         if (selectedArea < 0 || selectedArea >= AreaData.Areas.Count)
             return;
 
@@ -478,7 +478,7 @@ public static class ChapterProgressionManager
         _forcingSelection = true;
         try
         {
-            MaggySaveFacade.TrySelectArea(fallbackArea);
+            global::Celeste.KIRBY_CELESTESaveFacade.TrySelectArea(fallbackArea);
         }
         finally
         {
@@ -488,28 +488,28 @@ public static class ChapterProgressionManager
 
     private static bool IsLockedChapterSID(string sid)
     {
-        if (!MaggySaveFacade.HasModSave)
+        if (!global::Celeste.KIRBY_CELESTESaveFacade.HasModSave)
             return false;
 
-        var save = MaggyHelperModule.SaveData;
+        var save = global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModule.SaveData;
 
         if (sid.Equals(Ch10Sid, StringComparison.OrdinalIgnoreCase))
-            return !MaggySaveFacade.IsChapterUnlocked(Ch10Sid)
+            return !global::Celeste.KIRBY_CELESTESaveFacade.IsChapterUnlocked(Ch10Sid)
                 && save?.UnlockedChapter10 != true;
 
         if (sid.Equals(Ch16Sid, StringComparison.OrdinalIgnoreCase))
-            return !MaggySaveFacade.IsChapterUnlocked(Ch16Sid);
+            return !global::Celeste.KIRBY_CELESTESaveFacade.IsChapterUnlocked(Ch16Sid);
 
         if (sid.Equals(Ch19Sid, StringComparison.OrdinalIgnoreCase))
-            return !MaggySaveFacade.IsChapterUnlocked(Ch19Sid)
+            return !global::Celeste.KIRBY_CELESTESaveFacade.IsChapterUnlocked(Ch19Sid)
                 && save?.BossRushUnlocked != true;
 
         if (sid.Equals(Ch20Sid, StringComparison.OrdinalIgnoreCase))
-            return !MaggySaveFacade.IsChapterUnlocked(Ch20Sid)
+            return !global::Celeste.KIRBY_CELESTESaveFacade.IsChapterUnlocked(Ch20Sid)
                 && save?.FinalDlcContentUnlocked != true;
 
         if (sid.Equals(Ch21Sid, StringComparison.OrdinalIgnoreCase))
-            return !MaggySaveFacade.IsChapterUnlocked(Ch21Sid)
+            return !global::Celeste.KIRBY_CELESTESaveFacade.IsChapterUnlocked(Ch21Sid)
                 && save?.TrueFinaleUnlocked != true;
 
         return false;
@@ -519,7 +519,7 @@ public static class ChapterProgressionManager
     {
         var origin = AreaData.Get(fromArea);
         if (origin?.SID == null)
-            return MaggySaveFacade.SelectedAreaId;
+            return global::Celeste.KIRBY_CELESTESaveFacade.SelectedAreaId;
 
         bool originIsOurMap = AreaModeExtender.IsOurMap(origin);
         string originPrefix = GetSidPrefix(origin.SID);
@@ -543,7 +543,7 @@ public static class ChapterProgressionManager
             return i;
         }
 
-        return MaggySaveFacade.SelectedAreaId;
+        return global::Celeste.KIRBY_CELESTESaveFacade.SelectedAreaId;
     }
 
     private static string GetSidPrefix(string sid)
@@ -558,10 +558,10 @@ public static class ChapterProgressionManager
     [Command("maggy_chapter_test", "Test late chapter unlock flow. Usage: maggy_chapter_test [status|queue16|queue19|queue20|queue21|unlock16|unlock19|unlock20|unlock21|apply]")]
     private static void CmdChapterTest(string action = "status")
     {
-        var save = MaggyHelperModule.SaveData;
+        var save = global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModule.SaveData;
         if (save == null)
         {
-            Engine.Commands?.Log("[MaggyHelper] SaveData is null.");
+            Engine.Commands?.Log("[KIRBY_CELESTE] SaveData is null.");
             return;
         }
 
@@ -571,28 +571,28 @@ public static class ChapterProgressionManager
         {
             case "queue16":
                 save.PendingUnlockChapter16OnRestart = true;
-                Engine.Commands?.Log("[MaggyHelper] Queued Chapter 16 unlock on restart.");
+                Engine.Commands?.Log("[KIRBY_CELESTE] Queued Chapter 16 unlock on restart.");
                 break;
 
             case "queue19":
                 save.PendingUnlockChapter19OnRestart = true;
-                Engine.Commands?.Log("[MaggyHelper] Queued Chapter 19 unlock on restart.");
+                Engine.Commands?.Log("[KIRBY_CELESTE] Queued Chapter 19 unlock on restart.");
                 break;
 
             case "queue20":
                 save.PendingUnlockChapter20OnRestart = true;
-                Engine.Commands?.Log("[MaggyHelper] Queued Chapter 20 unlock on restart.");
+                Engine.Commands?.Log("[KIRBY_CELESTE] Queued Chapter 20 unlock on restart.");
                 break;
 
             case "queue21":
                 save.PendingUnlockChapter21OnRestart = true;
-                Engine.Commands?.Log("[MaggyHelper] Queued Chapter 21 unlock on restart.");
+                Engine.Commands?.Log("[KIRBY_CELESTE] Queued Chapter 21 unlock on restart.");
                 break;
 
             case "unlock16":
                 UnlockChapter(Ch16Sid);
                 save.PendingUnlockChapter16OnRestart = false;
-                Engine.Commands?.Log("[MaggyHelper] Unlocked Chapter 16 immediately.");
+                Engine.Commands?.Log("[KIRBY_CELESTE] Unlocked Chapter 16 immediately.");
                 break;
 
             case "unlock19":
@@ -600,7 +600,7 @@ public static class ChapterProgressionManager
                 save.UnlockedChapter19 = true;
                 save.BossRushUnlocked = true;
                 save.PendingUnlockChapter19OnRestart = false;
-                Engine.Commands?.Log("[MaggyHelper] Unlocked Chapter 19 immediately.");
+                Engine.Commands?.Log("[KIRBY_CELESTE] Unlocked Chapter 19 immediately.");
                 break;
 
             case "unlock20":
@@ -608,7 +608,7 @@ public static class ChapterProgressionManager
                 save.VoidMoonUnlocked = true;
                 save.FinalDlcContentUnlocked = true;
                 save.PendingUnlockChapter20OnRestart = false;
-                Engine.Commands?.Log("[MaggyHelper] Unlocked Chapter 20 immediately.");
+                Engine.Commands?.Log("[KIRBY_CELESTE] Unlocked Chapter 20 immediately.");
                 break;
 
             case "unlock21":
@@ -616,13 +616,13 @@ public static class ChapterProgressionManager
                 save.UnlockedChapter21 = true;
                 save.TrueFinaleUnlocked = true;
                 save.PendingUnlockChapter21OnRestart = false;
-                Engine.Commands?.Log("[MaggyHelper] Unlocked Chapter 21 immediately.");
+                Engine.Commands?.Log("[KIRBY_CELESTE] Unlocked Chapter 21 immediately.");
                 break;
 
             case "apply":
                 ProcessPendingUnlocks();
                 EnforceChapterSelectLock();
-                Engine.Commands?.Log("[MaggyHelper] Applied pending unlocks now.");
+                Engine.Commands?.Log("[KIRBY_CELESTE] Applied pending unlocks now.");
                 break;
 
             case "status":
@@ -630,13 +630,13 @@ public static class ChapterProgressionManager
                 break;
         }
 
-        bool unlocked16 = MaggySaveFacade.IsChapterUnlocked(Ch16Sid);
-        bool unlocked19 = MaggySaveFacade.IsChapterUnlocked(Ch19Sid);
-        bool unlocked20 = MaggySaveFacade.IsChapterUnlocked(Ch20Sid);
-        bool unlocked21 = MaggySaveFacade.IsChapterUnlocked(Ch21Sid);
+        bool unlocked16 = global::Celeste.KIRBY_CELESTESaveFacade.IsChapterUnlocked(Ch16Sid);
+        bool unlocked19 = global::Celeste.KIRBY_CELESTESaveFacade.IsChapterUnlocked(Ch19Sid);
+        bool unlocked20 = global::Celeste.KIRBY_CELESTESaveFacade.IsChapterUnlocked(Ch20Sid);
+        bool unlocked21 = global::Celeste.KIRBY_CELESTESaveFacade.IsChapterUnlocked(Ch21Sid);
 
         Engine.Commands?.Log(
-            $"[MaggyHelper] status: unlocked16={unlocked16}, unlocked19={unlocked19}, unlocked20={unlocked20}, unlocked21={unlocked21}, " +
+            $"[KIRBY_CELESTE] status: unlocked16={unlocked16}, unlocked19={unlocked19}, unlocked20={unlocked20}, unlocked21={unlocked21}, " +
             $"pending16={save.PendingUnlockChapter16OnRestart}, pending19={save.PendingUnlockChapter19OnRestart}, pending20={save.PendingUnlockChapter20OnRestart}, pending21={save.PendingUnlockChapter21OnRestart}");
     }
 
@@ -644,11 +644,11 @@ public static class ChapterProgressionManager
     private static void CmdUnlockDSide(string mode = "dside")
     {
         var vanillaSave = SaveData.Instance;
-        var maggySave = MaggyHelperModule.SaveData;
+        var maggySave = global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModule.SaveData;
 
         if (vanillaSave == null || maggySave == null)
         {
-            Engine.Commands?.Log("[MaggyHelper] SaveData is null — load a save file first.");
+            Engine.Commands?.Log("[KIRBY_CELESTE] SaveData is null — load a save file first.");
             return;
         }
 
@@ -665,7 +665,7 @@ public static class ChapterProgressionManager
                 Engine.Commands?.Log($"  {ad.SID}: D-Side={dUnlocked}, DX-Side={dxUnlocked}");
                 count++;
             }
-            Engine.Commands?.Log($"[MaggyHelper] Checked {count} Maggy chapter(s).");
+            Engine.Commands?.Log($"[KIRBY_CELESTE] Checked {count} KIRBY_CELESTE chapter(s).");
             return;
         }
 
@@ -695,7 +695,7 @@ public static class ChapterProgressionManager
         }
 
         Engine.Commands?.Log(
-            $"[MaggyHelper] D-Side unlocked for {unlocked} chapter(s)" +
+            $"[KIRBY_CELESTE] D-Side unlocked for {unlocked} chapter(s)" +
             (unlockDX ? " (and DX-Side)" : "") +
             ". Reopen the chapter select to see changes.");
     }
@@ -703,7 +703,7 @@ public static class ChapterProgressionManager
     [Command("maggy_unlock_all", "Unlock all late chapters (18-21) at once.")]
     private static void CmdUnlockAll()
     {
-        var save = MaggyHelperModule.SaveData;
+        var save = global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModule.SaveData;
         if (save == null)
         {
             Engine.Commands?.Log("[MaggyHelper] SaveData is null — load a save file first.");
@@ -730,7 +730,7 @@ public static class ChapterProgressionManager
         save.PendingUnlockChapter20OnRestart = false;
         save.PendingUnlockChapter21OnRestart = false;
 
-        Engine.Commands?.Log("[MaggyHelper] All chapters (18, 19, 20, 21) unlocked!");
+        Engine.Commands?.Log("[KIRBY_CELESTE] All chapters (18, 19, 20, 21) unlocked!");
         Engine.Commands?.Log("  - Chapter 18 (Heart): Boss Rush unlocked");
         Engine.Commands?.Log("  - Chapter 19 (Space): Unlocked");
         Engine.Commands?.Log("  - Chapter 20 (The End): Void Moon unlocked");
@@ -741,7 +741,7 @@ public static class ChapterProgressionManager
     [Command("maggy_reset_chapters", "Reset all chapter unlocks (18-21) for testing. Usage: maggy_reset_chapters [confirm]")]
     private static void CmdResetChapters(string confirm = "")
     {
-        var save = MaggyHelperModule.SaveData;
+        var save = global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModule.SaveData;
         var vanillaSave = SaveData.Instance;
         if (save == null || vanillaSave == null)
         {
@@ -751,7 +751,7 @@ public static class ChapterProgressionManager
 
         if (confirm.ToLowerInvariant() != "confirm")
         {
-            Engine.Commands?.Log("[MaggyHelper] WARNING: This will reset chapter 18-21 unlocks!");
+            Engine.Commands?.Log("[KIRBY_CELESTE] WARNING: This will reset chapter 18-21 unlocks!");
             Engine.Commands?.Log("Run 'maggy_reset_chapters confirm' to proceed.");
             return;
         }
@@ -784,14 +784,14 @@ public static class ChapterProgressionManager
         LockChapter(Ch20Sid);
         LockChapter(Ch21Sid);
 
-        Engine.Commands?.Log("[MaggyHelper] Chapter unlocks (18-21) have been reset!");
+        Engine.Commands?.Log("[KIRBY_CELESTE] Chapter unlocks (18-21) have been reset!");
         Engine.Commands?.Log("Reopen chapter select to see changes.");
     }
 
     [Command("maggy_mountain_warp", "Warp to the Desolo Zantas mountain (A-Side).")]
     private static void CmdMountainWarp()
     {
-        var save = MaggyHelperModule.SaveData;
+        var save = global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModule.SaveData;
         var vanillaSave = SaveData.Instance;
         if (save == null || vanillaSave == null)
         {
@@ -812,7 +812,7 @@ public static class ChapterProgressionManager
 
         if (targetArea == null)
         {
-            Engine.Commands?.Log("[MaggyHelper] No Maggy chapters found!");
+            Engine.Commands?.Log("[KIRBY_CELESTE] No KIRBY_CELESTE chapters found!");
             return;
         }
 
@@ -824,11 +824,11 @@ public static class ChapterProgressionManager
         if (Engine.Scene is Overworld overworld)
         {
             overworld.Mountain?.EaseCamera(targetArea.ID, targetArea.MountainSelect, null, false);
-            Engine.Commands?.Log($"[MaggyHelper] Warped to DZ mountain at chapter: {targetArea.SID}");
+            Engine.Commands?.Log($"[KIRBY_CELESTE] Warped to DZ mountain at chapter: {targetArea.SID}");
         }
         else
         {
-            Engine.Commands?.Log($"[MaggyHelper] Set target to DZ mountain: {targetArea.SID}");
+            Engine.Commands?.Log($"[KIRBY_CELESTE] Set target to DZ mountain: {targetArea.SID}");
             Engine.Commands?.Log("Return to overworld to see the DZ mountain.");
         }
     }
@@ -836,7 +836,7 @@ public static class ChapterProgressionManager
     [Command("maggy_unlock_dz", "Unlock the Desolo Zantas campaign/mountain access.")]
     private static void CmdUnlockDZ()
     {
-        var save = MaggyHelperModule.SaveData;
+        var save = global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModule.SaveData;
         var vanillaSave = SaveData.Instance;
         if (save == null || vanillaSave == null)
         {
@@ -855,7 +855,7 @@ public static class ChapterProgressionManager
         {
             if (area?.SID != null && AreaModeExtender.IsOurMap(area))
             {
-                if (!MaggySaveFacade.IsChapterUnlocked(area.SID))
+                if (!global::Celeste.KIRBY_CELESTESaveFacade.IsChapterUnlocked(area.SID))
                 {
                     UnlockChapter(area.SID);
                     unlocked++;
@@ -863,8 +863,8 @@ public static class ChapterProgressionManager
             }
         }
 
-        Engine.Commands?.Log($"[MaggyHelper] Desolo Zantas campaign unlocked!");
-        Engine.Commands?.Log($"  - Unlocked {unlocked} Maggy chapter(s)");
+        Engine.Commands?.Log($"[KIRBY_CELESTE] Desolo Zantas campaign unlocked!");
+        Engine.Commands?.Log($"  - Unlocked {unlocked} KIRBY_CELESTE chapter(s)");
         Engine.Commands?.Log($"  - Chapter 10 (Ruins) accessible");
         Engine.Commands?.Log("Reopen chapter select or restart the game to see the DZ mountain.");
     }

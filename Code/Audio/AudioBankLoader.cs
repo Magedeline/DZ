@@ -5,6 +5,7 @@ using FMOD;
 using FMOD.Studio;
 using Celeste.Mod;
 using Monocle;
+using KIRBY_CELESTE = Celeste.Mod.KIRBY_CELESTE;
 
 namespace Celeste.Mod.MaggyHelper.Audio
 {
@@ -18,18 +19,16 @@ namespace Celeste.Mod.MaggyHelper.Audio
     ///   4. Copy the output files to this mod's Audio/ folder:
     ///        desolozantas.strings.bank   ← REQUIRED, contains event:/ path table
     ///        desolozantas.bank
-    ///        music.bank
-    ///        sfx.bank
-    ///        ui.bank
-    ///        dlc_music.bank
-    ///        dlc_sfx.bank
+    ///        desolozantas_sfx.bank
+    ///        desolozantas_ui.bank
+    ///        desolozantas_music.bank
+    ///        desolozantas_dlc_sfx.bank
+    ///        desolozantas_dlc_music.bank
     ///
-    /// Why manual loading instead of Everest's auto-loader:
-    ///   Everest calls Audio.Banks.Load(name, loadStrings: true) for every .bank
-    ///   file it finds. That tries to open [name].strings.bank — which throws
-    ///   FMOD ERR_FILE_NOTFOUND when the strings bank is absent. We bypass that
-    ///   by calling Audio.System.loadBankFile directly and controlling which files
-    ///   to load and in what order.
+    /// Note: Everest's auto-loader handles bank loading automatically when the strings
+    /// bank is present. Manual loading is only needed if the strings bank is absent,
+    /// which is not the case here. This class now primarily serves to track loaded banks
+    /// and provide utility methods for checking event availability.
     /// </summary>
     public static class AudioBankLoader
     {
@@ -59,7 +58,8 @@ namespace Celeste.Mod.MaggyHelper.Audio
         public static bool IsLoaded => _loaded && _banks.Count > 0;
 
         /// <summary>
-        /// Load all DesoloZantas FMOD banks.  Call from EverestModule.LoadContent.
+        /// Track and reference all DesoloZantas FMOD banks loaded by Everest's auto-loader.
+        /// Call from EverestModule.LoadContent.
         /// </summary>
         public static void Load()
         {
@@ -76,19 +76,9 @@ namespace Celeste.Mod.MaggyHelper.Audio
 
             _loaded = true;
 
-            string audioDir = AudioDirectory();
-            if (audioDir == null)
-            {
-                Logger.Log(LogLevel.Warn, "MaggyHelper", "[AudioBankLoader] Audio directory not found — no banks loaded");
-                return;
-            }
-
-            // Strings bank must come first so subsequent loadBankFile calls can
-            // resolve event:/ paths by name instead of only by GUID.
-            LoadSingleBank(Path.Combine(audioDir, StringsBankFile), required: true);
-
-            foreach (string file in ContentBankFiles)
-                LoadSingleBank(Path.Combine(audioDir, file), required: false);
+            // Since Everest's auto-loader successfully loads the banks (strings bank is present),
+            // we just need to track the already-loaded banks for our reference.
+            TrackLoadedBanks();
         }
 
         /// <summary>
@@ -105,48 +95,53 @@ namespace Celeste.Mod.MaggyHelper.Audio
             _loaded = false;
         }
 
-        // ── FMOD 1.10.20 direct loading ───────────────────────────────────────
+        // ── Bank Tracking (Everest auto-loader) ────────────────────────────────
 
-        private static void LoadSingleBank(string path, bool required)
+        private static void TrackLoadedBanks()
         {
-            string name = Path.GetFileName(path);
-
-            if (!File.Exists(path))
+            // Since Everest's auto-loader has already loaded the banks successfully,
+            // we retrieve and track them for our reference.
+            string[] bankNames =
             {
-                LogLevel level = required ? LogLevel.Warn : LogLevel.Verbose;
-                Logger.Log(level, "MaggyHelper", $"[AudioBankLoader] Not found: {name}" +
-                    (required ? " — event:/pusheen/* paths cannot be resolved without the strings bank" : ""));
-                return;
+                "desolozantas.strings",
+                "desolozantas",
+                "desolozantas_sfx",
+                "desolozantas_ui",
+                "desolozantas_music",
+                "desolozantas_dlc_sfx",
+                "desolozantas_dlc_music",
+            };
+
+            int loadedCount = 0;
+            foreach (string bankName in bankNames)
+            {
+                RESULT result = global::Celeste.Audio.System.getBank(bankName, out Bank bank);
+                if (result == RESULT.OK)
+                {
+                    _banks.Add(bank);
+                    loadedCount++;
+                    Logger.Log(LogLevel.Info, "MaggyHelper", $"[AudioBankLoader] Tracked already-loaded bank: {bankName}");
+                }
+                else
+                {
+                    Logger.Log(LogLevel.Verbose, "MaggyHelper", $"[AudioBankLoader] Bank not loaded by Everest: {bankName} ({result})");
+                }
             }
 
-            if (global::Celeste.Audio.System == null)
-            {
-                Logger.Log(LogLevel.Warn, "MaggyHelper",
-                    $"[AudioBankLoader] Audio.System is null, cannot load {name}");
-                _loaded = false;
-                return;
-            }
-
-            // FMOD.Studio.System.loadBankFile is the FMOD 1.10.20 API call.
-            // LOAD_BANK_FLAGS.NORMAL loads the bank on demand (not all at once).
-            RESULT result = global::Celeste.Audio.System.loadBankFile(path, LOAD_BANK_FLAGS.NORMAL, out Bank bank);
-
-            if (result != RESULT.OK)
-            {
-                Logger.Log(LogLevel.Warn, "MaggyHelper",
-                    $"[AudioBankLoader] loadBankFile failed for {name}: {result}");
-                return;
-            }
-
-            _banks.Add(bank);
-            Logger.Log(LogLevel.Info, "MaggyHelper", $"[AudioBankLoader] Loaded {name}");
+            Logger.Log(LogLevel.Info, "MaggyHelper", $"[AudioBankLoader] Tracked {loadedCount}/{bankNames.Length} banks loaded by Everest");
         }
 
         // ── Utility ───────────────────────────────────────────────────────────
 
         private static string AudioDirectory()
         {
-            string modDir = MaggyHelperModule.Instance?.Metadata?.PathDirectory;
+            // Try KIRBY_CELESTEModule first (this is the active module)
+            string modDir = KIRBY_CELESTE.KIRBY_CELESTEModule.Instance?.Metadata?.PathDirectory;
+            
+            // Fall back to KIRBY_CELESTEModule for compatibility
+            if (string.IsNullOrEmpty(modDir))
+                modDir = KIRBY_CELESTEModule.Instance?.Metadata?.PathDirectory;
+            
             if (string.IsNullOrEmpty(modDir)) return null;
             string dir = Path.Combine(modDir, "Audio");
             return Directory.Exists(dir) ? dir : null;

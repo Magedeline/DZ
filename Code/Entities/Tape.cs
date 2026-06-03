@@ -363,9 +363,9 @@ public class DesoloZantasTape : Entity
                 IngesteModule.SaveData.PendingCSideUnlockIDs.Add(_cSideToUnlock);
         }
 
-        MaggyProgressionManager.RecordCassette(level);
+        KIRBY_CELESTEProgressionManager.RecordCassette(level);
         if (level.Session.RespawnPoint.HasValue)
-            MaggyProgressionManager.RecordCheckpoint(level, level.Session.RespawnPoint.Value, _cSideToUnlock);
+            KIRBY_CELESTEProgressionManager.RecordCheckpoint(level, level.Session.RespawnPoint.Value, _cSideToUnlock);
 
         cbm?.StopBlocks();
         Depth = -1000000;

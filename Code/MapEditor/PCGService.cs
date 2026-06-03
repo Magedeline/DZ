@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Celeste;
 using Monocle;
 
-namespace Celeste.Mod.MaggyHelper;
+namespace Celeste.Mod.KIRBY_CELESTE;
 
 /// <summary>
 /// PCG Service for procedural content generation using loenn-mcp integration

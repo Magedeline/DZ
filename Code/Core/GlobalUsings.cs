@@ -1,6 +1,4 @@
-// Global using directives
-
-// Global using directives for Ingeste mod
+// Global using directives for KIRBY_CELESTE mod
 global using System;
 global using System.Collections;
 global using System.Collections.Generic;
@@ -16,8 +14,8 @@ global using Celeste.HotReload;
 global using Celeste.Extensions;
 global using Celeste.Extensions.Core;
 global using Celeste.Utils;
-global using Util = Celeste.Mod.MaggyHelper.Util;
-global using CustomSFX = Celeste.Mod.MaggyHelper.CustomSFX;
+global using Util = Celeste.Mod.KIRBY_CELESTE.Util;
+global using CustomSFX = Celeste.Mod.KIRBY_CELESTE.CustomSFX;
 global using Microsoft.Xna.Framework;
 global using Microsoft.Xna.Framework.Graphics;
 global using Monocle;
@@ -26,14 +24,14 @@ global using Player = Celeste.Player;
 // Type aliases
 global using static Celeste.PlayerSpriteModeExtensions;
 global using KirbyModeExt = Celeste.Extensions.KirbyMode;
-global using MaggyHelperModule = Celeste.Mod.MaggyHelper.MaggyHelperModule;
-global using MaggyHelperModuleSettings = Celeste.Mod.MaggyHelper.MaggyHelperModuleSettings;
-global using MaggyHelperModuleSaveData = Celeste.Mod.MaggyHelper.MaggyHelperModuleSaveData;
-global using MaggyHelperModuleSession = Celeste.Mod.MaggyHelper.MaggyHelperModuleSession;
-global using IngesteModule = Celeste.Mod.MaggyHelper.MaggyHelperModule;
+global using KIRBY_CELESTEModule = Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModule;
+global using KIRBY_CELESTEModuleSettings = Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModuleSettings;
+global using KIRBY_CELESTEModuleSaveData = Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModuleSaveData;
+global using KIRBY_CELESTEModuleSession = Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModuleSession;
+global using IngesteModule = Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModule;
 global using IngesteLogger = Celeste.Helpers.IngesteLogger;
-global using IngesteModuleSettings = Celeste.Mod.MaggyHelper.MaggyHelperModuleSettings;
-global using MaggySaveDataMigration = Celeste.Helpers.MaggySaveDataMigration;
+global using IngesteModuleSettings = Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModuleSettings;
+global using KIRBY_CELESTESaveDataMigration = Celeste.Helpers.KIRBY_CELESTESaveDataMigration;
 global using CelesteGame = Celeste.Celeste;
 global using CelesteBridge = Celeste.Bridge;
 global using CelesteDashBlock = Celeste.DashBlock;

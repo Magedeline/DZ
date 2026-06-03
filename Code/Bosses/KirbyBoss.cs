@@ -23,7 +23,7 @@ namespace Celeste.Entities.Bosses
         
         public KirbyBoss(EntityData data, Vector2 offset) : base(data, offset)
         {
-            maxHealth = data.Int("health", 15) * MaggyHelperModule.Settings.BossDifficultyMultiplier;
+            maxHealth = data.Int("health", 15) * KIRBY_CELESTEModule.Settings.BossDifficultyMultiplier;
             currentHealth = maxHealth;
             
             // Create sprite
@@ -134,7 +134,7 @@ namespace Celeste.Entities.Bosses
 
         private void MirrorPlayerAbility()
         {
-            var session = MaggyHelperModule.Session;
+            var session = KIRBY_CELESTEModule.Session;
             if (session != null && session.CurrentCopyAbility != CopyAbilityType.None)
             {
                 mirroredAbility = session.CurrentCopyAbility;

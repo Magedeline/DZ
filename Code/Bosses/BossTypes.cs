@@ -76,7 +76,7 @@ namespace Celeste.Entities.Bosses
         private void OnPlayer(global::Celeste.Player player)
         {
             // Grant the ability via session
-            var session = MaggyHelperModule.Session;
+            var session = KIRBY_CELESTEModule.Session;
             if (session != null)
             {
                 session.CurrentCopyAbility = ability;

@@ -47,13 +47,13 @@ namespace Celeste
                             nameof(Hook_Player_Ctor),
                             BindingFlags.Static | BindingFlags.NonPublic));
 
-                    Logger.Log(LogLevel.Info, "MaggyHelper",
+                    Logger.Log(LogLevel.Info, "KIRBY_CELESTE",
                         "[KirbyPlayerMapHooks] Player constructor hook registered");
                 }
             }
             catch (Exception ex)
             {
-                Logger.Log(LogLevel.Warn, "MaggyHelper",
+                Logger.Log(LogLevel.Warn, "KIRBY_CELESTE",
                     $"[KirbyPlayerMapHooks] Failed to hook Player.ctor: {ex.Message}");
             }
 
@@ -72,20 +72,20 @@ namespace Celeste
                             nameof(Hook_Player_Added),
                             BindingFlags.Static | BindingFlags.NonPublic));
 
-                    Logger.Log(LogLevel.Info, "MaggyHelper",
+                    Logger.Log(LogLevel.Info, "KIRBY_CELESTE",
                         "[KirbyPlayerMapHooks] Player.Added hook registered");
                 }
             }
             catch (Exception ex)
             {
-                Logger.Log(LogLevel.Warn, "MaggyHelper",
+                Logger.Log(LogLevel.Warn, "KIRBY_CELESTE",
                     $"[KirbyPlayerMapHooks] Failed to hook Player.Added: {ex.Message}");
             }
 
             // 4. Everest event — OnLoadLevel for metadata-based activation
             Everest.Events.Level.OnLoadLevel += OnEverestLoadLevel;
 
-            Logger.Log(LogLevel.Info, "MaggyHelper",
+            Logger.Log(LogLevel.Info, "KIRBY_CELESTE",
                 "[KirbyPlayerMapHooks] All map-entry hooks loaded");
         }
 
@@ -99,7 +99,7 @@ namespace Celeste
 
             Everest.Events.Level.OnLoadLevel -= OnEverestLoadLevel;
 
-            Logger.Log(LogLevel.Info, "MaggyHelper",
+            Logger.Log(LogLevel.Info, "KIRBY_CELESTE",
                 "[KirbyPlayerMapHooks] All map-entry hooks unloaded");
         }
 
@@ -117,7 +117,7 @@ namespace Celeste
                 // If Kirby mode should be active, attach controllers immediately.
                 // This prevents the "missing player" crash because we ensure the
                 // vanilla Player is fully set up for Kirby before any frame runs.
-                var session = MaggyHelperModule.Session;
+                var session = global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModule.Session;
                 if (session?.IsKirbyModeActive == true && self.Scene is Level level)
                 {
                     // Attach gameplay controller if missing
@@ -136,7 +136,7 @@ namespace Celeste
             }
             catch (Exception ex)
             {
-                Logger.Log(LogLevel.Warn, "MaggyHelper",
+                Logger.Log(LogLevel.Warn, "KIRBY_CELESTE",
                     $"[KirbyPlayerMapHooks] Player ctor hook error: {ex.Message}");
             }
         }
@@ -152,7 +152,7 @@ namespace Celeste
 
             try
             {
-                var session = MaggyHelperModule.Session;
+                var session = global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModule.Session;
                 if (session?.IsKirbyModeActive == true && scene is Level level)
                 {
                     if (self.Get<KirbyPlayerController>() == null)
@@ -164,7 +164,7 @@ namespace Celeste
             }
             catch (Exception ex)
             {
-                Logger.Log(LogLevel.Warn, "MaggyHelper",
+                Logger.Log(LogLevel.Warn, "KIRBY_CELESTE",
                     $"[KirbyPlayerMapHooks] Player.Added hook error: {ex.Message}");
             }
         }
@@ -177,7 +177,7 @@ namespace Celeste
             {
                 // Metadata-based activation: if the map's custom metadata says
                 // "kirbyMode = true", enable Kirby mode even without a spawner entity.
-                var session = MaggyHelperModule.Session;
+                var session = global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModule.Session;
                 if (session == null || level?.Session == null)
                     return;
 
@@ -204,14 +204,14 @@ namespace Celeste
                     if (player != null && !player.IsKirbyMode())
                     {
                         player.EnableKirbyMode();
-                        Logger.Log(LogLevel.Info, "MaggyHelper",
+                        Logger.Log(LogLevel.Info, "KIRBY_CELESTE",
                             "[KirbyPlayerMapHooks] Kirby mode enabled via map metadata");
                     }
                 }
             }
             catch (Exception ex)
             {
-                Logger.Log(LogLevel.Warn, "MaggyHelper",
+                Logger.Log(LogLevel.Warn, "KIRBY_CELESTE",
                     $"[KirbyPlayerMapHooks] Everest OnLoadLevel error: {ex.Message}");
             }
         }

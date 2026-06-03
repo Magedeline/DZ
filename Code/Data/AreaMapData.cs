@@ -1014,12 +1014,12 @@ public static class IntroRemixHooks
     {
         // Check if user has already seen this intro
         string flagKey = $"seen_remix_intro_{session.Area.SID}_{mode}";
-        bool alreadySeen = MaggyHelperModule.SaveData?.HasAchievement(flagKey) == true;
+        bool alreadySeen = KIRBY_CELESTEModule.SaveData?.HasAchievement(flagKey) == true;
 
         if (!alreadySeen)
         {
             // Mark as seen for next time
-            MaggyHelperModule.SaveData?.UnlockAchievement(flagKey);
+            KIRBY_CELESTEModule.SaveData?.UnlockAchievement(flagKey);
             return true;
         }
 

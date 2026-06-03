@@ -498,7 +498,7 @@ public static class AreaModeExtender
             return;
 
         string heartId = $"{area.SID}_{GetModeName(mode)}";
-        MaggyHelperModule.SaveData?.CollectHeartGem(heartId);
+        KIRBY_CELESTEModule.SaveData?.CollectHeartGem(heartId);
 
         if (mode >= 0 && mode < HeartGemGetSounds.Length)
             Audio.Play(HeartGemGetSounds[mode]);
@@ -533,7 +533,7 @@ public static class AreaModeExtender
             return;
 
         string unlockKey = $"{area.SID}_{GetModeName(unlockedMode)}_unlocked";
-        if (MaggyHelperModule.SaveData?.HasAchievement(unlockKey) == true)
+        if (KIRBY_CELESTEModule.SaveData?.HasAchievement(unlockKey) == true)
             return;
 
         Engine.Scene = new SideUnlockVignette(session, completedMode);
@@ -1092,7 +1092,7 @@ public static class AreaModeExtender
         if (CelesteGame.PlayMode == CelesteGame.PlayModes.Debug)
             return true;
 
-        return MaggyHelperModule.Instance != null && MaggyHelperModule.Settings?.DebugMode == true;
+        return KIRBY_CELESTEModule.Instance != null && KIRBY_CELESTEModule.Settings?.DebugMode == true;
     }
 
     public static bool IsSideUnlocked(AreaKey area, int modeIndex)
@@ -1115,7 +1115,7 @@ public static class AreaModeExtender
             if (areaData != null && AltSidesHelperBridge.IsAshOwned(areaData))
             {
                 string ashHeartId = $"{areaData.SID}_{GetModeName(MODE_DSIDE)}";
-                return MaggyHelperModule.SaveData?.HasCollectedHeartGem(ashHeartId) == true
+                return KIRBY_CELESTEModule.SaveData?.HasCollectedHeartGem(ashHeartId) == true
                     || GetSaveAreaModeHeartGem(area.ID, MODE_CSIDE)
                     || GetSaveAreaModeCompleted(area.ID, MODE_CSIDE);
             }
@@ -1139,7 +1139,7 @@ public static class AreaModeExtender
             return false;
 
         string heartId = $"{sid}_{GetModeName(previousMode)}";
-        return MaggyHelperModule.SaveData?.HasCollectedHeartGem(heartId) == true;
+        return KIRBY_CELESTEModule.SaveData?.HasCollectedHeartGem(heartId) == true;
     }
 
     private static bool GetSaveAreaModeBool(int areaId, int modeIndex, string memberName)

@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Input;
 
 namespace Celeste.Mod.KIRBY_CELESTE
 {
@@ -11,7 +11,7 @@ namespace Celeste.Mod.KIRBY_CELESTE
     {
         #region Hot Reload Settings (Development)
 
-        [SettingSubHeader("MAGGYHELPER_HOTRELOAD_HEADER")]
+        [SettingSubHeader("KIRBY_CELESTE_HOTRELOAD_HEADER")]
         public bool HotReloadEnabled { get; set; } = true;
 
         public bool HotReloadAuto { get; set; } = true;
@@ -73,7 +73,7 @@ namespace Celeste.Mod.KIRBY_CELESTE
 
         #region Overworld 3D Settings
 
-        [SettingSubHeader("MAGGYHELPER_OVERWORLD_HEADER")]
+        [SettingSubHeader("KIRBY_CELESTE_OVERWORLD_HEADER")]
         public bool EnableCustomMountainModels { get; set; } = true;
 
         public bool LockMountainCameraRotation { get; set; } = true;
@@ -91,7 +91,7 @@ namespace Celeste.Mod.KIRBY_CELESTE
 
         #region Area Data Display Settings
 
-        [SettingSubHeader("MAGGYHELPER_AREADATA_HEADER")]
+        [SettingSubHeader("KIRBY_CELESTE_AREADATA_HEADER")]
         public bool ShowSideUnlockNotifications { get; set; } = true;
 
         public bool ShowChapterMasteryOnPanel { get; set; } = true;
@@ -107,7 +107,7 @@ namespace Celeste.Mod.KIRBY_CELESTE
 
         #region Chapter Progression Settings
 
-        [SettingSubHeader("MAGGYHELPER_PROGRESSION_HEADER")]
+        [SettingSubHeader("KIRBY_CELESTE_PROGRESSION_HEADER")]
         public bool EnableLateChapterUnlockFlow { get; set; } = true;
 
         public bool AutoUnlockBSides { get; set; } = false;
@@ -126,9 +126,9 @@ namespace Celeste.Mod.KIRBY_CELESTE
 
         #region PCG Settings
 
-        [SettingSubHeader("MAGGYHELPER_PCG_HEADER")]
+        [SettingSubHeader("KIRBY_CELESTE_PCG_HEADER")]
         [SettingRange(1, 20)]
-        [SettingName("MAGGYHELPER_PCG_FADE")]
+        [SettingName("KIRBY_CELESTE_PCG_FADE")]
         public int PCGWarpFadeDurationTenths { get; set; } = 5;
 
         public float PCGWarpFadeDuration => PCGWarpFadeDurationTenths / 10f;
@@ -137,8 +137,8 @@ namespace Celeste.Mod.KIRBY_CELESTE
 
         #region Mod Integration Settings
 
-        [SettingSubHeader("MAGGYHELPER_INTEGRATIONS_HEADER")]
-        [SettingName("MAGGYHELPER_DEATHLINK_DAMAGE")]
+        [SettingSubHeader("KIRBY_CELESTE_INTEGRATIONS_HEADER")]
+        [SettingName("KIRBY_CELESTE_DEATHLINK_DAMAGE")]
         public bool DeathlinkDamageEnabled
         {
             get => global::Celeste.DeathlinkIntegration.IsDamageModeEnabled();

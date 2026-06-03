@@ -74,10 +74,7 @@ public static class MountainOverworldManager
     {
         orig(self);
 
-        if (IsViewingOurChapters())
-        {
-            Audio.SetMusic(OverworldMusicManager.MUSIC_LEVEL_SELECT);
-        }
+        // Audio.SetMusic(OverworldMusicManager.MUSIC_LEVEL_SELECT); // removed: audio system deleted
     }
 
     // ── Utility ──────────────────────────────────────────────────────────

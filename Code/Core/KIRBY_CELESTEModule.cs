@@ -214,7 +214,7 @@ namespace Celeste.Mod.KIRBY_CELESTE
 
             global::Celeste.TitleScreen_ExtHook.Load();
             global::Celeste.UI.ModSelectionScreen.Load();
-            global::Celeste.OverworldMusicManager.Load();
+            // global::Celeste.OverworldMusicManager.Load(); // removed: audio system deleted
             global::Celeste.MountainOverworldManager.Load();
             global::Celeste.Cutscenes.IntroWarning.Load();
 
@@ -337,7 +337,7 @@ namespace Celeste.Mod.KIRBY_CELESTE
             global::Celeste.MountainOverworldManager.Unload();
             global::Celeste.KirbyPlayerMapHooks.Unload();
             global::Celeste.KirbyHealthSystemHooks.Unload();
-            global::Celeste.OverworldMusicManager.Unload();
+            // global::Celeste.OverworldMusicManager.Unload(); // removed: audio system deleted
             global::Celeste.TitleScreen_ExtHook.Unload();
             global::Celeste.UI.ModSelectionScreen.Unload();
             global::Celeste.Cutscenes.IntroWarning.Unload();
@@ -1096,7 +1096,7 @@ namespace Celeste.Mod.KIRBY_CELESTE
 
             // Audio.Init hook doesn't fire reliably in this Everest version;
             // LoadContent runs after FMOD and IngestBank are done.
-            global::Celeste.OverworldMusicManager.LoadBanks();
+            // global::Celeste.OverworldMusicManager.LoadBanks(); // removed: audio system deleted
         }
 
         public static bool IsChapter17EpilogueCompleted()

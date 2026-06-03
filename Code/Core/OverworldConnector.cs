@@ -143,7 +143,7 @@ namespace Celeste
 
             try
             {
-                bool unlocked = MaggyHelperModule.SaveData?.VoidMoonUnlocked == true;
+                bool unlocked = KIRBY_CELESTEModule.SaveData?.VoidMoonUnlocked == true;
 
                 if (!unlocked && primary != null)
                 {

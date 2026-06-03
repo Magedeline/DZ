@@ -1082,7 +1082,7 @@ namespace Celeste.Entities
                 if (onGround)
                 {
                     highestAirY = Y;
-                    kirbyFlapCount = MaggyHelperModule.Settings?.KirbyMaxFloatJumps ?? 5;
+                    kirbyFlapCount = KIRBY_CELESTEModule.Settings?.KirbyMaxFloatJumps ?? 5;
                 }
                 else
                     highestAirY = Math.Min(Y, highestAirY);
@@ -6678,7 +6678,7 @@ namespace Celeste.Entities
             // Land Ã¢â‚¬â€ restore flap count and exit float
             if (onGround && Speed.Y >= 0)
             {
-                kirbyFlapCount = MaggyHelperModule.Settings?.KirbyMaxFloatJumps ?? 5;
+                kirbyFlapCount = KIRBY_CELESTEModule.Settings?.KirbyMaxFloatJumps ?? 5;
                 return StNormal;
             }
 
@@ -7592,16 +7592,16 @@ namespace Celeste.Entities
                 currentHealth = healthManager.CurrentHP;
             }
 
-            if (MaggyHelperModule.Session != null)
+            if (KIRBY_CELESTEModule.Session != null)
             {
-                MaggyHelperModule.Session.IsKirbyModeActive = true;
+                KIRBY_CELESTEModule.Session.IsKirbyModeActive = true;
             }
 
             RefillDash();
         }
         public bool IsKirbyMode()
         {
-            return KirbyModeActive || MaggyHelperModule.Session?.IsKirbyModeActive == true;
+            return KirbyModeActive || KIRBY_CELESTEModule.Session?.IsKirbyModeActive == true;
         }
 
         public void SetPowerState(KirbyMode.KirbyPowerState powerState)
@@ -7811,9 +7811,9 @@ namespace Celeste.Entities
                 PlayerHealthManager.GetOrCreate(level, maxHealth).DisableKirbyMode();
             }
 
-            if (MaggyHelperModule.Session != null)
+            if (KIRBY_CELESTEModule.Session != null)
             {
-                MaggyHelperModule.Session.IsKirbyModeActive = false;
+                KIRBY_CELESTEModule.Session.IsKirbyModeActive = false;
             }
         }
 

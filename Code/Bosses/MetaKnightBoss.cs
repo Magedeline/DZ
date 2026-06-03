@@ -37,7 +37,7 @@ namespace Celeste.Entities.Bosses
         
         public MetaKnightBoss(EntityData data, Vector2 offset) : base(data, offset)
         {
-            maxHealth = data.Int("health", 20) * MaggyHelperModule.Settings.BossDifficultyMultiplier;
+            maxHealth = data.Int("health", 20) * KIRBY_CELESTEModule.Settings.BossDifficultyMultiplier;
             currentHealth = maxHealth;
             attackCooldown = data.Float("attackCooldown", 0.8f);
             
@@ -56,9 +56,9 @@ namespace Celeste.Entities.Bosses
             base.StartFight();
             
             // Meta Knight's honor - offer sword to player
-            if (!gaveSword && MaggyHelperModule.Settings.EnableKirbyPlayer)
+            if (!gaveSword && KIRBY_CELESTEModule.Settings.EnableKirbyPlayer)
             {
-                var session = MaggyHelperModule.Session;
+                var session = KIRBY_CELESTEModule.Session;
                 if (session != null && session.CurrentCopyAbility == CopyAbilityType.None)
                 {
                     // Spawn a sword ability star for the player

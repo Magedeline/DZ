@@ -63,7 +63,7 @@ public class MaggyHelperUnlockEverything : CheatListener
     public void UnlockEverything(Level level)
     {
         // Use the MaggyHelper module to unlock everything
-        global::Celeste.Mod.MaggyHelper.MaggyHelperModule.TriggerUnlockEverythingCheat();
+        global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModule.TriggerUnlockEverythingCheat();
 
         // Also unlock vanilla content if in Celeste level set
         SaveData saveData = SaveData.Instance;

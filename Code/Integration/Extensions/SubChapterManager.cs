@@ -300,7 +300,7 @@ public static class SubChapterManager
     public static bool IsSubChapterCompleted(string subChapterSID)
     {
         string key = $"subchapter_completed_{subChapterSID}";
-        return MaggyHelperModule.SaveData?.HasAchievement(key) == true;
+        return KIRBY_CELESTEModule.SaveData?.HasAchievement(key) == true;
     }
 
     /// <summary>
@@ -309,7 +309,7 @@ public static class SubChapterManager
     public static void MarkSubChapterCompleted(string subChapterSID)
     {
         string key = $"subchapter_completed_{subChapterSID}";
-        MaggyHelperModule.SaveData?.UnlockAchievement(key);
+        KIRBY_CELESTEModule.SaveData?.UnlockAchievement(key);
         Logger.Log(LogLevel.Info, LogTag, $"Sub-chapter completed: {subChapterSID}");
     }
 
@@ -371,7 +371,7 @@ public static class SubChapterManager
 
         // Collect heart gem if defined
         if (!string.IsNullOrWhiteSpace(subChapter.HeartGemId))
-            MaggyHelperModule.SaveData?.CollectHeartGem(subChapter.HeartGemId);
+            KIRBY_CELESTEModule.SaveData?.CollectHeartGem(subChapter.HeartGemId);
 
         // Schedule return to parent lobby room
         if (!string.IsNullOrWhiteSpace(group.LobbyRoom) &&

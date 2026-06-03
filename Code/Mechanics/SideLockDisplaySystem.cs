@@ -146,7 +146,7 @@ public static class SideLockDisplaySystem
         {
             var areaData = AreaData.Get(area);
             string heartId = $"{areaData?.SID}_{AreaModeExtender.GetModeName(previousMode)}";
-            bool hasCollected = MaggyHelperModule.SaveData?.HasCollectedHeartGem(heartId) == true;
+            bool hasCollected = KIRBY_CELESTEModule.SaveData?.HasCollectedHeartGem(heartId) == true;
 
             if (!hasCollected)
                 return "Progress: Collect the heart gem from the previous side";

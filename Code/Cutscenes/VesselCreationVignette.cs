@@ -464,9 +464,9 @@ namespace Celeste.Cutscenes
                 IngesteLogger.Info("[VesselCreation] Transitioning to Cs00IntroVignette");
 
                 // Mark the mod intro as seen so it never replays on subsequent launches.
-                if (MaggyHelperModule.SaveData != null)
+                if (KIRBY_CELESTEModule.SaveData != null)
                 {
-                    MaggyHelperModule.SaveData.HasSeenModIntro = true;
+                    KIRBY_CELESTEModule.SaveData.HasSeenModIntro = true;
                     UserIO.SaveHandler(file: true, settings: false);
                 }
 
@@ -1078,9 +1078,9 @@ namespace Celeste.Cutscenes
                 IngesteLogger.Info("[VesselCreation] Skipping vignette - transitioning to Cs00IntroVignette");
 
                 // Mark the mod intro as seen even when skipped.
-                if (MaggyHelperModule.SaveData != null)
+                if (KIRBY_CELESTEModule.SaveData != null)
                 {
-                    MaggyHelperModule.SaveData.HasSeenModIntro = true;
+                    KIRBY_CELESTEModule.SaveData.HasSeenModIntro = true;
                     UserIO.SaveHandler(file: true, settings: false);
                 }
 

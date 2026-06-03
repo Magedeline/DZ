@@ -155,7 +155,7 @@ namespace Celeste.Cutscenes
         private IEnumerator gameClosingSequence()
         {
             // Save progression before closing (unlock on next launch)
-            var saveData = MaggyHelperModule.SaveData;
+            var saveData = KIRBY_CELESTEModule.SaveData;
             if (saveData != null)
             {
                 saveData.PendingUnlockChapter19OnRestart = true;

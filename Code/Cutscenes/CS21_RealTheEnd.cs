@@ -114,11 +114,11 @@ namespace Celeste.Cutscenes
             level.Session.SetFlag("real_end_complete");
             level.Session.SetFlag("ch21_complete");
 
-            if (MaggyHelperModule.Session != null)
+            if (KIRBY_CELESTEModule.Session != null)
             {
-                MaggyHelperModule.Session.InCredits   = false;
-                MaggyHelperModule.Session.CreditsPhase = 0;
-                MaggyHelperModule.Session.CreditsCompleted = true;
+                KIRBY_CELESTEModule.Session.InCredits   = false;
+                KIRBY_CELESTEModule.Session.CreditsPhase = 0;
+                KIRBY_CELESTEModule.Session.CreditsCompleted = true;
             }
 
             level.TimerStopped = false;

@@ -99,7 +99,7 @@ namespace Celeste.Triggers
             level.Session.SetFlag("ch17_credits_intro", true);
             
             // Set flag to trigger credits part 1
-            MaggyHelperModule.LaunchPart1Credits = true;
+            KIRBY_CELESTEModule.LaunchPart1Credits = true;
         }
 
         private void StartThankingCompanions(Level level)
@@ -119,7 +119,7 @@ namespace Celeste.Triggers
             level.Session.SetFlag("ch17_epilogue", true);
             
             // Set flag to trigger credits part 2
-            MaggyHelperModule.LaunchPart2Credits = true;
+            KIRBY_CELESTEModule.LaunchPart2Credits = true;
         }
     }
 }

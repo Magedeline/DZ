@@ -1,5 +1,5 @@
 using System;
-using global::Celeste.Mod.MaggyHelper;
+using global::Celeste.Mod.KIRBY_CELESTE;
 using Celeste.Entities;
 using Celeste.Extensions;
 using Microsoft.Xna.Framework;
@@ -26,7 +26,7 @@ public static class RoomTransitionHandler
         On.Celeste.Level.LoadLevel += Hook_Level_LoadLevel;
         Everest.Events.Level.OnTransitionTo += OnTransitionTo;
 
-        Logger.Log(LogLevel.Info, "MaggyHelper",
+        Logger.Log(LogLevel.Info, "KIRBY_CELESTE",
             "[RoomTransitionHandler] Hooks loaded");
     }
 
@@ -35,7 +35,7 @@ public static class RoomTransitionHandler
         On.Celeste.Level.LoadLevel -= Hook_Level_LoadLevel;
         Everest.Events.Level.OnTransitionTo -= OnTransitionTo;
 
-        Logger.Log(LogLevel.Info, "MaggyHelper",
+        Logger.Log(LogLevel.Info, "KIRBY_CELESTE",
             "[RoomTransitionHandler] Hooks unloaded");
     }
 
@@ -48,7 +48,7 @@ public static class RoomTransitionHandler
         orig(self, playerIntro, isFromLoader);
 
         bool hasSpawner = self.Tracker.GetEntities<global::Celeste.Entities.KirbyPlayerSpawner>().Count > 0;
-        bool sessionKirby = MaggyHelperModule.Session?.IsKirbyModeActive == true;
+        bool sessionKirby = global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModule.Session?.IsKirbyModeActive == true;
 
         // If there's no spawner but session says Kirby mode is active,
         // restore Kirby state on the vanilla player.
@@ -59,7 +59,7 @@ public static class RoomTransitionHandler
             {
                 player.RestorePersistentState();
 
-                Logger.Log(LogLevel.Info, "MaggyHelper",
+                Logger.Log(LogLevel.Info, "KIRBY_CELESTE",
                     "[RoomTransitionHandler] Restored Kirby state on vanilla player after transition");
             }
         }
@@ -70,7 +70,7 @@ public static class RoomTransitionHandler
         LevelData next,
         Vector2 direction)
     {
-        var session = MaggyHelperModule.Session;
+        var session = global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModule.Session;
         if (session == null)
             return;
 
@@ -81,7 +81,7 @@ public static class RoomTransitionHandler
             if (player != null)
             {
                 level.Session.RespawnPoint = player.Position;
-                Logger.Log(LogLevel.Verbose, "MaggyHelper",
+                Logger.Log(LogLevel.Verbose, "KIRBY_CELESTE",
                     $"[RoomTransitionHandler] Persisted Kirby respawn at {player.Position}");
             }
         }

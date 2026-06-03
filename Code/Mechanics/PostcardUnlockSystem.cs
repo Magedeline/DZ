@@ -12,7 +12,7 @@ namespace Celeste;
 /// </summary>
 public static class PostcardUnlockSystem
 {
-    private const string DefaultPostcardTexture = "Maggy/postcard";
+    private const string DefaultPostcardTexture = "KIRBY_CELESTE/postcard";
 
     // â”€â”€ Postcard Configuration Per Side â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
@@ -134,7 +134,7 @@ public static class PostcardUnlockSystem
         // Mark the next side as unlocked in save data
         MarkSideUnlocked(session, completedMode + 1);
 
-        Logger.Log(LogLevel.Info, "MaggyHelper",
+        Logger.Log(LogLevel.Info, "KIRBY_CELESTE",
             $"Postcard shown for completing mode {completedMode}, unlocking mode {completedMode + 1}");
     }
 
@@ -189,7 +189,7 @@ public static class PostcardUnlockSystem
             return;
 
         string unlockKey = $"{AreaData.Get(session.Area)?.SID}_{AreaModeExtender.GetModeName(newMode)}_unlocked";
-        MaggyHelperModule.SaveData?.UnlockAchievement(unlockKey);
+        global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModule.SaveData?.UnlockAchievement(unlockKey);
     }
 }
 

@@ -143,7 +143,7 @@ namespace Celeste.Entities
             collected = true;
             Collidable = false;
 
-            MaggyProgressionManager.RecordMiniHeart(SceneAs<Level>(), gemId);
+            KIRBY_CELESTEProgressionManager.RecordMiniHeart(SceneAs<Level>(), gemId);
             
             // Set collection flag
             Level level = SceneAs<Level>();

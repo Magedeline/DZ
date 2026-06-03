@@ -58,7 +58,7 @@ public static class HeartGemManager
         On.Celeste.HeartGem.CollectRoutine += OnHeartGemCollectRoutine;
         On.Celeste.HeartGem.RegisterAsCollected += OnHeartGemRegisterAsCollected;
 
-        Logger.Log(LogLevel.Info, "MaggyHelper", "HeartGemManager loaded");
+        Logger.Log(LogLevel.Info, "KIRBY_CELESTE", "HeartGemManager loaded");
     }
 
     public static void Unload()
@@ -70,7 +70,7 @@ public static class HeartGemManager
         On.Celeste.HeartGem.CollectRoutine -= OnHeartGemCollectRoutine;
         On.Celeste.HeartGem.RegisterAsCollected -= OnHeartGemRegisterAsCollected;
 
-        Logger.Log(LogLevel.Info, "MaggyHelper", "HeartGemManager unloaded");
+        Logger.Log(LogLevel.Info, "KIRBY_CELESTE", "HeartGemManager unloaded");
     }
 
     // ── HeartGem Awake ───────────────────────────────────────────────────
@@ -147,7 +147,7 @@ public static class HeartGemManager
         }
         catch (Exception ex)
         {
-            Logger.Log(LogLevel.Warn, "MaggyHelper",
+            Logger.Log(LogLevel.Warn, "KIRBY_CELESTE",
                 $"Failed to set heart gem visuals for mode {mode}: {ex.Message}");
         }
     }
@@ -224,7 +224,7 @@ public static class HeartGemManager
             _ => "_A"
         };
 
-        return $"soul_Maggy_{sideName}_{chapterName}{suffix}";
+        return $"soul_KIRBY_CELESTE_{sideName}_{chapterName}{suffix}";
     }
 
     /// <summary>
@@ -264,12 +264,12 @@ public static class HeartGemManager
             if (!string.IsNullOrEmpty(localizedPoem) && HasLocalizedPoem(level.Session))
             {
                 resolvedPoemId = localizedPoem;
-                Logger.Log(LogLevel.Info, "MaggyHelper",
+                Logger.Log(LogLevel.Info, "KIRBY_CELESTE",
                     $"HeartGem poem resolved from registry: {resolvedPoemId}");
             }
             else
             {
-                Logger.Log(LogLevel.Warn, "MaggyHelper",
+                Logger.Log(LogLevel.Warn, "KIRBY_CELESTE",
                     $"No localized poem found for {localizedPoem}, falling back to: {poemId}");
             }
         }
@@ -285,10 +285,10 @@ public static class HeartGemManager
         // For extended modes, additionally track in our save system
         if (mode >= AreaModeExtender.MODE_DSIDE)
         {
-            MaggySaveFacade.TryRecordExtendedHeartGem(level.Session);
+            KIRBY_CELESTESaveFacade.TryRecordExtendedHeartGem(level.Session);
 
-            Logger.Log(LogLevel.Info, "MaggyHelper",
-                $"Heart gem registered: {MaggySaveFacade.BuildExtendedHeartId(area.SID, mode)}");
+            Logger.Log(LogLevel.Info, "KIRBY_CELESTE",
+                $"Heart gem registered: {KIRBY_CELESTESaveFacade.BuildExtendedHeartId(area.SID, mode)}");
 
             // Set the "heart collected" flag for this side
             level.Session.SetFlag($"heartgem_{AreaModeExtender.GetModeName(mode)}_collected");
@@ -299,10 +299,10 @@ public static class HeartGemManager
         {
             // Mark this side as completed via our custom tracking
             string completionKey = $"{area.SID}_{AreaModeExtender.GetModeName(mode)}_completed";
-            MaggyHelperModule.SaveData?.UnlockAchievement(completionKey);
+            KIRBY_CELESTEModule.SaveData?.UnlockAchievement(completionKey);
         }
 
-        MaggyProgressionManager.RefreshProgression();
+        KIRBY_CELESTEProgressionManager.RefreshProgression();
     }
 
     // ── Utility Methods ──────────────────────────────────────────────────
@@ -312,7 +312,7 @@ public static class HeartGemManager
     /// </summary>
     public static bool IsHeartGemCollected(Session session)
     {
-        return MaggySaveFacade.HasHeartGem(session);
+        return KIRBY_CELESTESaveFacade.HasHeartGem(session);
     }
 
     /// <summary>
@@ -320,7 +320,7 @@ public static class HeartGemManager
     /// </summary>
     public static int GetTotalHeartsForChapter(int areaId)
     {
-        return MaggySaveFacade.CountHeartsForChapter(areaId);
+        return KIRBY_CELESTESaveFacade.CountHeartsForChapter(areaId);
     }
 
     /// <summary>

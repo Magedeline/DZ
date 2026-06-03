@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework;
 using Monocle;
 using MonoMod.Utils;
 
-namespace Celeste.Mod.MaggyHelper;
+namespace Celeste.Mod.KIRBY_CELESTE;
 
 /// <summary>
 /// Inspired by CelesteRandomizer: dynamically registers a generated PCG map
@@ -229,7 +229,7 @@ public static class PCGAreaRegistrar
     {
         // Fade out (duration configurable in mod settings)
         var fade = new FadeWipe(fromLevel, false, () => { });
-        fade.Duration = MaggyHelperModule.Settings?.PCGWarpFadeDuration ?? 0.5f;
+        fade.Duration = KIRBY_CELESTEModule.Settings?.PCGWarpFadeDuration ?? 0.5f;
         yield return fade.Wait();
 
         // Transfer to new level

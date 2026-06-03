@@ -125,13 +125,13 @@ namespace Celeste.Entities
 
             if (useGlobalCounts)
             {
-                var saveData = MaggyHelperModule.SaveData;
+                var saveData = KIRBY_CELESTEModule.SaveData;
                 currentEnemyDefeats = saveData?.TotalEnemiesDefeated ?? 0;
                 currentBossDefeats = saveData?.TotalBossesDefeated ?? 0;
             }
             else
             {
-                var session = MaggyHelperModule.Session;
+                var session = KIRBY_CELESTEModule.Session;
                 currentEnemyDefeats = session?.EnemiesDefeated ?? 0;
                 currentBossDefeats = session?.BossesDefeated ?? 0;
             }
@@ -232,13 +232,13 @@ namespace Celeste.Entities
 
             if (useGlobalCounts)
             {
-                var saveData = MaggyHelperModule.SaveData;
+                var saveData = KIRBY_CELESTEModule.SaveData;
                 currentEnemies = saveData?.TotalEnemiesDefeated ?? 0;
                 currentBosses = saveData?.TotalBossesDefeated ?? 0;
             }
             else
             {
-                var session = MaggyHelperModule.Session;
+                var session = KIRBY_CELESTEModule.Session;
                 currentEnemies = session?.EnemiesDefeated ?? 0;
                 currentBosses = session?.BossesDefeated ?? 0;
             }

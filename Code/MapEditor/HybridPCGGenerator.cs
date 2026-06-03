@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Celeste;
 using Monocle;
 
-namespace Celeste.Mod.MaggyHelper;
+namespace Celeste.Mod.KIRBY_CELESTE;
 
 /// <summary>
 /// Main hybrid PCG generator - combines room templates with procedural elements

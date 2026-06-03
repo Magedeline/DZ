@@ -2,16 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using Celeste.Entities;
-using Celeste.Mod.MaggyHelper.Bosses;
 using Monocle;
+using Celeste.Mod.KIRBY_CELESTE.Bosses;
 
-namespace Celeste.Mod.MaggyHelper
+namespace Celeste.Mod.KIRBY_CELESTE
 {
     /// <summary>
-    /// Lightweight in-game test runner for MaggyHelper components.
-    /// Run via console command: maggy_test_run
+    /// Lightweight in-game test runner for KIRBY_CELESTE components.
+    /// Run via console command: kirby_test_run
     /// </summary>
-    public static class MaggyHelperTestRunner
+    public static class KIRBY_CELSTETestRunner
     {
         private static List<TestResult> _results = new();
         private static int _passed = 0;
@@ -23,7 +23,7 @@ namespace Celeste.Mod.MaggyHelper
             _passed = 0;
             _failed = 0;
 
-            Logger.Log(LogLevel.Info, "MaggyHelper/Tests", "=== Starting MaggyHelper Test Suite ===");
+            Logger.Log(LogLevel.Info, "KIRBY_CELESTE/Tests", "=== Starting KIRBY_CELESTE Test Suite ===");
             var sw = Stopwatch.StartNew();
 
             RunTriggerManagerTests();
@@ -31,16 +31,16 @@ namespace Celeste.Mod.MaggyHelper
             RunBossConfigHelperTests();
 
             sw.Stop();
-            Logger.Log(LogLevel.Info, "MaggyHelper/Tests",
+            Logger.Log(LogLevel.Info, "KIRBY_CELESTE/Tests",
                 $"=== Test Complete: {_passed} passed, {_failed} failed, {sw.ElapsedMilliseconds}ms ===");
 
             foreach (var result in _results)
             {
                 var level = result.Passed ? LogLevel.Info : LogLevel.Error;
-                Logger.Log(level, "MaggyHelper/Tests", $"  [{result.Category}] {result.Name}: {(result.Passed ? "PASS" : "FAIL")}");
+                Logger.Log(level, "KIRBY_CELESTE/Tests", $"  [{result.Category}] {result.Name}: {(result.Passed ? "PASS" : "FAIL")}");
                 if (!result.Passed && !string.IsNullOrEmpty(result.Message))
                 {
-                    Logger.Log(LogLevel.Error, "MaggyHelper/Tests", $"    -> {result.Message}");
+                    Logger.Log(LogLevel.Error, "KIRBY_CELESTE/Tests", $"    -> {result.Message}");
                 }
             }
         }
@@ -118,7 +118,7 @@ namespace Celeste.Mod.MaggyHelper
 
         private static void LogTestCategory(string category)
         {
-            Logger.Log(LogLevel.Info, "MaggyHelper/Tests", $"--- {category} ---");
+            Logger.Log(LogLevel.Info, "KIRBY_CELESTE/Tests", $"--- {category} ---");
         }
 
         private static void Assert(string name, bool condition, string message)

@@ -1,9 +1,7 @@
-﻿using System;
+using System;
 using System.Reflection;
 using Celeste.Cutscenes;
 using Celeste.Entities;
-using Celeste.Mod.MaggyHelper;
-using Celeste.Mod.MaggyHelper.BossesExample;
 using Monocle;
 using MonoMod.RuntimeDetour;
 using static Celeste.Mod.Logger;
@@ -203,7 +201,7 @@ namespace Celeste.Mod.KIRBY_CELESTE
 
         public override void Load()
         {
-            BossesExampleModule.Load();
+            // BossesExampleModule.Load(); // TODO: Restore when BossesExampleModule is available
             // Note: AreaMapData, ChapterActRegistry, and BossRosterRegistry
             // use lazy initialization - they'll be populated on first access.
             global::Celeste.AreaModeExtender.Load();
@@ -262,27 +260,24 @@ namespace Celeste.Mod.KIRBY_CELESTE
             On.Celeste.Level.Update += OnLevelUpdate_PCGQuickMenu;
 
             // Initialize PCG area registrar (CelesteRandomizer-style dynamic area registration)
-            PCGAreaRegistrar.Load();
+            // PCGAreaRegistrar.Load(); // TODO: Restore when PCGAreaRegistrar is available
 
             // Initialize SubChapterManager (EXPERIMENTAL/TEST ONLY)
             // Sub-chapter system: host 5–20 collab maps under a single checkpoint
             global::Celeste.SubChapterManager.Load();
 
-            // Validate and auto-repair save data on load
-            global::Celeste.Mod.MaggyHelper.SaveDataValidator.ValidateOnLoad();
-
             // Register save data debugging console commands
-            global::Celeste.Mod.MaggyHelper.SaveDataValidator.RegisterConsoleCommands();
+            global::Celeste.Mod.KIRBY_CELESTE.SaveDataValidator.RegisterConsoleCommands();
 
             // Initialize level load validator for entity/trigger validation
-            global::Celeste.Mod.MaggyHelper.LevelLoadValidator.Initialize();
-            global::Celeste.Mod.MaggyHelper.LevelLoadValidator.HookIntoLevelLoad();
+            // global::Celeste.Mod.KIRBY_CELESTE.LevelLoadValidator.Initialize(); // TODO: Restore when LevelLoadValidator is available
+            // global::Celeste.Mod.KIRBY_CELESTE.LevelLoadValidator.HookIntoLevelLoad(); // TODO: Restore when LevelLoadValidator is available
 
             // Register in-game test runner
-            global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTETestRunner.RegisterConsoleCommand();
+            global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELSTETestRunner.RegisterConsoleCommand();
 
             // Register performance profiler commands
-            global::Celeste.Mod.MaggyHelper.PerformanceProfiler.RegisterConsoleCommands();
+            // global::Celeste.Mod.KIRBY_CELESTE.PerformanceProfiler.RegisterConsoleCommands(); // TODO: Restore when PerformanceProfiler is available
         }
 
         private static void OnLevelExit(Level level, LevelExit exit, LevelExit.Mode mode, Session session, HiresSnow snow)
@@ -298,8 +293,8 @@ namespace Celeste.Mod.KIRBY_CELESTE
         // leaked one subscription per mod reload.)
         private static void OnLoadLevel_EnsureHotReloadController(Level level, Player.IntroTypes playerIntro, bool isFromLoader)
         {
-            if (level.Tracker.GetEntity<global::Celeste.Mod.MaggyHelper.HotReload.HotReloadController>() == null)
-                level.Add(new global::Celeste.Mod.MaggyHelper.HotReload.HotReloadController());
+            // if (level.Tracker.GetEntity<global::Celeste.Mod.KIRBY_CELESTE.HotReload.HotReloadController>() == null)
+            //     level.Add(new global::Celeste.Mod.KIRBY_CELESTE.HotReload.HotReloadController()); // TODO: Restore when HotReload is available
 
             // Add debug room warp menu when DeveloperBypass or DebugMode is enabled
             var settings = Settings;
@@ -311,19 +306,27 @@ namespace Celeste.Mod.KIRBY_CELESTE
         }
 
         /// <summary>
-        /// Hook to detect PCGQuickMenu keybind while in a level.
+        /// Hook to detect PCGQuickMenu keybind while in level.
         /// </summary>
         private static void OnLevelUpdate_PCGQuickMenu(On.Celeste.Level.orig_Update orig, Level self)
         {
             orig(self);
-            if (Settings?.PCGQuickMenu?.Pressed ?? false)
-            {
-                if (!self.Paused && self.Tracker.GetEntity<PCGQuickMenu>() == null)
-                {
-                    self.Paused = true;
-                    self.Add(new PCGQuickMenu());
-                }
-            }
+            // TODO: Restore when PCGQuickMenu is available
+            // if (Settings?.PCGQuickMenu?.Pressed ?? false)
+            // {
+            //     if (!self.Paused && self.Tracker.GetEntity<PCGQuickMenu>() == null)
+            //     {
+            //         self.Paused = true;
+            //         self.Add(new PCGQuickMenu());
+            //     }
+            // }
+        }
+
+        public override void LoadSaveData(int index)
+        {
+            base.LoadSaveData(index);
+            global::Celeste.Mod.KIRBY_CELESTE.SaveDataValidator.ResetValidationState();
+            global::Celeste.Mod.KIRBY_CELESTE.SaveDataValidator.ValidateOnLoad();
         }
 
         public override void Unload()
@@ -345,7 +348,7 @@ namespace Celeste.Mod.KIRBY_CELESTE
             global::Celeste.IntroRemixHooks.Unload();
             global::Celeste.AltSidesHelperBridge.Unload();
             global::Celeste.AreaModeExtender.Unload();
-            BossesExampleModule.Unload();
+            // BossesExampleModule.Unload(); // TODO: Restore when BossesExampleModule is available
 
             // Unhook level exit cleanup
             Everest.Events.Level.OnExit -= OnLevelExit;
@@ -356,7 +359,7 @@ namespace Celeste.Mod.KIRBY_CELESTE
             On.Celeste.Level.Update -= OnLevelUpdate_PCGQuickMenu;
 
             // Unload PCG area registrar
-            PCGAreaRegistrar.Unload();
+            // PCGAreaRegistrar.Unload(); // TODO: Restore when PCGAreaRegistrar is available
 
             // Unload SubChapterManager (EXPERIMENTAL/TEST ONLY)
             global::Celeste.SubChapterManager.Unload();
@@ -1088,7 +1091,7 @@ namespace Celeste.Mod.KIRBY_CELESTE
         public override void LoadContent(bool firstLoad)
         {
             base.LoadContent(firstLoad);
-            BossesExampleModule.LoadContent(firstLoad);
+            // BossesExampleModule.LoadContent(firstLoad);
             // ProphecyFont is now lazy-initialized on first access
 
             // Audio.Init hook doesn't fire reliably in this Everest version;
@@ -1228,12 +1231,13 @@ namespace Celeste.Mod.KIRBY_CELESTE
             Engine.Commands?.Log("[KIRBY_CELESTE] Simulating hot reload event...");
             
             // We simulate it by calling the handler directly with some types
-            Type[] mockTypes = new Type[] { 
-                typeof(global::Celeste.Mod.MaggyHelper.HotReload.ModHotReloadTest),
-                typeof(global::Celeste.HotReload.GameHotReloadTest)
-            };
+            // Type[] mockTypes = new Type[] { 
+            //     typeof(global::Celeste.HotReload.ModHotReloadTest),
+            //     typeof(global::Celeste.HotReload.GameHotReloadTest)
+            // };
             
-            global::Celeste.HotReload.HotReloadHandler.UpdateApplication(mockTypes);
+            // global::Celeste.HotReload.HotReloadHandler.UpdateApplication(mockTypes);
+            Engine.Commands?.Log("[KIRBY_CELESTE] Hot reload test disabled - ModHotReloadTest class not found.");
         }
 
         // =====================================================================
@@ -1259,8 +1263,8 @@ namespace Celeste.Mod.KIRBY_CELESTE
             save.UnlockedChapter10 = true;
             save.PendingUnlockChapter10OnRestart = false;
 
-            // Unlock the chapter via MaggySaveFacade
-            MaggySaveFacade.UnlockChapter(Ch10RuinsSid);
+            // Unlock the chapter via KIRBY_CELESTESaveFacade
+            KIRBY_CELESTESaveFacade.UnlockChapter(Ch10RuinsSid);
 
             Logger.Log(LogLevel.Info, "KIRBY_CELESTE", "Chapter 10 (Ruins) unlocked with DZ Mountain access");
         }
@@ -1275,7 +1279,7 @@ namespace Celeste.Mod.KIRBY_CELESTE
             if (save == null) return;
 
             save.BossRushUnlocked = true;
-            MaggySaveFacade.UnlockChapter(Ch18HeartSid);
+            KIRBY_CELESTESaveFacade.UnlockChapter(Ch18HeartSid);
 
             Logger.Log(LogLevel.Info, "KIRBY_CELESTE", "Chapter 18 (Heart/Core) unlocked - Boss Rush available");
         }
@@ -1296,9 +1300,9 @@ namespace Celeste.Mod.KIRBY_CELESTE
             save.TrueFinaleUnlocked = true;
 
             // Unlock all three final chapters
-            MaggySaveFacade.UnlockChapter(Ch19SpaceSid);
-            MaggySaveFacade.UnlockChapter(Ch20TheEndSid);
-            MaggySaveFacade.UnlockChapter(Ch21LastLevelSid);
+            KIRBY_CELESTESaveFacade.UnlockChapter(Ch19SpaceSid);
+            KIRBY_CELESTESaveFacade.UnlockChapter(Ch20TheEndSid);
+            KIRBY_CELESTESaveFacade.UnlockChapter(Ch21LastLevelSid);
 
             // Clear any pending unlock flags
             save.PendingUnlockChapter19OnRestart = false;

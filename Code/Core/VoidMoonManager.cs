@@ -9,7 +9,7 @@ namespace Celeste
     /// show/hide, and clean up the void moon entities.
     ///
     /// The void moon is shown when:
-    ///   1. <see cref="MaggyHelperModule.SaveData"/>.<c>VoidMoonUnlocked</c> is true (set after completing Ch19), AND
+    ///   1. <see cref="global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModule.SaveData"/>.<c>VoidMoonUnlocked</c> is true (set after completing Ch19), AND
     ///   2. The currently-viewed area's SID contains <c>20_TheEnd</c>.
     /// </summary>
     [HotReloadable]
@@ -118,7 +118,7 @@ namespace Celeste
         {
             // Only show the void moon when the player is viewing Chapter 20 (The End)
             // and has unlocked it by completing Chapter 19.
-            if (MaggyHelperModule.SaveData?.VoidMoonUnlocked != true)
+            if (global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModule.SaveData?.VoidMoonUnlocked != true)
                 return false;
 
             int area = currentArea ?? -1;

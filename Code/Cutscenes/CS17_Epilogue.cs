@@ -17,7 +17,7 @@ public class Cs17Epilogue : CutsceneEntity
 
     public override void OnBegin(Level level)
     {
-        launchPostEpilogueCredits = !MaggyHelperModule.IsChapter17EpilogueCompleted()
+        launchPostEpilogueCredits = !KIRBY_CELESTEModule.IsChapter17EpilogueCompleted()
             && !level.Session.GetFlag(PostEpilogueCreditsFlag)
             && !level.Session.GetFlag("epilogue_credits_complete");
 

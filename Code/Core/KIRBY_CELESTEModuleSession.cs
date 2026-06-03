@@ -1,4 +1,4 @@
-﻿
+
 using Microsoft.Xna.Framework;
 
 namespace Celeste.Mod.KIRBY_CELESTE

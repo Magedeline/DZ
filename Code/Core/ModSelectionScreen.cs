@@ -115,8 +115,8 @@ namespace Celeste.UI
             if (_shownThisSession)
                 return false;
 
-            var settings = global::Celeste.Mod.MaggyHelper.MaggyHelperModule.Settings;
-            var saveData = global::Celeste.Mod.MaggyHelper.MaggyHelperModule.SaveData;
+            var settings = global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModule.Settings;
+            var saveData = global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModule.SaveData;
 
             if (settings == null || saveData == null)
                 return false;
@@ -381,14 +381,14 @@ namespace Celeste.UI
         private void markIntroSeen()
         {
             // Flag so this screen won't appear again for this save
-            var saveData = MaggyHelperModule.SaveData;
+            var saveData = KIRBY_CELESTEModule.SaveData;
             if (saveData != null)
             {
                 saveData.HasSeenModIntro = true;
             }
 
             // Also persist the choice so the module knows at future launches
-            var settings = MaggyHelperModule.Settings;
+            var settings = KIRBY_CELESTEModule.Settings;
             if (settings != null)
             {
                 settings.SkipModIntro = !choiceIsDesoloZantas;

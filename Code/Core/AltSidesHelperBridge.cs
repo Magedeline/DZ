@@ -25,7 +25,7 @@ namespace Celeste;
 ///  1. Detects whether ASH is present at runtime (graceful no-op when absent).
 ///  2. On AreaData.Load, suppresses AME's Mode[3] injection for chapters that ASH
 ///     has already claimed (IsAltSide=true meta present on the D-Side map).
-///  3. Forwards ASH's unlock signal to MaggyHelperModule.SaveData so the rest
+///  3. Forwards ASH's unlock signal to KIRBY_CELESTEModule.SaveData so the rest
 ///     of the codebase (IsSideUnlocked, SideLockDisplaySystem, etc.) reflects the
 ///     correct state without needing to know about ASH directly.
 ///  4. After an ASH-routed D-Side completes, marks the extended heart-gem so
@@ -222,7 +222,7 @@ public static class AltSidesHelperBridge
         // Record the D-Side heart-gem in MaggyHelper's extended save so that
         // IsSideUnlocked and ChapterProgressionManager work correctly.
         string heartId = $"{area.SID}_{AreaModeExtender.GetModeName(AreaModeExtender.MODE_DSIDE)}";
-        MaggyHelperModule.SaveData?.CollectHeartGem(heartId);
+        KIRBY_CELESTEModule.SaveData?.CollectHeartGem(heartId);
 
         // Queue the chapter panel to reopen on the D-Side tab when the overworld
         // loads, so the player isn't dropped back on the A-Side tab.

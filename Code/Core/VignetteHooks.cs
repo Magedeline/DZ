@@ -23,7 +23,7 @@ public static class VignetteHooks
         On.Celeste.LevelEnter.Go += OnLevelEnterGo;
         On.Celeste.LevelExit.ctor += OnLevelExitCtor;
 
-        Logger.Log(LogLevel.Info, "MaggyHelper", "VignetteHooks loaded");
+        Logger.Log(LogLevel.Info, "KIRBY_CELESTE", "VignetteHooks loaded");
     }
 
     public static void Unload()
@@ -34,7 +34,7 @@ public static class VignetteHooks
         On.Celeste.LevelEnter.Go -= OnLevelEnterGo;
         On.Celeste.LevelExit.ctor -= OnLevelExitCtor;
 
-        Logger.Log(LogLevel.Info, "MaggyHelper", "VignetteHooks unloaded");
+        Logger.Log(LogLevel.Info, "KIRBY_CELESTE", "VignetteHooks unloaded");
     }
 
     // ── Intro hook ────────────────────────────────────────────────────────
@@ -56,7 +56,7 @@ public static class VignetteHooks
                     Scene? vignette = CreateIntroVignette(session, chapter);
                     if (vignette != null)
                     {
-                        Logger.Log(LogLevel.Info, "MaggyHelper",
+                        Logger.Log(LogLevel.Info, "KIRBY_CELESTE",
                             $"VignetteHooks: showing intro vignette for chapter {chapter.Number}");
                         Engine.Scene = vignette;
                         return;
@@ -92,7 +92,7 @@ public static class VignetteHooks
         Scene? outro = CreateOutroVignette(session, chapter);
         if (outro != null)
         {
-            Logger.Log(LogLevel.Info, "MaggyHelper",
+            Logger.Log(LogLevel.Info, "KIRBY_CELESTE",
                 $"VignetteHooks: showing outro vignette for chapter {chapter.Number}");
             Engine.Scene = outro;
         }
@@ -103,7 +103,7 @@ public static class VignetteHooks
     private static Scene? CreateIntroVignette(Session session, AreaMapData.ChapterDef chapter)
     {
         string flagKey = $"seen_intro_vignette_{chapter.Number}";
-        var saveData = global::Celeste.Mod.MaggyHelper.MaggyHelperModule.SaveData;
+        var saveData = global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModule.SaveData;
 
         switch (chapter.Number)
         {
@@ -200,11 +200,11 @@ public static class VignetteHooks
 
     private static bool HasSeenVignette(string key)
     {
-        return global::Celeste.Mod.MaggyHelper.MaggyHelperModule.SaveData?.HasAchievement(key) == true;
+        return global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModule.SaveData?.HasAchievement(key) == true;
     }
 
     private static void MarkVignetteSeen(string key)
     {
-        global::Celeste.Mod.MaggyHelper.MaggyHelperModule.SaveData?.UnlockAchievement(key);
+        global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModule.SaveData?.UnlockAchievement(key);
     }
 }

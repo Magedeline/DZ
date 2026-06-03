@@ -4,7 +4,7 @@ using System.Linq;
 using Celeste;
 using Monocle;
 
-namespace Celeste.Mod.MaggyHelper;
+namespace Celeste.Mod.KIRBY_CELESTE;
 
 /// <summary>
 /// Connects room templates together to form a complete map

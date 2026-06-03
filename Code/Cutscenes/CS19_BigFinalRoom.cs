@@ -60,7 +60,7 @@ namespace Celeste.Cutscenes
                     (player.Position + new Vector2(0f, -16f)) - level.Camera.Position,
                     2f, 0.5f);
 
-                yield return Textbox.Say("CH19_LAST_ROOM", new Func<IEnumerator>[]
+                yield return Textbox.Say("MAGGYHELPER_CH19_LAST_ROOM", new Func<IEnumerator>[]
                 {
                     NoOpTrigger,
                     BlindingLightPoursThroughCracks,
@@ -78,9 +78,9 @@ namespace Celeste.Cutscenes
                 yield return 1.25f;
 
                 yield return charaAppears();
-                yield return Textbox.Say("CH19_LAST_ROOM_ALT");
+                yield return Textbox.Say("MAGGYHELPER_CH19_LAST_ROOM_ALT");
                 yield return charaVanishes();
-                yield return Textbox.Say("CH19_LAST_ROOM_ALT_2");
+                yield return Textbox.Say("MAGGYHELPER_CH19_LAST_ROOM_ALT_2");
                 EndCutscene(level);
                 yield break;
             }
@@ -179,7 +179,7 @@ namespace Celeste.Cutscenes
                 
                 // Play stand animation if player was sitting and cutscene wasn't skipped
                 if (!first && !WasSkipped)
-                    Audio.Play("event:/pusheen/char/kirby/stand", player.Position);
+                    Audio.Play("event:/char/pusheen/kirby/stand", player.Position);
             }
             
             // Ensure Chara is properly removed if still present

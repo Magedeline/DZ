@@ -13,7 +13,7 @@ public class PrologueEndingVignetteText : Entity
     public PrologueEndingVignetteText(bool instant)
     {
         base.Tag = Tags.HUD;
-        text = FancyText.Parse(Dialog.Clean("CH0_END_YOUR_CHOICE_MATTERS"), 960, 4, 0f);
+        text = FancyText.Parse(Dialog.Clean("MAGGYHELPER_CH0_END_YOUR_CHOICE_MATTERS"), 960, 4, 0f);
         Add(new Coroutine(Routine(instant)));
     }
 

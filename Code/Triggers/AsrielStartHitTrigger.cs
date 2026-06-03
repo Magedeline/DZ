@@ -54,7 +54,7 @@ namespace Celeste.Triggers
             
             if (asrielBoss == null)
             {
-                Logger.Log(LogLevel.Warn, "KIRBY_CELESTE", "AsrielStartHitTrigger: No AsrielGodBoss found in the scene.");
+                Logger.Log(LogLevel.Warn, "MaggyHelper", "AsrielStartHitTrigger: No AsrielGodBoss found in the scene.");
                 return;
             }
 

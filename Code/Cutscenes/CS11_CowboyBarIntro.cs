@@ -19,7 +19,7 @@ namespace Celeste.Cutscenes
         private const string FLAG_GUN_TUTORIAL_ENABLED = "ch11_gun_tutorial_enabled";
         private const string FLAG_STAGES_UNLOCKED = "ch11_stages_unlocked";
         
-        private const string DIALOG_PREFIX = "CH11_COWBOY_BAR_INTRO";
+        private const string DIALOG_PREFIX = "MAGGYHELPER_CH11_COWBOY_BAR_INTRO";
         
         // Tutorial stage positioning
         private static readonly Vector2 TUTORIAL_AREA_OFFSET = new Vector2(100f, 0f);

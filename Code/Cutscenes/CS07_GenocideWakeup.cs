@@ -42,7 +42,7 @@ namespace Celeste.Cutscenes
             }
 
             yield return 0.25f;
-            yield return Textbox.Say("CH7_GENO_WAKEUP");
+            yield return Textbox.Say("MAGGYHELPER_CH7_GENO_WAKEUP");
 
             level.Session.SetFlag(CH7GenocideMirrorState.WakeupPlayedFlag);
             level.Session.SetFlag(CH7GenocideMirrorState.EnabledFlag, false);

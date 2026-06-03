@@ -74,19 +74,19 @@ namespace Celeste.NPCs
             switch (currentConversation)
             {
                 case 0:
-                    yield return Textbox.Say("CH1_MAGOLOR_INTRO");
+                    yield return Textbox.Say("MAGGYHELPER_CH1_MAGOLOR_INTRO");
                     break;
                 case 1:
-                    yield return Textbox.Say("CH1_MAGOLOR_A");
+                    yield return Textbox.Say("MAGGYHELPER_CH1_MAGOLOR_A");
                     break;
                 case 2:
-                    yield return Textbox.Say("CH1_MAGOLOR_B");
+                    yield return Textbox.Say("MAGGYHELPER_CH1_MAGOLOR_B");
                     break;
                 case 3:
-                    yield return Textbox.Say("CH4_MAGOLOR_AND_THEO", onMagolorFlyoff, onTheoWalkoff);
+                    yield return Textbox.Say("MAGGYHELPER_CH4_MAGOLOR_AND_THEO", onMagolorFlyoff, onTheoWalkoff);
                     break;
                 default:
-                    yield return Textbox.Say("CH1_MAGOLOR_DEFAULT");
+                    yield return Textbox.Say("MAGGYHELPER_CH1_MAGOLOR_DEFAULT");
                     break;
             }
 

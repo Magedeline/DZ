@@ -193,7 +193,7 @@ namespace Celeste.Entities
                 session.Strawberries.Add(this.Id);
             }
 
-            KIRBY_CELESTEProgressionManager.RecordPinkPlatinumBerry(this.Scene as Level, this.Id.ToString());
+            MaggyHelperProgressionManager.RecordPinkPlatinumBerry(this.Scene as Level, this.Id.ToString());
 
             session.UpdateLevelStartDashes();
             this.Add(new Coroutine(this.collectRoutine()));

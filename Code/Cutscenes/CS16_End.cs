@@ -23,7 +23,7 @@ public class Cs16End : CutsceneEntity
         player.StateMachine.State = Player.StDummy; // Dummy state
         yield return 0.5f;
 
-        yield return Textbox.Say("CH16_END");
+        yield return Textbox.Say("MAGGYHELPER_CH16_END");
 
         yield return 0.5f;
         EndCutscene(level);

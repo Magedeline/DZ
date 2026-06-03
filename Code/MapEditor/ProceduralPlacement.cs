@@ -4,7 +4,7 @@ using System.Linq;
 using Celeste;
 using Monocle;
 
-namespace Celeste.Mod.KIRBY_CELESTE;
+namespace Celeste.Mod.MaggyHelper;
 
 /// <summary>
 /// Procedural placement system for entities and hazards within room templates

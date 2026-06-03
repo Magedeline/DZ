@@ -23,7 +23,7 @@ public class Cs13WellPrepared : CutsceneEntity
         player.StateMachine.State = Player.StDummy; // Dummy state
         yield return 0.5f;
 
-        yield return Textbox.Say("CH13_WELL_PREPARED");
+        yield return Textbox.Say("MAGGYHELPER_CH13_WELL_PREPARED");
 
         yield return 0.5f;
         EndCutscene(level);

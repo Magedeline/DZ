@@ -12,7 +12,7 @@ namespace Celeste.Cutscenes
     {
         public static class LoadingVignetteText
         {
-            public const string Dialog = "CH0_WELCOME_BACK";
+            public const string Dialog = "MAGGYHELPER_CH0_WELCOME_BACK";
         }
 
         private readonly Session session;
@@ -61,11 +61,11 @@ namespace Celeste.Cutscenes
             yield return 1f;
 
             // Play intro music
-            introMusic = Audio.Play("event:/pusheen/music/lvl0/intro", Vector2.Zero);
+            introMusic = Audio.Play("event:/music/pusheen/lvl0/intro", Vector2.Zero);
             yield return 2f;
 
             // Display intro dialog
-            var introTextbox = new Textbox("CH0_WELCOME_BACK");
+            var introTextbox = new Textbox("MAGGYHELPER_CH0_WELCOME_BACK");
             yield return say(introTextbox);
 
             yield return 1.5f;

@@ -14,7 +14,7 @@ namespace Celeste.HotReload
     {
         public static void ClearCache(Type[] types)
         {
-            if (KIRBY_CELESTEModule.Settings?.HotReloadVerbose == true)
+            if (MaggyHelperModule.Settings?.HotReloadVerbose == true)
             {
                 Logger.Log(LogLevel.Verbose, "MaggyHelper", $"[HotReload] ClearCache called for {types?.Length ?? 0} types");
             }
@@ -22,7 +22,7 @@ namespace Celeste.HotReload
 
         public static void UpdateApplication(Type[] types)
         {
-            if (KIRBY_CELESTEModule.Settings?.HotReloadEnabled == false) return;
+            if (MaggyHelperModule.Settings?.HotReloadEnabled == false) return;
 
             int reloadedCount = 0;
             if (types != null)
@@ -62,12 +62,12 @@ namespace Celeste.HotReload
 
             Logger.Log(LogLevel.Info, "MaggyHelper", $"[HotReload] Assembly updated. {reloadedCount} hot-reloadable types affected.");
 
-            if (KIRBY_CELESTEModule.Settings?.HotReloadShowUI == true)
+            if (MaggyHelperModule.Settings?.HotReloadShowUI == true)
             {
                 HotReloadUI.Show($"HOT RELOAD: {reloadedCount} types updated", Color.LimeGreen);
             }
             
-            if (KIRBY_CELESTEModule.Settings?.HotReloadSound == true)
+            if (MaggyHelperModule.Settings?.HotReloadSound == true)
             {
                 try { Audio.Play("event:/ui/main/button_select"); } catch {}
             }

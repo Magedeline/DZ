@@ -38,12 +38,12 @@ namespace Celeste.NPCs
                     case "normal":
                         sprite.Color = Color.Gray;
                         sprite.Scale = Vector2.One * 1.2f; // Larger for robot
-                        cutsceneId = "CH13_AXIS_APPROACH";
+                        cutsceneId = "MAGGYHELPER_CH13_AXIS_APPROACH";
                         break;
                     case "giant":
                         sprite.Color = Color.DarkGray;
                         sprite.Scale = Vector2.One * 2.0f; // Much larger
-                        cutsceneId = "CH14_GIANT_AXIS_APPROACH";
+                        cutsceneId = "MAGGYHELPER_CH14_GIANT_AXIS_APPROACH";
                         break;
                     case "defeated":
                         sprite.Color = Color.LightGray;

@@ -90,13 +90,13 @@ namespace Celeste.Cutscenes
             yield return 0.5f;
             
             // Show credits intro dialog
-            yield return Textbox.Say("CH9_CREDITS_INTRO");
+            yield return Textbox.Say("MAGGYHELPER_CH9_CREDITS_INTRO");
             
             // Start showing credits
             showingCredits = true;
             
             // Play credits music
-            Audio.SetMusic("event:/pusheen/music/lvl9/credit", true, true);
+            Audio.SetMusic("event:/music/pusheen/lvl9/credit", true, true);
             
             // Fade in from black
             Add(new Coroutine(Fade(1f, 0f, 1f)));

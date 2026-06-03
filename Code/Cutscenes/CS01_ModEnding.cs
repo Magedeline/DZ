@@ -58,7 +58,7 @@ namespace Celeste.Cutscenes
             player.Facing = Facings.Left;
             yield return 0.5f;
 
-            yield return Textbox.Say("CH1_ENDMADELINE", ModEndCityTrigger);
+            yield return Textbox.Say("MAGGYHELPER_CH1_ENDMADELINE", ModEndCityTrigger);
             yield return 0.3f;
 
             EndCutscene(level);
@@ -88,7 +88,7 @@ namespace Celeste.Cutscenes
             player.DummyAutoAnimate = false;
             player.Facing = Facings.Right;
             player.Sprite.Play("sleep");
-            Audio.Play("event:/pusheen/char/kirby/campfire_sit", player.Position);
+            Audio.Play("event:/char/pusheen/kirby/campfire_sit", player.Position);
             yield return 4f;
 
             // Add bird scene

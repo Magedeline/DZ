@@ -28,24 +28,24 @@ namespace Celeste.Cutscenes
             // Judgment ceremony begins
             level.Flash(Color.Purple, false);
             
-            yield return Textbox.Say("CH15_JUDGMENT_CEREMONY");
+            yield return Textbox.Say("MAGGYHELPER_CH15_JUDGMENT_CEREMONY");
 
             // Roaring Titan Council entrance
             level.Shake(1.0f);
             Audio.Play("event:/game/general/strawberry_pulse");
             
-            yield return Textbox.Say("CH15_ROARING_TITAN_COUNCIL_ENTRANCE");
+            yield return Textbox.Say("MAGGYHELPER_CH15_ROARING_TITAN_COUNCIL_ENTRANCE");
 
             // Council judgment results
             yield return 0.5f;
             
-            yield return Textbox.Say("CH15_COUNCIL_JUDGMENT_RESULTS");
+            yield return Textbox.Say("MAGGYHELPER_CH15_COUNCIL_JUDGMENT_RESULTS");
 
             // Barrier revelation
             level.Flash(Color.White, false);
             yield return 0.5f;
             
-            yield return Textbox.Say("CH15_BARRIER_REVELATION");
+            yield return Textbox.Say("MAGGYHELPER_CH15_BARRIER_REVELATION");
 
             EndCutscene(level);
         }

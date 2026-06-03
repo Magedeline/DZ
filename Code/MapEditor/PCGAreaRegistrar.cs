@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework;
 using Monocle;
 using MonoMod.Utils;
 
-namespace Celeste.Mod.KIRBY_CELESTE;
+namespace Celeste.Mod.MaggyHelper;
 
 /// <summary>
 /// Inspired by CelesteRandomizer: dynamically registers a generated PCG map
@@ -124,7 +124,7 @@ public static class PCGAreaRegistrar
 
             // Use AudioController to determine appropriate music/ambience for PCG maps
             // Default to lvl1 explore music and prologue ambience, but allow AudioController override
-            string defaultMusic = "event:/pusheen/music/lvl1/explore";
+            string defaultMusic = "event:/music/pusheen/lvl1/explore";
             string defaultAmbience = "event:/pusheen/ambience/ruins";
             
             var mode = new ModeProperties
@@ -229,7 +229,7 @@ public static class PCGAreaRegistrar
     {
         // Fade out (duration configurable in mod settings)
         var fade = new FadeWipe(fromLevel, false, () => { });
-        fade.Duration = KIRBY_CELESTEModule.Settings?.PCGWarpFadeDuration ?? 0.5f;
+        fade.Duration = MaggyHelperModule.Settings?.PCGWarpFadeDuration ?? 0.5f;
         yield return fade.Wait();
 
         // Transfer to new level

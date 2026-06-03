@@ -29,13 +29,13 @@ namespace Celeste.Cutscenes
             level.Shake(0.5f);
             Audio.Play("event:/game/general/strawberry_get_1up");
             
-            yield return Textbox.Say("CH12_START_ROXUS");
+            yield return Textbox.Say("MAGGYHELPER_CH12_START_ROXUS");
 
             // Transition to ship interior
             level.Flash(Color.Blue, false);
             yield return 1f;
 
-            yield return Textbox.Say("CH12_START_ONBAORD");
+            yield return Textbox.Say("MAGGYHELPER_CH12_START_ONBAORD");
 
             EndCutscene(level);
         }

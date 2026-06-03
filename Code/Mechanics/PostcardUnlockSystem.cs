@@ -12,7 +12,7 @@ namespace Celeste;
 /// </summary>
 public static class PostcardUnlockSystem
 {
-    private const string DefaultPostcardTexture = "KIRBY_CELESTE/postcard";
+    private const string DefaultPostcardTexture = "MaggyHelper/postcard";
 
     // â”€â”€ Postcard Configuration Per Side â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
@@ -34,10 +34,10 @@ public static class PostcardUnlockSystem
     {
         DialogKey = "POSTCARD_CSIDE_UNLOCK",
         TexturePath = "postcards/cside_unlock",
-        SfxIn = "event:/pusheen/ui/main/postcard_csides_in",
-        SfxOut = "event:/pusheen/ui/main/postcard_csides_out",
+        SfxIn = "event:/ui/pusheen/main/postcard_csides_in",
+        SfxOut = "event:/ui/pusheen/main/postcard_csides_out",
         TintColor = new Color(255, 215, 0),  // Gold tint
-        UnlockMusic = "event:/pusheen/music/menu/complete_cside"
+        UnlockMusic = "event:/music/pusheen/menu/complete_cside"
     };
 
     /// <summary>Postcard config for D-Side unlock (shown after completing C-Side)</summary>
@@ -45,10 +45,10 @@ public static class PostcardUnlockSystem
     {
         DialogKey = "POSTCARD_DSIDE_UNLOCK",
         TexturePath = "postcards/dside_unlock",
-        SfxIn = "event:/pusheen/ui/main/postcard_dsides_in",
-        SfxOut = "event:/pusheen/ui/main/postcard_dsides_out",
+        SfxIn = "event:/ui/pusheen/main/postcard_dsides_in",
+        SfxOut = "event:/ui/pusheen/main/postcard_dsides_out",
         TintColor = new Color(180, 100, 255),  // Rainbow/purple tint
-        UnlockMusic = "event:/pusheen/music/menu/complete_cside_summit"
+        UnlockMusic = "event:/music/pusheen/menu/complete_cside_summit"
     };
 
     /// <summary>Postcard config for DX-Side unlock (shown after completing D-Side)</summary>
@@ -56,10 +56,10 @@ public static class PostcardUnlockSystem
     {
         DialogKey = "POSTCARD_DXSIDE_UNLOCK",
         TexturePath = "postcards/dxside_unlock",
-        SfxIn = "event:/pusheen/ui/main/postcard_dsides_in",
-        SfxOut = "event:/pusheen/ui/main/postcard_dsides_out",
+        SfxIn = "event:/ui/pusheen/main/postcard_dsides_in",
+        SfxOut = "event:/ui/pusheen/main/postcard_dsides_out",
         TintColor = new Color(50, 0, 80),  // Dark void tint
-        UnlockMusic = "event:/pusheen/music/menu/complete_cside_summit"
+        UnlockMusic = "event:/music/pusheen/menu/complete_cside_summit"
     };
 
     /// <summary>Postcard config for the 100% ultra completion postcard.</summary>
@@ -67,10 +67,10 @@ public static class PostcardUnlockSystem
     {
         DialogKey = "POSTCARD_ULTRA_VARIANT_UNLOCK",
         TexturePath = "postcards/ultra_variant_unlock",
-        SfxIn = "event:/pusheen/extra_content/ui/postcard_desolo_variants_in",
-        SfxOut = "event:/pusheen/extra_content/ui/postcard_desolo_variants_out",
+        SfxIn = "event:/new_content/ui/pusheen/postcard_desolo_variants_in",
+        SfxOut = "event:/new_content/ui/pusheen/postcard_desolo_variants_out",
         TintColor = new Color(255, 160, 220),
-        UnlockMusic = "event:/pusheen/music/menu/complete_cside_summit"
+        UnlockMusic = "event:/music/pusheen/menu/complete_cside_summit"
     };
 
     // â”€â”€ Postcard Display â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
@@ -134,7 +134,7 @@ public static class PostcardUnlockSystem
         // Mark the next side as unlocked in save data
         MarkSideUnlocked(session, completedMode + 1);
 
-        Logger.Log(LogLevel.Info, "KIRBY_CELESTE",
+        Logger.Log(LogLevel.Info, "MaggyHelper",
             $"Postcard shown for completing mode {completedMode}, unlocking mode {completedMode + 1}");
     }
 
@@ -189,7 +189,7 @@ public static class PostcardUnlockSystem
             return;
 
         string unlockKey = $"{AreaData.Get(session.Area)?.SID}_{AreaModeExtender.GetModeName(newMode)}_unlocked";
-        global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModule.SaveData?.UnlockAchievement(unlockKey);
+        global::Celeste.Mod.MaggyHelper.MaggyHelperModule.SaveData?.UnlockAchievement(unlockKey);
     }
 }
 

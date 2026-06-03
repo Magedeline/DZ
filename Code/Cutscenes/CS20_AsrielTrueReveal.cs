@@ -16,14 +16,14 @@ namespace Celeste
     {
         #region Constants
 
-        private const string DIALOGUE_FINALLY = "CH20_ASRIEL_FINALLY";
-        private const string DIALOGUE_HOWDY = "CH20_ASRIEL_HOWDY";
+        private const string DIALOGUE_FINALLY = "MAGGYHELPER_CH20_ASRIEL_FINALLY";
+        private const string DIALOGUE_HOWDY = "MAGGYHELPER_CH20_ASRIEL_HOWDY";
         private const string FLAG_REVEAL_COMPLETE = "asriel_true_reveal_done";
 
-        private const string SFX_CREATE = "event:/pusheen/extra_content/char/asriel/Asriel_Create";
-        private const string SFX_GLITCH = "event:/pusheen/extra_content/game/19_spaces/glitch_long";
+        private const string SFX_CREATE = "event:/new_content/char/pusheen/asriel/Asriel_Create";
+        private const string SFX_GLITCH = "event:/new_content/game/pusheen/19_spaces/glitch_long";
         private const string SFX_REVEAL = "event:/new_content/game/general/dramatic_reveal";
-        private const string MUSIC_REVEAL = "event:/pusheen/extra_content/music/lvl20/asriel_reveal";
+        private const string MUSIC_REVEAL = "event:/new_content/music/pusheen/lvl20/asriel_reveal";
 
         // Animation timing (in seconds, converted from frames at 60fps)
         private const float FRAME_30 = 0.5f;
@@ -364,7 +364,7 @@ namespace Celeste
             level.Shake(0.5f);
 
             // Create dramatic name reveal
-            yield return Textbox.Say("CH20_ASRIEL_NAME_FINAL");
+            yield return Textbox.Say("MAGGYHELPER_CH20_ASRIEL_NAME_FINAL");
 
             con = 13f;
 
@@ -473,7 +473,7 @@ namespace Celeste
             }
 
             // Start boss fight music
-            level.Session.Audio.Music.Event = "event:/pusheen/extra_content/music/lvl20/kirby_vs_asriel_fight_1";
+            level.Session.Audio.Music.Event = "event:/new_content/music/pusheen/lvl20/kirby_vs_asriel_fight_1";
             level.Session.Audio.Apply();
 
             // Signal to boss that reveal is complete

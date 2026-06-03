@@ -39,7 +39,7 @@ namespace Celeste.Cutscenes
       yield return (object) 0.5f;
       
       // Start the dialog with bird fly trigger
-      yield return (object) Textbox.Say("CH20_BIRD_GUIDANCE_INTRO", new Func<IEnumerator>(cs20BirdIntro.birdFliesOffscreen));
+      yield return (object) Textbox.Say("MAGGYHELPER_CH20_BIRD_GUIDANCE_INTRO", new Func<IEnumerator>(cs20BirdIntro.birdFliesOffscreen));
       
       cs20BirdIntro.EndCutscene(level);
     }

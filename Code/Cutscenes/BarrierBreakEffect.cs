@@ -329,18 +329,18 @@ public class BarrierBreakEffect : Entity
         // Part 1: Three cracks
         for (int i = 0; i < 3; i++)
         {
-            Audio.Play("event:/pusheen/extra_content/music/lvl20/cinematic/break_fourth_wall_part1");
+            Audio.Play("event:/new_content/music/pusheen/lvl20/cinematic/break_fourth_wall_part1");
             yield return PlayCrackEffect();
         }
         
         yield return 0.5f;
         
         // Part 2: Shatter
-        Audio.Play("event:/pusheen/extra_content/music/lvl20/cinematic/break_fourth_wall_part2");
+        Audio.Play("event:/new_content/music/pusheen/lvl20/cinematic/break_fourth_wall_part2");
         yield return PlayShatterEffect();
         
         // Part 3: Destroyed
-        Audio.Play("event:/pusheen/extra_content/music/lvl20/cinematic/break_fourth_wall_part3");
+        Audio.Play("event:/new_content/music/pusheen/lvl20/cinematic/break_fourth_wall_part3");
         yield return PlayDestroyedEffect();
     }
 

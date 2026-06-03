@@ -71,7 +71,7 @@ public class CS05_OshiroClutter : CutsceneEntity
         if (idx < 4)
         {
             yield return Level.ZoomTo(EffectiveZoomPoint, 2f, 0.5f);
-            yield return Textbox.Say("CH5_OSHIRO_CLUTTER" + idx, Collapse, EffectivePaceLeft, EffectivePaceRight);
+            yield return Textbox.Say("MAGGYHELPER_CH5_OSHIRO_CLUTTER" + idx, Collapse, EffectivePaceLeft, EffectivePaceRight);
             yield return Level.ZoomBack(0.5f);
             level.Session.SetFlag("oshiro_clutter_mod_door_open");
             if (idx == 0)
@@ -90,7 +90,7 @@ public class CS05_OshiroClutter : CutsceneEntity
         {
             yield return CutsceneEntity.CameraTo(new Vector2(Level.Bounds.X, Level.Bounds.Y), 0.5f);
             yield return Level.ZoomTo(new Vector2(90f, 60f), 2f, 0.5f);
-            yield return Textbox.Say("CH5_OSHIRO_CLUTTER_ENDING");
+            yield return Textbox.Say("MAGGYHELPER_CH5_OSHIRO_CLUTTER_ENDING");
             if (oshiro != null)
             {
                 yield return oshiro.MoveTo(new Vector2(oshiro.X, level.Bounds.Top - 32));
@@ -117,7 +117,7 @@ public class CS05_OshiroClutter : CutsceneEntity
     private void SetMusic()
     {
         Level obj = base.Scene as Level;
-        obj.Session.Audio.Music.Event = "event:/pusheen/music/lvl5/clean";
+        obj.Session.Audio.Music.Event = "event:/music/pusheen/lvl5/clean";
         obj.Session.Audio.Music.Progress = 1;
         obj.Session.Audio.Apply(forceSixteenthNoteHack: false);
     }

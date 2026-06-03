@@ -252,7 +252,7 @@ namespace Celeste.Cutscenes
                 player.StateMachine.State = Player.StDummy;
 
             Audio.SetAmbience(null, true);
-            Audio.SetMusic("event:/pusheen/music/menu/dodge_credit");
+            Audio.SetMusic("event:/music/pusheen/menu/dodge_credit");
 
             Add(new Coroutine(RunSequence(level)));
         }

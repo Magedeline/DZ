@@ -33,14 +33,14 @@ namespace Celeste.Cutscenes
             player.Facing = Facings.Right;
             yield return Level.ZoomTo(new Vector2(240f, 135f), 2f, 0.5f);
             Func<IEnumerator>[] events = [StopRemovingVent, StartRemoveVent, RemoveVent, GivePhone];
-            string dialog = "CH5_MAGGY_INTRO";
+            string dialog = "MAGGYHELPER_CH5_MAGGY_INTRO";
             if (!SaveData.Instance.HasFlag("MetMaggy"))
             {
-                dialog = "CH5_MAGGY_NEVER_MET";
+                dialog = "MAGGYHELPER_CH5_MAGGY_NEVER_MET";
             }
             else if (!SaveData.Instance.HasFlag("MaggyKnowsName"))
             {
-                dialog = "CH5_MAGGY_NEVER_INTRODUCED";
+                dialog = "MAGGYHELPER_CH5_MAGGY_NEVER_INTRODUCED";
             }
             yield return Textbox.Say(dialog, events);
             magolor.Sprite.Scale.X = 1f;

@@ -12,7 +12,7 @@ namespace Celeste
 
             int displayValue = Calc.Clamp(index + 1, 1, 12);
             int keyIndex = Calc.Clamp(index, 0, 12);
-            string name = "CH20_HEIGHT_" + keyIndex;
+            string name = "MAGGYHELPER_CH20_HEIGHT_" + keyIndex;
 
             if (Dialog.Has(name, null))
             {
@@ -65,7 +65,7 @@ namespace Celeste
             Add(new Coroutine(cameraUp(), true));
 
             if (!string.IsNullOrEmpty(text) && index >= 0)
-                Audio.Play("event:/pusheen/game/09_beyondsummit/altitude_count");
+                Audio.Play("event:/game/pusheen/09_beyondsummit/altitude_count");
 
             while ((ease += Engine.DeltaTime / 0.15f) < 1f)
                 yield return null;
@@ -98,12 +98,12 @@ namespace Celeste
 
             if (progress < 12)
             {
-                session.Audio.Music.Event = "event:/pusheen/extra_content/music/lvl20/climb";
+                session.Audio.Music.Event = "event:/new_content/music/pusheen/lvl20/climb";
                 session.Audio.Music.Progress = progress;
             }
             else
             {
-                session.Audio.Music.Event = "event:/pusheen/extra_content/music/lvl20/final_titan";
+                session.Audio.Music.Event = "event:/new_content/music/pusheen/lvl20/final_titan";
             }
 
             session.Audio.Apply(false);

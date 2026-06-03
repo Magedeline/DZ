@@ -47,7 +47,7 @@ namespace Celeste.Cutscenes
             yield return PanCamera(level.Bounds.Left);
             yield return 0.2f;
             yield return Level.ZoomTo(new Vector2(100f, 120f), 2f, 0.5f);
-            yield return Textbox.Say("CH5_OSHIRO_BREAKDOWN", WalkLeft, WalkRight, CreateDustA, CreateDustB);
+            yield return Textbox.Say("MAGGYHELPER_CH5_OSHIRO_BREAKDOWN", WalkLeft, WalkRight, CreateDustA, CreateDustB);
             Add(new Coroutine(oshiro.MoveTo(new Vector2(level.Bounds.Left - 64, oshiro.Y))));
             oshiro.Add(new SoundSource("event:/char/oshiro/move_06_04d_exit"));
             yield return 0.25f;

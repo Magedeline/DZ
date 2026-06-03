@@ -10,7 +10,7 @@ namespace Celeste.Entities
     [Tracked]
     public class HiddenBlock : Solid
     {
-        private const string SFX_REVEALED = "event:/pusheen/game/general/revealed_secrets";
+        private const string SFX_REVEALED = "event:/game/pusheen/general/revealed_secrets";
 
         private char fillTile;
         private TileGrid tiles;

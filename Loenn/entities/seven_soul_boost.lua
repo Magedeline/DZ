@@ -88,7 +88,7 @@ sevenSoulBoost.placements = {
             dashCount = 10,
             finalCh21Boost = true,
             finalCh21GoldenBoost = false,
-            finalCh21Dialog = "CH21_MADELINE_LAST_BOOST"
+            finalCh21Dialog = "MAGGYHELPER_CH21_MADELINE_LAST_BOOST"
         }
     },
     {
@@ -103,7 +103,7 @@ sevenSoulBoost.placements = {
             dashCount = 1,
             finalCh21Boost = true,
             finalCh21GoldenBoost = true,
-            finalCh21Dialog = "CH21_MADELINE_LAST_BOOST"
+            finalCh21Dialog = "MAGGYHELPER_CH21_MADELINE_LAST_BOOST"
         }
     }
 }

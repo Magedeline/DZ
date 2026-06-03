@@ -218,15 +218,15 @@ namespace Celeste.Cutscenes
                 player.StateMachine.State = Player.StDummy;
             }
 
-            if (KIRBY_CELESTEModule.Session != null)
+            if (MaggyHelperModule.Session != null)
             {
-                KIRBY_CELESTEModule.Session.InCredits = true;
-                KIRBY_CELESTEModule.Session.CreditsPhase = 2;
-                KIRBY_CELESTEModule.Session.CreditsCompleted = false;
+                MaggyHelperModule.Session.InCredits = true;
+                MaggyHelperModule.Session.CreditsPhase = 2;
+                MaggyHelperModule.Session.CreditsCompleted = false;
             }
 
             Audio.SetAmbience(null);
-            Audio.SetMusic("event:/pusheen/music/menu/cast");
+            Audio.SetMusic("event:/music/pusheen/menu/cast");
             
             Add(new Coroutine(creditsSequence(level)));
         }
@@ -335,13 +335,13 @@ namespace Celeste.Cutscenes
             level.Session.SetFlag("epilogue_credits_complete");
             level.Session.SetFlag("ready_for_final_cutscene");
 
-            if (level.Session.Area.SID == KIRBY_CELESTEModule.Chapter17EpilogueSid)
-                KIRBY_CELESTEModule.MarkChapter17EpilogueCompleted();
-            else if (KIRBY_CELESTEModule.Session != null)
+            if (level.Session.Area.SID == MaggyHelperModule.Chapter17EpilogueSid)
+                MaggyHelperModule.MarkChapter17EpilogueCompleted();
+            else if (MaggyHelperModule.Session != null)
             {
-                KIRBY_CELESTEModule.Session.InCredits = false;
-                KIRBY_CELESTEModule.Session.CreditsPhase = 0;
-                KIRBY_CELESTEModule.Session.CreditsCompleted = true;
+                MaggyHelperModule.Session.InCredits = false;
+                MaggyHelperModule.Session.CreditsPhase = 0;
+                MaggyHelperModule.Session.CreditsCompleted = true;
             }
 
             // Chain into the branching final cutscenes

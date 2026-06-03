@@ -29,23 +29,23 @@ namespace Celeste.Cutscenes
             level.Flash(Color.Red, false);
             level.Shake(1.0f);
             
-            yield return Textbox.Say("CH12_TITAN_BOSS_INTRO");
+            yield return Textbox.Say("MAGGYHELPER_CH12_TITAN_BOSS_INTRO");
 
             // Mid-battle dialogue
             yield return 1f;
             level.Shake(2.0f);
             level.Flash(Color.Yellow, false);
             
-            yield return Textbox.Say("CH12_TITAN_BOSS_BATTLE_MID");
+            yield return Textbox.Say("MAGGYHELPER_CH12_TITAN_BOSS_BATTLE_MID");
 
             // Boss defeated
             level.Flash(Color.Cyan, false);
             yield return 0.5f;
             
-            yield return Textbox.Say("CH12_TITAN_BOSS_DEFEATED");
+            yield return Textbox.Say("MAGGYHELPER_CH12_TITAN_BOSS_DEFEATED");
 
             // Chapter ending
-            yield return Textbox.Say("CH12_CHAPTER_END");
+            yield return Textbox.Say("MAGGYHELPER_CH12_CHAPTER_END");
 
             EndCutscene(level);
         }

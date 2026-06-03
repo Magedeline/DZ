@@ -70,7 +70,7 @@ namespace Celeste.Cutscenes
             yield return 0.3f;
             
             // Play the voice message dialog
-            yield return Textbox.Say("CH9_SANS_MESSAGE_END", new Func<IEnumerator>[]
+            yield return Textbox.Say("MAGGYHELPER_CH9_SANS_MESSAGE_END", new Func<IEnumerator>[]
             {
                 new Func<IEnumerator>(PhoneRings),
                 new Func<IEnumerator>(SansWarning),

@@ -110,7 +110,7 @@ namespace Celeste.Cutscenes
         private IEnumerator firstDialogue()
         {
             // First dialogue with interactive functions
-            yield return Textbox.Say("CH0_THEO_A",
+            yield return Textbox.Say("MAGGYHELPER_CH0_THEO_A",
                 walkCloser,
                 walkTogether,
                 zoomToDistance,
@@ -120,7 +120,7 @@ namespace Celeste.Cutscenes
         private IEnumerator secondDialogue()
         {
             // Second part of conversation
-            yield return Textbox.Say("CH0_THEO_B", finalInteraction);
+            yield return Textbox.Say("MAGGYHELPER_CH0_THEO_B", finalInteraction);
             yield return 0.3f;
         }
 

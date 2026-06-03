@@ -29,27 +29,27 @@ namespace Celeste.Cutscenes
             level.Flash(Color.Orange, false);
             level.Shake(1.0f);
             
-            yield return Textbox.Say("CH15_CEREMONY_OF_FLAME");
+            yield return Textbox.Say("MAGGYHELPER_CH15_CEREMONY_OF_FLAME");
 
             // Roaring Titan King battle
             level.Shake(2.0f);
             yield return 1f;
             
-            yield return Textbox.Say("CH15_ROARING_TITAN_KING_BATTLE");
+            yield return Textbox.Say("MAGGYHELPER_CH15_ROARING_TITAN_KING_BATTLE");
 
             // Near defeat - emotional moment
             yield return 0.5f;
             
-            yield return Textbox.Say("CH15_ROARING_TITAN_KING_NEAR_DEFEAT");
+            yield return Textbox.Say("MAGGYHELPER_CH15_ROARING_TITAN_KING_NEAR_DEFEAT");
 
             // Emotional revelation
-            yield return Textbox.Say("CH15_EMOTIONAL_REVELATION");
+            yield return Textbox.Say("MAGGYHELPER_CH15_EMOTIONAL_REVELATION");
 
             // The first wish granted
             level.Flash(Color.Cyan, false);
             yield return 0.5f;
             
-            yield return Textbox.Say("CH15_THE_FIRST_WISH");
+            yield return Textbox.Say("MAGGYHELPER_CH15_THE_FIRST_WISH");
 
             EndCutscene(level);
         }

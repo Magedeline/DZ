@@ -64,7 +64,7 @@ namespace Celeste.NPCs
         {
             player.StateMachine.State = global::Celeste.Player.StDummy;
 
-            yield return Textbox.Say("CH17_RALSEI_INSIDE");
+            yield return Textbox.Say("MAGGYHELPER_CH17_RALSEI_INSIDE");
             
             endcutscene();
         }

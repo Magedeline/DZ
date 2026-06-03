@@ -23,7 +23,7 @@ public class Cs12UndyneRefusedToDied : CutsceneEntity
         player.StateMachine.State = Player.StDummy; // Dummy state
         yield return 0.5f;
 
-        yield return Textbox.Say("CH12_UNDYNE_REFUSED_TO_DIED");
+        yield return Textbox.Say("MAGGYHELPER_CH12_UNDYNE_REFUSED_TO_DIED");
 
         yield return 0.5f;
         EndCutscene(level);

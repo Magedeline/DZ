@@ -93,7 +93,7 @@ namespace Celeste.Cutscenes
             yield return 0.5f;
 
             // Start the main intro dialogue
-            yield return Textbox.Say("CH10_MADDY_AND_BADDY_AND_CHARA");
+            yield return Textbox.Say("MAGGYHELPER_CH10_MADDY_AND_BADDY_AND_CHARA");
 
             // Restore player control
             player.StateMachine.State = global::Celeste.Player.StNormal;
@@ -167,8 +167,8 @@ namespace Celeste.Cutscenes
             // Badeline handles dialogs 1 and 3 (the "angry/questioning" ones)
             string dialogKey = talkCount switch
             {
-                0 => "CH10_TALK_TO_BADDY_AND_CHARA1",  // About metaphors and dark/light forces
-                1 => "CH10_TALK_TO_BADDY_AND_CHARA3",  // About Asriel (gets interrupted)
+                0 => "MAGGYHELPER_CH10_TALK_TO_BADDY_AND_CHARA1",  // About metaphors and dark/light forces
+                1 => "MAGGYHELPER_CH10_TALK_TO_BADDY_AND_CHARA3",  // About Asriel (gets interrupted)
                 _ => null // No more unique dialogs
             };
 
@@ -199,8 +199,8 @@ namespace Celeste.Cutscenes
             // Chara handles dialogs 0 and 2 (the informational ones)
             string dialogKey = talkCount switch
             {
-                0 => "CH10_TALK_TO_BADDY_AND_CHARA0",  // About knowing this place
-                1 => "CH10_TALK_TO_BADDY_AND_CHARA2",  // Warning about monsters
+                0 => "MAGGYHELPER_CH10_TALK_TO_BADDY_AND_CHARA0",  // About knowing this place
+                1 => "MAGGYHELPER_CH10_TALK_TO_BADDY_AND_CHARA2",  // Warning about monsters
                 _ => null // No more unique dialogs
             };
 

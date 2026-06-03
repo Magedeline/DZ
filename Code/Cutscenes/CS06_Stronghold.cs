@@ -36,7 +36,7 @@ public class CS06_Stronghold : CutsceneEntity
         player.ForceCameraUpdate = true;
         yield return player.DummyWalkTo(theo.X - 30f);
         player.Facing = Facings.Right;
-        yield return Textbox.Say("CH6_THEO_1", WaitABeat, ZoomIn, BaddyAppeared, BaddyTurnsAround, BaddyApproaches, BaddyTurnsRight, BaddyYell, BaddyFlewPastTheo);
+        yield return Textbox.Say("MAGGYHELPER_CH6_THEO_1", WaitABeat, ZoomIn, BaddyAppeared, BaddyTurnsAround, BaddyApproaches, BaddyTurnsRight, BaddyYell, BaddyFlewPastTheo);
         yield return Level.ZoomBack(0.5f);
         EndCutscene(level);
     }

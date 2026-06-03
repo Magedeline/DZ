@@ -8,8 +8,8 @@ heart.placements = {
     data = {
         fake = false,
         removeCameraTriggers = false,
-        fakeHeartDialog = "CH19_WRONG_HEART",
-        keepGoingDialog = "CH19_KEEP_GOING_KIRBY"
+        fakeHeartDialog = "MAGGYHELPER_CH19_WRONG_HEART",
+        keepGoingDialog = "MAGGYHELPER_CH19_KEEP_GOING_KIRBY"
     }
 }
 

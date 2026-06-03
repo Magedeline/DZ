@@ -74,7 +74,7 @@ public class CS10End : CutsceneEntity
         Audio.SetMusic("event:/pusheen/ch10/music/chapter_end");
 
         // Final dialog: Madeline thanks Wispy
-        yield return Textbox.Say("CH10_END", OnMadelineGratitude, OnWispyFarewell);
+        yield return Textbox.Say("MAGGYHELPER_CH10_END", OnMadelineGratitude, OnWispyFarewell);
 
         yield return 1f;
 
@@ -102,7 +102,7 @@ public class CS10End : CutsceneEntity
         {
             // Madeline bows respectfully
             madelineNpc.Sprite.Play("idle", false);
-            Audio.Play("event:/pusheen/char/kirby/screenentry");
+            Audio.Play("event:/char/pusheen/kirby/screenentry");
             yield return 0.8f;
             madelineNpc.Sprite.Play("idle", false);
         }

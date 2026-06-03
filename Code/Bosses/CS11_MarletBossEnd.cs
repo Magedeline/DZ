@@ -23,7 +23,7 @@ public class Cs11MarletBossEnd : CutsceneEntity
         player.StateMachine.State = Player.StDummy; // Dummy state
         yield return 0.5f;
 
-        yield return Textbox.Say("CH11_MARLET_BOSS_END");
+        yield return Textbox.Say("MAGGYHELPER_CH11_MARLET_BOSS_END");
 
         yield return 0.5f;
         EndCutscene(level);

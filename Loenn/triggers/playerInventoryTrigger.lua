@@ -5,7 +5,7 @@ playerInventoryTrigger.name = "MaggyHelper/PlayerInventoryTrigger"
 local inventoryTypes = {
     "KirbyPlayer",
     "Default",
-    "CH6End",
+    "MAGGYHELPER_CH6End",
     "TheSummit",
     "Core",
     "OldSite",

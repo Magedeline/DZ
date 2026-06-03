@@ -20,13 +20,13 @@ namespace Celeste.Cutscenes
         private const string FLAG_BOSS_BATTLE_STARTED = "ch11_boss_battle_started";
         private const string FLAG_MARLET_POSSESSED = "ch11_marlet_possessed";
         
-        private const string DIALOG_KEY_INTRO = "CH11_BOSS_INTRO";
-        private const string DIALOG_KEY_WARNING = "CH11_BOSS_INTRO_DO_NOT_HURT_HER";
+        private const string DIALOG_KEY_INTRO = "MAGGYHELPER_CH11_BOSS_INTRO";
+        private const string DIALOG_KEY_WARNING = "MAGGYHELPER_CH11_BOSS_INTRO_DO_NOT_HURT_HER";
         
         // Audio events
         private const string SFX_POSSESSION_REVEAL = "event:/new_content/game/10_farewell/glitch_short";
         private const string SFX_DARK_MATTER_LAUGH = "event:/game_06_boss_badeline_laugh";
-        private const string MUSIC_BOSS_INTRO = "event:/pusheen/music/lvl11/pmarlet_fight";
+        private const string MUSIC_BOSS_INTRO = "event:/music/pusheen/lvl11/pmarlet_fight";
         #endregion
 
         #region Fields

@@ -30,7 +30,7 @@ public class CS09_Arrivial : CutsceneEntity
 
         yield return 0.35f;
 
-        yield return Textbox.Say("CH9_ARRIVIAL",
+        yield return Textbox.Say("MAGGYHELPER_CH9_ARRIVIAL",
             Trigger0MadelineTurnLeft,
             Trigger1GigaSfxAndFlash,
             Trigger2BlackKatanaStrike,

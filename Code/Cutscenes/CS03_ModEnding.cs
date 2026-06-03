@@ -55,7 +55,7 @@ namespace Celeste.Cutscenes
             yield return 1.5f;
             player.Facing = Facings.Left;
             yield return 0.5f;
-            yield return Textbox.Say("CH3_END_KIRBY",
+            yield return Textbox.Say("MAGGYHELPER_CH3_END_KIRBY",
                 trigger0BadelineAppears,
                 trigger1GiveStrawberry,
                 trigger2BadelineLooksLeft,
@@ -108,7 +108,7 @@ namespace Celeste.Cutscenes
 
             player.DummyAutoAnimate = false;
             player.Sprite.Play("sleep");
-            Audio.Play("event:/pusheen/char/kirby/campfire_sit", player.Position);
+            Audio.Play("event:/char/pusheen/kirby/campfire_sit", player.Position);
             yield return 2f;
 
             Vector2 birdOrigin = (badeline?.Position ?? player.Position) + new Vector2(88f, -200f);

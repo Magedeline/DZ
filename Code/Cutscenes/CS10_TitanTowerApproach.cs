@@ -26,19 +26,19 @@ namespace Celeste.Cutscenes
         private IEnumerator CutsceneSequence(Level level)
         {
             // Approaching the massive tower
-            yield return Textbox.Say("CH12_TITAN_TOWER_APPROACH");
+            yield return Textbox.Say("MAGGYHELPER_CH12_TITAN_TOWER_APPROACH");
 
             // Climbing sequence
-            yield return Textbox.Say("CH12_TITAN_TOWER_CLIMBING_START");
+            yield return Textbox.Say("MAGGYHELPER_CH12_TITAN_TOWER_CLIMBING_START");
 
             // Mid-climb warnings
             yield return 0.5f;
             Audio.Play("event:/game/general/strawberry_pulse");
             
-            yield return Textbox.Say("CH12_TITAN_TOWER_MID_CLIMB");
+            yield return Textbox.Say("MAGGYHELPER_CH12_TITAN_TOWER_MID_CLIMB");
 
             // Summit approach
-            yield return Textbox.Say("CH12_TITAN_TOWER_SUMMIT_APPROACH");
+            yield return Textbox.Say("MAGGYHELPER_CH12_TITAN_TOWER_SUMMIT_APPROACH");
 
             EndCutscene(level);
         }

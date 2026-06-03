@@ -35,7 +35,7 @@ public class CS20_Later : CutsceneEntity
         player.StateMachine.State = Player.StDummy; // StDummy
         
         yield return Textbox.Say(
-            "CH20_MONTHS_LATER");
+            "MAGGYHELPER_CH20_MONTHS_LATER");
         
         EndCutscene(level);
     }

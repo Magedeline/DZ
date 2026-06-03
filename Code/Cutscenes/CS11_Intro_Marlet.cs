@@ -29,7 +29,7 @@ namespace Celeste.Cutscenes
             player.StateMachine.State = Player.StDummy;
             
             // Play the dialog
-            yield return Textbox.Say("CH11_INTRO_MARLET");
+            yield return Textbox.Say("MAGGYHELPER_CH11_INTRO_MARLET");
             
             // Optional: Add any additional cutscene logic here
             // For example, if you want Marlet to actually fly away visually

@@ -26,7 +26,7 @@ namespace Celeste.Entities
 
         public Payphone(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            dialogId = data.Attr("dialogId", "CH2_DREAM_PHONECALL_TRAP");
+            dialogId = data.Attr("dialogId", "MAGGYHELPER_CH2_DREAM_PHONECALL_TRAP");
             flagToSet = data.Attr("flagToSet", "");
             onlyOnce = data.Bool("onlyOnce", true);
 

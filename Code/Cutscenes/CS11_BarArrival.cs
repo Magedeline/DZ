@@ -18,7 +18,7 @@ namespace Celeste.Cutscenes
         private const string FLAG_MET_UNDYNE = "ch11_met_undyne";
         private const string FLAG_MET_FEISTY_FIVE = "ch11_met_feisty_five";
         
-        private const string DIALOG_PREFIX = "CH11_BAR_ARRIVIAL"; // Note: Keeping original typo for consistency
+        private const string DIALOG_PREFIX = "MAGGYHELPER_CH11_BAR_ARRIVIAL"; // Note: Keeping original typo for consistency
         #endregion
 
         #region Fields

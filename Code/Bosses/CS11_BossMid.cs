@@ -19,12 +19,12 @@ namespace Celeste.Cutscenes
         private const string FLAG_CUTSCENE_COMPLETE = "ch11_boss_mid_complete";
         private const string FLAG_MARLET_RESISTING = "ch11_marlet_resisting";
         
-        private const string DIALOG_KEY = "CH11_BOSS_MID";
+        private const string DIALOG_KEY = "MAGGYHELPER_CH11_BOSS_MID";
         
         // Audio events
         private const string SFX_RESISTANCE = "event:/new_content/char/badeline/disappear";
         private const string SFX_STRUGGLE = "event:/game_06_boss_badeline_attack";
-        private const string MUSIC_BOSS_MID = "event:/pusheen/music/lvl11/pmarlet_glitched";
+        private const string MUSIC_BOSS_MID = "event:/music/pusheen/lvl11/pmarlet_glitched";
         #endregion
 
         #region Fields

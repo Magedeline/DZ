@@ -96,8 +96,8 @@ public class NPC09X_Madeline_and_Badeline_Ending : NPC
         {
             yield return 0.5f;
             yield return Level.ZoomTo(Position - Level.Camera.Position + new Vector2(0f, -32f), 2f, 0.5f);
-            Dialog.Language.Dialog["CH15_MADELINE_AND_BADELINE_ENDING_EASTEREGG"] = _GetDebugModeDialog("{portrait madeline normal} You've unlocked Debug Mode!");
-            yield return Textbox.Say("CH15_MADELINE_AND_BADELINE_ENDING_EASTEREGG");
+            Dialog.Language.Dialog["MAGGYHELPER_CH15_MADELINE_AND_BADELINE_ENDING_EASTEREGG"] = _GetDebugModeDialog("{portrait madeline normal} You've unlocked Debug Mode!");
+            yield return Textbox.Say("MAGGYHELPER_CH15_MADELINE_AND_BADELINE_ENDING_EASTEREGG");
             talker.Enabled = false;
             SetFlag();
         }
@@ -105,13 +105,13 @@ public class NPC09X_Madeline_and_Badeline_Ending : NPC
         {
             yield return 0.5f;
             yield return Level.ZoomTo(Position - Level.Camera.Position + new Vector2(0f, -32f), 2f, 0.5f);
-            yield return Textbox.Say("CH15_MADELINE_AND_BADELINE_ENDING_A");
+            yield return Textbox.Say("MAGGYHELPER_CH15_MADELINE_AND_BADELINE_ENDING_A");
         }
         else if (conversation == 1)
         {
             yield return 0.5f;
             yield return Level.ZoomTo(Position - Level.Camera.Position + new Vector2(0f, -32f), 2f, 0.5f);
-            yield return Textbox.Say("CH15_MADELINE_AND_BADELINE_ENDING_B");
+            yield return Textbox.Say("MAGGYHELPER_CH15_MADELINE_AND_BADELINE_ENDING_B");
             talker.Enabled = false;
             SetFlag();
         }
@@ -139,9 +139,9 @@ public class NPC09X_Madeline_and_Badeline_Ending : NPC
 
     private static string _GetDebugModeDialog(string vanillaDialog)
     {
-        if (Dialog.Has("CH15_MADELINE_AND_BADELINE_ENDING_EASTEREGG"))
+        if (Dialog.Has("MAGGYHELPER_CH15_MADELINE_AND_BADELINE_ENDING_EASTEREGG"))
         {
-            return Dialog.Get("CH15_MADELINE_AND_BADELINE_ENDING_EASTEREGG");
+            return Dialog.Get("MAGGYHELPER_CH15_MADELINE_AND_BADELINE_ENDING_EASTEREGG");
         }
         return vanillaDialog;
     }

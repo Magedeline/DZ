@@ -44,6 +44,9 @@ entities.DesoloZantas/CutsceneEventEntity.attributes.description.texturePath=Atl
 tools.name.pcg_generator=PCG Generator
 tools.description.pcg_generator=Procedural Content Generator — left-click to generate rooms using PCG-XSH-RR random number generation.
 
+tools.name.maggyhelper_update_maps=MaggyHelper Map Updater
+tools.description.maggyhelper_update_maps=Updates all 70 maps with MAGGYHELPER_ entity and dialog references. Run in Lua Console: maggyhelper_update_maps()
+
 # -- MaggyMemorial Entity --
 entities.MaggyHelper/MaggyMemorial.placements.name.normal=Maggy Memorial (Normal)
 entities.MaggyHelper/MaggyMemorial.placements.name.dreamy=Maggy Memorial (Dreamy)

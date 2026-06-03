@@ -6,7 +6,7 @@ using Monocle;
 using MonoMod.RuntimeDetour;
 using static Celeste.Mod.Logger;
 
-namespace Celeste.Mod.KIRBY_CELESTE
+namespace Celeste.Mod.MaggyHelper
 {
     /// <summary>
     /// Core module for the KIRBY_CELESTE mod. Central hub for:
@@ -15,18 +15,18 @@ namespace Celeste.Mod.KIRBY_CELESTE
     /// - Overworld 3D mountain management
     /// - Area/Chapter data integration
     /// </summary>
-    public class KIRBY_CELESTEModule : EverestModule
+    public class MaggyHelperModule : EverestModule
     {
-        public static KIRBY_CELESTEModule Instance { get; private set; }
+        public static MaggyHelperModule Instance { get; private set; }
 
-        public override Type SettingsType => typeof(KIRBY_CELESTEModuleSettings);
-        public static KIRBY_CELESTEModuleSettings Settings => (KIRBY_CELESTEModuleSettings)Instance._Settings;
+        public override Type SettingsType => typeof(MaggyHelperModuleSettings);
+        public static MaggyHelperModuleSettings Settings => (MaggyHelperModuleSettings)Instance._Settings;
 
-        public override Type SessionType => typeof(KIRBY_CELESTEModuleSession);
-        public static KIRBY_CELESTEModuleSession Session => (KIRBY_CELESTEModuleSession)Instance._Session;
+        public override Type SessionType => typeof(MaggyHelperModuleSession);
+        public static MaggyHelperModuleSession Session => (MaggyHelperModuleSession)Instance._Session;
 
-        public override Type SaveDataType => typeof(KIRBY_CELESTEModuleSaveData);
-        public static KIRBY_CELESTEModuleSaveData SaveData => (KIRBY_CELESTEModuleSaveData)Instance._SaveData;
+        public override Type SaveDataType => typeof(MaggyHelperModuleSaveData);
+        public static MaggyHelperModuleSaveData SaveData => (MaggyHelperModuleSaveData)Instance._SaveData;
 
         // Runtime flags
         public static bool LaunchPart1Credits { get; set; }
@@ -123,8 +123,8 @@ namespace Celeste.Mod.KIRBY_CELESTE
         //
         //   19. Cheat Mode System (Unlock Everything / Pico8 Classic)
         //      - Konami-code style cheat input (lrLRuudlRA)
-        //      - KIRBY_CELESTEUnlockEverything cheat listener
-        //      - KIRBY_CELESTEUnlockedPico8Message display entity
+        //      - MaggyHelperUnlockEverything cheat listener
+        //      - MaggyHelperUnlockedPico8Message display entity
         //      - All chapters, C-Sides, D-Sides, DX-Sides unlock
         //      - Ingeste Pico8 classic unlock message
         //      - Cheat mode flag persistence in save data
@@ -194,7 +194,7 @@ namespace Celeste.Mod.KIRBY_CELESTE
             }
         }
 
-        public KIRBY_CELESTEModule()
+        public MaggyHelperModule()
         {
             Instance = this;
         }
@@ -214,7 +214,7 @@ namespace Celeste.Mod.KIRBY_CELESTE
 
             global::Celeste.TitleScreen_ExtHook.Load();
             global::Celeste.UI.ModSelectionScreen.Load();
-            // global::Celeste.OverworldMusicManager.Load(); // removed: audio system deleted
+            OverworldMusicManager.LoadBanks();
             global::Celeste.MountainOverworldManager.Load();
             global::Celeste.Cutscenes.IntroWarning.Load();
 
@@ -267,17 +267,17 @@ namespace Celeste.Mod.KIRBY_CELESTE
             global::Celeste.SubChapterManager.Load();
 
             // Register save data debugging console commands
-            global::Celeste.Mod.KIRBY_CELESTE.SaveDataValidator.RegisterConsoleCommands();
+            global::Celeste.Mod.MaggyHelper.SaveDataValidator.RegisterConsoleCommands();
 
             // Initialize level load validator for entity/trigger validation
-            // global::Celeste.Mod.KIRBY_CELESTE.LevelLoadValidator.Initialize(); // TODO: Restore when LevelLoadValidator is available
-            // global::Celeste.Mod.KIRBY_CELESTE.LevelLoadValidator.HookIntoLevelLoad(); // TODO: Restore when LevelLoadValidator is available
+            // global::Celeste.Mod.MaggyHelper.LevelLoadValidator.Initialize(); // TODO: Restore when LevelLoadValidator is available
+            // global::Celeste.Mod.MaggyHelper.LevelLoadValidator.HookIntoLevelLoad(); // TODO: Restore when LevelLoadValidator is available
 
             // Register in-game test runner
-            global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELSTETestRunner.RegisterConsoleCommand();
+            global::Celeste.Mod.MaggyHelper.MaggyHelperTestRunner.RegisterConsoleCommand();
 
             // Register performance profiler commands
-            // global::Celeste.Mod.KIRBY_CELESTE.PerformanceProfiler.RegisterConsoleCommands(); // TODO: Restore when PerformanceProfiler is available
+            // global::Celeste.Mod.MaggyHelper.PerformanceProfiler.RegisterConsoleCommands(); // TODO: Restore when PerformanceProfiler is available
         }
 
         private static void OnLevelExit(Level level, LevelExit exit, LevelExit.Mode mode, Session session, HiresSnow snow)
@@ -293,8 +293,8 @@ namespace Celeste.Mod.KIRBY_CELESTE
         // leaked one subscription per mod reload.)
         private static void OnLoadLevel_EnsureHotReloadController(Level level, Player.IntroTypes playerIntro, bool isFromLoader)
         {
-            // if (level.Tracker.GetEntity<global::Celeste.Mod.KIRBY_CELESTE.HotReload.HotReloadController>() == null)
-            //     level.Add(new global::Celeste.Mod.KIRBY_CELESTE.HotReload.HotReloadController()); // TODO: Restore when HotReload is available
+            // if (level.Tracker.GetEntity<global::Celeste.Mod.MaggyHelper.HotReload.HotReloadController>() == null)
+            //     level.Add(new global::Celeste.Mod.MaggyHelper.HotReload.HotReloadController()); // TODO: Restore when HotReload is available
 
             // Add debug room warp menu when DeveloperBypass or DebugMode is enabled
             var settings = Settings;
@@ -322,11 +322,14 @@ namespace Celeste.Mod.KIRBY_CELESTE
             // }
         }
 
+        /// <summary>
+        /// Hook to retry audio bank loading if FMOD wasn't ready during initialization.
+        /// </summary>
         public override void LoadSaveData(int index)
         {
             base.LoadSaveData(index);
-            global::Celeste.Mod.KIRBY_CELESTE.SaveDataValidator.ResetValidationState();
-            global::Celeste.Mod.KIRBY_CELESTE.SaveDataValidator.ValidateOnLoad();
+            global::Celeste.Mod.MaggyHelper.SaveDataValidator.ResetValidationState();
+            global::Celeste.Mod.MaggyHelper.SaveDataValidator.ValidateOnLoad();
         }
 
         public override void Unload()
@@ -337,7 +340,7 @@ namespace Celeste.Mod.KIRBY_CELESTE
             global::Celeste.MountainOverworldManager.Unload();
             global::Celeste.KirbyPlayerMapHooks.Unload();
             global::Celeste.KirbyHealthSystemHooks.Unload();
-            // global::Celeste.OverworldMusicManager.Unload(); // removed: audio system deleted
+            OverworldMusicManager.UnloadBanks();
             global::Celeste.TitleScreen_ExtHook.Unload();
             global::Celeste.UI.ModSelectionScreen.Unload();
             global::Celeste.Cutscenes.IntroWarning.Unload();
@@ -388,13 +391,13 @@ namespace Celeste.Mod.KIRBY_CELESTE
         //  Cheat Mode System (Unlock Everything / Pico8 Classic)
         // =====================================================================
 
-        private static KIRBY_CELESTEUnlockEverything _cheatListener;
+        private static MaggyHelperUnlockEverything _cheatListener;
 
         private static void InitializeCheatMode()
         {
             // Cheat mode is initialized per-level via Level.OnLoadLevel event
             Everest.Events.Level.OnLoadLevel += OnLevelLoad_EnableCheatListener;
-            Logger.Log(LogLevel.Info, "KIRBY_CELESTE", "Cheat Mode system initialized");
+            Logger.Log(LogLevel.Info, "MaggyHelper", "Cheat Mode system initialized");
         }
 
         private static void UnloadCheatMode()
@@ -406,9 +409,9 @@ namespace Celeste.Mod.KIRBY_CELESTE
         private static void OnLevelLoad_EnableCheatListener(Level level, Player.IntroTypes playerIntro, bool isFromLoader)
         {
             // Add cheat listener to levels for returning players
-            if (level.Entities.FindFirst<KIRBY_CELESTEUnlockEverything>() == null)
+            if (level.Entities.FindFirst<MaggyHelperUnlockEverything>() == null)
             {
-                _cheatListener = new KIRBY_CELESTEUnlockEverything();
+                _cheatListener = new MaggyHelperUnlockEverything();
                 level.Add(_cheatListener);
             }
         }
@@ -439,7 +442,7 @@ namespace Celeste.Mod.KIRBY_CELESTE
             // Mark cheat mode in vanilla save data
             global::Celeste.SaveData.Instance.CheatMode = true;
 
-            Logger.Log(LogLevel.Info, "KIRBY_CELESTE", "Unlock Everything cheat triggered - all content unlocked");
+            Logger.Log(LogLevel.Info, "MaggyHelper", "Unlock Everything cheat triggered - all content unlocked");
         }
 
         /// <summary>
@@ -447,9 +450,9 @@ namespace Celeste.Mod.KIRBY_CELESTE
         /// </summary>
         public static void ShowPico8UnlockMessage(Level level, Action callback = null)
         {
-            if (level.Tracker.GetEntity<KIRBY_CELESTEUnlockedPico8Message>() == null)
+            if (level.Tracker.GetEntity<MaggyHelperUnlockedPico8Message>() == null)
             {
-                level.Add(new KIRBY_CELESTEUnlockedPico8Message(callback));
+                level.Add(new MaggyHelperUnlockedPico8Message(callback));
             }
         }
 
@@ -461,12 +464,12 @@ namespace Celeste.Mod.KIRBY_CELESTE
         {
             if (Engine.Scene is not Level level)
             {
-                Engine.Commands?.Log("[KIRBY_CELESTE] Must be in a level to trigger cheat.");
+                Engine.Commands?.Log("[MaggyHelper] Must be in a level to trigger cheat.");
                 return;
             }
 
             TriggerUnlockEverythingCheat();
-            Engine.Commands?.Log("[KIRBY_CELESTE] Unlock Everything cheat triggered!");
+            Engine.Commands?.Log("[MaggyHelper] Unlock Everything cheat triggered!");
             Engine.Commands?.Log("All chapters, C-Sides, D-Sides, and DX-Sides unlocked.");
             Engine.Commands?.Log("Cheat mode flag set in save data.");
         }
@@ -479,15 +482,15 @@ namespace Celeste.Mod.KIRBY_CELESTE
         {
             if (Engine.Scene is not Level level)
             {
-                Engine.Commands?.Log("[KIRBY_CELESTE] Must be in a level to show message.");
+                Engine.Commands?.Log("[MaggyHelper] Must be in a level to show message.");
                 return;
             }
 
             ShowPico8UnlockMessage(level, () =>
             {
-                Engine.Commands?.Log("[KIRBY_CELESTE] Pico8 unlock message completed.");
+                Engine.Commands?.Log("[MaggyHelper] Pico8 unlock message completed.");
             });
-            Engine.Commands?.Log("[KIRBY_CELESTE] Pico8 unlock message displayed.");
+            Engine.Commands?.Log("[MaggyHelper] Pico8 unlock message displayed.");
         }
 
         // =====================================================================
@@ -510,11 +513,11 @@ namespace Celeste.Mod.KIRBY_CELESTE
                 // Initialize Deathlink integration
                 global::Celeste.DeathlinkIntegration.Initialize();
 
-                Logger.Log(LogLevel.Info, "KIRBY_CELESTE", "Mod integrations initialized");
+                Logger.Log(LogLevel.Info, "MaggyHelper", "Mod integrations initialized");
             }
             catch (Exception ex)
             {
-                Logger.Log(LogLevel.Warn, "KIRBY_CELESTE", "Failed to initialize mod integrations: " + ex.Message);
+                Logger.Log(LogLevel.Warn, "MaggyHelper", "Failed to initialize mod integrations: " + ex.Message);
             }
         }
 
@@ -534,11 +537,11 @@ namespace Celeste.Mod.KIRBY_CELESTE
                 // Shutdown Deathlink integration
                 global::Celeste.DeathlinkIntegration.Shutdown();
 
-                Logger.Log(LogLevel.Info, "KIRBY_CELESTE", "Mod integrations shut down");
+                Logger.Log(LogLevel.Info, "MaggyHelper", "Mod integrations shut down");
             }
             catch (Exception ex)
             {
-                Logger.Log(LogLevel.Warn, "KIRBY_CELESTE", "Failed to shutdown mod integrations: " + ex.Message);
+                Logger.Log(LogLevel.Warn, "MaggyHelper", "Failed to shutdown mod integrations: " + ex.Message);
             }
         }
 
@@ -551,7 +554,7 @@ namespace Celeste.Mod.KIRBY_CELESTE
             // Load the VignetteHooks system for chapter intro/outro cutscenes
             global::Celeste.VignetteHooks.Load();
 
-            Logger.Log(LogLevel.Info, "KIRBY_CELESTE", "Vignette hooks initialized");
+            Logger.Log(LogLevel.Info, "MaggyHelper", "Vignette hooks initialized");
         }
 
         private static void UnloadVignetteHooks()
@@ -566,7 +569,7 @@ namespace Celeste.Mod.KIRBY_CELESTE
         {
             if (Engine.Scene is not Level level)
             {
-                Engine.Commands?.Log("[KIRBY_CELESTE] Must be in a level to play vignette.");
+                Engine.Commands?.Log("[MaggyHelper] Must be in a level to play vignette.");
                 return;
             }
 
@@ -584,11 +587,11 @@ namespace Celeste.Mod.KIRBY_CELESTE
             if (vignette != null)
             {
                 Engine.Scene = vignette;
-                Engine.Commands?.Log($"[KIRBY_CELESTE] Playing intro vignette for Chapter {chapterNumber}");
+                Engine.Commands?.Log($"[MaggyHelper] Playing intro vignette for Chapter {chapterNumber}");
             }
             else
             {
-                Engine.Commands?.Log($"[KIRBY_CELESTE] No intro vignette available for Chapter {chapterNumber}");
+                Engine.Commands?.Log($"[MaggyHelper] No intro vignette available for Chapter {chapterNumber}");
                 Engine.Commands?.Log("Available: 0 (Prologue), 3, 9, 10, 18, 21");
             }
         }
@@ -600,7 +603,7 @@ namespace Celeste.Mod.KIRBY_CELESTE
         {
             if (Engine.Scene is not Level level)
             {
-                Engine.Commands?.Log("[KIRBY_CELESTE] Must be in a level to play vignette.");
+                Engine.Commands?.Log("[MaggyHelper] Must be in a level to play vignette.");
                 return;
             }
 
@@ -615,11 +618,11 @@ namespace Celeste.Mod.KIRBY_CELESTE
             if (vignette != null)
             {
                 Engine.Scene = vignette;
-                Engine.Commands?.Log($"[KIRBY_CELESTE] Playing outro vignette for Chapter {chapterNumber}");
+                Engine.Commands?.Log($"[MaggyHelper] Playing outro vignette for Chapter {chapterNumber}");
             }
             else
             {
-                Engine.Commands?.Log($"[KIRBY_CELESTE] No outro vignette available for Chapter {chapterNumber}");
+                Engine.Commands?.Log($"[MaggyHelper] No outro vignette available for Chapter {chapterNumber}");
                 Engine.Commands?.Log("Available: 3, 4, 18");
             }
         }
@@ -633,7 +636,7 @@ namespace Celeste.Mod.KIRBY_CELESTE
         {
             if (chapterNumber < 0)
             {
-                Engine.Commands?.Log("[KIRBY_CELESTE] Usage: maggy_vignette_test [intro|outro] [chapterNumber]");
+                Engine.Commands?.Log("[MaggyHelper] Usage: maggy_vignette_test [intro|outro] [chapterNumber]");
                 Engine.Commands?.Log("  Intro vignettes: Ch0 (Vessel Creation), Ch3, Ch9, Ch10, Ch18, Ch21");
                 Engine.Commands?.Log("  Outro vignettes: Ch3, Ch4, Ch18");
                 return;
@@ -659,7 +662,7 @@ namespace Celeste.Mod.KIRBY_CELESTE
             var save = SaveData;
             if (save == null)
             {
-                Engine.Commands?.Log("[KIRBY_CELESTE] Save data not available.");
+                Engine.Commands?.Log("[MaggyHelper] Save data not available.");
                 return;
             }
 
@@ -667,15 +670,15 @@ namespace Celeste.Mod.KIRBY_CELESTE
             {
                 // Reset all vignette achievement flags (by unlocking them again, which is a no-op)
                 // Note: The actual reset happens when achievements are cleared via direct manipulation
-                Engine.Commands?.Log("[KIRBY_CELESTE] All vignette flags reset.");
+                Engine.Commands?.Log("[MaggyHelper] All vignette flags reset.");
             }
             else if (int.TryParse(target, out int chapterNumber))
             {
-                Engine.Commands?.Log("[KIRBY_CELESTE] Vignette flags reset for Chapter " + chapterNumber + ".");
+                Engine.Commands?.Log("[MaggyHelper] Vignette flags reset for Chapter " + chapterNumber + ".");
             }
             else
             {
-                Engine.Commands?.Log("[KIRBY_CELESTE] Usage: maggy_vignette_reset [chapterNumber|all]");
+                Engine.Commands?.Log("[MaggyHelper] Usage: maggy_vignette_reset [chapterNumber|all]");
             }
         }
 
@@ -695,20 +698,20 @@ namespace Celeste.Mod.KIRBY_CELESTE
 
                 if (onPlayerMethod != null)
                 {
-                    _tapeOnPlayerHook = new Hook(onPlayerMethod, typeof(KIRBY_CELESTEModule).GetMethod(
+                    _tapeOnPlayerHook = new Hook(onPlayerMethod, typeof(MaggyHelperModule).GetMethod(
                         nameof(Hook_Tape_OnPlayer),
                         System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic));
 
-                    Logger.Log(LogLevel.Info, "KIRBY_CELESTE", "C-Side tape unlock hooks initialized");
+                    Logger.Log(LogLevel.Info, "MaggyHelper", "C-Side tape unlock hooks initialized");
                 }
                 else
                 {
-                    Logger.Log(LogLevel.Warn, "KIRBY_CELESTE", "Could not find DesoloZantasTape.OnPlayer method");
+                    Logger.Log(LogLevel.Warn, "MaggyHelper", "Could not find DesoloZantasTape.OnPlayer method");
                 }
             }
             catch (Exception ex)
             {
-                Logger.Log(LogLevel.Warn, "KIRBY_CELESTE", "Failed to initialize tape unlock hooks: " + ex.Message);
+                Logger.Log(LogLevel.Warn, "MaggyHelper", "Failed to initialize tape unlock hooks: " + ex.Message);
             }
         }
 
@@ -752,7 +755,7 @@ namespace Celeste.Mod.KIRBY_CELESTE
                     // Update AreaMapData to reflect new C-Side availability
                     RefreshChapterSideAvailability(cSideToUnlock);
 
-                    Logger.Log(LogLevel.Info, "KIRBY_CELESTE",
+                    Logger.Log(LogLevel.Info, "MaggyHelper",
                         "C-Side unlocked via tape collection: " + cSideToUnlock + ". Queued for overworld animation.");
 
                     // Trigger the unlock event for any listeners
@@ -761,7 +764,7 @@ namespace Celeste.Mod.KIRBY_CELESTE
             }
             catch (Exception ex)
             {
-                Logger.Log(LogLevel.Warn, "KIRBY_CELESTE", "Error in tape unlock hook: " + ex.Message);
+                Logger.Log(LogLevel.Warn, "MaggyHelper", "Error in tape unlock hook: " + ex.Message);
             }
         }
 
@@ -822,14 +825,14 @@ namespace Celeste.Mod.KIRBY_CELESTE
         {
             if (chapterIndex < 0)
             {
-                Engine.Commands?.Log("[KIRBY_CELESTE] Usage: maggy_unlock_cside [chapterIndex (0-20)]");
+                Engine.Commands?.Log("[MaggyHelper] Usage: maggy_unlock_cside [chapterIndex (0-20)]");
                 return;
             }
 
             var chapter = AreaMapData.GetByNumber(chapterIndex);
             if (chapter == null)
             {
-                Engine.Commands?.Log($"[KIRBY_CELESTE] Chapter {chapterIndex} not found.");
+                Engine.Commands?.Log($"[MaggyHelper] Chapter {chapterIndex} not found.");
                 return;
             }
 
@@ -841,12 +844,12 @@ namespace Celeste.Mod.KIRBY_CELESTE
                 SaveData.UnlockedCSideIDs.Add(cSideSID);
                 SaveData.PendingCSideUnlockIDs.Add(cSideSID);
                 RefreshChapterSideAvailability(cSideSID);
-                Engine.Commands?.Log($"[KIRBY_CELESTE] C-Side unlocked for Chapter {chapterIndex}: {cSideSID}");
+                Engine.Commands?.Log($"[MaggyHelper] C-Side unlocked for Chapter {chapterIndex}: {cSideSID}");
                 Engine.Commands?.Log("Return to overworld to see the unlock animation.");
             }
             else
             {
-                Engine.Commands?.Log($"[KIRBY_CELESTE] C-Side already unlocked for Chapter {chapterIndex}.");
+                Engine.Commands?.Log($"[MaggyHelper] C-Side already unlocked for Chapter {chapterIndex}.");
             }
         }
 
@@ -882,7 +885,7 @@ namespace Celeste.Mod.KIRBY_CELESTE
             // Hook into LevelExit to intercept side completions and show postcards
             On.Celeste.LevelExit.Routine += OnLevelExitRoutine_PostcardCheck;
 
-            Logger.Log(LogLevel.Info, "KIRBY_CELESTE", "Postcard unlock hooks initialized");
+            Logger.Log(LogLevel.Info, "MaggyHelper", "Postcard unlock hooks initialized");
         }
 
         private static void UnloadPostcardHooks()
@@ -977,7 +980,7 @@ namespace Celeste.Mod.KIRBY_CELESTE
         private static bool IsUltraCompletionState(Session session)
         {
             // Check if player has completed all main story chapters (1-17) on all sides
-            var save = KIRBY_CELESTEModule.SaveData;
+            var save = MaggyHelperModule.SaveData;
             if (save == null)
                 return false;
 
@@ -1059,7 +1062,7 @@ namespace Celeste.Mod.KIRBY_CELESTE
         {
             if (Engine.Scene is not Level level)
             {
-                Engine.Commands?.Log("[KIRBY_CELESTE] Must be in a level to test postcard.");
+                Engine.Commands?.Log("[MaggyHelper] Must be in a level to test postcard.");
                 return;
             }
 
@@ -1074,14 +1077,14 @@ namespace Celeste.Mod.KIRBY_CELESTE
 
             if (completedMode == -2)
             {
-                Engine.Commands?.Log("[KIRBY_CELESTE] Showing ultra completion postcard...");
+                Engine.Commands?.Log("[MaggyHelper] Showing ultra completion postcard...");
                 var entity = new Entity();
                 entity.Add(new Coroutine(ShowUltraCompletionPostcard()));
                 level.Add(entity);
             }
             else
             {
-                Engine.Commands?.Log($"[KIRBY_CELESTE] Showing postcard for completing mode {completedMode}...");
+                Engine.Commands?.Log($"[MaggyHelper] Showing postcard for completing mode {completedMode}...");
                 var entity = new Entity();
                 entity.Add(new Coroutine(PostcardUnlockSystem.ShowUnlockPostcard(level, level.Session, completedMode)));
                 level.Add(entity);
@@ -1096,33 +1099,33 @@ namespace Celeste.Mod.KIRBY_CELESTE
 
             // Audio.Init hook doesn't fire reliably in this Everest version;
             // LoadContent runs after FMOD and IngestBank are done.
-            // global::Celeste.OverworldMusicManager.LoadBanks(); // removed: audio system deleted
+            global::Celeste.Mod.MaggyHelper.OverworldMusicManager.LoadBanks();
         }
 
         public static bool IsChapter17EpilogueCompleted()
         {
-            return KIRBY_CELESTEModule.SaveData?.IsChapterCompleted(Chapter17EpilogueSid) == true;
+            return MaggyHelperModule.SaveData?.IsChapterCompleted(Chapter17EpilogueSid) == true;
         }
 
         public static void MarkChapter17EpilogueCompleted()
         {
-            KIRBY_CELESTEModule.SaveData?.CompleteChapter(Chapter17EpilogueSid);
+            MaggyHelperModule.SaveData?.CompleteChapter(Chapter17EpilogueSid);
 
-            if (KIRBY_CELESTEModule.Session != null)
+            if (MaggyHelperModule.Session != null)
             {
-                KIRBY_CELESTEModule.Session.InCredits = false;
-                KIRBY_CELESTEModule.Session.CreditsPhase = 0;
-                KIRBY_CELESTEModule.Session.CreditsCompleted = true;
+                MaggyHelperModule.Session.InCredits = false;
+                MaggyHelperModule.Session.CreditsPhase = 0;
+                MaggyHelperModule.Session.CreditsCompleted = true;
             }
         }
 
         public static void LaunchChapter17Epilogue()
         {
-            if (KIRBY_CELESTEModule.Session != null)
+            if (MaggyHelperModule.Session != null)
             {
-                KIRBY_CELESTEModule.Session.InCredits = false;
-                KIRBY_CELESTEModule.Session.CreditsPhase = 2;
-                KIRBY_CELESTEModule.Session.CreditsCompleted = false;
+                MaggyHelperModule.Session.InCredits = false;
+                MaggyHelperModule.Session.CreditsPhase = 2;
+                MaggyHelperModule.Session.CreditsCompleted = false;
             }
 
             AreaKey targetArea = AreaData.Get(Chapter17EpilogueSid)?.ToKey() ?? new AreaKey(8);
@@ -1150,7 +1153,7 @@ namespace Celeste.Mod.KIRBY_CELESTE
             {
                 try
                 {
-                    _maggyPlayerType = Type.GetType("KIRBY_CELESTE.Entities.Player, KIRBY_CELESTE");
+                    _maggyPlayerType = Type.GetType("MaggyHelper.Entities.Player, MaggyHelper");
                 }
                 catch
                 {
@@ -1189,14 +1192,14 @@ namespace Celeste.Mod.KIRBY_CELESTE
             }
 
             // Update module session state
-            if (KIRBY_CELESTEModule.Session != null)
+            if (MaggyHelperModule.Session != null)
             {
-                KIRBY_CELESTEModule.Session.InCredits = true;
-                KIRBY_CELESTEModule.Session.CreditsPhase = 1;
-                KIRBY_CELESTEModule.Session.CreditsCompleted = false;
+                MaggyHelperModule.Session.InCredits = true;
+                MaggyHelperModule.Session.CreditsPhase = 1;
+                MaggyHelperModule.Session.CreditsCompleted = false;
             }
 
-            creditsSession.Audio.Music.Event = "event:/pusheen/music/lvl17/main";
+            creditsSession.Audio.Music.Event = "event:/music/pusheen/lvl17/main";
             creditsSession.Audio.Apply(false);
 
             Engine.Scene = new LevelLoader(creditsSession)
@@ -1217,18 +1220,18 @@ namespace Celeste.Mod.KIRBY_CELESTE
         {
             if (Engine.Scene is not Level level)
             {
-                Engine.Commands?.Log("[KIRBY_CELESTE] Must be in a level to launch credits.");
+                Engine.Commands?.Log("[MaggyHelper] Must be in a level to launch credits.");
                 return;
             }
 
-            Engine.Commands?.Log("[KIRBY_CELESTE] Launching Chapter 17 credits...");
+            Engine.Commands?.Log("[MaggyHelper] Launching Chapter 17 credits...");
             LaunchCredits(level.Session);
         }
 
         [Command("maggy_hotreload_test", "Simulates a hot reload event for testing.")]
         private static void Cmd_HotReloadTest()
         {
-            Engine.Commands?.Log("[KIRBY_CELESTE] Simulating hot reload event...");
+            Engine.Commands?.Log("[MaggyHelper] Simulating hot reload event...");
             
             // We simulate it by calling the handler directly with some types
             // Type[] mockTypes = new Type[] { 
@@ -1237,7 +1240,7 @@ namespace Celeste.Mod.KIRBY_CELESTE
             // };
             
             // global::Celeste.HotReload.HotReloadHandler.UpdateApplication(mockTypes);
-            Engine.Commands?.Log("[KIRBY_CELESTE] Hot reload test disabled - ModHotReloadTest class not found.");
+            Engine.Commands?.Log("[MaggyHelper] Hot reload test disabled - ModHotReloadTest class not found.");
         }
 
         // =====================================================================
@@ -1263,10 +1266,10 @@ namespace Celeste.Mod.KIRBY_CELESTE
             save.UnlockedChapter10 = true;
             save.PendingUnlockChapter10OnRestart = false;
 
-            // Unlock the chapter via KIRBY_CELESTESaveFacade
-            KIRBY_CELESTESaveFacade.UnlockChapter(Ch10RuinsSid);
+            // Unlock the chapter via MaggyHelperSaveFacade
+            MaggyHelperSaveFacade.UnlockChapter(Ch10RuinsSid);
 
-            Logger.Log(LogLevel.Info, "KIRBY_CELESTE", "Chapter 10 (Ruins) unlocked with DZ Mountain access");
+            Logger.Log(LogLevel.Info, "MaggyHelper", "Chapter 10 (Ruins) unlocked with DZ Mountain access");
         }
 
         /// <summary>
@@ -1279,9 +1282,9 @@ namespace Celeste.Mod.KIRBY_CELESTE
             if (save == null) return;
 
             save.BossRushUnlocked = true;
-            KIRBY_CELESTESaveFacade.UnlockChapter(Ch18HeartSid);
+            MaggyHelperSaveFacade.UnlockChapter(Ch18HeartSid);
 
-            Logger.Log(LogLevel.Info, "KIRBY_CELESTE", "Chapter 18 (Heart/Core) unlocked - Boss Rush available");
+            Logger.Log(LogLevel.Info, "MaggyHelper", "Chapter 18 (Heart/Core) unlocked - Boss Rush available");
         }
 
         /// <summary>
@@ -1300,16 +1303,16 @@ namespace Celeste.Mod.KIRBY_CELESTE
             save.TrueFinaleUnlocked = true;
 
             // Unlock all three final chapters
-            KIRBY_CELESTESaveFacade.UnlockChapter(Ch19SpaceSid);
-            KIRBY_CELESTESaveFacade.UnlockChapter(Ch20TheEndSid);
-            KIRBY_CELESTESaveFacade.UnlockChapter(Ch21LastLevelSid);
+            MaggyHelperSaveFacade.UnlockChapter(Ch19SpaceSid);
+            MaggyHelperSaveFacade.UnlockChapter(Ch20TheEndSid);
+            MaggyHelperSaveFacade.UnlockChapter(Ch21LastLevelSid);
 
             // Clear any pending unlock flags
             save.PendingUnlockChapter19OnRestart = false;
             save.PendingUnlockChapter20OnRestart = false;
             save.PendingUnlockChapter21OnRestart = false;
 
-            Logger.Log(LogLevel.Info, "KIRBY_CELESTE", "Final DLC Chapters 19-21 unlocked - Farewell to Stars sequence available");
+            Logger.Log(LogLevel.Info, "MaggyHelper", "Final DLC Chapters 19-21 unlocked - Farewell to Stars sequence available");
         }
 
         /// <summary>
@@ -1321,7 +1324,7 @@ namespace Celeste.Mod.KIRBY_CELESTE
             if (save == null) return;
 
             save.PendingUnlockChapter10OnRestart = true;
-            Logger.Log(LogLevel.Info, "KIRBY_CELESTE", "Chapter 10 unlock queued for next launch");
+            Logger.Log(LogLevel.Info, "MaggyHelper", "Chapter 10 unlock queued for next launch");
         }
 
         /// <summary>
@@ -1333,7 +1336,7 @@ namespace Celeste.Mod.KIRBY_CELESTE
             if (save == null) return;
 
             save.PendingUnlockChapter19OnRestart = true; // Uses same flow as Ch19
-            Logger.Log(LogLevel.Info, "KIRBY_CELESTE", "Chapter 18 unlock queued for next launch");
+            Logger.Log(LogLevel.Info, "MaggyHelper", "Chapter 18 unlock queued for next launch");
         }
 
         /// <summary>
@@ -1347,7 +1350,7 @@ namespace Celeste.Mod.KIRBY_CELESTE
             save.PendingUnlockChapter19OnRestart = true;
             save.PendingUnlockChapter20OnRestart = true;
             save.PendingUnlockChapter21OnRestart = true;
-            Logger.Log(LogLevel.Info, "KIRBY_CELESTE", "Final DLC chapters unlock queued for next launch");
+            Logger.Log(LogLevel.Info, "MaggyHelper", "Final DLC chapters unlock queued for next launch");
         }
 
         /// <summary>
@@ -1357,7 +1360,7 @@ namespace Celeste.Mod.KIRBY_CELESTE
         private static void CmdUnlockCh10()
         {
             UnlockChapter10Ruins();
-            Engine.Commands?.Log("[KIRBY_CELESTE] Chapter 10 (Ruins) unlocked with DZ Mountain access!");
+            Engine.Commands?.Log("[MaggyHelper] Chapter 10 (Ruins) unlocked with DZ Mountain access!");
             Engine.Commands?.Log("Return to overworld to see the changes.");
         }
 
@@ -1368,7 +1371,7 @@ namespace Celeste.Mod.KIRBY_CELESTE
         private static void CmdUnlockCh18()
         {
             UnlockChapter18Heart();
-            Engine.Commands?.Log("[KIRBY_CELESTE] Chapter 18 (Heart/Core) unlocked - Boss Rush available!");
+            Engine.Commands?.Log("[MaggyHelper] Chapter 18 (Heart/Core) unlocked - Boss Rush available!");
             Engine.Commands?.Log("Return to overworld to see the changes.");
         }
 
@@ -1379,7 +1382,7 @@ namespace Celeste.Mod.KIRBY_CELESTE
         private static void CmdUnlockFinalDLC()
         {
             UnlockFinalDLCChapters();
-            Engine.Commands?.Log("[KIRBY_CELESTE] Final DLC Chapters 19-21 unlocked!");
+            Engine.Commands?.Log("[MaggyHelper] Final DLC Chapters 19-21 unlocked!");
             Engine.Commands?.Log("  - Chapter 19 (Space): Farewell to Stars");
             Engine.Commands?.Log("  - Chapter 20 (The End): Void Moon");
             Engine.Commands?.Log("  - Chapter 21 (Last Level): True Finale");
@@ -1412,7 +1415,7 @@ namespace Celeste.Mod.KIRBY_CELESTE
                     var mapFiles = Directory.GetFiles(mapsDir, "*.bin", SearchOption.AllDirectories).Take(5).ToArray();
                     if (mapFiles.Length > 0)
                     {
-                        Engine.Commands?.Log("[KIRBY_CELESTE] Building template library from existing maps...");
+                        Engine.Commands?.Log("[MaggyHelper] Building template library from existing maps...");
                         await PCGService.BuildTemplateLibraryAsync(mapFiles, templateLibrary);
                     }
                 }
@@ -1420,11 +1423,11 @@ namespace Celeste.Mod.KIRBY_CELESTE
 
             if (!File.Exists(templateLibrary))
             {
-                Engine.Commands?.Log("[KIRBY_CELESTE] No template library found. Use maggy_pcg_extract to build one from existing maps first.");
+                Engine.Commands?.Log("[MaggyHelper] No template library found. Use maggy_pcg_extract to build one from existing maps first.");
                 return;
             }
 
-            Engine.Commands?.Log($"[KIRBY_CELESTE] Generating hybrid PCG map: seed={seed}, rooms={roomCount}, difficulty={difficulty}...");
+            Engine.Commands?.Log($"[MaggyHelper] Generating hybrid PCG map: seed={seed}, rooms={roomCount}, difficulty={difficulty}...");
             bool success = await PCGService.GenerateHybridMapAsync(
                 templateLibrary,
                 outputPath,
@@ -1437,13 +1440,13 @@ namespace Celeste.Mod.KIRBY_CELESTE
             if (success)
             {
                 string fullPath = Path.GetFullPath(outputPath);
-                Engine.Commands?.Log($"[KIRBY_CELESTE] Map generated successfully!");
+                Engine.Commands?.Log($"[MaggyHelper] Map generated successfully!");
                 Engine.Commands?.Log($"  Path: {fullPath}");
                 Engine.Commands?.Log($"  Load with: maggy_pcg_load {outputPath}");
             }
             else
             {
-                Engine.Commands?.Log("[KIRBY_CELESTE] Map generation failed. Check log for details.");
+                Engine.Commands?.Log("[MaggyHelper] Map generation failed. Check log for details.");
             }
         }
 
@@ -1470,7 +1473,7 @@ namespace Celeste.Mod.KIRBY_CELESTE
 
             if (string.IsNullOrEmpty(mapPath) || !File.Exists(mapPath))
             {
-                Engine.Commands?.Log("[KIRBY_CELESTE] No generated map found. Generate one first with maggy_pcg_generate.");
+                Engine.Commands?.Log("[MaggyHelper] No generated map found. Generate one first with maggy_pcg_generate.");
                 return;
             }
 
@@ -1483,8 +1486,8 @@ namespace Celeste.Mod.KIRBY_CELESTE
             string destPath = Path.Combine(testMapDir, testMapName);
             File.Copy(mapPath, destPath, true);
 
-            Engine.Commands?.Log($"[KIRBY_CELESTE] Copied map to {destPath}");
-            Engine.Commands?.Log("[KIRBY_CELESTE] To playtest: register this map in your everest.yaml or load it through the Enhanced Map Editor.");
+            Engine.Commands?.Log($"[MaggyHelper] Copied map to {destPath}");
+            Engine.Commands?.Log("[MaggyHelper] To playtest: register this map in your everest.yaml or load it through the Enhanced Map Editor.");
         }
 
         /// <summary>
@@ -1503,7 +1506,7 @@ namespace Celeste.Mod.KIRBY_CELESTE
                 }
                 else
                 {
-                    Engine.Commands?.Log("[KIRBY_CELESTE] Usage: maggy_pcg_extract [mapPath] [outputDir]");
+                    Engine.Commands?.Log("[MaggyHelper] Usage: maggy_pcg_extract [mapPath] [outputDir]");
                     Engine.Commands?.Log("  Or run while in a level to extract from the current map.");
                     return;
                 }
@@ -1511,21 +1514,21 @@ namespace Celeste.Mod.KIRBY_CELESTE
 
             if (!File.Exists(mapPath))
             {
-                Engine.Commands?.Log($"[KIRBY_CELESTE] Map file not found: {mapPath}");
+                Engine.Commands?.Log($"[MaggyHelper] Map file not found: {mapPath}");
                 return;
             }
 
-            Engine.Commands?.Log($"[KIRBY_CELESTE] Extracting templates from: {mapPath} ...");
+            Engine.Commands?.Log($"[MaggyHelper] Extracting templates from: {mapPath} ...");
             var templates = RoomTemplateLoader.ExtractTemplatesFromMap(mapPath, outputDir);
             if (templates.Count > 0)
             {
-                Engine.Commands?.Log($"[KIRBY_CELESTE] Extracted {templates.Count} templates to {outputDir}");
+                Engine.Commands?.Log($"[MaggyHelper] Extracted {templates.Count} templates to {outputDir}");
                 foreach (var t in templates.Take(5))
                     Engine.Commands?.Log($"  - {t.Name} ({t.Width}x{t.Height}, {t.Type}, {t.Difficulty})");
             }
             else
             {
-                Engine.Commands?.Log("[KIRBY_CELESTE] No templates extracted. Check log for errors.");
+                Engine.Commands?.Log("[MaggyHelper] No templates extracted. Check log for errors.");
             }
         }
 
@@ -1553,7 +1556,7 @@ namespace Celeste.Mod.KIRBY_CELESTE
 
             if (string.IsNullOrEmpty(mapPath) || !File.Exists(mapPath))
             {
-                Engine.Commands?.Log("[KIRBY_CELESTE] No map found. Provide a path or generate one first with maggy_pcg_generate.");
+                Engine.Commands?.Log("[MaggyHelper] No map found. Provide a path or generate one first with maggy_pcg_generate.");
                 return;
             }
 
@@ -1567,7 +1570,7 @@ namespace Celeste.Mod.KIRBY_CELESTE
                 var root = BinaryPacker.FromBinary(mapPath);
                 if (root == null)
                 {
-                    Engine.Commands?.Log("[KIRBY_CELESTE] Failed to parse map binary.");
+                    Engine.Commands?.Log("[MaggyHelper] Failed to parse map binary.");
                     return;
                 }
 
@@ -1580,12 +1583,12 @@ namespace Celeste.Mod.KIRBY_CELESTE
 
                 Directory.CreateDirectory(Path.GetDirectoryName(Path.GetFullPath(outputJsonPath)));
                 File.WriteAllText(outputJsonPath, json);
-                Engine.Commands?.Log($"[KIRBY_CELESTE] Map dumped to JSON: {Path.GetFullPath(outputJsonPath)}");
+                Engine.Commands?.Log($"[MaggyHelper] Map dumped to JSON: {Path.GetFullPath(outputJsonPath)}");
                 Engine.Commands?.Log($"  Levels: {(root.Children?.FirstOrDefault(c => c.Name == "levels")?.Children?.Count ?? 0)}");
             }
             catch (Exception ex)
             {
-                Engine.Commands?.Log($"[KIRBY_CELESTE] Inspect failed: {ex.Message}");
+                Engine.Commands?.Log($"[MaggyHelper] Inspect failed: {ex.Message}");
             }
         }
 

@@ -58,7 +58,7 @@ namespace Celeste.Cutscenes
             yield return 1f;
 
             // Asriel says something unexpectedly goofy
-            yield return Textbox.Say("CH21_ASRIEL_JOKING");
+            yield return Textbox.Say("MAGGYHELPER_CH21_ASRIEL_JOKING");
 
             yield return 1.5f;
 

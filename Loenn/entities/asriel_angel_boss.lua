@@ -25,19 +25,19 @@ asrielAngelBoss.placements = {
             enableFlashback = true,
             enableFinalBeam = true,
             -- Music tracks
-            musicBurnInDespair = "event:/pusheen/extra_content/music/lvl20/burn_in_despair",
-            musicHisTheme01 = "event:/pusheen/extra_content/music/lvl20/his_theme01",
-            musicHisTheme02 = "event:/pusheen/extra_content/music/lvl20/his_theme02",
-            musicKirbyVsAsriel = "event:/pusheen/extra_content/music/lvl20/kirby_vs_asriel_fight_02",
+            musicBurnInDespair = "event:/new_content/music/pusheen/lvl20/burn_in_despair",
+            musicHisTheme01 = "event:/new_content/music/pusheen/lvl20/his_theme01",
+            musicHisTheme02 = "event:/new_content/music/pusheen/lvl20/his_theme02",
+            musicKirbyVsAsriel = "event:/new_content/music/pusheen/lvl20/kirby_vs_asriel_fight_02",
             -- Phase configuration
             barrierWidth = 400,
             barrierHeight = 300,
             riseSpeed = 3.0,
             -- Dialog keys
-            dialogPhase1 = "CH20_ASRIEL_ZERO_RISE_KILL",
-            dialogStruggle = "CH20_ASRIEL_ZERO_STRUGGLE_START",
-            dialogVoidAnswer = "CH20_ASRIEL_ZERO_VOID_ANSWERS",
-            dialogFlashback = "CH20_ASRIEL_REMEMBER_A"
+            dialogPhase1 = "MAGGYHELPER_CH20_ASRIEL_ZERO_RISE_KILL",
+            dialogStruggle = "MAGGYHELPER_CH20_ASRIEL_ZERO_STRUGGLE_START",
+            dialogVoidAnswer = "MAGGYHELPER_CH20_ASRIEL_ZERO_VOID_ANSWERS",
+            dialogFlashback = "MAGGYHELPER_CH20_ASRIEL_REMEMBER_A"
         }
     },
     {
@@ -49,17 +49,17 @@ asrielAngelBoss.placements = {
             enableLostSouls = true,
             enableFlashback = true,
             enableFinalBeam = true,
-            musicBurnInDespair = "event:/pusheen/extra_content/music/lvl20/burn_in_despair",
-            musicHisTheme01 = "event:/pusheen/extra_content/music/lvl20/his_theme01",
-            musicHisTheme02 = "event:/pusheen/extra_content/music/lvl20/his_theme02",
-            musicKirbyVsAsriel = "event:/pusheen/extra_content/music/lvl20/kirby_vs_asriel_fight_02",
+            musicBurnInDespair = "event:/new_content/music/pusheen/lvl20/burn_in_despair",
+            musicHisTheme01 = "event:/new_content/music/pusheen/lvl20/his_theme01",
+            musicHisTheme02 = "event:/new_content/music/pusheen/lvl20/his_theme02",
+            musicKirbyVsAsriel = "event:/new_content/music/pusheen/lvl20/kirby_vs_asriel_fight_02",
             barrierWidth = 350,
             barrierHeight = 280,
             riseSpeed = 2.0,
-            dialogPhase1 = "CH20_ASRIEL_ZERO_RISE_KILL",
-            dialogStruggle = "CH20_ASRIEL_ZERO_STRUGGLE_START",
-            dialogVoidAnswer = "CH20_ASRIEL_ZERO_VOID_ANSWERS",
-            dialogFlashback = "CH20_ASRIEL_REMEMBER_A"
+            dialogPhase1 = "MAGGYHELPER_CH20_ASRIEL_ZERO_RISE_KILL",
+            dialogStruggle = "MAGGYHELPER_CH20_ASRIEL_ZERO_STRUGGLE_START",
+            dialogVoidAnswer = "MAGGYHELPER_CH20_ASRIEL_ZERO_VOID_ANSWERS",
+            dialogFlashback = "MAGGYHELPER_CH20_ASRIEL_REMEMBER_A"
         }
     },
     {
@@ -71,17 +71,17 @@ asrielAngelBoss.placements = {
             enableLostSouls = false,
             enableFlashback = true,
             enableFinalBeam = false,
-            musicBurnInDespair = "event:/pusheen/extra_content/music/lvl20/burn_in_despair",
-            musicHisTheme01 = "event:/pusheen/extra_content/music/lvl20/his_theme01",
-            musicHisTheme02 = "event:/pusheen/extra_content/music/lvl20/his_theme02",
-            musicKirbyVsAsriel = "event:/pusheen/extra_content/music/lvl20/kirby_vs_asriel_fight_02",
+            musicBurnInDespair = "event:/new_content/music/pusheen/lvl20/burn_in_despair",
+            musicHisTheme01 = "event:/new_content/music/pusheen/lvl20/his_theme01",
+            musicHisTheme02 = "event:/new_content/music/pusheen/lvl20/his_theme02",
+            musicKirbyVsAsriel = "event:/new_content/music/pusheen/lvl20/kirby_vs_asriel_fight_02",
             barrierWidth = 400,
             barrierHeight = 300,
             riseSpeed = 3.0,
-            dialogPhase1 = "CH20_ASRIEL_ZERO_RISE_KILL",
-            dialogStruggle = "CH20_ASRIEL_ZERO_STRUGGLE_START",
-            dialogVoidAnswer = "CH20_ASRIEL_ZERO_VOID_ANSWERS",
-            dialogFlashback = "CH20_ASRIEL_REMEMBER_A"
+            dialogPhase1 = "MAGGYHELPER_CH20_ASRIEL_ZERO_RISE_KILL",
+            dialogStruggle = "MAGGYHELPER_CH20_ASRIEL_ZERO_STRUGGLE_START",
+            dialogVoidAnswer = "MAGGYHELPER_CH20_ASRIEL_ZERO_VOID_ANSWERS",
+            dialogFlashback = "MAGGYHELPER_CH20_ASRIEL_REMEMBER_A"
         }
     }
 }

@@ -11,7 +11,7 @@ public class CS09_GoldenFlower : CutsceneEntity
 {
     public const string Flag = "ch9_goldenflower_complete";
 
-    private const string DialogKey = "CH9_GOLDENFLOWER";
+    private const string DialogKey = "MAGGYHELPER_CH9_GOLDENFLOWER";
     private const float FloweySpawnOffsetX = 72f;
 
     private readonly global::Celeste.Player player;

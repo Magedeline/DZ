@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using Celeste;
-using Celeste.Mod.KIRBY_CELESTE.ProceduralGeneration.MarkovChain;
-using Celeste.Mod.KIRBY_CELESTE.ProceduralGeneration.SpineAnimation;
+using Celeste.Mod.MaggyHelper.ProceduralGeneration.MarkovChain;
+using Celeste.Mod.MaggyHelper.ProceduralGeneration.SpineAnimation;
 
-namespace Celeste.Mod.KIRBY_CELESTE.ProceduralGeneration.BossPhase;
+namespace Celeste.Mod.MaggyHelper.ProceduralGeneration.BossPhase;
 
 /// <summary>
 /// Procedural boss phase system with Markov-driven phase transitions

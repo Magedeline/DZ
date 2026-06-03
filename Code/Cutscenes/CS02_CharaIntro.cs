@@ -25,8 +25,8 @@ namespace Celeste.Cutscenes
         private const float ZOOM_LEVEL = 2f;
         private const float ZOOM_DURATION = 0.5f;
         private const float CAMERA_TRANSITION_TIME = 0.5f;
-        private const string MUSIC_EVENT = "event:/pusheen/music/lvl2/chara_intro";
-        private const string AUDIO_EVENT = "event:/pusheen/game/02_nightmare/sequence_chara_intro";
+        private const string MUSIC_EVENT = "event:/music/pusheen/lvl2/chara_intro";
+        private const string AUDIO_EVENT = "event:/game/pusheen/02_nightmare/sequence_chara_intro";
         private const string CHARA_DISAPPEAR_SOUND = "event:/char/chara/disappear";
         #endregion
 
@@ -98,7 +98,7 @@ namespace Celeste.Cutscenes
                 Audio.SetMusic(MUSIC_EVENT, true, true);
             }
 
-            yield return Textbox.Say("CH2_CHARA_INTRO", new Func<IEnumerator>[] {
+            yield return Textbox.Say("MAGGYHELPER_CH2_CHARA_INTRO", new Func<IEnumerator>[] {
                 TurnAround,
                 RevealChara,
             });

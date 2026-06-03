@@ -19,7 +19,7 @@ namespace Celeste.Cutscenes
         private const string FLAG_MARLET_SUSPICIOUS = "ch11_marlet_suspicious";
         private const string FLAG_BAR_UNLOCKED = "ch11_bar_unlocked";
         
-        private const string DIALOG_PREFIX = "CH11_STARLO_AND_MARLET";
+        private const string DIALOG_PREFIX = "MAGGYHELPER_CH11_STARLO_AND_MARLET";
         #endregion
 
         #region Fields

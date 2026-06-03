@@ -53,17 +53,17 @@ public class CS21_FinalTitanSummit : CutsceneEntity
         yield return 2f;
 
         // Dialog: Approach to the summit
-        yield return Textbox.Say("CH21_FINAL_SUMMIT_APPROACH");
+        yield return Textbox.Say("MAGGYHELPER_CH21_FINAL_SUMMIT_APPROACH");
 
         yield return 1f;
 
         // Environmental effects intensify
-        Audio.Play("event:/pusheen/extra_content/game/21_desolo_zantas/multiple_lightning_strike");
+        Audio.Play("event:/new_content/game/pusheen/21_desolo_zantas/multiple_lightning_strike");
 
         yield return 2f;
 
         // Dialog: Titan Els presence detected
-        yield return Textbox.Say("CH21_TITAN_ELS_MANIFESTS");
+        yield return Textbox.Say("MAGGYHELPER_CH21_TITAN_ELS_MANIFESTS");
 
         yield return 1f;
 

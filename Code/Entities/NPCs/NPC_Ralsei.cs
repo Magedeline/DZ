@@ -106,16 +106,16 @@ namespace Celeste.NPCs
                 switch (currentConversation)
                 {
                     case 0:
-                        yield return Textbox.Say("CH4_LEGEND_A");
-                        yield return Textbox.Say("CH4_LEGEND_B");
-                        yield return Textbox.Say("CH4_LEGEND_C");
-                        yield return Textbox.Say("CH4_LEGEND_D");
-                        yield return Textbox.Say("CH4_LEGEND_E");
-                        yield return Textbox.Say("CH4_LEGEND_F");
-                        yield return Textbox.Say("CH4_LEGENDOUTRO");
+                        yield return Textbox.Say("MAGGYHELPER_CH4_LEGEND_A");
+                        yield return Textbox.Say("MAGGYHELPER_CH4_LEGEND_B");
+                        yield return Textbox.Say("MAGGYHELPER_CH4_LEGEND_C");
+                        yield return Textbox.Say("MAGGYHELPER_CH4_LEGEND_D");
+                        yield return Textbox.Say("MAGGYHELPER_CH4_LEGEND_E");
+                        yield return Textbox.Say("MAGGYHELPER_CH4_LEGEND_F");
+                        yield return Textbox.Say("MAGGYHELPER_CH4_LEGENDOUTRO");
                         break;
                     case 1:
-                        yield return Textbox.Say("CH4_CHARA_2ND_INTRO");
+                        yield return Textbox.Say("MAGGYHELPER_CH4_CHARA_2ND_INTRO");
                         break;
                     default:
                         yield return Textbox.Say(dialogKey);

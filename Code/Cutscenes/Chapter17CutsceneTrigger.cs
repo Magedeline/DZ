@@ -85,13 +85,13 @@ namespace Celeste.Triggers
             level.Session.SetFlag("ch17_descent_active", true);
             
             // Trigger any dialog
-            level.Add(new MiniTextbox("CH17_DESCENT_BEGINS"));
+            level.Add(new MiniTextbox("MAGGYHELPER_CH17_DESCENT_BEGINS"));
         }
 
         private void StartLeavingZantasCutscene(Level level, global::Celeste.Player player)
         {
             level.Session.SetFlag("ch17_leaving_zantas", true);
-            level.Add(new MiniTextbox("CH17_LEAVING_ZANTAS"));
+            level.Add(new MiniTextbox("MAGGYHELPER_CH17_LEAVING_ZANTAS"));
         }
 
         private void StartCreditsIntro(Level level)
@@ -99,13 +99,13 @@ namespace Celeste.Triggers
             level.Session.SetFlag("ch17_credits_intro", true);
             
             // Set flag to trigger credits part 1
-            KIRBY_CELESTEModule.LaunchPart1Credits = true;
+            MaggyHelperModule.LaunchPart1Credits = true;
         }
 
         private void StartThankingCompanions(Level level)
         {
             level.Session.SetFlag("ch17_thanking_companions", true);
-            level.Add(new MiniTextbox("CH17_THANKING_COMPANIONS"));
+            level.Add(new MiniTextbox("MAGGYHELPER_CH17_THANKING_COMPANIONS"));
         }
 
         private void StartFinalDescent(Level level, global::Celeste.Player player)
@@ -119,7 +119,7 @@ namespace Celeste.Triggers
             level.Session.SetFlag("ch17_epilogue", true);
             
             // Set flag to trigger credits part 2
-            KIRBY_CELESTEModule.LaunchPart2Credits = true;
+            MaggyHelperModule.LaunchPart2Credits = true;
         }
     }
 }

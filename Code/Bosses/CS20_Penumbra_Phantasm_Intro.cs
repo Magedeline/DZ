@@ -23,7 +23,7 @@ public class Cs20PenumbraPhantasmIntro : CutsceneEntity
         player.StateMachine.State = Player.StDummy;
         yield return 0.5f;
 
-        yield return Textbox.Say("CH20_PENUMBRA_PHASTASM_INTRO");
+        yield return Textbox.Say("MAGGYHELPER_CH20_PENUMBRA_PHASTASM_INTRO");
 
         yield return 0.5f;
         EndCutscene(level);

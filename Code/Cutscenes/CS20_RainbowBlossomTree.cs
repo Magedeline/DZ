@@ -118,19 +118,19 @@ namespace Celeste.Cutscenes
             yield return 1f;
             
             // Character dialog - reflecting on journey
-            yield return Textbox.Say("CH20_TREE_MADELINE_REFLECTS");
+            yield return Textbox.Say("MAGGYHELPER_CH20_TREE_MADELINE_REFLECTS");
             
             if (hasSkipped) yield break;
             
-            yield return Textbox.Say("CH20_TREE_BADELINE_RESPONDS");
+            yield return Textbox.Say("MAGGYHELPER_CH20_TREE_BADELINE_RESPONDS");
             
             if (hasSkipped) yield break;
             
-            yield return Textbox.Say("CH20_TREE_KIRBY_SPEAKS");
+            yield return Textbox.Say("MAGGYHELPER_CH20_TREE_KIRBY_SPEAKS");
             
             if (hasSkipped) yield break;
             
-            yield return Textbox.Say("CH20_TREE_ASRIEL_WISDOM");
+            yield return Textbox.Say("MAGGYHELPER_CH20_TREE_ASRIEL_WISDOM");
             
             if (hasSkipped) yield break;
             
@@ -154,14 +154,14 @@ namespace Celeste.Cutscenes
             if (hasSkipped) yield break;
             
             // Madeline stands
-            yield return Textbox.Say("CH20_TREE_MADELINE_DETERMINATION");
+            yield return Textbox.Say("MAGGYHELPER_CH20_TREE_MADELINE_DETERMINATION");
             
             if (hasSkipped) yield break;
             
             yield return 1f;
             
             // Everyone stands together
-            yield return Textbox.Say("CH20_TREE_GROUP_UNITY");
+            yield return Textbox.Say("MAGGYHELPER_CH20_TREE_GROUP_UNITY");
             
             if (hasSkipped) yield break;
             
@@ -185,7 +185,7 @@ namespace Celeste.Cutscenes
             yield return 2f;
             
             // Final message
-            yield return Textbox.Say("CH20_TREE_FINAL_MESSAGE");
+            yield return Textbox.Say("MAGGYHELPER_CH20_TREE_FINAL_MESSAGE");
             
             // Fade out
             yield return Fade(0f, 1f, 3f);

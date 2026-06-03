@@ -26,7 +26,7 @@ namespace Celeste.Cutscenes
     public override void OnBegin(Level level)
     {
       this.flag = level.Session;
-      this.flag.Flags.Contains("CH2_DREAM_PHONECALL_TRAP_DONE");
+      this.flag.Flags.Contains("MAGGYHELPER_CH2_DREAM_PHONECALL_TRAP_DONE");
       level.Session.Dreaming = true;
       this.payphone = this.Scene.Tracker.GetEntity<Payphone>();
       this.Add(new Coroutine(this.cutscene(level)));
@@ -61,13 +61,13 @@ namespace Celeste.Cutscenes
       yield return payphone.Sprite.PlayRoutine("pickUp");
       yield return 1f;
       if (level.Session.Area.Mode == AreaMode.Normal)
-        Audio.SetMusic("event:/pusheen/music/lvl2/phone_loop");
+        Audio.SetMusic("event:/music/pusheen/lvl2/phone_loop");
       payphone.Sprite.Play("talkPhone");
-      yield return Textbox.Say("CH2_DREAM_PHONECALL_TRAP", showChara);
+      yield return Textbox.Say("MAGGYHELPER_CH2_DREAM_PHONECALL_TRAP", showChara);
       if (evil != null)
       {
         if (level.Session.Area.Mode == AreaMode.Normal)
-          Audio.SetMusic("event:/pusheen/music/lvl2/phone_end");
+          Audio.SetMusic("event:/music/pusheen/lvl2/phone_end");
         evil.Any();
         evil = null;
         yield return 1f;
@@ -166,8 +166,8 @@ namespace Celeste.Cutscenes
       Rectangle bounds = level.Bounds;
       Vector2 from = new Vector2(bounds.Left, bounds.Bottom);
       session.RespawnPoint = level.GetSpawnPoint(from);
-      level.Session.Audio.Music.Event = "eevent:/pusheen/music/lvl4/wakeup";
-      level.Session.Audio.Ambience.Event = "event:/pusheen/env/04_awake";
+      level.Session.Audio.Music.Event = "eevent:/music/pusheen/lvl4/wakeup";
+      level.Session.Audio.Ambience.Event = "event:/env/pusheen/04_awake";
       level.LoadLevel(global::Celeste.Player.IntroTypes.WakeUp);
       level.EndCutscene();
       Leader.RestoreStrawberries(level.Tracker.GetEntity<global::Celeste.Player>().Leader);

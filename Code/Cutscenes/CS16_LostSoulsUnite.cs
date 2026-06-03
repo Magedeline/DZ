@@ -26,18 +26,18 @@ namespace Celeste.Cutscenes
         private IEnumerator CutsceneSequence(Level level)
         {
             // Lost souls calling for help
-            yield return Textbox.Say("CH16_LOST_SOULS_CALLING");
+            yield return Textbox.Say("MAGGYHELPER_CH16_LOST_SOULS_CALLING");
 
             // Calling for help from all friends
             level.Flash(Color.White, false);
             
-            yield return Textbox.Say("CH16_CALLING_FOR_HELP");
+            yield return Textbox.Say("MAGGYHELPER_CH16_CALLING_FOR_HELP");
 
             // Eight souls unite
             level.Flash(Color.Cyan, false);
             yield return 1f;
             
-            yield return Textbox.Say("CH16_EIGHT_SOULS_UNITE");
+            yield return Textbox.Say("MAGGYHELPER_CH16_EIGHT_SOULS_UNITE");
 
             EndCutscene(level);
         }

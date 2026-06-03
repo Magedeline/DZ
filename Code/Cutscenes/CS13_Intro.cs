@@ -26,13 +26,13 @@ namespace Celeste.Cutscenes
         private IEnumerator CutsceneSequence(Level level)
         {
             // Industrial atmosphere introduction
-            yield return Textbox.Say("CH13_INTRO");
+            yield return Textbox.Say("MAGGYHELPER_CH13_INTRO");
 
             // Factory entrance warning
             yield return 0.5f;
             Audio.Play("event:/game/general/strawberry_pulse");
             
-            yield return Textbox.Say("CH13_FACTORY_ENTRANCE");
+            yield return Textbox.Say("MAGGYHELPER_CH13_FACTORY_ENTRANCE");
 
             EndCutscene(level);
         }

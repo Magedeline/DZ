@@ -96,8 +96,8 @@ namespace Celeste.Cutscenes
 			{
 				yield return null;
 			}
-			Audio.SetMusic("event:/pusheen/music/lvl1/magolor", true, true);
-			yield return Textbox.Say("CH6_GONDOLA", new Func<IEnumerator>[]
+			Audio.SetMusic("event:/music/pusheen/lvl1/magolor", true, true);
+			yield return Textbox.Say("MAGGYHELPER_CH6_GONDOLA", new Func<IEnumerator>[]
 			{
 				new Func<IEnumerator>(this.EnterTheo),
 				new Func<IEnumerator>(this.CheckOnTheo),
@@ -250,7 +250,7 @@ namespace Celeste.Cutscenes
 			Tween tween = Tween.Create(Tween.TweenMode.Oneshot, null, 16f, true);
 			tween.OnUpdate = delegate(Tween t)
 			{
-				if (Audio.CurrentMusic == "event:/pusheen/music/lvl1/magolor")
+				if (Audio.CurrentMusic == "event:/music/pusheen/lvl1/magolor")
 				{
 					Audio.SetMusicParam("fade", 1f - t.Eased);
 				}
@@ -297,7 +297,7 @@ namespace Celeste.Cutscenes
 		// Token: 0x06001317 RID: 4887 RVA: 0x00067937 File Offset: 0x00065B37
 		private IEnumerator SelfieThenStallsOut()
 		{
-			Audio.SetMusic("event:/pusheen/music/lvl6/minigame", true, true);
+			Audio.SetMusic("event:/music/pusheen/lvl6/minigame", true, true);
 			base.Add(new Coroutine(this.Level.ZoomTo(new Vector2(160f, 110f), 2f, 0.5f), true));
 			yield return 0.3f;
 			this.theo.Sprite.Scale.X = 1f;
@@ -381,7 +381,7 @@ namespace Celeste.Cutscenes
 				yield return this.gondolaDarkness.Appear(this.windSnowFg);
 			}
 			this.BurstTentacles(3, 90f, 200f);
-			Audio.Play("event:/pusheen/game/06_stronghold/gondola_scaryhair_01", this.gondola.Position);
+			Audio.Play("event:/game/pusheen/06_stronghold/gondola_scaryhair_01", this.gondola.Position);
 			for (float p = 0f; p < 1f; p += Engine.DeltaTime / 2f)
 			{
 				yield return null;
@@ -401,7 +401,7 @@ namespace Celeste.Cutscenes
 		{
 			this.Level.Shake(0.3f);
 			Input.Rumble(RumbleStrength.Medium, RumbleLength.Medium);
-			Audio.Play("event:/pusheen/game/06_stronghold/gondola_scaryvines_02", this.gondola.Position);
+			Audio.Play("event:/game/pusheen/06_stronghold/gondola_scaryvines_02", this.gondola.Position);
 			if (this.gondolaDarkness != null)
 			{
 				yield return this.gondolaDarkness.Expand();
@@ -418,7 +418,7 @@ namespace Celeste.Cutscenes
 		{
 			this.Level.Shake(0.3f);
 			Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
-			Audio.Play("event:/pusheen/game/06_stronghold/gondola_scaryvines_03", this.gondola.Position);
+			Audio.Play("event:/game/pusheen/06_stronghold/gondola_scaryvines_03", this.gondola.Position);
 			this.BurstTentacles(1, 30f, 200f);
 			this.BurstTentacles(0, 0f, 100f);
 			this.rumbler = new HeartGemRumbler();

@@ -26,7 +26,7 @@ namespace Celeste.Cutscenes
         private IEnumerator CutsceneSequence(Level level)
         {
             // Player approaches the piano
-            yield return Textbox.Say("CH12_PIANO_START");
+            yield return Textbox.Say("MAGGYHELPER_CH12_PIANO_START");
 
             // Zoom in to madeline and piano (convert world position to screen-space)
             Vector2 screenSpacePosition = new Vector2(player.X, player.Y - 30) - level.Camera.Position;

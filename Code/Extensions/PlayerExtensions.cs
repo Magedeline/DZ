@@ -16,7 +16,7 @@ namespace Celeste.Extensions
     {
         public static bool IsKirbyMode(this Player player)
         {
-            return KIRBY_CELESTEModule.Session?.IsKirbyModeActive == true;
+            return MaggyHelperModule.Session?.IsKirbyModeActive == true;
         }
 
         public static bool IsKirbyPlayerMode(this Player player)
@@ -29,7 +29,7 @@ namespace Celeste.Extensions
         /// </summary>
         public static void EnableKirbyMode(this Player player, int maxDashes = 1)
         {
-            var session = KIRBY_CELESTEModule.Session;
+            var session = MaggyHelperModule.Session;
             if (session != null)
             {
                 session.IsKirbyModeActive = true;
@@ -64,7 +64,7 @@ namespace Celeste.Extensions
         /// </summary>
         public static void DisableKirbyMode(this Player player)
         {
-            var session = KIRBY_CELESTEModule.Session;
+            var session = MaggyHelperModule.Session;
             if (session != null)
             {
                 session.IsKirbyModeActive = false;
@@ -109,7 +109,7 @@ namespace Celeste.Extensions
 
         public static void SetKirbyPowerState(this Player player, KirbyMode.KirbyPowerState powerState)
         {
-            var session = KIRBY_CELESTEModule.Session;
+            var session = MaggyHelperModule.Session;
             if (session != null)
             {
                 session.CurrentKirbyPower = powerState.ToString();
@@ -138,7 +138,7 @@ namespace Celeste.Extensions
                 return;
             }
 
-            var session = KIRBY_CELESTEModule.Session;
+            var session = MaggyHelperModule.Session;
             if (session == null)
             {
                 return;
@@ -258,7 +258,7 @@ namespace Celeste.Extensions
             }
         }
 
-        private static bool TryGetStoredKirbyPower(KIRBY_CELESTEModuleSession session, out KirbyMode.KirbyPowerState powerState)
+        private static bool TryGetStoredKirbyPower(MaggyHelperModuleSession session, out KirbyMode.KirbyPowerState powerState)
         {
             return Enum.TryParse(session?.CurrentKirbyPower, true, out powerState);
         }

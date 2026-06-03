@@ -28,28 +28,28 @@ namespace Celeste.Cutscenes
             // Axis approach with heavy footsteps
             level.Shake(2.0f);
             
-            yield return Textbox.Say("CH13_AXIS_APPROACH");
+            yield return Textbox.Say("MAGGYHELPER_CH13_AXIS_APPROACH");
 
             // Boss introduction
             level.Flash(Color.Red, false);
             level.Shake(1.5f);
             
-            yield return Textbox.Say("CH13_AXIS_BOSS_INTRO");
+            yield return Textbox.Say("MAGGYHELPER_CH13_AXIS_BOSS_INTRO");
 
             // Mid-battle power increase
             yield return 1f;
             level.Shake(2.5f);
             
-            yield return Textbox.Say("CH13_AXIS_BATTLE_MID");
+            yield return Textbox.Say("MAGGYHELPER_CH13_AXIS_BATTLE_MID");
 
             // Final defeat
             level.Flash(Color.Blue, false);
             yield return 0.5f;
             
-            yield return Textbox.Say("CH13_AXIS_DEFEATED");
+            yield return Textbox.Say("MAGGYHELPER_CH13_AXIS_DEFEATED");
 
             // Chapter ending
-            yield return Textbox.Say("CH13_CHAPTER_END");
+            yield return Textbox.Say("MAGGYHELPER_CH13_CHAPTER_END");
 
             EndCutscene(level);
         }

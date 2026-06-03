@@ -21,7 +21,7 @@ namespace Celeste.Cutscenes
         private IEnumerator Cutscene(Level level)
         {
             yield return 0.5f;
-            yield return Textbox.Say("CH19_BEYOND_THE_VOID");
+            yield return Textbox.Say("MAGGYHELPER_CH19_BEYOND_THE_VOID");
             EndCutscene(level);
         }
 

@@ -27,7 +27,7 @@ namespace Celeste.Cutscenes
                 (player.Position + new Vector2(0f, -16f)) - level.Camera.Position,
                 2f, 0.5f);
 
-            yield return Textbox.Say("CH19_BROKEN_STAR_WARRIOR",
+            yield return Textbox.Say("MAGGYHELPER_CH19_BROKEN_STAR_WARRIOR",
                 new Func<IEnumerator>(KirbyAloneInDark),
                 new Func<IEnumerator>(KirbyDropsToKnees),
                 new Func<IEnumerator>(CharaAndOthersAppear),
@@ -49,7 +49,7 @@ namespace Celeste.Cutscenes
         private IEnumerator KirbyDropsToKnees()
         {
             player.DummyAutoAnimate = false;
-            Audio.Play("event:/pusheen/extra_content/char/kirby/heartbreak", player.Position);
+            Audio.Play("event:/new_content/char/pusheen/kirby/heartbreak", player.Position);
             Input.Rumble(RumbleStrength.Medium, RumbleLength.Medium);
             yield return 0.6f;
         }

@@ -23,7 +23,7 @@ public class Cs14EnterLastElevator : CutsceneEntity
         player.StateMachine.State = Player.StDummy; // Dummy state
         yield return 0.5f;
 
-        yield return Textbox.Say("CH14_ENTER_LAST_ELEVATOR");
+        yield return Textbox.Say("MAGGYHELPER_CH14_ENTER_LAST_ELEVATOR");
 
         yield return 0.5f;
         EndCutscene(level);

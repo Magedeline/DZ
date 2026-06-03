@@ -23,7 +23,7 @@ public class Cs21SpecialThanks : CutsceneEntity
         player.StateMachine.State = Player.StDummy; // Dummy state
         yield return 0.5f;
 
-        yield return Textbox.Say("CH21_SPECIAL_THANKS");
+        yield return Textbox.Say("MAGGYHELPER_CH21_SPECIAL_THANKS");
 
         yield return 0.5f;
         EndCutscene(level);

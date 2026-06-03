@@ -136,7 +136,7 @@ namespace Celeste.NPCs
         {
             yield return PlayerApproach(player, turnToFace: true, 24f, (sectionsComplete != 1 && sectionsComplete != 2) ? 1 : (-1));
             yield return Level.ZoomTo(ZoomPoint, 2f, 0.5f);
-            yield return Textbox.Say("CH5_OSHIRO_CLUTTER" + sectionsComplete + "_B", StandUp);
+            yield return Textbox.Say("MAGGYHELPER_CH5_OSHIRO_CLUTTER" + sectionsComplete + "_B", StandUp);
             yield return Level.ZoomBack(0.5f);
             Level.EndCutscene();
             EndTalkRoutine(Level);

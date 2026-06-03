@@ -179,7 +179,7 @@ namespace Celeste.Entities
             if (!Input.Grab.Pressed || inhaleCooldown > 0f)
                 return;
 
-            var session = KIRBY_CELESTEModule.Session;
+            var session = MaggyHelperModule.Session;
             CopyAbilityType currentPower = session?.CurrentCopyAbility ?? CopyAbilityType.None;
 
             if (currentPower == CopyAbilityType.None)
@@ -331,7 +331,7 @@ namespace Celeste.Entities
                 // Swallow ability stars
                 if (entity is AbilityStar star && Vector2.Distance(mouthPos, star.Center) < swallowRange)
                 {
-                    var session = KIRBY_CELESTEModule.Session;
+                    var session = MaggyHelperModule.Session;
                     if (session != null)
                     {
                         session.CurrentCopyAbility = CopyAbilityType.None; // star already set its own ability on touch
@@ -344,7 +344,7 @@ namespace Celeste.Entities
                 // Swallow enemies with copy abilities
                 if (entity is IKirbyCopySource copySource && Vector2.Distance(mouthPos, entity.Center) < swallowRange)
                 {
-                    var session = KIRBY_CELESTEModule.Session;
+                    var session = MaggyHelperModule.Session;
                     if (session != null)
                     {
                         session.CurrentCopyAbility = copySource.GetCopyAbility();

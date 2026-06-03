@@ -4,7 +4,7 @@ using System.Linq;
 using Celeste;
 using Monocle;
 
-namespace Celeste.Mod.KIRBY_CELESTE;
+namespace Celeste.Mod.MaggyHelper;
 
 /// <summary>
 /// Room template for hybrid PCG - defines base room structure with procedural placement zones

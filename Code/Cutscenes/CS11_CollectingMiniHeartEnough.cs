@@ -21,13 +21,13 @@ namespace Celeste.Cutscenes
         private const string FLAG_DOOR_UNLOCKED = "ch11_door_unlocked";
         private const string FLAG_COWGIRL_OUTFIT_REMOVED = "ch11_cowgirl_outfit_removed";
         
-        private const string DIALOG_KEY = "CH11_COLLECTING_MINIHEART_ENOUGH";
+        private const string DIALOG_KEY = "MAGGYHELPER_CH11_COLLECTING_MINIHEART_ENOUGH";
         
         // Spin effect constants
         private const float SPIN_DURATION = 1.5f;
         private const float SPIN_SPEED = 20f; // Rotations per second
-        private const string SFX_SPIN = "event:/pusheen/char/kirby/dreamblock_travel";
-        private const string SFX_OUTFIT_CHANGE = "event:/pusheen/char/kirby/appear";
+        private const string SFX_SPIN = "event:/char/pusheen/kirby/dreamblock_travel";
+        private const string SFX_OUTFIT_CHANGE = "event:/char/pusheen/kirby/appear";
         #endregion
 
         #region Fields

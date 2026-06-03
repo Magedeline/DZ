@@ -21,7 +21,7 @@ namespace Celeste.NPCs
 
         public NPC_Chara(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            dialogKey = data.Attr("dialogKey", "CH2_CHARA_INTRO");
+            dialogKey = data.Attr("dialogKey", "MAGGYHELPER_CH2_CHARA_INTRO");
             flagName = data.Attr("flagName", "chara_met");
             enabledByDefault = data.Bool("enabledByDefault", true);
             
@@ -86,13 +86,13 @@ namespace Celeste.NPCs
             switch (currentConversation)
             {
                 case 0:
-                    yield return Textbox.Say("CH2_CHARA_INTRO");
+                    yield return Textbox.Say("MAGGYHELPER_CH2_CHARA_INTRO");
                     break;
                 case 1:
-                    yield return Textbox.Say("CH2_CHARA_BREAKSOUT");
+                    yield return Textbox.Say("MAGGYHELPER_CH2_CHARA_BREAKSOUT");
                     break;
                 case 2:
-                    yield return Textbox.Say("CH4_CHARA_2ND_INTRO");
+                    yield return Textbox.Say("MAGGYHELPER_CH4_CHARA_2ND_INTRO");
                     break;
                 default:
                     yield return Textbox.Say(dialogKey);

@@ -20,8 +20,8 @@ namespace Celeste.Cutscenes
         private const string FLAG_MINI_HEARTS_QUEST_STARTED = "ch11_mini_hearts_quest_started";
         private const string FLAG_MAGGY_ALLY = "ch11_maggy_ally";
         
-        private const string DIALOG_KEY_END = "CH11_MAGGY_END";
-        private const string DIALOG_KEY_NOT_ENOUGH = "CH11_COLLECTING_MINIHEART_NOT_ENOUGH";
+        private const string DIALOG_KEY_END = "MAGGYHELPER_CH11_MAGGY_END";
+        private const string DIALOG_KEY_NOT_ENOUGH = "MAGGYHELPER_CH11_COLLECTING_MINIHEART_NOT_ENOUGH";
         
         // Required mini hearts to proceed
         private const int REQUIRED_MINI_HEARTS = 5;
@@ -227,7 +227,7 @@ namespace Celeste.Cutscenes
         /// </summary>
         public static IEnumerator ShowNotEnoughMiniHeartsDialog()
         {
-            yield return Textbox.Say("CH11_COLLECTING_MINIHEART_NOT_ENOUGH");
+            yield return Textbox.Say("MAGGYHELPER_CH11_COLLECTING_MINIHEART_NOT_ENOUGH");
         }
 
         public override void OnEnd(Level level)

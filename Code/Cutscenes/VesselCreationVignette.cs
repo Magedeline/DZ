@@ -34,10 +34,10 @@ namespace Celeste.Cutscenes
         private const string PINK_SOUL_BLUR_SPRITE = "IMAGE_PINK_SOUL_BLUR";
         
         // Audio events
-        private const string CREATION_MUSIC_EVENT = "event:/pusheen/music/lvl0/creation/create";
-        private const string DRONE_MUSIC_EVENT = "event:/pusheen/music/lvl0/creation/drone";
-        private const string HEART_APPEAR_EVENT = "event:/pusheen/music/lvl0/creation/heart_appear";
-        private const string HEART_CHANGE_EVENT = "event:/pusheen/music/lvl0/creation/heart_change";
+        private const string CREATION_MUSIC_EVENT = "event:/music/pusheen/lvl0/creation/create";
+        private const string DRONE_MUSIC_EVENT = "event:/music/pusheen/lvl0/creation/drone";
+        private const string HEART_APPEAR_EVENT = "event:/music/pusheen/lvl0/creation/heart_appear";
+        private const string HEART_CHANGE_EVENT = "event:/music/pusheen/lvl0/creation/heart_change";
         private const string CHOICE_APPEAR_EVENT = "event:/ui/game/chatoptions_appear";
         private const string CHOICE_SELECT_EVENT = "event:/ui/game/chatoptions_select";
         private const string CHOICE_MOVE_EVENT = "event:/ui/game/chatoptions_roll_down";
@@ -464,9 +464,9 @@ namespace Celeste.Cutscenes
                 IngesteLogger.Info("[VesselCreation] Transitioning to Cs00IntroVignette");
 
                 // Mark the mod intro as seen so it never replays on subsequent launches.
-                if (KIRBY_CELESTEModule.SaveData != null)
+                if (MaggyHelperModule.SaveData != null)
                 {
-                    KIRBY_CELESTEModule.SaveData.HasSeenModIntro = true;
+                    MaggyHelperModule.SaveData.HasSeenModIntro = true;
                     UserIO.SaveHandler(file: true, settings: false);
                 }
 
@@ -1078,9 +1078,9 @@ namespace Celeste.Cutscenes
                 IngesteLogger.Info("[VesselCreation] Skipping vignette - transitioning to Cs00IntroVignette");
 
                 // Mark the mod intro as seen even when skipped.
-                if (KIRBY_CELESTEModule.SaveData != null)
+                if (MaggyHelperModule.SaveData != null)
                 {
-                    KIRBY_CELESTEModule.SaveData.HasSeenModIntro = true;
+                    MaggyHelperModule.SaveData.HasSeenModIntro = true;
                     UserIO.SaveHandler(file: true, settings: false);
                 }
 

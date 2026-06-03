@@ -137,10 +137,10 @@ namespace Celeste
         private bool barrierActive;
         
         // Audio - FMOD Events
-        private const string MUSIC_BURN_IN_DESPAIR = "event:/pusheen/extra_content/music/lvl20/burn_in_despair";
-        private const string MUSIC_HIS_THEME_01 = "event:/pusheen/extra_content/music/lvl20/his_theme01";
-        private const string MUSIC_HIS_THEME_02 = "event:/pusheen/extra_content/music/lvl20/his_theme02";
-        private const string MUSIC_KIRBY_VS_ASRIEL = "event:/pusheen/extra_content/music/lvl20/angel";
+        private const string MUSIC_BURN_IN_DESPAIR = "event:/new_content/music/pusheen/lvl20/burn_in_despair";
+        private const string MUSIC_HIS_THEME_01 = "event:/new_content/music/pusheen/lvl20/his_theme01";
+        private const string MUSIC_HIS_THEME_02 = "event:/new_content/music/pusheen/lvl20/his_theme02";
+        private const string MUSIC_KIRBY_VS_ASRIEL = "event:/new_content/music/pusheen/lvl20/angel";
         
         // Lost soul tracking
         private Dictionary<string, bool> soulsSaved;
@@ -492,7 +492,7 @@ namespace Celeste
             level.DirectionalShake(Vector2.One, 0.5f);
             
             // AFTER REFUSAL - Kill player with overwhelming power
-            yield return Textbox.Say("CH20_ASRIEL_ZERO_RISE_KILL");
+            yield return Textbox.Say("MAGGYHELPER_CH20_ASRIEL_ZERO_RISE_KILL");
             
             // Create Undertale-style barrier - player cannot escape
             CreateBarrier();
@@ -613,7 +613,7 @@ namespace Celeste
         private IEnumerator StrugglePhase()
         {
             // Player struggles but nothing happens
-            yield return Textbox.Say("CH20_ASRIEL_ZERO_STRUGGLE_START");
+            yield return Textbox.Say("MAGGYHELPER_CH20_ASRIEL_ZERO_STRUGGLE_START");
             
             // Player tries to move but can't escape
             if (player != null)
@@ -625,22 +625,22 @@ namespace Celeste
             yield return 1f;
             
             // Player calls out for help - no answer
-            yield return Textbox.Say("CH20_ASRIEL_ZERO_CALL_FOR_HELP");
+            yield return Textbox.Say("MAGGYHELPER_CH20_ASRIEL_ZERO_CALL_FOR_HELP");
             
             // Attempt to call Madeline
-            yield return Textbox.Say("CH20_ASRIEL_ZERO_CALL_MADELINE");
+            yield return Textbox.Say("MAGGYHELPER_CH20_ASRIEL_ZERO_CALL_MADELINE");
             yield return 0.5f;
             
             // Attempt to call Badeline
-            yield return Textbox.Say("CH20_ASRIEL_ZERO_CALL_BADELINE");
+            yield return Textbox.Say("MAGGYHELPER_CH20_ASRIEL_ZERO_CALL_BADELINE");
             yield return 0.5f;
             
             // Attempt to call anyone
-            yield return Textbox.Say("CH20_ASRIEL_ZERO_CALL_ANYONE");
+            yield return Textbox.Say("MAGGYHELPER_CH20_ASRIEL_ZERO_CALL_ANYONE");
             yield return 1f;
             
             // Final desperate call into the void
-            yield return Textbox.Say("CH20_ASRIEL_ZERO_CALL_VOID");
+            yield return Textbox.Say("MAGGYHELPER_CH20_ASRIEL_ZERO_CALL_VOID");
             
             // Transition to void answer phase
             CurrentPhase = BossPhase.VoidAnswer;
@@ -657,7 +657,7 @@ namespace Celeste
             SpawnVoidEnergyEffects();
             
             // The void responds
-            yield return Textbox.Say("CH20_ASRIEL_ZERO_VOID_ANSWERS");
+            yield return Textbox.Say("MAGGYHELPER_CH20_ASRIEL_ZERO_VOID_ANSWERS");
             
             // Switch music to His Theme (hopeful version)
             Audio.SetMusic(MUSIC_KIRBY_VS_ASRIEL);
@@ -669,7 +669,7 @@ namespace Celeste
             }
             
             // Player receives guidance from Astral Birth Void
-            yield return Textbox.Say("CH20_ASRIEL_ZERO_VOID_GUIDANCE");
+            yield return Textbox.Say("MAGGYHELPER_CH20_ASRIEL_ZERO_VOID_GUIDANCE");
             
             // Spawn lost souls within Asriel's heart
             SpawnLostSouls();
@@ -695,7 +695,7 @@ namespace Celeste
         private IEnumerator LostSoulsPhase()
         {
             // Explain the mechanic
-            yield return Textbox.Say("CH20_ASRIEL_ZERO_LOST_SOULS_INTRO");
+            yield return Textbox.Say("MAGGYHELPER_CH20_ASRIEL_ZERO_LOST_SOULS_INTRO");
             
             // Process each lost soul salvation
             while (SoulsRescued < TOTAL_LOST_SOULS && CurrentPhase == BossPhase.LostSouls)
@@ -761,7 +761,7 @@ namespace Celeste
         public void OnSoulSaved(string soulName)
         {
             // Trigger soul-specific dialog
-            string dialogKey = $"CH20_ASRIEL_ZERO_SOUL_{soulName}";
+            string dialogKey = $"MAGGYHELPER_CH20_ASRIEL_ZERO_SOUL_{soulName}";
             Add(new Coroutine(PlaySoulSavedDialog(dialogKey, soulName)));
         }
 
@@ -805,15 +805,15 @@ namespace Celeste
             Audio.SetMusic(MUSIC_HIS_THEME_01);
             
             // Player realizes they can call out to Asriel directly
-            yield return Textbox.Say("CH20_ASRIEL_ZERO_CALL_AZZY");
+            yield return Textbox.Say("MAGGYHELPER_CH20_ASRIEL_ZERO_CALL_AZZY");
             
             // Asriel reacts - Els loses control momentarily
-            yield return Textbox.Say("CH20_ASRIEL_REMEMBER_A");
+            yield return Textbox.Say("MAGGYHELPER_CH20_ASRIEL_REMEMBER_A");
             
             // Visual glitch effect - Asriel fighting back
             yield return FlashbackVisualEffect();
             
-            yield return Textbox.Say("CH20_ASRIEL_REMEMBER_B");
+            yield return Textbox.Say("MAGGYHELPER_CH20_ASRIEL_REMEMBER_B");
             
             // Transition to memory recovery
             CurrentPhase = BossPhase.MemoryRecovery;
@@ -850,21 +850,21 @@ namespace Celeste
         private IEnumerator MemoryRecoveryPhase()
         {
             // Asriel's memories flood back
-            yield return Textbox.Say("CH20_ASRIEL_REMEMBER_C");
+            yield return Textbox.Say("MAGGYHELPER_CH20_ASRIEL_REMEMBER_C");
             
             yield return 0.5f;
             
-            yield return Textbox.Say("CH20_ASRIEL_REMEMBER_D");
+            yield return Textbox.Say("MAGGYHELPER_CH20_ASRIEL_REMEMBER_D");
             
             yield return 0.5f;
             
-            yield return Textbox.Say("CH20_ASRIEL_REMEMBER_E");
+            yield return Textbox.Say("MAGGYHELPER_CH20_ASRIEL_REMEMBER_E");
             
             // Els fights to maintain control
-            yield return Textbox.Say("CH20_ASRIEL_ZERO_ELS_CONTROL");
+            yield return Textbox.Say("MAGGYHELPER_CH20_ASRIEL_ZERO_ELS_CONTROL");
             
             // Asriel won't hold much longer
-            yield return Textbox.Say("CH20_ASRIEL_ZERO_LOSING_CONTROL");
+            yield return Textbox.Say("MAGGYHELPER_CH20_ASRIEL_ZERO_LOSING_CONTROL");
             
             // Transition to final beam
             CurrentPhase = BossPhase.FinalBeam;
@@ -878,7 +878,7 @@ namespace Celeste
             Audio.SetMusic(MUSIC_HIS_THEME_02);
             
             // Els forces one final attack
-            yield return Textbox.Say("CH20_ASRIEL_REMEMBER_FINAL");
+            yield return Textbox.Say("MAGGYHELPER_CH20_ASRIEL_REMEMBER_FINAL");
             
             // Charge final beam
             yield return FinalBeamChargeSequence();
@@ -887,7 +887,7 @@ namespace Celeste
             yield return FinalBeamAttack();
             
             // After the beam, Asriel breaks free
-            yield return Textbox.Say("CH20_ASRIEL_REMEMBER_F");
+            yield return Textbox.Say("MAGGYHELPER_CH20_ASRIEL_REMEMBER_F");
             
             // Transition to redemption
             CurrentPhase = BossPhase.Redemption;
@@ -957,7 +957,7 @@ namespace Celeste
         private IEnumerator RedemptionPhase()
         {
             // Asriel breaks free from Els
-            yield return Textbox.Say("CH20_ASRIEL_BOSS_END");
+            yield return Textbox.Say("MAGGYHELPER_CH20_ASRIEL_BOSS_END");
             
             // Remove barrier
             if (activeBarrier != null)
@@ -977,7 +977,7 @@ namespace Celeste
             }
             
             // Transition to Els reveal
-            yield return Textbox.Say("CH20_DOPPIA_ELICA_BOSS_START");
+            yield return Textbox.Say("MAGGYHELPER_CH20_DOPPIA_ELICA_BOSS_START");
             
             // Boss fight ends here - Els Doppia Elica takes over
             CurrentPhase = BossPhase.Defeated;
@@ -2057,13 +2057,13 @@ namespace Celeste
         private IEnumerator SaveSoulSequence()
         {
             // Play soul-specific dialog
-            yield return Textbox.Say($"CH20_ASRIEL_ZERO_SOUL_{SoulName}_LOST");
+            yield return Textbox.Say($"MAGGYHELPER_CH20_ASRIEL_ZERO_SOUL_{SoulName}_LOST");
             
             // Pause for effect
             yield return 0.5f;
             
             // Play redemption dialog
-            yield return Textbox.Say($"CH20_ASRIEL_ZERO_SOUL_{SoulName}_SAVED");
+            yield return Textbox.Say($"MAGGYHELPER_CH20_ASRIEL_ZERO_SOUL_{SoulName}_SAVED");
             
             // Mark as saved
             IsSaved = true;

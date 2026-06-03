@@ -22,7 +22,7 @@ namespace Celeste.Cutscenes
         private const string FLAG_DARK_MATTER_RETREATED = "ch11_dark_matter_retreated";
         private const string FLAG_WATERFALL_UNLOCKED = "ch11_waterfall_unlocked";
         
-        private const string DIALOG_KEY = "CH11_BOSS_OUTRO";
+        private const string DIALOG_KEY = "MAGGYHELPER_CH11_BOSS_OUTRO";
         private const string MUSIC_VICTORY = "event:/music/lvl_victory";
         
         // Audio events

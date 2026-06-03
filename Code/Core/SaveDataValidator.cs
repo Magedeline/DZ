@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Monocle;
 
-namespace Celeste.Mod.KIRBY_CELESTE
+namespace Celeste.Mod.MaggyHelper
 {
     /// <summary>
     /// Validates and auto-repairs KIRBY_CELESTE save data on load.
@@ -30,18 +30,18 @@ namespace Celeste.Mod.KIRBY_CELESTE
             _hasRunThisSession = true;
             _lastValidationLog.Clear();
 
-            Logger.Log(LogLevel.Info, "KIRBY_CELESTE/SaveValidator", "Starting save data validation...");
+            Logger.Log(LogLevel.Info, "MaggyHelper/SaveValidator", "Starting save data validation...");
 
-            if (global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModule.Instance == null)
+            if (global::Celeste.Mod.MaggyHelper.MaggyHelperModule.Instance == null)
             {
-                Logger.Log(LogLevel.Warn, "KIRBY_CELESTE/SaveValidator", "KIRBY_CELESTEModule not yet initialized; skipping validation");
+                Logger.Log(LogLevel.Warn, "MaggyHelper/SaveValidator", "MaggyHelperModule not yet initialized; skipping validation");
                 return;
             }
 
-            var saveData = global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModule.SaveData;
+            var saveData = global::Celeste.Mod.MaggyHelper.MaggyHelperModule.SaveData;
             if (saveData == null)
             {
-                Logger.Log(LogLevel.Warn, "KIRBY_CELESTE/SaveValidator", "No save data available to validate");
+                Logger.Log(LogLevel.Warn, "MaggyHelper/SaveValidator", "No save data available to validate");
                 return;
             }
 
@@ -54,12 +54,12 @@ namespace Celeste.Mod.KIRBY_CELESTE
             issuesFound += ValidateIntroFlags(saveData, ref fixesApplied);
             issuesFound += ValidateChapterUnlockConsistency(saveData, ref fixesApplied);
 
-            Logger.Log(LogLevel.Info, "KIRBY_CELESTE/SaveValidator",
+            Logger.Log(LogLevel.Info, "MaggyHelper/SaveValidator",
                 $"Validation complete. Issues found: {issuesFound}, Fixes applied: {fixesApplied}");
 
             foreach (var logEntry in _lastValidationLog)
             {
-                Logger.Log(LogLevel.Debug, "KIRBY_CELESTE/SaveValidator", logEntry);
+                Logger.Log(LogLevel.Debug, "MaggyHelper/SaveValidator", logEntry);
             }
         }
 
@@ -84,7 +84,7 @@ namespace Celeste.Mod.KIRBY_CELESTE
 
         #region Collection Validation
 
-        private static int ValidateCollections(global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModuleSaveData saveData, ref int fixesApplied)
+        private static int ValidateCollections(global::Celeste.Mod.MaggyHelper.MaggyHelperModuleSaveData saveData, ref int fixesApplied)
         {
             int issues = 0;
 
@@ -121,7 +121,7 @@ namespace Celeste.Mod.KIRBY_CELESTE
 
         #region Heart Gem Validation
 
-        private static int ValidateHeartGemTracking(global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModuleSaveData saveData, ref int fixesApplied)
+        private static int ValidateHeartGemTracking(global::Celeste.Mod.MaggyHelper.MaggyHelperModuleSaveData saveData, ref int fixesApplied)
         {
             int issues = 0;
 
@@ -154,7 +154,7 @@ namespace Celeste.Mod.KIRBY_CELESTE
 
         #region Achievement Validation
 
-        private static int ValidateAchievementTracking(global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModuleSaveData saveData, ref int fixesApplied)
+        private static int ValidateAchievementTracking(global::Celeste.Mod.MaggyHelper.MaggyHelperModuleSaveData saveData, ref int fixesApplied)
         {
             int issues = 0;
 
@@ -175,7 +175,7 @@ namespace Celeste.Mod.KIRBY_CELESTE
 
         #region Intro Flags Validation
 
-        private static int ValidateIntroFlags(global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModuleSaveData saveData, ref int fixesApplied)
+        private static int ValidateIntroFlags(global::Celeste.Mod.MaggyHelper.MaggyHelperModuleSaveData saveData, ref int fixesApplied)
         {
             int issues = 0;
 
@@ -195,7 +195,7 @@ namespace Celeste.Mod.KIRBY_CELESTE
 
         #region Chapter Unlock Consistency
 
-        private static int ValidateChapterUnlockConsistency(global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModuleSaveData saveData, ref int fixesApplied)
+        private static int ValidateChapterUnlockConsistency(global::Celeste.Mod.MaggyHelper.MaggyHelperModuleSaveData saveData, ref int fixesApplied)
         {
             int issues = 0;
 
@@ -253,7 +253,7 @@ namespace Celeste.Mod.KIRBY_CELESTE
 
         /// <summary>
         /// Registers Everest console commands for save data debugging.
-        /// Call from KIRBY_CELESTEModule.Load().
+        /// Call from MaggyHelperModule.Load().
         /// </summary>
         public static void RegisterConsoleCommands()
         {
@@ -273,14 +273,14 @@ namespace Celeste.Mod.KIRBY_CELESTE
                         {
                             ResetValidationState();
                             ValidateOnLoad();
-                            Logger.Log(LogLevel.Info, "KIRBY_CELESTE/SaveValidator", string.Join("\n", _lastValidationLog));
+                            Logger.Log(LogLevel.Info, "MaggyHelper/SaveValidator", string.Join("\n", _lastValidationLog));
                         })});
                     }
                 }
             }
             catch (Exception ex)
             {
-                Logger.Log(LogLevel.Warn, "KIRBY_CELESTE/SaveValidator", $"Could not register console commands: {ex.Message}");
+                Logger.Log(LogLevel.Warn, "MaggyHelper/SaveValidator", $"Could not register console commands: {ex.Message}");
             }
         }
 

@@ -21,7 +21,7 @@ namespace Celeste.NPCs
 
         public NPC_Theo(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            dialogKey = data.Attr("dialogKey", "CH0_THEO_A");
+            dialogKey = data.Attr("dialogKey", "MAGGYHELPER_CH0_THEO_A");
             flagName = data.Attr("flagName", "theo_met");
             enabledByDefault = data.Bool("enabledByDefault", true);
             
@@ -85,13 +85,13 @@ namespace Celeste.NPCs
             switch (currentConversation)
             {
                 case 0:
-                    yield return Textbox.Say("CH0_THEO_A");
+                    yield return Textbox.Say("MAGGYHELPER_CH0_THEO_A");
                     break;
                 case 1:
-                    yield return Textbox.Say("CH0_THEO_0_B");
+                    yield return Textbox.Say("MAGGYHELPER_CH0_THEO_0_B");
                     break;
                 case 2:
-                    yield return Textbox.Say("CH4_MAGOLOR_AND_THEO");
+                    yield return Textbox.Say("MAGGYHELPER_CH4_MAGOLOR_AND_THEO");
                     break;
                 default:
                     yield return Textbox.Say(dialogKey);

@@ -28,25 +28,25 @@ namespace Celeste.Cutscenes
             // Meta Knight appears
             level.Flash(Color.Blue, false);
             
-            yield return Textbox.Say("CH13_META_KNIGHT_ENCOUNTER");
+            yield return Textbox.Say("MAGGYHELPER_CH13_META_KNIGHT_ENCOUNTER");
 
             // Transformation to Metaminator Knight
             level.Shake(1.0f);
             level.Flash(Color.Red, false);
             
-            yield return Textbox.Say("CH13_METAMINATOR_KNIGHT_INTRO");
+            yield return Textbox.Say("MAGGYHELPER_CH13_METAMINATOR_KNIGHT_INTRO");
 
             // Battle sequence
             yield return 1f;
             level.Shake(1.5f);
             
-            yield return Textbox.Say("CH13_METAMINATOR_BATTLE_MID");
+            yield return Textbox.Say("MAGGYHELPER_CH13_METAMINATOR_BATTLE_MID");
 
             // Defeat and restoration
             level.Flash(Color.White, false);
             yield return 0.5f;
             
-            yield return Textbox.Say("CH13_METAMINATOR_DEFEATED");
+            yield return Textbox.Say("MAGGYHELPER_CH13_METAMINATOR_DEFEATED");
 
             EndCutscene(level);
         }

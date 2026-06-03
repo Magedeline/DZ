@@ -17,7 +17,7 @@ namespace Celeste
         public override IEnumerator Routine()
         {
             WaveFazePage01 waveFazePage01 = this;
-            Audio.SetAltMusic("event:/pusheen/extra_content/music/lvl19/dogsong");
+            Audio.SetAltMusic("event:/new_content/music/pusheen/lvl19/dogsong");
             yield return 1f;
             waveFazePage01.title = new AreaCompleteTitle(new Vector2(waveFazePage01.Width / 2f, (float) (waveFazePage01.Height / 2.0 - 100.0)), Dialog.Clean("WAVEFAZE_PAGE1_TITLE"), 2f, true);
             yield return 1f;

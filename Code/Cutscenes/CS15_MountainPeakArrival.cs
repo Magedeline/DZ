@@ -26,21 +26,21 @@ namespace Celeste.Cutscenes
         private IEnumerator CutsceneSequence(Level level)
         {
             // Arrival at the peak with floating castle
-            yield return Textbox.Say("CH15_MOUNTAIN_PEAK_ARRIVAL");
+            yield return Textbox.Say("MAGGYHELPER_CH15_MOUNTAIN_PEAK_ARRIVAL");
 
             // Chara's moment of recognition
             yield return 0.5f;
             
-            yield return Textbox.Say("CH15_CHARA_MOMENT");
+            yield return Textbox.Say("MAGGYHELPER_CH15_CHARA_MOMENT");
 
             // Bridge crossing with mystical effects
             Audio.Play("event:/game/general/strawberry_pulse");
             level.Flash(Color.Purple, false);
             
-            yield return Textbox.Say("CH15_BRIDGE_CROSSING");
+            yield return Textbox.Say("MAGGYHELPER_CH15_BRIDGE_CROSSING");
 
             // Castle entrance
-            yield return Textbox.Say("CH15_HOVERING_CASTLE_ENTRANCE");
+            yield return Textbox.Say("MAGGYHELPER_CH15_HOVERING_CASTLE_ENTRANCE");
 
             EndCutscene(level);
         }

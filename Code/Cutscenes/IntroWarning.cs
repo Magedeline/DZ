@@ -110,7 +110,7 @@ namespace Celeste.Cutscenes
             if (_shownThisSession)
                 return false;
 
-            var settings = global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModule.Settings;
+            var settings = global::Celeste.Mod.MaggyHelper.MaggyHelperModule.Settings;
             if (settings == null)
                 return false;
 
@@ -129,11 +129,11 @@ namespace Celeste.Cutscenes
         /// </summary>
         public static void MarkSeen()
         {
-            var settings = global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModule.Settings;
+            var settings = global::Celeste.Mod.MaggyHelper.MaggyHelperModule.Settings;
             if (settings != null)
             {
                 settings.HasSeenIntroWarning = true;
-                global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModule.Instance.SaveSettings();
+                global::Celeste.Mod.MaggyHelper.MaggyHelperModule.Instance.SaveSettings();
             }
         }
 

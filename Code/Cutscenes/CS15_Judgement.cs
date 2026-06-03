@@ -23,7 +23,7 @@ public class Cs15Judgement : CutsceneEntity
         player.StateMachine.State = Player.StDummy; // Dummy state
         yield return 0.5f;
 
-        yield return Textbox.Say("CH15_JUDGEMENT");
+        yield return Textbox.Say("MAGGYHELPER_CH15_JUDGEMENT");
 
         yield return 0.5f;
         EndCutscene(level);

@@ -1,4 +1,4 @@
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using Microsoft.Xna.Framework;
 using Monocle;
 
@@ -34,7 +34,7 @@ public class MaggyHelperUnlockEverything : CheatListener
         level.PauseLock = true;
         level.Frozen = true;
         level.Flash(Color.White);
-        Audio.Play("event:/pusheen/extra_content/game/general/cheat_activate", level.Camera.Position + new Vector2(160f, 90f));
+        Audio.Play("event:/new_content/game/pusheen/general/cheat_activate", level.Camera.Position + new Vector2(160f, 90f));
         new FadeWipe(level, wipeIn: false, delegate
         {
             UnlockEverything(level);
@@ -62,8 +62,8 @@ public class MaggyHelperUnlockEverything : CheatListener
 
     public void UnlockEverything(Level level)
     {
-        // Use the MaggyHelper module to unlock everything
-        global::Celeste.Mod.KIRBY_CELESTE.KIRBY_CELESTEModule.TriggerUnlockEverythingCheat();
+        // Use the KIRBY_CELESTE module to unlock everything
+        global::Celeste.Mod.MaggyHelper.MaggyHelperModule.TriggerUnlockEverythingCheat();
 
         // Also unlock vanilla content if in Celeste level set
         SaveData saveData = SaveData.Instance;

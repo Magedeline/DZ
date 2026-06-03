@@ -29,7 +29,7 @@ namespace Celeste.Cutscenes
             }
 
             // Show mirror dialog
-            yield return Textbox.Say("CH7_MADELINE_MIRROR");
+            yield return Textbox.Say("MAGGYHELPER_CH7_MADELINE_MIRROR");
 
             // Set the flag
             Level.Session.SetFlag(FLAG);

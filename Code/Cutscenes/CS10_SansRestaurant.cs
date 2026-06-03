@@ -26,22 +26,22 @@ namespace Celeste.Cutscenes
         private IEnumerator CutsceneSequence(Level level)
         {
             // Sans pranks and serves food
-            yield return Textbox.Say("CH12_SANS");
+            yield return Textbox.Say("MAGGYHELPER_CH12_SANS");
 
             // Food ordering sequence
             yield return 0.5f;
             Audio.Play("event:/game/general/touchswitch_any");
 
-            yield return Textbox.Say("CH12_ORDERUP");
+            yield return Textbox.Say("MAGGYHELPER_CH12_ORDERUP");
 
             // Bad food reaction effects
             level.Shake(0.3f);
             yield return 0.5f;
 
-            yield return Textbox.Say("CH12_ORDERUP_END");
+            yield return Textbox.Say("MAGGYHELPER_CH12_ORDERUP_END");
 
             // Madeline and Kirby private conversation
-            yield return Textbox.Say("CH12_MADELINE_AND_KIRBY");
+            yield return Textbox.Say("MAGGYHELPER_CH12_MADELINE_AND_KIRBY");
 
             EndCutscene(level);
         }

@@ -4,7 +4,7 @@ using System.Linq;
 using Celeste;
 using Monocle;
 
-namespace Celeste.Mod.KIRBY_CELESTE.ProceduralGeneration.MarkovChain;
+namespace Celeste.Mod.MaggyHelper.ProceduralGeneration.MarkovChain;
 
 /// <summary>
 /// Central manager for all Markov chains in the mod

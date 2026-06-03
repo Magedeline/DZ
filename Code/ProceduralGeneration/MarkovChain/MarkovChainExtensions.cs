@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Celeste;
 
-namespace Celeste.Mod.KIRBY_CELESTE.ProceduralGeneration.MarkovChain;
+namespace Celeste.Mod.MaggyHelper.ProceduralGeneration.MarkovChain;
 
 /// <summary>
 /// Extension methods and utilities for Markov chains

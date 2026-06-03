@@ -57,7 +57,7 @@ namespace Celeste.Cutscenes
             yield return 0.3f;
 
             // Play the dialogue with two action triggers
-            yield return Textbox.Say("CH20_FAKE_MADELINE_AND_BADELINE", new Func<IEnumerator>[]
+            yield return Textbox.Say("MAGGYHELPER_CH20_FAKE_MADELINE_AND_BADELINE", new Func<IEnumerator>[]
             {
                 LookCloser,   // trigger 0 Ã¢â‚¬â€œ kirby look closer
                 ApproachThem  // trigger 1 Ã¢â‚¬â€œ approach them
@@ -66,7 +66,7 @@ namespace Celeste.Cutscenes
             // Ã¢â€â‚¬Ã¢â€â‚¬ Els' reveal: flash and screen shake before the "final act" Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
             yield return 0.2f;
 
-            Audio.Play("event:/pusheen/extra_content/game/19_spaces/glitch_long",
+            Audio.Play("event:/new_content/game/pusheen/19_spaces/glitch_long",
                        player.Position);
 
             level.Shake(0.8f);

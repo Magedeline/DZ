@@ -26,18 +26,18 @@ public class CS_FinalRemixBerryCutscene : CutsceneEntity
 {
     #region Constants
 
-    private const string GOLDEN_DIALOG_KEY = "CH19_21_GOLDEN_BERRY";
-    private const string PINK_PLAT_DIALOG_KEY = "CH19_21_PINK_PLATINUM_BERRY";
+    private const string GOLDEN_DIALOG_KEY = "MAGGYHELPER_CH19_21_GOLDEN_BERRY";
+    private const string PINK_PLAT_DIALOG_KEY = "MAGGYHELPER_CH19_21_PINK_PLATINUM_BERRY";
     private const string FLAG_GOLDEN_CUTSCENE_DONE = "final_remix_golden_berry_cutscene";
     private const string FLAG_PINK_PLAT_CUTSCENE_DONE = "final_remix_pink_plat_berry_cutscene";
 
     // SFX Events
-    private const string SFX_GOLDEN_GLOW = "event:/pusheen/extra_content/game/19_spaces/golden_glow";
-    private const string SFX_HAND_GRAB = "event:/pusheen/extra_content/char/asriel/emotional_reunion";
+    private const string SFX_GOLDEN_GLOW = "event:/new_content/game/pusheen/19_spaces/golden_glow";
+    private const string SFX_HAND_GRAB = "event:/new_content/char/pusheen/asriel/emotional_reunion";
     private const string SFX_GRANNY_STEPS = "event:/new_content/char/madeline/screenentry_gran_landing";
-    private const string SFX_TEARS = "event:/pusheen/extra_content/char/asriel/fade_to_flower";
+    private const string SFX_TEARS = "event:/new_content/char/pusheen/asriel/fade_to_flower";
     private const string SFX_HEART_GEM_APPEAR = "event:/game/general/heart_gem_appear";
-    private const string SFX_HEART_GEM_PULSE = "event:/pusheen/extra_content/game/19_spaces/golden_glow";
+    private const string SFX_HEART_GEM_PULSE = "event:/new_content/game/pusheen/19_spaces/golden_glow";
 
     #endregion
 

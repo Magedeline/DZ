@@ -60,7 +60,7 @@ namespace Celeste.NPCs
             yield return player.DummyWalkToExact((int)X - 16);
             yield return 0.5f;
             yield return Level.ZoomTo(new Vector2(200f, 110f), 2f, 0.5f);
-            yield return Textbox.Say("CH18_Toriel_Outside", MoveRight, ExitRight);
+            yield return Textbox.Say("MAGGYHELPER_CH18_Toriel_Outside", MoveRight, ExitRight);
             yield return Level.ZoomBack(0.5f);
             Sprite.Scale.X = 1f;
             if (!leaving)

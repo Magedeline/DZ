@@ -23,7 +23,7 @@ public class Cs04Escape : CutsceneEntity
         player.StateMachine.State = Player.StDummy; // Dummy state
         yield return 0.5f;
 
-        yield return Textbox.Say("CH4_ESCAPE");
+        yield return Textbox.Say("MAGGYHELPER_CH4_ESCAPE");
 
         yield return 0.5f;
         EndCutscene(level);

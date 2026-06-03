@@ -39,33 +39,33 @@ namespace Celeste.Cutscenes
             switch (cutscenePhase)
             {
                 case "front_desk":
-                    yield return Textbox.Say("CH5_OSHIRO_FRONT_DESK");
+                    yield return Textbox.Say("MAGGYHELPER_CH5_OSHIRO_FRONT_DESK");
                     break;
                     
                 case "hallway_a":
-                    yield return Textbox.Say("CH5_OSHIRO_HALLWAY_A");
+                    yield return Textbox.Say("MAGGYHELPER_CH5_OSHIRO_HALLWAY_A");
                     break;
                     
                 case "hallway_b":
-                    yield return Textbox.Say("CH5_OSHIRO_HALLWAY_B");
+                    yield return Textbox.Say("MAGGYHELPER_CH5_OSHIRO_HALLWAY_B");
                     break;
                     
                 case "clutter":
-                    yield return Textbox.Say("CH5_OSHIRO_CLUTTER0");
+                    yield return Textbox.Say("MAGGYHELPER_CH5_OSHIRO_CLUTTER0");
                     break;
                     
                 case "guestbook":
-                    yield return Textbox.Say("CH5_GUESTBOOK");
+                    yield return Textbox.Say("MAGGYHELPER_CH5_GUESTBOOK");
                     break;
                     
                 case "memo":
-                    yield return Textbox.Say("CH5_MEMO_OPENING");
+                    yield return Textbox.Say("MAGGYHELPER_CH5_MEMO_OPENING");
                     yield return 0.5f;
-                    yield return Textbox.Say("CH5_MEMO");
+                    yield return Textbox.Say("MAGGYHELPER_CH5_MEMO");
                     break;
                     
                 default:
-                    yield return Textbox.Say("CH5_OSHIRO_FRONT_DESK");
+                    yield return Textbox.Say("MAGGYHELPER_CH5_OSHIRO_FRONT_DESK");
                     break;
             }
 

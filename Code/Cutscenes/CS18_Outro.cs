@@ -55,7 +55,7 @@ namespace Celeste.Cutscenes
             yield return 1f;
 
             // Main dialog with triggers
-            yield return Textbox.Say("CH18_OUTRO", 
+            yield return Textbox.Say("MAGGYHELPER_CH18_OUTRO", 
                 madelineWalkRight,     // trigger 0 - madeline walk to right 4 step
                 badelineAppear,        // trigger 1 - badeline appear attach to madeline
                 cellPhoneRumble,       // trigger 2 - cellPhoneRumble
@@ -135,7 +135,7 @@ namespace Celeste.Cutscenes
             // Play phone rumble sound with "end" parameter at 1f
             try
             {
-                Audio.Play("event:/pusheen/char/madeline/cell_phone_ringing", player.Position, "end", 1f);
+                Audio.Play("event:/char/pusheen/madeline/cell_phone_ringing", player.Position, "end", 1f);
             }
             catch (Exception ex)
             {
@@ -175,7 +175,7 @@ namespace Celeste.Cutscenes
             // Play locking sound
             try
             {
-                Audio.Play("event:/pusheen/extra_content/game/19_spaces/locked_door_appear_1", player.Position);
+                Audio.Play("event:/new_content/game/pusheen/19_spaces/locked_door_appear_1", player.Position);
             }
             catch (Exception ex)
             {
@@ -268,7 +268,7 @@ namespace Celeste.Cutscenes
                 // Play glitch sound with "crash_pitch" parameter
                 try
                 {
-                    Audio.Play("event:/pusheen/game/16_myworld/destroyed_c", player.Position, "crash_pitch", 1f);
+                    Audio.Play("event:/game/pusheen/16_myworld/destroyed_c", player.Position, "crash_pitch", 1f);
                 }
                 catch (Exception ex)
                 {
@@ -301,7 +301,7 @@ namespace Celeste.Cutscenes
             }
 
             // Queue Chapter 19 unlock for next launch (restart-gated progression)
-            var saveData = KIRBY_CELESTEModule.SaveData;
+            var saveData = MaggyHelperModule.SaveData;
             if (saveData != null)
             {
                 saveData.PendingUnlockChapter19OnRestart = true;

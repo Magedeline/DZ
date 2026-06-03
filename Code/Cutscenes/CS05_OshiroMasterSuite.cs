@@ -58,8 +58,8 @@ public class CS05_OshiroMasterSuite : CutsceneEntity
         badeline = new BadelineDummy(player.Position + new Vector2(-24f, -16f));
         Scene.Add(badeline);
 
-        Audio.SetMusic("event:/pusheen/music/lvl5/oshiro_theme");
-        yield return Textbox.Say("CH5_OSHIRO_SUITE", BadelineLookAround, RalseiAppear, CharaAppearInMirror, CharaBreakMirror, PlayerStepCloser, EveryoneJumpBack);
+        Audio.SetMusic("event:/music/pusheen/lvl5/oshiro_theme");
+        yield return Textbox.Say("MAGGYHELPER_CH5_OSHIRO_SUITE", BadelineLookAround, RalseiAppear, CharaAppearInMirror, CharaBreakMirror, PlayerStepCloser, EveryoneJumpBack);
 
         // After dialogue: Chara breaks ceiling and exits
         yield return SceneAs<Level>().ZoomBack(0.5f);
@@ -123,7 +123,7 @@ public class CS05_OshiroMasterSuite : CutsceneEntity
         {
             mirror.EvilAppear();
             SetEvilMusic();
-            Audio.Play("event:/pusheen/game/05_restore/suite_chara_intro", mirror.Position);
+            Audio.Play("event:/game/pusheen/05_restore/suite_chara_intro", mirror.Position);
             Vector2 from = Level.ZoomFocusPoint;
             Vector2 to = new Vector2(216f, 110f);
             for (float p = 0f; p < 1f; p += Engine.DeltaTime * 2f)
@@ -140,7 +140,7 @@ public class CS05_OshiroMasterSuite : CutsceneEntity
     {
         if (mirror != null)
         {
-            Audio.Play("event:/pusheen/game/05_restore/suite_bad_mirrorbreak", mirror.Position);
+            Audio.Play("event:/game/pusheen/05_restore/suite_bad_mirrorbreak", mirror.Position);
             yield return mirror.SmashRoutine();
             yield return 1.2f;
             if (oshiro != null && oshiro.Sprite != null)
@@ -174,7 +174,7 @@ public class CS05_OshiroMasterSuite : CutsceneEntity
     {
         if (Level.Session.Area.Mode == AreaMode.Normal)
         {
-            Level.Session.Audio.Music.Event = "event:/pusheen/music/lvl2/evil_chara";
+            Level.Session.Audio.Music.Event = "event:/music/pusheen/lvl2/evil_chara";
             Level.Session.Audio.Apply(false);
         }
     }

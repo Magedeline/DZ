@@ -248,7 +248,7 @@ namespace Celeste.Cutscenes
             yield return 1.0f;
 
             // Optional dialogue
-            yield return Textbox.Say("CH12_TOWER_FOUNTAIN_CREATED");
+            yield return Textbox.Say("MAGGYHELPER_CH12_TOWER_FOUNTAIN_CREATED");
 
             yield return 0.5f;
         }

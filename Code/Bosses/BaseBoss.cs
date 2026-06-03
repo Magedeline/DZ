@@ -44,7 +44,7 @@ namespace Celeste.Entities.Bosses
         
         public BaseBoss(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
-            maxHealth = data.Int("health", 10) * KIRBY_CELESTEModule.Settings.BossDifficultyMultiplier;
+            maxHealth = data.Int("health", 10) * MaggyHelperModule.Settings.BossDifficultyMultiplier;
             currentHealth = maxHealth;
             attackCooldown = data.Float("attackCooldown", 2f);
             bossMusic = data.Attr("bossMusic", "event:/music/lvl9/main");
@@ -115,11 +115,11 @@ namespace Celeste.Entities.Bosses
         protected virtual void StartFight()
         {
             fightStarted = true;
-            KIRBY_CELESTEModule.Session.BossFightActive = true;
-            KIRBY_CELESTEModule.Session.CurrentBossName = GetBossName();
+            MaggyHelperModule.Session.BossFightActive = true;
+            MaggyHelperModule.Session.CurrentBossName = GetBossName();
             
             // Change music
-            if (KIRBY_CELESTEModule.Settings.EnableBossMusic && !string.IsNullOrEmpty(bossMusic))
+            if (MaggyHelperModule.Settings.EnableBossMusic && !string.IsNullOrEmpty(bossMusic))
             {
                 normalMusic = Audio.CurrentMusic;
                 Audio.SetMusic(bossMusic);
@@ -184,9 +184,9 @@ namespace Celeste.Entities.Bosses
             currentState = BossState.Defeated;
             
             // Update session and save data
-            KIRBY_CELESTEModule.Session.BossFightActive = false;
-            KIRBY_CELESTEModule.Session.BossesDefeated++;
-            KIRBY_CELESTEModule.SaveData?.RecordBossDefeat(GetBossName());
+            MaggyHelperModule.Session.BossFightActive = false;
+            MaggyHelperModule.Session.BossesDefeated++;
+            MaggyHelperModule.SaveData?.RecordBossDefeat(GetBossName());
             
             // Restore music
             if (!string.IsNullOrEmpty(normalMusic))

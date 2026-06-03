@@ -9,7 +9,7 @@ payphone.placements = {
     {
         name = "payphone",
         data = {
-            dialogId = "CH2_DREAM_PHONECALL_TRAP",
+            dialogId = "MAGGYHELPER_CH2_DREAM_PHONECALL_TRAP",
             flagToSet = "",
             onlyOnce = true
         }

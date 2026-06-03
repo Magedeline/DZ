@@ -11,7 +11,7 @@ namespace Celeste.Entities;
 [HotReloadable]
 public class TrueFinaleVignette : Scene
 {
-    private const string VignetteMusicEvent = "event:/pusheen/extra_content/music/lvl21/climb";
+    private const string VignetteMusicEvent = "event:/new_content/music/pusheen/lvl21/climb";
 
     private Session session;
     private HiresSnow snow;

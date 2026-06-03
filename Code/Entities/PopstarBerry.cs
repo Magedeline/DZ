@@ -28,7 +28,7 @@ namespace Celeste.Entities
         public int Order { get; private set; } = -1;
 
         // Secondary audio event paths per mode
-        private const string AudioElaborate  = "event:/pusheen/game/general/strawberry_get";
+        private const string AudioElaborate  = "event:/game/pusheen/general/strawberry_get";
         private const string AudioOriginalFx = "event:/game/general/strawberry_blue_touch";
 
         public PopstarBerry(EntityData data, Vector2 offset, EntityID id)
@@ -143,7 +143,7 @@ namespace Celeste.Entities
             Collidable = false;
 
             // Primary collect sound (always)
-            Audio.Play("event:/pusheen/game/general/strawberry_get", Position, "colour", 5f);
+            Audio.Play("event:/game/pusheen/general/strawberry_get", Position, "colour", 5f);
 
             // Secondary audio event driven by collectSound mode
             switch (collectSound)

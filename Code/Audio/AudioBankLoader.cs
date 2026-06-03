@@ -16,7 +16,7 @@ namespace Celeste.Mod.MaggyHelper.Audio
     ///   1. Open your FMOD Studio project
     ///   2. Edit → Preferences → Build → enable "Build strings bank"
     ///   3. File → Build All  (or Ctrl+B)
-    ///   4. Copy the output files to this mod's Audio/ folder:
+    ///   4. Copy the output files to this mod's FMOD/Desktop/ folder:
     ///        desolozantas.strings.bank   ← REQUIRED, contains event:/ path table
     ///        desolozantas.bank
     ///        desolozantas_sfx.bank
@@ -143,7 +143,7 @@ namespace Celeste.Mod.MaggyHelper.Audio
                 modDir = KIRBY_CELESTEModule.Instance?.Metadata?.PathDirectory;
             
             if (string.IsNullOrEmpty(modDir)) return null;
-            string dir = Path.Combine(modDir, "Audio");
+            string dir = Path.Combine(modDir, "FMOD", "Desktop");
             return Directory.Exists(dir) ? dir : null;
         }
 

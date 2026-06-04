@@ -82,8 +82,21 @@ namespace Celeste.Entities
             Collider = new Hitbox(12f, 12f, -6f, -12f);
 
             // Setup sprite from Sprites.xml bank
-            Add(Sprite = GFX.SpriteBank.Create("maggy_flowey"));
-            Sprite.Play("idle");
+            try
+            {
+                Add(Sprite = GFX.SpriteBank.Create("maggy_flowey"));
+                if (Sprite.Has("idle"))
+                    Sprite.Play("idle");
+                else if (Sprite.CurrentAnimationID != null)
+                    ; // Keep current animation
+                else
+                    Logger.Log(LogLevel.Warn, "FloweyNPC", "Sprite bank 'maggy_flowey' loaded but 'idle' animation not found");
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(LogLevel.Warn, "FloweyNPC", $"Failed to load sprite bank 'maggy_flowey': {ex.Message}");
+                Add(Sprite = new Sprite(null));
+            }
 
             // Talk component for player interaction
             Add(Talker = new TalkComponent(
@@ -184,7 +197,8 @@ namespace Celeste.Entities
             Y = endY;
 
             yield return 0.2f;
-            Sprite.Play("idle");
+            if (Sprite != null && Sprite.Has("idle"))
+                Sprite.Play("idle");
             Talker.Enabled = true;
             hasEmerged = true;
         }
@@ -266,7 +280,8 @@ namespace Celeste.Entities
             }
 
             yield return duration;
-            Sprite.Play("idle");
+            if (Sprite != null && Sprite.Has("idle"))
+                Sprite.Play("idle");
         }
 
         /// <summary>

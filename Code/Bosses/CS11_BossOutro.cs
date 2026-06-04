@@ -23,7 +23,7 @@ namespace Celeste.Cutscenes
         private const string FLAG_WATERFALL_UNLOCKED = "ch11_waterfall_unlocked";
         
         private const string DIALOG_KEY = "MAGGYHELPER_CH11_BOSS_OUTRO";
-        private const string MUSIC_VICTORY = "event:/music/lvl_victory";
+        private const string MUSIC_VICTORY = "";
         
         // Audio events
         private const string SFX_MARLET_FREED = "event:/new_content/char/badeline/vanish";

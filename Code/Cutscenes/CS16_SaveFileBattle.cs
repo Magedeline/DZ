@@ -410,7 +410,7 @@ namespace Celeste.Cutscenes
             IngesteLogger.Info("SIX HUMAN SOULS APPEAR");
             
             // Dramatic buildup
-            Audio.SetMusic("event:/music/lvl0/intro");
+            try { Audio.SetMusic(""); } catch { }
             level.Flash(Color.White, false);
             yield return 1f;
             
@@ -500,7 +500,7 @@ namespace Celeste.Cutscenes
             yield return 1.5f;
             
             // Reality begins to undo
-            Audio.SetMusic("event:/music/lvl0/intro");
+            try { Audio.SetMusic(""); } catch { }
             Glitch.Value = 0.3f;
             
             for (int i = 0; i < 10; i++)
@@ -521,7 +521,7 @@ namespace Celeste.Cutscenes
             // Everything calms down
             Glitch.Value = 0f;
             level.Lighting.Alpha = 0f;
-            Audio.SetMusic("event:/music/lvl1/main");
+            try { Audio.SetMusic("event:/music/1-intro/main"); } catch { }
             
             yield return 2f;
         }

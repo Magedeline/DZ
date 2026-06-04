@@ -47,7 +47,7 @@ namespace Celeste.Entities.Bosses
             maxHealth = data.Int("health", 10) * MaggyHelperModule.Settings.BossDifficultyMultiplier;
             currentHealth = maxHealth;
             attackCooldown = data.Float("attackCooldown", 2f);
-            bossMusic = data.Attr("bossMusic", "event:/music/lvl9/main");
+            bossMusic = data.Attr("bossMusic", "event:/music/9-summit/main");
             
             Initialize();
         }

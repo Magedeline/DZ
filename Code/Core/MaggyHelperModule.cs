@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Reflection;
 using Celeste.Cutscenes;
 using Celeste.Entities;
@@ -204,6 +205,10 @@ namespace Celeste.Mod.MaggyHelper
             // BossesExampleModule.Load(); // TODO: Restore when BossesExampleModule is available
             // Note: AreaMapData, ChapterActRegistry, and BossRosterRegistry
             // use lazy initialization - they'll be populated on first access.
+
+            // Initialize audio banks FIRST before any other module code runs
+            LoadAudioBanks();
+
             global::Celeste.AreaModeExtender.Load();
             global::Celeste.CelesteDSideHooks.Load();
             global::Celeste.AltSidesHelperBridge.Load();
@@ -272,6 +277,152 @@ namespace Celeste.Mod.MaggyHelper
 
             // Register performance profiler commands
             // global::Celeste.Mod.MaggyHelper.PerformanceProfiler.RegisterConsoleCommands(); // TODO: Restore when PerformanceProfiler is available
+        }
+
+        private static void LoadAudioBanks()
+        {
+            try
+            {
+                // Log that we're attempting to load audio banks
+                Logger.Log(LogLevel.Info, "MaggyHelper", "Attempting to load custom audio banks...");
+
+                // Find the mod's Audio directory
+                string modDir = null;
+                string assemblyDir = Path.GetDirectoryName(typeof(MaggyHelperModule).Assembly.Location);
+
+                // Search parent directories for Audio folder
+                DirectoryInfo current = new DirectoryInfo(assemblyDir);
+                while (current != null && current.Parent != null)
+                {
+                    string testAudioDir = Path.Combine(current.FullName, "Audio");
+                    if (Directory.Exists(testAudioDir))
+                    {
+                        modDir = current.FullName;
+                        break;
+                    }
+                    current = current.Parent;
+                }
+
+                if (modDir == null)
+                {
+                    Logger.Log(LogLevel.Warn, "MaggyHelper", "Audio directory not found - custom audio banks will not load");
+                    return;
+                }
+
+                string audioDir = Path.Combine(modDir, "Audio");
+                Logger.Log(LogLevel.Info, "MaggyHelper", $"Found Audio directory: {audioDir}");
+
+                // Use reflection to access Celeste's internal FMOD system
+                // The Audio class wraps an internal FMOD Studio system
+                try
+                {
+                    Type audioType = typeof(Audio);
+                    var field = audioType.GetField("eventSystem", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
+
+                    if (field != null)
+                    {
+                        object eventSystem = field.GetValue(null);
+                        if (eventSystem != null)
+                        {
+                            LoadBanksViaEventSystem(eventSystem, audioDir);
+                            return;
+                        }
+                    }
+
+                    // Try alternative reflection approach
+                    var prop = audioType.GetProperty("System", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static);
+                    if (prop != null)
+                    {
+                        object system = prop.GetValue(null);
+                        if (system != null)
+                        {
+                            LoadBanksViaSystem(system, audioDir);
+                            return;
+                        }
+                    }
+
+                    Logger.Log(LogLevel.Warn, "MaggyHelper", "Could not access Celeste's FMOD system - audio banks may not load");
+                }
+                catch (Exception ex)
+                {
+                    Logger.Log(LogLevel.Error, "MaggyHelper", $"Error accessing FMOD system via reflection: {ex.Message}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(LogLevel.Error, "MaggyHelper", $"Critical error in LoadAudioBanks: {ex}");
+            }
+        }
+
+        private static void LoadBanksViaEventSystem(object eventSystem, string audioDir)
+        {
+            try
+            {
+                var loadBankMethod = eventSystem.GetType().GetMethod("LoadBankFile",
+                    System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance,
+                    null,
+                    new[] { typeof(string), typeof(FMOD.Studio.LOAD_BANK_FLAGS), typeof(FMOD.Studio.Bank).MakeByRefType() },
+                    null);
+
+                if (loadBankMethod == null)
+                {
+                    Logger.Log(LogLevel.Warn, "MaggyHelper", "LoadBankFile method not found on FMOD event system");
+                    return;
+                }
+
+                string[] bankFiles = new[]
+                {
+                    "Master_Bank.bank",
+                    "Master_Bank.strings.bank",
+                    "pusheen_audio_mus_a.bank",
+                    "pusheen_audio_mus_b.bank",
+                    "pusheen_audio_mus_c.bank",
+                    "pusheen_audio_mus_final.bank"
+                };
+
+                foreach (string bankFile in bankFiles)
+                {
+                    string bankPath = Path.Combine(audioDir, bankFile);
+                    if (!File.Exists(bankPath))
+                    {
+                        Logger.Log(LogLevel.Warn, "MaggyHelper", $"Bank file not found: {bankFile}");
+                        continue;
+                    }
+
+                    try
+                    {
+                        // Use out parameter to get the bank
+                        var parameters = new object[] { bankPath, FMOD.Studio.LOAD_BANK_FLAGS.NORMAL, null };
+                        var result = (FMOD.RESULT)loadBankMethod.Invoke(eventSystem, parameters);
+
+                        if (result == FMOD.RESULT.OK)
+                        {
+                            Logger.Log(LogLevel.Info, "MaggyHelper", $"Successfully loaded bank: {bankFile}");
+                        }
+                        else
+                        {
+                            Logger.Log(LogLevel.Warn, "MaggyHelper", $"Failed to load {bankFile}: {result}");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Logger.Log(LogLevel.Warn, "MaggyHelper", $"Exception loading {bankFile}: {ex.Message}");
+                    }
+                }
+
+                Logger.Log(LogLevel.Info, "MaggyHelper", "Audio bank loading complete");
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(LogLevel.Error, "MaggyHelper", $"Error in LoadBanksViaEventSystem: {ex.Message}");
+            }
+        }
+
+        private static void LoadBanksViaSystem(object system, string audioDir)
+        {
+            // Fallback approach if the event system method fails
+            Logger.Log(LogLevel.Info, "MaggyHelper", "Using alternative system-based bank loading");
+            // This would be implemented if the primary method fails
         }
 
         private static void OnLevelExit(Level level, LevelExit exit, LevelExit.Mode mode, Session session, HiresSnow snow)

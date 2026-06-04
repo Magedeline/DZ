@@ -51,7 +51,6 @@
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
         <None Include="$(CelesteAssemblyPath)" Link="Celeste.dll" Condition="Exists('$(CelesteAssemblyPath)')" />
-        <None Include="..\bin\MaggyHelper.dll" Link="MaggyHelper.dll" />
         <PackageReference Include="CelesteMod.Publicizer" Version="1.1.2" CelesteAssembly="$(CelesteAssemblyPath)" />
         <Reference Include="$(CelestePrefix)\MMHOOK_Celeste.dll" Private="false" />
         <Reference Include="$(CelestePrefix)\FNA.dll" Private="false" />

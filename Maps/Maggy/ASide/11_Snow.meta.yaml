@@ -1,4 +1,4 @@
-Icon: areas/Maggy/snow
+﻿Icon: areas/Maggy/snow
 SID: Maggy/DESOLO_ZANTAS/11-Snow
 Interlude: false
 TitleBaseColor: 76c8f9
@@ -16,7 +16,7 @@ CassetteSong: event:/music/pusheen/Cassette/11_frozen
 
 Modes:
   - AudioState:
-      Music: event:/music/pusheen/lvl11/main
+      Music: guid://{6c9a972b-9e7b-4e08-9c6e-fa85836bbcb4}
       Ambience: event:/env/pusheen/11_snow_daytime
     Inventory: Default
     HeartIsEnd: false
@@ -64,3 +64,4 @@ Modes:
         Target: [0.300, 6.300, 9.000]
     Cursor: [0.300, 6.500, 9.000]
     State: 0
+

@@ -1,4 +1,4 @@
-Icon: areas/Maggy/theend
+﻿Icon: areas/Maggy/theend
 SID: Maggy/DESOLO_ZANTAS/20-TheEnd
 Interlude: false
 TitleBaseColor: ffd819
@@ -49,7 +49,7 @@ Modes:
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
-    BackgroundMusic: event:/music/pusheen/menu/level_select
+    BackgroundMusic: guid://{8c44006d-1541-45d8-9ddc-284ddc59f861}
     BackgroundAmbience: event:/new_content/env/pusheen/gen_last_push
     BackgroundMusicParams:
         moon_and_blackhole: 1
@@ -69,3 +69,4 @@ Modes:
     State: 3
     Rotate: true
     ShowCore: false
+

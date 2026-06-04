@@ -1,4 +1,4 @@
-Icon: areas/Maggy/ruins
+﻿Icon: areas/Maggy/ruins
 SID: Maggy/DESOLO_ZANTAS/10-Ruins
 Interlude: false
 TitleBaseColor: 8b6914
@@ -16,7 +16,7 @@ CassetteSong: event:/music/pusheen/Cassette/10_ruins
 
 Modes:
   - AudioState:
-      Music: event:/music/pusheen/lvl10/main
+      Music: guid://{ae72dd94-9d20-4850-a58e-cbad870ddf8e}
       Ambience: event:/env/pusheen/10_ruins
     Inventory: Default
     HeartIsEnd: false
@@ -64,3 +64,4 @@ Modes:
         Target: [-0.500, 5.300, 8.500]
     Cursor: [-0.500, 5.500, 8.500]
     State: 0
+

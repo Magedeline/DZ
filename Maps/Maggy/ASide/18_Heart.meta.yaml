@@ -1,4 +1,4 @@
-Icon: areas/Maggy/heart
+﻿Icon: areas/Maggy/heart
 SID: Maggy/DESOLO_ZANTAS/18-Heart
 Interlude: false
 TitleBaseColor: 8b0045
@@ -16,7 +16,7 @@ CassetteSong: event:/music/pusheen/Cassette/18_core
 
 Modes:
   - AudioState:
-      Music: event:/music/pusheen/lvl18/main
+      Music: guid://{8f271f09-d502-49b4-b253-374bf734b55d}
       Ambience: event:/env/pusheen/18_main
     Inventory: Default
     HeartIsEnd: false
@@ -62,3 +62,4 @@ Modes:
         Target: [0.000, 11.500, 19.000]
     Cursor: [0.000, 12.000, 19.000]
     State: 1
+

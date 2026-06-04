@@ -1,4 +1,4 @@
-Icon: areas/Maggy/water
+﻿Icon: areas/Maggy/water
 SID: Maggy/DESOLO_ZANTAS/12-Water
 Interlude: false
 TitleBaseColor: 1a8b9e
@@ -16,7 +16,7 @@ CassetteSong: event:/music/pusheen/Cassette/12_depth
 
 Modes:
   - AudioState:
-      Music: event:/music/pusheen/lvl12/main
+      Music: guid://{09f67fdf-a0fa-4999-9775-08edbd93c3bc}
       Ambience: event:/env/pusheen/12_waterfall
     Inventory: Default
     HeartIsEnd: false
@@ -64,3 +64,4 @@ Modes:
         Target: [-0.300, 7.300, 9.500]
     Cursor: [-0.300, 7.500, 9.500]
     State: 0
+

@@ -84,7 +84,8 @@ namespace Celeste.Entities
             // Setup sprite from Sprites.xml bank
             try
             {
-                Add(Sprite = GFX.SpriteBank.Create("maggy_flowey"));
+                Sprite = GFX.SpriteBank.Create("maggy_flowey");
+                Add(Sprite);
                 if (Sprite.Has("idle"))
                     Sprite.Play("idle");
                 else if (Sprite.CurrentAnimationID != null)
@@ -95,7 +96,7 @@ namespace Celeste.Entities
             catch (Exception ex)
             {
                 Logger.Log(LogLevel.Warn, "FloweyNPC", $"Failed to load sprite bank 'maggy_flowey': {ex.Message}");
-                Add(Sprite = new Sprite(null));
+                Sprite = null;
             }
 
             // Talk component for player interaction

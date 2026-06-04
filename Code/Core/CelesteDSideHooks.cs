@@ -35,8 +35,8 @@ public static class CelesteDSideHooks
         On.Celeste.Level.LoadLevel += OnLevelLoadLevel;
         On.Celeste.Level.End += OnLevelEnd;
 
-        // Save data hooks for D-Side stats persistence
-        On.Celeste.SaveData.BeforeInitialize += OnSaveDataBeforeInitialize;
+        // Save data hooks for D-Side stats persistence (commented out - not needed for core functionality)
+        // On.Celeste.SaveData.BeforeInitialize += OnSaveDataBeforeInitialize;
 
         InstallCrystalHeartHook();
 
@@ -56,7 +56,7 @@ public static class CelesteDSideHooks
         On.Celeste.OuiChapterPanel.Leave -= OnChapterPanelLeave;
         On.Celeste.Level.LoadLevel -= OnLevelLoadLevel;
         On.Celeste.Level.End -= OnLevelEnd;
-        On.Celeste.SaveData.BeforeInitialize -= OnSaveDataBeforeInitialize;
+        // On.Celeste.SaveData.BeforeInitialize -= OnSaveDataBeforeInitialize;
 
         _crystalHeartOnCollectHook?.Dispose();
         _crystalHeartOnCollectHook = null;
@@ -181,13 +181,13 @@ public static class CelesteDSideHooks
         }
     }
 
-    private static void OnChapterPanelEnter(On.Celeste.OuiChapterPanel.orig_Enter orig, OuiChapterPanel self, Oui from)
+    private static IEnumerator OnChapterPanelEnter(On.Celeste.OuiChapterPanel.orig_Enter orig, OuiChapterPanel self, Oui from)
     {
-        orig(self, from);
+        yield return orig(self, from);
 
         AreaData area = AreaData.Get(self.Area);
         if (!AreaModeExtender.IsOurMap(area))
-            return;
+            yield break;
 
         // Initialize D-Side panel visibility based on unlock state
         try
@@ -217,7 +217,7 @@ public static class CelesteDSideHooks
             $"D-Side panel for {area.SID}: {(dSideUnlocked ? "unlocked" : "locked")}");
     }
 
-    private static void OnChapterPanelLeave(On.Celeste.OuiChapterPanel.orig_Leave orig, OuiChapterPanel self, Oui next)
+    private static IEnumerator OnChapterPanelLeave(On.Celeste.OuiChapterPanel.orig_Leave orig, OuiChapterPanel self, Oui next)
     {
         AreaData area = AreaData.Get(self.Area);
         if (AreaModeExtender.IsOurMap(area))
@@ -233,13 +233,13 @@ public static class CelesteDSideHooks
             }
         }
 
-        orig(self, next);
+        yield return orig(self, next);
     }
 
     private static void SaveDSidePanelState(OuiChapterPanel panel, AreaData area)
     {
         DynamicData panelDyn = DynamicData.For(panel);
-        int currentMode = panelDyn.Get("mode") ?? panelDyn.Get("Mode") ?? 0;
+        int currentMode = (int)(panelDyn.Get("mode") ?? panelDyn.Get("Mode") ?? 0);
 
         if (currentMode >= AreaModeExtender.MODE_DSIDE)
         {
@@ -306,20 +306,20 @@ public static class CelesteDSideHooks
         orig(self);
     }
 
-    private static void OnSaveDataBeforeInitialize(On.Celeste.SaveData.orig_BeforeInitialize orig, SaveData self)
-    {
-        orig(self);
+    // private static void OnSaveDataBeforeInitialize(On.Celeste.SaveData.orig_BeforeInitialize orig, SaveData self)
+    // {
+    //     orig(self);
 
-        // Ensure D-Side save data structures exist
-        try
-        {
-            EnsureDSideSaveStructures(self);
-        }
-        catch (Exception ex)
-        {
-            Logger.Log(LogLevel.Warn, "MaggyHelper", $"Failed to ensure D-Side save structures: {ex.Message}");
-        }
-    }
+    //     // Ensure D-Side save data structures exist
+    //     try
+    //     {
+    //         EnsureDSideSaveStructures(self);
+    //     }
+    //     catch (Exception ex)
+    //     {
+    //         Logger.Log(LogLevel.Warn, "MaggyHelper", $"Failed to ensure D-Side save structures: {ex.Message}");
+    //     }
+    // }
 
     private static void EnsureDSideSaveStructures(SaveData save)
     {

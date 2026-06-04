@@ -63,7 +63,7 @@ public sealed class AreaCompleteExtData
             AreaModeExtender.MODE_NORMAL => session.FullClear ? titleMeta?.FullClear : titleMeta?.ASide,
             AreaModeExtender.MODE_BSIDE  => titleMeta?.BSide,
             AreaModeExtender.MODE_CSIDE  => titleMeta?.CSide,
-            AreaModeExtender.MODE_DSIDE  => GetDSideTitleKey(session),
+            AreaModeExtender.MODE_DSIDE  => null, // D-Side uses default behavior, no custom title
             _                            => null,
         };
 

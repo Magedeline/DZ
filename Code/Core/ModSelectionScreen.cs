@@ -108,6 +108,7 @@ namespace Celeste.UI
 
         /// <summary>
         /// Returns true if the mod selection screen should be shown.
+        /// Only shows on first boot, never when returning from a level.
         /// Skipped if DeveloperBypass is enabled for testing cycles.
         /// </summary>
         public static bool ShouldShow()
@@ -128,7 +129,16 @@ namespace Celeste.UI
             if (settings.SkipModIntro)
                 return false;
 
-            return !saveData.HasSeenModIntro;
+            // Don't show if already seen in this save file
+            if (saveData.HasSeenModIntro)
+                return false;
+
+            // Only show if there's no active level session (i.e., fresh boot)
+            // If Session exists with progress, we're returning from a level exit
+            if (SaveData.Instance != null && SaveData.Instance.CurrentSession != null)
+                return false;
+
+            return true;
         }
         #endregion
 

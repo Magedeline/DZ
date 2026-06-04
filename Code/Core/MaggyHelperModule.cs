@@ -205,6 +205,7 @@ namespace Celeste.Mod.MaggyHelper
             // Note: AreaMapData, ChapterActRegistry, and BossRosterRegistry
             // use lazy initialization - they'll be populated on first access.
             global::Celeste.AreaModeExtender.Load();
+            global::Celeste.CelesteDSideHooks.Load();
             global::Celeste.AltSidesHelperBridge.Load();
             global::Celeste.IntroRemixHooks.Load();
             global::Celeste.MonoModHooks.Load();
@@ -327,6 +328,7 @@ namespace Celeste.Mod.MaggyHelper
             global::Celeste.IntroRemixHooks.Unload();
             global::Celeste.AltSidesHelperBridge.Unload();
             global::Celeste.AreaModeExtender.Unload();
+            global::Celeste.CelesteDSideHooks.Unload();
             // BossesExampleModule.Unload(); // TODO: Restore when BossesExampleModule is available
 
             // Unhook level exit cleanup

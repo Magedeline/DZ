@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Runtime.CompilerServices;
 using FMOD.Studio;
 using Microsoft.Xna.Framework;
@@ -58,7 +58,7 @@ public class CS19_Gravestone : CutsceneEntity
         yield return 0.3f;
         addedBooster = true;
         Level.Displacement.AddBurst(boostTarget, 0.5f, 8f, 32f, 0.5f);
-        Audio.Play("event:/new_content/char/badeline/booster_first_appear", boostTarget);
+        Audio.Play("guid://{5a554fe3-4398-4960-ab5e-70dc62685ded}", boostTarget);
         Level.Add(new BadelineBoost(new Vector2[1] { boostTarget }, lockCamera: false));
         yield return 0.2f;
         EndCutscene(Level);
@@ -76,7 +76,7 @@ public class CS19_Gravestone : CutsceneEntity
         Vector2 vector = player.Position + new Vector2(-12f, -10f);
         Level.Displacement.AddBurst(vector, 0.5f, 8f, 32f, 0.5f);
         Level.Add(chara = new CharaDummy(vector));
-        Audio.Play("event:/char/badeline/maddy_split", vector);
+        Audio.Play("guid://{450fb5b3-e9e3-45d8-9f34-ba05e292958f}", vector);
         chara.Sprite.Scale.X = 1f;
         yield return chara.FloatTo(vector + new Vector2(0f, -6f), 1, faceDirection: false);
     }
@@ -94,7 +94,7 @@ public class CS19_Gravestone : CutsceneEntity
         bird = new BirdNPC(player.Position + new Vector2(88f, -200f), BirdNPC.Modes.None);
         bird.DisableFlapSfx = true;
         Scene.Add(bird);
-        EventInstance instance = Audio.Play("event:/game/general/bird_in", bird.Position);
+        EventInstance instance = Audio.Play("guid://{5f8d988c-528d-4d55-a6e2-4c47bfc50176}", bird.Position);
         bird.Facing = Facings.Left;
         bird.Sprite.Play("fall");
         Vector2 from = bird.Position;
@@ -116,9 +116,9 @@ public class CS19_Gravestone : CutsceneEntity
         yield return 0.5f;
         bird.Sprite.Play("croak");
         yield return 0.6f;
-        Audio.Play("event:/game/general/bird_squawk", bird.Position);
+        Audio.Play("guid://{4d1ae0ae-db96-47b7-925c-ce84c6ab722e}", bird.Position);
         yield return 0.9f;
-        Audio.Play("event:/char/madeline/stand", player.Position);
+        Audio.Play("guid://{73265a98-2cb3-4d98-9643-cf592c2b9131}", player.Position);
         player.Sprite.Play("idle");
         yield return 1f;
         yield return bird.StartleAndFlyAway();
@@ -126,7 +126,7 @@ public class CS19_Gravestone : CutsceneEntity
 
     private IEnumerator BadelineRejoin()
     {
-        Audio.Play("event:/new_content/char/badeline/maddy_join_quick", chara.Position);
+        Audio.Play("guid://{fd06af1f-776a-4879-9100-91b14c48bb66}", chara.Position);
         Vector2 from = chara.Position;
         for (float p = 0f; p < 1f; p += Engine.DeltaTime / 0.25f)
         {
@@ -163,3 +163,4 @@ public class CS19_Gravestone : CutsceneEntity
         level.ResetZoom();
     }
 }
+

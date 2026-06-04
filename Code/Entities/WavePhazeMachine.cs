@@ -1,4 +1,4 @@
-namespace Celeste.Entities
+﻿namespace Celeste.Entities
 {
     /// <summary>
     /// Wave-based puzzle machine for tutorials and challenges
@@ -207,7 +207,7 @@ namespace Celeste.Entities
             isActive = false;
 
             sprite?.Play("complete");
-            Audio.Play("event:/game/general/cassette_bubblereturn", Position);
+            Audio.Play("guid://{9db695ce-ce56-4025-9528-030d6b599c86}", Position);
 
             // Award completion
             awardCompletion();
@@ -226,11 +226,11 @@ namespace Celeste.Entities
         {
             switch (machineType)
             {
-                case MachineType.Tutorial: return "event:/game/general/thing_booped";
-                case MachineType.Challenge: return "event:/game/04_cliffside/arrowblock_activate";
+                case MachineType.Tutorial: return "guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}";
+                case MachineType.Challenge: return "guid://{3164e6e3-a335-4821-bbed-eb598dcae9ce}";
                 case MachineType.Practice: return "event:/game/05_mirror_temple/crystaltheo_pulse";
                 case MachineType.Exam: return "event:/game/06_reflection/badeline_disappear";
-                default: return "event:/game/general/thing_booped";
+                default: return "guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}";
             }
         }
 
@@ -295,6 +295,7 @@ namespace Celeste.Entities
         }
     }
 }
+
 
 
 

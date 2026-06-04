@@ -1,4 +1,4 @@
-namespace Celeste.Entities
+﻿namespace Celeste.Entities
 {
     /// <summary>
     /// Ice Bouncer that gives player double dash when bounced on in core mode
@@ -129,8 +129,8 @@ namespace Celeste.Entities
             CreateIceEffect(player.Position);
 
             // Play sound
-            Audio.Play("event:/game/09_core/iceblock_reappear", Position);
-            bounceSfx.Play("event:/game/general/thing_booped");
+            Audio.Play("guid://{6c7ea8bb-a843-4cd6-8397-c31344ae3a83}", Position);
+            bounceSfx.Play("guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}");
         }
 
         private void ActivateBouncer()
@@ -249,6 +249,7 @@ namespace Celeste.Entities
         }
     }
 }
+
 
 
 

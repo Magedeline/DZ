@@ -1,4 +1,4 @@
-namespace Celeste.Entities.Chapters.Ch14
+﻿namespace Celeste.Entities.Chapters.Ch14
 {
     /// <summary>
     /// CoreFragment - Central processing core fragment, boss-related collectible
@@ -95,7 +95,7 @@ namespace Celeste.Entities.Chapters.Ch14
             sprite.Play("active");
             coreLight.Alpha = 0.8f;
             
-            Audio.Play("event:/game/general/crystalheart_pulse", Position);
+            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
             level?.Flash(coreColor * 0.3f);
             
             // Remove shields
@@ -113,7 +113,7 @@ namespace Celeste.Entities.Chapters.Ch14
             State = FragmentState.Collecting;
             sprite.Play("collecting");
             
-            Audio.Play("event:/game/general/crystalheart_pulse", Position);
+            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
             
             Add(new Coroutine(CollectRoutine()));
         }
@@ -393,3 +393,4 @@ namespace Celeste.Entities.Chapters.Ch14
         }
     }
 }
+

@@ -1,4 +1,4 @@
-namespace Celeste
+﻿namespace Celeste
 {
     [HotReloadable]
     public class WaveFazeSlammerPage03 : WaveFazeSlammerPage
@@ -105,7 +105,7 @@ namespace Celeste
             
             // Transition to showing correct execution
             showingCorrect = true;
-            Audio.Play("event:/new_content/game/10_farewell/ppt_wavedash_whoosh");
+            Audio.Play("guid://{33a10afa-41bd-4534-8222-17e7947e9517}");
             
             yield return 0.5f;
             
@@ -206,3 +206,4 @@ namespace Celeste
         }
     }
 }
+

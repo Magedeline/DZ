@@ -1,4 +1,4 @@
-using Celeste.Entities;
+﻿using Celeste.Entities;
 
 namespace Celeste.Cutscenes
 {
@@ -30,7 +30,7 @@ namespace Celeste.Cutscenes
         private const float ZOOM_DURATION = 0.4f;
         private const float CAMERA_TRANSITION_TIME = 0.4f;
         private const string MUSIC_EVENT = "event:/music/pusheen/lvl4/chara_warning";
-        private const string AUDIO_EVENT = "event:/game/02_old_site/sequence_badeline_intro";
+        private const string AUDIO_EVENT = "guid://{44ed360f-e714-4a3a-99e8-3aed8ecf22cb}";
         private const string CHARA_APPEAR_SOUND = "event:/char/chara/appear";
         private const string CHARA_DISAPPEAR_SOUND = "event:/char/chara/disappear";
         private const string CHARA_LAUGH_SOUND = "event:/char/chara/laugh";
@@ -303,3 +303,4 @@ namespace Celeste.Cutscenes
         }
     }
 }
+

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using Celeste.Entities;
 using Microsoft.Xna.Framework;
@@ -48,7 +48,7 @@ namespace Celeste.Entities.SoulBoosts
             Level level = Scene as Level;
             level?.ParticlesFG.Emit(P_Burst, 20, player.Center, Vector2.One * 12f);
             
-            Audio.Play("event:/game/general/seed_touch", player.Position);
+            Audio.Play("guid://{6160ad7b-16f6-49a5-aa9b-55d75da5a8e1}", player.Position);
             
             yield return 0.1f;
         }
@@ -116,7 +116,7 @@ namespace Celeste.Entities.SoulBoosts
                             Vector2.One * 8f
                         );
                         
-                        Audio.Play("event:/game/general/crystalheart_pulse", player.Position);
+                        Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", player.Position);
                         
                         // Push player away from hazard
                         player.Speed *= -0.8f;
@@ -179,3 +179,4 @@ namespace Celeste.Entities.SoulBoosts
         }
     }
 }
+

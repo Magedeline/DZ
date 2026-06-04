@@ -1,4 +1,4 @@
-namespace Celeste.Entities {
+﻿namespace Celeste.Entities {
     /// <summary>
     /// Enhanced power generator with fuel management and different types
     /// </summary>
@@ -166,13 +166,13 @@ namespace Celeste.Entities {
                 Audio.Play(isActive ? "event:/game/general/console_activate_complete" : "event:/game/general/console_deactivate");
             } else {
                 // Show refuel prompt or play error sound
-                Audio.Play("event:/ui/main/button_invalid");
+                Audio.Play("guid://{b6aad0d5-cc07-46f4-ab3a-3b3692a57678}");
             }
         }
 
         public void Refuel(float amount) {
             fuelLevel = Math.Min(maxFuelLevel, fuelLevel + amount);
-            Audio.Play("event:/game/general/crystalheart_pulse", Position);
+            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
         }
 
         public void SetActive(bool active) {
@@ -181,6 +181,7 @@ namespace Celeste.Entities {
         }
     }
 }
+
 
 
 

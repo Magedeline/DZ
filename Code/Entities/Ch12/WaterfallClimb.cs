@@ -1,4 +1,4 @@
-namespace Celeste.Entities.Chapters.Ch12
+﻿namespace Celeste.Entities.Chapters.Ch12
 {
     /// <summary>
     /// WaterfallClimb - Vertical climb section with water currents
@@ -89,7 +89,7 @@ namespace Celeste.Entities.Chapters.Ch12
             currentStrength = FlowStrength * 2f;
             sprite.Play("rushing");
             
-            Audio.Play("event:/game/general/crystalheart_pulse", Position);
+            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
             level?.Shake(0.3f);
             
             Add(new Coroutine(RushRoutine()));
@@ -342,3 +342,4 @@ namespace Celeste.Entities.Chapters.Ch12
         }
     }
 }
+

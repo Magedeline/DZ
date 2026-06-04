@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Celeste.Entities;
 using Celeste.Extensions;
 using Celeste.Entities.Bosses;
@@ -421,7 +421,7 @@ namespace Celeste.Entities
                 level.Particles.Emit(ParticleTypes.Dust, hitPos, Color.Brown, (float)Math.PI / 2f);
                 level.Shake(0.15f);
             }
-            Audio.Play("event:/game/general/diamond_touch", player.Position);
+            Audio.Play("guid://{a47180e1-9bc2-4dbc-86c7-6402cea2e2be}", player.Position);
         }
 
         private void UseSlash()
@@ -431,7 +431,7 @@ namespace Celeste.Entities
             {
                 level.Particles.Emit(ParticleTypes.Dust, slashPos, Color.Silver, (float)Math.PI / 4f);
             }
-            Audio.Play("event:/game/general/diamond_touch", player.Position);
+            Audio.Play("guid://{a47180e1-9bc2-4dbc-86c7-6402cea2e2be}", player.Position);
         }
 
         private void UseProjectile(CopyAbilityType ability)
@@ -454,7 +454,7 @@ namespace Celeste.Entities
             {
                 level.Particles.Emit(ParticleTypes.Dust, player.Center + dir * 8, c, dir.Angle());
             }
-            Audio.Play("event:/game/general/diamond_touch", player.Position);
+            Audio.Play("guid://{a47180e1-9bc2-4dbc-86c7-6402cea2e2be}", player.Position);
         }
 
         private void UseBomb()
@@ -466,7 +466,7 @@ namespace Celeste.Entities
             {
                 level.Particles.Emit(ParticleTypes.Dust, player.Center + throwDir * 8, Color.DarkGray, throwDir.Angle());
             }
-            Audio.Play("event:/game/general/diamond_touch", player.Position);
+            Audio.Play("guid://{a47180e1-9bc2-4dbc-86c7-6402cea2e2be}", player.Position);
         }
 
         private void UseStone()
@@ -486,7 +486,7 @@ namespace Celeste.Entities
             {
                 level.Particles.Emit(ParticleTypes.Dust, player.BottomCenter, Color.Red, (float)Math.PI / 2f);
             }
-            Audio.Play("event:/game/general/diamond_touch", player.Position);
+            Audio.Play("guid://{a47180e1-9bc2-4dbc-86c7-6402cea2e2be}", player.Position);
         }
 
         private void UseMelee(CopyAbilityType ability)
@@ -497,7 +497,7 @@ namespace Celeste.Entities
             {
                 level.Particles.Emit(ParticleTypes.Dust, hitPos, c, (float)Math.PI / 2f);
             }
-            Audio.Play("event:/game/general/diamond_touch", player.Position);
+            Audio.Play("guid://{a47180e1-9bc2-4dbc-86c7-6402cea2e2be}", player.Position);
         }
 
         private void UseParasol()
@@ -523,7 +523,7 @@ namespace Celeste.Entities
             {
                 level.Particles.Emit(ParticleTypes.Dust, player.Center, Color.LightSkyBlue);
             }
-            Audio.Play("event:/game/general/diamond_touch", player.Position);
+            Audio.Play("guid://{a47180e1-9bc2-4dbc-86c7-6402cea2e2be}", player.Position);
         }
 
         private void UseStarSpit()
@@ -537,7 +537,7 @@ namespace Celeste.Entities
             {
                 level.Particles.Emit(ParticleTypes.Dust, player.Center + dir * 8, Color.White, dir.Angle());
             }
-            Audio.Play("event:/game/general/diamond_touch", player.Position);
+            Audio.Play("guid://{a47180e1-9bc2-4dbc-86c7-6402cea2e2be}", player.Position);
         }
 
         private void SpawnPuffParticles()
@@ -568,7 +568,7 @@ namespace Celeste.Entities
         {
             try
             {
-                Audio.Play("event:/game/general/diamond_touch", player.Position);
+                Audio.Play("guid://{a47180e1-9bc2-4dbc-86c7-6402cea2e2be}", player.Position);
             }
             catch
             {
@@ -577,3 +577,4 @@ namespace Celeste.Entities
         }
     }
 }
+

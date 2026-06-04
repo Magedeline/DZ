@@ -1,4 +1,4 @@
-// Decompiled with JetBrains decompiler
+﻿// Decompiled with JetBrains decompiler
 // Type: global::Celeste.Mod.ricky06ModPack.Entities.ConquerorBoss
 // Assembly: ricky06ModPack, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 // MVID: A006BC09-9B58-4275-A339-ACDC10C611D0
@@ -765,7 +765,7 @@ public class ConquerorBoss : Actor
 
   private IEnumerator Beam()
   {
-    this.laserSfx1.Play("event:/char/badeline/boss_laser_charge", (string) null, 0.0f);
+    this.laserSfx1.Play("guid://{e7a2ddd6-091a-44ab-aac7-e57bd13c009c}", (string) null, 0.0f);
     this.chargeWave.Play("chargeBeam", false, false);
     yield return (object) 0.1f;
     Player entity = ((Scene) this.level).Tracker.GetEntity<Player>();
@@ -780,7 +780,7 @@ public class ConquerorBoss : Actor
     this.Sprite.Play("beamstrike", false, false);
     yield return (object) 0.5f;
     this.laserSfx1.Stop(true);
-    global::Celeste.Audio.Play("event:/char/badeline/boss_laser_fire", ((Entity) this).Position);
+    global::Celeste.Audio.Play("guid://{58b5d825-ebcf-457b-b493-9be82640b9eb}", ((Entity) this).Position);
     this.chargeWave.Play("invisible", false, false);
   }
 
@@ -1014,3 +1014,4 @@ public class ConquerorBoss : Actor
     this.FixThings();
   }
 }
+

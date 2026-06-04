@@ -1,4 +1,4 @@
-// Decompiled with JetBrains decompiler
+﻿// Decompiled with JetBrains decompiler
 // Type: global::Celeste.Mod.ricky06ModPack.Entities.LightningTrigger
 // Assembly: ricky06ModPack, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 // MVID: A006BC09-9B58-4275-A339-ACDC10C611D0
@@ -32,7 +32,7 @@ internal class LightningTrigger(EntityData data, Vector2 offset) : Trigger(data,
     if (this.triggered)
       return;
     base.OnEnter(player);
-    global::Celeste.Audio.Play("event:/new_content/game/10_farewell/lightning_strike");
+    global::Celeste.Audio.Play("guid://{d27aa340-38c2-46fe-9e45-83c4f6be9070}");
     this.level.Flash(Color.White, false);
     this.level.Shake(0.3f);
     Level level1 = this.level;
@@ -51,3 +51,4 @@ internal class LightningTrigger(EntityData data, Vector2 offset) : Trigger(data,
     this.level.Session.SetFlag("cp_lightning_trigger_1", true);
   }
 }
+

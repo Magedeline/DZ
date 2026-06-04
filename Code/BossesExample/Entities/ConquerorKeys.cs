@@ -1,4 +1,4 @@
-// Decompiled with JetBrains decompiler
+﻿// Decompiled with JetBrains decompiler
 // Type: global::Celeste.Mod.ricky06ModPack.Entities.ConquerorKeys
 // Assembly: ricky06ModPack, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 // MVID: A006BC09-9B58-4275-A339-ACDC10C611D0
@@ -94,7 +94,7 @@ public class ConquerorKeys : Entity
     {
       if (!this.Visible)
         return;
-      global::Celeste.Audio.Play("event:/game/general/crystalheart_pulse", this.Position);
+      global::Celeste.Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", this.Position);
       this.scaleWiggler.Start();
       (this.Scene as Level).Displacement.AddBurst(((this.Position) + (((GraphicsComponent) this.sprite).Position)), 0.35f, 4f, 24f, 0.25f, (Ease.Easer) null, (Ease.Easer) null);
     });
@@ -140,7 +140,7 @@ public class ConquerorKeys : Entity
       Input.Rumble((RumbleStrength) 1, (RumbleLength) 1);
       if ((double) this.bounceSfxDelay > 0.0)
         return;
-      global::Celeste.Audio.Play("event:/game/general/crystalheart_bounce", this.Position);
+      global::Celeste.Audio.Play("guid://{96349ed6-cd24-4010-a9ee-0e93101a6609}", this.Position);
       this.bounceSfxDelay = 0.1f;
     }
   }
@@ -163,7 +163,7 @@ public class ConquerorKeys : Entity
     level.CanRetry = false;
     this.inCollectAnimation = true;
     this.Collidable = false;
-    this.sfx = SoundEmitter.Play("event:/game/07_summit/gem_get", (Entity) this, new Vector2?());
+    this.sfx = SoundEmitter.Play("guid://{98bbbca2-1b04-495b-8a02-7eae819d473c}", (Entity) this, new Vector2?());
     this.Depth = -2000000;
     yield return (object) null;
     global::Celeste.Celeste.Freeze(0.2f);
@@ -239,7 +239,7 @@ public class ConquerorKeys : Entity
     if (this.roomID.Length == 0)
       return;
     Player player = this.Scene.Tracker.GetEntity<Player>();
-    global::Celeste.Audio.Play("event:/new_content/game/10_farewell/glitch_short");
+    global::Celeste.Audio.Play("guid://{42d600c5-32c3-4433-8a1e-be394b30bcde}");
     Level level = this.SceneAs<Level>();
     LevelData leveldata = level.Session.LevelData;
     Session session = (this.Scene as Level).Session;
@@ -300,3 +300,4 @@ public class ConquerorKeys : Entity
     ((Entity) player).Add((Component) tween1);
   }
 }
+

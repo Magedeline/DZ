@@ -1,4 +1,4 @@
-// Decompiled with JetBrains decompiler
+﻿// Decompiled with JetBrains decompiler
 // Type: global::Celeste.Mod.ricky06ModPack.Entities.LightningTrigger
 // Assembly: ricky06ModPack, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 // MVID: A006BC09-9B58-4275-A339-ACDC10C611D0
@@ -28,7 +28,7 @@ namespace Celeste.Entities
       if (triggered)
         return;
       base.OnEnter(player);
-      Audio.Play("event:/new_content/game/10_farewell/lightning_strike");
+      Audio.Play("guid://{d27aa340-38c2-46fe-9e45-83c4f6be9070}");
       level.Flash(Color.White);
       level.Shake();
       level.Add(new LightningStrike(new Vector2(player.X + 60f, level.Bounds.Bottom - 180), 10, 200f));
@@ -38,3 +38,4 @@ namespace Celeste.Entities
     }
   }
 }
+

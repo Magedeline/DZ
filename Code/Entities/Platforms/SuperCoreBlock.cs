@@ -1,4 +1,4 @@
-namespace Celeste.Entities
+﻿namespace Celeste.Entities
 {
     /// <summary>
     /// Enhanced core block that launches player at 3x speed with extended range
@@ -298,13 +298,13 @@ namespace Celeste.Entities
             switch (currentCoreMode)
             {
                 case Session.CoreModes.Hot:
-                    soundEvent = "event:/game/09_core/iceblock_reappear";
+                    soundEvent = "guid://{6c7ea8bb-a843-4cd6-8397-c31344ae3a83}";
                     break;
                 case Session.CoreModes.Cold:
                     soundEvent = "event:/game/09_core/icewall_emerge";
                     break;
                 default:
-                    soundEvent = "event:/game/general/crystalheart_pulse";
+                    soundEvent = "guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}";
                     break;
             }
 
@@ -477,6 +477,7 @@ namespace Celeste.Entities
         }
     }
 }
+
 
 
 

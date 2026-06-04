@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Celeste.Entities;
 using Microsoft.Xna.Framework;
 using Monocle;
@@ -389,7 +389,7 @@ namespace Celeste.Projectiles
             if (lifetime > maxLifetime || CollideCheck<Solid>())
             {
                 // Freeze effect on impact
-                Audio.Play("event:/game/general/thing_booped", Position);
+                Audio.Play("guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}", Position);
                 RemoveSelf();
             }
         }
@@ -490,3 +490,4 @@ namespace Celeste.Projectiles
         }
     }
 }
+

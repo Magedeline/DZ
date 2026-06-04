@@ -1,4 +1,4 @@
-namespace Celeste.Entities
+﻿namespace Celeste.Entities
 {
     /// <summary>
     /// Mario-style pipe system that allows player to enter and exit across rooms
@@ -197,8 +197,8 @@ namespace Celeste.Entities
             isPlayerInside = true;
 
             // Play enter sound
-            pipeSfx.Play("event:/game/09_core/conveyor_activate");
-            Audio.Play("event:/game/general/thing_booped", Position);
+            pipeSfx.Play("guid://{c11484c7-8cc1-4328-b074-2ed680b452f1}");
+            Audio.Play("guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}", Position);
 
             // Visual feedback
             sprite.Play("active");
@@ -344,7 +344,7 @@ namespace Celeste.Entities
             player.Visible = true;
 
             // Play exit sound
-            Audio.Play("event:/game/general/thing_booped", Position);
+            Audio.Play("guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}", Position);
             
             // Visual effects
             sprite.Play("active");
@@ -466,3 +466,4 @@ namespace Celeste.Entities
         public TeleportPipe.PipeType Type { get; set; }
     }
 }
+

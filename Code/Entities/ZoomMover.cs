@@ -1,4 +1,4 @@
-namespace Celeste.Entities;
+﻿namespace Celeste.Entities;
 
 /// <summary>
 /// A ZipMover-style platform that zooms to a target position when the player stands on it.
@@ -277,7 +277,7 @@ public class ZoomMover : Solid
             if (HasPlayerOnTop())
             {
                 // Blink the streetlight
-                sfx.Play("event:/game/01_forsaken_city/zip_mover");
+                sfx.Play("guid://{c7f359ea-785f-4328-8135-4000ec1486bc}");
                 
                 if (streetlight != null)
                 {
@@ -357,7 +357,7 @@ public class ZoomMover : Solid
                 streetlight.SetAnimationFrame(1);
             }
             
-            sfx.Play("event:/game/01_forsaken_city/zip_mover");
+            sfx.Play("guid://{c7f359ea-785f-4328-8135-4000ec1486bc}");
             
             at = 0f;
             while (at < 1f)
@@ -463,3 +463,4 @@ public class ZoomMover : Solid
         }
     }
 }
+

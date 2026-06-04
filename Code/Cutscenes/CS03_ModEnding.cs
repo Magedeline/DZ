@@ -1,4 +1,4 @@
-#nullable enable
+﻿#nullable enable
 namespace Celeste.Cutscenes
 {
     [HotReloadable]
@@ -64,7 +64,7 @@ namespace Celeste.Cutscenes
             EndCutscene(level);
         }
 
-        // trigger 0 – Badeline drops from the air and lands next to the player
+        // trigger 0 â€“ Badeline drops from the air and lands next to the player
         private IEnumerator trigger0BadelineAppears()
         {
             Vector2 landPos = player.Position + new Vector2(60f, 0f);
@@ -82,14 +82,14 @@ namespace Celeste.Cutscenes
             yield return 0.3f;
         }
 
-        // trigger 1 – give the player a strawberry
+        // trigger 1 â€“ give the player a strawberry
         private IEnumerator trigger1GiveStrawberry()
         {
             Audio.Play(SFX.game_gen_strawberry_get, player.Position);
             yield return 0.3f;
         }
 
-        // trigger 2 – Badeline turns to look left
+        // trigger 2 â€“ Badeline turns to look left
         private IEnumerator trigger2BadelineLooksLeft()
         {
             if (badeline != null)
@@ -100,7 +100,7 @@ namespace Celeste.Cutscenes
             yield return null;
         }
 
-        // trigger 3 – Badeline sits to rest; bird swoops in and falls asleep on her head
+        // trigger 3 â€“ Badeline sits to rest; bird swoops in and falls asleep on her head
         private IEnumerator trigger3BadelineSitsAndBird()
         {
             if (badeline != null)
@@ -108,13 +108,13 @@ namespace Celeste.Cutscenes
 
             player.DummyAutoAnimate = false;
             player.Sprite.Play("sleep");
-            Audio.Play("event:/char/pusheen/kirby/campfire_sit", player.Position);
+            Audio.Play("guid://{e6daa12a-2f43-4daf-adf2-994086d0aa1a}", player.Position);
             yield return 2f;
 
             Vector2 birdOrigin = (badeline?.Position ?? player.Position) + new Vector2(88f, -200f);
             BirdNPC bird = new BirdNPC(birdOrigin, BirdNPC.Modes.None);
             Scene.Add(bird);
-            FMOD.Studio.EventInstance? instance = Audio.Play("event:/game/general/bird_in", bird.Position);
+            FMOD.Studio.EventInstance? instance = Audio.Play("guid://{5f8d988c-528d-4d55-a6e2-4c47bfc50176}", bird.Position);
             bird.Facing = Facings.Left;
             bird.Sprite.Play("fall");
 
@@ -135,7 +135,7 @@ namespace Celeste.Cutscenes
             yield return 0.5f;
             bird.Sprite.Play("croak");
             yield return 0.6f;
-            Audio.Play("event:/game/general/bird_squawk", bird.Position);
+            Audio.Play("guid://{4d1ae0ae-db96-47b7-925c-ce84c6ab722e}", bird.Position);
             yield return 0.9f;
             bird.Sprite.Play("sleep");
             yield return 2f;
@@ -147,6 +147,7 @@ namespace Celeste.Cutscenes
         }
     }
 }
+
 
 
 

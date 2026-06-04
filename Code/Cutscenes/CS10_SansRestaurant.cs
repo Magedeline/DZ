@@ -1,4 +1,4 @@
-namespace Celeste.Cutscenes
+﻿namespace Celeste.Cutscenes
 {
     /// <summary>
     /// Chapter 10 Sans Restaurant cutscene with food interaction
@@ -30,7 +30,7 @@ namespace Celeste.Cutscenes
 
             // Food ordering sequence
             yield return 0.5f;
-            Audio.Play("event:/game/general/touchswitch_any");
+            Audio.Play("guid://{30fafd37-cd47-4a56-ab3b-0cc8f1beec5b}");
 
             yield return Textbox.Say("MAGGYHELPER_CH12_ORDERUP");
 
@@ -47,6 +47,7 @@ namespace Celeste.Cutscenes
         }
     }
 }
+
 
 
 

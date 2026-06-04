@@ -1,4 +1,4 @@
-namespace Celeste.Entities
+﻿namespace Celeste.Entities
 {
     /// <summary>
     /// Custom MemorialText that renders dialog text above a MaggyMemorial entity.
@@ -28,7 +28,7 @@ namespace Celeste.Entities
         // Timer driving the dreamy sine-wave animation
         private float timer;
 
-        // Widest single-character width × 0.9  (monospace-ish spacing)
+        // Widest single-character width Ã— 0.9  (monospace-ish spacing)
         private float widestCharacter;
 
         // Length of the first line (shown instantly on re-approach)
@@ -90,7 +90,7 @@ namespace Celeste.Entities
             }
             else
             {
-                // Fade in (2× speed)
+                // Fade in (2Ã— speed)
                 alpha = Calc.Approach(alpha, 1f, Engine.DeltaTime * 2f);
 
                 if (alpha >= 1f)
@@ -107,8 +107,8 @@ namespace Celeste.Entities
                 {
                     textSfxPlaying = true;
                     textSfx.Play(Dreamy
-                        ? "event:/ui/game/memorial_dream_text_loop"
-                        : "event:/ui/game/memorial_text_loop");
+                        ? "guid://{c3ddcdec-04ff-43b0-8103-ba0f0841c550}"
+                        : "guid://{12f81211-c72f-44f7-951c-4884bea99668}");
                 }
             }
             else if (textSfxPlaying)
@@ -128,7 +128,7 @@ namespace Celeste.Entities
 
             Camera cam = level.Camera;
 
-            // Convert world → screen (320×180 → 1920×1080)
+            // Convert world â†’ screen (320Ã—180 â†’ 1920Ã—1080)
             float screenX = (Memorial.X - cam.X) * 6f;
             float screenY = (Memorial.Y - cam.Y) * 6f - 350f - ActiveFont.LineHeight * 3.3f;
 
@@ -199,3 +199,4 @@ namespace Celeste.Entities
         }
     }
 }
+

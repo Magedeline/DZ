@@ -1,4 +1,4 @@
-namespace Celeste.Entities;
+﻿namespace Celeste.Entities;
 [CustomEntity(ids: "MaggyHelper/ClutterDoor")]
 [HotReloadable]
     public class ClutterDoor : Solid
@@ -40,7 +40,7 @@ namespace Celeste.Entities;
         private DashCollisionResults OnDashed(global::Celeste.Player player, Vector2 direction)
         {
             wiggler.Start();
-            Audio.Play("event:/game/03_resort/forcefield_bump", Position);
+            Audio.Play("guid://{1e7997d7-a551-479e-90d3-f6929fd665ef}", Position);
             return DashCollisionResults.Bounce;
         }
 
@@ -57,7 +57,7 @@ namespace Celeste.Entities;
                 Visible = true;
                 Collidable = true;
                 wiggler.Start();
-                Audio.Play("event:/game/03_resort/forcefield_bump", Position);
+                Audio.Play("guid://{1e7997d7-a551-479e-90d3-f6929fd665ef}", Position);
             }
             base.Update();
         }
@@ -84,7 +84,7 @@ namespace Celeste.Entities;
             else
                 yield return 0.2f;
             Input.Rumble(RumbleStrength.Medium, RumbleLength.Medium);
-            Audio.Play("event:/game/03_resort/forcefield_vanish", clutterDoor.Position);
+            Audio.Play("guid://{512ca8f8-a58f-4bd0-bd55-a237fa07c6c6}", clutterDoor.Position);
             clutterDoor.sprite.Play("open");
             clutterDoor.Collidable = false;
             for (p = 0.0f; p < 0.40000000596046448; p += Engine.DeltaTime)
@@ -119,6 +119,7 @@ namespace Celeste.Entities;
             return vector2;
         }
     }
+
 
 
 

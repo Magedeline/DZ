@@ -1,4 +1,4 @@
-namespace Celeste.Entities.Chapters.Ch15
+﻿namespace Celeste.Entities.Chapters.Ch15
 {
     /// <summary>
     /// TitanFootprint - Massive crushing hazard with shadow warning
@@ -112,7 +112,7 @@ namespace Celeste.Entities.Chapters.Ch15
             crushY = -CrushHeight - 100f;
             targetY = 0f;
             
-            Audio.Play("event:/game/general/crystalheart_pulse", Position);
+            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
             level?.Shake(0.8f);
             
             Add(new Coroutine(CrushRoutine()));
@@ -338,3 +338,4 @@ namespace Celeste.Entities.Chapters.Ch15
         }
     }
 }
+

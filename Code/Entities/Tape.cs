@@ -1,4 +1,4 @@
-using System.Reflection;
+﻿using System.Reflection;
 using System.Runtime.CompilerServices;
 using FMOD.Studio;
 using Mono.Cecil.Cil;
@@ -11,7 +11,7 @@ namespace Celeste.Entities;
 [CustomEntity("MaggyHelper/Tape")]
 public class DesoloZantasTape : Entity
 {
-    // ──────────────────────────── Inner UI Cutscene ───────────────────────────────
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ Inner UI Cutscene â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     private sealed class UnlockedCSideCutscene : Entity
     {
@@ -84,7 +84,7 @@ public class DesoloZantasTape : Entity
         }
     }
 
-    // ──────────────────────── Static Hook Infrastructure ─────────────────────────
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ Static Hook Infrastructure â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     //
     // Mirrors the JungleHelper/CassetteCustomPreviewMusic pattern:
     // an ILHook on CollectRoutine's compiler-generated state machine intercepts
@@ -103,7 +103,7 @@ public class DesoloZantasTape : Entity
         if (smTarget != null)
             _hookCollectRoutine = new ILHook(smTarget, PatchCollectRoutineAudio);
         else
-            Logger.Log(LogLevel.Warn, "MaggyHelper/Tape", "Could not find CollectRoutine state machine — audio IL patch skipped.");
+            Logger.Log(LogLevel.Warn, "MaggyHelper/Tape", "Could not find CollectRoutine state machine â€” audio IL patch skipped.");
     }
 
     /// <summary>Call from MaggyHelperHooks.Unload().</summary>
@@ -158,13 +158,13 @@ public class DesoloZantasTape : Entity
 #pragma warning restore CL0001
     }
 
-    // ─────────────────────────── Audio/Visual Defaults ───────────────────────────
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ Audio/Visual Defaults â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     private const string DefaultCollectSfx      = "event:/game/pusheen/general/tape_unlocked";
-    private const string DefaultPreviewEvent     = "event:/game/pusheen/general/tape_preview";
+    private const string DefaultPreviewEvent     = "guid://{84569f0c-21e9-4701-ab78-540a746965cf}";
     private const string DefaultPreviewParamName = "remix";
 
-    // ──────────────────────────── Particle Types ─────────────────────────────────
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ Particle Types â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     public static ParticleType P_Shine;
     public static ParticleType P_Collect;
@@ -199,7 +199,7 @@ public class DesoloZantasTape : Entity
         }
     }
 
-    // ─────────────────────────── Instance State ──────────────────────────────────
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ Instance State â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     public bool IsGhost;
 
@@ -213,21 +213,21 @@ public class DesoloZantasTape : Entity
     private Vector2[] _nodes;
     private EventInstance _remixSfx;
 
-    // ───── Configurable audio ─────
+    // â”€â”€â”€â”€â”€ Configurable audio â”€â”€â”€â”€â”€
     private readonly string _collectSfx;       // sound played on touch
     private readonly string _previewEvent;     // FMOD event for the preview music loop
     private readonly string _previewParamName; // FMOD parameter name on the preview event
     private readonly float  _previewParamValue; // parameter value (-1 = use area ID)
 
-    // ───── Configurable visuals ─────
+    // â”€â”€â”€â”€â”€ Configurable visuals â”€â”€â”€â”€â”€
     private readonly string _spritePath;  // in-game sprite atlas folder
     private readonly string _menuSprite;  // UI sprite shown in the unlock cutscene
 
-    // ───── Unlock data ─────
+    // â”€â”€â”€â”€â”€ Unlock data â”€â”€â”€â”€â”€
     private readonly string[]  _unlockText;
     private readonly string    _cSideToUnlock;
 
-    // ───── Visual tuning ─────
+    // â”€â”€â”€â”€â”€ Visual tuning â”€â”€â”€â”€â”€
     private readonly Color _particleColor;
     private readonly float _glowStrength;
     private readonly float _bloomStrength;
@@ -235,7 +235,7 @@ public class DesoloZantasTape : Entity
     private readonly float _floatSpeed;
     private readonly float _floatRange;
 
-    // ──────────────────────────── Constructors ───────────────────────────────────
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ Constructors â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     [MethodImpl(MethodImplOptions.NoInlining)]
     public DesoloZantasTape(Vector2 position, Vector2[] nodes) : base(position)
@@ -270,7 +270,7 @@ public class DesoloZantasTape : Entity
         _unlockText    = ResolveUnlockText(data.Attr("unlockText", ""), _cSideToUnlock);
     }
 
-    // ──────────────────────────── Entity Lifecycle ─────────────────────────────────
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ Entity Lifecycle â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     [MethodImpl(MethodImplOptions.NoInlining)]
     public override void Added(Scene scene)
@@ -327,7 +327,7 @@ public class DesoloZantasTape : Entity
             SceneAs<Level>().Particles.Emit(P_Shine, 1, Center, new Vector2(12f, 10f));
     }
 
-    // ─────────────────────────── Collection Logic ─────────────────────────────────
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ Collection Logic â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     [MethodImpl(MethodImplOptions.NoInlining)]
     private void OnPlayer(CelestePlayer player)
@@ -405,7 +405,7 @@ public class DesoloZantasTape : Entity
         Visible = false;
 
         // These string literals are intercepted at runtime by PatchCollectRoutineAudio
-        // so that _previewEvent / _previewParamName take effect — exact JungleHelper pattern.
+        // so that _previewEvent / _previewParamName take effect â€” exact JungleHelper pattern.
         float paramValue = _previewParamValue >= 0f ? _previewParamValue : (float)level.Session.Area.ID;
         _remixSfx = Audio.Play(DefaultPreviewEvent, DefaultPreviewParamName, paramValue);
 
@@ -436,7 +436,7 @@ public class DesoloZantasTape : Entity
 
         if (!player.Dead && _nodes != null && _nodes.Length >= 2)
         {
-            Audio.Play("event:/game/general/cassette_bubblereturn", level.Camera.Position + new Vector2(160f, 90f));
+            Audio.Play("guid://{9db695ce-ce56-4025-9528-030d6b599c86}", level.Camera.Position + new Vector2(160f, 90f));
             player.StartCassetteFly(_nodes[1], _nodes[0]);
         }
 
@@ -451,7 +451,7 @@ public class DesoloZantasTape : Entity
         RemoveSelf();
     }
 
-    // ──────────────────────────── Helpers ────────────────────────────────────────
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     private static string[] ResolveUnlockText(string custom, string cSideToUnlock)
     {
@@ -466,5 +466,6 @@ public class DesoloZantasTape : Entity
         return new[] { "Maggy_CSide_unlocked" };
     }
 }
+
 
 

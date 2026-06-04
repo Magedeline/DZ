@@ -1,4 +1,4 @@
-using Celeste.Entities;
+﻿using Celeste.Entities;
 
 namespace Celeste.Cutscenes
 {
@@ -113,12 +113,12 @@ namespace Celeste.Cutscenes
 
             // Ground rumble
             level.Shake(0.3f);
-            Audio.Play("event:/game/general/crystalheart_pulse", fountainPosition);
+            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", fountainPosition);
 
             yield return 0.5f;
 
             // Fountain starts to emerge from the ground
-            fountainSfx = Audio.Play("event:/game/general/crystalheart_blue_get", fountainPosition);
+            fountainSfx = Audio.Play("guid://{1acb8e84-5f79-4dcd-86aa-e8a514535b7d}", fountainPosition);
 
             var timer = 0f;
             var startPos = fountainPosition;
@@ -180,7 +180,7 @@ namespace Celeste.Cutscenes
             level.Add(tower);
 
             // Tower growth sound
-            towerSfx = Audio.Play("event:/game/general/crystalheart_blue_get", tower.Position);
+            towerSfx = Audio.Play("guid://{1acb8e84-5f79-4dcd-86aa-e8a514535b7d}", tower.Position);
 
             // Tower grows upward dramatically
             var timer = 0f;
@@ -222,7 +222,7 @@ namespace Celeste.Cutscenes
             // Final tower completion effect with background flash
             level.Flash(Color.White);
             towerBackground.SetTintColor(Color.Gold);
-            Audio.Play("event:/game/general/crystalheart_pulse", tower.Position);
+            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", tower.Position);
 
             // Restore background color after flash
             yield return 0.5f;
@@ -318,3 +318,4 @@ namespace Celeste.Cutscenes
         }
     }
 }
+

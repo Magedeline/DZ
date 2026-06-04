@@ -1,4 +1,4 @@
-namespace Celeste
+﻿namespace Celeste
 {
     /// <summary>
     /// Base class for dummy/follower entities in the Ingeste mod
@@ -39,7 +39,7 @@ namespace Celeste
                     (anim == "runSlow" && (currentAnimationFrame == 0 || currentAnimationFrame == 6)) ||
                     (anim == "runFast" && (currentAnimationFrame == 0 || currentAnimationFrame == 6)))
                 {
-                    Audio.Play("event:/char/pusheen/kirby/footstep", Position);
+                    Audio.Play("guid://{3d667209-61f4-478c-9604-7bcfeae33530}", Position);
                 }
             };
 
@@ -53,7 +53,7 @@ namespace Celeste
         {
             if (!silent)
             {
-                Audio.Play("event:/char/badeline/appear", Position);
+                Audio.Play("guid://{ad25a031-880b-4f88-ac12-82d6c52fbdea}", Position);
                 Input.Rumble(RumbleStrength.Medium, RumbleLength.Medium);
             }
 
@@ -170,7 +170,7 @@ namespace Celeste
         {
             if (!silent)
             {
-                Audio.Play("event:/char/badeline/disappear", Position);
+                Audio.Play("guid://{16b40879-0a79-4e42-8c91-fe419a8e186c}", Position);
             }
 
             level.Displacement.AddBurst(Center, 0.5f, 24f, 96f, 0.4f);
@@ -210,6 +210,7 @@ namespace Celeste
         }
     }
 }
+
 
 
 

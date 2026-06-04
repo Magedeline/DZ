@@ -1,4 +1,4 @@
-// Decompiled with JetBrains decompiler
+﻿// Decompiled with JetBrains decompiler
 // Type: global::Celeste.Mod.ricky06ModPack.Entities.ConquerorBook
 // Assembly: ricky06ModPack, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 // MVID: A006BC09-9B58-4275-A339-ACDC10C611D0
@@ -138,7 +138,7 @@ internal class ConquerorBook : CutsceneEntity
     public IEnumerator EaseIn()
     {
       if (!this.noSound)
-        global::Celeste.Audio.Play("event:/game/03_resort/memo_in");
+        global::Celeste.Audio.Play("guid://{142ae054-bc66-4b91-8c25-eff2ee9e4f05}");
       Vector2 center = ((new Vector2((float) Engine.Width, (float) Engine.Height)) / (2f));
       Vector2 from = ((center) + (new Vector2(0.0f, 200f)));
       Vector2 to = center;
@@ -157,13 +157,13 @@ internal class ConquerorBook : CutsceneEntity
     {
       while (!Input.MenuConfirm.Pressed)
         yield return (object) null;
-      global::Celeste.Audio.Play("event:/ui/main/button_lowkey");
+      global::Celeste.Audio.Play("guid://{8a93c5a5-538c-49f6-9d07-988839862ba1}");
     }
 
     public IEnumerator EaseOut()
     {
       if (!this.noSound)
-        global::Celeste.Audio.Play("event:/game/03_resort/memo_out");
+        global::Celeste.Audio.Play("guid://{a3b55290-30ce-464e-b669-9582d71e7c70}");
       this.easingOut = true;
       Vector2 from = this.Position;
       Vector2 to = ((((new Vector2((float) Engine.Width, (float) Engine.Height)) / (2f))) + (new Vector2(0.0f, -200f)));
@@ -222,3 +222,4 @@ internal class ConquerorBook : CutsceneEntity
     }
   }
 }
+

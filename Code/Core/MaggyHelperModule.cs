@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.IO;
 using System.Reflection;
 using Celeste.Cutscenes;
@@ -33,7 +33,7 @@ namespace Celeste.Mod.MaggyHelper
         public static bool LaunchPart1Credits { get; set; }
         public static bool LaunchPart2Credits { get; set; }
 
-        // ── Hook Registry ───────────────────────────────────────────────────
+        // â”€â”€ Hook Registry â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
         // All hooks are loaded/unloaded in the Load() and Unload() methods below.
         // Hook categories:
         //   1. Chapter Progression Hooks (ChapterProgressionManager)
@@ -99,7 +99,7 @@ namespace Celeste.Mod.MaggyHelper
         //      - Desolo Variants unlock postcard (ultra completion)
         //      - SideUnlockVignette integration with LevelExit
         //
-        //   16. C-Side Tape Unlock Hooks (TapeCollection → Overworld)
+        //   16. C-Side Tape Unlock Hooks (TapeCollection â†’ Overworld)
         //      - DesoloZantasTape.OnPlayer collection hook
         //      - C-Side unlock trigger per chapter (one at a time)
         //      - Overworld chapter select C-Side icon animation
@@ -129,9 +129,9 @@ namespace Celeste.Mod.MaggyHelper
         //      - All chapters, C-Sides, D-Sides, DX-Sides unlock
         //      - Ingeste Pico8 classic unlock message
         //      - Cheat mode flag persistence in save data
-        // ──────────────────────────────────────────────────────────────────────
+        // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
-        // ── Console Command Registry ──────────────────────────────────────────
+        // â”€â”€ Console Command Registry â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
         // Commands are automatically registered by Everest via [Command] attribute.
         // Available commands:
         //   maggy_credits           - Launches Chapter 17 credits sequence
@@ -150,25 +150,25 @@ namespace Celeste.Mod.MaggyHelper
         //   maggy_vignette_reset    - Reset vignette seen flags
         //   maggy_cheat_unlock      - Trigger unlock everything cheat
         //   maggy_cheat_pico8       - Show Pico8 unlock message
-        // ──────────────────────────────────────────────────────────────────────
+        // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
-        // ── Overworld 3D / Mountain Data ──────────────────────────────────────
+        // â”€â”€ Overworld 3D / Mountain Data â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
         // 3D Mountain integration handled by MountainOverworldManager:
         //   - Custom mountain model registration (OBJ + PNG textures)
         //   - Per-chapter camera positions (AreaMapData.MountainCameraData)
         //   - Mountain state management (Normal/Dark/Void)
         //   - Fog color configuration per state
         //   - Camera lock to prevent idle rotation drift
-        // ──────────────────────────────────────────────────────────────────────
+        // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
-        // ── Area/Chapter Data ─────────────────────────────────────────────────
+        // â”€â”€ Area/Chapter Data â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
         // Chapter definitions and runtime data managed by AreaMapData:
         //   - 21 chapter definitions (0-20 + special chapters)
         //   - Per-chapter: SID, icon, music, ambience, mountain camera data
         //   - 5 sides per chapter: A, B, C, D, DX
         //   - Hardcoded runtime data applied via AreaData.Load hooks
-        //   - Chapter progression: Ch9→Ch10, Ch15→Ch16, Ch18→Ch19→Ch20→Ch21
-        // ──────────────────────────────────────────────────────────────────────
+        //   - Chapter progression: Ch9â†’Ch10, Ch15â†’Ch16, Ch18â†’Ch19â†’Ch20â†’Ch21
+        // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
         public static readonly string Chapter16CorruptionSid = AreaModeExtender.BuildASideSID("16_Corruption");
         public static readonly string Chapter17EpilogueSid = AreaModeExtender.BuildASideSID("17_Epilogue");
@@ -262,7 +262,7 @@ namespace Celeste.Mod.MaggyHelper
             global::Celeste.DeathlinkIntegration.Initialize();
 
             // Initialize SubChapterManager (EXPERIMENTAL/TEST ONLY)
-            // Sub-chapter system: host 5–20 collab maps under a single checkpoint
+            // Sub-chapter system: host 5â€“20 collab maps under a single checkpoint
             global::Celeste.SubChapterManager.Load();
 
             // Register save data debugging console commands
@@ -1318,7 +1318,7 @@ namespace Celeste.Mod.MaggyHelper
                 MaggyHelperModule.Session.CreditsCompleted = false;
             }
 
-            creditsSession.Audio.Music.Event = "event:/music/pusheen/lvl17/main";
+            creditsSession.Audio.Music.Event = "guid://{40d5ef93-d1f9-4f8a-b01e-3cab79bfb49b}";
             creditsSession.Audio.Apply(false);
 
             Engine.Scene = new LevelLoader(creditsSession)
@@ -1332,7 +1332,7 @@ namespace Celeste.Mod.MaggyHelper
         }
 
         /// <summary>
-        /// Console command: maggy_credits — launches the credits sequence from the current level.
+        /// Console command: maggy_credits â€” launches the credits sequence from the current level.
         /// </summary>
         [Command("maggy_credits", "Launches the Chapter 17 credits sequence from the current level.")]
         private static void Cmd_LaunchCredits()
@@ -1524,3 +1524,4 @@ namespace Celeste.Mod.MaggyHelper
         public static bool IsFinalDLCUnlocked => SaveData?.FinalDlcContentUnlocked ?? false;
     }
 }
+

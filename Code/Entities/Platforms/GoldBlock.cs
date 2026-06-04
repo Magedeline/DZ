@@ -1,4 +1,4 @@
-namespace Celeste.Entities
+﻿namespace Celeste.Entities
 {
     [CustomEntity(ids: "MaggyHelper/GoldBlock")]
     [HotReloadable]
@@ -37,7 +37,7 @@ namespace Celeste.Entities
             broken = true;
             Collidable = false;
             
-            Audio.Play("event:/game/general/wall_break_stone", Position);
+            Audio.Play("guid://{92f75010-4e90-428e-834c-1315ddbd9460}", Position);
             
             Level level = SceneAs<Level>();
             level.Shake(0.2f);
@@ -90,3 +90,4 @@ namespace Celeste.Entities
         }
     }
 }
+

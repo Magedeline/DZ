@@ -1,10 +1,10 @@
-namespace Celeste.Entities
+﻿namespace Celeste.Entities
 {
     /// <summary>
     /// A custom Memorial entity for Desolo Zantas that displays configurable dialog
     /// text when the player walks into its hitbox.
     /// Supports normal and dreamy text styles, custom sprites, and audio.
-    /// Place via Lönn as "MaggyHelper/MaggyMemorial".
+    /// Place via LÃ¶nn as "MaggyHelper/MaggyMemorial".
     /// </summary>
     [CustomEntity(ids: "MaggyHelper/MaggyMemorial")]
     [Tracked]
@@ -23,13 +23,13 @@ namespace Celeste.Entities
         // Looping ambient SFX while text is shown in dreamy mode
         private SoundSource loopingSfx;
 
-        // ── Configuration ──
+        // â”€â”€ Configuration â”€â”€
         private string dialogKey;
         private string spritePath;
         private bool dreamy;
 
         /// <summary>
-        /// Lönn / map-loader constructor.
+        /// LÃ¶nn / map-loader constructor.
         /// </summary>
         public MaggyMemorial(EntityData data, Vector2 offset)
             : this(
@@ -113,19 +113,19 @@ namespace Celeste.Entities
             {
                 Audio.Play(
                     text.Dreamy
-                        ? "event:/ui/game/memorial_dream_text_in"
-                        : "event:/ui/game/memorial_text_in",
+                        ? "guid://{037333ef-5916-4131-a76c-77b8d31c21cd}"
+                        : "guid://{27c68b11-4893-406e-8a68-2c7cf6a7ae0d}",
                     Position);
 
                 if (text.Dreamy)
-                    loopingSfx.Play("event:/ui/game/memorial_dream_loop");
+                    loopingSfx.Play("guid://{6e6a7734-f98c-45cf-930f-61c51f193827}");
             }
             else if (!showing && wasShowing)
             {
                 Audio.Play(
                     text.Dreamy
-                        ? "event:/ui/game/memorial_dream_text_out"
-                        : "event:/ui/game/memorial_text_out",
+                        ? "guid://{78a27ccb-8b29-41e9-aa60-20e4d193f41d}"
+                        : "guid://{812275c5-1e5a-4d69-98e1-f7892c4bb440}",
                     Position);
 
                 loopingSfx.Stop();
@@ -135,3 +135,4 @@ namespace Celeste.Entities
         }
     }
 }
+

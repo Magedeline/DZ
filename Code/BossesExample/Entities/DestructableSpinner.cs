@@ -1,4 +1,4 @@
-// Decompiled with JetBrains decompiler
+﻿// Decompiled with JetBrains decompiler
 // Type: global::Celeste.Mod.ricky06ModPack.Entities.DestructableSpinner
 // Assembly: ricky06ModPack, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 // MVID: A006BC09-9B58-4275-A339-ACDC10C611D0
@@ -207,7 +207,7 @@ public class DestructableSpinner : Entity
     if (this.InView())
     {
       for (int index = 0; index < 5; ++index)
-        global::Celeste.Audio.Play("event:/game/06_reflection/fall_spike_smash", this.Position);
+        global::Celeste.Audio.Play("guid://{88cc2646-c70d-47bb-9e88-1de934fa1792}", this.Position);
       CrystalDebris.Burst(this.Position, this.tint, boss, 8);
       if (this.persistent)
       {
@@ -279,3 +279,4 @@ public class DestructableSpinner : Entity
     }
   }
 }
+

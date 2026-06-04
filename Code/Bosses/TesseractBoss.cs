@@ -1,4 +1,4 @@
-using Celeste.Entities.Projectiles;
+﻿using Celeste.Entities.Projectiles;
 using Celeste.Helpers;
 
 namespace Celeste.Entities.Bosses
@@ -292,7 +292,7 @@ namespace Celeste.Entities.Bosses
                 Scene?.Add(new IceProjectile(Center + new Vector2(-10f, Calc.Random.Range(-8f, 8f)), -1));
                 Scene?.Add(new IceProjectile(Center + new Vector2(10f, Calc.Random.Range(-8f, 8f)), 1));
                 level?.ParticlesFG.Emit(ParticleTypes.SparkyDust, 6, Center, Vector2.One * 12f);
-                Audio.Play("event:/game/05_mirror_temple/button_activate", Position);
+                Audio.Play("guid://{097d5975-dee1-42e2-a3f0-1524b9d60fc6}", Position);
                 yield return 0.16f;
             }
         }
@@ -340,7 +340,7 @@ namespace Celeste.Entities.Bosses
 
         private void CreateBeam(Level level, Vector2 start, Vector2 end)
         {
-            Audio.Play("event:/game/05_mirror_temple/button_activate", start);
+            Audio.Play("guid://{097d5975-dee1-42e2-a3f0-1524b9d60fc6}", start);
             level.Displacement.AddBurst((start + end) * 0.5f, 0.8f, 24f, 88f, 0.25f);
 
             Vector2 direction = end - start;
@@ -363,7 +363,7 @@ namespace Celeste.Entities.Bosses
             level?.ParticlesFG.Emit(ParticleTypes.SparkyDust, 10, to, Vector2.One * 10f);
             level?.Displacement.AddBurst(from, 0.8f, 18f, 56f, 0.2f);
             level?.Displacement.AddBurst(to, 0.8f, 18f, 56f, 0.2f);
-            Audio.Play("event:/game/05_mirror_temple/button_activate", from);
+            Audio.Play("guid://{097d5975-dee1-42e2-a3f0-1524b9d60fc6}", from);
             Position = to;
         }
 
@@ -423,7 +423,7 @@ namespace Celeste.Entities.Bosses
             health = Math.Max(0, health - damage);
             Health = health;
             distortionWiggler.Start();
-            Audio.Play("event:/game/05_mirror_temple/button_activate", Position);
+            Audio.Play("guid://{097d5975-dee1-42e2-a3f0-1524b9d60fc6}", Position);
 
             if (health <= 0)
             {
@@ -454,3 +454,4 @@ namespace Celeste.Entities.Bosses
         }
     }
 }
+

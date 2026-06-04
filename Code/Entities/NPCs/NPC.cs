@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Runtime.CompilerServices;
 using Celeste.Entities;
 using Celeste.Cutscenes;
@@ -269,7 +269,7 @@ namespace Celeste.Entities
                 if (this.PhoneTapSfx == null)
                     this.Add(this.PhoneTapSfx = new SoundSource());
                 if (!this.PhoneTapSfx.Playing)
-                    this.PhoneTapSfx.Play("event:/char/theo/phone_taps_loop");
+                    this.PhoneTapSfx.Play("guid://{56221566-2fd7-4b1a-99d7-6af227ab8398}");
             }
             else
             {
@@ -303,11 +303,11 @@ namespace Celeste.Entities
                 else if (anim == "crawl" && currentAnimationFrame == 0)
                 {
                     if (!(this.Level?.Transitioning ?? false))
-                        Audio.Play("event:/char/theo/resort_crawl", this.Position);
+                        Audio.Play("guid://{30c6c5c3-bf5d-4cbe-b3ea-3ed4c1e2396e}", this.Position);
                 }
                 else if (anim == "pullVent" && currentAnimationFrame == 0)
                 {
-                    Audio.Play("event:/char/theo/resort_vent_tug", this.Position);
+                    Audio.Play("guid://{3d4ee73d-0198-43a2-b1d4-7b98cb16944b}", this.Position);
                 }
             };
         }
@@ -329,7 +329,7 @@ namespace Celeste.Entities
                 }
                 else if (anim == "walk" && currentAnimationFrame == 2)
                 {
-                    Audio.Play("event:/char/granny/cane_tap", this.Position);
+                    Audio.Play("guid://{baf0c37e-6b25-4b7f-8bcf-653b7ffbb4a5}", this.Position);
                 }
             };
         }
@@ -351,7 +351,7 @@ namespace Celeste.Entities
                 }
                 else if (anim == "walk" && currentAnimationFrame == 2)
                 {
-                    Audio.Play("event:/char/pusheen/kirby/footstep", this.Position);
+                    Audio.Play("guid://{3d667209-61f4-478c-9604-7bcfeae33530}", this.Position);
                 }
             };
         }
@@ -373,7 +373,7 @@ namespace Celeste.Entities
                 }
                 else if (anim == "walk" && currentAnimationFrame == 2)
                 {
-                    Audio.Play("event:/char/pusheen/kirby/footstep", this.Position);
+                    Audio.Play("guid://{3d667209-61f4-478c-9604-7bcfeae33530}", this.Position);
                 }
             };
         }
@@ -395,7 +395,7 @@ namespace Celeste.Entities
                 }
                 else if (anim == "walk" && currentAnimationFrame == 2)
                 {
-                    Audio.Play("event:/char/pusheen/kirby/footstep", this.Position);
+                    Audio.Play("guid://{3d667209-61f4-478c-9604-7bcfeae33530}", this.Position);
                 }
             };
         }
@@ -417,7 +417,7 @@ namespace Celeste.Entities
                 }
                 else if (anim == "walk" && currentAnimationFrame == 2)
                 {
-                    Audio.Play("event:/char/pusheen/kirby/footstep", this.Position);
+                    Audio.Play("guid://{3d667209-61f4-478c-9604-7bcfeae33530}", this.Position);
                 }
             };
         }
@@ -1316,3 +1316,4 @@ namespace Celeste.Entities
         }
     }
 }
+

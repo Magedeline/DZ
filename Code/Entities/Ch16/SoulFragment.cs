@@ -1,4 +1,4 @@
-namespace Celeste.Entities.Chapters.Ch16
+﻿namespace Celeste.Entities.Chapters.Ch16
 {
     /// <summary>
     /// SoulFragment - Collectible soul piece for final boss
@@ -76,7 +76,7 @@ namespace Celeste.Entities.Chapters.Ch16
             sprite.Play("emerge");
             fragmentLight.Alpha = 0.6f;
             
-            Audio.Play("event:/game/general/crystalheart_pulse", Position);
+            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
             
             Add(new Coroutine(EmergeRoutine()));
         }
@@ -99,7 +99,7 @@ namespace Celeste.Entities.Chapters.Ch16
             sprite.Play("complete");
             
             level?.Flash(Color.White * 0.5f);
-            Audio.Play("event:/game/general/crystalheart_pulse", Position);
+            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
             
             level?.Session.SetFlag("soul_fragment_" + FragmentId + "_complete", true);
             
@@ -219,3 +219,4 @@ namespace Celeste.Entities.Chapters.Ch16
         }
     }
 }
+

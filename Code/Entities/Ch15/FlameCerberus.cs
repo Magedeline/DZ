@@ -1,4 +1,4 @@
-namespace Celeste.Entities.Chapters.Ch15
+﻿namespace Celeste.Entities.Chapters.Ch15
 {
     /// <summary>
     /// FlameCerberus - Three-headed fire beast with different attacks per head
@@ -140,7 +140,7 @@ namespace Celeste.Entities.Chapters.Ch15
         {
             bodySprite.Play("triple_attack");
             State = CerberusState.TripleAttack;
-            Audio.Play("event:/game/general/crystalheart_pulse", Position);
+            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
         }
 
         private void StunnedBegin()
@@ -554,3 +554,4 @@ namespace Celeste.Entities.Chapters.Ch15
         }
     }
 }
+

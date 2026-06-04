@@ -1,4 +1,4 @@
-using Celeste.Entities;
+﻿using Celeste.Entities;
 
 namespace Celeste.Cutscenes
 {
@@ -59,7 +59,7 @@ namespace Celeste.Cutscenes
         {
             Vector2 charaPos = player.Position + new Vector2(24f, 0f);
             Level.Displacement.AddBurst(charaPos, 0.5f, 8f, 32f, 0.5f);
-            Audio.Play("event:/char/badeline/maddy_split", charaPos);
+            Audio.Play("guid://{450fb5b3-e9e3-45d8-9f34-ba05e292958f}", charaPos);
             Level.Add(chara = new CharaDummy(charaPos));
             chara.Sprite.Scale.X = -1f;
             yield return 0.4f;
@@ -88,3 +88,4 @@ namespace Celeste.Cutscenes
         }
     }
 }
+

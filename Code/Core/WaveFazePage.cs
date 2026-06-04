@@ -1,4 +1,4 @@
-namespace Celeste
+﻿namespace Celeste
 {
     [HotReloadable]
     public abstract class WaveFazePage
@@ -29,7 +29,7 @@ namespace Celeste
             while (!Input.MenuConfirm.Pressed)
                 yield return null;
             WaitingForInput = false;
-            Audio.Play("event:/new_content/game/10_farewell/ppt_mouseclick");
+            Audio.Play("guid://{5c9780f7-de2d-4811-813e-f89201d92e35}");
         }
 
         public enum Transitions
@@ -42,6 +42,7 @@ namespace Celeste
         }
     }
 }
+
 
 
 

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
@@ -604,7 +604,7 @@ namespace Celeste.Entities
             {
                 if (!silent)
                 {
-                    Audio.Play("event:/char/badeline/appear", Position);
+                    Audio.Play("guid://{ad25a031-880b-4f88-ac12-82d6c52fbdea}", Position);
                     Input.Rumble(RumbleStrength.Medium, RumbleLength.Medium);
                 }
 
@@ -623,7 +623,7 @@ namespace Celeste.Entities
 
             try
             {
-                Audio.Play("event:/char/badeline/disappear", Position);
+                Audio.Play("guid://{16b40879-0a79-4e42-8c91-fe419a8e186c}", Position);
                 var level = SceneAs<Level>();
                 level?.Particles?.Emit(P_GodAura, 12, Center, Vector2.One * 6f);
                 RemoveSelf();
@@ -666,3 +666,4 @@ namespace Celeste.Entities
         }
     }
 }
+

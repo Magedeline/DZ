@@ -1,4 +1,4 @@
-namespace Celeste.Entities.Chapters.Ch11
+﻿namespace Celeste.Entities.Chapters.Ch11
 {
     /// <summary>
     /// RevolverTarget - Breakable target for gun training
@@ -156,7 +156,7 @@ namespace Celeste.Entities.Chapters.Ch11
             }
             
             level?.Shake(0.3f);
-            Audio.Play("event:/game/general/crystalheart_pulse", Position);
+            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
         }
 
         public void Reset()
@@ -361,7 +361,7 @@ namespace Celeste.Entities.Chapters.Ch11
             var level = Scene as Level;
             level?.Session.SetFlag("shooting_gallery_complete", true);
             
-            Audio.Play("event:/game/general/crystalheart_pulse", Position);
+            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
         }
 
         public override void Update()
@@ -451,3 +451,4 @@ namespace Celeste.Entities.Chapters.Ch11
         }
     }
 }
+

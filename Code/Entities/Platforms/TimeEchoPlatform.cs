@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Celeste.Entities;
 using Microsoft.Xna.Framework;
 using Monocle;
@@ -103,7 +103,7 @@ namespace Celeste.Entities
             Collidable = true;
             syncedTimer = 3f; // Platform stays solid for 3 seconds
             
-            Audio.Play("event:/game/general/crystalheart_pulse", Position);
+            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
             
             // Visual feedback
             Level level = Scene as Level;
@@ -149,3 +149,4 @@ namespace Celeste.Entities
         }
     }
 }
+

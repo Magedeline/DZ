@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using FMOD.Studio;
 using Celeste.Utils;
 using Microsoft.Xna.Framework;
@@ -104,11 +104,11 @@ public class CS_Gen_IntroRemix_BSide : Scene
 
     /// <summary>
     /// Main VHS intro remix sequence:
-    /// 1. Black screen → VHS static snow fades in
+    /// 1. Black screen â†’ VHS static snow fades in
     /// 2. "Tape insert" visual effect with mechanical sound
     /// 3. VHS tracking lines + color shift as the remix title appears
     /// 4. Chapter name + "B-SIDE REMIX" text with VHS scanlines
-    /// 5. VHS glitch transition → fade to gameplay
+    /// 5. VHS glitch transition â†’ fade to gameplay
     /// </summary>
     private IEnumerator VHSRemixRoutine()
     {
@@ -263,7 +263,7 @@ public class CS_Gen_IntroRemix_BSide : Scene
         // Allow skipping during title display
         if (canSkip && (Input.MenuConfirm.Pressed || Input.MenuCancel.Pressed))
         {
-            Audio.Play("event:/ui/main/button_lowkey");
+            Audio.Play("guid://{8a93c5a5-538c-49f6-9d07-988839862ba1}");
             StartLevel();
         }
     }
@@ -423,12 +423,12 @@ public class CS_Gen_IntroRemix_BSide : Scene
             2f, Color.Black
         );
 
-        // Bottom "PLAY ►" indicator
+        // Bottom "PLAY â–º" indicator
         if (canSkip)
         {
             float blinkAlpha = (float)(Math.Sin(vhsTimer * 3f) * 0.3f + 0.7f);
             ActiveFont.Draw(
-                "► PLAY",
+                "â–º PLAY",
                 new Vector2(100f, 980f),
                 Vector2.Zero,
                 Vector2.One * 0.6f,
@@ -467,10 +467,10 @@ public class CS_Gen_IntroRemix_BSide : Scene
             Color.White * (overallAlpha * blinkAlpha * 0.6f)
         );
 
-        // "REC ●" indicator
+        // "REC â—" indicator
         float recBlink = (float)(Math.Sin(vhsTimer * 1.5f) > 0 ? 1f : 0f);
         ActiveFont.Draw(
-            "● REC",
+            "â— REC",
             new Vector2(1800f, 50f),
             new Vector2(1f, 0f),
             Vector2.One * 0.5f,
@@ -484,3 +484,4 @@ public class CS_Gen_IntroRemix_BSide : Scene
         Audio.SetMusic(null);
     }
 }
+

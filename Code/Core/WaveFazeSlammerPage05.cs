@@ -1,4 +1,4 @@
-namespace Celeste
+﻿namespace Celeste
 {
     [HotReloadable]
     public class WaveFazeSlammerPage05 : WaveFazeSlammerPage
@@ -28,7 +28,7 @@ namespace Celeste
         public override IEnumerator Routine()
         {
             yield return 1f;
-            Audio.Play("event:/new_content/game/10_farewell/ppt_happy_wavedashing");
+            Audio.Play("guid://{35472fac-2f05-4eb5-8281-d929b5ce41bb}");
             title = new AreaCompleteTitle(new Vector2(Width / 2f, 150f), Dialog.Clean("WAVEFAZESLAMMER_PAGE5_TITLE"), 2f, true);
             yield return 1.5f;
             
@@ -125,3 +125,4 @@ namespace Celeste
         }
     }
 }
+

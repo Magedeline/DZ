@@ -1,4 +1,4 @@
-using System.Xml;
+﻿using System.Xml;
 using Celeste.Entities;
 using Celeste.NPCs;
 using BadelineDummy = Celeste.Entities.BadelineDummy;
@@ -244,7 +244,7 @@ namespace Celeste.Cutscenes
                 }
                 if (currentOptions.Count > 0)
                 {
-                    Audio.Play("event:/ui/game/chatoptions_appear");
+                    Audio.Play("guid://{c4d2289a-859e-42e9-ba38-eee1791a3a62}");
                     while ((optionEase += Engine.DeltaTime * DIALOG_OPTION_EASE_SPEED) < 1.0)
                         yield return null;
                     optionEase = 1f;
@@ -253,17 +253,17 @@ namespace Celeste.Cutscenes
                     {
                         if (Input.MenuUp.Pressed && currentOptionIndex > 0)
                         {
-                            Audio.Play("event:/ui/game/chatoptions_roll_up");
+                            Audio.Play("guid://{1b030b2e-c125-40d5-b582-5819c6c29584}");
                             --currentOptionIndex;
                         }
                         else if (Input.MenuDown.Pressed && currentOptionIndex < currentOptions.Count - 1)
                         {
-                            Audio.Play("event:/ui/game/chatoptions_roll_down");
+                            Audio.Play("guid://{dd4cb027-0132-4039-9303-c9ad8589683e}");
                             ++currentOptionIndex;
                         }
                         yield return null;
                     }
-                    Audio.Play("event:/ui/game/chatoptions_select");
+                    Audio.Play("guid://{bc008f9e-76c5-42d5-b2f0-574cb7dacf6f}");
                     while ((optionEase -= Engine.DeltaTime * DIALOG_OPTION_EASE_SPEED) > 0.0)
                         yield return null;
                     Option selected = currentOptions[currentOptionIndex];
@@ -606,3 +606,4 @@ namespace Celeste.Cutscenes
         #endregion
     }
 }
+

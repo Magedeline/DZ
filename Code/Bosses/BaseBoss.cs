@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Celeste.Entities;
 using Celeste;
 using Microsoft.Xna.Framework;
@@ -170,7 +170,7 @@ namespace Celeste.Entities.Bosses
             }
             
             // Knockback
-            Audio.Play("event:/game/general/thing_booped", Position);
+            Audio.Play("guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}", Position);
             
             if (currentHealth <= 0)
             {
@@ -206,7 +206,7 @@ namespace Celeste.Entities.Bosses
 
         protected virtual void PlayDefeatEffects()
         {
-            Audio.Play("event:/game/06_reflection/boss_spikes_burst", Position);
+            Audio.Play("guid://{03185ab0-0f08-4c6e-a6ae-1c44da6b2842}", Position);
             
             // Particles
             for (int i = 0; i < 30; i++)
@@ -288,3 +288,4 @@ namespace Celeste.Entities.Bosses
         Defeated
     }
 }
+

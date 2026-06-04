@@ -1,4 +1,4 @@
-namespace Celeste.Entities.Chapters.Ch15
+﻿namespace Celeste.Entities.Chapters.Ch15
 {
     /// <summary>
     /// TitanSquire - Armored warrior serving the Titan King
@@ -152,7 +152,7 @@ namespace Celeste.Entities.Chapters.Ch15
         {
             sprite.Play("flame_thrust");
             State = SquireState.FlameThrust;
-            Audio.Play("event:/game/general/crystalheart_pulse", Position);
+            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
         }
 
         private void ShieldBashBegin()
@@ -165,7 +165,7 @@ namespace Celeste.Entities.Chapters.Ch15
         {
             sprite.Play("call");
             State = SquireState.CallReinforcements;
-            Audio.Play("event:/game/general/crystalheart_pulse", Position);
+            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
         }
 
         private void StunnedBegin()
@@ -376,7 +376,7 @@ namespace Celeste.Entities.Chapters.Ch15
             Scene.Add(reinforcement);
             
             level?.Shake(0.3f);
-            Audio.Play("event:/game/general/crystalheart_pulse", Position);
+            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
             
             yield return 0.5f;
             
@@ -611,3 +611,4 @@ namespace Celeste.Entities.Chapters.Ch15
         }
     }
 }
+

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Celeste.Cutscenes;
 using Celeste.Mod.Meta;
 using Microsoft.Xna.Framework;
@@ -17,7 +17,7 @@ namespace Celeste;
 /// - Correct music assignments per side
 /// - Heart gem tracking per side
 /// - Completion flags per side
-/// - Side unlock chain: A → B → C (postcard) → D (postcard) → DX (postcard)
+/// - Side unlock chain: A â†’ B â†’ C (postcard) â†’ D (postcard) â†’ DX (postcard)
 /// </summary>
 public static class AreaMapData
 {
@@ -99,7 +99,7 @@ public static class AreaMapData
         public Vector3 Cursor { get; set; }
     }
 
-    // ── Chapter Registry ─────────────────────────────────────────────────
+    // â”€â”€ Chapter Registry â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     /// <summary>All chapter definitions for the mod</summary>
     public static readonly List<ChapterDef> Chapters = new();
@@ -115,7 +115,7 @@ public static class AreaMapData
 
     private static bool _initialized;
 
-    // ── Initialization ───────────────────────────────────────────────────
+    // â”€â”€ Initialization â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     /// <summary>
     /// Ensures the registry is initialized before use. Lazy initialization
@@ -140,7 +140,7 @@ public static class AreaMapData
         _bySID.Clear();
         _byBaseKey.Clear();
 
-        // ── Prologue (Chapter 0) ──
+        // â”€â”€ Prologue (Chapter 0) â”€â”€
         // Image 1: position=(-1.374, 1.224, 7.971) target=(-0.440, 0.499, 6.358)
         Register(new ChapterDef
         {
@@ -151,7 +151,7 @@ public static class AreaMapData
             IsInterlude = true,
             HasBSide = false, HasCSide = false, HasDSide = false, HasDXSide = false,
             MusicEvents = new[] { "event:/music/1-intro/main" },
-            AmbienceEvents = new[] { "event:/env/amb/00_prologue" },
+            AmbienceEvents = new[] { "guid://{0fa79a65-c103-4f72-84d6-7a22c9b2f43c}" },
             MountainState = 0,
             MountainData = new MountainCameraData
             {
@@ -165,7 +165,7 @@ public static class AreaMapData
             }
         });
 
-        // ── Chapter 1: Forbidden Metropolis ──
+        // â”€â”€ Chapter 1: Forbidden Metropolis â”€â”€
         // Image 9: position=(-1.234, 0.677, 7.598) target=(-0.221, 0.734, 5.875)
         RegisterStandardChapter(1, "forbiddenmetro", "01_City",
             "areas/city", 0,
@@ -174,7 +174,7 @@ public static class AreaMapData
             zoom:   (new Vector3(-0.867f,  0.315f,  6.592f), new Vector3( 0.146f,  0.372f,  4.869f)),
             cursor:  new Vector3(-0.221f,  0.734f,  5.875f));
 
-        // ── Chapter 2: Veil of Shadows ──
+        // â”€â”€ Chapter 2: Veil of Shadows â”€â”€
         // Image 2: position=(-0.952, 4.218, 9.744) target=(-0.111, 3.393, 8.128)
         RegisterStandardChapter(2, "shadowofveil", "02_Nightmare",
             "areas/nightmare", 0,
@@ -183,7 +183,7 @@ public static class AreaMapData
             zoom:   (new Vector3(-0.585f,  3.856f,  8.738f), new Vector3( 0.256f,  3.031f,  7.122f)),
             cursor:  new Vector3(-0.111f,  3.393f,  8.128f));
 
-        // ── Chapter 3: Arrival ──
+        // â”€â”€ Chapter 3: Arrival â”€â”€
         // Image 3: position=(-3.431, 5.512, 4.284) target=(-2.287, 4.359, 3.118)
         RegisterStandardChapter(3, "arrivial", "03_Stars",
             "areas/stars", 0,
@@ -192,7 +192,7 @@ public static class AreaMapData
             zoom:   (new Vector3(-3.064f,  5.150f,  3.278f), new Vector3(-1.920f,  3.997f,  2.112f)),
             cursor:  new Vector3(-2.287f,  4.359f,  3.118f));
 
-        // ── Chapter 4: Chronicles of Destiny ──
+        // â”€â”€ Chapter 4: Chronicles of Destiny â”€â”€
         // Image 8: position=(-14.620, 3.606, 19.135) target=(-13.134, 4.115, 17.897)
         RegisterStandardChapter(4, "thelegend", "04_Legend",
             "areas/legend", 0,
@@ -201,7 +201,7 @@ public static class AreaMapData
             zoom:   (new Vector3(-14.253f,  3.244f, 18.129f), new Vector3(-12.767f,  3.753f, 16.891f)),
             cursor:  new Vector3(-13.134f,  4.115f, 17.897f));
 
-        // ── Chapter 5: Fractured Memories ──
+        // â”€â”€ Chapter 5: Fractured Memories â”€â”€
         // Image 10: position=(-4.473, 7.158, 5.463) target=(-3.630, 6.660, 3.719)
         RegisterStandardChapter(5, "fractureresort", "05_Restore",
             "areas/restore", 0,
@@ -210,7 +210,7 @@ public static class AreaMapData
             zoom:   (new Vector3(-4.106f,  6.796f,  4.457f), new Vector3(-3.263f,  6.298f,  2.713f)),
             cursor:  new Vector3(-3.630f,  6.660f,  3.719f));
 
-        // ── Chapter 6: Fortress of Solitude ──
+        // â”€â”€ Chapter 6: Fortress of Solitude â”€â”€
         // Image 4: position=(5.961, 8.823, 5.058) target=(5.061, 7.757, 3.625)
         RegisterStandardChapter(6, "stronghold", "06_Stronghold",
             "areas/stronghold", 0,
@@ -219,7 +219,7 @@ public static class AreaMapData
             zoom:   (new Vector3( 6.328f,  8.461f,  4.052f), new Vector3( 5.428f,  7.395f,  2.619f)),
             cursor:  new Vector3( 5.061f,  7.757f,  3.625f));
 
-        // ── Chapter 7: Infernal Reflections ──
+        // â”€â”€ Chapter 7: Infernal Reflections â”€â”€
         // Image 5: position=(9.626, 8.824, -4.140) target=(7.924, 8.240, -3.267)
         RegisterStandardChapter(7, "infornoreflection", "07_Hell",
             "areas/hell", MountainOverworldManager.STATE_DARK,
@@ -228,7 +228,7 @@ public static class AreaMapData
             zoom:   (new Vector3( 9.993f,  8.462f, -5.146f), new Vector3( 8.291f,  7.878f, -4.273f)),
             cursor:  new Vector3( 7.924f,  8.240f, -3.267f));
 
-        // ── Chapter 8: Revelation's Edge ──
+        // â”€â”€ Chapter 8: Revelation's Edge â”€â”€
         // Image 6: position=(-0.963, 10.542, -5.314) target=(-0.178, 9.588, -3.741)
         RegisterStandardChapter(8, "revelationedge", "08_Truth",
             "areas/truth", 0,
@@ -237,7 +237,7 @@ public static class AreaMapData
             zoom:   (new Vector3(-0.596f, 10.180f, -6.320f), new Vector3( 0.189f,  9.226f, -4.747f)),
             cursor:  new Vector3(-0.178f,  9.588f, -3.741f));
 
-        // ── Chapter 9: Apex of Reality (Summit) ──
+        // â”€â”€ Chapter 9: Apex of Reality (Summit) â”€â”€
         // Image 7: position=(1.113, 12.154, 6.334) target=(-0.086, 11.118, 5.115)
         RegisterStandardChapter(9, "beyondsummit", "09_Summit",
             "areas/summit", 0,
@@ -246,8 +246,8 @@ public static class AreaMapData
             zoom:   (new Vector3( 1.480f, 11.792f,  5.328f), new Vector3( 0.281f, 10.756f,  4.109f)),
             cursor:  new Vector3(-0.086f, 11.118f,  5.115f));
 
-        // ── Chapter 10: Echoes of the Past ──
-        // Blend between img7 and img11 — mid climb, slight upward shift
+        // â”€â”€ Chapter 10: Echoes of the Past â”€â”€
+        // Blend between img7 and img11 â€” mid climb, slight upward shift
         RegisterStandardChapter(10, "echosofpast", "10_Ruins",
             "areas/ruins", 0,
             idle:   (new Vector3( 0.514f, 14.102f,  8.460f), new Vector3(-0.462f, 13.157f,  6.891f)),
@@ -255,7 +255,7 @@ public static class AreaMapData
             zoom:   (new Vector3( 0.881f, 13.740f,  6.854f), new Vector3(-0.095f, 12.795f,  5.285f)),
             cursor:  new Vector3(-0.462f, 13.157f,  6.291f));
 
-        // ── Chapter 11: Frozen Sanctuary ──
+        // â”€â”€ Chapter 11: Frozen Sanctuary â”€â”€
         RegisterStandardChapter(11, "frozensanctuary", "11_Snow",
             "areas/snow", 0,
             idle:   (new Vector3(-0.185f, 16.051f,  9.185f), new Vector3(-0.838f, 15.230f,  7.315f)),
@@ -263,7 +263,7 @@ public static class AreaMapData
             zoom:   (new Vector3( 0.182f, 15.689f,  7.579f), new Vector3(-0.471f, 14.868f,  5.709f)),
             cursor:  new Vector3(-0.838f, 15.230f,  6.715f));
 
-        // ── Chapter 12: Cascading Depths ──
+        // â”€â”€ Chapter 12: Cascading Depths â”€â”€
         RegisterStandardChapter(12, "cascadingdepths", "12_Water",
             "areas/water", 0,
             idle:   (new Vector3(-0.884f, 18.000f,  9.910f), new Vector3(-1.214f, 17.303f,  7.539f)),
@@ -271,7 +271,7 @@ public static class AreaMapData
             zoom:   (new Vector3(-0.517f, 17.638f,  8.304f), new Vector3(-0.847f, 16.941f,  5.933f)),
             cursor:  new Vector3(-1.214f, 17.303f,  6.939f));
 
-        // ── Chapter 13: Blazing Territories ──
+        // â”€â”€ Chapter 13: Blazing Territories â”€â”€
         RegisterStandardChapter(13, "balzingteritory", "13_Fire",
             "areas/fire", MountainOverworldManager.STATE_DARK,
             idle:   (new Vector3(-1.583f, 19.949f, 10.635f), new Vector3(-1.590f, 19.376f,  8.163f)),
@@ -279,7 +279,7 @@ public static class AreaMapData
             zoom:   (new Vector3(-1.216f, 19.587f,  9.029f), new Vector3(-1.223f, 19.014f,  6.557f)),
             cursor:  new Vector3(-1.590f, 19.376f,  7.563f));
 
-        // ── Chapter 14: Cyber Nexus ──
+        // â”€â”€ Chapter 14: Cyber Nexus â”€â”€
         RegisterStandardChapter(14, "cybernexus", "14_Digital",
             "areas/digital", 0,
             idle:   (new Vector3(-1.660f, 22.498f, 10.160f), new Vector3(-1.966f, 21.449f,  7.987f)),
@@ -287,7 +287,7 @@ public static class AreaMapData
             zoom:   (new Vector3(-1.293f, 22.136f,  8.554f), new Vector3(-1.599f, 21.087f,  6.381f)),
             cursor:  new Vector3(-1.966f, 21.449f,  7.387f));
 
-        // ── Chapter 15: Ethereal Citadel ──
+        // â”€â”€ Chapter 15: Ethereal Citadel â”€â”€
         RegisterStandardChapter(15, "etheraealcitadel", "15_Castle",
             "areas/castle", 0,
             idle:   (new Vector3(-1.737f, 25.047f,  9.685f), new Vector3(-1.722f, 24.522f,  7.411f)),
@@ -295,7 +295,7 @@ public static class AreaMapData
             zoom:   (new Vector3(-1.370f, 24.685f,  8.079f), new Vector3(-1.355f, 24.160f,  5.805f)),
             cursor:  new Vector3(-1.722f, 24.522f,  6.811f));
 
-        // ── Chapter 16: Organ Garden of Despair (A-Side only) ──
+        // â”€â”€ Chapter 16: Organ Garden of Despair (A-Side only) â”€â”€
         // Image 11: position=(-1.916, 33.050, 9.585) target=(-1.479, 32.938, 7.636)
         Register(new ChapterDef
         {
@@ -320,8 +320,8 @@ public static class AreaMapData
             }
         });
 
-        // ── Chapter 17: Epilogue (A-Side only) ──
-        // Above ch16 — further up the same high tower area
+        // â”€â”€ Chapter 17: Epilogue (A-Side only) â”€â”€
+        // Above ch16 â€” further up the same high tower area
         Register(new ChapterDef
         {
             Number = 17,
@@ -345,7 +345,7 @@ public static class AreaMapData
             }
         });
 
-        // ── Chapter 18: Core of Existence ──
+        // â”€â”€ Chapter 18: Core of Existence â”€â”€
         RegisterStandardChapter(18, "coreexistence", "18_Heart",
             "areas/heart", MountainOverworldManager.STATE_DARK,
             idle:   (new Vector3(-1.916f, 37.850f, 11.185f), new Vector3(-1.479f, 37.738f,  9.236f)),
@@ -353,7 +353,7 @@ public static class AreaMapData
             zoom:   (new Vector3(-1.549f, 37.488f,  8.579f), new Vector3(-1.112f, 37.376f,  6.630f)),
             cursor:  new Vector3(-1.479f, 37.738f,  7.636f));
 
-        // ── Chapter 19: Farewell to Stars (A-Side only) ──
+        // â”€â”€ Chapter 19: Farewell to Stars (A-Side only) â”€â”€
         Register(new ChapterDef
         {
             Number = 19,
@@ -377,7 +377,7 @@ public static class AreaMapData
             }
         });
 
-        // ── Chapter 20: The Last Push (A-Side only) ──
+        // â”€â”€ Chapter 20: The Last Push (A-Side only) â”€â”€
         Register(new ChapterDef
         {
             Number = 20,
@@ -495,7 +495,7 @@ public static class AreaMapData
         return chapter.Icon;
     }
 
-    // ── Registration Helpers ─────────────────────────────────────────────
+    // â”€â”€ Registration Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     /// <summary>
     /// Registers a standard chapter with all 5 sides (A/B/C/D/DX).
@@ -693,7 +693,7 @@ public static class AreaMapData
         if (!string.IsNullOrEmpty(music) || !string.IsNullOrEmpty(ambience))
         {
             string finalMusic = string.IsNullOrEmpty(music) ? "event:/music/1-intro/main" : music;
-            string finalAmbience = string.IsNullOrEmpty(ambience) ? "event:/env/amb/00_prologue" : ambience;
+            string finalAmbience = string.IsNullOrEmpty(ambience) ? "guid://{0fa79a65-c103-4f72-84d6-7a22c9b2f43c}" : ambience;
 
             Logger.Log(LogLevel.Debug, "MaggyHelper",
                 $"BuildOrUpdateMode: Setting audio for {path} - Music: {finalMusic}, Ambience: {finalAmbience}");
@@ -726,7 +726,7 @@ public static class AreaMapData
         return chapter.AmbienceEvents[chapter.AmbienceEvents.Length - 1];
     }
 
-    // ── Lookup Methods ───────────────────────────────────────────────────
+    // â”€â”€ Lookup Methods â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     /// <summary>Gets a chapter by its number</summary>
     public static ChapterDef GetByNumber(int number)
@@ -830,12 +830,12 @@ public static class AreaMapData
     /// <summary>
     /// Constructs a vanilla <see cref="MapMeta"/> from a <see cref="ChapterDef"/> so that
     /// Everest's standard <c>MapMeta.ApplyTo</c> pipeline is exercised for this chapter.
-    /// This covers mountain cameras, fog/star colors, audio state, and mode properties —
+    /// This covers mountain cameras, fog/star colors, audio state, and mode properties â€”
     /// matching exactly how vanilla Celeste chapters and Everest YAML mods work.
     /// </summary>
     private static MapMeta BuildMapMeta(ChapterDef chapter, AreaData area)
     {
-        // ── Mountain (overworld 3-D model / cameras / fog) ────────────────
+        // â”€â”€ Mountain (overworld 3-D model / cameras / fog) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
         MapMetaMountain mountain = null;
         if (chapter.MountainData != null)
         {
@@ -862,7 +862,7 @@ public static class AreaMapData
 
                 Cursor = new[] { chapter.MountainData.Cursor.X, chapter.MountainData.Cursor.Y, chapter.MountainData.Cursor.Z },
 
-                // DZ fog palette — deep space/indigo theme
+                // DZ fog palette â€” deep space/indigo theme
                 FogColors = new[]
                 {
                     "0d0a1f", // normal
@@ -1024,3 +1024,4 @@ public static class IntroRemixHooks
         return false;
     }
 }
+

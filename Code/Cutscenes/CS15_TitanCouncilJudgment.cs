@@ -1,4 +1,4 @@
-namespace Celeste.Cutscenes
+﻿namespace Celeste.Cutscenes
 {
     /// <summary>
     /// Chapter 15 Roaring Titan Council Judgment
@@ -32,7 +32,7 @@ namespace Celeste.Cutscenes
 
             // Roaring Titan Council entrance
             level.Shake(1.0f);
-            Audio.Play("event:/game/general/strawberry_pulse");
+            Audio.Play("guid://{0886e368-bce4-4922-97c3-edeadf714e29}");
             
             yield return Textbox.Say("MAGGYHELPER_CH15_ROARING_TITAN_COUNCIL_ENTRANCE");
 
@@ -51,6 +51,7 @@ namespace Celeste.Cutscenes
         }
     }
 }
+
 
 
 

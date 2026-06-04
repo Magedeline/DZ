@@ -1,4 +1,4 @@
-namespace Celeste.Entities.Chapters.Ch15
+﻿namespace Celeste.Entities.Chapters.Ch15
 {
     /// <summary>
     /// JudgmentBell - Massive bell that creates shockwaves when rung
@@ -100,7 +100,7 @@ namespace Celeste.Entities.Chapters.Ch15
             ringCount = 0;
             hasRung = false;
             
-            Audio.Play("event:/game/general/crystalheart_pulse", Position);
+            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
             level?.Shake(0.2f);
         }
 
@@ -112,7 +112,7 @@ namespace Celeste.Entities.Chapters.Ch15
             ringCount = 0;
             hasRung = false;
             
-            Audio.Play("event:/game/general/crystalheart_pulse", Position);
+            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
             level?.Shake(0.3f);
         }
         #endregion
@@ -338,3 +338,4 @@ namespace Celeste.Entities.Chapters.Ch15
         }
     }
 }
+

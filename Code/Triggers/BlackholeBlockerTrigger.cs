@@ -1,4 +1,4 @@
-namespace Celeste.Triggers
+﻿namespace Celeste.Triggers
 {
     /// <summary>
     /// Trigger that stops player movement when entering, creating a "pulled into blackhole" effect
@@ -111,7 +111,7 @@ namespace Celeste.Triggers
             Vector2 originalSpeed = player.Speed;
             
             // Play sound
-            Audio.Play("event:/game/general/thing_booped", Position);
+            Audio.Play("guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}", Position);
             
             if (visualEffect && level != null)
             {
@@ -250,6 +250,7 @@ namespace Celeste.Triggers
         }
     }
 }
+
 
 
 

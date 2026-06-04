@@ -1,4 +1,4 @@
-namespace Celeste.Entities;
+﻿namespace Celeste.Entities;
 
 [CustomEntity("MaggyHelper/KirbyTutorialBird")]
 [Tracked]
@@ -147,7 +147,7 @@ public class KirbyTutorialBird : BirdNPC
             level.Session.DoNotLoad.Add(EntityID);
         }
 
-        yield return Startle("event:/game/general/bird_startle");
+        yield return Startle("guid://{7ea54ed8-0285-4dfc-a1ce-558444a4aa59}");
         yield return FlyAway();
     }
 

@@ -1,4 +1,4 @@
-namespace Celeste.Cutscenes
+﻿namespace Celeste.Cutscenes
 {
     /// <summary>
     /// Chapter 10 Titan Tower Approach cutscene
@@ -33,7 +33,7 @@ namespace Celeste.Cutscenes
 
             // Mid-climb warnings
             yield return 0.5f;
-            Audio.Play("event:/game/general/strawberry_pulse");
+            Audio.Play("guid://{0886e368-bce4-4922-97c3-edeadf714e29}");
             
             yield return Textbox.Say("MAGGYHELPER_CH12_TITAN_TOWER_MID_CLIMB");
 
@@ -44,6 +44,7 @@ namespace Celeste.Cutscenes
         }
     }
 }
+
 
 
 

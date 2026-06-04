@@ -1,4 +1,4 @@
-using Celeste.Entities;
+﻿using Celeste.Entities;
 
 namespace Celeste.Cutscenes
 {
@@ -41,7 +41,7 @@ namespace Celeste.Cutscenes
         {
             Level.Shake(0.5f);
             Input.Rumble(RumbleStrength.Strong, RumbleLength.Long);
-            Audio.Play("event:/new_content/game/10_farewell/glitch_medium", player.Position);
+            Audio.Play("guid://{b26ebe07-7db5-40d0-9282-2d1449db8c5a}", player.Position);
             Glitch.Value = 0.4f;
             yield return 0.8f;
             Glitch.Value = 0f;
@@ -52,7 +52,7 @@ namespace Celeste.Cutscenes
         private IEnumerator BlindingLight()
         {
             Level.Flash(Color.White, drawPlayerOver: true);
-            Audio.Play("event:/new_content/game/10_farewell/lightning_strike", player.Position);
+            Audio.Play("guid://{d27aa340-38c2-46fe-9e45-83c4f6be9070}", player.Position);
             yield return 1.0f;
         }
 
@@ -75,3 +75,4 @@ namespace Celeste.Cutscenes
         }
     }
 }
+

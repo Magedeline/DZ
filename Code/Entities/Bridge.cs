@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Microsoft.Xna.Framework;
 using Monocle;
@@ -113,8 +113,8 @@ public class Bridge : Entity
         {
             if (entity != null && entity.X >= base.X + 112f)
             {
-                Audio.SetMusic("event:/music/pusheen/lvl0/bridge", true, true);
-                collapseSfx.Play("event:/game/pusheen/00_prologue/bridge_rumble_loop", null, 0f);
+                Audio.SetMusic("guid://{bcc1ccb0-ea9e-42d0-a0d2-8508e4a57874}", true, true);
+                collapseSfx.Play("guid://{cdb32540-bff1-4137-b08a-304047ed86d0}", null, 0f);
                 canCollapse = true;
                 canEndCollapseA = true;
                 canEndCollapseB = true;
@@ -192,3 +192,4 @@ public class Bridge : Entity
         base.SceneEnd(scene);
     }
 }
+

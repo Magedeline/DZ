@@ -1,4 +1,4 @@
-using Celeste.Helpers;
+﻿using Celeste.Helpers;
 
 namespace Celeste.Entities.Bosses
 {
@@ -302,7 +302,7 @@ namespace Celeste.Entities.Bosses
             var level = Scene as Level;
             for (int i = 0; i < 4; i++)
             {
-                Audio.Play("event:/game/06_reflection/fallblock_boss_impact", Position);
+                Audio.Play("guid://{441f8a0a-8783-4894-b45c-815c95877931}", Position);
                 impactWiggler.Start();
                 level?.Shake(0.35f);
                 level?.Displacement.AddBurst(Position, 0.75f, 36f + i * 20f, 96f + i * 24f, 0.35f);
@@ -314,7 +314,7 @@ namespace Celeste.Entities.Bosses
 
         private IEnumerator Windup(Vector2 offset, float duration)
         {
-            Audio.Play("event:/game/05_mirror_temple/eye_pulse", Position);
+            Audio.Play("guid://{f64177a2-2611-49cc-8c63-d74c1e29c8a3}", Position);
             Vector2 start = Position;
             Vector2 target = Position + offset;
 
@@ -355,7 +355,7 @@ namespace Celeste.Entities.Bosses
 
         private void OnImpact(Vector2 direction)
         {
-            Audio.Play("event:/game/06_reflection/fallblock_boss_impact", Position);
+            Audio.Play("guid://{441f8a0a-8783-4894-b45c-815c95877931}", Position);
             impactWiggler.Start();
 
             var level = Scene as Level;
@@ -424,7 +424,7 @@ namespace Celeste.Entities.Bosses
 
             health = Math.Max(0, health - damage);
             Health = health;
-            Audio.Play("event:/game/06_reflection/fallblock_boss_impact", Position);
+            Audio.Play("guid://{441f8a0a-8783-4894-b45c-815c95877931}", Position);
             impactWiggler.Start();
 
             if (health <= 0)
@@ -457,3 +457,4 @@ namespace Celeste.Entities.Bosses
         }
     }
 }
+

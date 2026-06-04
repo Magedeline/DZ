@@ -1,4 +1,4 @@
-#nullable enable
+﻿#nullable enable
 
 namespace Celeste.UI
 {
@@ -10,7 +10,7 @@ namespace Celeste.UI
     [HotReloadable]
     public class CreditsMaggy : Scene
     {
-        #region ── Constants ──────────────────────────────────────────────
+        #region â”€â”€ Constants â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
         private const float FADE_IN_DURATION = 1.5f;
         private const float FADE_OUT_DURATION = 1.0f;
@@ -23,14 +23,14 @@ namespace Celeste.UI
         private const float SCROLL_ACCELERATION = 1800f;
         private const float HEIGHT_PADDING = 476f;
 
-        private const string CREDIT_MUSIC_EVENT = "event:/music/pusheen/menu/credits";
-        private const string BACK_SFX = "event:/ui/main/button_back";
+        private const string CREDIT_MUSIC_EVENT = "guid://{dbd791e1-473c-4a66-8251-24b4cb34d041}";
+        private const string BACK_SFX = "guid://{fe9c58fa-d60a-4644-b34d-c0c4ebac2486}";
 
         private static readonly Color BorderColor = Color.Black;
 
         #endregion
 
-        #region ── Nested types ───────────────────────────────────────────
+        #region â”€â”€ Nested types â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
         private enum SequencePhase
         {
@@ -178,7 +178,7 @@ namespace Celeste.UI
 
         #endregion
 
-        #region ── Fields ─────────────────────────────────────────────────
+        #region â”€â”€ Fields â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
         private readonly List<CreditNode> credits = new();
 
@@ -208,7 +208,7 @@ namespace Celeste.UI
 
         #endregion
 
-        #region ── Constructor ────────────────────────────────────────────
+        #region â”€â”€ Constructor â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
         public CreditsMaggy()
         {
@@ -225,7 +225,7 @@ namespace Celeste.UI
 
         #endregion
 
-        #region ── Credit Data ────────────────────────────────────────────
+        #region â”€â”€ Credit Data â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
         private static float LineHeight => ActiveFont.LineHeight;
 
@@ -292,7 +292,7 @@ namespace Celeste.UI
 
         #endregion
 
-        #region ── Update ─────────────────────────────────────────────────
+        #region â”€â”€ Update â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
         public override void Update()
         {
@@ -448,7 +448,7 @@ namespace Celeste.UI
 
         #endregion
 
-        #region ── Render ─────────────────────────────────────────────────
+        #region â”€â”€ Render â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
         public override void Render()
         {
@@ -533,7 +533,7 @@ namespace Celeste.UI
 
         #endregion
 
-        #region ── Audio helpers ───────────────────────────────────────────
+        #region â”€â”€ Audio helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
         private void TryStartMusic()
         {
@@ -544,7 +544,7 @@ namespace Celeste.UI
             catch
             {
                 Logger.Log(LogLevel.Warn, "MaggyHelper",
-                    "[MainMenuCredit] Credits music event not found – continuing without music");
+                    "[MainMenuCredit] Credits music event not found â€“ continuing without music");
             }
         }
 
@@ -559,7 +559,7 @@ namespace Celeste.UI
 
         #endregion
 
-        #region ── Navigation ─────────────────────────────────────────────
+        #region â”€â”€ Navigation â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
         private void ReturnToOverworld()
         {
@@ -570,7 +570,7 @@ namespace Celeste.UI
 
         #endregion
 
-        #region ── Cleanup ────────────────────────────────────────────────
+        #region â”€â”€ Cleanup â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
         public override void End()
         {
@@ -581,3 +581,4 @@ namespace Celeste.UI
         #endregion
     }
 }
+

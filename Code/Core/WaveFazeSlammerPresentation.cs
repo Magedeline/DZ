@@ -1,4 +1,4 @@
-using System.Threading;
+﻿using System.Threading;
 
 namespace Celeste
 {
@@ -112,7 +112,7 @@ namespace Celeste
             
             if (audioPlaying)
             {
-                Audio.Play("event:/new_content/music/pusheen/lvl19/part01");
+                Audio.Play("guid://{9e9d6f58-b98e-4ac0-bbdf-c0f28bf996c5}");
             }
             
             while (pageIndex < pages.Count)
@@ -134,7 +134,7 @@ namespace Celeste
                         break;
                     }
                     
-                    Audio.Play("event:/new_content/game/10_farewell/ppt_mouseclick");
+                    Audio.Play("guid://{5c9780f7-de2d-4811-813e-f89201d92e35}");
                 }
                 
                 pageUpdating = false;
@@ -159,7 +159,7 @@ namespace Celeste
                 }
             }
             
-            Audio.Play("event:/new_content/game/10_farewell/cafe_computer_off");
+            Audio.Play("guid://{67ac36e7-71f0-4956-97b1-ac7ce0e1bd0a}");
             
             while (ease > 0f)
             {
@@ -177,15 +177,15 @@ namespace Celeste
             {
                 if (CurrPage.Transition == WaveFazeSlammerPage.Transitions.Rotate3D)
                 {
-                    Audio.Play("event:/new_content/game/10_farewell/ppt_cube_transition");
+                    Audio.Play("guid://{cabdd646-45f5-4dbd-9cd2-898a99a794c4}");
                 }
                 else if (CurrPage.Transition == WaveFazeSlammerPage.Transitions.Blocky)
                 {
-                    Audio.Play("event:/new_content/game/10_farewell/ppt_dissolve_transition");
+                    Audio.Play("guid://{b8e2f523-8fd3-444c-99aa-b45e5910fcda}");
                 }
                 else if (CurrPage.Transition == WaveFazeSlammerPage.Transitions.Spiral)
                 {
-                    Audio.Play("event:/new_content/game/10_farewell/ppt_spinning_transition");
+                    Audio.Play("guid://{445a96f2-982e-49d4-895a-19889e614955}");
                 }
             }
             
@@ -458,3 +458,4 @@ namespace Celeste
         }
     }
 }
+

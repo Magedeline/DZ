@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Celeste.Entities;
@@ -57,7 +57,7 @@ public class CS10IntroductionStage : CutsceneEntity
         player.Sprite.Play("idle");
 
         // Set music for exploration/ruins
-        Audio.SetMusic("event:/music/pusheen/lvl10/main");
+        Audio.SetMusic("guid://{ae72dd94-9d20-4850-a58e-cbad870ddf8e}");
 
         // Fade in
         FadeWipe fadeWipe = new FadeWipe(level, wipeIn: true);

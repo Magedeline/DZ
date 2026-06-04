@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Celeste.Entities;
 using Celeste;
 using Microsoft.Xna.Framework;
@@ -233,7 +233,7 @@ namespace Celeste.Entities.Bosses
                     isJumpSlamming = false;
                     sprite?.Play("slam_land");
                     level?.Shake(0.5f);
-                    Audio.Play("event:/game/general/fallblock_shake", Position);
+                    Audio.Play("guid://{a9cc805b-cc3c-4e29-af3b-bc69914e5a10}", Position);
                     
                     // Shockwave
                     SpawnShockwave();
@@ -414,3 +414,4 @@ namespace Celeste.Entities.Bosses
         Inhale
     }
 }
+

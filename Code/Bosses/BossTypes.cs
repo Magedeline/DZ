@@ -1,4 +1,4 @@
-using Celeste.Entities;
+﻿using Celeste.Entities;
 using Microsoft.Xna.Framework;
 using Monocle;
 
@@ -69,7 +69,7 @@ namespace Celeste.Entities.Bosses
             }
             catch
             {
-                // No sprite available – entity will still function
+                // No sprite available â€“ entity will still function
             }
         }
 
@@ -83,8 +83,9 @@ namespace Celeste.Entities.Bosses
                 session.CurrentKirbyPower = ability.ToString();
             }
 
-            Audio.Play("event:/game/general/diamond_touch", Position);
+            Audio.Play("guid://{a47180e1-9bc2-4dbc-86c7-6402cea2e2be}", Position);
             RemoveSelf();
         }
     }
 }
+

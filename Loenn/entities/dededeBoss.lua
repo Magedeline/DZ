@@ -1,4 +1,4 @@
--- Loenn plugin for MaggyHelper - King Dedede Boss Entity
+﻿-- Loenn plugin for MaggyHelper - King Dedede Boss Entity
 local drawableSprite = require("structs.drawable_sprite")
 
 local dededeBoss = {}
@@ -10,7 +10,7 @@ dededeBoss.placements = {
     data = {
         health = 25,
         attackCooldown = 1.5,
-        bossMusic = "event:/music/lvl9/main"
+        bossMusic = "guid://{38e2f39c-382d-4136-86fd-e24520f3b71e}"
     }
 }
 
@@ -37,3 +37,4 @@ function dededeBoss.sprite(room, entity)
 end
 
 return dededeBoss
+

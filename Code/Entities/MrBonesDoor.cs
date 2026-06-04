@@ -1,4 +1,4 @@
-namespace Celeste.Entities
+﻿namespace Celeste.Entities
 {
     [CustomEntity(ids: "MaggyHelper/MrBonesDoor")]
     public class MrBonesDoor : Solid
@@ -57,7 +57,7 @@ namespace Celeste.Entities
             opened = true;
             Collidable = false;
             
-            Audio.Play("event:/game/05_mirror_temple/gate_main_open", Position);
+            Audio.Play("guid://{3ec0a31a-f6af-4426-aaa1-db57098dbd39}", Position);
             
             Level level = SceneAs<Level>();
             if (!string.IsNullOrEmpty(flagToSet))
@@ -99,3 +99,4 @@ namespace Celeste.Entities
         }
     }
 }
+

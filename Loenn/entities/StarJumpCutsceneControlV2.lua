@@ -1,4 +1,4 @@
-local utils = require("utils")
+﻿local utils = require("utils")
 
 local starJumpCutsceneControlV2 = {}
 
@@ -34,7 +34,7 @@ starJumpCutsceneControlV2.fieldOrder = {
 starJumpCutsceneControlV2.placements = {
     name = "StarJumpControlCutscenesV2",
     data = {
-        musicEvent = "event:/music/pusheen/lvl8/starjump",
+        musicEvent = "guid://{a8228c15-231d-46a1-a967-2bd255fca92f}",
         cutsceneFlag = "plateaumod_2",
         triggerHeight = 32,
         triggerWidth = 64,
@@ -97,7 +97,7 @@ function starJumpCutsceneControlV2.draw(room, entity, viewport)
     
     -- Draw "ENTER FROM BELOW" text indicator
     love.graphics.setColor(1.0, 1.0, 0.0, 0.7)
-    love.graphics.print("↑", arrowX - 4, arrowY + 18)
+    love.graphics.print("â†‘", arrowX - 4, arrowY + 18)
     
     love.graphics.setColor(1, 1, 1, 1)  -- Reset color
 end
@@ -122,3 +122,4 @@ function starJumpCutsceneControlV2.selection(room, entity)
 end
 
 return starJumpCutsceneControlV2
+

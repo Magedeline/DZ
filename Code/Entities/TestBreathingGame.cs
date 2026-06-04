@@ -1,4 +1,4 @@
-namespace Celeste.Entities
+﻿namespace Celeste.Entities
 {
     /// <summary>
     /// Heartbeat Breathing Minigame
@@ -12,7 +12,7 @@ namespace Celeste.Entities
     [HotReloadable]
     public class TestBreathingGame : Entity
     {
-        // ── Configuration ────────────────────────────────────────────
+        // â”€â”€ Configuration â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
         private readonly float beatInterval;      // seconds between heartbeats
         private readonly float requiredCalm;      // calm amount needed to win (0-1)
         private readonly string completionFlag;   // session flag set on success
@@ -20,17 +20,17 @@ namespace Celeste.Entities
         private readonly int maxMisses;           // misses before fail (0 = no fail)
         private readonly bool freezePlayer = true;  // whether to manage player StateMachine
 
-        // ── Game State ───────────────────────────────────────────────
+        // â”€â”€ Game State â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
         private bool gameActive;
         private bool gameComplete;
         private bool gameFailed;
-        private float calmMeter;          // 0 → 1, reaching requiredCalm wins
-        private float panicMeter;         // 0 → 1, visual feedback only
+        private float calmMeter;          // 0 â†’ 1, reaching requiredCalm wins
+        private float panicMeter;         // 0 â†’ 1, visual feedback only
         private int consecutiveHits;
         private int totalHits;
         private int totalMisses;
 
-        // ── Public API ───────────────────────────────────────────────
+        // â”€â”€ Public API â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
         /// <summary>True once the player has filled the calm meter.</summary>
         public bool Completed => gameComplete;
         /// <summary>True if the player exceeded maxMisses.</summary>
@@ -40,13 +40,13 @@ namespace Celeste.Entities
         /// <summary>Current calm level (0-1) for external effects.</summary>
         public float CalmLevel => calmMeter;
 
-        // ── Heartbeat Timing ─────────────────────────────────────────
+        // â”€â”€ Heartbeat Timing â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
         private float beatTimer;          // counts up toward beatInterval
-        private float beatPhase;          // 0 → 1 within one beat cycle
+        private float beatPhase;          // 0 â†’ 1 within one beat cycle
         private bool beatPeakReached;     // true once we cross the peak this cycle
         private bool inputConsumed;       // prevent double-tap in one beat
 
-        // ── Visual ───────────────────────────────────────────────────
+        // â”€â”€ Visual â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
         private float heartScale = 1f;
         private float heartTargetScale = 1f;
         private float heartAlpha = 1f;
@@ -57,16 +57,16 @@ namespace Celeste.Entities
         private float screenShake;
         private float flashAlpha;         // white flash on good hit
 
-        // ── UI ───────────────────────────────────────────────────────
+        // â”€â”€ UI â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
         private float uiAlpha;
         private string feedbackText = "";
         private float feedbackTimer;
         private Color feedbackColor = Color.White;
 
-        // ── Player ───────────────────────────────────────────────────
+        // â”€â”€ Player â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
         private global::Celeste.Player player;
 
-        // ── Constants ────────────────────────────────────────────────
+        // â”€â”€ Constants â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
         private const float CALM_PER_HIT = 0.04f;
         private const float CALM_PER_PERFECT = 0.08f;
         private const float CALM_DRAIN = 0.005f;
@@ -112,9 +112,9 @@ namespace Celeste.Entities
             Depth = -1000000;
         }
 
-        // ═══════════════════════════════════════════════════════════
+        // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
         //  Lifecycle
-        // ═══════════════════════════════════════════════════════════
+        // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
         public override void Added(Scene scene)
         {
@@ -124,34 +124,34 @@ namespace Celeste.Entities
             Add(new Coroutine(GameSequence()));
         }
 
-        // ═══════════════════════════════════════════════════════════
+        // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
         //  Core Loop (Coroutine)
-        // ═══════════════════════════════════════════════════════════
+        // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
         private IEnumerator GameSequence()
         {
             var level = Scene as Level;
 
-            // ── Freeze player movement ───────────────────────────
+            // â”€â”€ Freeze player movement â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             if (freezePlayer && player != null)
                 player.StateMachine.State = global::Celeste.Player.StDummy;
 
-            // ── Fade in ──────────────────────────────────────────
+            // â”€â”€ Fade in â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             while (uiAlpha < 1f)
             {
                 uiAlpha = Math.Min(uiAlpha + Engine.DeltaTime * 2f, 1f);
                 yield return null;
             }
 
-            // ── Countdown ────────────────────────────────────────
-            ShowFeedback("Breathe…", Color.LightCyan, 1.5f);
-            Audio.Play("event:/ui/game/memorial_dream_text_in");
+            // â”€â”€ Countdown â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+            ShowFeedback("Breatheâ€¦", Color.LightCyan, 1.5f);
+            Audio.Play("guid://{037333ef-5916-4131-a76c-77b8d31c21cd}");
             yield return 1.5f;
 
             ShowFeedback("Follow the heartbeat", Color.LightCyan, 1.5f);
             yield return 1.5f;
 
-            // ── Start game ───────────────────────────────────────
+            // â”€â”€ Start game â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             gameActive = true;
             beatTimer = 0f;
             beatPhase = 0f;
@@ -180,39 +180,39 @@ namespace Celeste.Entities
                 yield return null;
             }
 
-            // ── Outcome ──────────────────────────────────────────
+            // â”€â”€ Outcome â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             if (gameComplete)
             {
                 ShowFeedback("Calm restored", Color.LightGreen, 2f);
-                Audio.Play("event:/ui/game/memorial_dream_text_in");
+                Audio.Play("guid://{037333ef-5916-4131-a76c-77b8d31c21cd}");
                 if (level != null)
                     level.Session.SetFlag(completionFlag, true);
             }
             else if (gameFailed)
             {
-                ShowFeedback("Lost focus…", Color.Salmon, 2f);
-                Audio.Play("event:/ui/game/memorial_dream_text_in");
+                ShowFeedback("Lost focusâ€¦", Color.Salmon, 2f);
+                Audio.Play("guid://{037333ef-5916-4131-a76c-77b8d31c21cd}");
             }
 
             yield return 2.5f;
 
-            // ── Fade out ─────────────────────────────────────────
+            // â”€â”€ Fade out â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             while (uiAlpha > 0f)
             {
                 uiAlpha = Math.Max(uiAlpha - Engine.DeltaTime * 2f, 0f);
                 yield return null;
             }
 
-            // ── Release player ───────────────────────────────────
+            // â”€â”€ Release player â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             if (freezePlayer && player != null)
                 player.StateMachine.State = global::Celeste.Player.StNormal;
 
             RemoveSelf();
         }
 
-        // ═══════════════════════════════════════════════════════════
+        // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
         //  Update
-        // ═══════════════════════════════════════════════════════════
+        // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
         public override void Update()
         {
@@ -220,7 +220,7 @@ namespace Celeste.Entities
 
             float dt = Engine.DeltaTime;
 
-            // ── Heartbeat rhythm ─────────────────────────────────
+            // â”€â”€ Heartbeat rhythm â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             if (gameActive)
             {
                 beatTimer += dt;
@@ -249,56 +249,56 @@ namespace Celeste.Entities
                     Audio.Play("event:/new_content/inthedark_heartbeat");
                 }
 
-                // ── Heart visual scale ───────────────────────────
+                // â”€â”€ Heart visual scale â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
                 // Smooth "lub-dub": two bumps per cycle
                 float t = beatPhase * MathHelper.TwoPi;
                 float pulse = (float)(Math.Sin(t) * 0.5f + 0.5f);           // primary beat
                 float dub   = (float)(Math.Sin(t * 2f - 1.2f) * 0.2f);      // secondary "dub"
                 heartTargetScale = MathHelper.Lerp(HEART_PULSE_MIN, HEART_PULSE_MAX, pulse + Math.Max(dub, 0f));
 
-                // ── Input check ──────────────────────────────────
+                // â”€â”€ Input check â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
                 if (!inputConsumed && (Input.Jump.Pressed || Input.Dash.Pressed || Input.Grab.Pressed))
                 {
                     inputConsumed = true;
                     EvaluatePress();
                 }
 
-                // ── Calm drain (slowly lose calm if idle) ────────
+                // â”€â”€ Calm drain (slowly lose calm if idle) â”€â”€â”€â”€â”€â”€â”€â”€
                 calmMeter = Math.Max(0f, calmMeter - CALM_DRAIN * dt);
 
-                // ── Panic decay ──────────────────────────────────
+                // â”€â”€ Panic decay â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
                 panicMeter = Math.Max(0f, panicMeter - PANIC_DECAY * dt);
             }
 
-            // ── Animate heart scale ──────────────────────────────
+            // â”€â”€ Animate heart scale â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             heartScale = MathHelper.Lerp(heartScale, heartTargetScale, 1f - (float)Math.Pow(0.001, dt));
 
-            // ── Colour shift: red → pink as calm increases ───────
+            // â”€â”€ Colour shift: red â†’ pink as calm increases â”€â”€â”€â”€â”€â”€â”€
             heartColor = Color.Lerp(Color.Red, Color.HotPink, calmMeter);
             if (panicMeter > 0.3f)
                 heartColor = Color.Lerp(heartColor, Color.DarkRed, (panicMeter - 0.3f) / 0.7f);
 
-            // ── Ring expand animation ────────────────────────────
+            // â”€â”€ Ring expand animation â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             if (ringAlpha > 0f)
             {
                 ringScale += dt * 3f;
                 ringAlpha = Math.Max(0f, ringAlpha - dt * 2.5f);
             }
 
-            // ── Flash decay ──────────────────────────────────────
+            // â”€â”€ Flash decay â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             flashAlpha = Math.Max(0f, flashAlpha - dt * 4f);
 
-            // ── Screen shake decay ───────────────────────────────
+            // â”€â”€ Screen shake decay â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             screenShake = Math.Max(0f, screenShake - dt * 6f);
 
-            // ── Feedback text timer ──────────────────────────────
+            // â”€â”€ Feedback text timer â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             if (feedbackTimer > 0f)
                 feedbackTimer -= dt;
         }
 
-        // ═══════════════════════════════════════════════════════════
+        // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
         //  Input Evaluation
-        // ═══════════════════════════════════════════════════════════
+        // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
         private void EvaluatePress()
         {
@@ -365,12 +365,12 @@ namespace Celeste.Entities
             ShowFeedback("Miss", Color.Salmon, 0.5f);
             screenShake = 0.4f;
 
-            Audio.Play("event:/ui/game/memorial_dream_text_in");
+            Audio.Play("guid://{037333ef-5916-4131-a76c-77b8d31c21cd}");
         }
 
-        // ═══════════════════════════════════════════════════════════
+        // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
         //  Helpers
-        // ═══════════════════════════════════════════════════════════
+        // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
         private void ShowFeedback(string text, Color color, float duration)
         {
@@ -386,9 +386,9 @@ namespace Celeste.Entities
             ringColor = color;
         }
 
-        // ═══════════════════════════════════════════════════════════
-        //  Render  (Tags.HUD → drawn in screen-space)
-        // ═══════════════════════════════════════════════════════════
+        // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+        //  Render  (Tags.HUD â†’ drawn in screen-space)
+        // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
         public override void Render()
         {
@@ -414,24 +414,24 @@ namespace Celeste.Entities
 
             Vector2 centre = new Vector2(cx, cy) + shake;
 
-            // ── Semi-transparent backdrop ────────────────────────
+            // â”€â”€ Semi-transparent backdrop â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             Draw.Rect(-10, -10, Engine.Width + 20, Engine.Height + 20,
                 Color.Black * (0.55f + panicMeter * 0.2f) * uiAlpha);
 
-            // ── White flash ──────────────────────────────────────
+            // â”€â”€ White flash â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             if (flashAlpha > 0f)
                 Draw.Rect(-10, -10, Engine.Width + 20, Engine.Height + 20, Color.White * flashAlpha * uiAlpha);
 
-            // ── Expanding ring ───────────────────────────────────
+            // â”€â”€ Expanding ring â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             if (ringAlpha > 0f)
             {
                 DrawHollowCircle(centre, ringScale * 60f, ringColor * ringAlpha * uiAlpha, 3f);
             }
 
-            // ── Heart shape (drawn as a filled circle cluster) ───
+            // â”€â”€ Heart shape (drawn as a filled circle cluster) â”€â”€â”€
             DrawHeart(centre, heartScale * 50f, heartColor * heartAlpha * uiAlpha);
 
-            // ── Calm meter bar (bottom) ──────────────────────────
+            // â”€â”€ Calm meter bar (bottom) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             float barWidth = 300f;
             float barHeight = 14f;
             Vector2 barPos = new Vector2(cx - barWidth / 2f, Engine.Height - 80f);
@@ -456,7 +456,7 @@ namespace Celeste.Entities
                 Color.Black * uiAlpha
             );
 
-            // ── Streak counter ───────────────────────────────────
+            // â”€â”€ Streak counter â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             if (consecutiveHits >= 3 && gameActive)
             {
                 ActiveFont.DrawOutline(
@@ -470,7 +470,7 @@ namespace Celeste.Entities
                 );
             }
 
-            // ── Feedback text ────────────────────────────────────
+            // â”€â”€ Feedback text â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             if (feedbackTimer > 0f)
             {
                 float alpha = Math.Min(feedbackTimer * 3f, 1f);
@@ -485,7 +485,7 @@ namespace Celeste.Entities
                 );
             }
 
-            // ── Instruction line ─────────────────────────────────
+            // â”€â”€ Instruction line â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             if (gameActive)
             {
                 ActiveFont.DrawOutline(
@@ -500,9 +500,9 @@ namespace Celeste.Entities
             }
         }
 
-        // ═══════════════════════════════════════════════════════════
+        // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
         //  Drawing Helpers
-        // ═══════════════════════════════════════════════════════════
+        // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
         /// <summary>
         /// Draws a simple heart shape using overlapping circles and a triangle.
@@ -594,3 +594,4 @@ namespace Celeste.Entities
         }
     }
 }
+

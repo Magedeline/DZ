@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using Celeste.Helpers;
@@ -331,7 +331,7 @@ namespace Celeste.Entities
         
         private IEnumerator DarkWaveAttack()
         {
-            Audio.Play("event:/char/badeline/boss_bullet", Position);
+            Audio.Play("guid://{bbe7d0c8-45f9-4671-b49e-8e38e357bb81}", Position);
             
             // Fire wave of projectiles
             for (int i = -2; i <= 2; i++)
@@ -348,7 +348,7 @@ namespace Celeste.Entities
         
         private IEnumerator VoidSphereAttack()
         {
-            Audio.Play("event:/char/badeline/boss_bullet", Position);
+            Audio.Play("guid://{bbe7d0c8-45f9-4671-b49e-8e38e357bb81}", Position);
             
             // Spawn homing spheres
             for (int i = 0; i < 3; i++)
@@ -367,7 +367,7 @@ namespace Celeste.Entities
                 Position = player.Position + new Vector2(player.Facing == Facings.Right ? -40f : 40f, -20f);
                 TeleportEffect(Position);
                 
-                Audio.Play("event:/char/badeline/disappear", Position);
+                Audio.Play("guid://{16b40879-0a79-4e42-8c91-fe419a8e186c}", Position);
                 
                 // Slash attack
                 yield return 0.2f;
@@ -380,7 +380,7 @@ namespace Celeste.Entities
         
         private IEnumerator DarkRainAttack()
         {
-            Audio.Play("event:/char/badeline/boss_bullet", Position);
+            Audio.Play("guid://{bbe7d0c8-45f9-4671-b49e-8e38e357bb81}", Position);
             
             // Rain projectiles from above
             for (int i = 0; i < 8; i++)
@@ -400,7 +400,7 @@ namespace Celeste.Entities
         
         private IEnumerator VoidPulseAttack()
         {
-            Audio.Play("event:/char/badeline/boss_laser_charge", Position);
+            Audio.Play("guid://{e7a2ddd6-091a-44ab-aac7-e57bd13c009c}", Position);
             
             // Charge up
             for (int i = 0; i < 10; i++)
@@ -409,7 +409,7 @@ namespace Celeste.Entities
                 yield return 0.05f;
             }
             
-            Audio.Play("event:/char/badeline/boss_laser_fire", Position);
+            Audio.Play("guid://{58b5d825-ebcf-457b-b493-9be82640b9eb}", Position);
             level?.Shake(0.5f);
             
             // Create pulse
@@ -420,7 +420,7 @@ namespace Celeste.Entities
         
         private IEnumerator DarkSpiralAttack()
         {
-            Audio.Play("event:/char/badeline/boss_bullet", Position);
+            Audio.Play("guid://{bbe7d0c8-45f9-4671-b49e-8e38e357bb81}", Position);
             
             // Spiral of projectiles
             for (int i = 0; i < 16; i++)
@@ -434,7 +434,7 @@ namespace Celeste.Entities
         
         private IEnumerator VoidStormAttack()
         {
-            Audio.Play("event:/char/badeline/boss_bullet", Position);
+            Audio.Play("guid://{bbe7d0c8-45f9-4671-b49e-8e38e357bb81}", Position);
             
             // Enhanced rain attack
             for (int i = 0; i < 15; i++)
@@ -454,7 +454,7 @@ namespace Celeste.Entities
         
         private IEnumerator DimensionalRiftAttack()
         {
-            Audio.Play("event:/char/badeline/boss_laser_charge", Position);
+            Audio.Play("guid://{e7a2ddd6-091a-44ab-aac7-e57bd13c009c}", Position);
             
             // Create rifts at player positions
             for (int i = 0; i < 3; i++)
@@ -520,7 +520,7 @@ namespace Celeste.Entities
                 yield return null;
             }
             
-            Audio.Play("event:/char/badeline/appear", Position);
+            Audio.Play("guid://{ad25a031-880b-4f88-ac12-82d6c52fbdea}", Position);
             
             // Screen shake
             level?.Shake(0.5f);
@@ -570,7 +570,7 @@ namespace Celeste.Entities
             Collidable = false;
             
             bodySprite.Play("defeat");
-            Audio.Play("event:/char/badeline/disappear", Position);
+            Audio.Play("guid://{16b40879-0a79-4e42-8c91-fe419a8e186c}", Position);
             
             // Death explosion
             for (int i = 0; i < 60; i++)
@@ -626,7 +626,7 @@ namespace Celeste.Entities
             Position = bestNode;
             TeleportEffect(Position);
             
-            Audio.Play("event:/char/badeline/disappear", Position);
+            Audio.Play("guid://{16b40879-0a79-4e42-8c91-fe419a8e186c}", Position);
         }
         
         private void TeleportEffect(Vector2 position)
@@ -863,7 +863,7 @@ namespace Celeste.Entities
         {
             base.Added(scene);
             level = scene as Level;
-            Audio.Play("event:/char/badeline/disappear", Position);
+            Audio.Play("guid://{16b40879-0a79-4e42-8c91-fe419a8e186c}", Position);
         }
         
         public override void Update()
@@ -897,3 +897,4 @@ namespace Celeste.Entities
     
     #endregion
 }
+

@@ -1,4 +1,4 @@
-namespace Celeste.Entities;
+﻿namespace Celeste.Entities;
 [CustomEntity(ids: "MaggyHelper/CharaFlowerVines")]
 [Tracked]
 public class CharaReflectionTentacles : Entity
@@ -178,7 +178,7 @@ public class CharaReflectionTentacles : Entity
         ease = 0.0f;
         ++Index;
         if (layer == 0 && soundDelay <= 0.0)
-            Audio.Play((Nodes[Index - 1] - Nodes[Index]).Length() > 180.0 ? "event:/game/06_reflection/scaryhair_whoosh" : "event:/game/06_reflection/scaryhair_move");
+            Audio.Play((Nodes[Index - 1] - Nodes[Index]).Length() > 180.0 ? "guid://{990ebd4d-3117-4c00-8328-88b757411c91}" : "guid://{34751b86-7136-491f-b281-4acfc5abc130}");
         for (int index = 0; index < tentacleCount; ++index)
         {
             tentacles[index].LerpPercent = 0.0f;
@@ -366,6 +366,7 @@ public class CharaReflectionTentacles : Entity
         public float LerpDuration;
     }
 }
+
 
 
 

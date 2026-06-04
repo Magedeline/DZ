@@ -1,4 +1,4 @@
-using System.Reflection;
+﻿using System.Reflection;
 
 namespace Celeste
 {
@@ -309,7 +309,7 @@ namespace Celeste
         private static void playTapeCollectionSound(AreaKey areaKey, char side)
         {
             // Play appropriate sound for tape collection
-            string soundEvent = $"event:/game/general/cassette_get";
+            string soundEvent = $"guid://{111996f6-8bae-408f-86d1-0aeae8203f4b}";
             Audio.Play(soundEvent);
         }
 
@@ -375,7 +375,7 @@ namespace Celeste
     {
         internal void RegisterFunction(string v, MethodInfo methodInfo)
         {
-            Logger.Log(LogLevel.Warn, "NLua", $"RegisterFunction '{v}' called on stub NLua — actual Lua scripting not yet wired.");
+            Logger.Log(LogLevel.Warn, "NLua", $"RegisterFunction '{v}' called on stub NLua â€” actual Lua scripting not yet wired.");
         }
 
         public void Dispose()
@@ -493,3 +493,4 @@ namespace Celeste
         }
     }
 }
+

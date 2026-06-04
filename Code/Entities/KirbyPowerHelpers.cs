@@ -1,4 +1,4 @@
-using Celeste.Extensions;
+﻿using Celeste.Extensions;
 
 namespace Celeste.Entities
 {
@@ -8,8 +8,8 @@ namespace Celeste.Entities
     /// </summary>
     public static class WarperDashHelper
     {
-        private const string SFX_DASH_LEFT = "event:/char/pusheen/kirby/dash_red_left";
-        private const string SFX_DASH_RIGHT = "event:/char/pusheen/kirby/dash_red_right";
+        private const string SFX_DASH_LEFT = "guid://{c2c552e6-8de2-496d-b706-798363320036}";
+        private const string SFX_DASH_RIGHT = "guid://{59078d59-8697-478c-b3b3-3c7605c87756}";
         private const string SFX_DASH_CHARGE = "event:/char/pusheen/kirby/dash_charge";
         
         /// <summary>
@@ -218,3 +218,4 @@ namespace Celeste.Entities
             => KirbyKnightHelper.ResetKnight();
     }
 }
+

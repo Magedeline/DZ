@@ -1,4 +1,4 @@
-using Celeste.Helpers;
+﻿using Celeste.Helpers;
 
 namespace Celeste.Entities
 {
@@ -280,7 +280,7 @@ namespace Celeste.Entities
                 Sprite.Play("enrage");
             
             scaleWiggler.Start();
-            Audio.Play("event:/game/general/thing_booped", Position);
+            Audio.Play("guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}", Position);
         }
         
         private IEnumerator hurtStateTimer()
@@ -429,7 +429,7 @@ namespace Celeste.Entities
                 
                 // TODO: Implement WhispyApple projectile entity with gravity and collision
                 // Future: Scene.Add(new WhispyApple(applePos));
-                Audio.Play("event:/game/general/thing_booped", Position);
+                Audio.Play("guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}", Position);
                 
                 yield return 0.3f;
             }
@@ -521,7 +521,7 @@ namespace Celeste.Entities
                     // Future: Scene.Add(new WhispyLeaf(Position, direction));
                 }
                 
-                Audio.Play("event:/game/general/thing_booped", Position);
+                Audio.Play("guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}", Position);
                 yield return 0.6f;
             }
             
@@ -552,7 +552,7 @@ namespace Celeste.Entities
                 }
             }
             
-            Audio.Play("event:/game/general/thing_booped", Position);
+            Audio.Play("guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}", Position);
             scaleWiggler.Start();
             
             // Recovery
@@ -584,7 +584,7 @@ namespace Celeste.Entities
                     
                     // TODO: Implement WhispyPoisonApple entity with poison/damage over time effect
                     // Future: Scene.Add(new WhispyPoisonApple(applePos));
-                    Audio.Play("event:/game/general/thing_booped", Position);
+                    Audio.Play("guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}", Position);
                 }
                 
                 yield return 0.5f;
@@ -656,3 +656,4 @@ namespace Celeste.Entities
         }
     }
 }
+

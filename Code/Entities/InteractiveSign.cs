@@ -1,4 +1,4 @@
-namespace Celeste.Entities
+﻿namespace Celeste.Entities
 {
     /// <summary>
     /// Interactive sign that displays dialog when player approaches or interacts
@@ -200,11 +200,11 @@ namespace Celeste.Entities
         {
             switch (signType)
             {
-                case SignType.Wooden: return "event:/game/general/thing_booped";
-                case SignType.Stone: return "event:/game/04_cliffside/arrowblock_activate";
+                case SignType.Wooden: return "guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}";
+                case SignType.Stone: return "guid://{3164e6e3-a335-4821-bbed-eb598dcae9ce}";
                 case SignType.Ancient: return "event:/game/06_reflection/badeline_disappear";
                 case SignType.Magical: return "event:/game/05_mirror_temple/crystaltheo_pulse";
-                default: return "event:/game/general/thing_booped";
+                default: return "guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}";
             }
         }
 
@@ -230,6 +230,7 @@ namespace Celeste.Entities
         }
     }
 }
+
 
 
 

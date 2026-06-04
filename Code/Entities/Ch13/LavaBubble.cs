@@ -1,4 +1,4 @@
-namespace Celeste.Entities.Chapters.Ch13
+﻿namespace Celeste.Entities.Chapters.Ch13
 {
     /// <summary>
     /// LavaBubble - Rising lava bubble that bursts and damages player
@@ -78,7 +78,7 @@ namespace Celeste.Entities.Chapters.Ch13
             State = BubbleState.Bursting;
             sprite.Play("bursting");
             
-            Audio.Play("event:/game/general/crystalheart_pulse", Position);
+            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
             level?.Shake(0.2f);
             
             Add(new Coroutine(BurstRoutine()));
@@ -266,3 +266,4 @@ namespace Celeste.Entities.Chapters.Ch13
         }
     }
 }
+

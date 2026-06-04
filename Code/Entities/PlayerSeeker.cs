@@ -1,4 +1,4 @@
-using Celeste;
+﻿using Celeste;
 using System;
 using System.Collections;
 using Microsoft.Xna.Framework;
@@ -73,7 +73,7 @@ namespace Celeste.Entities
 			Input.Rumble(RumbleStrength.Medium, RumbleLength.Long);
 			yield return 1f;
 			this.BreakOutParticles();
-			Audio.Play("event:/game/05_mirror_temple/seeker_statue_break", this.Position);
+			Audio.Play("guid://{439c8be0-4350-4504-9df9-173abc3e15bb}", this.Position);
 			this.shaker.ShakeFor(1f, false);
 			this.sprite.Play("hatch", false, false);
 			Input.Rumble(RumbleStrength.Strong, RumbleLength.FullSecond);
@@ -197,7 +197,7 @@ namespace Celeste.Entities
 					{
 						level.Displacement.AddBurst(this.Position, 0.5f, 8f, 32f, 1f, null, null);
 						this.sprite.Play("spotted", false, false);
-						Audio.Play("event:/game/05_mirror_temple/seeker_playercontrolstart");
+						Audio.Play("guid://{ded98d91-1f1e-4fcf-b177-959028cd379c}");
 					}
 					int facingSign = Math.Sign((int)this.facing);
 					int speedSign = Math.Sign(this.speed.X);
@@ -308,11 +308,11 @@ namespace Celeste.Entities
 				if (data.Hit is SeekerBarrier)
 				{
 					(data.Hit as SeekerBarrier).OnReflectSeeker();
-					Audio.Play("event:/game/05_mirror_temple/seeker_hit_lightwall", this.Position);
+					Audio.Play("guid://{d7f87c78-d631-4cb3-8487-f077d65ed4a5}", this.Position);
 				}
 				else
 				{
-					Audio.Play("event:/game/05_mirror_temple/seeker_hit_normal", this.Position);
+					Audio.Play("guid://{b51e22cd-a7bb-42e5-a0d9-af5e9bfe3c36}", this.Position);
 				}
 				if (data.Direction.X != 0f)
 				{
@@ -356,7 +356,7 @@ namespace Celeste.Entities
 			this.sprite.Play("attacking", false, false);
 			base.SceneAs<Level>().DirectionalShake(this.dashDirection, 0.3f);
 			Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
-			Audio.Play("event:/game/05_mirror_temple/seeker_dash", this.Position);
+			Audio.Play("guid://{3147835f-3002-4097-bc14-53c456a8501f}", this.Position);
 			if (this.dashDirection.X == 0f)
 			{
 				this.sprite.Scale = new Vector2(0.6f, 1.4f);
@@ -421,3 +421,4 @@ namespace Celeste.Entities
 		private Shaker shaker;
 	}
 }
+

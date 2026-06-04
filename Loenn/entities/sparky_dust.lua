@@ -1,4 +1,4 @@
-local sparkeyDust = {}
+﻿local sparkeyDust = {}
 
 sparkeyDust.name = "MaggyHelper/SparkyDust"
 sparkeyDust.depth = -100
@@ -33,9 +33,9 @@ sparkeyDust.fieldInformation = {
     soundEffect = {
         fieldType = "string",
         options = {
-            "event:/game/general/thing_booped",
-            "event:/char/badeline/disappear",
-            "event:/game/general/seed_touch"
+            "guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}",
+            "guid://{16b40879-0a79-4e42-8c91-fe419a8e186c}",
+            "guid://{6160ad7b-16f6-49a5-aa9b-55d75da5a8e1}"
         },
         editable = true
     }
@@ -51,7 +51,7 @@ sparkeyDust.placements = {
             radius = 32.0,
             followKglobal::global::Celeste.Player= false,
             isActive = true,
-            soundEffect = "event:/game/general/thing_booped"
+            soundEffect = "guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}"
         }
     },
     {
@@ -63,7 +63,7 @@ sparkeyDust.placements = {
             radius = 48.0,
             followKglobal::global::Celeste.Player= true,
             isActive = true,
-            soundEffect = "event:/game/general/seed_touch"
+            soundEffect = "guid://{6160ad7b-16f6-49a5-aa9b-55d75da5a8e1}"
         }
     }
 }

@@ -1,4 +1,4 @@
-namespace Celeste.Entities
+﻿namespace Celeste.Entities
 {
     [CustomEntity(ids: "MaggyHelper/BlackholeRiser")]
     [Tracked]
@@ -116,7 +116,7 @@ namespace Celeste.Entities
                 if (riseTimer <= 0f)
                 {
                     rising = true;
-                    Audio.Play("event:/game/general/thing_booped", Position);
+                    Audio.Play("guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}", Position);
                 }
             }
 
@@ -211,7 +211,7 @@ namespace Celeste.Entities
             if (level != null)
             {
                 level.Shake(0.3f);
-                Audio.Play("event:/game/general/thing_booped", Position);
+                Audio.Play("guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}", Position);
                 
                 // Rainbow explosion
                 Color explosionColor = rainbowColors[colorIndex];
@@ -273,6 +273,7 @@ namespace Celeste.Entities
         }
     }
 }
+
 
 
 

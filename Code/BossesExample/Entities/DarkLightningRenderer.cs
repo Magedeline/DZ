@@ -1,4 +1,4 @@
-// Decompiled with JetBrains decompiler
+﻿// Decompiled with JetBrains decompiler
 // Type: global::Celeste.Mod.ricky06ModPack.Entities.DarkLightningRenderer
 // Assembly: ricky06ModPack, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 // MVID: A006BC09-9B58-4275-A339-ACDC10C611D0
@@ -100,7 +100,7 @@ public class DarkLightningRenderer : Entity
   {
     if (this.AmbientSfx.Playing)
       return;
-    this.AmbientSfx.Play("event:/new_content/env/10_electricity", (string) null, 0.0f);
+    this.AmbientSfx.Play("guid://{58a69c31-956e-42a2-a9a2-359e67921ffa}", (string) null, 0.0f);
   }
 
   public void StopAmbience() => this.AmbientSfx.Stop(true);
@@ -588,3 +588,4 @@ public class DarkLightningRenderer : Entity
     }
   }
 }
+

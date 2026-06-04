@@ -1,4 +1,4 @@
-local hole = {}
+﻿local hole = {}
 
 hole.name = "MaggyHelper/Hole"
 hole.depth = 8999
@@ -52,7 +52,7 @@ hole.placements = {
             spawnParticles = true,
             teleportDestination = "",
             killKglobal::global::Celeste.Player= false,
-            soundEffect = "event:/game/general/thing_booped"
+            soundEffect = "guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}"
         }
     },
     {
@@ -80,7 +80,7 @@ hole.placements = {
             spawnParticles = false,
             teleportDestination = "",
             killKglobal::global::Celeste.Player= true,
-            soundEffect = "event:/char/badeline/disappear"
+            soundEffect = "guid://{16b40879-0a79-4e42-8c91-fe419a8e186c}"
         }
     },
     {
@@ -94,7 +94,7 @@ hole.placements = {
             spawnParticles = true,
             teleportDestination = "spawn",
             killKglobal::global::Celeste.Player= false,
-            soundEffect = "event:/game/general/seed_touch"
+            soundEffect = "guid://{6160ad7b-16f6-49a5-aa9b-55d75da5a8e1}"
         }
     }
 }

@@ -1,4 +1,4 @@
-using Celeste.Entities.Projectiles;
+﻿using Celeste.Entities.Projectiles;
 using Celeste.Helpers;
 
 namespace Celeste.Entities.Bosses
@@ -282,7 +282,7 @@ namespace Celeste.Entities.Bosses
                 Scene?.Add(new BossStarProjectile(Center, velocity));
             }
 
-            Audio.Play("event:/game/general/diamond_touch", Position);
+            Audio.Play("guid://{a47180e1-9bc2-4dbc-86c7-6402cea2e2be}", Position);
             yield return 0.16f;
         }
 
@@ -389,3 +389,4 @@ namespace Celeste.Entities.Bosses
         }
     }
 }
+

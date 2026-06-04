@@ -1,4 +1,4 @@
-namespace Celeste.Entities
+﻿namespace Celeste.Entities
 {
     /// <summary>
     /// A pooled shockwave projectile for Chapter 7 (Infernal Reflections).
@@ -66,9 +66,10 @@ namespace Celeste.Entities
             if (!hasHitPlayer)
             {
                 Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
-                Audio.Play("event:/game/05_mirror_temple/eye_pulse", player.Position);
+                Audio.Play("guid://{f64177a2-2611-49cc-8c63-d74c1e29c8a3}", player.Position);
                 hasHitPlayer = true;
             }
         }
     }
 }
+

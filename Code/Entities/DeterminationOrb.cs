@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Celeste.Entities;
 using Microsoft.Xna.Framework;
 using Monocle;
@@ -70,7 +70,7 @@ namespace Celeste.Entities
             // Apply determination boost
             ApplyBoost(player);
             
-            Audio.Play("event:/game/general/diamond_return", Position);
+            Audio.Play("guid://{735f3afc-00bc-46da-94f1-2cb51e3bfecc}", Position);
             
             // Mark as collected if one-time
             if (oneUse)
@@ -143,7 +143,7 @@ namespace Celeste.Entities
                 if (respawnTimer <= 0f)
                 {
                     collected = false;
-                    Audio.Play("event:/game/general/diamond_return", Position);
+                    Audio.Play("guid://{735f3afc-00bc-46da-94f1-2cb51e3bfecc}", Position);
                 }
             }
         }
@@ -176,3 +176,4 @@ namespace Celeste.Entities
         }
     }
 }
+

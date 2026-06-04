@@ -1,4 +1,4 @@
-namespace Celeste.Cutscenes
+﻿namespace Celeste.Cutscenes
 {
     /// <summary>
     /// Chapter 10 Piano Start cutscene
@@ -34,7 +34,7 @@ namespace Celeste.Cutscenes
 
             // Piano interaction effect
             yield return 0.5f;
-            Audio.Play("event:/game/general/touchswitch_any");
+            Audio.Play("guid://{30fafd37-cd47-4a56-ab3b-0cc8f1beec5b}");
             level.Flash(Color.LightBlue, false);
 
             // Zoom back out
@@ -44,6 +44,7 @@ namespace Celeste.Cutscenes
         }
     }
 }
+
 
 
 

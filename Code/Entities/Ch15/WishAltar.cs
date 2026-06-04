@@ -1,4 +1,4 @@
-namespace Celeste.Entities.Chapters.Ch15
+﻿namespace Celeste.Entities.Chapters.Ch15
 {
     #region Enums
     public enum WishType
@@ -129,7 +129,7 @@ namespace Celeste.Entities.Chapters.Ch15
             altarLight.Color = Color.Cyan;
             altarLight.Alpha = 0.6f;
             
-            Audio.Play("event:/game/general/crystalheart_pulse", Position);
+            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
         }
 
         public void MakeWish(WishType wish)
@@ -198,7 +198,7 @@ namespace Celeste.Entities.Chapters.Ch15
             
             // Dramatic effect
             level?.Shake(0.3f);
-            Audio.Play("event:/game/general/crystalheart_pulse", Position);
+            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
             
             // Create flame particles
             for (int i = 0; i < 20; i++)
@@ -219,7 +219,7 @@ namespace Celeste.Entities.Chapters.Ch15
                 sprite.Play("granted");
                 
                 level?.Flash(Color.Cyan * 0.4f);
-                Audio.Play("event:/game/general/crystalheart_pulse", Position);
+                Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
                 
                 yield return Textbox.Say(DialoguePrefix + "_" + SelectedWish.ToString().ToUpper() + "_GRANTED");
                 
@@ -398,7 +398,7 @@ namespace Celeste.Entities.Chapters.Ch15
         private void Collect()
         {
             collected = true;
-            Audio.Play("event:/game/general/crystalheart_pulse", Position);
+            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
             
             // Set flag for this wish type
             var level = Scene as Level;
@@ -408,3 +408,4 @@ namespace Celeste.Entities.Chapters.Ch15
         }
     }
 }
+

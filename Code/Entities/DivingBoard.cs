@@ -1,4 +1,4 @@
-namespace Celeste.Entities
+﻿namespace Celeste.Entities
 {
     [CustomEntity(ids: "MaggyHelper/DivingBoard")]
     [HotReloadable]
@@ -69,7 +69,7 @@ namespace Celeste.Entities
             player.Speed.Y = launchSpeed;
             player.Jump(false, true);
             
-            Audio.Play("event:/game/general/spring", Position);
+            Audio.Play("guid://{a4c52eee-f6a0-4ebe-976f-fab38d4cfa7a}", Position);
             
             Level level = SceneAs<Level>();
             level.DirectionalShake(new Vector2(0, -1), 0.1f);
@@ -86,3 +86,4 @@ namespace Celeste.Entities
         }
     }
 }
+

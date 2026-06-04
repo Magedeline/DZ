@@ -1,4 +1,4 @@
-namespace Celeste;
+﻿namespace Celeste;
 
 using System.Collections;
 using System.Runtime.CompilerServices;
@@ -171,9 +171,9 @@ public static class ChapterProgressionManager
         if (save == null || global::Celeste.MaggyHelperSaveFacade.IsChapterUnlocked(Ch18Sid))
             yield break;
 
-        Audio.Play("event:/ui/pusheen/postgame/unlock_newchapter");
-        Audio.Play("event:/ui/pusheen/postgame/unlock_newchapter");
-        Audio.Play("event:/ui/world_map/icon/roll_right");
+        Audio.Play("guid://{f1781585-e11d-42e9-b8c3-ef5baddecb32}");
+        Audio.Play("guid://{f1781585-e11d-42e9-b8c3-ef5baddecb32}");
+        Audio.Play("guid://{14563914-60ff-43cc-bc2e-d5766cc30964}");
 
         DynamicData dd = new DynamicData(self);
         dd.Set("area", 18);
@@ -205,9 +205,9 @@ public static class ChapterProgressionManager
         if (save == null || global::Celeste.MaggyHelperSaveFacade.IsChapterUnlocked(Ch19Sid))
             yield break;
 
-        Audio.Play("event:/ui/pusheen/postgame/unlock_newchapter");
+        Audio.Play("guid://{f1781585-e11d-42e9-b8c3-ef5baddecb32}");
         Audio.Play("event:/ui/pusheen/postgame/unlock_finalchapter_icon");
-        Audio.Play("event:/ui/world_map/icon/roll_right");
+        Audio.Play("guid://{14563914-60ff-43cc-bc2e-d5766cc30964}");
 
         DynamicData dd = new DynamicData(self);
         dd.Set("area", 19);
@@ -250,9 +250,9 @@ public static class ChapterProgressionManager
 
     private static IEnumerator PerformCh10Unlock(OuiChapterSelect self)
     {
-        Audio.Play("event:/ui/pusheen/postgame/unlock_newchapter");
-        Audio.Play("event:/ui/pusheen/postgame/unlock_newchapter");
-        Audio.Play("event:/ui/world_map/icon/roll_left");
+        Audio.Play("guid://{f1781585-e11d-42e9-b8c3-ef5baddecb32}");
+        Audio.Play("guid://{f1781585-e11d-42e9-b8c3-ef5baddecb32}");
+        Audio.Play("guid://{687c2393-d73e-4247-a97b-4f2c2ccce388}");
 
         DynamicData dd = new DynamicData(self);
         dd.Set("area", 10);
@@ -648,7 +648,7 @@ public static class ChapterProgressionManager
 
         if (vanillaSave == null || maggySave == null)
         {
-            Engine.Commands?.Log("[MaggyHelper] SaveData is null — load a save file first.");
+            Engine.Commands?.Log("[MaggyHelper] SaveData is null â€” load a save file first.");
             return;
         }
 
@@ -706,7 +706,7 @@ public static class ChapterProgressionManager
         var save = global::Celeste.Mod.MaggyHelper.MaggyHelperModule.SaveData;
         if (save == null)
         {
-            Engine.Commands?.Log("[MaggyHelper] SaveData is null — load a save file first.");
+            Engine.Commands?.Log("[MaggyHelper] SaveData is null â€” load a save file first.");
             return;
         }
 
@@ -745,7 +745,7 @@ public static class ChapterProgressionManager
         var vanillaSave = SaveData.Instance;
         if (save == null || vanillaSave == null)
         {
-            Engine.Commands?.Log("[MaggyHelper] SaveData is null — load a save file first.");
+            Engine.Commands?.Log("[MaggyHelper] SaveData is null â€” load a save file first.");
             return;
         }
 
@@ -795,7 +795,7 @@ public static class ChapterProgressionManager
         var vanillaSave = SaveData.Instance;
         if (save == null || vanillaSave == null)
         {
-            Engine.Commands?.Log("[MaggyHelper] SaveData is null — load a save file first.");
+            Engine.Commands?.Log("[MaggyHelper] SaveData is null â€” load a save file first.");
             return;
         }
 
@@ -840,7 +840,7 @@ public static class ChapterProgressionManager
         var vanillaSave = SaveData.Instance;
         if (save == null || vanillaSave == null)
         {
-            Engine.Commands?.Log("[MaggyHelper] SaveData is null — load a save file first.");
+            Engine.Commands?.Log("[MaggyHelper] SaveData is null â€” load a save file first.");
             return;
         }
 
@@ -869,3 +869,4 @@ public static class ChapterProgressionManager
         Engine.Commands?.Log("Reopen chapter select or restart the game to see the DZ mountain.");
     }
 }
+

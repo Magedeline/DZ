@@ -1,4 +1,4 @@
-using Celeste.Effects;
+﻿using Celeste.Effects;
 using Celeste.Helpers;
 
 namespace Celeste.Entities.Bosses
@@ -366,7 +366,7 @@ namespace Celeste.Entities.Bosses
         {
             var level = Scene as Level;
             impactWiggler.Start();
-            Audio.Play("event:/game/06_reflection/fallblock_boss_impact", Position);
+            Audio.Play("guid://{441f8a0a-8783-4894-b45c-815c95877931}", Position);
 
             if (level != null)
             {
@@ -404,7 +404,7 @@ namespace Celeste.Entities.Bosses
             health = Math.Max(0, health - damage);
             Health = health;
             impactWiggler.Start();
-            Audio.Play("event:/game/06_reflection/fallblock_boss_impact", Position);
+            Audio.Play("guid://{441f8a0a-8783-4894-b45c-815c95877931}", Position);
 
             if (health <= 0)
             {
@@ -435,3 +435,4 @@ namespace Celeste.Entities.Bosses
         }
     }
 }
+

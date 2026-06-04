@@ -1,4 +1,4 @@
-// Decompiled with JetBrains decompiler
+﻿// Decompiled with JetBrains decompiler
 // Type: global::Celeste.Mod.ricky06ModPack.Entities.LevelResetZone
 // Assembly: ricky06ModPack, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 // MVID: A006BC09-9B58-4275-A339-ACDC10C611D0
@@ -69,7 +69,7 @@ internal class LevelResetZone : SeekerBarrier
     }
     Player entity = ((Entity) this).Scene.Tracker.GetEntity<Player>();
     if (entity != null && ((Entity) this).CollideCheck((Entity) entity) && (double) this.respawnTimer < 0.0 && this.roomID.Length != 0)
-      this.ResetLevel(this.roomID, "event:/new_content/game/10_farewell/glitch_short");
+      this.ResetLevel(this.roomID, "guid://{42d600c5-32c3-4433-8a1e-be394b30bcde}");
     int length1 = this.speeds.Length;
     float height1 = ((Entity) this).Height;
     int index1 = 0;
@@ -236,3 +236,4 @@ internal class LevelResetZone : SeekerBarrier
       Draw.Rect(((Entity) this).Collider, ((((Color.White) * (this.Flash))) * (0.5f)));
   }
 }
+

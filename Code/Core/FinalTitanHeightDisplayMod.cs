@@ -1,4 +1,4 @@
-namespace Celeste
+﻿namespace Celeste
 {
     [HotReloadable]
     public class FinalTitanHeightDisplayMod : Entity
@@ -65,7 +65,7 @@ namespace Celeste
             Add(new Coroutine(cameraUp(), true));
 
             if (!string.IsNullOrEmpty(text) && index >= 0)
-                Audio.Play("event:/game/pusheen/09_beyondsummit/altitude_count");
+                Audio.Play("guid://{d35da1c1-742f-4d49-b7cb-b4e516d01d62}");
 
             while ((ease += Engine.DeltaTime / 0.15f) < 1f)
                 yield return null;
@@ -200,3 +200,4 @@ namespace Celeste
         private string _cachedApproachString = "0";
     }
 }
+

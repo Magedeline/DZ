@@ -1,4 +1,4 @@
-namespace Celeste.Entities
+﻿namespace Celeste.Entities
 {
     /// <summary>
     /// A solid barrier that blocks BlackholeFlareSideway and BlackholeRiser entities from passing through.
@@ -186,7 +186,7 @@ namespace Celeste.Entities
             // Push it away from the blocker
             PushSidewayBack(sideway);
             
-            Audio.Play("event:/game/general/thing_booped", sideway.Position);
+            Audio.Play("guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}", sideway.Position);
         }
 
         private void DestroySideway(BlackholeFlareSideway sideway)
@@ -203,7 +203,7 @@ namespace Celeste.Entities
                 }
             }
             
-            Audio.Play("event:/game/general/wall_break_stone", sideway.Position);
+            Audio.Play("guid://{92f75010-4e90-428e-834c-1315ddbd9460}", sideway.Position);
             sideway.RemoveSelf();
         }
 
@@ -243,7 +243,7 @@ namespace Celeste.Entities
             // Push it down
             riser.Y = Bottom + 4f;
             
-            Audio.Play("event:/game/general/thing_booped", riser.Position);
+            Audio.Play("guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}", riser.Position);
         }
 
         private void DestroyRiser(BlackholeRiser riser)
@@ -260,7 +260,7 @@ namespace Celeste.Entities
                 }
             }
             
-            Audio.Play("event:/game/general/wall_break_stone", riser.Position);
+            Audio.Play("guid://{92f75010-4e90-428e-834c-1315ddbd9460}", riser.Position);
             riser.RemoveSelf();
         }
 
@@ -309,3 +309,4 @@ namespace Celeste.Entities
         }
     }
 }
+

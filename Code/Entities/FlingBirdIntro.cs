@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Runtime.CompilerServices;
 using Celeste.Cutscenes;
 
@@ -98,7 +98,7 @@ namespace Celeste.Entities
     [MethodImpl(MethodImplOptions.NoInlining)]
     private IEnumerator FlyTo(Vector2 to)
     {
-        Add(new SoundSource().Play("event:/new_content/game/10_farewell/bird_flappyscene_entry"));
+        Add(new SoundSource().Play("guid://{613e3e96-0787-4e4c-b1b9-d5b85edb09f2}"));
         Sprite.Play("fly");
         Vector2 from = Position;
         for (float p = 0f; p < 1f; p += Engine.DeltaTime * 0.3f)
@@ -184,11 +184,11 @@ namespace Celeste.Entities
         inCutscene = true;
         if (!crashes)
         {
-            CrashSfxEmitter = SoundEmitter.Play("event:/new_content/game/10_farewell/bird_flappyscene", this);
+            CrashSfxEmitter = SoundEmitter.Play("guid://{ba4f0d7f-6781-437f-8f40-babd44ffd7e5}", this);
         }
         else
         {
-            CrashSfxEmitter = SoundEmitter.Play("event:/new_content/game/10_farewell/bird_crashscene_start", this);
+            CrashSfxEmitter = SoundEmitter.Play("guid://{61f52438-bee9-4393-ac9b-10a03ec220b9}", this);
         }
         player.StateMachine.State = 11;
         player.DummyGravity = false;

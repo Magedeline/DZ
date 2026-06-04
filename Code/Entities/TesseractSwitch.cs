@@ -1,4 +1,4 @@
-namespace Celeste.Entities
+﻿namespace Celeste.Entities
 {
     [CustomEntity(ids: "MaggyHelper/TesseractSwitch")]
     public class TesseractSwitch : Solid
@@ -77,7 +77,7 @@ namespace Celeste.Entities
                 level.Session.SetFlag(switchFlag, true);
             }
 
-            Audio.Play("event:/game/05_mirror_temple/button_activate", Position);
+            Audio.Play("guid://{097d5975-dee1-42e2-a3f0-1524b9d60fc6}", Position);
             if (ParticleTypes.SparkyDust != null)
             {
                 level.Particles.Emit(ParticleTypes.SparkyDust, 12, Position, Vector2.One * 4f);
@@ -144,6 +144,7 @@ namespace Celeste.Entities
         }
     }
 }
+
 
 
 

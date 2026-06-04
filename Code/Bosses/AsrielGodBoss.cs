@@ -1,4 +1,4 @@
-using System.Globalization;
+﻿using System.Globalization;
 using Celeste.Helpers;
 using Celeste.Cutscenes;
 using Celeste.Entities.Effects;
@@ -33,10 +33,10 @@ namespace Celeste.Entities
         private const string SFX_SPARKLES = "event:/new_content/char/pusheen/asriel/Asriel_Sparkles";
         private const string SFX_SPELLCAST_GLITCH = "event:/new_content/char/pusheen/asriel/Asriel_Spellcast_Glitch";
         private const string SFX_STAR = "event:/new_content/char/pusheen/asriel/Asriel_Star";
-        private const string SFX_BOSS_HIT = "event:/char/badeline/boss_hug";
-        private const string SFX_BOSS_LASER_CHARGE = "event:/char/badeline/boss_laser_charge";
-        private const string SFX_BOSS_LASER_FIRE = "event:/char/badeline/boss_laser_fire";
-        private const string SFX_BOSS_BULLET = "event:/char/badeline/boss_bullet";
+        private const string SFX_BOSS_HIT = "guid://{898fc1ea-250b-4d03-8f37-c0c35799a915}";
+        private const string SFX_BOSS_LASER_CHARGE = "guid://{e7a2ddd6-091a-44ab-aac7-e57bd13c009c}";
+        private const string SFX_BOSS_LASER_FIRE = "guid://{58b5d825-ebcf-457b-b493-9be82640b9eb}";
+        private const string SFX_BOSS_BULLET = "guid://{bbe7d0c8-45f9-4671-b49e-8e38e357bb81}";
         
         // Dialogue Events
         private const string DIALOGUE_ASRIEL = "event:/char/dialogue/asriel";
@@ -1111,7 +1111,7 @@ namespace Celeste.Entities
             }
             
             // Hit sound effect
-            string hitSound = isKirbyMode ? "event:/game/general/thing_booped" : "event:/game/general/landing";
+            string hitSound = isKirbyMode ? "guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}" : "event:/game/general/landing";
             if (player != null)
             {
                 Audio.Play(hitSound, player.Position);
@@ -1296,7 +1296,7 @@ namespace Celeste.Entities
 
         /// <summary>
         /// Gets or sets the boss backdrop starfield.
-        /// Note: Backdrops are typically added via the map editor (LÃ¶nn) as stylegrounds.
+        /// Note: Backdrops are typically added via the map editor (LÃƒÂ¶nn) as stylegrounds.
         /// This property allows external access for cutscenes or dynamic effects.
         /// </summary>
         public AsrielGodBossStarfield BossBackdrop
@@ -1633,7 +1633,7 @@ namespace Celeste.Entities
             if (Sprite != null && Sprite.CurrentAnimationID != "castsp")
                 Sprite.Play("castsp");
             if (!chargeSfx.Playing)
-                chargeSfx.Play("event:/char/badeline/boss_bullet");
+                chargeSfx.Play("guid://{bbe7d0c8-45f9-4671-b49e-8e38e357bb81}");
         }
 
         // Pattern sequences following the reference format
@@ -2073,7 +2073,7 @@ namespace Celeste.Entities
 
         private IEnumerator Attack30Sequence()
         {
-            // CH20_KIRBY_REFUSED_TO_DIE â†’ CH20_ASRIEL_FIRST_SPECIAL_ATTACK â†’ CH20_MADELINE_AND_BADELINE_SAVE_KIRBY_FROM_ASRIEL_FIRST_SPECIAL_ATTACK
+            // CH20_KIRBY_REFUSED_TO_DIE Ã¢â€ â€™ CH20_ASRIEL_FIRST_SPECIAL_ATTACK Ã¢â€ â€™ CH20_MADELINE_AND_BADELINE_SAVE_KIRBY_FROM_ASRIEL_FIRST_SPECIAL_ATTACK
             if (!dialogTriggered_RefusedToDie && dialog)
             {
                 dialogTriggered_RefusedToDie = true;
@@ -2541,7 +2541,7 @@ namespace Celeste.Entities
 
         private IEnumerator Attack60Sequence()
         {
-            // CH20_ASRIEL_GOD_SECOND_SPECIAL_ATTACK â†’ CH20_ASRIEL_GOD_SECOND_SPECIAL_ATTACK_END in azzyboss-60
+            // CH20_ASRIEL_GOD_SECOND_SPECIAL_ATTACK Ã¢â€ â€™ CH20_ASRIEL_GOD_SECOND_SPECIAL_ATTACK_END in azzyboss-60
             if (!dialogTriggered_SecondSpecialAttack && dialog)
             {
                 dialogTriggered_SecondSpecialAttack = true;
@@ -2913,7 +2913,7 @@ namespace Celeste.Entities
             string[] transitionRoomIds = new string[]
             {
                 "azzyboss-00",          // Intro room - CH20_ASRIEL_REVEAL_IDENTITY
-                "azzyboss-60",          // CH20_ASRIEL_GOD_SECOND_SPECIAL_ATTACK â†’ CH20_ASRIEL_GOD_SECOND_SPECIAL_ATTACK_END
+                "azzyboss-60",          // CH20_ASRIEL_GOD_SECOND_SPECIAL_ATTACK Ã¢â€ â€™ CH20_ASRIEL_GOD_SECOND_SPECIAL_ATTACK_END
                 "azzyboss-hypergoner",  // HyperGoner specific room
             };
             
@@ -4261,3 +4261,4 @@ namespace Celeste.Entities
         }
     }
 }
+

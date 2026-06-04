@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Runtime.CompilerServices;
 using Celeste.Entities;
@@ -34,7 +34,7 @@ public class CS_FinalRemixBerryCutscene : CutsceneEntity
     // SFX Events
     private const string SFX_GOLDEN_GLOW = "event:/new_content/game/pusheen/19_spaces/golden_glow";
     private const string SFX_HAND_GRAB = "event:/new_content/char/pusheen/asriel/emotional_reunion";
-    private const string SFX_GRANNY_STEPS = "event:/new_content/char/madeline/screenentry_gran_landing";
+    private const string SFX_GRANNY_STEPS = "guid://{ff56e917-feba-4631-84eb-2718c65c1e58}";
     private const string SFX_TEARS = "event:/new_content/char/pusheen/asriel/fade_to_flower";
     private const string SFX_HEART_GEM_APPEAR = "event:/game/general/heart_gem_appear";
     private const string SFX_HEART_GEM_PULSE = "event:/new_content/game/pusheen/19_spaces/golden_glow";
@@ -758,3 +758,4 @@ public class FinalRemixBerryCutsceneTrigger : Trigger
         Scene.Add(new CS_FinalRemixBerryCutscene(player, isPinkPlat));
     }
 }
+

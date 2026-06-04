@@ -1,4 +1,4 @@
-namespace Celeste.Entities;
+﻿namespace Celeste.Entities;
 [CustomEntity(ids: "MaggyHelper/CharaBossMovingBlock")]
 [Tracked]
 [HotReloadable]
@@ -76,7 +76,7 @@ public partial class CharaBossMovingBlock : Entity
             {
                 if (charaBossMovingBlock.Scene.CollideCheck<SolidTiles>(charaBossMovingBlock.Position + (to - from).SafeNormalize() * 2f))
                 {
-                    Audio.Play("event:/game/06_reflection/fallblock_boss_impact", charaBossMovingBlock.Center);
+                    Audio.Play("guid://{441f8a0a-8783-4894-b45c-815c95877931}", charaBossMovingBlock.Center);
                     charaBossMovingBlock.ImpactParticles(to - from);
                 }
                 else
@@ -186,6 +186,7 @@ public partial class CharaBossMovingBlock : Entity
         }
     }
 }
+
 
 
 

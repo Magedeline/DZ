@@ -1,4 +1,4 @@
-using Celeste.Cutscenes;
+﻿using Celeste.Cutscenes;
 
 namespace Celeste.Entities;
 [CustomEntity(ids: "MaggyHelper/AscendManagerBeyond")]
@@ -117,7 +117,7 @@ public class AscendManagerBeyond : Entity
         }
         manager.level.CanRetry = false;
         player.Sprite.Play("launch");
-        Audio.Play("event:/char/pusheen/kirby/summit_flytonext", player.Position);
+        Audio.Play("guid://{c399dcc7-9f86-4d6b-8474-d7e81c566610}", player.Position);
         yield return 0.25f;
         Vector2 from = player.Position;
         float p;
@@ -527,3 +527,4 @@ public class AscendManagerBeyond : Entity
         }
     }
 }
+

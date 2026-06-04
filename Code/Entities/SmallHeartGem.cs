@@ -1,4 +1,4 @@
-namespace Celeste.Entities
+﻿namespace Celeste.Entities
 {
     /// <summary>
     /// Small heart gem collectible for submaps in chapters 10-14
@@ -160,7 +160,7 @@ namespace Celeste.Entities
             collectSfx = new SoundSource();
             collectSfx.Position = Position;
             Add(collectSfx);
-            collectSfx.Play("event:/game/general/seed_poof");
+            collectSfx.Play("guid://{884bccb8-958a-4278-8a1b-daf74fff37c0}");
             
             // Visual effects
             Level level = SceneAs<Level>();
@@ -206,7 +206,7 @@ namespace Celeste.Entities
                 level.Add(new MiniTextbox($"SUBMAP_COMPLETE_CH{chapterNumber}_{submapNumber}"));
                 
                 // Play completion sound
-                Audio.Play("event:/game/general/crystalheart_blue_get", Position);
+                Audio.Play("guid://{1acb8e84-5f79-4dcd-86aa-e8a514535b7d}", Position);
             }
         }
 
@@ -325,6 +325,7 @@ namespace Celeste.Entities
         }
     }
 }
+
 
 
 

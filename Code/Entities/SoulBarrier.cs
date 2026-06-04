@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Celeste.Entities;
 using Microsoft.Xna.Framework;
@@ -72,7 +72,7 @@ namespace Celeste.Entities
         {
             fragmentsCollected++;
             
-            Audio.Play("event:/game/general/key_get", Position);
+            Audio.Play("guid://{3070bcdd-928f-4ffb-ba75-d43dbb2c2864}", Position);
             
             if (fragmentsCollected >= fragmentsRequired)
             {
@@ -85,7 +85,7 @@ namespace Celeste.Entities
             dissolving = true;
             Collidable = false;
             
-            Audio.Play("event:/game/general/wall_break_stone", Position);
+            Audio.Play("guid://{92f75010-4e90-428e-834c-1315ddbd9460}", Position);
             
             // Set session flag
             if (!string.IsNullOrEmpty(barrierId))
@@ -216,7 +216,7 @@ namespace Celeste.Entities
             collected = true;
             
             // Play collection sound
-            Audio.Play("event:/game/general/diamond_touch", Position);
+            Audio.Play("guid://{a47180e1-9bc2-4dbc-86c7-6402cea2e2be}", Position);
             
             // Mark as collected in session
             var session = (Scene as Level)?.Session;
@@ -274,3 +274,4 @@ namespace Celeste.Entities
         }
     }
 }
+

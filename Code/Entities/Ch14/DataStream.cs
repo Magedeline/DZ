@@ -1,4 +1,4 @@
-namespace Celeste.Entities.Chapters.Ch14
+﻿namespace Celeste.Entities.Chapters.Ch14
 {
     /// <summary>
     /// DataStream - Flowing data particles that carry player
@@ -118,7 +118,7 @@ namespace Celeste.Entities.Chapters.Ch14
             State = StreamState.Surging;
             currentSpeed = FlowSpeed * 2f;
             
-            Audio.Play("event:/game/general/crystalheart_pulse", Position);
+            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
             level?.Shake(0.2f);
             
             Add(new Coroutine(SurgeRoutine()));
@@ -327,3 +327,4 @@ namespace Celeste.Entities.Chapters.Ch14
         }
     }
 }
+

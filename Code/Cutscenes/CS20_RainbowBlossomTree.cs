@@ -1,4 +1,4 @@
-namespace Celeste.Cutscenes
+﻿namespace Celeste.Cutscenes
 {
     /// <summary>
     /// Chapter 20 cinematic ending on rainbow blossom tree
@@ -256,7 +256,7 @@ namespace Celeste.Cutscenes
                 if (Input.MenuConfirm.Pressed || Input.Dash.Pressed)
                 {
                     hasSkipped = true;
-                    Audio.Play("event:/ui/main/button_select");
+                    Audio.Play("guid://{cf18e899-f774-47e2-b72c-5252231fd47c}");
                     
                     // Jump to end
                     var level = Scene as Level;
@@ -297,6 +297,7 @@ namespace Celeste.Cutscenes
         }
     }
 }
+
 
 
 

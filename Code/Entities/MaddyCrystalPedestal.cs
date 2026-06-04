@@ -1,4 +1,4 @@
-namespace Celeste.Entities
+﻿namespace Celeste.Entities
 {
     [CustomEntity("MaggyHelper/MaddyCrystalPedestal")]
     [Tracked]
@@ -32,7 +32,7 @@ namespace Celeste.Entities
                 level.Flash(Color.White);
                 CelesteGame.Freeze(0.1f);
                 Input.Rumble(RumbleStrength.Medium, RumbleLength.Short);
-                Audio.Play("event:/game/05_mirror_temple/crystaltheo_break_free", entity.Position);
+                Audio.Play("guid://{1e303df8-ca93-4c8a-83a4-671e311469b0}", entity.Position);
                 return DashCollisionResults.Rebound;
             };
             Tag = Tags.TransitionUpdate;
@@ -68,3 +68,4 @@ namespace Celeste.Entities
         }
     }
 }
+

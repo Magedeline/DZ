@@ -1,4 +1,4 @@
-namespace Celeste.Entities.Chapters.Ch11
+﻿namespace Celeste.Entities.Chapters.Ch11
 {
     /// <summary>
     /// BarrelBomber - Enemy that hides in barrels and explodes when player is near
@@ -184,7 +184,7 @@ namespace Celeste.Entities.Chapters.Ch11
             // Screen effects
             level?.Shake(0.6f);
             level?.Flash(Color.Orange * 0.5f);
-            Audio.Play("event:/game/general/crystalheart_pulse", Position);
+            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
             
             // Damage player if in radius
             var player = Scene.Tracker.GetEntity<Player>();
@@ -370,7 +370,7 @@ namespace Celeste.Entities.Chapters.Ch11
             
             level?.Shake(0.4f);
             level?.Flash(Color.Orange * 0.4f);
-            Audio.Play("event:/game/general/crystalheart_pulse", Position);
+            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
             
             // Damage nearby entities
             var player = Scene.Tracker.GetEntity<Player>();
@@ -383,3 +383,4 @@ namespace Celeste.Entities.Chapters.Ch11
         }
     }
 }
+

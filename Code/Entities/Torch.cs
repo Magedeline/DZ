@@ -1,4 +1,4 @@
-namespace Celeste.Entities
+﻿namespace Celeste.Entities
 {
     /// <summary>
     /// Interactive torch entity with lighting effects and multiple types
@@ -118,7 +118,7 @@ namespace Celeste.Entities
             {
                 ambientSound = new SoundSource();
                 Add(ambientSound);
-                ambientSound.Play("event:/env/local/09_core/fireballs_idle");
+                ambientSound.Play("guid://{57b3a09b-dbc8-435e-8d24-6d1f913ac85c}");
             }
         }
 
@@ -211,7 +211,7 @@ namespace Celeste.Entities
             {
                 setupLighting();
                 setupAudio();
-                Audio.Play("event:/game/general/crystalheart_pulse", Position);
+                Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
             }
             else
             {
@@ -228,7 +228,7 @@ namespace Celeste.Entities
                     ambientSound = null;
                 }
 
-                Audio.Play("event:/ui/main/button_back", Position);
+                Audio.Play("guid://{fe9c58fa-d60a-4644-b34d-c0c4ebac2486}", Position);
             }
 
             updateSpriteState();
@@ -243,6 +243,7 @@ namespace Celeste.Entities
         }
     }
 }
+
 
 
 

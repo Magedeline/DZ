@@ -1,4 +1,4 @@
-namespace Celeste.Entities.Chapters.Ch16
+﻿namespace Celeste.Entities.Chapters.Ch16
 {
     /// <summary>
     /// CorruptionCrystal - Dark crystal that corrupts nearby entities
@@ -124,7 +124,7 @@ namespace Celeste.Entities.Chapters.Ch16
             }
             
             level?.Flash(Color.White * 0.4f);
-            Audio.Play("event:/game/general/crystalheart_pulse", Position);
+            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
             
             State = CrystalState.Destroyed;
             yield return 0.3f;
@@ -231,3 +231,4 @@ namespace Celeste.Entities.Chapters.Ch16
         }
     }
 }
+

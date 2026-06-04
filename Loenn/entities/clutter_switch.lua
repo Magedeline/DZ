@@ -1,4 +1,4 @@
-local drawableRectangle = require("structs.drawable_rectangle")
+﻿local drawableRectangle = require("structs.drawable_rectangle")
 local drawableSprite = require("structs.drawable_sprite")
 local utils = require("utils")
 
@@ -33,8 +33,8 @@ for i, variant in ipairs(variants) do
         name = variant,
         data = {
             type = variant,
-            musicEvent = "event:/music/pusheen/lvl5/clean",
-            absorbCutsceneSound = "event:/game/03_resort/clutterswitch_books",
+            musicEvent = "guid://{d49a04ce-06fb-43bb-8880-1b95a4f6544f}",
+            absorbCutsceneSound = "guid://{ab48ef65-2a19-4e26-bd96-c91188020dd6}",
             progressMusic = true,
             lightingAlphaAdd = 0.05
         }

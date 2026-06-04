@@ -1,4 +1,4 @@
--- Loenn integration for Darkener Fountain entity
+﻿-- Loenn integration for Darkener Fountain entity
 -- Creates a fountain effect that darkens or transforms the environment
 
 local selectionBounds = require("libraries.selection_bounds")
@@ -60,9 +60,9 @@ darkernerFountain.fieldInformation = {
     soundEffect = {
         fieldType = "string",
         options = {
-            "event:/game/general/thing_booped",
-            "event:/char/pusheen/kirby/dreamblock_enter",
-            "event:/game/general/seed_poof"
+            "guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}",
+            "guid://{b4af9a48-0da6-4374-972b-c4e4966b7003}",
+            "guid://{884bccb8-958a-4278-8a1b-daf74fff37c0}"
         },
         editable = true
     }
@@ -83,7 +83,7 @@ darkernerFountain.placements = {
             requiresFlag = "",
             transformsKglobal::global::Celeste.Player= true,
             persistentEffect = false,
-            soundEffect = "event:/game/general/thing_booped"
+            soundEffect = "guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}"
         }
     },
     {
@@ -117,7 +117,7 @@ darkernerFountain.placements = {
             requiresFlag = "shadow_fountain_unlocked",
             transformsKglobal::global::Celeste.Player= true,
             persistentEffect = false,
-            soundEffect = "event:/game/general/seed_poof"
+            soundEffect = "guid://{884bccb8-958a-4278-8a1b-daf74fff37c0}"
         }
     }
 }
@@ -147,3 +147,4 @@ function darkernerFountain.sprite(room, entity)
 end
 
 return darkernerFountain
+

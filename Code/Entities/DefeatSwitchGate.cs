@@ -1,4 +1,4 @@
-namespace Celeste.Entities
+﻿namespace Celeste.Entities
 {
     /// <summary>
     /// A gate that opens when the player has defeated a required number of enemies and/or bosses.
@@ -59,11 +59,11 @@ namespace Celeste.Entities
 
             // Pick tint based on which requirement is set
             if (requiredBossDefeats > 0 && requiredEnemyDefeats > 0)
-                gateColor = Calc.HexToColor("ff6600"); // orange – both
+                gateColor = Calc.HexToColor("ff6600"); // orange â€“ both
             else if (requiredBossDefeats > 0)
-                gateColor = Calc.HexToColor("cc0000"); // red – bosses
+                gateColor = Calc.HexToColor("cc0000"); // red â€“ bosses
             else
-                gateColor = Calc.HexToColor("3366ff"); // blue – enemies
+                gateColor = Calc.HexToColor("3366ff"); // blue â€“ enemies
 
             Depth = -9000;
         }
@@ -148,7 +148,7 @@ namespace Celeste.Entities
 
         private IEnumerator OpenRoutine()
         {
-            Audio.Play("event:/game/general/touchswitch_gate_open", Position);
+            Audio.Play("guid://{845556f0-842c-46d2-ac6c-64fc05f14cb0}", Position);
 
             float duration = 0.8f;
             float elapsed = 0f;
@@ -165,7 +165,7 @@ namespace Celeste.Entities
             openProgress = 1f;
             Collidable = false;
 
-            Audio.Play("event:/game/general/touchswitch_gate_finish", Position);
+            Audio.Play("guid://{0d6edb8b-2936-4e11-bc13-2c8bba70cbfa}", Position);
 
             // Particle burst to celebrate
             if (level != null)
@@ -257,3 +257,4 @@ namespace Celeste.Entities
         #endregion
     }
 }
+

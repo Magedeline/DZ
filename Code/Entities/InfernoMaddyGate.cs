@@ -1,4 +1,4 @@
-namespace Celeste.Entities
+﻿namespace Celeste.Entities
 {
     /// <summary>
     /// A gate for Chapter 7 (Infernal Reflections) that opens when the player
@@ -60,7 +60,7 @@ namespace Celeste.Entities
                 CelestePlayer player = Scene.Tracker.GetEntity<CelestePlayer>();
                 if (player != null && player.X < X)
                 {
-                    // Player is already past this gate — start open
+                    // Player is already past this gate â€” start open
                     StartOpen();
                 }
             }
@@ -163,7 +163,7 @@ namespace Celeste.Entities
         {
             if (open) return;
             open = true;
-            Audio.Play("event:/game/05_mirror_temple/gate_main_open", Position);
+            Audio.Play("guid://{3ec0a31a-f6af-4426-aaa1-db57098dbd39}", Position);
             sprite.Play("open");
             drawHeightMoveSpeed = 0f;
         }
@@ -172,7 +172,7 @@ namespace Celeste.Entities
         {
             if (!open) return;
             open = false;
-            Audio.Play("event:/game/05_mirror_temple/gate_main_close", Position);
+            Audio.Play("guid://{68e31409-b316-478b-8eb3-67a885e9dd33}", Position);
             sprite.Play("hit");
             drawHeightMoveSpeed = 200f;
         }
@@ -220,3 +220,4 @@ namespace Celeste.Entities
         }
     }
 }
+

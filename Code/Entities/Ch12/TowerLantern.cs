@@ -1,4 +1,4 @@
-namespace Celeste.Entities.Chapters.Ch12
+﻿namespace Celeste.Entities.Chapters.Ch12
 {
     /// <summary>
     /// TowerLantern - Light source that can be lit or extinguished
@@ -324,7 +324,7 @@ namespace Celeste.Entities.Chapters.Ch12
             var level = Scene as Level;
             level?.Session.SetFlag("lantern_puzzle_complete", true);
             level?.Flash(Color.Gold * 0.3f);
-            Audio.Play("event:/game/general/crystalheart_pulse", Position);
+            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
         }
 
         private void ResetPuzzle()
@@ -344,3 +344,4 @@ namespace Celeste.Entities.Chapters.Ch12
         }
     }
 }
+

@@ -1,4 +1,4 @@
-#nullable enable
+﻿#nullable enable
 namespace Celeste.Cutscenes;
 // Note: Removed [CustomEntity] - cutscene entities are created programmatically, not placed in maps
 [HotReloadable]
@@ -123,7 +123,7 @@ public class Cs05Memo : CutsceneEntity
         public IEnumerator EaseIn()
         {
             MemoPage memoPage = this;
-            Audio.Play("event:/game/03_resort/memo_in");
+            Audio.Play("guid://{142ae054-bc66-4b91-8c25-eff2ee9e4f05}");
             Vector2 from = new(Engine.Width / 2, Engine.Height + 100);
             Vector2 to = new(Engine.Width / 2, Engine.Height / 2 - 150);
             float rFrom = -0.1f;
@@ -157,13 +157,13 @@ public class Cs05Memo : CutsceneEntity
                     break;
                 yield return null;
             }
-            Audio.Play("event:/ui/main/button_lowkey");
+            Audio.Play("guid://{8a93c5a5-538c-49f6-9d07-988839862ba1}");
         }
 
         public IEnumerator EaseOut()
         {
             MemoPage memoPage = this;
-            Audio.Play("event:/game/03_resort/memo_out");
+            Audio.Play("guid://{a3b55290-30ce-464e-b669-9582d71e7c70}");
             memoPage.easingOut = true;
             Vector2 from = memoPage.Position;
             if (memoPage.target != null)
@@ -228,6 +228,7 @@ public class Cs05Memo : CutsceneEntity
         }
     }
 }
+
 
 
 

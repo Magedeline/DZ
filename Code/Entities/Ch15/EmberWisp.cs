@@ -1,4 +1,4 @@
-namespace Celeste.Entities.Chapters.Ch15
+﻿namespace Celeste.Entities.Chapters.Ch15
 {
     /// <summary>
     /// EmberWisp - Small flame spirit that ignites platforms temporarily
@@ -105,7 +105,7 @@ namespace Celeste.Entities.Chapters.Ch15
         {
             sprite.Play("ignite");
             State = WispState.Igniting;
-            Audio.Play("event:/game/general/crystalheart_pulse", Position);
+            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
         }
 
         private void BurningBegin()
@@ -383,3 +383,4 @@ namespace Celeste.Entities.Chapters.Ch15
         }
     }
 }
+

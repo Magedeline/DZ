@@ -1,4 +1,4 @@
-#nullable enable
+﻿#nullable enable
 
 using Celeste.Cutscenes;
 using FMOD.Studio;
@@ -8,8 +8,8 @@ namespace Celeste.UI
     /// <summary>
     /// Custom title screen overlay that appears when a new player launches the game
     /// with MaggyHelper installed. Offers two choices:
-    ///   1. "Desolo Zantas" – play the mod's intro (vessel creation cutscene)
-    ///   2. "Celeste"       – skip straight to normal Everest / vanilla Celeste
+    ///   1. "Desolo Zantas" â€“ play the mod's intro (vessel creation cutscene)
+    ///   2. "Celeste"       â€“ skip straight to normal Everest / vanilla Celeste
     ///
     /// The screen only appears once per save file (tracked via MaggyHelperSaveData.HasSeenModIntro).
     /// After the player makes a choice, the flag is set and this screen is never shown again.
@@ -18,13 +18,13 @@ namespace Celeste.UI
     public class ModSelectionScreen : Scene
     {
         #region Constants
-        // ── Timing ──
+        // â”€â”€ Timing â”€â”€
         private const float FADE_IN_DURATION  = 1.5f;
         private const float TITLE_DELAY       = 0.6f;
         private const float MENU_APPEAR_DELAY = 0.8f;
         private const float FADE_OUT_DURATION = 0.8f;
 
-        // ── Visual layout ──
+        // â”€â”€ Visual layout â”€â”€
         private const float TITLE_Y           = 160f;
         private const float SUBTITLE_Y        = 230f;
         private const float NOTICE_Y          = 300f;
@@ -32,10 +32,10 @@ namespace Celeste.UI
         private const float MENU_Y            = 440f;
         private const float CHOICE_SPACING    = 80f;
 
-        // ── Audio ──
-        private const string CHOICE_MOVE_SFX   = "event:/ui/main/rollover_down";
-        private const string CHOICE_SELECT_SFX = "event:/ui/main/button_select";
-        private const string TITLE_MUSIC_EVENT = "event:/music/pusheen/lvl0/intro";
+        // â”€â”€ Audio â”€â”€
+        private const string CHOICE_MOVE_SFX   = "guid://{fb6ae8ab-4c41-4d90-8d2b-61a45e0a33e8}";
+        private const string CHOICE_SELECT_SFX = "guid://{cf18e899-f774-47e2-b72c-5252231fd47c}";
+        private const string TITLE_MUSIC_EVENT = "guid://{0ad76e01-cdab-4167-9bbb-eca8e923a534}";
         #endregion
 
         #region Static Hook State
@@ -135,7 +135,7 @@ namespace Celeste.UI
         #region Main Coroutine
         private IEnumerator screenSequence()
         {
-            // ── Phase 1: Fade in ──
+            // â”€â”€ Phase 1: Fade in â”€â”€
             state = SelectionState.FadingIn;
 
             // Optional: start ambient music
@@ -145,7 +145,7 @@ namespace Celeste.UI
             }
             catch
             {
-                // Music event may not exist yet – that's fine
+                // Music event may not exist yet â€“ that's fine
                 IngesteLogger.Warn("[ModSelectionScreen] Title music event not found, continuing without music");
             }
 
@@ -181,7 +181,7 @@ namespace Celeste.UI
             }
             menuAlpha = 1f;
 
-            // ── Phase 2: Wait for player selection ──
+            // â”€â”€ Phase 2: Wait for player selection â”€â”€
             state = SelectionState.Selecting;
 
             while (!chose)
@@ -189,7 +189,7 @@ namespace Celeste.UI
                 yield return null;
             }
 
-            // ── Phase 3: Fade out & transition ──
+            // â”€â”€ Phase 3: Fade out & transition â”€â”€
             state = SelectionState.FadingOut;
 
             // Stop music
@@ -214,12 +214,12 @@ namespace Celeste.UI
             // Transition
             if (choiceIsDesoloZantas)
             {
-                IngesteLogger.Info("[ModSelectionScreen] Player chose Desolo Zantas – launching vessel creation intro");
+                IngesteLogger.Info("[ModSelectionScreen] Player chose Desolo Zantas â€“ launching vessel creation intro");
                 launchDesoloZantasIntro();
             }
             else
             {
-                IngesteLogger.Info("[ModSelectionScreen] Player chose Celeste – proceeding to Everest");
+                IngesteLogger.Info("[ModSelectionScreen] Player chose Celeste â€“ proceeding to Everest");
                 launchCeleste();
             }
         }
@@ -282,7 +282,7 @@ namespace Celeste.UI
 
             float alpha = fade * (1f - fadeOutAlpha);
 
-            // ── Title ──
+            // â”€â”€ Title â”€â”€
             if (titleAlpha > 0f)
             {
                 string title = Dialog.Clean("MAGGY_MOD_SELECT_TITLE");
@@ -328,7 +328,7 @@ namespace Celeste.UI
                     notice2Color);
             }
 
-            // ── Menu choices ──
+            // â”€â”€ Menu choices â”€â”€
             if (menuAlpha > 0f)
             {
                 string choice0 = Dialog.Clean("MAGGY_MOD_SELECT_DESOLOZANTAS");
@@ -363,7 +363,7 @@ namespace Celeste.UI
             if (highlighted)
             {
                 float arrowX = x - ActiveFont.Measure(label).X * scale / 2f - 40f;
-                ActiveFont.Draw("»", new Vector2(arrowX, y), new Vector2(0.5f, 0.5f),
+                ActiveFont.Draw("Â»", new Vector2(arrowX, y), new Vector2(0.5f, 0.5f),
                     Vector2.One * scale, Color.Gold * alpha);
             }
 
@@ -410,7 +410,7 @@ namespace Celeste.UI
                 }
                 else
                 {
-                    IngesteLogger.Warn("[ModSelectionScreen] Could not find prologue area – falling back to overworld");
+                    IngesteLogger.Warn("[ModSelectionScreen] Could not find prologue area â€“ falling back to overworld");
                     launchCeleste();
                 }
             }
@@ -442,3 +442,4 @@ namespace Celeste.UI
         #endregion
     }
 }
+

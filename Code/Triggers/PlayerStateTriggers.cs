@@ -1,4 +1,4 @@
-using Celeste.Entities;
+﻿using Celeste.Entities;
 using Microsoft.Xna.Framework;
 using Monocle;
 using System;
@@ -45,7 +45,7 @@ namespace Celeste
                     level.Session.SetFlag("kirby_ability_" + ability.ToLower(), !has);
                     break;
             }
-            Audio.Play("event:/game/general/seed_touch", Position);
+            Audio.Play("guid://{6160ad7b-16f6-49a5-aa9b-55d75da5a8e1}", Position);
         }
     }
 
@@ -147,7 +147,7 @@ namespace Celeste
 
             Level level = SceneAs<Level>();
             level.Session.SetFlag("star_power_active", true);
-            Audio.Play("event:/game/general/seed_touch", Position);
+            Audio.Play("guid://{6160ad7b-16f6-49a5-aa9b-55d75da5a8e1}", Position);
             Add(new Coroutine(InvincibilityRoutine()));
         }
 
@@ -180,7 +180,7 @@ namespace Celeste
             Level level = SceneAs<Level>();
             level.Session.SetFlag("size_small", sizeMode == "small");
             level.Session.SetFlag("size_large", sizeMode == "large");
-            Audio.Play("event:/game/general/spring", Position);
+            Audio.Play("guid://{a4c52eee-f6a0-4ebe-976f-fab38d4cfa7a}", Position);
         }
 
         public override void OnLeave(Player player)
@@ -349,3 +349,4 @@ namespace Celeste
         }
     }
 }
+

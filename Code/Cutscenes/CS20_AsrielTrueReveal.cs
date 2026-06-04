@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using Celeste.Entities;
 using FMOD.Studio;
@@ -21,7 +21,7 @@ namespace Celeste
         private const string FLAG_REVEAL_COMPLETE = "asriel_true_reveal_done";
 
         private const string SFX_CREATE = "event:/new_content/char/pusheen/asriel/Asriel_Create";
-        private const string SFX_GLITCH = "event:/new_content/game/pusheen/19_spaces/glitch_long";
+        private const string SFX_GLITCH = "guid://{de5847e9-ebe4-4529-9b18-d2f82589b010}";
         private const string SFX_REVEAL = "event:/new_content/game/general/dramatic_reveal";
         private const string MUSIC_REVEAL = "event:/new_content/music/pusheen/lvl20/asriel_reveal";
 
@@ -486,3 +486,4 @@ namespace Celeste
         #endregion
     }
 }
+

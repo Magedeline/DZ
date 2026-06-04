@@ -1,4 +1,4 @@
-using Celeste.Entities;
+﻿using Celeste.Entities;
 
 namespace Celeste.Cutscenes
 {
@@ -50,7 +50,7 @@ namespace Celeste.Cutscenes
             player.DummyAutoAnimate = true;
             player.Facing = Facings.Right;
             yield return 0.3f;
-            Audio.Play("event:/new_content/game/10_farewell/glitch_short", player.Position);
+            Audio.Play("guid://{42d600c5-32c3-4433-8a1e-be394b30bcde}", player.Position);
             yield return 0.5f;
         }
 
@@ -66,3 +66,4 @@ namespace Celeste.Cutscenes
         }
     }
 }
+

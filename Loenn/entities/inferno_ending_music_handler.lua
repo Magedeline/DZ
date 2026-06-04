@@ -1,4 +1,4 @@
-local drawableRectangle = require("structs.drawable_rectangle")
+﻿local drawableRectangle = require("structs.drawable_rectangle")
 
 local infernoEndingMusicHandler = {}
 
@@ -12,7 +12,7 @@ infernoEndingMusicHandler.placements = {
             startLevel = "e-01",
             endLevel = "e-09",
             roomPattern = "e-*",
-            music = "event:/music/lvl5/mirror",
+            music = "guid://{7e1c842a-b3d8-440a-9c39-196826b8bee2}",
             fadeOutLayer = 1,
             fadeInLayer = 5
         }
@@ -45,3 +45,4 @@ function infernoEndingMusicHandler.selection(room, entity)
 end
 
 return infernoEndingMusicHandler
+

@@ -1,4 +1,4 @@
-namespace Celeste.Cutscenes
+﻿namespace Celeste.Cutscenes
 {
     /// <summary>
     /// Chapter 16 Ending - Barrier Breaks and Return to Celeste
@@ -44,7 +44,7 @@ namespace Celeste.Cutscenes
 
             // Els' ominous final words
             level.Flash(Color.DarkRed, false);
-            Audio.Play("event:/game/general/strawberry_pulse");
+            Audio.Play("guid://{0886e368-bce4-4922-97c3-edeadf714e29}");
             
             // Credits would roll here in actual game
             yield return 2f;
@@ -53,6 +53,7 @@ namespace Celeste.Cutscenes
         }
     }
 }
+
 
 
 

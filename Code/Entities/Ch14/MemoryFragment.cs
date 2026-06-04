@@ -1,4 +1,4 @@
-namespace Celeste.Entities.Chapters.Ch14
+﻿namespace Celeste.Entities.Chapters.Ch14
 {
     /// <summary>
     /// MemoryFragment - Collectible data fragment that reveals story
@@ -88,7 +88,7 @@ namespace Celeste.Entities.Chapters.Ch14
             State = FragmentState.Collecting;
             sprite.Play("collecting");
             
-            Audio.Play("event:/game/general/crystalheart_pulse", Position);
+            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
             
             Add(new Coroutine(CollectRoutine()));
         }
@@ -292,7 +292,7 @@ namespace Celeste.Entities.Chapters.Ch14
                 // All fragments collected
                 var level = Scene as Level;
                 level?.Session.SetFlag("memory_fragments_complete_" + collectionId, true);
-                Audio.Play("event:/game/general/crystalheart_pulse", Position);
+                Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
             }
         }
 
@@ -303,3 +303,4 @@ namespace Celeste.Entities.Chapters.Ch14
         }
     }
 }
+

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Celeste.Entities;
 using Microsoft.Xna.Framework;
 using Monocle;
@@ -61,7 +61,7 @@ namespace Celeste.Entities
             
             collected = true;
             
-            Audio.Play("event:/game/general/cassette_get", Position);
+            Audio.Play("guid://{111996f6-8bae-408f-86d1-0aeae8203f4b}", Position);
             
             // Mark as collected
             if (oneTime && !string.IsNullOrEmpty(memoryId))
@@ -230,3 +230,4 @@ namespace Celeste.Entities
         }
     }
 }
+

@@ -1,4 +1,4 @@
-#pragma warning disable CS0436
+﻿#pragma warning disable CS0436
 
 using global::Celeste.Mod.Meta;
 using MonoMod.RuntimeDetour;
@@ -38,10 +38,10 @@ public static class AreaModeExtender
 
     public static readonly string[] HeartGemGetSounds =
     {
-        "event:/game/general/crystalheart_blue_get",
-        "event:/game/general/crystalheart_red_get",
-        "event:/game/general/crystalheart_gold_get",
-        "event:/game/pusheen/general/crystalheart_rainbow_get",
+        "guid://{1acb8e84-5f79-4dcd-86aa-e8a514535b7d}",
+        "guid://{e04dbcbd-4476-4174-9046-1e92febcc08e}",
+        "guid://{10ff4e08-9448-49ae-8092-d402bb128538}",
+        "guid://{eaeac297-dbe8-4eae-a434-3bbb4a5aa49c}",
         "event:/game/pusheen/general/crystalheart_void_get"
     };
 
@@ -87,7 +87,7 @@ public static class AreaModeExtender
         if (string.IsNullOrWhiteSpace(mapName))
             return MAP_PREFIX;
 
-        // SIDs do not include the Maps/ prefix — Everest strips it when registering .bin files.
+        // SIDs do not include the Maps/ prefix â€” Everest strips it when registering .bin files.
         return $"{MAP_PREFIX}/{sideFolder}/{mapName}";
     }
 
@@ -258,7 +258,7 @@ public static class AreaModeExtender
             return false;
 
         // If AltSidesHelper is present and owns this chapter's D-Side, let ASH
-        // manage the panel tab — do not inject Mode[3] here.
+        // manage the panel tab â€” do not inject Mode[3] here.
         if (hasD && AltSidesHelperBridge.IsAshOwned(area.SID))
         {
             hasD = false;

@@ -1,4 +1,4 @@
-namespace Celeste.Entities
+﻿namespace Celeste.Entities
 {
     /// <summary>
     /// Darkener Fountain entity - creates a fountain effect that darkens or transforms the environment
@@ -103,7 +103,7 @@ namespace Celeste.Entities
             RequiresFlag = data.Attr("requiresFlag", "");
             TransformsPlayer = data.Bool("transformsPlayer", false);
             PersistentEffect = data.Bool("persistentEffect", false);
-            SoundEffect = data.Attr("soundEffect", "event:/game/general/seed_poof");
+            SoundEffect = data.Attr("soundEffect", "guid://{884bccb8-958a-4278-8a1b-daf74fff37c0}");
 
             Depth = -5;
             Collider = new Circle(ActivationRadius);
@@ -271,3 +271,4 @@ namespace Celeste.Entities
         }
     }
 }
+

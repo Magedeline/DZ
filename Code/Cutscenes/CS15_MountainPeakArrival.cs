@@ -1,4 +1,4 @@
-namespace Celeste.Cutscenes
+﻿namespace Celeste.Cutscenes
 {
     /// <summary>
     /// Chapter 15 Mountain Peak Arrival and Castle Approach
@@ -34,7 +34,7 @@ namespace Celeste.Cutscenes
             yield return Textbox.Say("MAGGYHELPER_CH15_CHARA_MOMENT");
 
             // Bridge crossing with mystical effects
-            Audio.Play("event:/game/general/strawberry_pulse");
+            Audio.Play("guid://{0886e368-bce4-4922-97c3-edeadf714e29}");
             level.Flash(Color.Purple, false);
             
             yield return Textbox.Say("MAGGYHELPER_CH15_BRIDGE_CROSSING");
@@ -46,6 +46,7 @@ namespace Celeste.Cutscenes
         }
     }
 }
+
 
 
 

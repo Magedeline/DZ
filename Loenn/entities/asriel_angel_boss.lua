@@ -1,4 +1,4 @@
--- Asriel Angel of Death Boss - Chapter 20: The End
+﻿-- Asriel Angel of Death Boss - Chapter 20: The End
 -- Multi-phase boss with barrier mechanics, lost soul salvation, and emotional story beats
 -- Sprite path: characters/asrielangelofdeathboss
 
@@ -25,7 +25,7 @@ asrielAngelBoss.placements = {
             enableFlashback = true,
             enableFinalBeam = true,
             -- Music tracks
-            musicBurnInDespair = "event:/new_content/music/pusheen/lvl20/burn_in_despair",
+            musicBurnInDespair = "guid://{970368cc-d45a-4159-a9ec-e56e27d2f7ae}",
             musicHisTheme01 = "event:/new_content/music/pusheen/lvl20/his_theme01",
             musicHisTheme02 = "event:/new_content/music/pusheen/lvl20/his_theme02",
             musicKirbyVsAsriel = "event:/new_content/music/pusheen/lvl20/kirby_vs_asriel_fight_02",
@@ -49,7 +49,7 @@ asrielAngelBoss.placements = {
             enableLostSouls = true,
             enableFlashback = true,
             enableFinalBeam = true,
-            musicBurnInDespair = "event:/new_content/music/pusheen/lvl20/burn_in_despair",
+            musicBurnInDespair = "guid://{970368cc-d45a-4159-a9ec-e56e27d2f7ae}",
             musicHisTheme01 = "event:/new_content/music/pusheen/lvl20/his_theme01",
             musicHisTheme02 = "event:/new_content/music/pusheen/lvl20/his_theme02",
             musicKirbyVsAsriel = "event:/new_content/music/pusheen/lvl20/kirby_vs_asriel_fight_02",
@@ -71,7 +71,7 @@ asrielAngelBoss.placements = {
             enableLostSouls = false,
             enableFlashback = true,
             enableFinalBeam = false,
-            musicBurnInDespair = "event:/new_content/music/pusheen/lvl20/burn_in_despair",
+            musicBurnInDespair = "guid://{970368cc-d45a-4159-a9ec-e56e27d2f7ae}",
             musicHisTheme01 = "event:/new_content/music/pusheen/lvl20/his_theme01",
             musicHisTheme02 = "event:/new_content/music/pusheen/lvl20/his_theme02",
             musicKirbyVsAsriel = "event:/new_content/music/pusheen/lvl20/kirby_vs_asriel_fight_02",
@@ -256,3 +256,4 @@ function asrielAngelBoss.selection(room, entity)
 end
 
 return asrielAngelBoss
+

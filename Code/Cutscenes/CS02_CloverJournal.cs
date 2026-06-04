@@ -1,4 +1,4 @@
-// Decompiled with JetBrains decompiler
+﻿// Decompiled with JetBrains decompiler
 // Type: Celeste.CS02_Journal
 // Assembly: Celeste, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 // MVID: FAF6CA25-5C06-43EB-A08F-9CCF291FE6A3
@@ -40,7 +40,7 @@ namespace Celeste.Cutscenes
       yield return  cs02Journal.poem.EaseIn();
       while (!Input.MenuConfirm.Pressed)
         yield return  null;
-      Audio.Play("event:/ui/main/button_lowkey");
+      Audio.Play("guid://{8a93c5a5-538c-49f6-9d07-988839862ba1}");
       yield return  cs02Journal.poem.EaseOut();
       cs02Journal.poem =  null;
       cs02Journal.endCutscene(cs02Journal.Level);
@@ -84,7 +84,7 @@ namespace Celeste.Cutscenes
       public IEnumerator EaseIn()
       {
         var poemPage = this;
-        Audio.Play("event:/game/03_resort/memo_in");
+        Audio.Play("guid://{142ae054-bc66-4b91-8c25-eff2ee9e4f05}");
         var vector2 = new Vector2( Engine.Width,  Engine.Height) / 2f;
         var from = vector2 + new Vector2(0.0f, 200f);
         var to = vector2;
@@ -102,7 +102,7 @@ namespace Celeste.Cutscenes
       public IEnumerator EaseOut()
       {
         var poemPage = this;
-        Audio.Play("event:/game/03_resort/memo_out");
+        Audio.Play("guid://{a3b55290-30ce-464e-b669-9582d71e7c70}");
         poemPage.easingOut = true;
         var from = poemPage.Position;
         var to = new Vector2( Engine.Width,  Engine.Height) / 2f + new Vector2(0.0f, -200f);
@@ -164,3 +164,4 @@ namespace Celeste.Cutscenes
     }
   }
 }
+

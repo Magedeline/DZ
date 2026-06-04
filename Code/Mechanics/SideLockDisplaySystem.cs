@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using global::Celeste.Mod.Meta;
 using Microsoft.Xna.Framework;
 using Monocle;
@@ -256,10 +256,11 @@ public static class SideLockDisplaySystem
         if (!AreaModeExtender.IsSideUnlocked(area, modeIndex))
         {
             // Optional: Play a "locked" sound effect
-            Audio.Play("event:/ui/main/button_invalid");
+            Audio.Play("guid://{b6aad0d5-cc07-46f4-ab3a-3b3692a57678}");
             return false;  // Selection blocked
         }
 
         return true;  // Selection allowed
     }
 }
+

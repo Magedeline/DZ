@@ -1,4 +1,4 @@
-namespace Celeste.Entities.Chapters.Ch16
+﻿namespace Celeste.Entities.Chapters.Ch16
 {
     /// <summary>
     /// FinalCore - The final boss core entity
@@ -246,7 +246,7 @@ namespace Celeste.Entities.Chapters.Ch16
             
             level?.Flash(Color.White * 0.6f);
             level?.Shake(0.8f);
-            Audio.Play("event:/game/general/crystalheart_pulse", Position);
+            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
             
             level?.Session.SetFlag("final_core_defeated", true);
             
@@ -291,7 +291,7 @@ namespace Celeste.Entities.Chapters.Ch16
                 Scene.Add(attack);
             }
             
-            Audio.Play("event:/game/general/crystalheart_pulse", Position);
+            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
         }
 
         private void PerformPhase3Attack()
@@ -306,7 +306,7 @@ namespace Celeste.Entities.Chapters.Ch16
                 Scene.Add(attack);
             }
             
-            Audio.Play("event:/game/general/crystalheart_pulse", Position);
+            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
             level?.Shake(0.3f);
         }
 
@@ -467,3 +467,4 @@ namespace Celeste.Entities.Chapters.Ch16
         }
     }
 }
+

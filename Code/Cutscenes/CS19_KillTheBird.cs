@@ -1,4 +1,4 @@
-using Celeste.Entities;
+﻿using Celeste.Entities;
 using CutsceneNode = Celeste.Entities.CutsceneNode;
 using FMOD.Studio;
 using Facings = Celeste.Facings;
@@ -40,7 +40,7 @@ public class CS19_KillTheBird : CutsceneEntity
 
     private IEnumerator Cutscene(Level level)
     {
-        Audio.SetMusic("event:/new_content/music/pusheen/lvl19/cinematic/bird_crash_second");
+        Audio.SetMusic("guid://{2b922a75-db87-4bbb-9d8f-ad18017d39c6}");
         CharaBoost boost = Scene.Entities.FindFirst<CharaBoost>();
         if (boost != null)
         {
@@ -101,7 +101,7 @@ public class CS19_KillTheBird : CutsceneEntity
         if (boost != null)
         {
             Level.Displacement.AddBurst(boost.Center, 0.5f, 8f, 32f, 0.5f);
-            Audio.Play("event:/new_content/char/badeline/booster_first_appear", boost.Center);
+            Audio.Play("guid://{5a554fe3-4398-4960-ab5e-70dc62685ded}", boost.Center);
             bool visible = true;
             boost.Collidable = true;
             boost.Active = (boost.Visible = visible);
@@ -127,18 +127,18 @@ public class CS19_KillTheBird : CutsceneEntity
     private IEnumerator BirdLooksHurt()
     {
         yield return 0.8f;
-        yield return BirdTwitches("event:/new_content/game/10_farewell/bird_crashscene_twitch_1");
+        yield return BirdTwitches("guid://{712650d6-3edc-40f8-96e7-c4d70aabc7fb}");
         yield return 0.4f;
-        yield return BirdTwitches("event:/new_content/game/10_farewell/bird_crashscene_twitch_2");
+        yield return BirdTwitches("guid://{59ecf2bc-ad5d-4055-ad4d-c477789353f9}");
         yield return 0.5f;
     }
 
     private IEnumerator BirdSquakOnGround()
     {
         yield return 0.6f;
-        yield return BirdTwitches("event:/new_content/game/10_farewell/bird_crashscene_twitch_3");
+        yield return BirdTwitches("guid://{84666200-9dc1-435c-86dc-c576f7fea100}");
         yield return 0.8f;
-        Audio.Play("event:/new_content/game/10_farewell/bird_crashscene_recover", flingBird.Position);
+        Audio.Play("guid://{2bb2c164-719e-4ead-8dbd-f6943e93ec31}", flingBird.Position);
         flingBird.RemoveSelf();
         Scene.Add(bird = new BirdNPC(flingBird.Position, BirdNPC.Modes.None));
         bird.Facing = Facings.Right;
@@ -158,17 +158,17 @@ public class CS19_KillTheBird : CutsceneEntity
         yield return bird.Caw();
         Add(new Coroutine(player.DummyWalkTo(player.X + 20f)));
         yield return 0.1f;
-        Audio.Play("event:/game/general/bird_startle", bird.Position);
-        yield return bird.Startle("event:/new_content/game/10_farewell/bird_crashscene_relocate");
+        Audio.Play("guid://{7ea54ed8-0285-4dfc-a1ce-558444a4aa59}", bird.Position);
+        yield return bird.Startle("guid://{a1745c53-2c9e-4545-bc28-275b56d913d8}");
         yield return bird.FlyTo(new Vector2(player.X + 80f, player.Y), 3f, relocateSfx: false);
     }
 
     private IEnumerator ApproachBirdAgain()
     {
-        Audio.Play("event:/new_content/game/10_farewell/bird_crashscene_leave", bird.Position);
+        Audio.Play("guid://{d3a1e63e-2265-4652-988f-3d07724ab466}", bird.Position);
         Add(new Coroutine(bird.FlyTo(birdWaitPosition, 2f, relocateSfx: false)));
         yield return player.DummyWalkTo(player.X + 20f);
-        snapshot = Audio.CreateSnapshot("snapshot:/game_10_bird_wings_silenced");
+        snapshot = Audio.CreateSnapshot("guid://{5955bc4d-e3b4-4663-a676-bdaf632c0d78}");
         yield return 0.8f;
         bird.RemoveSelf();
         Scene.Add(bird = new BirdNPC(birdWaitPosition, BirdNPC.Modes.WaitForLightningOff));
@@ -182,7 +182,7 @@ public class CS19_KillTheBird : CutsceneEntity
         yield return player.DummyWalkToExact((int)player.X + 20, walkBackwards: false, 0.5f);
         Level.Add(chara = new CharaDummy(player.Position + new Vector2(24f, -8f)));
         Level.Displacement.AddBurst(chara.Center, 0.5f, 8f, 32f, 0.5f);
-        Audio.Play("event:/char/badeline/maddy_split", player.Position);
+        Audio.Play("guid://{450fb5b3-e9e3-45d8-9f34-ba05e292958f}", player.Position);
         chara.Sprite.Scale.X = -1f;
         yield return 0.2f;
     }
@@ -209,12 +209,12 @@ public class CS19_KillTheBird : CutsceneEntity
         chara.Floatness = 0f;
         chara.AutoAnimateEnabled = false;
         chara.Sprite.Play("idle");
-        Audio.Play("event:/char/badeline/landing", chara.Position);
+        Audio.Play("guid://{8f924592-8b14-40d6-81af-d42fab0b6da1}", chara.Position);
         yield return 0.5f;
         yield return chara.WalkTo(player.X - 9f, 40f);
         chara.Sprite.Scale.X = 1f;
         yield return 0.2f;
-        Audio.Play("event:/char/badeline/duck", chara.Position);
+        Audio.Play("guid://{d879f9dd-98d0-479e-9f08-a1848f4a0f5c}", chara.Position);
         chara.Depth = player.Depth + 5;
         chara.Sprite.Play("hug");
         yield return 1f;
@@ -222,7 +222,7 @@ public class CS19_KillTheBird : CutsceneEntity
 
     private IEnumerator StandUp()
     {
-        Audio.Play("event:/char/badeline/stand", chara.Position);
+        Audio.Play("guid://{1a114663-4b93-4aab-ba8c-ca8793f2831e}", chara.Position);
         yield return chara.WalkTo(chara.X - 8f);
         chara.Sprite.Scale.X = 1f;
         yield return 0.2f;
@@ -235,7 +235,7 @@ public class CS19_KillTheBird : CutsceneEntity
     {
         Audio.ReleaseSnapshot(snapshot);
         snapshot = null;
-        Audio.Play("event:/new_content/char/badeline/birdcrash_scene_float", chara.Position);
+        Audio.Play("guid://{a38a422d-553d-4a98-bd77-4fb94c9a40a8}", chara.Position);
         Add(new Coroutine(chara.FloatTo(player.Position + new Vector2(-16f, -16f), 1)));
         Level level = Scene as Level;
         player.Facing = Facings.Right;
@@ -330,3 +330,4 @@ public class CS19_KillTheBird : CutsceneEntity
         birdNPC.FlyAwayUp = false;
     }
 }
+

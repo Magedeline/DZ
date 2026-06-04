@@ -1,4 +1,4 @@
-using Celeste.Entities;
+﻿using Celeste.Entities;
 
 namespace Celeste.Cutscenes
 {
@@ -42,7 +42,7 @@ namespace Celeste.Cutscenes
         private IEnumerator SilhouettesAppear()
         {
             Level.Flash(Color.White * 0.3f, drawPlayerOver: true);
-            Audio.Play("event:/new_content/game/10_farewell/glitch_short", player.Position);
+            Audio.Play("guid://{42d600c5-32c3-4433-8a1e-be394b30bcde}", player.Position);
             yield return 0.8f;
         }
 
@@ -76,7 +76,7 @@ namespace Celeste.Cutscenes
         private IEnumerator RealizationHits()
         {
             Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
-            Audio.Play("event:/new_content/game/10_farewell/glitch_short", player.Position);
+            Audio.Play("guid://{42d600c5-32c3-4433-8a1e-be394b30bcde}", player.Position);
             Level.Shake(0.3f);
             yield return 0.5f;
         }
@@ -92,3 +92,4 @@ namespace Celeste.Cutscenes
         }
     }
 }
+

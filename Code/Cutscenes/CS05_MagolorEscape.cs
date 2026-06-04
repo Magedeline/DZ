@@ -1,4 +1,4 @@
-#nullable enable
+﻿#nullable enable
 using Celeste.NPCs;
 using Facings = Celeste.Facings;
 
@@ -53,7 +53,7 @@ namespace Celeste.Cutscenes
             }
             magolor.Sprite.Play("idle");
             yield return 0.2f;
-            Audio.Play("event:/char/theo/resort_standtocrawl", magolor.Position);
+            Audio.Play("guid://{757f9c8a-033b-4c8d-82d8-f415972efc8d}", magolor.Position);
             magolor.Sprite.Play("duck");
             yield return 0.5f;
             // Talker component not used in this NPC
@@ -69,7 +69,7 @@ namespace Celeste.Cutscenes
         {
             magolor.Sprite.Scale.X = 1f;
             yield return 0.1f;
-            Audio.Play("event:/char/theo/resort_vent_grab", magolor.Position);
+            Audio.Play("guid://{56e5cd34-78ba-45b2-96f3-83fc95c7c8df}", magolor.Position);
             magolor.Sprite.Play("goToVent");
             yield return 0.25f;
         }
@@ -84,7 +84,7 @@ namespace Celeste.Cutscenes
         private IEnumerator RemoveVent()
         {
             yield return 0.8f;
-            Audio.Play("event:/char/theo/resort_vent_rip", magolor.Position);
+            Audio.Play("guid://{aeef3032-ca85-4ac7-9866-c04c15bb8ef3}", magolor.Position);
             magolor.Sprite.Play("fallVent");
             yield return 0.8f;
             magolor.grate.Fall();
@@ -126,3 +126,4 @@ namespace Celeste.Cutscenes
         }
     }
 }
+

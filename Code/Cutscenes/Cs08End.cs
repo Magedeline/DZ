@@ -1,4 +1,4 @@
-using Celeste.Entities;
+﻿using Celeste.Entities;
 using Celeste.NPCs;
 using BadelineDummy = Celeste.Entities.BadelineDummy;
 
@@ -47,7 +47,7 @@ namespace Celeste.Cutscenes
             this.chara.Float = -80f;
             var charaSprite = chara.Sprite;
             if (charaSprite != null) charaSprite.Scale.X = 1f;
-            Audio.Play("event:/char/badeline/maddy_split", this.player.Center);
+            Audio.Play("guid://{450fb5b3-e9e3-45d8-9f34-ba05e292958f}", this.player.Center);
             yield return this.badeline.FloatTo(this.player.Position + new Vector2(24f, -20f), -1, false);
             yield return this.chara.FloatTo(this.player.Position + new Vector2(-24f, -20f), -1, false);
             yield return level.ZoomTo(new Vector2(160f, 120f), 2f, 1f);
@@ -63,7 +63,7 @@ namespace Celeste.Cutscenes
                 this.TurnToLeft,
                 this.MaggyStopTired
             });
-            Audio.Play("event:/char/pusheen/kirby/backpack_drop", this.player.Position);
+            Audio.Play("guid://{268869c1-4022-4936-aea1-d674c6885932}", this.player.Position);
             this.player.DummyAutoAnimate = false;
             this.player.Sprite.Play("bagdown");
             base.EndCutscene(level, true);
@@ -163,3 +163,4 @@ namespace Celeste.Cutscenes
         }
     }
 }
+

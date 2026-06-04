@@ -1,4 +1,4 @@
-#nullable disable
+﻿#nullable disable
 
 using Celeste.Entities;
 using Payphone = Celeste.Entities.Payphone;
@@ -40,7 +40,7 @@ namespace Celeste.Cutscenes
       player.StateMachine.State = Player.StDummy;
       player.Dashes = 1;
       yield return 0.3f;
-      ringtone.Play("event:/game/02_old_site/sequence_phone_ring_loop");
+      ringtone.Play("guid://{1da40d8f-f7d3-425c-9f34-37684fda4aa4}");
       while (player.Light.Alpha > 0.0f)
       {
         player.Light.Alpha -= Engine.DeltaTime * 2f;
@@ -57,17 +57,17 @@ namespace Celeste.Cutscenes
       yield return 1.5f;
       this.Add(Alarm.Create(Alarm.AlarmMode.Oneshot, () => this.ringtone.Param("end", 1f), 0.43f, true));
       player.Visible = false;
-      Audio.Play("event:/game/02_old_site/sequence_phone_pickup", player.Position);
+      Audio.Play("guid://{7a436113-5059-4565-a239-927c4876b345}", player.Position);
       yield return payphone.Sprite.PlayRoutine("pickUp");
       yield return 1f;
       if (level.Session.Area.Mode == AreaMode.Normal)
-        Audio.SetMusic("event:/music/pusheen/lvl2/phone_loop");
+        Audio.SetMusic("guid://{32207936-04e7-44d3-b8ff-98b317144f46}");
       payphone.Sprite.Play("talkPhone");
       yield return Textbox.Say("MAGGYHELPER_CH2_DREAM_PHONECALL_TRAP", showChara);
       if (evil != null)
       {
         if (level.Session.Area.Mode == AreaMode.Normal)
-          Audio.SetMusic("event:/music/pusheen/lvl2/phone_end");
+          Audio.SetMusic("guid://{83181523-3cc1-4c30-a3a2-013a2e21e0b6}");
         evil.Any();
         evil = null;
         yield return 1f;
@@ -80,7 +80,7 @@ namespace Celeste.Cutscenes
       Tween tween = Tween.Create(Tween.TweenMode.Oneshot, duration: 2f, start: true);
       tween.OnUpdate = t => light.Alpha = t.Eased;
       this.Add(tween);
-      Audio.Play("event:/game/02_old_site/sequence_phone_transform", payphone.Position);
+      Audio.Play("guid://{5a79bbfe-cff0-4117-890d-90e4121c3fec}", payphone.Position);
       yield return payphone.Sprite.PlayRoutine("transform");
       yield return 0.4f;
       yield return payphone.Sprite.PlayRoutine("eat");
@@ -174,3 +174,4 @@ namespace Celeste.Cutscenes
     }
   }
 }
+

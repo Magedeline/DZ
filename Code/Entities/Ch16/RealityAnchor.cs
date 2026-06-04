@@ -1,4 +1,4 @@
-namespace Celeste.Entities.Chapters.Ch16
+﻿namespace Celeste.Entities.Chapters.Ch16
 {
     [CustomEntity("MaggyHelper/RealityAnchor")]
     [Tracked]
@@ -35,7 +35,7 @@ namespace Celeste.Entities.Chapters.Ch16
             State = AnchorState.Stable;
             sprite.Play("stable");
             anchorLight.Alpha = 0.6f;
-            Audio.Play("event:/game/general/crystalheart_pulse", Position);
+            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
         }
 
         public override void Added(Scene scene)
@@ -107,3 +107,4 @@ namespace Celeste.Entities.Chapters.Ch16
         }
     }
 }
+

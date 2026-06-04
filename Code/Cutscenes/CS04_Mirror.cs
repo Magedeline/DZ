@@ -1,4 +1,4 @@
-using Celeste.Entities;
+﻿using Celeste.Entities;
 using DreamBlock = Celeste.DreamBlock;
 using Facings = Celeste.Facings;
 
@@ -62,7 +62,7 @@ namespace Celeste.Cutscenes
             yield return 0.5f;
             
             // Play sound effect when breaking the mirror
-            this.sfx.Play("event:/music/pusheen/lvl4/dreamblock_sting_pt1");
+            this.sfx.Play("guid://{166218f9-9838-417f-95c0-1f9c577893a0}");
             yield return this.mirror.BreakRoutine(this.direction);
             
             // Ralsei freed dialog
@@ -195,3 +195,4 @@ namespace Celeste.Cutscenes
         }
     }
 }
+

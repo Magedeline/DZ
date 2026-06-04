@@ -1,4 +1,4 @@
-using Celeste;
+﻿using Celeste;
 using global::Celeste.Mod.Entities;
 using FMOD.Studio;
 using Microsoft.Xna.Framework;
@@ -134,7 +134,7 @@ namespace Celeste.Entities
                 // Play preview sound when player gets close, stop when they leave
                 if (canInteract && !previewPlayed)
                 {
-                    previewEventInstance = Audio.Play("event:/game/pusheen/general/tape_preview", Position);
+                    previewEventInstance = Audio.Play("guid://{84569f0c-21e9-4701-ab78-540a746965cf}", Position);
                     Audio.SetParameter(previewEventInstance, "remix", remixIndex);
                     previewPlayed = true;
                 }
@@ -259,3 +259,4 @@ namespace Celeste.Entities
         }
     }
 }
+

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Monocle;
@@ -14,7 +14,7 @@ public static class PostcardUnlockSystem
 {
     private const string DefaultPostcardTexture = "MaggyHelper/postcard";
 
-    // â”€â”€ Postcard Configuration Per Side â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // Ã¢â€â‚¬Ã¢â€â‚¬ Postcard Configuration Per Side Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
 
     /// <summary>
     /// Configuration for each side's unlock postcard.
@@ -37,7 +37,7 @@ public static class PostcardUnlockSystem
         SfxIn = "event:/ui/pusheen/main/postcard_csides_in",
         SfxOut = "event:/ui/pusheen/main/postcard_csides_out",
         TintColor = new Color(255, 215, 0),  // Gold tint
-        UnlockMusic = "event:/music/pusheen/menu/complete_cside"
+        UnlockMusic = "guid://{410639ec-f036-4198-9c68-c619b2313926}"
     };
 
     /// <summary>Postcard config for D-Side unlock (shown after completing C-Side)</summary>
@@ -45,10 +45,10 @@ public static class PostcardUnlockSystem
     {
         DialogKey = "POSTCARD_DSIDE_UNLOCK",
         TexturePath = "postcards/dside_unlock",
-        SfxIn = "event:/ui/pusheen/main/postcard_dsides_in",
-        SfxOut = "event:/ui/pusheen/main/postcard_dsides_out",
+        SfxIn = "guid://{c4924142-c345-4a35-afc3-3b9facaee729}",
+        SfxOut = "guid://{865582f9-48f9-4cb6-ae4a-3c0f94c599a4}",
         TintColor = new Color(180, 100, 255),  // Rainbow/purple tint
-        UnlockMusic = "event:/music/pusheen/menu/complete_cside_summit"
+        UnlockMusic = "guid://{101e5d09-0b79-4dbc-998b-d09f99188b04}"
     };
 
     /// <summary>Postcard config for DX-Side unlock (shown after completing D-Side)</summary>
@@ -56,10 +56,10 @@ public static class PostcardUnlockSystem
     {
         DialogKey = "POSTCARD_DXSIDE_UNLOCK",
         TexturePath = "postcards/dxside_unlock",
-        SfxIn = "event:/ui/pusheen/main/postcard_dsides_in",
-        SfxOut = "event:/ui/pusheen/main/postcard_dsides_out",
+        SfxIn = "guid://{c4924142-c345-4a35-afc3-3b9facaee729}",
+        SfxOut = "guid://{865582f9-48f9-4cb6-ae4a-3c0f94c599a4}",
         TintColor = new Color(50, 0, 80),  // Dark void tint
-        UnlockMusic = "event:/music/pusheen/menu/complete_cside_summit"
+        UnlockMusic = "guid://{101e5d09-0b79-4dbc-998b-d09f99188b04}"
     };
 
     /// <summary>Postcard config for the 100% ultra completion postcard.</summary>
@@ -70,10 +70,10 @@ public static class PostcardUnlockSystem
         SfxIn = "event:/new_content/ui/pusheen/postcard_desolo_variants_in",
         SfxOut = "event:/new_content/ui/pusheen/postcard_desolo_variants_out",
         TintColor = new Color(255, 160, 220),
-        UnlockMusic = "event:/music/pusheen/menu/complete_cside_summit"
+        UnlockMusic = "guid://{101e5d09-0b79-4dbc-998b-d09f99188b04}"
     };
 
-    // â”€â”€ Postcard Display â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // Ã¢â€â‚¬Ã¢â€â‚¬ Postcard Display Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
 
     /// <summary>
     /// Gets the postcard config for a side unlock based on which side was just completed.
@@ -243,3 +243,4 @@ public class SideUnlockVignette : Scene
         Engine.Scene = new OverworldLoader(Overworld.StartMode.AreaComplete, snow);
     }
 }
+

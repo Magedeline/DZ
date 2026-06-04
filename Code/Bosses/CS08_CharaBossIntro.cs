@@ -1,4 +1,4 @@
-#nullable disable
+﻿#nullable disable
 using Celeste.Entities;
 
 namespace Celeste.Cutscenes {
@@ -61,7 +61,7 @@ namespace Celeste.Cutscenes {
         private IEnumerator CharaFloat() {
             Cs08CharaBossIntro cs08CharaBossIntro = this;
             cs08CharaBossIntro.Add((Component)new Coroutine(cs08CharaBossIntro.Level.ZoomTo(new Vector2(170f, 110f), 2f, 1f)));
-            Audio.Play("event:/char/badeline/boss_prefight_getup", cs08CharaBossIntro.CharaBoss.Position);
+            Audio.Play("guid://{646b0a01-2101-424f-804b-18842f72a62d}", cs08CharaBossIntro.CharaBoss.Position);
             if (cs08CharaBossIntro.CharaBoss.NormalSprite is global::Celeste.PlayerSprite normalSprite && normalSprite.Has("pretendDead")) {
                 normalSprite.Play("pretendDead");
             }
@@ -114,6 +114,7 @@ namespace Celeste.Cutscenes {
         }
     }
 }
+
 
 
 

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using global::Celeste.Mod.Entities;
 using Microsoft.Xna.Framework;
 using Monocle;
@@ -224,7 +224,7 @@ namespace Celeste.Mod.MaggyHelper.Cutscenes {
             logo = new TitleLogo();
             Scene.Add(logo);
             yield return logo.EaseIn();
-            // Celeste 64 boot title hit — play when logo lands
+            // Celeste 64 boot title hit â€” play when logo lands
             // Custom FMOD event, skipped if not available
             yield return 4f;
             yield return ShowConfirmButton();
@@ -232,7 +232,7 @@ namespace Celeste.Mod.MaggyHelper.Cutscenes {
                 yield return null;
             }
             // Title confirm out sound (using vanilla audio)
-            global::Celeste.Audio.Play("event:/ui/main/title_firstinput");
+            global::Celeste.Audio.Play("guid://{6d72de1a-04fe-4be5-826b-5576002c277f}");
             EndCutscene(level);
         }
 

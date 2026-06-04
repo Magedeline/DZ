@@ -1,4 +1,4 @@
-#nullable disable
+﻿#nullable disable
 using Celeste.Cutscenes;
 
 namespace Celeste.Entities
@@ -106,7 +106,7 @@ namespace Celeste.Entities
                         (anim != "runSlow" || (currentAnimationFrame != 0 && currentAnimationFrame != 6)) &&
                         (anim != "runFast" || (currentAnimationFrame != 0 && currentAnimationFrame != 6)))
                         return;
-                    Audio.Play("event:/char/badeline/footstep", this.Center);
+                    Audio.Play("guid://{ff6442f1-66c2-4dba-8d57-038dda8fd296}", this.Center);
                 });
                 this.Add((Component)(this.smashCoroutine = new Coroutine(this.interactRoutine())));
             }
@@ -244,9 +244,9 @@ namespace Celeste.Entities
             ralseiMirror.reflectionSprite.Play("idle");
             yield return 0.65f;
             ralseiMirror.Add((Component)(ralseiMirror.sfx = new SoundSource()));
-            ralseiMirror.sfx.Play("event:/game/02_old_site/sequence_mirror");
+            ralseiMirror.sfx.Play("guid://{77800c0d-5128-44d0-8bb1-67174af44406}");
             yield return 0.15f;
-            ralseiMirror.Add((Component)(ralseiMirror.sfxSting = new SoundSource("event:/music/pusheen/lvl4/dreamblock_sting_pt2")));
+            ralseiMirror.Add((Component)(ralseiMirror.sfxSting = new SoundSource("guid://{7d306a06-f7a8-4c0c-b117-516ae7a5b894}")));
             Input.Rumble(RumbleStrength.Light, RumbleLength.FullSecond);
             ralseiMirror.updateShine = false;
             while ((double)ralseiMirror.shineOffset != 33.0 || (double)ralseiMirror.shineAlpha < 1.0)
@@ -367,3 +367,4 @@ namespace Celeste.Entities
         }
     }
 }
+

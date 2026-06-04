@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Celeste.Entities.Bosses;
 using Celeste.Entities.Projectiles;
 using Celeste.Helpers;
@@ -188,7 +188,7 @@ namespace Celeste.Entities
 
             level?.Displacement.AddBurst(Position, 0.35f, 48f, 96f, 0.25f);
             level?.Flash(visualProfile.SecondaryColor * 0.2f, false);
-            Audio.Play("event:/game/general/thing_booped", Position);
+            Audio.Play("guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}", Position);
 
             if (Health <= 0)
             {
@@ -223,7 +223,7 @@ namespace Celeste.Entities
                 changedMusic = true;
             }
 
-            Audio.Play("event:/game/05_mirror_temple/bladespinner_spin", Position);
+            Audio.Play("guid://{564d50fe-6229-4fc5-bef4-771b026308f2}", Position);
             level?.Displacement.AddBurst(Position, 0.55f, 72f, 144f, 0.45f);
             SetCloneState(ElsKnightCloneState.Intro);
         }
@@ -336,25 +336,25 @@ namespace Celeste.Entities
             switch (CurrentAttack.Attack)
             {
                 case ElsKnightCloneAttack.DashSlash:
-                    Audio.Play("event:/game/05_mirror_temple/bladespinner_spin", Position);
+                    Audio.Play("guid://{564d50fe-6229-4fc5-bef4-771b026308f2}", Position);
                     dashVelocity = AimAtPlayer(combatProfile.DashSpeed);
                     SetCloneState(ElsKnightCloneState.ExecutingAttack);
                     break;
 
                 case ElsKnightCloneAttack.CrescentVolley:
-                    Audio.Play("event:/game/general/thing_booped", Position);
+                    Audio.Play("guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}", Position);
                     FireCrescentVolley();
                     BeginRecovery(CurrentAttack.Cooldown);
                     break;
 
                 case ElsKnightCloneAttack.RadialBurst:
-                    Audio.Play("event:/game/general/thing_booped", Position);
+                    Audio.Play("guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}", Position);
                     FireRadialBurst();
                     BeginRecovery(CurrentAttack.Cooldown);
                     break;
 
                 case ElsKnightCloneAttack.WarpStrike:
-                    Audio.Play("event:/game/05_mirror_temple/bladespinner_spin", Position);
+                    Audio.Play("guid://{564d50fe-6229-4fc5-bef4-771b026308f2}", Position);
                     PerformWarpStrike();
                     SetCloneState(ElsKnightCloneState.ExecutingAttack);
                     break;
@@ -656,3 +656,4 @@ namespace Celeste.Entities
         }
     }
 }
+

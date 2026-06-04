@@ -1,4 +1,4 @@
-namespace Celeste.Entities.Chapters.Ch16
+﻿namespace Celeste.Entities.Chapters.Ch16
 {
     /// <summary>
     /// DarkMirror - Mirror that shows corrupted reflection
@@ -117,7 +117,7 @@ namespace Celeste.Entities.Chapters.Ch16
         private IEnumerator RevealSecretRoutine()
         {
             level?.Flash(Color.White * 0.4f);
-            Audio.Play("event:/game/general/crystalheart_pulse", Position);
+            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
             
             level?.Session.SetFlag("mirror_secret_revealed", true);
             
@@ -205,3 +205,4 @@ namespace Celeste.Entities.Chapters.Ch16
         }
     }
 }
+

@@ -1,4 +1,4 @@
-// Decompiled with JetBrains decompiler
+﻿// Decompiled with JetBrains decompiler
 // Type: global::Celeste.Mod.ricky06ModPack.Entities.LevelGlitchTrigger
 // Assembly: ricky06ModPack, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 // MVID: A006BC09-9B58-4275-A339-ACDC10C611D0
@@ -53,7 +53,7 @@ internal class LevelGlitchTrigger : Trigger
     Level level = ((Entity) this).SceneAs<Level>();
     if (this.lowPass)
       global::Celeste.Audio.SetMusicParam("lowpass", this.lowPassValue);
-    global::Celeste.Audio.Play("event:/new_content/game/10_farewell/glitch_short");
+    global::Celeste.Audio.Play("guid://{42d600c5-32c3-4433-8a1e-be394b30bcde}");
     LevelData leveldata = level.Session.LevelData;
     Session session = (((Entity) this).Scene as Level).Session;
     EntityID id = this.id;
@@ -138,3 +138,4 @@ internal class LevelGlitchTrigger : Trigger
     this.time -= Engine.DeltaTime;
   }
 }
+

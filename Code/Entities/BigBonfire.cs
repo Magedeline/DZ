@@ -1,4 +1,4 @@
-using Monocle;
+﻿using Monocle;
 
 namespace Celeste.Entities
 {
@@ -47,13 +47,13 @@ namespace Celeste.Entities
             mode = data.Enum("mode", Mode.Unlit);
             Scale = data.Float("scale", 2f);
 
-            // ── Sprite ────────────────────────────────────────────────
+            // â”€â”€ Sprite â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             // Reuse the vanilla campfire sprite bank entry.
             sprite = GFX.SpriteBank.Create("campfire");
             sprite.Scale = new Vector2(Scale);
             Add(sprite);
 
-            // ── Lighting ──────────────────────────────────────────────
+            // â”€â”€ Lighting â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             float innerRadius = data.Float("lightInner", 64f);
             float outerRadius = data.Float("lightOuter", 128f);
             Vector2 lightOffset = new Vector2(0f, -6f * Scale);
@@ -62,12 +62,12 @@ namespace Celeste.Entities
                                     (int)innerRadius, (int)outerRadius);
             Add(light);
 
-            // ── Bloom ─────────────────────────────────────────────────
+            // â”€â”€ Bloom â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             float bloomRadius = data.Float("bloomRadius", 64f);
             bloom = new BloomPoint(lightOffset, 1f, bloomRadius);
             Add(bloom);
 
-            // ── Wiggler (flicker effect) ───────────────────────────────
+            // â”€â”€ Wiggler (flicker effect) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             wiggle = Wiggler.Create(0.2f, 4f, f =>
             {
                 light.Alpha = bloom.Alpha =
@@ -75,11 +75,11 @@ namespace Celeste.Entities
             });
             Add(wiggle);
 
-            // ── Audio ─────────────────────────────────────────────────
+            // â”€â”€ Audio â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             loopSfx = new SoundSource();
             Add(loopSfx);
 
-            // ── Entity settings ───────────────────────────────────────
+            // â”€â”€ Entity settings â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             Tag   = Tags.TransitionUpdate;
             Depth = -5;
 
@@ -131,13 +131,13 @@ namespace Celeste.Entities
 
                     if (Activated)
                     {
-                        Audio.Play("event:/env/local/campfire_start", Position);
-                        loopSfx.Play("event:/env/local/campfire_loop");
+                        Audio.Play("guid://{a780517b-19c9-47d4-88ab-091fb03f1f9e}", Position);
+                        loopSfx.Play("guid://{7cc20e5f-81e5-4166-acc6-704dc13f46f3}");
                         sprite.Play(dreaming ? "startDream" : "start");
                     }
                     else
                     {
-                        loopSfx.Play("event:/env/local/campfire_loop");
+                        loopSfx.Play("guid://{7cc20e5f-81e5-4166-acc6-704dc13f46f3}");
                         sprite.Play(dreaming ? "burnDream" : "burn");
                     }
                     break;
@@ -161,3 +161,4 @@ namespace Celeste.Entities
         }
     }
 }
+

@@ -1,4 +1,4 @@
-namespace Celeste.Entities.Chapters.Ch10
+﻿namespace Celeste.Entities.Chapters.Ch10
 {
     /// <summary>
     /// TorielStoveEntity - Interactive cooking station with dialogue
@@ -210,7 +210,7 @@ namespace Celeste.Entities.Chapters.Ch10
                     HasPie = true;
                     pieSprite.Visible = true;
                     
-                    Audio.Play("event:/game/general/crystalheart_pulse", Position);
+                    Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
                     level?.Shake(0.1f);
                 }
             }
@@ -360,7 +360,7 @@ namespace Celeste.Entities.Chapters.Ch10
         {
             collected = true;
             
-            Audio.Play("event:/game/general/crystalheart_pulse", Position);
+            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
             
             // Full heal
             // player.FullHeal();
@@ -412,3 +412,4 @@ namespace Celeste.Entities.Chapters.Ch10
         }
     }
 }
+

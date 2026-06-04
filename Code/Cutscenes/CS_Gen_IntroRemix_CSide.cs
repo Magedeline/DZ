@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using Celeste.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -104,11 +104,11 @@ public class CS_Gen_IntroRemix_CSide : Scene
 
     /// <summary>
     /// C-Side damaged tape VHS sequence:
-    /// 1. Heavy static → "damaged tape" loading with glitches
-    /// 2. Tape jams briefly → resumes with warped audio pitch
+    /// 1. Heavy static â†’ "damaged tape" loading with glitches
+    /// 2. Tape jams briefly â†’ resumes with warped audio pitch
     /// 3. Title appears through heavy VHS corruption
     /// 4. Horizontal tear effects + color bleeding
-    /// 5. Signal loss → hard cut to gameplay
+    /// 5. Signal loss â†’ hard cut to gameplay
     /// </summary>
     private IEnumerator VHSDamagedTapeRoutine()
     {
@@ -187,7 +187,7 @@ public class CS_Gen_IntroRemix_CSide : Scene
         tapeInsertProgress = 1f;
     }
 
-    /// <summary>Tape jams briefly — screen freezes with loud click</summary>
+    /// <summary>Tape jams briefly â€” screen freezes with loud click</summary>
     private IEnumerator TapeJamSequence()
     {
         tapeJammed = true;
@@ -295,7 +295,7 @@ public class CS_Gen_IntroRemix_CSide : Scene
         }
     }
 
-    /// <summary>Signal loss effect — screen tears apart then cuts to black</summary>
+    /// <summary>Signal loss effect â€” screen tears apart then cuts to black</summary>
     private IEnumerator SignalLossOut()
     {
         canSkip = false;
@@ -339,7 +339,7 @@ public class CS_Gen_IntroRemix_CSide : Scene
 
         if (canSkip && (Input.MenuConfirm.Pressed || Input.MenuCancel.Pressed))
         {
-            Audio.Play("event:/ui/main/button_lowkey");
+            Audio.Play("guid://{8a93c5a5-538c-49f6-9d07-988839862ba1}");
             StartLevel();
         }
     }
@@ -443,7 +443,7 @@ public class CS_Gen_IntroRemix_CSide : Scene
     {
         if (horizontalTear <= 0f) return;
 
-        // Horizontal tear — offset a strip of the screen
+        // Horizontal tear â€” offset a strip of the screen
         int stripHeight = (int)MathHelper.Clamp(horizontalTear * 0.5f, 2, 30);
         float offset = horizontalTear * (float)Math.Sin(vhsTimer * 50f);
 
@@ -541,7 +541,7 @@ public class CS_Gen_IntroRemix_CSide : Scene
             2f, Color.Black
         );
 
-        // "C-SIDE REMIX" subtitle — gold color with heavier distortion
+        // "C-SIDE REMIX" subtitle â€” gold color with heavier distortion
         float subtitleWobble = (float)Math.Sin(vhsTimer * 8f) * 3f;
         ActiveFont.DrawOutline(
             "C-SIDE REMIX",
@@ -557,7 +557,7 @@ public class CS_Gen_IntroRemix_CSide : Scene
         {
             float blinkAlpha = (float)(Math.Sin(vhsTimer * 4f) * 0.3f + 0.7f);
             ActiveFont.Draw(
-                "► PLAY",
+                "â–º PLAY",
                 new Vector2(100f, 980f),
                 Vector2.Zero,
                 Vector2.One * 0.6f,
@@ -607,10 +607,10 @@ public class CS_Gen_IntroRemix_CSide : Scene
             tsColor * (overallAlpha * blinkAlpha * 0.5f)
         );
 
-        // "REC ●" with flickering
+        // "REC â—" with flickering
         float recBlink = (float)(Math.Sin(vhsTimer * 1.5f) > 0 ? 1f : 0f);
         ActiveFont.Draw(
-            "● REC",
+            "â— REC",
             new Vector2(1800f, 50f),
             new Vector2(1f, 0f),
             Vector2.One * 0.5f,
@@ -629,9 +629,9 @@ public class CS_Gen_IntroRemix_CSide : Scene
 
     private void RenderTapeJamIndicator()
     {
-        // Large "▌▌" pause symbol when tape is jammed
+        // Large "â–Œâ–Œ" pause symbol when tape is jammed
         ActiveFont.DrawOutline(
-            "▌▌ TRACKING",
+            "â–Œâ–Œ TRACKING",
             new Vector2(960f, 540f),
             new Vector2(0.5f, 0.5f),
             Vector2.One * 2f,
@@ -646,3 +646,4 @@ public class CS_Gen_IntroRemix_CSide : Scene
         Audio.SetMusic(null);
     }
 }
+

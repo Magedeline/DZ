@@ -1,4 +1,4 @@
-namespace Celeste.Entities.Chapters.Ch13
+﻿namespace Celeste.Entities.Chapters.Ch13
 {
     /// <summary>
     /// MagmaPool - Lava pool that kills on contact
@@ -147,7 +147,7 @@ namespace Celeste.Entities.Chapters.Ch13
                 Scene.Add(particle);
             }
             
-            Audio.Play("event:/game/general/crystalheart_pulse", Position);
+            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
             level?.Shake(0.3f);
             
             Add(new Coroutine(EruptRoutine()));
@@ -253,3 +253,4 @@ namespace Celeste.Entities.Chapters.Ch13
         }
     }
 }
+

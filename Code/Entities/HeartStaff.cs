@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Celeste.Entities;
 using FMOD.Studio;
 using Microsoft.Xna.Framework;
@@ -182,7 +182,7 @@ namespace Celeste.Entities
                 ambientSound = new SoundSource();
                 Add(ambientSound);
                 // Play subtle ambient loop
-                ambientSound.Play("event:/game/general/crystalheart_pulse");
+                ambientSound.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}");
             }
         }
 
@@ -534,3 +534,4 @@ namespace Celeste.Entities
         }
     }
 }
+

@@ -1,4 +1,4 @@
-namespace Celeste.Entities
+﻿namespace Celeste.Entities
 {
     [CustomEntity("DesoloZatnas/GreyBooster")]
     [Tracked]
@@ -118,8 +118,8 @@ namespace Celeste.Entities
         private void Respawn()
         {
             string respawnEvent = red 
-                ? "event:/game/pusheen/07_inferno/redbooster_reappear"
-                : "event:/game/pusheen/06_stronghold/greenbooster_reappear";
+                ? "guid://{daf43476-6f45-45ef-851c-9e3afa468dfd}"
+                : "guid://{147f8cfd-7dc3-4aaf-a249-caaafa1b472c}";
             Audio.Play(respawnEvent, Position);
             
             sprite.Position = Vector2.Zero;
@@ -158,8 +158,8 @@ namespace Celeste.Entities
                 
                 // Play enter sound
                 string enterEvent = red 
-                    ? "event:/game/pusheen/07_inferno/redbooster_enter"
-                    : "event:/game/pusheen/06_stronghold/greenbooster_enter";
+                    ? "guid://{e0d4f296-00d9-45c1-abe3-74d7e9268736}"
+                    : "guid://{a8320ed2-1ed0-4ba0-bcd9-4da6bbc71eca}";
                 Audio.Play(enterEvent, Position);
                 
                 wiggler.Start();
@@ -311,7 +311,7 @@ namespace Celeste.Entities
         private void RedBoost(global::Celeste.Player player)
         {
             // Play dash sound
-            Audio.Play("event:/game/pusheen/07_inferno/redbooster_dash", Position);
+            Audio.Play("guid://{c2b79818-7fee-4bf3-9287-17c837e497e7}", Position);
             
             player.StateMachine.State = Player.StDash; // RedDash state
             player.Speed = Vector2.Zero;
@@ -331,7 +331,7 @@ namespace Celeste.Entities
         private void GreenBoost(global::Celeste.Player player)
         {
             // Play dash sound
-            Audio.Play("event:/game/pusheen/06_stronghold/greenbooster_dash", Position);
+            Audio.Play("guid://{1b9578f6-d9f1-4508-944a-e63c34acc4fc}", Position);
             
             player.StateMachine.State = Player.StDash; // RedDash state  
             player.Speed = Vector2.Zero;
@@ -356,8 +356,8 @@ namespace Celeste.Entities
             
             // Play end sound
             string endEvent = red 
-                ? "event:/game/pusheen/07_inferno/redbooster_end"
-                : "event:/game/pusheen/06_stronghold/greenbooster_end";
+                ? "guid://{980e5eae-b9bb-4836-bd25-fa0d729bc375}"
+                : "guid://{ff61630c-7741-44c1-9da9-0ec9a62d76da}";
             Audio.Play(endEvent, sprite.RenderPosition);
             
             sprite.Play("pop");
@@ -424,6 +424,7 @@ namespace Celeste.Entities
         }
     }
 }
+
 
 
 

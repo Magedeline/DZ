@@ -1,4 +1,4 @@
-using Celeste.Cutscenes;
+﻿using Celeste.Cutscenes;
 
 namespace Celeste.NPCs;
     [CustomEntity(ids: "MaggyHelper/NPC05_Magolor_Escaping")]
@@ -30,7 +30,7 @@ namespace Celeste.NPCs;
 
         public void Fall()
         {
-            Audio.Play("event:/char/theo/resort_vent_tumble", Position);
+            Audio.Play("guid://{4b18a52d-d2ba-4f5c-9880-9b49a0179e72}", Position);
             falling = true;
             speed = new Vector2(-120f, -120f);
             base.Collider = new Hitbox(2f, 2f, -2f, -1f);
@@ -127,6 +127,7 @@ namespace Celeste.NPCs;
         Scene.Remove(this);
     }
 }
+
 
 
 

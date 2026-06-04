@@ -1,4 +1,4 @@
-namespace Celeste.Entities.Chapters.Ch12
+﻿namespace Celeste.Entities.Chapters.Ch12
 {
     /// <summary>
     /// FountainSpirit - Water spirit that heals or creates platforms
@@ -112,7 +112,7 @@ namespace Celeste.Entities.Chapters.Ch12
             State = SpiritState.Emerging;
             sprite.Play("emerge");
             
-            Audio.Play("event:/game/general/crystalheart_pulse", Position);
+            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
             
             Add(new Coroutine(EmergeRoutine()));
         }
@@ -185,7 +185,7 @@ namespace Celeste.Entities.Chapters.Ch12
             var platform = new WaterPlatform(Position + new Vector2(0f, 40f));
             Scene.Add(platform);
             
-            Audio.Play("event:/game/general/crystalheart_pulse", Position);
+            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
             level?.Shake(0.1f);
             
             yield return Textbox.Say("FOUNTAIN_SPIRIT_PLATFORM");
@@ -205,7 +205,7 @@ namespace Celeste.Entities.Chapters.Ch12
             }
             
             level?.Flash(Color.Gold * 0.3f);
-            Audio.Play("event:/game/general/crystalheart_pulse", Position);
+            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
             
             yield return Textbox.Say("FOUNTAIN_SPIRIT_BUFF");
         }
@@ -338,3 +338,4 @@ namespace Celeste.Entities.Chapters.Ch12
         }
     }
 }
+

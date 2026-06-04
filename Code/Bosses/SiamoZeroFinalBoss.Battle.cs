@@ -1,4 +1,4 @@
-using System.Globalization;
+﻿using System.Globalization;
 using Celeste.Helpers;
 using Celeste.Cutscenes;
 using Celeste.Entities.Effects;
@@ -14,7 +14,7 @@ namespace Celeste.Entities
     /// Els' true form - Phase 1: Doppia Elillca, Phase 2: Penumbra Phastasm (true final phase)
     /// 
     /// Lore context (Desolo Zantas - "Fallen Path / Siamo Zero"):
-    /// "Siamo Zero" (Italian: "We Are Zero") is the corrupted dark-path version of Kirby â€”
+    /// "Siamo Zero" (Italian: "We Are Zero") is the corrupted dark-path version of Kirby Ã¢â‚¬â€
     /// the nightmare scenario shown by Elmerninis where Kirby falls to darkness without
     /// love or friendship. A hero "no longer shaped like a friend," molded by sorrow,
     /// hate, jealousy, and all-consuming loneliness. The Fallen Path demonstrates that
@@ -308,7 +308,7 @@ namespace Celeste.Entities
             PenumbraPhastasm,
             /// <summary>
             /// Siamo Zero ("We Are Zero") - The Fallen Path.
-            /// Corrupted Kirby nightmare vision phase. Not a combat phase â€” used during
+            /// Corrupted Kirby nightmare vision phase. Not a combat phase Ã¢â‚¬â€ used during
             /// the CH20_FALLEN_PATH_VISION cutscene where Els shows Kirby what he could
             /// become without love and friendship.
             /// </summary>
@@ -1169,7 +1169,7 @@ namespace Celeste.Entities
                 Sprite.Play("getHit");
             Audio.Play("event:/new_content/char/pusheen/els/Els_Scream_Hit", Position);
             chargeSfx.Stop();
-            if (laserSfx.EventName == "event:/char/badeline/boss_laser_charge" && laserSfx.Playing)
+            if (laserSfx.EventName == "guid://{e7a2ddd6-091a-44ab-aac7-e57bd13c009c}" && laserSfx.Playing)
                 laserSfx.Stop();
             
             // Disable shockwave effects to prevent player from getting stuck
@@ -1503,7 +1503,7 @@ namespace Celeste.Entities
             }
             
             // Hit sound effect
-            string hitSound = isKirbyMode ? "event:/game/general/thing_booped" : "event:/game/general/landing";
+            string hitSound = isKirbyMode ? "guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}" : "event:/game/general/landing";
             if (player != null)
             {
                 Audio.Play(hitSound, player.Position);
@@ -2913,3 +2913,4 @@ namespace Celeste.Entities
         }
     }
 }
+

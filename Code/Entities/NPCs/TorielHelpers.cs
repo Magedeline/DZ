@@ -1,4 +1,4 @@
-namespace Celeste.NPCs;
+﻿namespace Celeste.NPCs;
 
 /// <summary>
 /// Base class for Toriel NPCs with shared constants and helper methods
@@ -32,7 +32,7 @@ public static class TorielHelpers
         {
             if (anim == "walk" && (npc.Sprite.CurrentAnimationFrame == 0 || npc.Sprite.CurrentAnimationFrame == 4))
             {
-                Audio.Play("event:/char/pusheen/kirby/footstep", npc.Position);
+                Audio.Play("guid://{3d667209-61f4-478c-9604-7bcfeae33530}", npc.Position);
             }
         };
     }
@@ -220,3 +220,4 @@ public class NPC : global::Celeste.NPC
         Position.Y = targetPosition.Y;
     }
 }
+

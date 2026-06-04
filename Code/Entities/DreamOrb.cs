@@ -1,4 +1,4 @@
-namespace Celeste.Entities
+﻿namespace Celeste.Entities
 {
     [CustomEntity(ids: "MaggyHelper/DreamOrb")]
     [Tracked]
@@ -83,7 +83,7 @@ namespace Celeste.Entities
                 sprite.Visible = true;
                 base.Depth = -100;
                 wiggler.Start();
-                Audio.Play("event:/game/general/diamond_return", Position);
+                Audio.Play("guid://{735f3afc-00bc-46da-94f1-2cb51e3bfecc}", Position);
                 level.ParticlesFG.Emit(P_Regen, 16, Position, Vector2.One * 2f);
             }
         }
@@ -171,3 +171,4 @@ namespace Celeste.Entities
         }
     }
 }
+

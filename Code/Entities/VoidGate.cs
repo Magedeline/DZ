@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using Celeste.Extensions;
 using Microsoft.Xna.Framework;
@@ -240,7 +240,7 @@ namespace Celeste.Entities
             rightGateSprite.Play("close");
             
             Audio.Play("event:/game/03_resort/forcefield_activate", Position);
-            gateSound.Play("event:/env/local/09_core/fireballs_idle");
+            gateSound.Play("guid://{57b3a09b-dbc8-435e-8d24-6d1f913ac85c}");
             
             level?.Shake(0.5f);
             
@@ -313,7 +313,7 @@ namespace Celeste.Entities
                 
                 // Rumble effect
                 level?.DirectionalShake(Vector2.UnitX, 0.3f);
-                Audio.Play("event:/game/03_resort/forcefield_bump", Position);
+                Audio.Play("guid://{1e7997d7-a551-479e-90d3-f6929fd665ef}", Position);
             }
         }
         
@@ -445,3 +445,4 @@ namespace Celeste.Entities
         #endregion
     }
 }
+

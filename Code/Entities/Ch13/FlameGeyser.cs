@@ -1,4 +1,4 @@
-namespace Celeste.Entities.Chapters.Ch13
+﻿namespace Celeste.Entities.Chapters.Ch13
 {
     /// <summary>
     /// FlameGeyser - Erupts flames in timed intervals
@@ -151,7 +151,7 @@ namespace Celeste.Entities.Chapters.Ch13
                         geyserLight.Alpha = 0.8f;
                         geyserLight.Color = Color.Orange;
                         
-                        Audio.Play("event:/game/general/crystalheart_pulse", Position);
+                        Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
                         level?.Shake(0.3f);
                     }
                     break;
@@ -334,3 +334,4 @@ namespace Celeste.Entities.Chapters.Ch13
         }
     }
 }
+

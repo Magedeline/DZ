@@ -1,4 +1,4 @@
-namespace Celeste.Entities
+﻿namespace Celeste.Entities
 {
     /// <summary>
     /// Glitch Glider that allows throwing, dashing, and teleporting through barriers
@@ -261,7 +261,7 @@ namespace Celeste.Entities
             currentState = GliderState.Carried;
             sprite.Play("carried");
             
-            gliderSfx.Play("event:/game/general/thing_booped");
+            gliderSfx.Play("guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}");
             CreatePickupEffect();
         }
 
@@ -377,7 +377,7 @@ namespace Celeste.Entities
             barriersPierced.Add(barrier);
             CreateBarrierPierceEffect(Position);
             
-            gliderSfx.Play("event:/game/05_mirror_temple/crystaltheo_hit_side");
+            gliderSfx.Play("guid://{ac5d3d51-3aac-4c22-a608-ba0bb777ca27}");
         }
 
         private void StopGlider()
@@ -624,6 +624,7 @@ namespace Celeste.Entities
         }
     }
 }
+
 
 
 

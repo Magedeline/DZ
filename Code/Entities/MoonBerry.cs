@@ -1,4 +1,4 @@
-namespace Celeste.Entities
+﻿namespace Celeste.Entities
 {
     [CustomEntity(ids: "MaggyHelper/Moonberry")]
     [Monocle.Tracked]
@@ -96,7 +96,7 @@ namespace Celeste.Entities
             if (collected)
                 return;
 
-            Audio.Play("event:/game/general/seed_poof", Position);
+            Audio.Play("guid://{884bccb8-958a-4278-8a1b-daf74fff37c0}", Position);
             Input.Rumble(RumbleStrength.Medium, RumbleLength.Medium);
 
             collected = true;
@@ -203,6 +203,7 @@ namespace Celeste.Entities
         }
     }
 }
+
 
 
 

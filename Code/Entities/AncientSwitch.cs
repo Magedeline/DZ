@@ -1,4 +1,4 @@
-namespace Celeste.Entities
+﻿namespace Celeste.Entities
 {
     /// <summary>
     /// Ancient switch that can control other entities and maintain persistent state
@@ -215,12 +215,12 @@ namespace Celeste.Entities
         {
             switch (switchType)
             {
-                case SwitchType.Pressure: return "event:/game/05_mirror_temple/button_activate";
+                case SwitchType.Pressure: return "guid://{097d5975-dee1-42e2-a3f0-1524b9d60fc6}";
                 case SwitchType.Lever: return "event:/game/general/console_activate_complete";
-                case SwitchType.Crystal: return "event:/game/general/crystalheart_pulse";
-                case SwitchType.Button: return "event:/ui/main/button_select";
-                case SwitchType.Magical: return "event:/game/general/crystalheart_blue_get";
-                default: return "event:/game/05_mirror_temple/button_activate";
+                case SwitchType.Crystal: return "guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}";
+                case SwitchType.Button: return "guid://{cf18e899-f774-47e2-b72c-5252231fd47c}";
+                case SwitchType.Magical: return "guid://{1acb8e84-5f79-4dcd-86aa-e8a514535b7d}";
+                default: return "guid://{097d5975-dee1-42e2-a3f0-1524b9d60fc6}";
             }
         }
 
@@ -295,6 +295,7 @@ namespace Celeste.Entities
         void OnSwitchStateChanged(AncientSwitch switchEntity, bool activated);
     }
 }
+
 
 
 

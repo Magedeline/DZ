@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using Celeste.Extensions;
 using Microsoft.Xna.Framework;
@@ -16,12 +16,12 @@ namespace Celeste.Mod.MaggyHelper;
 [Tracked]
 public class DashCopyBerry : Actor
 {
-    // ── Particle types ────────────────────────────────────────────────────
+    // â”€â”€ Particle types â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     public static ParticleType P_Glow;
     public static ParticleType P_Absorb;
     public static ParticleType P_Trail;
 
-    // ── Constants ─────────────────────────────────────────────────────────
+    // â”€â”€ Constants â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     private const float ProximityRadius   = 28f;   // radius Kirby's dash aura checks
     private const float CollectDelay      = 0.45f; // seconds before removal after absorb
     private const float FlashDuration     = 0.35f; // white-flash duration on player after absorb
@@ -33,7 +33,7 @@ public class DashCopyBerry : Actor
     private readonly int dashRefillCount;          // how many dashes to restore
     private readonly bool refillOnlyWhenEmpty;     // only trigger when dashes == 0
 
-    // ── Instance state ────────────────────────────────────────────────────
+    // â”€â”€ Instance state â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     private Sprite sprite;
     private Wiggler wiggler;
     private BloomPoint bloom;
@@ -45,7 +45,7 @@ public class DashCopyBerry : Actor
     private Vector2 startPos;
     private EntityID id;
 
-    // ── Constructor ───────────────────────────────────────────────────────
+    // â”€â”€ Constructor â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     public DashCopyBerry(EntityData data, Vector2 offset, EntityID id)
         : base(data.Position + offset)
     {
@@ -68,7 +68,7 @@ public class DashCopyBerry : Actor
         Add(bloom = new BloomPoint(1.0f, 18f));
     }
 
-    // ── Scene lifecycle ───────────────────────────────────────────────────
+    // â”€â”€ Scene lifecycle â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     public override void Added(Scene scene)
     {
         base.Added(scene);
@@ -76,7 +76,7 @@ public class DashCopyBerry : Actor
             RemoveSelf();
     }
 
-    // ── Main update ───────────────────────────────────────────────────────
+    // â”€â”€ Main update â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     public override void Update()
     {
         if (!absorbed)
@@ -110,7 +110,7 @@ public class DashCopyBerry : Actor
         base.Update();
     }
 
-    // ── Proximity visual cue ──────────────────────────────────────────────
+    // â”€â”€ Proximity visual cue â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     private void CheckDashProximity()
     {
         if (Scene is not Level level)
@@ -133,7 +133,7 @@ public class DashCopyBerry : Actor
         }
     }
 
-    // ── Collision handler ─────────────────────────────────────────────────
+    // â”€â”€ Collision handler â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     private void OnPlayerContact(Player player)
     {
         if (absorbed)
@@ -160,7 +160,7 @@ public class DashCopyBerry : Actor
         }
     }
 
-    // ── Kirby absorption ──────────────────────────────────────────────────
+    // â”€â”€ Kirby absorption â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     private void AbsorbByKirby(Player player)
     {
         if (P_Glow == null || P_Absorb == null || P_Trail == null)
@@ -190,7 +190,7 @@ public class DashCopyBerry : Actor
                 level.ParticlesFG?.Emit(P_Absorb, 20, Center, Vector2.One * 14f);
         }
 
-        global::Celeste.Audio.Play("event:/game/general/strawberry_blue_touch", Position);
+        global::Celeste.Audio.Play("guid://{5c271b0b-eba2-400b-8011-e1d673324674}", Position);
         Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
 
         // White flash on the player sprite briefly
@@ -229,7 +229,7 @@ public class DashCopyBerry : Actor
         }
     }
 
-    // ── Normal (non-Kirby) collection ─────────────────────────────────────
+    // â”€â”€ Normal (non-Kirby) collection â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     private void CollectNormal(Player player)
     {
         absorbed   = true;
@@ -244,11 +244,11 @@ public class DashCopyBerry : Actor
                 level.ParticlesFG?.Emit(P_Glow, 10, Center, Vector2.One * 10f);
         }
 
-        global::Celeste.Audio.Play("event:/game/general/strawberry_touch", Position);
+        global::Celeste.Audio.Play("guid://{525d00db-bc31-4054-9f61-0238bfd62941}", Position);
         Input.Rumble(RumbleStrength.Medium, RumbleLength.Short);
     }
 
-    // ── Static particle init ──────────────────────────────────────────────
+    // â”€â”€ Static particle init â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     public static void LoadParticles()
     {
         P_Glow = new ParticleType
@@ -297,3 +297,4 @@ public class DashCopyBerry : Actor
         };
     }
 }
+

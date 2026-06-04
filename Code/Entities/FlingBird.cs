@@ -1,4 +1,4 @@
-namespace Celeste.Entities;
+﻿namespace Celeste.Entities;
 [CustomEntity(ids: "MaggyHelper/FlingBirdMod")]
 [Tracked(true)]
 [HotReloadable]
@@ -69,7 +69,7 @@ internal class FlingBirdMod : Entity
         player.Speed = Vector2.Zero;
         state = States.Fling;
         Add(new Coroutine(doFlingRoutine(player)));
-        Audio.Play("event:/new_content/game/10_farewell/bird_throw", Center);
+        Audio.Play("guid://{f73f6ebb-c858-4a36-b59a-74c66ee1f901}", Center);
     }
 
     public FlingBirdMod(EntityData data, Vector2 levelOffset)
@@ -206,7 +206,7 @@ internal class FlingBirdMod : Entity
         flingBird.state = States.Move;
         flingBird.sprite.Play("fly");
         flingBird.sprite.Scale.X = 1f;
-        flingBird.moveSfx.Play("event:/new_content/game/10_farewell/bird_relocate");
+        flingBird.moveSfx.Play("guid://{9ba95702-66ae-441f-944e-c123175195ff}");
         for (var nodeIndex = 1; nodeIndex < flingBird.NodeSegments[flingBird.segmentIndex].Length - 1; nodeIndex += 2)
         {
             var position = flingBird.Position;
@@ -300,6 +300,7 @@ internal class FlingBirdMod : Entity
         Leaving
     }
 }
+
 
 
 

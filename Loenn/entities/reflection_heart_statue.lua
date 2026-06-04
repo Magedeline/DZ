@@ -1,4 +1,4 @@
-local drawableSprite = require("structs.drawable_sprite")
+﻿local drawableSprite = require("structs.drawable_sprite")
 local utils = require("utils")
 
 local reflectionHeartStatue = {}
@@ -52,9 +52,9 @@ reflectionHeartStatue.placements = {
             hintSprite = "objects/reflectionHeart/hint",
             gemSprite = "objects/reflectionHeart/gem",
             heartSprite = "collectables/heartgem/white00",
-            dashSound = "event:/game/06_reflection/supersecret_dashflavour",
+            dashSound = "guid://{91dc7f98-2590-4c28-adcb-02c1881cf8d2}",
             torchSoundPrefix = "event:/game/06_reflection/supersecret_torch_",
-            heartAppearSound = "event:/game/06_reflection/supersecret_heartappear",
+            heartAppearSound = "guid://{8b071bc7-bb71-4db6-9a0c-78c576426dc8}",
     }
     }
 }
@@ -91,3 +91,4 @@ function reflectionHeartStatue.nodeSelection(room, entity, node, nodeIndex)
 end
 
 return reflectionHeartStatue
+

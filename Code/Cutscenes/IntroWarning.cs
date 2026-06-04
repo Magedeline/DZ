@@ -1,9 +1,9 @@
-#nullable enable
+﻿#nullable enable
 
 namespace Celeste.Cutscenes
 {
     /// <summary>
-    /// IntroWarning — One-time content disclaimer shown before the title screen
+    /// IntroWarning â€” One-time content disclaimer shown before the title screen
     /// on first launch. Displayed as a full-screen overlay with fade-in text,
     /// dismissed by pressing Confirm/Jump. Persists via module Settings so it
     /// only shows once (before any save slot is selected).
@@ -60,7 +60,7 @@ namespace Celeste.Cutscenes
             sequence = new Coroutine(WarningSequence());
         }
 
-        // ── Hook management ───────────────────────────────────────────────
+        // â”€â”€ Hook management â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
         private static bool _hooked;
 
@@ -172,7 +172,7 @@ namespace Celeste.Cutscenes
                 yield return null;
             }
 
-            Audio.Play("event:/ui/main/button_select");
+            Audio.Play("guid://{cf18e899-f774-47e2-b72c-5252231fd47c}");
             canDismiss = false;
 
             // Persist the flag
@@ -268,3 +268,4 @@ namespace Celeste.Cutscenes
         }
     }
 }
+

@@ -1,4 +1,4 @@
-namespace Celeste.Cutscenes
+﻿namespace Celeste.Cutscenes
 {
     /// <summary>
     /// Chapter 13 Introduction - Mechanical Nightmares
@@ -30,7 +30,7 @@ namespace Celeste.Cutscenes
 
             // Factory entrance warning
             yield return 0.5f;
-            Audio.Play("event:/game/general/strawberry_pulse");
+            Audio.Play("guid://{0886e368-bce4-4922-97c3-edeadf714e29}");
             
             yield return Textbox.Say("MAGGYHELPER_CH13_FACTORY_ENTRANCE");
 
@@ -38,6 +38,7 @@ namespace Celeste.Cutscenes
         }
     }
 }
+
 
 
 

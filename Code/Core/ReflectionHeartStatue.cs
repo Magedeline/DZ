@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
@@ -22,7 +22,7 @@ namespace Celeste;
 [Tracked]
 public class MaggyReflectionHeartStatue : Entity
 {
-    // ── Inner: Torch ─────────────────────────────────────────────────
+    // â”€â”€ Inner: Torch â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     public class Torch : Entity
     {
         public string[] Code;
@@ -102,7 +102,7 @@ public class MaggyReflectionHeartStatue : Entity
         }
     }
 
-    // ── Default dash code (same as vanilla ch6) ──────────────────────
+    // â”€â”€ Default dash code (same as vanilla ch6) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     private static readonly string[] DefaultCode = { "U", "L", "DR", "UR", "L", "UL" };
 
     // Configurable dash-direction colour map (same order as vanilla ForsakenCitySatellite.Colors)
@@ -118,7 +118,7 @@ public class MaggyReflectionHeartStatue : Entity
         { "DR", Color.Orchid },
     };
 
-    // ── Fields ───────────────────────────────────────────────────────
+    // â”€â”€ Fields â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     private string[] code;
     private string flagPrefix;
     private string statueSpritePath;
@@ -137,7 +137,7 @@ public class MaggyReflectionHeartStatue : Entity
     private DashListener dashListener;
     private bool enabled;
 
-    // ── Constructor ──────────────────────────────────────────────────
+    // â”€â”€ Constructor â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     public MaggyReflectionHeartStatue(EntityData data, Vector2 offset)
         : base(data.Position + offset)
     {
@@ -156,12 +156,12 @@ public class MaggyReflectionHeartStatue : Entity
         gemSpritePath     = data.Attr("gemSprite", "objects/reflectionHeart/gem");
         heartSpritePath   = data.Attr("heartSprite", "collectables/heartgem/white00");
 
-        dashSoundEvent        = data.Attr("dashSound", "event:/game/06_reflection/supersecret_dashflavour");
+        dashSoundEvent        = data.Attr("dashSound", "guid://{91dc7f98-2590-4c28-adcb-02c1881cf8d2}");
         torchSoundPrefix      = data.Attr("torchSoundPrefix", "event:/game/06_reflection/supersecret_torch_");
-        heartAppearSoundEvent = data.Attr("heartAppearSound", "event:/game/06_reflection/supersecret_heartappear");
+        heartAppearSoundEvent = data.Attr("heartAppearSound", "guid://{8b071bc7-bb71-4db6-9a0c-78c576426dc8}");
     }
 
-    // ── Added ────────────────────────────────────────────────────────
+    // â”€â”€ Added â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     public override void Added(Scene scene)
     {
         base.Added(scene);
@@ -261,7 +261,7 @@ public class MaggyReflectionHeartStatue : Entity
         CheckIfAllActivated(skipRoutine: true);
     }
 
-    // ── Code helpers ─────────────────────────────────────────────────
+    // â”€â”€ Code helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     private string[] FlipCode(bool h, bool v)
     {
         string[] result = new string[code.Length];
@@ -287,7 +287,7 @@ public class MaggyReflectionHeartStatue : Entity
         return true;
     }
 
-    // ── Activation ───────────────────────────────────────────────────
+    // â”€â”€ Activation â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     private void CheckIfAllActivated(bool skipRoutine = false)
     {
         if (!enabled) return;
@@ -357,7 +357,7 @@ public class MaggyReflectionHeartStatue : Entity
         Scene.Add(new HeartGem(Position + new Vector2(0f, -52f)));
     }
 
-    // ── Update ───────────────────────────────────────────────────────
+    // â”€â”€ Update â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     public override void Update()
     {
         if (dashListener != null && !enabled)
@@ -368,3 +368,4 @@ public class MaggyReflectionHeartStatue : Entity
         base.Update();
     }
 }
+

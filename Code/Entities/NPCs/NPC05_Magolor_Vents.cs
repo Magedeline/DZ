@@ -1,4 +1,4 @@
-namespace Celeste.NPCs
+﻿namespace Celeste.NPCs
 {
     [CustomEntity(ids: "MaggyHelper/NPC05_Magolor_Vents")]
     public class NPC05_Magolor_Vents : NPC
@@ -28,14 +28,14 @@ namespace Celeste.NPCs
             {
                 if (!falling)
                 {
-                    Audio.Play("event:/char/theo/resort_ceilingvent_shake", Position);
+                    Audio.Play("guid://{6fb99d9c-74ca-412d-b3b0-247b39a382df}", Position);
                     shake = 0.5f;
                 }
             }
 
             public void Fall()
             {
-                Audio.Play("event:/char/theo/resort_ceilingvent_popoff", Position);
+                Audio.Play("guid://{5220fbf8-61c9-4a15-8490-8571a7cfa54f}", Position);
                 falling = true;
                 speed = new Vector2(40f, 200f);
                 base.Collider = new Hitbox(2f, 2f, -1f);
@@ -140,7 +140,7 @@ namespace Celeste.NPCs
                     entity = Scene.Tracker.GetEntity<global::Celeste.Player>();
                 }
                 while (entity == null || !(entity.X > X - 32f));
-                Audio.Play("event:/char/theo/resort_ceilingvent_hey", Position);
+                Audio.Play("guid://{f37cd8d3-4249-47ca-8243-28ae26cf7c5c}", Position);
                 Level.ParticlesFG.Emit(ParticleTypes.VentDust, 24, Position, new Vector2(6f, 0f));
                 grate.Fall();
                 int from = -24;
@@ -194,7 +194,7 @@ namespace Celeste.NPCs
 
         private IEnumerator Disappear()
         {
-            Audio.Play("event:/char/theo/resort_ceilingvent_seeya", Position);
+            Audio.Play("guid://{d3ade5b6-5418-4d18-8ac3-b31f1f5a9581}", Position);
             int to = -24;
             float from = Sprite.Y;
             for (float p = 0f; p < 1f; p += Engine.DeltaTime * 2f)
@@ -206,6 +206,7 @@ namespace Celeste.NPCs
         }
     }
 }
+
 
 
 

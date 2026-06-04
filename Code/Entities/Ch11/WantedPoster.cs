@@ -1,4 +1,4 @@
-namespace Celeste.Entities.Chapters.Ch11
+﻿namespace Celeste.Entities.Chapters.Ch11
 {
     /// <summary>
     /// WantedPoster - Trigger that spawns bounty enemies when read
@@ -113,7 +113,7 @@ namespace Celeste.Entities.Chapters.Ch11
                 var level = Scene as Level;
                 level?.Session.SetFlag("bounty_" + BountyName + "_complete", true);
                 
-                Audio.Play("event:/game/general/crystalheart_pulse", Position);
+                Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
             }
         }
         #endregion
@@ -312,7 +312,7 @@ namespace Celeste.Entities.Chapters.Ch11
         private void Collect()
         {
             collected = true;
-            Audio.Play("event:/game/general/crystalheart_pulse", Position);
+            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
             
             var level = Scene as Level;
             level?.ParticlesFG.Emit(ParticleTypes.SparkyDust, 12, Position, Vector2.One * 8f, Color.Gold);
@@ -321,3 +321,4 @@ namespace Celeste.Entities.Chapters.Ch11
         }
     }
 }
+

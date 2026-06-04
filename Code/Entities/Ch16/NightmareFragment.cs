@@ -1,4 +1,4 @@
-namespace Celeste.Entities.Chapters.Ch16
+﻿namespace Celeste.Entities.Chapters.Ch16
 {
     /// <summary>
     /// NightmareFragment - Collectible nightmare memory fragment
@@ -76,7 +76,7 @@ namespace Celeste.Entities.Chapters.Ch16
             sprite.Visible = true;
             sprite.Play("appearing");
             
-            Audio.Play("event:/game/general/crystalheart_pulse", Position);
+            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
             
             Add(new Coroutine(RevealRoutine()));
         }
@@ -115,7 +115,7 @@ namespace Celeste.Entities.Chapters.Ch16
             }
             
             level?.Flash(fragmentColor * 0.4f);
-            Audio.Play("event:/game/general/crystalheart_pulse", Position);
+            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
             
             yield return Textbox.Say("NIGHTMARE_FRAGMENT_" + FragmentNumber);
             
@@ -225,3 +225,4 @@ namespace Celeste.Entities.Chapters.Ch16
         }
     }
 }
+

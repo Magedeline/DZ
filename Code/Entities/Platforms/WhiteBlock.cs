@@ -1,4 +1,4 @@
-namespace Celeste.Entities
+﻿namespace Celeste.Entities
 {
     [CustomEntity(ids: "MaggyHelper/WhiteBlock")]
     public class WhiteBlock : Solid
@@ -30,7 +30,7 @@ namespace Celeste.Entities
             {
                 activated = true;
                 fadeTimer = 0.5f;
-                Audio.Play("event:/game/general/fallblock_shake", Position);
+                Audio.Play("guid://{a9cc805b-cc3c-4e29-af3b-bc69914e5a10}", Position);
             }
             
             if (activated)
@@ -64,7 +64,7 @@ namespace Celeste.Entities
             Visible = true;
             alpha = 1f;
             
-            Audio.Play("event:/game/general/diamond_return", Position);
+            Audio.Play("guid://{735f3afc-00bc-46da-94f1-2cb51e3bfecc}", Position);
         }
 
         public override void Render()
@@ -81,3 +81,4 @@ namespace Celeste.Entities
         }
     }
 }
+

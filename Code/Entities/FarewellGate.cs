@@ -1,4 +1,4 @@
-namespace Celeste.Entities
+﻿namespace Celeste.Entities
 {
     [CustomEntity(ids: "MaggyHelper/FarewellGate")]
     [HotReloadable]
@@ -70,7 +70,7 @@ namespace Celeste.Entities
 
         private IEnumerator OpenRoutine()
         {
-            Audio.Play("event:/game/09_core/frontdoor_heartfill", Position);
+            Audio.Play("guid://{91d12529-3e7b-47e2-bc73-2037267fc6ca}", Position);
             
             float duration = 0.8f;
             float elapsed = 0f;
@@ -90,7 +90,7 @@ namespace Celeste.Entities
 
         private IEnumerator CloseRoutine()
         {
-            Audio.Play("event:/game/05_mirror_temple/gate_main_close", Position);
+            Audio.Play("guid://{68e31409-b316-478b-8eb3-67a885e9dd33}", Position);
             Collidable = true;
             
             float duration = 0.5f;
@@ -120,3 +120,4 @@ namespace Celeste.Entities
         }
     }
 }
+

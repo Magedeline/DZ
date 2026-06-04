@@ -1,4 +1,4 @@
-#nullable enable
+﻿#nullable enable
 
 using FMOD.Studio;
 
@@ -169,7 +169,7 @@ namespace Celeste.Cutscenes
         public void OpenMenu()
         {
             pauseSfx();
-            Audio.Play("event:/ui/game/pause");
+            Audio.Play("guid://{c6311b80-2ae7-4155-80f1-d3e2713efaa3}");
             Add(menu = new TextMenu());
             menu.Add(new TextMenu.Button(Dialog.Clean("intro_vignette_resume")).Pressed(closeMenu));
             menu.Add(new TextMenu.Button(Dialog.Clean("intro_vignette_skip")).Pressed(startGame));
@@ -179,7 +179,7 @@ namespace Celeste.Cutscenes
         private void closeMenu()
         {
             resumeSfx();
-            Audio.Play("event:/ui/game/unpause");
+            Audio.Play("guid://{6096b41c-7b56-4839-ad53-deb9e5693246}");
             if (menu != null)
             {
                 menu.RemoveSelf();
@@ -295,3 +295,4 @@ namespace Celeste.Cutscenes
         }
     }
 }
+

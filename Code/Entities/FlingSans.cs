@@ -1,4 +1,4 @@
-namespace Celeste.Entities;
+﻿namespace Celeste.Entities;
 [CustomEntity(ids: "MaggyHelper/FlingSans")]
 [HotReloadable]
 public class FlingSans : Entity
@@ -185,7 +185,7 @@ public class FlingSans : Entity
         flingBird.state = States.Move;
         flingBird.sprite.Play("fly");
         flingBird.sprite.Scale.X = 1f;
-        flingBird.moveSfx.Play("event:/new_content/game/10_farewell/bird_relocate");
+        flingBird.moveSfx.Play("guid://{9ba95702-66ae-441f-944e-c123175195ff}");
         for (var nodeIndex = 1; nodeIndex < flingBird.NodeSegments[flingBird.segmentIndex].Length - 1; nodeIndex += 2)
         {
             var position = flingBird.Position;
@@ -279,6 +279,7 @@ public class FlingSans : Entity
         Leaving
     }
 }
+
 
 
 

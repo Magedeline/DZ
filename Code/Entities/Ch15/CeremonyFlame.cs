@@ -1,4 +1,4 @@
-namespace Celeste.Entities.Chapters.Ch15
+﻿namespace Celeste.Entities.Chapters.Ch15
 {
     /// <summary>
     /// CeremonyFlame - Eternal fire that spreads across platforms
@@ -94,7 +94,7 @@ namespace Celeste.Entities.Chapters.Ch15
             
             State = FlameState.Igniting;
             sprite.Play("ignite");
-            Audio.Play("event:/game/general/crystalheart_pulse", Position);
+            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
             
             Add(new Coroutine(IgniteRoutine()));
         }
@@ -325,7 +325,7 @@ namespace Celeste.Entities.Chapters.Ch15
         {
             activated = true;
             sprite.Play("activate");
-            Audio.Play("event:/game/general/crystalheart_pulse", Position);
+            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
             
             // Extinguish nearby flames
             foreach (var flame in Scene.Tracker.GetEntities<CeremonyFlame>())
@@ -338,3 +338,4 @@ namespace Celeste.Entities.Chapters.Ch15
         }
     }
 }
+

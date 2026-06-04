@@ -1,4 +1,4 @@
-using Celeste;
+﻿using Celeste;
 
 namespace Celeste.Entities;
 
@@ -156,7 +156,7 @@ public class WarpStar : Entity
             Collidable = true;
             sprite.Visible = true;
             wiggler.Start();
-            Audio.Play("event:/game/pusheen/08_edge/feather_reappear", Position);
+            Audio.Play("guid://{f63e73f4-2c0e-4db5-bc35-a4499270dba9}", Position);
             level.ParticlesFG.Emit(P_Respawn, 16, Position, Vector2.One * 2f);
         }
     }
@@ -178,7 +178,7 @@ public class WarpStar : Entity
             moveWiggle.Start();
             shieldRadiusWiggle.Start();
             moveWiggleDir = (base.Center - player.Center).SafeNormalize(Vector2.UnitY);
-            Audio.Play("event:/game/pusheen/08_edge/feather_bubble_bounce", Position);
+            Audio.Play("guid://{c1014bc7-bf84-4058-8a41-c0764f61c25b}", Position);
             Input.Rumble(RumbleStrength.Medium, RumbleLength.Medium);
             return;
         }
@@ -187,11 +187,11 @@ public class WarpStar : Entity
         {
             if (!flag)
             {
-                Audio.Play(shielded ? "event:/game/pusheen/08_edge/feather_get" : "event:/game/pusheen/08_edge/feather_bubble_get", Position);
+                Audio.Play(shielded ? "guid://{dea64c89-cf8c-4e01-893a-191f95ad8501}" : "guid://{7853af6a-9c41-4cad-a004-48bfcfd7824c}", Position);
             }
             else
             {
-                Audio.Play(shielded ? "event:/game/pusheen/08_edge/feather_bubble_renew" : "event:/game/pusheen/08_edge/feather_renew", Position);
+                Audio.Play(shielded ? "guid://{93708b23-141a-4669-8aeb-4112d074a24f}" : "guid://{b806a81e-f7c0-440d-ad27-b61007663d62}", Position);
             }
             Collidable = false;
             Add(new Coroutine(CollectRoutine(player, speed)));
@@ -212,3 +212,4 @@ public class WarpStar : Entity
         SlashFx.Burst(Position, direction);
     }
 }
+

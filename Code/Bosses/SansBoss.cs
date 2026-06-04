@@ -1,4 +1,4 @@
-using Celeste.Entities.Projectiles;
+﻿using Celeste.Entities.Projectiles;
 using Celeste.Helpers;
 
 namespace Celeste.Entities.Bosses
@@ -286,7 +286,7 @@ namespace Celeste.Entities.Bosses
             if (level == null)
                 return;
 
-            Audio.Play("event:/game/05_mirror_temple/button_activate", start);
+            Audio.Play("guid://{097d5975-dee1-42e2-a3f0-1524b9d60fc6}", start);
             Vector2 direction = end - start;
             int segments = Math.Max(1, (int)(direction.Length() / 10f));
             Vector2 step = direction / segments;
@@ -396,3 +396,4 @@ namespace Celeste.Entities.Bosses
         }
     }
 }
+

@@ -1,4 +1,4 @@
-namespace Celeste.Entities
+﻿namespace Celeste.Entities
 {
     /// <summary>
     /// Character-themed refill crystals that restore dashes and provide character-specific effects.
@@ -342,11 +342,11 @@ namespace Celeste.Entities
             return Character switch
             {
                 CharacterType.Kirby => "event:/char/kirby/refill_touch",
-                CharacterType.Badeline => "event:/game/05_mirror_temple/redbooster_dash",
+                CharacterType.Badeline => "guid://{bdeb0f35-c06a-4f67-96d6-57869f22114f}",
                 CharacterType.Chara => "event:/game/09_core/death_bump",
                 CharacterType.Asriel => "event:/final_content/game/19_TheEnd/gigadiamond_touch",
                 CharacterType.MetaKnight => "event:/game/general/sword_touch",
-                _ => DashCount >= 2 ? "event:/game/general/diamond_touch" : "event:/game/general/diamond_touch"
+                _ => DashCount >= 2 ? "guid://{a47180e1-9bc2-4dbc-86c7-6402cea2e2be}" : "guid://{a47180e1-9bc2-4dbc-86c7-6402cea2e2be}"
             };
         }
 
@@ -420,7 +420,7 @@ namespace Celeste.Entities
                 wiggler.Start();
 
                 var particleType = P_Regen.TryGetValue(Character, out var pt) ? pt : global::Celeste.Refill.P_Regen;
-                Audio.Play("event:/game/general/diamond_return", Position);
+                Audio.Play("guid://{735f3afc-00bc-46da-94f1-2cb51e3bfecc}", Position);
                 level?.ParticlesFG.Emit(particleType, 16, Position, Vector2.One * 2f);
             }
         }
@@ -534,3 +534,4 @@ namespace Celeste.Entities
         }
     }
 }
+

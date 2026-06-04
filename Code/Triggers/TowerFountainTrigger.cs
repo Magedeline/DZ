@@ -1,4 +1,4 @@
-using Celeste.Cutscenes;
+﻿using Celeste.Cutscenes;
 using Celeste.Entities;
 
 namespace Celeste.Triggers
@@ -113,7 +113,7 @@ namespace Celeste.Triggers
             level.Add(cutscene);
             
             // Play dramatic music
-            level.Session.Audio.Music.Event = "event:/game/general/crystalheart_blue_get";
+            level.Session.Audio.Music.Event = "guid://{1acb8e84-5f79-4dcd-86aa-e8a514535b7d}";
             level.Session.Audio.Apply();
         }
 
@@ -244,3 +244,4 @@ namespace Celeste.Triggers
         }
     }
 }
+

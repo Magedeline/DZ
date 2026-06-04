@@ -1,4 +1,4 @@
-// File: CS11_BossOutro.cs
+﻿// File: CS11_BossOutro.cs
 using System;
 using System.Collections;
 using Celeste.Entities;
@@ -28,7 +28,7 @@ namespace Celeste.Cutscenes
         // Audio events
         private const string SFX_MARLET_FREED = "event:/new_content/char/badeline/vanish";
         private const string SFX_DARK_MATTER_DEFEAT = "event:/game_06_boss_badeline_vanish";
-        private const string SFX_DARK_MATTER_THREAT = "event:/new_content/game/10_farewell/glitch_short";
+        private const string SFX_DARK_MATTER_THREAT = "guid://{42d600c5-32c3-4433-8a1e-be394b30bcde}";
         #endregion
 
         #region Fields
@@ -345,3 +345,4 @@ namespace Celeste.Cutscenes
         }
     }
 }
+

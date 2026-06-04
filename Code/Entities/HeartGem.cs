@@ -1,4 +1,4 @@
-namespace Celeste.Entities 
+﻿namespace Celeste.Entities 
 {
     [CustomEntity("MaggyHelper/HeartGem")]
     [Tracked]
@@ -183,11 +183,11 @@ PFakeShine = new ParticleType
             this.sprite.OnLoop = delegate (string anim) {
                 if (this.Visible && anim == "spin" && this.autoPulse) {
                     if (this.IsAstral) {
-                        Audio.Play("event:/game/general/crystalheart_pulse", this.Position);
+                        Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", this.Position);
                     } else if (this.IsFake) {
-                        Audio.Play("event:/new_content/game/pusheen/19_spaces/fakeheart_pulse", this.Position);
+                        Audio.Play("guid://{ba819b62-aadc-45b4-a296-d81e15148386}", this.Position);
                     } else {
-                        Audio.Play("event:/game/general/crystalheart_pulse", this.Position);
+                        Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", this.Position);
                     }
                     this.ScaleWiggler.Start();
  (Scene as Level).Displacement.AddBurst(this.Position, 0.35f, 8f, 48f, 0.25f, null, null);
@@ -266,11 +266,11 @@ scene.Add(this.fakeRightWall = new InvisibleBarrier(new Vector2(X + 160f, Y - 20
    }
       if (this.bounceSfxDelay <= 0f) {
            if (this.IsAstral) {
-      Audio.Play("event:/game/general/crystalheart_bounce", this.Position);
+      Audio.Play("guid://{96349ed6-cd24-4010-a9ee-0e93101a6609}", this.Position);
           } else if (this.IsFake) {
-      Audio.Play("event:/new_content/game/pusheen/19_spaces/fakeheart_bounce", this.Position);
+      Audio.Play("guid://{18b9238d-89f9-48db-950d-d4bba7022955}", this.Position);
           } else {
-        Audio.Play("event:/game/general/crystalheart_bounce", this.Position);
+        Audio.Play("guid://{96349ed6-cd24-4010-a9ee-0e93101a6609}", this.Position);
          }
            this.bounceSfxDelay = 0.1f;
            }
@@ -370,19 +370,19 @@ foreach (Follower follower in player.Leader.Followers) {
      strawberry.OnCollect();
             }
  }
-     string text = "event:/game/general/crystalheart_blue_get";
+     string text = "guid://{1acb8e84-5f79-4dcd-86aa-e8a514535b7d}";
           if (!string.IsNullOrEmpty(this.customSfx)) {
                 text = this.customSfx;
             } else if (this.IsAstral) {
                 text = "event:/game/pusheen/general/crystalheart_astral_void_get";
             } else if (this.IsFake) {
-                text = "event:/new_content/game/pusheen/19_spaces/fakeheart_get";
+                text = "guid://{ade2db22-57d1-45db-8339-0ec1950badce}";
             } else if (area.Mode == AreaMode.BSide) {
-                text = "event:/game/general/crystalheart_red_get";
+                text = "guid://{e04dbcbd-4476-4174-9046-1e92febcc08e}";
             } else if (area.Mode == AreaMode.CSide) {
-                text = "event:/game/general/crystalheart_gold_get";
+                text = "guid://{10ff4e08-9448-49ae-8092-d402bb128538}";
             } else if (area.Mode == (AreaMode)3) {
-                text = "event:/game/pusheen/general/crystalheart_rainbow_get";
+                text = "guid://{eaeac297-dbe8-4eae-a434-3bbb4a5aa49c}";
             }
      this.sfx = SoundEmitter.Play(text, this, null);
             Add(new LevelEndingHook(delegate () {
@@ -640,12 +640,12 @@ Glitch.Value = 0.75f;
             }
 
             if (entity != null) {
-                Audio.Play("event:/game/general/seed_complete_main", entity.Position);
+                Audio.Play("guid://{26391bcd-7613-49ad-a9bd-529f7bcaeb29}", entity.Position);
                 Input.Rumble(RumbleStrength.Light, RumbleLength.Short);
             }
 
             this.ClearFakeBirdGoners();
-            Audio.Play("event:/new_content/game/10_farewell/glitch_short", level.Camera.Position + new Vector2(160f, 90f));
+            Audio.Play("guid://{42d600c5-32c3-4433-8a1e-be394b30bcde}", level.Camera.Position + new Vector2(160f, 90f));
 
             Vector2 cameraPosition = level.Camera.Position;
             for (int i = 0; i < FakeBirdGonerSpriteIds.Length; i++) {
@@ -932,8 +932,8 @@ Level level = Scene as Level;
                 dialogText = "D-Side Unlocked!\nPink Platinum Berries now available.";
 
             var postcard = new PostcardMaggy(dialogText,
-                "event:/ui/pusheen/main/postcard_dsides_in",
-                "event:/ui/pusheen/main/postcard_dsides_out");
+                "guid://{c4924142-c345-4a35-afc3-3b9facaee729}",
+                "guid://{865582f9-48f9-4cb6-ae4a-3c0f94c599a4}");
 
             if (GFX.Gui.Has("postcards/dside_crystal_unlock"))
                 postcard.Postcard = GFX.Gui["postcards/dside_crystal_unlock"];
@@ -1020,6 +1020,7 @@ Level level = Scene as Level;
         }
     }
 }
+
 
 
 

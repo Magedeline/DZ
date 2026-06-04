@@ -1,4 +1,4 @@
-using Celeste.Cutscenes;
+﻿using Celeste.Cutscenes;
 
 namespace Celeste.NPCs
 {
@@ -136,7 +136,7 @@ namespace Celeste.NPCs
                 // Robot-like mechanical sounds and movements
                 if (Scene.OnInterval(3f))
                 {
-                    Audio.Play("event:/game/general/touchswitch_any");
+                    Audio.Play("guid://{30fafd37-cd47-4a56-ab3b-0cc8f1beec5b}");
                 }
                 
                 // Heavy footstep shake for giant form
@@ -148,3 +148,4 @@ namespace Celeste.NPCs
         }
     }
 }
+

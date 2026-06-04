@@ -1,4 +1,4 @@
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using FMOD.Studio;
 
 namespace Celeste.Entities
@@ -361,7 +361,7 @@ namespace Celeste.Entities
 
             if (!player.Dead && nodes != null && nodes.Length >= 2)
             {
-                Audio.Play("event:/game/general/cassette_bubblereturn", level.Camera.Position + new Vector2(160f, 90f));
+                Audio.Play("guid://{9db695ce-ce56-4025-9528-030d6b599c86}", level.Camera.Position + new Vector2(160f, 90f));
                 player.StartCassetteFly(nodes[1], nodes[0]);
             }
 
@@ -514,3 +514,4 @@ namespace Celeste.Entities
         }
     }
 }
+

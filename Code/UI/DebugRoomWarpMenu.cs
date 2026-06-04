@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
@@ -76,12 +76,12 @@ namespace Celeste.UI
             if (Input.MenuUp.Pressed && selectedIndex > 0)
             {
                 selectedIndex--;
-                Audio.Play("event:/ui/main/rollover_down");
+                Audio.Play("guid://{fb6ae8ab-4c41-4d90-8d2b-61a45e0a33e8}");
             }
             else if (Input.MenuDown.Pressed && selectedIndex < roomNames.Count - 1)
             {
                 selectedIndex++;
-                Audio.Play("event:/ui/main/rollover_down");
+                Audio.Play("guid://{fb6ae8ab-4c41-4d90-8d2b-61a45e0a33e8}");
             }
             else if (Input.MenuConfirm.Pressed)
             {
@@ -263,3 +263,4 @@ namespace Celeste.UI
         }
     }
 }
+

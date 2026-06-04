@@ -1,4 +1,4 @@
-using CelesteEntities = global::Celeste.Mod.Entities;
+﻿using CelesteEntities = global::Celeste.Mod.Entities;
 
 #nullable enable
 namespace Celeste.Entities
@@ -67,8 +67,8 @@ namespace Celeste.Entities
             ReturnHomeWhenLost = false;
 
             var soundEvent = isGhostBerry
-                ? "event:/game/general/strawberry_blue_touch"
-                : "event:/game/general/strawberry_touch";
+                ? "guid://{5c271b0b-eba2-400b-8011-e1d673324674}"
+                : "guid://{525d00db-bc31-4054-9f61-0238bfd62941}";
 
             Audio.Play(soundEvent, Position);
 
@@ -159,12 +159,12 @@ namespace Celeste.Entities
             this.lightTween.Start();
             if (!this.collected && (this.CollideCheck<FakeWall>() || this.CollideCheck<Solid>()))
             {
-                Audio.Play("event:/game/general/strawberry_pulse", this.Position);
+                Audio.Play("guid://{0886e368-bce4-4922-97c3-edeadf714e29}", this.Position);
                 this.SceneAs<Level>().Displacement.AddBurst(this.Position, 0.6f, 4f, 28f, 0.1f);
             }
             else
             {
-                Audio.Play("event:/game/general/strawberry_pulse", this.Position);
+                Audio.Play("guid://{0886e368-bce4-4922-97c3-edeadf714e29}", this.Position);
                 this.SceneAs<Level>().Displacement.AddBurst(this.Position, 0.6f, 4f, 28f, 0.2f);
             }
         }
@@ -212,7 +212,7 @@ namespace Celeste.Entities
                 player.Die(Vector2.Zero);
             }
 
-            Audio.Play("event:/new_content/char/madeline/death_golden");
+            Audio.Play("guid://{eeab0167-3ebd-45b2-b701-7dc9f98959e0}");
             this.Dead = true;
         }
 
@@ -224,7 +224,7 @@ namespace Celeste.Entities
             switch (this.collectSound)
             {
                 case CollectSound.Original:
-                    Audio.Play("event:/game/general/strawberry_get", this.Position, "colour",
+                    Audio.Play("guid://{3b45b8d4-ff15-4d36-9411-3e4ce2726377}", this.Position, "colour",
                         this.isGhostBerry ? 1f : 2f, "count", 10f);
                     break;
                 case CollectSound.Elaborate:
@@ -266,3 +266,4 @@ namespace Celeste.Entities
         }
     }
 }
+

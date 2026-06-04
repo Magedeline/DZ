@@ -1,4 +1,4 @@
--- Loenn integration for Red Lightning entity
+﻿-- Loenn integration for Red Lightning entity
 -- Creates dramatic red lightning visual effects
 
 local selectionBounds = require("libraries.selection_bounds")
@@ -36,8 +36,8 @@ redLightning.fieldInformation = {
         fieldType = "string",
         options = {
             "event:/game/general/lightning",
-            "event:/char/badeline/disappear",
-            "event:/game/general/thing_booped"
+            "guid://{16b40879-0a79-4e42-8c91-fe419a8e186c}",
+            "guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}"
         },
         editable = true
     }
@@ -65,7 +65,7 @@ redLightning.placements = {
             intensity = 1.5,
             color = "FF4444AA",
             followKglobal::global::Celeste.Player= true,
-            soundEffect = "event:/char/badeline/disappear"
+            soundEffect = "guid://{16b40879-0a79-4e42-8c91-fe419a8e186c}"
         }
     },
     {

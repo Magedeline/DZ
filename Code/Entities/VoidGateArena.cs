@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
@@ -156,7 +156,7 @@ namespace Celeste.Entities
             arenaText = $"Defeat {requiredEnemyKills} enemies!";
             textColor = Color.Red;
             
-            Audio.Play("event:/ui/main/button_lowkey", Position);
+            Audio.Play("guid://{8a93c5a5-538c-49f6-9d07-988839862ba1}", Position);
         }
         
         public void OnGateOpened()
@@ -185,7 +185,7 @@ namespace Celeste.Entities
             arenaText = "Gate opened!";
             textColor = Color.Green;
             
-            Audio.Play("event:/ui/main/button_select", Position);
+            Audio.Play("guid://{cf18e899-f774-47e2-b72c-5252231fd47c}", Position);
         }
         
         private void UpdateArena()
@@ -243,7 +243,7 @@ namespace Celeste.Entities
             if (level != null)
             {
                 level.Shake(0.3f);
-                Audio.Play("event:/char/badeline/appear", Position);
+                Audio.Play("guid://{ad25a031-880b-4f88-ac12-82d6c52fbdea}", Position);
             }
         }
         
@@ -512,3 +512,4 @@ namespace Celeste.Entities
         #endregion
     }
 }
+

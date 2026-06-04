@@ -1,4 +1,4 @@
-namespace Celeste.Entities;
+﻿namespace Celeste.Entities;
 
 /// <summary>
 /// Ingeste ClutterSwitch entity - a pressure switch that activates when dashed into from above
@@ -85,8 +85,8 @@ public class ClutterSwitch : Solid
     /// Creates a new ClutterSwitch at the specified position with the given color
     /// </summary>
     public ClutterSwitch(Vector2 position, ClutterBlock.Colors color,
-        string musicEvent = "event:/music/pusheen/lvl5/clean",
-        string absorbCutsceneSound = "event:/game/03_resort/clutterswitch_books",
+        string musicEvent = "guid://{d49a04ce-06fb-43bb-8880-1b95a4f6544f}",
+        string absorbCutsceneSound = "guid://{ab48ef65-2a19-4e26-bd96-c91188020dd6}",
         bool progressMusic = true,
         float configLightingAlphaAdd = LightingAlphaAdd)
         : base(position, 32f, 16f, safe: true)
@@ -113,8 +113,8 @@ public class ClutterSwitch : Solid
         : this(
             data.Position + offset,
             data.Enum("type", ClutterBlock.Colors.Green),
-            data.Attr("musicEvent", "event:/music/pusheen/lvl5/clean"),
-            data.Attr("absorbCutsceneSound", "event:/game/03_resort/clutterswitch_books"),
+            data.Attr("musicEvent", "guid://{d49a04ce-06fb-43bb-8880-1b95a4f6544f}"),
+            data.Attr("absorbCutsceneSound", "guid://{ab48ef65-2a19-4e26-bd96-c91188020dd6}"),
             data.Bool("progressMusic", true),
             data.Float("lightingAlphaAdd", LightingAlphaAdd))
     {
@@ -215,7 +215,7 @@ public class ClutterSwitch : Solid
         if (!playerWasOnTop)
         {
             // Use Celeste's Audio system following Ingeste guidelines
-            Audio.Play("event:/game/03_resort/clutterswitch_squish", Position);
+            Audio.Play("guid://{4518ae95-ba77-4242-b617-6c18d2f4f570}", Position);
         }
 
         playerWasOnTop = true;
@@ -231,7 +231,7 @@ public class ClutterSwitch : Solid
 
         if (playerWasOnTop)
         {
-            Audio.Play("event:/game/03_resort/clutterswitch_return", Position);
+            Audio.Play("guid://{99b2879f-9f5f-4c28-8a2f-46e379488863}", Position);
         }
 
         playerWasOnTop = false;
@@ -359,7 +359,7 @@ public class ClutterSwitch : Solid
             // Setup completion audio using Celeste's Audio system
             Add(Alarm.Create(Alarm.AlarmMode.Oneshot, () =>
             {
-                Audio.Play("event:/game/03_resort/clutterswitch_finish", Position);
+                Audio.Play("guid://{9f8d7e9f-ec6d-4903-81bc-e1c4e0869dc1}", Position);
             }, duration, start: true));
         }
     }
@@ -368,9 +368,9 @@ public class ClutterSwitch : Solid
     {
         return sound switch
         {
-            "event:/game/03_resort/clutterswitch_books" => 6.366f,
-            "event:/game/03_resort/clutterswitch_linens" => 6.15f,
-            "event:/game/03_resort/clutterswitch_boxes" => 6.066f,
+            "guid://{ab48ef65-2a19-4e26-bd96-c91188020dd6}" => 6.366f,
+            "guid://{bbec6527-f6d3-42a3-9ad5-4ebbeeebccc9}" => 6.15f,
+            "guid://{72ea8830-baf4-40b0-bc3a-d05ae7a3ace3}" => 6.066f,
             _ => 6.366f
         };
     }
@@ -502,6 +502,7 @@ public class ClutterSwitch : Solid
     }
     #endregion
 }
+
 
 
 

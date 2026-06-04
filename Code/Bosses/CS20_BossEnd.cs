@@ -1,4 +1,4 @@
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using Celeste.Entities;
 
 namespace Celeste.Cutscenes
@@ -159,8 +159,9 @@ namespace Celeste.Cutscenes
             level.Session.SetFlag("asriel_angel_phase_started");
             
             // Update music for Angel of Death phase
-            level.Session.Audio.Music.Event = "event:/new_content/music/pusheen/lvl20/burn_in_despair";
+            level.Session.Audio.Music.Event = "guid://{970368cc-d45a-4159-a9ec-e56e27d2f7ae}";
             level.Session.Audio.Apply();
         }
     }
 }
+

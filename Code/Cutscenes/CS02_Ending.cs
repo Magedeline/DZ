@@ -1,4 +1,4 @@
-using Facings = Celeste.Facings;
+﻿using Facings = Celeste.Facings;
 
 namespace Celeste.Cutscenes
 {
@@ -43,11 +43,11 @@ namespace Celeste.Cutscenes
       cs02Ending.player.Facing = Facings.Right;
       yield return (object) 0.5f;
       cs02Ending.player.Visible = false;
-      Audio.Play("event:/game/02_old_site/sequence_phone_pickup", cs02Ending.player.Position);
+      Audio.Play("guid://{7a436113-5059-4565-a239-927c4876b345}", cs02Ending.player.Position);
       yield return (object) cs02Ending.payphone.Sprite.PlayRoutine("pickUp");
       yield return (object) 0.25f;
       cs02Ending.phoneSfx.Position = cs02Ending.player.Position;
-      cs02Ending.phoneSfx.Play("event:/game/02_old_site/sequence_phone_ringtone_loop");
+      cs02Ending.phoneSfx.Play("guid://{2c58d235-d6db-4974-825f-426ec121fe23}");
       yield return (object) 6f;
       cs02Ending.phoneSfx.Stop();
       cs02Ending.payphone.Sprite.Play("talkPhone");
@@ -65,3 +65,4 @@ namespace Celeste.Cutscenes
         public override void OnEnd(Level level) => level.CompleteArea(true, true, false);
   }
 }
+

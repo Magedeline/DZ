@@ -1,4 +1,4 @@
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using Celeste.NPCs;
 using NPC = Celeste.NPCs.NPC;
 
@@ -54,7 +54,7 @@ public class CS05_OshiroLobby : CutsceneEntity
         yield return 0.5f;
         yield return player.DummyWalkTo(oshiro.X - 16f);
         player.Facing = Facings.Right;
-        sfx.Play("event:/game/03_resort/sequence_oshiro_intro");
+        sfx.Play("guid://{fc333ed7-13ad-42a5-903d-8ddb19226c0e}");
         Input.Rumble(RumbleStrength.Medium, RumbleLength.Medium);
         yield return 1.4f;
         level.Shake();
@@ -112,7 +112,7 @@ public class CS05_OshiroLobby : CutsceneEntity
             yield return null;
         }
         yield return tween2.Wait();
-        Audio.SetMusic("event:/music/pusheen/lvl5/oshiro_theme");
+        Audio.SetMusic("guid://{8c31853a-cb90-46b2-a64f-60f460b7801d}");
         player.DummyAutoAnimate = true;
         yield return Textbox.Say("MAGGYHELPER_CH5_OSHIRO_FRONT_DESK", ZoomOut);
         foreach (MrOshiroDoor item in Scene.Entities.FindAll<MrOshiroDoor>())
@@ -120,7 +120,7 @@ public class CS05_OshiroLobby : CutsceneEntity
             item.Open();
         }
         oshiro.MoveToAndRemove(new Vector2(level.Bounds.Right + 64, oshiro.Y));
-        oshiro.Add(new SoundSource("event:/char/oshiro/move_01_0xa_exit"));
+        oshiro.Add(new SoundSource("guid://{7714e509-b855-47b0-b57b-3b7d803c5652}"));
         yield return 1.5f;
         EndCutscene(level);
     }
@@ -147,7 +147,7 @@ public class CS05_OshiroLobby : CutsceneEntity
         level.Lighting.Alpha = startLightAlpha;
         level.Lighting.UnsetSpotlight();
         level.Session.SetFlag("oshiro_resort_talked_1");
-        level.Session.Audio.Music.Event = "event:/music/pusheen/lvl5/explore";
+        level.Session.Audio.Music.Event = "guid://{718c1405-2198-4e00-b4f2-3c617c7c5965}";
         level.Session.Audio.Music.Progress = 1;
         level.Session.Audio.Apply(forceSixteenthNoteHack: false);
         if (WasSkipped)
@@ -156,6 +156,7 @@ public class CS05_OshiroLobby : CutsceneEntity
         }
     }
 }
+
 
 
 

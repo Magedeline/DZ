@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using Microsoft.Xna.Framework;
 using Monocle;
 using Celeste.Entities;
@@ -58,7 +58,7 @@ public class CS05_OshiroMasterSuite : CutsceneEntity
         badeline = new BadelineDummy(player.Position + new Vector2(-24f, -16f));
         Scene.Add(badeline);
 
-        Audio.SetMusic("event:/music/pusheen/lvl5/oshiro_theme");
+        Audio.SetMusic("guid://{8c31853a-cb90-46b2-a64f-60f460b7801d}");
         yield return Textbox.Say("MAGGYHELPER_CH5_OSHIRO_SUITE", BadelineLookAround, RalseiAppear, CharaAppearInMirror, CharaBreakMirror, PlayerStepCloser, EveryoneJumpBack);
 
         // After dialogue: Chara breaks ceiling and exits
@@ -85,12 +85,12 @@ public class CS05_OshiroMasterSuite : CutsceneEntity
         badeline.Floatness = 0f;
         yield return 0.5f;
         badeline.Sprite.Play("idle");
-        Audio.Play("event:/char/badeline/landing", badeline.Position);
+        Audio.Play("guid://{8f924592-8b14-40d6-81af-d42fab0b6da1}", badeline.Position);
         yield return 1f;
         yield return badeline.WalkTo(player.X - 0f, 20f);
         badeline.Sprite.Scale.X = 1f;
         yield return 0.2f;
-        Audio.Play("event:/char/badeline/duck", badeline.Position);
+        Audio.Play("guid://{d879f9dd-98d0-479e-9f08-a1848f4a0f5c}", badeline.Position);
         yield return 0.3f;
         badeline.Sprite.Play("duck");
         yield return 1f;
@@ -111,7 +111,7 @@ public class CS05_OshiroMasterSuite : CutsceneEntity
         ralsei = new RalseiDummy(badeline.Position + new Vector2(24f, -8f));
         Scene.Add(ralsei);
         Level.Displacement.AddBurst(ralsei.Center, 0.5f, 8f, 32f, 0.5f);
-        Audio.Play("event:/char/badeline/maddy_split", badeline.Position);
+        Audio.Play("guid://{450fb5b3-e9e3-45d8-9f34-ba05e292958f}", badeline.Position);
         ralsei.Sprite.Scale.X = -1f;
         yield return 0.2f;
     }
@@ -211,3 +211,4 @@ public class CS05_OshiroMasterSuite : CutsceneEntity
         SetEvilMusic();
     }
 }
+

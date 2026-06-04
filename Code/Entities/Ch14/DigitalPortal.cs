@@ -1,4 +1,4 @@
-namespace Celeste.Entities.Chapters.Ch14
+﻿namespace Celeste.Entities.Chapters.Ch14
 {
     /// <summary>
     /// DigitalPortal - Teleportation portal between digital zones
@@ -81,7 +81,7 @@ namespace Celeste.Entities.Chapters.Ch14
             sprite.Play("active");
             portalLight.Alpha = 0.6f;
             
-            Audio.Play("event:/game/general/crystalheart_pulse", Position);
+            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
         }
 
         public void Deactivate()
@@ -306,3 +306,4 @@ namespace Celeste.Entities.Chapters.Ch14
         }
     }
 }
+

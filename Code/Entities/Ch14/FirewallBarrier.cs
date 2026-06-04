@@ -1,4 +1,4 @@
-namespace Celeste.Entities.Chapters.Ch14
+﻿namespace Celeste.Entities.Chapters.Ch14
 {
     /// <summary>
     /// FirewallBarrier - Protective barrier that blocks enemies and damage
@@ -86,7 +86,7 @@ namespace Celeste.Entities.Chapters.Ch14
             State = BarrierState.Activating;
             sprite.Play("activating");
             
-            Audio.Play("event:/game/general/crystalheart_pulse", Position);
+            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
             
             Add(new Coroutine(ActivateRoutine()));
         }
@@ -419,3 +419,4 @@ namespace Celeste.Entities.Chapters.Ch14
         }
     }
 }
+

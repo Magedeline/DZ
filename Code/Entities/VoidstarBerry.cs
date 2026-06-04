@@ -1,4 +1,4 @@
-namespace Celeste.Entities
+﻿namespace Celeste.Entities
 {
     [CustomEntity(ids: "MaggyHelper/Voidstarberry")]
     [Monocle.Tracked]
@@ -146,8 +146,8 @@ namespace Celeste.Entities
                 return;
 
             // Ominous void collection sound
-            Audio.Play("event:/game/general/strawberry_get", Position, "colour", 3f);
-            Audio.Play("event:/new_content/game/10_farewell/fakeheart_get", Position); // Add void-like sound
+            Audio.Play("guid://{3b45b8d4-ff15-4d36-9411-3e4ce2726377}", Position, "colour", 3f);
+            Audio.Play("guid://{a72e0e5c-5db0-4542-8a29-25d4d8e19a14}", Position); // Add void-like sound
             Input.Rumble(RumbleStrength.Strong, RumbleLength.Long);
 
             collected = true;
@@ -289,6 +289,7 @@ namespace Celeste.Entities
         }
     }
 }
+
 
 
 

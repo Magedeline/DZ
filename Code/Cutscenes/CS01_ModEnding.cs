@@ -1,4 +1,4 @@
-namespace Celeste.Cutscenes
+﻿namespace Celeste.Cutscenes
 {
     [HotReloadable]
     [Tracked]
@@ -88,13 +88,13 @@ namespace Celeste.Cutscenes
             player.DummyAutoAnimate = false;
             player.Facing = Facings.Right;
             player.Sprite.Play("sleep");
-            Audio.Play("event:/char/pusheen/kirby/campfire_sit", player.Position);
+            Audio.Play("guid://{e6daa12a-2f43-4daf-adf2-994086d0aa1a}", player.Position);
             yield return 4f;
 
             // Add bird scene
             var bird = new BirdNPC(player.Position + new Vector2(88f, -200f), BirdNPC.Modes.None);
             Scene.Add(bird);
-            var instance = Audio.Play("event:/game/general/bird_in", bird.Position);
+            var instance = Audio.Play("guid://{5f8d988c-528d-4d55-a6e2-4c47bfc50176}", bird.Position);
             bird.Facing = Facings.Left;
             bird.Sprite.Play("fall");
 
@@ -117,7 +117,7 @@ namespace Celeste.Cutscenes
             yield return 0.5f;
             bird.Sprite.Play("croak");
             yield return 0.6f;
-            Audio.Play("event:/game/general/bird_squawk", bird.Position);
+            Audio.Play("guid://{4d1ae0ae-db96-47b7-925c-ce84c6ab722e}", bird.Position);
             yield return 0.9f;
             bird.Sprite.Play("sleep");
             yield return 2f;
@@ -129,6 +129,7 @@ namespace Celeste.Cutscenes
         }
     }
 }
+
 
 
 

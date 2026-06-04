@@ -1,4 +1,4 @@
-namespace Celeste.Entities
+﻿namespace Celeste.Entities
 {
     [CustomEntity(ids: "MaggyHelper/SnowBerry")]
     [Tracked]
@@ -82,7 +82,7 @@ namespace Celeste.Entities
         {
             if (!collected && follower.Leader == null)
             {
-                Audio.Play("event:/game/general/seed_touch", Position);
+                Audio.Play("guid://{6160ad7b-16f6-49a5-aa9b-55d75da5a8e1}", Position);
                 player.Leader.GainFollower(follower);
                 Collidable = false;
                 collected = true;
@@ -98,7 +98,7 @@ namespace Celeste.Entities
                 return;
             }
             
-            Audio.Play("event:/game/general/seed_poof", Position);
+            Audio.Play("guid://{884bccb8-958a-4278-8a1b-daf74fff37c0}", Position);
             Collidable = false;
             sprite.Visible = false;
             
@@ -127,7 +127,7 @@ namespace Celeste.Entities
             Collidable = true;
             sprite.Visible = true;
             
-            Audio.Play("event:/game/general/diamond_return", Position);
+            Audio.Play("guid://{735f3afc-00bc-46da-94f1-2cb51e3bfecc}", Position);
             level.ParticlesFG.Emit(P_Glow, 8, Position, Vector2.One * 4f);
         }
 
@@ -161,3 +161,4 @@ namespace Celeste.Entities
         }
     }
 }
+

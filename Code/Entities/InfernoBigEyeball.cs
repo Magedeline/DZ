@@ -1,4 +1,4 @@
-namespace Celeste.Entities
+﻿namespace Celeste.Entities
 {
     /// <summary>
     /// A large eyeball boss entity for Chapter 7 (Infernal Reflections).
@@ -71,7 +71,7 @@ namespace Celeste.Entities
 
                     level.Add(Engine.Pooler.Create<InfernoBigEyeballShockwave>()
                         .Init(Position));
-                    Audio.Play("event:/game/05_mirror_temple/eye_pulse", Position);
+                    Audio.Play("guid://{f64177a2-2611-49cc-8c63-d74c1e29c8a3}", Position);
                     pupilWiggler.Start();
                 }
                 else if (shockwaveTimer <= 0f)
@@ -108,7 +108,7 @@ namespace Celeste.Entities
             if (triggered)
                 return;
 
-            Audio.Play("event:/game/05_mirror_temple/eyewall_bounce", player.Position);
+            Audio.Play("guid://{22a41a42-5e6f-4185-85d4-b5d1a8c38d4d}", player.Position);
             player.ExplodeLaunch(player.Center + Vector2.UnitX * 20f, false, false);
             bounceWiggler.Start();
         }
@@ -124,7 +124,7 @@ namespace Celeste.Entities
                 Collidable = false;
 
                 Audio.SetAmbience(null);
-                Audio.Play("event:/game/05_mirror_temple/eyewall_destroy", Position);
+                Audio.Play("guid://{7f180cd1-0f90-433d-b71e-c9a6cc7f49e7}", Position);
                 Alarm.Set(this, 1.3f, () => Audio.SetMusic(null));
 
                 Add(new Coroutine(BurstRoutine()));
@@ -213,3 +213,4 @@ namespace Celeste.Entities
         }
     }
 }
+

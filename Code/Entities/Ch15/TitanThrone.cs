@@ -1,4 +1,4 @@
-namespace Celeste.Entities.Chapters.Ch15
+﻿namespace Celeste.Entities.Chapters.Ch15
 {
     /// <summary>
     /// TitanThrone - Boss arena activator with cinematic trigger
@@ -140,7 +140,7 @@ namespace Celeste.Entities.Chapters.Ch15
             }
             
             // Dramatic awakening sequence
-            Audio.Play("event:/game/general/crystalheart_pulse", Position);
+            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
             
             // Building shake
             for (int i = 0; i < 10; i++)
@@ -202,7 +202,7 @@ namespace Celeste.Entities.Chapters.Ch15
             // bossEntity = EntityFactory.Create(BossEntityName, Position + new Vector2(0f, -200f));
             // Scene.Add(bossEntity);
             
-            Audio.Play("event:/game/general/crystalheart_pulse", Position);
+            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
             level?.Shake(0.5f);
         }
 
@@ -210,7 +210,7 @@ namespace Celeste.Entities.Chapters.Ch15
         {
             // Victory sequence
             level?.Flash(Color.Gold * 0.4f);
-            Audio.Play("event:/game/general/crystalheart_pulse", Position);
+            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
             
             // Crown descends
             crownSprite.Play("descend");
@@ -390,7 +390,7 @@ namespace Celeste.Entities.Chapters.Ch15
             collected = true;
             
             var level = Scene as Level;
-            Audio.Play("event:/game/general/crystalheart_pulse", Position);
+            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
             level?.Flash(Color.Gold * 0.3f);
             level?.ParticlesFG.Emit(ParticleTypes.SparkyDust, 20, Position, Vector2.One * 12f, Color.Gold);
             
@@ -453,3 +453,4 @@ namespace Celeste.Entities.Chapters.Ch15
         }
     }
 }
+

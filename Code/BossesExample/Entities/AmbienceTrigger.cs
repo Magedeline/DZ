@@ -1,4 +1,4 @@
-// Decompiled with JetBrains decompiler
+﻿// Decompiled with JetBrains decompiler
 // Type: global::Celeste.Mod.ricky06ModPack.Entities.AmbienceTrigger
 // Assembly: ricky06ModPack, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 // MVID: A006BC09-9B58-4275-A339-ACDC10C611D0
@@ -15,7 +15,7 @@ namespace Celeste.Mod.MaggyHelper.BossesExample.Entities;
 [Tracked(false)]
 internal class AmbienceTrigger : Trigger
 {
-  public string ambience = "event:/new_content/env/10_rain";
+  public string ambience = "guid://{fceb8b1e-7d92-400b-903f-406dade6162c}";
 
   public AmbienceTrigger(EntityData data, Vector2 offset)
     : base(data, offset)
@@ -31,3 +31,4 @@ internal class AmbienceTrigger : Trigger
     session.Audio.Apply();
   }
 }
+

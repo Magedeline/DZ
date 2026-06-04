@@ -1,4 +1,4 @@
-namespace Celeste.Entities
+﻿namespace Celeste.Entities
 {
     [CustomEntity(ids: "MaggyHelper/EyeBomb")]
     [Tracked]
@@ -104,7 +104,7 @@ namespace Celeste.Entities
             Collidable = false;
             sprite.Visible = false;
             
-            Audio.Play("event:/game/06_reflection/fall_spike_smash", Position);
+            Audio.Play("guid://{88cc2646-c70d-47bb-9e88-1de934fa1792}", Position);
             level.Shake(0.3f);
             
             // Emit explosion particles
@@ -172,3 +172,4 @@ namespace Celeste.Entities
         }
     }
 }
+

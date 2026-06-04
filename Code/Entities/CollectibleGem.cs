@@ -1,4 +1,4 @@
-namespace Celeste.Entities {
+﻿namespace Celeste.Entities {
     /// <summary>
     /// Collectible gem with different colors and point values
     /// </summary>
@@ -177,7 +177,7 @@ namespace Celeste.Entities {
             collected = true;
 
             // Play collection sound
-            Audio.Play("event:/game/general/strawberry_get", Position);
+            Audio.Play("guid://{3b45b8d4-ff15-4d36-9411-3e4ce2726377}", Position);
 
             // Visual effects
             wiggler.Start();
@@ -233,6 +233,7 @@ namespace Celeste.Entities {
         }
     }
 }
+
 
 
 

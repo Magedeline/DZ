@@ -1,4 +1,4 @@
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using Celeste.NPCs;
 using NPC = Celeste.NPCs.NPC;
 
@@ -29,7 +29,7 @@ public class CS05_OshiroHallway2(global::Celeste.Player player, NPC oshiro) : Cu
         player.StateMachine.Locked = true;
         yield return Textbox.Say("MAGGYHELPER_CH5_OSHIRO_HALLWAY_B");
         oshiro.MoveToAndRemove(new Vector2(level.Bounds.Right + 64, oshiro.Y));
-        oshiro.Add(new SoundSource("event:/char/oshiro/move_03_08a_exit"));
+        oshiro.Add(new SoundSource("guid://{ecd941b2-7246-49f9-ad46-dd6eee981bd5}"));
         yield return 1f;
         EndCutscene(level);
     }
@@ -49,6 +49,7 @@ public class CS05_OshiroHallway2(global::Celeste.Player player, NPC oshiro) : Cu
         }
     }
 }
+
 
 
 

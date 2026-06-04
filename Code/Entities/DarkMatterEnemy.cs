@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using Celeste.Helpers;
 using Microsoft.Xna.Framework;
@@ -296,7 +296,7 @@ namespace Celeste.Entities
                 Vector2 direction = (player.Position - Position).SafeNormalize();
                 Scene.Add(new DarkEnergyProjectile(Position, direction, Calc.Random.Range(minDamage, maxDamage + 1)));
                 
-                Audio.Play("event:/char/badeline/boss_bullet", Position);
+                Audio.Play("guid://{bbe7d0c8-45f9-4671-b49e-8e38e357bb81}", Position);
                 
                 // Screen shake
                 level?.Shake(0.2f);
@@ -343,7 +343,7 @@ namespace Celeste.Entities
             sprite.Play("death");
             Collidable = false;
             
-            Audio.Play("event:/char/badeline/disappear", Position);
+            Audio.Play("guid://{16b40879-0a79-4e42-8c91-fe419a8e186c}", Position);
             
             // Death explosion
             for (int i = 0; i < 20; i++)
@@ -520,3 +520,4 @@ namespace Celeste.Entities
     
     #endregion
 }
+

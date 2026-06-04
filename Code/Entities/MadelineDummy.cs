@@ -1,4 +1,4 @@
-#pragma warning disable CS0436 // Type conflicts with imported type - intentional override
+﻿#pragma warning disable CS0436 // Type conflicts with imported type - intentional override
 namespace Celeste.Entities
 {
     /// <summary>
@@ -252,7 +252,7 @@ namespace Celeste.Entities
                 if (IsFootstepFrame(animationName, currentFrame))
                 {
                     // Use Madeline-specific footstep sound
-                    Audio.Play("event:/char/badeline/footstep", Position);
+                    Audio.Play("guid://{ff6442f1-66c2-4dba-8d57-038dda8fd296}", Position);
                 }
             }
             catch (Exception ex)
@@ -289,7 +289,7 @@ namespace Celeste.Entities
             {
                 if (!silent)
                 {
-                    Audio.Play("event:/char/badeline/appear", Position);
+                    Audio.Play("guid://{ad25a031-880b-4f88-ac12-82d6c52fbdea}", Position);
                     Input.Rumble(RumbleStrength.Medium, RumbleLength.Medium);
                 }
 
@@ -307,7 +307,7 @@ namespace Celeste.Entities
 
             try
             {
-                Audio.Play("event:/char/badeline/disappear", Position);
+                Audio.Play("guid://{16b40879-0a79-4e42-8c91-fe419a8e186c}", Position);
                 CreateShockwave();
                 
                 var level = SceneAs<Level>();
@@ -429,3 +429,4 @@ namespace Celeste.Entities
         }
     }
 }
+

@@ -1,4 +1,4 @@
-namespace Celeste.Cutscenes
+﻿namespace Celeste.Cutscenes
 {
     [Tracked]
     public class CS18_Outro : CutsceneEntity
@@ -120,7 +120,7 @@ namespace Celeste.Cutscenes
             catch (Exception ex)
             {
                 Logger.Log(LogLevel.Warn, "CS18_Outro", $"Failed to play badeline appear sound: {ex.Message}");
-                Audio.Play("event:/game/general/thing_booped", player.Position);
+                Audio.Play("guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}", player.Position);
             }
 
             level?.Shake(0.3f);
@@ -140,7 +140,7 @@ namespace Celeste.Cutscenes
             catch (Exception ex)
             {
                 Logger.Log(LogLevel.Warn, "CS18_Outro", $"Failed to play phone ringing sound: {ex.Message}");
-                Audio.Play("event:/game/general/thing_booped", player.Position);
+                Audio.Play("guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}", player.Position);
             }
             
             // Add screen shake for phone vibration
@@ -162,12 +162,12 @@ namespace Celeste.Cutscenes
             // Play door closing sound
             try
             {
-                Audio.Play("event:/game/03_resort/door_metal_close", player.Position);
+                Audio.Play("guid://{b65c24ca-a160-4d14-b930-2c851cc91f30}", player.Position);
             }
             catch (Exception ex)
             {
                 Logger.Log(LogLevel.Warn, "CS18_Outro", $"Failed to play door close sound: {ex.Message}");
-                Audio.Play("event:/game/general/fallblock_impact", player.Position);
+                Audio.Play("guid://{5381856a-d548-4a31-b7e5-b94d2a72881e}", player.Position);
             }
             
             yield return 0.5f;
@@ -175,12 +175,12 @@ namespace Celeste.Cutscenes
             // Play locking sound
             try
             {
-                Audio.Play("event:/new_content/game/pusheen/19_spaces/locked_door_appear_1", player.Position);
+                Audio.Play("guid://{beae32c7-5900-47d6-abde-5aa7b77af89f}", player.Position);
             }
             catch (Exception ex)
             {
                 Logger.Log(LogLevel.Warn, "CS18_Outro", $"Failed to play locked door sound: {ex.Message}");
-                Audio.Play("event:/game/general/touchswitch_any", player.Position);
+                Audio.Play("guid://{30fafd37-cd47-4a56-ab3b-0cc8f1beec5b}", player.Position);
             }
             // Create a drawable solid for the locked door
             if (level != null)
@@ -273,7 +273,7 @@ namespace Celeste.Cutscenes
                 catch (Exception ex)
                 {
                     Logger.Log(LogLevel.Warn, "CS18_Outro", $"Failed to play glitch sound: {ex.Message}");
-                    Audio.Play("event:/game/general/thing_booped", player.Position);
+                    Audio.Play("guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}", player.Position);
                 }
                 
                 yield return 0.2f;
@@ -370,6 +370,7 @@ namespace Celeste.Cutscenes
         }
     }
 }
+
 
 
 

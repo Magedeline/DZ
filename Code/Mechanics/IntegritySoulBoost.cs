@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using Celeste.Entities;
 using Microsoft.Xna.Framework;
@@ -48,7 +48,7 @@ namespace Celeste.Entities.SoulBoosts
             Level level = Scene as Level;
             level?.ParticlesFG.Emit(P_Burst, 20, player.Center, Vector2.One * 12f);
             
-            Audio.Play("event:/game/general/cassette_bubblereturn", player.Position);
+            Audio.Play("guid://{9db695ce-ce56-4025-9528-030d6b599c86}", player.Position);
             
             yield return 0.1f;
         }
@@ -148,3 +148,4 @@ namespace Celeste.Entities.SoulBoosts
         }
     }
 }
+

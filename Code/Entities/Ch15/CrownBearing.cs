@@ -1,4 +1,4 @@
-namespace Celeste.Entities.Chapters.Ch15
+﻿namespace Celeste.Entities.Chapters.Ch15
 {
     /// <summary>
     /// CrownBearing - Floating crown that creates gravity wells
@@ -96,7 +96,7 @@ namespace Celeste.Entities.Chapters.Ch15
             State = CrownState.Active;
             sprite.Play("activate");
             crownLight.Alpha = 0.6f;
-            Audio.Play("event:/game/general/crystalheart_pulse", Position);
+            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
         }
 
         public void Deactivate()
@@ -360,3 +360,4 @@ namespace Celeste.Entities.Chapters.Ch15
         }
     }
 }
+

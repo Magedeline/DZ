@@ -1,4 +1,4 @@
-// Decompiled with JetBrains decompiler
+﻿// Decompiled with JetBrains decompiler
 // Type: Celeste.TempleMirrorPortal
 // Assembly: Celeste, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 // MVID: FAF6CA25-5C06-43EB-A08F-9CCF291FE6A3
@@ -138,7 +138,7 @@ namespace Celeste.Entities
         templeMirrorPortal.revealTriggered = true;
         level.Session.SetFlag(templeMirrorPortal.GetUnlockedFlag(), true);
         yield return (object) 0.1f;
-        Audio.Play("event:/game/05_mirror_temple/mainmirror_reveal", templeMirrorPortal.Position);
+        Audio.Play("guid://{4fa2a3d9-560d-4546-92b7-969d2ca1fb29}", templeMirrorPortal.Position);
         templeMirrorPortal.curtain.Drop();
         templeMirrorPortal.canTrigger = true;
         yield return (object) 0.1f;
@@ -359,3 +359,4 @@ namespace Celeste.Entities
     }
   }
 }
+

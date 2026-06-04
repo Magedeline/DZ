@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Celeste.Entities;
 using Celeste.Extensions;
 using Microsoft.Xna.Framework;
@@ -21,7 +21,7 @@ namespace Celeste.Entities.Items
         protected ParticleType sparkleParticle;
 
         // Sound effect paths
-        protected const string SFX_COLLECT = "event:/game/general/thing_booped";
+        protected const string SFX_COLLECT = "guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}";
         protected const string SFX_HEAL = "event:/char/pusheen/kirby/heal";
 
         #endregion
@@ -440,3 +440,4 @@ namespace Celeste.Entities.Items
 
     #endregion
 }
+

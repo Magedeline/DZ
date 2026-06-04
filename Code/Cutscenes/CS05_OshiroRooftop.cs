@@ -1,4 +1,4 @@
-using Celeste.Entities;
+﻿using Celeste.Entities;
 
 namespace Celeste.Cutscenes
 {
@@ -106,7 +106,7 @@ namespace Celeste.Cutscenes
             oshiro.Visible = true;
             oshiro.Sprite.Scale.X = 1f;
             Add(new Coroutine(oshiro.MoveTo(bossSpawnPosition - new Vector2(0f, bossSpriteOffset))));
-            oshiro.Add(new SoundSource("event:/char/oshiro/move_07_roof00_enter"));
+            oshiro.Add(new SoundSource("guid://{96c70110-4204-4456-b3ed-baf02ba4139a}"));
             float from = Level.ZoomFocusPoint.X;
             for (float p = 0f; p < 1f; p += Engine.DeltaTime / 0.7f)
             {
@@ -140,7 +140,7 @@ namespace Celeste.Cutscenes
         // Trigger 7: Oshiro transforms into boss form, chase begins
         private IEnumerator OshiroTransformChase()
         {
-            Audio.Play("event:/char/oshiro/boss_transform_begin", oshiro.Position);
+            Audio.Play("guid://{945afadd-8b82-439d-a3d5-c70d53d8df96}", oshiro.Position);
             oshiro.Remove(oshiro.Sprite);
             oshiro.Sprite = bossSprite;
             oshiro.Sprite.Play("transformStart");
@@ -154,7 +154,7 @@ namespace Celeste.Cutscenes
         private IEnumerator OshiroTransform()
         {
             yield return 0.2f;
-            Audio.Play("event:/char/oshiro/boss_transform_burst", oshiro.Position);
+            Audio.Play("guid://{6be863d8-6204-4f23-9f06-f90d6d7a8092}", oshiro.Position);
             oshiro.Sprite.Play("transformFinish");
             Input.Rumble(RumbleStrength.Strong, RumbleLength.Long);
             SceneAs<Level>().Shake(0.5f);
@@ -183,7 +183,7 @@ namespace Celeste.Cutscenes
         private void SetChaseMusic()
         {
             Level obj = base.Scene as Level;
-            obj.Session.Audio.Music.Event = "event:/music/pusheen/lvl5/oshiro_chase";
+            obj.Session.Audio.Music.Event = "guid://{534a6725-0224-4c7f-850d-2609c6d5b6dd}";
             obj.Session.Audio.Apply(forceSixteenthNoteHack: false);
         }
         public override void OnEnd(Level level)
@@ -230,3 +230,4 @@ namespace Celeste.Cutscenes
         }
     }
 }
+

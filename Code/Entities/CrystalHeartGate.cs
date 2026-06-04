@@ -1,4 +1,4 @@
-namespace Celeste.Entities
+﻿namespace Celeste.Entities
 {
     /// <summary>
     /// Crystal heart gate that requires crystal hearts to open
@@ -150,7 +150,7 @@ namespace Celeste.Entities
 
             // Play opening animation and sound
             sprite?.Play("opening");
-            gateSound?.Play("event:/game/general/cassette_bubblereturn");
+            gateSound?.Play("guid://{9db695ce-ce56-4025-9528-030d6b599c86}");
 
             // Visual effects
             wiggler?.Start();
@@ -268,6 +268,7 @@ namespace Celeste.Entities
         }
     }
 }
+
 
 
 

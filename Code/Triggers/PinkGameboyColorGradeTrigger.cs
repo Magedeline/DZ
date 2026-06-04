@@ -1,4 +1,4 @@
-namespace Celeste.Triggers
+﻿namespace Celeste.Triggers
 {
     /// <summary>
     /// Trigger that applies a pink Game Boy-style color grade and sets a flag when activated
@@ -49,7 +49,7 @@ namespace Celeste.Triggers
                 // Play a subtle sound effect if enabled
                 if (playSound)
                 {
-                    Audio.Play("event:/game/general/cassette_bubblereturn", Position);
+                    Audio.Play("guid://{9db695ce-ce56-4025-9528-030d6b599c86}", Position);
                 }
 
                 // Optional: Add a subtle flash effect to emphasize the transition
@@ -58,6 +58,7 @@ namespace Celeste.Triggers
         }
     }
 }
+
 
 
 

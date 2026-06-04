@@ -1,4 +1,4 @@
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace Celeste.Entities;
 
@@ -91,7 +91,7 @@ public class TrueFinaleVignette : Scene
         // Reveal central emblem
         if (emblemTexture != null)
         {
-            Audio.Play("event:/game/general/crystalheart_blue_get");
+            Audio.Play("guid://{1acb8e84-5f79-4dcd-86aa-e8a514535b7d}");
 
             float revealT = 0f;
             while (revealT < 1f)
@@ -273,3 +273,4 @@ public class TrueFinaleVignette : Scene
         base.End();
     }
 }
+

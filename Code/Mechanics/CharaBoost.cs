@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
@@ -164,15 +164,15 @@ public class CharaBoost : Entity
         sw.Start();
         if (finalCh19Boost)
         {
-            Audio.Play("event:/new_content/char/pusheen/chara/booster_finalfinal_part1", Position);
+            Audio.Play("guid://{2f33b716-9d8e-41d1-ad14-c729e157b154}", Position);
         }
         else if (!finalBoost)
         {
-            Audio.Play("event:/char/badeline/booster_begin", Position);
+            Audio.Play("guid://{7a71fc61-b688-4d82-a2b7-781c2434e942}", Position);
         }
         else
         {
-            Audio.Play("event:/char/badeline/booster_final", Position);
+            Audio.Play("guid://{b2ee45d8-e1b0-43f1-baaa-f6e77d37ddb5}", Position);
         }
         if (player.Holding != null)
         {
@@ -226,7 +226,7 @@ public class CharaBoost : Entity
         }
         else
         {
-            Audio.Play("event:/char/badeline/booster_throw", Position);
+            Audio.Play("guid://{2592d638-f3c5-4f6f-81e0-888a04affa40}", Position);
         }
         chara.Sprite.Play("boost");
         yield return 0.1f;
@@ -294,11 +294,11 @@ public class CharaBoost : Entity
                     stretch.Visible = false;
                     sprite.Visible = true;
                     Collidable = true;
-                    Audio.Play("event:/char/badeline/booster_reappear", Position);
+                    Audio.Play("guid://{207a212a-2beb-4022-a8da-11ac987d3097}", Position);
                 }
             };
             Add(tween);
-            relocateSfx.Play("event:/char/badeline/booster_relocate");
+            relocateSfx.Play("guid://{7e3c6b4e-e41a-4e9a-9d24-22737c66593b}");
             Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
             level.DirectionalShake(-Vector2.UnitY);
             level.Displacement.AddBurst(Center, 0.4f, 8f, 32f, 0.5f);
@@ -307,7 +307,7 @@ public class CharaBoost : Entity
         {
             if (finalCh19Boost)
             {
-                Ch9FinalBoostSfx = Audio.Play("event:/new_content/char/pusheen/chara/booster_finalfinal_part2", Position);
+                Ch9FinalBoostSfx = Audio.Play("guid://{4399e68c-961c-4d7f-9e9e-706af2979bfe}", Position);
             }
             Engine.FreezeTimer = 0.1f;
             yield return null;
@@ -363,11 +363,11 @@ public class CharaBoost : Entity
                 stretch.Visible = false;
                 sprite.Visible = true;
                 Collidable = true;
-                Audio.Play("event:/char/badeline/booster_reappear", Position);
+                Audio.Play("guid://{207a212a-2beb-4022-a8da-11ac987d3097}", Position);
             }
         };
         Add(tween);
-        relocateSfx.Play("event:/char/badeline/booster_relocate");
+        relocateSfx.Play("guid://{7e3c6b4e-e41a-4e9a-9d24-22737c66593b}");
         level.Displacement.AddBurst(base.Center, 0.4f, 8f, 32f, 0.5f);
     }
 
@@ -376,7 +376,7 @@ public class CharaBoost : Entity
     {
         wiggler.Start();
         (base.Scene as Level).Displacement.AddBurst(Position, 0.3f, 4f, 16f, 0.25f);
-        Audio.Play("event:/game/general/crystalheart_pulse", Position);
+        Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
     }
 
     [MethodImpl(MethodImplOptions.NoInlining)]
@@ -418,3 +418,4 @@ public class CharaBoost : Entity
         RemoveSelf();
     }
 }
+

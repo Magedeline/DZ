@@ -1,4 +1,4 @@
-namespace Celeste.Entities
+﻿namespace Celeste.Entities
 {
     [CustomEntity(ids: "MaggyHelper/StarBlock")]
     [Tracked(true)]
@@ -39,7 +39,7 @@ namespace Celeste.Entities
 
             if (player.DashAttacking)
             {
-                Audio.Play("event:/game/general/diamond_touch", Position);
+                Audio.Play("guid://{a47180e1-9bc2-4dbc-86c7-6402cea2e2be}", Position);
                 Break();
             }
         }
@@ -166,6 +166,7 @@ namespace Celeste.Entities
         }
     }
 }
+
 
 
 

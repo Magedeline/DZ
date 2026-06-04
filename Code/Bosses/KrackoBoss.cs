@@ -1,4 +1,4 @@
-using Celeste.Helpers;
+﻿using Celeste.Helpers;
 
 namespace Celeste.Entities.Bosses
 {
@@ -257,7 +257,7 @@ namespace Celeste.Entities.Bosses
             Vector2 start = Position;
             Vector2 target = player.Position + new Vector2(0f, -8f);
 
-            Audio.Play("event:/game/05_mirror_temple/eye_pulse", Position);
+            Audio.Play("guid://{f64177a2-2611-49cc-8c63-d74c1e29c8a3}", Position);
 
             for (float progress = 0f; progress < 1f; progress += Engine.DeltaTime * 2.6f)
             {
@@ -311,7 +311,7 @@ namespace Celeste.Entities.Bosses
             health = Math.Max(0, health - damage);
             Health = health;
 
-            Audio.Play("event:/game/06_reflection/feather_bubble_get", Position);
+            Audio.Play("guid://{6e29b787-1f7a-4f44-84a8-eb867342a37f}", Position);
 
             if (health <= 0)
             {
@@ -341,3 +341,4 @@ namespace Celeste.Entities.Bosses
         }
     }
 }
+

@@ -98,10 +98,10 @@ namespace Celeste.Triggers
         {
             if (level == null) return;
 
-            // Find all RainbowBlackholeBG instances in the scene
+            // Find all RainbowBlackholeBg instances in the scene
             foreach (var backdrop in level.Background.Backdrops)
             {
-                if (backdrop is RainbowBlackholeBG rainbowBg)
+                if (backdrop is RainbowBlackholeBg rainbowBg)
                 {
                     ApplyActionToBackdrop(rainbowBg);
                 }
@@ -109,7 +109,7 @@ namespace Celeste.Triggers
 
             foreach (var backdrop in level.Foreground.Backdrops)
             {
-                if (backdrop is RainbowBlackholeBG rainbowBg)
+                if (backdrop is RainbowBlackholeBg rainbowBg)
                 {
                     ApplyActionToBackdrop(rainbowBg);
                 }
@@ -130,7 +130,7 @@ namespace Celeste.Triggers
             }
         }
 
-        private void ApplyActionToBackdrop(RainbowBlackholeBG backdrop)
+        private void ApplyActionToBackdrop(RainbowBlackholeBg backdrop)
         {
             switch (action)
             {
@@ -146,7 +146,7 @@ namespace Celeste.Triggers
 
                 case ActionType.ChangeStrength:
                     // Convert our enum to the backdrop's enum
-                    var backdropStrength = (RainbowBlackholeBG.Strengths)Enum.Parse(typeof(RainbowBlackholeBG.Strengths), strengthLevel.ToString());
+                    var backdropStrength = (RainbowBlackholeBg.Strengths)Enum.Parse(typeof(RainbowBlackholeBg.Strengths), strengthLevel.ToString());
                     backdrop.SetStrength(backdropStrength);
                     break;
 

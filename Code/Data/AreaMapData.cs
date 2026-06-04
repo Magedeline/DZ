@@ -167,30 +167,132 @@ public static class AreaMapData
 
         // â”€â”€ Chapter 1: Forbidden Metropolis â”€â”€
         // Image 9: position=(-1.234, 0.677, 7.598) target=(-0.221, 0.734, 5.875)
-        RegisterStandardChapter(1, "forbiddenmetro", "01_City",
-            "areas/city", 0,
-            idle:   (new Vector3(-1.234f,  0.677f,  9.198f), new Vector3(-0.221f,  0.734f,  7.475f)),
-            select: (new Vector3(-1.234f,  0.677f,  7.598f), new Vector3(-0.221f,  0.734f,  5.875f)),
-            zoom:   (new Vector3(-0.867f,  0.315f,  6.592f), new Vector3( 0.146f,  0.372f,  4.869f)),
-            cursor:  new Vector3(-0.221f,  0.734f,  5.875f));
+        Register(new ChapterDef
+        {
+            Number = 1,
+            Name = “forbiddenmetro”,
+            SID = AreaModeExtender.BuildASideSID(“01_City”),
+            Icon = “areas/city”,
+            IsInterlude = false,
+            HasBSide = true,
+            HasCSide = true,
+            HasDSide = true,
+            HasDXSide = false,
+            MusicEvents = new[]
+            {
+                “event:/music/1-forbiddenmetro/main”,
+                “event:/music/1-forbiddenmetro/main”,
+                “event:/music/1-forbiddenmetro/main”,
+                “event:/music/pusheen/DSide/01_city”,
+                “event:/music/1-forbiddenmetro/main”,
+            },
+            AmbienceEvents = new[]
+            {
+                GetStandardAmbienceEvent(1),
+                GetStandardAmbienceEvent(1),
+                GetStandardAmbienceEvent(1),
+                GetStandardAmbienceEvent(1),
+                GetStandardAmbienceEvent(1),
+            },
+            CassetteSong = “event:/music/1-forbiddenmetro/main”,
+            MountainState = 0,
+            MountainData = new MountainCameraData
+            {
+                IdlePos = new Vector3(-1.234f,  0.677f,  9.198f),
+                IdleTarget = new Vector3(-0.221f,  0.734f,  7.475f),
+                SelectPos = new Vector3(-1.234f,  0.677f,  7.598f),
+                SelectTarget = new Vector3(-0.221f,  0.734f,  5.875f),
+                ZoomPos = new Vector3(-0.867f,  0.315f,  6.592f),
+                ZoomTarget = new Vector3( 0.146f,  0.372f,  4.869f),
+                Cursor = new Vector3(-0.221f,  0.734f,  5.875f)
+            }
+        });
 
         // â”€â”€ Chapter 2: Veil of Shadows â”€â”€
         // Image 2: position=(-0.952, 4.218, 9.744) target=(-0.111, 3.393, 8.128)
-        RegisterStandardChapter(2, "shadowofveil", "02_Nightmare",
-            "areas/nightmare", 0,
-            idle:   (new Vector3(-0.952f,  4.218f, 11.344f), new Vector3(-0.111f,  3.393f,  9.728f)),
-            select: (new Vector3(-0.952f,  4.218f,  9.744f), new Vector3(-0.111f,  3.393f,  8.128f)),
-            zoom:   (new Vector3(-0.585f,  3.856f,  8.738f), new Vector3( 0.256f,  3.031f,  7.122f)),
-            cursor:  new Vector3(-0.111f,  3.393f,  8.128f));
+        Register(new ChapterDef
+        {
+            Number = 2,
+            Name = “shadowofveil”,
+            SID = AreaModeExtender.BuildASideSID(“02_Nightmare”),
+            Icon = “areas/nightmare”,
+            IsInterlude = false,
+            HasBSide = true,
+            HasCSide = true,
+            HasDSide = true,
+            HasDXSide = false,
+            MusicEvents = new[]
+            {
+                “event:/music/2-shadowofveil/main”,
+                “event:/music/2-shadowofveil/main”,
+                “event:/music/2-shadowofveil/main”,
+                “event:/music/pusheen/DSide/02_nightmare”,
+                “event:/music/2-shadowofveil/main”,
+            },
+            AmbienceEvents = new[]
+            {
+                GetStandardAmbienceEvent(2),
+                GetStandardAmbienceEvent(2),
+                GetStandardAmbienceEvent(2),
+                GetStandardAmbienceEvent(2),
+                GetStandardAmbienceEvent(2),
+            },
+            CassetteSong = “event:/music/2-shadowofveil/main”,
+            MountainState = 0,
+            MountainData = new MountainCameraData
+            {
+                IdlePos = new Vector3(-0.952f,  4.218f, 11.344f),
+                IdleTarget = new Vector3(-0.111f,  3.393f,  9.728f),
+                SelectPos = new Vector3(-0.952f,  4.218f,  9.744f),
+                SelectTarget = new Vector3(-0.111f,  3.393f,  8.128f),
+                ZoomPos = new Vector3(-0.585f,  3.856f,  8.738f),
+                ZoomTarget = new Vector3( 0.256f,  3.031f,  7.122f),
+                Cursor = new Vector3(-0.111f,  3.393f,  8.128f)
+            }
+        });
 
         // â”€â”€ Chapter 3: Arrival â”€â”€
         // Image 3: position=(-3.431, 5.512, 4.284) target=(-2.287, 4.359, 3.118)
-        RegisterStandardChapter(3, "arrivial", "03_Stars",
-            "areas/stars", 0,
-            idle:   (new Vector3(-3.431f,  5.512f,  5.884f), new Vector3(-2.287f,  4.359f,  4.718f)),
-            select: (new Vector3(-3.431f,  5.512f,  4.284f), new Vector3(-2.287f,  4.359f,  3.118f)),
-            zoom:   (new Vector3(-3.064f,  5.150f,  3.278f), new Vector3(-1.920f,  3.997f,  2.112f)),
-            cursor:  new Vector3(-2.287f,  4.359f,  3.118f));
+        Register(new ChapterDef
+        {
+            Number = 3,
+            Name = “arrivial”,
+            SID = AreaModeExtender.BuildASideSID(“03_Stars”),
+            Icon = “areas/stars”,
+            IsInterlude = false,
+            HasBSide = true,
+            HasCSide = true,
+            HasDSide = true,
+            HasDXSide = false,
+            MusicEvents = new[]
+            {
+                “event:/music/3-arrivial/main”,
+                “event:/music/3-arrivial/main”,
+                “event:/music/3-arrivial/main”,
+                “event:/music/pusheen/DSide/03_stars”,
+                “event:/music/3-arrivial/main”,
+            },
+            AmbienceEvents = new[]
+            {
+                GetStandardAmbienceEvent(3),
+                GetStandardAmbienceEvent(3),
+                GetStandardAmbienceEvent(3),
+                GetStandardAmbienceEvent(3),
+                GetStandardAmbienceEvent(3),
+            },
+            CassetteSong = “event:/music/3-arrivial/main”,
+            MountainState = 0,
+            MountainData = new MountainCameraData
+            {
+                IdlePos = new Vector3(-3.431f,  5.512f,  5.884f),
+                IdleTarget = new Vector3(-2.287f,  4.359f,  4.718f),
+                SelectPos = new Vector3(-3.431f,  5.512f,  4.284f),
+                SelectTarget = new Vector3(-2.287f,  4.359f,  3.118f),
+                ZoomPos = new Vector3(-3.064f,  5.150f,  3.278f),
+                ZoomTarget = new Vector3(-1.920f,  3.997f,  2.112f),
+                Cursor = new Vector3(-2.287f,  4.359f,  3.118f)
+            }
+        });
 
         // â”€â”€ Chapter 4: Chronicles of Destiny â”€â”€
         // Image 8: position=(-14.620, 3.606, 19.135) target=(-13.134, 4.115, 17.897)
@@ -237,110 +339,502 @@ public static class AreaMapData
 
         // â”€â”€ Chapter 5: Fractured Memories â”€â”€
         // Image 10: position=(-4.473, 7.158, 5.463) target=(-3.630, 6.660, 3.719)
-        RegisterStandardChapter(5, "fractureresort", "05_Restore",
-            "areas/restore", 0,
-            idle:   (new Vector3(-4.473f,  7.158f,  7.063f), new Vector3(-3.630f,  6.660f,  5.319f)),
-            select: (new Vector3(-4.473f,  7.158f,  5.463f), new Vector3(-3.630f,  6.660f,  3.719f)),
-            zoom:   (new Vector3(-4.106f,  6.796f,  4.457f), new Vector3(-3.263f,  6.298f,  2.713f)),
-            cursor:  new Vector3(-3.630f,  6.660f,  3.719f));
+        Register(new ChapterDef
+        {
+            Number = 5,
+            Name = “fractureresort”,
+            SID = AreaModeExtender.BuildASideSID(“05_Restore”),
+            Icon = “areas/restore”,
+            IsInterlude = false,
+            HasBSide = true,
+            HasCSide = true,
+            HasDSide = true,
+            HasDXSide = false,
+            MusicEvents = new[]
+            {
+                “event:/music/5-fractureresort/main”,
+                “event:/music/5-fractureresort/main”,
+                “event:/music/5-fractureresort/main”,
+                “event:/music/pusheen/DSide/05_restore”,
+                “event:/music/5-fractureresort/main”,
+            },
+            AmbienceEvents = new[]
+            {
+                GetStandardAmbienceEvent(5),
+                GetStandardAmbienceEvent(5),
+                GetStandardAmbienceEvent(5),
+                GetStandardAmbienceEvent(5),
+                GetStandardAmbienceEvent(5),
+            },
+            CassetteSong = “event:/music/5-fractureresort/main”,
+            MountainState = 0,
+            MountainData = new MountainCameraData
+            {
+                IdlePos = new Vector3(-4.473f,  7.158f,  7.063f),
+                IdleTarget = new Vector3(-3.630f,  6.660f,  5.319f),
+                SelectPos = new Vector3(-4.473f,  7.158f,  5.463f),
+                SelectTarget = new Vector3(-3.630f,  6.660f,  3.719f),
+                ZoomPos = new Vector3(-4.106f,  6.796f,  4.457f),
+                ZoomTarget = new Vector3(-3.263f,  6.298f,  2.713f),
+                Cursor = new Vector3(-3.630f,  6.660f,  3.719f)
+            }
+        });
 
         // â”€â”€ Chapter 6: Fortress of Solitude â”€â”€
         // Image 4: position=(5.961, 8.823, 5.058) target=(5.061, 7.757, 3.625)
-        RegisterStandardChapter(6, "stronghold", "06_Stronghold",
-            "areas/stronghold", 0,
-            idle:   (new Vector3( 5.961f,  8.823f,  6.658f), new Vector3( 5.061f,  7.757f,  5.225f)),
-            select: (new Vector3( 5.961f,  8.823f,  5.058f), new Vector3( 5.061f,  7.757f,  3.625f)),
-            zoom:   (new Vector3( 6.328f,  8.461f,  4.052f), new Vector3( 5.428f,  7.395f,  2.619f)),
-            cursor:  new Vector3( 5.061f,  7.757f,  3.625f));
+        Register(new ChapterDef
+        {
+            Number = 6,
+            Name = “stronghold”,
+            SID = AreaModeExtender.BuildASideSID(“06_Stronghold”),
+            Icon = “areas/stronghold”,
+            IsInterlude = false,
+            HasBSide = true,
+            HasCSide = true,
+            HasDSide = true,
+            HasDXSide = false,
+            MusicEvents = new[]
+            {
+                “event:/music/6-stronghold/main”,
+                “event:/music/6-stronghold/main”,
+                “event:/music/6-stronghold/main”,
+                “event:/music/pusheen/DSide/06_stronghold”,
+                “event:/music/6-stronghold/main”,
+            },
+            AmbienceEvents = new[]
+            {
+                GetStandardAmbienceEvent(6),
+                GetStandardAmbienceEvent(6),
+                GetStandardAmbienceEvent(6),
+                GetStandardAmbienceEvent(6),
+                GetStandardAmbienceEvent(6),
+            },
+            CassetteSong = “event:/music/6-stronghold/main”,
+            MountainState = 0,
+            MountainData = new MountainCameraData
+            {
+                IdlePos = new Vector3( 5.961f,  8.823f,  6.658f),
+                IdleTarget = new Vector3( 5.061f,  7.757f,  5.225f),
+                SelectPos = new Vector3( 5.961f,  8.823f,  5.058f),
+                SelectTarget = new Vector3( 5.061f,  7.757f,  3.625f),
+                ZoomPos = new Vector3( 6.328f,  8.461f,  4.052f),
+                ZoomTarget = new Vector3( 5.428f,  7.395f,  2.619f),
+                Cursor = new Vector3( 5.061f,  7.757f,  3.625f)
+            }
+        });
 
         // â”€â”€ Chapter 7: Infernal Reflections â”€â”€
         // Image 5: position=(9.626, 8.824, -4.140) target=(7.924, 8.240, -3.267)
-        RegisterStandardChapter(7, "infornoreflection", "07_Hell",
-            "areas/hell", MountainOverworldManager.STATE_DARK,
-            idle:   (new Vector3( 9.626f,  8.824f, -2.540f), new Vector3( 7.924f,  8.240f, -1.667f)),
-            select: (new Vector3( 9.626f,  8.824f, -4.140f), new Vector3( 7.924f,  8.240f, -3.267f)),
-            zoom:   (new Vector3( 9.993f,  8.462f, -5.146f), new Vector3( 8.291f,  7.878f, -4.273f)),
-            cursor:  new Vector3( 7.924f,  8.240f, -3.267f));
+        Register(new ChapterDef
+        {
+            Number = 7,
+            Name = “infornoreflection”,
+            SID = AreaModeExtender.BuildASideSID(“07_Hell”),
+            Icon = “areas/hell”,
+            IsInterlude = false,
+            HasBSide = true,
+            HasCSide = true,
+            HasDSide = true,
+            HasDXSide = false,
+            MusicEvents = new[]
+            {
+                “event:/music/7-infornoreflection/main”,
+                “event:/music/7-infornoreflection/main”,
+                “event:/music/7-infornoreflection/main”,
+                “event:/music/pusheen/DSide/07_hell”,
+                “event:/music/7-infornoreflection/main”,
+            },
+            AmbienceEvents = new[]
+            {
+                GetStandardAmbienceEvent(7),
+                GetStandardAmbienceEvent(7),
+                GetStandardAmbienceEvent(7),
+                GetStandardAmbienceEvent(7),
+                GetStandardAmbienceEvent(7),
+            },
+            CassetteSong = “event:/music/7-infornoreflection/main”,
+            MountainState = MountainOverworldManager.STATE_DARK,
+            MountainData = new MountainCameraData
+            {
+                IdlePos = new Vector3( 9.626f,  8.824f, -2.540f),
+                IdleTarget = new Vector3( 7.924f,  8.240f, -1.667f),
+                SelectPos = new Vector3( 9.626f,  8.824f, -4.140f),
+                SelectTarget = new Vector3( 7.924f,  8.240f, -3.267f),
+                ZoomPos = new Vector3( 9.993f,  8.462f, -5.146f),
+                ZoomTarget = new Vector3( 8.291f,  7.878f, -4.273f),
+                Cursor = new Vector3( 7.924f,  8.240f, -3.267f)
+            }
+        });
 
         // â”€â”€ Chapter 8: Revelation's Edge â”€â”€
         // Image 6: position=(-0.963, 10.542, -5.314) target=(-0.178, 9.588, -3.741)
-        RegisterStandardChapter(8, "revelationedge", "08_Truth",
-            "areas/truth", 0,
-            idle:   (new Vector3(-0.963f, 10.542f, -3.714f), new Vector3(-0.178f,  9.588f, -2.141f)),
-            select: (new Vector3(-0.963f, 10.542f, -5.314f), new Vector3(-0.178f,  9.588f, -3.741f)),
-            zoom:   (new Vector3(-0.596f, 10.180f, -6.320f), new Vector3( 0.189f,  9.226f, -4.747f)),
-            cursor:  new Vector3(-0.178f,  9.588f, -3.741f));
+        Register(new ChapterDef
+        {
+            Number = 8,
+            Name = “revelationedge”,
+            SID = AreaModeExtender.BuildASideSID(“08_Truth”),
+            Icon = “areas/truth”,
+            IsInterlude = false,
+            HasBSide = true,
+            HasCSide = true,
+            HasDSide = true,
+            HasDXSide = false,
+            MusicEvents = new[]
+            {
+                “event:/music/8-revelationedge/main”,
+                “event:/music/8-revelationedge/main”,
+                “event:/music/8-revelationedge/main”,
+                “event:/music/pusheen/DSide/08_truth”,
+                “event:/music/8-revelationedge/main”,
+            },
+            AmbienceEvents = new[]
+            {
+                GetStandardAmbienceEvent(8),
+                GetStandardAmbienceEvent(8),
+                GetStandardAmbienceEvent(8),
+                GetStandardAmbienceEvent(8),
+                GetStandardAmbienceEvent(8),
+            },
+            CassetteSong = “event:/music/8-revelationedge/main”,
+            MountainState = 0,
+            MountainData = new MountainCameraData
+            {
+                IdlePos = new Vector3(-0.963f, 10.542f, -3.714f),
+                IdleTarget = new Vector3(-0.178f,  9.588f, -2.141f),
+                SelectPos = new Vector3(-0.963f, 10.542f, -5.314f),
+                SelectTarget = new Vector3(-0.178f,  9.588f, -3.741f),
+                ZoomPos = new Vector3(-0.596f, 10.180f, -6.320f),
+                ZoomTarget = new Vector3( 0.189f,  9.226f, -4.747f),
+                Cursor = new Vector3(-0.178f,  9.588f, -3.741f)
+            }
+        });
 
         // â”€â”€ Chapter 9: Apex of Reality (Summit) â”€â”€
         // Image 7: position=(1.113, 12.154, 6.334) target=(-0.086, 11.118, 5.115)
-        RegisterStandardChapter(9, "beyondsummit", "09_Summit",
-            "areas/summit", 0,
-            idle:   (new Vector3( 1.113f, 12.154f,  7.934f), new Vector3(-0.086f, 11.118f,  6.715f)),
-            select: (new Vector3( 1.113f, 12.154f,  6.334f), new Vector3(-0.086f, 11.118f,  5.115f)),
-            zoom:   (new Vector3( 1.480f, 11.792f,  5.328f), new Vector3( 0.281f, 10.756f,  4.109f)),
-            cursor:  new Vector3(-0.086f, 11.118f,  5.115f));
+        Register(new ChapterDef
+        {
+            Number = 9,
+            Name = “beyondsummit”,
+            SID = AreaModeExtender.BuildASideSID(“09_Summit”),
+            Icon = “areas/summit”,
+            IsInterlude = false,
+            HasBSide = true,
+            HasCSide = true,
+            HasDSide = true,
+            HasDXSide = false,
+            MusicEvents = new[]
+            {
+                “event:/music/9-beyondsummit/main”,
+                “event:/music/9-beyondsummit/main”,
+                “event:/music/9-beyondsummit/main”,
+                “event:/music/pusheen/DSide/09_summit”,
+                “event:/music/9-beyondsummit/main”,
+            },
+            AmbienceEvents = new[]
+            {
+                GetStandardAmbienceEvent(9),
+                GetStandardAmbienceEvent(9),
+                GetStandardAmbienceEvent(9),
+                GetStandardAmbienceEvent(9),
+                GetStandardAmbienceEvent(9),
+            },
+            CassetteSong = “event:/music/9-beyondsummit/main”,
+            MountainState = 0,
+            MountainData = new MountainCameraData
+            {
+                IdlePos = new Vector3( 1.113f, 12.154f,  7.934f),
+                IdleTarget = new Vector3(-0.086f, 11.118f,  6.715f),
+                SelectPos = new Vector3( 1.113f, 12.154f,  6.334f),
+                SelectTarget = new Vector3(-0.086f, 11.118f,  5.115f),
+                ZoomPos = new Vector3( 1.480f, 11.792f,  5.328f),
+                ZoomTarget = new Vector3( 0.281f, 10.756f,  4.109f),
+                Cursor = new Vector3(-0.086f, 11.118f,  5.115f)
+            }
+        });
 
         // â”€â”€ Chapter 10: Echoes of the Past â”€â”€
         // Blend between img7 and img11 â€” mid climb, slight upward shift
-        RegisterStandardChapter(10, "echosofpast", "10_Ruins",
-            "areas/ruins", 0,
-            idle:   (new Vector3( 0.514f, 14.102f,  8.460f), new Vector3(-0.462f, 13.157f,  6.891f)),
-            select: (new Vector3( 0.514f, 14.102f,  7.860f), new Vector3(-0.462f, 13.157f,  6.291f)),
-            zoom:   (new Vector3( 0.881f, 13.740f,  6.854f), new Vector3(-0.095f, 12.795f,  5.285f)),
-            cursor:  new Vector3(-0.462f, 13.157f,  6.291f));
+        Register(new ChapterDef
+        {
+            Number = 10,
+            Name = “echosofpast”,
+            SID = AreaModeExtender.BuildASideSID(“10_Ruins”),
+            Icon = “areas/ruins”,
+            IsInterlude = false,
+            HasBSide = true,
+            HasCSide = true,
+            HasDSide = true,
+            HasDXSide = false,
+            MusicEvents = new[]
+            {
+                “event:/music/10-echosofpast/main”,
+                “event:/music/10-echosofpast/main”,
+                “event:/music/10-echosofpast/main”,
+                “event:/music/pusheen/DSide/10_ruins”,
+                “event:/music/10-echosofpast/main”,
+            },
+            AmbienceEvents = new[]
+            {
+                GetStandardAmbienceEvent(10),
+                GetStandardAmbienceEvent(10),
+                GetStandardAmbienceEvent(10),
+                GetStandardAmbienceEvent(10),
+                GetStandardAmbienceEvent(10),
+            },
+            CassetteSong = “event:/music/10-echosofpast/main”,
+            MountainState = 0,
+            MountainData = new MountainCameraData
+            {
+                IdlePos = new Vector3( 0.514f, 14.102f,  8.460f),
+                IdleTarget = new Vector3(-0.462f, 13.157f,  6.891f),
+                SelectPos = new Vector3( 0.514f, 14.102f,  7.860f),
+                SelectTarget = new Vector3(-0.462f, 13.157f,  6.291f),
+                ZoomPos = new Vector3( 0.881f, 13.740f,  6.854f),
+                ZoomTarget = new Vector3(-0.095f, 12.795f,  5.285f),
+                Cursor = new Vector3(-0.462f, 13.157f,  6.291f)
+            }
+        });
 
         // â”€â”€ Chapter 11: Frozen Sanctuary â”€â”€
-        RegisterStandardChapter(11, "frozensanctuary", "11_Snow",
-            "areas/snow", 0,
-            idle:   (new Vector3(-0.185f, 16.051f,  9.185f), new Vector3(-0.838f, 15.230f,  7.315f)),
-            select: (new Vector3(-0.185f, 16.051f,  8.585f), new Vector3(-0.838f, 15.230f,  6.715f)),
-            zoom:   (new Vector3( 0.182f, 15.689f,  7.579f), new Vector3(-0.471f, 14.868f,  5.709f)),
-            cursor:  new Vector3(-0.838f, 15.230f,  6.715f));
+        Register(new ChapterDef
+        {
+            Number = 11,
+            Name = “frozensanctuary”,
+            SID = AreaModeExtender.BuildASideSID(“11_Snow”),
+            Icon = “areas/snow”,
+            IsInterlude = false,
+            HasBSide = true,
+            HasCSide = true,
+            HasDSide = true,
+            HasDXSide = false,
+            MusicEvents = new[]
+            {
+                “event:/music/11-frozensanctuary/main”,
+                “event:/music/11-frozensanctuary/main”,
+                “event:/music/11-frozensanctuary/main”,
+                “event:/music/pusheen/DSide/11_snow”,
+                “event:/music/11-frozensanctuary/main”,
+            },
+            AmbienceEvents = new[]
+            {
+                GetStandardAmbienceEvent(11),
+                GetStandardAmbienceEvent(11),
+                GetStandardAmbienceEvent(11),
+                GetStandardAmbienceEvent(11),
+                GetStandardAmbienceEvent(11),
+            },
+            CassetteSong = “event:/music/11-frozensanctuary/main”,
+            MountainState = 0,
+            MountainData = new MountainCameraData
+            {
+                IdlePos = new Vector3(-0.185f, 16.051f,  9.185f),
+                IdleTarget = new Vector3(-0.838f, 15.230f,  7.315f),
+                SelectPos = new Vector3(-0.185f, 16.051f,  8.585f),
+                SelectTarget = new Vector3(-0.838f, 15.230f,  6.715f),
+                ZoomPos = new Vector3( 0.182f, 15.689f,  7.579f),
+                ZoomTarget = new Vector3(-0.471f, 14.868f,  5.709f),
+                Cursor = new Vector3(-0.838f, 15.230f,  6.715f)
+            }
+        });
 
         // â”€â”€ Chapter 12: Cascading Depths â”€â”€
-        RegisterStandardChapter(12, "cascadingdepths", "12_Water",
-            "areas/water", 0,
-            idle:   (new Vector3(-0.884f, 18.000f,  9.910f), new Vector3(-1.214f, 17.303f,  7.539f)),
-            select: (new Vector3(-0.884f, 18.000f,  9.310f), new Vector3(-1.214f, 17.303f,  6.939f)),
-            zoom:   (new Vector3(-0.517f, 17.638f,  8.304f), new Vector3(-0.847f, 16.941f,  5.933f)),
-            cursor:  new Vector3(-1.214f, 17.303f,  6.939f));
+        Register(new ChapterDef
+        {
+            Number = 12,
+            Name = “cascadingdepths”,
+            SID = AreaModeExtender.BuildASideSID(“12_Water”),
+            Icon = “areas/water”,
+            IsInterlude = false,
+            HasBSide = true,
+            HasCSide = true,
+            HasDSide = true,
+            HasDXSide = false,
+            MusicEvents = new[]
+            {
+                “event:/music/12-cascadingdepths/main”,
+                “event:/music/12-cascadingdepths/main”,
+                “event:/music/12-cascadingdepths/main”,
+                “event:/music/pusheen/DSide/12_water”,
+                “event:/music/12-cascadingdepths/main”,
+            },
+            AmbienceEvents = new[]
+            {
+                GetStandardAmbienceEvent(12),
+                GetStandardAmbienceEvent(12),
+                GetStandardAmbienceEvent(12),
+                GetStandardAmbienceEvent(12),
+                GetStandardAmbienceEvent(12),
+            },
+            CassetteSong = “event:/music/12-cascadingdepths/main”,
+            MountainState = 0,
+            MountainData = new MountainCameraData
+            {
+                IdlePos = new Vector3(-0.884f, 18.000f,  9.910f),
+                IdleTarget = new Vector3(-1.214f, 17.303f,  7.539f),
+                SelectPos = new Vector3(-0.884f, 18.000f,  9.310f),
+                SelectTarget = new Vector3(-1.214f, 17.303f,  6.939f),
+                ZoomPos = new Vector3(-0.517f, 17.638f,  8.304f),
+                ZoomTarget = new Vector3(-0.847f, 16.941f,  5.933f),
+                Cursor = new Vector3(-1.214f, 17.303f,  6.939f)
+            }
+        });
 
         // â”€â”€ Chapter 13: Blazing Territories â”€â”€
-        RegisterStandardChapter(13, "balzingteritory", "13_Fire",
-            "areas/fire", MountainOverworldManager.STATE_DARK,
-            idle:   (new Vector3(-1.583f, 19.949f, 10.635f), new Vector3(-1.590f, 19.376f,  8.163f)),
-            select: (new Vector3(-1.583f, 19.949f, 10.035f), new Vector3(-1.590f, 19.376f,  7.563f)),
-            zoom:   (new Vector3(-1.216f, 19.587f,  9.029f), new Vector3(-1.223f, 19.014f,  6.557f)),
-            cursor:  new Vector3(-1.590f, 19.376f,  7.563f));
+        Register(new ChapterDef
+        {
+            Number = 13,
+            Name = “balzingteritory”,
+            SID = AreaModeExtender.BuildASideSID(“13_Fire”),
+            Icon = “areas/fire”,
+            IsInterlude = false,
+            HasBSide = true,
+            HasCSide = true,
+            HasDSide = true,
+            HasDXSide = false,
+            MusicEvents = new[]
+            {
+                “event:/music/13-balzingteritory/main”,
+                “event:/music/13-balzingteritory/main”,
+                “event:/music/13-balzingteritory/main”,
+                “event:/music/pusheen/DSide/13_fire”,
+                “event:/music/13-balzingteritory/main”,
+            },
+            AmbienceEvents = new[]
+            {
+                GetStandardAmbienceEvent(13),
+                GetStandardAmbienceEvent(13),
+                GetStandardAmbienceEvent(13),
+                GetStandardAmbienceEvent(13),
+                GetStandardAmbienceEvent(13),
+            },
+            CassetteSong = “event:/music/13-balzingteritory/main”,
+            MountainState = MountainOverworldManager.STATE_DARK,
+            MountainData = new MountainCameraData
+            {
+                IdlePos = new Vector3(-1.583f, 19.949f, 10.635f),
+                IdleTarget = new Vector3(-1.590f, 19.376f,  8.163f),
+                SelectPos = new Vector3(-1.583f, 19.949f, 10.035f),
+                SelectTarget = new Vector3(-1.590f, 19.376f,  7.563f),
+                ZoomPos = new Vector3(-1.216f, 19.587f,  9.029f),
+                ZoomTarget = new Vector3(-1.223f, 19.014f,  6.557f),
+                Cursor = new Vector3(-1.590f, 19.376f,  7.563f)
+            }
+        });
 
         // â”€â”€ Chapter 14: Cyber Nexus â”€â”€
-        RegisterStandardChapter(14, "cybernexus", "14_Digital",
-            "areas/digital", 0,
-            idle:   (new Vector3(-1.660f, 22.498f, 10.160f), new Vector3(-1.966f, 21.449f,  7.987f)),
-            select: (new Vector3(-1.660f, 22.498f,  9.560f), new Vector3(-1.966f, 21.449f,  7.387f)),
-            zoom:   (new Vector3(-1.293f, 22.136f,  8.554f), new Vector3(-1.599f, 21.087f,  6.381f)),
-            cursor:  new Vector3(-1.966f, 21.449f,  7.387f));
+        Register(new ChapterDef
+        {
+            Number = 14,
+            Name = “cybernexus”,
+            SID = AreaModeExtender.BuildASideSID(“14_Digital”),
+            Icon = “areas/digital”,
+            IsInterlude = false,
+            HasBSide = true,
+            HasCSide = true,
+            HasDSide = true,
+            HasDXSide = false,
+            MusicEvents = new[]
+            {
+                “event:/music/14-cybernexus/main”,
+                “event:/music/14-cybernexus/main”,
+                “event:/music/14-cybernexus/main”,
+                “event:/music/pusheen/DSide/14_digital”,
+                “event:/music/14-cybernexus/main”,
+            },
+            AmbienceEvents = new[]
+            {
+                GetStandardAmbienceEvent(14),
+                GetStandardAmbienceEvent(14),
+                GetStandardAmbienceEvent(14),
+                GetStandardAmbienceEvent(14),
+                GetStandardAmbienceEvent(14),
+            },
+            CassetteSong = “event:/music/14-cybernexus/main”,
+            MountainState = 0,
+            MountainData = new MountainCameraData
+            {
+                IdlePos = new Vector3(-1.660f, 22.498f, 10.160f),
+                IdleTarget = new Vector3(-1.966f, 21.449f,  7.987f),
+                SelectPos = new Vector3(-1.660f, 22.498f,  9.560f),
+                SelectTarget = new Vector3(-1.966f, 21.449f,  7.387f),
+                ZoomPos = new Vector3(-1.293f, 22.136f,  8.554f),
+                ZoomTarget = new Vector3(-1.599f, 21.087f,  6.381f),
+                Cursor = new Vector3(-1.966f, 21.449f,  7.387f)
+            }
+        });
 
         // â”€â”€ Chapter 15: Ethereal Citadel â”€â”€
-        RegisterStandardChapter(15, "etheraealcitadel", "15_Castle",
-            "areas/castle", 0,
-            idle:   (new Vector3(-1.737f, 25.047f,  9.685f), new Vector3(-1.722f, 24.522f,  7.411f)),
-            select: (new Vector3(-1.737f, 25.047f,  9.085f), new Vector3(-1.722f, 24.522f,  6.811f)),
-            zoom:   (new Vector3(-1.370f, 24.685f,  8.079f), new Vector3(-1.355f, 24.160f,  5.805f)),
-            cursor:  new Vector3(-1.722f, 24.522f,  6.811f));
+        Register(new ChapterDef
+        {
+            Number = 15,
+            Name = “etheraealcitadel”,
+            SID = AreaModeExtender.BuildASideSID(“15_Castle”),
+            Icon = “areas/castle”,
+            IsInterlude = false,
+            HasBSide = true,
+            HasCSide = true,
+            HasDSide = true,
+            HasDXSide = false,
+            MusicEvents = new[]
+            {
+                “event:/music/15-etheraealcitadel/main”,
+                “event:/music/15-etheraealcitadel/main”,
+                “event:/music/15-etheraealcitadel/main”,
+                “event:/music/pusheen/DSide/15_castle”,
+                “event:/music/15-etheraealcitadel/main”,
+            },
+            AmbienceEvents = new[]
+            {
+                GetStandardAmbienceEvent(15),
+                GetStandardAmbienceEvent(15),
+                GetStandardAmbienceEvent(15),
+                GetStandardAmbienceEvent(15),
+                GetStandardAmbienceEvent(15),
+            },
+            CassetteSong = “event:/music/15-etheraealcitadel/main”,
+            MountainState = 0,
+            MountainData = new MountainCameraData
+            {
+                IdlePos = new Vector3(-1.737f, 25.047f,  9.685f),
+                IdleTarget = new Vector3(-1.722f, 24.522f,  7.411f),
+                SelectPos = new Vector3(-1.737f, 25.047f,  9.085f),
+                SelectTarget = new Vector3(-1.722f, 24.522f,  6.811f),
+                ZoomPos = new Vector3(-1.370f, 24.685f,  8.079f),
+                ZoomTarget = new Vector3(-1.355f, 24.160f,  5.805f),
+                Cursor = new Vector3(-1.722f, 24.522f,  6.811f)
+            }
+        });
 
-        // â”€â”€ Chapter 16: Organ Garden of Despair (A-Side only) â”€â”€
+        // â”€â”€ Chapter 16: Organ Garden of Despair â”€â”€
         // Image 11: position=(-1.916, 33.050, 9.585) target=(-1.479, 32.938, 7.636)
         Register(new ChapterDef
         {
             Number = 16,
-            Name = "organgarden",
-            SID = AreaModeExtender.BuildASideSID("16_Corruption"),
-            Icon = "areas/corruption",
+            Name = “organgarden”,
+            SID = AreaModeExtender.BuildASideSID(“16_Corruption”),
+            Icon = “areas/corruption”,
             IsInterlude = false,
-            HasBSide = false, HasCSide = false, HasDSide = false, HasDXSide = false,
-            MusicEvents = new[] { "event:/music/16-organgarden/main" },
-            AmbienceEvents = new[] { "event:/env/amb/16_main" },
+            HasBSide = true,
+            HasCSide = true,
+            HasDSide = true,
+            HasDXSide = false,
+            MusicEvents = new[]
+            {
+                “event:/music/16-organgarden/main”,
+                “event:/music/16-organgarden/main”,
+                “event:/music/16-organgarden/main”,
+                “event:/music/pusheen/DSide/16_corruption”,
+                “event:/music/16-organgarden/main”,
+            },
+            AmbienceEvents = new[]
+            {
+                “event:/env/amb/16_main”,
+                “event:/env/amb/16_main”,
+                “event:/env/amb/16_main”,
+                “event:/env/amb/16_main”,
+                “event:/env/amb/16_main”,
+            },
+            CassetteSong = “event:/music/16-organgarden/main”,
             MountainState = MountainOverworldManager.STATE_DARK,
             MountainData = new MountainCameraData
             {
@@ -380,12 +874,46 @@ public static class AreaMapData
         });
 
         // â”€â”€ Chapter 18: Core of Existence â”€â”€
-        RegisterStandardChapter(18, "coreexistence", "18_Heart",
-            "areas/heart", MountainOverworldManager.STATE_DARK,
-            idle:   (new Vector3(-1.916f, 37.850f, 11.185f), new Vector3(-1.479f, 37.738f,  9.236f)),
-            select: (new Vector3(-1.916f, 37.850f,  9.585f), new Vector3(-1.479f, 37.738f,  7.636f)),
-            zoom:   (new Vector3(-1.549f, 37.488f,  8.579f), new Vector3(-1.112f, 37.376f,  6.630f)),
-            cursor:  new Vector3(-1.479f, 37.738f,  7.636f));
+        Register(new ChapterDef
+        {
+            Number = 18,
+            Name = “coreexistence”,
+            SID = AreaModeExtender.BuildASideSID(“18_Heart”),
+            Icon = “areas/heart”,
+            IsInterlude = false,
+            HasBSide = true,
+            HasCSide = true,
+            HasDSide = true,
+            HasDXSide = false,
+            MusicEvents = new[]
+            {
+                “event:/music/18-coreexistence/main”,
+                “event:/music/18-coreexistence/main”,
+                “event:/music/18-coreexistence/main”,
+                “event:/music/pusheen/DSide/18_heart”,
+                “event:/music/18-coreexistence/main”,
+            },
+            AmbienceEvents = new[]
+            {
+                GetStandardAmbienceEvent(18),
+                GetStandardAmbienceEvent(18),
+                GetStandardAmbienceEvent(18),
+                GetStandardAmbienceEvent(18),
+                GetStandardAmbienceEvent(18),
+            },
+            CassetteSong = “event:/music/18-coreexistence/main”,
+            MountainState = MountainOverworldManager.STATE_DARK,
+            MountainData = new MountainCameraData
+            {
+                IdlePos = new Vector3(-1.916f, 37.850f, 11.185f),
+                IdleTarget = new Vector3(-1.479f, 37.738f,  9.236f),
+                SelectPos = new Vector3(-1.916f, 37.850f,  9.585f),
+                SelectTarget = new Vector3(-1.479f, 37.738f,  7.636f),
+                ZoomPos = new Vector3(-1.549f, 37.488f,  8.579f),
+                ZoomTarget = new Vector3(-1.112f, 37.376f,  6.630f),
+                Cursor = new Vector3(-1.479f, 37.738f,  7.636f)
+            }
+        });
 
         // â”€â”€ Chapter 19: Farewell to Stars (A-Side only) â”€â”€
         Register(new ChapterDef

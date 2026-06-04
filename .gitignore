@@ -33,6 +33,7 @@ build*.txt
 DesoloZantas_Audio.zip
 DesoloZantas_MapsDialog.zip
 
+Audio/*.bank
 Audio/*.bank.*
 update_maps.bat
 .gitignore

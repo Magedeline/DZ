@@ -6,9 +6,10 @@ using Microsoft.Xna.Framework.Graphics;
 using Monocle;
 
 namespace Celeste;
-    [CustomBackdrop("MaggyHelper/RainbowBlackholeBG")]
-    [HotReloadable]
-public class RainbowBlackholeBG : Backdrop
+
+[CustomBackdrop("MaggyHelper/RainbowBlackholeBg")]
+[HotReloadable]
+public class RainbowBlackholeBg : Backdrop
 {
     public enum Strengths
     {
@@ -176,10 +177,10 @@ public class RainbowBlackholeBG : Backdrop
         }
     }
 
-    public RainbowBlackholeBG(BinaryPacker.Element data) : this() { }
+    public RainbowBlackholeBg(BinaryPacker.Element data) : this() { }
 
     [MethodImpl(MethodImplOptions.NoInlining)]
-    public RainbowBlackholeBG()
+    public RainbowBlackholeBg()
     {
         bgTexture = GFX.Game["objects/temple/portal/portal"];
         List<MTexture> atlasSubtextures = GFX.Game.GetAtlasSubtextures("bgs/maggy/19/say_goodbye/blackhole/particle");

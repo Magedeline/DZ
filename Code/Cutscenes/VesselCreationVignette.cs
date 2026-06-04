@@ -249,7 +249,8 @@ namespace Celeste.Cutscenes
             yield return fadeVesselIn();
 
             yield return showText("VESSEL_CREATION_LEG_CHOICE");
-            Audio.Play(HEART_CHANGE_EVENT);
+            try { Audio.Play(HEART_CHANGE_EVENT); }
+            catch (Exception ex) { IngesteLogger.Warn($"[VesselCreation] Failed to play heart change: {ex.Message}"); }
 
             // Left/Right cycler with live vessel preview (Deltarune-style)
             yield return showVesselPartCycleSelector(
@@ -268,7 +269,8 @@ namespace Celeste.Cutscenes
             IngesteLogger.Info("[VesselCreation] Phase: Torso Selection");
 
             yield return showText("VESSEL_CREATION_TORSO_CHOICE");
-            Audio.Play(HEART_CHANGE_EVENT);
+            try { Audio.Play(HEART_CHANGE_EVENT); }
+            catch (Exception ex) { IngesteLogger.Warn($"[VesselCreation] Failed to play heart change: {ex.Message}"); }
 
             yield return showVesselPartCycleSelector(
                 gonerBodyTextures.Length > 0 ? gonerBodyTextures.Length : 1,
@@ -286,7 +288,8 @@ namespace Celeste.Cutscenes
             IngesteLogger.Info("[VesselCreation] Phase: Head Selection");
 
             yield return showText("VESSEL_CREATION_HEAD_CHOICE");
-            Audio.Play(HEART_CHANGE_EVENT);
+            try { Audio.Play(HEART_CHANGE_EVENT); }
+            catch (Exception ex) { IngesteLogger.Warn($"[VesselCreation] Failed to play heart change: {ex.Message}"); }
 
             yield return showVesselPartCycleSelector(
                 gonerHeadTextures.Length > 0 ? gonerHeadTextures.Length : 1,
@@ -373,7 +376,8 @@ namespace Celeste.Cutscenes
             yield return showText("VESSEL_CREATION_DISPLAY");
             
             // Play heart appear sound when vessel is revealed
-            Audio.Play(HEART_APPEAR_EVENT);
+            try { Audio.Play(HEART_APPEAR_EVENT); }
+            catch (Exception ex) { IngesteLogger.Warn($"[VesselCreation] Failed to play heart appear: {ex.Message}"); }
             
             // Fade in the vessel sprite
             float fadeTimer = 0f;
@@ -545,17 +549,20 @@ namespace Celeste.Cutscenes
                 if (Input.MenuLeft.Pressed || Input.MenuLeft.Repeating)
                 {
                     setIndex((getIndex() - 1 + count) % count);
-                    Audio.Play(HEART_CHANGE_EVENT);
+                    try { Audio.Play(HEART_CHANGE_EVENT); }
+                    catch (Exception ex) { IngesteLogger.Warn($"[VesselCreation] Failed to play heart change: {ex.Message}"); }
                 }
                 else if (Input.MenuRight.Pressed || Input.MenuRight.Repeating)
                 {
                     setIndex((getIndex() + 1) % count);
-                    Audio.Play(HEART_CHANGE_EVENT);
+                    try { Audio.Play(HEART_CHANGE_EVENT); }
+                    catch (Exception ex) { IngesteLogger.Warn($"[VesselCreation] Failed to play heart change: {ex.Message}"); }
                 }
 
                 if (Input.MenuConfirm.Pressed)
                 {
-                    Audio.Play(CHOICE_SELECT_EVENT);
+                    try { Audio.Play(CHOICE_SELECT_EVENT); }
+                    catch (Exception ex) { IngesteLogger.Warn($"[VesselCreation] Failed to play choice select: {ex.Message}"); }
                     break;
                 }
 
@@ -576,7 +583,8 @@ namespace Celeste.Cutscenes
         private IEnumerator showChoiceMenu(string[] choices, Action<string, int> onSelect)
         {
             IngesteLogger.Debug($"[VesselCreation] Showing TextMenu choice with {choices.Length} options");
-            Audio.Play(CHOICE_APPEAR_EVENT);
+            try { Audio.Play(CHOICE_APPEAR_EVENT); }
+            catch (Exception ex) { IngesteLogger.Warn($"[VesselCreation] Failed to play choice appear: {ex.Message}"); }
 
             var menu = new TextMenu();
             menu.CompactWidthMode = true;
@@ -589,7 +597,8 @@ namespace Celeste.Cutscenes
                 {
                     menu.OnCancel -= menu.Close;
                     menu.Close();
-                    Audio.Play(CHOICE_SELECT_EVENT);
+                    try { Audio.Play(CHOICE_SELECT_EVENT); }
+                    catch (Exception ex) { IngesteLogger.Warn($"[VesselCreation] Failed to play choice select: {ex.Message}"); }
                     onSelect(label, index);
                 }));
             }
@@ -646,7 +655,8 @@ namespace Celeste.Cutscenes
             textInputOnComplete = onComplete;
             textInputActive = true;
 
-            Audio.Play(CHOICE_APPEAR_EVENT);
+            try { Audio.Play(CHOICE_APPEAR_EVENT); }
+            catch (Exception ex) { IngesteLogger.Warn($"[VesselCreation] Failed to play choice appear: {ex.Message}"); }
 
             while ((textInputEase += Engine.DeltaTime * CHOICE_EASE_SPEED) < 1f)
                 yield return null;
@@ -688,7 +698,8 @@ namespace Celeste.Cutscenes
                 {
                     textInputPaletteActive = true;
                     textInputPaletteColumn = Math.Min(textInputPaletteColumn, TextInputPaletteRows[textInputPaletteRow].Length - 1);
-                    Audio.Play(CHOICE_MOVE_EVENT);
+                    try { Audio.Play(CHOICE_MOVE_EVENT); }
+                    catch (Exception ex) { IngesteLogger.Warn($"[VesselCreation] Failed to play choice move: {ex.Message}"); }
                 }
             }
 
@@ -793,7 +804,8 @@ namespace Celeste.Cutscenes
                     textInputValue = string.Empty;
                     textInputCursorIndex = 0;
                     textInputSelectionAnchor = 0;
-                    Audio.Play(CHOICE_MOVE_EVENT);
+                    try { Audio.Play(CHOICE_MOVE_EVENT); }
+                    catch (Exception ex) { IngesteLogger.Warn($"[VesselCreation] Failed to play choice move: {ex.Message}"); }
                     break;
 
                 case "OK":
@@ -812,7 +824,8 @@ namespace Celeste.Cutscenes
             if (string.IsNullOrEmpty(sanitized))
                 return;
 
-            Audio.Play(CHOICE_SELECT_EVENT);
+            try { Audio.Play(CHOICE_SELECT_EVENT); }
+            catch (Exception ex) { IngesteLogger.Warn($"[VesselCreation] Failed to play choice select: {ex.Message}"); }
             textInputOnComplete?.Invoke(sanitized);
             textInputOnComplete = null;
             textInputActive = false;
@@ -1043,7 +1056,8 @@ namespace Celeste.Cutscenes
         public void OpenPauseMenu()
         {
             PauseSfx();
-            Audio.Play("event:/ui/game/pause");
+            try { Audio.Play("event:/ui/game/pause"); }
+            catch (Exception ex) { IngesteLogger.Warn($"[VesselCreation] Failed to play pause sound: {ex.Message}"); }
             Add(pauseMenu = new TextMenu());
             pauseMenu.Add(new TextMenu.Button(Dialog.Clean("intro_vignette_resume")).Pressed(ClosePauseMenu));
             pauseMenu.Add(new TextMenu.Button(Dialog.Clean("intro_vignette_skip")).Pressed(SkipVignette));
@@ -1053,7 +1067,8 @@ namespace Celeste.Cutscenes
         private void ClosePauseMenu()
         {
             ResumeSfx();
-            Audio.Play("event:/ui/game/unpause");
+            try { Audio.Play("event:/ui/game/unpause"); }
+            catch (Exception ex) { IngesteLogger.Warn($"[VesselCreation] Failed to play unpause sound: {ex.Message}"); }
             if (pauseMenu != null)
             {
                 pauseMenu.RemoveSelf();

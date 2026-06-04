@@ -325,6 +325,7 @@ namespace Celeste.Mod.MaggyHelper
         /// <summary>
         /// Hook to retry audio bank loading if FMOD wasn't ready during initialization.
         /// </summary>
+        [Obsolete]
         public override void LoadSaveData(int index)
         {
             base.LoadSaveData(index);

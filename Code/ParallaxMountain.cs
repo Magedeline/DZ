@@ -47,7 +47,6 @@ namespace Celeste.Mod.MaggyHelper
             float mountainX = cameraPosition.X - 50;
             float mountainY = cameraPosition.Y + 160;
             float mountainWidth = 400;
-            float mountainHeight = 100;
 
             // Draw multiple horizontal bands, each with noise-based depth variation
             for (int band = 0; band < 5; band++)

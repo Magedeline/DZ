@@ -1,11 +1,12 @@
+using System;
 using Monocle;
 
 namespace Celeste.Mod.MaggyHelper;
 
 /// <summary>
 /// Audio manager for KIRBY_CELESTE.
-/// Everest's IngestBank system automatically loads FMOD banks from Audio/ folder.
-/// This class just provides logging and verification.
+/// Banks loaded from Audio/ folder are auto-registered by Everest's IngestBank system.
+/// No manual loading required—Everest handles FMOD bank initialization automatically.
 /// </summary>
 public static class OverworldMusicManager
 {
@@ -15,13 +16,12 @@ public static class OverworldMusicManager
     {
         if (_initialized) return;
         _initialized = true;
-
-        Logger.Log(LogLevel.Info, "MaggyHelper", "✓ Audio system initialized (Everest IngestBank handles FMOD banks)");
+        Logger.Log(LogLevel.Info, "MaggyHelper", "✓ Audio system ready (Everest IngestBank manages FMOD banks)");
     }
 
     public static void RetryBankLoadIfNeeded()
     {
-        // Everest handles everything, nothing to retry
+        // Everest's IngestBank system handles all bank loading automatically
     }
 
     public static void UnloadBanks()

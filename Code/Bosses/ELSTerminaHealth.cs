@@ -14,7 +14,7 @@ public class ELSTerminaHealth : Entity
 {
     private Sprite? baseBar;
     private List<HealthSlice> healthSlices;
-    private Level level;
+    private Level level = null!;
     private float currentHealth;
     private float maxHealth;
     private int sliceCount;

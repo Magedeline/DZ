@@ -27,6 +27,7 @@ namespace Celeste.Mod.MaggyHelper.Security
         {
             try
             {
+#pragma warning disable CS0162
                 // Skip verification in debug builds
                 #if DEBUG
                 return true;
@@ -70,6 +71,7 @@ namespace Celeste.Mod.MaggyHelper.Security
         /// </summary>
         public static bool PerformTimingCheck()
         {
+#pragma warning disable CS0162
             #if DEBUG
             return true;
             #endif

@@ -10,7 +10,6 @@ global using Celeste.Mod;
 global using Celeste.Mod.Backdrops;
 global using Celeste.Mod.Entities;
 global using Celeste.Helpers;
-global using Celeste.HotReload;
 global using Celeste.Extensions;
 global using Celeste.Extensions.Core;
 global using Celeste.Utils;

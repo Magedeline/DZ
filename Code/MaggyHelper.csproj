@@ -55,8 +55,6 @@
         <PackageReference Include="CelesteMod.Publicizer" Version="1.1.2" CelesteAssembly="$(CelesteAssemblyPath)" />
         <Reference Include="$(CelestePrefix)\MMHOOK_Celeste.dll" Private="false" />
         <Reference Include="$(CelestePrefix)\FNA.dll" Private="false" />
-        <!-- Spine MonoGame/FNA runtime (source-only, built from Libs/SpineMonoGame) -->
-        <ProjectReference Include="..\Libs\SpineMonoGame\SpineMonoGame.csproj" />
     </ItemGroup>
 
     <ItemGroup>
@@ -68,7 +66,7 @@
             <FilesToCopy Include="$(OutputPath)\$(AssemblyName).dll" />
             <FilesToCopy Include="$(OutputPath)\$(AssemblyName).pdb" />
             <FilesToCopy Include="lib-stripped\MaggyHelper.xml" Condition="Exists('lib-stripped\MaggyHelper.xml')" />
-            <FilesToCopy Include="@(ReferenceCopyLocalPaths)" Condition="'%(Filename)' == 'YamlDotNet' Or '%(Filename)' == 'Mono.Cecil' Or '%(Filename)' == 'Mono.Cecil.Mdb' Or '%(Filename)' == 'Mono.Cecil.Pdb' Or '%(Filename)' == 'Mono.Cecil.Rocks' Or '%(Filename)' == 'MonoMod.RuntimeDetour' Or '%(Filename)' == 'MonoMod.Utils' Or '%(Filename)' == 'MonoMod.Backports' Or '%(Filename)' == 'MonoMod.Core' Or '%(Filename)' == 'MonoMod.ILHelpers' Or '%(Filename)' == 'MonoMod.Iced' Or '%(Filename)' == 'Aether.Physics2D' Or '%(Filename)' == 'ImGui.NET' Or '%(Filename)' == 'SpineMonoGame'" />
+            <FilesToCopy Include="@(ReferenceCopyLocalPaths)" Condition="'%(Filename)' == 'YamlDotNet' Or '%(Filename)' == 'Mono.Cecil' Or '%(Filename)' == 'Mono.Cecil.Mdb' Or '%(Filename)' == 'Mono.Cecil.Pdb' Or '%(Filename)' == 'Mono.Cecil.Rocks' Or '%(Filename)' == 'MonoMod.RuntimeDetour' Or '%(Filename)' == 'MonoMod.Utils' Or '%(Filename)' == 'MonoMod.Backports' Or '%(Filename)' == 'MonoMod.Core' Or '%(Filename)' == 'MonoMod.ILHelpers' Or '%(Filename)' == 'MonoMod.Iced' Or '%(Filename)' == 'Aether.Physics2D' Or '%(Filename)' == 'ImGui.NET'" />
             <!-- Copy native cimgui.dll (ImGui.NET dependency) to bin -->
             <FilesToCopy Include="$(OutputPath)cimgui.dll" Condition="Exists('$(OutputPath)cimgui.dll')" />
         </ItemGroup>

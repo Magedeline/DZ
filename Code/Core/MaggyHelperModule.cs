@@ -214,7 +214,6 @@ namespace Celeste.Mod.MaggyHelper
 
             global::Celeste.TitleScreen_ExtHook.Load();
             global::Celeste.UI.ModSelectionScreen.Load();
-            OverworldMusicManager.LoadBanks();
             global::Celeste.MountainOverworldManager.Load();
             global::Celeste.Cutscenes.IntroWarning.Load();
 
@@ -231,7 +230,7 @@ namespace Celeste.Mod.MaggyHelper
             // Kirby health system hooks for hazard damage integration
             global::Celeste.KirbyHealthSystemHooks.Load();
 
-            // Hot Reload Controller (Global) - named handler so Unload can -= it.
+            // Debug room warp menu (development convenience)
             Everest.Events.Level.OnLoadLevel += OnLoadLevel_EnsureHotReloadController;
 
             // Hook level exit to clean up static state
@@ -255,12 +254,6 @@ namespace Celeste.Mod.MaggyHelper
 
             // Initialize Deathlink integration
             global::Celeste.DeathlinkIntegration.Initialize();
-
-            // Hook PCG quick menu keybind
-            On.Celeste.Level.Update += OnLevelUpdate_PCGQuickMenu;
-
-            // Initialize PCG area registrar (CelesteRandomizer-style dynamic area registration)
-            // PCGAreaRegistrar.Load(); // TODO: Restore when PCGAreaRegistrar is available
 
             // Initialize SubChapterManager (EXPERIMENTAL/TEST ONLY)
             // Sub-chapter system: host 5–20 collab maps under a single checkpoint
@@ -306,23 +299,6 @@ namespace Celeste.Mod.MaggyHelper
         }
 
         /// <summary>
-        /// Hook to detect PCGQuickMenu keybind while in level.
-        /// </summary>
-        private static void OnLevelUpdate_PCGQuickMenu(On.Celeste.Level.orig_Update orig, Level self)
-        {
-            orig(self);
-            // TODO: Restore when PCGQuickMenu is available
-            // if (Settings?.PCGQuickMenu?.Pressed ?? false)
-            // {
-            //     if (!self.Paused && self.Tracker.GetEntity<PCGQuickMenu>() == null)
-            //     {
-            //         self.Paused = true;
-            //         self.Add(new PCGQuickMenu());
-            //     }
-            // }
-        }
-
-        /// <summary>
         /// Hook to retry audio bank loading if FMOD wasn't ready during initialization.
         /// </summary>
         [Obsolete]
@@ -341,7 +317,6 @@ namespace Celeste.Mod.MaggyHelper
             global::Celeste.MountainOverworldManager.Unload();
             global::Celeste.KirbyPlayerMapHooks.Unload();
             global::Celeste.KirbyHealthSystemHooks.Unload();
-            OverworldMusicManager.UnloadBanks();
             global::Celeste.TitleScreen_ExtHook.Unload();
             global::Celeste.UI.ModSelectionScreen.Unload();
             global::Celeste.Cutscenes.IntroWarning.Unload();
@@ -356,14 +331,8 @@ namespace Celeste.Mod.MaggyHelper
 
             // Unhook level exit cleanup
             Everest.Events.Level.OnExit -= OnLevelExit;
-            // Unhook hot-reload controller insertion (matches += in Load)
+            // Unhook debug room warp menu
             Everest.Events.Level.OnLoadLevel -= OnLoadLevel_EnsureHotReloadController;
-
-            // Unhook PCG quick menu keybind
-            On.Celeste.Level.Update -= OnLevelUpdate_PCGQuickMenu;
-
-            // Unload PCG area registrar
-            // PCGAreaRegistrar.Unload(); // TODO: Restore when PCGAreaRegistrar is available
 
             // Unload SubChapterManager (EXPERIMENTAL/TEST ONLY)
             global::Celeste.SubChapterManager.Unload();
@@ -1097,10 +1066,6 @@ namespace Celeste.Mod.MaggyHelper
             base.LoadContent(firstLoad);
             // BossesExampleModule.LoadContent(firstLoad);
             // ProphecyFont is now lazy-initialized on first access
-
-            // Audio.Init hook doesn't fire reliably in this Everest version;
-            // LoadContent runs after FMOD and IngestBank are done.
-            global::Celeste.Mod.MaggyHelper.OverworldMusicManager.LoadBanks();
         }
 
         public static bool IsChapter17EpilogueCompleted()
@@ -1389,261 +1354,6 @@ namespace Celeste.Mod.MaggyHelper
             Engine.Commands?.Log("  - Chapter 21 (Last Level): True Finale");
             Engine.Commands?.Log("Return to overworld to see the changes.");
         }
-
-        // =====================================================================
-        //  PCG Console Commands
-        // =====================================================================
-
-        /// <summary>
-        /// Console command: maggy_pcg_generate - Generate a hybrid PCG map.
-        /// Usage: maggy_pcg_generate [seed] [roomCount] [difficulty] [outputPath]
-        /// </summary>
-        [Command("maggy_pcg_generate", "Generate a hybrid PCG map. Usage: maggy_pcg_generate [seed] [roomCount] [difficulty] [outputPath]")]
-        private static async void CmdPcgGenerate(int seed = -1, int roomCount = 8, int difficulty = 2, string outputPath = "")
-        {
-            if (string.IsNullOrEmpty(outputPath))
-            {
-                outputPath = $"PCG/Generated/pcg_map_{DateTime.Now:yyyyMMdd_HHmmss}.bin";
-            }
-
-            string templateLibrary = "PCG/Templates/library.json";
-            if (!File.Exists(templateLibrary))
-            {
-                // Try to build a library from existing maps
-                string mapsDir = "Maps";
-                if (Directory.Exists(mapsDir))
-                {
-                    var mapFiles = Directory.GetFiles(mapsDir, "*.bin", SearchOption.AllDirectories).Take(5).ToArray();
-                    if (mapFiles.Length > 0)
-                    {
-                        Engine.Commands?.Log("[MaggyHelper] Building template library from existing maps...");
-                        await PCGService.BuildTemplateLibraryAsync(mapFiles, templateLibrary);
-                    }
-                }
-            }
-
-            if (!File.Exists(templateLibrary))
-            {
-                Engine.Commands?.Log("[MaggyHelper] No template library found. Use maggy_pcg_extract to build one from existing maps first.");
-                return;
-            }
-
-            Engine.Commands?.Log($"[MaggyHelper] Generating hybrid PCG map: seed={seed}, rooms={roomCount}, difficulty={difficulty}...");
-            bool success = await PCGService.GenerateHybridMapAsync(
-                templateLibrary,
-                outputPath,
-                seed,
-                roomCount,
-                difficulty,
-                "pathway",
-                "balanced");
-
-            if (success)
-            {
-                string fullPath = Path.GetFullPath(outputPath);
-                Engine.Commands?.Log($"[MaggyHelper] Map generated successfully!");
-                Engine.Commands?.Log($"  Path: {fullPath}");
-                Engine.Commands?.Log($"  Load with: maggy_pcg_load {outputPath}");
-            }
-            else
-            {
-                Engine.Commands?.Log("[MaggyHelper] Map generation failed. Check log for details.");
-            }
-        }
-
-        /// <summary>
-        /// Console command: maggy_pcg_load - Load a generated .bin map for playtesting.
-        /// Usage: maggy_pcg_load [mapPath]
-        /// </summary>
-        [Command("maggy_pcg_load", "Load a generated PCG map for playtesting. Usage: maggy_pcg_load [mapPath]")]
-        private static void CmdPcgLoad(string mapPath = "")
-        {
-            if (string.IsNullOrEmpty(mapPath))
-            {
-                var generatedDir = "PCG/Generated";
-                if (Directory.Exists(generatedDir))
-                {
-                    var newest = Directory.GetFiles(generatedDir, "*.bin")
-                        .Select(f => new FileInfo(f))
-                        .OrderByDescending(fi => fi.LastWriteTime)
-                        .FirstOrDefault();
-                    if (newest != null)
-                        mapPath = newest.FullName;
-                }
-            }
-
-            if (string.IsNullOrEmpty(mapPath) || !File.Exists(mapPath))
-            {
-                Engine.Commands?.Log("[MaggyHelper] No generated map found. Generate one first with maggy_pcg_generate.");
-                return;
-            }
-
-            // For playtesting, copy the generated map into the mod's map folder
-            // and launch it via a temporary session using the current chapter's SID
-            // with a direct level loader approach.
-            string testMapName = $"pcg_test_{Path.GetFileName(mapPath)}";
-            string testMapDir = Path.Combine("Maps", "PCG_Test");
-            Directory.CreateDirectory(testMapDir);
-            string destPath = Path.Combine(testMapDir, testMapName);
-            File.Copy(mapPath, destPath, true);
-
-            Engine.Commands?.Log($"[MaggyHelper] Copied map to {destPath}");
-            Engine.Commands?.Log("[MaggyHelper] To playtest: register this map in your everest.yaml or load it through the Enhanced Map Editor.");
-        }
-
-        /// <summary>
-        /// Console command: maggy_pcg_extract - Extract room templates from an existing map.
-        /// Usage: maggy_pcg_extract [mapPath] [outputDir]
-        /// </summary>
-        [Command("maggy_pcg_extract", "Extract room templates from a map. Usage: maggy_pcg_extract [mapPath] [outputDir]")]
-        private static void CmdPcgExtract(string mapPath = "", string outputDir = "PCG/Templates")
-        {
-            if (string.IsNullOrEmpty(mapPath))
-            {
-                // Default to current session map if in a level
-                if (Engine.Scene is Level level && level.Session?.MapData?.Filename != null)
-                {
-                    mapPath = level.Session.MapData.Filename + ".bin";
-                }
-                else
-                {
-                    Engine.Commands?.Log("[MaggyHelper] Usage: maggy_pcg_extract [mapPath] [outputDir]");
-                    Engine.Commands?.Log("  Or run while in a level to extract from the current map.");
-                    return;
-                }
-            }
-
-            if (!File.Exists(mapPath))
-            {
-                Engine.Commands?.Log($"[MaggyHelper] Map file not found: {mapPath}");
-                return;
-            }
-
-            Engine.Commands?.Log($"[MaggyHelper] Extracting templates from: {mapPath} ...");
-            var templates = RoomTemplateLoader.ExtractTemplatesFromMap(mapPath, outputDir);
-            if (templates.Count > 0)
-            {
-                Engine.Commands?.Log($"[MaggyHelper] Extracted {templates.Count} templates to {outputDir}");
-                foreach (var t in templates.Take(5))
-                    Engine.Commands?.Log($"  - {t.Name} ({t.Width}x{t.Height}, {t.Type}, {t.Difficulty})");
-            }
-            else
-            {
-                Engine.Commands?.Log("[MaggyHelper] No templates extracted. Check log for errors.");
-            }
-        }
-
-        /// <summary>
-        /// Console command: maggy_pcg_inspect - Dump a .bin map to a human-readable JSON file.
-        /// Usage: maggy_pcg_inspect [mapPath] [outputJsonPath]
-        /// </summary>
-        [Command("maggy_pcg_inspect", "Inspect a .bin map as JSON. Usage: maggy_pcg_inspect [mapPath] [outputJsonPath]")]
-        private static void CmdPcgInspect(string mapPath = "", string outputJsonPath = "")
-        {
-            if (string.IsNullOrEmpty(mapPath))
-            {
-                // Default to latest generated map
-                var generatedDir = "PCG/Generated";
-                if (Directory.Exists(generatedDir))
-                {
-                    var newest = Directory.GetFiles(generatedDir, "*.bin")
-                        .Select(f => new FileInfo(f))
-                        .OrderByDescending(fi => fi.LastWriteTime)
-                        .FirstOrDefault();
-                    if (newest != null)
-                        mapPath = newest.FullName;
-                }
-            }
-
-            if (string.IsNullOrEmpty(mapPath) || !File.Exists(mapPath))
-            {
-                Engine.Commands?.Log("[MaggyHelper] No map found. Provide a path or generate one first with maggy_pcg_generate.");
-                return;
-            }
-
-            if (string.IsNullOrEmpty(outputJsonPath))
-            {
-                outputJsonPath = Path.ChangeExtension(mapPath, ".inspect.json");
-            }
-
-            try
-            {
-                var root = BinaryPacker.FromBinary(mapPath);
-                if (root == null)
-                {
-                    Engine.Commands?.Log("[MaggyHelper] Failed to parse map binary.");
-                    return;
-                }
-
-                var tree = SerializeElement(root);
-                var json = System.Text.Json.JsonSerializer.Serialize(tree, new System.Text.Json.JsonSerializerOptions
-                {
-                    WriteIndented = true,
-                    PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase
-                });
-
-                Directory.CreateDirectory(Path.GetDirectoryName(Path.GetFullPath(outputJsonPath)));
-                File.WriteAllText(outputJsonPath, json);
-                Engine.Commands?.Log($"[MaggyHelper] Map dumped to JSON: {Path.GetFullPath(outputJsonPath)}");
-                Engine.Commands?.Log($"  Levels: {(root.Children?.FirstOrDefault(c => c.Name == "levels")?.Children?.Count ?? 0)}");
-            }
-            catch (Exception ex)
-            {
-                Engine.Commands?.Log($"[MaggyHelper] Inspect failed: {ex.Message}");
-            }
-        }
-
-        /// <summary>
-        /// Recursively convert a BinaryPacker.Element into a serializable dictionary tree.
-        /// </summary>
-        public static Dictionary<string, object> SerializeElement(BinaryPacker.Element element)
-        {
-            var dict = new Dictionary<string, object>();
-            if (element == null) return dict;
-
-            dict["name"] = element.Name ?? "";
-            if (element.Attributes != null && element.Attributes.Count > 0)
-            {
-                var attrs = new Dictionary<string, object>();
-                foreach (var kv in element.Attributes)
-                {
-                    object val = kv.Value;
-                    if (val is BinaryPacker.Element childEl)
-                        val = SerializeElement(childEl);
-                    else if (val is System.Collections.IEnumerable enumerable && val is not string)
-                    {
-                        var list = new List<object>();
-                        foreach (var item in enumerable)
-                        {
-                            if (item is BinaryPacker.Element itemEl)
-                                list.Add(SerializeElement(itemEl));
-                            else
-                                list.Add(item?.ToString());
-                        }
-                        val = list;
-                    }
-                    else
-                    {
-                        val = val?.ToString() ?? "";
-                    }
-                    attrs[kv.Key] = val;
-                }
-                dict["attributes"] = attrs;
-            }
-            if (element.Children != null && element.Children.Count > 0)
-            {
-                var children = new List<Dictionary<string, object>>();
-                foreach (var child in element.Children)
-                    children.Add(SerializeElement(child));
-                dict["children"] = children;
-            }
-            return dict;
-        }
-
-        /// <summary>
-        /// Public static wrapper for external callers.
-        /// </summary>
-        public static Dictionary<string, object> SerializeElementStatic(BinaryPacker.Element element) => SerializeElement(element);
 
         /// <summary>
         /// Checks if Chapter 10 (Ruins) is unlocked.

@@ -9,48 +9,10 @@ namespace Celeste.Mod.MaggyHelper
     /// </summary>
     public class MaggyHelperModuleSettings : EverestModuleSettings
     {
-        #region Hot Reload Settings (Development)
-
-        [SettingSubHeader("MaggyHelper_HOTRELOAD_HEADER")]
-        public bool HotReloadEnabled { get; set; } = true;
-
-        public bool HotReloadAuto { get; set; } = true;
-
-        public bool HotReloadShowUI { get; set; } = true;
-
-        public bool HotReloadSound { get; set; } = true;
-
-        public bool HotReloadAllMethods { get; set; }
-
-        public bool HotReloadVerbose { get; set; }
-
-        [SettingIgnore]
-        public string HotReloadSourcePath { get; set; }
-
-        #endregion
-
         #region Key Bindings
-
-        [DefaultButtonBinding(Buttons.LeftShoulder, Keys.F5)]
-        public ButtonBinding HotReloadToggle { get; set; }
-
-        [DefaultButtonBinding(Buttons.RightShoulder, Keys.F6)]
-        public ButtonBinding HotReloadManual { get; set; }
-
-        [DefaultButtonBinding(Buttons.LeftStick, Keys.F7)]
-        public ButtonBinding HotReloadAll { get; set; }
-
-        [DefaultButtonBinding(Buttons.RightStick, Keys.F8)]
-        public ButtonBinding HotReloadUI { get; set; }
-
-        [DefaultButtonBinding(Buttons.BigButton, Keys.F9)]
-        public ButtonBinding DebugMapEditor { get; set; }
 
         [DefaultButtonBinding(Buttons.LeftTrigger, Keys.F10)]
         public ButtonBinding InGameMapEditor { get; set; }
-
-        [DefaultButtonBinding(0, Keys.P)]
-        public ButtonBinding PCGQuickMenu { get; set; }
 
         #endregion
 
@@ -121,17 +83,6 @@ namespace Celeste.Mod.MaggyHelper
 
         [SettingIgnore]
         public int LastPlayedSideIndex { get; set; }
-
-        #endregion
-
-        #region PCG Settings
-
-        [SettingSubHeader("MaggyHelper_PCG_HEADER")]
-        [SettingRange(1, 20)]
-        [SettingName("MaggyHelper_PCG_FADE")]
-        public int PCGWarpFadeDurationTenths { get; set; } = 5;
-
-        public float PCGWarpFadeDuration => PCGWarpFadeDurationTenths / 10f;
 
         #endregion
 

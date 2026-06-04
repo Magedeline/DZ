@@ -2307,10 +2307,10 @@
 {a327f717-e8b5-4fb0-b4dd-84bd8a585fe0} bank:/dlc_music
 {e85b3c9e-428d-41b7-82c0-37814f3cbf15} bank:/dlc_sfx
 {7916fdbf-1253-451d-a369-6dfd34341e4e} bank:/music
-{fb0b2307-0608-4420-aa63-482b3ef90673} bank:/pusheen_audio_a
-{e9c1a3cb-c6cd-4c71-b7e7-2ed1d715fb56} bank:/pusheen_audio_b
-{0905e4ca-cfe4-4a19-9618-535cb96e0f13} bank:/pusheen_audio_c
-{b55d84ac-b7af-4723-963c-44ca67bab392} bank:/pusheen_audio_mus
+{b55d84ac-b7af-4723-963c-44ca67bab392} bank:/pusheen_audio_mus_a
+{ffa10db1-1004-4aaa-a59a-094c88099350} bank:/pusheen_audio_mus_b
+{85c3f52e-044c-4e85-b658-1289e553688a} bank:/pusheen_audio_mus_c
+{825220cc-f711-4cd1-9faa-8281181c3415} bank:/pusheen_audio_mus_final
 {98263171-3ea2-482b-abb7-9af01e4c002a} bank:/sfx
 {f0efde81-92ec-4f1a-8b48-815f4d8a3255} bank:/ui
-{f42d1384-f9ea-4ba4-9e08-a4d067c55b3b} bank:/Master Bank
+{f42d1384-f9ea-4ba4-9e08-a4d067c55b3b} bank:/Master_Bank

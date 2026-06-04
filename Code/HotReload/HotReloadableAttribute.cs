@@ -1,13 +1,14 @@
 using System;
 
-namespace Celeste.HotReload
+namespace Celeste
 {
     /// <summary>
-    /// Marks an entity class as supporting hot reload during development.
-    /// This is a marker attribute with no runtime behavior.
+    /// Stub attribute for [HotReloadable] marking.
+    /// The actual hot-reload system has been removed to a separate project.
+    /// This attribute is kept for backward compatibility with existing code.
     /// </summary>
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, Inherited = false)]
-    public sealed class HotReloadableAttribute : Attribute
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
+    public class HotReloadableAttribute : Attribute
     {
     }
 }

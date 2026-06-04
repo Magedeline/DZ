@@ -28,8 +28,6 @@ namespace Celeste
         private static Hook dashBeginHook;
         private static Hook wallJumpHook;
         private static On.Celeste.Level.hook_LoadLevel levelLoadLevelHook;
-        private static Hook mapEditorCtorHook;
-        private static Hook mapEditorUpdateHook;
         private static Hook levelTemplateCctorHook;
         private static On.Celeste.Level.hook_Update levelUpdateHook;
 
@@ -119,85 +117,14 @@ namespace Celeste
             }
 
             // ─── 5.5. Debug Mode Map Editor Hook ────────────────────────────────
-            // Hook Level.Update to handle F9 key press for opening enhanced map editor in debug mode
+            // Hook Level.Update to handle F10 key press for in-game map editor
             if (levelUpdateHook == null)
             {
                 levelUpdateHook = new On.Celeste.Level.hook_Update(Hook_Level_Update);
                 On.Celeste.Level.Update += levelUpdateHook;
             }
 
-            // ─── 6. Enhanced Map Editor with PCG Integration ─────────────────────
-            // Hook Celeste.Editor.MapEditor constructor to replace with EnhancedMapEditor
-            // NOTE: Disabled when ConditionHelper is loaded due to Scene.Begin() incompatibility
-            bool conditionHelperLoaded = Type.GetType("Celeste.Mod.ConditionHelper.ConditionHelperModule, ConditionHelper") != null;
-            if (conditionHelperLoaded)
-            {
-                Logger.Log(LogLevel.Warn, "MaggyHelper",
-                    "[MonoModHooks] ConditionHelper detected - Enhanced Map Editor disabled to avoid Scene.Begin() crash");
-            }
-            else
-            {
-                try
-                {
-                    Type mapEditorType = Type.GetType("Celeste.Editor.MapEditor, Celeste");
-                    if (mapEditorType != null)
-                    {
-                        ConstructorInfo mapEditorCtor = mapEditorType.GetConstructor(
-                            new[] { typeof(AreaKey), typeof(bool) });
-
-                        if (mapEditorCtor != null)
-                        {
-                            mapEditorCtorHook = new Hook(
-                                mapEditorCtor,
-                                typeof(MonoModHooks).GetMethod(
-                                    nameof(Hook_MapEditor_Ctor),
-                                    BindingFlags.Static | BindingFlags.NonPublic));
-
-                            Logger.Log(LogLevel.Info, "MaggyHelper",
-                                "[MonoModHooks] Hook on MapEditor constructor registered");
-                        }
-                        else
-                        {
-                            Logger.Log(LogLevel.Warn, "MaggyHelper",
-                                "[MonoModHooks] MapEditor constructor not found — skipping hook");
-                        }
-
-                        // Also hook the Update method to make F5 exit the vanilla editor
-                        MethodInfo mapEditorUpdate = mapEditorType.GetMethod(
-                            "Update",
-                            BindingFlags.Instance | BindingFlags.Public);
-
-                        if (mapEditorUpdate != null)
-                        {
-                            mapEditorUpdateHook = new Hook(
-                                mapEditorUpdate,
-                                typeof(MonoModHooks).GetMethod(
-                                    nameof(Hook_MapEditor_Update),
-                                    BindingFlags.Static | BindingFlags.NonPublic));
-
-                            Logger.Log(LogLevel.Info, "MaggyHelper",
-                                "[MonoModHooks] Hook on MapEditor.Update registered");
-                        }
-                        else
-                        {
-                            Logger.Log(LogLevel.Warn, "MaggyHelper",
-                                "[MonoModHooks] MapEditor.Update not found — skipping hook");
-                        }
-                    }
-                    else
-                    {
-                        Logger.Log(LogLevel.Warn, "MaggyHelper",
-                            "[MonoModHooks] MapEditor type not found — skipping hook");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Logger.Log(LogLevel.Warn, "MaggyHelper",
-                        $"[MonoModHooks] Failed to hook MapEditor: {ex.Message}");
-                }
-            }
-
-            // ─── 7. LevelTemplate Color Expansion ───────────────────────────────
+            // ─── 6. LevelTemplate Color Expansion ───────────────────────────────
             // Hook LevelTemplate static constructor to expand color array from 7 to 24
             try
             {
@@ -267,14 +194,6 @@ namespace Celeste
             if (levelUpdateHook != null)
                 On.Celeste.Level.Update -= levelUpdateHook;
             levelUpdateHook = null;
-
-            // Remove MapEditor hook
-            mapEditorCtorHook?.Dispose();
-            mapEditorCtorHook = null;
-
-            // Remove MapEditor.Update hook
-            mapEditorUpdateHook?.Dispose();
-            mapEditorUpdateHook = null;
 
             // Remove LevelTemplate static constructor hook
             levelTemplateCctorHook?.Dispose();
@@ -499,12 +418,12 @@ namespace Celeste
                 self.Tracker.GetEntity<global::Celeste.Player>()?.RestorePersistentState();
                 KirbyPlayerSpawner.EnsureRoomState(self);
 
-                // Add InGameMapEditor entity if not already present
-                if (self.Entities.FindFirst<InGameMapEditor>() == null)
-                {
-                    self.Add(new InGameMapEditor());
-                    Logger.Log(LogLevel.Info, "MaggyHelper", "[InGameMapEditor] Added to level");
-                }
+                // InGameMapEditor has been removed - reserved for future use
+                // if (self.Entities.FindFirst<InGameMapEditor>() == null)
+                // {
+                //     self.Add(new InGameMapEditor());
+                //     Logger.Log(LogLevel.Info, "MaggyHelper", "[InGameMapEditor] Added to level");
+                // }
             }
             catch (Exception ex)
             {
@@ -518,29 +437,12 @@ namespace Celeste
             // Call the original Update first
             orig(self);
 
-            var settings = MaggyHelperModule.Settings;
-
-            // Check if debug mode is enabled and F9 key is pressed
-            if (settings?.DebugMode == true && settings.DebugMapEditor.Pressed)
-            {
-                // Open the enhanced map editor
-                if (self.Session != null)
-                {
-                    Engine.Scene = new Editor.EnhancedMapEditor(self.Session.Area);
-                    Logger.Log(LogLevel.Info, "MaggyHelper", "[DebugMapEditor] Enhanced map editor opened via F9");
-                }
-            }
-
-            // Check if F10 key is pressed to toggle in-game map editor
-            if (settings.InGameMapEditor.Pressed == true)
-            {
-                var inGameEditor = self.Entities.FindFirst<InGameMapEditor>();
-                if (inGameEditor != null)
-                {
-                    inGameEditor.Toggle();
-                    Logger.Log(LogLevel.Info, "MaggyHelper", "[InGameMapEditor] Toggled via F10");
-                }
-            }
+            // F10 was for in-game map editor, which has been removed
+            // var settings = MaggyHelperModule.Settings;
+            // if (settings?.InGameMapEditor?.Pressed == true)
+            // {
+            //     // InGameMapEditor has been removed - reserved for future use
+            // }
         }
 
 
@@ -580,100 +482,7 @@ namespace Celeste
 
 
         // =====================================================================
-        //  6.  ENHANCED MAP EDITOR HOOK — Replace original MapEditor
-        // =====================================================================
-        //
-        //  HOW IT WORKS:
-        //  When the game tries to create a MapEditor (debug map view), we
-        //  intercept the constructor and create an EnhancedMapEditor instead.
-        //  This adds PCG (Procedural Content Generation) capabilities via
-        //  the loenn-mcp integration.
-        //
-        // =====================================================================
-
-        private delegate void orig_MapEditorCtor(object self, AreaKey area, bool reloadMapData);
-
-        private static void Hook_MapEditor_Ctor(orig_MapEditorCtor orig, object self, AreaKey area, bool reloadMapData)
-        {
-            try
-            {
-                Logger.Log(LogLevel.Info, "MaggyHelper",
-                    "[MapEditorHook] Intercepting MapEditor creation, redirecting to EnhancedMapEditor");
-
-                // Create the enhanced map editor instead using reflection to avoid namespace issues
-                Type enhancedEditorType = Type.GetType("Celeste.Editor.EnhancedMapEditor, MaggyHelper");
-                if (enhancedEditorType != null)
-                {
-                    var enhancedEditor = Activator.CreateInstance(enhancedEditorType, area, reloadMapData) as Scene;
-                    if (enhancedEditor != null)
-                    {
-                        Engine.Scene = enhancedEditor;
-                        Logger.Log(LogLevel.Info, "MaggyHelper",
-                            "[MapEditorHook] EnhancedMapEditor created successfully");
-                        return;
-                    }
-                }
-
-                // Fallback if type not found or creation failed
-                Logger.Log(LogLevel.Warn, "MaggyHelper",
-                    "[MapEditorHook] EnhancedMapEditor type not found, using original");
-                orig(self, area, reloadMapData);
-            }
-            catch (Exception ex)
-            {
-                Logger.Log(LogLevel.Error, "MaggyHelper",
-                    $"[MapEditorHook] Failed to create EnhancedMapEditor: {ex.Message}\n{ex.StackTrace}");
-
-                // Fallback to original if enhanced fails
-                orig(self, area, reloadMapData);
-            }
-        }
-
-        private delegate void orig_MapEditorUpdate(object self);
-
-        private static void Hook_MapEditor_Update(orig_MapEditorUpdate orig, object self)
-        {
-            // Check for F5 press to exit the vanilla map editor
-            if (MInput.Keyboard.Pressed(Microsoft.Xna.Framework.Input.Keys.F5))
-            {
-                try
-                {
-                    // Try to get the current session from the map editor
-                    Type mapEditorType = self.GetType();
-                    var currentSessionField = mapEditorType.GetField("CurrentSession", 
-                        BindingFlags.Instance | BindingFlags.NonPublic);
-                    
-                    if (currentSessionField != null)
-                    {
-                        var session = currentSessionField.GetValue(self) as Session;
-                        if (session != null)
-                        {
-                            Logger.Log(LogLevel.Info, "MaggyHelper",
-                                "[MapEditorHook] F5 pressed, exiting vanilla map editor");
-                            Engine.Scene = new LevelLoader(session);
-                            return;
-                        }
-                    }
-                    
-                    // If no session, try to exit to overworld
-                    Logger.Log(LogLevel.Info, "MaggyHelper",
-                        "[MapEditorHook] F5 pressed, exiting to overworld");
-                    Engine.Scene = new OverworldLoader(Overworld.StartMode.MainMenu);
-                    return;
-                }
-                catch (Exception ex)
-                {
-                    Logger.Log(LogLevel.Warn, "MaggyHelper",
-                        $"[MapEditorHook] Failed to exit on F5: {ex.Message}");
-                }
-            }
-
-            // Call original update
-            orig(self);
-        }
-
-        // =====================================================================
-        //  7.  LEVEL TEMPLATE COLOR EXPANSION — 24 colors instead of 7
+        //  6.  LEVEL TEMPLATE COLOR EXPANSION — 24 colors instead of 7
         // =====================================================================
         //
         //  HOW IT WORKS:

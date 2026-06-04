@@ -150,7 +150,7 @@ public static class AreaMapData
             Icon = "areas/prologue",
             IsInterlude = true,
             HasBSide = false, HasCSide = false, HasDSide = false, HasDXSide = false,
-            MusicEvents = new[] { "event:/music/lvl0/main" },
+            MusicEvents = new[] { "event:/music/1-intro/main" },
             AmbienceEvents = new[] { "event:/env/amb/00_prologue" },
             MountainState = 0,
             MountainData = new MountainCameraData
@@ -305,7 +305,7 @@ public static class AreaMapData
             Icon = "areas/corruption",
             IsInterlude = false,
             HasBSide = false, HasCSide = false, HasDSide = false, HasDXSide = false,
-            MusicEvents = new[] { "event:/music/lvl16/main" },
+            MusicEvents = new[] { "event:/music/16-organgarden/main" },
             AmbienceEvents = new[] { "event:/env/amb/16_main" },
             MountainState = MountainOverworldManager.STATE_DARK,
             MountainData = new MountainCameraData
@@ -330,7 +330,7 @@ public static class AreaMapData
             Icon = "areas/epilogue",
             IsInterlude = true,
             HasBSide = false, HasCSide = false, HasDSide = false, HasDXSide = false,
-            MusicEvents = new[] { "event:/music/lvl17/main" },
+            MusicEvents = new[] { "event:/music/17-epilogue/main" },
             AmbienceEvents = new[] { "event:/env/amb/00_main" },
             MountainState = 0,
             MountainData = new MountainCameraData
@@ -362,7 +362,7 @@ public static class AreaMapData
             Icon = "areas/space",
             IsInterlude = false,
             HasBSide = false, HasCSide = false, HasDSide = false, HasDXSide = false,
-            MusicEvents = new[] { "event:/music/lvl18/main" },
+            MusicEvents = new[] { "event:/music/19-space/main" },
             AmbienceEvents = new[] { "event:/env/amb/18_main" },
             MountainState = MountainOverworldManager.STATE_VOID,
             MountainData = new MountainCameraData
@@ -508,7 +508,9 @@ public static class AreaMapData
         Vector3 cursor)
     {
         string numStr = number.ToString("D2");
-        string mainMusic = $"event:/music/lvl{numStr}/main";
+        // Use vanilla Celeste music format: event:/music/{levelname}/main
+        // Falls back to silent if specific chapter music doesn't exist
+        string mainMusic = $"event:/music/{number}-{name}/main";
         string ambience = GetStandardAmbienceEvent(number);
 
         Register(new ChapterDef
@@ -690,7 +692,7 @@ public static class AreaMapData
 
         if (!string.IsNullOrEmpty(music) || !string.IsNullOrEmpty(ambience))
         {
-            string finalMusic = string.IsNullOrEmpty(music) ? "event:/music/lvl1/main" : music;
+            string finalMusic = string.IsNullOrEmpty(music) ? "event:/music/1-intro/main" : music;
             string finalAmbience = string.IsNullOrEmpty(ambience) ? "event:/env/amb/00_prologue" : ambience;
 
             Logger.Log(LogLevel.Debug, "MaggyHelper",

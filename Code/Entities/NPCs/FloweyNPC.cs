@@ -154,8 +154,13 @@ namespace Celeste.Entities
 
             // Make visible and play emerge animation
             Visible = true;
-            Sprite.Play("sprout");
-            Audio.Play(SFX_EMERGE, Position);
+            // Note: "sprout" animation not available, use "idle" instead
+            if (Sprite.Has("sprout"))
+                Sprite.Play("sprout");
+            else
+                Sprite.Play("idle");
+            try { Audio.Play(SFX_EMERGE, Position); }
+            catch { }
 
             // Screen shake for dramatic effect
             if (level != null)
@@ -192,7 +197,10 @@ namespace Celeste.Entities
             if (!hasEmerged) yield break;
 
             Talker.Enabled = false;
-            Sprite.Play("knockout");
+            if (Sprite.Has("knockout"))
+                Sprite.Play("knockout");
+            else
+                Sprite.Play("idle");
 
             float startY = Y;
             float endY = Y + 16f;
@@ -245,8 +253,12 @@ namespace Celeste.Entities
         /// </summary>
         public IEnumerator Laugh(float duration = 1.0f)
         {
-            Sprite.Play("creepylaugh");
-            Audio.Play(SFX_LAUGH, Position);
+            if (Sprite.Has("creepylaugh"))
+                Sprite.Play("creepylaugh");
+            else
+                Sprite.Play("idle");
+            try { Audio.Play(SFX_LAUGH, Position); }
+            catch { }
 
             if (level != null)
             {
@@ -262,7 +274,10 @@ namespace Celeste.Entities
         /// </summary>
         public IEnumerator EvilGrin(float duration = 0.8f)
         {
-            Sprite.Play("creepy");
+            if (Sprite.Has("creepy"))
+                Sprite.Play("creepy");
+            else
+                Sprite.Play("idle");
             yield return duration;
         }
 
@@ -271,7 +286,10 @@ namespace Celeste.Entities
         /// </summary>
         public IEnumerator GetHit(Vector2 knockbackDirection, float knockbackDistance = 32f)
         {
-            Sprite.Play("knockout");
+            if (Sprite.Has("knockout"))
+                Sprite.Play("knockout");
+            else
+                Sprite.Play("idle");
 
             Vector2 start = Position;
             Vector2 target = Position + knockbackDirection * knockbackDistance;

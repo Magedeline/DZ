@@ -211,7 +211,7 @@ namespace Celeste.Mod.MaggyHelper
             global::Celeste.AltSidesHelperBridge.Load();
             global::Celeste.IntroRemixHooks.Load();
             global::Celeste.MonoModHooks.Load();
-            //global::Celeste.RoomTransitionHandler.Load();  // TEMPORARILY DISABLED DUE TO NULL REFERENCE CRASH
+            global::Celeste.RoomTransitionHandler.Load();
 
             // Initialize Vignette hooks for intro/outro cutscenes
             InitializeVignetteHooks();
@@ -318,7 +318,7 @@ namespace Celeste.Mod.MaggyHelper
             // Unhook Vignette System
             UnloadVignetteHooks();
 
-            //global::Celeste.RoomTransitionHandler.Unload();  // TEMPORARILY DISABLED DUE TO NULL REFERENCE CRASH
+            global::Celeste.RoomTransitionHandler.Unload();
             global::Celeste.MonoModHooks.Unload();
             global::Celeste.IntroRemixHooks.Unload();
             global::Celeste.AltSidesHelperBridge.Unload();

@@ -47,6 +47,11 @@ public static class RoomTransitionHandler
     {
         orig(self, playerIntro, isFromLoader);
 
+        // Skip Kirby state restoration during Overworld/Chapter Select to avoid conflicts
+        // with OuiChapterSelect patch initialization (specifically scarf update)
+        if (self is Overworld)
+            return;
+
         bool hasSpawner = self.Tracker.GetEntities<global::Celeste.Entities.KirbyPlayerSpawner>().Count > 0;
         bool sessionKirby = global::Celeste.Mod.MaggyHelper.MaggyHelperModule.Session?.IsKirbyModeActive == true;
 

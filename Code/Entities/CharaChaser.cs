@@ -201,7 +201,7 @@ public class CharaChaser : Entity
             // Set music based on current level
             string musicEvent = level.Session.Level.StartsWith("b-3") 
                 ? "event:/music/pusheen/lvl2/evil_chara"
-                : "guid://{5df35cf4-68da-427d-8aa2-91ab409935dc}";
+                : "event:/music/pusheen/lvl2/chase";
             level.Session.Audio.Music.Event = musicEvent;
             level.Session.Audio.Apply(forceSixteenthNoteHack: false);
         }
@@ -218,7 +218,7 @@ public class CharaChaser : Entity
     [MethodImpl(MethodImplOptions.NoInlining)]
     private IEnumerator TweenToPlayer(Vector2 to)
     {
-        Audio.Play("guid://{25294859-6bfd-434e-9528-8433245fe3b5}", Position, "chaser_count", index);
+        Audio.Play("event:/char/badeline/level_entry", Position, "chaser_count", index);
         Vector2 from = Position;
         float duration = (followBehindTime - 0.1f) / speedMultiplier;
         Tween tween = Tween.Create(Tween.TweenMode.Oneshot, Ease.CubeIn, duration, start: true);
@@ -247,7 +247,7 @@ public class CharaChaser : Entity
         Sprite.Play("laugh");
         Sprite.Scale.X = 1f;
         yield return 1f;
-        Audio.Play("guid://{16b40879-0a79-4e42-8c91-fe419a8e186c}", Position);
+        Audio.Play("event:/char/badeline/disappear", Position);
         level.Displacement.AddBurst(Center, 0.5f, 24f, 96f, 0.4f);
         level.Particles.Emit(P_Vanish, 12, Center, Vector2.One * 6f);
         RemoveSelf();

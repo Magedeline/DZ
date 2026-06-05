@@ -309,7 +309,7 @@ namespace Celeste
         private static void playTapeCollectionSound(AreaKey areaKey, char side)
         {
             // Play appropriate sound for tape collection
-            string soundEvent = $"guid://{111996f6-8bae-408f-86d1-0aeae8203f4b}";
+            string soundEvent = "event:/game/general/cassette_get";
             Audio.Play(soundEvent);
         }
 

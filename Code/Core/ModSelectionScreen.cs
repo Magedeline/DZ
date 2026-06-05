@@ -33,9 +33,9 @@ namespace Celeste.UI
         private const float CHOICE_SPACING    = 80f;
 
         // â”€â”€ Audio â”€â”€
-        private const string CHOICE_MOVE_SFX   = "guid://{fb6ae8ab-4c41-4d90-8d2b-61a45e0a33e8}";
-        private const string CHOICE_SELECT_SFX = "guid://{cf18e899-f774-47e2-b72c-5252231fd47c}";
-        private const string TITLE_MUSIC_EVENT = "guid://{0ad76e01-cdab-4167-9bbb-eca8e923a534}";
+        private const string CHOICE_MOVE_SFX   = "event:/ui/main/rollover_down";
+        private const string CHOICE_SELECT_SFX = "event:/ui/main/button_select";
+        private const string TITLE_MUSIC_EVENT = "event:/music/pusheen/lvl0/intro";
         #endregion
 
         #region Static Hook State

@@ -373,7 +373,7 @@ namespace Celeste.Entities.SoulBoosts
             Stopwatch sw = Stopwatch.StartNew();
             if (finalCh21Boost)
             {
-                Audio.Play("guid://{b0b63340-79df-4731-a697-61b7d43fd1c1}", Position);
+                Audio.Play("event:/new_content/char/pusheen/madeline/final_launch_part1", Position);
             }
             else if (!finalBoost)
             {
@@ -435,7 +435,7 @@ namespace Celeste.Entities.SoulBoosts
             }
             else
             {
-                Audio.Play("guid://{2592d638-f3c5-4f6f-81e0-888a04affa40}", Position);
+                Audio.Play("event:/char/badeline/booster_throw", Position);
             }
             if (madelinegod.Sprite.Has("boost"))
             {
@@ -520,7 +520,7 @@ namespace Celeste.Entities.SoulBoosts
                     }
                 };
                 Add(tween);
-                relocateSfx.Play("guid://{7e3c6b4e-e41a-4e9a-9d24-22737c66593b}");
+                relocateSfx.Play("event:/char/badeline/booster_relocate");
                 Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
                 level.DirectionalShake(-Vector2.UnitY);
                 level.Displacement.AddBurst(Center, 0.4f, 8f, 32f, 0.5f);
@@ -529,7 +529,7 @@ namespace Celeste.Entities.SoulBoosts
             {
                 if (finalCh21Boost)
                 {
-                    Ch21FinalBoostSfx = Audio.Play("guid://{31d09a69-b13c-4bb8-8133-08243732c1de}", Position);
+                    Ch21FinalBoostSfx = Audio.Play("event:/new_content/char/pusheen/madeline/final_launch_part2", Position);
                 }
                 Engine.FreezeTimer = 0.1f;
                 yield return true;
@@ -658,7 +658,7 @@ namespace Celeste.Entities.SoulBoosts
             };
 
             Add(tween);
-            relocateSfx.Play("guid://{7e3c6b4e-e41a-4e9a-9d24-22737c66593b}");
+            relocateSfx.Play("event:/char/badeline/booster_relocate");
             level?.Displacement.AddBurst(Center, 0.4f, 8f, 32f, 0.5f);
         }
 

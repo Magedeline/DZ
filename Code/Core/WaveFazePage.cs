@@ -29,7 +29,7 @@
             while (!Input.MenuConfirm.Pressed)
                 yield return null;
             WaitingForInput = false;
-            Audio.Play("guid://{5c9780f7-de2d-4811-813e-f89201d92e35}");
+            Audio.Play("event:/new_content/game/10_farewell/ppt_mouseclick");
         }
 
         public enum Transitions

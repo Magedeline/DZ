@@ -23,8 +23,8 @@ namespace Celeste.UI
         private const float SCROLL_ACCELERATION = 1800f;
         private const float HEIGHT_PADDING = 476f;
 
-        private const string CREDIT_MUSIC_EVENT = "guid://{dbd791e1-473c-4a66-8251-24b4cb34d041}";
-        private const string BACK_SFX = "guid://{fe9c58fa-d60a-4644-b34d-c0c4ebac2486}";
+        private const string CREDIT_MUSIC_EVENT = "event:/music/pusheen/menu/credits";
+        private const string BACK_SFX = "event:/ui/main/button_back";
 
         private static readonly Color BorderColor = Color.Black;
 

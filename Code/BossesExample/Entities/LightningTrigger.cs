@@ -32,7 +32,7 @@ internal class LightningTrigger(EntityData data, Vector2 offset) : Trigger(data,
     if (this.triggered)
       return;
     base.OnEnter(player);
-    global::Celeste.Audio.Play("guid://{d27aa340-38c2-46fe-9e45-83c4f6be9070}");
+    global::Celeste.Audio.Play("event:/new_content/game/10_farewell/lightning_strike");
     this.level.Flash(Color.White, false);
     this.level.Shake(0.3f);
     Level level1 = this.level;

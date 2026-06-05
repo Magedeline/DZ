@@ -62,7 +62,7 @@ namespace Celeste.Cutscenes
             yield return 0.5f;
             
             // Play sound effect when breaking the mirror
-            this.sfx.Play("guid://{166218f9-9838-417f-95c0-1f9c577893a0}");
+            this.sfx.Play("event:/music/pusheen/lvl4/dreamblock_sting_pt1");
             yield return this.mirror.BreakRoutine(this.direction);
             
             // Ralsei freed dialog

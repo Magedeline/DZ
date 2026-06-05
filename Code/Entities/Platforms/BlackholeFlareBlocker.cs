@@ -186,7 +186,7 @@
             // Push it away from the blocker
             PushSidewayBack(sideway);
             
-            Audio.Play("guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}", sideway.Position);
+            Audio.Play("event:/game/general/thing_booped", sideway.Position);
         }
 
         private void DestroySideway(BlackholeFlareSideway sideway)
@@ -203,7 +203,7 @@
                 }
             }
             
-            Audio.Play("guid://{92f75010-4e90-428e-834c-1315ddbd9460}", sideway.Position);
+            Audio.Play("event:/game/general/wall_break_stone", sideway.Position);
             sideway.RemoveSelf();
         }
 
@@ -243,7 +243,7 @@
             // Push it down
             riser.Y = Bottom + 4f;
             
-            Audio.Play("guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}", riser.Position);
+            Audio.Play("event:/game/general/thing_booped", riser.Position);
         }
 
         private void DestroyRiser(BlackholeRiser riser)
@@ -260,7 +260,7 @@
                 }
             }
             
-            Audio.Play("guid://{92f75010-4e90-428e-834c-1315ddbd9460}", riser.Position);
+            Audio.Play("event:/game/general/wall_break_stone", riser.Position);
             riser.RemoveSelf();
         }
 

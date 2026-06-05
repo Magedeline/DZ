@@ -118,8 +118,8 @@
         private void Respawn()
         {
             string respawnEvent = red 
-                ? "guid://{daf43476-6f45-45ef-851c-9e3afa468dfd}"
-                : "guid://{147f8cfd-7dc3-4aaf-a249-caaafa1b472c}";
+                ? "event:/game/pusheen/07_inferno/redbooster_reappear"
+                : "event:/game/pusheen/06_stronghold/greenbooster_reappear";
             Audio.Play(respawnEvent, Position);
             
             sprite.Position = Vector2.Zero;
@@ -158,8 +158,8 @@
                 
                 // Play enter sound
                 string enterEvent = red 
-                    ? "guid://{e0d4f296-00d9-45c1-abe3-74d7e9268736}"
-                    : "guid://{a8320ed2-1ed0-4ba0-bcd9-4da6bbc71eca}";
+                    ? "event:/game/pusheen/07_inferno/redbooster_enter"
+                    : "event:/game/pusheen/06_stronghold/greenbooster_enter";
                 Audio.Play(enterEvent, Position);
                 
                 wiggler.Start();
@@ -311,7 +311,7 @@
         private void RedBoost(global::Celeste.Player player)
         {
             // Play dash sound
-            Audio.Play("guid://{c2b79818-7fee-4bf3-9287-17c837e497e7}", Position);
+            Audio.Play("event:/game/pusheen/07_inferno/redbooster_dash", Position);
             
             player.StateMachine.State = Player.StDash; // RedDash state
             player.Speed = Vector2.Zero;
@@ -331,7 +331,7 @@
         private void GreenBoost(global::Celeste.Player player)
         {
             // Play dash sound
-            Audio.Play("guid://{1b9578f6-d9f1-4508-944a-e63c34acc4fc}", Position);
+            Audio.Play("event:/game/pusheen/06_stronghold/greenbooster_dash", Position);
             
             player.StateMachine.State = Player.StDash; // RedDash state  
             player.Speed = Vector2.Zero;
@@ -356,8 +356,8 @@
             
             // Play end sound
             string endEvent = red 
-                ? "guid://{980e5eae-b9bb-4836-bd25-fa0d729bc375}"
-                : "guid://{ff61630c-7741-44c1-9da9-0ec9a62d76da}";
+                ? "event:/game/pusheen/07_inferno/redbooster_end"
+                : "event:/game/pusheen/06_stronghold/greenbooster_end";
             Audio.Play(endEvent, sprite.RenderPosition);
             
             sprite.Play("pop");

@@ -319,7 +319,7 @@ namespace Celeste
 
             // Thud
             level.Shake(0.3f);
-            Audio.Play("guid://{d94f0e78-69bd-46ac-93a1-81adca154364}", player.Position);
+            Audio.Play("event:/char/pusheen/kirby/landing", player.Position);
 
             // Brief beat of silence Ã¢â‚¬â€ scene ends
             yield return 1.5f;

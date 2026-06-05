@@ -47,7 +47,7 @@ namespace Celeste.Entities
       Level level = SceneAs<Level>();
       if (lowPass)
         Audio.SetMusicParam("lowpass", lowPassValue);
-      Audio.Play("guid://{42d600c5-32c3-4433-8a1e-be394b30bcde}");
+      Audio.Play("event:/new_content/game/10_farewell/glitch_short");
       LevelData leveldata = level.Session.LevelData;
       Session session = (Scene as Level).Session;
       EntityID id = this.id;

@@ -82,7 +82,7 @@ namespace Celeste.Entities
                     int currentAnimationFrame = reflectionSprite.CurrentAnimationFrame;
                     if ((!(anim == "walk") || currentAnimationFrame != 0 && currentAnimationFrame != 6) && (!(anim == "runSlow") || currentAnimationFrame != 0 && currentAnimationFrame != 6) && (!(anim == "runFast") || currentAnimationFrame != 0 && currentAnimationFrame != 6))
                         return;
-                    Audio.Play("guid://{ff6442f1-66c2-4dba-8d57-038dda8fd296}", Center);
+                    Audio.Play("event:/char/badeline/footstep", Center);
                 };
                 Add(smashCoroutine = new Coroutine(InteractRoutine()));
             }
@@ -173,7 +173,7 @@ namespace Celeste.Entities
             charaMirror.Add(charaMirror.sfx = new SoundSource());
             charaMirror.sfx.Play("event:/game/pusheen/02_nightmare/sequence_mirror");
             yield return 0.15f;
-            charaMirror.Add(charaMirror.sfxSting = new SoundSource("guid://{377994c3-879e-44c5-ae17-89c9b6989123}"));
+            charaMirror.Add(charaMirror.sfxSting = new SoundSource("event:/music/pusheen/lvl2/dreamblock_sting_pt2"));
             Input.Rumble(RumbleStrength.Light, RumbleLength.FullSecond);
             charaMirror.updateShine = false;
             while (charaMirror.shineOffset != 33.0 || charaMirror.shineAlpha < 1.0)

@@ -74,7 +74,7 @@
             sprite.Play("opening");
             portalLight.Alpha = 0.6f;
             
-            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
+            Audio.Play("event:/game/general/crystalheart_pulse", Position);
             level?.Shake(0.4f);
             
             Add(new Coroutine(OpenRoutine()));

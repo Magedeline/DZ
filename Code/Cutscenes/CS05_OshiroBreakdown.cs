@@ -49,7 +49,7 @@ namespace Celeste.Cutscenes
             yield return Level.ZoomTo(new Vector2(100f, 120f), 2f, 0.5f);
             yield return Textbox.Say("MAGGYHELPER_CH5_OSHIRO_BREAKDOWN", WalkLeft, WalkRight, CreateDustA, CreateDustB);
             Add(new Coroutine(oshiro.MoveTo(new Vector2(level.Bounds.Left - 64, oshiro.Y))));
-            oshiro.Add(new SoundSource("guid://{d63e2c8f-499c-4edc-a892-041ae47d5b96}"));
+            oshiro.Add(new SoundSource("event:/char/oshiro/move_06_04d_exit"));
             yield return 0.25f;
             yield return PanCamera(player.CameraTarget.X);
             EndCutscene(level);
@@ -81,10 +81,10 @@ namespace Celeste.Cutscenes
 
         private IEnumerator CreateDustA()
         {
-            Add(new SoundSource(oshiro.Position, "guid://{e00ff4f4-f290-443a-ad1d-27e6c429c328}"));
+            Add(new SoundSource(oshiro.Position, "event:/game/03_resort/sequence_oshirofluff_pt1"));
             (oshiro.Sprite as OshiroSprite).AllowSpriteChanges = false;
             oshiro.Sprite.Play("fall");
-            Audio.Play("guid://{6dd647fe-eefd-43d7-8a35-5a614678dd12}", oshiro.Position);
+            Audio.Play("event:/char/oshiro/chat_collapse", oshiro.Position);
             Distort.AnxietyOrigin = new Vector2(0.5f, 0.5f);
             for (int i = 0; i < 4; i++)
             {
@@ -107,7 +107,7 @@ namespace Celeste.Cutscenes
 
         private IEnumerator CreateDustB()
         {
-            Add(new SoundSource(oshiro.Position, "guid://{e00d4196-5c66-4504-af86-08a0ed590b8e}"));
+            Add(new SoundSource(oshiro.Position, "event:/game/03_resort/sequence_oshirofluff_pt2"));
             for (int i = 4; i < creatures.Count; i++)
             {
                 Add(new Coroutine(MoveDust(creatures[i], creatureHomes[i])));
@@ -133,7 +133,7 @@ namespace Celeste.Cutscenes
             yield return Level.ZoomBack(0.5f);
             yield return player.DummyWalkToExact(Level.Bounds.Left + 200);
             yield return 1f;
-            Audio.Play("guid://{2985ee63-eec3-4263-bf6d-71e332bfa805}", oshiro.Position);
+            Audio.Play("event:/char/oshiro/chat_get_up", oshiro.Position);
             oshiro.Sprite.Play("recover");
             yield return 0.7f;
             oshiro.Sprite.Scale.X = 1f;

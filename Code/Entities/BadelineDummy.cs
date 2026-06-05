@@ -252,7 +252,7 @@ namespace Celeste.Entities
                 if (IsFootstepFrame(animationName, currentFrame))
                 {
                     // Use Badeline-specific footstep sound
-                    Audio.Play("guid://{ff6442f1-66c2-4dba-8d57-038dda8fd296}", Position);
+                    Audio.Play("event:/char/badeline/footstep", Position);
                 }
             }
             catch (Exception ex)
@@ -289,7 +289,7 @@ namespace Celeste.Entities
             {
                 if (!silent)
                 {
-                    Audio.Play("guid://{ad25a031-880b-4f88-ac12-82d6c52fbdea}", Position);
+                    Audio.Play("event:/char/badeline/appear", Position);
                     Input.Rumble(RumbleStrength.Medium, RumbleLength.Medium);
                 }
 
@@ -307,7 +307,7 @@ namespace Celeste.Entities
 
             try
             {
-                Audio.Play("guid://{16b40879-0a79-4e42-8c91-fe419a8e186c}", Position);
+                Audio.Play("event:/char/badeline/disappear", Position);
                 CreateShockwave();
                 
                 var level = SceneAs<Level>();

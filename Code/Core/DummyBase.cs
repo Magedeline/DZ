@@ -39,7 +39,7 @@
                     (anim == "runSlow" && (currentAnimationFrame == 0 || currentAnimationFrame == 6)) ||
                     (anim == "runFast" && (currentAnimationFrame == 0 || currentAnimationFrame == 6)))
                 {
-                    Audio.Play("guid://{3d667209-61f4-478c-9604-7bcfeae33530}", Position);
+                    Audio.Play("event:/char/pusheen/kirby/footstep", Position);
                 }
             };
 
@@ -53,7 +53,7 @@
         {
             if (!silent)
             {
-                Audio.Play("guid://{ad25a031-880b-4f88-ac12-82d6c52fbdea}", Position);
+                Audio.Play("event:/char/badeline/appear", Position);
                 Input.Rumble(RumbleStrength.Medium, RumbleLength.Medium);
             }
 
@@ -170,7 +170,7 @@
         {
             if (!silent)
             {
-                Audio.Play("guid://{16b40879-0a79-4e42-8c91-fe419a8e186c}", Position);
+                Audio.Play("event:/char/badeline/disappear", Position);
             }
 
             level.Displacement.AddBurst(Center, 0.5f, 24f, 96f, 0.4f);

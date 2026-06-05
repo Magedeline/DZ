@@ -232,7 +232,7 @@ namespace Celeste.Mod.MaggyHelper.Cutscenes {
                 yield return null;
             }
             // Title confirm out sound (using vanilla audio)
-            global::Celeste.Audio.Play("guid://{6d72de1a-04fe-4be5-826b-5576002c277f}");
+            global::Celeste.Audio.Play("event:/ui/main/title_firstinput");
             EndCutscene(level);
         }
 

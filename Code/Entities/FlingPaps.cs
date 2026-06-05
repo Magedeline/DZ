@@ -193,7 +193,7 @@ public class FlingPaps : Entity
         flingBird.state = States.Move;
         flingBird.sprite.Play("fly");
         flingBird.sprite.Scale.X = 1f;
-        flingBird.moveSfx.Play("guid://{9ba95702-66ae-441f-944e-c123175195ff}");
+        flingBird.moveSfx.Play("event:/new_content/game/10_farewell/bird_relocate");
         for (var nodeIndex = 1; nodeIndex < flingBird.NodeSegments[flingBird.segmentIndex].Length - 1; nodeIndex += 2)
         {
             var position = flingBird.Position;

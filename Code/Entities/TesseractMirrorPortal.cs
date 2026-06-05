@@ -138,7 +138,7 @@ namespace Celeste.Entities
         templeMirrorPortal.revealTriggered = true;
         level.Session.SetFlag(templeMirrorPortal.GetUnlockedFlag(), true);
         yield return (object) 0.1f;
-        Audio.Play("guid://{4fa2a3d9-560d-4546-92b7-969d2ca1fb29}", templeMirrorPortal.Position);
+        Audio.Play("event:/game/05_mirror_temple/mainmirror_reveal", templeMirrorPortal.Position);
         templeMirrorPortal.curtain.Drop();
         templeMirrorPortal.canTrigger = true;
         yield return (object) 0.1f;

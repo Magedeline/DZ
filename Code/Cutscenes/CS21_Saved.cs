@@ -32,7 +32,7 @@ public class CS21_Saved : CutsceneEntity
         level.TimerStopped = true;
         level.TimerHidden = true;
         level.SaveQuitDisabled = true;
-        snapshot = Audio.CreateSnapshot("guid://{9ae549ff-5ba1-4ec1-aec8-ee17190a2d08}");
+        snapshot = Audio.CreateSnapshot("snapshot:/game_10_granny_clouds_dialogue");
     }
 
     [MethodImpl(MethodImplOptions.NoInlining)]
@@ -162,7 +162,7 @@ public class CS21_RestorationAndFarewell : CutsceneEntity
         level.TimerStopped = true;
         level.TimerHidden = true;
         level.SaveQuitDisabled = true;
-        snapshot = Audio.CreateSnapshot("guid://{9ae549ff-5ba1-4ec1-aec8-ee17190a2d08}");
+        snapshot = Audio.CreateSnapshot("snapshot:/game_10_granny_clouds_dialogue");
     }
 
     [MethodImpl(MethodImplOptions.NoInlining)]
@@ -244,7 +244,7 @@ public class CS21_RestorationAndFarewell : CutsceneEntity
         player.DummyGravity = false;
             
         // Play entry sound and perform moon landing (from CS20_saved)
-        entrySfx = Audio.Play("guid://{ff56e917-feba-4631-84eb-2718c65c1e58}", player.Position);
+        entrySfx = Audio.Play("event:/new_content/char/madeline/screenentry_gran_landing", player.Position);
         yield return player.MoonLanding(spawn);
             
         // Zoom to focus on the scene

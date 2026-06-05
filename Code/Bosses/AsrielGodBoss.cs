@@ -33,10 +33,10 @@ namespace Celeste.Entities
         private const string SFX_SPARKLES = "event:/new_content/char/pusheen/asriel/Asriel_Sparkles";
         private const string SFX_SPELLCAST_GLITCH = "event:/new_content/char/pusheen/asriel/Asriel_Spellcast_Glitch";
         private const string SFX_STAR = "event:/new_content/char/pusheen/asriel/Asriel_Star";
-        private const string SFX_BOSS_HIT = "guid://{898fc1ea-250b-4d03-8f37-c0c35799a915}";
-        private const string SFX_BOSS_LASER_CHARGE = "guid://{e7a2ddd6-091a-44ab-aac7-e57bd13c009c}";
-        private const string SFX_BOSS_LASER_FIRE = "guid://{58b5d825-ebcf-457b-b493-9be82640b9eb}";
-        private const string SFX_BOSS_BULLET = "guid://{bbe7d0c8-45f9-4671-b49e-8e38e357bb81}";
+        private const string SFX_BOSS_HIT = "event:/char/badeline/boss_hug";
+        private const string SFX_BOSS_LASER_CHARGE = "event:/char/badeline/boss_laser_charge";
+        private const string SFX_BOSS_LASER_FIRE = "event:/char/badeline/boss_laser_fire";
+        private const string SFX_BOSS_BULLET = "event:/char/badeline/boss_bullet";
         
         // Dialogue Events
         private const string DIALOGUE_ASRIEL = "event:/char/dialogue/asriel";
@@ -1111,7 +1111,7 @@ namespace Celeste.Entities
             }
             
             // Hit sound effect
-            string hitSound = isKirbyMode ? "guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}" : "event:/game/general/landing";
+            string hitSound = isKirbyMode ? "event:/game/general/thing_booped" : "event:/game/general/landing";
             if (player != null)
             {
                 Audio.Play(hitSound, player.Position);
@@ -1633,7 +1633,7 @@ namespace Celeste.Entities
             if (Sprite != null && Sprite.CurrentAnimationID != "castsp")
                 Sprite.Play("castsp");
             if (!chargeSfx.Playing)
-                chargeSfx.Play("guid://{bbe7d0c8-45f9-4671-b49e-8e38e357bb81}");
+                chargeSfx.Play("event:/char/badeline/boss_bullet");
         }
 
         // Pattern sequences following the reference format

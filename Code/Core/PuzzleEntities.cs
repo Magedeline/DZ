@@ -57,7 +57,7 @@ namespace Celeste
                 level.Session.SetFlag(flagName, activated);
 
             if (activated && !wasActive)
-                Audio.Play("guid://{effc3510-2efe-422f-aa3a-30b8ace60533}", Position);
+                Audio.Play("event:/game/general/touchswitch_last_cutoff", Position);
         }
 
         public override void Render()
@@ -102,7 +102,7 @@ namespace Celeste
                     if (c != LensColor)
                         SceneAs<Level>().Session.SetFlag("lens_" + c, false);
                 }
-                Audio.Play("guid://{6160ad7b-16f6-49a5-aa9b-55d75da5a8e1}", Position);
+                Audio.Play("event:/game/general/seed_touch", Position);
             }
         }
 
@@ -192,7 +192,7 @@ namespace Celeste
             {
                 recording = true;
                 recordedPositions.Clear();
-                Audio.Play("guid://{6160ad7b-16f6-49a5-aa9b-55d75da5a8e1}", Position);
+                Audio.Play("event:/game/general/seed_touch", Position);
             }
 
             if (recording && player != null)
@@ -317,7 +317,7 @@ namespace Celeste
             if (player != null && CollideCheck(player))
             {
                 Collected = true;
-                Audio.Play("guid://{6160ad7b-16f6-49a5-aa9b-55d75da5a8e1}", Position);
+                Audio.Play("event:/game/general/seed_touch", Position);
 
                 // Check if collected in correct order
                 int expectedIndex = 0;
@@ -334,7 +334,7 @@ namespace Celeste
                     {
                         if (rune.GroupId == GroupId) rune.Collected = false;
                     }
-                    Audio.Play("guid://{b98b9406-a64d-4428-b882-a33366f50cbf}", Position);
+                    Audio.Play("event:/game/general/assist_screenbottom", Position);
                 }
             }
         }
@@ -383,7 +383,7 @@ namespace Celeste
                 opened = true;
                 Collidable = false;
                 Visible = false;
-                Audio.Play("guid://{effc3510-2efe-422f-aa3a-30b8ace60533}", Position);
+                Audio.Play("event:/game/general/touchswitch_last_cutoff", Position);
                 (Scene as Level)?.Shake(0.2f);
             }
         }
@@ -443,7 +443,7 @@ namespace Celeste
         {
             hit = true;
             hitSequences[groupId].Add(noteIndex);
-            Audio.Play("guid://{6160ad7b-16f6-49a5-aa9b-55d75da5a8e1}", Position);
+            Audio.Play("event:/game/general/seed_touch", Position);
 
             // Check sequence
             int[] correctSequence = GetCorrectSequence();
@@ -459,7 +459,7 @@ namespace Celeste
                     {
                         if (block.groupId == groupId) block.hit = false;
                     }
-                    Audio.Play("guid://{b98b9406-a64d-4428-b882-a33366f50cbf}", Position);
+                    Audio.Play("event:/game/general/assist_screenbottom", Position);
                     return;
                 }
             }
@@ -467,7 +467,7 @@ namespace Celeste
             if (current.Count >= correctSequence.Length)
             {
                 SceneAs<Level>().Session.SetFlag("music_puzzle_" + groupId, true);
-                Audio.Play("guid://{effc3510-2efe-422f-aa3a-30b8ace60533}", Position);
+                Audio.Play("event:/game/general/touchswitch_last_cutoff", Position);
             }
 
             Add(new Coroutine(ResetAfterDelay()));
@@ -681,7 +681,7 @@ namespace Celeste
             Collidable = false;
 
             SceneAs<Level>().Session.SetFlag(flagName, true);
-            Audio.Play("guid://{9db695ce-ce56-4025-9528-030d6b599c86}", Position);
+            Audio.Play("event:/game/general/cassette_bubblereturn", Position);
             (Scene as Level)?.Flash(Color.Cyan * 0.3f);
 
             // Reset flag after short delay
@@ -747,7 +747,7 @@ namespace Celeste
             level.Session.SetFlag("electric_pillar_active", false);
 
             level.Session.SetFlag(flagName, true);
-            Audio.Play("guid://{effc3510-2efe-422f-aa3a-30b8ace60533}", Position);
+            Audio.Play("event:/game/general/touchswitch_last_cutoff", Position);
             (Scene as Level)?.Flash(GetColor() * 0.3f);
         }
 
@@ -915,7 +915,7 @@ namespace Celeste
                         if (other != door)
                         {
                             MoveTo(other.Position);
-                            Audio.Play("guid://{9db695ce-ce56-4025-9528-030d6b599c86}", Position);
+                            Audio.Play("event:/game/general/cassette_bubblereturn", Position);
                             break;
                         }
                     }
@@ -962,7 +962,7 @@ namespace Celeste
             {
                 collected = true;
                 SceneAs<Level>().Session.SetFlag("capsule_" + capsuleId, true);
-                Audio.Play("guid://{6160ad7b-16f6-49a5-aa9b-55d75da5a8e1}", Position);
+                Audio.Play("event:/game/general/seed_touch", Position);
                 Add(new Coroutine(CollectRoutine(player)));
             }
         }

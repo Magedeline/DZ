@@ -354,7 +354,7 @@ namespace Celeste.Entities.Bosses
                 Scene.Add(beam);
                 
                 swordBeamCooldown = 0.5f;
-                Audio.Play("guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}", Position);
+                Audio.Play("event:/game/general/thing_booped", Position);
             }
             
             swordBeamCooldown -= Engine.DeltaTime;

@@ -201,7 +201,7 @@
 
             if (!disableFlapSfx)
             {
-                Audio.Play("guid://{7ea54ed8-0285-4dfc-a1ce-558444a4aa59}", Position);
+                Audio.Play("event:/game/general/bird_startle", Position);
             }
 
             Vector2 flyDirection = flyUp ? new Vector2(0f, -1f) : new Vector2(Sprite.Scale.X, -0.5f);

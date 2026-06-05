@@ -66,7 +66,7 @@
             entity1 = this.Scene.Tracker.GetEntity<global::Celeste.Player>();
         }
         while (entity1 == null || entity1.X < this.X + 30.0 || entity1.X > this.Right + 8.0);
-        this.ShakingSfx.Play("guid://{388260ad-8996-4220-a041-4165704072d4}");
+        this.ShakingSfx.Play("event:/game/00_prologue/fallblock_first_shake");
         float time = 1.2f;
         Shaker shaker = new Shaker(time, true, v => this.Shake = v);
         this.Add((Component)shaker);
@@ -106,7 +106,7 @@
             this.SceneAs<Level>().ParticlesFG.Emit(FallingBlock.P_LandDust, 1, new Vector2(this.X + index, this.Bottom), Vector2.One * 4f, direction);
         }
         this.ShakingSfx.Stop();
-        Audio.Play("guid://{0c8ca90b-c14e-41ca-8233-ec0f74a6aab5}", this.Position);
+        Audio.Play("event:/game/00_prologue/fallblock_first_impact", this.Position);
         this.SceneAs<Level>().Shake();
         Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
         this.Add((Component)new Shaker(0.25f, true, v => this.Shake = v));

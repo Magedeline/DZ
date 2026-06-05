@@ -241,7 +241,7 @@ internal class LargeHeartGemDoor : Entity
                 Vector2 botDebrisPos = new Vector2(this.X + this.size / 2f, this.botSolid.Top);
                 level.Particles.Emit(ParticleTypes.Dust, 5, topDebrisPos, new Vector2(this.size / 2f, 2f), Color.White);
                 level.Particles.Emit(ParticleTypes.Dust, 5, botDebrisPos, new Vector2(this.size / 2f, 2f), Color.White);
-                Audio.Play("guid://{a9cc805b-cc3c-4e29-af3b-bc69914e5a10}", this.Position);
+                Audio.Play("event:/game/general/fallblock_shake", this.Position);
             }
             yield return null;
         }
@@ -250,7 +250,7 @@ internal class LargeHeartGemDoor : Entity
         this.botSolid.MoveToY(botTo);
         this.openPercent = 1f;
         
-        Audio.Play("guid://{a9cc805b-cc3c-4e29-af3b-bc69914e5a10}", this.Position);
+        Audio.Play("event:/game/general/fallblock_shake", this.Position);
         level.Shake(0.8f);
         
         Vector2 finalTopDebris = new Vector2(this.X + this.size / 2f, this.topSolid.Bottom);

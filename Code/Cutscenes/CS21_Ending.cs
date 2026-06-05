@@ -82,7 +82,7 @@ namespace Celeste.Cutscenes
 			this.cursor.Visible = false;
 			level.PauseLock = false;
 			yield return 2f;
-			this.cinIntro = Audio.Play("guid://{18d84d29-8f61-4b53-adfe-dd34d46dade7}");
+			this.cinIntro = Audio.Play("event:/new_content/music/pusheen/lvl21/cinematic/end_intro");
 			Audio.SetAmbience(null, true);
 			this.counting = true;
 			base.Add(new Coroutine(this.Fade(1f, 0f, 4f, 0f), true));
@@ -92,7 +92,7 @@ namespace Celeste.Cutscenes
 			yield return this.Loop("0,1,1,0,0,1,1,0*8", 2f);
 			Input.Rumble(RumbleStrength.Strong, RumbleLength.Short);
 			Audio.SetMusic("event:/new_content/music/pusheen/lvl20/cinematic/end", true, false);
-			this.endAmbience = Audio.Play("guid://{7c6562f4-68b1-484a-8e50-a935f1ab56f7}");
+			this.endAmbience = Audio.Play("event:/new_content/env/10_endscene");
 			base.Add(new Coroutine(this.Zoom(1.2f, 1.05f, 0.06f, Ease.CubeOut), true));
 			yield return this.Play("2-7");
 			yield return this.Loop("7", 1.5f);
@@ -104,7 +104,7 @@ namespace Celeste.Cutscenes
 			base.Add(new Coroutine(this.Fade(0f, 1f, num * 0.1f, num * 0.85f), true));
 			base.Add(Alarm.Create(Alarm.AlarmMode.Oneshot, delegate
 			{
-				Audio.Play("guid://{9492988e-612e-418d-a1a5-b416db84f087}");
+				Audio.Play("event:/new_content/game/10_farewell/endscene_dial_theo");
 			}, num, true));
 			yield return this.Play(frameData);
 			this.frame = 18;
@@ -118,7 +118,7 @@ namespace Celeste.Cutscenes
 				new Func<IEnumerator>(this.ShowPicture)
 			});
 			Audio.SetMusicParam("end", 1f);
-			Audio.Play("guid://{0a35baac-0a14-4121-b6fe-8336c5ae6507}");
+			Audio.Play("event:/new_content/game/10_farewell/endscene_photo_zoom");
 			for (float p = 0f; p < 1f; p += Engine.DeltaTime / 4f)
 			{
 				Audio.SetParameter(this.endAmbience, "fade", 1f - p);
@@ -149,7 +149,7 @@ namespace Celeste.Cutscenes
 			base.Add(new Coroutine(this.Fade(1f, 0f, 0.25f, 0f), true));
 			base.Add(new Coroutine(this.Zoom(1.1f, 1f, 0.25f, null), true));
 			yield return 0.25f;
-			Audio.Play("guid://{0d8902b7-105c-4f09-973b-28e701845084}");
+			Audio.Play("event:/new_content/game/10_farewell/endscene_attachment_notify");
 			this.attachment.Origin = global::Celeste.Celeste.TargetCenter;
 			this.attachment.Position = global::Celeste.Celeste.TargetCenter;
 			this.attachment.Visible = true;
@@ -181,7 +181,7 @@ namespace Celeste.Cutscenes
 			yield return 0.2f;
 			from = default(Vector2);
 			to = default(Vector2);
-			Audio.Play("guid://{e50e05b1-7d84-42b4-9978-eaed3a3d9945}");
+			Audio.Play("event:/new_content/game/10_farewell/endscene_attachment_click");
 			for (float p = 0f; p < 1f; p += Engine.DeltaTime / 0.25f)
 			{
 				this.ok.Scale.Y = 1f - Ease.BigBackIn(p);
@@ -278,7 +278,7 @@ namespace Celeste.Cutscenes
 			{
 				yield return null;
 			}
-			Audio.Play("guid://{87c24e15-dce0-40ae-a8b5-878e5a071dc6}");
+			Audio.Play("event:/new_content/game/10_farewell/endscene_final_input");
 			this.showTimer = false;
 			base.Add(new Coroutine(this.Zoom(1f, 0.75f, 5f, Ease.CubeIn), true));
 			base.Add(new Coroutine(this.Fade(0f, 1f, 5f, 0f), true));

@@ -207,7 +207,7 @@ public class DestructableSpinner : Entity
     if (this.InView())
     {
       for (int index = 0; index < 5; ++index)
-        global::Celeste.Audio.Play("guid://{88cc2646-c70d-47bb-9e88-1de934fa1792}", this.Position);
+        global::Celeste.Audio.Play("event:/game/06_reflection/fall_spike_smash", this.Position);
       CrystalDebris.Burst(this.Position, this.tint, boss, 8);
       if (this.persistent)
       {

@@ -28,7 +28,7 @@ namespace Celeste.Entities
       if (triggered)
         return;
       base.OnEnter(player);
-      Audio.Play("guid://{d27aa340-38c2-46fe-9e45-83c4f6be9070}");
+      Audio.Play("event:/new_content/game/10_farewell/lightning_strike");
       level.Flash(Color.White);
       level.Shake();
       level.Add(new LightningStrike(new Vector2(player.X + 60f, level.Bounds.Bottom - 180), 10, 200f));

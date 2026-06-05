@@ -69,7 +69,7 @@
             player.Speed.Y = launchSpeed;
             player.Jump(false, true);
             
-            Audio.Play("guid://{a4c52eee-f6a0-4ebe-976f-fab38d4cfa7a}", Position);
+            Audio.Play("event:/game/general/spring", Position);
             
             Level level = SceneAs<Level>();
             level.DirectionalShake(new Vector2(0, -1), 0.1f);

@@ -209,7 +209,7 @@ namespace Celeste.Entities.Bosses
                 return;
 
             currentPhase = nextPhase;
-            Audio.Play("guid://{f64177a2-2611-49cc-8c63-d74c1e29c8a3}", Position);
+            Audio.Play("event:/game/05_mirror_temple/eye_pulse", Position);
 
             var level = Scene as Level;
             if (currentPhase == BossPhase.Corrupted)
@@ -281,7 +281,7 @@ namespace Celeste.Entities.Bosses
             if (player == null)
                 yield break;
 
-            Audio.Play("guid://{f64177a2-2611-49cc-8c63-d74c1e29c8a3}", Position);
+            Audio.Play("event:/game/05_mirror_temple/eye_pulse", Position);
             Vector2 start = Position;
             Vector2 target = player.Position + new Vector2(player.Facing == Facings.Left ? -28f : 28f, -10f);
 
@@ -305,7 +305,7 @@ namespace Celeste.Entities.Bosses
             if (level == null)
                 yield break;
 
-            Audio.Play("guid://{6e29b787-1f7a-4f44-84a8-eb867342a37f}", Position);
+            Audio.Play("event:/game/06_reflection/feather_bubble_get", Position);
             level.Flash(new Color(120, 0, 160), false);
 
             for (int ring = 0; ring < 4; ring++)
@@ -346,7 +346,7 @@ namespace Celeste.Entities.Bosses
             Vector2 center = player.Position;
             Vector2 start = center + new Vector2(-120f, -20f);
             Vector2 end = center + new Vector2(120f, -20f);
-            Audio.Play("guid://{f64177a2-2611-49cc-8c63-d74c1e29c8a3}", center);
+            Audio.Play("event:/game/05_mirror_temple/eye_pulse", center);
             level.Flash(new Color(180, 60, 200), true);
 
             for (int i = 0; i <= 5; i++)
@@ -371,7 +371,7 @@ namespace Celeste.Entities.Bosses
 
             health = Math.Max(0, health - damage);
             Health = health;
-            Audio.Play("guid://{6e29b787-1f7a-4f44-84a8-eb867342a37f}", Position);
+            Audio.Play("event:/game/06_reflection/feather_bubble_get", Position);
 
             if (health <= 0)
             {

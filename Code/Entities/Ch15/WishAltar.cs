@@ -129,7 +129,7 @@
             altarLight.Color = Color.Cyan;
             altarLight.Alpha = 0.6f;
             
-            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
+            Audio.Play("event:/game/general/crystalheart_pulse", Position);
         }
 
         public void MakeWish(WishType wish)
@@ -198,7 +198,7 @@
             
             // Dramatic effect
             level?.Shake(0.3f);
-            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
+            Audio.Play("event:/game/general/crystalheart_pulse", Position);
             
             // Create flame particles
             for (int i = 0; i < 20; i++)
@@ -219,7 +219,7 @@
                 sprite.Play("granted");
                 
                 level?.Flash(Color.Cyan * 0.4f);
-                Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
+                Audio.Play("event:/game/general/crystalheart_pulse", Position);
                 
                 yield return Textbox.Say(DialoguePrefix + "_" + SelectedWish.ToString().ToUpper() + "_GRANTED");
                 
@@ -398,7 +398,7 @@
         private void Collect()
         {
             collected = true;
-            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
+            Audio.Play("event:/game/general/crystalheart_pulse", Position);
             
             // Set flag for this wish type
             var level = Scene as Level;

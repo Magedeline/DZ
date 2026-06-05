@@ -34,20 +34,15 @@ public class Bridge : Entity
 
     private float gapEndX;
 
-    private string getLevelFlag;
-
     private SoundSource collapseSfx;
 
-    private TimeRateModifier timeRateModifier;
-
     [MethodImpl(MethodImplOptions.NoInlining)]
-    public Bridge(Vector2 position, int width, float gapStartX, float gapEndX, string getLevelFlag = "")
+    public Bridge(Vector2 position, int width, float gapStartX, float gapEndX)
         : base(position)
     {
         this.width = width;
         this.gapStartX = gapStartX;
         this.gapEndX = gapEndX;
-        this.getLevelFlag = getLevelFlag;
         tileSizes.Add(new Rectangle(0, 0, 16, 52));
         tileSizes.Add(new Rectangle(16, 0, 8, 52));
         tileSizes.Add(new Rectangle(24, 0, 8, 52));
@@ -60,12 +55,11 @@ public class Bridge : Entity
         tileSizes.Add(new Rectangle(80, 0, 16, 52));
         tileSizes.Add(new Rectangle(96, 0, 8, 52));
         Add(collapseSfx = new SoundSource());
-        Add(timeRateModifier = new TimeRateModifier(1f, false));
     }
 
     [MethodImpl(MethodImplOptions.NoInlining)]
     public Bridge(EntityData data, Vector2 offset)
-        : this(data.Position + offset, data.Width, data.Nodes[0].X, data.Nodes[1].X, data.Attr("getLevelFlag", "birdfistdash"))
+        : this(data.Position + offset, data.Width, data.Nodes[0].X, data.Nodes[1].X)
     {
     }
 
@@ -74,11 +68,6 @@ public class Bridge : Entity
     {
         base.Added(scene);
         level = scene as Level;
-        if (!string.IsNullOrEmpty(getLevelFlag) && level.Session.GetFlag(getLevelFlag))
-        {
-            RemoveSelf();
-            return;
-        }
         tiles = new List<BridgeTile>();
         gapStartX += level.Bounds.Left;
         gapEndX += level.Bounds.Left;
@@ -113,8 +102,8 @@ public class Bridge : Entity
         {
             if (entity != null && entity.X >= base.X + 112f)
             {
-                Audio.SetMusic("guid://{bcc1ccb0-ea9e-42d0-a0d2-8508e4a57874}", true, true);
-                collapseSfx.Play("guid://{cdb32540-bff1-4137-b08a-304047ed86d0}", null, 0f);
+                Audio.SetMusic("event:/music/pusheen/lvl0/bridge");
+                collapseSfx.Play("event:/game/pusheen/00_prologue/bridge_rumble_loop");
                 canCollapse = true;
                 canEndCollapseA = true;
                 canEndCollapseB = true;
@@ -180,16 +169,5 @@ public class Bridge : Entity
     public void StopCollapseLoop()
     {
         collapseSfx.Stop();
-        if (!string.IsNullOrEmpty(getLevelFlag))
-        {
-            level.Session.SetFlag(getLevelFlag);
-        }
-    }
-
-    public override void SceneEnd(Scene scene)
-    {
-        timeRateModifier.ResetTimeRateMultiplier();
-        base.SceneEnd(scene);
     }
 }
-

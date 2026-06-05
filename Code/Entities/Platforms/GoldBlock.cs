@@ -37,7 +37,7 @@
             broken = true;
             Collidable = false;
             
-            Audio.Play("guid://{92f75010-4e90-428e-834c-1315ddbd9460}", Position);
+            Audio.Play("event:/game/general/wall_break_stone", Position);
             
             Level level = SceneAs<Level>();
             level.Shake(0.2f);

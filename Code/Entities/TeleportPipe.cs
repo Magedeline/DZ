@@ -197,8 +197,8 @@
             isPlayerInside = true;
 
             // Play enter sound
-            pipeSfx.Play("guid://{c11484c7-8cc1-4328-b074-2ed680b452f1}");
-            Audio.Play("guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}", Position);
+            pipeSfx.Play("event:/game/09_core/conveyor_activate");
+            Audio.Play("event:/game/general/thing_booped", Position);
 
             // Visual feedback
             sprite.Play("active");
@@ -344,7 +344,7 @@
             player.Visible = true;
 
             // Play exit sound
-            Audio.Play("guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}", Position);
+            Audio.Play("event:/game/general/thing_booped", Position);
             
             // Visual effects
             sprite.Play("active");

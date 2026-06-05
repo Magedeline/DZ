@@ -57,7 +57,7 @@
 			base.Add(new Coroutine(this.cameraUp(), true));
 			if (!string.IsNullOrEmpty(this.text) && this.index >= 0)
 			{
-				Audio.Play("guid://{d35da1c1-742f-4d49-b7cb-b4e516d01d62}");
+				Audio.Play("event:/game/pusheen/09_beyondsummit/altitude_count");
 			}
 			while ((this.ease += Engine.DeltaTime / 0.15f) < 1f)
 			{
@@ -106,12 +106,12 @@
 				int num = this.index + 1;
 				if (num <= 5)
 				{
-					session.Audio.Music.Event = "guid://{e419496d-109b-443a-beb9-d2cc3412a22e}";
+					session.Audio.Music.Event = "event:/music/pusheen/lvl9/main";
 					session.Audio.Music.Progress = num;
 				}
 				else
 				{
-					session.Audio.Music.Event = "guid://{e08ee641-efd0-43e7-8343-f6d2b8ca9820}";
+					session.Audio.Music.Event = "event:/music/pusheen/lvl9/final_ascent";
 				}
 				session.Audio.Apply(false);
 			}

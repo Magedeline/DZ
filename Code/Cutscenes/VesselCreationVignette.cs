@@ -38,9 +38,9 @@ namespace Celeste.Cutscenes
         private const string DRONE_MUSIC_EVENT = "event:/music/pusheen/lvl0/creation/drone";
         private const string HEART_APPEAR_EVENT = "event:/music/pusheen/lvl0/creation/heart_appear";
         private const string HEART_CHANGE_EVENT = "event:/music/pusheen/lvl0/creation/heart_change";
-        private const string CHOICE_APPEAR_EVENT = "guid://{c4d2289a-859e-42e9-ba38-eee1791a3a62}";
-        private const string CHOICE_SELECT_EVENT = "guid://{bc008f9e-76c5-42d5-b2f0-574cb7dacf6f}";
-        private const string CHOICE_MOVE_EVENT = "guid://{dd4cb027-0132-4039-9303-c9ad8589683e}";
+        private const string CHOICE_APPEAR_EVENT = "event:/ui/game/chatoptions_appear";
+        private const string CHOICE_SELECT_EVENT = "event:/ui/game/chatoptions_select";
+        private const string CHOICE_MOVE_EVENT = "event:/ui/game/chatoptions_roll_down";
         #endregion
 
         #region Vessel Creation Data
@@ -1056,7 +1056,7 @@ namespace Celeste.Cutscenes
         public void OpenPauseMenu()
         {
             PauseSfx();
-            try { Audio.Play("guid://{c6311b80-2ae7-4155-80f1-d3e2713efaa3}"); }
+            try { Audio.Play("event:/ui/game/pause"); }
             catch (Exception ex) { IngesteLogger.Warn($"[VesselCreation] Failed to play pause sound: {ex.Message}"); }
             Add(pauseMenu = new TextMenu());
             pauseMenu.Add(new TextMenu.Button(Dialog.Clean("intro_vignette_resume")).Pressed(ClosePauseMenu));
@@ -1067,7 +1067,7 @@ namespace Celeste.Cutscenes
         private void ClosePauseMenu()
         {
             ResumeSfx();
-            try { Audio.Play("guid://{6096b41c-7b56-4839-ad53-deb9e5693246}"); }
+            try { Audio.Play("event:/ui/game/unpause"); }
             catch (Exception ex) { IngesteLogger.Warn($"[VesselCreation] Failed to play unpause sound: {ex.Message}"); }
             if (pauseMenu != null)
             {

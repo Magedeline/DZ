@@ -32,7 +32,7 @@ public class CS19_HubSecondIntro : CutsceneEntity
         public IEnumerator FlyAwayRoutine()
         {
             Level level = Scene as Level;
-            sfx = Audio.Play("guid://{9aa30c86-bd74-4fe0-a746-6206a161dbda}", Position);
+            sfx = Audio.Play("event:/new_content/game/10_farewell/bird_fly_uptonext", Position);
             sprite.Play("flyup");
             float spd = -32f;
             while (Y > (float)(level.Bounds.Top - 32))
@@ -103,7 +103,7 @@ public class CS19_HubSecondIntro : CutsceneEntity
         player.Sprite.Play("lookUp");
         yield return 0.25f;
         level.Add(bird = new Bird(new Vector2(spawn.X, (float)level.Bounds.Top + 190f)));
-        Audio.Play("guid://{447f67ef-0777-4a7a-94e2-c00300316d10}");
+        Audio.Play("event:/new_content/game/10_farewell/bird_camera_pan_up");
         yield return CutsceneEntity.CameraTo(new Vector2(spawn.X - 160f, (float)level.Bounds.Top + 190f - 90f), 2f, Ease.CubeInOut);
         yield return bird.IdleRoutine();
         Add(new Coroutine(CutsceneEntity.CameraTo(new Vector2(level.Camera.X, level.Bounds.Top), 0.8f, Ease.CubeInOut, 0.1f)));
@@ -118,7 +118,7 @@ public class CS19_HubSecondIntro : CutsceneEntity
 
         yield return 0.3f;
         float duration = 6f;
-        string sfx = "guid://{9f711ad4-4561-47f1-ab99-938d1169b1ca}".Substring(0, "guid://{9f711ad4-4561-47f1-ab99-938d1169b1ca}".Length - 1);
+        string sfx = "event:/new_content/game/10_farewell/locked_door_appear_1".Substring(0, "event:/new_content/game/10_farewell/locked_door_appear_1".Length - 1);
         int doorIndex = 1;
         Add(new Coroutine(CutsceneEntity.CameraTo(new Vector2(level.Camera.X, level.Bounds.Bottom - 180), duration, Ease.SineInOut)));
         Add(new Coroutine(Level.ZoomTo(new Vector2(160f, 90f), 1.5f, duration)));

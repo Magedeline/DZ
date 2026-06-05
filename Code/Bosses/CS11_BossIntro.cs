@@ -24,7 +24,7 @@ namespace Celeste.Cutscenes
         private const string DIALOG_KEY_WARNING = "MAGGYHELPER_CH11_BOSS_INTRO_DO_NOT_HURT_HER";
         
         // Audio events
-        private const string SFX_POSSESSION_REVEAL = "guid://{42d600c5-32c3-4433-8a1e-be394b30bcde}";
+        private const string SFX_POSSESSION_REVEAL = "event:/new_content/game/10_farewell/glitch_short";
         private const string SFX_DARK_MATTER_LAUGH = "event:/game_06_boss_badeline_laugh";
         private const string MUSIC_BOSS_INTRO = "event:/music/pusheen/lvl11/pmarlet_fight";
         #endregion

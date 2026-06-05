@@ -11,7 +11,7 @@ public static class TitleScreen_ExtHook
 {
     private static bool _hooked;
 
-    private const string VANILLA_TITLE_FIRSTINPUT = "guid://{6d72de1a-04fe-4be5-826b-5576002c277f}";
+    private const string VANILLA_TITLE_FIRSTINPUT = "event:/ui/main/title_firstinput";
     private const string CUSTOM_TITLE_FIRSTINPUT = "event:/ui/pusheen/game/title_firstinput";
 
     public static void Load()

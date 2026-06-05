@@ -214,6 +214,7 @@ namespace Celeste.Mod.MaggyHelper
             global::Celeste.AltSidesHelperBridge.Load();
             global::Celeste.IntroRemixHooks.Load();
             global::Celeste.MonoModHooks.Load();
+            global::Celeste.RoomTransitionHandler.Load();
 
             // Initialize Vignette hooks for intro/outro cutscenes
             InitializeVignetteHooks();
@@ -286,21 +287,45 @@ namespace Celeste.Mod.MaggyHelper
                 // Log that we're attempting to load audio banks
                 Logger.Log(LogLevel.Info, "MaggyHelper", "Attempting to load custom audio banks...");
 
-                // Find the mod's Audio directory
+                // Find the mod's Audio directory.
+                // NOTE: Everest loads mod assemblies from memory, so Assembly.Location is
+                // an empty string and Path.GetDirectoryName returns null. Use the mod's
+                // Everest metadata path instead, which always points at the mod root.
                 string modDir = null;
-                string assemblyDir = Path.GetDirectoryName(typeof(MaggyHelperModule).Assembly.Location);
 
-                // Search parent directories for Audio folder
-                DirectoryInfo current = new DirectoryInfo(assemblyDir);
-                while (current != null && current.Parent != null)
+                // Prefer the Everest-provided mod root (unzipped mods use PathDirectory,
+                // zipped mods use PathArchive).
+                string metaPath = Instance?.Metadata?.PathDirectory;
+                if (string.IsNullOrEmpty(metaPath))
+                    metaPath = Instance?.Metadata?.PathArchive;
+
+                string startDir = null;
+                if (!string.IsNullOrEmpty(metaPath))
                 {
-                    string testAudioDir = Path.Combine(current.FullName, "Audio");
-                    if (Directory.Exists(testAudioDir))
+                    // PathArchive points at a .zip file; use its containing directory.
+                    startDir = Directory.Exists(metaPath) ? metaPath : Path.GetDirectoryName(metaPath);
+                }
+                else
+                {
+                    // Fallback: derive from assembly location if it happens to be on disk.
+                    string assemblyDir = Path.GetDirectoryName(typeof(MaggyHelperModule).Assembly.Location);
+                    startDir = string.IsNullOrEmpty(assemblyDir) ? null : assemblyDir;
+                }
+
+                if (!string.IsNullOrEmpty(startDir))
+                {
+                    // Search the mod root and its parents for an Audio folder.
+                    DirectoryInfo current = new DirectoryInfo(startDir);
+                    while (current != null)
                     {
-                        modDir = current.FullName;
-                        break;
+                        string testAudioDir = Path.Combine(current.FullName, "Audio");
+                        if (Directory.Exists(testAudioDir))
+                        {
+                            modDir = current.FullName;
+                            break;
+                        }
+                        current = current.Parent;
                     }
-                    current = current.Parent;
                 }
 
                 if (modDir == null)
@@ -475,6 +500,7 @@ namespace Celeste.Mod.MaggyHelper
             // Unhook Vignette System
             UnloadVignetteHooks();
 
+            global::Celeste.RoomTransitionHandler.Unload();
             global::Celeste.MonoModHooks.Unload();
             global::Celeste.IntroRemixHooks.Unload();
             global::Celeste.AltSidesHelperBridge.Unload();
@@ -1318,7 +1344,7 @@ namespace Celeste.Mod.MaggyHelper
                 MaggyHelperModule.Session.CreditsCompleted = false;
             }
 
-            creditsSession.Audio.Music.Event = "guid://{40d5ef93-d1f9-4f8a-b01e-3cab79bfb49b}";
+            creditsSession.Audio.Music.Event = "event:/music/pusheen/lvl17/main";
             creditsSession.Audio.Apply(false);
 
             Engine.Scene = new LevelLoader(creditsSession)

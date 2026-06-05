@@ -76,7 +76,7 @@
             sprite.Visible = true;
             sprite.Play("appearing");
             
-            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
+            Audio.Play("event:/game/general/crystalheart_pulse", Position);
             
             Add(new Coroutine(RevealRoutine()));
         }
@@ -115,7 +115,7 @@
             }
             
             level?.Flash(fragmentColor * 0.4f);
-            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
+            Audio.Play("event:/game/general/crystalheart_pulse", Position);
             
             yield return Textbox.Say("NIGHTMARE_FRAGMENT_" + FragmentNumber);
             

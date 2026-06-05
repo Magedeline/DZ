@@ -40,7 +40,7 @@ namespace Celeste.Cutscenes
       player.StateMachine.State = Player.StDummy;
       player.Dashes = 1;
       yield return 0.3f;
-      ringtone.Play("guid://{1da40d8f-f7d3-425c-9f34-37684fda4aa4}");
+      ringtone.Play("event:/game/02_old_site/sequence_phone_ring_loop");
       while (player.Light.Alpha > 0.0f)
       {
         player.Light.Alpha -= Engine.DeltaTime * 2f;
@@ -57,17 +57,17 @@ namespace Celeste.Cutscenes
       yield return 1.5f;
       this.Add(Alarm.Create(Alarm.AlarmMode.Oneshot, () => this.ringtone.Param("end", 1f), 0.43f, true));
       player.Visible = false;
-      Audio.Play("guid://{7a436113-5059-4565-a239-927c4876b345}", player.Position);
+      Audio.Play("event:/game/02_old_site/sequence_phone_pickup", player.Position);
       yield return payphone.Sprite.PlayRoutine("pickUp");
       yield return 1f;
       if (level.Session.Area.Mode == AreaMode.Normal)
-        Audio.SetMusic("guid://{32207936-04e7-44d3-b8ff-98b317144f46}");
+        Audio.SetMusic("event:/music/pusheen/lvl2/phone_loop");
       payphone.Sprite.Play("talkPhone");
       yield return Textbox.Say("MAGGYHELPER_CH2_DREAM_PHONECALLPORTAL", showChara);
       if (evil != null)
       {
         if (level.Session.Area.Mode == AreaMode.Normal)
-          Audio.SetMusic("guid://{83181523-3cc1-4c30-a3a2-013a2e21e0b6}");
+          Audio.SetMusic("event:/music/pusheen/lvl2/phone_end");
         evil.Any();
         evil = null;
         yield return 1f;
@@ -166,7 +166,7 @@ namespace Celeste.Cutscenes
       Rectangle bounds = level.Bounds;
       Vector2 from = new Vector2(bounds.Left, bounds.Bottom);
       session.RespawnPoint = level.GetSpawnPoint(from);
-      level.Session.Audio.Music.Event = "guid://{39c9b08e-c4fe-48be-91d2-5d7ccd3d83e4}";
+      level.Session.Audio.Music.Event = "event:/music/pusheen/lvl2/awake";
       level.Session.Audio.Ambience.Event = "event:/env/pusheen/02_awake";
       level.LoadLevel(global::Celeste.Player.IntroTypes.WakeUp);
       level.EndCutscene();

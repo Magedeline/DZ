@@ -83,7 +83,7 @@
                 sprite.Visible = true;
                 base.Depth = -100;
                 wiggler.Start();
-                Audio.Play("guid://{735f3afc-00bc-46da-94f1-2cb51e3bfecc}", Position);
+                Audio.Play("event:/game/general/diamond_return", Position);
                 level.ParticlesFG.Emit(P_Regen, 16, Position, Vector2.One * 2f);
             }
         }

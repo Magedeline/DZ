@@ -83,7 +83,7 @@ namespace Celeste.Entities.Bosses
                 session.CurrentKirbyPower = ability.ToString();
             }
 
-            Audio.Play("guid://{a47180e1-9bc2-4dbc-86c7-6402cea2e2be}", Position);
+            Audio.Play("event:/game/general/diamond_touch", Position);
             RemoveSelf();
         }
     }

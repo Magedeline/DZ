@@ -130,7 +130,7 @@ namespace Celeste.Entities.Enemies
 
             // Visual feedback
             if (sprite != null) sprite.Color = Color.White;
-            Audio.Play("guid://{bbe7d0c8-45f9-4671-b49e-8e38e357bb81}", Position);
+            Audio.Play("event:/char/badeline/boss_bullet", Position);
 
             Logger.Log(LogLevel.Info, "KirbyMidBoss", $"{BossName} entered phase {newPhase}");
         }
@@ -232,7 +232,7 @@ namespace Celeste.Entities.Enemies
                 }
 
                 level.Shake(0.3f);
-                Audio.Play("guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}", Position);
+                Audio.Play("event:/game/general/thing_booped", Position);
             }
 
             // Remove after delay
@@ -356,7 +356,7 @@ namespace Celeste.Entities.Enemies
                 level.Flash(GetAbilityColor(ability) * 0.3f);
             }
 
-            Audio.Play("guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}", Position);
+            Audio.Play("event:/game/general/thing_booped", Position);
 
             RemoveSelf();
         }
@@ -486,7 +486,7 @@ namespace Celeste.Entities.Enemies
                 2 // Damage
             ));
 
-            Audio.Play("guid://{bbe7d0c8-45f9-4671-b49e-8e38e357bb81}", Position);
+            Audio.Play("event:/char/badeline/boss_bullet", Position);
         }
     }
 
@@ -587,7 +587,7 @@ namespace Celeste.Entities.Enemies
             // Spawn shockwave effect
             // (Could add actual shockwave projectile here)
 
-            Audio.Play("guid://{bbe7d0c8-45f9-4671-b49e-8e38e357bb81}", Position);
+            Audio.Play("event:/char/badeline/boss_bullet", Position);
 
             attackTimer = AttackCooldownTime;
         }
@@ -665,7 +665,7 @@ namespace Celeste.Entities.Enemies
             isFlying = true;
             flightTimer = 2f;
             sprite.Play("fly");
-            Audio.Play("guid://{bbe7d0c8-45f9-4671-b49e-8e38e357bb81}", Position);
+            Audio.Play("event:/char/badeline/boss_bullet", Position);
         }
 
         private void PerformDive()

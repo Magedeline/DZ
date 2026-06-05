@@ -137,10 +137,10 @@ namespace Celeste
         private bool barrierActive;
         
         // Audio - FMOD Events
-        private const string MUSIC_BURN_IN_DESPAIR = "guid://{970368cc-d45a-4159-a9ec-e56e27d2f7ae}";
+        private const string MUSIC_BURN_IN_DESPAIR = "event:/new_content/music/pusheen/lvl20/burn_in_despair";
         private const string MUSIC_HIS_THEME_01 = "event:/new_content/music/pusheen/lvl20/his_theme01";
         private const string MUSIC_HIS_THEME_02 = "event:/new_content/music/pusheen/lvl20/his_theme02";
-        private const string MUSIC_KIRBY_VS_ASRIEL = "guid://{0d7ca5d0-ca5f-49d6-aa8e-1a637333aa45}";
+        private const string MUSIC_KIRBY_VS_ASRIEL = "event:/new_content/music/pusheen/lvl20/angel";
         
         // Lost soul tracking
         private Dictionary<string, bool> soulsSaved;

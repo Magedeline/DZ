@@ -177,7 +177,7 @@
             collected = true;
 
             // Play collection sound
-            Audio.Play("guid://{3b45b8d4-ff15-4d36-9411-3e4ce2726377}", Position);
+            Audio.Play("event:/game/general/strawberry_get", Position);
 
             // Visual effects
             wiggler.Start();

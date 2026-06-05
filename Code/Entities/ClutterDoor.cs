@@ -40,7 +40,7 @@
         private DashCollisionResults OnDashed(global::Celeste.Player player, Vector2 direction)
         {
             wiggler.Start();
-            Audio.Play("guid://{1e7997d7-a551-479e-90d3-f6929fd665ef}", Position);
+            Audio.Play("event:/game/03_resort/forcefield_bump", Position);
             return DashCollisionResults.Bounce;
         }
 
@@ -57,7 +57,7 @@
                 Visible = true;
                 Collidable = true;
                 wiggler.Start();
-                Audio.Play("guid://{1e7997d7-a551-479e-90d3-f6929fd665ef}", Position);
+                Audio.Play("event:/game/03_resort/forcefield_bump", Position);
             }
             base.Update();
         }
@@ -84,7 +84,7 @@
             else
                 yield return 0.2f;
             Input.Rumble(RumbleStrength.Medium, RumbleLength.Medium);
-            Audio.Play("guid://{512ca8f8-a58f-4bd0-bd55-a237fa07c6c6}", clutterDoor.Position);
+            Audio.Play("event:/game/03_resort/forcefield_vanish", clutterDoor.Position);
             clutterDoor.sprite.Play("open");
             clutterDoor.Collidable = false;
             for (p = 0.0f; p < 0.40000000596046448; p += Engine.DeltaTime)

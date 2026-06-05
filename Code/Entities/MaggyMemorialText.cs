@@ -107,8 +107,8 @@
                 {
                     textSfxPlaying = true;
                     textSfx.Play(Dreamy
-                        ? "guid://{c3ddcdec-04ff-43b0-8103-ba0f0841c550}"
-                        : "guid://{12f81211-c72f-44f7-951c-4884bea99668}");
+                        ? "event:/ui/game/memorial_dream_text_loop"
+                        : "event:/ui/game/memorial_text_loop");
                 }
             }
             else if (textSfxPlaying)

@@ -179,7 +179,7 @@ namespace Celeste.Entities
                     } else if ((double)this.Bottom > (double)this.level.Bounds.Bottom && SaveData.Instance.Assists.Invincible) {
                         this.Bottom = (float)this.level.Bounds.Bottom;
                         this.Speed.Y = -300f;
-                        Audio.Play("guid://{b98b9406-a64d-4428-b882-a33366f50cbf}", this.Position);
+                        Audio.Play("event:/game/general/assist_screenbottom", this.Position);
                     } else if ((double)this.Top > (double)this.level.Bounds.Bottom)
                         this.die();
 
@@ -252,7 +252,7 @@ namespace Celeste.Entities
         private void hitSeeker1(Seeker seeker) {
             if (!this.hold.IsHeld)
                 this.Speed = (this.Center - seeker.Center).SafeNormalize(120f);
-            Audio.Play("guid://{ac5d3d51-3aac-4c22-a608-ba0bb777ca27}", this.Position);
+            Audio.Play("event:/game/05_mirror_temple/crystaltheo_hit_side", this.Position);
         }
 
         private void hitSpinner(Entity spinner) {
@@ -306,7 +306,7 @@ namespace Celeste.Entities
                   Vector2.UnitX * (float)Math.Sign(this.Speed.X));
             }
 
-            Audio.Play("guid://{ac5d3d51-3aac-4c22-a608-ba0bb777ca27}", this.Position);
+            Audio.Play("event:/game/05_mirror_temple/crystaltheo_hit_side", this.Position);
             if ((double)Math.Abs(this.Speed.X) > 100.0)
                 this.impactParticles(data.Direction);
             this.Speed.X *= -0.4f;
@@ -320,11 +320,11 @@ namespace Celeste.Entities
 
             if ((double)this.Speed.Y > 0.0) {
                 if ((double)this.hardVerticalHitSoundCooldown <= 0.0) {
-                    Audio.Play("guid://{5d717d53-4596-4f11-8f44-c73fb9543aba}", this.Position, "crystal_velocity",
+                    Audio.Play("event:/game/05_mirror_temple/crystaltheo_hit_ground", this.Position, "crystal_velocity",
                       Calc.ClampedMap(this.Speed.Y, 0.0f, 200f));
                     this.hardVerticalHitSoundCooldown = 0.5f;
                 } else
-                    Audio.Play("guid://{5d717d53-4596-4f11-8f44-c73fb9543aba}", this.Position, "crystal_velocity", 0.0f);
+                    Audio.Play("event:/game/05_mirror_temple/crystaltheo_hit_ground", this.Position, "crystal_velocity", 0.0f);
             }
 
             if ((double)this.Speed.Y > 160.0)
@@ -399,7 +399,7 @@ namespace Celeste.Entities
             this.dead = true;
             global::Celeste.Player entity = this.level.Tracker.GetEntity<global::Celeste.Player>();
             entity?.Die(-Vector2.UnitX * (float)entity.Facing);
-            Audio.Play("guid://{1986d39f-8d8e-49e5-a6fa-e2e7fdb9f601}", this.Position);
+            Audio.Play("event:/char/pusheen/kirby/death", this.Position);
             this.Add((Component)new DeathEffect(Color.ForestGreen, new Vector2?(this.Center - this.Position)));
             this.sprite.Visible = false;
             this.Depth = -1000000;

@@ -30,7 +30,7 @@ namespace Celeste.Cutscenes
             CS02_CharaMirror cs02CharaMirror = this;
             cs02CharaMirror.Add(cs02CharaMirror.sfx = new SoundSource());
             cs02CharaMirror.sfx.Position = cs02CharaMirror.charaMirror.Center;
-            cs02CharaMirror.sfx.Play("guid://{c2b2e7ce-7711-4054-9c82-6dd0ed0aa017}");
+            cs02CharaMirror.sfx.Play("event:/music/pusheen/lvl2/dreamblock_sting_pt1");
             cs02CharaMirror.direction = Math.Sign(cs02CharaMirror.player.X - cs02CharaMirror.charaMirror.X);
             cs02CharaMirror.player.StateMachine.State = Player.StDummy;
             cs02CharaMirror.playerEndX = 8 * cs02CharaMirror.direction;
@@ -84,7 +84,7 @@ namespace Celeste.Cutscenes
             player.Facing = (Facings) dashDirection;
             player.DummyAutoAnimate = false;
             player.Sprite.Play("dash");
-            Audio.Play("guid://{7d11bf1c-4e3f-40ad-8e6d-f06bb70f097e}", player.Position);
+            Audio.Play("event:/char/pusheen/kirby/dash_pink_right", player.Position);
             
             player.Hair.Color = Player.UsedHairColor;
             
@@ -119,7 +119,7 @@ namespace Celeste.Cutscenes
                 entity2.ActivateNoRoutine();
             level.ResetZoom();
             level.Session.Inventory.DreamDash = true;
-            level.Session.Audio.Music.Event = "guid://{47dd1235-7838-463b-83b7-9edcd35df4fa}";
+            level.Session.Audio.Music.Event = "event:/music/pusheen/lvl2/mirror";
             level.Session.Audio.Apply();
         }
     }

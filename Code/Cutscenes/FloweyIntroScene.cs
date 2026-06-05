@@ -24,7 +24,7 @@ namespace Celeste.Cutscenes
         private const string DIALOG_ASSIST = "MAGGYHELPER_CH10_FLOWEY_INTRO_ASSIST";
 
         // Audio
-        private const string MUSIC_FLOWEY = "guid://{63e96b38-134d-4fee-81e8-747c346e662c}";
+        private const string MUSIC_FLOWEY = "event:/music/pusheen/lvl10/flowey";
         private const string MUSIC_FLOWEY_ALT = "event:/music/pusheen/lvl10/flowey_alt";
         private const string SFX_FLOWEY_EMERGE = "event:/pusheen/sfx/lvl10/flowey_emerge";
         private const string SFX_MUSIC_DROP = "event:/pusheen/sfx/lvl10/music_drop";

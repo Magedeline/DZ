@@ -32,7 +32,7 @@ namespace Celeste
             "end_city", "end_oldsite_dream", "end_oldsite_awake", "ch5_see_theo", "ch5_found_theo", "ch5_mirror_reflection", "cancel_ch5_see_theo", "ch6_boss_intro", "ch6_reflect", "ch7_summit",
             "ch8_door", "ch9_goto_the_future", "ch9_goto_the_past", "ch9_moon_intro", "ch9_hub_intro", "ch9_hub_transition_out", "ch9_badeline_helps", "ch9_farewell", "ch9_ending", "ch9_end_golden",
             "ch9_final_room", "ch9_ding_ding_ding", "ch9_golden_snapshot", "seeTheoInCrystal", "foundTheoInCrystal", "reflection", "it_ch5_see_theo", "it_ch5_see_theo_b", "ignore_darkness_", "boss_intro",
-            "reflection", "moon_intro", "hub_intro", "badeline_helps", "final_room_deaths", "final_room_deaths", "guid://{17a8ef3e-78e8-430c-9cf4-995a121ef1fe}", "decals/10-farewell/finalflag", "guid://{45db5a63-5d6d-4c3c-9c0c-d9924542b762}", "golden",
+            "reflection", "moon_intro", "hub_intro", "badeline_helps", "final_room_deaths", "final_room_deaths", "event:/new_content/game/10_farewell/pico8_flag", "decals/10-farewell/finalflag", "snapshot:/game_10_golden_room_flavour", "golden",
             "Event '", "' does not exist!"
         };
 
@@ -168,7 +168,7 @@ namespace Celeste
                         level.Shake();
                         level.Add(new LightningStrike(new Vector2(player2.X + 60f, level.Bounds.Bottom - 180), 10, 200f));
                         level.Add(new LightningStrike(new Vector2(player2.X + 220f, level.Bounds.Bottom - 180), 40, 200f, 0.25f));
-                        Audio.Play("guid://{d27aa340-38c2-46fe-9e45-83c4f6be9070}");
+                        Audio.Play("event:/new_content/game/10_farewell/lightning_strike");
                     };
                     break;
                 case "ch9_moon_intro":
@@ -230,7 +230,7 @@ namespace Celeste
                 }
                 case "ch9_ding_ding_ding":
                 {
-                    Audio.Play("guid://{17a8ef3e-78e8-430c-9cf4-995a121ef1fe}", base.Center);
+                    Audio.Play("event:/new_content/game/10_farewell/pico8_flag", base.Center);
                     Decal decal = null;
                     foreach (Decal item in base.Scene.Entities.FindAll<Decal>())
                     {
@@ -244,7 +244,7 @@ namespace Celeste
                     break;
                 }
                 case "ch9_golden_snapshot":
-                    snapshot = Audio.CreateSnapshot("guid://{45db5a63-5d6d-4c3c-9c0c-d9924542b762}");
+                    snapshot = Audio.CreateSnapshot("snapshot:/game_10_golden_room_flavour");
                     (base.Scene as Level).SnapColorGrade("golden");
                     break;
                 default:

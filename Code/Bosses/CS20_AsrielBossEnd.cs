@@ -29,7 +29,7 @@ namespace Celeste.Cutscenes
 
         private const string DIALOG_KEY = "MAGGYHELPER_CH20_ASRIEL_BOSS_END";
         private const string MUSIC_HIS_THEME = "event:/new_content/music/pusheen/lvl20/musicbox";
-        private const string SFX_GLITCH_LONG = "guid://{de5847e9-ebe4-4529-9b18-d2f82589b010}";
+        private const string SFX_GLITCH_LONG = "event:/new_content/game/pusheen/19_spaces/glitch_long";
         private const string SFX_POWER = "event:/new_content/char/pusheen/asriel/Asriel_Segapower01";
 
         private global::Celeste.Player player;

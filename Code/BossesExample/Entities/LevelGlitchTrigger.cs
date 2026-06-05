@@ -53,7 +53,7 @@ internal class LevelGlitchTrigger : Trigger
     Level level = ((Entity) this).SceneAs<Level>();
     if (this.lowPass)
       global::Celeste.Audio.SetMusicParam("lowpass", this.lowPassValue);
-    global::Celeste.Audio.Play("guid://{42d600c5-32c3-4433-8a1e-be394b30bcde}");
+    global::Celeste.Audio.Play("event:/new_content/game/10_farewell/glitch_short");
     LevelData leveldata = level.Session.LevelData;
     Session session = (((Entity) this).Scene as Level).Session;
     EntityID id = this.id;

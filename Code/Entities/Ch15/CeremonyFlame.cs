@@ -94,7 +94,7 @@
             
             State = FlameState.Igniting;
             sprite.Play("ignite");
-            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
+            Audio.Play("event:/game/general/crystalheart_pulse", Position);
             
             Add(new Coroutine(IgniteRoutine()));
         }
@@ -325,7 +325,7 @@
         {
             activated = true;
             sprite.Play("activate");
-            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
+            Audio.Play("event:/game/general/crystalheart_pulse", Position);
             
             // Extinguish nearby flames
             foreach (var flame in Scene.Tracker.GetEntities<CeremonyFlame>())

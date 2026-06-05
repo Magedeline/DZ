@@ -82,7 +82,7 @@ public class CS00_EndingMod : CutsceneEntity
         player.StateMachine.State = Player.StDummy;
         player.Facing = Facings.Right;
         yield return WaitFor(1f);
-        EventInstance instance = Audio.Play("guid://{5f8d988c-528d-4d55-a6e2-4c47bfc50176}", bird.Position);
+        EventInstance instance = Audio.Play("event:/game/general/bird_in", bird.Position);
         bird.Facing = Facings.Left;
         bird.Sprite.Play("fall");
         float percent = 0f;
@@ -100,7 +100,7 @@ public class CS00_EndingMod : CutsceneEntity
             yield return null;
         }
         bird.Position = to;
-        Audio.Play("guid://{51d238e6-4f1b-46f6-a94d-df78f8df8ac7}", bird.Position);
+        Audio.Play("event:/game/general/bird_land_dirt", bird.Position);
         Dust.Burst(bird.Position, -MathF.PI / 2f, 12, null);
         bird.Sprite.Play("idle");
         yield return WaitFor(0.5f);
@@ -130,7 +130,7 @@ public class CS00_EndingMod : CutsceneEntity
             yield return null;
         }
         yield return 2f;
-        Audio.SetMusic("guid://{1e5da4a1-79d5-430e-b717-70eda3f9b004}", true, true);
+        Audio.SetMusic("event:/music/pusheen/lvl0/title_ping", true, true);
         yield return 2f;
         endingText = new PrologueEndingVignetteText(instant: false);
         Scene.Add(endingText);

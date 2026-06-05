@@ -47,7 +47,7 @@ public class CS19_MissTheBird : CutsceneEntity
     private IEnumerator Cutscene(Level level)
     {
         Audio.SetMusicParam("bird_grab", 1f);
-        crashMusicSfx = Audio.Play("guid://{995ea212-b2b7-47a3-b1b6-3720f6bda5ca}");
+        crashMusicSfx = Audio.Play("event:/new_content/music/pusheen/lvl19/cinematic/bird_crash_first");
         yield return flingBird?.DoGrabbingRoutine(player);
         bird = new BirdNPC(flingBird.Position, BirdNPC.Modes.None);
         level.Add(bird);
@@ -112,7 +112,7 @@ public class CS19_MissTheBird : CutsceneEntity
             yield return null;
         }
         yield return 0.2f;
-        Audio.Play("guid://{73265a98-2cb3-4d98-9643-cf592c2b9131}", player.Position);
+        Audio.Play("event:/char/madeline/stand", player.Position);
         player.DummyAutoAnimate = true;
         player.Sprite.Play("idle");
         yield return 0.2f;
@@ -133,7 +133,7 @@ public class CS19_MissTheBird : CutsceneEntity
     private IEnumerator FlickerBlackhole()
     {
         yield return 0.5f;
-        Audio.Play("guid://{11ceb604-2aba-41b5-a303-8b0611c25388}");
+        Audio.Play("event:/new_content/game/pusheen/19_spaces/glitch_medium");
         Audio.Play("event:/new_content/music/pusheen/lvl19/cinematic/els_intro_laugh");
         yield return MoonGlitchBackgroundTrigger.GlitchRoutine(0.5f, stayOn: false);
         yield return player.DummyWalkTo(player.X - 8f, walkBackwards: true);
@@ -151,7 +151,7 @@ public class CS19_MissTheBird : CutsceneEntity
         Audio.Play("event:/new_content/music/pusheen/lvl19/cinematic/els_intro_scream");
         yield return MoonGlitchBackgroundTrigger.GlitchRoutine(1.0f, stayOn: false);
         yield return 2.4f;
-        Audio.Play("guid://{944293c6-5f4a-4ef7-a1d8-44ecc9764d3f}");
+        Audio.Play("event:/new_content/game/pusheen/19_spaces/lightning_strike");
         TriggerEnvironmentalEvents();
         StartMusic();
         yield return 1.2f;
@@ -160,8 +160,8 @@ public class CS19_MissTheBird : CutsceneEntity
     [MethodImpl(MethodImplOptions.NoInlining)]
     private void StartMusic()
     {
-        Level.Session.Audio.Music.Event = "guid://{c2768eaa-6449-4dd0-852f-f1035bca151c}";
-        Level.Session.Audio.Ambience.Event = "guid://{6c8fbd88-c123-426c-9e0d-39cb893d134a}";
+        Level.Session.Audio.Music.Event = "event:/new_content/music/pusheen/lvl19/part03";
+        Level.Session.Audio.Ambience.Event = "event:/new_content/env/pusheen/19_voidspiral";
         Level.Session.Audio.Apply(false);
     }
 

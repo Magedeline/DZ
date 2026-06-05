@@ -197,7 +197,7 @@ namespace Celeste
     {
       if (!this.flyingAway && id == "flap" && this.sprite.CurrentAnimationFrame % 9 == 4)
       {
-        Audio.Play("guid://{dd319a09-d197-4604-8ebf-c5fee614d863}", this.Position);
+        Audio.Play("event:/game/general/strawberry_wingflap", this.Position);
         this.flapSpeed = -50f;
       }
       if (this.sprite.CurrentAnimationFrame != (!(id == "flap") ? (!this.Golden ? (!this.Moon ? 35 : 30) : 30) : 25))
@@ -205,12 +205,12 @@ namespace Celeste
       this.lightTween.Start();
       if (!this.collected && (this.CollideCheck<FakeWall>() || this.CollideCheck<Solid>()))
       {
-        Audio.Play("guid://{0886e368-bce4-4922-97c3-edeadf714e29}", this.Position);
+        Audio.Play("event:/game/general/strawberry_pulse", this.Position);
         this.SceneAs<Level>().Displacement.AddBurst(this.Position, 0.6f, 4f, 28f, 0.1f);
       }
       else
       {
-        Audio.Play("guid://{0886e368-bce4-4922-97c3-edeadf714e29}", this.Position);
+        Audio.Play("event:/game/general/strawberry_pulse", this.Position);
         this.SceneAs<Level>().Displacement.AddBurst(this.Position, 0.6f, 4f, 28f, 0.2f);
       }
     }
@@ -235,7 +235,7 @@ namespace Celeste
       }
       if (this.Golden)
         (this.Scene as Level).Session.GrabbedGolden = true;
-      Audio.Play(this.isGhostBerry ? "guid://{5c271b0b-eba2-400b-8011-e1d673324674}" : "guid://{525d00db-bc31-4054-9f61-0238bfd62941}", this.Position);
+      Audio.Play(this.isGhostBerry ? "event:/game/general/strawberry_blue_touch" : "event:/game/general/strawberry_touch", this.Position);
       player.Leader.GainFollower(this.Follower);
       this.wiggler.Start();
       this.Depth = -1000000;
@@ -274,10 +274,10 @@ namespace Celeste
       tween1.OnUpdate = (Action<Tween>) (t => strawberry.sprite.Scale = Vector2.One * (1f + t.Eased * 0.5f));
       strawberry.Add((Component) tween1);
       yield return (object) 0.1f;
-      Audio.Play("guid://{e144b578-20dd-4722-897c-24de90562b7b}", strawberry.Position);
+      Audio.Play("event:/game/general/strawberry_laugh", strawberry.Position);
       yield return (object) 0.2f;
       if (!strawberry.Follower.HasLeader)
-        Audio.Play("guid://{3b9e48f1-e72d-46a6-909b-4ce5044c4253}", strawberry.Position);
+        Audio.Play("event:/game/general/strawberry_flyaway", strawberry.Position);
       Tween tween2 = Tween.Create(Tween.TweenMode.Oneshot, duration: 0.5f, start: true);
       tween2.OnUpdate = (Action<Tween>) (t => strawberry.sprite.Scale = Vector2.One * (1.5f - t.Eased * 0.5f));
       strawberry.Add((Component) tween2);
@@ -309,7 +309,7 @@ namespace Celeste
         num = 1;
       else if (strawberry.Golden)
         num = 2;
-      Audio.Play("guid://{3b45b8d4-ff15-4d36-9411-3e4ce2726377}", strawberry.Position, "colour", (float) num, "count", (float) collectIndex);
+      Audio.Play("event:/game/general/strawberry_get", strawberry.Position, "colour", (float) num, "count", (float) collectIndex);
       Input.Rumble(RumbleStrength.Medium, RumbleLength.Medium);
       strawberry.sprite.Play("collect");
       while (strawberry.sprite.Animating)

@@ -165,7 +165,7 @@ internal class NoResetMoveBlock : Solid
       this.state = NoResetMoveBlock.MovementState.Idling;
       while (!this.triggered && !this.HasPlayerRider())
         yield return (object) null;
-      global::Celeste.Audio.Play("guid://{3164e6e3-a335-4821-bbed-eb598dcae9ce}", ((Entity) this).Position);
+      global::Celeste.Audio.Play("event:/game/04_cliffside/arrowblock_activate", ((Entity) this).Position);
       this.startedMoving = true;
       this.state = NoResetMoveBlock.MovementState.Moving;
       ((Platform) this).StartShaking(0.2f);
@@ -174,7 +174,7 @@ internal class NoResetMoveBlock : Solid
       this.targetSpeed = this.fast ? 75f : 60f;
       if (this.superSlow)
         this.targetSpeed = this.superSlowSpeed;
-      this.moveSfx.Play("guid://{77afc34f-d0dc-4224-89c6-936762850581}", (string) null, 0.0f);
+      this.moveSfx.Play("event:/game/04_cliffside/arrowblock_move", (string) null, 0.0f);
       this.moveSfx.Param("arrow_stop", 0.0f);
       this.StopPlayerRunIntoAnimation = false;
       float crashTimer = 0.15f;
@@ -294,7 +294,7 @@ label_45:
         else
           break;
       }
-      global::Celeste.Audio.Play("guid://{51df0abc-4ee9-4dd8-8123-d559a7f51383}", ((Entity) this).Position);
+      global::Celeste.Audio.Play("event:/game/04_cliffside/arrowblock_break", ((Entity) this).Position);
       this.moveSfx.Stop(true);
       this.state = NoResetMoveBlock.MovementState.Breaking;
       this.speed = this.targetSpeed = 0.0f;
@@ -326,7 +326,7 @@ label_45:
       while (((Entity) this).CollideCheck<Actor>() || ((Entity) this).CollideCheck<Solid>())
         yield return (object) null;
       ((Entity) this).Collidable = true;
-      EventInstance instance = global::Celeste.Audio.Play("guid://{d5e8a4f4-f627-4802-975c-b99ef4fea5ee}", ((Entity) debris[0]).Position);
+      EventInstance instance = global::Celeste.Audio.Play("event:/game/04_cliffside/arrowblock_reform_begin", ((Entity) debris[0]).Position);
       NoResetMoveBlock moveBlock = this;
       Coroutine component;
       Coroutine routine = component = new Coroutine(this.SoundFollowsDebrisCenter(instance, debris), true);
@@ -340,7 +340,7 @@ label_45:
       ((Component) routine).RemoveSelf();
       foreach (NoResetMoveBlock.Debris item4 in debris)
         ((Entity) item4).RemoveSelf();
-      global::Celeste.Audio.Play("guid://{a09bfe4a-d2df-48da-af7f-64c1db765dcf}", ((Entity) this).Position);
+      global::Celeste.Audio.Play("event:/game/04_cliffside/arrowblock_reappear", ((Entity) this).Position);
       ((Entity) this).Visible = true;
       ((Platform) this).EnableStaticMovers();
       this.speed = this.targetSpeed = 0.0f;
@@ -395,9 +395,9 @@ label_45:
       foreach (GraphicsComponent graphicsComponent in this.rightButton)
         graphicsComponent.X = ((Entity) this).Width + (flag2 ? -2f : 0.0f);
       if (flag1 && !this.leftPressed || flag3 && !this.topPressed || flag2 && !this.rightPressed)
-        global::Celeste.Audio.Play("guid://{7d6ccc8f-678e-4648-bead-3a5c82cfd916}", ((Entity) this).Position);
+        global::Celeste.Audio.Play("event:/game/04_cliffside/arrowblock_side_depress", ((Entity) this).Position);
       if (!flag1 && this.leftPressed || !flag3 && this.topPressed || !flag2 && this.rightPressed)
-        global::Celeste.Audio.Play("guid://{9a3d6d97-4b11-4771-bf58-fbe2d7274579}", ((Entity) this).Position);
+        global::Celeste.Audio.Play("event:/game/04_cliffside/arrowblock_side_release", ((Entity) this).Position);
       this.leftPressed = flag1;
       this.rightPressed = flag2;
       this.topPressed = flag3;

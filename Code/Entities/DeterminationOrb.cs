@@ -70,7 +70,7 @@ namespace Celeste.Entities
             // Apply determination boost
             ApplyBoost(player);
             
-            Audio.Play("guid://{735f3afc-00bc-46da-94f1-2cb51e3bfecc}", Position);
+            Audio.Play("event:/game/general/diamond_return", Position);
             
             // Mark as collected if one-time
             if (oneUse)
@@ -143,7 +143,7 @@ namespace Celeste.Entities
                 if (respawnTimer <= 0f)
                 {
                     collected = false;
-                    Audio.Play("guid://{735f3afc-00bc-46da-94f1-2cb51e3bfecc}", Position);
+                    Audio.Play("event:/game/general/diamond_return", Position);
                 }
             }
         }

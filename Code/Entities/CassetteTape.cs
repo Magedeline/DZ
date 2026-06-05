@@ -134,7 +134,7 @@ namespace Celeste.Entities
                 // Play preview sound when player gets close, stop when they leave
                 if (canInteract && !previewPlayed)
                 {
-                    previewEventInstance = Audio.Play("guid://{84569f0c-21e9-4701-ab78-540a746965cf}", Position);
+                    previewEventInstance = Audio.Play("event:/game/pusheen/general/tape_preview", Position);
                     Audio.SetParameter(previewEventInstance, "remix", remixIndex);
                     previewPlayed = true;
                 }

@@ -104,7 +104,7 @@
             Collidable = false;
             sprite.Visible = false;
             
-            Audio.Play("guid://{88cc2646-c70d-47bb-9e88-1de934fa1792}", Position);
+            Audio.Play("event:/game/06_reflection/fall_spike_smash", Position);
             level.Shake(0.3f);
             
             // Emit explosion particles

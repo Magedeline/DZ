@@ -77,11 +77,11 @@ public class OshiroSprite : Sprite
             Scale.X = 0f - Scale.X;
             if (Scale.X < 0f)
             {
-                Audio.Play("guid://{c4fc63e7-6814-466a-9077-c90a82fc710e}", base.Entity.Position);
+                Audio.Play("event:/char/oshiro/chat_turn_left", base.Entity.Position);
             }
             else
             {
-                Audio.Play("guid://{a5b71a3a-2b11-43d7-a6dc-c2fc90d9d07e}", base.Entity.Position);
+                Audio.Play("event:/char/oshiro/chat_turn_right", base.Entity.Position);
             }
         }
         wiggler.Start();

@@ -150,7 +150,7 @@
 
             // Play opening animation and sound
             sprite?.Play("opening");
-            gateSound?.Play("guid://{9db695ce-ce56-4025-9528-030d6b599c86}");
+            gateSound?.Play("event:/game/general/cassette_bubblereturn");
 
             // Visual effects
             wiggler?.Start();

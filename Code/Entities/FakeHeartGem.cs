@@ -143,7 +143,7 @@
 
             // Shatter effect
             level.ParticlesFG.Emit(P_Shatter, 8, Position, Vector2.One * 6f);
-            Audio.Play("guid://{96349ed6-cd24-4010-a9ee-0e93101a6609}", Position);
+            Audio.Play("event:/game/general/crystalheart_bounce", Position);
 
             // Fade out
             Tween tween = Tween.Create(Tween.TweenMode.Oneshot, Ease.CubeOut, 0.5f, true);
@@ -185,7 +185,7 @@
 
             // Respawn effect
             level.ParticlesBG.Emit(P_Collect, 5, Position, Vector2.One * 4f);
-            Audio.Play("guid://{1acb8e84-5f79-4dcd-86aa-e8a514535b7d}", Position);
+            Audio.Play("event:/game/general/crystalheart_blue_get", Position);
             scaleWiggler.Start();
         }
 
@@ -193,7 +193,7 @@
         {
             if (sprite.CurrentAnimationFrame == 0)
             {
-                Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
+                Audio.Play("event:/game/general/crystalheart_pulse", Position);
                 scaleWiggler.Start();
                 level.ParticlesBG.Emit(P_Collect, 1, Position, Vector2.One * 8f);
             }

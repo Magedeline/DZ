@@ -88,7 +88,7 @@
             State = FragmentState.Collecting;
             sprite.Play("collecting");
             
-            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
+            Audio.Play("event:/game/general/crystalheart_pulse", Position);
             
             Add(new Coroutine(CollectRoutine()));
         }
@@ -292,7 +292,7 @@
                 // All fragments collected
                 var level = Scene as Level;
                 level?.Session.SetFlag("memory_fragments_complete_" + collectionId, true);
-                Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
+                Audio.Play("event:/game/general/crystalheart_pulse", Position);
             }
         }
 

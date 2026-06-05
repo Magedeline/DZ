@@ -49,7 +49,7 @@
             yield return PressButton();
             
             // Show facts about damage
-            Audio.Play("guid://{5c9780f7-de2d-4811-813e-f89201d92e35}");
+            Audio.Play("event:/new_content/game/10_farewell/ppt_mouseclick");
             factsText = FancyText.Parse(Dialog.Get("WAVEFAZESLAMMER_PAGE4_FACTS"), Width - 300, 28, defaultColor: Color.Black * 0.7f);
             delay = 0.0f;
             for (; factsIndex < factsText.Nodes.Count; ++factsIndex)
@@ -72,7 +72,7 @@
             yield return PressButton();
             
             // Show solution
-            Audio.Play("guid://{55899a39-fc05-43d3-8878-834a4a25b6d4}");
+            Audio.Play("event:/new_content/game/10_farewell/ppt_its_easy");
             solutionText = FancyText.Parse(Dialog.Get("WAVEFAZESLAMMER_PAGE4_SOLUTION"), Width - 300, 28, defaultColor: Color.Black * 0.7f);
             delay = 0.0f;
             
@@ -96,7 +96,7 @@
                 if (solutionIndex == solutionText.Nodes.Count / 2 && !showDamageNumber)
                 {
                     showDamageNumber = true;
-                    Audio.Play("guid://{35472fac-2f05-4eb5-8281-d929b5ce41bb}");
+                    Audio.Play("event:/new_content/game/10_farewell/ppt_happy_wavedashing");
                     damageTitle = new AreaCompleteTitle(new Vector2(Width / 2f, Height / 2f - 100f), "335 DAMAGE!", 3f, true);
                 }
             }
@@ -105,7 +105,7 @@
             
             // Show bonus copy ability info
             showBonus = true;
-            Audio.Play("guid://{33a10afa-41bd-4534-8222-17e7947e9517}");
+            Audio.Play("event:/new_content/game/10_farewell/ppt_wavedash_whoosh");
             bonusText = FancyText.Parse(Dialog.Get("WAVEFAZESLAMMER_PAGE4_BONUS"), Width - 300, 28, defaultColor: Color.Black * 0.7f);
             delay = 0.0f;
             

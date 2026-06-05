@@ -108,7 +108,7 @@ public static class BossesExampleModule
             return true;
         }
 
-        global::Celeste.Audio.Play("guid://{65659bc0-3d2b-429c-9bdc-42e7a2d29a94}");
+        global::Celeste.Audio.Play("event:/char/madeline/predeath");
         return false;
     }
 
@@ -210,7 +210,7 @@ public static class BossesExampleModule
             return;
         }
 
-        global::Celeste.Audio.Play("guid://{4fc69f31-fc0f-42d3-af4c-20424c74d6a4}");
+        global::Celeste.Audio.Play("event:/char/madeline/jump_super");
         destroyDashDelay = new Coroutine(DestroyDashDelay(self), true);
         self.Add(destroyDashDelay);
     }

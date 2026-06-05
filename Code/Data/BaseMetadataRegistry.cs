@@ -9,8 +9,16 @@ namespace Celeste;
 /// </summary>
 /// <typeparam name="TMetadata">The metadata type (e.g., AreaMetadata, SubmapMetadata)</typeparam>
 /// <typeparam name="TRegistry">The registry type itself (for static access)</typeparam>
-internal abstract class BaseMetadataRegistry<TMetadata, TRegistry> where TMetadata : class
+internal abstract class BaseMetadataRegistry<TMetadata, TRegistry>
+    where TMetadata : class
+    where TRegistry : BaseMetadataRegistry<TMetadata, TRegistry>, new()
 {
+    /// <summary>
+    /// Singleton instance of the concrete registry, used to invoke the
+    /// instance-level abstract members from the static API.
+    /// </summary>
+    protected static readonly TRegistry Instance = new();
+
     protected static readonly Dictionary<string, TMetadata> Items = new();
     protected static string RegistryDirectory;
     protected static readonly IDeserializer Deserializer =
@@ -25,7 +33,7 @@ internal abstract class BaseMetadataRegistry<TMetadata, TRegistry> where TMetada
     /// <summary>Initialize the registry with a directory path</summary>
     public static void Initialize(string modRoot)
     {
-        RegistryDirectory = GetRegistryDirectory(modRoot);
+        RegistryDirectory = Instance.GetRegistryDirectory(modRoot);
         LoadAll();
     }
 
@@ -55,7 +63,7 @@ internal abstract class BaseMetadataRegistry<TMetadata, TRegistry> where TMetada
 
                     foreach (var item in list)
                     {
-                        OnItemLoaded(item);
+                        Instance.OnItemLoaded(item);
                     }
                 }
                 catch (Exception ex)

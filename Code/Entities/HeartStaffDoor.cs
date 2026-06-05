@@ -172,7 +172,7 @@ namespace Celeste.Entities
                 } while (player == null || Math.Abs(player.X - Center.X) >= 120f);
 
                 // Reveal door with dramatic effect
-                Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
+                Audio.Play("event:/game/general/crystalheart_pulse", Position);
                 Visible = true;
                 staffDisplayAlpha = 0f;
 
@@ -200,7 +200,7 @@ namespace Celeste.Entities
             }
 
             // Start ambient sound
-            doorAmbience = Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
+            doorAmbience = Audio.Play("event:/game/general/crystalheart_pulse", Position);
 
             // Wait for player to approach with enough staffs
             while (true)
@@ -265,14 +265,14 @@ namespace Celeste.Entities
                     );
                 }
 
-                Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", staffPos);
+                Audio.Play("event:/game/general/crystalheart_pulse", staffPos);
                 yield return 0.3f;
             }
 
             // All staffs absorbed - grand opening!
             yield return 0.5f;
 
-            Audio.Play("guid://{3b45b8d4-ff15-4d36-9411-3e4ce2726377}", Center);
+            Audio.Play("event:/game/general/strawberry_get", Center);
             level.Shake(0.6f);
             CelesteGame.Freeze(0.3f);
             Input.Rumble(RumbleStrength.Strong, RumbleLength.Long);
@@ -328,7 +328,7 @@ namespace Celeste.Entities
             }
 
             // Play completion jingle
-            Audio.Play("guid://{111996f6-8bae-408f-86d1-0aeae8203f4b}", Center);
+            Audio.Play("event:/game/general/cassette_get", Center);
 
             // Final particle celebration
             for (int i = 0; i < 30; i++)

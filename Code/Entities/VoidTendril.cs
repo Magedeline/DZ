@@ -90,7 +90,7 @@ namespace Celeste.Entities
             playerPhasing = true;
             phaseTimer = phaseWindow;
             
-            Audio.Play("guid://{a9cc805b-cc3c-4e29-af3b-bc69914e5a10}", Position);
+            Audio.Play("event:/game/general/fallblock_shake", Position);
         }
         
         private void OnPlayer(global::Celeste.Player player)

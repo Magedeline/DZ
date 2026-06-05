@@ -339,7 +339,7 @@ public class CS_Gen_IntroRemix_CSide : Scene
 
         if (canSkip && (Input.MenuConfirm.Pressed || Input.MenuCancel.Pressed))
         {
-            Audio.Play("guid://{8a93c5a5-538c-49f6-9d07-988839862ba1}");
+            Audio.Play("event:/ui/main/button_lowkey");
             StartLevel();
         }
     }

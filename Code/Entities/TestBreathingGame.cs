@@ -145,7 +145,7 @@
 
             // â”€â”€ Countdown â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             ShowFeedback("Breatheâ€¦", Color.LightCyan, 1.5f);
-            Audio.Play("guid://{037333ef-5916-4131-a76c-77b8d31c21cd}");
+            Audio.Play("event:/ui/game/memorial_dream_text_in");
             yield return 1.5f;
 
             ShowFeedback("Follow the heartbeat", Color.LightCyan, 1.5f);
@@ -184,14 +184,14 @@
             if (gameComplete)
             {
                 ShowFeedback("Calm restored", Color.LightGreen, 2f);
-                Audio.Play("guid://{037333ef-5916-4131-a76c-77b8d31c21cd}");
+                Audio.Play("event:/ui/game/memorial_dream_text_in");
                 if (level != null)
                     level.Session.SetFlag(completionFlag, true);
             }
             else if (gameFailed)
             {
                 ShowFeedback("Lost focusâ€¦", Color.Salmon, 2f);
-                Audio.Play("guid://{037333ef-5916-4131-a76c-77b8d31c21cd}");
+                Audio.Play("event:/ui/game/memorial_dream_text_in");
             }
 
             yield return 2.5f;
@@ -365,7 +365,7 @@
             ShowFeedback("Miss", Color.Salmon, 0.5f);
             screenShake = 0.4f;
 
-            Audio.Play("guid://{037333ef-5916-4131-a76c-77b8d31c21cd}");
+            Audio.Play("event:/ui/game/memorial_dream_text_in");
         }
 
         // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•

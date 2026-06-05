@@ -118,7 +118,7 @@
             State = StreamState.Surging;
             currentSpeed = FlowSpeed * 2f;
             
-            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
+            Audio.Play("event:/game/general/crystalheart_pulse", Position);
             level?.Shake(0.2f);
             
             Add(new Coroutine(SurgeRoutine()));

@@ -138,7 +138,7 @@ internal class ConquerorBook : CutsceneEntity
     public IEnumerator EaseIn()
     {
       if (!this.noSound)
-        global::Celeste.Audio.Play("guid://{142ae054-bc66-4b91-8c25-eff2ee9e4f05}");
+        global::Celeste.Audio.Play("event:/game/03_resort/memo_in");
       Vector2 center = ((new Vector2((float) Engine.Width, (float) Engine.Height)) / (2f));
       Vector2 from = ((center) + (new Vector2(0.0f, 200f)));
       Vector2 to = center;
@@ -157,13 +157,13 @@ internal class ConquerorBook : CutsceneEntity
     {
       while (!Input.MenuConfirm.Pressed)
         yield return (object) null;
-      global::Celeste.Audio.Play("guid://{8a93c5a5-538c-49f6-9d07-988839862ba1}");
+      global::Celeste.Audio.Play("event:/ui/main/button_lowkey");
     }
 
     public IEnumerator EaseOut()
     {
       if (!this.noSound)
-        global::Celeste.Audio.Play("guid://{a3b55290-30ce-464e-b669-9582d71e7c70}");
+        global::Celeste.Audio.Play("event:/game/03_resort/memo_out");
       this.easingOut = true;
       Vector2 from = this.Position;
       Vector2 to = ((((new Vector2((float) Engine.Width, (float) Engine.Height)) / (2f))) + (new Vector2(0.0f, -200f)));

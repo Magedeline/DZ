@@ -51,7 +51,7 @@
                 }
             }
             yield return waveFazePage02.PressButton();
-            Audio.Play("guid://{c0b225c7-09c9-4ab7-a093-706c35d87598}");
+            Audio.Play("event:/new_content/game/10_farewell/ppt_impossible");
             while (waveFazePage02.impossibleEase < 1.0)
             {
                 waveFazePage02.impossibleEase = Calc.Approach(waveFazePage02.impossibleEase, 1f, Engine.DeltaTime);

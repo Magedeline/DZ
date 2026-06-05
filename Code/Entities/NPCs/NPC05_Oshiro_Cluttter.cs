@@ -160,7 +160,7 @@ namespace Celeste.NPCs
 
         private IEnumerator StandUp()
         {
-            Audio.Play("guid://{2985ee63-eec3-4263-bf6d-71e332bfa805}", Position);
+            Audio.Play("event:/char/oshiro/chat_get_up", Position);
             (Sprite as ModOshiroSprite).Pop("idle", flip: false);
             yield return 0.25f;
         }
@@ -191,7 +191,7 @@ namespace Celeste.NPCs
             Vector2 homePosition = HomePosition;
             if ((Position - homePosition).Length() > 8f)
             {
-                paceSfx.Play("guid://{e2f5eac6-9d40-4bc5-bcaf-d14b6269354b}");
+                paceSfx.Play("event:/char/oshiro/move_04_pace_right");
             }
             yield return MoveTo(homePosition.X);
         }
@@ -201,7 +201,7 @@ namespace Celeste.NPCs
             Vector2 vector = HomePosition + new Vector2(-20f, 0f);
             if ((Position - vector).Length() > 8f)
             {
-                paceSfx.Play("guid://{ce338380-a29d-461a-b661-267fa7acd32c}");
+                paceSfx.Play("event:/char/oshiro/move_04_pace_left");
             }
             yield return MoveTo(vector.X);
         }

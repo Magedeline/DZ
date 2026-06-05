@@ -246,7 +246,7 @@
             
             level?.Flash(Color.White * 0.6f);
             level?.Shake(0.8f);
-            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
+            Audio.Play("event:/game/general/crystalheart_pulse", Position);
             
             level?.Session.SetFlag("final_core_defeated", true);
             
@@ -291,7 +291,7 @@
                 Scene.Add(attack);
             }
             
-            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
+            Audio.Play("event:/game/general/crystalheart_pulse", Position);
         }
 
         private void PerformPhase3Attack()
@@ -306,7 +306,7 @@
                 Scene.Add(attack);
             }
             
-            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
+            Audio.Play("event:/game/general/crystalheart_pulse", Position);
             level?.Shake(0.3f);
         }
 

@@ -33,7 +33,7 @@
                 yield return 0.05f;
             }
             yield return waveFazePage03.PressButton();
-            Audio.Play("guid://{33a10afa-41bd-4534-8222-17e7947e9517}");
+            Audio.Play("event:/new_content/game/10_farewell/ppt_wavedash_whoosh");
             while (waveFazePage03.clipArtEase < 1.0)
             {
                 waveFazePage03.clipArtEase = Calc.Approach(waveFazePage03.clipArtEase, 1f, Engine.DeltaTime);
@@ -42,7 +42,7 @@
             yield return 0.25f;
             waveFazePage03.infoText = FancyText.Parse(Dialog.Get("WAVEFAZE_PAGE3_INFO"), waveFazePage03.Width - 240, 32, defaultColor: Color.Black * 0.7f);
             yield return waveFazePage03.PressButton();
-            Audio.Play("guid://{55899a39-fc05-43d3-8878-834a4a25b6d4}");
+            Audio.Play("event:/new_content/game/10_farewell/ppt_its_easy");
             waveFazePage03.easyText = new AreaCompleteTitle(new Vector2(waveFazePage03.Width / 2f, waveFazePage03.Height - 150), Dialog.Clean("WAVEFAZE_PAGE3_EASY"), 2f, true);
             yield return 1f;
         }

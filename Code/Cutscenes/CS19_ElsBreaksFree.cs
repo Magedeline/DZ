@@ -48,7 +48,7 @@ namespace Celeste.Cutscenes
         private IEnumerator ZeroEnergyPulses()
         {
             Input.Rumble(RumbleStrength.Strong, RumbleLength.Long);
-            Audio.Play("guid://{42d600c5-32c3-4433-8a1e-be394b30bcde}", player.Position);
+            Audio.Play("event:/new_content/game/10_farewell/glitch_short", player.Position);
             Level.Shake(0.3f);
             yield return 0.8f;
         }
@@ -59,7 +59,7 @@ namespace Celeste.Cutscenes
             Input.Rumble(RumbleStrength.Climb, RumbleLength.Long);
             Level.Flash(Color.White * 0.6f, drawPlayerOver: true);
             Level.Shake(0.5f);
-            Audio.Play("guid://{b26ebe07-7db5-40d0-9282-2d1449db8c5a}", player.Position);
+            Audio.Play("event:/new_content/game/10_farewell/glitch_medium", player.Position);
             yield return 1.2f;
         }
 
@@ -67,7 +67,7 @@ namespace Celeste.Cutscenes
         private IEnumerator ElsVanishes()
         {
             Level.Flash(Color.Black * 0.5f, drawPlayerOver: false);
-            Audio.Play("guid://{16b40879-0a79-4e42-8c91-fe419a8e186c}", player.Position);
+            Audio.Play("event:/char/badeline/disappear", player.Position);
             yield return 0.6f;
             // Stabilize â€” rumble fades
             Input.Rumble(RumbleStrength.Light, RumbleLength.Short);

@@ -30,7 +30,7 @@
 
             // Food ordering sequence
             yield return 0.5f;
-            Audio.Play("guid://{30fafd37-cd47-4a56-ab3b-0cc8f1beec5b}");
+            Audio.Play("event:/game/general/touchswitch_any");
 
             yield return Textbox.Say("MAGGYHELPER_CH12_ORDERUP");
 

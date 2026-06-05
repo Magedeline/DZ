@@ -168,7 +168,7 @@ namespace Celeste.Cutscenes
                 new Func<IEnumerator>(this.BreakHeartMinigame),     // trigger 8: Break Heart minigame
                 new Func<IEnumerator>(this.CharaFlyDown)     // trigger 9: Chara Fly Down
             });
-            Audio.Play("guid://{03331dc9-ce3e-4949-ac59-a7ecfdf05708}");
+            Audio.Play("event:/game/pusheen/08_edge/chara_pull_whooshdown");
             base.Add(new Coroutine(this.CharaFlyDown(), true));
             yield return 0.7f;
             foreach (FlyFeather feather in level.Entities.FindAll<FlyFeather>())
@@ -215,7 +215,7 @@ namespace Celeste.Cutscenes
                 Input.Rumble(RumbleStrength.Strong, RumbleLength.Short);
                 yield return null;
             }
-            Audio.Play("guid://{d02db141-4505-4ec6-b840-c37ca045f624}");
+            Audio.Play("event:/game/pusheen/08_edge/chara_pull_impact");
             FallEffects.Show(false);
             Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
             level.Flash(Color.White, false);
@@ -244,9 +244,9 @@ namespace Celeste.Cutscenes
             }
             this.shaking = true;
             base.Add(this.shakingLoopSfx = new SoundSource());
-            this.shakingLoopSfx.Play("guid://{602c4d95-ca9d-4999-8113-395e4657d926}", null, 0f);
+            this.shakingLoopSfx.Play("event:/game/pusheen/08_edge/chara_pull_rumble_loop", null, 0f);
             yield return Textbox.Say("MAGGYHELPER_CH8_WATCHOUT", new Func<IEnumerator>[0]);
-            Audio.Play("guid://{a4c93619-6719-4a3d-b64d-43a6f7d6f908}");
+            Audio.Play("event:/game/pusheen/08_edge/chara_pull_cliffbreak");
             Input.Rumble(RumbleStrength.Medium, RumbleLength.Long);
             this.shakingLoopSfx.Stop(true);
             this.shaking = false;
@@ -301,7 +301,7 @@ namespace Celeste.Cutscenes
         private IEnumerator VinesAppear()
         {
             Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
-            Audio.Play("guid://{68f68411-6188-40e0-a279-6e781451bd34}");
+            Audio.Play("event:/game/pusheen/08_edge/chara_freakout_1");
             
             if (!this.hidingNorthernLights)
             {
@@ -323,7 +323,7 @@ namespace Celeste.Cutscenes
         private IEnumerator VinesAppearMore()
         {
             Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
-            Audio.Play("guid://{a210ec8a-d72f-4bd2-a017-a599e3609f90}");
+            Audio.Play("event:/game/pusheen/08_edge/chara_freakout_2");
             this.Level.Shake(0.3f);
             this.anxietyFade += 0.1f;
             
@@ -336,7 +336,7 @@ namespace Celeste.Cutscenes
         private IEnumerator VinesAppearMore2()
         {
             Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
-            Audio.Play("guid://{fa8060d1-7819-4714-a177-6136c0340cd4}");
+            Audio.Play("event:/game/pusheen/08_edge/chara_freakout_3");
             this.Level.Shake(0.4f);
             this.anxietyFade += 0.1f;
             
@@ -349,7 +349,7 @@ namespace Celeste.Cutscenes
         private IEnumerator VinesAppearEvenMore()
         {
             Input.Rumble(RumbleStrength.Strong, RumbleLength.Long);
-            Audio.Play("guid://{19ab7540-c74d-4726-a997-41e9b84cbb8e}");
+            Audio.Play("event:/game/pusheen/08_edge/chara_freakout_4");
             this.Level.Shake(0.5f);
             this.anxietyFade += 0.15f;
             
@@ -362,7 +362,7 @@ namespace Celeste.Cutscenes
         private IEnumerator VinesAppearEvenEvenMore()
         {
             Input.Rumble(RumbleStrength.Strong, RumbleLength.Long);
-            Audio.Play("guid://{af8868e8-2623-40f0-91eb-eeec5aa76b9c}");
+            Audio.Play("event:/game/pusheen/08_edge/chara_freakout_5");
             this.Level.Shake(1f);
             this.anxietyFade += 0.2f;
             
@@ -396,7 +396,7 @@ namespace Celeste.Cutscenes
         private IEnumerator VinesGrabMadeline()
         {
             this.maddySineTarget = 0f;
-            Audio.Play("guid://{2f94c732-0ff5-49bb-b0b5-8ccd8632aed5}");
+            Audio.Play("event:/game/pusheen/08_edge/chara_freakout_6");
             this.player.Sprite.Play("tentacle_grab", true, true);
             yield return 0.1f;
             Input.Rumble(RumbleStrength.Strong, RumbleLength.Long);

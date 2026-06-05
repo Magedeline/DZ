@@ -183,7 +183,7 @@ public class FlingAsrielGod : Entity
         state = States.Move;
         sprite.Play("star");
         sprite.Scale.X = 1f;
-        moveSfx.Play("guid://{9ba95702-66ae-441f-944e-c123175195ff}");
+        moveSfx.Play("event:/new_content/game/10_farewell/bird_relocate");
         for (var nodeIndex = 1; nodeIndex < NodeSegments[segmentIndex].Length - 1; nodeIndex += 2)
         {
             var position = Position;

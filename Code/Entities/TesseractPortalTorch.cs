@@ -35,9 +35,9 @@ namespace Celeste.Entities
       this.Add((Component) (this.bloom = new BloomPoint(1f, 16f)));
       this.Add((Component) (this.light = new VertexLight(Color.LightSeaGreen, 0.0f, 32, 128)));
       if (!silent)
-        Audio.Play(count == 0 ? "guid://{b857bbcf-540e-46fd-af37-5ea6d12e28f2}" : "guid://{35abfea4-7b3b-489d-bcd8-431b93b87fa4}", this.Position);
+        Audio.Play(count == 0 ? "event:/game/05_mirror_temple/mainmirror_torch_lit_1" : "event:/game/05_mirror_temple/mainmirror_torch_lit_2", this.Position);
       this.Add((Component) (this.loopSfx = new SoundSource()));
-      this.loopSfx.Play("guid://{36604f79-14aa-4a46-a7b3-42a15fc7fbc1}");
+      this.loopSfx.Play("event:/game/05_mirror_temple/mainmirror_torch_loop");
     }
 
     public override void Update()

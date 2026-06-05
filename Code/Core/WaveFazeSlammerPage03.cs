@@ -105,7 +105,7 @@
             
             // Transition to showing correct execution
             showingCorrect = true;
-            Audio.Play("guid://{33a10afa-41bd-4534-8222-17e7947e9517}");
+            Audio.Play("event:/new_content/game/10_farewell/ppt_wavedash_whoosh");
             
             yield return 0.5f;
             

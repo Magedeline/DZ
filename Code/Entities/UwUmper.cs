@@ -57,7 +57,7 @@
                     light.Visible = true;
                     sprite.Visible = true;
                     Collidable = true;
-                    Audio.Play("guid://{8d6249fc-9f0d-4980-b876-036252ae209d}", Position);
+                    Audio.Play("event:/game/06_reflection/pinballbumper_reset", Position);
                 }
             }
             else if (base.Scene.OnInterval(0.05f))
@@ -77,7 +77,7 @@
         {
             if (respawnTimer <= 0f)
             {
-                Audio.Play(fireMode ? "guid://{2823a745-a4bf-428a-9c9f-01d36d543f63}" : "guid://{21db4b0c-6524-4545-8266-c6ea1bf032ef}", Position);
+                Audio.Play(fireMode ? "event:/game/09_core/pinballbumper_hit" : "event:/game/06_reflection/pinballbumper_hit", Position);
                 respawnTimer = 0.6f;
                 Vector2 direction = (player.Center - base.Center).SafeNormalize();
                 hitDir = direction;

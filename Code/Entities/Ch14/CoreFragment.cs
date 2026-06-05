@@ -95,7 +95,7 @@
             sprite.Play("active");
             coreLight.Alpha = 0.8f;
             
-            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
+            Audio.Play("event:/game/general/crystalheart_pulse", Position);
             level?.Flash(coreColor * 0.3f);
             
             // Remove shields
@@ -113,7 +113,7 @@
             State = FragmentState.Collecting;
             sprite.Play("collecting");
             
-            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
+            Audio.Play("event:/game/general/crystalheart_pulse", Position);
             
             Add(new Coroutine(CollectRoutine()));
         }

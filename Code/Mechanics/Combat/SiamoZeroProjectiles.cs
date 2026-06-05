@@ -90,7 +90,7 @@ namespace Celeste.Entities.Projectiles
             var lvl = Scene as Level;
             lvl?.ParticlesFG.Emit(ParticleTypes.Dust, 4, Position, Vector2.One * 4f);
 
-            Audio.Play("guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}", Position);
+            Audio.Play("event:/game/general/thing_booped", Position);
             RemoveSelf();
         }
     }

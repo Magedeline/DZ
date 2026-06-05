@@ -145,7 +145,7 @@ public class BeyondSummitGemManager : Entity
         yield return 0.5f;
 
         // Final unlock burst
-        Audio.Play("guid://{4ac1261f-28ee-401f-b817-40880cfbedb0}", Position);
+        Audio.Play("event:/game/pusheen/09_beyondsummit/gem_unlock_complete", Position);
         level.Flash(Color.White * 0.5f, drawPlayerOver: true);
         level.Shake(0.3f);
         Input.Rumble(RumbleStrength.Strong, RumbleLength.Long);

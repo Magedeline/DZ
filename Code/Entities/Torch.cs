@@ -118,7 +118,7 @@
             {
                 ambientSound = new SoundSource();
                 Add(ambientSound);
-                ambientSound.Play("guid://{57b3a09b-dbc8-435e-8d24-6d1f913ac85c}");
+                ambientSound.Play("event:/env/local/09_core/fireballs_idle");
             }
         }
 
@@ -211,7 +211,7 @@
             {
                 setupLighting();
                 setupAudio();
-                Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
+                Audio.Play("event:/game/general/crystalheart_pulse", Position);
             }
             else
             {
@@ -228,7 +228,7 @@
                     ambientSound = null;
                 }
 
-                Audio.Play("guid://{fe9c58fa-d60a-4644-b34d-c0c4ebac2486}", Position);
+                Audio.Play("event:/ui/main/button_back", Position);
             }
 
             updateSpriteState();

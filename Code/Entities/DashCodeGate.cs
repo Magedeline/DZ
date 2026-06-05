@@ -447,9 +447,9 @@ public class DashCodeGate : Solid
 		}
 		Moved = true;
 		dashListener.Active = false;
-		openSfx.Play("guid://{2626645e-6392-4963-8361-4dccfa511758}");
+		openSfx.Play("event:/game/general/seed_complete_berry");
 		yield return 1f;
-		openSfx.Play("guid://{845556f0-842c-46d2-ac6c-64fc05f14cb0}");
+		openSfx.Play("event:/game/general/touchswitch_gate_open");
 		StartShaking(0.5f);
 		yield return 0.1f;
 		int particleAt = 0;
@@ -534,7 +534,7 @@ public class DashCodeGate : Solid
 			}
 		}
 		Collidable = collidable;
-		Audio.Play("guid://{0d6edb8b-2936-4e11-bc13-2c8bba70cbfa}", Position);
+		Audio.Play("event:/game/general/touchswitch_gate_finish", Position);
 		StartShaking(0.2f);
 		wiggler.Start();
 		bool collidable2 = Collidable;

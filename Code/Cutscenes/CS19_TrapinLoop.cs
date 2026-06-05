@@ -94,7 +94,7 @@ namespace Celeste.Cutscenes
             if (charaEntity != null)
             {
                 Level.Displacement.AddBurst(charaEntity.Position, 0.5f, 8f, 32f, 0.5f);
-                Audio.Play("guid://{16b40879-0a79-4e42-8c91-fe419a8e186c}", charaEntity.Position);
+                Audio.Play("event:/char/badeline/disappear", charaEntity.Position);
                 charaEntity.RemoveSelf();
             }
             
@@ -109,7 +109,7 @@ namespace Celeste.Cutscenes
             if (boost != null)
             {
                 Level.Displacement.AddBurst(boost.Center, 0.5f, 8f, 32f, 0.5f);
-                Audio.Play("guid://{5a554fe3-4398-4960-ab5e-70dc62685ded}", boost.Center);
+                Audio.Play("event:/new_content/char/badeline/booster_first_appear", boost.Center);
                 boost.Active = boost.Visible = boost.Collidable = true;
             }
 
@@ -161,7 +161,7 @@ namespace Celeste.Cutscenes
             Vector2 position = player.Position + new Vector2(-32f, 0f);
             Level.Displacement.AddBurst(position, 0.5f, -8f, 32f, 0.5f);
             Level.Add(charaEntity = new CharaDummy(position));
-            Audio.Play("guid://{450fb5b3-e9e3-45d8-9f34-ba05e292958f}", position);
+            Audio.Play("event:/char/badeline/maddy_split", position);
             charaEntity.Sprite.Scale.X = 1f;
             yield return 0.2f;
         }
@@ -214,7 +214,7 @@ namespace Celeste.Cutscenes
         {
             // Flash the screen to signify the Dream Friends arriving en masse
             Level.Flash(Color.White * 0.5f, drawPlayerOver: true);
-            Audio.Play("guid://{42d600c5-32c3-4433-8a1e-be394b30bcde}", player.Position);
+            Audio.Play("event:/new_content/game/10_farewell/glitch_short", player.Position);
             yield return 0.6f;
         }
 
@@ -296,7 +296,7 @@ namespace Celeste.Cutscenes
             if (charabooster != null)
             {
                 Level.Displacement.AddBurst(charabooster.Center, 0.5f, 8f, 32f, 0.5f);
-                Audio.Play("guid://{5a554fe3-4398-4960-ab5e-70dc62685ded}", charabooster.Center);
+                Audio.Play("event:/new_content/char/badeline/booster_first_appear", charabooster.Center);
                 bool visible = true;
                 charabooster.Collidable = true;
                 charabooster.Active = (charabooster.Visible = visible);

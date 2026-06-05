@@ -124,7 +124,7 @@
         {
             sprite.Play("attack");
             State = PhoenixState.Attacking;
-            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
+            Audio.Play("event:/game/general/crystalheart_pulse", Position);
         }
 
         private void DyingBegin()
@@ -145,7 +145,7 @@
         {
             sprite.Play("revive");
             State = PhoenixState.Reviving;
-            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
+            Audio.Play("event:/game/general/crystalheart_pulse", Position);
             flameGlow.Alpha = 0.3f;
         }
 
@@ -357,7 +357,7 @@
             
             level?.Flash(Color.Orange * 0.4f);
             level?.Shake(0.2f);
-            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
+            Audio.Play("event:/game/general/crystalheart_pulse", Position);
             
             yield return 0.5f;
             

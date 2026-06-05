@@ -50,7 +50,7 @@ namespace Celeste.Cutscenes
         {
             yield return 1f;
             // Use FMOD EventInstance for intro music
-            introMusic = Audio.Play("guid://{404c976d-31f5-4898-8fd0-454bf81ee68b}");
+            introMusic = Audio.Play("event:/music/pusheen/lvl10/intro");
             yield return 4f;
             // Stop ringtone using FMOD EventInstance
             if (ringtoneActive && ringtone != null)
@@ -102,7 +102,7 @@ namespace Celeste.Cutscenes
         public void OpenMenu()
         {
             PauseSfx();
-            Audio.Play("guid://{c6311b80-2ae7-4155-80f1-d3e2713efaa3}");
+            Audio.Play("event:/ui/game/pause");
             Add(menu = new TextMenu());
             menu.Add(new TextMenu.Button(Dialog.Clean("intro_vignette_resume")).Pressed(CloseMenu));
             menu.Add(new TextMenu.Button(Dialog.Clean("intro_vignette_skip")).Pressed(StartGame));
@@ -112,7 +112,7 @@ namespace Celeste.Cutscenes
         private void CloseMenu()
         {
             ResumeSfx();
-            Audio.Play("guid://{6096b41c-7b56-4839-ad53-deb9e5693246}");
+            Audio.Play("event:/ui/game/unpause");
             menu?.RemoveSelf();
             menu = null;
         }

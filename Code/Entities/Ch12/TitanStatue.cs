@@ -154,7 +154,7 @@
             // Create shockwave
             level?.Shake(0.5f);
             level?.Flash(Color.White * 0.3f);
-            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
+            Audio.Play("event:/game/general/crystalheart_pulse", Position);
             
             // Damage player if close
             var player = Scene.Tracker.GetEntity<Player>();

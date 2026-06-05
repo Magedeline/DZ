@@ -104,7 +104,7 @@ namespace Celeste.Cutscenes
         private IEnumerator BlindingLightPoursThroughCracks()
         {
             Level?.Flash(Color.White, drawPlayerOver: true);
-            Audio.Play("guid://{d27aa340-38c2-46fe-9e45-83c4f6be9070}", player.Position);
+            Audio.Play("event:/new_content/game/10_farewell/lightning_strike", player.Position);
             yield return 1.0f;
         }
 
@@ -137,7 +137,7 @@ namespace Celeste.Cutscenes
             
             // Add appearance effects
             Level.Displacement?.AddBurst(chara.Center, 0.5f, 8f, 32f, 0.5f);
-            Audio.Play("guid://{450fb5b3-e9e3-45d8-9f34-ba05e292958f}", chara.Position);
+            Audio.Play("event:/char/badeline/maddy_split", chara.Position);
             
             // Set Chara to face left (towards player)
             if (chara.Sprite != null)
@@ -179,7 +179,7 @@ namespace Celeste.Cutscenes
                 
                 // Play stand animation if player was sitting and cutscene wasn't skipped
                 if (!first && !WasSkipped)
-                    Audio.Play("guid://{01926fc4-8650-4150-a1f6-a0026e7676a9}", player.Position);
+                    Audio.Play("event:/char/pusheen/kirby/stand", player.Position);
             }
             
             // Ensure Chara is properly removed if still present

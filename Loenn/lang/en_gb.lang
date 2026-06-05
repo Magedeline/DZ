@@ -8758,3 +8758,69 @@ entities.MaggyHelper/AscendManagerBeyond.attributes.name.arrivial=Arrival Mode
 entities.MaggyHelper/AscendManagerBeyond.attributes.description.arrivial=If true with empty cutscene, uses Giygas streaks and void background (CH19 ending).
 entities.MaggyHelper/AscendManagerBeyond.attributes.name.ambience=Ambience Event
 entities.MaggyHelper/AscendManagerBeyond.attributes.description.ambience=Ambience audio event path. Use "null" to silence, empty to keep current.
+# Enhanced Bird NPC Entity
+entities.MaggyHelper/EnhancedBirdNPC.name=Enhanced Bird NPC
+entities.MaggyHelper/EnhancedBirdNPC.description=Improved bird tutorial entity with Kirby-specific tutorials and flexible behavior modes.
+
+# Tutorial Mode Placements
+entities.MaggyHelper/EnhancedBirdNPC.placements.name.ClimbingTutorial=Bird - Climbing Tutorial
+entities.MaggyHelper/EnhancedBirdNPC.placements.description.ClimbingTutorial=Bird teaches wall climbing mechanics.
+entities.MaggyHelper/EnhancedBirdNPC.placements.name.DashingTutorial=Bird - Dashing Tutorial
+entities.MaggyHelper/EnhancedBirdNPC.placements.description.DashingTutorial=Bird teaches dashing movement.
+entities.MaggyHelper/EnhancedBirdNPC.placements.name.DreamJumpTutorial=Bird - Dream Jump Tutorial
+entities.MaggyHelper/EnhancedBirdNPC.placements.description.DreamJumpTutorial=Bird teaches dream jump ability.
+entities.MaggyHelper/EnhancedBirdNPC.placements.name.SuperWallJumpTutorial=Bird - Super Wall Jump Tutorial
+entities.MaggyHelper/EnhancedBirdNPC.placements.description.SuperWallJumpTutorial=Bird teaches super wall jump mechanics.
+entities.MaggyHelper/EnhancedBirdNPC.placements.name.HyperJumpTutorial=Bird - Hyper Jump Tutorial
+entities.MaggyHelper/EnhancedBirdNPC.placements.description.HyperJumpTutorial=Bird teaches hyper jump ability.
+
+# Kirby-Specific Mode Placements
+entities.MaggyHelper/EnhancedBirdNPC.placements.name.KirbyCopyAbilityTutorial=Bird - Kirby Copy Ability Tutorial
+entities.MaggyHelper/EnhancedBirdNPC.placements.description.KirbyCopyAbilityTutorial=Bird teaches Kirby's copy ability.
+entities.MaggyHelper/EnhancedBirdNPC.placements.name.KirbyInhaleAbilityTutorial=Bird - Kirby Inhale Ability Tutorial
+entities.MaggyHelper/EnhancedBirdNPC.placements.description.KirbyInhaleAbilityTutorial=Bird teaches Kirby's inhale ability.
+entities.MaggyHelper/EnhancedBirdNPC.placements.name.KirbyFloatAbilityTutorial=Bird - Kirby Float Ability Tutorial
+entities.MaggyHelper/EnhancedBirdNPC.placements.description.KirbyFloatAbilityTutorial=Bird teaches Kirby's float/hover ability.
+
+# Behavior Mode Placements
+entities.MaggyHelper/EnhancedBirdNPC.placements.name.FlyAway=Bird - Fly Away
+entities.MaggyHelper/EnhancedBirdNPC.placements.description.FlyAway=Bird waits near player then flies away.
+entities.MaggyHelper/EnhancedBirdNPC.placements.name.Sleeping=Bird - Sleeping
+entities.MaggyHelper/EnhancedBirdNPC.placements.description.Sleeping=Bird is sleeping peacefully.
+entities.MaggyHelper/EnhancedBirdNPC.placements.name.Idle=Bird - Idle
+entities.MaggyHelper/EnhancedBirdNPC.placements.description.Idle=Bird stands in idle pose.
+entities.MaggyHelper/EnhancedBirdNPC.placements.name.Curious=Bird - Curious
+entities.MaggyHelper/EnhancedBirdNPC.placements.description.Curious=Bird pecks curiously.
+entities.MaggyHelper/EnhancedBirdNPC.placements.name.Distressed=Bird - Distressed
+entities.MaggyHelper/EnhancedBirdNPC.placements.description.Distressed=Bird appears distressed or warns of danger.
+entities.MaggyHelper/EnhancedBirdNPC.placements.name.None=Bird - No Behavior
+entities.MaggyHelper/EnhancedBirdNPC.placements.description.None=Bird has no specific behavior.
+
+# Advanced Mode Placements
+entities.MaggyHelper/EnhancedBirdNPC.placements.name.MoveToNodes=Bird - Move To Nodes
+entities.MaggyHelper/EnhancedBirdNPC.placements.description.MoveToNodes=Bird flies through waypoint nodes in sequence.
+entities.MaggyHelper/EnhancedBirdNPC.placements.name.WaitForLightningOff=Bird - Wait For Lightning Off
+entities.MaggyHelper/EnhancedBirdNPC.placements.description.WaitForLightningOff=Bird waits for lightning to cease then flies away.
+
+# Attributes
+entities.MaggyHelper/EnhancedBirdNPC.attributes.name.mode=Mode
+entities.MaggyHelper/EnhancedBirdNPC.attributes.description.mode=Bird behavior mode (Tutorial, Behavior, or Advanced).
+entities.MaggyHelper/EnhancedBirdNPC.attributes.name.faceLeft=Face Left
+entities.MaggyHelper/EnhancedBirdNPC.attributes.description.faceLeft=If true, bird faces left; if false, faces right.
+entities.MaggyHelper/EnhancedBirdNPC.attributes.name.onlyOnce=Only Once
+entities.MaggyHelper/EnhancedBirdNPC.attributes.description.onlyOnce=Remove bird from scene after first interaction.
+entities.MaggyHelper/EnhancedBirdNPC.attributes.name.onlyIfPlayerLeft=Only If Player Left
+entities.MaggyHelper/EnhancedBirdNPC.attributes.description.onlyIfPlayerLeft=Only show if player hasn't passed the bird.
+entities.MaggyHelper/EnhancedBirdNPC.attributes.name.allowPlayerInteraction=Allow Player Interaction
+entities.MaggyHelper/EnhancedBirdNPC.attributes.description.allowPlayerInteraction=Whether the player can interact with the bird.
+entities.MaggyHelper/EnhancedBirdNPC.attributes.name.tutorialTimeout=Tutorial Timeout
+entities.MaggyHelper/EnhancedBirdNPC.attributes.description.tutorialTimeout=Seconds before tutorial automatically hides (0 to disable).
+entities.MaggyHelper/EnhancedBirdNPC.attributes.name.AutoFly=Auto Fly
+entities.MaggyHelper/EnhancedBirdNPC.attributes.description.AutoFly=If true, bird flies away automatically.
+entities.MaggyHelper/EnhancedBirdNPC.attributes.name.FlyAwayUp=Fly Away Up
+entities.MaggyHelper/EnhancedBirdNPC.attributes.description.FlyAwayUp=If true, bird flies upward; if false, flies horizontally.
+entities.MaggyHelper/EnhancedBirdNPC.attributes.name.WaitForLightningPostDelay=Wait For Lightning Post Delay
+entities.MaggyHelper/EnhancedBirdNPC.attributes.description.WaitForLightningPostDelay=Additional delay (in seconds) after lightning stops before flying away.
+entities.MaggyHelper/EnhancedBirdNPC.attributes.name.DisableFlapSfx=Disable Flap Sound
+entities.MaggyHelper/EnhancedBirdNPC.attributes.description.DisableFlapSfx=Disable wing flapping sound effects.
+

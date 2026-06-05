@@ -34,7 +34,7 @@ namespace Celeste.Cutscenes
                 yield return null;
             }
             this.origin = this.player.Position;
-            Audio.Play("guid://{450fb5b3-e9e3-45d8-9f34-ba05e292958f}");
+            Audio.Play("event:/char/badeline/maddy_split");
             this.player.CreateSplitParticles();
             Input.Rumble(RumbleStrength.Light, RumbleLength.Medium);
             this.Level.Displacement.AddBurst(this.player.Position, 0.4f, 8f, 32f, 0.5f, null, null);
@@ -47,7 +47,7 @@ namespace Celeste.Cutscenes
             this.spinning = true;
             base.Add(new Coroutine(this.SpinCharacters(), true));
             yield return Textbox.Say(this.cutscene, new Func<IEnumerator>[0]);
-            Audio.Play("guid://{38557af4-adf9-4328-9f2c-167b12ff9f8e}");
+            Audio.Play("event:/char/badeline/maddy_join");
             this.spinning = false;
             yield return 0.25f;
             this.badeline.RemoveSelf();

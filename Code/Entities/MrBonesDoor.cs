@@ -57,7 +57,7 @@
             opened = true;
             Collidable = false;
             
-            Audio.Play("guid://{3ec0a31a-f6af-4426-aaa1-db57098dbd39}", Position);
+            Audio.Play("event:/game/05_mirror_temple/gate_main_open", Position);
             
             Level level = SceneAs<Level>();
             if (!string.IsNullOrEmpty(flagToSet))

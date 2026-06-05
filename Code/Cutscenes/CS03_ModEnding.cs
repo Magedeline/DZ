@@ -108,13 +108,13 @@ namespace Celeste.Cutscenes
 
             player.DummyAutoAnimate = false;
             player.Sprite.Play("sleep");
-            Audio.Play("guid://{e6daa12a-2f43-4daf-adf2-994086d0aa1a}", player.Position);
+            Audio.Play("event:/char/pusheen/kirby/campfire_sit", player.Position);
             yield return 2f;
 
             Vector2 birdOrigin = (badeline?.Position ?? player.Position) + new Vector2(88f, -200f);
             BirdNPC bird = new BirdNPC(birdOrigin, BirdNPC.Modes.None);
             Scene.Add(bird);
-            FMOD.Studio.EventInstance? instance = Audio.Play("guid://{5f8d988c-528d-4d55-a6e2-4c47bfc50176}", bird.Position);
+            FMOD.Studio.EventInstance? instance = Audio.Play("event:/game/general/bird_in", bird.Position);
             bird.Facing = Facings.Left;
             bird.Sprite.Play("fall");
 
@@ -135,7 +135,7 @@ namespace Celeste.Cutscenes
             yield return 0.5f;
             bird.Sprite.Play("croak");
             yield return 0.6f;
-            Audio.Play("guid://{4d1ae0ae-db96-47b7-925c-ce84c6ab722e}", bird.Position);
+            Audio.Play("event:/game/general/bird_squawk", bird.Position);
             yield return 0.9f;
             bird.Sprite.Play("sleep");
             yield return 2f;

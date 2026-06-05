@@ -51,7 +51,7 @@
 
         private IEnumerator OpenRoutine()
         {
-            Audio.Play("guid://{3ec0a31a-f6af-4426-aaa1-db57098dbd39}", Position);
+            Audio.Play("event:/game/05_mirror_temple/gate_main_open", Position);
             
             float duration = 0.5f;
             float elapsed = 0f;
@@ -71,7 +71,7 @@
 
         private IEnumerator CloseRoutine()
         {
-            Audio.Play("guid://{68e31409-b316-478b-8eb3-67a885e9dd33}", Position);
+            Audio.Play("event:/game/05_mirror_temple/gate_main_close", Position);
             Collidable = true;
             
             float duration = 0.5f;

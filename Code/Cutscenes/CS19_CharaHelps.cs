@@ -26,7 +26,7 @@ namespace Celeste.Cutscenes
             this.player.Dashes = 2;
             this.player.StateMachine.State = Player.StDummy;
             this.player.DummyGravity = false;
-            this.entrySfx = Audio.Play("guid://{0653a7ee-59e5-4915-8695-dcba555607b5}", this.player.Position);
+            this.entrySfx = Audio.Play("event:/new_content/char/madeline/screenentry_stubborn", this.player.Position);
             yield return this.player.MoonLanding(spawn);
             yield return level.ZoomTo(new Vector2(spawn.X - level.Camera.X, 134f), 2f, 0.5f);
             yield return 1f;
@@ -52,7 +52,7 @@ namespace Celeste.Cutscenes
         private IEnumerator CharaAppears()
         {
             this.StartMusic();
-            Audio.Play("guid://{450fb5b3-e9e3-45d8-9f34-ba05e292958f}", this.player.Position);
+            Audio.Play("event:/char/badeline/maddy_split", this.player.Position);
             this.Level.Add(this.chara = new CharaDummy(this.player.Center));
             this.Level.Displacement.AddBurst(this.chara.Center, 0.5f, 8f, 32f, 0.5f, null, null);
             this.player.Dashes = 1;

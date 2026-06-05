@@ -98,7 +98,7 @@ public class BirdNPC : Actor
         {
             if (level != null && base.X > level.Camera.Left + 64f && base.X < level.Camera.Right - 64f && (spr.Equals("peck") || spr.Equals("peckRare")) && Sprite.CurrentAnimationFrame == 6)
             {
-                Audio.Play("guid://{391d10bd-1577-4ae2-8370-04e1bd3f0fc5}", Position);
+                Audio.Play("event:/game/general/bird_peck", Position);
             }
             if (level != null && level.Session.Area.ID == 10 && !DisableFlapSfx)
             {
@@ -219,7 +219,7 @@ public class BirdNPC : Actor
         {
             yield return null;
         }
-        Audio.Play("guid://{4d1ae0ae-db96-47b7-925c-ce84c6ab722e}", Position);
+        Audio.Play("event:/game/general/bird_squawk", Position);
     }
 
     [MethodImpl(MethodImplOptions.NoInlining)]
@@ -256,7 +256,7 @@ public class BirdNPC : Actor
     {
         Depth = -1000000;
         level.Session.SetFlag(FlownFlag + level.Session.Level);
-        yield return Startle("guid://{7ea54ed8-0285-4dfc-a1ce-558444a4aa59}");
+        yield return Startle("event:/game/general/bird_startle");
         yield return FlyAway();
     }
 
@@ -302,7 +302,7 @@ public class BirdNPC : Actor
             }
             if (p.Y > Y)
             {
-                Audio.Play("guid://{ca812d95-eb8b-4ebd-a04b-e424704c17f2}");
+                Audio.Play("event:/ui/game/tutorial_note_flip_back");
                 yield return HideTutorial();
                 yield return ShowTutorial(tut2);
             }
@@ -313,7 +313,7 @@ public class BirdNPC : Actor
             willEnd = p.Y <= Y + 4f;
             if (!willEnd)
             {
-                Audio.Play("guid://{0c739c5d-67d7-4d95-861d-cc0d64892a1d}");
+                Audio.Play("event:/ui/game/tutorial_note_flip_front");
             }
             yield return HideTutorial();
         }
@@ -460,7 +460,7 @@ public class BirdNPC : Actor
         Sprite.Play("fly");
         if (relocateSfx)
         {
-            Add(new SoundSource().Play("guid://{9ba95702-66ae-441f-944e-c123175195ff}"));
+            Add(new SoundSource().Play("event:/new_content/game/10_farewell/bird_relocate"));
         }
         int num = Math.Sign(target.X - X);
         if (num != 0)
@@ -496,7 +496,7 @@ public class BirdNPC : Actor
                 continue;
             }
             Depth = -1000000;
-            yield return Startle("guid://{ff882573-75c7-4aeb-86e2-73a946646308}", 0.2f);
+            yield return Startle("event:/new_content/game/10_farewell/bird_startle", 0.2f);
             if (index < nodes.Length)
             {
                 yield return FlyTo(nodes[index], 0.6f);
@@ -504,7 +504,7 @@ public class BirdNPC : Actor
                 continue;
             }
             Tag = Tags.Persistent;
-            Add(new SoundSource().Play("guid://{9ba95702-66ae-441f-944e-c123175195ff}"));
+            Add(new SoundSource().Play("event:/new_content/game/10_farewell/bird_relocate"));
             if (onlyOnce)
             {
                 level.Session.DoNotLoad.Add(EntityID);
@@ -605,7 +605,7 @@ public class BirdNPC : Actor
         int currentAnimationFrame = sprite.CurrentAnimationFrame;
         if ((currentAnimationID == "hover" && currentAnimationFrame == 0) || (currentAnimationID == "hoverStressed" && currentAnimationFrame == 0) || (currentAnimationID == "fly" && currentAnimationFrame == 0))
         {
-            Audio.Play("guid://{ee413800-8752-4f0b-9a5d-3084e2473aa2}", sprite.RenderPosition);
+            Audio.Play("event:/new_content/game/10_farewell/bird_wingflap", sprite.RenderPosition);
         }
     }
 }

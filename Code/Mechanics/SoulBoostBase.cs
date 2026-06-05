@@ -276,7 +276,7 @@ namespace Celeste.Entities.SoulBoosts
             bool finalBoost = nodeIndex >= nodes.Length;
 
             // Play boost sound
-            Audio.Play("guid://{7a71fc61-b688-4d82-a2b7-781c2434e942}", Position);
+            Audio.Play("event:/char/badeline/booster_begin", Position);
 
             // Drop held items
             if (player.Holding != null)
@@ -319,7 +319,7 @@ namespace Celeste.Entities.SoulBoosts
             yield return ApplyAbilityStart(player);
 
             // Throw animation
-            Audio.Play("guid://{2592d638-f3c5-4f6f-81e0-888a04affa40}", Position);
+            Audio.Play("event:/char/badeline/booster_throw", Position);
             yield return 0.1f;
 
             if (!player.Dead)
@@ -375,19 +375,19 @@ namespace Celeste.Entities.SoulBoosts
                         if (soulImage != null) soulImage.Visible = true;
                         Collidable = true;
                         state = States.Wait;
-                        Audio.Play("guid://{207a212a-2beb-4022-a8da-11ac987d3097}", Position);
+                        Audio.Play("event:/char/badeline/booster_reappear", Position);
                     }
                 };
 
                 Add(tween);
-                relocateSfx.Play("guid://{7e3c6b4e-e41a-4e9a-9d24-22737c66593b}");
+                relocateSfx.Play("event:/char/badeline/booster_relocate");
                 Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
                 level?.DirectionalShake(-Vector2.UnitY);
             }
             else
             {
                 // Final boost
-                Audio.Play("guid://{b2ee45d8-e1b0-43f1-baaa-f6e77d37ddb5}", Position);
+                Audio.Play("event:/char/badeline/booster_final", Position);
                 Engine.FreezeTimer = 0.1f;
                 yield return null;
 
@@ -451,12 +451,12 @@ namespace Celeste.Entities.SoulBoosts
                     if (soulImage != null) soulImage.Visible = true;
                     Collidable = true;
                     state = States.Wait;
-                    Audio.Play("guid://{207a212a-2beb-4022-a8da-11ac987d3097}", Position);
+                    Audio.Play("event:/char/badeline/booster_reappear", Position);
                 }
             };
 
             Add(tween);
-            relocateSfx.Play("guid://{7e3c6b4e-e41a-4e9a-9d24-22737c66593b}");
+            relocateSfx.Play("event:/char/badeline/booster_relocate");
             level?.Displacement.AddBurst(Center, 0.4f, 8f, 32f, 0.5f);
         }
 

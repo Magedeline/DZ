@@ -148,7 +148,7 @@
 
         private IEnumerator OpenRoutine()
         {
-            Audio.Play("guid://{845556f0-842c-46d2-ac6c-64fc05f14cb0}", Position);
+            Audio.Play("event:/game/general/touchswitch_gate_open", Position);
 
             float duration = 0.8f;
             float elapsed = 0f;
@@ -165,7 +165,7 @@
             openProgress = 1f;
             Collidable = false;
 
-            Audio.Play("guid://{0d6edb8b-2936-4e11-bc13-2c8bba70cbfa}", Position);
+            Audio.Play("event:/game/general/touchswitch_gate_finish", Position);
 
             // Particle burst to celebrate
             if (level != null)

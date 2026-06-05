@@ -5,7 +5,7 @@
   [HotReloadable]
   internal class AmbienceTrigger(EntityData data, Vector2 offset) : Trigger(data, offset)
   {
-    private readonly string ambience = data.Attr(nameof(ambience), "guid://{fceb8b1e-7d92-400b-903f-406dade6162c}");
+    private readonly string ambience = data.Attr(nameof(ambience), "event:/new_content/env/10_rain");
     // Retrieve the ambience attribute from the entity data
 
     public override void OnEnter(global::Celeste.Player player)

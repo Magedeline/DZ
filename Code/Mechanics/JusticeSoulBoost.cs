@@ -58,7 +58,7 @@ namespace Celeste.Entities.SoulBoosts
             Level level = Scene as Level;
             level?.ParticlesFG.Emit(P_Burst, 20, player.Center, Vector2.One * 12f);
             
-            Audio.Play("guid://{a47180e1-9bc2-4dbc-86c7-6402cea2e2be}", player.Position);
+            Audio.Play("event:/game/general/diamond_touch", player.Position);
             
             yield return 0.1f;
         }
@@ -111,7 +111,7 @@ namespace Celeste.Entities.SoulBoosts
             JusticeProjectile projectile = new JusticeProjectile(position, direction * projectileSpeed);
             level?.Add(projectile);
             
-            Audio.Play("guid://{c4d97750-9512-487d-bd98-cfbe021a2702}", position);
+            Audio.Play("event:/game/05_mirror_temple/swapblock_move_end", position);
         }
 
         private class JusticeBuff : Component
@@ -161,7 +161,7 @@ namespace Celeste.Entities.SoulBoosts
                         );
                         level?.Add(projectile);
                         
-                        Audio.Play("guid://{c4d97750-9512-487d-bd98-cfbe021a2702}", player.Position);
+                        Audio.Play("event:/game/05_mirror_temple/swapblock_move_end", player.Position);
                         shotCooldown = 0.2f;
                     }
 
@@ -296,7 +296,7 @@ namespace Celeste.Entities.SoulBoosts
             Level level = Scene as Level;
             level?.ParticlesFG.Emit(P_Trail, 8, Center, Vector2.One * 4f);
             
-            Audio.Play("guid://{92f75010-4e90-428e-834c-1315ddbd9460}", Position);
+            Audio.Play("event:/game/general/wall_break_stone", Position);
             
             RemoveSelf();
         }

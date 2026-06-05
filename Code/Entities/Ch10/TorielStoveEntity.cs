@@ -210,7 +210,7 @@
                     HasPie = true;
                     pieSprite.Visible = true;
                     
-                    Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
+                    Audio.Play("event:/game/general/crystalheart_pulse", Position);
                     level?.Shake(0.1f);
                 }
             }
@@ -360,7 +360,7 @@
         {
             collected = true;
             
-            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
+            Audio.Play("event:/game/general/crystalheart_pulse", Position);
             
             // Full heal
             // player.FullHeal();

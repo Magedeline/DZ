@@ -30,7 +30,7 @@
             {
                 activated = true;
                 fadeTimer = 0.5f;
-                Audio.Play("guid://{a9cc805b-cc3c-4e29-af3b-bc69914e5a10}", Position);
+                Audio.Play("event:/game/general/fallblock_shake", Position);
             }
             
             if (activated)
@@ -64,7 +64,7 @@
             Visible = true;
             alpha = 1f;
             
-            Audio.Play("guid://{735f3afc-00bc-46da-94f1-2cb51e3bfecc}", Position);
+            Audio.Play("event:/game/general/diamond_return", Position);
         }
 
         public override void Render()

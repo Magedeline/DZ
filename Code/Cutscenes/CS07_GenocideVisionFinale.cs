@@ -9,7 +9,7 @@ namespace Celeste.Cutscenes
     [HotReloadable]
     public class CS07_GenocideVisionFinale : CutsceneEntity
     {
-        private const string MainCharaRevealMusicEvent = "guid://{fc7ecb53-12e1-48be-8c56-e3136842860c}";
+        private const string MainCharaRevealMusicEvent = "event:/music/pusheen/lvl7/him";
         private const string MainCharaRevealParam = "him";
 
         private readonly global::Celeste.Player player;

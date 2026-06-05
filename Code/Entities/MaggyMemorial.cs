@@ -113,19 +113,19 @@
             {
                 Audio.Play(
                     text.Dreamy
-                        ? "guid://{037333ef-5916-4131-a76c-77b8d31c21cd}"
-                        : "guid://{27c68b11-4893-406e-8a68-2c7cf6a7ae0d}",
+                        ? "event:/ui/game/memorial_dream_text_in"
+                        : "event:/ui/game/memorial_text_in",
                     Position);
 
                 if (text.Dreamy)
-                    loopingSfx.Play("guid://{6e6a7734-f98c-45cf-930f-61c51f193827}");
+                    loopingSfx.Play("event:/ui/game/memorial_dream_loop");
             }
             else if (!showing && wasShowing)
             {
                 Audio.Play(
                     text.Dreamy
-                        ? "guid://{78a27ccb-8b29-41e9-aa60-20e4d193f41d}"
-                        : "guid://{812275c5-1e5a-4d69-98e1-f7892c4bb440}",
+                        ? "event:/ui/game/memorial_dream_text_out"
+                        : "event:/ui/game/memorial_text_out",
                     Position);
 
                 loopingSfx.Stop();

@@ -388,7 +388,7 @@ namespace Celeste.Entities
                 // Use the correct constructor for LightningStrike
                 // Example: new LightningStrike(position, colorIndex, delay, lifeTime)
                 this.Scene.Add(new LightningStrike(this.Position, 0, 0f, 1f));
-                Audio.Play("guid://{d27aa340-38c2-46fe-9e45-83c4f6be9070}", this.Position);
+                Audio.Play("event:/new_content/game/10_farewell/lightning_strike", this.Position);
             }
 
             // --- STRONG GLITCH EFFECTS ---
@@ -501,8 +501,8 @@ namespace Celeste.Entities
             }
 
             // Play teleport sound
-            Audio.Play("guid://{6160ad7b-16f6-49a5-aa9b-55d75da5a8e1}", this.Position);
-            Audio.Play("guid://{884bccb8-958a-4278-8a1b-daf74fff37c0}", oldPos);
+            Audio.Play("event:/game/general/seed_touch", this.Position);
+            Audio.Play("event:/game/general/seed_poof", oldPos);
 
             // Mark as teleported (can only teleport once)
             hasTeleported = true;

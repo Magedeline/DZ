@@ -29,7 +29,7 @@ namespace Celeste
             yield return waveFazePage00.MoveCursor(waveFazePage00.pptIcon, 0.8f);
             yield return 0.7f;
             waveFazePage00.selected = true;
-            Audio.Play("guid://{43420008-de4c-4d1c-8f4b-15c4871e4354}");
+            Audio.Play("event:/new_content/game/10_farewell/ppt_doubleclick");
             yield return 0.1f;
             waveFazePage00.selected = false;
             yield return 0.1f;

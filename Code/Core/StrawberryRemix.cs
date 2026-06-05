@@ -279,12 +279,12 @@ public class StrawberryRemix : Entity
         Add(grow);
 
         yield return 0.1f;
-        Audio.Play("guid://{e144b578-20dd-4722-897c-24de90562b7b}", Position);
+        Audio.Play("event:/game/general/strawberry_laugh", Position);
 
         yield return 0.2f;
         if (!Follower.HasLeader)
         {
-            Audio.Play("guid://{3b9e48f1-e72d-46a6-909b-4ce5044c4253}", Position);
+            Audio.Play("event:/game/general/strawberry_flyaway", Position);
         }
 
         Tween settle = Tween.Create(Tween.TweenMode.Oneshot, Ease.SineOut, 0.5f, true);
@@ -296,7 +296,7 @@ public class StrawberryRemix : Entity
     {
         if (!flyingAway && id == "flap" && sprite.CurrentAnimationFrame % 9 == 4)
         {
-            Audio.Play("guid://{dd319a09-d197-4604-8ebf-c5fee614d863}", Position);
+            Audio.Play("event:/game/general/strawberry_wingflap", Position);
             flapSpeed = -50f;
         }
 
@@ -307,7 +307,7 @@ public class StrawberryRemix : Entity
         }
 
         lightPulse.Start();
-        Audio.Play("guid://{0886e368-bce4-4922-97c3-edeadf714e29}", Position);
+        Audio.Play("event:/game/general/strawberry_pulse", Position);
 
         float burst = (!collected && (CollideCheck<FakeWall>() || CollideCheck<Solid>())) ? 0.1f : 0.2f;
         SceneAs<Level>().Displacement.AddBurst(Position, 0.6f, 4f, 28f, burst);
@@ -342,7 +342,7 @@ public class StrawberryRemix : Entity
             (Scene as Level).Session.GrabbedGolden = true;
         }
 
-        Audio.Play(isGhost ? "guid://{5c271b0b-eba2-400b-8011-e1d673324674}" : "guid://{525d00db-bc31-4054-9f61-0238bfd62941}", Position);
+        Audio.Play(isGhost ? "event:/game/general/strawberry_blue_touch" : "event:/game/general/strawberry_touch", Position);
         player.Leader.GainFollower(Follower);
         scaleWiggler.Start();
         Depth = -1000000;
@@ -388,7 +388,7 @@ public class StrawberryRemix : Entity
         Depth = -2000010;
 
         int color = Moon ? 3 : (isGhost ? 1 : (Golden ? 2 : 0));
-        Audio.Play("guid://{3b45b8d4-ff15-4d36-9411-3e4ce2726377}", Position, "colour", color, "count", collectIndex);
+        Audio.Play("event:/game/general/strawberry_get", Position, "colour", color, "count", collectIndex);
 
         Input.Rumble(RumbleStrength.Medium, RumbleLength.Medium);
         sprite.Play("collect");

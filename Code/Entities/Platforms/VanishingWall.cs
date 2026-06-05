@@ -56,7 +56,7 @@ namespace Celeste.Entities
         tiles.Alpha = 0.0f;
         fade = true;
         cutout.Visible = false;
-        Audio.Play("guid://{38e9f295-6400-41e8-b574-9a1e8c908622}", Center);
+        Audio.Play("event:/game/general/secret_revealed", Center);
         SceneAs<Level>().Session.DoNotLoad.Add(eid);
       }
       else
@@ -135,7 +135,7 @@ namespace Celeste.Entities
         return;
       SceneAs<Level>().Session.DoNotLoad.Add(eid);
       fade = true;
-      Audio.Play("guid://{38e9f295-6400-41e8-b574-9a1e8c908622}", Center);
+      Audio.Play("event:/game/general/secret_revealed", Center);
     }
 
     public override void Render()

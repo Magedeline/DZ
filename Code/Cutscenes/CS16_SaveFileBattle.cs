@@ -83,7 +83,7 @@
             
             // Glitch effects
             Glitch.Value = 0.8f;
-            Audio.Play("guid://{b26ebe07-7db5-40d0-9282-2d1449db8c5a}");
+            Audio.Play("event:/new_content/game/10_farewell/glitch_medium");
             yield return 0.3f;
             Glitch.Value = 0f;
             
@@ -97,7 +97,7 @@
             
             // HP fully restored with dramatic effect
             level.Shake(3.0f);
-            Audio.Play("guid://{bbe7d0c8-45f9-4671-b49e-8e38e357bb81}");
+            Audio.Play("event:/char/badeline/boss_bullet");
             
             // Visual indication of HP restoration
             for (int i = 0; i < 5; i++)
@@ -189,7 +189,7 @@
             {
                 level.Flash(Color.Cyan, false);
                 level.Shake(7.0f);
-                Audio.Play("guid://{bbe7d0c8-45f9-4671-b49e-8e38e357bb81}");
+                Audio.Play("event:/char/badeline/boss_bullet");
                 yield return 0.3f;
             }
             
@@ -211,7 +211,7 @@
             // Tentacles burst from ground
             level.Shake(6.0f);
             level.Flash(Color.Purple, false);
-            Audio.Play("guid://{bbe7d0c8-45f9-4671-b49e-8e38e357bb81}");
+            Audio.Play("event:/char/badeline/boss_bullet");
             yield return 0.3f;
             
             // Rapid tentacle strikes
@@ -219,7 +219,7 @@
             {
                 level.Flash(Color.DarkViolet, false);
                 level.Shake(4.0f);
-                Audio.Play("guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}");
+                Audio.Play("event:/game/general/thing_booped");
                 yield return 0.2f;
             }
             
@@ -257,7 +257,7 @@
                 yield return ShowCountNumber(level, count);
                 
                 // Play tick sound
-                Audio.Play("guid://{dcef4547-0df6-4b2c-9a70-3aa537982264}");
+                Audio.Play("event:/ui/main/button_toggle_on");
                 
                 // Small screen shake that intensifies
                 level.Shake(0.2f + (count * 0.05f));
@@ -337,14 +337,14 @@
             IngesteLogger.Info("CIRCLING PELLET ATTACK");
             
             // Pellets surround the party
-            Audio.Play("guid://{bbe7d0c8-45f9-4671-b49e-8e38e357bb81}");
+            Audio.Play("event:/char/badeline/boss_bullet");
             level.Shake(3.0f);
             
             // Pellets close in progressively
             for (int i = 0; i < 10; i++)
             {
                 level.Flash(Color.White, false);
-                Audio.Play("guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}");
+                Audio.Play("event:/game/general/thing_booped");
                 level.Shake(2.0f + i * 0.3f);
                 yield return 0.25f;
             }
@@ -375,7 +375,7 @@
             
             // Flowey tries to LOAD
             Glitch.Value = 0.5f;
-            Audio.Play("guid://{b26ebe07-7db5-40d0-9282-2d1449db8c5a}");
+            Audio.Play("event:/new_content/game/10_farewell/glitch_medium");
             yield return 0.5f;
             
             // LOAD command appears
@@ -385,13 +385,13 @@
             // ERROR - Load failed
             Glitch.Value = 1f;
             level.Flash(Color.Red, false);
-            Audio.Play("guid://{b6aad0d5-cc07-46f4-ab3a-3b3692a57678}");
+            Audio.Play("event:/ui/main/button_invalid");
             yield return 0.3f;
             
-            Audio.Play("guid://{b6aad0d5-cc07-46f4-ab3a-3b3692a57678}");
+            Audio.Play("event:/ui/main/button_invalid");
             yield return 0.3f;
             
-            Audio.Play("guid://{b6aad0d5-cc07-46f4-ab3a-3b3692a57678}");
+            Audio.Play("event:/ui/main/button_invalid");
             yield return 0.3f;
             
             Glitch.Value = 0f;
@@ -442,7 +442,7 @@
             for (int i = 0; i < 12; i++)
             {
                 level.Flash(soulColors[i % 6], false);
-                Audio.Play("guid://{bbe7d0c8-45f9-4671-b49e-8e38e357bb81}");
+                Audio.Play("event:/char/badeline/boss_bullet");
                 level.Shake(3.0f);
                 yield return 0.3f;
             }
@@ -466,7 +466,7 @@
             
             // Badeline powers up
             level.Flash(Color.Red, false);
-            Audio.Play("guid://{bbe7d0c8-45f9-4671-b49e-8e38e357bb81}");
+            Audio.Play("event:/char/badeline/boss_bullet");
             level.Shake(4.0f);
             yield return 1f;
             
@@ -507,7 +507,7 @@
             {
                 level.Flash(Color.White, false);
                 level.Shake(5.0f - i * 0.3f);
-                Audio.Play("guid://{42d600c5-32c3-4433-8a1e-be394b30bcde}");
+                Audio.Play("event:/new_content/game/10_farewell/glitch_short");
                 yield return 0.4f;
             }
             

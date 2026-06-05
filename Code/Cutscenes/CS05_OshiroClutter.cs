@@ -94,12 +94,12 @@ public class CS05_OshiroClutter : CutsceneEntity
             if (oshiro != null)
             {
                 yield return oshiro.MoveTo(new Vector2(oshiro.X, level.Bounds.Top - 32));
-                oshiro.Add(new SoundSource("guid://{b6e13523-090a-44eb-aa4f-1a3c270c507f}"));
+                oshiro.Add(new SoundSource("event:/char/oshiro/move_05_09b_exit"));
             }
             else
             {
                 yield return npc05.MoveTo(level.Bounds.Top - 32);
-                npc05.Add(new SoundSource("guid://{b6e13523-090a-44eb-aa4f-1a3c270c507f}"));
+                npc05.Add(new SoundSource("event:/char/oshiro/move_05_09b_exit"));
             }
             yield return Level.ZoomBack(0.5f);
         }
@@ -108,7 +108,7 @@ public class CS05_OshiroClutter : CutsceneEntity
 
     private IEnumerator Collapse()
     {
-        Audio.Play("guid://{6dd647fe-eefd-43d7-8a35-5a614678dd12}", OshiroPosition);
+        Audio.Play("event:/char/oshiro/chat_collapse", OshiroPosition);
         OshiroSprite.Play("fall");
         yield return 0.5f;
     }
@@ -117,7 +117,7 @@ public class CS05_OshiroClutter : CutsceneEntity
     private void SetMusic()
     {
         Level obj = base.Scene as Level;
-        obj.Session.Audio.Music.Event = "guid://{d49a04ce-06fb-43bb-8880-1b95a4f6544f}";
+        obj.Session.Audio.Music.Event = "event:/music/pusheen/lvl5/clean";
         obj.Session.Audio.Music.Progress = 1;
         obj.Session.Audio.Apply(forceSixteenthNoteHack: false);
     }

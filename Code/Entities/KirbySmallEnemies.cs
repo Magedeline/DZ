@@ -175,7 +175,7 @@ namespace Celeste.Entities.Enemies
                 if (level != null)
                 {
                     level.ParticlesFG.Emit(ParticleTypes.SparkyDust, 20, Position, Vector2.One * 16f);
-                    Audio.Play("guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}", Position);
+                    Audio.Play("event:/game/general/thing_booped", Position);
                 }
             }
 
@@ -254,7 +254,7 @@ namespace Celeste.Entities.Enemies
             // Death particles
             var level = Scene as Level;
             level?.ParticlesFG.Emit(ParticleTypes.Dust, 10, Position, Vector2.One * 8f);
-            Audio.Play("guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}", Position);
+            Audio.Play("event:/game/general/thing_booped", Position);
 
             Add(new Coroutine(RemoveAfterDelay(0.5f)));
         }
@@ -462,7 +462,7 @@ namespace Celeste.Entities.Enemies
         private void FireBeam()
         {
             sprite.Play("attack");
-            Audio.Play("guid://{bbe7d0c8-45f9-4671-b49e-8e38e357bb81}", Position);
+            Audio.Play("event:/char/badeline/boss_bullet", Position);
 
             // Spawn beam whip projectile
             float direction = facingRight ? 1 : -1;
@@ -639,7 +639,7 @@ namespace Celeste.Entities.Enemies
         {
             // Gordo is invincible - don't take damage
             // Just play a ping sound
-            Audio.Play("guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}", Position);
+            Audio.Play("event:/game/general/thing_booped", Position);
         }
     }
 

@@ -362,7 +362,7 @@ public static class AreaMapData
         if (!string.IsNullOrEmpty(music) || !string.IsNullOrEmpty(ambience))
         {
             string finalMusic = string.IsNullOrEmpty(music) ? "guids://e3205ef9-4d54-5f55-8a68-89cc87b5ee78" : music;
-            string finalAmbience = string.IsNullOrEmpty(ambience) ? "guid://{0fa79a65-c103-4f72-84d6-7a22c9b2f43c}" : ambience;
+            string finalAmbience = string.IsNullOrEmpty(ambience) ? "event:/env/amb/00_prologue" : ambience;
 
             Logger.Log(LogLevel.Debug, "MaggyHelper",
                 $"BuildOrUpdateMode: Setting audio for {path} - Music: {finalMusic}, Ambience: {finalAmbience}");

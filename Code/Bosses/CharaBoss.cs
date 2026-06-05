@@ -129,7 +129,7 @@ namespace Celeste.Entities {
             this.bossBg = this.level.Background.Get<CharaBossStarfield>();
             if (this.patternIndex == 0 && !this.level.Session.GetFlag("chara_boss_intro") && this.level.Session.Level.Equals("boss-00"))
             {
-                this.level.Session.Audio.Music.Event = "guid://{32207936-04e7-44d3-b8ff-98b317144f46}";
+                this.level.Session.Audio.Music.Event = "event:/music/pusheen/lvl2/phone_loop";
                 this.level.Session.Audio.Apply();
                 if (this.bossBg != null)
                     this.bossBg.Alpha = 0.0f;
@@ -164,7 +164,7 @@ namespace Celeste.Entities {
             this.Sprite.OnFrameChange = (anim =>
             {
                 if (anim == "charaboss_idle" && this.Sprite.CurrentAnimationFrame == 18)
-                    Audio.Play("guid://{b4002010-ff11-4311-87c7-f87028220f78}", this.Position);
+                    Audio.Play("event:/char/badeline/boss_idle_air", this.Position);
             });
             this.facing = -1;
             if (this.NormalSprite != null)
@@ -259,9 +259,9 @@ namespace Celeste.Entities {
                 CreateBossSprite();
             
             Sprite.Play("charaboss_getHit");
-            Audio.Play("guid://{898fc1ea-250b-4d03-8f37-c0c35799a915}", Position);
+            Audio.Play("event:/char/badeline/boss_hug", Position);
             chargeSfx.Stop();
-            if (laserSfx.EventName == "guid://{e7a2ddd6-091a-44ab-aac7-e57bd13c009c}" && laserSfx.Playing)
+            if (laserSfx.EventName == "event:/char/badeline/boss_laser_charge" && laserSfx.Playing)
                 laserSfx.Stop();
 
             Collidable = false;
@@ -314,32 +314,32 @@ namespace Celeste.Entities {
                 {
                     Alarm.Set(this, 0.25f, () =>
                     {
-                        Audio.Play("guid://{03185ab0-0f08-4c6e-a6ae-1c44da6b2842}");
+                        Audio.Play("event:/game/06_reflection/boss_spikes_burst");
                         foreach (var spinner in Scene.Tracker.GetEntities<CrystalStaticSpinner>())
                             spinner.RemoveSelf();
                     });
                     Audio.SetParameter(Audio.CurrentAmbienceEventInstance, "postboss", 1f);
                     Audio.SetMusic(null);
                 }
-                else if (nodeIndex == 4 && level.Session.Audio.Music.Event != "guid://{5d0e8330-fc4f-44d1-9604-5840619fc457}")
+                else if (nodeIndex == 4 && level.Session.Audio.Music.Event != "event:/music/pusheen/lvl8/chara_glitch")
                 {
                     // After middle phase - switch to glitch music for intensity
-                    level.Session.Audio.Music.Event = "guid://{5d0e8330-fc4f-44d1-9604-5840619fc457}";
+                    level.Session.Audio.Music.Event = "event:/music/pusheen/lvl8/chara_glitch";
                     level.Session.Audio.Apply(false);
                 }
-                else if (startHit && level.Session.Audio.Music.Event != "guid://{954341a1-d97b-46c3-a01b-e2c9c150ef9b}")
+                else if (startHit && level.Session.Audio.Music.Event != "event:/music/pusheen/lvl8/chara_core")
                 {
-                    level.Session.Audio.Music.Event = "guid://{954341a1-d97b-46c3-a01b-e2c9c150ef9b}";
+                    level.Session.Audio.Music.Event = "event:/music/pusheen/lvl8/chara_core";
                     level.Session.Audio.Apply(false);
                 }
-                else if (startHit && level.Session.Audio.Music.Event != "guid://{5d0e8330-fc4f-44d1-9604-5840619fc457}")
+                else if (startHit && level.Session.Audio.Music.Event != "event:/music/pusheen/lvl8/chara_glitch")
                 {
-                    level.Session.Audio.Music.Event = "guid://{5d0e8330-fc4f-44d1-9604-5840619fc457}";
+                    level.Session.Audio.Music.Event = "event:/music/pusheen/lvl8/chara_glitch";
                     level.Session.Audio.Apply(false);
                 }
-                else if (level.Session.Audio.Music.Event != "guid://{41133e08-9109-4bf0-8abb-7ae0594c23ad}" && level.Session.Audio.Music.Event != "guid://{5d0e8330-fc4f-44d1-9604-5840619fc457}")
+                else if (level.Session.Audio.Music.Event != "event:/music/pusheen/lvl8/chara_fight" && level.Session.Audio.Music.Event != "event:/music/pusheen/lvl8/chara_glitch")
                 {
-                    level.Session.Audio.Music.Event = "guid://{41133e08-9109-4bf0-8abb-7ae0594c23ad}";
+                    level.Session.Audio.Music.Event = "event:/music/pusheen/lvl8/chara_fight";
                     level.Session.Audio.Apply(false);
                 }
             }
@@ -715,7 +715,7 @@ namespace Celeste.Entities {
         private void StartShootCharge()
         {
             Sprite.Play("charaboss_attack1Begin");
-            chargeSfx.Play("guid://{bbe7d0c8-45f9-4671-b49e-8e38e357bb81}");
+            chargeSfx.Play("event:/char/badeline/boss_bullet");
         }
 
         private IEnumerator Attack01Sequence()
@@ -1042,7 +1042,7 @@ namespace Celeste.Entities {
         private void Shoot(float angleOffset = 0f)
         {
             if (!chargeSfx.Playing)
-                chargeSfx.Play("guid://{bbe7d0c8-45f9-4671-b49e-8e38e357bb81}", "end", 1f);
+                chargeSfx.Play("event:/char/badeline/boss_bullet", "end", 1f);
             else
                 chargeSfx.Param("end", 1f);
             
@@ -1055,7 +1055,7 @@ namespace Celeste.Entities {
         private void ShootAt(Vector2 at)
         {
             if (!chargeSfx.Playing)
-                chargeSfx.Play("guid://{bbe7d0c8-45f9-4671-b49e-8e38e357bb81}", "end", 1f);
+                chargeSfx.Play("event:/char/badeline/boss_bullet", "end", 1f);
             else
                 chargeSfx.Param("end", 1f);
             
@@ -1065,7 +1065,7 @@ namespace Celeste.Entities {
 
         private IEnumerator Beam()
         {
-            laserSfx.Play("guid://{e7a2ddd6-091a-44ab-aac7-e57bd13c009c}");
+            laserSfx.Play("event:/char/badeline/boss_laser_charge");
             Sprite.Play("charaboss_attack2Begin", restart: true);
             yield return 0.1f;
             global::Celeste.Player entity = level.Tracker.GetEntity<global::Celeste.Player>();
@@ -1076,14 +1076,14 @@ namespace Celeste.Entities {
             Sprite.Play("charaboss_attack2Lock", restart: true);
             yield return 0.5f;
             laserSfx.Stop();
-            Audio.Play("guid://{58b5d825-ebcf-457b-b493-9be82640b9eb}", Position);
+            Audio.Play("event:/char/badeline/boss_laser_fire", Position);
             Sprite.Play("charaboss_attack2Recoil");
         }
 
         // Keep BiggerBeam method
         private IEnumerator BiggerBeam()
         {
-            laserSfx.Play("guid://{e7a2ddd6-091a-44ab-aac7-e57bd13c009c}");
+            laserSfx.Play("event:/char/badeline/boss_laser_charge");
             Sprite.Play("charaboss_attack2Begin", restart: true);
             yield return 0.2f; // Longer charge setup
             global::Celeste.Player entity = level.Tracker.GetEntity<global::Celeste.Player>();
@@ -1094,7 +1094,7 @@ namespace Celeste.Entities {
             Sprite.Play("charaboss_attack2Lock", restart: true);
             yield return 0.6f; // Wait for lock
             laserSfx.Stop();
-            Audio.Play("guid://{58b5d825-ebcf-457b-b493-9be82640b9eb}", Position);
+            Audio.Play("event:/char/badeline/boss_laser_fire", Position);
             Sprite.Play("charaboss_attack2Recoil");
         }
 

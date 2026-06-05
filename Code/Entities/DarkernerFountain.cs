@@ -103,7 +103,7 @@
             RequiresFlag = data.Attr("requiresFlag", "");
             TransformsPlayer = data.Bool("transformsPlayer", false);
             PersistentEffect = data.Bool("persistentEffect", false);
-            SoundEffect = data.Attr("soundEffect", "guid://{884bccb8-958a-4278-8a1b-daf74fff37c0}");
+            SoundEffect = data.Attr("soundEffect", "event:/game/general/seed_poof");
 
             Depth = -5;
             Collider = new Circle(ActivationRadius);

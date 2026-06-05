@@ -116,7 +116,7 @@
                 if (riseTimer <= 0f)
                 {
                     rising = true;
-                    Audio.Play("guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}", Position);
+                    Audio.Play("event:/game/general/thing_booped", Position);
                 }
             }
 
@@ -211,7 +211,7 @@
             if (level != null)
             {
                 level.Shake(0.3f);
-                Audio.Play("guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}", Position);
+                Audio.Play("event:/game/general/thing_booped", Position);
                 
                 // Rainbow explosion
                 Color explosionColor = rainbowColors[colorIndex];

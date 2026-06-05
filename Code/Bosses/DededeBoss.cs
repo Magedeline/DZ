@@ -233,7 +233,7 @@ namespace Celeste.Entities.Bosses
                     isJumpSlamming = false;
                     sprite?.Play("slam_land");
                     level?.Shake(0.5f);
-                    Audio.Play("guid://{a9cc805b-cc3c-4e29-af3b-bc69914e5a10}", Position);
+                    Audio.Play("event:/game/general/fallblock_shake", Position);
                     
                     // Shockwave
                     SpawnShockwave();

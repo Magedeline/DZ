@@ -43,7 +43,7 @@ namespace Celeste.Entities.SoulBoosts
             Level level = Scene as Level;
             level?.ParticlesFG.Emit(P_Burst, 20, player.Center, Vector2.One * 12f);
             
-            Audio.Play("guid://{a47180e1-9bc2-4dbc-86c7-6402cea2e2be}", player.Position);
+            Audio.Play("event:/game/general/diamond_touch", player.Position);
             
             yield return 0.1f;
         }

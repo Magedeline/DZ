@@ -33,19 +33,19 @@ namespace Celeste.Entities
         {
             {
                 "D",
-                "guid://{286f98c0-aa36-4ff4-a612-12ddfe300f73}"
+                "event:/game/pusheen/01_metro/console_blue"
             },
             {
                 "U",
-                "guid://{0d10c642-e2e8-40b2-bd12-4894fbc41689}"
+                "event:/game/pusheen/01_metro/console_red"
             },
             {
                 "L",
-                "guid://{a37ac895-4e77-4bd0-bdef-e9f340edff52}"
+                "event:/game/pusheen/01_metro/console_purple"
             },
             {
                 "R",
-                "guid://{0dcb3524-a428-4034-b118-255483537a8b}"
+                "event:/game/pusheen/01_metro/console_yellow"
             }
         };
         public static readonly Dictionary<string, ParticleType> Particles = new Dictionary<string, ParticleType>
@@ -220,10 +220,10 @@ namespace Celeste.Entities
                 Add(birdFinishSfx = new SoundSource());
                 Add(birdThrustSfx = new SoundSource());
                 birdFlyingSfx.Position = birdFlyPosition - Position;
-                birdFlyingSfx.Play("guid://{9df8975f-f839-4ee6-91ec-61fcfc2a93a3}");
+                birdFlyingSfx.Play("event:/game/01_forsaken_city/birdbros_fly_loop");
             }
             else
-                staticLoopSfx.Play("guid://{024160fc-f496-4d0a-9b5d-16d473524b95}");
+                staticLoopSfx.Play("event:/game/01_forsaken_city/console_static_loop");
             if (level.Session.HeartGem || !level.Session.GetFlag("unlocked_azzy_theme"))
                 return;
             level.Add(new HeartGem(gemSpawnPosition));
@@ -251,7 +251,7 @@ namespace Celeste.Entities
                     Audio.Play(HeartGemSattelite.Sounds[HeartGemSattelite.Code[i]], heartGemSattelite.Position + heartGemSattelite.computer.Position);
                     yield return 0.5f;
                     heartGemSattelite.pulseBloom.Visible = heartGemSattelite.pulse.Visible = false;
-                    Audio.Play(i < HeartGemSattelite.Code.Length - 1 ? "guid://{bc8d82b5-f015-4c6e-8802-419d8e41da3c}" : "guid://{775f5b55-7dc7-49f9-b242-21f31afa1dd8}", heartGemSattelite.Position + heartGemSattelite.computer.Position);
+                    Audio.Play(i < HeartGemSattelite.Code.Length - 1 ? "event:/game/pusheen/01_metro/console_static_short" : "event:/game/pusheen/01_metro/console_static_long", heartGemSattelite.Position + heartGemSattelite.computer.Position);
                     yield return 0.2f;
                 }
                 // ISSUE: reference to a compiler-generated method
@@ -260,7 +260,7 @@ namespace Celeste.Entities
                         if (enabled)
                         {
                                 birdThrustSfx.Position = birdFlyPosition - Position;
-                                birdThrustSfx.Play("guid://{744d163e-9f32-46ec-a7b2-32521ac0c543}");
+                                birdThrustSfx.Play("event:/game/pusheen/01_metro/birdbros_thrust");
                         }
                 }, 1.1f, true));
                 heartGemSattelite.birds.Shuffle();
@@ -281,8 +281,8 @@ namespace Celeste.Entities
             HeartGemSattelite heartGemSattelite = this;
             heartGemSattelite.level.Session.SetFlag("unlocked_azzy_theme");
             heartGemSattelite.birdFinishSfx.Position = heartGemSattelite.birdFlyPosition - heartGemSattelite.Position;
-            heartGemSattelite.birdFinishSfx.Play("guid://{708ebd08-01ba-402a-8630-a253425640ae}");
-            heartGemSattelite.staticLoopSfx.Play("guid://{9d490fa6-0137-4092-bd1d-a9c2486042b1}");
+            heartGemSattelite.birdFinishSfx.Play("event:/game/pusheen/01_metro/birdbros_finish");
+            heartGemSattelite.staticLoopSfx.Play("event:/game/pusheen/01_metro/console_static_loop");
             heartGemSattelite.enabled = false;
             yield return 0.25f;
             heartGemSattelite.level.Displacement.Clear();

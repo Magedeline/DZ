@@ -82,7 +82,7 @@
         {
             if (!collected && follower.Leader == null)
             {
-                Audio.Play("guid://{6160ad7b-16f6-49a5-aa9b-55d75da5a8e1}", Position);
+                Audio.Play("event:/game/general/seed_touch", Position);
                 player.Leader.GainFollower(follower);
                 Collidable = false;
                 collected = true;
@@ -98,7 +98,7 @@
                 return;
             }
             
-            Audio.Play("guid://{884bccb8-958a-4278-8a1b-daf74fff37c0}", Position);
+            Audio.Play("event:/game/general/seed_poof", Position);
             Collidable = false;
             sprite.Visible = false;
             
@@ -127,7 +127,7 @@
             Collidable = true;
             sprite.Visible = true;
             
-            Audio.Play("guid://{735f3afc-00bc-46da-94f1-2cb51e3bfecc}", Position);
+            Audio.Play("event:/game/general/diamond_return", Position);
             level.ParticlesFG.Emit(P_Glow, 8, Position, Vector2.One * 4f);
         }
 

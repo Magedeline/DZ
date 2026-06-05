@@ -26,8 +26,8 @@ public class NPC05_Oshiro_Lobby : NPC
         {
             Texture = texture,
             InputPosition = new Vector2(0f, -75f),
-            SfxIn = "guid://{07defb47-8579-4c47-9528-289e7a758553}",
-            SfxOut = "guid://{3f531057-7752-4e5a-a782-82ad7428ac70}"
+            SfxIn = "event:/ui/game/hotspot_note_in",
+            SfxOut = "event:/ui/game/hotspot_note_out"
         }));
         Talker.PlayerMustBeFacing = false;
         MoveAnim = "move";
@@ -41,7 +41,7 @@ public class NPC05_Oshiro_Lobby : NPC
         base.Added(scene);
         if (base.Session.GetFlag("oshiro_resort_talked_1"))
         {
-            base.Session.Audio.Music.Event = "guid://{718c1405-2198-4e00-b4f2-3c617c7c5965}";
+            base.Session.Audio.Music.Event = "event:/music/pusheen/lvl5/explore";
             base.Session.Audio.Music.Progress = 1;
             base.Session.Audio.Apply(forceSixteenthNoteHack: false);
             RemoveSelf();

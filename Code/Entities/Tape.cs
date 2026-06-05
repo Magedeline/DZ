@@ -161,7 +161,7 @@ public class DesoloZantasTape : Entity
     // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ Audio/Visual Defaults â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     private const string DefaultCollectSfx      = "event:/game/pusheen/general/tape_unlocked";
-    private const string DefaultPreviewEvent     = "guid://{84569f0c-21e9-4701-ab78-540a746965cf}";
+    private const string DefaultPreviewEvent     = "event:/game/pusheen/general/tape_preview";
     private const string DefaultPreviewParamName = "remix";
 
     // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ Particle Types â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
@@ -436,7 +436,7 @@ public class DesoloZantasTape : Entity
 
         if (!player.Dead && _nodes != null && _nodes.Length >= 2)
         {
-            Audio.Play("guid://{9db695ce-ce56-4025-9528-030d6b599c86}", level.Camera.Position + new Vector2(160f, 90f));
+            Audio.Play("event:/game/general/cassette_bubblereturn", level.Camera.Position + new Vector2(160f, 90f));
             player.StartCassetteFly(_nodes[1], _nodes[0]);
         }
 

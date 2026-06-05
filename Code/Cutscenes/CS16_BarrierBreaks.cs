@@ -44,7 +44,7 @@
 
             // Els' ominous final words
             level.Flash(Color.DarkRed, false);
-            Audio.Play("guid://{0886e368-bce4-4922-97c3-edeadf714e29}");
+            Audio.Play("event:/game/general/strawberry_pulse");
             
             // Credits would roll here in actual game
             yield return 2f;

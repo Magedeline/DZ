@@ -149,7 +149,7 @@ namespace Celeste.Cutscenes
         {
             mainChara.EnablePlayerControl(false);
             mainChara.PlayPickup();
-            Audio.Play("guid://{7a436113-5059-4565-a239-927c4876b345}", prop.Position);
+            Audio.Play("event:/game/02_old_site/sequence_phone_pickup", prop.Position);
             prop.Collect();
             onCollected?.Invoke();
             yield return 0.25f;

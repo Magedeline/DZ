@@ -256,7 +256,7 @@
                 if (Input.MenuConfirm.Pressed || Input.Dash.Pressed)
                 {
                     hasSkipped = true;
-                    Audio.Play("guid://{cf18e899-f774-47e2-b72c-5252231fd47c}");
+                    Audio.Play("event:/ui/main/button_select");
                     
                     // Jump to end
                     var level = Scene as Level;

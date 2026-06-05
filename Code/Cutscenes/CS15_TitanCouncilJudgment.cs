@@ -32,7 +32,7 @@
 
             // Roaring Titan Council entrance
             level.Shake(1.0f);
-            Audio.Play("guid://{0886e368-bce4-4922-97c3-edeadf714e29}");
+            Audio.Play("event:/game/general/strawberry_pulse");
             
             yield return Textbox.Say("MAGGYHELPER_CH15_ROARING_TITAN_COUNCIL_ENTRANCE");
 

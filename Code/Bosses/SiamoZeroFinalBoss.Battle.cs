@@ -1169,7 +1169,7 @@ namespace Celeste.Entities
                 Sprite.Play("getHit");
             Audio.Play("event:/new_content/char/pusheen/els/Els_Scream_Hit", Position);
             chargeSfx.Stop();
-            if (laserSfx.EventName == "guid://{e7a2ddd6-091a-44ab-aac7-e57bd13c009c}" && laserSfx.Playing)
+            if (laserSfx.EventName == "event:/char/badeline/boss_laser_charge" && laserSfx.Playing)
                 laserSfx.Stop();
             
             // Disable shockwave effects to prevent player from getting stuck
@@ -1503,7 +1503,7 @@ namespace Celeste.Entities
             }
             
             // Hit sound effect
-            string hitSound = isKirbyMode ? "guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}" : "event:/game/general/landing";
+            string hitSound = isKirbyMode ? "event:/game/general/thing_booped" : "event:/game/general/landing";
             if (player != null)
             {
                 Audio.Play(hitSound, player.Position);

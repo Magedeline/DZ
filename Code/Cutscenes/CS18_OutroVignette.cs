@@ -102,12 +102,12 @@ namespace Celeste.Cutscenes
             doorLocked = true;
 
             // Play door closing sound
-            Audio.Play("guid://{b65c24ca-a160-4d14-b930-2c851cc91f30}", Vector2.Zero);
+            Audio.Play("event:/game/03_resort/door_metal_close", Vector2.Zero);
 
             yield return 0.5f;
 
             // Play locking sound
-            Audio.Play("guid://{ce414756-a0c5-481c-9d0b-dc045f5d5771}", Vector2.Zero);
+            Audio.Play("event:/game/03_resort/key_unlock", Vector2.Zero);
 
             // Screen shake for emphasis
             glitchIntensity = 0.3f;
@@ -143,7 +143,7 @@ namespace Celeste.Cutscenes
                 glitchIntensity = 0.5f;
                 Input.Rumble(RumbleStrength.Strong, RumbleLength.Short);
 
-                Audio.Play("guid://{bbabbdbc-da20-42af-9c0d-0daa8299cc7f}", Vector2.Zero);
+                Audio.Play("event:/classic/sfx38", Vector2.Zero);
 
                 yield return 0.2f;
             }
@@ -169,7 +169,7 @@ namespace Celeste.Cutscenes
                 Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
 
                 // Rapid fire glitch sounds
-                Audio.Play("guid://{bbabbdbc-da20-42af-9c0d-0daa8299cc7f}", Vector2.Zero);
+                Audio.Play("event:/classic/sfx38", Vector2.Zero);
 
                 yield return 0.1f;
 
@@ -181,7 +181,7 @@ namespace Celeste.Cutscenes
             glitchIntensity = 2.0f;
             Input.Rumble(RumbleStrength.Strong, RumbleLength.Long);
 
-            Audio.Play("guid://{bbabbdbc-da20-42af-9c0d-0daa8299cc7f}", Vector2.Zero);
+            Audio.Play("event:/classic/sfx38", Vector2.Zero);
 
             yield return 2f;
 
@@ -239,7 +239,7 @@ namespace Celeste.Cutscenes
         public void OpenMenu()
         {
             pauseSfx();
-            Audio.Play("guid://{c6311b80-2ae7-4155-80f1-d3e2713efaa3}");
+            Audio.Play("event:/ui/game/pause");
             Add(menu = new TextMenu());
             menu.Add(new TextMenu.Button(Dialog.Clean("intro_vignette_resume")).Pressed(closeMenu));
             menu.Add(new TextMenu.Button(Dialog.Clean("WARNING: Skipping will not unlock Chapter 19")).Pressed(skipToEnd));
@@ -249,7 +249,7 @@ namespace Celeste.Cutscenes
         private void closeMenu()
         {
             resumeSfx();
-            Audio.Play("guid://{6096b41c-7b56-4839-ad53-deb9e5693246}");
+            Audio.Play("event:/ui/game/unpause");
             if (menu != null)
             {
                 menu.RemoveSelf();

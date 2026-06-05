@@ -277,7 +277,7 @@ public class ZoomMover : Solid
             if (HasPlayerOnTop())
             {
                 // Blink the streetlight
-                sfx.Play("guid://{c7f359ea-785f-4328-8135-4000ec1486bc}");
+                sfx.Play("event:/game/01_forsaken_city/zip_mover");
                 
                 if (streetlight != null)
                 {
@@ -357,7 +357,7 @@ public class ZoomMover : Solid
                 streetlight.SetAnimationFrame(1);
             }
             
-            sfx.Play("guid://{c7f359ea-785f-4328-8135-4000ec1486bc}");
+            sfx.Play("event:/game/01_forsaken_city/zip_mover");
             
             at = 0f;
             while (at < 1f)

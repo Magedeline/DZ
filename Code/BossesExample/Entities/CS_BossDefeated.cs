@@ -49,7 +49,7 @@ public class CS_BossDefeated : CutsceneEntity
 
   private void GlitchLevel()
   {
-    global::Celeste.Audio.Play("guid://{42d600c5-32c3-4433-8a1e-be394b30bcde}");
+    global::Celeste.Audio.Play("event:/new_content/game/10_farewell/glitch_short");
     this.level.Shake(0.3f);
     Input.Rumble((RumbleStrength) 0, (RumbleLength) 0);
     Tween tween1 = Tween.Create((Tween.TweenMode) 1, (Ease.Easer) null, 0.05f, true);

@@ -183,7 +183,7 @@ namespace Celeste.Cutscenes
 
         private IEnumerator leaveSequence()
         {
-            Audio.Play("guid://{918e9353-b7fb-4d65-9bab-7e21facb3231}");
+            Audio.Play("event:/ui/main/whoosh_large_out");
 
             if (Overworld != null)
             {

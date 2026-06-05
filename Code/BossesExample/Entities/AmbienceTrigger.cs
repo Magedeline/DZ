@@ -15,7 +15,7 @@ namespace Celeste.Mod.MaggyHelper.BossesExample.Entities;
 [Tracked(false)]
 internal class AmbienceTrigger : Trigger
 {
-  public string ambience = "guid://{fceb8b1e-7d92-400b-903f-406dade6162c}";
+  public string ambience = "event:/new_content/env/10_rain";
 
   public AmbienceTrigger(EntityData data, Vector2 offset)
     : base(data, offset)

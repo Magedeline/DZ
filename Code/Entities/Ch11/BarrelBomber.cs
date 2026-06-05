@@ -184,7 +184,7 @@
             // Screen effects
             level?.Shake(0.6f);
             level?.Flash(Color.Orange * 0.5f);
-            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
+            Audio.Play("event:/game/general/crystalheart_pulse", Position);
             
             // Damage player if in radius
             var player = Scene.Tracker.GetEntity<Player>();
@@ -370,7 +370,7 @@
             
             level?.Shake(0.4f);
             level?.Flash(Color.Orange * 0.4f);
-            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
+            Audio.Play("event:/game/general/crystalheart_pulse", Position);
             
             // Damage nearby entities
             var player = Scene.Tracker.GetEntity<Player>();

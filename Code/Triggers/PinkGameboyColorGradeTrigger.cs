@@ -49,7 +49,7 @@
                 // Play a subtle sound effect if enabled
                 if (playSound)
                 {
-                    Audio.Play("guid://{9db695ce-ce56-4025-9528-030d6b599c86}", Position);
+                    Audio.Play("event:/game/general/cassette_bubblereturn", Position);
                 }
 
                 // Optional: Add a subtle flash effect to emphasize the transition

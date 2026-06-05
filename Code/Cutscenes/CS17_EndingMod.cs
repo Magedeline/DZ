@@ -264,7 +264,7 @@ namespace Celeste.Cutscenes
             Level.Session.Inventory.Dashes = 1;
             player.Dashes = 1;
             Level.Add(badeline = new BadelineDummy(player.Position));
-            Audio.Play("guid://{450fb5b3-e9e3-45d8-9f34-ba05e292958f}", player.Position);
+            Audio.Play("event:/char/badeline/maddy_split", player.Position);
             badeline.Sprite.Scale.X = 1f;
             yield return badeline.FloatTo(player.Position + new Vector2(-12f, -16f), new int?(1), false, false, false);
         }

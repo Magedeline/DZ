@@ -51,7 +51,7 @@ namespace Celeste
             activated = !activated;
             gravityFlipped = activated;
             cooldown = cooldownTime;
-            Audio.Play("guid://{a9cc805b-cc3c-4e29-af3b-bc69914e5a10}", Position);
+            Audio.Play("event:/game/general/fallblock_shake", Position);
             sprite.Play(activated ? "active" : "idle");
 
             Level level = SceneAs<Level>();
@@ -176,7 +176,7 @@ namespace Celeste
         private void Bounce(Player player)
         {
             player.Speed.Y = -(260f + extraHeight);
-            Audio.Play("guid://{a4c52eee-f6a0-4ebe-976f-fab38d4cfa7a}", Position);
+            Audio.Play("event:/game/general/spring", Position);
             sprite.Play("bounce");
             broken = true;
             timer = respawnTime;
@@ -329,7 +329,7 @@ namespace Celeste
         private void TeleportPlayer(Player player)
         {
             cooldown = 1f;
-            Audio.Play("guid://{9db695ce-ce56-4025-9528-030d6b599c86}", Position);
+            Audio.Play("event:/game/general/cassette_bubblereturn", Position);
 
             // Find paired door
             foreach (PortalDoor door in Scene.Tracker.GetEntities<PortalDoor>())
@@ -437,7 +437,7 @@ namespace Celeste
         private IEnumerator MeltRoutine()
         {
             melted = true;
-            Audio.Play("guid://{7c01de41-a31a-43c3-9c0f-9ae85ad94c68}", Position);
+            Audio.Play("event:/game/general/wall_break_ice", Position);
             for (float t = 1f; t > 0; t -= Engine.DeltaTime * 2f)
             {
                 Visible = Scene.OnInterval(0.05f);
@@ -492,7 +492,7 @@ namespace Celeste
                 attached = true;
                 currentNode = 0;
                 t = 0f;
-                Audio.Play("guid://{9db695ce-ce56-4025-9528-030d6b599c86}", Position);
+                Audio.Play("event:/game/general/cassette_bubblereturn", Position);
             }
 
             if (attached && currentNode < nodes.Length - 1)
@@ -631,7 +631,7 @@ namespace Celeste
             player.StateMachine.State = Player.StDummy;
             player.Speed = Vector2.Zero;
             player.Position = Position;
-            Audio.Play("guid://{a4c52eee-f6a0-4ebe-976f-fab38d4cfa7a}", Position);
+            Audio.Play("event:/game/general/spring", Position);
         }
 
         private void FireCannon(Player player, float angleDegrees)
@@ -643,7 +643,7 @@ namespace Celeste
                 (float)Math.Sin(rad) * launchSpeed
             );
             player.StateMachine.State = Player.StNormal;
-            Audio.Play("guid://{5381856a-d548-4a31-b7e5-b94d2a72881e}", Position);
+            Audio.Play("event:/game/general/fallblock_impact", Position);
             (Scene as Level)?.DirectionalShake(new Vector2((float)Math.Cos(rad), (float)Math.Sin(rad)), 0.2f);
         }
 

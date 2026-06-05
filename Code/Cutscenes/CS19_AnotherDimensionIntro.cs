@@ -69,7 +69,7 @@ namespace Celeste.Cutscenes
       while ((double) cs10MoonIntro.player.Top > (double) level.Bounds.Bottom)
         yield return (object) null;
       yield return (object) 0.2f;
-      Audio.Play("guid://{82b35daf-877f-401a-9b49-6a4bb9ff5bc3}", cs10MoonIntro.player.Position);
+      Audio.Play("event:/new_content/char/madeline/screenentry_lowgrav", cs10MoonIntro.player.Position);
       while (cs10MoonIntro.player.StateMachine.State == 23)
         yield return (object) null;
       cs10MoonIntro.player.X = (float) (int) cs10MoonIntro.player.X;
@@ -92,7 +92,7 @@ namespace Celeste.Cutscenes
       int target = Math.Sign(cs10MoonIntro.chara.Sprite.Scale.X) * -1;
       Wiggler wiggler = Wiggler.Create(0.5f, 3f, (Action<float>) (v => this.chara.Sprite.Scale = new Vector2((float) target, 1f) * (float) (1.0 + 0.20000000298023224 * (double) v)), true, true);
       cs10MoonIntro.Add((Component) wiggler);
-      Audio.Play(target < 0 ? "guid://{ab3be2a7-36d0-43cb-990a-2c49ba5d5c60}" : "guid://{ab3be2a7-36d0-43cb-990a-2c49ba5d5c60}", cs10MoonIntro.chara.Position);
+      Audio.Play(target < 0 ? "event:/char/badeline/jump_wall_left" : "event:/char/badeline/jump_wall_left", cs10MoonIntro.chara.Position);
       yield return (object) 0.6f;
     }
 
@@ -119,7 +119,7 @@ namespace Celeste.Cutscenes
       }
 
       cs10MoonIntro.Level.Displacement.AddBurst(cs10MoonIntro.player.Center, 0.5f, 8f, 32f, 0.5f);
-      Audio.Play("guid://{450fb5b3-e9e3-45d8-9f34-ba05e292958f}", cs10MoonIntro.player.Position);
+      Audio.Play("event:/char/badeline/maddy_split", cs10MoonIntro.player.Position);
       cs10MoonIntro.chara.Sprite.Scale.X = 1f;
       foreach (CharaDummy monster in cs10MoonIntro.monsterKinds)
       {

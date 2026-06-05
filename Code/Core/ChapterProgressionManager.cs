@@ -171,9 +171,9 @@ public static class ChapterProgressionManager
         if (save == null || global::Celeste.MaggyHelperSaveFacade.IsChapterUnlocked(Ch18Sid))
             yield break;
 
-        Audio.Play("guid://{f1781585-e11d-42e9-b8c3-ef5baddecb32}");
-        Audio.Play("guid://{f1781585-e11d-42e9-b8c3-ef5baddecb32}");
-        Audio.Play("guid://{14563914-60ff-43cc-bc2e-d5766cc30964}");
+        Audio.Play("event:/ui/pusheen/postgame/unlock_newchapter");
+        Audio.Play("event:/ui/pusheen/postgame/unlock_newchapter");
+        Audio.Play("event:/ui/world_map/icon/roll_right");
 
         DynamicData dd = new DynamicData(self);
         dd.Set("area", 18);
@@ -205,9 +205,9 @@ public static class ChapterProgressionManager
         if (save == null || global::Celeste.MaggyHelperSaveFacade.IsChapterUnlocked(Ch19Sid))
             yield break;
 
-        Audio.Play("guid://{f1781585-e11d-42e9-b8c3-ef5baddecb32}");
+        Audio.Play("event:/ui/pusheen/postgame/unlock_newchapter");
         Audio.Play("event:/ui/pusheen/postgame/unlock_finalchapter_icon");
-        Audio.Play("guid://{14563914-60ff-43cc-bc2e-d5766cc30964}");
+        Audio.Play("event:/ui/world_map/icon/roll_right");
 
         DynamicData dd = new DynamicData(self);
         dd.Set("area", 19);
@@ -250,9 +250,9 @@ public static class ChapterProgressionManager
 
     private static IEnumerator PerformCh10Unlock(OuiChapterSelect self)
     {
-        Audio.Play("guid://{f1781585-e11d-42e9-b8c3-ef5baddecb32}");
-        Audio.Play("guid://{f1781585-e11d-42e9-b8c3-ef5baddecb32}");
-        Audio.Play("guid://{687c2393-d73e-4247-a97b-4f2c2ccce388}");
+        Audio.Play("event:/ui/pusheen/postgame/unlock_newchapter");
+        Audio.Play("event:/ui/pusheen/postgame/unlock_newchapter");
+        Audio.Play("event:/ui/world_map/icon/roll_left");
 
         DynamicData dd = new DynamicData(self);
         dd.Set("area", 10);

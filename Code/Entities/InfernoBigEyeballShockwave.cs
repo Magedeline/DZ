@@ -66,7 +66,7 @@
             if (!hasHitPlayer)
             {
                 Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
-                Audio.Play("guid://{f64177a2-2611-49cc-8c63-d74c1e29c8a3}", player.Position);
+                Audio.Play("event:/game/05_mirror_temple/eye_pulse", player.Position);
                 hasHitPlayer = true;
             }
         }

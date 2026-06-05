@@ -160,7 +160,7 @@
             collectSfx = new SoundSource();
             collectSfx.Position = Position;
             Add(collectSfx);
-            collectSfx.Play("guid://{884bccb8-958a-4278-8a1b-daf74fff37c0}");
+            collectSfx.Play("event:/game/general/seed_poof");
             
             // Visual effects
             Level level = SceneAs<Level>();
@@ -206,7 +206,7 @@
                 level.Add(new MiniTextbox($"SUBMAP_COMPLETE_CH{chapterNumber}_{submapNumber}"));
                 
                 // Play completion sound
-                Audio.Play("guid://{1acb8e84-5f79-4dcd-86aa-e8a514535b7d}", Position);
+                Audio.Play("event:/game/general/crystalheart_blue_get", Position);
             }
         }
 

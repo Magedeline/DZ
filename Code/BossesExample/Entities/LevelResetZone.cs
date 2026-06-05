@@ -69,7 +69,7 @@ internal class LevelResetZone : SeekerBarrier
     }
     Player entity = ((Entity) this).Scene.Tracker.GetEntity<Player>();
     if (entity != null && ((Entity) this).CollideCheck((Entity) entity) && (double) this.respawnTimer < 0.0 && this.roomID.Length != 0)
-      this.ResetLevel(this.roomID, "guid://{42d600c5-32c3-4433-8a1e-be394b30bcde}");
+      this.ResetLevel(this.roomID, "event:/new_content/game/10_farewell/glitch_short");
     int length1 = this.speeds.Length;
     float height1 = ((Entity) this).Height;
     int index1 = 0;

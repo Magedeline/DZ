@@ -38,10 +38,10 @@ public static class AreaModeExtender
 
     public static readonly string[] HeartGemGetSounds =
     {
-        "guid://{1acb8e84-5f79-4dcd-86aa-e8a514535b7d}",
-        "guid://{e04dbcbd-4476-4174-9046-1e92febcc08e}",
-        "guid://{10ff4e08-9448-49ae-8092-d402bb128538}",
-        "guid://{eaeac297-dbe8-4eae-a434-3bbb4a5aa49c}",
+        "event:/game/general/crystalheart_blue_get",
+        "event:/game/general/crystalheart_red_get",
+        "event:/game/general/crystalheart_gold_get",
+        "event:/game/pusheen/general/crystalheart_rainbow_get",
         "event:/game/pusheen/general/crystalheart_void_get"
     };
 

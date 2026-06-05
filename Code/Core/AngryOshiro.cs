@@ -158,7 +158,7 @@ public class AngyOshiro : Entity
     {
         if (state.State == 2 && player.Bottom <= base.Top + 6f)
         {
-            Audio.Play("guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}", Position);
+            Audio.Play("event:/game/general/thing_booped", Position);
             Celeste.Freeze(0.2f);
             player.Bounce(base.Top + 2f);
             state.State = 5;
@@ -245,7 +245,7 @@ public class AngyOshiro : Entity
     {
         if (!hasEnteredSfx && cameraXOffset >= -16f && !doRespawnAnim)
         {
-            Audio.Play("guid://{05362357-0f1e-4f89-9d04-8a2778451a6c}", Position);
+            Audio.Play("event:/char/oshiro/boss_enter_screen", Position);
             hasEnteredSfx = true;
         }
         if (doRespawnAnim && cameraXOffset >= 0f)
@@ -256,7 +256,7 @@ public class AngyOshiro : Entity
             doRespawnAnim = false;
             if (base.Scene.Tracker.GetEntity<Player>() != null)
             {
-                Audio.Play("guid://{28afe636-0afc-4a73-957d-fa53f6295250}", Position);
+                Audio.Play("event:/char/oshiro/boss_reform", Position);
             }
         }
         cameraXOffset = Calc.Approach(cameraXOffset, 20f, 80f * Engine.DeltaTime);
@@ -282,14 +282,14 @@ public class AngyOshiro : Entity
             attackIndex++;
             attackIndex %= ChaseWaitTimes.Length;
         }
-        prechargeSfx.Play("guid://{f5fc7368-4f02-4479-a805-0efdff3633f6}");
+        prechargeSfx.Play("event:/char/oshiro/boss_precharge");
         Sprite.Play("charge");
         yield return 0.7f;
         if (Scene.Tracker.GetEntity<Player>() != null)
         {
             Alarm.Set(this, 0.216f, [MethodImpl(MethodImplOptions.NoInlining)] () =>
             {
-                chargeSfx.Play("guid://{e1fec409-ace5-4006-8b7c-ccf9fbf1ac59}");
+                chargeSfx.Play("event:/char/oshiro/boss_charge");
             });
             state.State = 1;
         }

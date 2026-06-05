@@ -77,7 +77,7 @@ public class StarJumpCutsceneControl : Entity
         this.ApproachThreshold = this.MinY + 200f;  // Start "approaching" 200 pixels before top
         
         // Initialize music
-        this.Level.Session.Audio.Music.Event = "guid://{a8228c15-231d-46a1-a967-2bd255fca92f}";
+        this.Level.Session.Audio.Music.Event = "event:/music/pusheen/lvl8/starjump";
         this.Level.Session.Audio.Music.Layer(1, 1f);
         this.Level.Session.Audio.Music.Layer(2, 0.0f);
         this.Level.Session.Audio.Music.Layer(3, 0.0f);

@@ -43,11 +43,11 @@ namespace Celeste.Cutscenes
       cs04Ending.player.Facing = Facings.Right;
       yield return (object) 0.5f;
       cs04Ending.player.Visible = false;
-      Audio.Play("guid://{7a436113-5059-4565-a239-927c4876b345}", cs04Ending.player.Position);
+      Audio.Play("event:/game/02_old_site/sequence_phone_pickup", cs04Ending.player.Position);
       yield return (object) cs04Ending.payphone.Sprite.PlayRoutine("pickUp");
       yield return (object) 0.25f;
       cs04Ending.phoneSfx.Position = cs04Ending.player.Position;
-      cs04Ending.phoneSfx.Play("guid://{2c58d235-d6db-4974-825f-426ec121fe23}");
+      cs04Ending.phoneSfx.Play("event:/game/02_old_site/sequence_phone_ringtone_loop");
       yield return (object) 6f;
       cs04Ending.phoneSfx.Stop();
       cs04Ending.payphone.Sprite.Play("talkPhone");

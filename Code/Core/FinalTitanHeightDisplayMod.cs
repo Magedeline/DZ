@@ -65,7 +65,7 @@
             Add(new Coroutine(cameraUp(), true));
 
             if (!string.IsNullOrEmpty(text) && index >= 0)
-                Audio.Play("guid://{d35da1c1-742f-4d49-b7cb-b4e516d01d62}");
+                Audio.Play("event:/game/pusheen/09_beyondsummit/altitude_count");
 
             while ((ease += Engine.DeltaTime / 0.15f) < 1f)
                 yield return null;

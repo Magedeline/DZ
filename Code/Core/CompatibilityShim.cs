@@ -502,7 +502,7 @@ namespace Celeste.Mod.MaggyHelper
 
     public static class CustomSFX
     {
-        public const string game_dreamZipMover_move = "guid://{c7f359ea-785f-4328-8135-4000ec1486bc}";
+        public const string game_dreamZipMover_move = "event:/game/01_forsaken_city/zip_mover";
         public const string game_dreamZipMover_return = "event:/game/01_forsaken_city/zip_mover_return";
         public const string game_dreamZipMover_tick = "event:/game/01_forsaken_city/zip_mover_tick";
         public const string game_dreamZipMover_finish = "event:/game/01_forsaken_city/zip_mover_finish";
@@ -520,7 +520,7 @@ public static class Util
 
 public static class CustomSFX
 {
-    public const string game_dreamZipMover_move = "guid://{c7f359ea-785f-4328-8135-4000ec1486bc}";
+    public const string game_dreamZipMover_move = "event:/game/01_forsaken_city/zip_mover";
     public const string game_dreamZipMover_return = "event:/game/01_forsaken_city/zip_mover_return";
     public const string game_dreamZipMover_tick = "event:/game/01_forsaken_city/zip_mover_tick";
     public const string game_dreamZipMover_finish = "event:/game/01_forsaken_city/zip_mover_finish";

@@ -57,7 +57,7 @@ public class CS_CPEnd : CutsceneEntity
     Input.Rumble((RumbleStrength) 0, (RumbleLength) 1);
     this.Level.Displacement.AddBurst(((Entity) this.player).Center, 0.4f, 8f, 32f, 0.5f, (Ease.Easer) null, (Ease.Easer) null);
     ((GraphicsComponent) this.badeline.Sprite).Scale.X = -1f;
-    global::Celeste.Audio.Play("guid://{450fb5b3-e9e3-45d8-9f34-ba05e292958f}", ((Entity) this.player).Position);
+    global::Celeste.Audio.Play("event:/char/badeline/maddy_split", ((Entity) this.player).Position);
     yield return (object) this.badeline.FloatTo(((((Entity) this.player).Position) + (new Vector2(20f, 0.0f))), new int?(-1), false, false, false);
     yield return (object) 0.5f;
     this.player.DummyAutoAnimate = false;

@@ -139,7 +139,7 @@ namespace Celeste.Cutscenes
             if (els != null)
             {
                 Vector2 elsCenter = els.Center;
-                Audio.Play("guid://{03185ab0-0f08-4c6e-a6ae-1c44da6b2842}", elsCenter);
+                Audio.Play("event:/game/06_reflection/boss_spikes_burst", elsCenter);
                 Level.Displacement.AddBurst(elsCenter, 4f, 128f, 512f, 2f);
                 Level.Shake(1.2f);
                 Level.Flash(Color.White, true);
@@ -387,7 +387,7 @@ namespace Celeste.Cutscenes
                 soulBirds.Add(soulBird);
                 soulBirdScreenPositions[i] = spawnFrom;
 
-                Audio.Play("guid://{a47180e1-9bc2-4dbc-86c7-6402cea2e2be}", Level.Camera.Position + screenCenter);
+                Audio.Play("event:/game/general/diamond_touch", Level.Camera.Position + screenCenter);
                 yield return 0.3f;
             }
 
@@ -431,7 +431,7 @@ namespace Celeste.Cutscenes
             }
 
             // === Transform: birds flash and become soul lights ===
-            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Level.Camera.Position + screenCenter);
+            Audio.Play("event:/game/general/crystalheart_pulse", Level.Camera.Position + screenCenter);
             Level.Flash(Color.White * 0.6f, false);
             Level.Shake(0.3f);
 

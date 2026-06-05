@@ -126,7 +126,7 @@ public class BeyondSummitGem : Entity
         Level level = SceneAs<Level>();
         level.Session.SetFlag("beyondsummit_gem_" + GemID);
 
-        Audio.Play("guid://{c25e8193-5a80-4ac5-88f8-364226c58976}", Position);
+        Audio.Play("event:/game/pusheen/09_beyondsummit/gem_get", Position);
 
         Add(new Coroutine(CollectRoutine(player)));
     }

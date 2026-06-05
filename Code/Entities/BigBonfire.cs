@@ -131,13 +131,13 @@ namespace Celeste.Entities
 
                     if (Activated)
                     {
-                        Audio.Play("guid://{a780517b-19c9-47d4-88ab-091fb03f1f9e}", Position);
-                        loopSfx.Play("guid://{7cc20e5f-81e5-4166-acc6-704dc13f46f3}");
+                        Audio.Play("event:/env/local/campfire_start", Position);
+                        loopSfx.Play("event:/env/local/campfire_loop");
                         sprite.Play(dreaming ? "startDream" : "start");
                     }
                     else
                     {
-                        loopSfx.Play("guid://{7cc20e5f-81e5-4166-acc6-704dc13f46f3}");
+                        loopSfx.Play("event:/env/local/campfire_loop");
                         sprite.Play(dreaming ? "burnDream" : "burn");
                     }
                     break;

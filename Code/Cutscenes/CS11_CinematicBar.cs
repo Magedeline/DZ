@@ -27,7 +27,7 @@ namespace Celeste.Cutscenes
         // Audio event paths
         private const string SFX_POWER_BLACKOUT = "event:/game_06_boss_badeline_respawn";
         private const string SFX_EARTHQUAKE_RUMBLE = "event:/game_09_rumbling";
-        private const string SFX_RISER = "guid://{42d600c5-32c3-4433-8a1e-be394b30bcde}";
+        private const string SFX_RISER = "event:/new_content/game/10_farewell/glitch_short";
         private const string SFX_MOUNTAIN_ERUPTION = "event:/new_content/game/10_farewell/bird_crash_whoosh";
         #endregion
 

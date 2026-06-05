@@ -100,7 +100,7 @@ public class DarkLightningRenderer : Entity
   {
     if (this.AmbientSfx.Playing)
       return;
-    this.AmbientSfx.Play("guid://{58a69c31-956e-42a2-a9a2-359e67921ffa}", (string) null, 0.0f);
+    this.AmbientSfx.Play("event:/new_content/env/10_electricity", (string) null, 0.0f);
   }
 
   public void StopAmbience() => this.AmbientSfx.Stop(true);

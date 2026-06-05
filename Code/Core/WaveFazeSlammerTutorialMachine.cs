@@ -129,7 +129,7 @@ namespace Celeste
         public override void Awake(Scene scene)
         {
             base.Awake(scene);
-            Add(signSfx = new SoundSource(new Vector2(8f, -16f), "guid://{e88c096c-382f-4add-aa77-36653d4a0b14}"));
+            Add(signSfx = new SoundSource(new Vector2(8f, -16f), "event:/new_content/env/local/cafe_sign"));
         }
 
         public override void Render()
@@ -159,11 +159,11 @@ namespace Celeste
                         if (playerInside)
                         {
                             signSfx.Stop();
-                            snapshot = Audio.CreateSnapshot("guid://{7ea9a03b-ea60-4a15-be33-26a7a9423b63}");
+                            snapshot = Audio.CreateSnapshot("snapshot:/game_10_inside_cafe");
                         }
                         else
                         {
-                            signSfx.Play("guid://{e88c096c-382f-4add-aa77-36653d4a0b14}");
+                            signSfx.Play("event:/new_content/env/local/cafe_sign");
                             Audio.ReleaseSnapshot(snapshot);
                             snapshot = null;
                         }
@@ -221,9 +221,9 @@ namespace Celeste
             player.StateMachine.Locked = true;
             yield return CutsceneEntity.CameraTo(new Vector2(X, Y - 30f) - new Vector2(160f, 90f), 0.25f, Ease.CubeOut);
             yield return level.ZoomTo(new Vector2(160f, 90f), 10f, 1f);
-            usingSfx = Audio.Play("guid://{b5fd173e-9a58-4412-9be1-094108b82157}", player.Position);
-            Audio.Play("guid://{4be46c93-4868-4b41-ab86-cd5b4cb24ab4}", player.Position);
-            Audio.Play("guid://{cb643135-d2a6-4999-b669-d2385a7cf546}", player.Position);
+            usingSfx = Audio.Play("event:/state/cafe_computer_active", player.Position);
+            Audio.Play("event:/new_content/game/10_farewell/cafe_computer_on", player.Position);
+            Audio.Play("event:/new_content/game/10_farewell/cafe_computer_startupsfx", player.Position);
             presentation = new WaveFazeSlammerPresentation();
             Scene.Add(presentation);
             while (presentation.Viewing)

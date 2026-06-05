@@ -1,17 +1,16 @@
 local bridge = {}
 
-bridge.name = "MaggyHelper/BridgeAgain"
+bridge.name = "MaggyHelper/Bridge"
 bridge.depth = 0
 bridge.fillColor = {0.4, 0.4, 0.4, 0.8}
 bridge.borderColor = {0.0, 0.0, 0.0, 1.0}
 
 bridge.placements = {
     {
-        name = "BridgeAgain",
+        name = "BridgeUWU",
         data = {
             width = 160,
             height = 8,
-            getLevelFlag = ""
         }
     }
 }
@@ -27,7 +26,7 @@ bridge.fieldInformation = {
     }
 }
 
-bridge.sprite = "objects/bridge/bridge00"
+bridge.sprite = "objects/bridge/bridge"
 bridge.nodeLimits = {2, 2}
 bridge.nodeLineRenderType = "line"
 

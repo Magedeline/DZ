@@ -85,7 +85,7 @@ internal class BoomBooster : Entity
     player.Speed = Vector2.Zero;
     new DynData<Player>(player).Set<Vector2>("boostTarget", this.Center);
     this.StartedBoosting = true;
-    global::Celeste.Audio.Play("guid://{a0bb25ba-3b9d-45a1-b4cd-214fe07288c0}", this.Position);
+    global::Celeste.Audio.Play("event:/game/04_cliffside/greenbooster_enter", this.Position);
     this.wiggler.Start();
     this.sprite.Play("inside", false, false);
     ((GraphicsComponent) this.sprite).FlipX = player.Facing == Facings.Left;
@@ -103,7 +103,7 @@ internal class BoomBooster : Entity
     this.SceneAs<Level>().Particles.Emit(Seeker.P_Regen, 12, ((this.Center) + (((vector2) * (12f)))), ((Vector2.One) * (3f)), Calc.Angle(vector2));
     this.SceneAs<Level>().Particles.Emit(BoomBooster.P_Burst, 12, ((this.Center) + (((vector2) * (12f)))), ((Vector2.One) * (3f)), Calc.Angle(vector2));
     this.sprite.Play("burst", false, false);
-    global::Celeste.Audio.Play("guid://{7867f29b-8e33-4e2e-8d56-00cf9211cadd}", this.Position);
+    global::Celeste.Audio.Play("event:/new_content/game/10_farewell/puffer_splode", this.Position);
     this.outline.Visible = true;
     ((Component) this.sprite).Visible = false;
     this.cannotUseTimer = 0.0f;
@@ -125,7 +125,7 @@ internal class BoomBooster : Entity
 
   public void Respawn()
   {
-    global::Celeste.Audio.Play("guid://{80c246ab-79ac-4190-81c0-56bc959e67c8}", this.Position);
+    global::Celeste.Audio.Play("event:/game/04_cliffside/greenbooster_reappear", this.Position);
     ((GraphicsComponent) this.sprite).Position = Vector2.Zero;
     this.sprite.Play("idle", true, false);
     this.wiggler.Start();

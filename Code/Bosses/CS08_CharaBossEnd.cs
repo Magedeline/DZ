@@ -64,7 +64,7 @@ public class Cs08CharaBossEnd : CutsceneEntity
         this.player.Facing = Facings.Right;
         yield return 1f;
         Level level2 = base.SceneAs<Level>();
-        level2.Session.Audio.Music.Event = "guid://{44872fae-5b44-46d7-aa76-1a57a1166c87}";
+        level2.Session.Audio.Music.Event = "event:/music/pusheen/lvl8/chara_acoustic";
         level2.Session.Audio.Apply(false);
         yield return Textbox.Say("MAGGYHELPER_CH8_CHARA_BOSS_ENDING",
         [
@@ -78,15 +78,15 @@ public class Cs08CharaBossEnd : CutsceneEntity
             yield return null;
         }
         this.picture = GFX.Portraits["hug1"];
-        this.sfx = Audio.Play("guid://{3aded16d-06f6-4a37-aa4c-91bd91ee290a}");
+        this.sfx = Audio.Play("event:/game/06_reflection/hug_image_1");
         yield return this.PictureFade(1f, 1f);
         yield return this.WaitForPress();
-        this.sfx = Audio.Play("guid://{d375e1f8-d1ac-47f2-8bc9-bc51029404e6}");
+        this.sfx = Audio.Play("event:/game/06_reflection/hug_image_2");
         yield return this.PictureFade(0f, 0.5f);
         this.picture = GFX.Portraits["hug2"];
         yield return this.PictureFade(1f, 1f);
         yield return this.WaitForPress();
-        this.sfx = Audio.Play("guid://{21cc70d3-7469-431e-b31d-63844d7005c5}");
+        this.sfx = Audio.Play("event:/game/06_reflection/hug_image_3");
         while ((this.pictureGlow += Engine.DeltaTime / 2f) < 1f)
         {
             yield return null;
@@ -122,7 +122,7 @@ public class Cs08CharaBossEnd : CutsceneEntity
     private IEnumerator StartMusic()
     {
         Level level = base.SceneAs<Level>();
-        level.Session.Audio.Music.Event = "guid://{44872fae-5b44-46d7-aa76-1a57a1166c87}";
+        level.Session.Audio.Music.Event = "event:/music/pusheen/lvl8/chara_acoustic";
         level.Session.Audio.Apply(false);
         yield return 0.5f;
         yield break;
@@ -202,7 +202,7 @@ public class Cs08CharaBossEnd : CutsceneEntity
         Audio.SetParameter(Audio.CurrentAmbienceEventInstance, "charapostboss", 0f);
         level.ResetZoom();
         level.Session.Inventory.Dashes = 5;
-        level.Session.Audio.Music.Event = "guid://{44872fae-5b44-46d7-aa76-1a57a1166c87}";
+        level.Session.Audio.Music.Event = "event:/music/pusheen/lvl8/chara_acoustic";
         if (this.WasSkipped)
         {
             level.Session.Audio.Music.Param("levelup", 2f);

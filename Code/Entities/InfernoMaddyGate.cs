@@ -163,7 +163,7 @@
         {
             if (open) return;
             open = true;
-            Audio.Play("guid://{3ec0a31a-f6af-4426-aaa1-db57098dbd39}", Position);
+            Audio.Play("event:/game/05_mirror_temple/gate_main_open", Position);
             sprite.Play("open");
             drawHeightMoveSpeed = 0f;
         }
@@ -172,7 +172,7 @@
         {
             if (!open) return;
             open = false;
-            Audio.Play("guid://{68e31409-b316-478b-8eb3-67a885e9dd33}", Position);
+            Audio.Play("event:/game/05_mirror_temple/gate_main_close", Position);
             sprite.Play("hit");
             drawHeightMoveSpeed = 200f;
         }

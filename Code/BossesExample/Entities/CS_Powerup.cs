@@ -66,7 +66,7 @@ public class CS_Powerup : CutsceneEntity
     level.Displacement.AddBurst(((Entity) this.player).Position, 0.5f, 8f, 48f, 0.5f, (Ease.Easer) null, (Ease.Easer) null);
     Input.Rumble((RumbleStrength) 0, (RumbleLength) 1);
     this.player.CreateSplitParticles();
-    global::Celeste.Audio.Play("guid://{450fb5b3-e9e3-45d8-9f34-ba05e292958f}");
+    global::Celeste.Audio.Play("event:/char/badeline/maddy_split");
     Vector2 start2 = ((Entity) this.player).Position;
     ((GraphicsComponent) this.badeline.Sprite).Scale.X = 1f;
     this.badeline.FloatSpeed = 480f;
@@ -111,7 +111,7 @@ public class CS_Powerup : CutsceneEntity
     {
       new Func<IEnumerator>(this.sigh_trigger_0)
     });
-    global::Celeste.Audio.Play("guid://{fd06af1f-776a-4879-9100-91b14c48bb66}", ((Entity) this.badeline).Position);
+    global::Celeste.Audio.Play("event:/new_content/char/badeline/maddy_join_quick", ((Entity) this.badeline).Position);
     Vector2 from = ((Entity) this.badeline).Position;
     for (float p = 0.0f; (double) p < 1.0; p += Engine.DeltaTime / 0.25f)
     {

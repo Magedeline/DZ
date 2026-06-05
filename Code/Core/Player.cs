@@ -536,75 +536,75 @@ namespace Celeste.Entities
         private static class Sfxs
         {
             // Character - Madeline
-            public const string char_mad_footstep = "guid://{3d667209-61f4-478c-9604-7bcfeae33530}";
-            public const string char_mad_handhold = "guid://{8d5b742e-839c-45e5-b94f-bbbdf6e581ee}";
-            public const string char_mad_campfire_stand = "guid://{ac2003cf-d7ec-4d4b-b0c0-db2d995738c2}";
-            public const string char_mad_summit_sit = "guid://{7470586f-f6ca-4999-858f-5edd2505caa1}";
-            public const string char_mad_idle_scratch = "guid://{ccbb7048-83e3-4b6b-854b-e60304897938}";
-            public const string char_mad_idle_sneeze = "guid://{35b0c5cd-31bb-4552-8488-46b753994326}";
-            public const string char_mad_idle_crackknuckles = "guid://{b4cf24f8-e82c-4df7-beaf-e2ee7ae95dcc}";
-            public const string char_mad_jump = "guid://{a96a19ae-9341-4bcc-a52a-f4cf12aec291}";
-            public const string char_mad_jump_assisted = "guid://{9eaa1fff-ac5e-42c1-afc1-13c087cfcbf0}";
-            public const string char_mad_jump_dreamblock = "guid://{3649a133-73a1-4b81-be77-db23d7d9b4f4}";
-            public const string char_mad_jump_super = "guid://{a793435d-5520-407d-a29b-73d65f4e2733}";
-            public const string char_mad_jump_superslide = "guid://{94448094-2839-47ec-b678-ee8a4c535c64}";
-            public const string char_mad_jump_superwall = "guid://{4be3f9f9-7dbf-47f6-9fa1-75d5283b7e49}";
-            public const string char_mad_jump_wall_left = "guid://{4d718b27-70af-4e41-bbfa-3b3f3dcc0609}";
-            public const string char_mad_jump_wall_right = "guid://{a30642c4-ce85-4abe-973a-892bda7050fc}";
-            public const string char_mad_jump_climb_left = "guid://{6bf9e4ef-ae09-475c-aba6-60f3e1ef1a6e}";
-            public const string char_mad_jump_climb_right = "guid://{a93dbb02-16f9-411b-8076-f3a718511845}";
+            public const string char_mad_footstep = "event:/char/pusheen/kirby/footstep";
+            public const string char_mad_handhold = "event:/char/pusheen/kirby/handhold";
+            public const string char_mad_campfire_stand = "event:/char/pusheen/kirby/campfire_stand";
+            public const string char_mad_summit_sit = "event:/char/pusheen/kirby/summit_sit";
+            public const string char_mad_idle_scratch = "event:/char/pusheen/kirby/idle_scratch";
+            public const string char_mad_idle_sneeze = "event:/char/pusheen/kirby/idle_sneeze";
+            public const string char_mad_idle_crackknuckles = "event:/char/pusheen/kirby/idle_crackknuckles";
+            public const string char_mad_jump = "event:/char/pusheen/kirby/jump";
+            public const string char_mad_jump_assisted = "event:/char/pusheen/kirby/jump_assisted";
+            public const string char_mad_jump_dreamblock = "event:/char/pusheen/kirby/jump_dreamblock";
+            public const string char_mad_jump_super = "event:/char/pusheen/kirby/jump_super";
+            public const string char_mad_jump_superslide = "event:/char/pusheen/kirby/jump_superslide";
+            public const string char_mad_jump_superwall = "event:/char/pusheen/kirby/jump_superwall";
+            public const string char_mad_jump_wall_left = "event:/char/pusheen/kirby/jump_wall_left";
+            public const string char_mad_jump_wall_right = "event:/char/pusheen/kirby/jump_wall_right";
+            public const string char_mad_jump_climb_left = "event:/char/pusheen/kirby/jump_climb_left";
+            public const string char_mad_jump_climb_right = "event:/char/pusheen/kirby/jump_climb_right";
             public const string char_mad_land = "event:/char/pusheen/kirby/land";
-            public const string char_mad_grab = "guid://{aa8692f1-0059-4b3b-ba65-cd9edd9e7b7a}";
-            public const string char_mad_grab_letgo = "guid://{72053a9f-2212-4371-a581-05f6d35c24f3}";
-            public const string char_mad_climb_ledge = "guid://{29e9f6b0-3a30-47a6-b303-c9774fb5839a}";
-            public const string char_mad_wallslide = "guid://{50f71e36-6bd6-4774-a957-d7d5d4f2077f}";
-            public const string char_mad_dash_red_right = "guid://{59078d59-8697-478c-b3b3-3c7605c87756}";
-            public const string char_mad_dash_red_left = "guid://{c2c552e6-8de2-496d-b706-798363320036}";
-            public const string char_mad_dash_pink_right = "guid://{7d11bf1c-4e3f-40ad-8e6d-f06bb70f097e}";
-            public const string char_mad_dash_pink_left = "guid://{01b9aa23-bc35-4074-b8f2-2e8d1680bf33}";
-            public const string char_mad_duck = "guid://{8e27ada1-dcd6-478d-b5f3-42f8b2ddb0c5}";
-            public const string char_mad_stand = "guid://{01926fc4-8650-4150-a1f6-a0026e7676a9}";
-            public const string char_mad_water_dash_gen = "guid://{d6cf9984-a215-4e52-b5e3-9f3d636cefbb}";
-            public const string char_mad_water_move_shallow = "guid://{18a049ef-c1dc-4d3f-b027-f9aa9ab62db9}";
-            public const string char_mad_dreamblock_enter = "guid://{b4af9a48-0da6-4374-972b-c4e4966b7003}";
-            public const string char_mad_dreamblock_exit = "guid://{15f61f63-ea04-4504-839a-78adab4cd549}";
-            public const string char_mad_dreamblock_travel = "guid://{39ab2d82-cae9-4449-966a-cc938d0a20ad}";
-            public const string char_mad_revive = "guid://{41c50605-b747-4dda-be1e-c36a122c31f6}";
+            public const string char_mad_grab = "event:/char/pusheen/kirby/grab";
+            public const string char_mad_grab_letgo = "event:/char/pusheen/kirby/grab_letgo";
+            public const string char_mad_climb_ledge = "event:/char/pusheen/kirby/climb_ledge";
+            public const string char_mad_wallslide = "event:/char/pusheen/kirby/wallslide";
+            public const string char_mad_dash_red_right = "event:/char/pusheen/kirby/dash_red_right";
+            public const string char_mad_dash_red_left = "event:/char/pusheen/kirby/dash_red_left";
+            public const string char_mad_dash_pink_right = "event:/char/pusheen/kirby/dash_pink_right";
+            public const string char_mad_dash_pink_left = "event:/char/pusheen/kirby/dash_pink_left";
+            public const string char_mad_duck = "event:/char/pusheen/kirby/duck";
+            public const string char_mad_stand = "event:/char/pusheen/kirby/stand";
+            public const string char_mad_water_dash_gen = "event:/char/pusheen/kirby/water_dash_gen";
+            public const string char_mad_water_move_shallow = "event:/char/pusheen/kirby/water_move_shallow";
+            public const string char_mad_dreamblock_enter = "event:/char/pusheen/kirby/dreamblock_enter";
+            public const string char_mad_dreamblock_exit = "event:/char/pusheen/kirby/dreamblock_exit";
+            public const string char_mad_dreamblock_travel = "event:/char/pusheen/kirby/dreamblock_travel";
+            public const string char_mad_revive = "event:/char/pusheen/kirby/revive";
             public const string char_mad_mirrortemple_landing = "event:/char/pusheen/kirby/mirrortemple_landing";
-            public const string char_mad_summit_areastart = "guid://{fbfffbad-a14f-4f12-87af-8b0c4f0b8801}";
+            public const string char_mad_summit_areastart = "event:/char/pusheen/kirby/summit_areastart";
             public const string char_mad_crystaltheo_lift = "event:/char/pusheen/kirby/crystalmaddy_lift";
             public const string char_mad_crystaltheo_throw = "event:/char/pusheen/kirby/crystalmaddy_throw";
 
             // Game
-            public const string game_06_feather_state_bump = "guid://{8f1df4d2-c605-4867-a964-9ebc3fb0feb9}";
-            public const string game_06_feather_state_end = "guid://{e15e2ed2-d73f-48e0-9f11-e72bd314b357}";
-            public const string game_06_feather_state_loop = "guid://{ee3e1dc2-6093-4833-b147-72dfb08aa49c}";
-            public const string game_06_feather_state_warning = "guid://{4438b99e-3bb5-47b8-aae7-d7a85294a500}";
-            public const string game_09_conveyor_activate = "guid://{2e78baa8-e286-4bd6-a039-db8861f3b946}";
-            public const string game_assist_dreamblockbounce = "guid://{bbf16102-f2ce-48d3-bb45-a53e26472622}";
+            public const string game_06_feather_state_bump = "event:/game/pusheen/08_edge/feather_state_bump";
+            public const string game_06_feather_state_end = "event:/game/pusheen/08_edge/feather_state_end";
+            public const string game_06_feather_state_loop = "event:/game/pusheen/08_edge/feather_state_loop";
+            public const string game_06_feather_state_warning = "event:/game/pusheen/08_edge/feather_state_warning";
+            public const string game_09_conveyor_activate = "event:/game/pusheen/18_core/conveyor_activate";
+            public const string game_assist_dreamblockbounce = "event:/game/pusheen/general/assist_dreamblockbounce";
 
             // Music
-            public const string music_reflection_main = "guid://{ee406d16-6a81-4d5c-bdbe-a559b8cf2e0c}";
+            public const string music_reflection_main = "event:/music/pusheen/lvl8/main";
 
             // Badeline sound mapping
             public static readonly Dictionary<string, string> MadelineToBadelineSound = new Dictionary<string, string>
             {
-                { char_mad_jump, "guid://{95ce0255-9a27-47b4-a902-fb25c0f2a2e2}" },
-                { char_mad_jump_wall_left, "guid://{ab3be2a7-36d0-43cb-990a-2c49ba5d5c60}" },
-                { char_mad_jump_wall_right, "guid://{3e5b18db-8f99-4ab7-ad08-8529fd257b6b}" },
-                { char_mad_jump_climb_left, "guid://{58e689a2-1717-434f-9fa7-dffcd72ab27e}" },
-                { char_mad_jump_climb_right, "guid://{d9a77828-0390-434a-8cbc-e3df56a40cc4}" },
+                { char_mad_jump, "event:/char/badeline/jump" },
+                { char_mad_jump_wall_left, "event:/char/badeline/jump_wall_left" },
+                { char_mad_jump_wall_right, "event:/char/badeline/jump_wall_right" },
+                { char_mad_jump_climb_left, "event:/char/badeline/jump_climb_left" },
+                { char_mad_jump_climb_right, "event:/char/badeline/jump_climb_right" },
                 { char_mad_land, "event:/char/badeline/land" },
-                { char_mad_footstep, "guid://{ff6442f1-66c2-4dba-8d57-038dda8fd296}" },
-                { char_mad_dash_red_right, "guid://{50356124-434a-4dca-aeb1-52462846fb8a}" },
-                { char_mad_dash_red_left, "guid://{b54ae334-409b-4bba-82e2-62753f764f90}" },
+                { char_mad_footstep, "event:/char/badeline/footstep" },
+                { char_mad_dash_red_right, "event:/char/badeline/dash_red_right" },
+                { char_mad_dash_red_left, "event:/char/badeline/dash_red_left" },
                 { char_mad_dash_pink_right, "event:/char/badeline/dash_pink_right" },
                 { char_mad_dash_pink_left, "event:/char/badeline/dash_pink_left" },
-                { char_mad_grab, "guid://{8824489f-1d0b-4670-beb2-08d67cfd3c3b}" },
-                { char_mad_grab_letgo, "guid://{c122d904-fb7a-4bfe-99a1-f5a4f8701d17}" },
-                { char_mad_wallslide, "guid://{a2443155-5af1-4e19-80d5-a81a3d9cf06d}" },
-                { char_mad_dreamblock_enter, "guid://{937c3941-eeb8-4f1f-8451-765b33545202}" },
-                { char_mad_dreamblock_exit, "guid://{3b142d62-975a-41a3-9b59-8e5ba4f6cbdb}" },
+                { char_mad_grab, "event:/char/badeline/grab" },
+                { char_mad_grab_letgo, "event:/char/badeline/grab_letgo" },
+                { char_mad_wallslide, "event:/char/badeline/wallslide" },
+                { char_mad_dreamblock_enter, "event:/char/badeline/dreamblock_enter" },
+                { char_mad_dreamblock_exit, "event:/char/badeline/dreamblock_exit" },
             };
         }
 
@@ -7181,7 +7181,7 @@ namespace Celeste.Entities
                     );
                     level.Particles.Emit(ParticleTypes.SparkyDust, 2, shieldPos, Vector2.One * 8f);
                 }
-                Audio.Play("guid://{e31d9d8e-1197-422d-b6ad-fd3e1561e271}", Position);
+                Audio.Play("event:/char/pusheen/kirby/core_hair_charged", Position);
             }
         }
 

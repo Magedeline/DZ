@@ -33,7 +33,7 @@
 
             // Mid-climb warnings
             yield return 0.5f;
-            Audio.Play("guid://{0886e368-bce4-4922-97c3-edeadf714e29}");
+            Audio.Play("event:/game/general/strawberry_pulse");
             
             yield return Textbox.Say("MAGGYHELPER_CH12_TITAN_TOWER_MID_CLIMB");
 

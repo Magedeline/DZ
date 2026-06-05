@@ -172,7 +172,7 @@ namespace Celeste.Cutscenes
                 yield return null;
             }
 
-            Audio.Play("guid://{cf18e899-f774-47e2-b72c-5252231fd47c}");
+            Audio.Play("event:/ui/main/button_select");
             canDismiss = false;
 
             // Persist the flag

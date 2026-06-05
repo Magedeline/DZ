@@ -44,7 +44,7 @@ namespace Celeste
                 {
                     active = true;
                     SceneAs<Level>().Session.SetFlag("companion_active", true);
-                    Audio.Play("guid://{6160ad7b-16f6-49a5-aa9b-55d75da5a8e1}", Position);
+                    Audio.Play("event:/game/general/seed_touch", Position);
                 }
                 return;
             }
@@ -170,12 +170,12 @@ namespace Celeste
 
                 level.Session.SetFlag(itemReward, true);
                 sold = true;
-                Audio.Play("guid://{effc3510-2efe-422f-aa3a-30b8ace60533}", Position);
+                Audio.Play("event:/game/general/touchswitch_last_cutoff", Position);
                 Scene.Add(new MiniTextbox(dialogId + "_BUY"));
             }
             else
             {
-                Audio.Play("guid://{b98b9406-a64d-4428-b882-a33366f50cbf}", Position);
+                Audio.Play("event:/game/general/assist_screenbottom", Position);
                 Scene.Add(new MiniTextbox(dialogId + "_CANT_AFFORD"));
             }
         }
@@ -252,7 +252,7 @@ namespace Celeste
                 questComplete = true;
                 level.Session.SetFlag(rewardFlag, true);
                 Scene.Add(new MiniTextbox(dialogAfter));
-                Audio.Play("guid://{effc3510-2efe-422f-aa3a-30b8ace60533}", Position);
+                Audio.Play("event:/game/general/touchswitch_last_cutoff", Position);
             }
             else
             {
@@ -314,7 +314,7 @@ namespace Celeste
             });
 
             InvincibilityTimer = 0.1f;
-            Audio.Play("guid://{a4c52eee-f6a0-4ebe-976f-fab38d4cfa7a}", Position);
+            Audio.Play("event:/game/general/spring", Position);
         }
 
         protected override void Die() { /* Never dies */ }

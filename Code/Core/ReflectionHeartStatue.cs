@@ -156,9 +156,9 @@ public class MaggyReflectionHeartStatue : Entity
         gemSpritePath     = data.Attr("gemSprite", "objects/reflectionHeart/gem");
         heartSpritePath   = data.Attr("heartSprite", "collectables/heartgem/white00");
 
-        dashSoundEvent        = data.Attr("dashSound", "guid://{91dc7f98-2590-4c28-adcb-02c1881cf8d2}");
+        dashSoundEvent        = data.Attr("dashSound", "event:/game/06_reflection/supersecret_dashflavour");
         torchSoundPrefix      = data.Attr("torchSoundPrefix", "event:/game/06_reflection/supersecret_torch_");
-        heartAppearSoundEvent = data.Attr("heartAppearSound", "guid://{8b071bc7-bb71-4db6-9a0c-78c576426dc8}");
+        heartAppearSoundEvent = data.Attr("heartAppearSound", "event:/game/06_reflection/supersecret_heartappear");
     }
 
     // â”€â”€ Added â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€

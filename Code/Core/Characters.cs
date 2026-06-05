@@ -185,7 +185,7 @@ namespace Celeste
         private IEnumerator IntroSequence()
         {
             yield return 1f;
-            Audio.Play("guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}");
+            Audio.Play("event:/game/general/thing_booped");
         }
 
         private void PerformAttack()
@@ -251,12 +251,12 @@ namespace Celeste
             // Create shockwave
             Level level = Scene as Level;
             level?.Shake(0.5f);
-            Audio.Play("guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}");
+            Audio.Play("event:/game/general/thing_booped");
         }
 
         protected override void OnTakeDamage(int damage)
         {
-            Audio.Play("guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}");
+            Audio.Play("event:/game/general/thing_booped");
             
             // Flash effect
             sprite.Color = Color.Red;
@@ -345,7 +345,7 @@ namespace Celeste
 
         protected override void OnTakeDamage(int damage)
         {
-            Audio.Play("guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}");
+            Audio.Play("event:/game/general/thing_booped");
             
             float healthPercent = (float)Health / MaxHealth;
             
@@ -504,7 +504,7 @@ namespace Celeste
 
         protected override void OnTakeDamage(int damage)
         {
-            Audio.Play("guid://{5a1e6a52-fa6a-44fb-b7ef-931a000b7c95}");
+            Audio.Play("event:/game/general/thing_booped");
         }
 
         protected override IEnumerator DefeatSequence()

@@ -76,7 +76,7 @@
             sprite.Play("emerge");
             fragmentLight.Alpha = 0.6f;
             
-            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
+            Audio.Play("event:/game/general/crystalheart_pulse", Position);
             
             Add(new Coroutine(EmergeRoutine()));
         }
@@ -99,7 +99,7 @@
             sprite.Play("complete");
             
             level?.Flash(Color.White * 0.5f);
-            Audio.Play("guid://{78f2deb2-fccc-4d1d-b78a-9667d574bbf3}", Position);
+            Audio.Play("event:/game/general/crystalheart_pulse", Position);
             
             level?.Session.SetFlag("soul_fragment_" + FragmentId + "_complete", true);
             

@@ -72,7 +72,7 @@ public class PostcardMaggy : Entity
         {
             yield return null;
         }
-        Audio.Play("guid://{8a93c5a5-538c-49f6-9d07-988839862ba1}");
+        Audio.Play("event:/ui/main/button_lowkey");
         yield return EaseOut();
         yield return 1.2f;
     }
@@ -192,7 +192,7 @@ public class PostcardMaggy : Entity
 
     public static PostcardMaggy CreateDSides(string msg)
     {
-        return new PostcardMaggy(msg, "guid://{c4924142-c345-4a35-afc3-3b9facaee729}", "guid://{865582f9-48f9-4cb6-ae4a-3c0f94c599a4}");
+        return new PostcardMaggy(msg, "event:/ui/pusheen/main/postcard_dsides_in", "event:/ui/pusheen/main/postcard_dsides_out");
     }
 
     public PostcardMaggy(string msg, string soundId)

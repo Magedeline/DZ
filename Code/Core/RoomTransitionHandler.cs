@@ -47,26 +47,29 @@ public static class RoomTransitionHandler
     {
         orig(self, playerIntro, isFromLoader);
 
-        // Skip Kirby state restoration during Overworld/Chapter Select to avoid conflicts
-        // with OuiChapterSelect patch initialization (specifically scarf update)
-        if (self is Overworld)
-            return;
-
-        bool hasSpawner = self.Tracker.GetEntities<global::Celeste.Entities.KirbyPlayerSpawner>().Count > 0;
-        bool sessionKirby = global::Celeste.Mod.MaggyHelper.MaggyHelperModule.Session?.IsKirbyModeActive == true;
-
-        // If there's no spawner but session says Kirby mode is active,
-        // restore Kirby state on the vanilla player.
-        if (!hasSpawner && sessionKirby)
+        try
         {
-            var player = self.Tracker.GetEntity<CelestePlayer>();
-            if (player != null)
-            {
-                player.RestorePersistentState();
+            bool hasSpawner = self.Tracker.GetEntities<global::Celeste.Entities.KirbyPlayerSpawner>().Count > 0;
+            bool sessionKirby = global::Celeste.Mod.MaggyHelper.MaggyHelperModule.Session?.IsKirbyModeActive == true;
 
-                Logger.Log(LogLevel.Info, "MaggyHelper",
-                    "[RoomTransitionHandler] Restored Kirby state on vanilla player after transition");
+            // If there's no spawner but session says Kirby mode is active,
+            // restore Kirby state on the vanilla player.
+            if (!hasSpawner && sessionKirby)
+            {
+                var player = self.Tracker.GetEntity<CelestePlayer>();
+                if (player != null)
+                {
+                    player.RestorePersistentState();
+
+                    Logger.Log(LogLevel.Info, "MaggyHelper",
+                        "[RoomTransitionHandler] Restored Kirby state on vanilla player after transition");
+                }
             }
+        }
+        catch (Exception ex)
+        {
+            Logger.Log(LogLevel.Warn, "MaggyHelper",
+                $"[RoomTransitionHandler] Error restoring Kirby state: {ex.Message}");
         }
     }
 

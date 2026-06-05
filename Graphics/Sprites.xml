@@ -989,7 +989,7 @@
   <badelineBoost path="objects/badelineBoost/" start="idle">
     <Justify x="0.5" y="0.5"/>
     <Anim id="idle" path="idle" frames="0-5" delay="0.08" goto="idle:10,flash:2,blink"/>
-    <Anim id="flash" path="idle" frames="6-11" delay="0.08" goto="idle"/>
+    <Anim id="flash" path="flash" frames="0-6" delay="0.08" goto="idle"/>
     <Anim id="blink" path="idle" frames="12-25" delay="0.08" goto="idle"/>
   </badelineBoost>
 
@@ -2450,21 +2450,21 @@
   <charaboost path="objects/charaboost/" start="idle">
       <Justify x="0.5" y="0.5"/>
       <Anim id="idle" path="idle" frames="0-5" delay="0.08" goto="idle:10,flash:2,blink"/>
-      <Anim id="flash" path="idle" frames="6-11" delay="0.08" goto="idle"/>
+      <Anim id="flash" path="flash" frames="0-6" delay="0.08" goto="idle"/>
       <Anim id="blink" path="idle" frames="12-25" delay="0.08" goto="idle"/>
     </charaboost>
 
   <ralseiBoost path="objects/ralseiboost/" start="idle">
       <Justify x="0.5" y="0.5"/>
       <Anim id="idle" path="idle" frames="0-5" delay="0.08" goto="idle:10,flash:2,blink"/>
-      <Anim id="flash" path="idle" frames="6-11" delay="0.08" goto="idle"/>
+      <Anim id="flash" path="flash" frames="0-6" delay="0.08" goto="idle"/>
       <Anim id="blink" path="idle" frames="12-25" delay="0.08" goto="idle"/>
     </ralseiBoost>
 
   <madelinesevensoulboost path="objects/madelinesevensoulboost/" start="idle">
       <Justify x="0.5" y="0.5"/>
       <Anim id="idle" path="idle" frames="0-15" delay="0.08" goto="idle:10,flash:2,blink"/>
-      <Anim id="flash" path="idle" frames="0-6" delay="0.08" goto="idle"/>
+      <Anim id="flash" path="flash" frames="0-6" delay="0.08" goto="idle"/>
       <Anim id="blink" path="idle" frames="12-25" delay="0.08" goto="idle"/>
     </madelinesevensoulboost>
 

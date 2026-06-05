@@ -221,6 +221,7 @@ namespace Celeste.Mod.MaggyHelper
 
             global::Celeste.ChapterMasteryTracker.Load();
             global::Celeste.CosmicChapterPanelHook.Load();
+            global::Celeste.OuiChapterSelectHooks.Load();
 
             // Chapter progression hooks for late-game unlock flow
             ChapterProgressionManager.Load();
@@ -309,6 +310,7 @@ namespace Celeste.Mod.MaggyHelper
         public override void Unload()
         {
             ChapterProgressionManager.Unload();
+            global::Celeste.OuiChapterSelectHooks.Unload();
             global::Celeste.CosmicChapterPanelHook.Unload();
             global::Celeste.ChapterMasteryTracker.Unload();
             global::Celeste.KirbyPlayerMapHooks.Unload();

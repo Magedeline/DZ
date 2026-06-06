@@ -57,6 +57,18 @@ namespace Celeste.Mod.MaggyHelper
 
                 string levelName = self.Session.Level.ToLowerInvariant();
 
+                // Spawn CharaChaser in room b-3
+                if (levelName == "b-3")
+                {
+                    if (self.Tracker.GetEntity<CharaChaser>() == null)
+                    {
+                        var charaChaser = new CharaChaser(new Vector2(160f, 100f), 0);
+                        self.Add(charaChaser);
+                        Logger.Log(LogLevel.Info, "MaggyHelper",
+                            "[PayphoneCutsceneTriggers] Spawned CharaChaser in room b-3");
+                    }
+                }
+
                 // CS02_Ending - Awake sequence where you call Kirby
                 if (levelName.Contains("02_") && levelName.Contains("end"))
                 {

@@ -178,14 +178,23 @@ public class CharaChaser : Entity
         else
         {
             // For other maps/mods - check if intro cutscene is running
-            if (scene.Tracker.GetEntity<CS02_CharaIntro>() != null)
+            try
             {
-                // Intro cutscene is playing - don't chase yet, wait for it to complete
-                introComplete = false;
+                if (scene.Tracker.GetEntity<CS02_CharaIntro>() != null)
+                {
+                    // Intro cutscene is playing - don't chase yet, wait for it to complete
+                    introComplete = false;
+                }
+                else
+                {
+                    // No intro cutscene - start chasing immediately
+                    introComplete = true;
+                    Add(new Coroutine(StartChasingRoutine(level)));
+                }
             }
-            else
+            catch
             {
-                // No intro cutscene - start chasing immediately
+                // CS02_CharaIntro type not registered - start chasing immediately
                 introComplete = true;
                 Add(new Coroutine(StartChasingRoutine(level)));
             }

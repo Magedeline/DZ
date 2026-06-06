@@ -31,14 +31,6 @@ namespace Celeste.Entities
         
         // Player tracking for dream dash
         private Player playerInsideBlock;
-        private Vector2 playerEntryPosition;
-
-        // Timebomb mechanic
-        private float bombTimer;
-        private bool bombActive;
-        private const float BOMB_DURATION = 15f;
-        private float lastBeepTime;
-        private const float EXIT_MARGIN = 8f;
 
         public NightmareBlock(
             Vector2 position,
@@ -131,14 +123,6 @@ namespace Celeste.Entities
         public void OnPlayerExit(Player player)
         {
             Dust.Burst(player.Position, player.Speed.Angle(), 16);
-            
-            // Play exit sound
-            Audio.Play("event:/char/pusheen/kirby/dreamblock_exit", player.Position);
-            
-            // Defuse the bomb - player made it out in time!
-            bombActive = false;
-            bombTimer = 0f;
-            
             Vector2 vector2 = Vector2.Zero;
             if (CollideCheck(player, Position + Vector2.UnitX * 4f))
                 vector2 = Vector2.UnitX;
@@ -161,42 +145,6 @@ namespace Celeste.Entities
             RemoveSelf();
         }
 
-        private bool CheckPlayerExited(Player player)
-        {
-            // Determine which direction the player entered from and check if they've exited the opposite side
-            Vector2 entryPos = playerEntryPosition;
-            Vector2 currentPos = player.Position;
-            Vector2 blockCenter = Center;
-
-            // Check horizontal exit (entered from left/right)
-            if (Math.Abs(entryPos.X - blockCenter.X) > Math.Abs(entryPos.Y - blockCenter.Y))
-            {
-                // Entered from left
-                if (entryPos.X < blockCenter.X)
-                {
-                    return currentPos.X > Right + EXIT_MARGIN;
-                }
-                // Entered from right
-                else
-                {
-                    return currentPos.X < Left - EXIT_MARGIN;
-                }
-            }
-            // Check vertical exit (entered from top/bottom)
-            else
-            {
-                // Entered from top
-                if (entryPos.Y < blockCenter.Y)
-                {
-                    return currentPos.Y > Bottom + EXIT_MARGIN;
-                }
-                // Entered from bottom
-                else
-                {
-                    return currentPos.Y < Top - EXIT_MARGIN;
-                }
-            }
-        }
 
         public override void Update()
         {
@@ -212,104 +160,26 @@ namespace Celeste.Entities
                 wobbleTo = Calc.Random.NextFloat(6.28318548f);
             }
             SurfaceSoundIndex = 12;
-            
-            // Handle player dream dashing through the block
+
             Player player = Scene.Tracker.GetEntity<Player>();
             if (player != null)
             {
-                // Check if player is in dream dash state (state 9) or dashing state (state 2)
-                bool playerIsDashing = player.StateMachine.State == Player.StDash ||
-                                       player.StateMachine.State == Player.StDreamDash;
-
-                // Check if player is inside or about to enter the block
-                bool playerInside = CollideCheck(player);
-                bool playerApproaching = CollideCheck(player, player.Position + player.Speed * Engine.DeltaTime);
-
-                if (playerIsDashing && (playerInside || playerApproaching))
+                // Check if player is dashing into the block
+                if (Collidable && CollideCheck(player) && (player.StateMachine.State == Player.StDash || player.StateMachine.State == Player.StDreamDash))
                 {
-                    // Make block non-collidable so player can pass through
-                    if (playerInsideBlock == null)
-                    {
-                        playerInsideBlock = player;
-                        playerEntryPosition = player.Position;
-                        Collidable = false;
-
-                        // Play dream dash enter sound
-                        Audio.Play("event:/game/06_reflection/dreamblock_enter", player.Position);
-
-                        // Start the bomb timer!
-                        bombActive = true;
-                        bombTimer = 0f;
-                        lastBeepTime = 0f;
-                    }
+                    playerInsideBlock = player;
+                    Collidable = false;
+                    Audio.Play("event:/game/06_reflection/dreamblock_enter", player.Position);
                 }
 
-                // Check if player has exited the block by checking position relative to bounds
-                if (playerInsideBlock != null && !Collidable)
+                // Player has left the block - make it solid again
+                if (playerInsideBlock != null && !CollideCheck(playerInsideBlock))
                 {
-                    bool hasExited = CheckPlayerExited(playerInsideBlock);
-
-                    if (hasExited)
-                    {
-                        // Player has successfully exited through the block!
-                        OnPlayerExit(playerInsideBlock);
-                        playerInsideBlock = null;
-                        Collidable = true;
-                    }
+                    OnPlayerExit(playerInsideBlock);
+                    playerInsideBlock = null;
+                    Collidable = true;
                 }
             }
-            
-            // Handle timebomb countdown
-            if (bombActive)
-            {
-                bombTimer += Engine.DeltaTime;
-
-                // Play warning beeps that get faster as time runs out
-                float beepInterval = 1.5f;
-                if (bombTimer > 10f) beepInterval = 0.25f;  // Fast beeps in last 5 seconds
-                else if (bombTimer > 7f) beepInterval = 0.5f;  // Medium beeps
-
-                if (bombTimer - lastBeepTime >= beepInterval)
-                {
-                    Audio.Play("event:/game/general/timer_tick", Center);
-                    lastBeepTime = bombTimer;
-                }
-
-                // Time's up! Explode and kill the player
-                if (bombTimer >= BOMB_DURATION)
-                {
-                    ExplodeAndKillPlayer();
-                }
-            }
-        }
-        
-        private void ExplodeAndKillPlayer()
-        {
-            Level level = SceneAs<Level>();
-            
-            // Create explosion effect
-            Audio.Play("event:/game/05_mirror_temple/crystaltheo_activate", Center);
-            level.Shake(0.6f);
-            Input.Rumble(RumbleStrength.Strong, RumbleLength.Long);
-            
-            // Particle burst
-            for (int i = 0; i < 20; i++)
-            {
-                float angle = Calc.Random.NextFloat(6.28318548f);
-                level.ParticlesFG.Emit(Strawberry.P_WingsBurst, 8, Center, Vector2.One * 32f);
-            }
-            
-            // Kill the player
-            if (playerInsideBlock != null && !playerInsideBlock.Dead)
-            {
-                playerInsideBlock.Die(Vector2.Zero);
-            }
-            
-            // Reset state
-            bombActive = false;
-            bombTimer = 0f;
-            playerInsideBlock = null;
-            Collidable = true;
         }
 
         public bool BlockedCheck()

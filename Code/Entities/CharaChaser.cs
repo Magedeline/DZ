@@ -75,6 +75,8 @@ public class CharaChaser : Entity
 
     private float speedMultiplier;
 
+    private bool introComplete = false;
+
     public CharaChaser(Vector2 position, int index)
         : base(position)
     {
@@ -175,8 +177,18 @@ public class CharaChaser : Entity
         }
         else
         {
-            // For other maps/mods - always start chasing immediately (generic behavior)
-            Add(new Coroutine(StartChasingRoutine(level)));
+            // For other maps/mods - check if intro cutscene is running
+            if (scene.Tracker.GetEntity<CS02_CharaIntro>() != null)
+            {
+                // Intro cutscene is playing - don't chase yet, wait for it to complete
+                introComplete = false;
+            }
+            else
+            {
+                // No intro cutscene - start chasing immediately
+                introComplete = true;
+                Add(new Coroutine(StartChasingRoutine(level)));
+            }
         }
     }
 
@@ -455,6 +467,19 @@ public class CharaChaser : Entity
     public void SetSpeedMultiplier(float multiplier)
     {
         speedMultiplier = multiplier;
+    }
+
+    /// <summary>
+    /// Called by CS02_CharaIntro when the cutscene completes.
+    /// Starts the chasing behavior.
+    /// </summary>
+    public void BeginChasing()
+    {
+        if (!introComplete && Scene is Level level)
+        {
+            introComplete = true;
+            Add(new Coroutine(StartChasingRoutine(level)));
+        }
     }
 }
 

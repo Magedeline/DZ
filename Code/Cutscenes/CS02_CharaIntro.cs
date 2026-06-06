@@ -142,7 +142,10 @@ public class CS02_CharaIntro : CutsceneEntity
         if (chara.Hair != null) chara.Hair.Visible = true;
         chara.Sprite.Play("fallSlow");
         chara.Hovering = false;
-        chara.Add(new Coroutine(chara.StartChasingRoutine(level)));
+
+        // Signal CharaChaser that intro is complete and it should begin chasing
+        chara.BeginChasing();
+
         level.Session.SetFlag("evil_chara_intro");
     }
 }

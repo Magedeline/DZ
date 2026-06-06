@@ -77,6 +77,8 @@ public class CharaChaser : Entity
 
     private bool introComplete = false;
 
+    private bool triggerIntro = true;
+
     public CharaChaser(Vector2 position, int index)
         : base(position)
     {
@@ -106,6 +108,7 @@ public class CharaChaser : Entity
         canChangeMusic = data.Bool("canChangeMusic", defaultValue: true);
         isAggressive = data.Bool("aggressive", defaultValue: false);
         speedMultiplier = data.Float("speedMultiplier", 1.0f);
+        triggerIntro = data.Bool("triggerIntro", defaultValue: true);
     }
 
     public CharaChaser(EntityData data, Vector2 offset)
@@ -114,6 +117,7 @@ public class CharaChaser : Entity
         canChangeMusic = data.Bool("canChangeMusic", defaultValue: true);
         isAggressive = data.Bool("aggressive", defaultValue: false);
         speedMultiplier = data.Float("speedMultiplier", 1.0f);
+        triggerIntro = data.Bool("triggerIntro", defaultValue: true);
     }
 
     [MethodImpl(MethodImplOptions.NoInlining)]
@@ -161,8 +165,8 @@ public class CharaChaser : Entity
                 session.Audio.Music.Event = "event:/music/pusheen/lvl2/evil_chara";
                 session.Audio.Apply(forceSixteenthNoteHack: false);
                 
-                // Add the intro cutscene only once per room load.
-                if (scene.Tracker.GetEntity<CS02_CharaIntro>() == null)
+                // Add the intro cutscene only once per room load (if enabled).
+                if (triggerIntro && scene.Tracker.GetEntity<CS02_CharaIntro>() == null)
                 {
                     scene.Add(new CS02_CharaIntro(this));
                 }

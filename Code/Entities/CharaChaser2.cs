@@ -76,6 +76,8 @@ public class CharaChaser2 : Entity
 
     private float speedMultiplier;
 
+    private bool triggerWarning = true;
+
     public CharaChaser2(Vector2 position, int index)
         : base(position)
     {
@@ -104,6 +106,7 @@ public class CharaChaser2 : Entity
         canChangeMusic = data.Bool("canChangeMusic", defaultValue: true);
         isAggressive = data.Bool("aggressive", defaultValue: false);
         speedMultiplier = data.Float("speedMultiplier", 1.25f);
+        triggerWarning = data.Bool("triggerWarning", defaultValue: true);
     }
 
     public CharaChaser2(EntityData data, Vector2 offset)
@@ -112,6 +115,7 @@ public class CharaChaser2 : Entity
         canChangeMusic = data.Bool("canChangeMusic", defaultValue: true);
         isAggressive = data.Bool("aggressive", defaultValue: false);
         speedMultiplier = data.Float("speedMultiplier", 1.25f);
+        triggerWarning = data.Bool("triggerWarning", defaultValue: true);
     }
 
     [MethodImpl(MethodImplOptions.NoInlining)]
@@ -133,8 +137,8 @@ public class CharaChaser2 : Entity
         
         if (isDesoloZantasCampaign)
         {
-            // Trigger warning cutscene once before the chapter 4 chase starts.
-            if (!session.GetFlag("chara2_warning") && session.Area.Mode == AreaMode.Normal)
+            // Trigger warning cutscene once before the chapter 4 chase starts (if enabled).
+            if (triggerWarning && !session.GetFlag("chara2_warning") && session.Area.Mode == AreaMode.Normal)
             {
                 if (scene.Tracker.GetEntity<Cutscenes.CS04_CharaWarning>() == null)
                 {

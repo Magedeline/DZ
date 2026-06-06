@@ -19,13 +19,17 @@ local charaChaser = {
             fieldType = "number",
             minimumValue = 0.1,
             maximumValue = 5.0
+        },
+        triggerIntro = {
+            fieldType = "boolean"
         }
     },
     fieldOrder = {
         "x", "y",
         "canChangeMusic",
         "aggressive",
-        "speedMultiplier"
+        "speedMultiplier",
+        "triggerIntro"
     },
     placements = {
         {
@@ -33,7 +37,8 @@ local charaChaser = {
             data = {
                 canChangeMusic = true,
                 aggressive = false,
-                speedMultiplier = 1.0
+                speedMultiplier = 1.0,
+                triggerIntro = true
             }
         },
         {
@@ -41,7 +46,17 @@ local charaChaser = {
             data = {
                 canChangeMusic = true,
                 aggressive = true,
-                speedMultiplier = 1.5
+                speedMultiplier = 1.5,
+                triggerIntro = true
+            }
+        },
+        {
+            name = "CharaChaser (No Intro)",
+            data = {
+                canChangeMusic = true,
+                aggressive = false,
+                speedMultiplier = 1.0,
+                triggerIntro = false
             }
         }
     }

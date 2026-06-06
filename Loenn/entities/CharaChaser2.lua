@@ -19,20 +19,36 @@ return {
             fieldType = "number",
             minimumValue = 0.5,
             maximumValue = 3.0
+        },
+        triggerWarning = {
+            fieldType = "boolean"
         }
     },
     placements = {
-        name = "CharaChaser2",
-        data = {
-            canChangeMusic = true,
-            aggressive = false,
-            speedMultiplier = 1.25
+        {
+            name = "CharaChaser2",
+            data = {
+                canChangeMusic = true,
+                aggressive = false,
+                speedMultiplier = 1.25,
+                triggerWarning = true
+            }
+        },
+        {
+            name = "CharaChaser2 (No Warning)",
+            data = {
+                canChangeMusic = true,
+                aggressive = false,
+                speedMultiplier = 1.25,
+                triggerWarning = false
+            }
         }
     },
     fieldOrder = {
         "x", "y",
         "canChangeMusic",
         "aggressive",
-        "speedMultiplier"
+        "speedMultiplier",
+        "triggerWarning"
     }
 }

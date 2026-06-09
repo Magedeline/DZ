@@ -1,12 +1,12 @@
 local kirbyActorKglobal::global::Celeste.Player= {}
 local drawableSprite = require("structs.drawable_sprite")
 
-kirbyActorKglobal::Player.name = "MaggyHelper/KirbyActorKglobal::Player"
-kirbyActorKglobal::Player.depth = 0
-kirbyActorKglobal::Player.texture = "characters/kirby/idle00"
-kirbyActorKglobal::Player.justification = {0.5, 1.0}
+kirbyActorPlayer.name = "MaggyHelper/KirbyActorKglobal::Player"
+kirbyActorPlayer.depth = 0
+kirbyActorPlayer.texture = "characters/kirby/idle00"
+kirbyActorPlayer.justification = {0.5, 1.0}
 
-kirbyActorKglobal::Player.placements = {
+kirbyActorPlayer.placements = {
     {
         name = "default",
         data = {
@@ -27,7 +27,7 @@ kirbyActorKglobal::Player.placements = {
     }
 }
 
-kirbyActorKglobal::Player.fieldInformation = {
+kirbyActorPlayer.fieldInformation = {
     startAnimation = {
         fieldType = "string",
         options = {
@@ -68,7 +68,7 @@ kirbyActorKglobal::Player.fieldInformation = {
     }
 }
 
-function kirbyActorKglobal::Player.sprite(room, entity)
+function kirbyActorPlayer.sprite(room, entity)
     local faceLeft = entity.faceLeft or false
     local scaleX = faceLeft and -1 or 1
     local showSweat = entity.showSweat or false
@@ -101,4 +101,4 @@ function kirbyActorKglobal::Player.sprite(room, entity)
     return sprites
 end
 
-return kirbyActorKglobal::Player
+return kirbyActorPlayer

@@ -10,9 +10,14 @@
         <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     </PropertyGroup>
 
-    <!-- Content stub for future graphics/audio integration -->
+    <!-- Patches from KIRBY_CELESTE -->
     <ItemGroup>
-        <Compile Include="dummy.cs" />
+        <Compile Include="..\Patches\**\*.cs" />
+        <Compile Include="Core\K_Player.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\ModFramework\ModFramework.csproj" />
     </ItemGroup>
 
 </Project>

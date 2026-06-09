@@ -98,7 +98,7 @@ kirbyNPC.placements = {
         }
     },
     {
-        name = "Companion (Follows Kglobal::Player)",
+        name = "Companion (Follows Player)",
         data = {
             character = 0,
             behavior = 2,
@@ -139,9 +139,9 @@ function kirbyNPC.texture(room, entity)
         [9] = "characters/kirby_npc/gooey/idle00",
         [10] = "characters/kirby/idle00",
         [11] = "characters/kirby/idle00",
-        [12] = "characters/Kglobal::Player/sitDown00"
+        [12] = "characters/kirby/sitDown00"
     }
-    return textures[character] or "characters/Kglobal::Player/sitDown00"
+    return textures[character] or "characters/kirby/sitDown00"
 end
 
 return kirbyNPC

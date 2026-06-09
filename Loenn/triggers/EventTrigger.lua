@@ -1,4 +1,5 @@
 local eventOptions = {
+    -- Vanilla events
     "end_city",
     "end_oldsite_dream",
     "end_oldsite_awake",
@@ -21,12 +22,71 @@ local eventOptions = {
     "ch9_end_golden",
     "ch9_final_room",
     "ch9_ding_ding_ding",
-    "ch9_golden_snapshot"
+    "ch9_golden_snapshot",
+
+    -- Chapter 1
+    "cs01_mod_ending",
+
+    -- Chapter 2
+    "cs02_chara_intro",
+
+    -- Chapter 3
+    "cs03_first_step",
+    "cs03_meetup",
+    "cs03_mod_ending",
+
+    -- Chapter 4
+    "cs04_chara_warning",
+
+    -- Chapter 7
+    "cs07_darker",
+    "cs07_genocide_vision_finale",
+    "cs07_genocide_vision_intro",
+    "cs07_genocide_wakeup",
+
+    -- Chapter 9
+    "cs09_area_complete",
+    "cs09_credits",
+    "cs09_golden_flower",
+    "cs09_message_end",
+
+    -- Chapter 15
+    "ch15_zantas_1",
+    "ch15_zantas_2",
+
+    -- Chapter 16
+    "cs16_barrier_breaks",
+    "cs16_corrupted_reality_intro",
+    "cs16_els_finale",
+    "cs16_els_intro",
+    "cs16_els_outro",
+    "cs16_lost_souls_unite",
+    "cs16_save_file_battle",
+
+    -- Chapter 19
+    "cs19_another_dimension_intro",
+    "cs19_gravestone",
+    "cs19_beyond_the_void",
+    "cs19_chara_helps",
+    "cs19_edge_of_universe",
+    "cs19_hub_second_intro",
+    "cs19_trapin_loop",
+
+    -- Chapter 21
+    "cs21_cast",
+    "cs21_epilogue_credits",
+    "cs21_fake_the_end",
+    "cs21_final_cutscenes",
+    "cs21_final_titan_summit",
+    "cs21_special_thanks_dodge_credits",
+    "cs21_two_worlds_unite",
+    "cs21_saved",
+    "cs21_ending"
 }
 
 local eventTrigger = {}
 
-eventTrigger.name = "EventTrigger"
+eventTrigger.name = "MaggyHelper/EventTrigger"
 eventTrigger.canResize = {true, true}
 eventTrigger.placements = {
     {

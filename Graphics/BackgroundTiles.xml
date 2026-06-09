@@ -106,6 +106,7 @@
   <Tileset id="8" copy="z" path="bgTempleA" />
   <Tileset id="9" copy="z" path="bgTempleB" />
   <Tileset id="a" copy="z" path="bgReflection" />
+  <Tileset id="g" copy="z" path="bgReflection" />
   <Tileset id="b" copy="z" path="bgSnow" />
   <Tileset id="c" copy="z" path="bgSummit" />
   <Tileset id="d" copy="z" path="bgCore" />

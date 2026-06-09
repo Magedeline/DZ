@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Celeste.Entities;
 using Microsoft.Xna.Framework;
 using Monocle;
 
@@ -99,15 +100,15 @@ namespace Celeste
 
             // Draw local player info
             Player localPlayer = Engine.Scene?.Tracker.GetEntity<Player>();
-            var localController = KirbyHealthController.Instance;
-            if (localController != null && localController.IsEnabled)
+            var localHealthManager = PlayerHealthManager.Instance;
+            if (localHealthManager != null && localHealthManager.IsKirbyMode)
             {
                 position.Y += 10f;
                 ActiveFont.DrawOutline("LOCAL PLAYER:", position, Vector2.Zero, Vector2.One, 
                     Color.Orange, 2f, Color.Black * 0.7f);
                 position.Y += 15f;
                 
-                string localInfo = $"HP: {localController.CurrentHealth}/{localController.MaxHealth} | Stamina: {localPlayer?.Stamina ?? 0f:F1}";
+                string localInfo = $"HP: {localHealthManager.CurrentHP}/{localHealthManager.MaxHP} | Stamina: {localPlayer?.Stamina ?? 0f:F1}";
                 ActiveFont.DrawOutline(localInfo, position, Vector2.Zero, Vector2.One, textColor, 
                     2f, Color.Black * 0.7f);
             }
@@ -123,15 +124,15 @@ namespace Celeste
             if (playerInfos.Count == 0)
             {
                 // Add local player as placeholder
-                var controller = KirbyHealthController.Instance;
-                if (controller != null && controller.IsEnabled)
+                var healthManager = PlayerHealthManager.Instance;
+                if (healthManager != null && healthManager.IsKirbyMode)
                 {
                     playerInfos[0] = new PlayerInfo
                     {
                         Name = "Local Player",
-                        CurrentHealth = controller.CurrentHealth,
-                        MaxHealth = controller.MaxHealth,
-                        IsDead = controller.IsDead,
+                        CurrentHealth = healthManager.CurrentHP,
+                        MaxHealth = healthManager.MaxHP,
+                        IsDead = healthManager.IsDead,
                         IsKirbyMode = true,
                         Stamina = localPlayer?.Stamina ?? 110f
                     };
@@ -140,12 +141,12 @@ namespace Celeste
             else
             {
                 // Update local player info
-                var controller = KirbyHealthController.Instance;
-                if (controller != null && controller.IsEnabled && playerInfos.ContainsKey(0))
+                var healthManager = PlayerHealthManager.Instance;
+                if (healthManager != null && healthManager.IsKirbyMode && playerInfos.ContainsKey(0))
                 {
-                    playerInfos[0].CurrentHealth = controller.CurrentHealth;
-                    playerInfos[0].MaxHealth = controller.MaxHealth;
-                    playerInfos[0].IsDead = controller.IsDead;
+                    playerInfos[0].CurrentHealth = healthManager.CurrentHP;
+                    playerInfos[0].MaxHealth = healthManager.MaxHP;
+                    playerInfos[0].IsDead = healthManager.IsDead;
                     playerInfos[0].IsKirbyMode = true;
                     playerInfos[0].Stamina = localPlayer?.Stamina ?? 110f;
                 }

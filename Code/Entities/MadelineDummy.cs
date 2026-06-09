@@ -119,9 +119,18 @@ namespace Celeste.Entities
 
             if (Sprite != null)
             {
-                Sprite.Play("fallSlow");
+                // Try to play fallSlow, fall back to idle if not available
+                if (Sprite.Has("fallSlow"))
+                    Sprite.Play("fallSlow");
+                else if (Sprite.Has("idle"))
+                    Sprite.Play("idle");
+                else if (Sprite.Has("fall"))
+                    Sprite.Play("fall");
+                else if (Sprite.Animations.Count > 0)
+                    Sprite.Play(Sprite.Animations.Keys.First());
+
                 Sprite.Scale.X = -1f;
-                
+
                 // Set up frame change handler with null checks
                 Sprite.OnFrameChange = OnSpriteFrameChange;
                 Add(Sprite);
@@ -229,7 +238,15 @@ namespace Celeste.Entities
                 try
                 {
                     Sprite = GFX.SpriteBank.Create("madeline");
-                    Sprite.Play("idle");
+                    // Safely play animation that exists
+                    if (Sprite.Has("idle"))
+                        Sprite.Play("idle");
+                    else if (Sprite.Has("fallSlow"))
+                        Sprite.Play("fallSlow");
+                    else if (Sprite.Has("fall"))
+                        Sprite.Play("fall");
+                    else if (Sprite.Animations.Count > 0)
+                        Sprite.Play(Sprite.Animations.Keys.First());
                     Add(Sprite);
                     isInitialized = true;
                 }

@@ -1,5 +1,6 @@
 using System;
 using Monocle;
+using Celeste.Entities;
 
 namespace Celeste
 {
@@ -177,10 +178,10 @@ namespace Celeste
                 return false;
             }
 
-            var controller = KirbyHealthController.Instance;
+            var healthManager = PlayerHealthManager.Instance;
             
             // Only intercept for Kirby mode
-            if (controller == null || !controller.IsEnabled)
+            if (healthManager == null || !healthManager.IsKirbyMode)
                 return false;
 
             try
@@ -188,8 +189,7 @@ namespace Celeste
                 // Deal damage to Kirby instead of instant death
                 // Use a significant damage amount (e.g., 3 HP or configurable)
                 int damageAmount = 3;
-                Vector2 source = player.Position;
-                controller.Damage(damageAmount, source, KirbyHealthController.DamageType.Generic);
+                healthManager.Damage(damageAmount);
                 
                 Logger.Log(LogLevel.Info, "DeathlinkIntegration", 
                     $"Deathlink triggered - Kirby took {damageAmount} damage instead of dying");

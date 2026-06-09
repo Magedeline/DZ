@@ -1,16 +1,16 @@
--- Loenn plugin for MaggyHelper - Kirby Kglobal::global::Celeste.PlayerSpawner
--- Replaces vanilla Celeste.Kglobal::global::Celeste.Playerwith MaggyHelper's Kglobal::global::Celeste.Playerentity.
+-- Loenn plugin for MaggyHelper - Kirby Player Spawner
+-- Replaces vanilla Celeste Player with MaggyHelper's Kirby Player entity.
 -- Place this in any room to get full Kirby gameplay without
--- relying on a vanilla Kglobal::global::Celeste.Playerspawn.
+-- relying on a vanilla Player spawn.
 local drawableSprite = require("structs.drawable_sprite")
 
-local kirbyKglobal::PlayerSpawner = {}
+local kirbyPlayerSpawner = {}
 
-kirbyKglobal::PlayerSpawner.name = "MaggyHelper/KirbyKglobal::PlayerSpawner"
-kirbyKglobal::PlayerSpawner.depth = -1000000
-kirbyKglobal::PlayerSpawner.placements = {
+kirbyPlayerSpawner.name = "MaggyHelper/KirbyPlayerSpawner"
+kirbyPlayerSpawner.depth = -1000000
+kirbyPlayerSpawner.placements = {
     {
-        name = "kirby_Kglobal::Player_spawner",
+        name = "kirby_player_spawner",
         data = {
             enableKirbyMode = true,
             spawnCompanion = false,
@@ -18,7 +18,7 @@ kirbyKglobal::PlayerSpawner.placements = {
         }
     },
     {
-        name = "kirby_Kglobal::Player_spawner_with_companion",
+        name = "kirby_player_spawner_with_companion",
         data = {
             enableKirbyMode = true,
             spawnCompanion = true,
@@ -26,7 +26,7 @@ kirbyKglobal::PlayerSpawner.placements = {
         }
     },
     {
-        name = "madeline_Kglobal::Player_spawner",
+        name = "madeline_player_spawner",
         data = {
             enableKirbyMode = false,
             spawnCompanion = false,
@@ -35,7 +35,7 @@ kirbyKglobal::PlayerSpawner.placements = {
     }
 }
 
-kirbyKglobal::PlayerSpawner.fieldInformation = {
+kirbyPlayerSpawner.fieldInformation = {
     startingAbility = {
         options = {
             "None",
@@ -64,19 +64,19 @@ kirbyKglobal::PlayerSpawner.fieldInformation = {
     }
 }
 
-kirbyKglobal::PlayerSpawner.fieldOrder = {
+kirbyPlayerSpawner.fieldOrder = {
     "x", "y",
     "enableKirbyMode",
     "spawnCompanion",
     "startingAbility"
 }
 
-function kirbyKglobal::PlayerSpawner.sprite(room, entity)
+function kirbyPlayerSpawner.sprite(room, entity)
     local texture
     if entity.enableKirbyMode then
         texture = "characters/kirby/idle00"
     else
-        texture = "characters/Kglobal::Player/sitDown00"
+        texture = "characters/player/sitDown00"
     end
 
     local sprite = drawableSprite.fromTexture(texture, entity)
@@ -84,4 +84,4 @@ function kirbyKglobal::PlayerSpawner.sprite(room, entity)
     return sprite
 end
 
-return kirbyKglobal::PlayerSpawner
+return kirbyPlayerSpawner

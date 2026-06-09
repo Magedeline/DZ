@@ -139,29 +139,9 @@ namespace Celeste
             Logger.Log(LogLevel.Info, "CelesteNetIntegration", "Health sync shut down");
         }
 
-        /// <summary>
-        /// Hook into KirbyHealthController to sync health changes.
-        /// </summary>
-        public static void HookIntoHealthSystem(KirbyHealthController controller)
-        {
-            if (!celesteNetLoaded)
-                return;
-
-            controller.OnHealthChanged += (current, max) =>
-            {
-                SyncHealthState(current, max, controller.IsDead);
-            };
-
-            controller.OnKirbyDeath += () =>
-            {
-                SyncHealthState(0, controller.MaxHealth, true);
-            };
-
-            controller.OnKirbyRespawn += () =>
-            {
-                SyncHealthState(controller.MaxHealth, controller.MaxHealth, false);
-            };
-        }
+        // Note: HookIntoHealthSystem was removed because KirbyHealthController no longer exists.
+        // Health is now managed directly within K_Player. If CelesteNet health sync is needed
+        // in the future, it should be implemented by hooking into K_Player events instead.
 
         /// <summary>
         /// Register a multiplayer player for health bar display.

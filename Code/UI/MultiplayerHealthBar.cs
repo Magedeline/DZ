@@ -124,10 +124,10 @@ namespace Celeste
             // Draw health bar only for Kirby mode
             if (isKirbyMode)
             {
-                var controller = KirbyHealthController.Instance;
-                if (controller != null && controller.IsEnabled)
+                var healthManager = PlayerHealthManager.Instance;
+                if (healthManager != null && healthManager.IsKirbyMode)
                 {
-                    float healthPercent = controller.HealthPercent;
+                    float healthPercent = healthManager.MaxHP > 0 ? (float)healthManager.CurrentHP / healthManager.MaxHP : 0f;
                     float barY = drawPos.Y + HEIGHT / 2 - BAR_HEIGHT - staminaSize.Y - 4;
 
                     // Draw health bar background
@@ -149,7 +149,7 @@ namespace Celeste
                     );
 
                     // Draw health text
-                    string healthText = $"{controller.CurrentHealth}/{controller.MaxHealth}";
+                    string healthText = $"{healthManager.CurrentHP}/{healthManager.MaxHP}";
                     Vector2 healthTextSize = ActiveFont.Measure(healthText);
                     ActiveFont.DrawOutline(
                         healthText,
@@ -170,8 +170,8 @@ namespace Celeste
                 return;
 
             // Check if player is in Kirby mode
-            var controller = KirbyHealthController.Instance;
-            isKirbyMode = controller != null && controller.IsEnabled;
+            var healthManager = PlayerHealthManager.Instance;
+            isKirbyMode = healthManager != null && healthManager.IsKirbyMode;
 
             // Get player name (from CelesteNet if available)
             playerName = GetPlayerName(targetPlayer);

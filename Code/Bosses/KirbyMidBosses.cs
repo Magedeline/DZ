@@ -164,10 +164,10 @@ namespace Celeste.Entities.Enemies
             // Deal contact damage
             if (player.IsKirbyMode())
             {
-                var controller = KirbyHealthController.Instance;
-                if (controller != null)
+                var healthManager = PlayerHealthManager.Instance;
+                if (healthManager != null)
                 {
-                    controller.DamageFromBoss(Position, 1);
+                    healthManager.Damage(1);
                 }
                 else
                 {
@@ -572,10 +572,10 @@ namespace Celeste.Entities.Enemies
             var player = Scene.Tracker.GetEntity<global::Celeste.Player>();
             if (player != null && Vector2.Distance(Position, player.Position) < 50f)
             {
-                var controller = KirbyHealthController.Instance;
-                if (controller != null)
+                var healthManager = PlayerHealthManager.Instance;
+                if (healthManager != null)
                 {
-                    controller.DamageFromBoss(Position, 2);
+                    healthManager.Damage(2);
                 }
                 else
                 {
@@ -685,10 +685,10 @@ namespace Celeste.Entities.Enemies
             var player = Scene.Tracker.GetEntity<global::Celeste.Player>();
             if (player != null && Vector2.Distance(Position, player.Position) < 40f)
             {
-                var controller = KirbyHealthController.Instance;
-                if (controller != null)
+                var healthManager = PlayerHealthManager.Instance;
+                if (healthManager != null)
                 {
-                    controller.DamageFromBoss(Position, 2);
+                    healthManager.Damage(2);
                 }
                 else
                 {

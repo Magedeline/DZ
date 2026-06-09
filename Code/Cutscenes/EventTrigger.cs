@@ -15,6 +15,8 @@ using NPC = Celeste.NPCs.NPC;
 
 namespace Celeste
 {
+    [CustomEntity("MaggyHelper/EventTrigger")]
+    [Tracked]
     public class EventTrigger : Trigger
     {
         public delegate Entity CutsceneLoader(EventTrigger trigger, Player player, string eventID);
@@ -33,10 +35,17 @@ namespace Celeste
             "ch8_door", "ch9_goto_the_future", "ch9_goto_the_past", "ch9_moon_intro", "ch9_hub_intro", "ch9_hub_transition_out", "ch9_badeline_helps", "ch9_farewell", "ch9_ending", "ch9_end_golden",
             "ch9_final_room", "ch9_ding_ding_ding", "ch9_golden_snapshot", "seeTheoInCrystal", "foundTheoInCrystal", "reflection", "it_ch5_see_theo", "it_ch5_see_theo_b", "ignore_darkness_", "boss_intro",
             "reflection", "moon_intro", "hub_intro", "badeline_helps", "final_room_deaths", "final_room_deaths", "event:/new_content/game/10_farewell/pico8_flag", "decals/10-farewell/finalflag", "snapshot:/game_10_golden_room_flavour", "golden",
+            "cs03_first_step", "cs03_meetup", "cs03_mod_ending",
             "Event '", "' does not exist!"
         };
 
         public static readonly Dictionary<string, CutsceneLoader> CutsceneLoaders = new Dictionary<string, CutsceneLoader>();
+
+        // Static constructor ensures CutsceneEventDispatcher is initialized to populate CutsceneLoaders
+        static EventTrigger()
+        {
+            RuntimeHelpers.RunClassConstructor(typeof(global::Celeste.Triggers.CutsceneEventDispatcher).TypeHandle);
+        }
 
         public float Time { get; private set; }
 
@@ -346,7 +355,37 @@ namespace Celeste.Triggers
                 var chara = (trigger.Scene as Level).Entities.FindFirst<global::Celeste.Entities.CharaChaser>();
                 return chara != null ? new global::Celeste.CS02_CharaIntro(chara) : null;
             });
-            
+
+            // Chapter 3
+            Register("cs03_first_step", (trigger, player, eventId) => {
+                var kPlayer = GetKPlayer(trigger.Scene);
+                var actualPlayer = kPlayer != null ? Unsafe.As<global::Celeste.Entities.K_Player, global::Celeste.Player>(ref kPlayer) : player;
+                return new global::Celeste.Cutscenes.Cs03FirstStep(actualPlayer);
+            });
+            Register("cs03_meetup", (trigger, player, eventId) => {
+                var level = trigger.Scene as Level;
+                var maggy = level?.Entities.FindFirst<global::Celeste.NPCs.Npc03Maggy>();
+                if (maggy == null) return null;
+                var zoomCoroutine = new Coroutine(level.ZoomTo(maggy.Position + new Vector2(0f, -16f), 1.5f, 2f));
+                int conv = 0;
+                if (global::Celeste.SaveData.Instance?.HasFlag("WassupMagolor") == true &&
+                    global::Celeste.SaveData.Instance?.HasFlag("BadelineJoinKirby") == true)
+                {
+                    if (!level.Session.GetFlag("maggy_03_Meetup_conv1")) conv = 1;
+                    else if (!level.Session.GetFlag("maggy_03_Meetup_conv2")) conv = 2;
+                    else if (!level.Session.GetFlag("maggy_03_Meetup_conv3")) conv = 3;
+                    else if (!level.Session.GetFlag("maggy_03_Meetup_conv4")) conv = 4;
+                }
+                var kPlayer = GetKPlayer(trigger.Scene);
+                var actualPlayer = kPlayer != null ? Unsafe.As<global::Celeste.Entities.K_Player, global::Celeste.Player>(ref kPlayer) : player;
+                return new global::Celeste.Cutscenes.Cs03Meetup(maggy, actualPlayer, zoomCoroutine, conv);
+            });
+            Register("cs03_mod_ending", (trigger, player, eventId) => {
+                var kPlayer = GetKPlayer(trigger.Scene);
+                var actualPlayer = kPlayer != null ? Unsafe.As<global::Celeste.Entities.K_Player, global::Celeste.Player>(ref kPlayer) : player;
+                return new global::Celeste.Cutscenes.Cs03ModEnding(actualPlayer);
+            });
+
             // Chapter 4
             Register("cs04_chara_warning", (trigger, player, eventId) => {
                 var chara = (trigger.Scene as Level).Entities.FindFirst<global::Celeste.Entities.CharaChaser2>();
@@ -403,6 +442,15 @@ namespace Celeste.Triggers
         private static void Register(string eventId, global::Celeste.EventTrigger.CutsceneLoader factory)
         {
             global::Celeste.EventTrigger.CutsceneLoaders[eventId] = factory;
+        }
+
+        /// <summary>
+        /// Gets the K_Player from the scene if it exists, for K_Player-aware cutscene support.
+        /// Returns null if no K_Player is present (vanilla Player mode).
+        /// </summary>
+        private static global::Celeste.Entities.K_Player GetKPlayer(Scene scene)
+        {
+            return scene?.Tracker.GetEntity<global::Celeste.Entities.K_Player>();
         }
 
         private sealed class DispatchContext

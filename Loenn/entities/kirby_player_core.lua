@@ -1,28 +1,28 @@
-local kirbyKglobal::PlayerCore = {}
+local kirbyPlayerCore = {}
 
-kirbyKglobal::PlayerCore.name = "MaggyHelper/KirbyKglobal::PlayerCore"
-kirbyKglobal::PlayerCore.depth = -100
-kirbyKglobal::PlayerCore.texture = "characters/kirby/idle00"
-kirbyKglobal::PlayerCore.justification = {0.5, 1.0}
+kirbyPlayerCore.name = "MaggyHelper/KirbyPlayerCore"
+kirbyPlayerCore.depth = -100
+kirbyPlayerCore.texture = "characters/kirby/idle00"
+kirbyPlayerCore.justification = {0.5, 1.0}
 
-kirbyKglobal::PlayerCore.nodeLineRenderType = "line"
-kirbyKglobal::PlayerCore.nodeLimits = {0, -1}
-kirbyKglobal::PlayerCore.nodeVisibility = "always"
+kirbyPlayerCore.nodeLineRenderType = "line"
+kirbyPlayerCore.nodeLimits = {0, -1}
+kirbyPlayerCore.nodeVisibility = "always"
 
-kirbyKglobal::PlayerCore.placements = {
+kirbyPlayerCore.placements = {
     {
         name = "default",
         data = {
             maxHealth = 6,
             power = "None",
-            inventory = "KirbyKglobal::Player",
+            inventory = "KirbyPlayer",
             introType = "None",
             useSpawnPoints = true
         }
     }
 }
 
-kirbyKglobal::PlayerCore.fieldInformation = {
+kirbyPlayerCore.fieldInformation = {
     power = {
         fieldType = "string",
         options = {
@@ -36,7 +36,7 @@ kirbyKglobal::PlayerCore.fieldInformation = {
     inventory = {
         fieldType = "string",
         options = {
-            "None", "KirbyKglobal::Player", "KirbyCompanion", "KirbyModeOnly"
+            "None", "KirbyPlayer", "KirbyCompanion", "KirbyModeOnly"
         },
         editable = false
     },
@@ -49,7 +49,7 @@ kirbyKglobal::PlayerCore.fieldInformation = {
     }
 }
 
-kirbyKglobal::PlayerCore.fieldOrder = {
+kirbyPlayerCore.fieldOrder = {
     "x",
     "y",
     "maxHealth",
@@ -59,4 +59,4 @@ kirbyKglobal::PlayerCore.fieldOrder = {
     "useSpawnPoints"
 }
 
-return kirbyKglobal::PlayerCore
+return kirbyPlayerCore

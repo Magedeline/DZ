@@ -8,6 +8,8 @@ namespace Celeste.Entities
     /// Replaces the hair visual when KirbyModeActive is true.
     /// Color mirrors the hair dash-tier color system so all existing
     /// dash, Kirby-pink, and combat colors still apply.
+    ///
+    /// Now supports both vanilla Player and MaggyHelper's K_Player.
     /// </summary>
     public class KirbyHatScarf : Component
     {
@@ -48,14 +50,33 @@ namespace Celeste.Entities
         /// <summary>Whether to draw the hat+scarf at all.</summary>
         public new bool Visible = false;
 
-        private readonly global::Celeste.Player player;
+        // Support both vanilla Player and K_Player
+        private readonly global::Celeste.Player vanillaPlayer;
+        private readonly K_Player kPlayer;
+        private readonly bool isKPlayer;
 
-        // ── Constructor ───────────────────────────────────────────────────────
+        // ── Constructors ───────────────────────────────────────────────────────
 
+        /// <summary>Constructor for vanilla Player.</summary>
         public KirbyHatScarf(global::Celeste.Player player) : base(active: true, visible: false)
         {
-            this.player = player;
+            this.vanillaPlayer = player;
+            this.kPlayer = null;
+            this.isKPlayer = false;
         }
+
+        /// <summary>Constructor for MaggyHelper's K_Player.</summary>
+        public KirbyHatScarf(K_Player player) : base(active: true, visible: false)
+        {
+            this.vanillaPlayer = null;
+            this.kPlayer = player;
+            this.isKPlayer = true;
+        }
+
+        // ── Helper Properties ───────────────────────────────────────────────
+
+        private Vector2 RenderPosition => isKPlayer ? kPlayer.Sprite.RenderPosition : vanillaPlayer.Sprite.RenderPosition;
+        private Facings Facing => isKPlayer ? kPlayer.Facing : vanillaPlayer.Facing;
 
         // ── Render ────────────────────────────────────────────────────────────
 
@@ -64,8 +85,8 @@ namespace Celeste.Entities
             if (!Visible) return;
 
             // Pixel-snap position like the rest of the sprite
-            Vector2 center = (player.Sprite.RenderPosition).Floor();
-            int dir = (int)player.Facing;   // 1 = right, -1 = left
+            Vector2 center = RenderPosition.Floor();
+            int dir = (int)Facing;   // 1 = right, -1 = left
 
             Color main   = Color;
             Color accent = AccentColor;

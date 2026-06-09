@@ -208,6 +208,9 @@ namespace Celeste.Mod.MaggyHelper
             // Hook GameLoader to load audio banks after FMOD is initialized
             On.Celeste.GameLoader.LoadThread += OnGameLoaderLoadThread;
 
+            // Initialize bus routing for Pusheen and return/verb buses
+            AudioBusManager.Load();
+
             // Register hooks
             // OuiChapterSelectHooks: Wraps OuiChapterSelect to catch crashes from updateScarf()
             OuiChapterSelectHooks.Load();
@@ -372,6 +375,7 @@ namespace Celeste.Mod.MaggyHelper
         {
             // Unload manual hooks
             On.Celeste.GameLoader.LoadThread -= OnGameLoaderLoadThread;
+            AudioBusManager.Unload();
             OuiChapterSelectHooks.Unload();
             global::Celeste.RoomTransitionHandler.Unload();
             global::Celeste.IntroRemixHooks.Unload();

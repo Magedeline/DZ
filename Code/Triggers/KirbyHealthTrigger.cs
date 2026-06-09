@@ -1,4 +1,5 @@
 using System;
+using Celeste.Entities;
 using Celeste.Extensions;
 using Microsoft.Xna.Framework;
 using Monocle;
@@ -50,37 +51,37 @@ namespace Celeste.Triggers
 
             triggered = true;
 
-            // Get or create the health controller
+            // Get the health manager
             var level = Scene as Level;
-            var controller = KirbyHealthController.GetOrCreate(level);
+            var healthManager = PlayerHealthManager.Instance;
 
             // Enable/disable health system
             if (enableHealth)
             {
-                controller.Enable(maxHealth);
+                healthManager?.EnableKirbyMode(maxHealth);
 
                 // Heal if requested
                 if (fullHeal)
                 {
-                    controller.FullHeal();
+                    healthManager?.FullHeal();
                 }
                 else if (healAmount > 0)
                 {
-                    controller.Heal(healAmount);
+                    healthManager?.Heal(healAmount);
                 }
 
                 Logger.Log(LogLevel.Info, "KirbyHealthTrigger", $"Health system enabled with max HP: {maxHealth}");
             }
             else
             {
-                controller.Disable();
+                healthManager?.DisableKirbyMode();
                 Logger.Log(LogLevel.Info, "KirbyHealthTrigger", "Health system disabled");
             }
 
             // Set respawn point if requested
             if (setRespawnPoint)
             {
-                controller.SetRespawnPoint(level.Session.Level, player.Position);
+                level.Session.RespawnPoint = player.Position;
                 Logger.Log(LogLevel.Info, "KirbyHealthTrigger", $"Respawn point set to: {player.Position} in room {level.Session.Level}");
             }
         }
@@ -155,22 +156,22 @@ namespace Celeste.Triggers
         {
             hasActivated = true;
 
-            // Get or create controller
-            var controller = KirbyHealthController.GetOrCreate(level);
+            // Get the health manager
+            var healthManager = PlayerHealthManager.Instance;
 
             // Enable health system
-            controller.Enable(maxHealth);
+            healthManager?.EnableKirbyMode(maxHealth);
 
             // Auto heal if requested
             if (autoHealOnEnter)
             {
-                controller.FullHeal();
+                healthManager?.FullHeal();
             }
 
             // Set as respawn room if requested
             if (setAsRespawnRoom)
             {
-                controller.SetRespawnPoint(level.Session.Level, player.Position);
+                level.Session.RespawnPoint = player.Position;
             }
 
             Logger.Log(LogLevel.Info, "KirbyHealthRoomController", $"Health system activated in room: {level.Session.Level}");

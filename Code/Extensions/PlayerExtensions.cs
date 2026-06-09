@@ -41,25 +41,14 @@ namespace Celeste.Extensions
                 var healthManager = PlayerHealthManager.GetOrCreate(level, 6);
                 healthManager.EnableKirbyMode(healthManager.MaxHP);
                 UniversalHealthUI.GetOrCreate(level).ShowPlayerHealth = true;
-
-                // Also enable the Kirby health controller for hazard damage integration
-                var healthController = KirbyHealthController.GetOrCreate(level);
-                healthController.Enable(6);
             }
 
             TryApplyPlayerSprite(player, "kirby_player");
 
-            // Attach the Kirby gameplay controller so mechanics actually work
-            if (player.Get<KirbyPlayerController>() == null)
-                player.Add(new KirbyPlayerController());
-
-            // Attach the Kirby sprite state controller
-            if (player.Get<KirbyPlayerSpriteController>() == null)
-                player.Add(new KirbyPlayerSpriteController());
-
-            // Attach the Kirby skin controller
-            if (player.Get<KirbySkinController>() == null)
-                player.Add(new KirbySkinController());
+            // Note: Kirby controllers (KirbyPlayerController, KirbyPlayerSpriteController,
+            // KirbySkinController, KirbyHealthController) have been removed.
+            // Their functionality is now integrated directly into K_Player.
+            // For vanilla Player, Kirby mode works through PlayerHealthManager and session state.
         }
 
         /// <summary>
@@ -81,20 +70,8 @@ namespace Celeste.Extensions
             string spriteId = global::Celeste.PlayerSpriteModeExtensions.GetSpriteBankId(player.Sprite.Mode);
             TryApplyPlayerSprite(player, spriteId);
 
-            // Remove the Kirby gameplay controller
-            var controller = player.Get<KirbyPlayerController>();
-            if (controller != null)
-                player.Remove(controller);
-
-            // Remove the Kirby sprite state controller
-            var spriteCtrl = player.Get<KirbyPlayerSpriteController>();
-            if (spriteCtrl != null)
-                player.Remove(spriteCtrl);
-
-            // Remove the Kirby skin controller
-            var skinCtrl = player.Get<KirbySkinController>();
-            if (skinCtrl != null)
-                player.Remove(skinCtrl);
+            // Note: Controller cleanup removed - Kirby controllers no longer exist.
+            // Their functionality is now integrated directly into K_Player.
         }
 
         public static void EnableKirbyPlayerMode(this global::Celeste.Player player, int maxDashes = 3)
@@ -161,13 +138,8 @@ namespace Celeste.Extensions
 
             TryApplyPlayerSprite(player, "kirby_player");
 
-            // Re-attach controllers after level transition if missing
-            if (player.Get<KirbyPlayerController>() == null)
-                player.Add(new KirbyPlayerController());
-            if (player.Get<KirbyPlayerSpriteController>() == null)
-                player.Add(new KirbyPlayerSpriteController());
-            if (player.Get<KirbySkinController>() == null)
-                player.Add(new KirbySkinController());
+            // Note: Controller re-attachment removed - Kirby controllers no longer exist.
+            // Their functionality is now integrated directly into K_Player.
 
             if (TryGetStoredKirbyPower(session, out KirbyMode.KirbyPowerState powerState) &&
                 powerState != KirbyMode.KirbyPowerState.None)

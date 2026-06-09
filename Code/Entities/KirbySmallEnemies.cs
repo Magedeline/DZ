@@ -193,10 +193,10 @@ namespace Celeste.Entities.Enemies
             // Try to damage player through health system
             if (player.IsKirbyMode())
             {
-                var controller = KirbyHealthController.Instance;
-                if (controller != null)
+                var healthManager = PlayerHealthManager.Instance;
+                if (healthManager != null)
                 {
-                    controller.DamageFromEnemy(Position, ContactDamage);
+                    healthManager.Damage(ContactDamage);
                 }
                 else
                 {

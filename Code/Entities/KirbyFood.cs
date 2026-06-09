@@ -116,10 +116,10 @@ namespace Celeste.Entities.Items
             // Heal player
             if (player.IsKirbyMode())
             {
-                var controller = KirbyHealthController.Instance;
-                if (controller != null)
+                var healthManager = PlayerHealthManager.Instance;
+                if (healthManager != null)
                 {
-                    controller.Heal(HealAmount);
+                    healthManager.Heal(HealAmount);
                 }
                 else
                 {
@@ -287,15 +287,10 @@ namespace Celeste.Entities.Items
             // Full heal
             if (player.IsKirbyMode())
             {
-                var controller = KirbyHealthController.Instance;
-                if (controller != null)
+                var healthManager = PlayerHealthManager.Instance;
+                if (healthManager != null)
                 {
-                    controller.FullHeal();
-                }
-                else
-                {
-                    var healthManager = PlayerHealthManager.Instance;
-                    healthManager?.FullHeal();
+                    healthManager.FullHeal();
                 }
             }
 
@@ -407,13 +402,13 @@ namespace Celeste.Entities.Items
                 player.Sprite.Color = Calc.HsvToColor(hue, 0.8f, 1f);
             }
 
-            // Make player flash on HUD if health controller exists
-            var controller = KirbyHealthController.Instance;
-            if (controller != null)
+            // Make player flash on HUD if health manager exists
+            var healthManager = PlayerHealthManager.Instance;
+            if (healthManager != null)
             {
-                // Extend invincibility on the controller
-                controller.GetType().GetField("invincibilityTimer", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
-                    ?.SetValue(controller, Math.Max(duration - timer, 0f));
+                // Extend invincibility on the health manager
+                healthManager.GetType().GetField("invincibilityTimer", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
+                    ?.SetValue(healthManager, Math.Max(duration - timer, 0f));
             }
 
             if (timer >= duration)

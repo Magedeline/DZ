@@ -21,19 +21,7 @@
     </ItemDefinitionGroup>
 
     <ItemGroup>
-        <PackageReference Include="Monocle" Version="0.9.4.5" />
-        <PackageReference Include="MonoGame.Extended" Version="5.5.0" />
-        <PackageReference Include="MonoMod.Backports" Version="1.1.2" />
-        <PackageReference Include="MonoMod.Core" Version="1.3.4" />
-        <PackageReference Include="MonoMod.ILHelpers" Version="1.1.0" />
-        <PackageReference Include="MonoMod.Patcher" Version="25.0.1" />
-        <PackageReference Include="MonoMod.RuntimeDetour" Version="25.0.2" />
-        <PackageReference Include="MonoMod.Utils" Version="25.0.12" />
-        <PackageReference Include="Mono.Cecil" Version="0.11.6" />
-        <PackageReference Include="CelesteAnalyzer" Version="*" />
-        <PackageReference Include="YamlDotNet" Version="16.3.0" />
-        <PackageReference Include="nkast.Aether.Physics2D" Version="2.0.0" />
-        <PackageReference Include="ImGui.NET" Version="1.91.6.1" />
+        <Compile Include="..\framework\**\*.cs" />
     </ItemGroup>
 
     <ItemGroup>
@@ -48,6 +36,11 @@
         <Compile Include="Core/PostcardSystem/**/*.cs" />
         <Compile Include="Core/SaveDataSystem/**/*.cs" />
         <Compile Include="Core/ChapterProgression/**/*.cs" />
+        <Compile Include="Core\K_Player.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\ModFramework\ModFramework.csproj" />
     </ItemGroup>
 
 </Project>

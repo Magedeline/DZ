@@ -53,10 +53,10 @@ namespace Celeste.Projectiles
         {
             if (player.IsKirbyMode())
             {
-                var controller = KirbyHealthController.Instance;
-                if (controller != null)
+                var healthManager = PlayerHealthManager.Instance;
+                if (healthManager != null)
                 {
-                    controller.DamageFromEnemy(Position, damage);
+                    healthManager.Damage(damage);
                 }
                 else
                 {
@@ -167,10 +167,10 @@ namespace Celeste.Projectiles
             {
                 if (player.IsKirbyMode())
                 {
-                    var controller = KirbyHealthController.Instance;
-                    if (controller != null)
+                    var healthManager = PlayerHealthManager.Instance;
+                    if (healthManager != null)
                     {
-                        controller.DamageFromEnemy(Position, damage);
+                        healthManager.Damage(damage);
                     }
                     else
                     {
@@ -257,10 +257,10 @@ namespace Celeste.Projectiles
         {
             if (player.IsKirbyMode())
             {
-                var controller = KirbyHealthController.Instance;
-                if (controller != null)
+                var healthManager = PlayerHealthManager.Instance;
+                if (healthManager != null)
                 {
-                    controller.DamageFromBoss(Position, 1);
+                    healthManager.Damage(1);
                 }
                 else
                 {
@@ -330,10 +330,10 @@ namespace Celeste.Projectiles
         {
             if (player.IsKirbyMode())
             {
-                var controller = KirbyHealthController.Instance;
-                if (controller != null)
+                var healthManager = PlayerHealthManager.Instance;
+                if (healthManager != null)
                 {
-                    controller.DamageFromEnemy(Position, 1);
+                    healthManager.Damage(1);
                 }
                 else
                 {
@@ -405,10 +405,10 @@ namespace Celeste.Projectiles
         {
             if (player.IsKirbyMode())
             {
-                var controller = KirbyHealthController.Instance;
-                if (controller != null)
+                var healthManager = PlayerHealthManager.Instance;
+                if (healthManager != null)
                 {
-                    controller.DamageFromEnemy(Position, 1);
+                    healthManager.Damage(1);
                 }
                 else
                 {
@@ -478,10 +478,10 @@ namespace Celeste.Projectiles
         {
             if (player.IsKirbyMode())
             {
-                var controller = KirbyHealthController.Instance;
-                if (controller != null)
+                var healthManager = PlayerHealthManager.Instance;
+                if (healthManager != null)
                 {
-                    controller.DamageFromEnemy(Position, 1);
+                    healthManager.Damage(1);
                 }
                 else
                 {

@@ -7164,23 +7164,13 @@ triggers.MaggyHelper/EnemyWaveTrigger.attributes.description.waveCount=
 triggers.MaggyHelper/EnemyWaveTrigger.attributes.name.width=Width
 triggers.MaggyHelper/EnemyWaveTrigger.attributes.description.width=
 
-# -- Event Trigger --
-triggers.MaggyHelper/EventTrigger.placements.name.default=Event Trigger
-triggers.MaggyHelper/EventTrigger.placements.name.chapter_intro=Event Trigger (Chapter Intro)
-triggers.MaggyHelper/EventTrigger.placements.name.boss_intro=Event Trigger (Boss Intro)
-triggers.MaggyHelper/EventTrigger.placements.name.boss_mid=Event Trigger (Boss Mid)
-triggers.MaggyHelper/EventTrigger.placements.name.boss_end=Event Trigger (Boss End)
-triggers.MaggyHelper/EventTrigger.placements.name.ending=Event Trigger (Ending)
-triggers.MaggyHelper/EventTrigger.placements.name.credits=Event Trigger (Credits)
-triggers.MaggyHelper/EventTrigger.placements.description.default=Blank trigger volume that dispatches a named cutscene or scripted event.
-triggers.MaggyHelper/EventTrigger.placements.description.chapter_intro=Prefills a typical chapter intro event id and a slightly wider trigger volume.
-triggers.MaggyHelper/EventTrigger.placements.description.boss_intro=Prefills a boss intro event id with a wider trigger volume for arena entrances.
-triggers.MaggyHelper/EventTrigger.placements.description.boss_mid=Prefills a compact boss midpoint event id for phase-change triggers.
-triggers.MaggyHelper/EventTrigger.placements.description.boss_end=Prefills a boss defeat or outro event id with a mid-sized trigger volume.
-triggers.MaggyHelper/EventTrigger.placements.description.ending=Prefills a chapter ending event id with a wider trigger volume for exit corridors.
-triggers.MaggyHelper/EventTrigger.placements.description.credits=Prefills a credits-style event id for finale and epilogue rooms.
+# -- Pusheen Trigger Event --
+triggers.MaggyHelper/EventTrigger.placements.name.default=Pusheen Trigger Event
+triggers.MaggyHelper/EventTrigger.placements.description.default=Trigger volume that dispatches a named cutscene or scripted event when the player enters.
 triggers.MaggyHelper/EventTrigger.attributes.name.event=Event
-triggers.MaggyHelper/EventTrigger.attributes.description.event=Named cutscene event to dispatch when the player enters this trigger.
+triggers.MaggyHelper/EventTrigger.attributes.description.event=The named cutscene event to dispatch when the player enters this trigger. Supports all vanilla chapter events and custom mod events.
+triggers.MaggyHelper/EventTrigger.attributes.name.onSpawn=On Spawn
+triggers.MaggyHelper/EventTrigger.attributes.description.onSpawn=If true, the event fires immediately on room load if the player is already inside the trigger volume.
 triggers.MaggyHelper/EventTrigger.attributes.name.height=Height
 triggers.MaggyHelper/EventTrigger.attributes.description.height=
 triggers.MaggyHelper/EventTrigger.attributes.name.width=Width
@@ -8824,3 +8814,34 @@ entities.MaggyHelper/EnhancedBirdNPC.attributes.description.WaitForLightningPost
 entities.MaggyHelper/EnhancedBirdNPC.attributes.name.DisableFlapSfx=Disable Flap Sound
 entities.MaggyHelper/EnhancedBirdNPC.attributes.description.DisableFlapSfx=Disable wing flapping sound effects.
 
+
+
+# ========================
+# K_Player (Custom Player Entity) - Complete Entries
+# ========================
+
+# Entity Name
+entities.MaggyHelper/K_Player.name=K_Player (Enhanced Player)
+
+entities.MaggyHelper/K_Player.placements.name.K_Player (Madeline)=K_Player (Madeline)
+entities.MaggyHelper/K_Player.placements.description.K_Player (Madeline)=MaggyHelper's custom player entity with enhanced features. Spawns as Madeline with full backpack.
+entities.MaggyHelper/K_Player.placements.name.K_Player (Madeline No Backpack)=K_Player (Madeline No Backpack)
+entities.MaggyHelper/K_Player.placements.description.K_Player (Madeline No Backpack)=Custom player entity spawning as Madeline without her backpack (Chapter 1 style).
+entities.MaggyHelper/K_Player.placements.name.K_Player (Badeline)=K_Player (Badeline)
+entities.MaggyHelper/K_Player.placements.description.K_Player (Badeline)=Custom player entity spawning as Badeline (ghost form).
+entities.MaggyHelper/K_Player.placements.name.K_Player (Madeline as Badeline)=K_Player (Madeline as Badeline)
+entities.MaggyHelper/K_Player.placements.description.K_Player (Madeline as Badeline)=Madeline using Badeline's sprites and appearance.
+entities.MaggyHelper/K_Player.placements.name.K_Player (Badeline as Madeline)=K_Player (Badeline as Madeline)
+entities.MaggyHelper/K_Player.placements.description.K_Player (Badeline as Madeline)=Badeline using Madeline's sprites and appearance.
+entities.MaggyHelper/K_Player.attributes.name.spriteMode=Sprite Mode
+entities.MaggyHelper/K_Player.attributes.description.spriteMode=Determines which character sprite and appearance the player uses (Madeline, MadelineNoBackpack, Badeline, MadelineAsBadeline, BadelineAsMadeline).
+
+# Additional K_Player Attributes
+entities.MaggyHelper/K_Player.attributes.name.introType=Intro Type
+entities.MaggyHelper/K_Player.attributes.description.introType=How the player enters the room: Transition, Respawn, WalkInRight, WalkInLeft, Jump, WakeUp, Fall, TempleMirrorVoid, or None.
+entities.MaggyHelper/K_Player.attributes.name.maxHealth=Max Health
+entities.MaggyHelper/K_Player.attributes.description.maxHealth=Maximum health points (1-20). Default is 6. Affects health bar in Kirby mode.
+entities.MaggyHelper/K_Player.attributes.name.kirbyMode=Kirby Mode
+entities.MaggyHelper/K_Player.attributes.description.kirbyMode=Enable Kirby gameplay features: inhale, float, multi-jump, and hat+scarf visuals.
+entities.MaggyHelper/K_Player.attributes.name.combatEnabled=Combat Enabled
+entities.MaggyHelper/K_Player.attributes.description.combatEnabled=Enable combat abilities: dash attack, ground pound, aerial combos, and skill-based moves.

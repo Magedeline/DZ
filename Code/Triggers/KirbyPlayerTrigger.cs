@@ -1,4 +1,6 @@
+using Celeste.Entities;
 using Celeste.Extensions;
+using Monocle;
 
 namespace Celeste.Triggers
 {
@@ -83,11 +85,14 @@ namespace Celeste.Triggers
         {
             base.Update();
 
-            // Reset trigger for non-one-use triggers  
+            // Reset trigger for non-one-use triggers
             if (!oneUse && activationType != ActivationType.Toggle)
             {
-                var player = Scene.Tracker.GetEntity<global::Celeste.Player>();
-                if (player != null && !CollideCheck(player))
+                // Check for either K_Player or vanilla Player
+                var kPlayer = Scene.Tracker.GetEntity<K_Player>();
+                var vanillaPlayer = Scene.Tracker.GetEntity<global::Celeste.Player>();
+                var anyPlayer = kPlayer != null ? (Actor)kPlayer : vanillaPlayer;
+                if (anyPlayer != null && !CollideCheck(anyPlayer))
                 {
                     hasTriggered = false;
                 }
@@ -123,7 +128,16 @@ namespace Celeste.Triggers
             base.OnEnter(player);
             if (activationType == ActivationType.OnEnter || activationType == ActivationType.Toggle)
             {
-                TriggerTransformation(player);
+                // Check if K_Player is present (K_Player takes priority over vanilla Player)
+                var kPlayer = Scene?.Tracker.GetEntity<K_Player>();
+                if (kPlayer != null && CollideCheck(kPlayer))
+                {
+                    TriggerTransformation(kPlayer);
+                }
+                else if (player != null)
+                {
+                    TriggerTransformation(player);
+                }
             }
         }
 
@@ -132,13 +146,58 @@ namespace Celeste.Triggers
             base.OnLeave(player);
             if (activationType == ActivationType.OnExit)
             {
-                TriggerTransformation(player);
+                // Check if K_Player is present (K_Player takes priority over vanilla Player)
+                var kPlayer = Scene?.Tracker.GetEntity<K_Player>();
+                if (kPlayer != null && !CollideCheck(kPlayer))
+                {
+                    TriggerTransformation(kPlayer);
+                }
+                else if (player != null)
+                {
+                    TriggerTransformation(player);
+                }
             }
         }
 
         #endregion
 
         #region Transformation Logic
+
+        private void TriggerTransformation(K_Player kPlayer)
+        {
+            if (oneUse && hasTriggered) return;
+            if (kPlayer == null) return;
+
+            var level = Scene as Level;
+            if (level == null) return;
+
+            // Check required flag
+            if (!string.IsNullOrEmpty(requiredFlag) && !level.Session.GetFlag(requiredFlag))
+            {
+                return;
+            }
+
+            hasTriggered = true;
+
+            // Store velocity if needed
+            Vector2 storedVelocity = preserveVelocity ? kPlayer.Speed : Vector2.Zero;
+
+            // Check if player is in Kirby mode
+            if (kPlayer.KirbyModeActive)
+            {
+                TransformKPlayerToNormal(kPlayer);
+            }
+            else
+            {
+                TransformKPlayerToKirby(kPlayer);
+            }
+
+            // Restore velocity if preserveVelocity is enabled
+            if (preserveVelocity)
+            {
+                kPlayer.Speed = storedVelocity;
+            }
+        }
 
         private void TriggerTransformation(global::Celeste.Player player)
         {
@@ -147,7 +206,7 @@ namespace Celeste.Triggers
 
             var level = Scene as Level;
             if (level == null) return;
-            
+
             // Check required flag
             if (!string.IsNullOrEmpty(requiredFlag) && !level.Session.GetFlag(requiredFlag))
             {
@@ -192,20 +251,70 @@ namespace Celeste.Triggers
         private void TransformToKirbyPlayer(global::Celeste.Player player)
         {
             if (player == null) return;
-            
+
             // Play transformation effect
             PlayTransformationEffect(player.Position, true);
 
             // Enable Kirby mode
             player.EnableKirbyMode();
-            
+
             // Set initial power state if specified
             if (initialPower != KirbyMode.KirbyPowerState.None)
             {
                 player.SetKirbyPowerState(initialPower);
             }
-            
+
             IngesteLogger.Info($"Player transformed to Kirby via KirbyPlayerTrigger{(initialPower != KirbyMode.KirbyPowerState.None ? $" with power: {initialPower}" : "")}");
+        }
+
+        private void TransformKPlayerToKirby(K_Player kPlayer)
+        {
+            if (kPlayer == null) return;
+
+            // Play transformation effect
+            PlayTransformationEffect(kPlayer.Position, true);
+
+            // Enable Kirby mode on K_Player
+            kPlayer.KirbyModeActive = true;
+
+            // Enable health system
+            var healthManager = PlayerHealthManager.GetOrCreate(kPlayer.Scene as Level, kPlayer.MaxHealth);
+            healthManager.EnableKirbyMode(kPlayer.MaxHealth);
+
+            // Ensure hat and scarf are visible
+            if (kPlayer.HatScarf != null)
+            {
+                kPlayer.HatScarf.Visible = true;
+                kPlayer.HatScarf.Color = kPlayer.Hair.Color;
+            }
+
+            IngesteLogger.Info($"K_Player transformed to Kirby mode via KirbyPlayerTrigger");
+        }
+
+        private void TransformKPlayerToNormal(K_Player kPlayer)
+        {
+            if (kPlayer == null) return;
+
+            // Play transformation effect
+            PlayTransformationEffect(kPlayer.Position, false);
+
+            // Disable Kirby mode on K_Player
+            kPlayer.KirbyModeActive = false;
+
+            // Disable health system
+            var healthManager = PlayerHealthManager.Instance;
+            if (healthManager != null)
+            {
+                healthManager.DisableKirbyMode();
+            }
+
+            // Hide hat and scarf
+            if (kPlayer.HatScarf != null)
+            {
+                kPlayer.HatScarf.Visible = false;
+            }
+
+            IngesteLogger.Info("K_Player transformed back to normal via KirbyPlayerTrigger");
         }
 
         #endregion

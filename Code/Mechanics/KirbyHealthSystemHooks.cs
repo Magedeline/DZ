@@ -154,16 +154,16 @@ namespace Celeste
                 return orig(self, direction, evenIfInvincible, registerDeathInStats);
             }
 
-            // Get the health controller
-            var controller = KirbyHealthController.Instance;
-            if (controller == null || !controller.IsEnabled)
+            // Get the health manager
+            var healthManager = PlayerHealthManager.Instance;
+            if (healthManager == null || !healthManager.IsKirbyMode)
             {
-                // No health controller, use normal death
+                // No health manager or not in Kirby mode, use normal death
                 return orig(self, direction, evenIfInvincible, registerDeathInStats);
             }
 
             // Check if player is already dead
-            if (controller.IsDead)
+            if (healthManager.IsDead)
             {
                 // Health is 0, allow death to proceed for respawn
                 return orig(self, direction, evenIfInvincible, registerDeathInStats);
@@ -171,10 +171,10 @@ namespace Celeste
 
             // In Kirby mode with health remaining - don't die, just take damage
             // This handles enemy damage since enemies call Player.Die
-            Logger.Log(LogLevel.Info, "KirbyHealthSystemHooks", "Death intercepted (likely enemy damage) - health remaining: " + controller.CurrentHealth);
+            Logger.Log(LogLevel.Info, "KirbyHealthSystemHooks", "Death intercepted (likely enemy damage) - health remaining: " + healthManager.CurrentHP);
 
             // Apply enemy damage (1 damage from enemies)
-            controller.DamageFromEnemy(self.Position - direction * 10f, 1);
+            healthManager.Damage(1);
 
             // Return null to prevent death body from spawning
             return null;
@@ -194,9 +194,9 @@ namespace Celeste
                 return;
             }
 
-            // Get the health controller
-            var controller = KirbyHealthController.Instance;
-            if (controller == null || !controller.IsEnabled)
+            // Get the health manager
+            var healthManager = PlayerHealthManager.Instance;
+            if (healthManager == null || !healthManager.IsKirbyMode)
             {
                 orig(self, data);
                 return;
@@ -233,10 +233,10 @@ namespace Celeste
             {
                 // Can't wiggle out - apply crushing damage (instant death in Kirby mode)
                 Logger.Log(LogLevel.Info, "KirbyHealthSystemHooks", "Crushing damage applied");
-                controller.DamageFromCrush();
+                healthManager.Damage(healthManager.MaxHP); // Instant death from crush
 
                 // Check if we died from the crush
-                if (controller.IsDead)
+                if (healthManager.IsDead)
                 {
                     // Let the death proceed normally for respawn handling
                     orig(self, data);
@@ -262,9 +262,9 @@ namespace Celeste
                 return;
             }
 
-            // Get the health controller
-            var controller = KirbyHealthController.Instance;
-            if (controller == null || !controller.IsEnabled)
+            // Get the health manager
+            var healthManager = PlayerHealthManager.Instance;
+            if (healthManager == null || !healthManager.IsKirbyMode)
             {
                 orig(self, player);
                 return;
@@ -281,14 +281,14 @@ namespace Celeste
                 return;
             }
 
-            // Apply spinner damage through health controller
-            if (controller.DamageFromSpinner(self.Position))
+            // Apply spinner damage through health manager
+            if (healthManager.Damage(1))
             {
                 // Damage applied successfully - don't call original Die
                 Logger.Log(LogLevel.Info, "KirbyHealthSystemHooks", "Spinner damage applied");
 
                 // If still alive, push player away from spinner
-                if (!controller.IsDead)
+                if (!healthManager.IsDead)
                 {
                     Vector2 pushDir = (player.Position - self.Position).SafeNormalize();
                     player.Speed = pushDir * 100f;
@@ -315,20 +315,20 @@ namespace Celeste
                 return;
             }
 
-            // Get the health controller
-            var controller = KirbyHealthController.Instance;
-            if (controller == null || !controller.IsEnabled)
+            // Get the health manager
+            var healthManager = PlayerHealthManager.Instance;
+            if (healthManager == null || !healthManager.IsKirbyMode)
             {
                 orig(self, player);
                 return;
             }
 
-            // Apply spike damage through health controller
-            if (controller.DamageFromSpike(self.Position))
+            // Apply spike damage through health manager
+            if (healthManager.Damage(1))
             {
                 Logger.Log(LogLevel.Info, "KirbyHealthSystemHooks", "Spike damage applied");
 
-                if (controller.IsDead)
+                if (healthManager.IsDead)
                 {
                     // Player died, let original death handler run
                     orig(self, player);

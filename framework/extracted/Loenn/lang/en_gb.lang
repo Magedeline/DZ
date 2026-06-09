@@ -7164,14 +7164,14 @@ entities.MaggyHelper/EnemyWaveTrigger.attributes.description.waveCount=
 entities.MaggyHelper/EnemyWaveTrigger.attributes.name.width=Width
 entities.MaggyHelper/EnemyWaveTrigger.attributes.description.width=
 
-# -- Event Trigger --
-entities.MaggyHelper/EventTrigger.placements.name.default=Event Trigger
-entities.MaggyHelper/EventTrigger.placements.name.chapter_intro=Event Trigger (Chapter Intro)
-entities.MaggyHelper/EventTrigger.placements.name.boss_intro=Event Trigger (Boss Intro)
-entities.MaggyHelper/EventTrigger.placements.name.boss_mid=Event Trigger (Boss Mid)
-entities.MaggyHelper/EventTrigger.placements.name.boss_end=Event Trigger (Boss End)
-entities.MaggyHelper/EventTrigger.placements.name.ending=Event Trigger (Ending)
-entities.MaggyHelper/EventTrigger.placements.name.credits=Event Trigger (Credits)
+# -- Pusheen Trigger Event --
+entities.MaggyHelper/EventTrigger.placements.name.default=Pusheen Trigger Event
+entities.MaggyHelper/EventTrigger.placements.name.chapter_intro=Pusheen Trigger Event (Chapter Intro)
+entities.MaggyHelper/EventTrigger.placements.name.boss_intro=Pusheen Trigger Event (Boss Intro)
+entities.MaggyHelper/EventTrigger.placements.name.boss_mid=Pusheen Trigger Event (Boss Mid)
+entities.MaggyHelper/EventTrigger.placements.name.boss_end=Pusheen Trigger Event (Boss End)
+entities.MaggyHelper/EventTrigger.placements.name.ending=Pusheen Trigger Event (Ending)
+entities.MaggyHelper/EventTrigger.placements.name.credits=Pusheen Trigger Event (Credits)
 entities.MaggyHelper/EventTrigger.placements.description.default=Blank trigger volume that dispatches a named cutscene or scripted event.
 entities.MaggyHelper/EventTrigger.placements.description.chapter_intro=Prefills a typical chapter intro event id and a slightly wider trigger volume.
 entities.MaggyHelper/EventTrigger.placements.description.boss_intro=Prefills a boss intro event id with a wider trigger volume for arena entrances.

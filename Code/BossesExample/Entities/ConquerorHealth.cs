@@ -24,6 +24,12 @@ internal class ConquerorHealth : Entity
   private int healthAmount;
   private float pixelSize;
 
+  public static Entity Load(Level level, LevelData levelData, Vector2 offset, EntityData data)
+  {
+    bool smallHealth = data.Bool("smallHealth", false);
+    return new ConquerorHealth(smallHealth);
+  }
+
   public ConquerorHealth(bool smallHealth)
   {
     this.Add((Component) (this.baseBar = global::Celeste.Mod.MaggyHelper.BossesExample.BossesExampleModule.GuiBank.Create("bossBaseBar")));

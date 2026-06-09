@@ -22,6 +22,12 @@ internal class HealthBar : Entity
   private List<HealthBar.StrawberryIcon> berryList;
   private int health;
 
+  public static Entity Load(Level level, LevelData levelData, Vector2 offset, EntityData data)
+  {
+    int amountHealth = data.Int("health", 5);
+    return new HealthBar(amountHealth);
+  }
+
   public HealthBar(int amountHealth)
   {
     this.Add((Component) (this.barSprite = global::Celeste.Mod.MaggyHelper.BossesExample.BossesExampleModule.GuiBank.Create("healthBar")));

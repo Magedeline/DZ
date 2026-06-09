@@ -2,13 +2,21 @@
 {
     [CustomEntity(ids: "MaggyHelper/StarBlock")]
     [Tracked(true)]
-    public abstract class StarBlock : Entity
+    public class StarBlock : Entity
     {
         private bool isBroken;
         private int width;
         private int height;
         private const int grid_size = 8;
         private MTexture texture;
+
+        public static Entity Load(Level level, LevelData levelData, Vector2 offset, EntityData data)
+        {
+            Vector2 position = data.Position + offset;
+            int width = data.Width;
+            int height = data.Height;
+            return new StarBlock(position, width, height);
+        }
 
         public StarBlock(Vector2 position, int width, int height) : base(position)
         {

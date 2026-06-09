@@ -1,4 +1,4 @@
-// Celeste.CS10_FinalLaunch
+﻿// Celeste.CS10_FinalLaunch
 
 namespace Celeste.Entities;
 
@@ -130,7 +130,7 @@ internal class CustomRalseiBoostCutscene : CutsceneEntity
 		};
 		if (!hasGolden)
 		{
-			Audio.SetMusic("event:/");
+			Audio.SetMusic(null); // Stop music (silence)
 		}
 		p2 = cameraOffset.Y;
 		int to = 180;

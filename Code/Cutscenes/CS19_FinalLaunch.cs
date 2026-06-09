@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Runtime.CompilerServices;
 using FMOD.Studio;
@@ -115,7 +115,7 @@ public class CS19_FinalLaunch : CutsceneEntity
         ScreenWipe.WipeColor = Color.White;
         if (!hasGolden)
         {
-            Audio.SetMusic("event:/");
+            Audio.SetMusic(null); // Stop music (silence)
         }
         p = cameraOffset.Y;
         int to = 180;

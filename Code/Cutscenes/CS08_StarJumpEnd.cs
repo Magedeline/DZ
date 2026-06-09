@@ -468,7 +468,7 @@ namespace Celeste.Cutscenes
             // Dramatic interruption
             this.Level.Shake(0.4f);
             Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
-            Audio.Play("event:/", "slices", 1f);
+            Audio.Play("event:/new_content/char/pusheen/bosses/els/consume_crystal_heart");
             
             this.Level.Flash(Color.Red * 0.3f, false);
             

@@ -205,9 +205,6 @@ namespace Celeste.Mod.MaggyHelper
             // Note: AreaMapData, ChapterActRegistry, and BossRosterRegistry
             // use lazy initialization - they'll be populated on first access.
 
-            // Load FMOD audio banks
-            LoadAudioBanks();
-
             // Register hooks
             // OuiChapterSelectHooks: Wraps OuiChapterSelect to catch crashes from updateScarf()
             OuiChapterSelectHooks.Load();
@@ -320,22 +317,21 @@ namespace Celeste.Mod.MaggyHelper
         {
             try
             {
-                // Load the master bank first (required for all FMOD functionality)
-                Audio.Banks.Load("Audio/Master_Bank", loadStrings: true);
-                Audio.Banks.Load("Audio/Master_Bank.strings", loadStrings: true);
+                // NOTE: Master_Bank and Master_Bank.strings are auto-loaded by Everest;
+                // loading them manually here caused bus:/ to be reset and silenced all audio.
 
                 // Load custom audio banks for Pusheen/Maggy audio (divided by chapter sections)
                 // pusheen_audio_A: Chapter 0-7 music and SFX
-                Audio.Banks.Load("Audio/pusheen_audio_A", loadStrings: true);
+                Audio.Banks.Load("Audio/pusheen_audio_A", loadStrings: false);
 
                 // pusheen_audio_B: Chapter 8-14 music and SFX
-                Audio.Banks.Load("Audio/pusheen_audio_B", loadStrings: true);
+                Audio.Banks.Load("Audio/pusheen_audio_B", loadStrings: false);
 
                 // pusheen_audio_C: Chapter 15-17 music and SFX
-                Audio.Banks.Load("Audio/pusheen_audio_C", loadStrings: true);
+                Audio.Banks.Load("Audio/pusheen_audio_C", loadStrings: false);
 
                 // pusheen_audio_D: Chapter 18-21 and special music/SFX
-                Audio.Banks.Load("Audio/pusheen_audio_D", loadStrings: true);
+                Audio.Banks.Load("Audio/pusheen_audio_D", loadStrings: false);
 
                 Logger.Log(LogLevel.Info, "MaggyHelper", "All audio banks loaded successfully");
                 LogAudioEventNamespaces();
@@ -1319,6 +1315,12 @@ namespace Celeste.Mod.MaggyHelper
             base.LoadContent(firstLoad);
             // BossesExampleModule.LoadContent(firstLoad);
             // ProphecyFont is now lazy-initialized on first access
+
+            // Load FMOD audio banks after audio system is ready
+            if (firstLoad)
+            {
+                LoadAudioBanks();
+            }
 
             // Initialize backdrops (CustomBackdrop attributes auto-register, but ensure loading)
             InitializeBackdrops();

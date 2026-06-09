@@ -236,12 +236,11 @@ namespace Celeste.Mod.MaggyHelper
             // Room transition handler for Kirby mode
             global::Celeste.RoomTransitionHandler.Load();
 
-            // Kirby player map-entry hooks (Everest + MonoMod + vanilla compatibility)
-            // Ensures controllers attach on Player spawn and metadata-based activation works.
-            global::Celeste.KirbyPlayerMapHooks.Load();
-
             // Kirby health system hooks for hazard damage integration
             global::Celeste.KirbyHealthSystemHooks.Load();
+
+            // K_Player and KirbyHatScarf hooks for player entity management
+            global::Celeste.K_PlayerHooks.Load();
 
             // Debug room warp menu (development convenience)
             Everest.Events.Level.OnLoadLevel += OnLoadLevel_EnsureHotReloadController;
@@ -390,8 +389,8 @@ namespace Celeste.Mod.MaggyHelper
 
             // Manual hook cleanup for ChapterProgressionManager (if not converted to ModuleHook yet)
             ChapterProgressionManager.Unload();
-            global::Celeste.KirbyPlayerMapHooks.Unload();
             global::Celeste.KirbyHealthSystemHooks.Unload();
+            global::Celeste.K_PlayerHooks.Unload();
 
             // Unload SubChapterManager (EXPERIMENTAL/TEST ONLY)
             global::Celeste.SubChapterManager.Unload();
@@ -1438,7 +1437,7 @@ namespace Celeste.Mod.MaggyHelper
                 MaggyHelperModule.Session.CreditsCompleted = false;
             }
 
-            creditsSession.Audio.Music.Event = "event:/music/pusheen/lvl17/main";
+            creditsSession.Audio.Music.Event = SoundBank.Music.Lvl17.Main;
             creditsSession.Audio.Apply(false);
 
             Engine.Scene = new LevelLoader(creditsSession)

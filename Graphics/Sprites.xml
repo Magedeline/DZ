@@ -1076,8 +1076,8 @@
       <!-- Basic Movement -->
       <Loop id="idle" path="idle" delay="0.2" />
       <Anim id="walk" path="walk" delay="0.08" />
-      <Anim id="run" path="run" delay="0.06" />
-      <Anim id="jump" path="jump" delay="0.1" />
+      <Anim id="run" path="runFast" delay="0.06" />
+      <Anim id="jump" path="jumpFast" delay="0.1" />
       <Loop id="fall" path="fall" delay="0.1" />
       <Anim id="fallSlow" path="fall" delay="0.1" />
       <Anim id="fallFast" path="fall" delay="0.1" />
@@ -1132,7 +1132,7 @@
       <Anim id="dreamDashOut" path="dreamDash" frames="17-20" delay="0.04" />
       <Anim id="dreamdash_in" path="dreamdash_in" delay="0.04" goto="dreamdash_loop"/>
       <Loop id="dreamdash_loop" path="dreamdash_loop" delay="0.03" />
-      <Anim id="dreamdash_out" path="dreamdash_out" delay="0.04" />
+      <Anim id="dreamdash_out" path="dreamdash_out" delay="0.04" frames="17-20" />
       
       <!-- Special Effects -->
       <Loop id="spin" path="spin" delay="0.05" frames="0-15" />
@@ -1195,7 +1195,7 @@
         <Anim id="deadside" path="death_h" delay="0.02" frames="0-12" />
         <Anim id="deadup"   path="death_h" delay="0.02" frames="0-12" />
         <Anim id="deaddown" path="death_h" delay="0.02" frames="0-12" />
-        <Anim id="sleep" path="wakeup/12" delay="0.5" frames="14-0" />
+        <Anim id="sleep" path="wakeUp/" delay="0.5" frames="14-0" />
 
         <Anim id="roll" path="roll" frames="0-12" delay="0.05"/>
         <Anim id="rollGetUp" path="roll" frames="12-16" delay=".1" goto="downed"/>

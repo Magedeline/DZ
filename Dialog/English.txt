@@ -930,7 +930,7 @@ Maggy_dside_unlocked=D-Side Unlocked
 # ================================
 # Miscellaneous
 # ================================
-Maggy_High_Difficulty=Ready to Determined the Final Challenge Every Chapter in every A B and C Side are now accessible to Pink Platinum Berry and D Side or Desolo Side is Now Available Good luck and Stay Determined.
+Maggy_High_Difficulty=The final challenge awaits. Every A, B, and C-Side chapter now counts toward the Pink Platinum Berry, and the D-Side — the Desolo Side — is now available. Good luck, and stay determined.
 
 # ================================
 # Character Names
@@ -1094,7 +1094,7 @@ INTRO_VIGNETTE_SKIP=Skip Cutscene
 
 INTRO_DISCLAIMER_HEADER=FALSE ALLEGATION WARNING
 INTRO_DISCLAIMER_LINE1=This is a fan-made mod and is not affiliated with the original creators of Celeste or any other media referenced within.
-INTRO_DISCLAIMER_LINE2=and It put alot of protection for the original creators and the mod creator.
+INTRO_DISCLAIMER_LINE2=and it puts a lot of protection in place for the original creators and the mod creator.
 INTRO_DISCLAIMER_LINE3=so if you have any question about this mod please ask the mod creator or the original creators of Celeste.
 INTRO_DISCLAIMER_LINE4=and you agree on not sharing this mod without permission and not allowed to make false evidences.
 INTRO_DISCLAIMER_LINE5=remind you that if you did, you will be held accountable for your actions and you will be responsible for any consequences that may arise from it.
@@ -1540,7 +1540,7 @@ I can't tell you what a relief it is{n}to {~}Finally{/~} get out of this Afterli
 [CHARA left sad]
 ...
 Listen.
-I know that your climbing this mountian... again...
+I know that you're climbing this mountain... again...
 and I know that you have saw from florida have those Bloody Rain
 
 [BADELINE right worriedAlt]
@@ -1780,7 +1780,7 @@ He said that there would be something terrible will happen.
 At first I thought he was crazy...
 
 [BADELINE right worriedAlt]
-But soon after he took Madeline, seperated from Me...
+But soon after he took Madeline, separated from Me...
 Also when were sleeping we woke up this world to be like
 The Nether
 
@@ -1962,7 +1962,7 @@ Also the second rule is they do not allow hovering for a odd reason.
 so yeah I'll tell you later but sorry to hate to say this {+KIRBY}.
 
 [BADELINE left worried]
-{+thought}I do not know why this mountian has took his ability away, he suppose to have it to be used for it...{+endthought}
+{+thought}I do not know why this mountain has taken his ability away, he's supposed to have it to use it...{+endthought}
 
 MAGGYHELPER_CH3_CHECKINGONTHEO=
 [THEO left normal]
@@ -2122,8 +2122,8 @@ Okay I think my stress has been relief for now.
 
 MAGGYHELPER_CH4_RALSEI_PREINTRO=
 [BADELINE left angry]
-To Be honest whoever built this places is entirely different.
-if the ruined is more like hell then why are we at that places.
+To be honest, whoever built this place is entirely different.
+if the ruins are more like hell, then why are we at that place.
 
 [??? left normal]
 because your dreaming
@@ -2235,11 +2235,11 @@ But make it quick.
 Okay here it goes.
 
 [RALSEI right angry]
-This is the legend of Celeste Mountain and Mount DesoloZantas.
+This is the legend of Celeste Mountain and Mount Desolo Zantas.
 
 MAGGYHELPER_CH4_LEGEND_A=
 {trigger 0 legend picture appears and scroll up}
-Once Upon of time there was the void
+Once upon a time, there was the void
 the void of hopes
 the void of dreams
 the void of light
@@ -2249,44 +2249,44 @@ the void of nothing
 the legend of The Broken Star Warrior
 
 MAGGYHELPER_CH4_LEGEND_B=
-{trigger 0 flash onto the fourth line text}For Countless eons both human and monster have live side by side at peaces
-But When the bond of void was broken
-The terrible calamity known as the {~}FALL{/~} occured
-That Then the god like demon angel emerge from the ground from both worlds
-the force of nature know as El's would show no mercy to both monster and humanity himself.
-and planet popstar and earth will drew before there last breath
+{trigger 0 flash onto the fourth line text}For countless eons, humans and monsters lived side by side in peace
+But when the bond of the void was broken
+The terrible calamity known as the {~}FALL{/~} occurred
+Then the godlike demon angels emerged from the ground of both worlds
+The force of nature known as the El's would show no mercy to monsters or humanity.
+and Planet Popstar and Earth would draw their last breath
 
 MAGGYHELPER_CH4_LEGEND_C=
-That Then Six Heros and one Star warrior will emergeds from the far side of the galaxy and confronting El's that everyone feared
-to take all the power to strike him down
+Then six heroes and one Star Warrior emerged from the far side of the galaxy to confront the El's that everyone feared
+gathering all their power to strike him down
 and seal him away for good
 
 MAGGYHELPER_CH4_LEGEND_D=
-A Woman, A Man, a Monsters, a Roaring Princes, a Reflectionar, a Darkeners, and the Stars Warrior all above.
-They will be know as the {~}DESOLO ZANTAS THE LAST EMDEMY{/*}
+A Woman, a Man, a Monster, a Roaring Prince, a Reflectionar, a Darkener, and the Star Warrior above all.
+They would be known as the {~}DESOLO ZANTAS, THE LAST EMDEMY{/~}
 
 MAGGYHELPER_CH4_LEGEND_E=
-Together with a help of monster kind
-they banish the El's to the void and sepereate the mountian Desolo Zantas into the eventhorizon which put it as far away as possible
-and banish to the dark dimension that is a prision that monster has determined to save mankind
-but with a cost that eventually for later generation for many years to come
+Together, with the help of monsterkind,
+they banished the El's to the void and separated Mount Desolo Zantas into the event horizon, putting it as far away as possible
+banished to a dark dimension — a prison the monsters built, determined to save mankind
+but at a cost that later generations would bear for many years to come
 
 MAGGYHELPER_CH4_LEGEND_F=
-El's will return once again to take it's revenge on both monster and humanity
-and kill of those six heros and one star warrior that they have vanquish him
-the Celeste Mountain will be there to protect the world from the darkness
-but have very limited of what it can do to stop the El's
-without Mount Desolo Zantas together with Celeste Mountain
-Most of the ecosystem and climate change has rapidly declined
-but recently there a vortex has been open above the mountian Celeste
-and with that, both light and dark with planet popstar and earth will shifted to the breaking point
+One day the El's would return to take their revenge on both monsters and humanity
+and kill the six heroes and the one Star Warrior who had vanquished them
+Celeste Mountain would be there to protect the world from the darkness
+but there was a limit to what it could do to stop the El's
+Without Mount Desolo Zantas together with Celeste Mountain
+most of the ecosystem and climate rapidly declined
+But recently, a vortex has opened above Mount Celeste
+and with that, both light and dark — Planet Popstar and Earth — have shifted to the breaking point
 
 MAGGYHELPER_CH4_LEGENDOUTRO=
 [RALSEI left normal]
-so what you think about that story?
+So, what do you think about that story?
 
 [BADELINE left angryalt]
-I think thats kind of a load of bullshits if you ask me.
+I think that's kind of a load of bullshit, if you ask me.
 
 [RALSEI left upset]
 just don't say that to me okay?
@@ -2303,8 +2303,8 @@ This places seem familiar.
 Are you sure about this places?
 
 [RALSEI right sad]
-Yes I know that this places is alot to handle.
-But either in way we should keep going.
+Yes, I know that this place is a lot to handle.
+But either way, we should keep going.
 {trigger Chara appear}
 
 [CHARA right posh]
@@ -3483,7 +3483,7 @@ MAGGYHELPER_CH6_INTRO=
 
 [BADELINE right angry flip]
 So {0.5} Your telling me that this entire Mountain.
-Used to be a bigger Mountian?
+Used to be a bigger Mountain?
 
 [RALSEI left upset]
 Yes it was back then.
@@ -3573,7 +3573,7 @@ Anyways Good luck, and focus on your precision!
 
 MAGGYHELPER_CH6_THEO_2=
 [BADELINE left simple_sigh]
-We probably do not get many people to climb this mountian right Theo?
+We probably do not get many people to climb this mountain right Theo?
 
 [THEO right thinking]
 Not Really...
@@ -3598,7 +3598,7 @@ And you nearly got her killed...
 
 MAGGYHELPER_CH6_THEO_3=
 [BADELINE left worriedAlt]
-Don't we think that granny and your grandpa get lonely in that big mountian?
+Don't we think that granny and your grandpa get lonely in that big mountain?
 
 [THEO right thinking]
 Granny and my Grandpa used to be Friends.
@@ -3620,7 +3620,7 @@ Even tho she was really scrouchy as they get older.
 But at the end I knew right away that it would be with her as the bird always.
 
 [BADELINE left concerned]
-Then if she climb this {##5fcde4}MOUNTIAN?{#}
+Then if she climb this {##5fcde4}MOUNTAIN?{#}
 Then what would our consquense be like?
 
 [BADELINE left worriedAlt]
@@ -5110,7 +5110,7 @@ and sent {+MADELINE} to the hospital
 
 [BADELINE left worriedalt]
 To be honest.
-She feel alot and got hurt actually.
+She feel a lot and got hurt actually.
 
 [CHARA right wheezing flip]
 {~}If you say so then leave{/~}
@@ -5142,7 +5142,7 @@ Because He is A Star warrior too you know as the fighter.
 I know he may be a kid but give him to challenge you
 
 [BADELINE left normal]
-so lets climb the way out to mountian together
+so let's climb our way out to the mountain together
 
 [CHARA right angry]
 Don't you dare to come closer to me your not gonna like it.
@@ -5153,7 +5153,7 @@ YOUR NOT A FIGHTER!!!
 
 MAGGYHELPER_CH8_CHARA_BOSS_TIRED_B=
 [CHARA right angry]
-YOUR JUST ANOTHER IDIOTIC MOUNTIAN CLIMBER!!!
+YOU'RE JUST ANOTHER IDIOTIC MOUNTAIN CLIMBER!!!
 
 MAGGYHELPER_CH8_CHARA_BOSS_TIRED_C=
 [CHARA right angry]
@@ -5520,13 +5520,13 @@ MAGGYHELPER_CH9_ASCEND_5=
 Were making to the final home stretch.
 
 [MADELINE left normal]
-We're so close.{n}were gonna reach it to the new mountian.
+We're so close.{n}we're gonna reach the new mountain.
 
 [THEO right wtf]
 a what?
 
 [MADELINE left normal]
-a new mountian, I just discoverd.
+a new mountain, I just discovered.
 
 [BADELINE right worriedAlt]
 are you sure about this?
@@ -5540,7 +5540,7 @@ This Mountain is called {~}Desolo Zantas{/~}.
 and there is also floating small mountain that is so absolutely gorgeous.
 
 [CHARA right laughing]
-To be honest I heard many humans who came to the forgotten mountian, and I know what type of soul they have.
+To be honest I heard many humans who came to the forgotten mountain, and I know what type of soul they have.
 
 [BADELINE right concerned]
 your sure?
@@ -5671,7 +5671,7 @@ There the vortex We Finally made it in time
 {trigger 0 maddy turn left}
 [MADELINE right sad]
 alright everyone listen up
-I know this vortex is big but this is our only chances to get to desolo zantas
+I know this vortex is big, but this is our only chance to get to Desolo Zantas
 [RALSEI left determined]
 I understood loud and clear
 [RALSEI left sad]
@@ -5684,7 +5684,7 @@ kirby do you want to say something?
 [KIRBY left sadder]
 well then, when I first met you baddy
 [KIRBY left upset]
-I thought you were gonna touture me
+I thought you we're gonna touture me
 [KIRBY left distracted]
 but when I try to get to know you
 [KIRBY left upset]
@@ -5692,7 +5692,7 @@ you have been overall irritated
 [KIRBY left sad]
 but I knew one thing for sure
 [KIRBY left sadder]
-you want to be outside mountian celeste... Right?
+you want to be outside mountain celeste... Right?
 [BADELINE right worriedalt]
 ... I am so sorry for getting myself out of your way
 and yes I really want to be with her
@@ -5716,7 +5716,7 @@ I mean by something coming down... something like...?
 {trigger 1 gigasfx, and flash}
 [MADELINE right surprised]
 everyone Lookout!
-{trigger 2 black katana stab to the peak mountian, make dark fountian, and life everyone upwards}
+{trigger 2 black katana stab to the peak mountain, make dark fountain, and life everyone upwards}
 [ELS right normal]
 This force of nature has already begun...{n}In a Mean time.
 I'll toy you around later.
@@ -5731,8 +5731,8 @@ and relax for now.
 ... actually
 you have been wondering where they are now?
 let me tell you a truth.
-you see when this black katana hit to the peak something has cause this mountian
-thats right this black sword just struck to the heart of the mountian
+you see when this black katana hit to the peak something has cause this mountain
+thats right this black sword just struck to the heart of the mountain
 and not only theyre being pull upward
 but to everyone who is near to it being pull up as well
 ... ultimately the force of nature which everyone has fear
@@ -5742,7 +5742,7 @@ well wrong infact the main reason madeline is climbing that peak after 10 years 
 it's because els has planned that for lowering them in
 he won't stop until he reach to his some stupid infinite properparisty goal
 as it for now with you your game of this world continues
-but there journey must climb to another mountian... again
+but their journey must climb another mountain... again
 well thats all
 see you later
 {Name#/}""{/}
@@ -6277,7 +6277,7 @@ Yeah that is my name.
 [FLOWEY right makeadeal]
 Seriously?!
 Listen up you young lady
-You have no idea about this mountian you just came back to.
+You have no idea about this mountain you just came back to.
 If your gonna yell at me then fine!
 I'll say this...!
 
@@ -7463,7 +7463,7 @@ what a second?
 
 MAGGYHELPER_CH10_WELCOME_2_MT_DESOLO_ZANTAS_C=
 [BADELINE left yell]
-O M G Is This Mountian Desolo Zantas?
+O M G Is This Mountain Desolo Zantas?
 
 MAGGYHELPER_CH10_WELCOME_2_MT_DESOLO_ZANTAS_D=
 [MADELINE left together]
@@ -7503,7 +7503,7 @@ Hellloooo Tori
 What an unexpected guest who you just came back darling...
 
 [TORIEL right goawaykingtitan]
-or a mountian climber?
+or a mountain climber?
 
 [SANS right normal]
 Toriel who is here?
@@ -7540,7 +7540,7 @@ well in any cases.[TORIEL right normal]followed me...
 Wow... &she must have many children &with those picture back then...
 
 [CHARA right laughing]
-Yes she did have alot of picture.
+Yes she did have a lot of picture.
 But there was one time when I was taken only one photos of me and asriel.
 
 [BADELINE left worriedAlt]
@@ -8143,7 +8143,7 @@ but I think you should stop accusing her of such thing
 [STARLO left normal]
 oh sorry miss
 wait...
-your... a women who fell to the vortex
+your... a woman who fell to the vortex
 and climb the mountain right?
 
 [MADELINE left upset]
@@ -8359,7 +8359,7 @@ also how do you know about chara exactly?
 
 [Maggy left normal]
 well I kind of know of what chara is
-because I have read alot of books about them
+because I have read a lot of books about them
 and I also know that they are very powerful
 and they can be very dangerous if they are not controlled
 but on the bright side there very responsible in a good way
@@ -8386,13 +8386,13 @@ what was that?
 [MOM left concerned]
 Well I am very sure that everything will be okay!
 wait
-that mountian is shaking!
+that mountain is shaking!
 is it going to erupt!?
 {trigger 2 riser sfx}
 
 [Maggy left annoyed]
 ah shit thats can't be good
-{trigger 3 mt celeste erupted and dark fountian spawned in destructively}
+{trigger 3 mt celeste erupted and dark fountain spawned in destructively}
 
 MAGGYHELPER_CH11_MAGGY_END=
 [MAGGY left normal]
@@ -8406,7 +8406,7 @@ What do we do now!?
 
 [MAGGY left normal]
 We need to find a way to stop that thing!
-becuase my power is not enough compare to el's
+because my power is not enough compare to el's
 
 [KIRBY left determined]
 Then we need to find a way to power up!
@@ -9485,13 +9485,13 @@ and I'll be happy to tell you the untold truth about this legend
 
 MAGGYHELPER_CH12_UNTOLD_LEGEND_A=
 Chapter 0 the creations
-when the heros emerged from the darkness
-the heros created it own vessel
-but however that hero was created was discarded and move to a women
+when the heroes emerged from the darkness
+the heroes created it own vessel
+but however that hero was created was discarded and move to a woman
 
 MAGGYHELPER_CH12_UNTOLD_LEGEND_B=
 chapter 1 forbidden city
-a women and part of her climb mountian celeste and discovered the hidden secrets within
+a woman and part of her climbed mountain celeste and discovered the hidden secrets within
 after she fell asleep
 
 MAGGYHELPER_CH12_UNTOLD_LEGEND_C=
@@ -9524,7 +9524,7 @@ and not madeline
 MAGGYHELPER_CH12_UNTOLD_LEGEND_G=
 chapter 6 stronghold
 a star warrior, part of her, and the darkener
-climb this mountian
+climb this mountain
 and enter a secret passage that leads to a stronghold of a lab
 where you find a strawberry that turns out to be a trap
 luckly they escape this time
@@ -9544,12 +9544,12 @@ and the little pep talk
 the child got upset that he back lashes to her heart
 and fell to the main ground
 but luckly a star warrior able to not onlt comfront the child
-but encoruage him too
+but encourage him too
 
 MAGGYHELPER_CH12_UNTOLD_LEGEND_J=
 chapter 9 the final ascents aka beyond summit
 the star warrior a child,, part of her, the darkener, and women
-work together to climb this mountian
+work together to climb this mountain
 and reach to about the summit
 even beyond the dark side of the moon
 
@@ -9557,7 +9557,7 @@ MAGGYHELPER_CH12_UNTOLD_LEGEND_K=
 chapter 10 the arrivial
 after they reach to the summit
 that story doesn't end here
-and climb a floating mountian
+and climb a floating mountain
 and reach to a strange new world
 where there is more metaphor and a more positve energy
 and eventually reach to a strange new land
@@ -9572,18 +9572,18 @@ and find out of who stole those gift was
 MAGGYHELPER_CH12_UNTOLD_LEGEND_M=
 chapter 12 the water edge falls
 this is where you meet me
-and I tell you the untold legend of a women
+and I tell you the untold legend of a woman
 who seem out deeper understanding of the world
 and how the truth was revealed
 and how the world was created
 but they was unexpectedly that the apex predator created a dark fountain
-and merge the apex predator within the dark fountian
+and merge the apex predator within the dark fountain
 ultimate have to fight against the bigger apex titan predator
 
 MAGGYHELPER_CH12_UNTOLD_LEGEND_N=
 chapter 13 heat and magma
 after the larger threat was elimated
-they venture into the mid layer of volcanic area within the mountian itself
+they venture into the mid layer of volcanic area within the mountain itself
 where they from there they faces a security machine
 and that machine will terminated any life form as much as possible
 
@@ -9600,10 +9600,10 @@ after the virtual world
 they find most monster live in peaceful coexistence
 and never fight at all
 from there there safe from the mid ground of the enemys while keeping the commications between lower ground as much as possible
-after that the corridor will lead to the last peak of the mountian
+after that the corridor will lead to the last peak of the mountain
 where they will be judge by the roaring titan itself
 determined to fight and get one granted wish
-and bring monster back to the surface of earth on mountian celeste
+and bring monster back to the surface of earth on mountain celeste
 
 MAGGYHELPER_CH12_UNTOLD_LEGEND_Q=
 chapter 16?...
@@ -9613,19 +9613,19 @@ it's a long story
 MAGGYHELPER_CH12_UNTOLD_LEGEND_X=
 chapter 18 the heart of determined mountain
 after the last peak
-a women, go back to the celeste and seek out to know what lies in the center of mountian celeste
+a woman, go back to the celeste and seek out to know what lies in the center of mountain celeste
 but this time the heart may effect her
 and the heart gem will be rainbow
 
 MAGGYHELPER_CH12_UNTOLD_LEGEND_Y=
 chapter 19 Say Goodbye
-after many years of mountian ingeste
+after many years of mountain ingeste
 the women and part of her as they all know passes away
 and lead it to the darkness to bring everything to destrction
 
 MAGGYHELPER_CH12_UNTOLD_LEGEND_Z=
 finally chapter 20 The End
-a star warrior will with six other heros will elimated of god of force of nature
+a star warrior will with six other heroes will elimated of god of force of nature
 and to stop the end of the world threats as we know it
 and bring a new beggining to the world
 eventually breaking to the fourth wall and live peacefully ever after
@@ -9946,7 +9946,7 @@ Man I got some dieria that I just have go to the bucket
 {trigger 0 theo mad and bad enter}
 
 [BADELINE right worriedAlt]
-Yeah and we have to throw up alot within the garbage
+Yeah and we have to throw up a lot within the garbage
 
 [MADELINE right upset]
 Yeah next time sans were not going over there onboard
@@ -10644,7 +10644,7 @@ MAGGYHELPER_CH12_EXTRA_RALSEI_JEALOUSY_TRUTH_REVEALED=
 I have proof, Ralsei.
 Ancient texts from before the Roaring.
 They speak of multiple prophecies. Multiple heroes.
-and most heros are from each world.
+and most heroes are from each world.
 Including four star warrior clasher
 
 [STARSIE left unhappy]
@@ -10683,7 +10683,7 @@ So... there are more like us?
 [STARSIE left normal]
 well not exactly but I know that they took out one of the main villian from the past realities
 where kirby use to be here before his arrival
-These four heros were legendary warriors
+These four heroes were legendary warriors
 who thought brave and detemination to take out the known villian as parrallel nightmare
 
 [RALSEI left angry]
@@ -11041,7 +11041,7 @@ but him and asriel they knew that they would have to use one final act
 they both combined save and true reset to overwrite the entire world
 and that lead to the destruction of the entire reality
 enventaully chara and asriel both perished in the process
-and the world has been rewritten with a diffrent theme, diffrent, style, and diffrent people
+and the world has been rewritten with a different theme, different, style, and different people
 
 MAGGYHELPER_CH13_RALSEI_END_CINEMATIC=
 [RALSEI left sad]
@@ -11791,7 +11791,7 @@ What do you mean?
 [META_KNIGHT right normal]
 The Royal Robot Guard... Axis...
 He's been upgraded far beyond his original design...
-Since I Crashlanded from the Halbard after the Mountian Celeste Dark fountain incident
+Since I crash-landed from the Halberd after the Mountain Celeste Dark fountain incident
 he's been hunting me ever since...
 
 [BADELINE left concerned]
@@ -11879,7 +11879,7 @@ it's safe than sorry
 ch13_insidestaffroom_pre_intro=
 [BADELINE left normal]
 we made it inside the staff room
-and there alot of rats within it
+and there a lot of rats within it
 
 [BADELINE left worriedalt]
 now where is she?
@@ -11937,7 +11937,7 @@ tell us now you idiot!
 fine you got me and got code red
 I will tell you this time for real
 I was or used to be a regular televion back in the 70s
-alot of kids and adult like you back then enjoy watch it and have fun with it
+a lot of kids and adult like you back then enjoy watch it and have fun with it
 everything was fine until one day
 there was an arguement between the tv station and the network
 over the show ratings and advertisement money
@@ -11971,7 +11971,7 @@ this might disturb you all
 
 MAGGYHELPER_CH13_TENNA_EARTH_VIDEO_destructions=
 [HUMAN left NEWS]
-Breaking news! A massive dark entity has been spotted wreaking havoc across the globe from mountian celeste!
+Breaking news! A massive dark entity has been spotted wreaking havoc across the globe from mountain celeste!
 Citizens are urged to stay indoors and avoid any contact with the creature, known as ELs.
 Authorities are working tirelessly to contain the situation, but the entity's destructive power is unlike anything we've ever seen before.
 Stay tuned for more updates on this developing story.
@@ -12195,7 +12195,7 @@ THE BETRAYAL!
 MAGGYHELPER_CH13_ALPHY_TRUTH_LABS_PRE_INTRO=
 [none]
 To: Madeline
-thank you madeline for encoruage me to have something that I can motivated
+thank you madeline for encourage me to have something that I can motivated
 I was afriad that undyne would feel that she would died because I wasn't able to help her
 now with that out of the way I want to share something that lied beyond this elevator
 you may want to prepare something or someone at least, afraid or not
@@ -12488,7 +12488,7 @@ MAGGYHELPER_CH13_TAPE_04=
 [none]
 asriel
 I know you barely hear me or feel that I am still here
-but I want to say this, I met this oldlady she encoruage me to climb to this mountian name celeste,
+but I want to say this, I met this old lady who encouraged me to climb this mountain named celeste,
 I was pull into that vortex
 and met you.
 but... I ruined everything.
@@ -12503,7 +12503,7 @@ Old lady are you sure about this?
 [granny]
 positive I know you have the strength within it.
 [none]
-if it is gonna be another deja vu of this stupid mountian then I am willing to find out why.
+if it is gonna be another deja vu of this stupid mountain then I am willing to find out why.
 [granny]
 suit youself chara there things that you ready to meet but to others no ready to encounter
 [none]
@@ -12511,7 +12511,7 @@ sheesh get the actual fuck help old lady
 
 MAGGYHELPER_CH13_TAPE_FINAL=
 [none]
-I am so weak but still carrying asriel entering back to this floating mountian.
+I am so weak but still carrying asriel entering back to this floating mountain.
 I do not know how long I can live for.
 asriel I know your the only one who can help me but please anything say anything, I need your help.
 [darkmatter]
@@ -12915,7 +12915,7 @@ trigger 0 meta knight warp in to help kirby
 
 [META_KNIGHT right serious]
 I got you Kirby! Let's take this giant down together!
-crewmate assemble the Halbard
+crewmate assemble the Halberd
 
 MAGGYHELPER_CH14_GIANT_AXIS_BATTLE_DEFEAT=
 [GIANT_AXIS left angry]
@@ -13661,7 +13661,7 @@ I'm so sorry... I had no idea the pain you've endured.
 {big}HOWEVER YOUR MONSTER PARENTS TORIEL AND ASGORE REJECTED FROM ME AND SO THE REST OF MONSTER...{/big}
 {big}THEY LEFT THIS PEAK AND NEVER CAME BACK EVER AGAIN...{/big}
 {big}IT WAS ME WHO I PUSH EVERYTHING AWAY AFTER WE DID EVERYTHING TO SAVE HUMANITY FROM BRINK OF EXTINCTIONS...{/big}
-{big}BUT CONSEQEUNSLY THE CELESTE MOUNTIAN IS SLOWLY LOSING THE METAPHOR...{/big}
+{big}BUT CONSEQUENTLY THE CELESTE MOUNTAIN IS SLOWLY LOSING THE METAPHOR...{/big}
 {big}AND WITHOUT IT YOUR WORLD WILL BE MORE VUNERABLE...{/big}
 {big}SO PLEASE DON'T WASTE YOUR TIME YOUR LADIES...{/big}
 {big}TAKE YOUR WISH AND LEAVE THIS HORRIFIED PLACES... THE GRIEF... IT HAS CONSUMED US FOR SO LONG...{/big}
@@ -14324,7 +14324,7 @@ WELL THINK AGAIN
 I AM THE ABSOLUTE BEING
 AND WITH THIS POWER
 I WILL ERASE EVERYTHING FROM EXISTENCE
-AND YOU CLIMBING UP THIS MOUNTIAN CALLED CELESTE
+AND YOU CLIMBING UP THIS MOUNTAIN CALLED CELESTE
 WAS ALL A PILE OF SHIT
 [floweyfake left normal]
 feel left out poor darling
@@ -14437,7 +14437,7 @@ I don't Understand
 
 MAGGYHELPER_CH16_YOUR_CHOICES_SPARE_09=
 [FLOWEYELS left wtfalt]
-I don't Realy Understand
+I don't Really Understand
 
 MAGGYHELPER_CH16_YOUR_CHOICES_SPARE_LAST=
 [FLOWEYELS left wtf]
@@ -14455,7 +14455,7 @@ wake up...
 wh- what happen?
 
 [BADELINE left sadder]
-I don't know of what really happen, but I sadly think were back on mountian celeste.
+I don't know what really happened, but I sadly think we're back on mountain celeste.
 
 [MADELINE left angry]
 How long... was I out?
@@ -15261,7 +15261,7 @@ and you said you wanted to come{n}back and explore deeper about it's origin.
 Just please take care yourself and try not get caught on fire ok?!
 Also One last thing that I want to mention.
 If you see a heart that is completely different.
-It may affect to your {#ff0000}HEART{#} from this mountain is diffrent.
+It may affect to your {#ff0000}HEART{#} from this mountain is different.
 
 [MADELINE left sad]
 Yeah, I already noticed some of that...
@@ -15311,7 +15311,7 @@ and you said you wanted to come{n}back and explore deeper about it's origin.
 Just please take care yourself and try not get caught on fire ok?!
 Also One last thing that I want to mention.
 If you see a heart that is completely different.
-It may affect to your {#ff0000}HEART{#} from this mountain is diffrent.
+It may affect to your {#ff0000}HEART{#} from this mountain is different.
 
 [MADELINE left sad]
 Yeah, I already noticed some of that...
@@ -15853,7 +15853,7 @@ and Now your saying that this world is a modded game?!!!
 {*}Why keep this secret until now?!{/*}
 
 [CHARA right angry]
-Becuase we were being ripped off from another title that someone does not own
+Because we were being ripped off from another title that someone does not own
 Listen... at this First point,
 it's literally just a fucking bird.
 Second point!
@@ -16816,7 +16816,7 @@ but I thought you were...
 [MADELINE_SPIRIT right upset]
 Dead well yeah.
 [MADELINE_SPIRIT right normal]
-but turns out death is just another thing to climb the mountian.
+but turns out death is just another thing to climb the mountain.
 [BADELINE_SPIRIT right scoff]
 and this time your not alone with us.
 
@@ -16879,7 +16879,7 @@ I... I can't {~}MOVE{/~}!
 {# ffffff}Hah Finally At last I can feel your death!{#}
 {# ffffff}Everytime you three died, this world slip you away!{#}
 {# ffffff}Everytime you died, your friend and family forget you abit more!{#}
-{# ffffff}Your Life Will End Here where in this world is truely Game Over!{#}
+{# ffffff}Your Life Will End Here where in this world is truly Game Over!{#}
 {trigger 2 angel lift them up and smack harder to the ground lifting out of there soul out of them}
 [MADELINE left panic]
 {# AAAAFF}No! Please! Don't do this to us again!{#}
@@ -17852,7 +17852,7 @@ MAGGYHELPER_CH21_ELS_TERMINA_BOSS_INTRO=
 [els right normal]
 I am no longer the dark matter you have seen, no longer zero.
 I am els termina
-I am the titan of the size as the mountian, as you have climb
+I am the titan of the size as the mountain, as you have climb
 I will not only consume everything I will dominated and conquered worlds after worlds
 that is what we were made of
 
@@ -17976,7 +17976,7 @@ My child... you've returned to us...
 [Toriel left goawaykingtitan]
 Asriel... my dear son...
 [titan_king left happy]
-Well uhh I got alot of explaining to so uh I gave him a little life for you all to see your sons one last time.
+Well uhh I got a lot of explaining to so uh I gave him a little life for you all to see your sons one last time.
 [ASRIEL left sad]
 I... I remember everything now...
 {trigger 4 pan to badeline and madeline look at right}
@@ -18005,7 +18005,7 @@ not goodbye but more like, see ya later.
 {trigger 9 sans walk left and look at madeline and badeline}
 [sans right dudewtfalt]
 madeline are you sure about this?
-you been through alot with asriel, and against els
+you been through a lot with asriel, and against els
 {trigger 10 madeline turn right}
 [madeline left sadder]
 I am sorry to say this but
@@ -18186,7 +18186,7 @@ MAGGYHELPER_CH20_MONTHS_LATER=
 		and to els... he was a coward.
 
 		[MADELINE left sadder]
-		and for Asriel I miss him alot... Like I mean it...
+		and for Asriel I miss him a lot... Like I mean it...
 		
 		[WEBCAM_THEO right normal]
 		Yeah, We all do.
@@ -19268,7 +19268,7 @@ we will have your back as always
 [KING_DDD left loyal]
 to be clear I don't know what else what have to do but count me in.
 [meta_knight left prime]
-I will encoruage your strength for you to survive this fight and ultimately save the universe itself.
+I will encourage your strength for you to survive this fight and ultimately save the universe itself.
 [kirby right normal]
 alright then, now shall we go back to the past?
 [susie_haltmann left determined]
@@ -19702,7 +19702,7 @@ you are the star warrior and delta warrior.
 you have fought through every trial and every battle.
 you have gained the strength of every ally and every bond you have ever forged.
 that then, you must prove yourself one last time.
-to face a girl who climb the mountian and defeat a god who rules over the void.
+to face a girl who climb the mountain and defeat a god who rules over the void.
 who the girl you may ask?
 well it's madeline ofcourse but that just a simulation.
 [kirby left determined]
@@ -20175,14 +20175,14 @@ well that's good to hear, but I am still confused about one thing.
 why are you here?
 [GRANNY left normal]
 well see it for yourself.
-{trigger 0 madeline open the door and see the full picture of planet popstar and mountian celeste with desolo zantas right next to it}
+{trigger 0 madeline open the door and see the full picture of planet popstar and mountain celeste with desolo zantas right next to it}
 [MADELINE right surprised]
 wait this can't be real!
 [GRANNY left normal]
 oh but it is, this is the real world.
 you have alter the timeline since els death
 not only you brought me back to life.
-but everyone is doing a mt celeste and desolo zantas tour mountian tour.
+but everyone is doing a mt celeste and desolo zantas tour mountain tour.
 [MADELINE right normal]
 thats not sound bad at all.
 I am glad to see everyone is doing well.
@@ -20209,7 +20209,7 @@ so what now...?
 well I guess we can just enjoy the rest of our lives now.
 [KIRBY left upset]
 well not just that.
-wanna go on to adventure like a mountian or a planet?
+wanna go on to adventure like a mountain or a planet?
 [BADELINE left normal]
 actually not that bad idea
 [BANDANA DEE left normal]

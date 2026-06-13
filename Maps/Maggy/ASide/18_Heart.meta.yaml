@@ -1,5 +1,5 @@
 ﻿Icon: areas/Maggy/heart
-SID: Maggy/DESOLO_ZANTAS/18-Heart
+SID: Maggy/ASide/18_Heart
 Interlude: false
 TitleBaseColor: 8b0045
 TitleAccentColor: ff4488
@@ -62,4 +62,3 @@ Modes:
         Target: [0.000, 11.500, 19.000]
     Cursor: [0.000, 12.000, 19.000]
     State: 1
-

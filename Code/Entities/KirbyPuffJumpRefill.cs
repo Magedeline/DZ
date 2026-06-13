@@ -5,7 +5,6 @@ using Microsoft.Xna.Framework;
 using Monocle;
 using System;
 using System.Collections;
-using System.Reflection;
 
 namespace Celeste.Entities
 {
@@ -166,19 +165,7 @@ namespace Celeste.Entities
         /// </summary>
         private int GetCurrentPuffJumps(K_Player kPlayer)
         {
-            try
-            {
-                FieldInfo field = typeof(K_Player).GetField("kirbyFlapCount", BindingFlags.NonPublic | BindingFlags.Instance);
-                if (field != null)
-                {
-                    return (int)field.GetValue(kPlayer);
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.Log(LogLevel.Error, "KirbyPuffJumpRefill", $"Failed to get kirbyFlapCount: {ex.Message}");
-            }
-            return 0;
+            return kPlayer.KirbyFlapCount;
         }
 
         /// <summary>
@@ -186,18 +173,7 @@ namespace Celeste.Entities
         /// </summary>
         private void SetPuffJumps(K_Player kPlayer, int count)
         {
-            try
-            {
-                FieldInfo field = typeof(K_Player).GetField("kirbyFlapCount", BindingFlags.NonPublic | BindingFlags.Instance);
-                if (field != null)
-                {
-                    field.SetValue(kPlayer, Math.Max(0, count));
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.Log(LogLevel.Error, "KirbyPuffJumpRefill", $"Failed to set kirbyFlapCount: {ex.Message}");
-            }
+            kPlayer.SetKirbyFlapCount(count);
         }
 
         /// <summary>

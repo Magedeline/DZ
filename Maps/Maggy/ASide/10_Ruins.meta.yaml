@@ -1,5 +1,5 @@
 ﻿Icon: areas/Maggy/ruins
-SID: Maggy/DESOLO_ZANTAS/10-Ruins
+SID: Maggy/ASide/10_Ruins
 Interlude: false
 TitleBaseColor: 8b6914
 TitleAccentColor: 4a3520
@@ -64,4 +64,3 @@ Modes:
         Target: [-0.500, 5.300, 8.500]
     Cursor: [-0.500, 5.500, 8.500]
     State: 0
-

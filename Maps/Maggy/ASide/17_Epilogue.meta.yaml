@@ -1,5 +1,5 @@
 ﻿Icon: areas/Maggy/postepilogue
-SID: Maggy/DESOLO_ZANTAS/17-Epilogue
+SID: Maggy/ASide/17_Epilogue
 Interlude: true
 TitleBaseColor: 383838
 TitleAccentColor: 50afae
@@ -60,7 +60,3 @@ Modes:
         Target: [0.000, 11.000, 17.000]
     Cursor: [0.000, 12.000, 17.000]
     State: 0
-
-LoadingVignetteText:
-    Dialog: "CH0_INTRO"
-

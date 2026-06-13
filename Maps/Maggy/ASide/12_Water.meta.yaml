@@ -1,5 +1,5 @@
 ﻿Icon: areas/Maggy/water
-SID: Maggy/DESOLO_ZANTAS/12-Water
+SID: Maggy/ASide/12_Water
 Interlude: false
 TitleBaseColor: 1a8b9e
 TitleAccentColor: 6ae8f0
@@ -64,4 +64,3 @@ Modes:
         Target: [-0.300, 7.300, 9.500]
     Cursor: [-0.300, 7.500, 9.500]
     State: 0
-

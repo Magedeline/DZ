@@ -1,5 +1,5 @@
 Icon: areas/Maggy/truth
-SID: Maggy/DESOLO_ZANTAS/8-Truth
+SID: Maggy/ASide/08_Truth
 Interlude: false
 TitleBaseColor: 359fe0
 TitleAccentColor: 3c5cbc
@@ -64,3 +64,16 @@ Modes:
         Target: [8.100, 7.300, 13.700]
     Cursor: [8.000, 8.000, 13.500]
     State: 0
+
+MusicBySide:
+  - event:/music/pusheen/menu/complete_area
+  - event:/music/pusheen/menu/complete_bside
+  - event:/music/pusheen/menu/complete_cside
+  - event:/music/pusheen/menu/complete_dxside
+Title:
+  ASide: "Chapter Complete"
+  BSide: "B Side Complete"
+  CSide: "C Side Complete"
+  DSide: "D Side Complete"
+  DXSide: "DX Side Complete"
+  FullClear: "Chapter Clear"

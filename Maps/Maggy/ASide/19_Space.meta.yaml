@@ -1,5 +1,5 @@
 ﻿Icon: areas/Maggy/farewell
-SID: Maggy/DESOLO_ZANTAS/19-Space
+SID: Maggy/ASide/19_Space
 Interlude: false
 TitleBaseColor: 240d7c
 TitleAccentColor: ff6aa9
@@ -22,7 +22,7 @@ Modes:
 
 Mountain:
     BackgroundMusic: event:/music/pusheen/menu/level_select
-    BackgroundAmbience: event:/new_content/env/pusheen/gen_last_push
+    BackgroundAmbience: bus:/gameplay_sfx/ambience/pusheen/new_worldmap
     BackgroundMusicParams:
         moon_and_blackhole: 1
     MarkerTexture: marker/runNoBackpack

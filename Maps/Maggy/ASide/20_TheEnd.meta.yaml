@@ -1,5 +1,5 @@
 ﻿Icon: areas/Maggy/theend
-SID: Maggy/DESOLO_ZANTAS/20-TheEnd
+SID: Maggy/ASide/20_TheEnd
 Interlude: false
 TitleBaseColor: ffd819
 TitleAccentColor: ffffff
@@ -50,7 +50,7 @@ Modes:
     HeartIsEnd: true
     SeekerSlowdown: false
     BackgroundMusic: event:/music/pusheen/menu/level_select
-    BackgroundAmbience: event:/new_content/env/pusheen/gen_last_push
+    BackgroundAmbience: bus:/gameplay_sfx/ambience/pusheen/new_worldmap
     BackgroundMusicParams:
         moon_and_blackhole: 1
     MarkerTexture: marker/runNoBackpack
@@ -69,4 +69,3 @@ Modes:
     State: 3
     Rotate: true
     ShowCore: false
-

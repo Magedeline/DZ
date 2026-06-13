@@ -2,6 +2,7 @@
 using System.IO;
 using System.Reflection;
 using Celeste.Cutscenes;
+using FMOD.Studio;
 using Celeste.Entities;
 using Monocle;
 using MonoMod.RuntimeDetour;
@@ -211,6 +212,12 @@ namespace Celeste.Mod.MaggyHelper
             // Initialize bus routing for Pusheen and return/verb buses
             AudioBusManager.Load();
 
+            // Redirect vanilla audio events to the selected theme variant
+            if (Settings.AudioTheme == AudioThemeMode.Kirby)
+                global::Celeste.KirbyAudioHooks.Load();
+            else
+                global::Celeste.PusheenAudioHooks.Load();
+
             // Register hooks
             // OuiChapterSelectHooks: Wraps OuiChapterSelect to catch crashes from updateScarf()
             OuiChapterSelectHooks.Load();
@@ -303,6 +310,12 @@ namespace Celeste.Mod.MaggyHelper
 
             // Register performance profiler commands
             // global::Celeste.Mod.MaggyHelper.PerformanceProfiler.RegisterConsoleCommands(); // TODO: Restore when PerformanceProfiler is available
+
+            // Initialize MaggyMapMetadataRegistry for .maggyhelper.meta.yaml files
+            InitializeMapMetadataRegistry();
+
+            // Initialize Chapter Completion hooks for custom music/title integration
+            global::Celeste.ChapterCompletionHooks.Load();
         }
 
         private static void OnLevelExit(Level level, LevelExit exit, LevelExit.Mode mode, Session session, HiresSnow snow)
@@ -346,49 +359,78 @@ namespace Celeste.Mod.MaggyHelper
             LoadAudioBanks();
         }
 
+        // ── Audio bank state ───────────────────────────────────────────────────
+        // pusheen_audio.bank was built from a fork of vanilla Celeste's FMOD project
+        // and therefore contains vanilla event GUIDs that are already registered by
+        // Celeste's own Master.bank.  FMOD refuses to load a second bank containing
+        // duplicate GUIDs (ERR_EVENT_ALREADY_LOADED), so both the master bank and the
+        // strings bank are permanently unavailable at runtime.
+        //
+        // FIX REQUIRED (FMOD Studio):
+        //   Open the pusheen FMOD project and rebuild pusheen_audio.bank so it only
+        //   contains pusheen-specific buses/events — remove every vanilla Celeste event
+        //   from the project before building.  Until then all custom audio is silent.
+        //
+        // The _A/_B/_C/_D data banks load fine because they contain audio sample data
+        // (no event definitions) and thus have no GUID conflicts.
+        private static Bank _pusheenMasterBank;
+        private static Bank _pusheenStringsBank;
+
+        /// <summary>True after LoadAudioBanks() confirms the master bank is in FMOD.</summary>
+        public static bool AudioBanksLoaded { get; private set; }
+
         private static void LoadAudioBanks()
         {
-            try
+            string audioDir = Path.Combine(Instance.Metadata.PathDirectory, "Audio");
+            AudioBanksLoaded = false;
+
+            string masterPath  = Path.Combine(audioDir, "pusheen_audio.bank");
+            string stringsPath = Path.Combine(audioDir, "pusheen_audio.strings.bank");
+
+            if (!File.Exists(masterPath))
             {
-                // NOTE: Master_Bank and Master_Bank.strings are auto-loaded by Everest;
-                // loading them manually here caused bus:/ to be reset and silenced all audio.
-
-                // Load custom audio banks for Pusheen/Maggy audio (divided by chapter sections)
-                // pusheen_audio_A: Chapter 0-7 music and SFX
-                Audio.Banks.Load("Audio/pusheen_audio_A", loadStrings: false);
-
-                // pusheen_audio_B: Chapter 8-14 music and SFX
-                Audio.Banks.Load("Audio/pusheen_audio_B", loadStrings: false);
-
-                // pusheen_audio_C: Chapter 15-17 music and SFX
-                Audio.Banks.Load("Audio/pusheen_audio_C", loadStrings: false);
-
-                // pusheen_audio_D: Chapter 18-21 and special music/SFX
-                Audio.Banks.Load("Audio/pusheen_audio_D", loadStrings: false);
-
-                Logger.Log(LogLevel.Info, "MaggyHelper", "All audio banks loaded successfully");
-                LogAudioEventNamespaces();
+                Logger.Log(LogLevel.Warn, "MaggyHelper", $"[Audio] Master bank not found: {masterPath}");
+                return;
             }
-            catch (Exception ex)
+            if (!File.Exists(stringsPath))
             {
-                Logger.Log(LogLevel.Warn, "MaggyHelper", "Failed to load audio banks: " + ex.Message);
+                Logger.Log(LogLevel.Warn, "MaggyHelper", $"[Audio] Strings bank not found: {stringsPath}");
+                return;
             }
-        }
 
-        private static void LogAudioEventNamespaces()
-        {
-            // Document all major audio event namespaces used in KIRBY_CELESTE mod
-            Logger.Log(LogLevel.Debug, "MaggyHelper", "Audio Event Namespaces:");
-            Logger.Log(LogLevel.Debug, "MaggyHelper", "  Music Events:");
-            Logger.Log(LogLevel.Debug, "MaggyHelper", "    - event:/music/pusheen/lvl[0-21]/* (Chapter music)");
-            Logger.Log(LogLevel.Debug, "MaggyHelper", "    - event:/music/pusheen/menu/* (Menu music)");
-            Logger.Log(LogLevel.Debug, "MaggyHelper", "    - event:/pusheen/ch[0-21]/music/* (Boss and special music)");
-            Logger.Log(LogLevel.Debug, "MaggyHelper", "  Sound Effects:");
-            Logger.Log(LogLevel.Debug, "MaggyHelper", "    - event:/game/pusheen/* (In-game SFX)");
-            Logger.Log(LogLevel.Debug, "MaggyHelper", "    - event:/char/pusheen/* (Character sounds)");
-            Logger.Log(LogLevel.Debug, "MaggyHelper", "    - event:/ui/pusheen/* (UI sounds)");
-            Logger.Log(LogLevel.Debug, "MaggyHelper", "    - event:/env/pusheen/* (Environment/ambient)");
-            Logger.Log(LogLevel.Debug, "MaggyHelper", "    - event:/new_content/* (New content sounds)");
+            FMOD.RESULT rm = Audio.System.loadBankFile(masterPath,  LOAD_BANK_FLAGS.NORMAL, out _pusheenMasterBank);
+            FMOD.RESULT rs = Audio.System.loadBankFile(stringsPath, LOAD_BANK_FLAGS.NORMAL, out _pusheenStringsBank);
+
+            Logger.Log(LogLevel.Info, "MaggyHelper",
+                $"[Audio] loadBankFile results — master: {rm} (valid={_pusheenMasterBank.isValid()}), " +
+                $"strings: {rs} (valid={_pusheenStringsBank.isValid()})");
+
+            // ERR_EVENT_ALREADY_LOADED with a valid handle means Everest discovered the bank
+            // first and loaded it; we get back the existing handle and can use it normally.
+            bool masterOk  = (rm == FMOD.RESULT.OK || rm == FMOD.RESULT.ERR_EVENT_ALREADY_LOADED)
+                             && _pusheenMasterBank.isValid();
+            bool stringsOk = (rs == FMOD.RESULT.OK || rs == FMOD.RESULT.ERR_EVENT_ALREADY_LOADED)
+                             && _pusheenStringsBank.isValid();
+
+            if (masterOk && stringsOk)
+            {
+                AudioBanksLoaded = true;
+                Logger.Log(LogLevel.Info, "MaggyHelper", "[Audio] Banks loaded — master + strings OK.");
+                return;
+            }
+
+            if (!masterOk)
+            {
+                Logger.Log(LogLevel.Warn, "MaggyHelper",
+                    $"[Audio] Master bank unavailable: result={rm}, valid={_pusheenMasterBank.isValid()}. " +
+                    "If result is ERR_EVENT_ALREADY_LOADED and valid=false, the FMOD project must be " +
+                    "rebuilt to remove vanilla Celeste events before pusheen audio will work.");
+            }
+            if (!stringsOk)
+            {
+                Logger.Log(LogLevel.Warn, "MaggyHelper",
+                    $"[Audio] Strings bank unavailable: result={rs}, valid={_pusheenStringsBank.isValid()}.");
+            }
         }
 
         public override void Unload()
@@ -396,6 +438,8 @@ namespace Celeste.Mod.MaggyHelper
             // Unload manual hooks
             On.Celeste.GameLoader.LoadThread -= OnGameLoaderLoadThread;
             AudioBusManager.Unload();
+            global::Celeste.PusheenAudioHooks.Unload();
+            global::Celeste.KirbyAudioHooks.Unload();
             OuiChapterSelectHooks.Unload();
             global::Celeste.RoomTransitionHandler.Unload();
             global::Celeste.IntroRemixHooks.Unload();
@@ -455,6 +499,15 @@ namespace Celeste.Mod.MaggyHelper
             // Unhook Cheat Mode system
             UnloadCheatMode();
 
+            // Unhook Chapter Completion hooks
+            global::Celeste.ChapterCompletionHooks.Unload();
+
+            if (_pusheenMasterBank.isValid())
+                _pusheenMasterBank.unload();
+            _pusheenMasterBank = default;
+            if (_pusheenStringsBank.isValid())
+                _pusheenStringsBank.unload();
+            _pusheenStringsBank = default;
         }
 
         // =====================================================================
@@ -612,6 +665,28 @@ namespace Celeste.Mod.MaggyHelper
             catch (Exception ex)
             {
                 Logger.Log(LogLevel.Warn, "MaggyHelper", "Failed to shutdown mod integrations: " + ex.Message);
+            }
+        }
+
+        // =====================================================================
+        //  MaggyMapMetadata Registry
+        // =====================================================================
+
+        private static void InitializeMapMetadataRegistry()
+        {
+            try
+            {
+                // Initialize the registry with the mod root directory
+                // Navigate up from the assembly location (bin/Debug/net8.0/) to the actual mod root
+                string assemblyDir = Path.GetDirectoryName(typeof(MaggyHelperModule).Assembly.Location) ?? ".";
+                string modRoot = Path.GetFullPath(Path.Combine(assemblyDir, "..", "..", ".."));
+                MaggyMapMetadataRegistry.Initialize(modRoot);
+
+                Logger.Log(LogLevel.Info, "MaggyHelper", $"MaggyMapMetadataRegistry initialized with {MaggyMapMetadataRegistry.Count} entries");
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(LogLevel.Warn, "MaggyHelper", "Failed to initialize MaggyMapMetadataRegistry: " + ex.Message);
             }
         }
 

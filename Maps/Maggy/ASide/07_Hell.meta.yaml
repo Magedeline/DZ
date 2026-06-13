@@ -1,5 +1,5 @@
 Icon: areas/Maggy/hell
-SID: Maggy/DESOLO_ZANTAS/7-Hell
+SID: Maggy/ASide/07_Hell
 Interlude: false
 TitleBaseColor: 761008
 TitleAccentColor: e0201d
@@ -64,3 +64,16 @@ Modes:
         Target: [-1.600, 4.300, 9.800]
     Cursor: [-1.600, 5.000, 9.500]
     State: 1
+
+MusicBySide:
+  - event:/music/pusheen/menu/complete_area
+  - event:/music/pusheen/menu/complete_bside
+  - event:/music/pusheen/menu/complete_cside
+  - event:/music/pusheen/menu/complete_dxside
+Title:
+  ASide: "Chapter Complete"
+  BSide: "B Side Complete"
+  CSide: "C Side Complete"
+  DSide: "D Side Complete"
+  DXSide: "DX Side Complete"
+  FullClear: "Chapter Clear"

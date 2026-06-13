@@ -1,5 +1,5 @@
 Icon: areas/Maggy/stronghold
-SID: Maggy/DESOLO_ZANTAS/6-Stronghold
+SID: Maggy/ASide/06_Stronghold
 Interlude: false
 TitleBaseColor: ff7f83
 TitleAccentColor: 6d54b7
@@ -64,3 +64,16 @@ Modes:
         Target: [7.100, 6.300, 12.700]
     Cursor: [7.000, 7.000, 12.500]
     State: 0
+
+MusicBySide:
+  - event:/music/pusheen/menu/complete_area
+  - event:/music/pusheen/menu/complete_bside
+  - event:/music/pusheen/menu/complete_cside
+  - event:/music/pusheen/menu/complete_dxside
+Title:
+  ASide: "Chapter Complete"
+  BSide: "B Side Complete"
+  CSide: "C Side Complete"
+  DSide: "D Side Complete"
+  DXSide: "DX Side Complete"
+  FullClear: "Chapter Clear"

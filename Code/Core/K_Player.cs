@@ -12,25 +12,25 @@ using static Monocle.Calc;
 /// Please do not remove the player class from the mod, even if it seems like it's not doing much. The Player class is used as a base for all player-related functionality, and removing it would cause the mod to break. If you want to disable certain features, please do so through the mod's settings or by commenting out specific code sections, rather than removing the entire Player class.
 namespace Celeste.Entities
 {
+    // CL0008 false positive: Actor extends Entity, but CelesteAnalyzer doesn't resolve this in the Content project context.
+#pragma warning disable CL0008
     [CustomEntity("MaggyHelper/K_Player")]
     [Tracked(true)]
     [HotReloadable]
     public class K_Player : Actor
+#pragma warning restore CL0008
     {
         /// <summary>
-        /// Reinterprets this reference as global::Celeste.Player without a runtime type check.
-        /// Required because global::Celeste.Entities.K_Player extends Actor directly,
-        /// but many vanilla APIs expect global::Celeste.Player.
+        /// Reference to the hidden vanilla Player (shadow player) kept in the scene
+        /// alongside K_Player. Used for vanilla APIs that expect a Player instance.
         /// </summary>
-        private global::Celeste.Player SelfPlayer
-        {
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            get
-            {
-                K_Player self = this;
-                return Unsafe.As<K_Player, global::Celeste.Player>(ref self);
-            }
-        }
+        private global::Celeste.Player SelfPlayer => _shadowPlayer;
+
+        /// <summary>
+        /// The shadow vanilla Player instance kept in the scene for API compatibility.
+        /// Created and managed by K_Player.
+        /// </summary>
+        private global::Celeste.Player _shadowPlayer;
 
         #region Constants
 
@@ -494,6 +494,11 @@ namespace Celeste.Entities
         private int aerialComboHits;
         private float aerialComboTimer;
 
+        /// <summary>Public accessor for refill entities.</summary>
+        public float PunchAttackCooldownTimer => punchAttackCooldownTimer;
+        /// <summary>Public accessor for refill entities.</summary>
+        public void SetPunchAttackCooldownTimer(float value) => punchAttackCooldownTimer = Math.Max(0f, value);
+
         // Entities already hit by the current swing — each swing hits a target once
         private readonly HashSet<Entity> swingHitEntities = new HashSet<Entity>();
 
@@ -511,6 +516,11 @@ namespace Celeste.Entities
         private float kirbyFlapScaleTimer;
         private float kirbyHammerTimer;
         private Vector2 kirbyStarSpitDir;
+
+        /// <summary>Public accessor for refill entities.</summary>
+        public int KirbyFlapCount => kirbyFlapCount;
+        /// <summary>Public accessor for refill entities.</summary>
+        public void SetKirbyFlapCount(int value) => kirbyFlapCount = Math.Max(0, value);
 
         // Skill-Based Combat Vars
         private float skillStamina = 100f;
@@ -844,6 +854,25 @@ namespace Celeste.Entities
             base.Added(scene);
             level = SceneAs<Level>();
 
+            // Remove any existing vanilla Player that isn't our shadow
+            var existingVanilla = level.Tracker.GetEntity<global::Celeste.Player>();
+            if (existingVanilla != null && existingVanilla != _shadowPlayer)
+            {
+                existingVanilla.RemoveSelf();
+                Logger.Log(LogLevel.Info, "MaggyHelper",
+                    $"[K_Player] Removed vanilla Player at {existingVanilla.Position} — K_Player is authoritative");
+            }
+
+            // Create shadow player if not already set
+            if (_shadowPlayer == null)
+            {
+                _shadowPlayer = new global::Celeste.Player(Position, Sprite.Mode);
+                K_PlayerHooks.ShadowPlayers.Add(_shadowPlayer);
+                scene.Add(_shadowPlayer);
+                Logger.Log(LogLevel.Debug, "MaggyHelper",
+                    $"[K_Player] Created shadow player at {_shadowPlayer.Position}");
+            }
+
             // Initialize player selection system
             PlayerSelectionManager.GetOrCreate(level);
             var healthManager = PlayerHealthManager.GetOrCreate(level, maxHealth);
@@ -939,6 +968,14 @@ namespace Celeste.Entities
             {
                 trigger.Triggered = false;
                 trigger.OnLeave(SelfPlayer);
+            }
+
+            // Clean up shadow player
+            if (_shadowPlayer != null)
+            {
+                K_PlayerHooks.ShadowPlayers.Remove(_shadowPlayer);
+                _shadowPlayer.RemoveSelf();
+                _shadowPlayer = null;
             }
         }
 
@@ -1609,6 +1646,10 @@ namespace Celeste.Entities
 
             wasOnGround = onGround;
             prevJumpCheck = Input.Jump.Check;
+
+            // Sync shadow player position for vanilla API compatibility
+            if (_shadowPlayer != null)
+                _shadowPlayer.Position = Position;
         }
 
         private void CreateTrail()

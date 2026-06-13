@@ -5,7 +5,6 @@ using Microsoft.Xna.Framework;
 using Monocle;
 using System;
 using System.Collections;
-using System.Reflection;
 
 namespace Celeste.Entities
 {
@@ -163,19 +162,7 @@ namespace Celeste.Entities
         /// </summary>
         private float GetPunchAttackCooldown(K_Player kPlayer)
         {
-            try
-            {
-                FieldInfo field = typeof(K_Player).GetField("punchAttackCooldownTimer", BindingFlags.NonPublic | BindingFlags.Instance);
-                if (field != null)
-                {
-                    return (float)field.GetValue(kPlayer);
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.Log(LogLevel.Error, "PunchRefill", $"Failed to get punchAttackCooldownTimer: {ex.Message}");
-            }
-            return 0f;
+            return kPlayer.PunchAttackCooldownTimer;
         }
 
         /// <summary>
@@ -183,18 +170,7 @@ namespace Celeste.Entities
         /// </summary>
         private void SetPunchAttackCooldown(K_Player kPlayer, float cooldown)
         {
-            try
-            {
-                FieldInfo field = typeof(K_Player).GetField("punchAttackCooldownTimer", BindingFlags.NonPublic | BindingFlags.Instance);
-                if (field != null)
-                {
-                    field.SetValue(kPlayer, Math.Max(0f, cooldown));
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.Log(LogLevel.Error, "PunchRefill", $"Failed to set punchAttackCooldownTimer: {ex.Message}");
-            }
+            kPlayer.SetPunchAttackCooldownTimer(cooldown);
         }
 
         private IEnumerator RefillRoutine()

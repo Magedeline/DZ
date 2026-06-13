@@ -336,7 +336,10 @@ public static class DSideHookImplementation
         {
             MethodInfo target = typeof(HeartGem).GetMethod(
                 "Collect",
-                System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public);
+                System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic,
+                null,
+                new[] { typeof(Player) },
+                null);
 
             if (target == null)
                 throw new Exception("HeartGem.Collect method not found");

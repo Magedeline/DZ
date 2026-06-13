@@ -52,7 +52,7 @@ namespace Celeste
 
                 // Hook Player.OnSquish to handle crushing damage
                 var squishMethod = typeof(global::Celeste.Player).GetMethod("OnSquish",
-                    System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance,
+                    System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance,
                     null,
                     new System.Type[] { typeof(CollisionData) },
                     null);

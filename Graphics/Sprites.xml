@@ -1148,11 +1148,11 @@
       <Anim id="determined" path="determined" delay="0.1" goto="idle" />
 
       <!-- Punch & Dash Attack Animations -->
-      <Anim id="punch_flash" path="punch/flash" delay="0.05" frames="0-5" goto="punch_idle" />
-      <Loop id="punch_idle" path="punch/idle_fist" delay="0.1" />
-      <Anim id="punch_attack" path="punch/flash" delay="0.06" goto="idle" />
-      <Anim id="punch_two" path="punchTwo/flash" delay="0.06" goto="idle" />
-      <Anim id="punch_multi" path="punchMulti/flash" delay="0.06" goto="idle" />
+      <Anim id="punch_flash" path="combat/punchA_" delay="0.05" frames="0-5" goto="punch_idle" />
+      <Loop id="punch_idle" path="combat/super_punchloop" delay="0.1" />
+      <Anim id="punch_attack" path="combat/punchA_" delay="0.06" goto="idle" />
+      <Anim id="punch_two" path="combat/punchB_" delay="0.06" frames="0-5" goto="idle" />
+      <Anim id="punch_multi" path="combat/spin_" delay="0.06" frames="0-5" goto="idle" />
 
       <!-- Wing Power States -->
       <Loop id="wing_idle" path="wing/idle" delay="0.15" />
@@ -1181,10 +1181,10 @@
         <Frames path="float" hair="0,-4:0|0,-4:1|0,-4:2|0,-4:3" hat="0,-12|0,-12|0,-12|0,-12" />
         <Frames path="land" hair="0,-4:0|0,-4:1" hat="0,-12|0,-12" />
         <Frames path="crouch" hair="0,-2:0|0,-2:1" hat="0,-10|0,-10" />
-        <Frames path="punch/flash" hair="0,-4:0|0,-4:0|0,-4:1|0,-4:2|0,-4:2|0,-4:3" hat="0,-12|0,-12|0,-12|0,-12|0,-12|0,-12" />
-        <Frames path="punch/idle_fist" hair="0,-4:0|0,-4:1|0,-4:2|0,-4:3|0,-4:3" hat="0,-12|0,-12|0,-12|0,-12|0,-12" />
-        <Frames path="punchTwo/flash" hair="0,-4:0|0,-4:0|0,-4:1|0,-4:2|0,-4:2|0,-4:3" hat="0,-12|0,-12|0,-12|0,-12|0,-12|0,-12" />
-        <Frames path="punchMulti/flash" hair="0,-4:0|0,-4:0|0,-4:1|0,-4:2|0,-4:2|0,-4:3" hat="0,-12|0,-12|0,-12|0,-12|0,-12|0,-12" />
+        <Frames path="combat/punchA_" hair="0,-4:0|0,-4:0|0,-4:1|0,-4:2|0,-4:2|0,-4:3" hat="0,-12|0,-12|0,-12|0,-12|0,-12|0,-12" />
+        <Frames path="combat/super_punchloop" hair="0,-4:0|0,-4:1|0,-4:2|0,-4:3" hat="0,-12|0,-12|0,-12|0,-12" />
+        <Frames path="combat/punchB_" hair="0,-4:0|0,-4:0|0,-4:1|0,-4:2|0,-4:2|0,-4:3" hat="0,-12|0,-12|0,-12|0,-12|0,-12|0,-12" />
+        <Frames path="combat/spin_" hair="0,-4:0|0,-4:0|0,-4:1|0,-4:2|0,-4:2|0,-4:3" hat="0,-12|0,-12|0,-12|0,-12|0,-12|0,-12" />
 
         <!-- Basic Movement (metadata-only additions) -->
         <Anim id="lookUp" path="lookUp" delay="0.1" frames="2-7" />
@@ -2001,24 +2001,24 @@
 
   <pinkplatinumberry path="collectables/maggy/pinkplatinumberry/" start="idle">
   		<Center />
-  
+
   		<Loop id="idle" path="idle" delay=".08" frames="0-6,0-6,0-6,0-6,0-7" />
-  		<Anim id="collect" path="idle" delay=".07" frames="7-11"/>
-  		<Loop id="flap" path="wings" delay=".08" frames="0-8,0-8,0-7,9" />
+  		<Anim id="collect" path="idle" delay=".07" frames="7-9"/>
+  		<Loop id="flap" path="idle" delay=".08" frames="0-6,0-6,0-6,0-6,0-7" />
   	</pinkplatinumberry>
 
   <popstarberry path="collectables/maggy/popstarberry/spin/" start="idle">
       <Center />
-      
-      <Loop id="idle" path="normal" delay=".1" frames="0-11" />
-      <Anim id="collect" path="normal" delay=".07" frames="00-28"/>
+
+      <Loop id="idle" path="" delay=".1" frames="0-11" />
+      <Anim id="collect" path="" delay=".07" frames="0-11"/>
     </popstarberry>
 
   <popstarberryghost path="collectables/maggy/popstarberry/spin/ghost/" start="idle">
       <Center />
-      
-      <Loop id="idle" path="ghost" delay=".1" frames="0-11" />
-      <Anim id="collect" path="ghost" delay=".07" frames="00-28"/>
+
+      <Loop id="idle" path="" delay=".1" frames="0-11" />
+      <Anim id="collect" path="" delay=".07" frames="0-11"/>
     </popstarberryghost>
 
   <maggy_payphone path="cutscenes/maggy/Kirby/payphone/" start="idle">
@@ -2739,10 +2739,22 @@
   <sans path="characters/sans/" start="idle">
       <Justify x=".5" y="1" />
   
-      <Loop id="idle" path="idle" delay="0.1" frames="0-11" />
-      <Loop id="walk" path="walk" delay="0.08" frames="0-7" />
-      <Loop id="run" path="walk" delay="0.06" frames="0-7" />
+      <Loop id="idle" path="idle" delay="0.1" frames="0-7" />
+      <Loop id="walk" path="walk" delay="0.08" frames="0-5" />
+      <Loop id="heh" path="heh" delay="0.06" frames="0-3" />
+      <Loop id="noeyes" path="noeyes" delay="0.06" frames="0-0" />
+      <Loop id="patonmadshoulder" path="patonmadshoulder" delay="0.06" frames="0-0" />
+      <Loop id="sheild" path="sheild" delay="0.06" frames="0-9" />
+      <Loop id="wtf" path="wtf" delay="0.06" frames="0-8" />
+      <Loop id="oderup" path="oderup" delay="0.06" frames="0-5" />
+      <Loop id="eepy" path="eepy" delay="0.06" frames="0-5" />
     </sans>
+
+  <sansheh path="characters/sans/" start="ha">
+      <Justify x=".5" y="1" />
+  
+      <Loop id="ha" path="ha" delay="0.1" frames="0-9" />
+    </sansheh>
 
   <undyne path="characters/undyne/" start="idle">
       <Justify x=".5" y="1" />
@@ -2755,9 +2767,13 @@
   <papyrus path="characters/papyrus/" start="idle">
       <Justify x=".5" y="1" />
   
-      <Loop id="idle" path="idle" delay="0.1" frames="0" />
-      <Loop id="walk" path="walk" delay="0.08" frames="0" />
-      <Loop id="run" path="run" delay="0.06" frames="0" />
+      <Loop id="idle" path="idle" delay="0.1" frames="0-7" />
+      <Loop id="walk" path="walk" delay="0.08" frames="0-6" />
+      <Loop id="notfair" path="notfair" delay="0.06" frames="0-3" />
+      <Loop id="idontgetit" path="idontgetit" delay="0.06" frames="0-0" />
+      <Loop id="cry" path="cry" delay="0.06" frames="0-3" />
+      <Loop id="angy" path="angy" delay="0.06" frames="0-5" />
+      <Loop id="depress" path="depress" delay="0.06" frames="0-0" />
     </papyrus>
 
   <alphys path="characters/alphys/" start="idle">

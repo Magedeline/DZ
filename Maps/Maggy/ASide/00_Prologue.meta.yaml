@@ -62,7 +62,3 @@ Modes:
         Target: [-0.658, 2.072, 5.876]
     Cursor: [-0.658, 2.872, 7.876]
     State: 0
-
-LoadingVignetteText:
-    Dialog: "CH0_INTRO"
-

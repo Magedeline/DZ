@@ -1,5 +1,5 @@
 Icon: areas/Maggy/corruption
-SID: Maggy/DESOLO_ZANTAS/16-Corruption
+SID: Maggy/ASide/16_Corruption
 Interlude: false
 TitleBaseColor: 383838
 TitleAccentColor: 50afae
@@ -34,3 +34,16 @@ Mountain:
         Target: [-1.112, 32.576, 6.630]
     Cursor: [-1.479, 32.938, 7.636]
     State: 1
+
+MusicBySide:
+  - event:/music/pusheen/menu/complete_area
+  - event:/music/pusheen/menu/complete_bside
+  - event:/music/pusheen/menu/complete_cside
+  - event:/music/pusheen/menu/complete_dxside
+Title:
+  ASide: "Chapter Complete"
+  BSide: "B Side Complete"
+  CSide: "C Side Complete"
+  DSide: "D Side Complete"
+  DXSide: "DX Side Complete"
+  FullClear: "Chapter Clear"

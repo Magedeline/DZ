@@ -1,5 +1,5 @@
 ﻿Icon: areas/Maggy/castle
-SID: Maggy/DESOLO_ZANTAS/15-Castle
+SID: Maggy/ASide/15_Castle
 Interlude: false
 TitleBaseColor: 4a1a6b
 TitleAccentColor: df72f9
@@ -64,4 +64,3 @@ Modes:
         Target: [0.400, 10.300, 11.500]
     Cursor: [0.400, 10.500, 11.500]
     State: 0
-

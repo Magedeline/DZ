@@ -7,6 +7,12 @@ namespace Celeste.Mod.MaggyHelper
     /// Includes: Hot reload config, key bindings, boss/Kirby settings,
     /// overworld 3D preferences, area data display options.
     /// </summary>
+    public enum AudioThemeMode
+    {
+        Pusheen,
+        Kirby
+    }
+
     public class MaggyHelperModuleSettings : EverestModuleSettings
     {
         #region Key Bindings
@@ -15,6 +21,9 @@ namespace Celeste.Mod.MaggyHelper
         public ButtonBinding InGameMapEditor { get; set; }
 
         #endregion
+
+        [SettingSubHeader("MaggyHelper_AUDIO_HEADER")]
+        public AudioThemeMode AudioTheme { get; set; } = AudioThemeMode.Pusheen;
 
         public bool BossesExampleResetKeysForSession { get; set; }
         public int BossDifficultyMultiplier { get; set; } = 1;

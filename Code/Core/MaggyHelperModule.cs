@@ -354,7 +354,21 @@ namespace Celeste.Mod.MaggyHelper
 
         private static void OnGameLoaderLoadThread(On.Celeste.GameLoader.orig_LoadThread orig, GameLoader self)
         {
-            orig(self);
+            try
+            {
+                orig(self);
+            }
+            catch (Exception ex) when (ex.Message?.Contains("FMOD Failed: ERR_FILE_NOTFOUND") == true)
+            {
+                // Vanilla Audio.Init() failed because a required .bank file is missing
+                // from Content/FMOD/Desktop/ (usually dlc_music, dlc_sfx, or Master Bank).
+                // Swallow the crash so the rest of GameLoader can finish; audio will be
+                // unavailable but the game will start.
+                Logger.Log(LogLevel.Warn, "MaggyHelper",
+                    $"[Audio] Audio.Init() failed with missing bank file -- allowing game to continue without audio.\n" +
+                    $"  Exception: {ex.Message}\n" +
+                    $"  Hint: Verify that all .bank files exist in Content/FMOD/Desktop/ (especially dlc_music.bank and dlc_sfx.bank).");
+            }
             // Load audio banks here - FMOD is fully initialized after orig() completes
             LoadAudioBanks();
         }
@@ -402,34 +416,64 @@ namespace Celeste.Mod.MaggyHelper
             FMOD.RESULT rs = Audio.System.loadBankFile(stringsPath, LOAD_BANK_FLAGS.NORMAL, out _pusheenStringsBank);
 
             Logger.Log(LogLevel.Info, "MaggyHelper",
-                $"[Audio] loadBankFile results — master: {rm} (valid={_pusheenMasterBank.isValid()}), " +
-                $"strings: {rs} (valid={_pusheenStringsBank.isValid()})");
+                $"[Audio] loadBankFile results — master: {rm} (valid={_pusheenMasterBank?.isValid()}), " +
+                $"strings: {rs} (valid={_pusheenStringsBank?.isValid()})");
 
             // ERR_EVENT_ALREADY_LOADED with a valid handle means Everest discovered the bank
             // first and loaded it; we get back the existing handle and can use it normally.
             bool masterOk  = (rm == FMOD.RESULT.OK || rm == FMOD.RESULT.ERR_EVENT_ALREADY_LOADED)
-                             && _pusheenMasterBank.isValid();
+                             && _pusheenMasterBank != null && _pusheenMasterBank.isValid();
             bool stringsOk = (rs == FMOD.RESULT.OK || rs == FMOD.RESULT.ERR_EVENT_ALREADY_LOADED)
-                             && _pusheenStringsBank.isValid();
+                             && _pusheenStringsBank != null && _pusheenStringsBank.isValid();
 
             if (masterOk && stringsOk)
             {
                 AudioBanksLoaded = true;
-                Logger.Log(LogLevel.Info, "MaggyHelper", "[Audio] Banks loaded — master + strings OK.");
+                Logger.Log(LogLevel.Info, "MaggyHelper", "[Audio] Master + strings loaded OK.");
+
+                // Load sample-data banks (A/B/C/D) that contain the actual audio samples
+                // referenced by events in the master bank.
+                string[] dataBankNames = { "pusheen_audio_A.bank", "pusheen_audio_B.bank",
+                                           "pusheen_audio_C.bank", "pusheen_audio_D.bank" };
+                int dataLoaded = 0, dataFailed = 0;
+                foreach (string bankName in dataBankNames)
+                {
+                    string bankPath = Path.Combine(audioDir, bankName);
+                    if (!File.Exists(bankPath))
+                    {
+                        Logger.Log(LogLevel.Warn, "MaggyHelper", $"[Audio] Data bank not found: {bankPath}");
+                        dataFailed++;
+                        continue;
+                    }
+                    FMOD.RESULT rd = Audio.System.loadBankFile(bankPath, LOAD_BANK_FLAGS.NORMAL, out Bank _);
+                    if (rd == FMOD.RESULT.OK || rd == FMOD.RESULT.ERR_EVENT_ALREADY_LOADED)
+                    {
+                        dataLoaded++;
+                        Logger.Log(LogLevel.Verbose, "MaggyHelper", $"[Audio] Loaded data bank: {bankName}");
+                    }
+                    else
+                    {
+                        Logger.Log(LogLevel.Warn, "MaggyHelper",
+                            $"[Audio] Failed to load data bank {bankName}: {rd}");
+                        dataFailed++;
+                    }
+                }
+                Logger.Log(LogLevel.Info, "MaggyHelper",
+                    $"[Audio] Data banks: {dataLoaded} loaded, {dataFailed} failed.");
                 return;
             }
 
             if (!masterOk)
             {
                 Logger.Log(LogLevel.Warn, "MaggyHelper",
-                    $"[Audio] Master bank unavailable: result={rm}, valid={_pusheenMasterBank.isValid()}. " +
+                    $"[Audio] Master bank unavailable: result={rm}, valid={_pusheenMasterBank?.isValid()}. " +
                     "If result is ERR_EVENT_ALREADY_LOADED and valid=false, the FMOD project must be " +
                     "rebuilt to remove vanilla Celeste events before pusheen audio will work.");
             }
             if (!stringsOk)
             {
                 Logger.Log(LogLevel.Warn, "MaggyHelper",
-                    $"[Audio] Strings bank unavailable: result={rs}, valid={_pusheenStringsBank.isValid()}.");
+                    $"[Audio] Strings bank unavailable: result={rs}, valid={_pusheenStringsBank?.isValid()}.");
             }
         }
 

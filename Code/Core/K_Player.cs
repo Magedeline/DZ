@@ -6246,7 +6246,20 @@ namespace Celeste.Entities
         public FMOD.Studio.EventInstance Play(string sound, string param = null, float value = 0)
         {
             AddChaserStateSound(sound, param, value);
-            return Audio.Play(sound, Center, param, value);
+            try
+            {
+                return Audio.Play(sound, Center, param, value);
+            }
+            catch (EntryPointNotFoundException)
+            {
+                // FMOD 2.x removed setParameterValue API - suppress crash
+                return null;
+            }
+            catch (TypeLoadException ex) when (ex.TypeName?.Contains("FMOD") == true)
+            {
+                // FMOD interop issue - suppress crash
+                return null;
+            }
         }
 
         public void Loop(SoundSource sfx, string sound)

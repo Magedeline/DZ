@@ -1,7 +1,6 @@
 using FMOD.Studio;
 using MonoMod.RuntimeDetour;
 using MonoMod.Cil;
-using System.Reflection.Emit;
 
 namespace Celeste;
 
@@ -14,8 +13,6 @@ public static class CelesteMusicHooks
 {
     private static bool _loaded;
 
-    // IL.hook patches (reserved for future use)
-    private static ILHook _audioPlayILHook;
     private static ILHook _audioStopILHook;
 
     private static Dictionary<string, int> _musicPlayCount = new();
@@ -32,10 +29,6 @@ public static class CelesteMusicHooks
 
         On.Celeste.Audio.SetMusicParam += OnAudioSetMusicParam;
 
-        // ──── IL.hook patches for music system ────
-
-        InstallMusicILHooks();
-
         Logger.Log(LogLevel.Info, "MaggyHelper", "CelesteMusicHooks loaded with On.hook and IL.hook support");
     }
 
@@ -49,11 +42,6 @@ public static class CelesteMusicHooks
         // ──── Unload On.hook delegates ────
 
         On.Celeste.Audio.SetMusicParam -= OnAudioSetMusicParam;
-
-        // ──── Dispose IL.hook patches ────
-
-        _audioPlayILHook?.Dispose();
-        _audioPlayILHook = null;
 
         _audioStopILHook?.Dispose();
         _audioStopILHook = null;
@@ -109,22 +97,6 @@ public static class CelesteMusicHooks
             _fmodParamApiMissing = true;
             Logger.Log(LogLevel.Warn, "MaggyHelper/MusicHooks",
                 "[Audio] FMOD TypeLoadException - API mismatch detected. Music parameter changes will be skipped.");
-        }
-    }
-
-    // ──── IL.hook installation ────
-
-    private static void InstallMusicILHooks()
-    {
-        try
-        {
-            // Reserved for future music-system IL hooks
-            // Music parameter tracking can be implemented here if needed
-            Logger.Log(LogLevel.Debug, "MaggyHelper", "Music IL hooks initialized");
-        }
-        catch (Exception ex)
-        {
-            Logger.Log(LogLevel.Warn, "MaggyHelper", $"Failed to install music IL hooks: {ex.Message}");
         }
     }
 

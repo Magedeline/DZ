@@ -39,18 +39,12 @@ public static class PusheenAudioHooks
 
         _loaded = true;
 
-        try
-        {
-            InstallPlayHooks();
-            InstallMusicHooks();
-            InstallAmbienceHooks();
-            InstallCreateInstanceHook();
-            Logger.Log(LogLevel.Info, "MaggyHelper", "PusheenAudioHooks loaded — full audio path replacement active (UI, music, env, game, char)");
-        }
-        catch (Exception ex)
-        {
-            Logger.Log(LogLevel.Warn, "MaggyHelper", $"[PusheenAudioHooks] Failed to load: {ex.Message}");
-        }
+        int loaded = 0;
+        loaded += TryInstall("PlayHooks", InstallPlayHooks);
+        loaded += TryInstall("MusicHooks", InstallMusicHooks);
+        loaded += TryInstall("AmbienceHooks", InstallAmbienceHooks);
+        loaded += TryInstall("CreateInstanceHook", InstallCreateInstanceHook);
+        Logger.Log(LogLevel.Info, "MaggyHelper", $"[PusheenAudioHooks] Loaded {loaded}/4 hook groups — audio path replacement active");
     }
 
     public static void Unload()
@@ -147,6 +141,20 @@ public static class PusheenAudioHooks
             nameof(Hook_Audio_CreateInstance_String), ref _createInstanceHook);
     }
 
+    private static int TryInstall(string groupName, Action installer)
+    {
+        try
+        {
+            installer();
+            return 1;
+        }
+        catch (Exception ex)
+        {
+            Logger.Log(LogLevel.Warn, "MaggyHelper", $"[PusheenAudioHooks] {groupName} failed: {ex.Message}");
+            return 0;
+        }
+    }
+
     private static void TryHook(Type targetType, Type hookType, BindingFlags hookFlags,
         string methodName, Type[] paramTypes, string hookMethodName, ref Hook hookField)
     {
@@ -155,14 +163,21 @@ public static class PusheenAudioHooks
             null, paramTypes, null);
         MethodInfo hook = hookType.GetMethod(hookMethodName, hookFlags);
 
-        if (target != null && hook != null)
-        {
-            hookField = new Hook(target, hook);
-        }
-        else
+        if (target == null || hook == null)
         {
             Logger.Log(LogLevel.Warn, "MaggyHelper",
                 $"[PusheenAudioHooks] Audio.{methodName}({string.Join(", ", Array.ConvertAll(paramTypes, t => t.Name))}) not found — skipping");
+            return;
+        }
+
+        try
+        {
+            hookField = new Hook(target, hook);
+        }
+        catch (Exception ex)
+        {
+            Logger.Log(LogLevel.Warn, "MaggyHelper",
+                $"[PusheenAudioHooks] Audio.{methodName} hook failed: {ex.Message}");
         }
     }
 

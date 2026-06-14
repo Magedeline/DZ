@@ -25,8 +25,6 @@ public static class PusheenAudioHooks
     private static Hook _playVector2StringFloatHook;
 
     // ── Music / Ambience hooks ────────────────────────────────────────────
-    private static Hook _setMusicStringHook;
-    private static Hook _setMusicStringBoolHook;
     private static Hook _setMusicStringBoolBoolHook;
     private static Hook _setAmbienceStringHook;
     private static Hook _setAmbienceStringBoolHook;
@@ -67,8 +65,6 @@ public static class PusheenAudioHooks
         _playStringFloatHook?.Dispose(); _playStringFloatHook = null;
         _playVector2StringFloatHook?.Dispose(); _playVector2StringFloatHook = null;
 
-        _setMusicStringHook?.Dispose(); _setMusicStringHook = null;
-        _setMusicStringBoolHook?.Dispose(); _setMusicStringBoolHook = null;
         _setMusicStringBoolBoolHook?.Dispose(); _setMusicStringBoolBoolHook = null;
 
         _setAmbienceStringHook?.Dispose(); _setAmbienceStringHook = null;
@@ -116,17 +112,7 @@ public static class PusheenAudioHooks
         Type hookType = typeof(PusheenAudioHooks);
         BindingFlags hookFlags = BindingFlags.Static | BindingFlags.NonPublic;
 
-        // Audio.SetMusic(string)
-        TryHook(audioType, hookType, hookFlags, "SetMusic",
-            new[] { typeof(string) },
-            nameof(Hook_Audio_SetMusic_String), ref _setMusicStringHook);
-
-        // Audio.SetMusic(string, bool)
-        TryHook(audioType, hookType, hookFlags, "SetMusic",
-            new[] { typeof(string), typeof(bool) },
-            nameof(Hook_Audio_SetMusic_String_Bool), ref _setMusicStringBoolHook);
-
-        // Audio.SetMusic(string, bool, bool)
+        // Audio.SetMusic(string, bool, bool) — the only overload in Celeste 1.4.0.0
         TryHook(audioType, hookType, hookFlags, "SetMusic",
             new[] { typeof(string), typeof(bool), typeof(bool) },
             nameof(Hook_Audio_SetMusic_String_Bool_Bool), ref _setMusicStringBoolBoolHook);
@@ -288,22 +274,10 @@ public static class PusheenAudioHooks
 
     // ── Music ────────────────────────────────────────────────────────────
 
-    private static void Hook_Audio_SetMusic_String(
-        Action<string> orig, string path)
+    private static bool Hook_Audio_SetMusic_String_Bool_Bool(
+        Func<string, bool, bool, bool> orig, string path, bool startPlaying, bool allowFadeOut)
     {
-        orig(ReplacePath(path));
-    }
-
-    private static void Hook_Audio_SetMusic_String_Bool(
-        Action<string, bool> orig, string path, bool startPlaying)
-    {
-        orig(ReplacePath(path), startPlaying);
-    }
-
-    private static void Hook_Audio_SetMusic_String_Bool_Bool(
-        Action<string, bool, bool> orig, string path, bool startPlaying, bool allowFadeOut)
-    {
-        orig(ReplacePath(path), startPlaying, allowFadeOut);
+        return orig(ReplacePath(path), startPlaying, allowFadeOut);
     }
 
     // ── Ambience ─────────────────────────────────────────────────────────

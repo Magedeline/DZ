@@ -85,6 +85,7 @@ public static class CelesteMusicHooks
             }
         }
 
+        // If we already know the FMOD 1.x API is missing, don't even try calling orig
         if (_fmodParamApiMissing)
             return;
 
@@ -101,6 +102,13 @@ public static class CelesteMusicHooks
             Logger.Log(LogLevel.Warn, "MaggyHelper/MusicHooks",
                 "[Audio] FMOD_Studio_EventInstance_SetParameterValue not found in fmodstudio DLL " +
                 "(FMOD 1.x API vs 2.x DLL mismatch). Music parameter changes will be skipped.");
+        }
+        catch (TypeLoadException ex) when (ex.TypeName?.Contains("FMOD") == true || ex.Message.Contains("FMOD"))
+        {
+            // Also catch TypeLoadException from FMOD interop issues
+            _fmodParamApiMissing = true;
+            Logger.Log(LogLevel.Warn, "MaggyHelper/MusicHooks",
+                "[Audio] FMOD TypeLoadException - API mismatch detected. Music parameter changes will be skipped.");
         }
     }
 

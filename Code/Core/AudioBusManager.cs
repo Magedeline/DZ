@@ -88,7 +88,18 @@ namespace Celeste.Mod.MaggyHelper
 
         private static void OnGameLoaderLoadThread(On.Celeste.GameLoader.orig_LoadThread orig, GameLoader self)
         {
-            orig(self);
+            try
+            {
+                orig(self);
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(LogLevel.Warn, "MaggyHelper/AudioBusManager",
+                    $"[Audio] GameLoader.LoadThread failed: {ex.GetType().Name}: {ex.Message}");
+                // Don't rethrow — let MaggyHelperModule or vanilla handle it, but ensure
+                // ActivateAllBuses is not called when FMOD is in a bad state.
+                return;
+            }
             ActivateAllBuses();
         }
 

@@ -189,58 +189,58 @@ public static class KirbyAudioHooks
 
         // -- UI ----------------------------------------------------------------
         if (path.StartsWith("event:/ui/"))
-            return "event:/ui/pusheen/" + path.Substring("event:/ui/".Length);
+            return "event:/pusheen/ui/" + path.Substring("event:/ui/".Length);
         if (path.StartsWith("event:/new_content/ui/"))
-            return "event:/new_content/ui/pusheen/" + path.Substring("event:/new_content/ui/".Length);
+            return "event:/pusheen/ui/new_content/" + path.Substring("event:/new_content/ui/".Length);
 
         // -- Music -------------------------------------------------------------
         if (path.StartsWith("event:/music/"))
-            return "event:/music/pusheen/" + path.Substring("event:/music/".Length);
+            return "event:/pusheen/music/" + path.Substring("event:/music/".Length);
         if (path.StartsWith("event:/new_content/music/"))
-            return "event:/new_content/music/pusheen/" + path.Substring("event:/new_content/music/".Length);
+            return "event:/pusheen/music/new_content/" + path.Substring("event:/new_content/music/".Length);
 
         // -- Environment / Ambience --------------------------------------------
         if (path.StartsWith("event:/env/"))
-            return "event:/env/pusheen/" + path.Substring("event:/env/".Length);
+            return "event:/pusheen/env/" + path.Substring("event:/env/".Length);
         if (path.StartsWith("event:/new_content/env/"))
-            return "event:/new_content/env/pusheen/" + path.Substring("event:/new_content/env/".Length);
+            return "event:/pusheen/env/new_content/" + path.Substring("event:/new_content/env/".Length);
 
         // -- Game SFX ----------------------------------------------------------
         if (path.StartsWith("event:/game/"))
-            return "event:/game/pusheen/" + path.Substring("event:/game/".Length);
+            return "event:/pusheen/game/" + path.Substring("event:/game/".Length);
         if (path.StartsWith("event:/new_content/game/"))
-            return "event:/new_content/game/pusheen/" + path.Substring("event:/new_content/game/".Length);
+            return "event:/pusheen/game/new_content/" + path.Substring("event:/new_content/game/".Length);
 
         // -- Character SFX (character-specific mapping) ------------------------
-        // Vanilla badeline -> pusheen/chara (Chara is the custom Badeline)
+        // Vanilla badeline -> pusheen/char/chara (Chara is the custom Badeline)
         if (path.StartsWith("event:/char/badeline/"))
-            return "event:/char/pusheen/chara/" + path.Substring("event:/char/badeline/".Length);
+            return "event:/pusheen/char/chara/" + path.Substring("event:/char/badeline/".Length);
         if (path.StartsWith("event:/new_content/char/badeline/"))
-            return "event:/new_content/char/pusheen/chara/" + path.Substring("event:/new_content/char/badeline/".Length);
+            return "event:/pusheen/char/chara/new_content/" + path.Substring("event:/new_content/char/badeline/".Length);
 
-        // Vanilla madeline -> pusheen/kirby (Kirby replaces Madeline)
+        // Vanilla madeline -> pusheen/char/kirby (Kirby replaces Madeline)
         if (path.StartsWith("event:/char/madeline/"))
-            return "event:/char/pusheen/kirby/" + path.Substring("event:/char/madeline/".Length);
+            return "event:/pusheen/char/kirby/" + path.Substring("event:/char/madeline/".Length);
         if (path.StartsWith("event:/new_content/char/madeline/"))
-            return "event:/new_content/char/pusheen/kirby/" + path.Substring("event:/new_content/char/madeline/".Length);
+            return "event:/pusheen/char/kirby/new_content/" + path.Substring("event:/new_content/char/madeline/".Length);
 
-        // Vanilla granny -> pusheen/granny
+        // Vanilla granny -> pusheen/char/granny
         if (path.StartsWith("event:/char/granny/"))
-            return "event:/char/pusheen/granny/" + path.Substring("event:/char/granny/".Length);
+            return "event:/pusheen/char/granny/" + path.Substring("event:/char/granny/".Length);
         if (path.StartsWith("event:/new_content/char/granny/"))
-            return "event:/new_content/char/pusheen/granny/" + path.Substring("event:/new_content/char/granny/".Length);
+            return "event:/pusheen/char/granny/new_content/" + path.Substring("event:/new_content/char/granny/".Length);
 
-        // Vanilla oshiro -> pusheen/oshiro
+        // Vanilla oshiro -> pusheen/char/oshiro
         if (path.StartsWith("event:/char/oshiro/"))
-            return "event:/char/pusheen/oshiro/" + path.Substring("event:/char/oshiro/".Length);
+            return "event:/pusheen/char/oshiro/" + path.Substring("event:/char/oshiro/".Length);
         if (path.StartsWith("event:/new_content/char/oshiro/"))
-            return "event:/new_content/char/pusheen/oshiro/" + path.Substring("event:/new_content/char/oshiro/".Length);
+            return "event:/pusheen/char/oshiro/new_content/" + path.Substring("event:/new_content/char/oshiro/".Length);
 
-        // Vanilla theo -> pusheen/theo
+        // Vanilla theo -> pusheen/char/theo
         if (path.StartsWith("event:/char/theo/"))
-            return "event:/char/pusheen/theo/" + path.Substring("event:/char/theo/".Length);
+            return "event:/pusheen/char/theo/" + path.Substring("event:/char/theo/".Length);
         if (path.StartsWith("event:/new_content/char/theo/"))
-            return "event:/new_content/char/pusheen/theo/" + path.Substring("event:/new_content/char/theo/".Length);
+            return "event:/pusheen/char/theo/new_content/" + path.Substring("event:/new_content/char/theo/".Length);
 
         return path;
     }

@@ -1,59 +1,50 @@
 using System;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Security.Cryptography;
-using System.Text;
 
 namespace Celeste.Mod.MaggyHelper.Security
 {
     /// <summary>
     /// Verifies assembly and asset integrity to detect tampering.
-    /// Nintendo-style anti-tampering for Desolo Zantas.
+    /// Hash computation is delegated to <see cref="AssetProtector.ComputeHash"/> to avoid duplication.
     /// </summary>
     public static class IntegrityChecker
     {
-        // Embedded expected hash of the DLL (set during build)
-        private static readonly string ExpectedAssemblyHash = "PLACEHOLDER_HASH";
-        
-        // Anti-debug timing check threshold
+        /// <summary>
+        /// Embedded expected hash of the DLL, injected during the release build.
+        /// Leave as "PLACEHOLDER_HASH" during development — the first run will log the real hash.
+        /// </summary>
+        private const string ExpectedAssemblyHash = "PLACEHOLDER_HASH";
+
         private const long TimingThresholdMs = 100;
 
         /// <summary>
         /// Verifies the current assembly hasn't been tampered with.
-        /// Called during mod initialization.
+        /// Always returns <c>true</c> in DEBUG builds.
         /// </summary>
         public static bool VerifyAssemblyIntegrity()
         {
+#if DEBUG
+            return true;
+#else
             try
             {
-#pragma warning disable CS0162
-                // Skip verification in debug builds
-                #if DEBUG
-                return true;
-                #endif
-
-                // Anti-debug: Check for debugger attachment
                 if (System.Diagnostics.Debugger.IsAttached)
                 {
-                    Logger.Log(LogLevel.Warn, "MaggyHelper", "Debugger detected - integrity check skipped");
+                    Logger.Log(LogLevel.Warn, "MaggyHelper", "Debugger detected — integrity check skipped.");
                     return false;
                 }
 
-                // Verify assembly hash
-                Assembly assembly = Assembly.GetExecutingAssembly();
-                string assemblyPath = assembly.Location;
-                
+                string assemblyPath = Assembly.GetExecutingAssembly().Location;
                 if (!File.Exists(assemblyPath))
-                    return true; // In-memory assembly, can't verify
+                    return true; // in-memory assembly, nothing to verify
 
                 byte[] assemblyData = File.ReadAllBytes(assemblyPath);
-                string actualHash = ComputeHash(assemblyData);
+                string actualHash = AssetProtector.ComputeHash(assemblyData);
 
                 if (ExpectedAssemblyHash == "PLACEHOLDER_HASH")
                 {
-                    // First run - log the hash for embedding
-                    Logger.Log(LogLevel.Info, "MaggyHelper", $"Assembly hash: {actualHash}");
+                    Logger.Log(LogLevel.Info, "MaggyHelper", $"[Integrity] Assembly hash (embed this in release): {actualHash}");
                     return true;
                 }
 
@@ -61,58 +52,45 @@ namespace Celeste.Mod.MaggyHelper.Security
             }
             catch (Exception ex)
             {
-                Logger.Log(LogLevel.Error, "MaggyHelper", $"Integrity check failed: {ex.Message}");
+                Logger.Log(LogLevel.Error, "MaggyHelper", $"[Integrity] Assembly check failed: {ex.Message}");
                 return false;
             }
+#endif
         }
 
         /// <summary>
-        /// Timing check to detect debugging/single-stepping.
+        /// Timing check to detect single-step debugging.
+        /// Always returns <c>true</c> in DEBUG builds.
         /// </summary>
         public static bool PerformTimingCheck()
         {
-#pragma warning disable CS0162
-            #if DEBUG
+#if DEBUG
             return true;
-            #endif
-
+#else
             var sw = System.Diagnostics.Stopwatch.StartNew();
-            
-            // Simple operation that should be fast
             int sum = 0;
             for (int i = 0; i < 1000; i++)
                 sum += i;
-            
             sw.Stop();
-            
-            // If it took too long, debugger might be attached
             return sw.ElapsedMilliseconds < TimingThresholdMs;
+#endif
         }
 
         /// <summary>
-        /// Computes SHA256 hash of file contents.
+        /// Computes the SHA-256 hash of <paramref name="data"/>.
+        /// Delegates to <see cref="AssetProtector.ComputeHash"/>.
         /// </summary>
-        public static string ComputeHash(byte[] data)
-        {
-            using var sha = SHA256.Create();
-            byte[] hash = sha.ComputeHash(data);
-            var sb = new StringBuilder();
-            foreach (byte b in hash)
-                sb.Append(b.ToString("x2"));
-            return sb.ToString();
-        }
+        public static string ComputeHash(byte[] data) => AssetProtector.ComputeHash(data);
 
         /// <summary>
-        /// Verifies a specific file against its expected hash.
+        /// Verifies a file on disk against an expected SHA-256 hash.
         /// </summary>
         public static bool VerifyFile(string filePath, string expectedHash)
         {
             if (!File.Exists(filePath))
                 return false;
-
-            byte[] data = File.ReadAllBytes(filePath);
-            string actualHash = ComputeHash(data);
-            return actualHash.Equals(expectedHash, StringComparison.OrdinalIgnoreCase);
+            return AssetProtector.ComputeHash(File.ReadAllBytes(filePath))
+                .Equals(expectedHash, StringComparison.OrdinalIgnoreCase);
         }
     }
 }

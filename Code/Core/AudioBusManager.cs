@@ -114,12 +114,12 @@ namespace Celeste.Mod.MaggyHelper
         /// <summary>
         /// Activates every bus in both <see cref="PusheenBuses"/> and <see cref="ReturnBuses"/>:
         /// sets volume to 1 and un-pauses so audio flows correctly after bank loads.
-        /// Does nothing if <see cref="MaggyHelperModule.AudioBanksLoaded"/> is false (master bank
+        /// Does nothing if <see cref="MaggyHelperModule.AudioMasterBankLoaded"/> is false (master bank
         /// could not be loaded due to vanilla GUID conflicts — see MaggyHelperModule for details).
         /// </summary>
         public static void ActivateAllBuses()
         {
-            if (!MaggyHelperModule.AudioBanksLoaded)
+            if (!MaggyHelperModule.AudioMasterBankLoaded)
                 return;
 
             ActivateBusGroup("Pusheen", PusheenBuses);

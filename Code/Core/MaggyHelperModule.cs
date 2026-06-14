@@ -7,6 +7,7 @@ using Celeste.Entities;
 using Monocle;
 using MonoMod.RuntimeDetour;
 using static Celeste.Mod.Logger;
+using MonoMod.Logs;
 
 namespace Celeste.Mod.MaggyHelper
 {
@@ -33,142 +34,6 @@ namespace Celeste.Mod.MaggyHelper
         // Runtime flags
         public static bool LaunchPart1Credits { get; set; }
         public static bool LaunchPart2Credits { get; set; }
-
-        // â”€â”€ Hook Registry â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-        // All hooks are loaded/unloaded in the Load() and Unload() methods below.
-        // Hook categories:
-        //   1. Chapter Progression Hooks (ChapterProgressionManager)
-        //      - On.Celeste.Overworld.Begin
-        //      - On.Celeste.LevelExit.ctor
-        //      - On.Celeste.OuiChapterSelect.Update
-        //      - On.Celeste.OuiChapterSelect.PerformCh8Unlock
-        //      - On.Celeste.OuiChapterSelect.PerformCh9Unlock
-        //      - On.Celeste.OuiChapterSelect.Enter
-        //
-        //   2. Area Complete Hooks (AreaCompleteHooks)
-        //      - On.Celeste.LevelExit.Routine
-        //      - On.Celeste.AreaComplete.ctor
-        //      - On.Celeste.AreaComplete.Begin
-        //      - On.Celeste.AreaComplete.Update
-        //
-        //   3. MonoMod Advanced Hooks (MonoModHooks)
-        //      - Manual Hook: Player.DashBegin (private method)
-        //      - Manual Hook: Player.WallJump (private method)
-        //      - On.Celeste.Level.LoadLevel (entity remapping)
-        //      - MapListExt guard hooks
-        //
-        //   4. Overworld 3D Hooks (MountainOverworldManager)
-        //      - On.Celeste.Overworld.SetNormalMusic
-        //      - On.Celeste.OuiChapterSelect.Update
-        //      - On.Celeste.AreaData.Load
-        //
-        //   5. Intro Remix Hooks (IntroRemixHooks)
-        //      - B-Side and C-Side intro cutscene hooks
-        //
-        //   6. Vignette Hooks (VignetteHooks)
-        //      - Chapter-specific visual effect hooks
-        //
-        //   7. Title Screen Hooks (TitleScreen_ExtHook)
-        //      - Custom title screen integration
-        //
-        //   8. AltSides Helper Bridge (AltSidesHelperBridge)
-        //      - Compatibility hooks for AltSidesHelper mod
-        //
-        //   9. Area Mode Extension Hooks (AreaModeExtender)
-        //      - Custom side (D-Side, DX-Side) registration hooks
-        //
-        //   10. Kirby Health System Hooks (KirbyHealthSystemHooks)
-        //      - Hazard damage integration hooks
-        //
-        //   12. Cosmic Chapter Panel Hooks (CosmicChapterPanelHook)
-        //      - Chapter panel UI enhancement hooks
-        //
-        //   13. Chapter Mastery Hooks (ChapterMasteryTracker)
-        //      - First-try tracking hooks
-        //
-        //   14. Everest Event Hooks (in this file)
-        //      - Everest.Events.Level.OnLoadLevel (HotReloadController)
-        //      - Everest.Events.Level.OnExit (cleanup)
-        //
-        //   15. Postcard Unlock Hooks (PostcardUnlockSystem)
-        //      - Chapter postcard dialog on first entry (Chapters 1-16)
-        //      - C-Side unlock postcard (after B-Side completion)
-        //      - D-Side unlock postcard (after C-Side completion)
-        //      - DX-Side unlock postcard (after D-Side completion)
-        //      - Desolo Variants unlock postcard (ultra completion)
-        //      - SideUnlockVignette integration with LevelExit
-        //      - PostcardDialogVignette loading screen display
-        //
-        //   16. C-Side Tape Unlock Hooks (TapeCollection â†’ Overworld)
-        //      - DesoloZantasTape.OnPlayer collection hook
-        //      - C-Side unlock trigger per chapter (one at a time)
-        //      - Overworld chapter select C-Side icon animation
-        //      - PendingCSideUnlockIDs queue management
-        //      - Per-chapter C-Side availability sync with AreaMapData
-        //
-        //   17. Late Chapter Unlock Hooks (ChapterProgressionManager integration)
-        //      - Chapter 10 (Ruins) unlock - DZ Mountain access after Ch9
-        //      - Chapter 18 (Heart/Core) unlock - Boss Rush access
-        //      - Chapter 19-21 (Final DLC) unlock - Farewell to Stars sequence
-        //      - LevelExit.ctor hook for completion detection
-        //      - Overworld.Begin hook for pending unlock processing
-        //      - Chapter select animation integration (PerformCh8/9 unlocks)
-        //
-        //   18. Vignette Hooks (Intro/Outro Cutscenes)
-        //      - LevelEnter.Go hook for intro vignettes
-        //      - LevelExit.ctor hook for outro vignettes
-        //      - Chapter-specific vignette selection (Ch0,3,9,10,18,21 intro)
-        //      - Chapter-specific outro vignettes (Ch3,4,18)
-        //      - Save data tracking for one-time display
-        //      - Vignette testing console commands
-        //
-        //   19. Cheat Mode System (Unlock Everything / Pico8 Classic)
-        //      - Konami-code style cheat input (lrLRuudlRA)
-        //      - MaggyHelperUnlockEverything cheat listener
-        //      - MaggyHelperUnlockedPico8Message display entity
-        //      - All chapters, C-Sides, D-Sides, DX-Sides unlock
-        //      - Ingeste Pico8 classic unlock message
-        //      - Cheat mode flag persistence in save data
-        // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-
-        // â”€â”€ Console Command Registry â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-        // Commands are automatically registered by Everest via [Command] attribute.
-        // Available commands:
-        //   maggy_credits           - Launches Chapter 17 credits sequence
-        //   maggy_hotreload_test    - Simulates hot reload event
-        //   maggy_chapter_test      - Test late chapter unlock flow
-        //   maggy_unlock_dside      - Unlock D-Side/DX-Side for all chapters
-        //   maggy_unlock_all        - Unlock all late chapters (18-21)
-        //   maggy_reset_chapters    - Reset chapter unlocks (18-21)
-        //   maggy_mountain_warp     - Warp to Desolo Zantas mountain
-        //   maggy_unlock_cside      - Unlock C-Side for a chapter
-        //   give_plat               - Give platinum strawberry (PinkPlatBerry)
-        //   maggy_unlock_ch10       - Unlock Chapter 10 (Ruins) with DZ mountain
-        //   maggy_unlock_ch18       - Unlock Chapter 18 (Heart/Core)
-        //   maggy_unlock_final_dlc  - Unlock Chapters 19-21 (Final DLC)
-        //   maggy_vignette_test     - Test a vignette (intro/outro)
-        //   maggy_vignette_reset    - Reset vignette seen flags
-        //   maggy_cheat_unlock      - Trigger unlock everything cheat
-        //   maggy_cheat_pico8       - Show Pico8 unlock message
-        // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-
-        // â”€â”€ Overworld 3D / Mountain Data â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-        // 3D Mountain integration handled by MountainOverworldManager:
-        //   - Custom mountain model registration (OBJ + PNG textures)
-        //   - Per-chapter camera positions (AreaMapData.MountainCameraData)
-        //   - Mountain state management (Normal/Dark/Void)
-        //   - Fog color configuration per state
-        //   - Camera lock to prevent idle rotation drift
-        // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-
-        // â”€â”€ Area/Chapter Data â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-        // Chapter definitions and runtime data managed by AreaMapData:
-        //   - 21 chapter definitions (0-20 + special chapters)
-        //   - Per-chapter: SID, icon, music, ambience, mountain camera data
-        //   - 5 sides per chapter: A, B, C, D, DX
-        //   - Hardcoded runtime data applied via AreaData.Load hooks
-        //   - Chapter progression: Ch9â†’Ch10, Ch15â†’Ch16, Ch18â†’Ch19â†’Ch20â†’Ch21
-        // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
         public static readonly string Chapter16CorruptionSid = AreaModeExtender.BuildASideSID("16_Corruption");
         public static readonly string Chapter17EpilogueSid = AreaModeExtender.BuildASideSID("17_Epilogue");
@@ -223,10 +88,21 @@ namespace Celeste.Mod.MaggyHelper
             AudioBusManager.Load();
 
             // Redirect vanilla audio events to the selected theme variant
-            if (Settings.AudioTheme == AudioThemeMode.Kirby)
-                global::Celeste.KirbyAudioHooks.Load();
+            // Only load hooks if master bank loaded successfully (contains event definitions).
+            // Data-only mode (A/B/C/D banks) has sample data but no events/buses,
+            // so hooks would cause "Event not found" errors. Fall back to vanilla audio instead.
+            if (AudioMasterBankLoaded)
+            {
+                if (Settings.AudioTheme == AudioThemeMode.Kirby)
+                    global::Celeste.KirbyAudioHooks.Load();
+                else
+                    global::Celeste.PusheenAudioHooks.Load();
+            }
             else
-                global::Celeste.PusheenAudioHooks.Load();
+            {
+                Logger.Log(LogLevel.Info, "MaggyHelper",
+                    "[Audio] Master bank not loaded — using vanilla audio (pusheen hooks disabled).");
+            }
 
             // Register hooks
             // OuiChapterSelectHooks: Wraps OuiChapterSelect to catch crashes from updateScarf()
@@ -353,15 +229,6 @@ namespace Celeste.Mod.MaggyHelper
             }
         }
 
-        /// <summary>
-        /// Hook to retry audio bank loading if FMOD wasn't ready during initialization.
-        /// </summary>
-        [Obsolete]
-        public override void LoadSaveData(int index)
-        {
-            base.LoadSaveData(index);
-        }
-
         private static void OnAudioInit(On.Celeste.Audio.orig_Init orig)
         {
             try
@@ -464,19 +331,19 @@ namespace Celeste.Mod.MaggyHelper
         }
 
         // ── Audio bank state ───────────────────────────────────────────────────
-        // pusheen_audio.bank was built from a fork of vanilla Celeste's FMOD project
-        // and therefore contains vanilla event GUIDs that are already registered by
-        // Celeste's own Master.bank.  FMOD refuses to load a second bank containing
-        // duplicate GUIDs (ERR_EVENT_ALREADY_LOADED), so both the master bank and the
-        // strings bank are permanently unavailable at runtime.
+        // WORKAROUND ACTIVE (data-only mode):
+        //   The master bank (pusheen_audio.bank) and strings bank contain duplicate
+        //   vanilla Celeste GUIDs that conflict with the base game. FMOD refuses to
+        //   load them (ERR_EVENT_ALREADY_LOADED). We now skip these banks and rely
+        //   solely on the data banks (A/B/C/D) which contain both sample data and
+        //   event definitions without GUID conflicts.
         //
-        // FIX REQUIRED (FMOD Studio):
-        //   Open the pusheen FMOD project and rebuild pusheen_audio.bank so it only
-        //   contains pusheen-specific buses/events — remove every vanilla Celeste event
-        //   from the project before building.  Until then all custom audio is silent.
-        //
-        // The _A/_B/_C/_D data banks load fine because they contain audio sample data
-        // (no event definitions) and thus have no GUID conflicts.
+        // FIX REQUIRED for proper master bank support (see Audio/FMOD_REBUILD_GUIDE.md):
+        //   1. Open the pusheen FMOD project in FMOD Studio
+        //   2. Remove ALL vanilla Celeste events (keep only pusheen_ prefixed events)
+        //   3. Rebuild the master bank
+        //   4. Uncomment the master/strings loading code in LoadAudioBanks()
+        //   5. Delete or rename the data banks (events will come from master bank)
         private static Bank _pusheenMasterBank;
         private static Bank _pusheenStringsBank;
         private static Bank _pusheenDataA;
@@ -484,8 +351,11 @@ namespace Celeste.Mod.MaggyHelper
         private static Bank _pusheenDataC;
         private static Bank _pusheenDataD;
 
-        /// <summary>True after LoadAudioBanks() confirms the master bank is in FMOD.</summary>
+        /// <summary>True after LoadAudioBanks() confirms at least one data bank loaded.</summary>
         public static bool AudioBanksLoaded { get; private set; }
+
+        /// <summary>True if master bank loaded (contains events/buses). False in data-only mode.</summary>
+        public static bool AudioMasterBankLoaded { get; private set; }
 
         /// <summary>
         /// Reads the FMT-chunk version from a FMOD .bank file header.
@@ -564,14 +434,13 @@ namespace Celeste.Mod.MaggyHelper
             string audioDir = primaryDir;
             AudioBanksLoaded = false;
 
+            // Master/strings banks loaded (rebuilt without vanilla GUID conflicts).
+            // The FMOD project was rebuilt to remove duplicate vanilla Celeste events.
             string masterPath  = Path.Combine(audioDir, "pusheen_audio.bank");
             string stringsPath = Path.Combine(audioDir, "pusheen_audio.strings.bank");
             bool hasMaster  = File.Exists(masterPath);
             bool hasStrings = File.Exists(stringsPath);
 
-            // Try to load master + strings banks if they exist.
-            // If they don't, the data banks (A/B/C/D) contain their own event definitions
-            // and can be loaded standalone.
             bool masterOk = false, stringsOk = false;
             if (hasMaster)
             {
@@ -625,22 +494,24 @@ namespace Celeste.Mod.MaggyHelper
             }
 
             Logger.Log(LogLevel.Info, "MaggyHelper",
-                $"[Audio] Data banks: {dataLoaded} loaded, {dataFailed} failed." +
-                (hasMaster ? $" Master: {masterOk}" : " (no master bank)") +
-                (hasStrings ? $" Strings: {stringsOk}" : " (no strings bank)"));
+                $"[Audio] Data banks: {dataLoaded} loaded, {dataFailed} failed. " +
+                $"Master: {masterOk} Strings: {stringsOk} (using data-only mode)");
 
             // Mark banks as loaded if at least one data bank succeeded.
             // The hooks and bus manager need this flag to activate audio.
             if (dataLoaded > 0)
             {
                 AudioBanksLoaded = true;
+                // Master bank is NOT loaded in data-only mode (it has GUID conflicts)
+                // This disables pusheen audio hooks and bus routing - vanilla audio is used instead
+                AudioMasterBankLoaded = masterOk;
                 Logger.Log(LogLevel.Info, "MaggyHelper", "[Audio] Custom audio active.");
             }
-        }
-
-        private static bool LoadDataBank(string audioDir, string bankName, out Bank bank)
-        {
-            return LoadDataBank(audioDir, bankName, out bank, out _);
+            else
+            {
+                AudioBanksLoaded = false;
+                AudioMasterBankLoaded = false;
+            }
         }
 
         private static bool LoadDataBank(string audioDir, string bankName, out Bank bank, out bool versionMismatch)

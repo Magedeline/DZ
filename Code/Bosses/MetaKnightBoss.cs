@@ -56,7 +56,7 @@ namespace Celeste.Entities.Bosses
             base.StartFight();
             
             // Meta Knight's honor - offer sword to player
-            if (!gaveSword && MaggyHelperModule.Settings.EnableKirbyPlayer)
+            if (!gaveSword && MaggyHelperModule.Settings.KirbyPlayerEnabled)
             {
                 var session = MaggyHelperModule.Session;
                 if (session != null && session.CurrentCopyAbility == CopyAbilityType.None)

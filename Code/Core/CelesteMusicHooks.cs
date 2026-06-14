@@ -66,6 +66,8 @@ public static class CelesteMusicHooks
 
     // ──── On.hook handler delegates ────
 
+    private static bool _fmodParamApiMissing;
+
     private static void OnAudioSetMusicParam(On.Celeste.Audio.orig_SetMusicParam orig, string param, float value)
     {
         // Track music parameter changes for D-Side music system
@@ -83,7 +85,23 @@ public static class CelesteMusicHooks
             }
         }
 
-        orig(param, value);
+        if (_fmodParamApiMissing)
+            return;
+
+        try
+        {
+            orig(param, value);
+        }
+        catch (EntryPointNotFoundException)
+        {
+            // FMOD 2.x removed setParameterValue (1.x API) in favor of
+            // setParameterByName. Suppress the crash and disable future
+            // calls to avoid repeated exceptions.
+            _fmodParamApiMissing = true;
+            Logger.Log(LogLevel.Warn, "MaggyHelper/MusicHooks",
+                "[Audio] FMOD_Studio_EventInstance_SetParameterValue not found in fmodstudio DLL " +
+                "(FMOD 1.x API vs 2.x DLL mismatch). Music parameter changes will be skipped.");
+        }
     }
 
     // ──── IL.hook installation ────

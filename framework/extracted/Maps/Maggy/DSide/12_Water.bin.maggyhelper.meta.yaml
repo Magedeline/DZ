@@ -1,8 +1,0 @@
-schema: maggyhelper-map-meta-v1
-sid: Maggy/DSide/12_Water
-baseKey: 12_Water
-side: D
-modeIndex: 3
-isMainChapterEntry: false
-mainChapterSid: Maggy/ASide/12_Water
-showInChapterSelect: true

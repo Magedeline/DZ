@@ -1,7 +1,0 @@
-PLACEHOLDER: Portrait assets for character 'SUZY'
-Required expressions: amused, angry, annoyed, bruh, concerning, confused, cringe, embarrassed, fakebite, frustrated, hellya, impressed, interested, none, normal, prefakebite, serious, shocked, uncomfortable
-
-Add PNG files in format: {expression}{frame}.png
-Example: normal00.png, angry01.png, happy02.png
-
-Each expression typically needs 1-12 frames for animation.

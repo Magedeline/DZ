@@ -1,8 +1,0 @@
-schema: maggyhelper-map-meta-v1
-sid: Maggy/ASide/11_Snow
-baseKey: 11_Snow
-side: A
-modeIndex: 0
-isMainChapterEntry: true
-mainChapterSid: Maggy/ASide/11_Snow
-showInChapterSelect: true

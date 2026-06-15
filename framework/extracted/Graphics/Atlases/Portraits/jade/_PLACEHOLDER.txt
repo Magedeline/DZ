@@ -1,7 +1,0 @@
-PLACEHOLDER: Portrait assets for character 'JADE'
-Required expressions: again, bruh, eye_closed, eye_flash, eye_roll, finalpowerfade, flash_eyes_alt, flashing_eyes, frustrated, heknowsit_a, heknowsit_b, heknowsit_c, omnia, omnib, omnic, omnid, omnifinal, sad, shruggle, smirkle, smuggle, stink_eyes, what
-
-Add PNG files in format: {expression}{frame}.png
-Example: normal00.png, angry01.png, happy02.png
-
-Each expression typically needs 1-12 frames for animation.

@@ -1,7 +1,0 @@
-PLACEHOLDER: Portrait assets for character 'CYBER_QUEEN'
-Required expressions: angry, bitter, determined, dismissive, furious, honest, offended, regal, reminiscing, scheming
-
-Add PNG files in format: {expression}{frame}.png
-Example: normal00.png, angry01.png, happy02.png
-
-Each expression typically needs 1-12 frames for animation.

@@ -1,7 +1,0 @@
-PLACEHOLDER: Portrait assets for character 'BADELINE'
-Required expressions: alarmed, amused, angry, angryalt, awed, calm, concerned, concernedalt, confident, confused, conrened, crying, defensive, determined, firm, freaka, frustrated, holding, hopeful, horrified, hurt, normal, quiet, sad, sadder, scoff, screaming, shaken, shocked, sigh, sigh_simple, simple_sigh, smile, soft, suspicious, teasing, terrified, thinking, thoughtful, tired, uncertain, upset, weak, worried, worriedalt, worritedalt, yell
-
-Add PNG files in format: {expression}{frame}.png
-Example: normal00.png, angry01.png, happy02.png
-
-Each expression typically needs 1-12 frames for animation.

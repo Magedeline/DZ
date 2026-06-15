@@ -47,7 +47,7 @@
         // Public properties with proper backing fields
         public Sprite Sprite { get; private set; }
         public Image HairImage { get; private set; }
-        public BadelineAutoAnimator AutoAnimator { get; private set; }
+        public MaggyBadelineAutoAnimator AutoAnimator { get; private set; }
         public SineWave Wave { get; private set; }
         public VertexLight Light { get; private set; }
 
@@ -150,7 +150,7 @@
         {
             try
             {
-                AutoAnimator = new BadelineAutoAnimator();
+                AutoAnimator = new MaggyBadelineAutoAnimator();
                 Add(AutoAnimator);
             }
             catch (Exception ex)

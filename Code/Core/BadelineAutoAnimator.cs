@@ -1,7 +1,7 @@
 namespace Celeste;
 
 [HotReloadable]
-public class BadelineAutoAnimator() : Component(true, false)
+public class MaggyBadelineAutoAnimator() : Component(true, false)
 {
     private bool _enabled = true;
     private string lastAnimation = "fallSlow";

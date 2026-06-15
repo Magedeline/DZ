@@ -16,7 +16,7 @@ public class ELSTerminaBoss : Actor
     public int Phase;
     public bool Dead;
     private StateMachine state;
-    private Level? level;
+    private Level level = null!;
     private float health;
     private float maxHealth;
     private Hitbox DashCollider;

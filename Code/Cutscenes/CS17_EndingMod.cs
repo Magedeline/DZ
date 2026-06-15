@@ -304,7 +304,7 @@ namespace Celeste.Cutscenes
             if (mother != null) { mother.X = baseX + 40f; mother.Y = baseY - 10f; guestNpcs.Add(mother); }
 
             Level.Add(oshiro = new Entity(new Vector2(toriel.X - 24f, toriel.Y + 4f)));
-            oshiro.Add(new global::Celeste.OshiroSprite(1));
+            oshiro.Add(new global::Celeste.MaggyOshiroSprite(1));
             oshiro.Depth = 100;
             fade = 0f;
 

@@ -16,7 +16,7 @@ public class NPC05_Oshiro_Lobby : NPC
     public NPC05_Oshiro_Lobby(Vector2 position)
         : base(position)
     {
-        Add(Sprite = new OshiroSprite(-1));
+        Add(Sprite = new MaggyOshiroSprite(-1));
         Sprite.Visible = false;
         MTexture texture = GFX.Gui["hover/resort"];
         if (GFX.Gui.Has("hover/resort_" + global::Celeste.Settings.Instance.Language))

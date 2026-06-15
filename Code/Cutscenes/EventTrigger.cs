@@ -17,9 +17,9 @@ namespace Celeste
 {
     [CustomEntity("MaggyHelper/EventTrigger")]
     [Tracked]
-    public class EventTrigger : Trigger
+    public class MaggyEventTrigger : Trigger
     {
-        public delegate Entity CutsceneLoader(EventTrigger trigger, Player player, string eventID);
+        public delegate Entity CutsceneLoader(MaggyEventTrigger trigger, Player player, string eventID);
 
         public string Event;
 
@@ -46,7 +46,7 @@ namespace Celeste
         public static readonly Dictionary<string, CutsceneLoader> CutsceneLoaders = new Dictionary<string, CutsceneLoader>();
 
         // Static constructor ensures CutsceneEventDispatcher is initialized to populate CutsceneLoaders
-        static EventTrigger()
+        static MaggyEventTrigger()
         {
             RuntimeHelpers.RunClassConstructor(typeof(global::Celeste.Triggers.CutsceneEventDispatcher).TypeHandle);
         }
@@ -54,7 +54,7 @@ namespace Celeste
         public float Time { get; private set; }
 
         [MethodImpl(MethodImplOptions.NoInlining)]
-        public EventTrigger(EntityData data, Vector2 offset)
+        public MaggyEventTrigger(EntityData data, Vector2 offset)
             : base(data, offset)
         {
             Event = data.Attr("event");
@@ -316,7 +316,7 @@ namespace Celeste
             }
         }
 
-        public static bool TriggerCustomEvent(EventTrigger trigger, Player player, string eventID)
+        public static bool TriggerCustomEvent(MaggyEventTrigger trigger, Player player, string eventID)
         {
             if (CutsceneLoaders.TryGetValue(eventID, out var value))
             {
@@ -454,9 +454,9 @@ namespace Celeste.Triggers
 
         }
 
-        private static void Register(string eventId, global::Celeste.EventTrigger.CutsceneLoader factory)
+        private static void Register(string eventId, global::Celeste.MaggyEventTrigger.CutsceneLoader factory)
         {
-            global::Celeste.EventTrigger.CutsceneLoaders[eventId] = factory;
+            global::Celeste.MaggyEventTrigger.CutsceneLoaders[eventId] = factory;
         }
 
         /// <summary>

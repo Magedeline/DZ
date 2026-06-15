@@ -1,3 +1,4 @@
+#nullable enable
 using Celeste.Mod;
 using Monocle;
 

@@ -1,3 +1,4 @@
+#nullable enable
 using Celeste.Cutscenes;
 using Celeste.Entities;
 using Celeste.Triggers;
@@ -51,7 +52,7 @@ public static class VignetteHooks
                 var chapter = AreaMapData.FindByAnySID(area.SID);
                 if (chapter != null && IsVignetteEnabledForChapter(chapter.Number))
                 {
-                    Scene vignette = CreateIntroVignette(session, chapter);
+                    Scene? vignette = CreateIntroVignette(session, chapter);
                     if (vignette != null)
                     {
                         Engine.Scene = vignette;

@@ -236,7 +236,7 @@ namespace Celeste.Cutscenes
             this.badeline.Floatness = 0f;
             Vector2 value = this.GetCreditsTriggerPosition("Oshiro", Vector2.Zero);
             NPC oshiro = new NPC(value + new Vector2(0f, 4f));
-            oshiro.Add(oshiro.Sprite = new OshiroSprite(1));
+            oshiro.Add(oshiro.Sprite = new MaggyOshiroSprite(1));
             oshiro.MoveAnim = "sweeping";
             oshiro.IdleAnim = "sweeping";
             oshiro.Sprite.Play("sweeping", false, false);

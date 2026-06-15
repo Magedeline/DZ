@@ -26,7 +26,7 @@
         private const int DEFAULT_LIGHT_END_RADIUS = 60;
 
         public Sprite Sprite { get; private set; }
-        public BadelineAutoAnimator AutoAnimator { get; private set; }
+        public MaggyBadelineAutoAnimator AutoAnimator { get; private set; }
         public SineWave Wave { get; private set; }
         public VertexLight Light { get; private set; }
 
@@ -90,7 +90,7 @@
         {
             try
             {
-                AutoAnimator = new BadelineAutoAnimator();
+                AutoAnimator = new MaggyBadelineAutoAnimator();
                 Add(AutoAnimator);
             }
             catch (Exception ex)

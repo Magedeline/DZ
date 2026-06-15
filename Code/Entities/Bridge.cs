@@ -12,7 +12,7 @@ namespace Celeste.Entities;
 
 public class Bridge : Entity
 {
-    private List<BridgeTile> tiles;
+    private List<MaggyBridgeTile> tiles;
 
     private Level level;
 
@@ -68,7 +68,7 @@ public class Bridge : Entity
     {
         base.Added(scene);
         level = scene as Level;
-        tiles = new List<BridgeTile>();
+        tiles = new List<MaggyBridgeTile>();
         gapStartX += level.Bounds.Left;
         gapEndX += level.Bounds.Left;
         Calc.PushRandom(1);
@@ -79,7 +79,7 @@ public class Bridge : Entity
             Rectangle tileSize = ((num < 2 || num > 7) ? tileSizes[num] : tileSizes[2 + Calc.Random.Next(6)]);
             if (position.X < gapStartX || position.X >= gapEndX)
             {
-                BridgeTile bridgeTile = new BridgeTile(position, tileSize);
+                MaggyBridgeTile bridgeTile = new MaggyBridgeTile(position, tileSize);
                 tiles.Add(bridgeTile);
                 level.Add(bridgeTile);
             }

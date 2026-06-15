@@ -6,13 +6,13 @@ using Monocle;
 
 namespace Celeste;
 
-public class BridgeTile : JumpThru
+public class MaggyBridgeTile : JumpThru
 {
     private List<Image> images;
 
     private Vector2 shakeOffset;
 
-    private float shakeTimer;
+    private new float shakeTimer;
 
     private float speedY;
 
@@ -21,7 +21,7 @@ public class BridgeTile : JumpThru
     public bool Fallen { get; private set; }
 
     [MethodImpl(MethodImplOptions.NoInlining)]
-    public BridgeTile(Vector2 position, Rectangle tileSize)
+    public MaggyBridgeTile(Vector2 position, Rectangle tileSize)
         : base(position, tileSize.Width, safe: false)
     {
         images = new List<Image>();

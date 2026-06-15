@@ -181,20 +181,11 @@ internal static class ChapterRegistry
 
     private static Func<Session, Scene> CreateFinalVignette(Func<Session, Scene> finalevignette)
     {
-        TrueFinaleVignette finalVignetteFactory(Session session)
-        {
-            return new TrueFinaleVignette(session);
-        }
         return finalevignette;
     }
 
     private static Func<Session, Scene> CreatePostcardVignette(Func<Session, Scene> postcards)
     {
-        PostcardMaggy componentsFactory(Session session)
-        {
-            int area = session.Area.ID;
-            return new PostcardMaggy(Dialog.Clean("MAGGYHELPER_POSTCARD_CH" + area), area);
-        }
         return postcards;
     }
 }

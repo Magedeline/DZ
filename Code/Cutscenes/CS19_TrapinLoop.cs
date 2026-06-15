@@ -273,7 +273,7 @@ namespace Celeste.Cutscenes
             snapshot = null;
             if (WasSkipped)
             {
-                var eventTrigger = Scene.Entities.FindFirst<EventTrigger>();
+                var eventTrigger = Scene.Entities.FindFirst<MaggyEventTrigger>();
                 if (eventTrigger != null)
                 {
                     // use pattern matching instead of 'as' + null check

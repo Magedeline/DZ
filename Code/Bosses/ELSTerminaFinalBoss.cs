@@ -16,7 +16,7 @@ public class ELSTerminaFinalBoss : Actor
     public int DifficultyMode; // 0 = Normal (darkness), 1 = Morpho, 2 = Celestial Morpho
     public bool Dead;
     private StateMachine state;
-    private Level? level;
+    private Level level = null!;
     private float health;
     private float maxHealth;
     private Hitbox DashCollider;

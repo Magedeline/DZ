@@ -89,7 +89,7 @@ namespace Celeste.Entities
                 if (Sprite.Has("idle"))
                     Sprite.Play("idle");
                 else if (Sprite.CurrentAnimationID != null)
-                    ; // Keep current animation
+                { /* Keep current animation */ }
                 else
                     Logger.Log(LogLevel.Warn, "FloweyNPC", "Sprite bank 'maggy_flowey' loaded but 'idle' animation not found");
             }

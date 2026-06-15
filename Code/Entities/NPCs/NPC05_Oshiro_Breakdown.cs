@@ -9,7 +9,7 @@ namespace Celeste.NPCs
         public NPC05_Oshiro_Breakdown(Vector2 position)
             : base(position)
         {
-            Add(Sprite = new OshiroSprite(1));
+            Add(Sprite = new MaggyOshiroSprite(1));
             Add(Light = new VertexLight(-Vector2.UnitY * 16f, Color.White, 1f, 32, 64));
             MoveAnim = "move";
             IdleAnim = "idle";

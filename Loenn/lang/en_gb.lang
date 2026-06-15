@@ -1,544 +1,1099 @@
-mods.VivHelper.name=VivHelper
--- EFFECTS
-
-style.effects.VivHelper/CustomRain.name=Custom Rain
-style.effects.VivHelper/WindRainFG.name=Wind Rain
-
--- TRIGGERS
-
-triggers.VivHelper/ActivateCPP.placements.name.main=Activate Custom Player Playback Trigger
-triggers.VivHelper/ActivateCPP.placements.description.main=Triggers the activation of a given Custom Player Playback according to its ID when entered.
-triggers.VivHelper/ActivateCPP.attributes.name.CPPID=Player Playback ID
-triggers.VivHelper/ActivateCPP.attributes.description.CPPID=The ID assigned to the specific Player Playback you want to activate.
-triggers.VivHelper/ActivateCPP.attributes.name.state=On/Off
-triggers.VivHelper/ActivateCPP.attributes.description.state=Whether to Activate or Deactivate the given Player Playback.
-triggers.VivHelper/ActivateCPP.attributes.name.onlyOnce=Only Once
-triggers.VivHelper/ActivateCPP.attributes.description.onlyOnce=If checked, the trigger will delete itself after being used. (per retry)
-triggers.VivHelper/ActivateCPP.attributes.name.mode=Mode
-triggers.VivHelper/ActivateCPP.attributes.description.mode=When the trigger is set off, see the dropdown for options.
-
-triggers.VivHelper/ChangeRespawnIfFlag.placements.name.main=Change Respawn If Flag Set Trigger
-triggers.VivHelper/ChangeRespawnIfFlag.placements.description.main=Changes the Player's Respawn Point if a given flag is set when entered.
-triggers.VivHelper/ChangeRespawnIfFlag.attributes.name.flag=Flag
-triggers.VivHelper/ChangeRespawnIfFlag.attributes.description.flag=The Flag to check in order to determine whether to change the respawn.
-
-triggers.VivHelper/ConfettiTrigger.placements.name.main=Confetti Trigger
-triggers.VivHelper/ConfettiTrigger.placements.description.main=Spawns confetti when entered!
-triggers.VivHelper/ConfettiTrigger.attributes.name.onlyOnce=Only Once
-triggers.VivHelper/ConfettiTrigger.attributes.description.onlyOnce=If checked, the trigger will delete itself after being used. (per retry)
-triggers.VivHelper/ConfettiTrigger.attributes.name.permanent=Permanent
-triggers.VivHelper/ConfettiTrigger.attributes.description.permanent=If checked, the trigger will delete itself after being used. (per chapter play)
-triggers.VivHelper/ConfettiTrigger.attributes.name.RepeatOnCycle=Repeat On Cycle
-triggers.VivHelper/ConfettiTrigger.attributes.description.RepeatOnCycle=Spawns confetti repeated on a timer of this length. 0 means it does not repeat.
-
-triggers.VivHelper/DisableNeutralsOnHoldableTrigger.placements.name.main=Disable Neutrals During Carry Trigger
-triggers.VivHelper/DisableNeutralsOnHoldableTrigger.placements.description.main=When entered, disables/reenables neutrals while carrying items such as Theo Crystals and Jellyfish
-triggers.VivHelper/DisableNeutralsOnHoldableTrigger.attributes.name.state=On/Off
-triggers.VivHelper/DisableNeutralsOnHoldableTrigger.attributes.description.state=Whether to disable (true) or enable (false) neutrals while carrying items.
-
-triggers.VivHelper/DisableRefillCancelSpaceIndicator.placements.name.main=Disable RCS Visual 
-
-triggers.VivHelper/InfDashTrigger.placements.name.main=Infinite Dash Trigger
-triggers.VivHelper/InfDashTrigger.placements.description.main=Gives you infinite dashes while in the region
-
-triggers.VivHelper/InstantCatchupTrigger.placements.name.main=Instant Catchup Trigger
-triggers.VivHelper/InstantCatchupTrigger.placements.description.main=When triggered, locks the camera to the appropriate position, with no smooth grade between points.
-
-triggers.VivHelper/TempleFallTrigger.placements.name.main=Temple Fall Trigger
-triggers.VivHelper/TempleFallTrigger.placements.description.main=Sets the player into the Temple Fall state, with a custom X position to reach.
-
--- Old Instant TP trigger
-triggers.VivHelper/BasicInstantTeleportTrigger.placements.name.main=Instant Teleport Trigger (Old, Basic)
-triggers.VivHelper/BasicInstantTeleportTrigger.placements.description.main=Teleports the player to a room and specified position.
-triggers.VivHelper/BasicInstantTeleportTrigger.attributes.description.newPosX= The X coordinate of the teleport location in the room "WarpRoom"\nSetting to -1 sets the "default" which is usually the same (X,Y) but in the new room.
-triggers.VivHelper/BasicInstantTeleportTrigger.attributes.description.newPosY= The Y coordinate of the teleport location in the room "WarpRoom"\nSetting to -1 sets the "default" which is usually the same (X,Y) but in the new room.
-triggers.VivHelper/BasicInstantTeleportTrigger.attributes.description.WarpRoom= Select or type in the name of the room you want to teleport to.
-triggers.VivHelper/BasicInstantTeleportTrigger.attributes.description.TransitionType= Selects a Visual to overlay when teleporting.
-triggers.VivHelper/BasicInstantTeleportTrigger.attributes.description.AddTriggerOffset= Sets the player to the new position plus their (vector) distance from the top left of the trigger.\nTurn this off if you're having issues with the position or are setting New Pos X and Y to -1.
-triggers.VivHelper/BasicInstantTeleportTrigger.attributes.description.CameraType= Sets the Camera to have the details listed in the Dropdown. Don't put in a custom number, it just can crash the game.
-
-triggers.VivHelper/MainInstantTeleportTrigger.placements.name.main=Instant Teleport Trigger (Old)
-triggers.VivHelper/MainInstantTeleportTrigger.placements.description.main=Teleports the player to a room and specified position.
-triggers.VivHelper/MainInstantTeleportTrigger.attributes.description.newPosX= The X coordinate of the teleport location in the room "WarpRoom"\nSetting to -1 sets the "default" which is usually the same (X,Y) but in the new room.
-triggers.VivHelper/MainInstantTeleportTrigger.attributes.description.newPosY= The Y coordinate of the teleport location in the room "WarpRoom"\nSetting to -1 sets the "default" which is usually the same (X,Y) but in the new room.
-triggers.VivHelper/MainInstantTeleportTrigger.attributes.description.WarpRoom= Select or type in the name of the room you want to teleport to.
-triggers.VivHelper/MainInstantTeleportTrigger.attributes.description.TransitionType= Selects a Visual to overlay when teleporting.
-triggers.VivHelper/MainInstantTeleportTrigger.attributes.description.AddTriggerOffset= Sets the player to the new position plus their (vector) distance from the top left of the trigger.\nTurn this off if you're having issues with the position or are setting New Pos X and Y to -1.
-triggers.VivHelper/MainInstantTeleportTrigger.attributes.description.ExitVelocityX= Modifies the player's X speed. VelocityModifier determines in what way it is modified.\nA point of reference if you use Add, a dash is "240" speed.
-triggers.VivHelper/MainInstantTeleportTrigger.attributes.description.ExitVelocityY= Modifies the player's Y speed. VelocityModifier determines in what way it is modified.\nA point of reference if you use Add, a dash is "240" speed.
-triggers.VivHelper/MainInstantTeleportTrigger.attributes.description.VelocityModifier= Changes the way that ExitVelocityX and ExitVelocityY modify the player's speed.
-triggers.VivHelper/MainInstantTeleportTrigger.attributes.description.Dreaming= Sets the Dreaming state on or off.
-triggers.VivHelper/MainInstantTeleportTrigger.attributes.description.CameraType= Sets the Camera to have the details listed in the Dropdown. Don't put in a custom number, it just can crash the game.
-
-triggers.VivHelper/CustomInstantTeleportTrigger.placements.name.main=Instant Teleport Trigger (Old, Custom)
-triggers.VivHelper/CustomInstantTeleportTrigger.placements.description.main=Teleports the player to a room and specified position.
-triggers.VivHelper/CustomInstantTeleportTrigger.attributes.description.newPosX= The X coordinate of the teleport location in the room "WarpRoom"\nSetting this to -1 sets the "default" - the player's old (X,Y) but in the new room.
-triggers.VivHelper/CustomInstantTeleportTrigger.attributes.description.newPosY= The Y coordinate of the teleport location in the room "WarpRoom"\nSetting this to -1 sets the "default" - the player's old (X,Y) but in the new room.
-triggers.VivHelper/CustomInstantTeleportTrigger.attributes.description.WarpRoom= Select or type in the name of the room you want to teleport to.
-triggers.VivHelper/CustomInstantTeleportTrigger.attributes.description.TransitionType= Selects a Visual to overlay when teleporting.
-triggers.VivHelper/CustomInstantTeleportTrigger.attributes.description.AddTriggerOffset= Sets the player to the new position plus their (vector) distance from the top left of the trigger.\nTurn this off if you're having issues with the position or are setting New Pos X and Y to -1.
-triggers.VivHelper/CustomInstantTeleportTrigger.attributes.description.ExitVelocityX= Modifies the player's X speed. VelocityModifier determines in what way it is modified.\nA point of reference if you use Add, a dash is "240" speed.\nIf using ExitVelocityS, do not use this.
-triggers.VivHelper/CustomInstantTeleportTrigger.attributes.description.ExitVelocityY= Modifies the player's Y speed. VelocityModifier determines in what way it is modified.\nA point of reference if you use Add, a dash is "240" speed.\nIf using ExitVelocityS, do not use this.
-triggers.VivHelper/CustomInstantTeleportTrigger.attributes.description.VelocityModifier= Changes the way that ExitVelocityX/Y/S modify the player's speed.
-triggers.VivHelper/CustomInstantTeleportTrigger.attributes.description.Dreaming= Sets the Dreaming state on or off.
-triggers.VivHelper/CustomInstantTeleportTrigger.attributes.description.ExitVelocityS= Modifies the total player speed regardless of the direction.
-triggers.VivHelper/CustomInstantTeleportTrigger.attributes.name.ZFlagsData=Required Flags
-triggers.VivHelper/CustomInstantTeleportTrigger.attributes.description.ZFlagsData= The set of flags needed to turn on or off this teleporter. If all flags are in a state to leave the list on, then the teleporter will turn on.\nExample: "flag1,!flag2,flag3" = if flag1 and flag3 are triggered and flag2 isn't, then activate the teleporter.
-triggers.VivHelper/CustomInstantTeleportTrigger.attributes.description.RotationActor= The number (in degrees) used by the Rotation Modifier to change the player's direction. See Rotation Modifier for more info, or this example:\n Rotation Actor: Right, Rotation Modifier: Rotate To Direction = > the player's velocity will be all going to the right.
-triggers.VivHelper/CustomInstantTeleportTrigger.attributes.name.RotationType= Rotation Modifier
-triggers.VivHelper/CustomInstantTeleportTrigger.attributes.description.RotationType= Rotates the player's movement exiting the portal. Setting to "Rotate To Direction" will change the player's velocity to the Rotation Actor's direction.\nSetting to "Rotate Degrees from Direction" will rotate the player's potential velocity by {Rotation Actor} degrees (clockwise)
-triggers.VivHelper/CustomInstantTeleportTrigger.attributes.description.CameraType= Sets the Camera to have the details listed in the Dropdown. Don't put in a custom number, it just can crash the game.
-
--- New Instant TP trigger
-triggers.VivHelper/TeleportTarget.placements.name.main=Teleport Target
-triggers.VivHelper/TeleportTarget.placements.name.custom=Teleport Target (Customizable Speed Exit)
-triggers.VivHelper/TeleportTarget.placements.description.main=The point by which a player teleports using a (new) Teleport Trigger
-triggers.VivHelper/TeleportTarget.attributes.name.TargetID=Target ID
-triggers.VivHelper/TeleportTarget.attributes.description.TargetID=The ID by which to link a Teleport Trigger to a target.
-triggers.VivHelper/TeleportTarget.attributes.description.SetState=Whether or not to set the player state upon exiting the teleport. Set "-1" for Default behavior.
-
-triggers.VivHelper/ITPT1Way.placements.name.main=Teleport Trigger
-triggers.VivHelper/ITPT1Way.placements.description.main=Teleports a player to an associated Target in another room.
-triggers.VivHelper/ITPT1Way.attributes.name.ExitDirection=Direction Control 
-triggers.VivHelper/ITPT1Way.attributes.description.ExitDirection=Which 
-triggers.VivHelper/ITPT1Way.attributes.name.TargetID=Target ID
-triggers.VivHelper/ITPT1Way.attributes.description.TargetID=The ID by which to link a Teleport Trigger to a target.
-triggers.VivHelper/ITPT1Way.attributes.name.Persistence=Use Counter
-triggers.VivHelper/ITPT1Way.attributes.description.Persistence=Whether or not the trigger is one use.
-triggers.VivHelper/ITPT1Way.attributes.description.RequiredFlags=A comma separated list of flags that must be set to true in order for teleport to occur.
-triggers.VivHelper/ITPT1Way.attributes.description.FlagsOnTeleport=A comma separated list of flags that will be set after teleport
-triggers.VivHelper/ITPT1Way.attributes.description.ResetDashes=Whether or not to Refill Dashes during the Teleport
-triggers.VivHelper/ITPT1Way.attributes.name.BringHoldableThrough=Bring Held Items Through
-triggers.VivHelper/ITPT1Way.attributes.description.BringHoldableThrough=If set to true, if carrying an item, it will teleport with the player.
-triggers.VivHelper/ITPT1Way.attributes.description.IgnoreNoSpawnpoints=If set to true, this enables teleporting to rooms without a set spawnpoint, or "filler rooms."\nUseful for hiding secrets.
-triggers.VivHelper/ITPT1Way.attributes.description.EndCutsceneOnWarp=Cancels the current cutscene if you choose to teleport. Can reduce crashes when teleporting during a cutscene.
-
-triggers.VivHelper/ITPT1Way.placements.name.flash=Teleport Trigger (Flash)
-triggers.VivHelper/ITPT1Way.placements.description.flash=Teleports a player to an associated Target in another room.
-triggers.VivHelper/ITPT1Way.attributes.attributes.FlashColor=The color to flash the screen when teleporting
-triggers.VivHelper/ITPT1Way.attributes.attributes.FlashAlpha=The opacity of the flash to the screen when teleporting
-
-triggers.VivHelper/ITPT1Way.placements.name.lightning=Teleport Trigger (Lightning)
-triggers.VivHelper/ITPT1Way.placements.description.lightning=Teleports a player to an associated Target in another room.
-triggers.VivHelper/ITPT1Way.attributes.description.LightningCount=The number of lightning strikes to occur.
-triggers.VivHelper/ITPT1Way.attributes.name.LightningOffsetRange=Lightning Offset Spacing
-triggers.VivHelper/ITPT1Way.attributes.description.LightningOffsetRange=The range of X-values relative to the player for lightning to randomly strike.\nMust be in the form "#,#" where # is a number.
-triggers.VivHelper/ITPT1Way.attributes.description.LightningDelay=The minimum time after teleporting before lightning strikes.
-triggers.VivHelper/ITPT1Way.attributes.description.LightningMaxDelay=The maximum time after teleporting before the last lightning strikes.
-triggers.VivHelper/ITPT1Way.attributes.description.Flash=Whether or not to flash the screen white.
-triggers.VivHelper/ITPT1Way.attributes.description.Shake=Whether or not to shake the screen.
-
-triggers.VivHelper/ITPT1Way.placements.name.glitch=Teleport Trigger (Glitch)
-triggers.VivHelper/ITPT1Way.placements.description.glitch=Teleports a player to an associated Target in another room.
-triggers.VivHelper/ITPT1Way.attributes.description.GlitchStrength=The amount of "glitchiness" that appears on the screen.
-triggers.VivHelper/ITPT1Way.attributes.description.StartingGlitchDuration=The amount of time from "glitchiness" to go from 0 to <GlitchStrength>.
-triggers.VivHelper/ITPT1Way.attributes.description.EndingGlitchDuration=The amount of time from "glitchiness" to go from <GlitchStrength> to 0.
-triggers.VivHelper/ITPT1Way.attributes.description.StartingGlitchEase=The easer by which "glitchiness" goes from 0 to <GlitchStrength>.
-triggers.VivHelper/ITPT1Way.attributes.description.EndingGlitchEase=The easer by which "glitchiness" goes from <GlitchStrength> to 0.
-
-triggers.VivHelper/ITPT1Way.placements.name.wipe=Teleport Trigger (Wipe)
-triggers.VivHelper/ITPT1Way.placements.description.wipe=Teleports a player to an associated Target in another room.
-triggers.VivHelper/ITPT1Way.attributes.description.freezeOnTeleport=Whether or not to freeze the game while the wipe occurs.\nIt is recommended to leave this true.
-
-triggers.VivHelper/MultiflagCameraTargetTrigger.placements.name.main=Multiflag Camera Target Trigger
-# TODO: attributes to this trigger
-
-################## ENTITIES ######################
-
-entities.VivHelper/BumperWrapper.placements.name.main=Bumper Wrapper
-entities.VivHelper/BumperWrapper.placements.description.main=Place this over a Bumper to change its internal properties
-entities.VivHelper/BumperWrapper.attributes.description.TypeName=The "C#" name of the object. Use SpeedrunTool to get this name, or use the get_entities
-entities.VivHelper/BumperWrapper.attributes.description.Anchor=In C#, the name for the "anchor" point, used as the base position the Bumper stands at. (It varies from the anchor with wiggling)
-entities.VivHelper/BumperWrapper.attributes.description.
-
-entities.VivHelper/DashCodeHeartController.placements.name.forsakencity=Dash Code Heart Controller (Forsaken City)
-entities.VivHelper/DashCodeHeartController.placements.name.reflection=Dash Code Heart Controller (Reflection)
-entities.VivHelper/DashCodeHeartController.placements.name.levelup=Dash Code Heart Controller (Level Up)
-entities.VivHelper/DashCodeHeartController.placements.name.flashspawn=Dash Code Heart Controller (Flash)
-entities.VivHelper/DashCodeHeartController.placements.name.glitchspawn=Dash Code Heart Controller (Glitch)
-entities.VivHelper/DashCodeHeartController.placements.name.custom=Dash Code Heart Controller (Custom Code)
-entities.VivHelper/DashCodeHeartController.placements.description.forsakencity=Place this in a room with a Heart or MiniHeart to "attach" a dash code to spawn the heart in a given room.
-entities.VivHelper/DashCodeHeartController.placements.description.reflection=Place this in a room with a Heart or MiniHeart to "attach" a dash code to spawn the heart in a given room.
-entities.VivHelper/DashCodeHeartController.placements.description.levelup=Place this in a room with a Heart or MiniHeart to "attach" a dash code to spawn the heart in a given room.
-entities.VivHelper/DashCodeHeartController.placements.description.flashspawn=Place this in a room with a Heart or MiniHeart to "attach" a dash code to spawn the heart in a given room.
-entities.VivHelper/DashCodeHeartController.placements.description.glitchspawn=Place this in a room with a Heart or MiniHeart to "attach" a dash code to spawn the heart in a given room.
-entities.VivHelper/DashCodeHeartController.placements.description.custom=Place this in a room with a Heart or MiniHeart to "attach" a dash code to spawn the heart in a given room.
-
-entities.VivHelper/EntityMuter.placements.name.main=Entity Muter
-entities.VivHelper/EntityMuter.placements.description.main=Mutes most entities it collides with.
-
-entities.VivHelper/FunctionRefillAppender.placements.name.main=Dash/Stamina Refill Modifier
-entities.VivHelper/FunctionRefillAppender.placements.description.main=Place over an entity to have its change the amount of dashes/stamina you get from acting on it.
-
-entities.VivHelper/SolidModifier2.placements.name.main=~Solid Modifier (Blank)
-entities.VivHelper/SolidModifier2.placements.description.main=Enables changing of solids to be impacted by triggering on touch or improves cornerboosts on the block.
-entities.VivHelper/SolidModifier2.placements.name.cb=CornerBoost Block Modifier
-entities.VivHelper/SolidModifier2.placements.description.main=Enables changing of solids to improve cornerboosts on the block.
-entities.VivHelper/SolidModifier2.placements.name.touch=Touch Contact Modifier
-entities.VivHelper/SolidModifier2.placements.description.main=Enables changing of solids to change what counts as "touching" a block.
-entities.VivHelper/SolidModifier.attributes.name.CornerBoostBlock=Behavior
-entities.VivHelper/SolidModifier.attributes.description.CornerBoostBlock=The behavior set when getting a climbjump off of this block.
-entities.VivHelper/SolidModifier2.attributes.name.cornerBoostBlock=ClimbJump Window
-entities.VivHelper/SolidModifier2.attributes.description.cornerBoostBlock=This sets the window, in pixels, that you can climbjump or walljump off the solid from.\nSetting to -1 bases it off the player's current speed, and is the recommended setting for CornerBoost Blocks.
-entities.VivHelper/SolidModifier.attributes.name.TriggerOnTouch=Trigger On Touch?
-entities.VivHelper/SolidModifier.attributes.description.TriggerOnTouch=An option to toggle whether or not the solid gets "ridden" based on when/how the Player touches the block.
-entities.VivHelper/SolidModifier2.attributes.name.TriggerOnTouch=Trigger On Touch?
-entities.VivHelper/SolidModifier2.attributes.description.TriggerOnTouch=An option to toggle whether or not the solid gets "ridden" based on when/how the Player touches the block.
-entities.VivHelper/SolidModifier2.attributes.name.RetainWallSpeed=Retain Momentum?
-entities.VivHelper/SolidModifier2.attributes.description.RetainWallSpeed=Whether or not the block will ensure a cornerboost boosts the player's speed.\nPreviously called "Perfect" CornerBoostBlock, this is recommended.
-entities.VivHelper/SolidModifier.attributes.
-
-entities.VivHelper/AnimatedSpikesUp.placements.name.main=Animated Spikes (Up)
-entities.VivHelper/AnimatedSpikesLeft.placements.name.main=Animated Spikes (Left)
-entities.VivHelper/AnimatedSpikesRight.placements.name.main=Animated Spikes (Right)
-entities.VivHelper/AnimatedSpikesDown.placements.name.main=Animated Spikes (Down)
-entities.VivHelper/AnimatedSpikes.attributes.description.directory=The entire spike directory, starting from Graphics/Atlases/Gameplay, *excluding* the numbers at the end.
-entities.VivHelper/AnimatedSpikes.attributes.description.Color=The tinting color for the animated sprite. Allows for "Rainbow" as a parameter to rainbow-ify the spike.
-
-entities.VivHelper/AudioFixSwapBlock.placements.name.normal=Audio Fixed Swap Block (Normal)
-entities.VivHelper/AudioFixSwapBlock.placements.name.moon=Audio Fixed Swap Block (Moon)
-entities.VivHelper/AudioFixSwapBlock.placements.description.normal=Swap Block, except it never infinitely plays the pullback audio.
-entities.VivHelper/AudioFixSwapBlock.placements.description.moon=Swap Block, except it never infinitely plays the pullback audio.
-entities.VivHelper/AudioFixSwapBlock.attributes.description.theme=The visual theme of the swap block.
-
-entities.VivHelper/BadelineBoostCustomRefill.placements.name.main=Badeline Boost (Custom Refill)
-entities.VivHelper/BadelineBoostCustomRefill.attributes.description.lockCamera=Upon activation, the camera cannot pan away from the entity.
-entities.VivHelper/BadelineBoostCustomRefill.attributes.description.canSkip=Badeline will skip to the next position if the player is too far to the right of the current one  (100 pixels).
-entities.VivHelper/BadelineBoostCustomRefill.attributes.description.finalCh9Boost=Whether this boost should be able to end the level, transporting the player to room "end-granny". If the player has a golden berry, and this isn't a golden boost, they are transported to the golden room "end-golden" instead.\nRequires a Blackhole in the background, does not work if it is in the foreground.
-entities.VivHelper/BadelineBoostCustomRefill.attributes.description.finalCh9GoldenBoost=Used to indicate that we are in the golden room and boosting out. Prevents the check in finalCh9Boost, and always ends the level if finalCh9Boost is also set.
-entities.VivHelper/BadelineBoostCustomRefill.attributes.description.finalCh9Dialog=If finalCh9Boost is also set and doesn't go to golden room, this will trigger the Farewell ending dialog.
-entities.VivHelper/BadelineBoostCustomRefill.attributes.description.DashesLogic=Uses a specific format to define the change in dashes the player receives.
-entities.VivHelper/BadelineBoostCustomRefill.attributes.description.StaminaLogic=Uses a specific format to define the change in stamina the player receives.
-
-entities.VivHelper/BadelineBoostNoRefill.placements.name.main=Badeline Boost (No Refill)
-entities.VivHelper/BadelineBoostNoRefill.attributes.description.lockCamera=Upon activation, the camera cannot pan away from the entity.
-entities.VivHelper/BadelineBoostNoRefill.attributes.description.canSkip=Badeline will skip to the next position if the player is too far to the right of the current one  (100 pixels).
-entities.VivHelper/BadelineBoostNoRefill.attributes.description.finalCh9Boost=Whether this boost should be able to end the level, transporting the player to room "end-granny". If the player has a golden berry, and this isn't a golden boost, they are transported to the golden room "end-golden" instead.\nRequires a Blackhole in the background, does not work if it is in the foreground.
-entities.VivHelper/BadelineBoostNoRefill.attributes.description.finalCh9GoldenBoost=Used to indicate that we are in the golden room and boosting out. Prevents the check in finalCh9Boost, and always ends the level if finalCh9Boost is also set.
-entities.VivHelper/BadelineBoostNoRefill.attributes.description.finalCh9Dialog=If finalCh9Boost is also set and doesn't go to golden room, this will trigger the Farewell ending dialog.
-entities.VivHelper/BadelineBoostNoRefill.attributes.description.NoDashRefill=If true, the amount of dashes the player has doesn't change from before launching with Badeline.
-entities.VivHelper/BadelineBoostNoRefill.attributes.description.NoStaminaRefill=If true, the amount of stamina the player has doesn't change from before launching with Badeline.
-
-entities.VivHelper/CassetteTileEntity.placements.name.0=Cassette Tile Entity (0 - Blue)
-entities.VivHelper/CassetteTileEntity.placements.name.1=Cassette Tile Entity (1 - Rose)
-entities.VivHelper/CassetteTileEntity.placements.name.2=Cassette Tile Entity (2 - Bright Sun)
-entities.VivHelper/CassetteTileEntity.placements.name.3=Cassette Tile Entity (3 - Malachite)
-entities.VivHelper/CassetteTileEntity.attributes.description.index=The colour of the cassette block.
-entities.VivHelper/CassetteTileEntity.attributes.description.tempo=The tempo of the cassette blocks. The first cassette block with a tempo other than 1.0 decides the tempo for all cassette blocks in the room. A multiplier of 1.0 triggers one beat every 10 frames. Refer to the cassette section in map metadata for details.
-entities.VivHelper/CassetteTileEntity.attributes.description.tiletype=Changes the visual appearance of the Cassette Tile Entity
-entities.VivHelper/CassetteTileEntity.attributes.description.enabledTint=Customizable color for when the Cassette Tile Entity is solid.
-entities.VivHelper/CassetteTileEntity.attributes.description.disabledTint=Customizable color for when the Cassette Tile Entity is not solid.
-entities.VivHelper/CassetteTileEntity.attributes.name.ConnectTilesets=Connect On Tilesets
-entities.VivHelper/CassetteTileEntity.attributes.description.ConnectTilesets=When true, whether or not the cassette blocks should visually connect is determined by if the tilesets of those Cassette Blocks link (in game only)
-
-entities.VivHelper/CustomCoreMessage.placements.name.main=Custom Core Message
-entities.VivHelper/CustomCoreMessage.attributes.description.line=Which line of the dialogue to use.
-entities.VivHelper/CustomCoreMessage.attributes.description.dialog=The dialogue key to use.
-entities.VivHelper/CustomCoreMessage.attributes.name.TextColor1=Text Color
-entities.VivHelper/CustomCoreMessage.attributes.description.TextColor1=The color of the drawn text.
-entities.VivHelper/CustomCoreMessage.attributes.description.OutlineColor=The color of the outline of the text. Leave empty to disable outlines.
-entities.VivHelper/CustomCoreMessage.attributes.description.EaseType=The type of easing determined by the Render Distance (or nodes if added)
-entities.VivHelper/CustomCoreMessage.attributes.description.Scale=The size of the text on screen
-entities.VivHelper/CustomCoreMessage.attributes.description.AlwaysRender=Whether or not to always render the text if it is on screen. Equivalent to DefaultFadedValue of 1
-entities.VivHelper/CustomCoreMessage.attributes.description.PauseType=What the Core Message should do when the game is Paused. Vanilla behavior (Shown) will make it appear above the pause menu.
-entities.VivHelper/CustomCoreMessage.attributes.description.LockPosition=If true, the rendering position is static to the world position, while if false it slowly fades in and out while moving from left to right slightly.
-
-entities.VivHelper/CoreToggleSpikesUp.placements.name.up_default=Core Toggle Spikes (Hot, Up, Default)
-entities.VivHelper/CoreToggleSpikesUp.placements.name.up_outline=Core Toggle Spikes (Hot, Up, Outline)
-entities.VivHelper/CoreToggleSpikesUp.placements.name.up_whitereflection=Core Toggle Spikes (Hot, Up, Cliffside)
-entities.VivHelper/CoreToggleSpikesLeft.placements.name.left_default=Core Toggle Spikes (Hot, Left, Default)
-entities.VivHelper/CoreToggleSpikesLeft.placements.name.left_outline=Core Toggle Spikes (Hot, Left, Outline)
-entities.VivHelper/CoreToggleSpikesLeft.placements.name.left_whitereflection=Core Toggle Spikes (Hot, Left, Cliffside)
-entities.VivHelper/CoreToggleSpikesRight.placements.name.right_default=Core Toggle Spikes (Hot, Right, Default)
-entities.VivHelper/CoreToggleSpikesRight.placements.name.right_outline=Core Toggle Spikes (Hot, Right, Outline)
-entities.VivHelper/CoreToggleSpikesRight.placements.name.right_whitereflection=Core Toggle Spikes (Hot, Right, Cliffside)
-entities.VivHelper/CoreToggleSpikesDown.placements.name.down_default=Core Toggle Spikes (Hot, Down, Default)
-entities.VivHelper/CoreToggleSpikesDown.placements.name.down_outline=Core Toggle Spikes (Hot, Down, Outline)
-entities.VivHelper/CoreToggleSpikesDown.placements.name.down_whitereflection=Core Toggle Spikes (Hot, Down, Cliffside)
-
-entities.VivHelper/CornerBoostBlock.placements.name.main=CornerBoost Tile Entity
-entities.VivHelper/CornerBoostBlock.attributes.description.tiletype=Changes the visual appearance of the block
-entities.VivHelper/CornerBoostBlock.attributes.description.blendin=Blends the block with the walls it touches, making it less apparent.
-entities.VivHelper/CornerBoostZipMover.placements.name.normal=CornerBoost Zip Mover (Normal)
-entities.VivHelper/CornerBoostZipMover.placements.name.moon=CornerBoost Zip Mover (Moon)
-entities.VivHelper/CornerBoostZipMover.attributes.description.theme=The visual theme of the zip mover.
-entities.VivHelper/CornerBoostSwapBlock.placements.name.normal=CornerBoost Swap Block (Normal)
-entities.VivHelper/CornerBoostSwapBlock.placements.name.moon=CornerBoost Swap Block (Moon)
-entities.VivHelper/CornerBoostSwapBlock.attributes.description.theme=The visual theme of the swap block.
-entities.VivHelper/CornerBoostDreamBlock.placements.name.dream_block=CornerBoost Dream Block
-entities.VivHelper/CornerBoostDreamBlock.attributes.description.fastMoving=Changes the dream block between two speeds.
-entities.VivHelper/CornerBoostDreamBlock.attributes.description.oneUse=Determines whether the dream block should disappear after one use.
-entities.VivHelper/CornerBoostDreamBlock.attributes.description.below=Determines whether the dream block should render in the background or foreground.
-entities.VivHelper/CornerBoostFallingBlock.placements.name.falling_block=CornerBoost Falling Block
-entities.VivHelper/CornerBoostFallingBlock.attributes.description.climbFall=After a delay, the block will physically fall down until it comes into contact with another block.
-entities.VivHelper/CornerBoostFallingBlock.attributes.description.tiletype=Changes the visual appearance of the falling block.
-entities.VivHelper/CornerBoostFallingBlock.attributes.description.behind=Whether the block should visually be further behind in the scene or not.
-entities.VivHelper/CornerBoostCassetteBlock.placements.name.cassette_block_0=CornerBoost Cassette Block (0 - Blue)
-entities.VivHelper/CornerBoostCassetteBlock.placements.name.cassette_block_1=CornerBoost Cassette Block (1 - Rose)
-entities.VivHelper/CornerBoostCassetteBlock.placements.name.cassette_block_2=CornerBoost Cassette Block (2 - Bright Sun)
-entities.VivHelper/CornerBoostCassetteBlock.placements.name.cassette_block_3=CornerBoost Cassette Block (3 - Malachite)
-entities.VivHelper/CornerBoostCassetteBlock.attributes.description.index=The colour of the cassette block.
-entities.VivHelper/CornerBoostCassetteBlock.attributes.description.tempo=The tempo of the cassette blocks. The first cassette block with a tempo other than 1.0 decides the tempo for all cassette blocks in the room. A multiplier of 1.0 triggers one beat every 10 frames. Refer to the cassette section in map metadata for details.
-
-entities.VivHelper/CornerSpike.placements.name.UpRight=CornerSpike (Up Right)
-entities.VivHelper/CornerSpike.placements.name.UpLeft=CornerSpike (Up Left)
-entities.VivHelper/CornerSpike.placements.name.DownRight=CornerSpike (Down Right)
-entities.VivHelper/CornerSpike.placements.name.DownLeft=CornerSpike (Down Left)
-entities.VivHelper/CornerSpike.placements.description.main=A spike that attaches to the corners of blocks and fills the gaps between corners.
-entities.VivHelper/CornerSpike.attributes.description.type=Determines the visual appearance of the spike.
-entities.VivHelper/CornerSpike.attributes.description.Color=Tints the color of the spike.\nSetting it to "transparent" (0 alpha) sets it to be rainbow spikes.
-entities.VivHelper/CornerSpike.attributes.description.KillFormat=When true, the spike will always kill the player on contact.\nWhen false, the spike will kill the player if the player is not moving "away" from the spike.\nIn context, this means 90° away from the direction the spike is point is the death point.
-entities.VivHelper/CornerSpike.attributes.description.DoNotAttach=If true, the spikes will not attach to solids, meaning they cannot move with blocks.
-
-entities.VivHelper/CrumbleJumpThru.placements.name.wood=Crumbling JumpThru
-entities.VivHelper/CrumbleJumpThru.placements.description.wood=A semisolid platform which breaks after a set amount of time from contact with the player.
-entities.VivHelper/CrumbleJumpThru.attributes.description.texture=Changes the appearance of the platform.
-entities.VivHelper/CrumbleJumpThru.attributes.description.surfaceIndex=Footstep sound when walking on the platform.\nLeave at Default for game to decide automatically based on texture.
-entities.VivHelper/CrumbleJumpThru.attributes.description.Delay=How long after contact with the player the jump thru should stay collidable.
-
-entities.VivHelper/CustomCoreBlock.placements.name.C=Custom Bounce Block
-entities.VivHelper/CustomCoreBlock.placements.name.R=Reskinnable Bounce Block
-entities.VivHelper/CustomCoreBlock.placements.name.RC=Custom Bounce Block (Reskinnable)
-entities.VivHelper/CustomCoreBlock.attributes.description.CoreState=Hot & Cold do not change with Core State.\nSwap does, and Invert is Cold when Core Mode is Hot and vice versa.
-entities.VivHelper/CustomCoreBlock.attributes.description.RespawnTime=The amount of time it takes for the block to respawn after breaking.
-entities.VivHelper/CustomCoreBlock.attributes.description.WindUpDist=The amount of distance, in pixels, that the Hot Core Block winds up before bouncing back.
-entities.VivHelper/CustomCoreBlock.attributes.description.IceWindUpDist=The amount of distance, in pixels, that the Cold Core Block winds up before bouncing back.
-entities.VivHelper/CustomCoreBlock.attributes.description.BounceDist=The amount of distance that the Hot Core Block launches back.
-entities.VivHelper/CustomCoreBlock.attributes.description.LiftSpeedXMult=Multiplier for the amount of launch momentum you get horizontally from a hot block.
-entities.VivHelper/CustomCoreBlock.attributes.description.WallPushTime=Shake Time for the block shaking before launching/breaking.
-entities.VivHelper/CustomCoreBlock.attributes.description.BounceEndTime=The amount of time the Hot Core Block continues to travel forward *after* reaching its original position.
-entities.VivHelper/CustomCoreBlock.attributes.description.Directory=The source directory to grab core block images from.
-
-entities.VivHelper/CustomCoverupWall.placements.name.main=Custom Coverup Wall
-entities.VivHelper/CustomCoverupWall.attributes.description.alpha=The opacity of the Coverup Wall visually ingame.
-entities.VivHelper/CustomCoverupWall.attributes.name.instant=Toggle fades
-entities.VivHelper/CustomCoverupWall.attributes.description.instant=If a flag toggles the visibility of the Coverup Wall, determines whether to instantly show it (or not) or gradually fade it in/out
-entities.VivHelper/CustomCoverupWall.attributes.description.flag=Flag to toggle the visibility of the Coverup Wall
-entities.VivHelper/CustomCoverupWall.attributes.description.Depth=The render depth that the Coverup Wall should take.
-
-entities.VivHelper/CustomDashBlock.placements.name.main=Custom Dash Block
-entities.VivHelper/CustomDashBlock.attributes.description.canDash=Whether the player can break the block by dashing into it.
-entities.VivHelper/CustomDashBlock.attributes.description.blendin=Blends the block with the walls it touches, making it less apparent.
-entities.VivHelper/CustomDashBlock.attributes.description.tiletype=Determines the visual appearance of the wall.
-entities.VivHelper/CustomDashBlock.attributes.description.permanent=Once broken, the block will remain that way, even if the player dies.
-entities.VivHelper/CustomDashBlock.attributes.description.FlagOnBreak=The Flag to set when the block breaks.
-entities.VivHelper/CustomDashBlock.attributes.description.FlagToDisable=If this flag is set, the block will not break.
-entities.VivHelper/CustomDepthTileEntity.placements.name.main=Custom Depth Tile Entity
-
-entities.VivHelper/CustomFallingBlock.placements.name.main=Custom Falling Block
-
-entities.VivHelper/CustomFakeWall.placements.name.fake_wall=Custom Fake Wall
-
-entities.VivHelper/CustomHangingLamp.placements.name.main=Custom Hanging Lamp
-
-entities.VivHelper/CustomLightbeam.placements.name.main=Custom Lightbeam
-
-entities.VivHelper/CPP.placements.name.main=Custom Playback Ghost
-
-entities.VivHelper/CustomRefill.placements.name.main=Custom Refill
-
-entities.VivHelper/CustomSpinner.placements.name.VivHelper/CustomSpinner=Custom Spinner
-
-entities.VivHelper/CustomTorch.placements.name.main=Custom Torch
-
-entities.VivHelper/CutscenelessDreamMirror.placements.name.normal=Dream Mirror (No Cutscene)
-
-entities.VivHelper/DashBumper.placements.name.bumper=Dash Bumper
-
-entities.VivHelper/DeathConditionalBlock.placements.name.main=Conditional Block (Death Count)
-
-entities.VivHelper/DebrisLimiter.placements.name.main=Debris Reducer
-
-entities.VivHelper/DepthSetter.placements.name.depth=Depth Setter
-
-entities.VivHelper/EarlyFlagSetter.placements.name.before=Set Flag Before Awake
-
-entities.VivHelper/EnergyCrystal.placements.name.main=Energy Crystal
-
-entities.VivHelper/EnterBlock.placements.name.main=Enter Block
-
-entities.VivHelper/ExitDashBlock.placements.name.main=Exit Dash Block
-
-entities.VivHelper/FallThru.placements.name.wood=Jump Through (Wood)
-entities.VivHelper/FallThru.placements.name.dream=Jump Through (Dream)
-entities.VivHelper/FallThru.placements.name.temple=Jump Through (Temple)
-entities.VivHelper/FallThru.placements.name.templeB=Jump Through (Temple B)
-entities.VivHelper/FallThru.placements.name.cliffside=Jump Through (Cliffside)
-entities.VivHelper/FallThru.placements.name.reflection=Jump Through (Reflection)
-entities.VivHelper/FallThru.placements.name.core=Jump Through (Core)
-entities.VivHelper/FallThru.placements.name.moon=Jump Through (Moon)
-entities.VivHelper/FallThru.attributes.description.texture=Changes the appearance of the platform.
-entities.VivHelper/FallThru.attributes.description.surfaceIndex=Footstep sound when walking on the platform.\nLeave at Default for game to decide automatically based on texture.
-
-entities.VivHelper/FlagConditionBlock2.placements.name.main=Condition Block (On Flag)
-
-entities.VivHelper/FlagIntroCrusher.placements.name.intro_crusher=Intro Crusher (On Flag)
-
-entities.VivHelper/FloatyBreakBlock.placements.name.main=Floaty Space Block (Crumble on Touch)
-
-entities.VivHelper/FollowTorch.placements.name.main=Following Torch
-
-entities.VivHelper/GoldenBerryToFlag.placements.name.main=Flag On Golden Berry Carry (Map-wide)
-
-entities.VivHelper/CelsiusGrowBlock.placements.name.main=Grow Block
-
-entities.VivHelper/HideRoomInMap.placements.name.main=Hide Room In Debug Controller (Map-wide)
-
-entities.VivHelper/HoldableBarrier.placements.name.barrier=Holdable Barrier
-
-entities.VivHelper/HoldableBarrierController2.placements.name.main=Holdable Barrier Detail Controller
-
-entities.VivHelper/HoldableBarrierJumpThru.placements.name.main=Holdable Barrier Jump Thru
-
-entities.VivHelper/InLevelTeleporter.placements.name.iltp=Same-Room Portal (No Visuals)
-entities.VivHelper/InLevelTeleporter.placements.name.iltp2=Same-Room Portal (Skinnable)
-entities.VivHelper/InLevelTeleporter.attributes.name.l=Length
-entities.VivHelper/InLevelTeleporter.attributes.description.l=The length of the portal (in pixels)
-entities.VivHelper/InLevelTeleporter.attributes.name.dir1=Direction (Side A)
-entities.VivHelper/InLevelTeleporter.attributes.description.dir1=The facing direction of one side of the portal.
-entities.VivHelper/InLevelTeleporter.attributes.name.dir2=Direction (Side B)
-entities.VivHelper/InLevelTeleporter.attributes.description.dir1=The facing direction of one side of the portal.
-entities.VivHelper/InLevelTeleporter.attributes.name.sO1=Speed Offset (Side A)
-entities.VivHelper/InLevelTeleporter.attributes.name.sO2=Speed Offset (Side B)
-entities.VivHelper/InLevelTeleporter.attributes.description.sO1=How much speed the player should receive upon exiting the portal. Useful when camera takes a moment to catch up,\nto give the player some leniency on exit.
-entities.VivHelper/InLevelTeleporter.attributes.description.sO2=How much speed the player should receive upon exiting the portal. Useful when camera takes a moment to catch up,\nto give the player some leniency on exit.
-entities.VivHelper/InLevelTeleporter.attributes.name.eO1=Entities Only (Side A)
-entities.VivHelper/InLevelTeleporter.attributes.name.eO2=Entities Only (Side B)
-entities.VivHelper/InLevelTeleporter.attributes.description.sO1=If checked, this disables the Player passing through the Portal from this side, and only Entities can teleport through.
-entities.VivHelper/InLevelTeleporter.attributes.description.sO2=If checked, this disables the Player passing through the Portal from this side, and only Entities can teleport through.
-entities.VivHelper/InLevelTeleporter.attributes.name.cW=Camera Warp
-entities.VivHelper/InLevelTeleporter.attributes.description.cW=Makes the camera instantly jump to the exit portal position. Recommended.
-entities.VivHelper/InLevelTeleporter.attributes.name.center=Center Exit
-entities.VivHelper/InLevelTeleporter.attributes.description.center=Whether or not the teleport exits at the center of the teleporter or\nat a relative position to the entry point of the teleport.
-entities.VivHelper/InLevelTeleporter.attributes.name.OutbackHelperMod=Outback Teleport
-entities.VivHelper/InLevelTeleporter.attributes.description.OutbackHelperMod=When this is checked, the physics of the teleport is identical to Outback Helper's teleport.\nNot recommended, because it is way jankier than the Speed Offset solution.
-entities.VivHelper/InLevelTeleporter.attributes.name.allActors=All Actors (Legacy)
-entities.VivHelper/InLevelTeleporter.attributes.description.allActors=A legacy parameter.\nWhen checked, this will allow all actors to teleport like a player. This inlcudes Theo/Jelly, Seeker, and many more.
-entities.VivHelper/InLevelTeleporter.attributes.name.Audio=Audio on Teleport
-entities.VivHelper/InLevelTeleporter.attributes.description.Audio=An audio event that plays when the player teleports. 
-entities.VivHelper/InLevelTeleporter.attributes.name.AlwaysRetainSpeed=Speed Retention Fix
-entities.VivHelper/InLevelTeleporter.attributes.description.AlwaysRetainSpeed=Recommended. When the player teleports, sometimes the player will hit a wall before teleporting.\nThis property ensures that during the teleport, the speed lost from hitting the wall is given back to the player during the teleport.
-entities.VivHelper/InLevelTeleporter.attributes.name.Path=Sprite Path
-entities.VivHelper/InLevelTeleporter.attributes.description.Path=For a skinnable teleporter, this is the reference from which a sprite will be used to display the teleporter in-game.
-entities.VivHelper/InLevelTeleporter.attributes.name.Color=Sprite Tint
-entities.VivHelper/InLevelTeleporter.attributes.description.Color=For a skinnable teleporter, the image drawn to the game will be tinted this color.\nAlso dictates the color of the emitted particles in-game.
-
-entities.VivHelper/LaserBlock.placements.name.lb=Laser Block
-
-entities.VivHelper/LightningMuter.placements.name.lm=Lightning Muter
-
-entities.VivHelper/MultiContactTriggerSpikesUp.placements.name.up_default=Multi-Touch Trigger Spikes (Up, Default)
-entities.VivHelper/MultiContactTriggerSpikesUp.placements.name.up_outline=Multi-Touch Trigger Spikes (Up, Outline)
-entities.VivHelper/MultiContactTriggerSpikesUp.placements.name.up_cliffside=Multi-Touch Trigger Spikes (Up, Cliffside)
-entities.VivHelper/MultiContactTriggerSpikesUp.placements.name.up_reflection=Multi-Touch Trigger Spikes (Up, Reflection)
-entities.VivHelper/MultiContactTriggerSpikesDown.placements.name.down_default=Multi-Touch Trigger Spikes (Down, Default)
-entities.VivHelper/MultiContactTriggerSpikesDown.placements.name.down_outline=Multi-Touch Trigger Spikes (Down, Outline)
-entities.VivHelper/MultiContactTriggerSpikesDown.placements.name.down_cliffside=Multi-Touch Trigger Spikes (Down, Cliffside)
-entities.VivHelper/MultiContactTriggerSpikesDown.placements.name.down_reflection=Multi-Touch Trigger Spikes (Down, Reflection)
-entities.VivHelper/MultiContactTriggerSpikesLeft.placements.name.left_default=Multi-Touch Trigger Spikes (Left, Default)
-entities.VivHelper/MultiContactTriggerSpikesLeft.placements.name.left_outline=Multi-Touch Trigger Spikes (Left, Outline)
-entities.VivHelper/MultiContactTriggerSpikesLeft.placements.name.left_cliffside=Multi-Touch Trigger Spikes (Left, Cliffside)
-entities.VivHelper/MultiContactTriggerSpikesLeft.placements.name.left_reflection=Multi-Touch Trigger Spikes (Left, Reflection)
-entities.VivHelper/MultiContactTriggerSpikesRight.placements.name.right_default=Multi-Touch Trigger Spikes (Right, Default)
-entities.VivHelper/MultiContactTriggerSpikesRight.placements.name.right_outline=Multi-Touch Trigger Spikes (Right, Outline)
-entities.VivHelper/MultiContactTriggerSpikesRight.placements.name.right_cliffside=Multi-Touch Trigger Spikes (Right, Cliffside)
-entities.VivHelper/MultiContactTriggerSpikesRight.placements.name.right_reflection=Multi-Touch Trigger Spikes (Right, Reflection)
-entities.VivHelper/MultiContactTriggerSpikesUp.attributes.description.type=Changes the visual appearance of the spikes.
-entities.VivHelper/MultiContactTriggerSpikesDown.attributes.description.type=Changes the visual appearance of the spikes.
-entities.VivHelper/MultiContactTriggerSpikesLeft.attributes.description.type=Changes the visual appearance of the spikes.
-entities.VivHelper/MultiContactTriggerSpikesRight.attributes.description.type=Changes the visual appearance of the spikes.
-
-entities.VivHelper/nWayDashBlock.placements.name.nway=Direction-Specific Dash Block
-
-entities.VivHelper/EvilBumper.placements.name.bumper=Hot-Only Bumper
-
-entities.VivHelper/OrangeBooster.placements.name.orange=Orange Booster
-entities.VivHelper/PinkBooster.placements.name.pink=~Pink Booster ~Obsolete~
-
-entities.VivHelper/CustomPlaybackWatchtower.placements.name.watchtower=Playback-Toggle Watchtower
-
-entities.VivHelper/PolygonKillbox.placements.name.killbox=Arbitrary Shape Killbox
-entities.VivHelper/PolygonKillbox.placements.description.killbox=This will kill the player if the player collides with the shape.
-
-entities.VivHelper/PreviousBerriesToFlag.placements.name.main=Previous Berries To Flag (Map-wide)
-entities.VivHelper/PreviousBerriesToFlag.placements.description.main=If a player completes a level and collects any given berry with ID A:B,\nthe next time they enter the level the flag `VivHelper_PreviousCollectedBerries_A:B` will be set to true\n(note A and B are numbers)
-
-entities.VivHelper/RainbowSpikesUp.placements.name.up_default=Rainbow Spikes (Up, Default)
-entities.VivHelper/RainbowSpikesUp.placements.name.up_outline=Rainbow Spikes (Up, Outline)
-entities.VivHelper/RainbowSpikesUp.placements.name.up_whitereflection=Rainbow Spikes (Up, Cliffside)
-entities.VivHelper/RainbowSpikesLeft.placements.name.left_default=Rainbow Spikes (Left, Default)
-entities.VivHelper/RainbowSpikesLeft.placements.name.left_outline=Rainbow Spikes (Left, Outline)
-entities.VivHelper/RainbowSpikesLeft.placements.name.left_whitereflection=Rainbow Spikes (Left, Cliffside)
-entities.VivHelper/RainbowSpikesRight.placements.name.right_default=Rainbow Spikes (Right, Default)
-entities.VivHelper/RainbowSpikesRight.placements.name.right_outline=Rainbow Spikes (Right, Outline)
-entities.VivHelper/RainbowSpikesRight.placements.name.right_whitereflection=Rainbow Spikes (Right, Cliffside)
-entities.VivHelper/RainbowSpikesDown.placements.name.down_default=Rainbow Spikes (Down, Default)
-entities.VivHelper/RainbowSpikesDown.placements.name.down_outline=Rainbow Spikes (Down, Outline)
-entities.VivHelper/RainbowSpikesDown.placements.name.down_whitereflection=Rainbow Spikes (Down, Cliffside)
-
-entities.VivHelper/RainbowTriggerSpikesUp.placements.name.up_default=Rainbow Trigger Spikes (Up, Default)
-entities.VivHelper/RainbowTriggerSpikesUp.placements.name.up_outline=Rainbow Trigger Spikes (Up, Outline)
-entities.VivHelper/RainbowTriggerSpikesUp.placements.name.up_whitereflection=Rainbow Trigger Spikes (Up, Cliffside)
-entities.VivHelper/RainbowTriggerSpikesLeft.placements.name.left_default=Rainbow Trigger Spikes (Left, Default)
-entities.VivHelper/RainbowTriggerSpikesLeft.placements.name.left_outline=Rainbow Trigger Spikes (Left, Outline)
-entities.VivHelper/RainbowTriggerSpikesLeft.placements.name.left_whitereflection=Rainbow Trigger Spikes (Left, Cliffside)
-entities.VivHelper/RainbowTriggerSpikesRight.placements.name.right_default=Rainbow Trigger Spikes (Right, Default)
-entities.VivHelper/RainbowTriggerSpikesRight.placements.name.right_outline=Rainbow Trigger Spikes (Right, Outline)
-entities.VivHelper/RainbowTriggerSpikesRight.placements.name.right_whitereflection=Rainbow Trigger Spikes (Right, Cliffside)
-entities.VivHelper/RainbowTriggerSpikesDown.placements.name.down_default=Rainbow Trigger Spikes (Down, Default)
-entities.VivHelper/RainbowTriggerSpikesDown.placements.name.down_outline=Rainbow Trigger Spikes (Down, Outline)
-entities.VivHelper/RainbowTriggerSpikesDown.placements.name.down_whitereflection=Rainbow Trigger Spikes (Down, Cliffside)
-
-entities.VivHelper/RedDashRefill.placements.name.red_dash=Red Dash Refill
-entities.VivHelper/RedDashRefill.placements.description.red_dash=Replaces the next dash with a "Red Bubble" dash.
-entities.VivHelper/RedDashRefill.placements.name.one_dash=Red Dash Refill (One Use)
-entities.VivHelper/RedDashRefill.placements.description.one_dash=Replaces the next dash with a "Red Bubble" dash.
-entities.VivHelper/RedDashRefill.attributes.description.oneUse=If checked, the refill will not respawn.
-
-entities.VivHelper/RefilllessBumper.placements.name.rlbumper=Bumper (No Dash Refill)
-
-entities.VivHelper/RefillPotion.placements.name.potion=Refill Potion
-entities.VivHelper/RefillPotion.placements.description.potion=A holdable item that when dashed into, shatters to give you a refill.
-
-entities.VivHelper/RefillWall.placements.name.wall=Refill Wall
-
-entities.VivHelper/RefillWallWrapper.placements.name.wrap=Refill Wall (Wrapper)
-entities.VivHelper/RefillWallWrapper.placements.description.wrap=Can link up with a refill physically touching it to create refills with variable size.
-
-entities.VivHelper/ReskinnableJellyfish.placements.name.jelly=Reskinnable Jellyfish
-
-entities.VivHelper/ReskinnablePuffer.placements.name.left=Reskinnable Pufferfish (Left)
-entities.VivHelper/ReskinnablePuffer.placements.name.right=Reskinnable Pufferfish (Right)
-
-entities.VivHelper/RippleSpace.placements.name.ripple=Ripple Zone
-entities.VivHelper/RippleSpace.placements.description.ripple=Makes the area covered by the Ripple Zone wiggle like the player does in water.
-
-entities.VivHelper/RoomWrapController.placements.name.v=Room Wrap Controller (Vertical)
-entities.VivHelper/RoomWrapController.placements.name.h=Room Wrap Controller (Horizontal)
-entities.VivHelper/RoomWrapController.placements.name.b=Room Wrap Controller (Both)
-
-entities.VivHelper/SeekerGate.placements.name.gate=Seeker Gate
-entities.VivHelper/SeekerGate.placements.description.gate=Gate opens when seeker is within a defined distance from the center of the doorway.
-
-entities.VivHelper/SeekerKillBarrier.placements.name.main=Seeker Kill Barrier
-
-entities.VivHelper/SizableJelly.placements.name.normal=Scalable Jelly (Floating)
-entities.VivHelper/SizableJelly.placements.name.floating=Scalable Jelly (Floating)
-
-entities.VivHelper/SoundMuter.placements.name.soundmuter=Audio Event Muter
-entities.VivHelper/SoundMuter.placements.description.soundmuter=A map-global entity that mutes a given Audio Event (can be on a flag)
-
-entities.VivHelper/SoundReplacer.placements.name.soundreplacer=Audio Event Replacer
-entities.VivHelper/SoundReplacer.placements.description.soundreplacer=A map-global entity that replaces a given Audio Event with another (can be on a flag)
-
-entities.VivHelper/TheoKillBarrier.placements.name.teo=Theo Kill Barrier
-entities.VivHelper/TheoKillBarrier.placements.description.teo=A barrier that kills TheoCrystals.
-
-entities.VivHelper/TouchSwitchWall.placements.name.wall=Touch Switch Wall
-entities.VivHelper/TouchSwitchWall.placements.description.wall=A touch switch with a custom rectangular hitbox.
-
-entities.VivHelper/WarpDashRefill.placements.name.red_dash=Warp Dash Refill
-entities.VivHelper/WarpDashRefill.placements.description.red_dash=Replaces the next dash with a teleport that goes through walls.
-entities.VivHelper/WarpDashRefill.placements.name.one_dash=Warp Dash Refill (One Use)
-entities.VivHelper/WarpDashRefill.placements.description.one_dash=Replaces the next dash with a teleport that goes through walls.
-entities.VivHelper/WarpDashRefill.attributes.description.oneUse=If checked, the refill will not respawn.
+# =============================================================================
+# KIRBY_CELESTE Loenn Language File (en_gb)
+# Comprehensive translations for all MaggyHelper entities
+# =============================================================================
+
+mods.MaggyHelper.name=KIRBY_CELESTE
+
+# =============================================================================
+# CORE PLAYER ENTITIES
+# =============================================================================
+
+entities.MaggyHelper/K_Player.placements.name.main=K Player (Spawn Point)
+entities.MaggyHelper/K_Player.placements.description.main=Custom player spawn point with Kirby mode, combat mode, and health system support.
+
+entities.MaggyHelper/KirbyPlayerSpawner.placements.name.main=Kirby Player Spawner
+entities.MaggyHelper/KirbyPlayerSpawner.placements.description.main=Spawns a Kirby player character at this location.
+
+entities.MaggyHelper/KirbyNPC.placements.name.main=Kirby NPC
+entities.MaggyHelper/KirbyNPC.placements.description.main=Non-playable Kirby character for cutscenes or decoration.
+
+entities.MaggyHelper/KirbyPlayer.placements.name.main=Kirby Player
+entities.MaggyHelper/KirbyPlayer.placements.description.main=Playable Kirby character entity.
+
+entities.MaggyHelper/KirbyActorPlayer.placements.name.main=Kirby Actor Player
+entities.MaggyHelper/KirbyActorPlayer.placements.description.main=Kirby player with actor-specific functionality.
+
+# =============================================================================
+# FOOD ITEMS
+# =============================================================================
+
+entities.MaggyHelper/Cherry.placements.name.main=Cherry
+entities.MaggyHelper/Cherry.placements.description.main=Restores a small amount of health when collected.
+
+entities.MaggyHelper/EnergyDrink.placements.name.main=Energy Drink
+entities.MaggyHelper/EnergyDrink.placements.description.main=Restores health and provides a temporary speed boost.
+
+entities.MaggyHelper/MaximTomato.placements.name.main=Maxim Tomato
+entities.MaggyHelper/MaximTomato.placements.description.main=Fully restores all health when collected.
+
+entities.MaggyHelper/InvincibilityCandy.placements.name.main=Invincibility Candy
+entities.MaggyHelper/InvincibilityCandy.placements.description.main=Grants temporary invincibility when collected.
+
+entities.MaggyHelper/SnowBerry.placements.name.main=Snow Berry
+entities.MaggyHelper/SnowBerry.placements.description.main=A frosty berry that restores health. Thematic item for ice levels.
+
+# =============================================================================
+# COPY ABILITIES
+# =============================================================================
+
+entities.MaggyHelper/AbilityStar.placements.name.main=Ability Star
+entities.MaggyHelper/AbilityStar.placements.description.main=Grants a copy ability when collected. Contains the power of defeated enemies.
+
+entities.MaggyHelper/DashCopyBerry.placements.name.main=Dash Copy Berry
+entities.MaggyHelper/DashCopyBerry.placements.description.main=Grants a dash-based copy ability when collected.
+
+entities.MaggyHelper/PunchRefill.placements.name.main=Punch Refill
+entities.MaggyHelper/PunchRefill.placements.description.main=Refills punch attack energy for combat abilities.
+
+entities.MaggyHelper/KirbyPuffJumpRefill.placements.name.main=Kirby Puff Jump Refill
+entities.MaggyHelper/KirbyPuffJumpRefill.placements.description.main=Refills Kirby's puff jump ability for aerial mobility.
+
+entities.MaggyHelper/CustomRefill.placements.name.main=Custom Refill
+entities.MaggyHelper/CustomRefill.placements.description.main=Customizable refill with configurable properties.
+
+# =============================================================================
+# ENEMIES
+# =============================================================================
+
+entities.MaggyHelper/WaddleDee.placements.name.main=Waddle Dee
+entities.MaggyHelper/WaddleDee.placements.description.main=Basic ground enemy that walks back and forth. Can be inhaled for the Normal ability.
+
+entities.MaggyHelper/WaddleDoo.placements.name.main=Waddle Doo
+entities.MaggyHelper/WaddleDoo.placements.description.main=Enemy that shoots beam whips. Grants Beam ability when inhaled.
+
+entities.MaggyHelper/BrontoBurt.placements.name.main=Bronto Burt
+entities.MaggyHelper/BrontoBurt.placements.description.main=Flying enemy that follows set flight patterns.
+
+entities.MaggyHelper/Gordo.placements.name.main=Gordo
+entities.MaggyHelper/Gordo.placements.description.main=Spiky invincible enemy that cannot be inhaled. Avoid or destroy with abilities.
+
+# =============================================================================
+# MID-BOSSES
+# =============================================================================
+
+entities.MaggyHelper/PoppyBrosJr.placements.name.main=Poppy Bros Jr
+entities.MaggyHelper/PoppyBrosJr.placements.description.main=Mid-boss that throws bombs. Defeat to get the Bomb ability.
+
+entities.MaggyHelper/Bonkers.placements.name.main=Bonkers
+entities.MaggyHelper/Bonkers.placements.description.main=Hammer-wielding mid-boss. Defeat to get the Hammer ability.
+
+entities.MaggyHelper/Bugzzy.placements.name.main=Bugzzy
+entities.MaggyHelper/Bugzzy.placements.description.main=Beetle mid-boss with grab attacks. Defeat to get the Beetle ability.
+
+# =============================================================================
+# BOSSES
+# =============================================================================
+
+entities.MaggyHelper/MetaKnightBoss.placements.name.main=Meta Knight (Boss)
+entities.MaggyHelper/MetaKnightBoss.placements.description.main=The legendary warrior boss with sword attacks. Epic duel encounter.
+
+entities.MaggyHelper/ELSTerminaBoss.placements.name.main=ELS Termina (Boss)
+entities.MaggyHelper/ELSTerminaBoss.placements.description.main=Major story boss with multiple phases. Requires mastery of all mechanics.
+
+entities.MaggyHelper/ELSTerminaFinalBoss.placements.name.main=ELS Termina (Final Form)
+entities.MaggyHelper/ELSTerminaFinalBoss.placements.description.main=The true final form of ELS Termina. Ultimate challenge.
+
+entities.MaggyHelper/ELSTerminaHealth.placements.name.main=ELS Termina Health Controller
+entities.MaggyHelper/ELSTerminaHealth.placements.description.main=Health display and controller for the ELS Termina boss fight.
+
+entities.MaggyHelper/CharaBoss.placements.name.main=Chara (Boss)
+entities.MaggyHelper/CharaBoss.placements.description.main=Undertale-inspired boss with soul/heart mechanics.
+
+entities.MaggyHelper/AsrielGodBoss.placements.name.main=Asriel God of Hyperdeath (Boss)
+entities.MaggyHelper/AsrielGodBoss.placements.description.main=Ultimate angelic boss form with devastating attacks.
+
+entities.MaggyHelper/DededeBoss.placements.name.main=King Dedede (Boss)
+entities.MaggyHelper/DededeBoss.placements.description.main=The penguin king boss with his signature hammer.
+
+entities.MaggyHelper/BuzzoBoss.placements.name.main=Buzzo (Boss)
+entities.MaggyHelper/BuzzoBoss.placements.description.main=Challenging boss encounter with unique patterns.
+
+entities.MaggyHelper/BlackholeAngelBoss.placements.name.main=Blackhole Angel (Boss)
+entities.MaggyHelper/BlackholeAngelBoss.placements.description.main=Cosmic angelic boss with gravity manipulation abilities.
+
+entities.MaggyHelper/ConquerorBoss.placements.name.main=The Conqueror (Boss)
+entities.MaggyHelper/ConquerorBoss.placements.description.main=Book-wielding boss with lightning and magical attacks.
+
+entities.MaggyHelper/ConquerorHealth.placements.name.main=Conqueror Health Controller
+entities.MaggyHelper/ConquerorHealth.placements.description.main=Health display for the Conqueror boss fight.
+
+entities.MaggyHelper/AlphaApexPredatorBoss.placements.name.main=Alpha Apex Predator (Boss)
+entities.MaggyHelper/AlphaApexPredatorBoss.placements.description.main=Apex predator boss with ferocious attacks.
+
+entities.MaggyHelper/AnotherVesselCorruptedBoss.placements.name.main=Another Vessel (Corrupted Boss)
+entities.MaggyHelper/AnotherVesselCorruptedBoss.placements.description.main=Corrupted vessel form boss with dark powers.
+
+# =============================================================================
+# UTILITY ENTITIES
+# =============================================================================
+
+entities.MaggyHelper/EventTrigger.placements.name.main=Event Trigger
+entities.MaggyHelper/EventTrigger.placements.description.main=Triggers custom events or cutscenes when activated.
+
+entities.MaggyHelper/PowerGenerator.placements.name.main=Power Generator
+entities.MaggyHelper/PowerGenerator.placements.description.main=Generates power for linked mechanisms. Activate to power up connected devices.
+
+entities.MaggyHelper/ClutterSwitch.placements.name.main=Clutter Switch
+entities.MaggyHelper/ClutterSwitch.placements.description.main=Toggles clutter/cleanup mode for Hotel Oshiro-style rooms.
+
+entities.MaggyHelper/ClutterDoor.placements.name.main=Clutter Door
+entities.MaggyHelper/ClutterDoor.placements.description.main=Door that changes state based on clutter switch status.
+
+entities.MaggyHelper/StarBlock.placements.name.main=Star Block
+entities.MaggyHelper/StarBlock.placements.description.main=Kirby-style destructible block. Break with copy abilities.
+
+entities.MaggyHelper/BlueStarBlock.placements.name.main=Blue Star Block
+entities.MaggyHelper/BlueStarBlock.placements.description.main=Heavy star block requiring specific abilities to break.
+
+entities.MaggyHelper/Bridge.placements.name.main=Bridge
+entities.MaggyHelper/Bridge.placements.description.main=Extendable bridge that can be raised or lowered.
+
+entities.MaggyHelper/BridgeTile.placements.name.main=Bridge Tile
+entities.MaggyHelper/BridgeTile.placements.description.main=Individual tile component for custom bridges.
+
+entities.MaggyHelper/Cartridge.placements.name.main=Game Cartridge
+entities.MaggyHelper/Cartridge.placements.description.main=Collectible game cartridge. Find all to unlock extras.
+
+entities.MaggyHelper/Cassette.placements.name.main=Cassette Tape
+entities.MaggyHelper/Cassette.placements.description.main=Music cassette that unlocks B-Side tracks when collected.
+
+entities.MaggyHelper/CassetteTape.placements.name.main=Cassette Tape (Variant)
+entities.MaggyHelper/CassetteTape.placements.description.main=Alternate cassette collectible for music tracks.
+
+entities.MaggyHelper/DreamOrb.placements.name.main=Dream Orb
+entities.MaggyHelper/DreamOrb.placements.description.main=Mystical orb containing dream energy. Collect for bonuses.
+
+entities.MaggyHelper/DivingBoard.placements.name.main=Diving Board
+entities.MaggyHelper/DivingBoard.placements.description.main=Bouncy platform for launching the player upward.
+
+entities.MaggyHelper/AncientSwitch.placements.name.main=Ancient Switch
+entities.MaggyHelper/AncientSwitch.placements.description.main=Ancient mechanism switch for puzzles and door controls.
+
+entities.MaggyHelper/BigBonfire.placements.name.main=Big Bonfire
+entities.MaggyHelper/BigBonfire.placements.description.main=Large bonfire for save points or atmospheric decoration.
+
+entities.MaggyHelper/CeremonyFlame.placements.name.main=Ceremony Flame
+entities.MaggyHelper/CeremonyFlame.placements.description.main=Sacred flame for ritual or ceremony scenes.
+
+entities.MaggyHelper/CollectibleGem.placements.name.main=Collectible Gem
+entities.MaggyHelper/CollectibleGem.placements.description.main=Precious gem collectible for completion or scoring.
+
+entities.MaggyHelper/CodeBreaker.placements.name.main=Code Breaker
+entities.MaggyHelper/CodeBreaker.placements.description.main=Puzzle device for breaking codes or hacking mechanisms.
+
+# =============================================================================
+# CHAPTER 10 - RUINS ENTITIES
+# =============================================================================
+
+entities.MaggyHelper/EchoFlowerEntity.placements.name.main=Echo Flower
+entities.MaggyHelper/EchoFlowerEntity.placements.description.main=Undertale-style flower that repeats the last thing it heard.
+
+entities.MaggyHelper/FallenLeafPile.placements.name.main=Fallen Leaf Pile
+entities.MaggyHelper/FallenLeafPile.placements.description.main=Decorative pile of autumn leaves with rustle effects.
+
+entities.MaggyHelper/FloweyTrap.placements.name.main=Flowey Trap
+entities.MaggyHelper/FloweyTrap.placements.description.main=Hidden trap featuring Flowey. Do not trust the friendly flower.
+
+entities.MaggyHelper/GhostlyEcho.placements.name.main=Ghostly Echo
+entities.MaggyHelper/GhostlyEcho.placements.description.main=Spirits of the ruins that echo past events.
+
+entities.MaggyHelper/RuinsPuzzleSwitch.placements.name.main=Ruins Puzzle Switch
+entities.MaggyHelper/RuinsPuzzleSwitch.placements.description.main=Ancient switch for ruins-themed puzzles.
+
+entities.MaggyHelper/RuinsSentinel.placements.name.main=Ruins Sentinel
+entities.MaggyHelper/RuinsSentinel.placements.description.main=Guardian statue that activates when approached.
+
+entities.MaggyHelper/SpiderBaker.placements.name.main=Spider Baker (Muffet)
+entities.MaggyHelper/SpiderBaker.placements.description.main=Spider merchant NPC selling baked goods and treats.
+
+entities.MaggyHelper/TorielStoveEntity.placements.name.main=Toriel's Stove
+entities.MaggyHelper/TorielStoveEntity.placements.description.main=Cozy stove entity for homey scenes. Butterscotch scent not included.
+
+# =============================================================================
+# CHAPTER 11 - WESTERN ENTITIES
+# =============================================================================
+
+entities.MaggyHelper/BanditoRoller.placements.name.main=Bandito Roller
+entities.MaggyHelper/BanditoRoller.placements.description.main=Rolling bandit enemy for western-themed levels.
+
+entities.MaggyHelper/BarrelBomber.placements.name.main=Barrel Bomber
+entities.MaggyHelper/BarrelBomber.placements.description.main=Enemy that throws explosive barrels.
+
+entities.MaggyHelper/CardShark.placements.name.main=Card Shark
+entities.MaggyHelper/CardShark.placements.description.main=Gambling-themed enemy with card-throwing attacks.
+
+entities.MaggyHelper/HorseHitch.placements.name.main=Horse Hitch
+entities.MaggyHelper/HorseHitch.placements.description.main=Western decoration for tying horses.
+
+entities.MaggyHelper/RevolverTarget.placements.name.main=Revolver Target
+entities.MaggyHelper/RevolverTarget.placements.description.main=Shooting target for cowboy target practice.
+
+entities.MaggyHelper/SaloonChandelier.placements.name.main=Saloon Chandelier
+entities.MaggyHelper/SaloonChandelier.placements.description.main=Decorative chandelier for saloon interiors.
+
+entities.MaggyHelper/SwingingDoor.placements.name.main=Swinging Saloon Door
+entities.MaggyHelper/SwingingDoor.placements.description.main=Classic saloon doors that swing both ways.
+
+entities.MaggyHelper/TumbleweedCluster.placements.name.main=Tumbleweed Cluster
+entities.MaggyHelper/TumbleweedCluster.placements.description.main=Blowing tumbleweeds for western atmosphere.
+
+entities.MaggyHelper/WantedPoster.placements.name.main=Wanted Poster
+entities.MaggyHelper/WantedPoster.placements.description.main=Western wanted poster decoration.
+
+entities.MaggyHelper/CowboyTargetPracticeTrigger.placements.name.main=Cowboy Target Practice Trigger
+entities.MaggyHelper/CowboyTargetPracticeTrigger.placements.description.main=Starts a target practice minigame when triggered.
+
+# =============================================================================
+# CHAPTER 12 - TITAN ENTITIES
+# =============================================================================
+
+entities.MaggyHelper/FountainSpirit.placements.name.main=Fountain Spirit
+entities.MaggyHelper/FountainSpirit.placements.description.main=Magical spirit that emerges from fountains.
+
+entities.MaggyHelper/MagicFountain.placements.name.main=Magic Fountain
+entities.MaggyHelper/MagicFountain.placements.description.main=Enchanted fountain with restorative or magical properties.
+
+entities.MaggyHelper/SpiralStaircase.placements.name.main=Spiral Staircase
+entities.MaggyHelper/SpiralStaircase.placements.description.main=Ascending spiral stairs for tower climbing sections.
+
+entities.MaggyHelper/TitanStatue.placements.name.main=Titan Statue
+entities.MaggyHelper/TitanStatue.placements.description.main=Ancient titan statue with possible activation mechanics.
+
+entities.MaggyHelper/TowerElevator.placements.name.main=Tower Elevator
+entities.MaggyHelper/TowerElevator.placements.description.main=Vertical transport for ascending the tower.
+
+entities.MaggyHelper/TowerGargoyle.placements.name.main=Tower Gargoyle
+entities.MaggyHelper/TowerGargoyle.placements.description.main=Decorative gargoyle or possible animated enemy.
+
+entities.MaggyHelper/TowerLantern.placements.name.main=Tower Lantern
+entities.MaggyHelper/TowerLantern.placements.description.main=Atmospheric lighting for tower interiors.
+
+entities.MaggyHelper/TowerWindow.placements.name.main=Tower Window
+entities.MaggyHelper/TowerWindow.placements.description.main=View windows showing exterior tower views.
+
+entities.MaggyHelper/WaterfallClimb.placements.name.main=Waterfall Climb
+entities.MaggyHelper/WaterfallClimb.placements.description.main=Climbable waterfall section for vertical exploration.
+
+entities.MaggyHelper/Tower3D.placements.name.main=Tower 3D Background
+entities.MaggyHelper/Tower3D.placements.description.main=3D tower model background for depth and atmosphere.
+
+entities.MaggyHelper/TowerBackgroundStyleground.placements.name.main=Tower Background Styleground
+entities.MaggyHelper/TowerBackgroundStyleground.placements.description.main=Styleground controller for tower-themed parallax backgrounds.
+
+entities.MaggyHelper/TowerObstacle.placements.name.main=Tower Obstacle
+entities.MaggyHelper/TowerObstacle.placements.description.main=Dynamic obstacle for tower climbing challenges.
+
+entities.MaggyHelper/TowerObstacleFactory.placements.name.main=Tower Obstacle Factory
+entities.MaggyHelper/TowerObstacleFactory.placements.description.main=Spawner for tower obstacles and challenges.
+
+entities.MaggyHelper/FinalTitanSummitBackgroundManager.placements.name.main=Final Titan Summit Background
+entities.MaggyHelper/FinalTitanSummitBackgroundManager.placements.description.main=Manages the epic background visuals for the final summit.
+
+# =============================================================================
+# CHAPTER 13 - INFERNO ENTITIES
+# =============================================================================
+
+entities.MaggyHelper/AshPile.placements.name.main=Ash Pile
+entities.MaggyHelper/AshPile.placements.description.main=Volcanic ash pile decoration for inferno levels.
+
+entities.MaggyHelper/AshPhoenix.placements.name.main=Ash Phoenix
+entities.MaggyHelper/AshPhoenix.placements.description.main=Mythical phoenix that rises from volcanic ash.
+
+entities.MaggyHelper/LavaBubble.placements.name.main=Lava Bubble
+entities.MaggyHelper/LavaBubble.placements.description.main=Bubble of molten lava that rises and falls.
+
+entities.MaggyHelper/LavaBubbleSpawner.placements.name.main=Lava Bubble Spawner
+entities.MaggyHelper/LavaBubbleSpawner.placements.description.main=Spawns damaging lava bubbles continuously.
+
+entities.MaggyHelper/AxisMinion.placements.name.main=Axis Minion
+entities.MaggyHelper/AxisMinion.placements.description.main=Inferno-themed minion enemy for volcanic areas.
+
+entities.MaggyHelper/FlameGeyser.placements.name.main=Flame Geyser
+entities.MaggyHelper/FlameGeyser.placements.description.main=Erupting flame pillar that shoots upward periodically.
+
+entities.MaggyHelper/HeatWave.placements.name.main=Heat Wave
+entities.MaggyHelper/HeatWave.placements.description.main=Visual heat distortion effect for hot areas.
+
+entities.MaggyHelper/HotPlatform.placements.name.main=Hot Platform
+entities.MaggyHelper/HotPlatform.placements.description.main=Platform that heats up and damages if stood on too long.
+
+entities.MaggyHelper/MagmaPool.placements.name.main=Magma Pool
+entities.MaggyHelper/MagmaPool.placements.description.main=Pool of deadly magma. Instant death on contact.
+
+entities.MaggyHelper/ObsidianShard.placements.name.main=Obsidian Shard
+entities.MaggyHelper/ObsidianShard.placements.description.main=Sharp obsidian crystal hazards.
+
+entities.MaggyHelper/SulfurVent.placements.name.main=Sulfur Vent
+entities.MaggyHelper/SulfurVent.placements.description.main=Poisonous gas vent that releases toxic clouds.
+
+entities.MaggyHelper/VolcanicRock.placements.name.main=Volcanic Rock
+entities.MaggyHelper/VolcanicRock.placements.description.main=Falling volcanic rock hazard from above.
+
+# =============================================================================
+# CHAPTER 14 - ABYSS ENTITIES
+# =============================================================================
+
+entities.MaggyHelper/AbyssalEye.placements.name.main=Abyssal Eye
+entities.MaggyHelper/AbyssalEye.placements.description.main=Mysterious eye entity from the abyss depths.
+
+entities.MaggyHelper/AcidPool.placements.name.main=Acid Pool
+entities.MaggyHelper/AcidPool.placements.description.main=Pool of corrosive acid. Damages over time.
+
+# =============================================================================
+# BLACKHOLE ENTITIES
+# =============================================================================
+
+entities.MaggyHelper/BlackholeRiser.placements.name.main=Blackhole Riser
+entities.MaggyHelper/BlackholeRiser.placements.description.main=Rising platform in blackhole-themed sections.
+
+entities.MaggyHelper/BlackholeSandwich.placements.name.main=Blackhole Sandwich
+entities.MaggyHelper/BlackholeSandwich.placements.description.main=Compressed space platform between blackhole forces.
+
+entities.MaggyHelper/BlackholeFlareSideway.placements.name.main=Blackhole Flare (Sideways)
+entities.MaggyHelper/BlackholeFlareSideway.placements.description.main=Horizontal blackhole flare effect.
+
+# =============================================================================
+# DUMMIES (CHARACTER FOLLOWERS)
+# =============================================================================
+
+entities.MaggyHelper/MadelineDummy.placements.name.main=Madeline Dummy
+entities.MaggyHelper/MadelineDummy.placements.description.main=Non-playable Madeline follower for cutscenes.
+
+entities.MaggyHelper/BadelineDummy.placements.name.main=Badeline Dummy
+entities.MaggyHelper/BadelineDummy.placements.description.main=Non-playable Badeline follower for cutscenes.
+
+entities.MaggyHelper/CharaDummy.placements.name.main=Chara Dummy
+entities.MaggyHelper/CharaDummy.placements.description.main=Non-playable Chara follower for Undertale-themed scenes.
+
+entities.MaggyHelper/RalseiDummy.placements.name.main=Ralsei Dummy
+entities.MaggyHelper/RalseiDummy.placements.description.main=Non-playable Ralsei follower for Deltarune-themed scenes.
+
+entities.MaggyHelper/AsrielDummy.placements.name.main=Asriel Dummy
+entities.MaggyHelper/AsrielDummy.placements.description.main=Non-playable Asriel follower for Undertale-themed scenes.
+
+entities.MaggyHelper/BandanaDeeDummy.placements.name.main=Bandana Waddle Dee Dummy
+entities.MaggyHelper/BandanaDeeDummy.placements.description.main=Kirby's ally Bandana Waddle Dee for companion scenes.
+
+# =============================================================================
+# ATTACHERS (DUMMY CONTROLLERS)
+# =============================================================================
+
+entities.MaggyHelper/MadelineDummyAttacher.placements.name.main=Madeline Dummy Attacher
+entities.MaggyHelper/MadelineDummyAttacher.placements.description.main=Controls and attaches a Madeline dummy to the player.
+
+entities.MaggyHelper/BadelineDummyAttacher.placements.name.main=Badeline Dummy Attacher
+entities.MaggyHelper/BadelineDummyAttacher.placements.description.main=Controls and attaches a Badeline dummy to the player.
+
+entities.MaggyHelper/CharaDummyAttacher.placements.name.main=Chara Dummy Attacher
+entities.MaggyHelper/CharaDummyAttacher.placements.description.main=Controls and attaches a Chara dummy to the player.
+
+entities.MaggyHelper/RalseiDummyAttacher.placements.name.main=Ralsei Dummy Attacher
+entities.MaggyHelper/RalseiDummyAttacher.placements.description.main=Controls and attaches a Ralsei dummy to the player.
+
+# =============================================================================
+# MIRRORS
+# =============================================================================
+
+entities.MaggyHelper/CharaMirror.placements.name.main=Chara Mirror
+entities.MaggyHelper/CharaMirror.placements.description.main=Mirror reflection showing Chara.
+
+entities.MaggyHelper/ResortMirror.placements.name.main=Resort Mirror
+entities.MaggyHelper/ResortMirror.placements.description.main=Hotel-themed mirror with reflection effects.
+
+# =============================================================================
+# OSHIRO ENTITIES
+# =============================================================================
+
+entities.MaggyHelper/OshiroLobbyBell.placements.name.main=Oshiro Lobby Bell
+entities.MaggyHelper/OshiroLobbyBell.placements.description.main=Hotel lobby bell for Oshiro encounters.
+
+entities.MaggyHelper/MaggyOshiroLobbyBell.placements.name.main=Maggy's Oshiro Lobby Bell
+entities.MaggyHelper/MaggyOshiroLobbyBell.placements.description.main=Custom variant of the Oshiro lobby bell.
+
+entities.MaggyHelper/NPC05_Oshiro_Lobby.placements.name.main=NPC - Oshiro (Lobby)
+entities.MaggyHelper/NPC05_Oshiro_Lobby.placements.description.main=Oshiro NPC for lobby interactions.
+
+entities.MaggyHelper/NPC05_Oshiro_Clutter.placements.name.main=NPC - Oshiro (Clutter)
+entities.MaggyHelper/NPC05_Oshiro_Clutter.placements.description.main=Oshiro NPC for cluttered hotel scenes.
+
+entities.MaggyHelper/NPC05_Oshiro_Hallway1.placements.name.main=NPC - Oshiro (Hallway 1)
+entities.MaggyHelper/NPC05_Oshiro_Hallway1.placements.description.main=Oshiro NPC for first hallway section.
+
+entities.MaggyHelper/NPC05_Oshiro_Hallway2.placements.name.main=NPC - Oshiro (Hallway 2)
+entities.MaggyHelper/NPC05_Oshiro_Hallway2.placements.description.main=Oshiro NPC for second hallway section.
+
+entities.MaggyHelper/CS05_OshiroClutter.placements.name.main=Cutscene - Oshiro Clutter
+entities.MaggyHelper/CS05_OshiroClutter.placements.description.main=Cutscene controller for Oshiro clutter transformation.
+
+entities.MaggyHelper/CS05_OshiroHallway1.placements.name.main=Cutscene - Oshiro Hallway 1
+entities.MaggyHelper/CS05_OshiroHallway1.placements.description.main=Cutscene controller for first hallway Oshiro encounter.
+
+entities.MaggyHelper/CS05_OshiroHallway2.placements.name.main=Cutscene - Oshiro Hallway 2
+entities.MaggyHelper/CS05_OshiroHallway2.placements.description.main=Cutscene controller for second hallway Oshiro encounter.
+
+# =============================================================================
+# CUTSCENE ENTITIES
+# =============================================================================
+
+entities.MaggyHelper/CutsceneEventEntity.placements.name.main=Cutscene Event
+entities.MaggyHelper/CutsceneEventEntity.placements.description.main=General cutscene controller for scripted events.
+
+entities.MaggyHelper/CutsceneEventEntityLegacy.placements.name.main=Cutscene Event (Legacy)
+entities.MaggyHelper/CutsceneEventEntityLegacy.placements.description.main=Legacy version of cutscene controller for backwards compatibility.
+
+entities.MaggyHelper/MultiCharacterCutscene.placements.name.main=Multi-Character Cutscene
+entities.MaggyHelper/MultiCharacterCutscene.placements.description.main=Cutscene controller for scenes with multiple characters.
+
+entities.MaggyHelper/VesselCreationCutscene.placements.name.main=Vessel Creation Cutscene
+entities.MaggyHelper/VesselCreationCutscene.placements.description.main=Special cutscene for the vessel creation sequence.
+
+entities.MaggyHelper/PayphoneCutscene.placements.name.main=Payphone Cutscene
+entities.MaggyHelper/PayphoneCutscene.placements.description.main=Cutscene triggered at a payphone location.
+
+entities.MaggyHelper/FlingBirdIntroCutscene.placements.name.main=Fling Bird Intro Cutscene
+entities.MaggyHelper/FlingBirdIntroCutscene.placements.description.main=Introduction cutscene for the fling bird mechanic.
+
+entities.MaggyHelper/StarJumpCutsceneControl.placements.name.main=Star Jump Cutscene Control
+entities.MaggyHelper/StarJumpCutsceneControl.placements.description.main=Controller for star jump sequence cutscenes.
+
+entities.MaggyHelper/StarJumpCutsceneControlV2.placements.name.main=Star Jump Cutscene Control V2
+entities.MaggyHelper/StarJumpCutsceneControlV2.placements.description.main=Updated star jump cutscene controller.
+
+entities.MaggyHelper/Penumbra_Phantasm_Intro.placements.name.main=Penumbra Phantasm Intro
+entities.MaggyHelper/Penumbra_Phantasm_Intro.placements.description.main=Intro controller for the Penumbra Phantasm sequence.
+
+entities.MaggyHelper/OshiroHotelCutscene.placements.name.main=Oshiro Hotel Cutscene
+entities.MaggyHelper/OshiroHotelCutscene.placements.description.main=Hotel Oshiro-specific cutscene controller.
+
+# =============================================================================
+# SPECIAL BLOCKS
+# =============================================================================
+
+entities.MaggyHelper/SuperCoreBlock.placements.name.main=Super Core Block
+entities.MaggyHelper/SuperCoreBlock.placements.description.main=Super-powered core block with special destruction properties.
+
+entities.MaggyHelper/GoldBlock.placements.name.main=Gold Block
+entities.MaggyHelper/GoldBlock.placements.description.main=Precious gold block. May contain treasures.
+
+entities.MaggyHelper/WhiteBlock.placements.name.main=White Block
+entities.MaggyHelper/WhiteBlock.placements.description.main=Special white block with unique properties.
+
+entities.MaggyHelper/GlitchBlock.placements.name.main=Glitch Block
+entities.MaggyHelper/GlitchBlock.placements.description.main=Reality-glitching block with unstable properties.
+
+entities.MaggyHelper/GlitchBlockController.placements.name.main=Glitch Block Controller
+entities.MaggyHelper/GlitchBlockController.placements.description.main=Manages glitch block behavior across the room.
+
+entities.MaggyHelper/GreyBooster.placements.name.main=Grey Booster
+entities.MaggyHelper/GreyBooster.placements.description.main=Neutral-colored booster with standard dash functionality.
+
+entities.MaggyHelper/Whitehole.placements.name.main=Whitehole
+entities.MaggyHelper/Whitehole.placements.description.main=Anti-gravity zone that pushes instead of pulls.
+
+# =============================================================================
+# GAMEPLAY MECHANICS
+# =============================================================================
+
+entities.MaggyHelper/TeleportPipe.placements.name.main=Teleport Pipe
+entities.MaggyHelper/TeleportPipe.placements.description.main=Mario-style pipe for room-to-room teleportation.
+
+entities.MaggyHelper/WarpStar.placements.name.main=Warp Star
+entities.MaggyHelper/WarpStar.placements.description.main=Kirby's iconic warp star for fast travel between areas.
+
+entities.MaggyHelper/UwUmper.placements.name.main=UwUmper
+entities.MaggyHelper/UwUmper.placements.description.main=Cute bouncy enemy that launches the player.
+
+entities.MaggyHelper/IceBouncer.placements.name.main=Ice Bouncer
+entities.MaggyHelper/IceBouncer.placements.description.main=Ice-themed bounce platform or enemy.
+
+entities.MaggyHelper/EyeBomb.placements.name.main=Eye Bomb
+entities.MaggyHelper/EyeBomb.placements.description.main=Explosive eye creature that detonates on proximity.
+
+entities.MaggyHelper/LuckyBlock.placements.name.main=Lucky Block
+entities.MaggyHelper/LuckyBlock.placements.description.main=Mario-style block that drops random items when hit.
+
+entities.MaggyHelper/SafeCrystalSpinner.placements.name.main=Safe Crystal Spinner
+entities.MaggyHelper/SafeCrystalSpinner.placements.description.main=Non-lethal crystal spinner for decoration or mild obstacle.
+
+entities.MaggyHelper/FarewellGate.placements.name.main=Farewell Gate
+entities.MaggyHelper/FarewellGate.placements.description.main=Story-progression gate for the Farewell chapter.
+
+entities.MaggyHelper/RidgeGate.placements.name.main=Ridge Gate
+entities.MaggyHelper/RidgeGate.placements.description.main=Gate entity for Golden Ridge sections.
+
+entities.MaggyHelper/MrBonesDoor.placements.name.main=Mr. Bones Door
+entities.MaggyHelper/MrBonesDoor.placements.description.main=Spooky skeleton-themed door.
+
+entities.MaggyHelper/CubeDreamBlock.placements.name.main=Cube Dream Block
+entities.MaggyHelper/CubeDreamBlock.placements.description.main=Cubic variant of the dream block.
+
+entities.MaggyHelper/GlitchGlider.placements.name.main=Glitch Glider
+entities.MaggyHelper/GlitchGlider.placements.description.main=Glitch-themed updraft or gliding mechanic.
+
+entities.MaggyHelper/CharaBoost.placements.name.main=Chara Boost
+entities.MaggyHelper/CharaBoost.placements.description.main=Chara-themed boost platform or power-up.
+
+entities.MaggyHelper/RalseiBoost.placements.name.main=Ralsei Boost
+entities.MaggyHelper/RalseiBoost.placements.description.main=Ralsei-themed boost platform or power-up.
+
+entities.MaggyHelper/TesseractSwitch.placements.name.main=Tesseract Switch
+entities.MaggyHelper/TesseractSwitch.placements.description.main=Fourth-dimensional switch for space-warping puzzles.
+
+# =============================================================================
+# UI AND CONTROLLERS
+# =============================================================================
+
+entities.MaggyHelper/KirbyHealthController.placements.name.main=Kirby Health Controller
+entities.MaggyHelper/KirbyHealthController.placements.description.main=Global health system controller for Kirby mode.
+
+entities.MaggyHelper/UniversalHealthUI.placements.name.main=Universal Health UI
+entities.MaggyHelper/UniversalHealthUI.placements.description.main=Health display UI that works across all game modes.
+
+entities.MaggyHelper/HealthBarUI.placements.name.main=Health Bar UI
+entities.MaggyHelper/HealthBarUI.placements.description.main=Standalone health bar display component.
+
+entities.MaggyHelper/MultiplayerDebugHUD.placements.name.main=Multiplayer Debug HUD
+entities.MaggyHelper/MultiplayerDebugHUD.placements.description.main=Debug display for multiplayer testing.
+
+entities.MaggyHelper/MultiplayerHealthBar.placements.name.main=Multiplayer Health Bar
+entities.MaggyHelper/MultiplayerHealthBar.placements.description.main=Health display for multiplayer mode.
+
+entities.MaggyHelper/DebugRoomWarpMenu.placements.name.main=Debug Room Warp Menu
+entities.MaggyHelper/DebugRoomWarpMenu.placements.description.main=Developer menu for quickly warping between rooms.
+
+entities.MaggyHelper/BirdGonerTutorialGui.placements.name.main=Bird Goner Tutorial GUI
+entities.MaggyHelper/BirdGonerTutorialGui.placements.description.main=Tutorial interface for bird mechanics.
+
+# =============================================================================
+# VISUAL EFFECTS
+# =============================================================================
+
+entities.MaggyHelper/RedLightning.placements.name.main=Red Lightning
+entities.MaggyHelper/RedLightning.placements.description.main=Dramatic red lightning effect for intense scenes.
+
+entities.MaggyHelper/DarkernerFountain.placements.name.main=Darkerner Fountain
+entities.MaggyHelper/DarkernerFountain.placements.description.main=Dark world fountain with ominous visual effects.
+
+entities.MaggyHelper/DarkLightning.placements.name.main=Dark Lightning
+entities.MaggyHelper/DarkLightning.placements.description.main=Dark-themed lightning effect for atmospheric moments.
+
+entities.MaggyHelper/AsrielAngelWingsBackdrop.placements.name.main=Asriel Angel Wings Backdrop
+entities.MaggyHelper/AsrielAngelWingsBackdrop.placements.description.main=Background effect showing Asriel's angelic wings.
+
+entities.MaggyHelper/AstralTrail.placements.name.main=Astral Trail
+entities.MaggyHelper/AstralTrail.placements.description.main=Cosmic particle trail effect for otherworldly sequences.
+
+entities.MaggyHelper/AstralBirthVoidOverlay.placements.name.main=Astral Birth Void Overlay
+entities.MaggyHelper/AstralBirthVoidOverlay.placements.description.main=Void overlay effect for astral birth sequences.
+
+entities.MaggyHelper/BeyondSummitCloud.placements.name.main=Beyond Summit Cloud
+entities.MaggyHelper/BeyondSummitCloud.placements.description.main=Cloud effect for beyond the summit sequences.
+
+entities.MaggyHelper/BeyondSummitGem.placements.name.main=Beyond Summit Gem
+entities.MaggyHelper/BeyondSummitGem.placements.description.main=Gem collectible for beyond summit areas.
+
+entities.MaggyHelper/BeyondSummitVignette.placements.name.main=Beyond Summit Vignette
+entities.MaggyHelper/BeyondSummitVignette.placements.description.main=Vignette effect for beyond summit atmosphere.
+
+# =============================================================================
+# UNDERTALE/DELTARUNE NPCs
+# =============================================================================
+
+entities.MaggyHelper/PapyrusSprite.placements.name.main=Papyrus Sprite
+entities.MaggyHelper/PapyrusSprite.placements.description.main=The great Papyrus! NYEH HEH HEH!
+
+entities.MaggyHelper/SansSprite.placements.name.main=Sans Sprite
+entities.MaggyHelper/SansSprite.placements.description.main=Lazy skeleton NPC. Loves hot dogs and making puns.
+
+entities.MaggyHelper/SansHeh.placements.name.main=Sans (Heh)
+entities.MaggyHelper/SansHeh.placements.description.main=Special Sans variant with "heh" expression.
+
+entities.MaggyHelper/NPC19_Gravestone.placements.name.main=NPC - Gravestone
+entities.MaggyHelper/NPC19_Gravestone.placements.description.main=Memorial gravestone NPC for chapter 19 areas.
+
+entities.MaggyHelper/HeartCompanion.placements.name.main=Heart Companion
+entities.MaggyHelper/HeartCompanion.placements.description.main=Follower companion shaped like a heart.
+
+entities.MaggyHelper/HeartGemSattelite.placements.name.main=Heart Gem Satellite
+entities.MaggyHelper/HeartGemSattelite.placements.description.main=Orbiting heart gem decorative entity.
+
+entities.MaggyHelper/EnhancedBirdNPC.placements.name.main=Enhanced Bird NPC
+entities.MaggyHelper/EnhancedBirdNPC.placements.description.main=Upgraded bird NPC with additional functionality.
+
+# =============================================================================
+# CHASERS AND PURSUERS
+# =============================================================================
+
+entities.MaggyHelper/CharaChaser.placements.name.main=Chara Chaser
+entities.MaggyHelper/CharaChaser.placements.description.main=Chara entity that pursues the player through the level.
+
+entities.MaggyHelper/CharaChaser2.placements.name.main=Chara Chaser V2
+entities.MaggyHelper/CharaChaser2.placements.description.main=Updated Chara chaser with improved mechanics.
+
+# =============================================================================
+# INTERACTABLE OBJECTS
+# =============================================================================
+
+entities.MaggyHelper/Payphone.placements.name.main=Payphone
+entities.MaggyHelper/Payphone.placements.description.main=Interactive payphone for calls and cutscenes.
+
+entities.MaggyHelper/FlingBirdIntro.placements.name.main=Fling Bird Intro
+entities.MaggyHelper/FlingBirdIntro.placements.description.main=Introduction sequence for the fling bird teaching mechanic.
+
+entities.MaggyHelper/MaddyPhone.placements.name.main=Maddy Phone
+entities.MaggyHelper/MaddyPhone.placements.description.main=Madeline's phone for communication cutscenes.
+
+# =============================================================================
+# PROJECTILES AND WEAPONS
+# =============================================================================
+
+entities.MaggyHelper/BeamWhip.placements.name.main=Beam Whip
+entities.MaggyHelper/BeamWhip.placements.description.main=Waddle Doo's signature beam attack projectile.
+
+entities.MaggyHelper/BombProjectile.placements.name.main=Bomb Projectile
+entities.MaggyHelper/BombProjectile.placements.description.main=Explosive bomb thrown by bomb-type enemies.
+
+entities.MaggyHelper/FireProjectile.placements.name.main=Fire Projectile
+entities.MaggyHelper/FireProjectile.placements.description.main=Fire attack projectile from fire-based enemies.
+
+entities.MaggyHelper/IceProjectile.placements.name.main=Ice Projectile
+entities.MaggyHelper/IceProjectile.placements.description.main=Ice attack projectile that freezes targets.
+
+entities.MaggyHelper/BeamProjectile.placements.name.main=Beam Projectile
+entities.MaggyHelper/BeamProjectile.placements.description.main=Standard beam projectile attack.
+
+entities.MaggyHelper/BossStarProjectile.placements.name.main=Boss Star Projectile
+entities.MaggyHelper/BossStarProjectile.placements.description.main=Star-shaped projectile used by bosses.
+
+entities.MaggyHelper/ConquerorBeam.placements.name.main=Conqueror Beam
+entities.MaggyHelper/ConquerorBeam.placements.description.main=The Conqueror's powerful beam attack.
+
+entities.MaggyHelper/ConquerorBook.placements.name.main=Conqueror Book
+entities.MaggyHelper/ConquerorBook.placements.description.main=The Conqueror's floating tome that shoots projectiles.
+
+entities.MaggyHelper/ConquerorKeys.placements.name.main=Conqueror Keys
+entities.MaggyHelper/ConquerorKeys.placements.description.main=Floating keys that attack for the Conqueror boss.
+
+entities.MaggyHelper/ConquerorLightningStrike.placements.name.main=Conqueror Lightning Strike
+entities.MaggyHelper/ConquerorLightningStrike.placements.description.main=Devastating lightning attack from the Conqueror.
+
+entities.MaggyHelper/CelestialBlade.placements.name.main=Celestial Blade
+entities.MaggyHelper/CelestialBlade.placements.description.main=Divine sword projectile with holy power.
+
+entities.MaggyHelper/CelestialHypergodForm.placements.name.main=Celestial Hypergod Form
+entities.MaggyHelper/CelestialHypergodForm.placements.description.main=Ultimate celestial transformation effect.
+
+# =============================================================================
+# TRIGGERS
+# =============================================================================
+
+# Dummy Attacher Triggers
+triggers.MaggyHelper/MadelineDummyAttacherTrigger.placements.name.main=Madeline Dummy Attacher Trigger
+triggers.MaggyHelper/MadelineDummyAttacherTrigger.placements.description.main=Attaches a Madeline dummy to the player when triggered.
+
+triggers.MaggyHelper/BadelineDummyAttacherTrigger.placements.name.main=Badeline Dummy Attacher Trigger
+triggers.MaggyHelper/BadelineDummyAttacherTrigger.placements.description.main=Attaches a Badeline dummy to the player when triggered.
+
+triggers.MaggyHelper/CharaDummyAttacherTrigger.placements.name.main=Chara Dummy Attacher Trigger
+triggers.MaggyHelper/CharaDummyAttacherTrigger.placements.description.main=Attaches a Chara dummy to the player when triggered.
+
+triggers.MaggyHelper/RalseiDummyAttacherTrigger.placements.name.main=Ralsei Dummy Attacher Trigger
+triggers.MaggyHelper/RalseiDummyAttacherTrigger.placements.description.main=Attaches a Ralsei dummy to the player when triggered.
+
+# Player and Health Triggers
+triggers.MaggyHelper/PlayerTrigger.placements.name.main=Player Trigger
+triggers.MaggyHelper/PlayerTrigger.placements.description.main=General player activation trigger for custom events.
+
+triggers.MaggyHelper/KirbyPlayerTrigger.placements.name.main=Kirby Player Trigger
+triggers.MaggyHelper/KirbyPlayerTrigger.placements.description.main=Trigger specifically for Kirby player mode events.
+
+triggers.MaggyHelper/KirbyHealthTrigger.placements.name.main=Kirby Health Trigger
+triggers.MaggyHelper/KirbyHealthTrigger.placements.description.main=Modifies player health when triggered. Can heal or damage.
+
+triggers.MaggyHelper/KirbyDamageTrigger.placements.name.main=Kirby Damage Trigger
+triggers.MaggyHelper/KirbyDamageTrigger.placements.description.main=Damages the player on contact with hazard properties.
+
+triggers.MaggyHelper/HealthSystemTrigger.placements.name.main=Health System Trigger
+triggers.MaggyHelper/HealthSystemTrigger.placements.description.main=Enables or disables the health system in an area.
+
+triggers.MaggyHelper/BossArenaTrigger.placements.name.main=Boss Arena Trigger
+triggers.MaggyHelper/BossArenaTrigger.placements.description.main=Sets up boss arena boundaries and mechanics.
+
+triggers.MaggyHelper/DamageTrigger.placements.name.main=Damage Trigger
+triggers.MaggyHelper/DamageTrigger.placements.description.main=Deals damage to entities that enter its zone.
+
+triggers.MaggyHelper/HealTrigger.placements.name.main=Heal Trigger
+triggers.MaggyHelper/HealTrigger.placements.description.main=Restores health to entities that enter its zone.
+
+# Blackhole Triggers
+triggers.MaggyHelper/RainbowBlackholeTrigger.placements.name.main=Rainbow Blackhole Trigger
+triggers.MaggyHelper/RainbowBlackholeTrigger.placements.description.main=Activates rainbow blackhole visual and physics effects.
+
+triggers.MaggyHelper/ElsGlitchRainbowBlackholeTrigger.placements.name.main=ELS Glitch Rainbow Blackhole Trigger
+triggers.MaggyHelper/ElsGlitchRainbowBlackholeTrigger.placements.description.main=ELS variant of the rainbow blackhole with glitch effects.
+
+triggers.MaggyHelper/BlackholeBlockerTrigger.placements.name.main=Blackhole Blocker Trigger
+triggers.MaggyHelper/BlackholeBlockerTrigger.placements.description.main=Blocks or enables blackhole effects in an area.
+
+triggers.MaggyHelper/BlackholeStrengthTrigger.placements.name.main=Blackhole Strength Trigger
+triggers.MaggyHelper/BlackholeStrengthTrigger.placements.description.main=Adjusts the strength of blackhole pull in an area.
+
+# State and Mode Triggers
+triggers.MaggyHelper/KirbyModeTrigger.placements.name.main=Kirby Mode Trigger
+triggers.MaggyHelper/KirbyModeTrigger.placements.description.main=Enables or disables Kirby mode when entered.
+
+triggers.MaggyHelper/KirbyModeToggleTrigger.placements.name.main=Kirby Mode Toggle Trigger
+triggers.MaggyHelper/KirbyModeToggleTrigger.placements.description.main=Toggles Kirby mode on/off when triggered.
+
+triggers.MaggyHelper/AbilitySwapTrigger.placements.name.main=Ability Swap Trigger
+triggers.MaggyHelper/AbilitySwapTrigger.placements.description.main=Changes the player's copy ability when triggered.
+
+triggers.MaggyHelper/GravityZoneTrigger.placements.name.main=Gravity Zone Trigger
+triggers.MaggyHelper/GravityZoneTrigger.placements.description.main=Modifies gravity in the trigger zone.
+
+triggers.MaggyHelper/SpeedModifierTrigger.placements.name.main=Speed Modifier Trigger
+triggers.MaggyHelper/SpeedModifierTrigger.placements.description.main=Changes player movement speed when in the zone.
+
+triggers.MaggyHelper/InvincibilityTrigger.placements.name.main=Invincibility Trigger
+triggers.MaggyHelper/InvincibilityTrigger.placements.description.main=Grants temporary invincibility when triggered.
+
+triggers.MaggyHelper/SizeChangeTrigger.placements.name.main=Size Change Trigger
+triggers.MaggyHelper/SizeChangeTrigger.placements.description.main=Modifies player size when in the trigger zone.
+
+triggers.MaggyHelper/DisableAbilityTrigger.placements.name.main=Disable Ability Trigger
+triggers.MaggyHelper/DisableAbilityTrigger.placements.description.main=Temporarily disables copy abilities when triggered.
+
+triggers.MaggyHelper/StaminaModTrigger.placements.name.main=Stamina Modifier Trigger
+triggers.MaggyHelper/StaminaModTrigger.placements.description.main=Modifies player stamina/climbing capabilities.
+
+triggers.MaggyHelper/MirrorModeTrigger.placements.name.main=Mirror Mode Trigger
+triggers.MaggyHelper/MirrorModeTrigger.placements.description.main=Enables mirror/reflect mode when triggered.
+
+triggers.MaggyHelper/OneHitTrigger.placements.name.main=One Hit Trigger
+triggers.MaggyHelper/OneHitTrigger.placements.description.main=Enables one-hit KO mode when in the zone.
+
+triggers.MaggyHelper/DashRefreshTrigger.placements.name.main=Dash Refresh Trigger
+triggers.MaggyHelper/DashRefreshTrigger.placements.description.main=Instantly refreshes player dashes when triggered.
+
+# Oshiro and Event Triggers
+triggers.MaggyHelper/OshiroTrigger.placements.name.main=Oshiro Trigger
+triggers.MaggyHelper/OshiroTrigger.placements.description.main=Triggers Oshiro-related events and encounters.
+
+triggers.MaggyHelper/EventTrigger.placements.name.main=Event Trigger
+triggers.MaggyHelper/EventTrigger.placements.description.main=General event trigger for custom scripted sequences.
+
+triggers.MaggyHelper/CutsceneTrigger.placements.name.main=Cutscene Trigger
+triggers.MaggyHelper/CutsceneTrigger.placements.description.main=Activates a cutscene when the player enters.
+
+# Camera and Visual Triggers
+triggers.MaggyHelper/CameraShakeTrigger.placements.name.main=Camera Shake Trigger
+triggers.MaggyHelper/CameraShakeTrigger.placements.description.main=Shakes the camera when triggered.
+
+triggers.MaggyHelper/ZoomTrigger.placements.name.main=Zoom Trigger
+triggers.MaggyHelper/ZoomTrigger.placements.description.main=Adjusts camera zoom level when in the zone.
+
+triggers.MaggyHelper/ScreenFlashTrigger.placements.name.main=Screen Flash Trigger
+triggers.MaggyHelper/ScreenFlashTrigger.placements.description.main=Flashes the screen with a color when triggered.
+
+triggers.MaggyHelper/PixelationTrigger.placements.name.main=Pixelation Trigger
+triggers.MaggyHelper/PixelationTrigger.placements.description.main=Applies pixelation effect when in the zone.
+
+triggers.MaggyHelper/VignetteTrigger.placements.name.main=Vignette Trigger
+triggers.MaggyHelper/VignetteTrigger.placements.description.main=Adds vignette darkness effect when triggered.
+
+triggers.MaggyHelper/ColorShiftTrigger.placements.name.main=Color Shift Trigger
+triggers.MaggyHelper/ColorShiftTrigger.placements.description.main=Shifts screen colors when in the zone.
+
+triggers.MaggyHelper/ParallaxShiftTrigger.placements.name.main=Parallax Shift Trigger
+triggers.MaggyHelper/ParallaxShiftTrigger.placements.description.main=Modifies background parallax when triggered.
+
+triggers.MaggyHelper/SplitScreenTrigger.placements.name.main=Split Screen Trigger
+triggers.MaggyHelper/SplitScreenTrigger.placements.description.main=Creates split-screen effect when in the zone.
+
+# Chapter Progression Triggers
+triggers.MaggyHelper/SidMapEnterTrigger.placements.name.main=Sid Map Enter Trigger
+triggers.MaggyHelper/SidMapEnterTrigger.placements.description.main=Trigger for entering SID map areas.
+
+triggers.MaggyHelper/SidMapReturnTrigger.placements.name.main=Sid Map Return Trigger
+triggers.MaggyHelper/SidMapReturnTrigger.placements.description.main=Trigger for returning from SID map areas.
+
+triggers.MaggyHelper/ChapterLobbyEnterTrigger.placements.name.main=Chapter Lobby Enter Trigger
+triggers.MaggyHelper/ChapterLobbyEnterTrigger.placements.description.main=Trigger for entering chapter lobby areas.
+
+triggers.MaggyHelper/RuinsLobbyEnterTrigger.placements.name.main=Ruins Lobby Enter Trigger
+triggers.MaggyHelper/RuinsLobbyEnterTrigger.placements.description.main=Trigger for entering the ruins lobby.
+
+triggers.MaggyHelper/Chapter16CutsceneTrigger.placements.name.main=Chapter 16 Cutscene Trigger
+triggers.MaggyHelper/Chapter16CutsceneTrigger.placements.description.main=Activates chapter 16 specific cutscenes.
+
+triggers.MaggyHelper/Chapter16DialogTrigger.placements.name.main=Chapter 16 Dialog Trigger
+triggers.MaggyHelper/Chapter16DialogTrigger.placements.description.main=Triggers chapter 16 specific dialog.
+
+triggers.MaggyHelper/Chapter16EffectsTrigger.placements.name.main=Chapter 16 Effects Trigger
+triggers.MaggyHelper/Chapter16EffectsTrigger.placements.description.main=Activates chapter 16 visual effects.
+
+triggers.MaggyHelper/CH18OutroTrigger.placements.name.main=Chapter 18 Outro Trigger
+triggers.MaggyHelper/CH18OutroTrigger.placements.description.main=Triggers the chapter 18 outro sequence.
+
+triggers.MaggyHelper/LastRoomTrigger.placements.name.main=Last Room Trigger
+triggers.MaggyHelper/LastRoomTrigger.placements.description.main=Marks the final room of a chapter or sequence.
+
+triggers.MaggyHelper/AreaCompleteTrigger.placements.name.main=Area Complete Trigger
+triggers.MaggyHelper/AreaCompleteTrigger.placements.description.main=Marks an area as completed when triggered.
+
+# Special Effect Triggers
+triggers.MaggyHelper/EffectTrigger.placements.name.main=Effect Trigger
+triggers.MaggyHelper/EffectTrigger.placements.description.main=Activates special visual effects when triggered.
+
+triggers.MaggyHelper/ElementalEffectTrigger.placements.name.main=Elemental Effect Trigger
+triggers.MaggyHelper/ElementalEffectTrigger.placements.description.main=Applies elemental effects (fire, ice, etc.) when triggered.
+
+triggers.MaggyHelper/BridgeFreezeTrigger.placements.name.main=Bridge Freeze Trigger
+triggers.MaggyHelper/BridgeFreezeTrigger.placements.description.main=Freezes bridge elements when triggered.
+
+triggers.MaggyHelper/AsrielStartHitTrigger.placements.name.main=Asriel Start Hit Trigger
+triggers.MaggyHelper/AsrielStartHitTrigger.placements.description.main=Starts Asriel boss hit sequence when triggered.
+
+triggers.MaggyHelper/CharaZoomAppearTrigger.placements.name.main=Chara Zoom Appear Trigger
+triggers.MaggyHelper/CharaZoomAppearTrigger.placements.description.main=Makes Chara appear with zoom effect when triggered.
+
+triggers.MaggyHelper/TowerFountainTrigger.placements.name.main=Tower Fountain Trigger
+triggers.MaggyHelper/TowerFountainTrigger.placements.description.main=Activates tower fountain mechanics when triggered.
+
+triggers.MaggyHelper/Tower3DTrigger.placements.name.main=Tower 3D Trigger
+triggers.MaggyHelper/Tower3DTrigger.placements.description.main=Activates 3D tower perspective when triggered.
+
+# Dialog and Story Triggers
+triggers.MaggyHelper/DialogTrigger.placements.name.main=Dialog Trigger
+triggers.MaggyHelper/DialogTrigger.placements.description.main=Shows dialog text when the player enters.
+
+triggers.MaggyHelper/SessionFlagTrigger.placements.name.main=Session Flag Trigger
+triggers.MaggyHelper/SessionFlagTrigger.placements.description.main=Sets or checks session flags when triggered.
+
+triggers.MaggyHelper/KirbFlagTrigger.placements.name.main=Kirb Flag Trigger
+triggers.MaggyHelper/KirbFlagTrigger.placements.description.main=Kirby-specific flag trigger for game state management.
+
+triggers.MaggyHelper/PlayerInventoryTrigger.placements.name.main=Player Inventory Trigger
+triggers.MaggyHelper/PlayerInventoryTrigger.placements.description.main=Modifies player inventory when triggered.
+
+triggers.MaggyHelper/PlayerAnimPrefixAddOnTrigger.placements.name.main=Player Animation Prefix Trigger
+triggers.MaggyHelper/PlayerAnimPrefixAddOnTrigger.placements.description.main=Changes player animation set when triggered.
+
+triggers.MaggyHelper/PinkPlatBerryCollectTrigger.placements.name.main=Pink Plat Berry Collect Trigger
+triggers.MaggyHelper/PinkPlatBerryCollectTrigger.placements.description.main=Special trigger for pink platform berry collection.
+
+triggers.MaggyHelper/DetachPinkPlatberryTrigger.placements.name.main=Detach Pink Platberry Trigger
+triggers.MaggyHelper/DetachPinkPlatberryTrigger.placements.description.main=Detaches pink platform berries when triggered.
+
+triggers.MaggyHelper/PinkGameboyColorGradeTrigger.placements.name.main=Pink Gameboy Color Grade Trigger
+triggers.MaggyHelper/PinkGameboyColorGradeTrigger.placements.description.main=Applies pink Gameboy color grading when triggered.
+
+triggers.MaggyHelper/SkinSwapTrigger.placements.name.main=Skin Swap Trigger
+triggers.MaggyHelper/SkinSwapTrigger.placements.description.main=Changes player skin/character when triggered.
+
+triggers.MaggyHelper/EntityReskinTrigger.placements.name.main=Entity Reskin Trigger
+triggers.MaggyHelper/EntityReskinTrigger.placements.description.main=Changes entity appearances when triggered.
+
+# Tutorial Triggers
+triggers.MaggyHelper/KirbyTutorialBirdTrigger.placements.name.main=Kirby Tutorial Bird Trigger
+triggers.MaggyHelper/KirbyTutorialBirdTrigger.placements.description.main=Activates Kirby bird tutorial when triggered.
+
+# Misc Triggers
+triggers.MaggyHelper/DoubleDashTrigger.placements.name.main=Double Dash Trigger
+triggers.MaggyHelper/DoubleDashTrigger.placements.description.main=Grants a double dash when triggered.
+
+triggers.MaggyHelper/FallingBlockTrigger.placements.name.main=Falling Block Trigger
+triggers.MaggyHelper/FallingBlockTrigger.placements.description.main=Activates falling block sequences when triggered.
+
+triggers.MaggyHelper/LevelGlitchTrigger.placements.name.main=Level Glitch Trigger
+triggers.MaggyHelper/LevelGlitchTrigger.placements.description.main=Triggers level glitch effects when entered.
+
+triggers.MaggyHelper/LightningTrigger.placements.name.main=Lightning Trigger
+triggers.MaggyHelper/LightningTrigger.placements.description.main=Spawns lightning strikes when triggered.
+
+triggers.MaggyHelper/TeleportFXTrigger.placements.name.main=Teleport FX Trigger
+triggers.MaggyHelper/TeleportFXTrigger.placements.description.main=Adds teleport visual effects when triggered.
+
+triggers.MaggyHelper/AmbienceTrigger.placements.name.main=Ambience Trigger
+triggers.MaggyHelper/AmbienceTrigger.placements.description.main=Changes ambient sounds when entered.
+
+triggers.MaggyHelper/CreditsTriggerPart1.placements.name.main=Credits Trigger Part 1
+triggers.MaggyHelper/CreditsTriggerPart1.placements.description.main=Starts first part of credits sequence.
+
+triggers.MaggyHelper/CreditsTriggerPart2.placements.name.main=Credits Trigger Part 2
+triggers.MaggyHelper/CreditsTriggerPart2.placements.description.main=Starts second part of credits sequence.
+
+# =============================================================================
+# STYLE EFFECTS
+# =============================================================================
+
+style.effects.MaggyHelper/CustomRain.name=Custom Rain
+style.effects.MaggyHelper/CustomRain.description=Configurable rain effect with intensity options.
+
+style.effects.MaggyHelper/WindRainFG.name=Wind Rain (Foreground)
+style.effects.MaggyHelper/WindRainFG.description=Rain that blows with the wind in the foreground.
+
+style.effects.MaggyHelper/RainbowBlackholeBG.name=Rainbow Blackhole Background
+style.effects.MaggyHelper/RainbowBlackholeBG.description=Psychedelic blackhole background effect.
+
+style.effects.MaggyHelper/GiygasBackdrop.name=Giygas Backdrop
+style.effects.MaggyHelper/GiygasBackdrop.description=Unsettling red swirling background inspired by EarthBound.
+
+style.effects.MaggyHelper/GlitchEffect.name=Glitch Effect
+style.effects.MaggyHelper/GlitchEffect.description=Screen glitching visual distortion effect.
+
+style.effects.MaggyHelper/PopstarBG.name=Popstar Background
+style.effects.MaggyHelper/PopstarBG.description=Kirby's home planet background with starry visuals.
+
+style.effects.MaggyHelper/MagicalAura.name=Magical Aura
+style.effects.MaggyHelper/MagicalAura.description=Sparkling magical aura particle effect.
+
+style.effects.MaggyHelper/AsrielGodBackdrop.name=Asriel God of Hyperdeath Backdrop
+style.effects.MaggyHelper/AsrielGodBackdrop.description=Epic background for the Asriel god boss fight.
+
+style.effects.MaggyHelper/AsrielAngelOfDeathWingsBackdrop.name=Asriel Angel Wings Backdrop
+style.effects.MaggyHelper/AsrielAngelOfDeathWingsBackdrop.description=Background showing Asriel's angelic wings.
+
+style.effects.MaggyHelper/HeavenGatesBackdrop.name=Heaven's Gates Backdrop
+style.effects.MaggyHelper/HeavenGatesBackdrop.description=Heavenly gates background for divine encounters.
+
+style.effects.MaggyHelper/ELSTrueFinalBackdrop.name=ELS True Final Backdrop
+style.effects.MaggyHelper/ELSTrueFinalBackdrop.description=Epic backdrop for the true final boss encounter.
+
+style.effects.MaggyHelper/TesseractHoleBG.name=Tesseract Hole Background
+style.effects.MaggyHelper/TesseractHoleBG.description=Four-dimensional hole distortion background.
+
+style.effects.MaggyHelper/AncientRunes.name=Ancient Runes
+style.effects.MaggyHelper/AncientRunes.description=Floating ancient rune symbols effect.
+
+style.effects.MaggyHelper/ColorGradeEffect.name=Color Grade Effect
+style.effects.MaggyHelper/ColorGradeEffect.description=Custom color grading for atmospheric changes.
+
+style.effects.MaggyHelper/DistortionEffect.name=Distortion Effect
+style.effects.MaggyHelper/DistortionEffect.description=Screen space distortion visual effect.
+
+# =============================================================================
+# ADDITIONAL ENTITIES
+# =============================================================================
+
+entities.MaggyHelper/SparkyDust.placements.name.main=Sparky Dust
+entities.MaggyHelper/SparkyDust.placements.description.main=Sparkling dust particle effect for magical areas.
+
+entities.MaggyHelper/Hole.placements.name.main=Hole
+entities.MaggyHelper/Hole.placements.description.main=Hole in the ground. May lead somewhere or be a hazard.
+
+entities.MaggyHelper/CharacterRefill.placements.name.main=Character Refill
+entities.MaggyHelper/CharacterRefill.placements.description.main=Refills specific character abilities when collected.
+
+entities.MaggyHelper/BubbleRaft.placements.name.main=Bubble Raft
+entities.MaggyHelper/BubbleRaft.placements.description.main=Floating bubble platform for water sections.
+
+entities.MaggyHelper/BombWaddleDee.placements.name.main=Bomb Waddle Dee
+entities.MaggyHelper/BombWaddleDee.placements.description.main=Waddle Dee carrying a bomb. Explodes on contact.
+
+entities.MaggyHelper/ReflectionHeartStatue.placements.name.main=Reflection Heart Statue
+entities.MaggyHelper/ReflectionHeartStatue.placements.description.main=Statue with heart crystal for reflection scenes.
+
+entities.MaggyHelper/InfernoEndingMusicHandler.placements.name.main=Inferno Ending Music Handler
+entities.MaggyHelper/InfernoEndingMusicHandler.placements.description.main=Controls music for the Inferno chapter ending.
+
+# =============================================================================
+# CHAPTER 15 - SANCTUM ENTITIES
+# =============================================================================
+
+entities.MaggyHelper/JudgmentBell.placements.name.main=Judgment Bell
+entities.MaggyHelper/JudgmentBell.placements.description.main=Sacred bell that rings for judgment scenes.
+
+entities.MaggyHelper/SanctumAltar.placements.name.main=Sanctum Altar
+entities.MaggyHelper/SanctumAltar.placements.description.main=Holy altar for sacred rituals and ceremonies.
+
+entities.MaggyHelper/SanctumCandle.placements.name.main=Sanctum Candle
+entities.MaggyHelper/SanctumCandle.placements.description.main=Eternal flame candle for sanctum lighting.
+
+entities.MaggyHelper/SanctumChandelier.placements.name.main=Sanctum Chandelier
+entities.MaggyHelper/SanctumChandelier.placements.description.main=Grand chandelier for cathedral ceilings.
+
+entities.MaggyHelper/SanctumLightBeam.placements.name.main=Sanctum Light Beam
+entities.MaggyHelper/SanctumLightBeam.placements.description.main=Heavenly light beam shining from above.
+
+entities.MaggyHelper/SanctumPillar.placements.name.main=Sanctum Pillar
+entities.MaggyHelper/SanctumPillar.placements.description.main=Ancient pillar supporting sanctum structure.
+
+entities.MaggyHelper/SanctumStainedGlass.placements.name.main=Sanctum Stained Glass
+entities.MaggyHelper/SanctumStainedGlass.placements.description.main=Colorful stained glass window with religious imagery.
+
+# =============================================================================
+# CHAPTER 16-18 ENTITIES
+# =============================================================================
+
+entities.MaggyHelper/AscendManagerBeyond.placements.name.main=Ascend Manager (Beyond)
+entities.MaggyHelper/AscendManagerBeyond.placements.description.main=Manages the final ascension sequence beyond the summit.
+
+entities.MaggyHelper/NPC21_Granny.placements.name.main=NPC - Granny (Celia)
+entities.MaggyHelper/NPC21_Granny.placements.description.main=Celia the grandmother NPC for final chapter.
+
+entities.MaggyHelper/OverworldModel3D.placements.name.main=Overworld 3D Model
+entities.MaggyHelper/OverworldModel3D.placements.description.main=3D model for overworld map display.
+
+entities.MaggyHelper/PostcardMaggy.placements.name.main=Postcard (Maggy)
+entities.MaggyHelper/PostcardMaggy.placements.description.main=Collectible postcard featuring Maggy.
+
+# =============================================================================
+# BOSS EXAMPLE ENTITIES (from BossesExample folder)
+# =============================================================================
+
+entities.MaggyHelper/BoomBooster.placements.name.main=Boom Booster
+entities.MaggyHelper/BoomBooster.placements.description.main=Explosive booster that launches with a bang.
+
+entities.MaggyHelper/BossDebris.placements.name.main=Boss Debris
+entities.MaggyHelper/BossDebris.placements.description.main=Debris particles spawned during boss destruction.
+
+entities.MaggyHelper/BossFightTrigger.placements.name.main=Boss Fight Trigger
+entities.MaggyHelper/BossFightTrigger.placements.description.main=Starts a boss fight when triggered.
+
+entities.MaggyHelper/CustomMoveBlock.placements.name.main=Custom Move Block
+entities.MaggyHelper/CustomMoveBlock.placements.description.main=Move block with customizable properties.
+
+entities.MaggyHelper/NoResetMoveBlock.placements.name.main=No Reset Move Block
+entities.MaggyHelper/NoResetMoveBlock.placements.description.main=Move block that doesn't reset on dash.
+
+entities.MaggyHelper/DestroySpinnerRefill.placements.name.main=Destroy Spinner Refill
+entities.MaggyHelper/DestroySpinnerRefill.placements.description.main=Refill that destroys nearby spinners.
+
+entities.MaggyHelper/DestructableSpinner.placements.name.main=Destructable Spinner
+entities.MaggyHelper/DestructableSpinner.placements.description.main=Spinner that can be destroyed with certain abilities.
+
+entities.MaggyHelper/DashWave.placements.name.main=Dash Wave
+entities.MaggyHelper/DashWave.placements.description.main=Wave effect created by dashing.
+
+entities.MaggyHelper/InstantFallingBlock.placements.name.main=Instant Falling Block
+entities.MaggyHelper/InstantFallingBlock.placements.description.main=Falling block that drops immediately when triggered.
+
+entities.MaggyHelper/LevelResetZone.placements.name.main=Level Reset Zone
+entities.MaggyHelper/LevelResetZone.placements.description.main=Zone that resets the level when entered.
+
+entities.MaggyHelper/MoonTriggerNoRespawn.placements.name.main=Moon Trigger (No Respawn)
+entities.MaggyHelper/MoonTriggerNoRespawn.placements.description.main=Moon trigger that doesn't change respawn point.
+
+entities.MaggyHelper/NPC_Boss.placements.name.main=NPC - Boss
+entities.MaggyHelper/NPC_Boss.placements.description.main=Generic boss NPC for encounters.
+
+entities.MaggyHelper/Shockwave.placements.name.name=Shockwave
+entities.MaggyHelper/Shockwave.placements.description.main=Expanding shockwave effect for explosions.
+
+entities.MaggyHelper/TeleporterDeco.placements.name.main=Teleporter Decoration
+entities.MaggyHelper/TeleporterDeco.placements.description.main=Decorative teleporter pad.
+
+entities.MaggyHelper/VanishingWall.placements.name.main=Vanishing Wall
+entities.MaggyHelper/VanishingWall.placements.description.main=Wall that disappears when approached or triggered.

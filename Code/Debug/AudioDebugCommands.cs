@@ -197,5 +197,62 @@ namespace Celeste.Mod.MaggyHelper.Debug
             Engine.Commands.Log("Use 'maggy_audio_missing' to see all missing events");
             Engine.Commands.Log("Use 'maggy_audio_find <keyword>' to search for alternatives");
         }
+
+        [Command("maggy_mod_audio_scan", "Scan all loaded mods for audio assets")]
+        public static void ModAudioScan()
+        {
+            MaggyHelperModule.ScanAllModAudioAssets(force: true);
+            Engine.Commands.Log($"=== MOD AUDIO SCAN COMPLETE ===");
+            Engine.Commands.Log($"Assets: {MaggyHelperModule.DiscoveredModAudioAssets.Count}");
+            Engine.Commands.Log($"Banks: {MaggyHelperModule.DiscoveredModAudioBanks.Count}");
+        }
+
+        [Command("maggy_mod_audio_list", "List discovered mod audio assets. Usage: maggy_mod_audio_list [banks|all]")]
+        public static void ModAudioList(string mode = "")
+        {
+            MaggyHelperModule.ScanAllModAudioAssets();
+
+            if (string.Equals(mode, "banks", StringComparison.OrdinalIgnoreCase))
+            {
+                Engine.Commands.Log($"=== MOD AUDIO BANKS ({MaggyHelperModule.DiscoveredModAudioBanks.Count}) ===");
+                foreach (string bank in MaggyHelperModule.DiscoveredModAudioBanks.OrderBy(b => b))
+                {
+                    Engine.Commands.Log($"  [Bank] {bank}");
+                }
+            }
+            else if (string.Equals(mode, "all", StringComparison.OrdinalIgnoreCase))
+            {
+                Engine.Commands.Log($"=== ALL MOD AUDIO ASSETS ({MaggyHelperModule.DiscoveredModAudioAssets.Count}) ===");
+                foreach (string asset in MaggyHelperModule.DiscoveredModAudioAssets.OrderBy(a => a))
+                {
+                    Engine.Commands.Log($"  {asset}");
+                }
+            }
+            else
+            {
+                Engine.Commands.Log($"=== MOD AUDIO SUMMARY ===");
+                Engine.Commands.Log($"Total assets: {MaggyHelperModule.DiscoveredModAudioAssets.Count}");
+                Engine.Commands.Log($"Total banks: {MaggyHelperModule.DiscoveredModAudioBanks.Count}");
+                Engine.Commands.Log("");
+                Engine.Commands.Log("Banks:");
+                foreach (string bank in MaggyHelperModule.DiscoveredModAudioBanks.Take(20).OrderBy(b => b))
+                {
+                    Engine.Commands.Log($"  [Bank] {bank}");
+                }
+                if (MaggyHelperModule.DiscoveredModAudioBanks.Count > 20)
+                {
+                    Engine.Commands.Log($"  ... and {MaggyHelperModule.DiscoveredModAudioBanks.Count - 20} more");
+                }
+                Engine.Commands.Log("");
+                Engine.Commands.Log("Usage: maggy_mod_audio_list banks | maggy_mod_audio_list all");
+            }
+        }
+
+        [Command("maggy_mod_audio_ingest", "Re-ingest mod audio banks via Celeste's Audio system")]
+        public static void ModAudioIngest()
+        {
+            MaggyHelperModule.TryIngestNewBanks("ConsoleCommand");
+            Engine.Commands.Log("Bank ingestion complete.");
+        }
     }
 }

@@ -66,6 +66,92 @@ namespace Celeste.Mod.MaggyHelper
             Instance = this;
         }
 
+        // =====================================================================
+        //  Build Fingerprint & Utility Methods
+        // =====================================================================
+
+        private static string GetBuildFingerprint()
+        {
+            Assembly assembly = typeof(MaggyHelperModule).Assembly;
+
+            string mvidShort;
+            try
+            {
+                mvidShort = assembly.ManifestModule.ModuleVersionId.ToString("N")[..8];
+            }
+            catch
+            {
+                mvidShort = "na";
+            }
+
+            string version = assembly.GetName().Version?.ToString() ?? "na";
+            string location = null;
+
+            try
+            {
+                location = assembly.Location;
+            }
+            catch
+            {
+                location = null;
+            }
+
+            if (!string.IsNullOrWhiteSpace(location) && File.Exists(location))
+            {
+                string timestampUtc = File.GetLastWriteTimeUtc(location).ToString("yyyy-MM-dd HH:mm:ss");
+                return $"{timestampUtc}Z v:{version} mvid:{mvidShort}";
+            }
+
+            // Some load contexts expose no physical assembly path. Still return a stable identifier.
+            return $"v:{version} mvid:{mvidShort} path:na";
+        }
+
+        [Command("maggy_build", "Prints the active MaggyHelper build fingerprint. Usage: maggy_build")]
+        private static void CmdMaggyBuild()
+        {
+            string fingerprint = GetBuildFingerprint();
+            string message = $"[MaggyHelper] Active build: {fingerprint}";
+            Engine.Commands?.Log(message);
+            Logger.Log(LogLevel.Info, "MaggyHelper", message);
+        }
+
+        /// <summary>
+        /// Get the mod content path for loading resources.
+        /// </summary>
+        public static string GetContentPath(string relativePath)
+        {
+            return $"MaggyHelper/{relativePath}";
+        }
+
+        /// <summary>
+        /// Check if we are currently in a MaggyHelper map.
+        /// </summary>
+        public static bool IsInMaggyHelperMap()
+        {
+            var celSession = (Engine.Scene as Level)?.Session;
+            if (celSession == null) return false;
+            var areaData = AreaData.Get(celSession.Area);
+            return areaData?.SID?.StartsWith("MaggyHelper/", StringComparison.OrdinalIgnoreCase) == true;
+        }
+
+        /// <summary>
+        /// Log a debug message if debug mode is enabled in settings.
+        /// </summary>
+        public static void LogDebug(string message)
+        {
+            if (Settings?.DebugMode == true)
+                Logger.Log(LogLevel.Debug, "MaggyHelper", message);
+        }
+
+        /// <summary>
+        /// Resets all mod save-data for the current slot.
+        /// </summary>
+        public static void ResetModSaveData()
+        {
+            if (Instance == null) return;
+            Instance._SaveData = new MaggyHelperModuleSaveData();
+        }
+
         public override void Load()
         {
             // BossesExampleModule.Load(); // TODO: Restore when BossesExampleModule is available
@@ -87,6 +173,9 @@ namespace Celeste.Mod.MaggyHelper
 
             // Initialize bus routing for Pusheen and return/verb buses
             AudioBusManager.Load();
+
+            // Initialize global mod audio loader to discover and warm up audio from all mods
+            global::MaggyHelper.Helpers.GlobalModAudioLoader.Load();
 
             // Audio redirect hooks are loaded from LoadAudioBanks() after banks are confirmed ready,
             // because on first launch banks haven't loaded yet when Load() runs.
@@ -348,6 +437,17 @@ namespace Celeste.Mod.MaggyHelper
         /// <summary>True if master bank loaded (contains events/buses). False in data-only mode.</summary>
         public static bool AudioMasterBankLoaded { get; private set; }
 
+        // ── Global mod audio discovery ─────────────────────────────────────────
+        private static readonly List<string> _discoveredModAudioAssets = new();
+        private static readonly List<string> _discoveredModAudioBanks = new();
+        private static bool _modAudioScanned;
+
+        /// <summary>All audio assets discovered across loaded mods (readonly).</summary>
+        public static IReadOnlyList<string> DiscoveredModAudioAssets => _discoveredModAudioAssets;
+
+        /// <summary>All .bank files discovered across loaded mods (readonly).</summary>
+        public static IReadOnlyList<string> DiscoveredModAudioBanks => _discoveredModAudioBanks;
+
         /// <summary>
         /// Reads the FMT-chunk version from a FMOD .bank file header.
         /// Returns (formatVersion, buildVersion) or (-1, -1) if the file is not a valid bank.
@@ -513,10 +613,72 @@ namespace Celeste.Mod.MaggyHelper
                 Logger.Log(LogLevel.Info, "MaggyHelper",
                     "[Audio] Master bank not loaded — using vanilla audio (pusheen hooks disabled).");
             }
+
+            // Scan for audio assets from all loaded mods (diagnostic)
+            ScanAllModAudioAssets();
         }
 
+        /// <summary>
+        /// Scans Everest content for audio assets from all loaded mods.
+        /// Populates <see cref="DiscoveredModAudioAssets"/> and <see cref="DiscoveredModAudioBanks"/>.
+        /// Safe to call multiple times; subsequent calls are no-ops unless forced.
+        /// </summary>
+        /// <param name="force">If true, clears and re-scans even if already scanned.</param>
+        public static void ScanAllModAudioAssets(bool force = false)
+        {
+            if (_modAudioScanned && !force)
+                return;
+
+            _discoveredModAudioAssets.Clear();
+            _discoveredModAudioBanks.Clear();
+
+            try
+            {
+                foreach (System.Collections.Generic.KeyValuePair<string, ModAsset> pair in Everest.Content.Map)
+                {
+                    string key = pair.Key;
+                    if (!key.StartsWith("Audio/", StringComparison.OrdinalIgnoreCase))
+                        continue;
+
+                    _discoveredModAudioAssets.Add(key);
+
+                    if (key.EndsWith(".bank", StringComparison.OrdinalIgnoreCase) ||
+                        key.EndsWith(".strings.bank", StringComparison.OrdinalIgnoreCase))
+                    {
+                        _discoveredModAudioBanks.Add(key);
+                    }
+                }
+
+                _modAudioScanned = true;
+                Logger.Log(
+                    LogLevel.Info,
+                    "MaggyHelper",
+                    $"[Audio] Indexed {_discoveredModAudioAssets.Count} audio assets ({_discoveredModAudioBanks.Count} banks) across loaded mods.");
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(LogLevel.Warn, "MaggyHelper", $"[Audio] Failed to scan mod audio assets: {ex.Message}");
+            }
+        }
 
         /// <summary>
+        /// Attempts to ingest new banks from other mods via Everest's Audio system.
+        /// Wraps <see cref="Audio.IngestNewBanks"/> with error handling.
+        /// </summary>
+        public static void TryIngestNewBanks(string source)
+        {
+            try
+            {
+                Audio.IngestNewBanks();
+                Logger.Log(LogLevel.Info, "MaggyHelper", $"[Audio] Ingested mod banks ({source}).");
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(LogLevel.Warn, "MaggyHelper", $"[Audio] Failed to ingest mod banks ({source}): {ex.Message}");
+            }
+        }
+
+/// <summary>
         /// Parses a .guids file (format: "{guid} event:/path" per line) and registers
         /// each pusheen event in <see cref="Audio.cachedModEvents"/> so that
         /// <see cref="Audio.GetEventDescription"/> can resolve them by path.
@@ -634,6 +796,9 @@ namespace Celeste.Mod.MaggyHelper
             On.Celeste.GameLoader.LoadThread -= OnGameLoaderLoadThread;
             On.Celeste.Audio.Init -= OnAudioInit;
             AudioBusManager.Unload();
+
+            // Unload global mod audio loader
+            global::MaggyHelper.Helpers.GlobalModAudioLoader.Unload();
             global::Celeste.PusheenAudioHooks.Unload();
             global::Celeste.KirbyAudioHooks.Unload();
             OuiChapterSelectHooks.Unload();

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using Celeste.Cutscenes;
@@ -87,22 +88,12 @@ namespace Celeste.Mod.MaggyHelper
             // Initialize bus routing for Pusheen and return/verb buses
             AudioBusManager.Load();
 
-            // Redirect vanilla audio events to the selected theme variant
-            // Only load hooks if master bank loaded successfully (contains event definitions).
-            // Data-only mode (A/B/C/D banks) has sample data but no events/buses,
-            // so hooks would cause "Event not found" errors. Fall back to vanilla audio instead.
+            // Audio redirect hooks are loaded from LoadAudioBanks() after banks are confirmed ready,
+            // because on first launch banks haven't loaded yet when Load() runs.
+            // On CodeReload, LoadAudioBanks() is called just above (Engine.Scene != null branch)
+            // and LoadAudioHooks() is called from within LoadAudioBanks() when masterOk.
             if (AudioMasterBankLoaded)
-            {
-                if (Settings.AudioTheme == AudioThemeMode.Kirby)
-                    global::Celeste.KirbyAudioHooks.Load();
-                else
-                    global::Celeste.PusheenAudioHooks.Load();
-            }
-            else
-            {
-                Logger.Log(LogLevel.Info, "MaggyHelper",
-                    "[Audio] Master bank not loaded — using vanilla audio (pusheen hooks disabled).");
-            }
+                LoadAudioHooks();
 
             // Register hooks
             // OuiChapterSelectHooks: Wraps OuiChapterSelect to catch crashes from updateScarf()
@@ -495,25 +486,101 @@ namespace Celeste.Mod.MaggyHelper
 
             Logger.Log(LogLevel.Info, "MaggyHelper",
                 $"[Audio] Data banks: {dataLoaded} loaded, {dataFailed} failed. " +
-                $"Master: {masterOk} Strings: {stringsOk} (using data-only mode)");
+                $"Master: {masterOk} Strings: {stringsOk}");
 
             // Mark banks as loaded if at least one data bank succeeded.
             // The hooks and bus manager need this flag to activate audio.
-            if (dataLoaded > 0)
+            if (dataLoaded > 0 || masterOk)
             {
                 AudioBanksLoaded = true;
-                // Master bank is NOT loaded in data-only mode (it has GUID conflicts)
-                // This disables pusheen audio hooks and bus routing - vanilla audio is used instead
                 AudioMasterBankLoaded = masterOk;
+
+                // Ingest GUIDs so Audio.GetEventDescription can resolve pusheen event paths.
+                // pusheen_audio.guids sits next to the master bank and covers all events in the project.
+                string guidsPath = Path.Combine(audioDir, "pusheen_audio.guids");
+                IngestGuidsFromFile(guidsPath);
+
                 Logger.Log(LogLevel.Info, "MaggyHelper", "[Audio] Custom audio active.");
+
+                // Activate audio redirect hooks now that the master bank is loaded
+                if (AudioMasterBankLoaded)
+                    LoadAudioHooks();
             }
             else
             {
                 AudioBanksLoaded = false;
                 AudioMasterBankLoaded = false;
+                Logger.Log(LogLevel.Info, "MaggyHelper",
+                    "[Audio] Master bank not loaded — using vanilla audio (pusheen hooks disabled).");
             }
         }
 
+
+        /// <summary>
+        /// Parses a .guids file (format: "{guid} event:/path" per line) and registers
+        /// each pusheen event in <see cref="Audio.cachedModEvents"/> so that
+        /// <see cref="Audio.GetEventDescription"/> can resolve them by path.
+        /// Mirrors <c>Audio.IngestGUIDs(ModAsset)</c> for directly-loaded banks.
+        /// </summary>
+        private static void IngestGuidsFromFile(string guidsPath)
+        {
+            if (!File.Exists(guidsPath))
+            {
+                Logger.Log(LogLevel.Warn, "MaggyHelper",
+                    $"[Audio] GUID file not found: {guidsPath}");
+                return;
+            }
+
+            var system = Audio.System;
+            if (system == null) return;
+
+            int ingested = 0, skipped = 0;
+            try
+            {
+                foreach (string rawLine in File.ReadLines(guidsPath))
+                {
+                    string line = rawLine.Trim();
+                    if (line.Length == 0 || line[0] != '{') continue;
+
+                    int space = line.IndexOf(' ');
+                    if (space < 0) continue;
+
+                    string guidStr = line.Substring(0, space);
+                    string path    = line.Substring(space + 1).Trim();
+
+                    if (!Guid.TryParse(guidStr, out Guid guid)) continue;
+                    if (string.IsNullOrEmpty(path))               continue;
+
+                    // Skip non-event entries (bank:, snapshot:, bus:, vca:)
+                    if (!path.StartsWith("event:/")) continue;
+
+                    // Already known to the engine (vanilla or previously ingested)
+                    if (Audio.cachedPaths.ContainsKey(guid)) { skipped++; continue; }
+
+                    // Try to look up the event by its GUID in the loaded banks
+                    FMOD.RESULT r = system.getEventByID(guid, out var desc);
+                    if (r != FMOD.RESULT.OK) { skipped++; continue; }
+
+                    // Register the event under its named path
+                    if (!Audio.cachedModEvents.ContainsKey(path))
+                    {
+                        desc.unloadSampleData();
+                        Audio.cachedPaths[guid]        = path;
+                        Audio.cachedModEvents[path]    = desc;
+                        ingested++;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(LogLevel.Warn, "MaggyHelper",
+                    $"[Audio] Exception ingesting GUIDs from {guidsPath}: {ex.Message}");
+            }
+
+            Logger.Log(LogLevel.Info, "MaggyHelper",
+                $"[Audio] GUID ingestion from {Path.GetFileName(guidsPath)}: " +
+                $"{ingested} registered, {skipped} skipped.");
+        }
         private static bool LoadDataBank(string audioDir, string bankName, out Bank bank, out bool versionMismatch)
         {
             bank = default;
@@ -547,6 +614,18 @@ namespace Celeste.Mod.MaggyHelper
                 bank = default;
                 return false;
             }
+        }
+
+        /// <summary>
+        /// Loads the audio path-redirect hooks for the active theme.
+        /// Safe to call multiple times — each hook class tracks its own _loaded flag.
+        /// </summary>
+        private static void LoadAudioHooks()
+        {
+            if (Settings.AudioTheme == AudioThemeMode.Kirby)
+                global::Celeste.KirbyAudioHooks.Load();
+            else
+                global::Celeste.PusheenAudioHooks.Load();
         }
 
         public override void Unload()

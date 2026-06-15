@@ -21,7 +21,6 @@ After a mysterious event shakes the world Madeline knows, she finds herself draw
 - **Boss fights** — multi-phase encounters with unique attack patterns, health systems, and defeat sequences
 - **Kirby Mode** — an optional alternate play style with extended float jumps and a special ability set
 - **Multiple inventory types** — dash count and abilities evolve as you progress through the story
-- **Custom audio** — original and remixed music tracks with two selectable audio themes (Pusheen / Kirby)
 - **Full side content** — cassette tapes, crystal hearts, strawberries, and more hidden throughout every chapter
 - **CelesteNet support** — optional multiplayer compatibility
 - **Deathlink support** — for those who like to suffer together

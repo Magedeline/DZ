@@ -1,0 +1,21 @@
+schema: dz-map-meta-v1
+sid: Maggy/CSide/15_Castle
+baseKey: 15_Castle
+side: C
+modeIndex: 2
+isMainChapterEntry: false
+mainChapterSid: Maggy/ASide/15_Castle
+showInChapterSelect: false
+
+MusicBySide:
+  - event:/music/pusheen/menu/complete_area
+  - event:/music/pusheen/menu/complete_bside
+  - event:/music/pusheen/menu/complete_cside
+  - event:/music/pusheen/menu/complete_dxside
+Title:
+  ASide: "Chapter Complete"
+  BSide: "B Side Complete"
+  CSide: "C Side Complete"
+  DSide: "D Side Complete"
+  DXSide: "DX Side Complete"
+  FullClear: "Chapter Clear"

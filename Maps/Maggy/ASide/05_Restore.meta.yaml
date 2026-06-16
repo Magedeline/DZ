@@ -1,0 +1,79 @@
+Icon: areas/Maggy/resort
+SID: Maggy/ASide/05_Restore
+Interlude: false
+TitleBaseColor: 247f35
+TitleAccentColor: e4ef69
+TitleTextColor: ffffff
+IntroType: WakeUp
+Dreaming: true
+ColorGrade: oldsite
+Wipe: Celeste.KeyDoorWipe
+DarknessAlpha: 0.15
+BloomBase: 0.5
+BloomStrength: 1.0
+CassetteNoteColor: 33eea2
+CassetteSong: event:/music/pusheen/Cassette/05_facrtured
+
+Modes:
+  - AudioState:
+      Music: event:/music/pusheen/lvl05/main
+      Ambience: event:/env/pusheen/05_exterior
+    Inventory: Default
+    HeartIsEnd: false
+    SeekerSlowdown: false
+  - AudioState:
+      Music: event:/music/pusheen/BSide/05_restore
+      Ambience: event:/env/pusheen/05_exterior
+    Inventory: Default
+    HeartIsEnd: true
+    SeekerSlowdown: false
+  - AudioState:
+      Music: event:/music/pusheen/CSide/05_restore
+      Ambience: event:/env/pusheen/05_exterior
+    Inventory: Default
+    HeartIsEnd: true
+    SeekerSlowdown: false
+  - AudioState:
+      Music: event:/music/pusheen/CSide/05_restore
+      Ambience: event:/env/pusheen/05_exterior
+    Inventory: Default
+    HeartIsEnd: true
+    SeekerSlowdown: false
+  - AudioState:
+      Music: event:/music/pusheen/DSide/05_restore
+      Ambience: event:/env/pusheen/05_main
+    Inventory: Default
+    HeartIsEnd: true
+    SeekerSlowdown: false
+  - AudioState:
+      Music: event:/music/pusheen/DXSide/05_restore
+      Ambience: event:/env/pusheen/05_main
+    Inventory: Default
+    HeartIsEnd: true
+    SeekerSlowdown: false
+    MountainModelDirectory: Mountain/Maggy/ASide
+    MountainTextureDirectory: Maggy/ASide
+    Idle:
+        Position: [-2.500, 5.500, 13.000]
+        Target: [-1.800, 4.800, 11.500]
+    Select:
+        Position: [-2.000, 4.000, 13.300]
+        Target: [-1.000, 3.900, 11.800]
+    Zoom:
+        Position: [-0.500, 4.400, 10.500]
+        Target: [-0.600, 3.300, 8.800]
+    Cursor: [-0.600, 4.000, 8.500]
+    State: 0
+
+MusicBySide:
+  - event:/music/pusheen/menu/complete_area
+  - event:/music/pusheen/menu/complete_bside
+  - event:/music/pusheen/menu/complete_cside
+  - event:/music/pusheen/menu/complete_dxside
+Title:
+  ASide: "Chapter Complete"
+  BSide: "B Side Complete"
+  CSide: "C Side Complete"
+  DSide: "D Side Complete"
+  DXSide: "DX Side Complete"
+  FullClear: "Chapter Clear"

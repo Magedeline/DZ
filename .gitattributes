@@ -1,0 +1,2 @@
+Audio/*.bank filter=lfs diff=lfs merge=lfs -text
+Desktop/*.bank filter=lfs diff=lfs merge=lfs -text

@@ -1,0 +1,21 @@
+schema: dz-map-meta-v1
+sid: Maggy/ASide/16_Corruption
+baseKey: 16_Corruption
+side: A
+modeIndex: 0
+isMainChapterEntry: true
+mainChapterSid: Maggy/ASide/16_Corruption
+showInChapterSelect: true
+
+MusicBySide:
+  - event:/music/pusheen/menu/complete_summit
+  - event:/music/pusheen/menu/complete_bside_summit
+  - event:/music/pusheen/menu/complete_cside_summit
+  - event:/music/pusheen/menu/complete_cside_summit
+Title:
+  ASide: "Chapter Complete"
+  BSide: "B Side Complete"
+  CSide: "C Side Complete"
+  DSide: "D Side Complete"
+  DXSide: "DX Side Complete"
+  FullClear: "Chapter Clear"

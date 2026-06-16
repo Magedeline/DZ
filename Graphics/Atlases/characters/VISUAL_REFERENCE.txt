@@ -1,0 +1,338 @@
+================================================================================
+SANS & PAPYRUS - VISUAL REFERENCE GUIDE
+================================================================================
+
+SANS (Blue Skeleton) - 32x32 Canvas
+================================================================================
+
+BASE IDLE POSE:
+
+    ___
+   /   \         Eyes visible (white circles)
+  | o o |        Dark blue body
+   \ _ /         Simple round head
+    | |          Thin torso
+    |_|          Arms at sides
+   /   \         Legs visible
+  |     |
+  |_____|
+
+COLOR BREAKDOWN:
+  - Body: Dark Blue (#2E5FA3)
+  - Outline: Black (1px border)
+  - Highlights: White (subtle on edges/shoulders)
+  - Eyes: White with black pupils
+  - NO MOUTH (Celeste style)
+
+KEY POSES:
+
+1. IDLE (frames 0-5)
+   - Standing neutral
+   - Hands in pockets style or at sides
+
+2. LAUGH "HEH" (frames 6-12)
+   - Head tilted
+   - Eyes squinting/closed
+   - Mouth implied (no drawing, just expression through eyes)
+
+3. ARM RAISE (frames 13-18)
+   - Both arms up
+   - Head back
+   - Menacing pose
+
+4. EYE FLASH (frames 19-24)
+   - Eyes bright/glowing
+   - Charging effect
+   - Warning before Gaster Blaster
+
+5. BONE ATTACKS (frames 25-52)
+   - Various bone configurations
+   - Can show bones around character
+   - Different attack angles
+
+================================================================================
+
+PAPYRUS (Red Skeleton) - 32x32 Canvas
+================================================================================
+
+BASE IDLE POSE:
+
+    ___
+   / _ \         Eyes visible (white circles)
+  | o o |        Red/orange body
+   \   /         Taller than Sans
+    | |          Thin torso with details
+   /| |\         Larger arms
+  | | | |
+   \| |/
+   / | \         Longer legs
+  |  |  |
+  |_____|
+
+COLOR BREAKDOWN:
+  - Body: Red/Orange (#E84C3D or #FF6B35)
+  - Outline: Dark (#1A1A1A) - 1px border
+  - Highlights: NONE (dark shading only)
+  - Eyes: White with black pupils
+  - NO MOUTH (Celeste style)
+
+KEY POSES:
+
+1. IDLE (frames 0-5)
+   - Standing proud/tall
+   - Hands on hips or at sides
+
+2. LAUGH (frames 6-12)
+   - Head back laughing
+   - More expressive than Sans
+   - Eyes wide
+
+3. ARM RAISE (frames 13-18)
+   - Arms up enthusiastically
+   - Not menacing, more excited
+
+4. DEPRESSED (frames 19-25)
+   - Head down
+   - Slouched posture
+   - Sad eyes (still no mouth)
+
+5. BURN FROM COOKING (frames 26-32)
+   - Smoking/burnt effect around body
+   - Panicked eyes
+   - Charred coloring (darker patches)
+
+6. BIG ANGRY (frames 33-38)
+   - Eyes intense
+   - Body tense
+   - Fists clenched
+
+7. NORMAL (frames 39-44)
+   - Calm neutral pose
+   - Relaxed posture
+
+8. CRYING (frames 45-50)
+   - Tears (small lines from eyes)
+   - Head bowed slightly
+   - Sad expression
+
+9. WACKY EYE (frames 51-54)
+   - One or both eyes crossed/derped
+   - Silly expression
+   - Comic relief pose
+
+10. HIGH JUMP (frames 55-59)
+    - Jumping high
+    - Arms up or extended
+    - Legs in jump position
+
+================================================================================
+
+SANS BOSS (64x64 Canvas)
+================================================================================
+
+SAME AS NPC BUT LARGER + EXTRA ATTACKS:
+
+BASE POSE (doubled size):
+
+    _______
+   /       \     Same proportions as 32x32
+  | o   o   |    But 2x larger = more detail
+   \_____/     Can add more shading/detail
+    |  |  |
+    |  |  |     More elaborate outfit
+   /|  |  |\    Visible hands/bones
+  | |  |  | |
+   \|  |  |/
+    |  |  |
+
+ADDITIONAL ATTACK LAYERS:
+
+11. GASTER BLASTER CHARGE (frames 29-42)
+    - Eyes glow intensely
+    - Blue energy around head
+    - Charging animation
+
+12. GASTER BLASTER FIRE (frames 43-58)
+    - Blue beam visible
+    - Or mouth/eye effect showing beam
+    - Intense pose
+
+13. BONE ATTACK SPREAD (frames 59-74)
+    - Bones arranged in spreading pattern
+    - Multiple bones visible
+    - Attack animation
+
+14. BONE ATTACK BARRAGE (frames 75-88)
+    - Rapid bone attacks
+    - More chaotic arrangement
+    - Multiple frames for movement
+
+15. BONE ATTACK CIRCLE (frames 89-100)
+    - Bones in circle formation
+    - Rotating pattern shown
+    - Defensive/offensive circle
+
+16. DODGE (frames 101-106)
+    - Teleport-like movement
+    - Maybe blur effect
+    - Evasion pose
+
+17. HURT (frames 107-110)
+    - Damage taken animation
+    - Eyes different (surprised/hurt)
+    - Recoil pose
+
+18. SPECIAL ATTACK (frames 111-118)
+    - Ultimate move
+    - Intense glowing
+    - Full power pose
+
+================================================================================
+
+ANIMATION REFERENCE - MOVEMENT GUIDES
+================================================================================
+
+IDLE ANIMATION:
+  Frame 0: Standing straight
+  Frame 1: Slight shift left
+  Frame 2: Standing straight
+  Frame 3: Slight shift right
+  Frame 4: Standing straight
+  Frame 5: Slight shift left (loop back)
+
+  This creates a subtle breathing/swaying effect
+
+ATTACK ANIMATION (example - Bone Attack):
+  Frame 0: Charge pose (energy gathering)
+  Frame 1-4: Arm movement/raising
+  Frame 5-7: Attack release (bones appear)
+  Frame 8-10: Follow-through
+  Frame 11: Back to idle
+
+  Total = 11 frames per attack variant
+
+JUMPING:
+  Frame 0: Start pose (crouching)
+  Frame 1-2: Launch up
+  Frame 3-4: Peak of jump
+  Frame 5-6: Falling
+  Frame 7: Landing
+
+================================================================================
+
+SKELETON/BONE STRUCTURE (Simple)
+================================================================================
+
+For realistic articulation in Aseprite:
+
+HEAD (Parent)
+  ├─ Eye_L (child)
+  └─ Eye_R (child)
+
+TORSO (Parent)
+  ├─ Arm_L (child)
+  │   └─ Hand_L (child of Arm_L)
+  ├─ Arm_R (child)
+  │   └─ Hand_R (child of Arm_R)
+  ├─ Leg_L (child)
+  │   └─ Foot_L (child of Leg_L)
+  └─ Leg_R (child)
+      └─ Foot_R (child of Leg_R)
+
+This allows you to:
+- Rotate head independently
+- Move arms naturally
+- Bend legs for jumping
+- Create fluid animations
+
+================================================================================
+
+OUTLINE & SHADING EXAMPLE
+================================================================================
+
+SANS (with white highlights):
+
+Simple body outline:
+  #2E5FA3 (Dark Blue) - main color
+  #000000 (Black) - 1px outline all around
+  #FFFFFF (White) - 1-2px on top-left edges (light source)
+
+Eye example:
+  Main: #FFFFFF (white)
+  Pupil: #000000 (black circle in center)
+  Shine: #FFFFFF (small highlight in pupil)
+
+PAPYRUS (dark outline, NO white highlights):
+
+Body outline:
+  #E84C3D (Red/Orange) - main color
+  #1A1A1A (Dark) - 2px outline
+  Dark shading: #8B2817 (darker red) - shadows only
+
+Eye example:
+  Main: #FFFFFF (white)
+  Pupil: #000000 (black)
+  Shine: #FFFFFF (small highlight)
+
+================================================================================
+
+TIPS FOR DRAWING
+================================================================================
+
+1. START SIMPLE
+   - Outline the shape first (black lines)
+   - Fill with base color
+   - Add details/shading last
+
+2. CONSISTENCY
+   - Keep proportions same across all frames
+   - Same line thickness for outlines
+   - Consistent eye style
+
+3. GRID ALIGNMENT
+   - Use Aseprite grid (View > Grid)
+   - Set grid to 8x8 or 16x16
+   - Helps with clean pixels
+
+4. ONION SKIN
+   - View > Onion Skin to see previous/next frames
+   - Helps with smooth animation flow
+   - Check for jumping/jerking
+
+5. FRAME TIMING
+   - Idle/normal: 100-150ms
+   - Quick movements: 50-75ms
+   - Slow effects: 150-200ms
+
+6. EXPORT FORMAT
+   - File > Export As: [name]_{frame}.png
+   - Creates: sans_npc_0.png, sans_npc_1.png, etc.
+   - Ready for sprite atlas integration
+
+================================================================================
+
+COLOR HEX REFERENCE
+================================================================================
+
+SANS COLORS:
+  Dark Blue Body: #2E5FA3 or #1E3A8A
+  Black Outline: #000000
+  White Highlight: #FFFFFF
+  Eye White: #FFFFFF
+  Eye Pupil: #000000
+  Attack Blue: #4A90E2
+
+PAPYRUS COLORS:
+  Red/Orange Body: #E84C3D or #FF6B35
+  Dark Outline: #1A1A1A
+  Red Shadow: #8B2817
+  Eye White: #FFFFFF
+  Eye Pupil: #000000
+  Attack Red: #E84C3D
+
+CELESTE COLORS (reference):
+  Madeline Blue: #5FCDE4
+  Badeline Purple: #8B5A8E
+  Neutral Grey: #4A4A4A
+
+================================================================================

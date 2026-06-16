@@ -1,0 +1,1549 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Sprites>
+
+  <maggy_portrait_madeline path="madeline/" sfx="madeline" textbox="madeline">
+    <Center />
+
+	<sfxs>
+		<normal index="1"/>
+		<distracted index="2"/>
+		<sad index="3"/>
+		<deadpan index="4"/>
+		<determined index="5"/>
+		<determinedclosed index="5"/>
+    		<surprised index="6"/>
+    		<upset index="7"/>
+    		<angry index="8"/>
+    		<panic index="9"/>
+    		<sadder index="10"/>
+    		<peaceful index="11"/>
+	</sfxs>
+    <Anim id="idle_normal" path="normal" delay="0.1" frames="0*20" goto="idle_normal:4,idle_normal_blink"/>
+    <Anim id="idle_normal_blink" path="normal" delay="0.08" frames="0-1,2*2,3" goto="idle_normal"/>
+    <Loop id="talk_normal" path="normal" delay="0.2" frames="4,6,5,0" />
+
+    <Loop id="idle_peaceful" path="peaceful" delay="0.1" frames="0"/>
+    <Loop id="talk_peaceful" path="peaceful" delay="0.2" frames="1,3,2,0" />
+
+    <Anim id="idle_angry" path="angry" delay="0.1" frames="0*4" goto="idle_angry:5,idle_angry_blink"/>
+    <Anim id="idle_angry_blink" path="angry" delay="0.08" frames="0-1,2*2,3" goto="idle_angry"/>
+    <Loop id="talk_angry" path="angry" delay="0.2" frames="4,6,5,0" />
+    
+    <Anim id="idle_deadpan" path="deadpan" delay="0.1" frames="0*6" goto="idle_deadpan:5,idle_deadpan_blink"/>
+    <Anim id="idle_deadpan_blink" path="deadpan" delay="0.1" frames="0-1,2*2,3" goto="idle_deadpan"/>
+    <Loop id="talk_deadpan" path="deadpan" delay="0.2" frames="8,4,5,0" />
+
+    <Anim id="idle_sleep" path="deadpan" delay="0.1" frames="0,1,2" />
+
+    <Anim id="idle_sad" path="sad" delay="0.1" frames="0*4" goto="idle_sad:5,idle_sad_blink"/>
+    <Anim id="idle_sad_blink" path="sad" delay="0.08" frames="0-1,2*2,3" goto="idle_sad"/>
+    <Loop id="talk_sad" path="sad" delay="0.2" frames="4,6,5,0" />
+
+    <Anim id="idle_sadder" path="sadder" delay="0.1" frames="0*4" goto="idle_sadder:5,idle_sadder_blink"/>
+    <Anim id="idle_sadder_blink" path="sadder" delay="0.08" frames="0-1,2*2,3" goto="idle_sadder"/>
+    <Loop id="talk_sadder" path="sadder" delay="0.2" frames="4,6,5,0" />
+
+    <Anim id="idle_upset" path="upset" delay="0.1" frames="0*4" goto="idle_upset:5,idle_upset_blink"/>
+    <Anim id="idle_upset_blink" path="upset" delay="0.08" frames="0-1,2*2,3" goto="idle_upset"/>
+    <Loop id="talk_upset" path="upset" delay="0.2" frames="4,6,5,0" />
+
+    <Anim id="idle_surprised" path="surprised" delay="0.1" frames="0*20" goto="idle_surprised:4,idle_surprised_blink"/>
+    <Anim id="idle_surprised_blink" path="surprised" delay="0.08" frames="0-1,2*2,3" goto="idle_surprised"/>
+    <Loop id="talk_surprised" path="surprised" delay="0.2" frames="4,6,5,0" />
+
+    <Anim id="idle_distracted" path="distracted" delay="0.1" frames="0*4" goto="idle_distracted:10,idle_distracted_blink1,idle_distracted_blink2"/>
+    <Anim id="idle_distracted_blink1" path="distracted" delay="0.08" frames="0-1,2*2,3" goto="idle_distracted"/>
+    <Anim id="idle_distracted_blink2" path="distracted" delay="0.08" frames="0,1,2,3,2*2,3" goto="idle_distracted"/>
+    <Loop id="talk_distracted" path="distracted" delay="0.2" frames="4,6,5,0" />
+
+    <Anim id="idle_determined" path="determined" delay="0.1" frames="0*20" goto="idle_determined:4,idle_determined_blink"/>
+    <Anim id="idle_determined_blink" path="determined" delay="0.08" frames="0-1,2*2,3" goto="idle_determined"/>
+    <Loop id="talk_determined" path="determined" delay="0.2" frames="4,6,5,0" />
+    
+    <Loop id="idle_determinedclosed" path="determined" delay="0.1" frames="7"/>
+    <Loop id="talk_determinedclosed" path="determined" delay="0.2" frames="8,10,9,7"/>
+
+    <Anim id="idle_panic" path="panic" delay="0.1" frames="0*20" goto="idle_panic,idle_panic_shake"/>
+    <Anim id="idle_panic_shake" path="panic" delay="0.1" frames="0,4,0,4" goto="idle_panic"/>
+    <Loop id="talk_panic" path="panic" delay="0.2" frames="1,3,2,0" />
+
+    <Anim id="idle_together" path="together" delay="0.1" frames="0*20" goto="idle_together:4,idle_together_blink"/>
+    <Anim id="idle_together_blink" path="together" delay="0.08" frames="0-1,2*2,3" goto="idle_together"/>
+    <Loop id="talk_together" path="together" delay="0.2" frames="4,6,5,0" />
+
+    <Anim id="begin_togetherZoom" path="togetherZoom" delay="0.06" frames="0-9"/>
+    <Anim id="idle_togetherZoom" path="togetherZoom" delay="0.1" frames="10*4" goto="idle_togetherZoom:5,idle_togetherZoom_blink" />
+    <Anim id="idle_togetherZoom_blink" path="togetherZoom" delay="0.08" frames="10,14,15*2,16" goto="idle_togetherZoom"/>
+    <Loop id="talk_togetherZoom" path="togetherZoom" delay="0.2" frames="11,13,12,10" />
+
+    <!--<Anim id="idle_saddest" path="saddest" delay="0.1" frames="0*4" goto="idle_saddest:5,idle_saddest_blink"/>
+    <Anim id="idle_saddest_blink" path="saddest" delay="0.08" frames="0-1,2*2,3" goto="idle_saddest"/>
+    <Loop id="talk_saddest" path="saddest" delay="0.2" frames="4,6,5,0" />-->
+
+    <!--<Anim id="idle_lunaticA" path="lunaticA" delay="0.1" frames="0*4" goto="idle_lunaticA:5,idle_lunaticA_blink"/>
+    <Anim id="idle_lunaticA_blink" path="lunaticA" delay="0.08" frames="0-1,2*2,3" goto="idle_lunaticA"/>
+    <Loop id="talk_lunaticA" path="lunaticA" delay="0.2" frames="4,6,5,0" />-->
+
+    <!--<Anim id="idle_cry" path="cry" delay="0.1" frames="0" goto="idle_cry"/>
+    <Loop id="talk_cry" path="cry" delay="0.2" frames="0" />-->
+  </maggy_portrait_madeline>
+
+  <portrait_ralsei path="ralsei/" sfx="pusheen/ralsei" textbox="default">
+    <Center />
+
+	<sfxs>
+		<normal index="1"/>
+		<distracted index="1"/>
+		<sad index="1"/>
+		<deadpan index="1"/>
+		<determined index="1"/>
+		<determinedclosed index="1"/>
+    		<surprised index="1"/>
+    		<upset index="1"/>
+    		<angry index="1"/>
+    		<panic index="1"/>
+    		<sadder index="1"/>
+    		<peaceful index="1"/>
+	</sfxs>
+    <Anim id="idle_normal" path="normal" delay="0.1" frames="0*20" goto="idle_normal:4,idle_normal_blink"/>
+    <Anim id="idle_normal_blink" path="normal" delay="0.08" frames="0-1,2*2,3" goto="idle_normal"/>
+    <Loop id="talk_normal" path="normal" delay="0.2" frames="4,6,5,0" />
+
+    <Loop id="idle_peaceful" path="peaceful" delay="0.1" frames="0"/>
+    <Loop id="talk_peaceful" path="peaceful" delay="0.2" frames="1,3,2,0" />
+
+    <Anim id="idle_angry" path="angry" delay="0.1" frames="0*4" goto="idle_angry:5,idle_angry_blink"/>
+    <Anim id="idle_angry_blink" path="angry" delay="0.08" frames="0-1,2*2,3" goto="idle_angry"/>
+    <Loop id="talk_angry" path="angry" delay="0.2" frames="4,6,5,0" />
+    
+    <Anim id="idle_deadpan" path="deadpan" delay="0.1" frames="0*6" goto="idle_deadpan:5,idle_deadpan_blink"/>
+    <Anim id="idle_deadpan_blink" path="deadpan" delay="0.1" frames="0-1,2*2,3" goto="idle_deadpan"/>
+    <Loop id="talk_deadpan" path="deadpan" delay="0.2" frames="8,4,5,0" />
+
+    <Anim id="idle_sleep" path="deadpan" delay="0.1" frames="0,1,2" />
+
+    <Anim id="idle_sad" path="sad" delay="0.1" frames="0*4" goto="idle_sad:5,idle_sad_blink"/>
+    <Anim id="idle_sad_blink" path="sad" delay="0.08" frames="0-1,2*2,3" goto="idle_sad"/>
+    <Loop id="talk_sad" path="sad" delay="0.2" frames="4,6,5,0" />
+
+    <Anim id="idle_sadder" path="sadder" delay="0.1" frames="0*4" goto="idle_sadder:5,idle_sadder_blink"/>
+    <Anim id="idle_sadder_blink" path="sadder" delay="0.08" frames="0-1,2*2,3" goto="idle_sadder"/>
+    <Loop id="talk_sadder" path="sadder" delay="0.2" frames="4,6,5,0" />
+
+    <Anim id="idle_upset" path="upset" delay="0.1" frames="0*4" goto="idle_upset:5,idle_upset_blink"/>
+    <Anim id="idle_upset_blink" path="upset" delay="0.08" frames="0-1,2*2,3" goto="idle_upset"/>
+    <Loop id="talk_upset" path="upset" delay="0.2" frames="4,6,5,0" />
+
+    <Anim id="idle_surprised" path="surprised" delay="0.1" frames="0*20" goto="idle_surprised:4,idle_surprised_blink"/>
+    <Anim id="idle_surprised_blink" path="surprised" delay="0.08" frames="0-1,2*2,3" goto="idle_surprised"/>
+    <Loop id="talk_surprised" path="surprised" delay="0.2" frames="4,6,5,0" />
+
+    <Anim id="idle_distracted" path="distracted" delay="0.1" frames="0*4" goto="idle_distracted:10,idle_distracted_blink1,idle_distracted_blink2"/>
+    <Anim id="idle_distracted_blink1" path="distracted" delay="0.08" frames="0-1,2*2,3" goto="idle_distracted"/>
+    <Anim id="idle_distracted_blink2" path="distracted" delay="0.08" frames="0,1,2,3,2*2,3" goto="idle_distracted"/>
+    <Loop id="talk_distracted" path="distracted" delay="0.2" frames="4,6,5,0" />
+
+    <Anim id="idle_determined" path="determined" delay="0.1" frames="0*20" goto="idle_determined:4,idle_determined_blink"/>
+    <Anim id="idle_determined_blink" path="determined" delay="0.08" frames="0-1,2*2,3" goto="idle_determined"/>
+    <Loop id="talk_determined" path="determined" delay="0.2" frames="4,6,5,0" />
+    
+    <Loop id="idle_determinedclosed" path="determined" delay="0.1" frames="7"/>
+    <Loop id="talk_determinedclosed" path="determined" delay="0.2" frames="8,10,9,7"/>
+
+    <Anim id="idle_panic" path="panic" delay="0.1" frames="0*20" goto="idle_panic,idle_panic_shake"/>
+    <Anim id="idle_panic_shake" path="panic" delay="0.1" frames="0,4,0,4" goto="idle_panic"/>
+    <Loop id="talk_panic" path="panic" delay="0.2" frames="1,3,2,0" />
+
+    <Anim id="idle_together" path="together" delay="0.1" frames="0*20" goto="idle_together:4,idle_together_blink"/>
+    <Anim id="idle_together_blink" path="together" delay="0.08" frames="0-1,2*2,3" goto="idle_together"/>
+    <Loop id="talk_together" path="together" delay="0.2" frames="4,6,5,0" />
+
+    <Anim id="begin_togetherZoom" path="togetherZoom" delay="0.06" frames="0-9"/>
+    <Anim id="idle_togetherZoom" path="togetherZoom" delay="0.1" frames="10*4" goto="idle_togetherZoom:5,idle_togetherZoom_blink" />
+    <Anim id="idle_togetherZoom_blink" path="togetherZoom" delay="0.08" frames="10,14,15*2,16" goto="idle_togetherZoom"/>
+    <Loop id="talk_togetherZoom" path="togetherZoom" delay="0.2" frames="11,13,12,10" />
+
+    <!--<Anim id="idle_cry" path="cry" delay="0.1" frames="0" goto="idle_cry"/>
+    <Loop id="talk_cry" path="cry" delay="0.2" frames="0" />-->
+  </portrait_ralsei>
+
+  <portrait_kirby path="kirby/" sfx="pusheen/kirby" textbox="kirby">
+    <Center />
+
+      <sfxs>
+      <normal index="1"/>
+      <distracted index="2"/>
+      <confuse index="3"/>
+      <confess index="10"/>
+      <sad index="3"/>
+      <deadpan index="4"/>
+      <determined index="5"/>
+      <determinedclosed index="5"/>
+      <surprised index="6"/>
+      <upset index="7"/>
+      <angry index="8"/>
+      <panic index="9"/>
+      <sadder index="10"/>
+      <thankyou index="11"/>
+      <peaceful index="12"/>
+      <none index="1"/>
+	</sfxs>
+
+    <Anim id="idle_confuse" path="confuse" delay="0.1" frames="0*20" goto="idle_confuse:4,idle_confuse_blink"/>
+    <Anim id="idle_confuse_blink" path="confuse" delay="0.08" frames="0-1,2*2,3" goto="idle_confuse"/>
+    <Loop id="talk_confuse" path="confuse" delay="0.2" frames="4,6,5,0" />
+
+    <Anim id="idle_confess" path="confess" delay="0.1" frames="0*20" goto="idle_confess:4,idle_confess_blink"/>
+    <Anim id="idle_confess_blink" path="confess" delay="0.08" frames="0-1,2*2,3" goto="idle_confess"/>
+    <Loop id="talk_confess" path="confess" delay="0.2" frames="4,6,5,0" />
+
+    <Anim id="idle_normal" path="normal" delay="0.1" frames="0*20" goto="idle_normal:4,idle_normal_blink"/>
+    <Anim id="idle_normal_blink" path="normal" delay="0.08" frames="0-1,2*2,3" goto="idle_normal"/>
+    <Loop id="talk_normal" path="normal" delay="0.2" frames="4,6,5,0" />
+
+    <Loop id="idle_peaceful" path="peaceful" delay="0.1" frames="0"/>
+    <Loop id="talk_peaceful" path="peaceful" delay="0.2" frames="1,3,2,0" />
+
+    <Anim id="idle_angry" path="angry" delay="0.1" frames="0*4" goto="idle_angry:5,idle_angry_blink"/>
+    <Anim id="idle_angry_blink" path="angry" delay="0.08" frames="0-1,2*2,3" goto="idle_angry"/>
+    <Loop id="talk_angry" path="angry" delay="0.2" frames="4,6,5,0" />
+    
+    <Anim id="idle_deadpan" path="deadpan" delay="0.1" frames="0*6" goto="idle_deadpan:5,idle_deadpan_blink"/>
+    <Anim id="idle_deadpan_blink" path="deadpan" delay="0.1" frames="0-1,2*2,3" goto="idle_deadpan"/>
+    <Loop id="talk_deadpan" path="deadpan" delay="0.2" frames="8,4,5,0" />
+
+    <Anim id="idle_sleep" path="deadpan" delay="0.1" frames="0,1,2" />
+
+    <Anim id="idle_sad" path="sad" delay="0.1" frames="0*4" goto="idle_sad:5,idle_sad_blink"/>
+    <Anim id="idle_sad_blink" path="sad" delay="0.08" frames="0-1,2*2,3" goto="idle_sad"/>
+    <Loop id="talk_sad" path="sad" delay="0.2" frames="4,6,5,0" />
+
+    <Anim id="idle_sadder" path="sadder" delay="0.1" frames="0*4" goto="idle_sadder:5,idle_sadder_blink"/>
+    <Anim id="idle_sadder_blink" path="sadder" delay="0.08" frames="0-1,2*2,3" goto="idle_sadder"/>
+    <Loop id="talk_sadder" path="sadder" delay="0.2" frames="4,6,5,0" />
+
+    <Anim id="idle_upset" path="upset" delay="0.1" frames="0*4" goto="idle_upset:5,idle_upset_blink"/>
+    <Anim id="idle_upset_blink" path="upset" delay="0.08" frames="0-1,2*2,3" goto="idle_upset"/>
+    <Loop id="talk_upset" path="upset" delay="0.2" frames="4,6,5,0" />
+
+    <Anim id="idle_surprised" path="surprised" delay="0.1" frames="0*20" goto="idle_surprised:4,idle_surprised_blink"/>
+    <Anim id="idle_surprised_blink" path="surprised" delay="0.08" frames="0-1,2*2,3" goto="idle_surprised"/>
+    <Loop id="talk_surprised" path="surprised" delay="0.2" frames="4,6,5,0" />
+
+    <Anim id="idle_distracted" path="distracted" delay="0.1" frames="0*4" goto="idle_distracted:10,idle_distracted_blink1,idle_distracted_blink2"/>
+    <Anim id="idle_distracted_blink1" path="distracted" delay="0.08" frames="0-1,2*2,3" goto="idle_distracted"/>
+    <Anim id="idle_distracted_blink2" path="distracted" delay="0.08" frames="0,1,2,3,2*2,3" goto="idle_distracted"/>
+    <Loop id="talk_distracted" path="distracted" delay="0.2" frames="4,6,5,0" />
+
+    <Anim id="idle_determined" path="determined" delay="0.1" frames="0*20" goto="idle_determined:4,idle_determined_blink"/>
+    <Anim id="idle_determined_blink" path="determined" delay="0.08" frames="0-1,2*2,3" goto="idle_determined"/>
+    <Loop id="talk_determined" path="determined" delay="0.2" frames="4,6,5,0" />
+    
+    <Loop id="idle_determinedclosed" path="determined" delay="0.1" frames="7"/>
+    <Loop id="talk_determinedclosed" path="determined" delay="0.2" frames="8,10,9,7"/>
+
+    <Anim id="idle_panic" path="panic" delay="0.1" frames="0*20" goto="idle_panic,idle_panic_shake"/>
+    <Anim id="idle_panic_shake" path="panic" delay="0.1" frames="0,4,0,4" goto="idle_panic"/>
+    <Loop id="talk_panic" path="panic" delay="0.2" frames="1,3,2,0" />
+
+    <Anim id="idle_thankyou" path="thankyou" delay="0.1" frames="0*20" goto="idle_thankyou:4,idle_thankyou_blink"/>
+    <Anim id="idle_thankyou_blink" path="thankyou" delay="0.08" frames="0-1,2*2,3" goto="idle_thankyou"/>
+    <Loop id="talk_thankyou" path="thankyou" delay="0.2" frames="4,6,5,0" />
+
+    <Loop id="idle_none" path="none" delay="0.1" frames="0"/>
+    <Loop id="talk_none" path="none" delay="0.1" frames="0"/>
+
+    <Anim id="idle_together" path="together" delay="0.1" frames="0*20" goto="idle_together:4,idle_together_blink"/>
+    <Anim id="idle_together_blink" path="together" delay="0.08" frames="0-1,2*2,3" goto="idle_together"/>
+    <Loop id="talk_together" path="together" delay="0.2" frames="4,6,5,0" />
+
+    <Anim id="begin_togetherZoom" path="togetherZoom" delay="0.06" frames="0-9"/>
+    <Anim id="idle_togetherZoom" path="togetherZoom" delay="0.1" frames="10*4" goto="idle_togetherZoom:5,idle_togetherZoom_blink" />
+    <Anim id="idle_togetherZoom_blink" path="togetherZoom" delay="0.08" frames="10,14,15*2,16" goto="idle_togetherZoom"/>
+    <Loop id="talk_togetherZoom" path="togetherZoom" delay="0.2" frames="11,13,12,10" />
+
+  </portrait_kirby>
+
+	<portrait_madeline_phone path="madelineph/" sfx="madeline" textbox="madeline">
+		<Center />
+
+		<sfxs>
+			<normal index="1"/>
+			<distracted index="2"/>
+			<sad index="3"/>
+			<deadpan index="4"/>
+			<determined index="5"/>
+			<determinedclosed index="5"/>
+			<surprised index="6"/>
+			<upset index="7"/>
+			<angry index="8"/>
+			<panic index="9"/>
+			<sadder index="10"/>
+			<peaceful index="11"/>
+		</sfxs>
+
+		<Anim id="idle_normal" path="normal" delay="0.1" frames="0*20" goto="idle_normal:4,idle_normal_blink"/>
+		<Anim id="idle_normal_blink" path="normal" delay="0.08" frames="0-1,2*2,3" goto="idle_normal"/>
+		<Loop id="talk_normal" path="normal" delay="0.2" frames="4,6,5,0" />
+
+		<Anim id="idle_angry" path="angry" delay="0.1" frames="0*4" goto="idle_angry:5,idle_angry_blink"/>
+		<Anim id="idle_angry_blink" path="angry" delay="0.08" frames="0-1,2*2,3" goto="idle_angry"/>
+		<Loop id="talk_angry" path="angry" delay="0.2" frames="4,6,5,0" />
+
+		<Anim id="idle_sad" path="sad" delay="0.1" frames="0*4" goto="idle_sad:5,idle_sad_blink"/>
+		<Anim id="idle_sad_blink" path="sad" delay="0.08" frames="0-1,2*2,3" goto="idle_sad"/>
+		<Loop id="talk_sad" path="sad" delay="0.2" frames="4,6,5,0" />
+
+		<Anim id="idle_upset" path="upset" delay="0.1" frames="0*4" goto="idle_upset:5,idle_upset_blink"/>
+		<Anim id="idle_upset_blink" path="upset" delay="0.08" frames="0-1,2*2,3" goto="idle_upset"/>
+		<Loop id="talk_upset" path="upset" delay="0.2" frames="4,6,5,0" />
+
+		<Anim id="idle_surprised" path="surprised" delay="0.1" frames="0*20" goto="idle_surprised:4,idle_surprised_blink"/>
+		<Anim id="idle_surprised_blink" path="surprised" delay="0.08" frames="0-1,2,3,2*2,3" goto="idle_surprised"/>
+		<Loop id="talk_surprised" path="surprised" delay="0.2" frames="4,6,5,0" />
+
+		<Anim id="idle_distracted" path="distracted" delay="0.1" frames="0*4" goto="idle_distracted:10,idle_distracted_blink1,idle_distracted_blink2"/>
+		<Anim id="idle_distracted_blink1" path="distracted" delay="0.08" frames="0-1,2*2,3" goto="idle_distracted"/>
+		<Anim id="idle_distracted_blink2" path="distracted" delay="0.08" frames="0,1,2,3,2*2,3" goto="idle_distracted"/>
+		<Loop id="talk_distracted" path="distracted" delay="0.2" frames="4,6,5,0" />
+	</portrait_madeline_phone>
+
+	<portrait_madeline_mirror path="madelinemirror/" sfx="madeline_mirror" textbox="madeline">
+		<Center />
+
+		<sfxs>
+			<normal index="1"/>
+			<distracted index="2"/>
+			<sad index="3"/>
+			<deadpan index="4"/>
+			<determined index="5"/>
+			<determinedclosed index="5"/>
+			<surprised index="6"/>
+			<upset index="7"/>
+			<angry index="8"/>
+			<panic index="9"/>
+			<sadder index="10"/>
+			<peaceful index="11"/>
+		</sfxs>
+
+		<Anim id="idle_normal" path="normal" delay="0.1" frames="0*20" goto="idle_normal,idle_normal_shine,idle_normal_blink"/>
+		<Anim id="idle_normal_shine" path="normal" delay="0.08" frames="7,8,9,10,0*10" goto="idle_normal"/>
+		<Anim id="idle_normal_blink" path="normal" delay="0.08" frames="0-1,2*2,3" goto="idle_normal"/>
+		<Loop id="talk_normal" path="normal" delay="0.2" frames="4,6,5,0" />
+
+		<Anim id="idle_angry" path="angry" delay="0.1" frames="0*4" goto="idle_angry,idle_angry_shine,idle_angry_blink"/>
+		<Anim id="idle_angry_shine" path="angry" delay="0.08" frames="7,8,9,10,0*10" goto="idle_angry"/>
+		<Anim id="idle_angry_blink" path="angry" delay="0.08" frames="0-1,2*2,3" goto="idle_angry"/>
+		<Loop id="talk_angry" path="angry" delay="0.2" frames="4,6,5,0" />
+
+		<Anim id="idle_deadpan" path="deadpan" delay="0.1" frames="0*6" goto="idle_deadpan,idle_deadpan_shine,idle_deadpan_blink"/>
+		<Anim id="idle_deadpan_shine" path="deadpan" delay="0.1" frames="9,10,11,12,0*10" goto="idle_deadpan"/>
+		<Anim id="idle_deadpan_blink" path="deadpan" delay="0.1" frames="0-1,2*2,3" goto="idle_deadpan"/>
+		<Loop id="talk_deadpan" path="deadpan" delay="0.2" frames="8,4,5,0" />
+
+		<Anim id="idle_sleep" path="deadpan" delay="0.1" frames="0,1,2" />
+
+		<Anim id="idle_sad" path="sad" delay="0.1" frames="0*4" goto="idle_sad,idle_sad_shine,idle_sad_blink"/>
+		<Anim id="idle_sad_shine" path="sad" delay="0.08" frames="7,8,9,10,0*10" goto="idle_sad"/>
+		<Anim id="idle_sad_blink" path="sad" delay="0.08" frames="0-1,2*2,3" goto="idle_sad"/>
+		<Loop id="talk_sad" path="sad" delay="0.2" frames="4,6,5,0" />
+
+		<Anim id="idle_upset" path="upset" delay="0.1" frames="0*4" goto="idle_upset,idle_upset_shine,idle_upset_blink"/>
+		<Anim id="idle_upset_shine" path="upset" delay="0.08" frames="7,8,9,10,0*10" goto="idle_upset"/>
+		<Anim id="idle_upset_blink" path="upset" delay="0.08" frames="0-1,2*2,3" goto="idle_upset"/>
+		<Loop id="talk_upset" path="upset" delay="0.2" frames="4,6,5,0" />
+
+		<Anim id="idle_surprised" path="surprised" delay="0.1" frames="0*20" goto="idle_surprised,idle_surprised_shine,idle_surprised_blink"/>
+		<Anim id="idle_surprised_shine" path="surprised" delay="0.08" frames="7,8,9,10,0*10" goto="idle_surprised"/>
+		<Anim id="idle_surprised_blink" path="surprised" delay="0.08" frames="0-1,2*2,3" goto="idle_surprised"/>
+		<Loop id="talk_surprised" path="surprised" delay="0.2" frames="4,6,5,0" />
+
+		<Anim id="idle_distracted" path="distracted" delay="0.1" frames="0*4" goto="idle_distracted,idle_distracted_shine,idle_distracted_blink1,idle_distracted_blink2"/>
+		<Anim id="idle_distracted_shine" path="distracted" delay="0.08" frames="10,11,12,13,0*10" goto="idle_distracted"/>
+		<Anim id="idle_distracted_blink1" path="distracted" delay="0.08" frames="0-1,2*2,3" goto="idle_distracted"/>
+		<Anim id="idle_distracted_blink2" path="distracted" delay="0.08" frames="0-1,2*2,7,8*8,9,2*2,3" goto="idle_distracted"/>
+		<Loop id="talk_distracted" path="distracted" delay="0.2" frames="4,6,5,0" />
+
+		<Anim id="idle_determined" path="determined" delay="0.1" frames="0*20" goto="idle_determined,idle_determined_shine,idle_determined_blink"/>
+		<Anim id="idle_determined_shine" path="determined" delay="0.08" frames="11,12,13,14,0*10" goto="idle_determined"/>
+		<Anim id="idle_determined_blink" path="determined" delay="0.08" frames="0-1,2*2,3" goto="idle_determined"/>
+		<Loop id="talk_determined" path="determined" delay="0.2" frames="4,6,5,0" />
+
+		<Loop id="idle_determinedclosed" path="determined" delay="0.1" frames="7"/>
+		<Loop id="talk_determinedclosed" path="determined" delay="0.2" frames="8,10,9,7"/>
+
+		<Anim id="idle_panic" path="panic" delay="0.1" frames="0*20" goto="idle_panic,idle_panic_shine,idle_panic_shake"/>
+		<Anim id="idle_panic_shine" path="panic" delay="0.1" frames="5,6,7,8,0*10" goto="idle_panic"/>
+		<Anim id="idle_panic_shake" path="panic" delay="0.1" frames="0,4,0,4" goto="idle_panic"/>
+		<Loop id="talk_panic" path="panic" delay="0.2" frames="1,3,2,0" />
+	</portrait_madeline_mirror>
+
+  <portrait_granny path="granny/" sfx="granny" textbox="granny">
+    <Center />
+
+    <sfxs>
+      <normal index="1"/>
+      <laugh index="2"/>
+      <mock index="3"/>
+    </sfxs>
+
+    <Anim id="idle_normal" path="normal" delay="0.1" frames="0*6" goto="idle_normal:10,idle_normal_blink1,idle_normal_blink2"/>
+    <Anim id="idle_normal_blink1" path="normal" delay="0.08" frames="0-1,2*2,3" goto="idle_normal"/>
+    <Anim id="idle_normal_blink2" path="normal" delay="0.08" frames="0,9,10,11,2*2,12,13,14" goto="idle_normal"/>
+    <Loop id="talk_normal" path="normal" delay="0.1" frames="4,5*2,6*2,7,8*2,7,0*2" />
+
+    <Anim id="idle_mock" path="mock" delay="0.1" frames="0*10" goto="idle_mock:5,idle_mock_blink"/>
+    <Anim id="idle_mock_blink" path="mock" delay="0.08" frames="0-1,2*2,1" goto="idle_mock"/>
+    <Loop id="talk_mock" path="mock" delay="0.2" frames="3,5,4,0" />
+
+    <Loop id="idle_creepA" path="creepA" delay="0.1" frames="0*10" />
+    <Loop id="talk_creepA" path="creepA" delay="0.1" frames="4,5*2,6*2,7,8*2,7,0*2" />
+
+    <Loop id="idle_creepB" path="creepB" delay="0.1" frames="0*10" />
+    <Loop id="talk_creepB" path="creepB" delay="0.1" frames="4,5*2,6*2,7,8*2,7,0*2" />
+    
+    <Loop id="idle_laugh" path="laugh" delay="0.1" frames="0-3" />
+    <Loop id="talk_laugh" path="laugh" delay="0.1" frames="0-3" />
+  </portrait_granny>
+
+  <portrait_theo path="theo/" sfx="theo" textbox="theo">
+    <Center />
+
+    <sfxs>
+      <excited index="1"/>
+      <nailedit index="2"/>
+      <normal index="3"/>
+      <serious index="4"/>
+      <thinking index="5"/>
+      <worried index="6"/>
+      <wtf index="7"/>
+      <yolo index="8"/>
+    </sfxs>
+
+    <Anim id="idle_normal" path="normal" delay="0.1" frames="0*6" goto="idle_normal:10,idle_normal_blink1,idle_normal_blink2"/>
+    <Anim id="idle_normal_blink1" path="normal" delay="0.08" frames="0-1,2*2,3" goto="idle_normal"/>
+    <Anim id="idle_normal_blink2" path="normal" delay="0.08" frames="0-1,2*2,7,8*6,9,2*2,3" goto="idle_normal"/>
+    <Loop id="talk_normal" path="normal" delay="0.2" frames="4,6,5,0" />
+
+    <Anim id="idle_thinking" path="thinking" delay="0.1" frames="0*6" goto="idle_thinking:5,idle_thinking_blink"/>
+    <Anim id="idle_thinking_blink" path="thinking" delay="0.08" frames="0-1,2*2,3" goto="idle_thinking"/>
+    <Loop id="talk_thinking" path="thinking" delay="0.2" frames="4,6,5,0" />
+
+    <Anim id="idle_excited" path="excited" delay="0.1" frames="0*6" goto="idle_excited:5,idle_excited_blink"/>
+    <Anim id="idle_excited_blink" path="excited" delay="0.08" frames="0-1,2*2,3" goto="idle_excited"/>
+    <Loop id="talk_excited" path="excited" delay="0.2" frames="4,6,5,0" />
+
+    <Anim id="idle_worried" path="worried" delay="0.1" frames="0*6" goto="idle_worried:5,idle_worried_blink"/>
+    <Anim id="idle_worried_blink" path="worried" delay="0.08" frames="0-1,2*2,3" goto="idle_worried"/>
+    <Loop id="talk_worried" path="worried" delay="0.2" frames="4,6,5,0" />
+
+    <Anim id="idle_wtf" path="wtf" delay="0.1" frames="0*6" goto="idle_wtf:5,idle_wtf_blink"/>
+    <Anim id="idle_wtf_blink" path="wtf" delay="0.08" frames="0-1,2*2,3" goto="idle_wtf"/>
+    <Loop id="talk_wtf" path="wtf" delay="0.2" frames="4,6,5,0" />
+
+    <Anim id="idle_yolo" path="yolo" delay="0.1" frames="0" />
+    <Loop id="talk_yolo" path="yolo" delay="0.2" frames="3,2,1,2*40" />
+
+    <Loop id="idle_nailedit" path="nailedit" delay="0.1" frames="0*6" />
+    <Loop id="talk_nailedit" path="nailedit" delay="0.2" frames="1,3,2,0" />
+
+    <Anim id="idle_serious" path="serious" delay="0.1" frames="0*6" goto="idle_serious:5,idle_serious_blink"/>
+    <Anim id="idle_serious_blink" path="serious" delay="0.08" frames="0-1,2*2,3" goto="idle_serious"/>
+    <Loop id="talk_serious" path="serious" delay="0.2" frames="4,6,5,0" />
+
+  </portrait_theo>
+
+  <portrait_webcam_theo copy="portrait_theo" path="theo/" sfx="theo_webcam" textbox="theo" glitchy="true">
+  </portrait_webcam_theo>
+
+  <portrait_theo_mirror path="theomirror/" sfx="theo_mirror" textbox="theo">
+    <Center />
+
+    <sfxs>
+      <excited index="1"/>
+      <nailedit index="2"/>
+      <normal index="3"/>
+      <serious index="4"/>
+      <thinking index="5"/>
+      <worried index="6"/>
+      <wtf index="7"/>
+      <yolo index="8"/>
+    </sfxs>
+
+    <Anim id="idle_normal" path="normal" delay="0.1" frames="0*6" goto="idle_normal:10,idle_normal_blink1,idle_normal_blink2,idle_normal_shine:2"/>
+    <Anim id="idle_normal_shine" path="normal" delay="0.08" frames="10-13,0*10" goto="idle_normal"/>
+    <Anim id="idle_normal_blink1" path="normal" delay="0.08" frames="0-1,2*2,3" goto="idle_normal"/>
+    <Anim id="idle_normal_blink2" path="normal" delay="0.08" frames="0-1,2*2,7,8*6,9,2*2,3" goto="idle_normal"/>
+    <Loop id="talk_normal" path="normal" delay="0.2" frames="4,6,5,0" />
+
+    <Anim id="idle_thinking" path="thinking" delay="0.1" frames="0*6" goto="idle_thinking:5,idle_thinking_blink,idle_thinking_shine"/>
+    <Anim id="idle_thinking_shine" path="thinking" delay="0.08" frames="7-10,0*10" goto="idle_thinking"/>
+    <Anim id="idle_thinking_blink" path="thinking" delay="0.08" frames="0-1,2*2,3" goto="idle_thinking"/>
+    <Loop id="talk_thinking" path="thinking" delay="0.2" frames="4,6,5,0" />
+
+    <Anim id="idle_excited" path="excited" delay="0.1" frames="0*6" goto="idle_excited:5,idle_excited_blink,idle_excited_shine"/>
+    <Anim id="idle_excited_shine" path="excited" delay="0.08" frames="7-10,0*10" goto="idle_excited"/>
+    <Anim id="idle_excited_blink" path="excited" delay="0.08" frames="0-1,2*2,3" goto="idle_excited"/>
+    <Loop id="talk_excited" path="excited" delay="0.2" frames="4,6,5,0" />
+
+    <Anim id="idle_worried" path="worried" delay="0.1" frames="0*6" goto="idle_worried:5,idle_worried_blink,idle_worried_shine"/>
+    <Anim id="idle_worried_shine" path="worried" delay="0.08" frames="7-10,0*10" goto="idle_worried"/>
+    <Anim id="idle_worried_blink" path="worried" delay="0.08" frames="0-1,2*2,3" goto="idle_worried"/>
+    <Loop id="talk_worried" path="worried" delay="0.2" frames="4,6,5,0" />
+
+    <Anim id="idle_wtf" path="wtf" delay="0.1" frames="0*6" goto="idle_wtf:5,idle_wtf_blink,idle_wtf_shine"/>
+    <Anim id="idle_wtf_shine" path="wtf" delay="0.08" frames="7-10,0*10" goto="idle_wtf"/>
+    <Anim id="idle_wtf_blink" path="wtf" delay="0.08" frames="0-1,2*2,3" goto="idle_wtf"/>
+    <Loop id="talk_wtf" path="wtf" delay="0.2" frames="4,6,5,0" />
+
+    <Anim id="idle_serious" path="serious" delay="0.1" frames="0*6" goto="idle_serious:5,idle_serious_blink,idle_serious_shine"/>
+    <Anim id="idle_serious_shine" path="serious" delay="0.08" frames="7-10,0*10" goto="idle_serious"/>
+    <Anim id="idle_serious_blink" path="serious" delay="0.08" frames="0-1,2*2,3" goto="idle_serious"/>
+    <Loop id="talk_serious" path="serious" delay="0.2" frames="4,6,5,0" />
+
+  </portrait_theo_mirror>
+
+  <portrait_badeline path="ghost/" sfx="badeline" textbox="badeline">
+    <Center />
+
+    <sfxs>
+      <angry index="1"/>
+      <freakA index="2"/>
+      <freakB index="2"/>
+      <freakC index="2"/>
+      <freakC_cont index="2"/>
+      <freakBAlt index="2"/>
+      <freakCAlt index="2"/>
+      <normal index="3"/>
+      <sad index="4"/>
+      <scoff index="5"/>
+      <serious index="6"/>
+      <serious_alt index="6"/>
+      <upset index="7"/>
+      <worried index="8"/>
+      <worriedAlt index="8"/>
+      <yell index="9"/>
+      <concerned index="10"/>
+      <angryAlt index="11"/>
+    </sfxs>
+
+    <Anim id="idle_normal" path="normal" delay="0.1" frames="0*4" goto="idle_normal:5,idle_normal_blink"/>
+    <Anim id="idle_normal_blink" path="normal" delay="0.08" frames="0-1,2*2,3" goto="idle_normal"/>
+    <Loop id="talk_normal" path="normal" delay="0.2" frames="4,6,5,0" />
+
+    <Anim id="idle_upset" path="upset" delay="0.1" frames="0*4" goto="idle_upset:5,idle_upset_blink"/>
+    <Anim id="idle_upset_blink" path="upset" delay="0.08" frames="0-1,2*2,3" goto="idle_upset"/>
+    <Loop id="talk_upset" path="upset" delay="0.2" frames="4,6,5,0" />
+
+    <Anim id="idle_scoff" path="scoff" delay="0.08" frames="0,0,7-13" goto="idle_scoff_still"/>
+    <Anim id="idle_scoff_still" path="scoff" delay="0.1" frames="0*4" goto="idle_scoff_still:6,idle_scoff_blink,idle_scoff:4"/>
+    <Anim id="idle_scoff_blink" path="scoff" delay="0.08" frames="0-1,2*2,3" goto="idle_scoff_still:3,idle_scoff"/>
+    <Loop id="talk_scoff" path="scoff" delay="0.2" frames="4,6,5,0" />
+
+    <Anim id="begin_serious" path="serious" delay="0.1" frames="0-7,11-12"/>
+    <Anim id="idle_serious" path="serious" delay="0.1" frames="13*4" goto="idle_serious:5,idle_serious_blink"/>
+    <Anim id="idle_serious_blink" path="serious" delay="0.08" frames="13,28,29*2,28" goto="idle_serious"/>
+    <Loop id="talk_serious" path="serious" delay="0.2" frames="14,16,15,13" />
+
+    <Anim id="begin_serious_alt" path="serious" delay="0.1" frames="17,7,18,19,20" />
+    <Anim id="idle_serious_alt" path="serious" delay="0.2" frames="21*4" goto="idle_serious_alt:5,idle_serious_alt_blink" />
+    <Anim id="idle_serious_alt_blink" path="serious" delay="0.1" frames="21,25,26*2,27" goto="idle_serious_alt" />
+    <Loop id="talk_serious_alt" path="serious" delay="0.2" frames="22,24,23,21" />
+
+    <Anim id="idle_angry" path="angry" delay="0.1" frames="0*4" goto="idle_angry:5,idle_angry_blink"/>
+    <Anim id="idle_angry_blink" path="angry" delay="0.08" frames="0-1,2*2,3" goto="idle_angry"/>
+    <Loop id="talk_angry" path="angry" delay="0.2" frames="4,6,5,0" />
+
+    <Anim id="idle_angryAlt" path="angryAlt" delay="0.1" frames="0*4" goto="idle_angryAlt:5,idle_angryAlt_blink"/>
+    <Anim id="idle_angryAlt_blink" path="angryAlt" delay="0.08" frames="0-1,2*2,3" goto="idle_angryAlt"/>
+    <Loop id="talk_angryAlt" path="angryAlt" delay="0.2" frames="4,6,5,0" />
+
+    <Anim id="idle_yell" path="yell" delay="0.1" frames="0*4" goto="idle_yell:5,idle_yell_blink"/>
+    <Anim id="idle_yell_blink" path="yell" delay="0.08" frames="0-1,2*2,3" goto="idle_yell"/>
+    <Loop id="talk_yell" path="yell" delay="0.2" frames="4,6,5,0" />
+
+    <Anim id="idle_worried" path="worried" delay="0.1" frames="0*4" goto="idle_worried:5,idle_worried_blink"/>
+    <Anim id="idle_worried_blink" path="worried" delay="0.08" frames="0-1,2*2,3" goto="idle_worried"/>
+    <Loop id="talk_worried" path="worried" delay="0.2" frames="4,6,5,0" />
+
+    <Anim id="idle_concerned" path="concerned" delay="0.1" frames="0*4" goto="idle_concerned:5,idle_concerned_blink"/>
+    <Anim id="idle_concerned_blink" path="concerned" delay="0.08" frames="0-1,2*2,3" goto="idle_concerned"/>
+    <Loop id="talk_concerned" path="concerned" delay="0.2" frames="4,6,5,0" />
+	  
+  </portrait_badeline>
+
+  <portrait_els path="els/" sfx="pusheen/els" textbox="none">
+    <Center />
+
+    <sfxs>
+    <normal index="1"/>
+    </sfxs>
+
+    <Anim id="idle_normal" path="normal" delay="0.1" frames="0*4" goto="idle_normal:5"/>
+    <Loop id="talk_normal" path="normal" delay="0.2" frames="0*4" />
+
+  </portrait_els>
+
+  <portrait_susiehaltmann path="susiehaltmann/" sfx="none" textbox="default">
+    <Center />
+
+    <sfxs>
+    <normal index="1"/>
+    </sfxs>
+
+    <Anim id="idle_normal" path="normal" delay="0.1" frames="0*4" goto="idle_normal:5"/>
+    <Loop id="talk_normal" path="normal" delay="0.2" frames="0*4" />
+
+  </portrait_susiehaltmann>
+
+  <portrait_gaster path="gaster/" sfx="pusheen/gaster" textbox="default">
+    <Center />
+
+    <sfxs>
+    <normal index="1"/>
+    </sfxs>
+
+    <Anim id="idle_normal" path="normal" delay="0.1" frames="0*4" goto="idle_normal:5"/>
+    <Loop id="talk_normal" path="normal" delay="0.2" frames="0*4" />
+
+  </portrait_gaster>
+
+  <portrait_ex_phone path="exph/" sfx="ex" phonestatic="ex" glitchy="true">
+    <Center />
+
+    <sfxs>
+      <normal index="1"/>
+    </sfxs>
+
+    <Anim id="idle_normal" path="normal" delay="0.1" frames="0*4" goto="idle_normal:5"/>
+    <Loop id="talk_normal" path="normal" delay="0.2" frames="0*4" />
+
+  </portrait_ex_phone>
+
+  <portrait_mom_phone path="momph/" sfx="mom" phonestatic="mom" glitchy="true">
+    <Center />
+
+    <sfxs>
+      <normal index="1"/>
+      <concerned index="2"/>
+    </sfxs>
+
+    <Anim id="idle_normal" path="normal" delay="0.1" frames="0*6" goto="idle_normal:5,idle_normal_blink"/>
+    <Anim id="idle_normal_blink" path="normal" delay="0.08" frames="0-1,2*2,3" goto="idle_normal"/>
+    <Loop id="talk_normal" path="normal" delay="0.2" frames="4,6,5,0" />
+
+    <Anim id="idle_concerned" path="concerned" delay="0.1" frames="0*6" goto="idle_concerned:5,idle_concerned_blink"/>
+    <Anim id="idle_concerned_blink" path="concerned" delay="0.08" frames="0-1,2*2,3" goto="idle_concerned"/>
+    <Loop id="talk_concerned" path="concerned" delay="0.2" frames="4,6,5,0" />
+  </portrait_mom_phone>
+		
+  <portrait_mom path="mom/" sfx="mom" textbox="madeline">
+    <Center />
+
+    <sfxs>
+      <normal index="1"/>
+      <concerned index="2"/>
+    </sfxs>
+
+    <Anim id="idle_normal" path="normal" delay="0.1" frames="0*6" goto="idle_normal:5,idle_normal_blink"/>
+    <Anim id="idle_normal_blink" path="normal" delay="0.08" frames="0-1,2*2,3" goto="idle_normal"/>
+    <Loop id="talk_normal" path="normal" delay="0.2" frames="4,6,5,0" />
+
+    <Anim id="idle_concerned" path="concerned" delay="0.1" frames="0*6" goto="idle_concerned:5,idle_concerned_blink"/>
+    <Anim id="idle_concerned_blink" path="concerned" delay="0.08" frames="0-1,2*2,3" goto="idle_concerned"/>
+    <Loop id="talk_concerned" path="concerned" delay="0.2" frames="4,6,5,0" />
+  </portrait_mom>
+		
+  <portrait_asgore path="asgore/" sfx="pusheen/asgore" textbox="default">
+    <Center />
+
+    <sfxs>
+      <normal index="1"/>
+      <concerned index="1"/>
+      <concernedalt index="1"/>
+      <directcontact index="1"/>
+      <happy index="1"/>
+      <furious index="1"/>
+    </sfxs>
+
+      <Loop id="talk_normal" path="normal" delay="0.12" frames="0-7" />
+      <Anim id="idle_normal" path="normal" delay="0.12" frames="0-8" goto="idle_normal"/>
+
+      <Loop id="talk_concerned" path="concerned" delay="0.12" frames="0-8" />
+      <Anim id="idle_concerned" path="concerned" delay="0.12" frames="0-8" goto="idle_concerned"/>
+
+      <Loop id="talk_concernedalt" path="concernedalt" delay="0.12" frames="0-9" />
+      <Anim id="idle_concernedalt" path="concernedalt" delay="0.12" frames="0-9" goto="idle_concernedalt"/>
+
+      <Loop id="talk_directcontact" path="directcontact" delay="0.15" frames="0-1" />
+      <Anim id="idle_directcontact" path="directcontact" delay="0.15" frames="0-1" goto="idle_directcontact"/>
+
+      <Loop id="talk_happy" path="happy" delay="0.12" frames="0-8" />
+      <Anim id="idle_happy" path="happy" delay="0.12" frames="0-8" goto="idle_happy"/>
+
+      <Loop id="talk_furious" path="furious" delay="0.12" frames="0-8" />
+      <Anim id="idle_furious" path="furious" delay="0.12" frames="0-8" goto="idle_furious"/>
+
+  </portrait_asgore>
+
+  <portrait_starsie path="starsie/" sfx="pusheen/undyne_hyper" textbox="default">
+    <Center />
+
+    <sfxs>
+      <normal index="1"/>
+      <angry index="1"/>
+      <happy index="1"/>
+      <sad index="1"/>
+      <unexpected index="1"/>
+      <unhappy index="1"/>
+      <veryunhappy index="1"/>
+    </sfxs>
+
+      <Loop id="talk_normal" path="normal" delay="1.2" frames="0*1" />
+      <Anim id="idle_normal" path="normal" delay="2.4" frames="0*1" goto="idle_normal:2"/>
+
+      <Loop id="talk_angry" path="angry" delay="1.2" frames="0*1" />
+      <Anim id="idle_angry" path="angry" delay="1.2" frames="0*1" goto="idle_angry:2"/>
+
+      <Loop id="talk_happy" path="happy" delay="1.2" frames="0*1" />
+      <Anim id="idle_happy" path="happy" delay="1.2" frames="0*1" goto="idle_happy:2"/>
+
+      <Loop id="talk_comfert" path="comfert" delay="1.2" frames="0*1" />
+      <Anim id="idle_comfert" path="comfert" delay="1.2" frames="0*1" goto="idle_comfert:2"/>
+
+      <Loop id="talk_unexpected" path="unexpected" delay="1.2" frames="0*1" />
+      <Anim id="idle_unexpected" path="unexpected" delay="1.2" frames="0*1" goto="idle_unexpected:2"/>
+
+      <Loop id="talk_unhappy" path="unhappy" delay="1.2" frames="0*1" />
+      <Anim id="idle_unhappy" path="unhappy" delay="1.2" frames="0*1" goto="idle_unhappy:2"/>
+
+      <Loop id="talk_veryunhappy" path="veryunhappy" delay="1.2" frames="0*1" />
+      <Anim id="idle_veryunhappy" path="veryunhappy" delay="1.2" frames="0*1" goto="idle_veryunhappy:2"/>
+
+  </portrait_starsie>
+
+  <portrait_asriel path="asriel/" sfx="pusheen/asriel" textbox="default">
+    <Center />
+
+    <sfxs>
+      <none index="10"/>
+      <normal index="10"/>
+      <distracted index="10"/>
+      <sad index="10"/>
+    </sfxs>
+
+      <Loop id="talk_normal" path="normal" delay="0.12" frames="0-9" />
+      <Anim id="idle_normal" path="normal" delay="0.12" frames="0-9" goto="idle_normal"/>
+
+      <Loop id="talk_distracted" path="distracted" delay="0.1" frames="0-13" />
+      <Anim id="idle_distracted" path="distracted" delay="0.1" frames="0-13" goto="idle_distracted"/>
+
+      <Loop id="talk_sad" path="sad" delay="0.1" frames="0-13" />
+      <Anim id="idle_sad" path="sad" delay="0.1" frames="0-13" goto="idle_sad"/>
+
+      <Loop id="talk_none" path="none" delay="1.2" frames="0*1" />
+      <Anim id="idle_none" path="none" delay="1.2" frames="0*1" goto="idle_none"/>
+
+  </portrait_asriel>
+
+  <portrait_undyne path="undyne/" sfx="pusheen/undyne" textbox="default">
+    <Center />
+
+    <sfxs>
+      <normal index="1"/>
+      <tf index="1"/>
+      <awkward index="1"/>
+      <uwu index="1"/>
+      <pissed index="1"/>
+      <truthfull index="1"/>
+      <revenge index="1"/>
+      <sad index="1"/>
+      <truthfullalt index="1"/>
+      <nodded index="1"/>
+      <confused index="1"/>
+    </sfxs>
+
+      <Loop id="talk_normal" path="normal" delay="2.4" frames="0*1" />
+      <Anim id="idle_normal" path="normal" delay="2.7" frames="2*7" goto="idle_normal:7"/>
+      <Loop id="talk_tf" path="tf" delay="2.4" frames="0*1" />
+      <Anim id="idle_tf" path="tf" delay="2.4" frames="0*1" goto="idle_tf:1"/>
+      <Loop id="talk_awkward" path="awkward" delay="1.2" frames="0*1" />
+      <Anim id="idle_awkward" path="awkward" delay="2.4" frames="0*4" goto="idle_awkward:2"/>
+      <Loop id="talk_uwu" path="uwu" delay="2.4" frames="0*1" />
+      <Anim id="idle_uwu" path="uwu" delay="2.4" frames="1*1" goto="idle_uwu:2"/>
+      <Loop id="talk_pissed" path="pissed" delay="2.4" frames="1*1" />
+      <Anim id="idle_pissed" path="pissed" delay="2.4" frames="1*1" goto="idle_pissed:1"/>
+      <Loop id="talk_truthfull" path="truthfull" delay="2.4" frames="0*1" />
+     <Anim id="idle_truthfull" path="truthfull" delay="0.1" frames="1*2" />
+      <Loop id="talk_revenge" path="revenge" delay="2.4" frames="0*1" />
+      <Anim id="idle_revenge" path="revenge" delay="2.4" frames="0*1" goto="idle_revenge:1"/>
+      <Loop id="talk_weiner" path="weiner" delay="2.4" frames="0*1" />
+      <Anim id="idle_weiner" path="weiner" delay="2.4" frames="0*1" goto="idle_weiner:1"/>
+      <Loop id="talk_sad" path="sad" delay="2.4" frames="0*0" />
+      <Anim id="idle_sad" path="sad" delay="2.4" frames="0*0" goto="idle_sad:0"/>
+      <Loop id="talk_truthfullalt" path="truthfullalt" delay="2.4" frames="0*1" />
+      <Anim id="idle_truthfullalt" path="truthfullalt" delay="2.4" frames="1*1" goto="idle_truthfullalt:1"/>
+      <Loop id="talk_nodded" path="nodded" delay="2.4" frames="0*1" />
+      <Anim id="idle_nodded" path="nodded" delay="2.4" frames="1*1" goto="idle_nodded:1"/>
+      <Loop id="talk_confused" path="confused" delay="2.4" frames="0*1" />
+      <Anim id="idle_confused" path="confused" delay="2.4" frames="1*1" goto="idle_confused:1"/>
+
+  </portrait_undyne>
+
+  <portrait_Magolor path="magolor/" sfx="pusheen/magolor" textbox="default">
+    <Center />
+
+    <sfxs>
+    <normal index="1"/>
+    <annoyed index="1"/>
+    <happy index="1"/>
+    </sfxs>
+
+      <Loop id="idle_normal" path="normal" delay="0.075" frames="0*11,0-4,0*7,0-4"/>
+      <Loop id="idle_annoyed" path="annoyed" delay="0.125" frames="0*5,0-4,0*4,2,0*7,2-3"/>
+      <Loop id="idle_happy" path="happy" delay="0.3" frames="0-1"/>
+
+  </portrait_Magolor>
+
+  <portrait_chara path="chara/" sfx="pusheen/chara" textbox="default">
+    <Center />
+
+    <sfxs>
+      <normal index="1"/>
+      <happy index="1"/>
+      <interested index="1"/>
+      <annoyed index="1"/>
+      <angry index="1"/>
+      <bruh index="1"/>
+      <creepy index="4"/>
+      <finally index="1"/>
+      <laughing index="1"/>
+      <disappointed index="1"/>
+      <disgusted index="1"/>
+      <worried index="1"/>
+      <lookingleft index="1"/>
+      <lookingright index="1"/>
+      <lookingup index="1"/>
+      <lookingupnoshadow index="1"/>
+      <panic index="2"/>
+      <posh index="1"/>
+      <revenge index="1"/>
+      <sad index="1"/>
+      <smirk index="1"/>
+      <thehell index="1"/>
+      <think index="1"/>
+      <upset index="1"/>
+      <upset_noshadow index="1"/>
+      <uwu index="1"/>
+      <whatdoyoumean index="1"/>
+      <worth index="1"/>
+      <wtfyoulookingat index="1"/>
+      <yell index="1"/>
+      <freaka index="5"/>
+      <freakb index="5"/>
+      <freakc index="5"/>
+      <freakd index="5"/>
+      <freake index="5"/>
+      <veryupset index="2"/>
+      <veryveryupset index="3"/>
+      <!-- Glitchy variations -->
+      <glitchy index="1"/>
+      <glitchycreepy index="4"/>
+      <glitchyangry index="1"/>
+      <glitchysmirk index="1"/>
+      <glitchyfreak index="5"/>
+      <glitchyrevenge index="1"/>
+      <glitchypanic index="1"/>
+    </sfxs>
+
+    <!-- Normal Expression -->
+    <Anim id="idle_normal" path="normal00" delay="0.12" frames="0*15" goto="idle_normal:3,idle_normal_blink"/>
+    <Anim id="idle_normal_blink" path="normal00" delay="0.08" frames="0*3" goto="idle_normal"/>
+    <Loop id="talk_normal" path="normal00" delay="0.15" frames="0*6" />
+
+    <!-- Happy Expression -->
+    <Anim id="idle_happy" path="happy00" delay="0.1" frames="0*18" goto="idle_happy:2,idle_happy_blink"/>
+    <Anim id="idle_happy_blink" path="happy00" delay="0.07" frames="0*3" goto="idle_happy"/>
+    <Loop id="talk_happy" path="happy00" delay="0.13" frames="0*8" />
+
+    <!-- Angry Expression -->
+    <Anim id="idle_angry" path="angry00" delay="0.08" frames="0*20" goto="idle_angry:3,idle_angry_steam"/>
+    <Anim id="idle_angry_steam" path="angry00" delay="0.05" frames="0*4" goto="idle_angry"/>
+    <Loop id="talk_angry" path="angry00" delay="0.12" frames="0*8" />
+
+    <!-- Laughing Expression -->
+    <Anim id="idle_laughing" path="laughing00" delay="0.06" frames="0*25" goto="idle_laughing:2,idle_laughing_giggle"/>
+    <Anim id="idle_laughing_giggle" path="laughing00" delay="0.04" frames="0*6" goto="idle_laughing"/>
+    <Loop id="talk_laughing" path="laughing00" delay="0.1" frames="0*10" />
+
+    <!-- Disappointed Expression -->
+    <Anim id="idle_disappointed" path="disappointed00" delay="0.18" frames="0*8" goto="idle_disappointed:7,idle_disappointed_sigh"/>
+    <Anim id="idle_disappointed_sigh" path="disappointed00" delay="0.12" frames="0*2" goto="idle_disappointed"/>
+    <Loop id="talk_disappointed" path="disappointed00" delay="0.22" frames="0*3" />
+
+    <!-- Disgusted Expression -->
+    <Anim id="idle_disgusted" path="disgusted00" delay="0.14" frames="0*10" goto="idle_disgusted:5,idle_disgusted_ugh"/>
+    <Anim id="idle_disgusted_ugh" path="disgusted00" delay="0.09" frames="0*2" goto="idle_disgusted"/>
+    <Loop id="talk_disgusted" path="disgusted00" delay="0.18" frames="0*4" />
+
+    <!-- Worried Expression -->
+    <Anim id="idle_worried" path="worried00" delay="0.15" frames="0*12" goto="idle_worried:4,idle_worried_fidget"/>
+    <Anim id="idle_worried_fidget" path="worried00" delay="0.08" frames="0*3" goto="idle_worried"/>
+    <Loop id="talk_worried" path="worried00" delay="0.19" frames="0*4" />
+
+    <!-- Annoyed Expression -->
+    <Anim id="idle_annoyed" path="annoyed00" delay="0.1" frames="0*10" goto="idle_annoyed:4,idle_annoyed_blink"/>
+    <Anim id="idle_annoyed_blink" path="annoyed00" delay="0.08" frames="0*2" goto="idle_annoyed"/>
+    <Loop id="talk_annoyed" path="annoyed00" delay="0.18" frames="0*5" />
+
+    <!-- Bruh Expression -->
+    <Anim id="idle_bruh" path="bruh00" delay="0.15" frames="0*8" goto="idle_bruh:5,idle_bruh_blink"/>
+    <Anim id="idle_bruh_blink" path="bruh00" delay="0.1" frames="0*2" goto="idle_bruh"/>
+    <Loop id="talk_bruh" path="bruh00" delay="0.2" frames="0*4" />
+
+    <!-- Creepy Expression -->
+    <Anim id="idle_creepy" path="creepy00" delay="0.08" frames="0*20" goto="idle_creepy:2,idle_creepy_pulse"/>
+    <Anim id="idle_creepy_pulse" path="creepy00" delay="0.05" frames="0*3" goto="idle_creepy"/>
+    <Loop id="talk_creepy" path="creepy00" delay="0.12" frames="0*8" />
+
+    <!-- Finally Expression -->
+    <Anim id="idle_finally" path="finally00" delay="0.1" frames="0*12" goto="idle_finally:3,idle_finally_blink"/>
+    <Anim id="idle_finally_blink" path="finally00" delay="0.08" frames="0*2" goto="idle_finally"/>
+    <Loop id="talk_finally" path="finally00" delay="0.15" frames="0*6" />
+
+    <!-- Looking Left Expression -->
+    <Anim id="idle_lookingleft" path="lookingleft00" delay="0.12" frames="0*10" goto="idle_lookingleft:4,idle_lookingleft_blink"/>
+    <Anim id="idle_lookingleft_blink" path="lookingleft00" delay="0.08" frames="0*2" goto="idle_lookingleft"/>
+    <Loop id="talk_lookingleft" path="lookingleft00" delay="0.16" frames="0*5" />
+
+    <!-- Looking Right Expression -->
+    <Anim id="idle_lookingright" path="lookingright00" delay="0.12" frames="0*10" goto="idle_lookingright:4,idle_lookingright_blink"/>
+    <Anim id="idle_lookingright_blink" path="lookingright00" delay="0.08" frames="0*2" goto="idle_lookingright"/>
+    <Loop id="talk_lookingright" path="lookingright00" delay="0.16" frames="0*5" />
+
+    <!-- Looking Up Expression -->
+    <Anim id="idle_lookingup" path="lookingup00" delay="0.14" frames="0*8" goto="idle_lookingup:5,idle_lookingup_blink"/>
+    <Anim id="idle_lookingup_blink" path="lookingup00" delay="0.09" frames="0*2" goto="idle_lookingup"/>
+    <Loop id="talk_lookingup" path="lookingup00" delay="0.18" frames="0*4" />
+
+    <!-- Looking Up No Shadow Expression -->
+    <Anim id="idle_lookingupnoshadow" path="lookingupnoshadow00" delay="0.14" frames="0*8" goto="idle_lookingupnoshadow:5,idle_lookingupnoshadow_blink"/>
+    <Anim id="idle_lookingupnoshadow_blink" path="lookingupnoshadow00" delay="0.09" frames="0*2" goto="idle_lookingupnoshadow"/>
+    <Loop id="talk_lookingupnoshadow" path="lookingupnoshadow00" delay="0.18" frames="0*4" />
+
+    <!-- Panic Expression -->
+    <Anim id="idle_panic" path="panic00" delay="0.06" frames="0*25" goto="idle_panic:2,idle_panic_shake"/>
+    <Anim id="idle_panic_shake" path="panic00" delay="0.04" frames="0*5" goto="idle_panic"/>
+    <Loop id="talk_panic" path="panic00" delay="0.1" frames="0*10" />
+
+    <!-- Posh Expression -->
+    <Anim id="idle_posh" path="posh00" delay="0.13" frames="0*12" goto="idle_posh:3,idle_posh_blink"/>
+    <Anim id="idle_posh_blink" path="posh00" delay="0.08" frames="0*2" goto="idle_posh"/>
+    <Loop id="talk_posh" path="posh00" delay="0.17" frames="0*5" />
+
+    <!-- Revenge Expression -->
+    <Anim id="idle_revenge" path="revenge00" delay="0.1" frames="0*15" goto="idle_revenge:3,idle_revenge_blink"/>
+    <Anim id="idle_revenge_blink" path="revenge00" delay="0.07" frames="0*2" goto="idle_revenge"/>
+    <Loop id="talk_revenge" path="revenge00" delay="0.14" frames="0*7" />
+
+    <!-- Sad Expression -->
+    <Anim id="idle_sad" path="sad00" delay="0.16" frames="0*10" goto="idle_sad:6,idle_sad_blink"/>
+    <Anim id="idle_sad_blink" path="sad00" delay="0.12" frames="0*2" goto="idle_sad"/>
+    <Loop id="talk_sad" path="sad00" delay="0.2" frames="0*4" />
+
+    <!-- Smirk Expression -->
+    <Anim id="idle_smirk" path="smirk00" delay="0.11" frames="0*14" goto="idle_smirk:3,idle_smirk_blink"/>
+    <Anim id="idle_smirk_blink" path="smirk00" delay="0.08" frames="0*2" goto="idle_smirk"/>
+    <Loop id="talk_smirk" path="smirk00" delay="0.15" frames="0*6" />
+
+    <!-- The Hell Expression -->
+    <Anim id="idle_thehell" path="thehell00" delay="0.09" frames="0*18" goto="idle_thehell:2,idle_thehell_shock"/>
+    <Anim id="idle_thehell_shock" path="thehell00" delay="0.06" frames="0*4" goto="idle_thehell"/>
+    <Loop id="talk_thehell" path="thehell00" delay="0.12" frames="0*8" />
+
+    <!-- Think Expression -->
+    <Anim id="idle_think" path="think00" delay="0.18" frames="0*8" goto="idle_think:7,idle_think_blink"/>
+    <Anim id="idle_think_blink" path="think00" delay="0.1" frames="0*2" goto="idle_think"/>
+    <Loop id="talk_think" path="think00" delay="0.22" frames="0*3" />
+
+    <!-- Upset Expression -->
+    <Anim id="idle_upset" path="upset00" delay="0.12" frames="0*12" goto="idle_upset:4,idle_upset_blink"/>
+    <Anim id="idle_upset_blink" path="upset00" delay="0.08" frames="0*2" goto="idle_upset"/>
+    <Loop id="talk_upset" path="upset00" delay="0.16" frames="0*5" />
+
+    <!-- Upset No Shadow Expression -->
+    <Anim id="idle_upset_noshadow" path="upset_noshadow00" delay="0.12" frames="0*12" goto="idle_upset_noshadow:4,idle_upset_noshadow_blink"/>
+    <Anim id="idle_upset_noshadow_blink" path="upset_noshadow00" delay="0.08" frames="0*2" goto="idle_upset_noshadow"/>
+    <Loop id="talk_upset_noshadow" path="upset_noshadow00" delay="0.16" frames="0*5" />
+
+    <!-- UwU Expression -->
+    <Anim id="idle_uwu" path="uwu00" delay="0.1" frames="0*16" goto="idle_uwu:3,idle_uwu_blink"/>
+    <Anim id="idle_uwu_blink" path="uwu00" delay="0.07" frames="0*2" goto="idle_uwu"/>
+    <Loop id="talk_uwu" path="uwu00" delay="0.13" frames="0*7" />
+
+    <!-- What Do You Mean Expression -->
+    <Anim id="idle_whatdoyoumean" path="whatdoyoumean00" delay="0.08" frames="0*20" goto="idle_whatdoyoumean:2,idle_whatdoyoumean_confused"/>
+    <Anim id="idle_whatdoyoumean_confused" path="whatdoyoumean00" delay="0.05" frames="0*4" goto="idle_whatdoyoumean"/>
+    <Loop id="talk_whatdoyoumean" path="whatdoyoumean00" delay="0.11" frames="0*9" />
+
+    <!-- Worth Expression -->
+    <Anim id="idle_worth" path="worth00" delay="0.13" frames="0*11" goto="idle_worth:4,idle_worth_blink"/>
+    <Anim id="idle_worth_blink" path="worth00" delay="0.08" frames="0*2" goto="idle_worth"/>
+    <Loop id="talk_worth" path="worth00" delay="0.17" frames="0*5" />
+
+    <!-- WTF You Looking At Expression -->
+    <Anim id="idle_wtfyoulookingat" path="wtfyoulookingat00" delay="0.1" frames="0*15" goto="idle_wtfyoulookingat:3,idle_wtfyoulookingat_glare"/>
+    <Anim id="idle_wtfyoulookingat_glare" path="wtfyoulookingat00" delay="0.06" frames="0*3" goto="idle_wtfyoulookingat"/>
+    <Loop id="talk_wtfyoulookingat" path="wtfyoulookingat00" delay="0.14" frames="0*7" />
+
+    <!-- Yell Expression -->
+    <Anim id="idle_yell" path="yell00" delay="0.07" frames="0*22" goto="idle_yell:2,idle_yell_intense"/>
+    <Anim id="idle_yell_intense" path="yell00" delay="0.04" frames="0*5" goto="idle_yell"/>
+    <Loop id="talk_yell" path="yell00" delay="0.1" frames="0*10" />
+
+    <!-- Interested Expression -->
+    <Anim id="idle_interested" path="interested00" delay="0.11" frames="0*16" goto="idle_interested:3,idle_interested_blink"/>
+    <Anim id="idle_interested_blink" path="interested00" delay="0.08" frames="0*2" goto="idle_interested"/>
+    <Loop id="talk_interested" path="interested00" delay="0.14" frames="0*7" />
+
+    <!-- Freak Expressions -->
+    <Anim id="idle_freaka" path="freaka00" delay="0.05" frames="0*30" goto="idle_freaka:1,idle_freaka_glitch"/>
+    <Anim id="idle_freaka_glitch" path="freaka00" delay="0.03" frames="0*8" goto="idle_freaka"/>
+    <Loop id="talk_freaka" path="freaka00" delay="0.08" frames="0*12" />
+
+    <Anim id="idle_freakb" path="freakb00" delay="0.05" frames="0*30" goto="idle_freakb:1,idle_freakb_glitch"/>
+    <Anim id="idle_freakb_glitch" path="freakb00" delay="0.03" frames="0*8" goto="idle_freakb"/>
+    <Loop id="talk_freakb" path="freakb00" delay="0.08" frames="0*12" />
+
+    <Anim id="idle_freakc" path="freakc00" delay="0.05" frames="0*30" goto="idle_freakc:1,idle_freakc_glitch"/>
+    <Anim id="idle_freakc_glitch" path="freakc00" delay="0.03" frames="0*8" goto="idle_freakc"/>
+    <Loop id="talk_freakc" path="freakc00" delay="0.08" frames="0*12" />
+
+    <Anim id="idle_freakd" path="freakd00" delay="0.05" frames="0*30" goto="idle_freakd:1,idle_freakd_glitch"/>
+    <Anim id="idle_freakd_glitch" path="freakd00" delay="0.03" frames="0*8" goto="idle_freakd"/>
+    <Loop id="talk_freakd" path="freakd00" delay="0.08" frames="0*12" />
+
+    <Anim id="idle_freake" path="freake00" delay="0.05" frames="0*30" goto="idle_freake:1,idle_freake_glitch"/>
+    <Anim id="idle_freake_glitch" path="freake00" delay="0.03" frames="0*8" goto="idle_freake"/>
+    <Loop id="talk_freake" path="freake00" delay="0.08" frames="0*12" />
+
+    <!-- Very Upset Expressions -->
+    <Anim id="idle_veryupset" path="veryupset00" delay="0.09" frames="0*18" goto="idle_veryupset:3,idle_veryupset_fume"/>
+    <Anim id="idle_veryupset_fume" path="veryupset00" delay="0.06" frames="0*4" goto="idle_veryupset"/>
+    <Loop id="talk_veryupset" path="veryupset00" delay="0.13" frames="0*8" />
+
+    <Anim id="idle_veryveryupset" path="veryveryupset00" delay="0.06" frames="0*25" goto="idle_veryveryupset:2,idle_veryveryupset_rage"/>
+    <Anim id="idle_veryveryupset_rage" path="veryveryupset00" delay="0.03" frames="0*6" goto="idle_veryveryupset"/>
+    <Loop id="talk_veryveryupset" path="veryveryupset00" delay="0.08" frames="0*12" />
+
+    <!-- Glitchy Expressions for Chara -->
+    <!-- Glitchy Normal - subtle distortion -->
+    <Anim id="idle_glitchy" path="normal00" delay="0.04" frames="0*30" goto="idle_glitchy:1,idle_glitchy_distort"/>
+    <Anim id="idle_glitchy_distort" path="normal00" delay="0.02" frames="0*10" goto="idle_glitchy"/>
+    <Loop id="talk_glitchy" path="normal00" delay="0.06" frames="0*15" />
+
+    <!-- Glitchy Creepy - intense glitching creepy face -->
+    <Anim id="idle_glitchycreepy" path="creepy00" delay="0.03" frames="0*35" goto="idle_glitchycreepy:1,idle_glitchycreepy_pulse"/>
+    <Anim id="idle_glitchycreepy_pulse" path="creepy00" delay="0.01" frames="0*15" goto="idle_glitchycreepy"/>
+    <Loop id="talk_glitchycreepy" path="creepy00" delay="0.04" frames="0*20" />
+
+    <!-- Glitchy Angry - unstable rage -->
+    <Anim id="idle_glitchyangry" path="angry00" delay="0.03" frames="0*35" goto="idle_glitchyangry:1,idle_glitchyangry_rage"/>
+    <Anim id="idle_glitchyangry_rage" path="angry00" delay="0.02" frames="0*12" goto="idle_glitchyangry"/>
+    <Loop id="talk_glitchyangry" path="angry00" delay="0.05" frames="0*18" />
+
+    <!-- Glitchy Smirk - menacing glitch -->
+    <Anim id="idle_glitchysmirk" path="smirk00" delay="0.04" frames="0*32" goto="idle_glitchysmirk:1,idle_glitchysmirk_flicker"/>
+    <Anim id="idle_glitchysmirk_flicker" path="smirk00" delay="0.02" frames="0*8" goto="idle_glitchysmirk"/>
+    <Loop id="talk_glitchysmirk" path="smirk00" delay="0.06" frames="0*16" />
+
+    <!-- Glitchy Freak - maximum instability -->
+    <Anim id="idle_glitchyfreak" path="freaka00" delay="0.02" frames="0*40" goto="idle_glitchyfreak:1,idle_glitchyfreak_chaos"/>
+    <Anim id="idle_glitchyfreak_chaos" path="freaka00" delay="0.01" frames="0*20" goto="idle_glitchyfreak"/>
+    <Loop id="talk_glitchyfreak" path="freaka00" delay="0.03" frames="0*25" />
+
+    <!-- Glitchy Revenge - corrupted determination -->
+    <Anim id="idle_glitchyrevenge" path="revenge00" delay="0.03" frames="0*35" goto="idle_glitchyrevenge:1,idle_glitchyrevenge_corrupt"/>
+    <Anim id="idle_glitchyrevenge_corrupt" path="revenge00" delay="0.02" frames="0*10" goto="idle_glitchyrevenge"/>
+    <Loop id="talk_glitchyrevenge" path="revenge00" delay="0.05" frames="0*18" />
+
+    <!-- Glitchy Panic - reality breaking -->
+    <Anim id="idle_glitchypanic" path="panic00" delay="0.02" frames="0*45" goto="idle_glitchypanic:1,idle_glitchypanic_breakdown"/>
+    <Anim id="idle_glitchypanic_breakdown" path="panic00" delay="0.01" frames="0*18" goto="idle_glitchypanic"/>
+    <Loop id="talk_glitchypanic" path="panic00" delay="0.03" frames="0*30" />
+
+  </portrait_chara>
+
+<portrait_sans path="sans/" sfx="pusheen/sans" textbox="default">
+    <Center />
+
+    <sfxs>
+    <normal index="1"/>
+    <blink index="1"/>
+    <charadont index="1"/>
+    <chuckle index="1"/>
+    <chuckleB index="1"/>
+    <chuckleC index="1"/>
+    <dudewtf index="1"/>
+    <dudewtfalt index="1"/>
+    <eyeclose index="1"/>
+    <noeyes index="1"/>
+    <wink index="1"/>
+    </sfxs>
+
+      <Loop id="talk_normal" path="normal" delay="0.2" frames="0*4" />
+      <Anim id="idle_normal" path="normal" delay="0.1" frames="0*4" goto="idle_normal:1"/>
+      <Loop id="talk_blink" path="blink" delay="0.2" frames="0*4" />
+      <Anim id="idle_blink" path="blink" delay="0.1" frames="0*4" goto="idle_blink:1"/>
+      <Loop id="talk_charadont" path="charadont" delay="0.2" frames="0*4" />
+      <Anim id="idle_charadont" path="charadont" delay="0.1" frames="0*4" goto="idle_charadont:1"/>
+      <Loop id="talk_chuckle" path="chuckle" delay="0.2" frames="0*4" />
+      <Anim id="idle_chuckle" path="chuckle" delay="0.1" frames="0*4" goto="idle_chuckle:1"/>
+      <Loop id="talk_chuckleB" path="chuckleB" delay="0.15" frames="0-1" />
+      <Anim id="idle_chuckleB" path="chuckleB" delay="0.15" frames="0-1" goto="idle_chuckleB"/>
+      <Loop id="talk_chuckleC" path="chuckleC" delay="0.2" frames="0*4" />
+      <Anim id="idle_chuckleC" path="chuckleC" delay="0.1" frames="0*4" goto="idle_chuckleC:1"/>
+      <Loop id="talk_dudewtf" path="dudewtf" delay="0.2" frames="0*4" />
+      <Anim id="idle_dudewtf" path="dudewtf" delay="0.1" frames="0*4" goto="idle_dudewtf:1"/>
+      <Loop id="talk_dudewtfalt" path="dudewtfalt" delay="0.2" frames="0*4" />
+      <Anim id="idle_dudewtfalt" path="dudewtfalt" delay="0.1" frames="0*4" goto="idle_dudewtfalt:1"/>
+      <Loop id="talk_eyeclose" path="eyeclose" delay="0.2" frames="0*4" />
+      <Anim id="idle_eyeclose" path="eyeclose" delay="0.1" frames="0*4" goto="idle_eyeclose:1"/>
+      <Loop id="talk_noeyes" path="noeyes" delay="0.2" frames="0*4" />
+      <Anim id="idle_noeyes" path="noeyes" delay="0.1" frames="0*4" goto="idle_noeyes:1"/>
+      <Loop id="talk_wink" path="wink" delay="0.3" frames="0*4"/>
+      <Anim id="idle_wink" path="wink" delay="0.1" frames="0*4" goto="idle_wink:1"/>
+
+  </portrait_sans>
+
+<portrait_papyrus path="papyrus/" sfx="pusheen/papyrus" textbox="default">
+    <Center />
+
+    <sfxs>
+    <normal index="1"/>
+    <angy index="1"/>
+    <blush index="1"/>
+    <cool index="1"/>
+    <determined index="1"/>
+    <laugh index="1"/>
+    <truelydetermined index="1"/>
+    <dejected index="1"/>
+    <crying index="1"/>
+    <myeyes index="1"/>
+    <nyeh index="1"/>
+    <sidelook index="1"/>
+    <sly index="1"/>
+    <unbelievable index="1"/>
+    <wacky index="1"/>
+    </sfxs>
+
+      <Loop id="talk_normal" path="normal" delay="0.2" frames="0*4" />
+      <Anim id="idle_normal" path="normal" delay="0.1" frames="0*4" goto="idle_normal:1"/>
+      <Loop id="talk_angy" path="angy" delay="0.15" frames="0-1" />
+      <Anim id="idle_angy" path="angy" delay="0.15" frames="0-1" goto="idle_angy"/>
+      <Loop id="talk_blush" path="blush" delay="0.2" frames="0*4" />
+      <Anim id="idle_blush" path="blush" delay="0.1" frames="0*4" goto="idle_blush:1"/>
+      <Loop id="talk_cool" path="cool" delay="0.2" frames="0*4" />
+      <Anim id="idle_cool" path="cool" delay="0.1" frames="0*4" goto="idle_cool:1"/>
+      <Loop id="talk_determined" path="determined" delay="0.15" frames="0-1" />
+      <Anim id="idle_determined" path="determined" delay="0.15" frames="0-1" goto="idle_determined"/>
+      <Loop id="talk_laugh" path="laugh" delay="0.2" frames="0*4" />
+      <Anim id="idle_laugh" path="laugh" delay="0.1" frames="0*4" goto="idle_laugh:1"/>
+      <Loop id="talk_truelydetermined" path="truelydetermined" delay="0.15" frames="0-1" />
+      <Anim id="idle_truelydetermined" path="truelydetermined" delay="0.15" frames="0-1" goto="idle_truelydetermined"/>
+      <Loop id="talk_dejected" path="dejected" delay="0.15" frames="0-1" />
+      <Anim id="idle_dejected" path="dejected" delay="0.15" frames="0-1" goto="idle_dejected"/>
+      <Loop id="talk_crying" path="crying" delay="0.15" frames="0-1" />
+      <Anim id="idle_crying" path="crying" delay="0.15" frames="0-1" goto="idle_crying"/>
+      <Loop id="talk_myeyes" path="myeyes" delay="0.15" frames="0-1" />
+      <Anim id="idle_myeyes" path="myeyes" delay="0.15" frames="0-1" goto="idle_myeyes"/>
+      <Loop id="talk_nyeh" path="nyeh" delay="0.15" frames="0-1" />
+      <Anim id="idle_nyeh" path="nyeh" delay="0.15" frames="0-1" goto="idle_nyeh"/>
+      <Loop id="talk_sidelook" path="sidelook" delay="0.15" frames="0-1" />
+      <Anim id="idle_sidelook" path="sidelook" delay="0.15" frames="0-1" goto="idle_sidelook"/>
+      <Loop id="talk_sly" path="sly" delay="0.15" frames="0-1" />
+      <Anim id="idle_sly" path="sly" delay="0.15" frames="0-1" goto="idle_sly"/>
+      <Loop id="talk_unbelievable" path="unbelievable" delay="0.15" frames="0-1" />
+      <Anim id="idle_unbelievable" path="unbelievable" delay="0.15" frames="0-1" goto="idle_unbelievable"/>
+      <Loop id="talk_wacky" path="wacky" delay="0.15" frames="0-1" />
+      <Anim id="idle_wacky" path="wacky" delay="0.15" frames="0-1" goto="idle_wacky"/>
+
+  </portrait_papyrus>
+
+<portrait_toriel path="toriel/" sfx="pusheen/toriel" textbox="default">
+    <Center />
+
+    <sfxs>
+    <normal index="1"/>
+    <cold index="1"/>
+    <goawaykingtitan index="1"/>
+    <mad index="1"/>
+    <revenge index="1"/>
+    <sidenormal index="1"/>
+    <what index="1"/>
+    <whatB index="1"/>
+    <whatC index="1"/>
+    </sfxs>
+
+      <Loop id="talk_normal" path="normal" delay="0.12" frames="0-7" />
+      <Anim id="idle_normal" path="normal" delay="0.12" frames="0-7" goto="idle_normal"/>
+      <Loop id="talk_cold" path="cold" delay="0.12" frames="0-7" />
+      <Anim id="idle_cold" path="cold" delay="0.12" frames="0-7" goto="idle_cold"/>
+      <Loop id="talk_goawaykingtitan" path="goawaykingtitan" delay="0.2" frames="0*4" />
+      <Anim id="idle_goawaykingtitan" path="goawaykingtitan" delay="0.1" frames="0*4" goto="idle_goawaykingtitan:1"/>
+      <Loop id="talk_mad" path="mad" delay="0.12" frames="0-7" />
+      <Anim id="idle_mad" path="mad" delay="0.12" frames="0-7" goto="idle_mad"/>
+      <Loop id="talk_revenge" path="revenge" delay="0.12" frames="0-5" />
+      <Anim id="idle_revenge" path="revenge" delay="0.12" frames="0-5" goto="idle_revenge"/>
+      <Loop id="talk_sidenormal" path="sidenormal" delay="0.12" frames="0-7" />
+      <Anim id="idle_sidenormal" path="sidenormal" delay="0.12" frames="0-7" goto="idle_sidenormal"/>
+      <Loop id="talk_what" path="what" delay="0.2" frames="0*4" />
+      <Anim id="idle_what" path="what" delay="0.1" frames="0*4" goto="idle_what:1"/>
+      <Loop id="talk_whatB" path="whatB" delay="0.2" frames="0*4" />
+      <Anim id="idle_whatB" path="whatB" delay="0.1" frames="0*4" goto="idle_whatB:1"/>
+      <Loop id="talk_whatC" path="whatC" delay="0.15" frames="0-2" />
+      <Anim id="idle_whatC" path="whatC" delay="0.15" frames="0-2" goto="idle_whatC"/>
+
+  </portrait_toriel>
+
+<portrait_alphy path="alphy/" sfx="pusheen/alphy" textbox="default">
+    <Center />
+
+    <sfxs>
+    <normal index="1"/>
+    <advice index="1"/>
+    <anxious index="1"/>
+    <canttakeitanymore index="1"/>
+    <canttakeitanymoreB index="1"/>
+    <deeplysorry index="1"/>
+    <deeplysorryB index="1"/>
+    <deeplysorryC index="1"/>
+    <deeplysorryD index="1"/>
+    <heehee index="1"/>
+    <laugh index="1"/>
+    <loveit index="1"/>
+    <moresweat index="1"/>
+    <ohgodno index="1"/>
+    <ohgodnoalt index="1"/>
+    <pleasedont index="1"/>
+    <pleasedontalt index="1"/>
+    <relief index="1"/>
+    <sigh index="1"/>
+    <smarmy index="1"/>
+    <sweating index="1"/>
+    <thankyou index="1"/>
+    <thankyoualt index="1"/>
+    <uhh index="1"/>
+    <uhhalt index="1"/>
+    <uhhsweat index="1"/>
+    <uhhsweatalt index="1"/>
+    <whatareyoulookingatme index="1"/>
+    </sfxs>
+
+      <Loop id="talk_normal" path="normal" delay="0.2" frames="0*4" />
+      <Anim id="idle_normal" path="normal" delay="0.1" frames="0*4" goto="idle_normal:1"/>
+      <Loop id="talk_advice" path="advice" delay="0.2" frames="0*4" />
+      <Anim id="idle_advice" path="advice" delay="0.1" frames="0*4" goto="idle_advice:1"/>
+      <Loop id="talk_anxious" path="anxious" delay="0.2" frames="0*4" />
+      <Anim id="idle_anxious" path="anxious" delay="0.1" frames="0*4" goto="idle_anxious:1"/>
+      <Loop id="talk_canttakeitanymore" path="canttakeitanymore" delay="0.2" frames="0*4" />
+      <Anim id="idle_canttakeitanymore" path="canttakeitanymore" delay="0.1" frames="0*4" goto="idle_canttakeitanymore:1"/>
+      <Loop id="talk_canttakeitanymoreB" path="canttakeitanymoreB" delay="0.2" frames="0*4" />
+      <Anim id="idle_canttakeitanymoreB" path="canttakeitanymoreB" delay="0.1" frames="0*4" goto="idle_canttakeitanymoreB:1"/>
+      <Loop id="talk_deeplysorry" path="deeplysorry" delay="0.2" frames="0*4" />
+      <Anim id="idle_deeplysorry" path="deeplysorry" delay="0.1" frames="0*4" goto="idle_deeplysorry:1"/>
+      <Loop id="talk_deeplysorryB" path="deeplysorryB" delay="0.2" frames="0*4" />
+      <Anim id="idle_deeplysorryB" path="deeplysorryB" delay="0.1" frames="0*4" goto="idle_deeplysorryB:1"/>
+      <Loop id="talk_deeplysorryC" path="deeplysorryC" delay="0.2" frames="0*4" />
+      <Anim id="idle_deeplysorryC" path="deeplysorryC" delay="0.1" frames="0*4" goto="idle_deeplysorryC:1"/>
+      <Loop id="talk_deeplysorryD" path="deeplysorryD" delay="0.2" frames="0*4" />
+      <Anim id="idle_deeplysorryD" path="deeplysorryD" delay="0.1" frames="0*4" goto="idle_deeplysorryD:1"/>
+      <Loop id="talk_heehee" path="heehee" delay="0.2" frames="0*4" />
+      <Anim id="idle_heehee" path="heehee" delay="0.1" frames="0*4" goto="idle_heehee:1"/>
+      <Loop id="talk_laugh" path="laugh" delay="0.2" frames="0*4" />
+      <Anim id="idle_laugh" path="laugh" delay="0.1" frames="0*4" goto="idle_laugh:1"/>
+      <Loop id="talk_loveit" path="loveit" delay="0.2" frames="0*4" />
+      <Anim id="idle_loveit" path="loveit" delay="0.1" frames="0*4" goto="idle_loveit:1"/>
+      <Loop id="talk_moresweat" path="moresweat" delay="0.2" frames="0*4" />
+      <Anim id="idle_moresweat" path="moresweat" delay="0.1" frames="0*4" goto="idle_moresweat:1"/>
+      <Loop id="talk_ohgodno" path="ohgodno" delay="0.2" frames="0*4" />
+      <Anim id="idle_ohgodno" path="ohgodno" delay="0.1" frames="0*4" goto="idle_ohgodno:1"/>
+      <Loop id="talk_ohgodnoalt" path="ohgodnoalt" delay="0.2" frames="0*4" />
+      <Anim id="idle_ohgodnoalt" path="ohgodnoalt" delay="0.1" frames="0*4" goto="idle_ohgodnoalt:1"/>
+      <Loop id="talk_pleasedont" path="pleasedont" delay="0.2" frames="0*4" />
+      <Anim id="idle_pleasedont" path="pleasedont" delay="0.1" frames="0*4" goto="idle_pleasedont:1"/>
+      <Loop id="talk_pleasedontalt" path="pleasedontalt" delay="0.2" frames="0*4" />
+      <Anim id="idle_pleasedontalt" path="pleasedontalt" delay="0.1" frames="0*4" goto="idle_pleasedontalt:1"/>
+      <Loop id="talk_relief" path="relief" delay="0.2" frames="0*4" />
+      <Anim id="idle_relief" path="relief" delay="0.1" frames="0*4" goto="idle_relief:1"/>
+      <Loop id="talk_sigh" path="sigh" delay="0.2" frames="0*4" />
+      <Anim id="idle_sigh" path="sigh" delay="0.1" frames="0*4" goto="idle_sigh:1"/>
+      <Loop id="talk_smarmy" path="smarmy" delay="0.2" frames="0*4" />
+      <Anim id="idle_smarmy" path="smarmy" delay="0.1" frames="0*4" goto="idle_smarmy:1"/>
+      <Loop id="talk_sweating" path="sweating" delay="0.2" frames="0*4" />
+      <Anim id="idle_sweating" path="sweating" delay="0.1" frames="0*4" goto="idle_sweating:1"/>
+      <Loop id="talk_thankyou" path="thankyou" delay="0.2" frames="0*4" />
+      <Anim id="idle_thankyou" path="thankyou" delay="0.1" frames="0*4" goto="idle_thankyou:1"/>
+      <Loop id="talk_thankyoualt" path="thankyoualt" delay="0.2" frames="0*4" />
+      <Anim id="idle_thankyoualt" path="thankyoualt" delay="0.1" frames="0*4" goto="idle_thankyoualt:1"/>
+      <Loop id="talk_uhh" path="uhh" delay="0.2" frames="0*4" />
+      <Anim id="idle_uhh" path="uhh" delay="0.1" frames="0*4" goto="idle_uhh:1"/>
+      <Loop id="talk_uhhalt" path="uhhalt" delay="0.2" frames="0*4" />
+      <Anim id="idle_uhhalt" path="uhhalt" delay="0.1" frames="0*4" goto="idle_uhhalt:1"/>
+      <Loop id="talk_uhhsweat" path="uhhsweat" delay="0.2" frames="0*4" />
+      <Anim id="idle_uhhsweat" path="uhhsweat" delay="0.1" frames="0*4" goto="idle_uhhsweat:1"/>
+      <Loop id="talk_uhhsweatalt" path="uhhsweatalt" delay="0.2" frames="0*4" />
+      <Anim id="idle_uhhsweatalt" path="uhhsweatalt" delay="0.1" frames="0*4" goto="idle_uhhsweatalt:1"/>
+      <Loop id="talk_whatareyoulookingatme" path="whatareyoulookingatme" delay="0.2" frames="0*4" />
+      <Anim id="idle_whatareyoulookingatme" path="whatareyoulookingatme" delay="0.1" frames="0*4" goto="idle_whatareyoulookingatme:1"/>
+
+  </portrait_alphy>
+
+   <portrait_oshiro path="oshiro/" sfx="oshiro" textbox="oshiro">
+    <Center />
+
+     <sfxs>
+       <drama index="1"/>
+       <lostcontrol index="2"/>
+       <nervous index="3"/>
+       <normal index="4"/>
+       <serious index="5"/>
+       <sidehappy index="6"/>
+       <sidesuspicious index="7"/>
+       <sideworried index="8"/>
+       <worried index="9"/>
+     </sfxs>
+
+    <Anim id="idle_normal" path="normal" delay="0.1" frames="0*10" goto="idle_normal:4,idle_normal_blink,idle_normal_hands"/>
+    <Anim id="idle_normal_blink" path="normal" delay="0.08" frames="0-1,2*2,3,4" goto="idle_normal"/>
+    <Anim id="idle_normal_hands" path="normal" delay="0.08" frames="8,9*8,10-12" goto="idle_normal"/>
+    <Loop id="talk_normal" path="normal" delay="0.2" frames="5,7,6,0" />
+
+    <Anim id="idle_worried" path="worried" delay="0.1" frames="0*10" goto="idle_worried:5,idle_worried_blink"/>
+    <Anim id="idle_worried_blink" path="worried" delay="0.08" frames="0-1,2*2,3,4" goto="idle_worried"/>
+    <Loop id="talk_worried" path="worried" delay="0.2" frames="5,7,6,0" />
+
+    <Anim id="idle_nervous" path="nervous" delay="0.1" frames="0*8" goto="idle_nervous,idle_nervous_twitch"/>
+    <Anim id="idle_nervous_twitch" path="nervous" delay="0.1" frames="2" goto="idle_nervous"/>
+    <Loop id="talk_nervous" path="nervous" delay="0.1" frames="4,7,5,0" />
+
+    <Anim id="idle_drama_still" path="drama" delay="0.1" frames="0*16" goto="idle_drama_still:5,idle_drama"/>
+    <Anim id="idle_drama" path="drama" delay="0.08" frames="4,5*8,4" goto="idle_drama_still"/>
+    <Loop id="talk_drama" path="drama" delay="0.2" frames="1,3,2,0" />
+
+    <Anim id="idle_lostcontrol" path="lostcontrol" delay="0.1" frames="0*16" goto="idle_lostcontrol,idle_lostcontrol_shake"/>
+    <Anim id="idle_lostcontrol_shake" path="lostcontrol" delay="0.08" frames="4,5,4,5,4,5" goto="idle_lostcontrol"/>
+    <Loop id="talk_lostcontrol" path="lostcontrol" delay="0.2" frames="1,3,2,0" />
+
+    <Anim id="idle_sidehappy" path="sidehappy" delay="0.1" frames="0*10" goto="idle_sidehappy:5,idle_sidehappy_blink"/>
+    <Anim id="idle_sidehappy_blink" path="sidehappy" delay="0.08" frames="0-1,2,3,2,3,4" goto="idle_sidehappy"/>
+    <Loop id="talk_sidehappy" path="sidehappy" delay="0.2" frames="5,7,6,0" />
+
+    <Anim id="idle_sideworried" path="sideworried" delay="0.1" frames="0*10" goto="idle_sideworried:4,idle_sideworried_blink,idle_sideworried2"/>
+    <Anim id="idle_sideworried_blink" path="sideworried" delay="0.08" frames="0-1,2*2,3,4" goto="idle_sideworried"/>
+    <Anim id="idle_sideworried2" path="sideworried" delay="0.1" frames="8*10" goto="idle_sideworried:5,idle_sideworried2"/>
+    <Loop id="talk_sideworried" path="sideworried" delay="0.2" frames="5,7,6,0" />
+
+    <Anim id="idle_serious" path="serious" delay="0.1" frames="0*10" goto="idle_serious:5,idle_serious_blink"/>
+    <Anim id="idle_serious_blink" path="serious" delay="0.08" frames="0-1,2*2,3,4" goto="idle_serious"/>
+    <Loop id="talk_serious" path="serious" delay="0.2" frames="5,7,6,0" />
+
+    <Anim id="idle_sidesuspicious" path="sidesuspicious" delay="0.1" frames="0*10" goto="idle_sidesuspicious:5,idle_sidesuspicious_blink"/>
+    <Anim id="idle_sidesuspicious_blink" path="sidesuspicious" delay="0.08" frames="0-1,2*2,3,4" goto="idle_sidesuspicious"/>
+    <Loop id="talk_sidesuspicious" path="sidesuspicious" delay="0.2" frames="5,7,6,0" />
+  </portrait_oshiro>
+  
+  <portrait_flowey path="flowey/" sfx="pusheen/flowey" textbox="default">
+    <Center />
+
+        <sfxs>
+       <normal index="1"/>
+       <grin index="2"/>
+       <grin_noeyes index="2"/>
+       <laugh index="2"/>
+       <pissed index="1"/>
+       <shout index="1"/>
+       <side index="1"/>
+       <weirdo_facade index="1"/>
+       <weirdo index="1"/>
+       <whathuh index="1"/>
+       <wink index="1"/>
+       <wink_facade index="1"/>
+       <evil index="2"/>
+       <evil2 index="2"/>
+       <evil3 index="2"/>
+       <sorry index="1"/>
+       <upset index="1"/>
+       <huh index="1"/>
+       <peaceful index="1"/>
+     </sfxs>
+    
+    <Loop id="idle" path="normal" delay="0.1" frames="0" />
+    <Loop id="talk" path="normal" delay="0.1" frames="0" />
+    <Loop id="grin" path="grin" delay="0.1" frames="0-1" />
+    <Loop id="grin_noeyes" path="grin_noeyes" delay="0.1" frames="0-1" />
+    <Loop id="laugh" path="laugh" delay="0.1" frames="0-2" />
+    <Loop id="pissed" path="pissed" delay="0.1" frames="0-1" />
+    <Loop id="shout" path="shout" delay="0.1" frames="0-1" />
+    <Loop id="side" path="side" delay="0.1" frames="0" />
+    <Loop id="weirdo" path="weirdo" delay="0.1" frames="0-1" />
+    <Loop id="weirdo_facade" path="weirdo_facade" delay="0.1" frames="0-1" />
+    <Loop id="weirdoside" path="weirdoside" delay="0.1" frames="0-1" />
+    <Loop id="weirdoside_facade" path="weirdoside_facade" delay="0.1" frames="0-1" />
+    <Loop id="whathuh" path="whathuh" delay="0.1" frames="0-1" />
+    <Loop id="wink" path="wink" delay="0.1" frames="0" />
+    <Loop id="wink_facade" path="wink_facade" delay="0.1" frames="0" />
+    <Loop id="evil" path="evil" delay="0.1" frames="0-1" />
+    <Loop id="evil2" path="evil2" delay="0.1" frames="0-1" />
+    <Loop id="evil3" path="evil3" delay="0.1" frames="0-1" />
+    <Loop id="popin" path="normal" delay="0.1" frames="0" />
+    <Loop id="knockout" path="normal" delay="0.1" frames="0" />
+  </portrait_flowey>
+
+    <portrait_webcam_flowey path="flowey/" sfx="pusheen/flowey_webcam" textbox="default" glitchy="true">
+    <Center />
+
+      <sfxs>
+       <normal index="1"/>
+       <grin index="2"/>
+       <grin_noeyes index="2"/>
+       <laugh index="2"/>
+       <pissed index="1"/>
+       <shout index="1"/>
+       <side index="1"/>
+       <weirdo_facade index="1"/>
+       <weirdo index="1"/>
+       <whathuh index="1"/>
+       <wink index="1"/>
+       <wink_facade index="1"/>
+       <evil index="2"/>
+       <evil2 index="2"/>
+       <evil3 index="2"/>
+       <sorry index="1"/>
+       <upset index="1"/>
+       <huh index="1"/>
+       <peaceful index="1"/>
+     </sfxs>
+    
+    <Loop id="idle" path="normal" delay="0.1" frames="0" />
+    <Loop id="talk" path="normal" delay="0.1" frames="0" />
+    <Loop id="grin" path="grin" delay="0.1" frames="0-1" />
+    <Loop id="grin_noeyes" path="grin_noeyes" delay="0.1" frames="0-1" />
+    <Loop id="laugh" path="laugh" delay="0.1" frames="0-2" />
+    <Loop id="pissed" path="pissed" delay="0.1" frames="0-1" />
+    <Loop id="shout" path="shout" delay="0.1" frames="0-1" />
+    <Loop id="side" path="side" delay="0.1" frames="0" />
+    <Loop id="weirdo" path="weirdo" delay="0.1" frames="0-1" />
+    <Loop id="weirdo_facade" path="weirdo_facade" delay="0.1" frames="0-1" />
+    <Loop id="weirdoside" path="weirdoside" delay="0.1" frames="0-1" />
+    <Loop id="weirdoside_facade" path="weirdoside_facade" delay="0.1" frames="0-1" />
+    <Loop id="whathuh" path="whathuh" delay="0.1" frames="0-1" />
+    <Loop id="wink" path="wink" delay="0.1" frames="0" />
+    <Loop id="wink_facade" path="wink_facade" delay="0.1" frames="0" />
+    <Loop id="evil" path="evil" delay="0.1" frames="0-1" />
+    <Loop id="evil2" path="evil2" delay="0.1" frames="0-1" />
+    <Loop id="evil3" path="evil3" delay="0.1" frames="0-1" />
+    <Loop id="sorry" path="sorry" delay="0.1" frames="0-1" />
+    <Loop id="upset" path="upset" delay="0.1" frames="0" />
+    <Loop id="huh" path="huh" delay="0.1" frames="0" />
+    <Loop id="peaceful" path="peaceful" delay="0.1" frames="0-1" />
+  </portrait_webcam_flowey>
+  
+<portrait_webcam_kirby path="kirby/" sfx="pusheen/kirby_webcam" textbox="kirby" glitchy="true">
+    <Center />
+
+      <sfxs>
+      <normal index="1"/>
+      <distracted index="2"/>
+      <confuse index="3"/>
+      <confess index="10"/>
+      <sad index="3"/>
+      <deadpan index="4"/>
+      <determined index="5"/>
+      <determinedclosed index="5"/>
+      <surprised index="6"/>
+      <upset index="7"/>
+      <angry index="8"/>
+      <panic index="9"/>
+      <sadder index="10"/>
+      <thankyou index="11"/>
+      <peaceful index="12"/>
+      <none index="1"/>
+	</sfxs>
+
+    <Anim id="idle_confuse" path="confuse" delay="0.1" frames="0*20" goto="idle_confuse:4,idle_confuse_blink"/>
+    <Anim id="idle_confuse_blink" path="confuse" delay="0.08" frames="0-1,2*2,3" goto="idle_confuse"/>
+    <Loop id="talk_confuse" path="confuse" delay="0.2" frames="4,6,5,0" />
+
+    <Anim id="idle_confess" path="confess" delay="0.1" frames="0*20" goto="idle_confess:4,idle_confess_blink"/>
+    <Anim id="idle_confess_blink" path="confess" delay="0.08" frames="0-1,2*2,3" goto="idle_confess"/>
+    <Loop id="talk_confess" path="confess" delay="0.2" frames="4,6,5,0" />
+
+    <Anim id="idle_normal" path="normal" delay="0.1" frames="0*20" goto="idle_normal:4,idle_normal_blink"/>
+    <Anim id="idle_normal_blink" path="normal" delay="0.08" frames="0-1,2*2,3" goto="idle_normal"/>
+    <Loop id="talk_normal" path="normal" delay="0.2" frames="4,6,5,0" />
+
+    <Loop id="idle_peaceful" path="peaceful" delay="0.1" frames="0"/>
+    <Loop id="talk_peaceful" path="peaceful" delay="0.2" frames="1,3,2,0" />
+
+    <Anim id="idle_angry" path="angry" delay="0.1" frames="0*4" goto="idle_angry:5,idle_angry_blink"/>
+    <Anim id="idle_angry_blink" path="angry" delay="0.08" frames="0-1,2*2,3" goto="idle_angry"/>
+    <Loop id="talk_angry" path="angry" delay="0.2" frames="4,6,5,0" />
+    
+    <Anim id="idle_deadpan" path="deadpan" delay="0.1" frames="0*6" goto="idle_deadpan:5,idle_deadpan_blink"/>
+    <Anim id="idle_deadpan_blink" path="deadpan" delay="0.1" frames="0-1,2*2,3" goto="idle_deadpan"/>
+    <Loop id="talk_deadpan" path="deadpan" delay="0.2" frames="8,4,5,0" />
+
+    <Anim id="idle_sleep" path="deadpan" delay="0.1" frames="0,1,2" />
+
+    <Anim id="idle_sad" path="sad" delay="0.1" frames="0*4" goto="idle_sad:5,idle_sad_blink"/>
+    <Anim id="idle_sad_blink" path="sad" delay="0.08" frames="0-1,2*2,3" goto="idle_sad"/>
+    <Loop id="talk_sad" path="sad" delay="0.2" frames="4,6,5,0" />
+
+    <Anim id="idle_sadder" path="sadder" delay="0.1" frames="0*4" goto="idle_sadder:5,idle_sadder_blink"/>
+    <Anim id="idle_sadder_blink" path="sadder" delay="0.08" frames="0-1,2*2,3" goto="idle_sadder"/>
+    <Loop id="talk_sadder" path="sadder" delay="0.2" frames="4,6,5,0" />
+
+    <Anim id="idle_upset" path="upset" delay="0.1" frames="0*4" goto="idle_upset:5,idle_upset_blink"/>
+    <Anim id="idle_upset_blink" path="upset" delay="0.08" frames="0-1,2*2,3" goto="idle_upset"/>
+    <Loop id="talk_upset" path="upset" delay="0.2" frames="4,6,5,0" />
+
+    <Anim id="idle_surprised" path="surprised" delay="0.1" frames="0*20" goto="idle_surprised:4,idle_surprised_blink"/>
+    <Anim id="idle_surprised_blink" path="surprised" delay="0.08" frames="0-1,2*2,3" goto="idle_surprised"/>
+    <Loop id="talk_surprised" path="surprised" delay="0.2" frames="4,6,5,0" />
+
+    <Anim id="idle_distracted" path="distracted" delay="0.1" frames="0*4" goto="idle_distracted:10,idle_distracted_blink1,idle_distracted_blink2"/>
+    <Anim id="idle_distracted_blink1" path="distracted" delay="0.08" frames="0-1,2*2,3" goto="idle_distracted"/>
+    <Anim id="idle_distracted_blink2" path="distracted" delay="0.08" frames="0,1,2,3,2*2,3" goto="idle_distracted"/>
+    <Loop id="talk_distracted" path="distracted" delay="0.2" frames="4,6,5,0" />
+
+    <Anim id="idle_determined" path="determined" delay="0.1" frames="0*20" goto="idle_determined:4,idle_determined_blink"/>
+    <Anim id="idle_determined_blink" path="determined" delay="0.08" frames="0-1,2*2,3" goto="idle_determined"/>
+    <Loop id="talk_determined" path="determined" delay="0.2" frames="4,6,5,0" />
+    
+    <Loop id="idle_determinedclosed" path="determined" delay="0.1" frames="7"/>
+    <Loop id="talk_determinedclosed" path="determined" delay="0.2" frames="8,10,9,7"/>
+
+    <Anim id="idle_panic" path="panic" delay="0.1" frames="0*20" goto="idle_panic,idle_panic_shake"/>
+    <Anim id="idle_panic_shake" path="panic" delay="0.1" frames="0,4,0,4" goto="idle_panic"/>
+    <Loop id="talk_panic" path="panic" delay="0.2" frames="1,3,2,0" />
+
+    <Anim id="idle_thankyou" path="thankyou" delay="0.1" frames="0*20" goto="idle_thankyou:4,idle_thankyou_blink"/>
+    <Anim id="idle_thankyou_blink" path="thankyou" delay="0.08" frames="0-1,2*2,3" goto="idle_thankyou"/>
+    <Loop id="talk_thankyou" path="thankyou" delay="0.2" frames="4,6,5,0" />
+
+    <Loop id="idle_none" path="none" delay="0.1" frames="0"/>
+    <Loop id="talk_none" path="none" delay="0.1" frames="0"/>
+
+    <Anim id="idle_together" path="together" delay="0.1" frames="0*20" goto="idle_together:4,idle_together_blink"/>
+    <Anim id="idle_together_blink" path="together" delay="0.08" frames="0-1,2*2,3" goto="idle_together"/>
+    <Loop id="talk_together" path="together" delay="0.2" frames="4,6,5,0" />
+
+    <Anim id="begin_togetherZoom" path="togetherZoom" delay="0.06" frames="0-9"/>
+    <Anim id="idle_togetherZoom" path="togetherZoom" delay="0.1" frames="10*4" goto="idle_togetherZoom:5,idle_togetherZoom_blink" />
+    <Anim id="idle_togetherZoom_blink" path="togetherZoom" delay="0.08" frames="10,14,15*2,16" goto="idle_togetherZoom"/>
+    <Loop id="talk_togetherZoom" path="togetherZoom" delay="0.2" frames="11,13,12,10" />
+
+  </portrait_webcam_kirby>
+
+</Sprites>

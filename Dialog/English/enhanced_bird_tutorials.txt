@@ -1,0 +1,96 @@
+# Enhanced Bird NPC Tutorial Dialogs
+
+## Kirby-Specific Tutorials
+
+tutorial_kirby_copy=
+    Hold [GRAB] to copy
+    an enemy's ability!
+
+tutorial_kirby_inhale=
+    Press [JUMP] to inhale
+    enemies and objects!
+
+tutorial_kirby_float=
+    Press [UP] to float
+    and hover in the air!
+
+## Additional Kirby Abilities
+
+tutorial_kirby_hammer=
+    [GRAB] + [DOWN] for
+    a powerful hammer attack!
+
+tutorial_kirby_sword=
+    [GRAB] + [UP] for
+    a devastating sword slash!
+
+tutorial_kirby_beam=
+    [GRAB] + [DASH] to
+    shoot a magic beam!
+
+## Ability Tips
+
+kirby_copy_tip=
+    Copying abilities helps
+    you overcome different
+    obstacles!
+
+kirby_inhale_tip=
+    Use inhale to clear
+    enemies and create
+    new paths!
+
+kirby_combine_tip=
+    Combine abilities with
+    jumping for powerful
+    combinations!
+
+## Enhanced Bird NPC Messages
+
+bird_welcome=
+    Welcome, traveler!
+    Need some guidance?
+
+bird_goodbye=
+    Good luck on your
+    journey ahead!
+
+bird_confused=
+    Something seems wrong...
+    Be careful!
+
+bird_danger=
+    Watch out!
+    Danger ahead!
+
+## Tutorial Completion Messages
+
+tutorial_complete=
+    You've got it!
+    Great job!
+
+tutorial_master=
+    Perfect! You've mastered
+    this ability!
+
+tutorial_skip=
+    That's okay, come back
+    anytime if you need help!
+
+## Contextual Hints
+
+hint_copy_nearby=
+    There's an enemy nearby
+    you could copy!
+
+hint_pathway_blocked=
+    This path needs a
+    special ability...
+
+hint_keep_practicing=
+    Keep practicing, you'll
+    get it eventually!
+
+hint_try_different_ability=
+    Maybe try a different
+    ability for this section?

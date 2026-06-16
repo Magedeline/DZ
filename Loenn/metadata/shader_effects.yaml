@@ -1,0 +1,290 @@
+# HLSL Shader Effect Definitions for Desolo Zantas
+# Metadata for all shader effects from CelesteEffects integration
+
+shader_effects:
+  - id: "distortion"
+    name: "Distortion Effect"
+    description: "Applies water distortion, displacement, and chromatic aberration"
+    hlsl_file: "Distort.fx"
+    wrapper_class: "DistortionEffect"
+    techniques:
+      - name: "Distort"
+        description: "Water-like distortion"
+        parameters:
+          - name: "anxiety"
+            type: "float"
+            default: 0.0
+            range: [0.0, 1.0]
+            description: "Chromatic aberration intensity"
+          - name: "waterAlpha"
+            type: "float"
+            default: 1.0
+            range: [0.0, 1.0]
+            description: "Water effect opacity"
+          - name: "gamerate"
+            type: "float"
+            default: 1.0
+            range: [0.1, 5.0]
+            description: "Animation speed multiplier"
+      - name: "Displace"
+        description: "Displacement mapping"
+        parameters:
+          - name: "intensity"
+            type: "float"
+            default: 1.0
+            
+  - id: "glitch"
+    name: "Glitch Effect"
+    description: "Randomized pixelation and RGB offset for corruption effects"
+    hlsl_file: "Glitch.fx"
+    wrapper_class: "GlitchEffect"
+    techniques:
+      - name: "Glitch"
+        parameters:
+          - name: "glitch"
+            type: "float"
+            default: 0.0
+            range: [0.0, 1.0]
+            description: "Glitch intensity"
+          - name: "amplitude"
+            type: "float"
+            default: 0.05
+            range: [0.0, 0.5]
+            description: "Glitch displacement amount"
+          - name: "timer"
+            type: "float"
+            description: "Time value for animation"
+          - name: "randomSeed"
+            type: "float"
+            description: "Random value for variation"
+            
+  - id: "colorgrade"
+    name: "Color Grading Effect"
+    description: "LUT-based color correction and grading"
+    hlsl_file: "ColorGrade.fx"
+    wrapper_class: "ColorGradeEffect"
+    techniques:
+      - name: "ColorGrade"
+        description: "Blend between two LUTs"
+        parameters:
+          - name: "LutTexture"
+            type: "texture2D"
+            description: "First LUT texture (16x16x16)"
+          - name: "LutTexture2"
+            type: "texture2D"
+            description: "Second LUT texture (16x16x16)"
+          - name: "blend"
+            type: "float"
+            default: 0.0
+            range: [0.0, 1.0]
+            description: "Blend between LUT1 and LUT2"
+      - name: "ColorGradeSingle"
+        description: "Single LUT application"
+        parameters:
+          - name: "LutTexture"
+            type: "texture2D"
+            description: "LUT texture (16x16x16)"
+          - name: "intensity"
+            type: "float"
+            default: 1.0
+            range: [0.0, 1.0]
+            description: "Effect intensity"
+            
+  - id: "gaussianblur"
+    name: "Gaussian Blur"
+    description: "Multi-tap Gaussian blur with configurable radius"
+    hlsl_file: "GaussianBlur.fx"
+    wrapper_class: "GaussianBlurEffect"
+    techniques:
+      - name: "GaussianBlur9"
+        description: "9-tap blur"
+        parameters:
+          - name: "offset"
+            type: "vector2"
+            description: "Blur direction and distance"
+          - name: "fade"
+            type: "float"
+            default: 1.0
+      - name: "GaussianBlur5"
+        description: "5-tap blur"
+      - name: "GaussianBlur3"
+        description: "3-tap blur"
+        
+  - id: "dither"
+    name: "Dither Effect"
+    description: "4x4 Bayer matrix dithering"
+    hlsl_file: "Dither.fx"
+    wrapper_class: "DitherEffect"
+    techniques:
+      - name: "Dither"
+        description: "Standard dithering"
+      - name: "InvertDither"
+        description: "Inverted dither pattern"
+        
+  - id: "dust"
+    name: "Dust Particles"
+    description: "Edge-detected noise-based dust effect"
+    hlsl_file: "Dust.fx"
+    wrapper_class: "DustEffect"
+    techniques:
+      - name: "Dust"
+        parameters:
+          - name: "color1"
+            type: "color"
+            description: "Primary dust color"
+          - name: "color2"
+            type: "color"
+            description: "Secondary dust color"
+          - name: "color3"
+            type: "color"
+            description: "Tertiary dust color"
+          - name: "timer"
+            type: "float"
+            description: "Animation time"
+            
+  - id: "border"
+    name: "Border/Outline"
+    description: "Pixel-based edge detection and outlining"
+    hlsl_file: "Border.fx"
+    wrapper_class: "BorderEffect"
+    techniques:
+      - name: "Border"
+        parameters:
+          - name: "thickness"
+            type: "float"
+            default: 1.0
+            description: "Outline thickness in pixels"
+          - name: "borderColor"
+            type: "color"
+            description: "Outline color"
+            
+  - id: "lighting"
+    name: "Light Gradient"
+    description: "Masked gradient lighting with vertex colors"
+    hlsl_file: "Lighting.fx"
+    wrapper_class: "LightingEffect"
+    techniques:
+      - name: "LightGradientTechnique"
+        parameters:
+          - name: "lightDirection"
+            type: "vector2"
+            description: "Direction of gradient"
+            
+  - id: "magicglow"
+    name: "Magic Glow"
+    description: "Directional glow with noise distortion"
+    hlsl_file: "MagicGlow.fx"
+    wrapper_class: "MagicGlowEffect"
+    techniques:
+      - name: "Glow"
+        parameters:
+          - name: "direction"
+            type: "vector2"
+            default: [0.0, -1.0]
+            description: "Glow direction"
+          - name: "intensity"
+            type: "float"
+            default: 1.0
+            range: [0.0, 2.0]
+            
+  - id: "mirrors"
+    name: "Mirror Reflection"
+    description: "Reflection effect with blue tint"
+    hlsl_file: "Mirrors.fx"
+    wrapper_class: "MirrorEffect"
+    techniques:
+      - name: "Default"
+        parameters:
+          - name: "offset"
+            type: "vector2"
+            description: "Reflection offset"
+          - name: "tintColor"
+            type: "color"
+            default: [0.5, 0.7, 1.0, 1.0]
+            
+  - id: "mountainrender"
+    name: "Mountain Render"
+    description: "3D mountain rendering with AO and fog"
+    hlsl_file: "MountainRender.fx"
+    wrapper_class: "MountainRenderEffect"
+    techniques:
+      - name: "Single"
+        description: "Single AO texture"
+      - name: "Easing"
+        description: "Lerp between two AO textures"
+        parameters:
+          - name: "ease"
+            type: "float"
+            range: [0.0, 1.0]
+            
+  - id: "primitive"
+    name: "Primitive Shapes"
+    description: "Basic vertex color rendering"
+    hlsl_file: "Primitive.fx"
+    wrapper_class: "PrimitiveEffect"
+    techniques:
+      - name: "NormalTechnique"
+        
+  - id: "texture"
+    name: "Texture Rendering"
+    description: "Basic texture sampling with vertex transform"
+    hlsl_file: "Texture.fx"
+    wrapper_class: "TextureEffect"
+    techniques:
+      - name: "NormalTechnique"
+
+# Metadata for LUT textures used by ColorGrade effect
+lut_presets:
+  - id: "default"
+    name: "Default (None)"
+    description: "No color grading applied"
+    file: null
+    
+  - id: "cold"
+    name: "Cold Blue"
+    description: "Cold, blue-shifted color palette"
+    file: "cold.png"
+    
+  - id: "warm"
+    name: "Warm Orange"
+    description: "Warm, orange-shifted color palette"
+    file: "warm.png"
+    
+  - id: "sepia"
+    name: "Sepia Tone"
+    description: "Vintage sepia coloring"
+    file: "sepia.png"
+    
+  - id: "noir"
+    name: "Film Noir"
+    description: "High contrast black and white"
+    file: "noir.png"
+    
+  - id: "golden_hour"
+    name: "Golden Hour"
+    description: "Sunset warm glow"
+    file: "golden_hour.png"
+
+# Performance recommendations
+performance:
+  background_effects_max: 5
+  entity_effects_max: 15
+  post_process_passes_max: 3
+  render_target_budget_mb: 16
+  
+# Shader model compatibility
+compatibility:
+  shader_model: "2.0"
+  preferred_shader_model: "3.0"
+  min_framework: ".NET Framework 4.8"
+  tested_platforms:
+    - "Windows FNA"
+    - "Windows XNA"
+    
+# Integration notes
+integration:
+  module_phase: "ShaderEffects"
+  initialization_method: "EffectManager.Initialize()"
+  cleanup_method: "EffectManager.UnloadAll()"
+  effect_directory: "Graphics/Effects/Compiled/"
+  source_directory: "Graphics/Effects/Source/"

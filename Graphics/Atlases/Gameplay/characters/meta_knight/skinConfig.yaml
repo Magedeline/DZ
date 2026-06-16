@@ -1,0 +1,33 @@
+# Meta Knight Skin Configuration for SkinModHelperPlus
+
+skinName: "Meta Knight"
+spritePath: "characters/meta_knight/"
+
+# Hair configuration specific to Meta Knight
+hair:
+  enabled: false  # Meta Knight wears a mask
+  
+# Special effects
+effects:
+  - name: "sword_slash"
+    trigger: "dash"
+    color: "#4B0082"
+  - name: "wing_flutter"
+    trigger: "jump"
+    color: "#191970"
+
+# Animation overrides
+animations:
+  idle: "idle"
+  walk: "runSlow"
+  run: "runFast" 
+  jump: "jumpSlow"
+  dash: "dashAttack"
+  climb: "climbUp"
+  fall: "fallSlow"
+
+# Special properties
+properties:
+  showMask: true
+  swordEffects: true
+  canGlide: true

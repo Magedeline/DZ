@@ -1,6 +1,6 @@
 local Trigger = {}
 
-Trigger.name = "DZ/EventTrigger"
+Trigger.name = "DZ/DZEventTrigger"
 Trigger.canResize = {true, true}
 
 function Trigger.place(room, entity)

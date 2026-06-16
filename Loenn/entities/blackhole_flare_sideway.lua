@@ -1,18 +1,12 @@
--- Blackhole Flare Sideway - horizontal moving black hole hazard with rainbow glitchy effects
-local selectionBounds = require("libraries.selection_bounds")
+local drawableSpriteStruct = require("structs.drawable_sprite")
 
 local blackholeFlareSideway = {}
-
-local defaultBounds = {
-    width = 32,
-    height = 32
-}
 
 blackholeFlareSideway.name = "DZ/BlackholeFlareSideway"
 blackholeFlareSideway.depth = -50
 blackholeFlareSideway.placements = {
     {
-        name = "right",
+        name = "Blackhole Flare Sideway (Right)",
         data = {
             width = 32,
             height = 32,
@@ -22,7 +16,7 @@ blackholeFlareSideway.placements = {
         }
     },
     {
-        name = "left",
+        name = "Blackhole Flare Sideway (Left)",
         data = {
             width = 32,
             height = 32,
@@ -49,24 +43,20 @@ blackholeFlareSideway.fieldInformation = {
 }
 
 function blackholeFlareSideway.sprite(room, entity)
-    local bounds = selectionBounds.resolve(entity, defaultBounds)
+    local sprite = drawableSpriteStruct.fromTexture("danger/lava", entity)
 
-    return {
-        {
-            texture = "objects/IngesteHelper/blackhole_flare",
-            x = 0,
-            y = 0,
-            justificationX = 0.0,
-            justificationY = 0.0,
-            scaleX = bounds.width / 8,
-            scaleY = bounds.height / 8,
-            color = {0.5, 0.0, 0.5, 0.8}
-        }
-    }
+    -- Scale to match entity size
+    local scaleX = entity.width / 8
+    local scaleY = entity.height / 8
+
+    sprite:setScale(scaleX, scaleY)
+    sprite.color = { 0.5, 0.0, 0.5, 0.8 } -- Purple-blackhole tint
+
+    return sprite
 end
 
 function blackholeFlareSideway.rectangle(room, entity)
-    return selectionBounds.rectangle(entity, defaultBounds)
+    return entity.x, entity.y, entity.width or 32, entity.height or 32
 end
 
 return blackholeFlareSideway

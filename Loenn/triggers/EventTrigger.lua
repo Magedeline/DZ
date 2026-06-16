@@ -87,11 +87,11 @@ local eventOptions = {
 
 local eventTrigger = {}
 
-eventTrigger.name = "DZ/EventTrigger"
+eventTrigger.name = "DZ/DZEventTrigger"
 eventTrigger.canResize = {true, true}
 eventTrigger.placements = {
     {
-        name = "default",
+        name = "DZEventTrigger",
         data = {
             x = 0,
             y = 0,

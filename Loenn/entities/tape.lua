@@ -9,7 +9,7 @@ tape.placements = {
     name = "tape",
     data = {
         -- Visuals
-        spritePath       = "collectables/cassette/",
+        spritePath       = "collectables/maggy/tape/",
         menuSprite       = "collectables/maggy/tape",
         particleColor    = "FF9CCF",
         glowStrength     = 1.0,
@@ -18,12 +18,12 @@ tape.placements = {
         floatSpeed       = 2.0,
         floatRange       = 2.0,
         -- Audio
-        collectSfx        = "",
-        previewEvent      = "event:/game/pusheen/general/cassette_preview",
+        collectSfx        = "event:/pusheen/game/general/tape_get",
+        previewEvent      = "event:/pusheen/game/general/tape_preview",
         previewParamName  = "remix",
         previewParamValue = -1.0,
         -- Unlock
-        cSideToUnlock = "map/campaingname/mapname/map.bin",
+        cSideToUnlock = "map/Maggy/CSide/map.bin",
         unlockText    = ""
     }
 }
@@ -69,7 +69,7 @@ tape.fieldInformation = {
 
 -- Folder path (ending with /) → append "idle00"; direct frame key → use as-is.
 function tape.texture(room, entity)
-    local path = entity.spritePath or "collectables/cassette/"
+    local path = entity.spritePath or "collectables/maggy/tape/"
     if path:sub(-1) == "/" then
         return path .. "idle00"
     end

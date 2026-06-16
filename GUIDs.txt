@@ -1332,6 +1332,7 @@
 {1d02fac3-bbbc-43c6-8135-55c19a1111d6} event:/pusheen/game/general/wall_break_ice
 {2f66a973-ae07-4e97-abc3-c60b4fa050d8} event:/pusheen/game/general/wall_break_stone
 {9265ec96-3456-4813-b94b-e0d614f16a94} event:/pusheen/game/general/wall_break_wood
+{151e8816-88da-4636-b0a1-74655e19fb4e} event:/pusheen/game/general/cassette_preview
 {548e6b9b-95f8-4b6f-8136-8ea9711d72b3} event:/pusheen/music/arena/battle_1
 {f6fe45e6-0229-422e-886a-f57d236574f6} event:/pusheen/music/arena/battle_10
 {6ad92f22-6829-4fef-9e36-1664d975f040} event:/pusheen/music/arena/battle_11

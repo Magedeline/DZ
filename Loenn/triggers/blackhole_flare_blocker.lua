@@ -4,7 +4,7 @@ local blackholeFlareBlocker = {}
 blackholeFlareBlocker.name = "DZ/BlackholeFlareBlocker"
 blackholeFlareBlocker.placements = {
     {
-        name = "stop",
+        name = "Blackhole Blocker stop",
         data = {
             width = 16,
             height = 64,
@@ -14,7 +14,7 @@ blackholeFlareBlocker.placements = {
         }
     },
     {
-        name = "reverse",
+        name = "Blackhole Blocker reverse",
         data = {
             width = 16,
             height = 64,
@@ -24,7 +24,7 @@ blackholeFlareBlocker.placements = {
         }
     },
     {
-        name = "destroy",
+        name = "Blackhole Blocker destroy",
         data = {
             width = 16,
             height = 64,
@@ -34,7 +34,7 @@ blackholeFlareBlocker.placements = {
         }
     },
     {
-        name = "sideway_only",
+        name = "Blackhole Blocker sideway_only",
         data = {
             width = 16,
             height = 64,

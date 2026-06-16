@@ -1,11 +1,6 @@
-﻿Microsoft Visual Studio Solution File, Format Version 12.00
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaggyHelper", "Code\MaggyHelper.csproj", "{472281A7-9373-412A-8E8E-5B603857A9D6}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaggyHelper.Framework", "Code\MaggyHelper.Framework.csproj", "{A1B2C3D4-E5F6-4A7B-8C9D-0E1F2A3B4C5D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaggyHelper.Content", "Code\MaggyHelper.Content.csproj", "{B2C3D4E5-F6A7-4B8C-9D0E-1F2A3B4C5D6E}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{6C4D298B-81FB-2B6B-5AB6-46205EDDC72C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,22 +24,8 @@ Global
 		{472281A7-9373-412A-8E8E-5B603857A9D6}.Release|x64.Build.0 = Release|Any CPU
 		{472281A7-9373-412A-8E8E-5B603857A9D6}.Release|x86.ActiveCfg = Release|Any CPU
 		{472281A7-9373-412A-8E8E-5B603857A9D6}.Release|x86.Build.0 = Release|Any CPU
-		{A1B2C3D4-E5F6-4A7B-8C9D-0E1F2A3B4C5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A1B2C3D4-E5F6-4A7B-8C9D-0E1F2A3B4C5D}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{A1B2C3D4-E5F6-4A7B-8C9D-0E1F2A3B4C5D}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{A1B2C3D4-E5F6-4A7B-8C9D-0E1F2A3B4C5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A1B2C3D4-E5F6-4A7B-8C9D-0E1F2A3B4C5D}.Release|x64.ActiveCfg = Release|Any CPU
-		{A1B2C3D4-E5F6-4A7B-8C9D-0E1F2A3B4C5D}.Release|x86.ActiveCfg = Release|Any CPU
-		{B2C3D4E5-F6A7-4B8C-9D0E-1F2A3B4C5D6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B2C3D4E5-F6A7-4B8C-9D0E-1F2A3B4C5D6E}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{B2C3D4E5-F6A7-4B8C-9D0E-1F2A3B4C5D6E}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{B2C3D4E5-F6A7-4B8C-9D0E-1F2A3B4C5D6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B2C3D4E5-F6A7-4B8C-9D0E-1F2A3B4C5D6E}.Release|x64.ActiveCfg = Release|Any CPU
-		{B2C3D4E5-F6A7-4B8C-9D0E-1F2A3B4C5D6E}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection
 EndGlobal

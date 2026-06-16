@@ -22,9 +22,6 @@ namespace Celeste.Mod.MaggyHelper
 
         #endregion
 
-        [SettingSubHeader("MaggyHelper_AUDIO_HEADER")]
-        public AudioThemeMode AudioTheme { get; set; } = AudioThemeMode.Pusheen;
-
         public bool BossesExampleResetKeysForSession { get; set; }
         public int BossDifficultyMultiplier { get; set; } = 1;
         public bool EnableBossMusic { get; set; } = true;
@@ -33,6 +30,7 @@ namespace Celeste.Mod.MaggyHelper
         public bool DebugMode { get; set; }
         public bool SkipModIntro { get; set; }
         public bool HasSeenIntroWarning { get; set; }
+        public AudioThemeMode AudioThemeMode { get; set; } = AudioThemeMode.Pusheen;
 
         /// <summary>
         /// Developer bypass flag: skips all introductory sequences and enables room-warp debug menus.

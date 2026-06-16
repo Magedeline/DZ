@@ -11,7 +11,7 @@ namespace Celeste
     {
         public string FromArea { get; set; }
         public string ToArea { get; set; }
-        public Vector2 Position { get; set; }
+        public new Vector2 Position { get; set; }
 
         public OverworldConnector(string fromArea, string toArea, Vector2 position)
         {

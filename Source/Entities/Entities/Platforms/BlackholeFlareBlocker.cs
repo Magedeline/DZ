@@ -1,3 +1,9 @@
+using Celeste.Mod.Entities;
+using DZ.Entities;
+using Microsoft.Xna.Framework;
+using Monocle;
+using System;
+
 namespace Celeste.Entities
 {
     /// <summary>

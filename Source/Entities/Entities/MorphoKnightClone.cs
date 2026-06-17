@@ -6,7 +6,7 @@ namespace Celeste.Entities
     [CustomEntity(ids: "DZ/MorphoKnightClone")]
     [Tracked]
     [HotReloadable]
-    [ElsKnightCloneVariant(ElsKnightCloneKind.Morpho, "Morpho Knight Clone", "event:/music/pusheen/lvl15/morpho_knight")]
+    [ElsKnightCloneVariant(ElsKnightCloneKind.Morpho, "Morpho Knight Clone", "event:/pusheen/music/lvl15/morpho_knight")]
     public sealed class MorphoKnightClone : ElsKnightCloneBoss
     {
         private static readonly ElsKnightCloneCombatProfile DefaultCombat = new ElsKnightCloneCombatProfile(

@@ -103,8 +103,8 @@ public class Bridge : Entity
         {
             if (entity != null && entity.X >= base.X + 112f)
             {
-                Audio.SetMusic("event:/music/pusheen/lvl0/bridge");
-                collapseSfx.Play("event:/game/pusheen/00_prologue/bridge_rumble_loop");
+                Audio.SetMusic("event:/pusheen/music/lvl0/bridge");
+                collapseSfx.Play("event:/pusheen/game/00_prologue/bridge_rumble_loop");
                 canCollapse = true;
                 canEndCollapseA = true;
                 canEndCollapseB = true;

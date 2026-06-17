@@ -373,15 +373,15 @@ namespace Celeste.Entities.SoulBoosts
             Stopwatch sw = Stopwatch.StartNew();
             if (finalCh21Boost)
             {
-                Audio.Play("event:/new_content/char/pusheen/madeline/final_launch_part1", Position);
+                Audio.Play("event:/pusheen/new_content/char/madeline/final_launch_part1", Position);
             }
             else if (!finalBoost)
             {
-                Audio.Play("event:/new_content/char/pusheen/madeline/ready", Position);
+                Audio.Play("event:/pusheen/new_content/char/madeline/ready", Position);
             }
             else
             {
-                Audio.Play("event:/new_content/char/pusheen/madeline/launch", Position);
+                Audio.Play("event:/pusheen/new_content/char/madeline/launch", Position);
             }
             if (player.Holding != null)
             {
@@ -516,7 +516,7 @@ namespace Celeste.Entities.SoulBoosts
 
                         Collidable = true;
                         state = States.Wait;
-                        Audio.Play("event:/new_content/char/pusheen/madeline/ready", Position);
+                        Audio.Play("event:/pusheen/new_content/char/madeline/ready", Position);
                     }
                 };
                 Add(tween);
@@ -529,7 +529,7 @@ namespace Celeste.Entities.SoulBoosts
             {
                 if (finalCh21Boost)
                 {
-                    Ch21FinalBoostSfx = Audio.Play("event:/new_content/char/pusheen/madeline/final_launch_part2", Position);
+                    Ch21FinalBoostSfx = Audio.Play("event:/pusheen/new_content/char/madeline/final_launch_part2", Position);
                 }
                 Engine.FreezeTimer = 0.1f;
                 yield return true;
@@ -653,7 +653,7 @@ namespace Celeste.Entities.SoulBoosts
                     
                     Collidable = true;
                     state = States.Wait;
-                    Audio.Play("event:/new_content/char/pusheen/madeline/ready", Position);
+                    Audio.Play("event:/pusheen/new_content/char/madeline/ready", Position);
                 }
             };
 

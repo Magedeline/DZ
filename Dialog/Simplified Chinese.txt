@@ -4581,7 +4581,7 @@ You win.
 If your proven enough to be fighter.
 Then you better than me.
 Even strong enough to defeat El
-{trigger 0 Music starts event:/desolozantas/music/lvl8/chara_acoustic}
+{trigger 0 Music starts event:/pusheen/music/lvl8/chara_acoustic}
 [BADELINE left normal]
 See {+KIRBY} you did it I would never made it without... you.
 [BADELINE left worriedalt]

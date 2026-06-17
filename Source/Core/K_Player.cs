@@ -7134,7 +7134,7 @@ namespace Celeste.Entities
             if (level != null)
             {
                 level.Particles.Emit(ParticleTypes.SparkyDust, 6, Center, Vector2.One * 12f);
-                Audio.Play("event:/char/pusheen/kirby/dash_charge", Position); // TODO: add to FMOD bank
+                Audio.Play("event:/pusheen/char/kirby/dash_charge", Position); // TODO: add to FMOD bank
             }
         }
 
@@ -7197,7 +7197,7 @@ namespace Celeste.Entities
             {
                 level.Particles.Emit(ParticleTypes.SparkyDust, 12, Center, Vector2.One * 20f);
                 level.Shake(0.15f);
-                Audio.Play("event:/char/pusheen/kirby/kirby_knight/spin", Position); // TODO: add kirby_knight/* sub-bank to FMOD
+                Audio.Play("event:/pusheen/char/kirby/kirby_knight/spin", Position); // TODO: add kirby_knight/* sub-bank to FMOD
             }
 
             StartSwing();

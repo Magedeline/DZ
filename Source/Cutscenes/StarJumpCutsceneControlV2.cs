@@ -40,7 +40,7 @@ public class StarJumpCutsceneControlV2 : Entity
         : base(data.Position + offset)
     {
         // Configurable properties from Loenn
-        musicEvent = data.Attr("musicEvent", "event:/music/pusheen/lvl8/starjump");
+        musicEvent = data.Attr("musicEvent", "event:/pusheen/music/lvl8/starjump");
         cutsceneFlag = data.Attr("cutsceneFlag", CS08_StarJumpEnd.Flag);
         triggerHeight = data.Float("triggerHeight", 32f);
         triggerWidth = data.Float("triggerWidth", 64f);

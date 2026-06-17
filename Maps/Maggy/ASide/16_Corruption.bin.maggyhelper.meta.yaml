@@ -8,10 +8,10 @@ mainChapterSid: Maggy/ASide/16_Corruption
 showInChapterSelect: true
 
 MusicBySide:
-  - event:/music/pusheen/menu/complete_summit
-  - event:/music/pusheen/menu/complete_bside_summit
-  - event:/music/pusheen/menu/complete_cside_summit
-  - event:/music/pusheen/menu/complete_cside_summit
+  - event:/pusheen/music/menu/complete_summit
+  - event:/pusheen/music/menu/complete_bside_summit
+  - event:/pusheen/music/menu/complete_cside_summit
+  - event:/pusheen/music/menu/complete_cside_summit
 Title:
   ASide: "Chapter Complete"
   BSide: "B Side Complete"

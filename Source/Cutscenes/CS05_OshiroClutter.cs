@@ -88,7 +88,7 @@ public class CS05_OshiroClutter : CutsceneEntity
     private void SetMusic()
     {
         Level obj = base.Scene as Level;
-        obj.Session.Audio.Music.Event = "event:/music/pusheen/lvl5/clean";
+        obj.Session.Audio.Music.Event = "event:/pusheen/music/lvl5/clean";
         obj.Session.Audio.Music.Progress = 1;
         obj.Session.Audio.Apply(forceSixteenthNoteHack: false);
     }

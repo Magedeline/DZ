@@ -77,7 +77,7 @@ function refill.playDashSfx(dashCount)
     elseif dashCount == 4 then
         sfx = ""
     elseif dashCount == 5 then
-        sfx = "event:/new_content/game/pusheen/19_spaces/gigadiamond_touch"
+        sfx = "event:/pusheen/new_content/game/19_spaces/gigadiamond_touch"
     elseif dashCount == 10 then
         sfx = "event:/new_content/game/10_farewell/pinkrefill_touch"
     else

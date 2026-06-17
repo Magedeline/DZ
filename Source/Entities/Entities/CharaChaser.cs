@@ -163,7 +163,7 @@ public class CharaChaser : Entity
                     Sprite.Play("fallSlow");
                 }
                 
-                session.Audio.Music.Event = "event:/music/pusheen/lvl2/evil_chara";
+                session.Audio.Music.Event = "event:/pusheen/music/lvl2/evil_chara";
                 session.Audio.Apply(forceSixteenthNoteHack: false);
                 
                 // Add the intro cutscene only once per room load (if enabled).
@@ -226,8 +226,8 @@ public class CharaChaser : Entity
         {
             // Set music based on current level
             string musicEvent = level.Session.Level.StartsWith("b-3") 
-                ? "event:/music/pusheen/lvl2/evil_chara"
-                : "event:/music/pusheen/lvl2/chase";
+                ? "event:/pusheen/music/lvl2/evil_chara"
+                : "event:/pusheen/music/lvl2/chase";
             level.Session.Audio.Music.Event = musicEvent;
             level.Session.Audio.Apply(forceSixteenthNoteHack: false);
         }

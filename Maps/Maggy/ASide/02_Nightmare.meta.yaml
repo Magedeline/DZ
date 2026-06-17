@@ -12,41 +12,41 @@ DarknessAlpha: 0.2
 BloomBase: 0.3
 BloomStrength: 1.0
 CassetteNoteColor: cc66ff
-CassetteSong: event:/music/pusheen/Cassette/02_shadow
+CassetteSong: event:/pusheen/music/Cassette/02_shadow
 
 Modes:
   - AudioState:
-      Music: event:/music/pusheen/lvl02/main
+      Music: event:/pusheen/music/lvl02/main
       Ambience: event:/env/pusheen/02_nightmare
     Inventory: Default
     HeartIsEnd: false
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/BSide/02_nightmare
+      Music: event:/pusheen/music/BSide/02_nightmare
       Ambience: event:/env/pusheen/02_nightmare
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/CSide/02_nightmare
+      Music: event:/pusheen/music/CSide/02_nightmare
       Ambience: event:/env/pusheen/02_nightmare
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/CSide/02_nightmare
+      Music: event:/pusheen/music/CSide/02_nightmare
       Ambience: event:/env/pusheen/02_nightmare
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/DSide/02_nightmare
+      Music: event:/pusheen/music/DSide/02_nightmare
       Ambience: event:/env/pusheen/02_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/DXSide/02_nightmare
+      Music: event:/pusheen/music/DXSide/02_nightmare
       Ambience: event:/env/pusheen/02_main
     Inventory: Default
     HeartIsEnd: true

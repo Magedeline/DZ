@@ -21,7 +21,7 @@ Modes:
     SeekerSlowdown: false
 
 Mountain:
-    BackgroundMusic: event:/music/pusheen/menu/level_select
+    BackgroundMusic: event:/pusheen/music/menu/level_select
     BackgroundAmbience: bus:/gameplay_sfx/ambience/pusheen/new_worldmap
     BackgroundMusicParams:
         moon_and_blackhole: 1

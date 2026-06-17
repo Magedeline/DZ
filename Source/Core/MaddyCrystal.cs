@@ -399,7 +399,7 @@ namespace Celeste.Entities
             this.dead = true;
             global::Celeste.Player entity = this.level.Tracker.GetEntity<global::Celeste.Player>();
             entity?.Die(-Vector2.UnitX * (float)entity.Facing);
-            Audio.Play("event:/char/pusheen/kirby/death", this.Position);
+            Audio.Play("event:/pusheen/char/kirby/death", this.Position);
             this.Add((Component)new DeathEffect(Color.ForestGreen, new Vector2?(this.Center - this.Position)));
             this.sprite.Visible = false;
             this.Depth = -1000000;

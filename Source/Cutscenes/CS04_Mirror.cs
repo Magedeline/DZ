@@ -62,7 +62,7 @@ namespace Celeste.Cutscenes
             yield return 0.5f;
             
             // Play sound effect when breaking the mirror
-            this.sfx.Play("event:/music/pusheen/lvl4/dreamblock_sting_pt1");
+            this.sfx.Play("event:/pusheen/music/lvl4/dreamblock_sting_pt1");
             yield return this.mirror.BreakRoutine(this.direction);
             
             // Ralsei freed dialog
@@ -190,7 +190,7 @@ namespace Celeste.Cutscenes
 
             level.ResetZoom();
             level.Session.Inventory.DreamDash = true;
-            level.Session.Audio.Music.Event = "event:/music/pusheen/lvl4/alliances";
+            level.Session.Audio.Music.Event = "event:/pusheen/music/lvl4/alliances";
             level.Session.Audio.Apply();
         }
     }

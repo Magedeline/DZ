@@ -64,7 +64,7 @@ public class Cs08CharaBossEnd : CutsceneEntity
         this.player.Facing = Facings.Right;
         yield return 1f;
         Level level2 = base.SceneAs<Level>();
-        level2.Session.Audio.Music.Event = "event:/music/pusheen/lvl8/chara_acoustic";
+        level2.Session.Audio.Music.Event = "event:/pusheen/music/lvl8/chara_acoustic";
         level2.Session.Audio.Apply(false);
         yield return Textbox.Say("DZ_CH8_CHARA_BOSS_ENDING",
         [
@@ -122,7 +122,7 @@ public class Cs08CharaBossEnd : CutsceneEntity
     private IEnumerator StartMusic()
     {
         Level level = base.SceneAs<Level>();
-        level.Session.Audio.Music.Event = "event:/music/pusheen/lvl8/chara_acoustic";
+        level.Session.Audio.Music.Event = "event:/pusheen/music/lvl8/chara_acoustic";
         level.Session.Audio.Apply(false);
         yield return 0.5f;
         yield break;
@@ -202,7 +202,7 @@ public class Cs08CharaBossEnd : CutsceneEntity
         Audio.SetParameter(Audio.CurrentAmbienceEventInstance, "charapostboss", 0f);
         level.ResetZoom();
         level.Session.Inventory.Dashes = 5;
-        level.Session.Audio.Music.Event = "event:/music/pusheen/lvl8/chara_acoustic";
+        level.Session.Audio.Music.Event = "event:/pusheen/music/lvl8/chara_acoustic";
         if (this.WasSkipped)
         {
             level.Session.Audio.Music.Param("levelup", 2f);

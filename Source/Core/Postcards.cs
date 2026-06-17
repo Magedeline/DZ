@@ -185,13 +185,13 @@ namespace DZ
     }
 
     public PostcardMaggy(string msg)
-        : this(msg, "event:/ui/pusheen/main/postcard_csides_in", "event:/ui/pusheen/main/postcard_csides_out")
+        : this(msg, "event:/pusheen/ui/main/postcard_csides_in", "event:/pusheen/ui/main/postcard_csides_out")
     {
     }
 
     public static PostcardMaggy CreateDSides(string msg)
     {
-        return new PostcardMaggy(msg, "event:/ui/pusheen/main/postcard_dsides_in", "event:/ui/pusheen/main/postcard_dsides_out");
+        return new PostcardMaggy(msg, "event:/pusheen/ui/main/postcard_dsides_in", "event:/pusheen/ui/main/postcard_dsides_out");
     }
 
     public PostcardMaggy(string msg, string soundId)
@@ -222,7 +222,7 @@ namespace DZ
         }
         else if (soundId == "variants")
         {
-            return "event:/new_content/ui/pusheen/postcard_desolo_variants";
+            return "event:/pusheen/new_content/ui/postcard_variants";
         }
         else
         {

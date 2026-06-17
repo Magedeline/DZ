@@ -32,12 +32,12 @@ public class CS_FinalRemixBerryCutscene : CutsceneEntity
     private const string FLAG_PINK_PLAT_CUTSCENE_DONE = "final_remix_pink_plat_berry_cutscene";
 
     // SFX Events
-    private const string SFX_GOLDEN_GLOW = "event:/new_content/game/pusheen/19_spaces/golden_glow";
-    private const string SFX_HAND_GRAB = "event:/new_content/char/pusheen/asriel/emotional_reunion";
+    private const string SFX_GOLDEN_GLOW = "event:/pusheen/new_content/game/19_spaces/golden_glow";
+    private const string SFX_HAND_GRAB = "event:/pusheen/new_content/char/bosses/asriel/emotional_reunion";
     private const string SFX_GRANNY_STEPS = "event:/new_content/char/madeline/screenentry_gran_landing";
-    private const string SFX_TEARS = "event:/new_content/char/pusheen/asriel/fade_to_flower";
+    private const string SFX_TEARS = "event:/pusheen/new_content/char/bosses/asriel/fade_to_flower";
     private const string SFX_HEART_GEM_APPEAR = "event:/game/general/heart_gem_appear";
-    private const string SFX_HEART_GEM_PULSE = "event:/new_content/game/pusheen/19_spaces/golden_glow";
+    private const string SFX_HEART_GEM_PULSE = "event:/pusheen/new_content/game/19_spaces/golden_glow";
 
     #endregion
 

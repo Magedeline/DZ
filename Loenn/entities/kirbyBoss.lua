@@ -10,7 +10,7 @@ kirbyBoss.placements = {
     data = {
         health = 15,
         attackCooldown = 2.0,
-        bossMusic = "event:/music/pusheen/miniboss/main0"
+        bossMusic = "event:/pusheen/music/miniboss/main0"
     }
 }
 

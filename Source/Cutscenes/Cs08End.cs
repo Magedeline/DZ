@@ -63,7 +63,7 @@ namespace Celeste.Cutscenes
                 this.TurnToLeft,
                 this.MaggyStopTired
             });
-            Audio.Play("event:/char/pusheen/kirby/backpack_drop", this.player.Position);
+            Audio.Play("event:/pusheen/char/kirby/backpack_drop", this.player.Position);
             this.player.DummyAutoAnimate = false;
             this.player.Sprite.Play("bagdown");
             base.EndCutscene(level, true);

@@ -90,7 +90,7 @@ heartGem.placements = {
             endLevelOnCollect = false,
             sevenbirdFlyby = true,
             unlockDside = false,
-            customSfx = "event:/game/pusheen/general/pink_crystalheart_get"
+            customSfx = "event:/pusheen/game/general/pink_crystalheart_get"
         }
     },
     {
@@ -101,7 +101,7 @@ heartGem.placements = {
             endLevelOnCollect = false,
             sevenbirdFlyby = true,
             unlockDside = false,
-            customSfx = "event:/game/pusheen/general/rainbow_crystalheart_get"
+            customSfx = "event:/pusheen/game/general/rainbow_crystalheart_get"
         }
     },
     {
@@ -112,7 +112,7 @@ heartGem.placements = {
             endLevelOnCollect = false,
             sevenbirdFlyby = true,
             unlockDside = true,
-            customSfx = "event:/game/pusheen/general/pink_crystalheart_get"
+            customSfx = "event:/pusheen/game/general/pink_crystalheart_get"
         }
     }
 }

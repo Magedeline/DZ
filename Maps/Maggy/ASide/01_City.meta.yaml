@@ -12,41 +12,41 @@ DarknessAlpha: 0.05
 BloomBase: 0.0
 BloomStrength: 1.0
 CassetteNoteColor: 33a9ee
-CassetteSong: event:/music/pusheen/Cassette/01_metro
+CassetteSong: event:/pusheen/music/Cassette/01_metro
 
 Modes:
   - AudioState:
-      Music: event:/music/pusheen/lvl01/main
+      Music: event:/pusheen/music/lvl01/main
       Ambience: event:/env/pusheen/01_main
     Inventory: Default
     HeartIsEnd: false
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/BSide/01_city
+      Music: event:/pusheen/music/BSide/01_city
       Ambience: event:/env/pusheen/01_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/CSide/01_city
+      Music: event:/pusheen/music/CSide/01_city
       Ambience: event:/env/pusheen/01_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/CSide/01_city
+      Music: event:/pusheen/music/CSide/01_city
       Ambience: event:/env/pusheen/01_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/DSide/01_city
+      Music: event:/pusheen/music/DSide/01_city
       Ambience: event:/env/pusheen/01_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/DXSide/01_city
+      Music: event:/pusheen/music/DXSide/01_city
       Ambience: event:/env/pusheen/01_main
     Inventory: Default
     HeartIsEnd: true

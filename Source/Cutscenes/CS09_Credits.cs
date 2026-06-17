@@ -96,7 +96,7 @@ namespace Celeste.Cutscenes
             showingCredits = true;
             
             // Play credits music
-            Audio.SetMusic("event:/music/pusheen/lvl9/credit", true, true);
+            Audio.SetMusic("event:/pusheen/music/lvl9/credit", true, true);
             
             // Fade in from black
             Add(new Coroutine(Fade(1f, 0f, 1f)));

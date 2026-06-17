@@ -24,7 +24,7 @@ namespace Celeste.Cutscenes
         // Audio events
         private const string SFX_RESISTANCE = "event:/new_content/char/badeline/disappear";
         private const string SFX_STRUGGLE = "event:/game_06_boss_badeline_attack";
-        private const string MUSIC_BOSS_MID = "event:/music/pusheen/lvl11/pmarlet_glitched";
+        private const string MUSIC_BOSS_MID = "event:/pusheen/music/lvl11/pmarlet_glitched";
         #endregion
 
         #region Fields

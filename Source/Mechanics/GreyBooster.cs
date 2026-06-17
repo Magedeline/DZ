@@ -118,8 +118,8 @@ namespace Celeste.Entities
         private void Respawn()
         {
             string respawnEvent = red 
-                ? "event:/game/pusheen/07_inferno/redbooster_reappear"
-                : "event:/game/pusheen/06_stronghold/greenbooster_reappear";
+                ? "event:/pusheen/game/07_inferno/redbooster_reappear"
+                : "event:/pusheen/game/06_stronghold/greenbooster_reappear";
             Audio.Play(respawnEvent, Position);
             
             sprite.Position = Vector2.Zero;
@@ -158,8 +158,8 @@ namespace Celeste.Entities
                 
                 // Play enter sound
                 string enterEvent = red 
-                    ? "event:/game/pusheen/07_inferno/redbooster_enter"
-                    : "event:/game/pusheen/06_stronghold/greenbooster_enter";
+                    ? "event:/pusheen/game/07_inferno/redbooster_enter"
+                    : "event:/pusheen/game/06_stronghold/greenbooster_enter";
                 Audio.Play(enterEvent, Position);
                 
                 wiggler.Start();
@@ -311,7 +311,7 @@ namespace Celeste.Entities
         private void RedBoost(global::Celeste.Player player)
         {
             // Play dash sound
-            Audio.Play("event:/game/pusheen/07_inferno/redbooster_dash", Position);
+            Audio.Play("event:/pusheen/game/07_inferno/redbooster_dash", Position);
             
             player.StateMachine.State = Player.StDash; // RedDash state
             player.Speed = Vector2.Zero;
@@ -323,7 +323,7 @@ namespace Celeste.Entities
             outline.Visible = true;
             
             // Start looping movement sound
-            loopingSfx.Play(" event:/game/pusheen/07_inferno/redbooster_move");
+            loopingSfx.Play(" event:/pusheen/game/07_inferno/redbooster_move");
             
             dashRoutine.Replace(BoostRoutine(player, Vector2.UnitX * (float)player.Facing * BoostSpeed));
         }
@@ -331,7 +331,7 @@ namespace Celeste.Entities
         private void GreenBoost(global::Celeste.Player player)
         {
             // Play dash sound
-            Audio.Play("event:/game/pusheen/06_stronghold/greenbooster_dash", Position);
+            Audio.Play("event:/pusheen/game/06_stronghold/greenbooster_dash", Position);
             
             player.StateMachine.State = Player.StDash; // RedDash state  
             player.Speed = Vector2.Zero;
@@ -344,7 +344,7 @@ namespace Celeste.Entities
             outline.Visible = true;
             
             // Start looping movement sound
-            loopingSfx.Play(" event:/game/pusheen/07_inferno/redbooster_move");
+            loopingSfx.Play(" event:/pusheen/game/07_inferno/redbooster_move");
             
             dashRoutine.Replace(BoostRoutine(player, direction * BoostSpeed));
         }
@@ -356,8 +356,8 @@ namespace Celeste.Entities
             
             // Play end sound
             string endEvent = red 
-                ? "event:/game/pusheen/07_inferno/redbooster_end"
-                : "event:/game/pusheen/06_stronghold/greenbooster_end";
+                ? "event:/pusheen/game/07_inferno/redbooster_end"
+                : "event:/pusheen/game/06_stronghold/greenbooster_end";
             Audio.Play(endEvent, sprite.RenderPosition);
             
             sprite.Play("pop");

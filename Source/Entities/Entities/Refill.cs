@@ -262,10 +262,10 @@ namespace Celeste.Entities
             return dashCount switch
             {
                 2 => "event:/game/general/refill_two_get",
-                3 => "event:/game/pusheen/general/reddiamond_touch",
-                4 => "event:/game/pusheen/general/cyandiamond_touch",
-                5 => "event:/new_content/game/pusheen/19_spaces/gigadiamond_touch",
-                >= 10 => "event:/new_content/game/pusheen/20_last_push/savediamond_touch",
+                3 => "event:/pusheen/game/general/diamond_touch",
+                4 => "event:/pusheen/game/general/diamond_touch",
+                5 => "event:/pusheen/new_content/game/19_spaces/gigadiamond_touch",
+                >= 10 => "event:/pusheen/new_content/game/20_last_push/savediamond_touch",
                 _ => "event:/game/general/refill_get"
             };
         }

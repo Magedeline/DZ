@@ -12,42 +12,42 @@ DarknessAlpha: 0.1
 BloomBase: 0.2
 BloomStrength: 1.0
 CassetteNoteColor: ff4488
-CassetteSong: event:/music/pusheen/Cassette/18_core
+CassetteSong: event:/pusheen/music/cassette/18_core
 
 Modes:
   - AudioState:
-      Music: event:/music/pusheen/lvl18/main
-      Ambience: event:/env/pusheen/18_main
+      Music: event:/pusheen/music/lvl18/main
+      Ambience: event:/pusheen/env/amb/09_main
     Inventory: Default
     HeartIsEnd: false
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/BSide/18_heart
-      Ambience: event:/env/pusheen/18_main
+      Music: event:/pusheen/music/bside/18_core
+      Ambience: event:/pusheen/env/amb/09_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/CSide/18_heart
-      Ambience: event:/env/pusheen/18_main
+      Music: event:/pusheen/music/cside/18_core
+      Ambience: event:/pusheen/env/amb/09_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/CSide/18_heart
-      Ambience: event:/env/pusheen/18_main
+      Music: event:/pusheen/music/cside/18_core
+      Ambience: event:/pusheen/env/amb/09_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/DSide/18_heart
-      Ambience: event:/env/pusheen/18_main
+      Music: event:/pusheen/music/dxside/18_core
+      Ambience: event:/pusheen/env/amb/09_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/DXSide/18_heart
-      Ambience: event:/env/pusheen/18_main
+      Music: event:/pusheen/music/dxside/18_core
+      Ambience: event:/pusheen/env/amb/09_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false

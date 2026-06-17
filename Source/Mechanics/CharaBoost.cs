@@ -164,7 +164,7 @@ public class CharaBoost : Entity
         sw.Start();
         if (finalCh19Boost)
         {
-            Audio.Play("event:/new_content/char/pusheen/chara/booster_finalfinal_part1", Position);
+            Audio.Play("event:/pusheen/new_content/char/chara/booster_finalfinal_part1", Position);
         }
         else if (!finalBoost)
         {
@@ -307,7 +307,7 @@ public class CharaBoost : Entity
         {
             if (finalCh19Boost)
             {
-                Ch9FinalBoostSfx = Audio.Play("event:/new_content/char/pusheen/chara/booster_finalfinal_part2", Position);
+                Ch9FinalBoostSfx = Audio.Play("event:/pusheen/new_content/char/chara/booster_finalfinal_part2", Position);
             }
             Engine.FreezeTimer = 0.1f;
             yield return null;

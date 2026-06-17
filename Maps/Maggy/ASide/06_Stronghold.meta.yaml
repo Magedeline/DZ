@@ -12,41 +12,41 @@ DarknessAlpha: 0.05
 BloomBase: 0.0
 BloomStrength: 1.0
 CassetteNoteColor: ff7f83
-CassetteSong: event:/music/pusheen/Cassette/06_fortress
+CassetteSong: event:/pusheen/music/Cassette/06_fortress
 
 Modes:
   - AudioState:
-      Music: event:/music/pusheen/lvl06/main
+      Music: event:/pusheen/music/lvl06/main
       Ambience: event:/env/pusheen/06_main
     Inventory: Default
     HeartIsEnd: false
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/BSide/06_stronghold
+      Music: event:/pusheen/music/BSide/06_stronghold
       Ambience: event:/env/pusheen/06_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/CSide/06_stronghold
+      Music: event:/pusheen/music/CSide/06_stronghold
       Ambience: event:/env/pusheen/06_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/CSide/06_stronghold
+      Music: event:/pusheen/music/CSide/06_stronghold
       Ambience: event:/env/pusheen/06_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/DSide/06_stronghold
+      Music: event:/pusheen/music/DSide/06_stronghold
       Ambience: event:/env/pusheen/06_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/DXSide/06_stronghold
+      Music: event:/pusheen/music/DXSide/06_stronghold
       Ambience: event:/env/pusheen/06_main
     Inventory: Default
     HeartIsEnd: true
@@ -66,10 +66,10 @@ Modes:
     State: 0
 
 MusicBySide:
-  - event:/music/pusheen/menu/complete_area
-  - event:/music/pusheen/menu/complete_bside
-  - event:/music/pusheen/menu/complete_cside
-  - event:/music/pusheen/menu/complete_dxside
+  - event:/pusheen/music/menu/complete_area
+  - event:/pusheen/music/menu/complete_bside
+  - event:/pusheen/music/menu/complete_cside
+  - event:/pusheen/music/menu/complete_dxside
 Title:
   ASide: "Chapter Complete"
   BSide: "B Side Complete"

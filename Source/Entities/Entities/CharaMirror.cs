@@ -171,9 +171,9 @@ namespace Celeste.Entities
             charaMirror.reflectionSprite.Play("idle");
             yield return 0.65f;
             charaMirror.Add(charaMirror.sfx = new SoundSource());
-            charaMirror.sfx.Play("event:/game/pusheen/02_nightmare/sequence_mirror");
+            charaMirror.sfx.Play("event:/pusheen/game/02_nightmare/sequence_mirror");
             yield return 0.15f;
-            charaMirror.Add(charaMirror.sfxSting = new SoundSource("event:/music/pusheen/lvl2/dreamblock_sting_pt2"));
+            charaMirror.Add(charaMirror.sfxSting = new SoundSource("event:/pusheen/music/lvl2/dreamblock_sting_pt2"));
             Input.Rumble(RumbleStrength.Light, RumbleLength.FullSecond);
             charaMirror.updateShine = false;
             while (charaMirror.shineOffset != 33.0 || charaMirror.shineAlpha < 1.0)

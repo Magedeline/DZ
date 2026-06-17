@@ -161,8 +161,8 @@ public class DesoloZantasTape : Entity
 
     // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ Audio/Visual Defaults â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
-    private const string DefaultCollectSfx      = "event:/game/pusheen/general/tape_unlocked";
-    private const string DefaultPreviewEvent     = "event:/game/pusheen/general/tape_preview";
+    private const string DefaultCollectSfx      = "event:/pusheen/game/general/tape_get";
+    private const string DefaultPreviewEvent     = "event:/pusheen/game/general/tape_preview";
     private const string DefaultPreviewParamName = "remix";
 
     // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ Particle Types â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€

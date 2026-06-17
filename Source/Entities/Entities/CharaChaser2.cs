@@ -170,7 +170,7 @@ public class CharaChaser2 : Entity
         Hovering = false;
         if (CanChangeMusic(level.Session.Area.Mode == AreaMode.Normal))
         {
-            level.Session.Audio.Music.Event = "event:/music/pusheen/lvl4/chase";
+            level.Session.Audio.Music.Event = "event:/pusheen/music/lvl4/chase";
             level.Session.Audio.Apply(forceSixteenthNoteHack: false);
         }
         yield return TweenToPlayer(to);

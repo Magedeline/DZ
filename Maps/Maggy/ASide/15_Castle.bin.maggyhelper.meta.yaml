@@ -8,10 +8,10 @@ mainChapterSid: Maggy/ASide/15_Castle
 showInChapterSelect: true
 
 MusicBySide:
-  - event:/music/pusheen/menu/complete_area
-  - event:/music/pusheen/menu/complete_bside
-  - event:/music/pusheen/menu/complete_cside
-  - event:/music/pusheen/menu/complete_dxside
+  - event:/pusheen/music/menu/complete_area
+  - event:/pusheen/music/menu/complete_bside
+  - event:/pusheen/music/menu/complete_cside
+  - event:/pusheen/music/menu/complete_dxside
 Title:
   ASide: "Chapter Complete"
   BSide: "B Side Complete"

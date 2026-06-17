@@ -51,7 +51,7 @@ public class BarrierBreakController : Entity
         // Part 1: Breaking the 4th wall 3 times
         for (int hit = 0; hit < 3; hit++)
         {
-            Audio.Play("event:/new_content/music/pusheen/lvl20/cinematic/break_fourth_wall_part1");
+            Audio.Play("event:/pusheen/new_content/music/lvl20/cinematic/break_fourth_wall_part1");
             yield return barrierEffect.PlayCrackEffect();
             
             // Additional screen effects per hit
@@ -64,7 +64,7 @@ public class BarrierBreakController : Entity
         yield return 0.5f;
         
         // Part 2: The wall opens and crumbles down sideways
-        Audio.Play("event:/new_content/music/pusheen/lvl20/cinematic/break_fourth_wall_part2");
+        Audio.Play("event:/pusheen/new_content/music/lvl20/cinematic/break_fourth_wall_part2");
         
         if (level != null)
         {
@@ -75,7 +75,7 @@ public class BarrierBreakController : Entity
         yield return barrierEffect.PlayShatterEffect();
         
         // Part 3: Final destruction and text
-        Audio.Play("event:/new_content/music/pusheen/lvl20/cinematic/break_fourth_wall_part3");
+        Audio.Play("event:/pusheen/new_content/music/lvl20/cinematic/break_fourth_wall_part3");
         
         if (level != null)
         {
@@ -93,7 +93,7 @@ public class BarrierBreakController : Entity
     /// </summary>
     public IEnumerator PlayPart1_Crack()
     {
-        Audio.Play("event:/new_content/music/pusheen/lvl20/cinematic/break_fourth_wall_part1");
+        Audio.Play("event:/pusheen/new_content/music/lvl20/cinematic/break_fourth_wall_part1");
         yield return barrierEffect.PlayCrackEffect();
     }
 
@@ -102,7 +102,7 @@ public class BarrierBreakController : Entity
     /// </summary>
     public IEnumerator PlayPart2_Shatter()
     {
-        Audio.Play("event:/new_content/music/pusheen/lvl20/cinematic/break_fourth_wall_part2");
+        Audio.Play("event:/pusheen/new_content/music/lvl20/cinematic/break_fourth_wall_part2");
         yield return barrierEffect.PlayShatterEffect();
     }
 
@@ -111,7 +111,7 @@ public class BarrierBreakController : Entity
     /// </summary>
     public IEnumerator PlayPart3_Destroyed()
     {
-        Audio.Play("event:/new_content/music/pusheen/lvl20/cinematic/break_fourth_wall_part3");
+        Audio.Play("event:/pusheen/new_content/music/lvl20/cinematic/break_fourth_wall_part3");
         yield return barrierEffect.PlayDestroyedEffect();
     }
 

@@ -10,7 +10,7 @@ metaKnightBoss.placements = {
     data = {
         health = 20,
         attackCooldown = 0.8,
-        bossMusic = "event:/music/pusheen/lvl13/metarminator_kight"
+        bossMusic = "event:/pusheen/music/lvl13/metarminator_kight"
     }
 }
 

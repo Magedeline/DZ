@@ -16,7 +16,7 @@ public class FinalTitanSummitBackgroundManager : Entity
     private const string PixelLabAssetRoot = "bgs/maggy/21/finaltitansummit/";
     private const float ScreenWidth = 320f;
     private const float ScreenHeight = 180f;
-    private const string ThunderSfx = "event:/new_content/game/pusheen/21_desolo_zantas/multiple_lightning_strike";
+    private const string ThunderSfx = "event:/pusheen/new_content/game/21_desolo_zantas/multiple_lightning_strike";
 
     private static readonly string[] BirdGonerNames =
     {
@@ -467,7 +467,7 @@ public class FinalTitanSummitBackgroundManager : Entity
 
         level.CanRetry = false;
         player.Sprite.Play("launch");
-        Audio.Play("event:/new_content/char/pusheen/kirby/flynext", player.Position);
+        Audio.Play("event:/pusheen/new_content/char/kirby/flynext", player.Position);
         yield return 0.25f;
 
         Vector2 from = player.Position;

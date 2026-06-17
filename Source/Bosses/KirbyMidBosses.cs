@@ -207,7 +207,7 @@ namespace Celeste.Entities.Enemies
         protected virtual void OnPhaseDefeated()
         {
             sprite?.Play("hurt");
-            Audio.Play("event:/char/pusheen/bosses/large_explosion", Position);
+            Audio.Play("event:/pusheen/char/bosses/large_explosion", Position);
         }
 
         protected virtual void OnDefeated()

@@ -224,7 +224,7 @@ public static class HeartGemManager
             _ => "_A"
         };
 
-        return $"soul_KIRBY_CELESTE_{sideName}_{chapterName}{suffix}";
+        return $"soul_Maggy_{sideName}_{chapterName}{suffix}";
     }
 
     /// <summary>

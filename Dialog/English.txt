@@ -388,6 +388,14 @@ DZ_Main=Desolo Zantas
 DZ_PCG=Desolo Zantas - Procedural
 DZ_WIP=Desolo Zantas - Work in Progress
 
+# Level set translations (derived from SIDs like Maggy/ASide/01_City)
+MAGGY_ASIDE=Desolo Zantas - A-Sides
+MAGGY_BSIDE=Desolo Zantas - B-Sides
+MAGGY_CSIDE=Desolo Zantas - C-Sides
+MAGGY_DSIDE=Desolo Zantas - D-Sides
+MAGGY_DXSIDE=Desolo Zantas - DX-Sides
+MAGGY_DESOLO_ZANTAS=Desolo Zantas
+
 # ================================
 # Chapter Names - A-Side (Maps/Maggy/ASide/)
 # ================================

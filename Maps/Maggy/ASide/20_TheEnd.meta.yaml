@@ -50,7 +50,7 @@ Modes:
     HeartIsEnd: true
     SeekerSlowdown: false
     BackgroundMusic: event:/pusheen/music/menu/level_select
-    BackgroundAmbience: bus:/gameplay_sfx/ambience/pusheen/new_worldmap
+    BackgroundAmbience: bus:/gameplay_sfx/ambience/pusheen
     BackgroundMusicParams:
         moon_and_blackhole: 1
     MarkerTexture: marker/runNoBackpack

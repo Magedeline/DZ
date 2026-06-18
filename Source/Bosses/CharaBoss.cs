@@ -129,7 +129,7 @@ namespace Celeste.Entities {
             this.bossBg = this.level.Background.Get<CharaBossStarfield>();
             if (this.patternIndex == 0 && !this.level.Session.GetFlag("chara_boss_intro") && this.level.Session.Level.Equals("boss-00"))
             {
-                this.level.Session.Audio.Music.Event = "event:/pusheen/music/lvl2/phone_loop";
+                this.level.Session.Audio.Music.Event = "event:/Mods/pusheen/music/lvl2/phone_loop";
                 this.level.Session.Audio.Apply();
                 if (this.bossBg != null)
                     this.bossBg.Alpha = 0.0f;
@@ -321,25 +321,25 @@ namespace Celeste.Entities {
                     Audio.SetParameter(Audio.CurrentAmbienceEventInstance, "postboss", 1f);
                     Audio.SetMusic(null);
                 }
-                else if (nodeIndex == 4 && level.Session.Audio.Music.Event != "event:/pusheen/music/lvl8/chara_glitch")
+                else if (nodeIndex == 4 && level.Session.Audio.Music.Event != "event:/Mods/pusheen/music/lvl8/chara_glitch")
                 {
                     // After middle phase - switch to glitch music for intensity
-                    level.Session.Audio.Music.Event = "event:/pusheen/music/lvl8/chara_glitch";
+                    level.Session.Audio.Music.Event = "event:/Mods/pusheen/music/lvl8/chara_glitch";
                     level.Session.Audio.Apply(false);
                 }
-                else if (startHit && level.Session.Audio.Music.Event != "event:/pusheen/music/lvl8/chara_core")
+                else if (startHit && level.Session.Audio.Music.Event != "event:/Mods/pusheen/music/lvl8/chara_core")
                 {
-                    level.Session.Audio.Music.Event = "event:/pusheen/music/lvl8/chara_core";
+                    level.Session.Audio.Music.Event = "event:/Mods/pusheen/music/lvl8/chara_core";
                     level.Session.Audio.Apply(false);
                 }
-                else if (startHit && level.Session.Audio.Music.Event != "event:/pusheen/music/lvl8/chara_glitch")
+                else if (startHit && level.Session.Audio.Music.Event != "event:/Mods/pusheen/music/lvl8/chara_glitch")
                 {
-                    level.Session.Audio.Music.Event = "event:/pusheen/music/lvl8/chara_glitch";
+                    level.Session.Audio.Music.Event = "event:/Mods/pusheen/music/lvl8/chara_glitch";
                     level.Session.Audio.Apply(false);
                 }
-                else if (level.Session.Audio.Music.Event != "event:/pusheen/music/lvl8/chara_fight" && level.Session.Audio.Music.Event != "event:/pusheen/music/lvl8/chara_glitch")
+                else if (level.Session.Audio.Music.Event != "event:/Mods/pusheen/music/lvl8/chara_fight" && level.Session.Audio.Music.Event != "event:/Mods/pusheen/music/lvl8/chara_glitch")
                 {
-                    level.Session.Audio.Music.Event = "event:/pusheen/music/lvl8/chara_fight";
+                    level.Session.Audio.Music.Event = "event:/Mods/pusheen/music/lvl8/chara_fight";
                     level.Session.Audio.Apply(false);
                 }
             }

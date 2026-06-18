@@ -146,7 +146,7 @@ public static class DSideHookImplementation
         // Post-collection logic
         if (level != null)
         {
-            Audio.Play("event:/pusheen/game/heart_collect");  // Custom sound
+            Audio.Play("event:/Mods/pusheen/game/heart_collect");  // Custom sound
         }
     }
 
@@ -251,7 +251,7 @@ public static class DSideHookImplementation
         Logger.Log(LogLevel.Debug, "DZ/DSideHooks", "Overworld session started");
 
         // Play level select music
-        Audio.SetMusic("event:/pusheen/music/menu/level_select");
+        Audio.SetMusic("event:/Mods/pusheen/music/menu/level_select");
 
         // Initialize overworld D-Side state
         InitializeOverworldState(self);

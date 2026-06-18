@@ -52,7 +52,7 @@ public class CS10ArrivalDreemurrHouse : CutsceneEntity
         player.Sprite.Play("idle");
 
         // Set music
-        Audio.SetMusic("event:/pusheen/ch10/music/fallendown", true, true);
+        Audio.SetMusic("event:/Mods/pusheen/ch10/music/fallendown", true, true);
 
         // Fade in
         FadeWipe fadeWipe = new FadeWipe(level, wipeIn: true);

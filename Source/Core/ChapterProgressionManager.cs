@@ -100,7 +100,7 @@ public static class ChapterProgressionManager
             if (icon == null)
                 continue;
 
-            Audio.Play("event:/pusheen/ui/postgame/unlock_cside");
+            Audio.Play("event:/Mods/pusheen/ui/postgame/unlock_cside");
 
             bool ready = false;
             icon.HighlightUnlock(delegate { ready = true; });
@@ -171,8 +171,8 @@ public static class ChapterProgressionManager
         if (save == null || global::Celeste.DZSaveFacade.IsChapterUnlocked(Ch18Sid))
             yield break;
 
-        Audio.Play("event:/pusheen/ui/postgame/unlock_newchapter");
-        Audio.Play("event:/pusheen/ui/postgame/unlock_newchapter");
+        Audio.Play("event:/Mods/pusheen/ui/postgame/unlock_newchapter");
+        Audio.Play("event:/Mods/pusheen/ui/postgame/unlock_newchapter");
         Audio.Play("event:/ui/world_map/icon/roll_right");
 
         DynamicData dd = new DynamicData(self);
@@ -205,8 +205,8 @@ public static class ChapterProgressionManager
         if (save == null || global::Celeste.DZSaveFacade.IsChapterUnlocked(Ch19Sid))
             yield break;
 
-        Audio.Play("event:/pusheen/ui/postgame/unlock_newchapter");
-        Audio.Play("event:/pusheen/ui/postgame/unlock_finalchapter_icon");
+        Audio.Play("event:/Mods/pusheen/ui/postgame/unlock_newchapter");
+        Audio.Play("event:/Mods/pusheen/ui/postgame/unlock_finalchapter_icon");
         Audio.Play("event:/ui/world_map/icon/roll_right");
 
         DynamicData dd = new DynamicData(self);
@@ -250,8 +250,8 @@ public static class ChapterProgressionManager
 
     private static IEnumerator PerformCh10Unlock(OuiChapterSelect self)
     {
-        Audio.Play("event:/pusheen/ui/postgame/unlock_newchapter");
-        Audio.Play("event:/pusheen/ui/postgame/unlock_newchapter");
+        Audio.Play("event:/Mods/pusheen/ui/postgame/unlock_newchapter");
+        Audio.Play("event:/Mods/pusheen/ui/postgame/unlock_newchapter");
         Audio.Play("event:/ui/world_map/icon/roll_left");
 
         DynamicData dd = new DynamicData(self);

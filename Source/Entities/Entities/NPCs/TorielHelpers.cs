@@ -32,7 +32,7 @@ public static class TorielHelpers
         {
             if (anim == "walk" && (npc.Sprite.CurrentAnimationFrame == 0 || npc.Sprite.CurrentAnimationFrame == 4))
             {
-                Audio.Play("event:/pusheen/char/kirby/footstep", npc.Position);
+                Audio.Play("event:/Mods/pusheen/char/kirby/footstep", npc.Position);
             }
         };
     }

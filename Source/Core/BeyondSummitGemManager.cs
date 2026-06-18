@@ -126,7 +126,7 @@ public class BeyondSummitGemManager : Entity
         // Play gem unlock sounds sequentially
         for (int i = 0; i < TotalGems; i++)
         {
-            Audio.Play("event:/pusheen/game/09_beyondsummit/gem_unlock_" + (i + 1), Position);
+            Audio.Play("event:/Mods/pusheen/game/09_beyondsummit/gem_unlock_" + (i + 1), Position);
             bounceWiggler.Start();
 
             // Brief flash for each gem
@@ -145,7 +145,7 @@ public class BeyondSummitGemManager : Entity
         yield return 0.5f;
 
         // Final unlock burst
-        Audio.Play("event:/pusheen/game/09_beyondsummit/gem_unlock_complete", Position);
+        Audio.Play("event:/Mods/pusheen/game/09_beyondsummit/gem_unlock_complete", Position);
         level.Flash(Color.White * 0.5f, drawPlayerOver: true);
         level.Shake(0.3f);
         Input.Rumble(RumbleStrength.Strong, RumbleLength.Long);

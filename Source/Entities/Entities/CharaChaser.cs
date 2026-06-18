@@ -289,8 +289,8 @@ public class CharaChaser : Entity
         {
             // Set music based on current level
             string musicEvent = level.Session.Level.StartsWith("b-3") 
-                ? "event:/pusheen/music/lvl2/evil_chara"
-                : "event:/pusheen/music/lvl2/chase";
+                ? "event:/Mods/pusheen/music/lvl2/evil_chara"
+                : "event:/Mods/pusheen/music/lvl2/chase";
             level.Session.Audio.Music.Event = musicEvent;
             level.Session.Audio.Apply(forceSixteenthNoteHack: false);
         }

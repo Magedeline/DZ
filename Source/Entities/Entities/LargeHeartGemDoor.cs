@@ -118,7 +118,7 @@ internal class LargeHeartGemDoor : Entity
             }
             while (entity == null || Math.Abs(entity.X - this.Center.X) >= 100f);
             
-            Audio.Play("event:/pusheen/new_content/game/19_spaces/large_heart_door", this.Position);
+            Audio.Play("event:/Mods/pusheen/new_content/game/19_spaces/large_heart_door", this.Position);
             this.Visible = true;
             this.heartAlpha = 0f;
             topTo = this.topSolid.Y;
@@ -167,7 +167,7 @@ internal class LargeHeartGemDoor : Entity
             if (player != null && Math.Abs(player.X - this.Center.X) < 120.0)
             {                
                 if (this.counter == 0.0f && this.heartGems > 0)
-                    Audio.Play("event:/pusheen/game/18_core/frontdoor_heartfill", this.Position);
+                    Audio.Play("event:/Mods/pusheen/game/18_core/frontdoor_heartfill", this.Position);
                 int was = (int)this.counter;
                 int target = Math.Min(this.heartGems, this.requires);
                 this.counter = Calc.Approach(this.counter, target, Engine.DeltaTime * this.requires * 0.8f);
@@ -175,7 +175,7 @@ internal class LargeHeartGemDoor : Entity
                 {
                     yield return 0.1f;                    
                     if (this.counter < target)
-                        Audio.Play("event:/pusheen/game/18_core/frontdoor_heartfill", this.Position);
+                        Audio.Play("event:/Mods/pusheen/game/18_core/frontdoor_heartfill", this.Position);
                 }
                 lastCounter = this.counter;
             }
@@ -186,7 +186,7 @@ internal class LargeHeartGemDoor : Entity
                 
                 if (prevCounter > 0f && this.counter == 0f && lastCounter > 0f)
                 {
-                    Audio.Play("event:/pusheen/new_content/game/19_spaces/large_heart_door", this.Position);
+                    Audio.Play("event:/Mods/pusheen/new_content/game/19_spaces/large_heart_door", this.Position);
                     level.Shake(0.6f);
                     
                     Vector2 topDebrisPos = new Vector2(this.X + this.size / 2f, this.Y);
@@ -210,7 +210,7 @@ internal class LargeHeartGemDoor : Entity
             player.StateMachine.State = Player.StDummy;
         }
 
-        this.cutsceneMusic = Audio.Play("event:/pusheen/new_content/music/lvl19/cinematic/BEB_cutscenes", this.Position);
+        this.cutsceneMusic = Audio.Play("event:/Mods/pusheen/new_content/music/lvl19/cinematic/BEB_cutscenes", this.Position);
         
         yield return 0.5f;
         this.Scene.Add(new WhiteLine(this.Position, this.size));

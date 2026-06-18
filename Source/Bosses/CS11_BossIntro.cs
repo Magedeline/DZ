@@ -26,7 +26,7 @@ namespace Celeste.Cutscenes
         // Audio events
         private const string SFX_POSSESSION_REVEAL = "event:/new_content/game/10_farewell/glitch_short";
         private const string SFX_DARK_MATTER_LAUGH = "event:/game_06_boss_badeline_laugh";
-        private const string MUSIC_BOSS_INTRO = "event:/pusheen/music/lvl11/pmarlet_fight";
+        private const string MUSIC_BOSS_INTRO = "event:/Mods/pusheen/music/lvl11/pmarlet_fight";
         #endregion
 
         #region Fields

@@ -1,6 +1,8 @@
 using System;
 using MonoMod.ModInterop;
 using DZ;
+using Celeste.Mod.DZ.HotReload;
+using Monocle;
 
 namespace Celeste.Mod.DZ;
 
@@ -35,10 +37,35 @@ public class DZModule : EverestModule {
         // typeof(DZExports).ModInterop(); // TODO: delete this line if you do not need to export any functions
 
         AudioReplacer.Load();
+        EverestContentUpdateGuard.Load();
+        LiveWatchPatcher.Load();
+
+        // Hook into scene changes to add the HotReloadController
+        On.Monocle.Engine.Update += OnEngineUpdate;
     }
 
     public override void Unload() {
         AudioReplacer.Unload();
+        EverestContentUpdateGuard.Unload();
+        LiveWatchPatcher.Unload();
+        On.Monocle.Engine.Update -= OnEngineUpdate;
+    }
+
+    private static void OnEngineUpdate(On.Monocle.Engine.orig_Update orig, Engine self, GameTime gameTime)
+    {
+        orig(self, gameTime);
+
+        // Ensure HotReloadController exists in the current scene
+        if (Engine.Scene != null && Engine.Scene.Tracker.GetEntity<HotReloadController>() == null)
+        {
+            Engine.Scene.Add(new HotReloadController());
+        }
+
+        // Ensure LiveWatchOverlay exists if frozen
+        if (Engine.Scene != null && LiveWatchPatcher.IsFrozen && Engine.Scene.Entities.FindFirst<LiveWatchOverlay>() == null)
+        {
+            Engine.Scene.Add(new LiveWatchOverlay(LiveWatchPatcher.LastError, DateTime.Now));
+        }
     }
 
     /// <summary>

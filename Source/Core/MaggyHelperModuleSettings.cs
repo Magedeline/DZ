@@ -108,15 +108,15 @@ namespace Celeste.Mod.DZ
         public bool HotReloadVerbose { get; set; }
 
         [SettingName("DZ_BIND_HOTRELOAD_TOGGLE")]
-        [DefaultButtonBinding(0, Keys.F5)]
+        [DefaultButtonBinding(0, Keys.F9)]
         public ButtonBinding HotReloadToggle { get; set; }
 
         [SettingName("DZ_BIND_HOTRELOAD_RELOAD")]
-        [DefaultButtonBinding(0, Keys.F6)]
+        [DefaultButtonBinding(0, Keys.F11)]
         public ButtonBinding HotReloadManual { get; set; }
 
         [SettingName("DZ_BIND_HOTRELOAD_UI")]
-        [DefaultButtonBinding(0, Keys.F8)]
+        [DefaultButtonBinding(0, Keys.F12)]
         public ButtonBinding HotReloadUIBinding { get; set; }
 
         #endregion

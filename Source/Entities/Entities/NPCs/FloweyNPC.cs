@@ -17,8 +17,8 @@ namespace Celeste.Entities
     {
         #region Constants
         private const string DEFAULT_DIALOG = "DZ_CH10_FLOWEY_INTRO";
-        private const string SFX_EMERGE = "event:/pusheen/sfx/lvl10/flowey_emerge";
-        private const string SFX_LAUGH = "event:/pusheen/char/others/Flowey_Laugh";
+        private const string SFX_EMERGE = "event:/Mods/pusheen/sfx/lvl10/flowey_emerge";
+        private const string SFX_LAUGH = "event:/Mods/pusheen/char/others/Flowey_Laugh";
         private const float EMERGE_DURATION = 0.5f;
         #endregion
 

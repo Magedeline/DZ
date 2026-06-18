@@ -84,7 +84,7 @@ namespace Celeste.Cutscenes
             yield return 0.5f;
 
             // Play intro vignette sound effect
-            introVignetteSfx = Audio.Play("event:/pusheen/game/03_star/intro_vignette", Vector2.Zero);
+            introVignetteSfx = Audio.Play("event:/Mods/pusheen/game/03_star/intro_vignette", Vector2.Zero);
             // Show postcard with zoom in effect
             postcardVisible = true;
             float timer = 0f;

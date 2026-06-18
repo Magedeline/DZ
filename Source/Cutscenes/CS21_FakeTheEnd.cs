@@ -65,7 +65,7 @@ namespace Celeste.Cutscenes
             yield return 1f;
 
             // Something stirs in the dark â€” the light flickers
-            Audio.Play("event:/pusheen/new_content/game/21_desolo_zantas/transcendences");
+            Audio.Play("event:/Mods/pusheen/new_content/game/21_desolo_zantas/transcendences");
 
             for (float t = 0f; t < 1f; t += Engine.DeltaTime)
             {
@@ -76,7 +76,7 @@ namespace Celeste.Cutscenes
 
             yield return 0.5f;
 
-            Audio.SetMusic("event:/pusheen/music/menu/els_win");
+            Audio.SetMusic("event:/Mods/pusheen/music/menu/els_win");
 
             // Fade back in â€” it's not over
             for (float t = 0f; t < 0.8f; t += Engine.DeltaTime)

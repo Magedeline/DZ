@@ -108,7 +108,7 @@ namespace Celeste.Cutscenes
 
             player.DummyAutoAnimate = false;
             player.Sprite.Play("sleep");
-            Audio.Play("event:/pusheen/char/kirby/campfire_sit", player.Position);
+            Audio.Play("event:/Mods/pusheen/char/kirby/campfire_sit", player.Position);
             yield return 2f;
 
             Vector2 birdOrigin = (badeline?.Position ?? player.Position) + new Vector2(88f, -200f);

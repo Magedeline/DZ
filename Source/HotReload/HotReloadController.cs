@@ -1,4 +1,6 @@
 using System;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using Monocle;
 
 namespace Celeste.Mod.DZ.HotReload
@@ -12,6 +14,9 @@ namespace Celeste.Mod.DZ.HotReload
         }
 
         private bool _wasEnabled;
+        private bool _lastF9;
+        private bool _lastF11;
+        private bool _lastF12;
 
         public override void Update()
         {
@@ -20,32 +25,52 @@ namespace Celeste.Mod.DZ.HotReload
             var settings = DZModule.Settings;
             bool isEnabled = settings != null && settings.HotReloadEnabled;
 
-            // Only process input when hot reload is enabled or was just toggled
-            if (!isEnabled && !_wasEnabled)
-                return;
+            // Read keyboard state directly
+            bool curF9 = MInput.Keyboard.Check(Keys.F9);
+            bool curF11 = MInput.Keyboard.Check(Keys.F11);
+            bool curF12 = MInput.Keyboard.Check(Keys.F12);
 
+            // F9: Toggle hot reload on/off, or resume if frozen
+            if (curF9 && !_lastF9)
+            {
+                // If frozen due to error, resume first
+                if (LiveWatchPatcher.IsFrozen)
+                {
+                    LiveWatchPatcher.Resume();
+                }
+                else if (settings != null)
+                {
+                    settings.HotReloadEnabled = !settings.HotReloadEnabled;
+                    HotReloadUI.Show(settings.HotReloadEnabled ? "Hot Reload Enabled" : "Hot Reload Disabled", 
+                        settings.HotReloadEnabled ? Color.LimeGreen : Color.Red);
+                }
+            }
+
+            // F11 and F12: Only work when hot reload is enabled
+            if (isEnabled)
+            {
+                // F11: Manual reload
+                if (curF11 && !_lastF11)
+                {
+                    HotReloadUI.Show("Manual Reload Triggered", Color.Yellow);
+                    global::Celeste.HotReload.HotReloadHandler.NotifyEverestReload();
+                }
+
+                // F12: Toggle UI
+                if (curF12 && !_lastF12)
+                {
+                    if (settings != null)
+                    {
+                        settings.HotReloadShowUI = !settings.HotReloadShowUI;
+                        HotReloadUI.Show(settings.HotReloadShowUI ? "Reload UI Enabled" : "Reload UI Disabled", Color.White);
+                    }
+                }
+            }
+
+            _lastF9 = curF9;
+            _lastF11 = curF11;
+            _lastF12 = curF12;
             _wasEnabled = isEnabled;
-
-            if (!isEnabled)
-                return;
-
-            if (settings.HotReloadToggle?.Pressed == true)
-            {
-                settings.HotReloadEnabled = false;
-                HotReloadUI.Show("Hot Reload Disabled", Microsoft.Xna.Framework.Color.Red);
-            }
-
-            if (settings.HotReloadManual?.Pressed == true)
-            {
-                HotReloadUI.Show("Manual Reload Triggered", Microsoft.Xna.Framework.Color.Yellow);
-                global::Celeste.HotReload.HotReloadHandler.NotifyEverestReload();
-            }
-
-            if (settings.HotReloadUIBinding?.Pressed == true)
-            {
-                settings.HotReloadShowUI = !settings.HotReloadShowUI;
-                HotReloadUI.Show(settings.HotReloadShowUI ? "Reload UI Enabled" : "Reload UI Disabled", Microsoft.Xna.Framework.Color.White);
-            }
         }
     }
 }

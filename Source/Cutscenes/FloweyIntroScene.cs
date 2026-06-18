@@ -24,13 +24,13 @@ namespace Celeste.Cutscenes
         private const string DIALOG_ASSIST = "DZ_CH10_FLOWEY_INTRO_ASSIST";
 
         // Audio
-        private const string MUSIC_FLOWEY = "event:/pusheen/music/lvl10/flowey";
-        private const string MUSIC_FLOWEY_ALT = "event:/pusheen/music/lvl10/flowey_alt";
-        private const string SFX_FLOWEY_EMERGE = "event:/pusheen/sfx/lvl10/flowey_emerge";
-        private const string SFX_MUSIC_DROP = "event:/pusheen/sfx/lvl10/music_drop";
-        private const string SFX_SEED_CIRCLE = "event:/pusheen/sfx/lvl10/seed_circle";
-        private const string SFX_FLOWEY_LAUGH = "event:/pusheen/sfx/lvl10/flowey_laugh";
-        private const string SFX_STAR_BULLET = "event:/pusheen/sfx/lvl10/star_bullet_hit";
+        private const string MUSIC_FLOWEY = "event:/Mods/pusheen/music/lvl10/flowey";
+        private const string MUSIC_FLOWEY_ALT = "event:/Mods/pusheen/music/lvl10/flowey_alt";
+        private const string SFX_FLOWEY_EMERGE = "event:/Mods/pusheen/sfx/lvl10/flowey_emerge";
+        private const string SFX_MUSIC_DROP = "event:/Mods/pusheen/sfx/lvl10/music_drop";
+        private const string SFX_SEED_CIRCLE = "event:/Mods/pusheen/sfx/lvl10/seed_circle";
+        private const string SFX_FLOWEY_LAUGH = "event:/Mods/pusheen/sfx/lvl10/flowey_laugh";
+        private const string SFX_STAR_BULLET = "event:/Mods/pusheen/sfx/lvl10/star_bullet_hit";
 
         // Default spawn offset from player (right side of screen)
         private const float FLOWEY_SPAWN_OFFSET_X = 120f;

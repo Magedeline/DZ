@@ -14,9 +14,9 @@ namespace Celeste.Cutscenes
     [Tracked]
     public class CS21_RealTheEnd : CutsceneEntity
     {
-        private const string MUSIC_THE_END = "event:/pusheen/music/menu/goodnight";
+        private const string MUSIC_THE_END = "event:/Mods/pusheen/music/menu/goodnight";
 
-        private const string MUSIC_FAKE_THE_END = "event:/pusheen/music/menu/els_win";
+        private const string MUSIC_FAKE_THE_END = "event:/Mods/pusheen/music/menu/els_win";
 
         private Player player;
         private bool wasGoodEnding;

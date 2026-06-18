@@ -57,7 +57,7 @@ namespace DZ
 			base.Add(new Coroutine(this.cameraUp(), true));
 			if (!string.IsNullOrEmpty(this.text) && this.index >= 0)
 			{
-				Audio.Play("event:/pusheen/game/09_beyondsummit/altitude_count");
+				Audio.Play("event:/Mods/pusheen/game/09_beyondsummit/altitude_count");
 			}
 			while ((this.ease += Engine.DeltaTime / 0.15f) < 1f)
 			{
@@ -106,12 +106,12 @@ namespace DZ
 				int num = this.index + 1;
 				if (num <= 5)
 				{
-					session.Audio.Music.Event = "event:/pusheen/music/lvl9/main";
+					session.Audio.Music.Event = "event:/Mods/pusheen/music/lvl9/main";
 					session.Audio.Music.Progress = num;
 				}
 				else
 				{
-					session.Audio.Music.Event = "event:/pusheen/music/lvl9/final_ascent";
+					session.Audio.Music.Event = "event:/Mods/pusheen/music/lvl9/final_ascent";
 				}
 				session.Audio.Apply(false);
 			}

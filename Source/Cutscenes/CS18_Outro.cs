@@ -135,7 +135,7 @@ namespace Celeste.Cutscenes
             // Play phone rumble sound with "end" parameter at 1f
             try
             {
-                Audio.Play("event:/pusheen/game/04_legend/sequence_phone_ring_loop", player.Position, "end", 1f);
+                Audio.Play("event:/Mods/pusheen/game/04_legend/sequence_phone_ring_loop", player.Position, "end", 1f);
             }
             catch (Exception ex)
             {
@@ -175,7 +175,7 @@ namespace Celeste.Cutscenes
             // Play locking sound
             try
             {
-                Audio.Play("event:/pusheen/new_content/game/19_spaces/locked_door_appear_1", player.Position);
+                Audio.Play("event:/Mods/pusheen/new_content/game/19_spaces/locked_door_appear_1", player.Position);
             }
             catch (Exception ex)
             {
@@ -268,7 +268,7 @@ namespace Celeste.Cutscenes
                 // Play glitch sound with "crash_pitch" parameter
                 try
                 {
-                    Audio.Play("event:/pusheen/game/16_myworld/destroyed_c", player.Position, "crash_pitch", 1f);
+                    Audio.Play("event:/Mods/pusheen/game/16_myworld/destroyed_c", player.Position, "crash_pitch", 1f);
                 }
                 catch (Exception ex)
                 {

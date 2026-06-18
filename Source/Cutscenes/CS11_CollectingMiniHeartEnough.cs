@@ -26,8 +26,8 @@ namespace Celeste.Cutscenes
         // Spin effect constants
         private const float SPIN_DURATION = 1.5f;
         private const float SPIN_SPEED = 20f; // Rotations per second
-        private const string SFX_SPIN = "event:/pusheen/char/kirby/dreamblock_travel";
-        private const string SFX_OUTFIT_CHANGE = "event:/pusheen/char/kirby/appear";
+        private const string SFX_SPIN = "event:/Mods/pusheen/char/kirby/dreamblock_travel";
+        private const string SFX_OUTFIT_CHANGE = "event:/Mods/pusheen/char/kirby/appear";
         #endregion
 
         #region Fields

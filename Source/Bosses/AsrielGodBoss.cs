@@ -18,21 +18,21 @@ namespace Celeste.Entities
         #region Constants and Audio Events
         
         // Audio Events
-        private const string SFX_BARRIER_SHATTER = "event:/pusheen/new_content/char/bosses/asriel/Asriel_BarrierShatter";
-        private const string SFX_BIG_BULLET_FIRE = "event:/pusheen/new_content/char/bosses/asriel/Asriel_Big_Bullet_Fire";
-        private const string SFX_BIGGER_GUN_FIRE = "event:/pusheen/new_content/char/bosses/asriel/Asriel_Bigger_Gun_Fire";
-        private const string SFX_BIGGER_LIGHTNING_HIT = "event:/pusheen/new_content/char/bosses/asriel/Asriel_Bigger_Lightninghit";
-        private const string SFX_BIGGER_GUN_MECHANIZED = "event:/pusheen/new_content/char/bosses/asriel/biggergunmechanized";
-        private const string SFX_CINEMATIC_CUT = "event:/pusheen/new_content/char/bosses/asriel/cinematiccut";
-        private const string SFX_GRAB = "event:/pusheen/new_content/char/bosses/asriel/grab";
-        private const string SFX_GUNSHOT = "event:/pusheen/new_content/char/bosses/asriel/gunshot";
-        private const string SFX_HYPERGONER_CHARGE = "event:/pusheen/new_content/char/bosses/asriel/hypergoner_charge";
-        private const string SFX_LIGHTNING_HIT = "event:/pusheen/new_content/char/bosses/asriel/Asriel_Lightninghit";
-        private const string SFX_SEGA_POWER_01 = "event:/pusheen/new_content/char/bosses/asriel/Asriel_Segapower01";
-        private const string SFX_SEGA_POWER_02 = "event:/pusheen/new_content/char/bosses/asriel/Asriel_Segapower02";
-        private const string SFX_SPARKLES = "event:/pusheen/new_content/char/bosses/asriel/Asriel_Sparkles";
-        private const string SFX_SPELLCAST_GLITCH = "event:/pusheen/new_content/char/bosses/asriel/Asriel_Spellcast_Glitch";
-        private const string SFX_STAR = "event:/pusheen/new_content/char/bosses/asriel/Asriel_Star";
+        private const string SFX_BARRIER_SHATTER = "event:/Mods/pusheen/new_content/char/bosses/asriel/Asriel_BarrierShatter";
+        private const string SFX_BIG_BULLET_FIRE = "event:/Mods/pusheen/new_content/char/bosses/asriel/Asriel_Big_Bullet_Fire";
+        private const string SFX_BIGGER_GUN_FIRE = "event:/Mods/pusheen/new_content/char/bosses/asriel/Asriel_Bigger_Gun_Fire";
+        private const string SFX_BIGGER_LIGHTNING_HIT = "event:/Mods/pusheen/new_content/char/bosses/asriel/Asriel_Bigger_Lightninghit";
+        private const string SFX_BIGGER_GUN_MECHANIZED = "event:/Mods/pusheen/new_content/char/bosses/asriel/biggergunmechanized";
+        private const string SFX_CINEMATIC_CUT = "event:/Mods/pusheen/new_content/char/bosses/asriel/cinematiccut";
+        private const string SFX_GRAB = "event:/Mods/pusheen/new_content/char/bosses/asriel/grab";
+        private const string SFX_GUNSHOT = "event:/Mods/pusheen/new_content/char/bosses/asriel/gunshot";
+        private const string SFX_HYPERGONER_CHARGE = "event:/Mods/pusheen/new_content/char/bosses/asriel/hypergoner_charge";
+        private const string SFX_LIGHTNING_HIT = "event:/Mods/pusheen/new_content/char/bosses/asriel/Asriel_Lightninghit";
+        private const string SFX_SEGA_POWER_01 = "event:/Mods/pusheen/new_content/char/bosses/asriel/Asriel_Segapower01";
+        private const string SFX_SEGA_POWER_02 = "event:/Mods/pusheen/new_content/char/bosses/asriel/Asriel_Segapower02";
+        private const string SFX_SPARKLES = "event:/Mods/pusheen/new_content/char/bosses/asriel/Asriel_Sparkles";
+        private const string SFX_SPELLCAST_GLITCH = "event:/Mods/pusheen/new_content/char/bosses/asriel/Asriel_Spellcast_Glitch";
+        private const string SFX_STAR = "event:/Mods/pusheen/new_content/char/bosses/asriel/Asriel_Star";
         private const string SFX_BOSS_HIT = "event:/char/badeline/boss_hug";
         private const string SFX_BOSS_LASER_CHARGE = "event:/char/badeline/boss_laser_charge";
         private const string SFX_BOSS_LASER_FIRE = "event:/char/badeline/boss_laser_fire";
@@ -398,10 +398,10 @@ namespace Celeste.Entities
 
         // Music progression
         private string[] musicTracks = {
-            "event:/pusheen/new_content/music/lvl20/kirby_vs_asriel_fight_1",
+            "event:/Mods/pusheen/new_content/music/lvl20/kirby_vs_asriel_fight_1",
         };
         
-        private const string ASRIEL_REMEMBER_PART_2 = "event:/pusheen/new_content/music/lvl20/kirby_vs_asriel_fight_1";
+        private const string ASRIEL_REMEMBER_PART_2 = "event:/Mods/pusheen/new_content/music/lvl20/kirby_vs_asriel_fight_1";
         private bool asrielRememberTriggered = false;
         private bool hyperGonerPhaseTransitionTriggered = false;
         
@@ -1178,7 +1178,7 @@ namespace Celeste.Entities
             CreateShockwaveEffect(isKirbyMode);
             
             // Play pushback sound
-            Audio.Play("event:/pusheen/new_content/char/bosses/asriel/Asriel_scream_hit", Center);
+            Audio.Play("event:/Mods/pusheen/new_content/char/bosses/asriel/Asriel_scream_hit", Center);
             
             // Screen shake
             level.Shake(0.3f);
@@ -2784,7 +2784,7 @@ namespace Celeste.Entities
         {
             var asrielboss = this;
             currentAttackPhase = AttackPhase.Charging;
-            Audio.Play("event:/pusheen/new_content/char/els/Els_StarDeath", asrielboss.Position);
+            Audio.Play("event:/Mods/pusheen/new_content/char/els/Els_StarDeath", asrielboss.Position);
             yield return 0.5f;
             var entity = asrielboss.level.Tracker.GetEntity<global::Celeste.Player>();
             if (entity != null)
@@ -3372,7 +3372,7 @@ namespace Celeste.Entities
             yield return 0.5f;
 
             // Start boss music now that the god boss has appeared
-            level.Session.Audio.Music.Event = "event:/pusheen/new_content/music/lvl20/kirby_vs_asriel_fight_1";
+            level.Session.Audio.Music.Event = "event:/Mods/pusheen/new_content/music/lvl20/kirby_vs_asriel_fight_1";
             level.Session.Audio.Apply();
 
             // Restore player control
@@ -3473,7 +3473,7 @@ namespace Celeste.Entities
         {
             Logger.Log(LogLevel.Info, "DZ", "AsrielGodBoss: Trigger 2 - RevealIdentity_AsrielTurnIntoGodAndFinalWriter started");
             // Play the Asriel create sound effect
-            Audio.Play("event:/pusheen/new_content/char/bosses/asriel/create");
+            Audio.Play("event:/Mods/pusheen/new_content/char/bosses/asriel/create");
 
             // Screen flash for dramatic effect
             if (level != null)

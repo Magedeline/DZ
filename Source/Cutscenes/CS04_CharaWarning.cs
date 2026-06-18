@@ -38,7 +38,7 @@ namespace Celeste.Cutscenes
 
         #region Fields
         private global::Celeste.Player player;
-        private CharaChaser2 chara;
+        private CharaChaser chara;
         private Vector2 charaStartPosition;
         private Vector2 charaEndPosition;
         private float anxietyFade;
@@ -48,7 +48,7 @@ namespace Celeste.Cutscenes
         private bool charaWasVisible;
         #endregion
 
-        public CS04_CharaWarning(CharaChaser2 charaChaser) : base(true, false)
+        public CS04_CharaWarning(CharaChaser charaChaser) : base(true, false)
         {
             chara = charaChaser ?? throw new ArgumentNullException(nameof(charaChaser));
             charaStartPosition = charaChaser.Position;
@@ -218,9 +218,9 @@ namespace Celeste.Cutscenes
             level.Displacement.AddBurst(chara.Center, 0.6f, 16f, 128f, 0.5f);
             
             // Emit particles
-            if (CharaChaser2.P_Vanish != null)
+            if (CharaChaser.P_Vanish != null)
             {
-                level.Particles.Emit(CharaChaser2.P_Vanish, 16, chara.Center, Vector2.One * 8f);
+                level.Particles.Emit(CharaChaser.P_Vanish, 16, chara.Center, Vector2.One * 8f);
             }
 
             // Fade out animation
@@ -253,7 +253,7 @@ namespace Celeste.Cutscenes
                 }
 
                 // Set warning flag so cutscene doesn't play again
-                level.Session.SetFlag("chara2_warning", true);
+                level.Session.SetFlag("maggy_chara_warning", true);
 
                 // Reset chara state
                 if (chara != null)
@@ -278,10 +278,10 @@ namespace Celeste.Cutscenes
         /// </summary>
         private class ChaseStarter : Entity
         {
-            private readonly CharaChaser2 chara;
+            private readonly CharaChaser chara;
             private readonly Level level;
 
-            public ChaseStarter(CharaChaser2 charaChaser, Level level)
+            public ChaseStarter(CharaChaser charaChaser, Level level)
             {
                 chara = charaChaser;
                 this.level = level;

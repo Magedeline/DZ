@@ -54,7 +54,8 @@ kirbyPlayerTrigger.fieldInformation = {
             "OnExit", 
             "Toggle"
         },
-        editable = false
+        editable = false,
+        description = "When to trigger the transformation"
     },
     transformationType = {
         options = {
@@ -62,31 +63,39 @@ kirbyPlayerTrigger.fieldInformation = {
             "Animated",
             "Fade"
         },
-        editable = false
+        editable = false,
+        description = "Visual style of the transformation"
     },
     oneUse = {
-        fieldType = "boolean"
+        fieldType = "boolean",
+        description = "Trigger can only be used once"
     },
     transformAnimation = {
-        fieldType = "string"
+        fieldType = "string",
+        description = "Animation ID to play during transformation"
     },
     transformDuration = {
         fieldType = "number",
         minimumValue = 0.0,
-        maximumValue = 10.0
+        maximumValue = 10.0,
+        description = "Duration of the transformation effect in seconds"
     },
     preserveVelocity = {
-        fieldType = "boolean"
+        fieldType = "boolean",
+        description = "Keep player momentum during transformation"
     },
     requiredFlag = {
-        fieldType = "string"
+        fieldType = "string",
+        description = "Session flag required for trigger to activate"
     },
     playSound = {
-        fieldType = "boolean"
+        fieldType = "boolean",
+        description = "Play sound effect during transformation"
     },
     initialPower = {
         options = kirbyPowerStates,
-        editable = false
+        editable = false,
+        description = "Copy ability to give when transforming to Kirby"
     }
 }
 

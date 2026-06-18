@@ -210,11 +210,6 @@ namespace DZ
                     $"[MonoModHooks] Failed to hook LevelTemplate: {ex.Message}");
             }
 
-            // ─── 7. Audio Theme Hook Loading ───────────────────────────────────
-            // Load audio hooks based on selected theme (Pusheen or Kirby)
-            PusheenAudioHook.Load();
-            KirbyAudioHook.Load();
-
             Logger.Log(LogLevel.Info, "DZ",
                 "[MonoModHooks] All advanced MonoMod hooks loaded");
         }
@@ -257,10 +252,6 @@ namespace DZ
 
             // Remove dream-block swap hooks
             DreamBlockPlayerSwapHooks.Unload();
-
-            // Remove audio theme hooks
-            PusheenAudioHook.Unload();
-            KirbyAudioHook.Unload();
 
             Logger.Log(LogLevel.Info, "DZ",
                 "[MonoModHooks] All advanced MonoMod hooks unloaded");

@@ -399,12 +399,6 @@ namespace Celeste.Triggers
                 var actualPlayer = kPlayer != null ? Unsafe.As<global::Celeste.Entities.K_Player, global::Celeste.Player>(ref kPlayer) : player;
                 return new global::Celeste.Cutscenes.Cs03ModEnding(actualPlayer);
             });
-
-            // Chapter 4
-            Register("cs04_chara_warning", (trigger, player, eventId) => {
-                var chara = (trigger.Scene as Level).Entities.FindFirst<global::Celeste.Entities.CharaChaser2>();
-                return chara != null ? new global::Celeste.Cutscenes.CS04_CharaWarning(chara) : null;
-            });
             
             // Chapter 7
             Register("cs07_darker", (trigger, player, eventId) => new global::Celeste.Cutscenes.CS07_Darker(player));

@@ -31,6 +31,14 @@ namespace Celeste.Entities
         
         // Player tracking for dream dash
         private Player playerInsideBlock;
+        
+        // Timer for escape challenge - player must get through before timer expires
+        private float escapeTimer;
+        private float maxEscapeTime;
+        private bool timerActive;
+        private bool warningTriggered;
+        private const float DEFAULT_ESCAPE_TIME = 1.5f; // Default 1.5 seconds to escape
+        private const float WARNING_THRESHOLD = 0.5f;   // Start warning at 0.5 seconds left
 
         public NightmareBlock(
             Vector2 position,
@@ -62,6 +70,8 @@ namespace Celeste.Entities
             : this(data.Position + offset, data.Width, data.Height, data.FirstNodeNullable(offset), data.Bool(nameof (fastMoving)), data.Bool(nameof (oneUse)), data.Bool("below"))
         {
             playerHasDreamDash = data.Bool("active", false);
+            maxEscapeTime = data.Float("escapeTime", DEFAULT_ESCAPE_TIME);
+            escapeTimer = maxEscapeTime;
         }
 
         public override void Added(Scene scene)
@@ -122,20 +132,57 @@ namespace Celeste.Entities
 
         public void OnPlayerExit(Player player)
         {
-            Dust.Burst(player.Position, player.Speed.Angle(), 16);
-            Vector2 vector2 = Vector2.Zero;
-            if (CollideCheck(player, Position + Vector2.UnitX * 4f))
-                vector2 = Vector2.UnitX;
-            else if (CollideCheck(player, Position - Vector2.UnitX * 4f))
-                vector2 = -Vector2.UnitX;
-            else if (CollideCheck(player, Position + Vector2.UnitY * 4f))
-                vector2 = Vector2.UnitY;
-            else if (CollideCheck(player, Position - Vector2.UnitY * 4f))
-                vector2 = -Vector2.UnitY;
-            int num = vector2 != Vector2.Zero ? 1 : 0;
-            if (!oneUse)
-                return;
-            OneUseDestroy();
+            // Player successfully escaped before timer expired!
+            // (If timer expired, TimerExpiredKillPlayer already handled it)
+            if (timerActive && escapeTimer > 0)
+            {
+                // Success - create escape burst effect
+                Level level = SceneAs<Level>();
+                if (level != null)
+                {
+                    // Green success particles
+                    for (int i = 0; i < 15; i++)
+                    {
+                        Vector2 offset = new Vector2(
+                            Calc.Random.Range(-16f, 16f),
+                            Calc.Random.Range(-16f, 16f)
+                        );
+                        level.ParticlesFG.Emit(Strawberry.P_WingsBurst, player.Position + offset, Color.Lime);
+                    }
+                    Audio.Play("event:/game/general/diamond_get", player.Position);
+                }
+            }
+
+            // Self-destruct the block (whether escaped or expired)
+            ShatterAndDestroy();
+        }
+
+        private void ShatterAndDestroy()
+        {
+            Level level = SceneAs<Level>();
+            if (level != null)
+            {
+                // Create shatter particles
+                for (int i = 0; i < Width; i += 4)
+                {
+                    for (int j = 0; j < Height; j += 4)
+                    {
+                        Vector2 particlePos = new Vector2(X + i, Y + j);
+                        level.ParticlesFG.Emit(Strawberry.P_WingsBurst, particlePos, Color.DarkRed);
+                    }
+                }
+
+                // Screen shake
+                level.Shake(0.5f);
+
+                // Sound effect
+                Audio.Play("event:/game/general/thing_booped", Center);
+            }
+
+            // Destroy the block
+            Collidable = Visible = false;
+            DisableStaticMovers();
+            RemoveSelf();
         }
 
         private void OneUseDestroy()
@@ -169,17 +216,79 @@ namespace Celeste.Entities
                 {
                     playerInsideBlock = player;
                     Collidable = false;
+                    timerActive = true;
+                    escapeTimer = maxEscapeTime;
+                    warningTriggered = false;
                     Audio.Play("event:/game/06_reflection/dreamblock_enter", player.Position);
                 }
 
-                // Player has left the block - make it solid again
+                // Player has left the block - successful escape!
                 if (playerInsideBlock != null && !CollideCheck(playerInsideBlock))
                 {
                     OnPlayerExit(playerInsideBlock);
                     playerInsideBlock = null;
                     Collidable = true;
+                    timerActive = false;
+                    escapeTimer = maxEscapeTime;
+                    warningTriggered = false;
                 }
             }
+
+            // Handle escape timer
+            if (timerActive && playerInsideBlock != null)
+            {
+                escapeTimer -= Engine.DeltaTime;
+
+                // Warning effects when time is running low
+                if (escapeTimer <= WARNING_THRESHOLD && !warningTriggered)
+                {
+                    warningTriggered = true;
+                    TriggerWarningEffects();
+                }
+
+                // Timer expired - kill player and destroy block
+                if (escapeTimer <= 0)
+                {
+                    TimerExpiredKillPlayer();
+                }
+            }
+        }
+
+        private void TriggerWarningEffects()
+        {
+            Level level = SceneAs<Level>();
+            if (level != null)
+            {
+                // Intense screen shake
+                level.Shake(0.3f);
+                
+                // Warning sound
+                Audio.Play("event:/game/general/thing_booped", Center);
+                
+                // Red warning particles
+                for (int i = 0; i < 20; i++)
+                {
+                    Vector2 offset = new Vector2(
+                        Calc.Random.Range(-Width/2, Width/2),
+                        Calc.Random.Range(-Height/2, Height/2)
+                    );
+                    level.ParticlesFG.Emit(Strawberry.P_WingsBurst, Center + offset, Color.Red);
+                }
+            }
+        }
+
+        private void TimerExpiredKillPlayer()
+        {
+            if (playerInsideBlock != null)
+            {
+                // Kill the player for failing to escape in time
+                playerInsideBlock.Die(Vector2.Zero);
+                playerInsideBlock = null;
+            }
+
+            // Self-destruct the block
+            ShatterAndDestroy();
+            timerActive = false;
         }
 
         public bool BlockedCheck()
@@ -242,10 +351,51 @@ namespace Celeste.Entities
             WobbleLine(shake + new Vector2(X + Width, Y), shake + new Vector2(X + Width, Y + Height), 0.7f);
             WobbleLine(shake + new Vector2(X + Width, Y + Height), shake + new Vector2(X, Y + Height), 1.5f);
             WobbleLine(shake + new Vector2(X, Y + Height), shake + new Vector2(X, Y), 2.5f);
+            
+            // Draw escape timer bar when player is inside
+            if (timerActive && playerInsideBlock != null)
+            {
+                DrawTimerBar();
+            }
+            
             Draw.Rect(shake + new Vector2(X, Y), 2f, 2f, playerHasDreamDash ? NightmareBlock.activeLineColor : NightmareBlock.disabledLineColor);
             Draw.Rect(shake + new Vector2((float) (X + (double) Width - 2.0), Y), 2f, 2f, playerHasDreamDash ? NightmareBlock.activeLineColor : NightmareBlock.disabledLineColor);
             Draw.Rect(shake + new Vector2(X, (float) (Y + (double) Height - 2.0)), 2f, 2f, playerHasDreamDash ? NightmareBlock.activeLineColor : NightmareBlock.disabledLineColor);
             Draw.Rect(shake + new Vector2((float) (X + (double) Width - 2.0), (float) (Y + (double) Height - 2.0)), 2f, 2f, playerHasDreamDash ? NightmareBlock.activeLineColor : NightmareBlock.disabledLineColor);
+        }
+
+        private void DrawTimerBar()
+        {
+            float timerPercent = escapeTimer / maxEscapeTime;
+            int barWidth = (int)(Width * 0.8f);
+            int barHeight = 4;
+            float barX = X + (Width - barWidth) / 2f;
+            float barY = Y + Height - 8;
+            
+            // Background (dark)
+            Draw.Rect(barX, barY, barWidth, barHeight, Color.Black * 0.7f);
+            
+            // Timer fill color based on urgency
+            Color fillColor;
+            if (timerPercent > 0.6f)
+                fillColor = Color.Lime;      // Safe - green
+            else if (timerPercent > 0.3f)
+                fillColor = Color.Yellow;    // Warning - yellow
+            else
+                fillColor = Color.Red;       // Danger - red
+            
+            // Fill bar
+            int fillWidth = (int)(barWidth * timerPercent);
+            if (fillWidth > 0)
+            {
+                Draw.Rect(barX, barY, fillWidth, barHeight, fillColor);
+            }
+            
+            // Border
+            Draw.Rect(barX - 1, barY - 1, barWidth + 2, 1, Color.White);
+            Draw.Rect(barX - 1, barY + barHeight, barWidth + 2, 1, Color.White);
+            Draw.Rect(barX - 1, barY, 1, barHeight, Color.White);
+            Draw.Rect(barX + barWidth, barY, 1, barHeight, Color.White);
         }
 
         private Vector2 PutInside(Vector2 pos)

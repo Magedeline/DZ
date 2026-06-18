@@ -146,6 +146,14 @@ public class CS02_CharaIntro : CutsceneEntity
         // Signal CharaChaser that intro is complete and it should begin chasing
         chara.BeginChasing();
 
-        level.Session.SetFlag("evil_chara_intro");
+        // Set appropriate flag based on campaign
+        if (level.Session.Area.GetLevelSet() == "Maggy")
+        {
+            level.Session.SetFlag("maggy_chara_intro");
+        }
+        else
+        {
+            level.Session.SetFlag("evil_chara_intro");
+        }
     }
 }

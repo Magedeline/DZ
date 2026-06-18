@@ -34,11 +34,11 @@ public class DZModule : EverestModule {
     public override void Load() {
         // typeof(DZExports).ModInterop(); // TODO: delete this line if you do not need to export any functions
 
-        // TODO: apply any hooks that should always be active
+        AudioReplacer.Load();
     }
 
     public override void Unload() {
-        // TODO: unapply any hooks applied in Load()
+        AudioReplacer.Unload();
     }
 
     /// <summary>

@@ -472,7 +472,8 @@ namespace Celeste.Entities
         // Kirby player sprite (overlays vanilla Sprite when KirbyModeActive)
         public Monocle.Sprite kirbySprite;
 
-
+        // Kirby player controller (handles flying, inhaling, glomping mechanics)
+        public KirbyPlayerController kirbyController;
 
         // Combat Vars
         public bool CombatEnabled = false;
@@ -837,6 +838,9 @@ namespace Celeste.Entities
             };
 
             Add(reflection = new MirrorReflection());
+
+            // Kirby player controller - handles flying, inhaling, glomping mechanics
+            Add(kirbyController = new KirbyPlayerController());
         }
 
         public override void Awake(Scene scene)
@@ -3448,6 +3452,26 @@ namespace Celeste.Entities
             if (LiftBoost.Y < 0 && wasOnGround && !onGround && Speed.Y >= 0)
                 Speed.Y = LiftBoost.Y;
 
+            // Check if KirbyPlayerController wants to enter flying state
+            if (kirbyController != null && KirbyModeActive)
+            {
+                // If controller says we're flying and not already in float state, transition
+                if (kirbyController.IsFlying && StateMachine.State != StKirbyFloat && Holding == null)
+                {
+                    // Only transition if we're not on ground or just started flying
+                    if (!onGround || Input.MoveY.Value < 0)
+                    {
+                        return StKirbyFloat;
+                    }
+                }
+
+                // If controller is inhaling, transition to inhale state
+                if (kirbyController.IsInhaling && StateMachine.State != StKirbyInhale)
+                {
+                    return StKirbyInhale;
+                }
+            }
+
             if (Holding == null)
             {
                 if (Input.Grab.Check && !IsTired && !Ducking)
@@ -3828,7 +3852,10 @@ namespace Celeste.Entities
                     }
 
                     // Kirby Float: signature puff jump
-                    if (kirbyFlapCount > 0 && Holding == null)
+                    // Use controller's state if available, otherwise fall back to internal flap count
+                    bool canFloat = (kirbyController?.IsFlying == true) ||
+                                    (kirbyController == null && kirbyFlapCount > 0);
+                    if (canFloat && Holding == null)
                     {
                         Input.Jump.ConsumeBuffer();
                         return StKirbyFloat;
@@ -6782,8 +6809,13 @@ namespace Celeste.Entities
                 }
             }
 
-            // stop inhaling
-            if (!Input.Grab.Check || kirbyInhaleTimer <= 0)
+            // stop inhaling - check both input and controller state
+            bool shouldStopInhaling = !Input.Grab.Check || kirbyInhaleTimer <= 0;
+            if (kirbyController != null && !kirbyController.IsInhaling)
+            {
+                shouldStopInhaling = true;
+            }
+            if (shouldStopInhaling)
             {
                 return StNormal;
             }
@@ -6853,7 +6885,16 @@ namespace Celeste.Entities
         private void KirbyFloatBegin()
         {
             // Consume one flap on entry
-            kirbyFlapCount = Math.Max(0, kirbyFlapCount - 1);
+            // Synchronize with controller if available
+            if (kirbyController != null)
+            {
+                // Controller manages its own flap state
+                kirbyFlapCount = Math.Max(0, kirbyFlapCount - 1);
+            }
+            else
+            {
+                kirbyFlapCount = Math.Max(0, kirbyFlapCount - 1);
+            }
             kirbyFlapScaleTimer = KirbyFlapScaleTime;
 
             // Initial upward kick — preserves stronger upward momentum so
@@ -6926,10 +6967,12 @@ namespace Celeste.Entities
                 }
 
                 // Additional flap: press jump again to bounce upward (costs a flap)
-                if (kirbyFlapCount > 0)
+                // Check both internal flap count and controller state
+                bool hasFlaps = kirbyFlapCount > 0 || kirbyController?.IsFlying == true;
+                if (hasFlaps)
                 {
                     Input.Jump.ConsumeBuffer();
-                    kirbyFlapCount--;
+                    kirbyFlapCount = Math.Max(0, kirbyFlapCount - 1);
                     kirbyFlapScaleTimer = KirbyFlapScaleTime;
 
                     Speed.Y = KirbyFloatSpeed;
@@ -6940,14 +6983,17 @@ namespace Celeste.Entities
                 }
             }
 
-            // Out of flaps ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â gravity takes over, return to normal when going fast enough downward
-            if (kirbyFlapCount <= 0 && Speed.Y > KirbyFloatFallSpeed)
+            // Out of flaps - also check controller state
+            bool outOfFlaps = kirbyFlapCount <= 0 && (kirbyController == null || !kirbyController.IsFlying);
+            if (outOfFlaps && Speed.Y > KirbyFloatFallSpeed)
                 return StNormal;
 
-            // Land ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â restore flap count and exit float
+            // Land - restore flap count and exit float
             if (onGround && Speed.Y >= 0)
             {
                 kirbyFlapCount = DZModule.Settings?.KirbyMaxFloatJumps ?? 5;
+                // Reset controller state if present
+                kirbyController?.Reset();
                 return StNormal;
             }
 

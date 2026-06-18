@@ -138,6 +138,9 @@ public class CharaChaser : Entity
         // Check if this is the DesoloZantas campaign - if so, apply story-specific logic
         bool isDesoloZantasCampaign = session.Area.GetLevelSet() == "DesoloZantas";
         
+        // Check if this is the Maggy campaign
+        bool isMaggyCampaign = session.Area.GetLevelSet() == "Maggy";
+        
         if (isDesoloZantasCampaign)
         {
             // Check if already completed the chara intro
@@ -163,7 +166,7 @@ public class CharaChaser : Entity
                     Sprite.Play("fallSlow");
                 }
                 
-                session.Audio.Music.Event = "event:/pusheen/music/lvl2/evil_chara";
+                session.Audio.Music.Event = "event:/Mods/pusheen/music/lvl2/evil_chara";
                 session.Audio.Apply(forceSixteenthNoteHack: false);
                 
                 // Add the intro cutscene only once per room load (if enabled).
@@ -176,6 +179,66 @@ public class CharaChaser : Entity
 
             // Normal chase behavior for DesoloZantas - only start if intro was already seen
             if (session.GetFlag("evil_chara_intro") || session.GetFlag("chara_intro"))
+            {
+                Add(new Coroutine(StartChasingRoutine(level)));
+            }
+        }
+        else if (isMaggyCampaign)
+        {
+            // Maggy campaign specific logic
+            
+            // Check for ASide group and specific maps
+            if (session.Area.Mode == AreaMode.Normal)
+            {
+                // Map 02_nightmare, level b-3 - trigger CS02_CharaIntro
+                if (session.Level == "b-3" && !session.GetFlag("maggy_chara_intro"))
+                {
+                    // Set up for cutscene - player finds Chara pretending to be dead
+                    Hovering = false;
+                    Visible = true;
+                    if (Hair != null) Hair.Visible = false;
+                    if (Sprite.Has("pretendDead"))
+                    {
+                        Sprite.Play("pretendDead");
+                    }
+                    else if (Sprite.Has("fallSlow"))
+                    {
+                        Sprite.Play("fallSlow");
+                    }
+                    
+                    session.Audio.Music.Event = "event:/Mods/pusheen/music/lvl2/evil_chara";
+                    session.Audio.Apply(forceSixteenthNoteHack: false);
+                    
+                    // Add the intro cutscene only once per room load (if enabled).
+                    if (triggerIntro && scene.Tracker.GetEntity<CS02_CharaIntro>() == null)
+                    {
+                        scene.Add(new CS02_CharaIntro(this));
+                    }
+                    return;
+                }
+                
+                // Map 04_Legend, level b-03 - trigger CS04_CharaWarning
+                if (session.Level == "b-03" && !session.GetFlag("maggy_chara_warning"))
+                {
+                    // Set up for warning cutscene
+                    Hovering = false;
+                    Visible = false;
+                    if (Hair != null) Hair.Visible = false;
+                    
+                    session.Audio.Music.Event = "event:/Mods/pusheen/music/lvl4/chara_warning";
+                    session.Audio.Apply(forceSixteenthNoteHack: false);
+                    
+                    // Add the warning cutscene only once per room load (if enabled).
+                    if (triggerIntro && scene.Tracker.GetEntity<CS04_CharaWarning>() == null)
+                    {
+                        scene.Add(new CS04_CharaWarning(this));
+                    }
+                    return;
+                }
+            }
+            
+            // Normal chase behavior for Maggy - start if intro was already seen
+            if (session.GetFlag("maggy_chara_intro") || session.GetFlag("maggy_chara_warning"))
             {
                 Add(new Coroutine(StartChasingRoutine(level)));
             }

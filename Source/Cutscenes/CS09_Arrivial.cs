@@ -89,6 +89,16 @@ public class CS09_Arrivial : CutsceneEntity
     [MethodImpl(MethodImplOptions.NoInlining)]
     public override void OnEnd(Level level)
     {
+        // Reset any velocity left over from the katana strike so a skip doesn't
+        // launch the player upward, and ensure the arrival actually completes:
+        // if the cutscene was skipped before Trigger3 ran, finish the teleport
+        // and set the completion flag so the player isn't left stranded.
+        player.Speed = Vector2.Zero;
+        if (!level.Session.GetFlag("ch9_arrivial_complete"))
+        {
+            level.Session.SetFlag("ch9_arrivial_complete", true);
+            level.TeleportTo(player, "lvl_credit", Player.IntroTypes.Respawn, Vector2.Zero);
+        }
         player.StateMachine.State = Player.StNormal;
     }
 }

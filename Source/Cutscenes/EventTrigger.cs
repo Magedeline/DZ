@@ -411,7 +411,13 @@ namespace Celeste.Triggers
             Register("cs09_credits", (trigger, player, eventId) => new global::Celeste.Cutscenes.CS09_Credits(player));
             Register("cs09_golden_flower", (trigger, player, eventId) => new global::Celeste.Cutscenes.CS09_GoldenFlower(player));
             Register("cs09_message_end", (trigger, player, eventId) => new global::Celeste.Cutscenes.CS09_MessageEnd(player));
-            
+            Register("ch9_arrivial", (trigger, player, eventId) => new DZ.CS09_Arrivial(player));
+
+            // Chapter 10 - Flowey intro (full sequence: Flowey emerges, threatens Madeline,
+            // Kirby & friends arrive). Delegates to FloweyIntroScene which handles spawning,
+            // animations, camera, audio, and the Normal/Returning/Assist dialog variants.
+            Register("ch10_flowey_intro", (trigger, player, eventId) => new global::Celeste.Cutscenes.FloweyIntroScene(player));
+
             // Chapter 15
             Register("ch15_zantas_1", (trigger, player, eventId) => new global::Celeste.Cutscenes.Cs15Zantas1(player));
             Register("ch15_zantas_2", (trigger, player, eventId) => new global::Celeste.Cutscenes.Cs15Zantas2(player));

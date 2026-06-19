@@ -20,7 +20,6 @@ namespace Celeste.Cutscenes
         private static readonly Vector2 RESPAWN_POINT = new(-176f, 312f);
         
         // NPC positioning offsets for campfire scene
-        private static readonly Vector2 MAGOLOR_OFFSET = new(-50f, -16f);
         private static readonly Vector2 BADELINE_OFFSET = new(50f, -16f);
         private static readonly Vector2 RALSEI_OFFSET = new(-80f, -16f);
 
@@ -269,11 +268,11 @@ namespace Celeste.Cutscenes
                     Option selected = currentOptions[currentOptionIndex];
                     askedQuestions.Add(selected.Question);
                     currentOptions = null;
-                    yield return Textbox.Say(selected.Question.Answer, WaitABit, BeerSequence);
+                    // Selfie option uses trigger 0 to spawn the photo; others use WaitABit
+                    Func<IEnumerator> trigger0 = selected.Question.Ask.EndsWith("SELFIE") ? SelfieSequence : WaitABit;
+                    yield return Textbox.Say(selected.Question.Answer, trigger0, BeerSequence);
                     key = selected.Goto;
-                    if (!string.IsNullOrEmpty(key))
-                        selected = null;
-                    else
+                    if (string.IsNullOrEmpty(key))
                         break;
                 }
                 else
@@ -296,6 +295,33 @@ namespace Celeste.Cutscenes
         private IEnumerator BeerSequence()
         {
             yield return 0.5f;
+        }
+
+        /// <summary>
+        /// Trigger 0 for the selfie dialog option: Badeline takes out her phone
+        /// and captures a group photo around the campfire.
+        /// </summary>
+        private IEnumerator SelfieSequence()
+        {
+            Level level = Scene as Level;
+            if (level == null)
+            {
+                yield return 0.5f;
+                yield break;
+            }
+
+            // Badeline takes out her phone
+            if (badeline != null && badeline.Sprite != null && badeline.Sprite.Has("holdOutPhone"))
+            {
+                badeline.Sprite.Play("holdOutPhone");
+                yield return 1.5f;
+            }
+
+            // Spawn the selfie photo overlay
+            selfie = new Selfie(level);
+            Scene.Add(selfie);
+            yield return selfie.OpenRoutine("selfieCampfire");
+            yield return selfie.WaitForInput();
         }
 
         private IEnumerator PlayerLightApproach()
@@ -582,8 +608,8 @@ namespace Celeste.Cutscenes
             public Question(string id)
             {
                 int maxLineWidth = 1828;
-                Ask = "ch8_madeline_ask_" + id;
-                Answer = "ch8_madeline_say_" + id;
+                Ask = "DZ_CH8_MADELINE_ASK_" + id.ToUpperInvariant();
+                Answer = "DZ_CH8_MADELINE_SAY_" + id.ToUpperInvariant();
                 AskText = FancyText.Parse(Dialog.Get(Ask), maxLineWidth, -1);
                 foreach (FancyText.Node node in AskText.Nodes)
                 {

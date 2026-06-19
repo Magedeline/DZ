@@ -384,11 +384,12 @@ public static class ChapterProgressionManager
             Logger.Log(LogLevel.Info, "DZ", "Processed pending unlock: Chapter 16");
         }
 
-        if (save.PendingUnlockChapter19OnRestart)
+        if (save.PendingUnlockChapter19OnRestart || save.PendingRestartToChapter19)
         {
             UnlockChapter(Ch19Sid);
             save.UnlockedChapter19 = true;
             save.PendingUnlockChapter19OnRestart = false;
+            save.PendingRestartToChapter19 = false;
             Logger.Log(LogLevel.Info, "DZ", "Processed pending unlock: Chapter 19");
         }
 

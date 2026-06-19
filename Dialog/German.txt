@@ -12468,12 +12468,14 @@ Remember this feeling... when darkness comes...
 
 DZ_CH18_OUTRO=[MADELINE right sad]
 God... I'm completely exhausted.
+{trigger 0 madelineWalkRight}
+{trigger 1 badelineAppear}
 [BADELINE left simple_sigh]
 Yeah... same here.
 That was way more intense than I expected.
 [MADELINE right deadpan]
 At least we made it through in one piece.
-{trigger 0 CellPhone Rumbling}
+{trigger 2 cellPhoneRumbling}
 [MADELINE right surprised]
 Huh? Hold on... someone's calling me.
 [madeline_phone right distracted]
@@ -12486,19 +12488,22 @@ You have done well...
 Thanks to you...
 Everything {0.4} has finally fallen into place.
 Chara... {1.0} I will see you soon.
-{trigger 1 doorshut}
+{trigger 3 doorShut}
 [MADELINE right surprised]
 What the--?! Hey!!!
 [MADELINE right angry]
 Don't you dare lock us out!
 Let us through!
-{trigger 0}
+{trigger 4 madelineRunLeft}
 [BADELINE right worried]
 {# 76428a}Madeline... what's happening to the room?!{#}
+{trigger 5 glitchEffectStart}
 [MADELINE right surprised]
 Oh god no... it's collapsing!
+{trigger 6 fadeToWhite}
 [MADELINE right panic]
 What is happ-- {1.0}e-- {2.0}n-- {5.0}ing--?!
+{trigger 7 restartToChapter19}
 
 DZ_CH19_GRAVESTONE={trigger 0 Step Forward to gravestone}
 [KIRBY left surprised]

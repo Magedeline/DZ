@@ -4519,7 +4519,7 @@ Exactly. We're a team now.
 yeah I couldn't do this without you {+PART_OF_ME}
 
 DZ_CH8_MADELINE_ASK_CLIMB=
-[KIRBY left normal]
+[]
 What's is like on this mountain?
 
 DZ_CH8_MADELINE_SAY_CLIMB=
@@ -4528,7 +4528,7 @@ You said what?
 ...
 
 [MADELINE left normal]
-You see.
+...oh ...You see.
 when I first climb it, or before that.
 
 [MADELINE left sadder]
@@ -4561,7 +4561,7 @@ If you know about this.
 Then yeah he could be alive.
 
 DZ_CH8_MADELINE_ASK_GASTER=
-[KIRBY left normal]
+[]
 Why do the monster want to break out?
 
 DZ_CH8_MADELINE_SAY_GASTER=
@@ -4609,7 +4609,7 @@ which to be honest your my friends and I'm somewhat your cousin.
 Well then your always welcome to my places with {+PART_OF_ME}.
 
 DZ_CH8_MADELINE_ASK_VOICE=
-[KIRBY left normal]
+[]
 What was that voice that you heard of?
 
 [MADELINE left distracted]
@@ -4638,7 +4638,7 @@ The same reason that he torture so many of our own monsterkind.
 Yeah it was pretty rough not gonna lied.
 
 DZ_CH8_MADELINE_ASK_MONSTER=
-[KIRBY left normal]
+[]
 Any kind of monster that you found out?
 
 DZ_CH8_MADELINE_SAY_MONSTER=
@@ -4688,7 +4688,7 @@ Sheesh, {0.3} We only have getting up there for a month.
 but there timeline is much faster than this world.
 
 DZ_CH8_MADELINE_ASK_GOAL=
-[KIRBY left normal]
+[]
 What's your goal after this?
 
 DZ_CH8_MADELINE_SAY_GOAL=
@@ -4723,7 +4723,7 @@ It's okay.
 Once those monster kind gets out, then my father would be proud of me.
 
 DZ_CH8_MADELINE_ASK_ANYTHING=
-[KIRBY left normal]
+[]
 anything else?
 
 DZ_CH8_MADELINE_SAY_ANYTHING=
@@ -4754,7 +4754,7 @@ Which they call me recently A Dirty Runt.
 Sheesh no wonder why they were so harsh on you.
 
 DZ_CH8_MADELINE_ASK_BADELINE=
-[KIRBY left normal]
+[]
 when did you two first met?
 
 DZ_CH8_MADELINE_SAY_BADELINE=
@@ -4781,14 +4781,14 @@ But to be fair, I goth you my sis.
 Thanks Darling
 
 DZ_CH8_MADELINE_ASK_VOID=
-[KIRBY left normal]
+[]
 May I tell you void story?
 
 DZ_CH8_MADELINE_SAY_VOID=
 [MADELINE left normal]
 Sure let here it.
 
-[KIRBY left normal]
+[]
 When i in the final battle I see this void who was wicked.
 But at the same time he was being torture and held in the host demon body.
 Which I feel sorry for him.
@@ -4805,7 +4805,7 @@ I hope he would come back and help you out one last time.
 yeah but if he wasn't so mean like El's.
 
 DZ_CH8_MADELINE_ASK_GRANNY=
-[KIRBY left normal]
+[]
 Do you also have a grandma?
 
 DZ_CH8_MADELINE_SAY_GRANNY=
@@ -4825,7 +4825,7 @@ yeah we really miss her so much.
 I am so sorry of what happen, but hopes your grandpa is alive in some what.
 
 DZ_CH8_MADELINE_ASK_SELFIE=
-[KIRBY left normal]
+[]
 Lets take a pictured to remember this for the night.
 
 DZ_CH8_MADELINE_SAY_SELFIE=
@@ -4848,7 +4848,7 @@ You too.
 see you all tomorrow morning.
 
 DZ_CH8_MADELINE_ASK_SLEEP=
-[KIRBY left normal]
+[]
 Man I am really tired
 
 DZ_CH8_MADELINE_SAY_SLEEP=
@@ -4859,7 +4859,7 @@ are you sure about this.
 But we can still talk you know that right?
 
 DZ_CH8_MADELINE_ASK_SLEEP_CONFIRM=
-[KIRBY left normal]
+[]
 Yeah, sorry, but I am really sleepy
 
 DZ_CH8_MADELINE_SAY_SLEEP_CONFIRM=
@@ -4871,12 +4871,234 @@ well then hopes this goes well.
 {+CH6_THEO_SAY_SELFIE}
 
 DZ_CH8_MADELINE_ASK_SLEEP_CANCEL=
-[KIRBY left normal]
+[]
 I'll stay up and talk for abit.
 
 DZ_CH8_MADELINE_SAY_SLEEP_CANCEL=
 [MADELINE left normal]
 Then sure we can talk abit more.
+
+# PLACEHOLDER DIALOG - replace with final text. These 9 entries fill gaps
+# in the campfire branching tree (zero, evilgod, grandpa, story, tips,
+# memories, journey, fears, hope). See Cs08Campfire.cs SetupDialogueNodes.
+
+DZ_CH8_MADELINE_ASK_ZERO=
+[]
+So after all this, do we start from zero?
+
+DZ_CH8_MADELINE_SAY_ZERO=
+[RALSEI right distracted]
+Start from zero?
+What do you mean by that?
+
+[MADELINE left normal]
+Like, once we free the monsterkind and put an end to all of this.
+Do we get to start fresh, or do we carry all of it with us?
+
+[BADELINE right concerned]
+We carry it. That's the point.
+But carrying it isn't the same as being crushed by it.
+
+[MADELINE left sad]
+Yeah. I guess zero was never really an option.
+But that's okay.
+
+DZ_CH8_MADELINE_ASK_EVILGOD=
+[]
+That literal god you mentioned. What was he really?
+
+DZ_CH8_MADELINE_SAY_EVILGOD=
+[MADELINE left upset]
+He called himself a god.
+But a god who tortures for centuries isn't a god.
+He's just a wound that won't stop bleeding.
+
+[BADELINE right angry]
+And the worst part is he convinced everyone he had to be.
+That the trap was the only way.
+
+[RALSEI right sad]
+My mother believed that. She gave herself to the horizon
+to keep him sealed. They all did.
+
+[MADELINE left sadder]
+And he just laughed.
+That's why he has to be stopped for good.
+
+DZ_CH8_MADELINE_ASK_GRANDPA=
+[]
+Your grandpa. Do you think he's still alive in there?
+
+DZ_CH8_MADELINE_SAY_GRANDPA=
+[MADELINE left sad]
+I want to believe it.
+He climbed this mountain when he was younger than me.
+And he never came back.
+
+[BADELINE right worriedalt]
+But the picture. The one with the monsters.
+That means he found them. He was with them.
+
+[MADELINE left normal]
+Which means he might still be there.
+Waiting. Like Sans was waiting.
+Like all of them were waiting.
+
+[RALSEI right normal]
+Then we have to find him.
+After we free the others, we find him too.
+
+[MADELINE left normal]
+Yeah. I'd like that.
+I'd like to finally meet him properly.
+
+DZ_CH8_MADELINE_ASK_STORY=
+[]
+So how does it all fit together? The whole story?
+
+DZ_CH8_MADELINE_SAY_STORY=
+[MADELINE left normal]
+Okay. From the top.
+My grandpa climbed this mountain and never came back.
+
+[MADELINE left sad]
+He found the monster realm. He lived with them.
+And somewhere in there, he ran into the god.
+
+[BADELINE right worried]
+The god who tore monsterkind apart for centuries.
+The one they sacrificed themselves to seal.
+
+[RALSEI right sad]
+And my mother was one of them.
+She gave herself to the event horizon to keep him trapped.
+
+[MADELINE left upset]
+Then I climbed the mountain. Found Sans, found Toriel and Asgore.
+Found {+CHARA}. Found Asriel.
+And now we're here, around this fire, planning to end it.
+
+[BADELINE right normal]
+One thread. From grandpa to god to us.
+And it all comes down to tomorrow.
+
+DZ_CH8_MADELINE_ASK_TIPS=
+[]
+Any tips before tomorrow?
+
+DZ_CH8_MADELINE_SAY_TIPS=
+[MADELINE left normal]
+Yeah, actually.
+Don't try to be a hero. Just try to be there.
+
+[BADELINE right normal]
+And when it gets loud in your head, breathe.
+I learned that the hard way.
+
+[RALSEI right normal]
+And don't forget who you're fighting for.
+The moment you forget them, you become what you're fighting.
+
+[MADELINE left sad]
+That last one's important.
+That's how the god started. He forgot who he was fighting for.
+
+DZ_CH8_MADELINE_ASK_MEMORIES=
+[]
+You two share a lot of memories, huh?
+
+DZ_CH8_MADELINE_SAY_MEMORIES=
+[MADELINE right sad]
+Oh, we do.
+Most of them are of me running from her.
+
+[BADELINE right simple_sigh]
+And most of mine are of you not listening.
+We've both grown since then.
+
+[MADELINE left normal]
+Yeah. The reflection, the farewell, the summit.
+Every time I thought I was done with you, you were just getting started.
+
+[BADELINE right worried]
+I was scared. I didn't know how to say it except by pushing.
+I'm glad you pushed back.
+
+[MADELINE left normal]
+Me too, sis.
+Me too.
+
+DZ_CH8_MADELINE_ASK_JOURNEY=
+[]
+What was the journey like? The whole way up?
+
+DZ_CH8_MADELINE_SAY_JOURNEY=
+[MADELINE left normal]
+Long. Cold. Beautiful in places I didn't expect.
+
+[MADELINE left sad]
+The city, the temple, the cliffside.
+Every chapter had something that broke me and something that put me back.
+
+[BADELINE right normal]
+And the farewell. That was where we finally stopped fighting.
+Where we became one thing instead of two.
+
+[RALSEI right sad]
+And then the monster realm. Two months.
+That's where you found all of us.
+
+[MADELINE left normal]
+Every step was worth it.
+Even the ones that hurt.
+Especially those.
+
+DZ_CH8_MADELINE_ASK_FEARS=
+[]
+What are you afraid of? For tomorrow?
+
+DZ_CH8_MADELINE_SAY_FEARS=
+[MADELINE left sad]
+That we free them and it's too late.
+That they've been in there so long they don't remember how to live outside.
+
+[BADELINE right worried]
+And that the god has had centuries to plan for us.
+He knew someone would come eventually.
+
+[RALSEI right sadder]
+And that I'll have to face what my mother became.
+That she's not in there anymore. Just the seal.
+
+[MADELINE left upset]
+And that I'll freeze.
+Like I always freeze when it matters most.
+
+[BADELINE right normal]
+You won't. You never have.
+Not once. Not really.
+
+DZ_CH8_MADELINE_ASK_HOPE=
+[]
+So what gives you hope?
+
+DZ_CH8_MADELINE_SAY_HOPE=
+[MADELINE left normal]
+This. Right now.
+A fire, friends, and a plan.
+
+[BADELINE right normal]
+And the fact that we've done impossible things before.
+This is just one more.
+
+[RALSEI right normal]
+And every monster in there is waiting for us.
+They've been waiting for centuries. They can wait one more night.
+
+[MADELINE left normal]
+Tomorrow we free them.
+Tonight we rest.
+And maybe we take a picture, so we remember who we were before it all changed.
 
 DZ_CH8_TRUTH_DREAMING=
 [MADELINE left normal]
@@ -15556,14 +15778,16 @@ Remember this feeling... when darkness comes...
 DZ_CH18_OUTRO=
 [MADELINE right sad]
 God... I'm completely exhausted.
+{trigger 0 madelineWalkRight}
 
+{trigger 1 badelineAppear}
 [BADELINE left simple_sigh]
 Yeah... same here.
 That was way more intense than I expected.
 
 [MADELINE right deadpan]
 At least we made it through in one piece.
-{trigger 0 CellPhone Rumbling}
+{trigger 2 cellPhoneRumbling}
 
 [MADELINE right surprised]
 Huh? Hold on... someone's calling me.
@@ -15579,7 +15803,7 @@ You have done well...
 Thanks to you...
 Everything {0.4} has finally fallen into place.
 Chara... {1.0} I will see you soon.
-{trigger 1 doorshut}
+{trigger 3 doorShut}
 
 [MADELINE right surprised]
 What the--?! Hey!!!
@@ -15587,16 +15811,19 @@ What the--?! Hey!!!
 [MADELINE right angry]
 Don't you dare lock us out!
 Let us through!
-{trigger 0}
+{trigger 4 madelineRunLeft}
 
 [BADELINE right worried]
 {# 76428a}Madeline... what's happening to the room?!{#}
+{trigger 5 glitchEffectStart}
 
 [MADELINE right surprised]
 Oh god no... it's collapsing!
+{trigger 6 fadeToWhite}
 
 [MADELINE right panic]
 What is happ-- {1.0}e-- {2.0}n-- {5.0}ing--?!
+{trigger 7 restartToChapter19}
 
 DZ_CH19_GRAVESTONE=
 {trigger 0 Step Forward to gravestone}

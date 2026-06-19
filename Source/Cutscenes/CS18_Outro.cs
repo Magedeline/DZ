@@ -275,13 +275,26 @@ namespace Celeste.Cutscenes
             yield return 1f;
 
             // Show "Chapter 19 Loading" message
-            IngesteLogger.Info("Restarting game to load Chapter 19 (19_spaces.bin)");
+            IngesteLogger.Info("Loading Chapter 19 (19_Space) in-session via CH18_OUTRO vignette");
 
             yield return 2f;
 
-            // Restart the game (will load chapter 19 on next launch)
-            IngesteLogger.Info("Restarting game via CH18_OUTRO vignette");
-            Engine.Instance.Exit();
+            // Transition directly into Chapter 19 instead of closing the game.
+            // The save data flags set above ensure Ch19 is unlocked on subsequent
+            // launches; here we load it immediately so the player continues play.
+            string ch19Sid = DZ.AreaModeExtender.BuildASideSID("19_Space");
+            AreaData ch19Area = AreaData.Get(ch19Sid);
+            if (ch19Area != null)
+            {
+                IngesteLogger.Info($"Transitioning to Chapter 19 (SID={ch19Sid}, ID={ch19Area.ID})");
+                var ch19Session = new Session(ch19Area.ToKey());
+                LevelEnter.Go(ch19Session, fromSaveData: false);
+            }
+            else
+            {
+                IngesteLogger.Error($"Could not find AreaData for Chapter 19 SID '{ch19Sid}'; falling back to chapter select.");
+                Engine.Scene = new OverworldLoader(Overworld.StartMode.AreaComplete);
+            }
 
             yield return 3f;
         }

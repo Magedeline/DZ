@@ -5458,164 +5458,231 @@ well Asriel is the only sibling I ever gad but sadly tho he-
 [CHARA right sad]
 I'll tell you later.
 
-DZ_CH10_FLOWEY_INTRO=[none left]
+DZ_CH10_FLOWEY_INTRO=
+[none left]
+
 {trigger 0 Flowey emerges and Start music}
+
 [FLOWEY right normal]
 Howdy {0.2}I'm Flowey {0.2} FLOWEY The {# ffc800}Flower{#}
+
 [FLOWEY right makeadeal]
 hmmm... you must familiar of who you are,{0.2} your Madeline{0.3} right?
+
 {trigger 1 madeline step forward and omnius zoom in}
+
 [MADELINE left upset]
 Yeah that is my name.
 ... Wait the Minute...!
+
 [MADELINE left angry]
 {*}HOW DO YOU KNOW THAT YOU KNOW MY NAME!?{/*}
+
 [FLOWEY right makeadeal]
 Seriously?!
 Listen up you young lady
-You have no idea about this mountian you just came back to.
+You have no idea about this mountain you just came back to.
 If your gonna yell at me then fine!
 I'll say this...!
+
 [FLOWEY right makeadeal]
 In This World.
+
 [none left]
+
 {trigger 2 flowey caught madeline and music dropped}
+
 [FLOWEY right makeadeal]
 {%}{big}It's Kill{/big}{/%}
+
 [none left]
+
 {trigger 3 circle madeline with seed and heal}
+
 [FLOWEY right makeadeal]
 {%}{big}Or Be {2.0}Killed!!!{/big}{/%}
+
 [none left]
+
 {trigger 4 flowey laugh}
+
 [FLOWEY right makeadeal]
 {0.3}... What the?
+
 {trigger 5 star bullet hit flowey and flowey knock out to the ground}
+
 [KIRBY right normal]
 There you are Madeline are you okay?
+
 {trigger 6 kirby walk in right}
+
 [MADELINE left distracted]
 I'm okay for now it just that Flower somehow knows my name
+
 {trigger 7 theo walk in right}
+
 [THEO right serious]
 Yeah we already know of what we saw.
+
 [CHARA left sad]
 To Be Honest we should leave this places and climb onward
 This mountain can be very dangerous
 and filled with actual monster if were not careful
+
 [MADELINE right sad]
 Yeah good point Chara
+
 [MADELINE left together]
 but with that out of the way.
 {trigger 8 everyone posed}
+
 [MADELINE left togetherzoom]
 Lets do this!
 
-DZ_CH10_FLOWEY_INTRO_RETURNING={trigger 0 Flowey emerges and Start music Alt}
+DZ_CH10_FLOWEY_INTRO_RETURNING=
+{trigger 0 Flowey emerges and Start music Alt}
+
 [FLOWEY right makeadeal]
 Well, well, well... Look who's {# ff0000#}BACK{#}.
+
 [FLOWEY right makeadeal]
 I REMEMBER you, Madeline.
 You climbed higher, didn't you?
 You saw things... experienced things...
+
 [FLOWEY right makeadeal]
 And now you've come crawling back to Chapter 10.
 {trigger 1 madeline step forward and omnius zoom in}
+
 [MADELINE left upset]
 What... what are you talking about?
 How do you...?
+
 [MADELINE left angry]
 {*}How do you remember that?!{/*}
+
 [FLOWEY right makeadeal]
 Oh, you thought you could just {# ffc800#}RESET{#} everything?
 That you could pretend it never happened?
 I remember {# ff0000#}EVERYTHING{#}, Madeline.
+
 [FLOWEY right makeadeal]
-Every death, every success, every secret you découvert...
+Every death, every success, every secret you discovered...
 I know you've been to the void chapters.
 I know what you've seen beyond this mountain.
+
 [FLOWEY right makeadeal]
 In This World.
 {trigger 2 flowey caught madeline and music dropped}
+
 [FLOWEY right makeadeal]
 {%}{big}Nothing stays {2.0}FORGOTTEN!!!{/big}{/%}
 {trigger 3 circle madeline with seed and heal}
+
 [FLOWEY right makeadeal]
 {%}{big}I ALWAYS {2.0}REMEMBER!!!{/big}{/%}
+
 {trigger 4 flowey laugh}
+
 [FLOWEY right makeadeal]
 {0.3}... Oh Great Here we go again...
 {trigger 5 star bullet hit flowey and flowey knock out to the ground}
+
 [KIRBY right normal]
 There you are Madeline are you okay?
 {trigger 6 kirby walk in right}
+
 [MADELINE left distracted]
 That flower... he knew things he shouldn't know...
 {trigger 7 theo walk in right}
+
 [THEO right serious]
 That was definitely not normal.
+
 [CHARA left sad]
 Something's very wrong here.
 That creature remembers things across different timelines.
 We need to be extremely careful.
+
 [MADELINE right sad]
 Yeah... this feels different than before.
+
 [MADELINE left together]
 but we've made it this far.
 {trigger 8 everyone posed}
+
 [MADELINE left togetherzoom]
 Let's keep going!
 
-DZ_CH10_FLOWEY_INTRO_ASSIST={trigger 0 Flowey emerges and Start music}
+DZ_CH10_FLOWEY_INTRO_ASSIST=
+{trigger 0 Flowey emerges and Start music}
+
 [FLOWEY right makeadeal]
 Oh ho ho ho... What do we have here?
+
 [FLOWEY right makeadeal]
 I can {# ffc800#}FEEL{#} it, Madeline.
 You're using those little {# 00ff00#}CHEATS{#}, aren't you?
 Those "assists" that make everything easier?
+
 [FLOWEY right makeadeal]
 Infinite stamina... slowing down time... extra dashes...
 {trigger 1 madeline step forward and omnius zoom in}
+
 [MADELINE left upset]
 How... how do you know about that?
+
 [MADELINE left angry]
 {*}What are you talking about?!{/*}
+
 [FLOWEY right makeadeal]
 Don't play dumb with me!
 I can sense when someone's bending the {# ff0000#}RULES{#}!
 When reality itself is being... {# ffc800#}MODIFIED{#}.
+
 [FLOWEY right makeadeal]
 You think those assists will save you here?
 You think you can just cheat your way through MY domain?
+
 [FLOWEY right makeadeal]
 Well, let me tell you something about this world...
 {trigger 2 flowey caught madeline and music dropped}
+
 [FLOWEY right makeadeal]
 {%}{big}Your cheats won't {2.0}WORK{/big}{/%}
 {trigger 3 circle madeline with seed and heal}
+
 [FLOWEY right makeadeal]
 {%}{big}On {2.0}ME!!!{/big}{/%}
 {trigger 4 flowey laugh}
+
 [FLOWEY right makeadeal]
 {0.3}... What the?
 {trigger 5 star bullet hit flowey and flowey knock out to the ground}
+
 [KIRBY right normal]
 There you are Madeline are you okay?
 {trigger 6 kirby walk in right}
+
 [MADELINE left distracted]
 That flower... it knew about my assists somehow...
 {trigger 7 theo walk in right}
+
 [THEO right serious]
 That's impossible. How could it know?
+
 [CHARA left sad]
 This entity seems to exist beyond normal game mechanics.
 It can perceive things it shouldn't be able to.
 We should proceed with extreme caution.
+
 [MADELINE right sad]
 Even with assists... that was terrifying.
+
 [MADELINE left together]
 But we're not giving up.
 {trigger 8 everyone posed}
+
 [MADELINE left togetherzoom]
 Assists or not, let's do this!
 
@@ -12468,12 +12535,14 @@ Remember this feeling... when darkness comes...
 
 DZ_CH18_OUTRO=[MADELINE right sad]
 God... I'm completely exhausted.
+{trigger 0 madelineWalkRight}
+{trigger 1 badelineAppear}
 [BADELINE left simple_sigh]
 Yeah... same here.
 That was way more intense than I expected.
 [MADELINE right deadpan]
 At least we made it through in one piece.
-{trigger 0 CellPhone Rumbling}
+{trigger 2 cellPhoneRumbling}
 [MADELINE right surprised]
 Huh? Hold on... someone's calling me.
 [madeline_phone right distracted]
@@ -12486,19 +12555,22 @@ You have done well...
 Thanks to you...
 Everything {0.4} has finally fallen into place.
 Chara... {1.0} I will see you soon.
-{trigger 1 doorshut}
+{trigger 3 doorShut}
 [MADELINE right surprised]
 What the--?! Hey!!!
 [MADELINE right angry]
 Don't you dare lock us out!
 Let us through!
-{trigger 0}
+{trigger 4 madelineRunLeft}
 [BADELINE right worried]
 {# 76428a}Madeline... what's happening to the room?!{#}
+{trigger 5 glitchEffectStart}
 [MADELINE right surprised]
 Oh god no... it's collapsing!
+{trigger 6 fadeToWhite}
 [MADELINE right panic]
 What is happ-- {1.0}e-- {2.0}n-- {5.0}ing--?!
+{trigger 7 restartToChapter19}
 
 DZ_CH19_GRAVESTONE={trigger 0 Step Forward to gravestone}
 [KIRBY left surprised]

@@ -174,14 +174,6 @@ public static class VignetteHooks
                     return new Cs04LegendVignette(session);
                 }
                 break;
-
-            case 18:
-                if (!HasSeenVignette(flagKey))
-                {
-                    MarkVignetteSeen(flagKey);
-                    return new Cs18OutroVignette(session);
-                }
-                break;
         }
 
         return null;

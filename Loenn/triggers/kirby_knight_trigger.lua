@@ -49,7 +49,7 @@ trigger.fieldOrder = {
 
 trigger.placements = {
     {
-        name = "knight_enable",
+        name = "main",
         data = {
             width = 16,
             height = 16,

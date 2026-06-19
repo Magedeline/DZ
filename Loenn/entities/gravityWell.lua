@@ -2,7 +2,7 @@ local gravityWell = {}
 gravityWell.name = "DZ/GravityWell"
 gravityWell.depth = -100
 gravityWell.placements = {
-    { name = "gravitywell", data = { pullStrength = 100.0, radius = 80.0, affectsEnemies = false } },
+    { name = "main", data = { pullStrength = 100.0, radius = 80.0, affectsEnemies = false } },
     { name = "gravitywellstrong", data = { pullStrength = 200.0, radius = 120.0, affectsEnemies = true } }
 }
 gravityWell.fieldInformation = {

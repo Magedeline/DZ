@@ -6,12 +6,14 @@ local waddleDee = {}
 waddleDee.name = "DZ/WaddleDee"
 waddleDee.depth = 0
 waddleDee.placements = {
-    name = "WaddleDee",
-    data = {
+    {
+        name = "main",
+        data = {
         health = 1,
         moveSpeed = 30.0,
         patrolDistance = 50.0,
         canBeInhaled = true
+        }
     }
 }
 

@@ -3,7 +3,7 @@ local ch18OutroTrigger = {}
 ch18OutroTrigger.name = "DZ/CH18OutroTrigger"
 ch18OutroTrigger.placements = {
     {
-        name = "ch18_outro_trigger",
+        name = "main",
         data = {
             width = 32,
             height = 32,

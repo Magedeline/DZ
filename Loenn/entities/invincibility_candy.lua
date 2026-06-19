@@ -8,7 +8,7 @@ invincibilityCandy.depth = -50
 
 invincibilityCandy.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             x = 0,
             y = 0

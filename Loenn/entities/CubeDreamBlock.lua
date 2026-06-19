@@ -41,17 +41,19 @@ return {
         "dreamColor"
     },
     placements = {
-        name = "Cube Dream Block",
+    {
+        name = "main",
         data = {
-            width = 16,
-            height = 16,
-            oneUse = false,
-            fastMoving = false,
-            below = false,
-            requiredCutsceneFlag = "chara_mirror_cutscene_completed",
-            requiresCutscene = true,
-            cubeColor = "4B0082",
-            dreamColor = "FF69B4"
+        width = 16,
+        height = 16,
+        oneUse = false,
+        fastMoving = false,
+        below = false,
+        requiredCutsceneFlag = "chara_mirror_cutscene_completed",
+        requiresCutscene = true,
+        cubeColor = "4B0082",
+        dreamColor = "FF69B4"
         }
+    }
     }
 }

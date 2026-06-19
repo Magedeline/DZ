@@ -12,7 +12,7 @@ blackholeSandwich.name = "DZ/BlackholeSandwich"
 blackholeSandwich.depth = -50
 blackholeSandwich.placements = {
     {
-        name = "hot",
+        name = "main",
         data = {
             width = 64,
             height = 128,

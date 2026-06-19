@@ -6,11 +6,13 @@ local kirbyBoss = {}
 kirbyBoss.name = "DZ/KirbyBoss"
 kirbyBoss.depth = -10000
 kirbyBoss.placements = {
-    name = "default",
-    data = {
+    {
+        name = "main",
+        data = {
         health = 15,
         attackCooldown = 2.0,
         bossMusic = "event:/pusheen/music/miniboss/main0"
+        }
     }
 }
 

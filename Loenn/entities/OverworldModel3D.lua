@@ -9,7 +9,7 @@ overworldModel3D.justification = {0.5, 1.0}
 
 overworldModel3D.placements = {
     {
-        name = "tower_model",
+        name = "main",
         data = {
             modelType = "tower",
             modelScale = 1.0,

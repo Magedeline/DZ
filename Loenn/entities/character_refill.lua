@@ -47,7 +47,7 @@ characterRefill.fieldOrder = {
 -- Multiple placements for quick character selection
 characterRefill.placements = {
     {
-        name = "kirby",
+        name = "main",
         alternativeName = "kirby_refill",
         data = {
             characterType = 0,

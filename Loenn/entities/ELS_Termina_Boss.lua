@@ -5,11 +5,13 @@ local elsTerminaBoss = {}
 elsTerminaBoss.name = "DZ/ELSTerminaBoss"
 elsTerminaBoss.depth = -12500
 elsTerminaBoss.placements = {
-    name = "default",
-    data = {
+    {
+        name = "main",
+        data = {
         phase = 4,
         fromCutscene = false,
         hardMode = false
+        }
     }
 }
 

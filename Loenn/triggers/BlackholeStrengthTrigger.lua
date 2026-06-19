@@ -4,7 +4,7 @@ local BlackholeStrengthTrigger = {}
 
 BlackholeStrengthTrigger.name = "DZ/BlackholeStrengthTrigger"
 BlackholeStrengthTrigger.placements = {
-    name = "BlackholeStrengthTrigger",
+    name = "main",
     data = {
         strength = "Medium"
     }

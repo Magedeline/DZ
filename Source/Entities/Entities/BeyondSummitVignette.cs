@@ -1,11 +1,12 @@
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Xml;
+using Celeste.Cutscenes;
 using Monocle;
 
 namespace DZ;
 
-public class VortexVignette : Scene
+public class VortexVignette : DesoloZantasVignette
 {
     private CompleteRenderer complete;
 

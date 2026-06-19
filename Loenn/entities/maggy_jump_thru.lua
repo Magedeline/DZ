@@ -106,7 +106,7 @@ maggyJumpThru.fieldOrder = {
 
 maggyJumpThru.placements = {
     {
-        name = "wood",
+        name = "main",
         data = {
             width = 24,
             texture = "wood",

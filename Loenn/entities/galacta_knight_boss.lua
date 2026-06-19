@@ -9,7 +9,7 @@ galactaKnightBoss.justification = {0.5, 1.0}
 
 galactaKnightBoss.placements = {
     {
-        name = "galacta_knight_boss",
+        name = "main",
         data = {
             health = 1700,
             maxHealth = 1700,

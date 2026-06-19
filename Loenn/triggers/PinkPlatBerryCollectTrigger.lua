@@ -2,7 +2,7 @@ local trigger = {}
 
 trigger.name = "DZ/PinkPlatBerryCollectTrigger"
 trigger.placements = {
-    { name = "PinkPlatBerryCollectTrigger" }
+    { name = "main" }
 }
 
 return trigger

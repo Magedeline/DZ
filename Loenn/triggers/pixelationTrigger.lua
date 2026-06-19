@@ -1,7 +1,7 @@
 local pixelationTrigger = {}
 pixelationTrigger.name = "DZ/PixelationTrigger"
 pixelationTrigger.placements = {
-    { name = "retro", data = { width = 16, height = 16, pixelSize = 4, transitionDuration = 1.0 } },
+    { name = "main", data = { width = 16, height = 16, pixelSize = 4, transitionDuration = 1.0 } },
     { name = "heavy", data = { width = 16, height = 16, pixelSize = 8, transitionDuration = 0.5 } }
 }
 pixelationTrigger.fieldInformation = {

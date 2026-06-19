@@ -36,7 +36,7 @@ siamoZeroFinalBoss.nodeLineRenderType = "line"
 
 siamoZeroFinalBoss.placements = {
     {
-        name = "siamo_zero",
+        name = "main",
         data = {
             patternIndex = 4,
             siamoTier = "soulBlack",

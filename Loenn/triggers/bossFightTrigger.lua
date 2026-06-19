@@ -3,7 +3,7 @@ local trigger = {}
 
 trigger.name = "DZ/BossFightTrigger"
 trigger.placements = {
-    name = "BossFightTrigger",
+    name = "main",
     data = {
         width = 16,
         height = 16,

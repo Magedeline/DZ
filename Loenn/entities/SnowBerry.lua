@@ -8,7 +8,7 @@ snowBerry.texture = "objects/snowberry"
 
 snowBerry.placements = {
     {
-        name = "SnowBerry",
+        name = "main",
         data = {}
     }
 }

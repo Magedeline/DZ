@@ -13,7 +13,7 @@ codeBreaker.fieldInformation = {
 }
 codeBreaker.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             code = "1234",
             inputTimeout = 5.0

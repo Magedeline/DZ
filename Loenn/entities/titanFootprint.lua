@@ -27,7 +27,7 @@ titanFootprint.fieldInformation = {
 }
 titanFootprint.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             warningDuration = 1.5,
             crushDuration = 0.3,

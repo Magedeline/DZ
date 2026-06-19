@@ -6,11 +6,13 @@ local hotHead = {}
 hotHead.name = "DZ/HotHead"
 hotHead.depth = 0
 hotHead.placements = {
-    name = "default",
-    data = {
+    {
+        name = "main",
+        data = {
         health = 1,
         moveSpeed = 25.0,
         canBeInhaled = true
+        }
     }
 }
 hotHead.fieldInformation = {
@@ -27,11 +29,13 @@ local chilly = {}
 chilly.name = "DZ/Chilly"
 chilly.depth = 0
 chilly.placements = {
-    name = "default",
-    data = {
+    {
+        name = "main",
+        data = {
         health = 1,
         moveSpeed = 15.0,
         canBeInhaled = true
+        }
     }
 }
 chilly.fieldInformation = {
@@ -48,11 +52,13 @@ local sparky = {}
 sparky.name = "DZ/Sparky"
 sparky.depth = 0
 sparky.placements = {
-    name = "default",
-    data = {
+    {
+        name = "main",
+        data = {
         health = 1,
         moveSpeed = 20.0,
         canBeInhaled = true
+        }
     }
 }
 sparky.fieldInformation = {
@@ -69,11 +75,13 @@ local bladeKnight = {}
 bladeKnight.name = "DZ/BladeKnight"
 bladeKnight.depth = 0
 bladeKnight.placements = {
-    name = "default",
-    data = {
+    {
+        name = "main",
+        data = {
         health = 2,
         moveSpeed = 35.0,
         canBeInhaled = true
+        }
     }
 }
 bladeKnight.fieldInformation = {

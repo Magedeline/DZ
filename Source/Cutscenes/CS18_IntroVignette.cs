@@ -8,7 +8,7 @@ namespace Celeste.Cutscenes
     /// <summary>
     /// Chapter 18 Intro Vignette - "1 Month Later" opening scene
     /// </summary>
-    public class Cs18IntroVignette : Scene
+    public class Cs18IntroVignette : DesoloZantasVignette
     {
         public static class LoadingVignetteText
         {
@@ -27,7 +27,7 @@ namespace Celeste.Cutscenes
         private float titleAlpha = 0f;
         private string titleText = "1 Month Later";
 
-        public bool CanPause => menu == null;
+        public override bool CanPause => menu == null;
 
         public Cs18IntroVignette(Session session, TextMenu? menu = null)
         {
@@ -141,10 +141,6 @@ namespace Celeste.Cutscenes
                 if (!exiting)
                 {
                     textCoroutine?.Update();
-                    if (Input.Pause.Pressed || Input.ESC.Pressed)
-                    {
-                        OpenMenu();
-                    }
                 }
             }
             else if (!exiting)
@@ -155,8 +151,10 @@ namespace Celeste.Cutscenes
             hud.BackgroundFade = Calc.Approach(hud.BackgroundFade, menu != null ? 0.6f : 0f, Engine.DeltaTime * 3f);
         }
 
-        public void OpenMenu()
+        public override void OpenMenu()
         {
+            if (!CanPause || Paused) return;
+            Paused = true;
             pauseSfx();
             Audio.Play("event:/ui/game/pause");
             Add(menu = new TextMenu());
@@ -165,8 +163,9 @@ namespace Celeste.Cutscenes
             menu.OnCancel = menu.OnESC = menu.OnPause = closeMenu;
         }
 
-        private void closeMenu()
+        public override void CloseMenu()
         {
+            Paused = false;
             resumeSfx();
             Audio.Play("event:/ui/game/unpause");
             if (menu != null)
@@ -175,6 +174,8 @@ namespace Celeste.Cutscenes
             }
             menu = null;
         }
+
+        private void closeMenu() => CloseMenu();
 
         public override void Render()
         {

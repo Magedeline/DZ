@@ -114,7 +114,7 @@ playerInventoryTrigger.fieldOrder = {
 
 playerInventoryTrigger.placements = {
     {
-        name = "default",
+        name = "main",
         data = {
             width = 16,
             height = 16,

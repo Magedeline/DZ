@@ -8,7 +8,7 @@ uwumper.texture = "objects/uwumper/Idle00"
 
 uwumper.placements = {
     {
-        name = "UwUmper",
+        name = "main",
         data = {
             fireMode = false
         }

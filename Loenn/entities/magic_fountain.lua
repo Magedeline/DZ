@@ -7,7 +7,7 @@ magicFountain.depth = 0
 
 magicFountain.placements = {
     {
-        name = "MagicFountain",
+        name = "main",
         data = {
             fountainType = "healing",
             particleCount = 50,

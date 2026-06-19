@@ -6,13 +6,15 @@ local waterThermos = {}
 waterThermos.name = "DesoloZatnas/WaterThermos"
 waterThermos.depth = -50
 waterThermos.placements = {
-    name = "water_thermos",
-    data = {
+    {
+        name = "main",
+        data = {
         waterAmount = 50,
         isWarm = true,
         puzzleID = "puzzle_1",
         refillable = false,
         pourRate = 5
+        }
     }
 }
 

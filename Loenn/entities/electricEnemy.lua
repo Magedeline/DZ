@@ -2,7 +2,7 @@ local electricEnemy = {}
 electricEnemy.name = "DZ/ElectricEnemy"
 electricEnemy.depth = -100
 electricEnemy.placements = {
-    { name = "normal", data = { health = 2, chargeTime = 3.0, shockRadius = 60.0, shockSpeed = 100.0 } },
+    { name = "main", data = { health = 2, chargeTime = 3.0, shockRadius = 60.0, shockSpeed = 100.0 } },
     { name = "fast_charge", data = { health = 2, chargeTime = 1.5, shockRadius = 80.0, shockSpeed = 150.0 } }
 }
 electricEnemy.fieldInformation = {

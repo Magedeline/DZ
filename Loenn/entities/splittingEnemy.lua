@@ -2,7 +2,7 @@ local splittingEnemy = {}
 splittingEnemy.name = "DZ/SplittingEnemy"
 splittingEnemy.depth = -100
 splittingEnemy.placements = {
-    { name = "SplittingEnemy", data = { health = 2, splitCount = 2, isSmall = false, speed = 30.0 } },
+    { name = "main", data = { health = 2, splitCount = 2, isSmall = false, speed = 30.0 } },
     { name = "SplittingEnemy_triple_split", data = { health = 3, splitCount = 3, isSmall = false, speed = 30.0 } }
 }
 splittingEnemy.fieldInformation = {

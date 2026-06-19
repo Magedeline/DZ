@@ -9,7 +9,7 @@ kirbyTutorialBirdTrigger.fieldInformation = {
 
 kirbyTutorialBirdTrigger.placements = {
     {
-        name = "tutorial_bird_trigger",
+        name = "main",
         data = {
             birdId = "",
             tutorialIndex = 0,

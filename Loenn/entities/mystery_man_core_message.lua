@@ -9,7 +9,7 @@ mysteryManCoreMessage.texture = "collectables/heartGem/0/00"
 
 mysteryManCoreMessage.placements = {
     {
-        name = "MysteryManCoreMessage",
+        name = "main",
         data = {
             dialogKey = "DZ_CH18_ENDING",
             line = 0,

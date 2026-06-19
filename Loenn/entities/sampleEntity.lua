@@ -4,7 +4,7 @@ local sampleEntity = {
     texture = "objects/Ingeste/sampleEntity/idle00",
     placements = {
         {
-            name = "SampleEntity",
+            name = "main",
             data = {
                 sampleProperty = 0,
     },

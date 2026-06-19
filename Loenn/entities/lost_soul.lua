@@ -7,7 +7,7 @@ lostSoul.name = "DZ/LostSoul"
 
 lostSoul.placements = {
     {
-        name = "soul_1",
+        name = "main",
         data = {
             soulId = "LOST_SOUL_1",
             soulType = "human",

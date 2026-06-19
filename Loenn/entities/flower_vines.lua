@@ -22,10 +22,12 @@ flower_vines.fieldInformation = {
     }
 }
 flower_vines.placements = {
-    name = "Chara Flower Vines",
-    data = {
+    {
+        name = "main",
+        data = {
         fear_distance = "",
         slide_until = 0
+        }
     }
 }
 

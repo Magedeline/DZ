@@ -11,7 +11,7 @@ asrielGodBoss.nodeLineRenderType = "line"
 
 asrielGodBoss.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             patternIndex = 0,
             cameraPastY = 120.0,

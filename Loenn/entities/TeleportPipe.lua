@@ -64,7 +64,7 @@ return {
     },
     placements = {
         {
-            name = "Teleport Pipe (Down)",
+            name = "main",
             data = {
                 pipeId = "pipe_1",
                 targetPipeId = "pipe_2",

@@ -9,8 +9,10 @@ beyondsummitBackgroundManager.fieldInformation = {
     }
 }
 beyondsummitBackgroundManager.placements = {
-    name = "StarJumpControlCutscenes",
-    data = {
+    {
+        name = "main",
+        data = {
+        }
     }
 }
 

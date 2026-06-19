@@ -7,7 +7,7 @@ ancientSwitch.depth = 0
 
 ancientSwitch.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             isActivated = false,
             switchType = "pressure",

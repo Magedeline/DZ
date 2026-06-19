@@ -24,7 +24,7 @@ kirbyMidBoss.fieldInformation = {
 
 kirbyMidBoss.placements = {
     {
-        name = "Whispy Woods",
+        name = "main",
         data = {
             bossType = 0,
             maxHealth = 100,

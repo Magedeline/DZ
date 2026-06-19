@@ -8,7 +8,7 @@ cs09_ending_trigger.name = "DZ/CS09_EndingTrigger"
 
 cs09_ending_trigger.placements = {
     {
-        name = "full_ending",
+        name = "main",
         data = {
             width = 16,
             height = 16,

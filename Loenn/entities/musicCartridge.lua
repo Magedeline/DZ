@@ -5,7 +5,7 @@ musicCartridge.depth = -100
 musicCartridge.texture = "collectibles/Maggy_DesoloZantas/musiccartridge/idle00"
 musicCartridge.placements = {
     {
-        name = "music_cartridge",
+        name = "main",
         data = {
             cartridgeId = "music_default",
             musicEvent = "",

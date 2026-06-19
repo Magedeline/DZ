@@ -1,7 +1,7 @@
 local companionSummonTrigger = {}
 companionSummonTrigger.name = "DZ/CompanionSummonTrigger"
 companionSummonTrigger.placements = {
-    { name = "CompanionSummonTrigger", data = { width = 16, height = 16, companionType = "Bandana_Dee", despawnOnLeave = true } }
+    { name = "main", data = { width = 16, height = 16, companionType = "Bandana_Dee", despawnOnLeave = true } }
 }
 companionSummonTrigger.fieldInformation = {
     companionType = { fieldType = "string", options = { "Bandana_Dee", "Ribbon", "Adeleine", "Marx", "Magolor", "Taranza", "Susie", "Francisca", "Flamberge", "Zan_Partizanne" }, editable = true },

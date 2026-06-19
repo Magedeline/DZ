@@ -18,7 +18,7 @@ corruptionCrystal.fieldInformation = {
 }
 corruptionCrystal.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             health = 3,
             corruptionRadius = 100,

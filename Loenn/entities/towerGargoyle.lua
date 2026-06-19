@@ -21,7 +21,7 @@ towerGargoyle.fieldInformation = {
 }
 towerGargoyle.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             health = 2,
             detectionRange = 150,

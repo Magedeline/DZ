@@ -19,7 +19,7 @@ crownBearing.fieldInformation = {
 }
 crownBearing.placements = {
     {
-        name = "pull",
+        name = "main",
         data = {
             gravityType = "Pull",
             gravityRadius = 150,

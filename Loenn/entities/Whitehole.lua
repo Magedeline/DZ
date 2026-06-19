@@ -5,10 +5,12 @@ local whitehole = {}
 whitehole.name = "DZ/WhiteHole"
 
 whitehole.placements = {
-    name = "WhiteHole",
-    data = {
+    {
+        name = "main",
+        data = {
         SpeedModifier = 1.02,
         ForceModifier = 0.8
+        }
     }
 }
 

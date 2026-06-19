@@ -2,7 +2,7 @@ local weightSwitch = {}
 weightSwitch.name = "DZ/WeightSwitch"
 weightSwitch.depth = 0
 weightSwitch.placements = {
-    { name = "WeightSwitch", data = { width = 16, requiredWeight = 1.0, flag = "weight_switch", persistent = false } }
+    { name = "main", data = { width = 16, requiredWeight = 1.0, flag = "weight_switch", persistent = false } }
 }
 weightSwitch.fieldInformation = {
     requiredWeight = { fieldType = "number", minimumValue = 0.1 },

@@ -19,7 +19,7 @@ towerLantern.fieldInformation = {
 }
 towerLantern.placements = {
     {
-        name = "unlit",
+        name = "main",
         data = {
             lightRadius = 80,
             flickerIntensity = 0.1,

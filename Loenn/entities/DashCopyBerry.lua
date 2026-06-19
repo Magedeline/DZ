@@ -24,7 +24,7 @@ dashCopyBerry.fieldInformation = {
 
 dashCopyBerry.placements = {
     {
-        name = "dash_copy_berry",
+        name = "main",
         data = {
             power = "Sword",
             dashRefill = 1,

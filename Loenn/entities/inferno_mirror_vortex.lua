@@ -8,7 +8,7 @@ infernoMirrorVortex.minimumSize = {16, 16}
 
 infernoMirrorVortex.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             width = 64,
             height = 64,

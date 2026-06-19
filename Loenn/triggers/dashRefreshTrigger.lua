@@ -1,7 +1,7 @@
 local dashRefreshTrigger = {}
 dashRefreshTrigger.name = "DZ/DashRefreshTrigger"
 dashRefreshTrigger.placements = {
-    { name = "DashRefreshTrigger", data = { width = 16, height = 16, dashCount = 2, onlyOnce = false } },
+    { name = "main", data = { width = 16, height = 16, dashCount = 2, onlyOnce = false } },
     { name = "triple", data = { width = 16, height = 16, dashCount = 3, onlyOnce = false } }
 }
 dashRefreshTrigger.fieldInformation = {

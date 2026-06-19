@@ -1,7 +1,7 @@
 local parallaxShiftTrigger = {}
 parallaxShiftTrigger.name = "DZ/ParallaxShiftTrigger"
 parallaxShiftTrigger.placements = {
-    { name = "ParallaxShiftTrigger", data = { width = 16, height = 16, parallaxX = 0.5, parallaxY = 0.5, duration = 1.0 } }
+    { name = "main", data = { width = 16, height = 16, parallaxX = 0.5, parallaxY = 0.5, duration = 1.0 } }
 }
 parallaxShiftTrigger.fieldInformation = {
     parallaxX = { fieldType = "number" },

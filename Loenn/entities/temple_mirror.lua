@@ -6,7 +6,7 @@ templeMirror.name = "DZ/TesseractMirror"
 templeMirror.depth = 9500
 templeMirror.placements = {
     {
-        name = "tesseract_mirror",
+        name = "main",
         data = {
             width = 16,
             height = 16,

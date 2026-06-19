@@ -24,7 +24,7 @@ flameGeyser.fieldInformation = {
 }
 flameGeyser.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             eruptInterval = 4.0,
             eruptDuration = 1.0,

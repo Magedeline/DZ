@@ -9,7 +9,7 @@ starBlock.canResize = {true, true}
 
 starBlock.placements = {
     {
-        name = "StarBlock",
+        name = "main",
         data = {
             width = 8,
             height = 8

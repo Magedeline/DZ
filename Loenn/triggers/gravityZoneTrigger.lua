@@ -1,7 +1,7 @@
 local gravityZoneTrigger = {}
 gravityZoneTrigger.name = "DZ/GravityZoneTrigger"
 gravityZoneTrigger.placements = {
-    { name = "GravityZoneTrigger", data = { width = 32, height = 32, gravityDirection = "Up", gravityStrength = 1.0 } },
+    { name = "main", data = { width = 32, height = 32, gravityDirection = "Up", gravityStrength = 1.0 } },
     { name = "low_gravity", data = { width = 32, height = 32, gravityDirection = "Down", gravityStrength = 0.3 } },
     { name = "zero_gravity", data = { width = 32, height = 32, gravityDirection = "None", gravityStrength = 0.0 } }
 }

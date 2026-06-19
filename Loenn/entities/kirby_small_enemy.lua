@@ -43,7 +43,7 @@ kirbySmallEnemy.fieldInformation = {
 
 kirbySmallEnemy.placements = {
     {
-        name = "Waddle Dee",
+        name = "main",
         data = {
             variant = 0,
             powerType = 0,

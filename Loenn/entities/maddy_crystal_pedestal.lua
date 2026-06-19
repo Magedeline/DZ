@@ -5,8 +5,11 @@ local maddyCrystalPedestal = {}
 maddyCrystalPedestal.name = "DZ/MaddyCrystalPedestal"
 maddyCrystalPedestal.depth = 8998
 maddyCrystalPedestal.placements = {
-    name = "maddy_crystal_pedestal",
+    {
+        name = "main",
+        data = {}
     }
+}
 
 local texture = "characters/MaddyCrystal/pedestal"
 

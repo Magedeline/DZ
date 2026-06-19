@@ -9,7 +9,7 @@ darkerDarkMatterBoss.justification = {0.5, 1.0}
 
 darkerDarkMatterBoss.placements = {
     {
-        name = "default",
+        name = "main",
         data = {
             health = 1600,
             maxHealth = 1600,

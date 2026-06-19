@@ -43,7 +43,7 @@ reflectionHeartStatue.fieldInformation = {
 
 reflectionHeartStatue.placements = {
     {
-        name = "default",
+        name = "main",
         data = {
             code = "U,L,DR,UR,L,UL",
             flagPrefix = "heartTorch_",

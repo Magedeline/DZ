@@ -21,7 +21,7 @@ spiralStaircase.fieldInformation = {
 }
 spiralStaircase.placements = {
     {
-        name = "clockwise",
+        name = "main",
         data = {
             rotationSpeed = 0.5,
             maxSpeed = 2.0,

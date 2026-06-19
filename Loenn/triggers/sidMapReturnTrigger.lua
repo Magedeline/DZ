@@ -4,7 +4,7 @@ local sidMapReturnTrigger = {}
 
 sidMapReturnTrigger.name = "DZ/SidMapReturnTrigger"
 sidMapReturnTrigger.placements = {
-    { name = "Return to Lobby", data = { width = 8, height = 40 } }
+    { name = "main", data = { width = 8, height = 40 } }
 }
 
 sidMapReturnTrigger.fieldOrder = { "x", "y", "width", "height" }

@@ -45,13 +45,15 @@ tapeBlock.placements = {}
 
 for i, _ in ipairs(colors) do
     tapeBlock.placements[i] = {
+    {
         name = string.format("tape_block_%s", i - 1),
         data = {
-            index = i - 1,
-            tempo = 1.0,
-            width = 16,
-            height = 16
+        index = i - 1,
+        tempo = 1.0,
+        width = 16,
+        height = 16
         }
+    }
     }
 end
 

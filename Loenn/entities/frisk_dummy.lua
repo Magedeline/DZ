@@ -43,7 +43,7 @@ friskDummy.fieldInformation = {
 
 friskDummy.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             facing = 1,
             animation = "idle",

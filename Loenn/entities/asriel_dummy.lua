@@ -43,7 +43,7 @@ asrielDummy.fieldInformation = {
 
 asrielDummy.placements = {
     {
-        name = "default",
+        name = "main",
         data = {
             facing = 1,
             animation = "idle",

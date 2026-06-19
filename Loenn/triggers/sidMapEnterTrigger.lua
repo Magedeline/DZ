@@ -5,7 +5,7 @@ local sidMapEnterTrigger = {}
 sidMapEnterTrigger.name = "DZ/SidMapEnterTrigger"
 sidMapEnterTrigger.placements = {
     {
-        name = "SM1 - Fragment I",
+        name = "main",
         data = {
             width = 40, height = 80,
             targetSid       = "Maggy/SmallMaps/10_Ruins_SM1",

@@ -7,7 +7,7 @@ infernoShockwave.depth = -1000000
 
 infernoShockwave.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {}
     }
 }

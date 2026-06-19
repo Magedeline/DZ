@@ -9,7 +9,7 @@ summitCorruptedMountainBoss.justification = {0.5, 0.5}
 
 summitCorruptedMountainBoss.placements = {
     {
-        name = "summit_corrupted_mountain_boss",
+        name = "main",
         data = {
             health = 1500,
             maxHealth = 1500,

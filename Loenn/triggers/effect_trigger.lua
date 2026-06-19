@@ -3,7 +3,7 @@ local effectTrigger = {}
 effectTrigger.name = "DZ/EffectTrigger"
 effectTrigger.placements = {
     {
-        name = "particle",
+        name = "main",
         data = {
             width = 16,
             height = 16,

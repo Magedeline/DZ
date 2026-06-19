@@ -13,11 +13,13 @@ charamovingBlock.fieldInformation = {
     }
 }
 charamovingBlock.placements = {
-    name = "chara_moving_block",
-    data = {
+    {
+        name = "main",
+        data = {
         nodeIndex = 0,
         width = 8,
         height = 8
+        }
     }
 }
 

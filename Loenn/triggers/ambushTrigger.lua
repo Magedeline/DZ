@@ -1,7 +1,7 @@
 local ambushTrigger = {}
 ambushTrigger.name = "DZ/AmbushTrigger"
 ambushTrigger.placements = {
-    { name = "AmbushTrigger", data = { width = 32, height = 32, enemyCount = 4, lockCamera = true, flag = "" } }
+    { name = "main", data = { width = 32, height = 32, enemyCount = 4, lockCamera = true, flag = "" } }
 }
 ambushTrigger.fieldInformation = {
     enemyCount = { fieldType = "integer", minimumValue = 1 },

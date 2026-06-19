@@ -2,7 +2,7 @@ local rewindCrystal = {}
 rewindCrystal.name = "DZ/RewindCrystal"
 rewindCrystal.depth = -100
 rewindCrystal.placements = {
-    { name = "RewindCrystal", data = { rewindDuration = 3.0 } },
+    { name = "main", data = { rewindDuration = 3.0 } },
     { name = "RewindCrystallong", data = { rewindDuration = 6.0 } }
 }
 rewindCrystal.fieldInformation = {

@@ -5,7 +5,7 @@ using FMOD.Studio;
 
 namespace Celeste.Cutscenes {
     [HotReloadable]
-    class Cs04LegendVignette : Scene {
+    class Cs04LegendVignette : DesoloZantasVignette {
         private readonly Session session;
         private readonly string? areaMusic;
         private readonly HudRenderer hud;
@@ -27,7 +27,7 @@ namespace Celeste.Cutscenes {
             "DZ_CH4_LEGEND_F"     // El's eventual return
         };
 
-        public bool CanPause => menu == null;
+        public override bool CanPause => menu == null;
 
         public Cs04LegendVignette(Session session, TextMenu? menu = null) {
             this.session = session ?? throw new ArgumentNullException(nameof(session));
@@ -84,9 +84,6 @@ namespace Celeste.Cutscenes {
                 base.Update();
                 if (!exiting) {
                     textCoroutine?.Update();
-                    if (Input.Pause.Pressed || Input.ESC.Pressed) {
-                        OpenMenu();
-                    }
                 }
             } else if (!exiting) {
                 menu.Update();
@@ -96,7 +93,9 @@ namespace Celeste.Cutscenes {
             fade = Calc.Approach(fade, 0f, Engine.DeltaTime);
         }
 
-        public void OpenMenu() {
+        public override void OpenMenu() {
+            if (!CanPause || Paused) return;
+            Paused = true;
             pauseSfx();
             Audio.Play("event:/ui/game/pause");
             Add(menu = new TextMenu());
@@ -105,7 +104,8 @@ namespace Celeste.Cutscenes {
             menu.OnCancel = menu.OnESC = menu.OnPause = closeMenu;
         }
 
-        private void closeMenu() {
+        public override void CloseMenu() {
+            Paused = false;
             resumeSfx();
             Audio.Play("event:/ui/game/unpause");
             if (menu != null) {
@@ -113,6 +113,8 @@ namespace Celeste.Cutscenes {
             }
             menu = null;
         }
+
+        private void closeMenu() => CloseMenu();
 
         private void startGame() {
             stopSfx();

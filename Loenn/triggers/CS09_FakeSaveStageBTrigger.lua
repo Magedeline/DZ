@@ -10,7 +10,7 @@ trigger.depth = 2000
 
 trigger.placements = {
     {
-        name = "CS09_FakeSaveStageBTrigger",
+        name = "main",
         data = {
             width = 16,
             height = 16,

@@ -12,7 +12,7 @@ titanStatue.fieldInformation = {
 }
 titanStatue.placements = {
     {
-        name = "inactive",
+        name = "main",
         data = {
             health = 5,
             canAwaken = false,

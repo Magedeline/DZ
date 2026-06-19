@@ -25,7 +25,7 @@ strawberryExt.fieldOrder = {
 
 strawberryExt.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             winged = false,
             moon = false,

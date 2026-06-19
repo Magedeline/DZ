@@ -15,7 +15,7 @@ dxWarpBlock.nodeLineRenderType = "line"
 
 dxWarpBlock.placements = {
     {
-        name = "DXDimensionalWarpBlock",
+        name = "main",
         data = {
             width = 16,
             height = 16,

@@ -26,7 +26,7 @@ return {
     },
     placements = {
         {
-            name = "CharaChaser2",
+            name = "main",
             data = {
                 canChangeMusic = true,
                 aggressive = false,

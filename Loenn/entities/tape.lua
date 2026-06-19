@@ -6,8 +6,9 @@ tape.nodeLineRenderType = "line"
 tape.nodeLimits = {2, 2}
 
 tape.placements = {
-    name = "tape",
-    data = {
+    {
+        name = "main",
+        data = {
         -- Visuals
         spritePath       = "collectables/maggy/tape/",
         menuSprite       = "collectables/maggy/tape",
@@ -25,6 +26,7 @@ tape.placements = {
         -- Unlock
         cSideToUnlock = "map/Maggy/CSide/map.bin",
         unlockText    = ""
+        }
     }
 }
 

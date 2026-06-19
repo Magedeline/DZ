@@ -15,13 +15,15 @@ solidColor.fieldInformation = {
     }
 }
 solidColor.placements = {
-    name = "normal",
-    data = {
+    {
+        name = "main",
+        data = {
         width = 8,
         height = 8,
         depth = 5000,
         color = "6969ee",
         alpha = 1.0
+        }
     }
 }
 

@@ -8,7 +8,7 @@ horseHitch.depth = -100
 horseHitch.fieldInformation = {}
 horseHitch.placements = {
     {
-        name = "locked",
+        name = "main",
         data = {
             hitchId = "",
             destinationId = "",

@@ -5,7 +5,7 @@ void_tendril.depth = 100
 void_tendril.nodeLimits = {0, -1}
 void_tendril.placements = {
     {
-        name = "Void Tendril",
+        name = "main",
         data = {
             damage = 1,
             swaySpeed = 1.0,

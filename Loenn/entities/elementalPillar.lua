@@ -2,7 +2,7 @@ local elementalPillar = {}
 elementalPillar.name = "DZ/ElementalPillar"
 elementalPillar.depth = -100
 elementalPillar.placements = {
-    { name = "fire", data = { element = "Fire", puzzleId = "elem_1" } },
+    { name = "main", data = { element = "Fire", puzzleId = "elem_1" } },
     { name = "ice", data = { element = "Ice", puzzleId = "elem_1" } },
     { name = "electric", data = { element = "Electric", puzzleId = "elem_1" } },
     { name = "wind", data = { element = "Wind", puzzleId = "elem_1" } }

@@ -1,7 +1,7 @@
 local oneHitTrigger = {}
 oneHitTrigger.name = "DZ/OneHitTrigger"
 oneHitTrigger.placements = {
-    { name = "OneHitTrigger", data = { width = 32, height = 32, flag = "one_hit_mode" } }
+    { name = "main", data = { width = 32, height = 32, flag = "one_hit_mode" } }
 }
 oneHitTrigger.fieldInformation = {
     flag = { fieldType = "string" }

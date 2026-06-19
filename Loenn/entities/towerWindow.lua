@@ -17,7 +17,7 @@ towerWindow.fieldInformation = {
 }
 towerWindow.placements = {
     {
-        name = "sky",
+        name = "main",
         data = {
             view = "Sky",
             lightIntensity = 0.6,

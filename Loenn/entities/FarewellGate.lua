@@ -9,7 +9,7 @@ farewellGate.minimumSize = {8, 8}
 
 farewellGate.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             width = 8,
             height = 48,

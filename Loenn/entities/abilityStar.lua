@@ -7,7 +7,7 @@ abilityStar.name = "DZ/AbilityStar"
 abilityStar.depth = -100
 abilityStar.placements = {
     {
-        name = "fire",
+        name = "main",
         data = {
             ability = "Fire"
         }

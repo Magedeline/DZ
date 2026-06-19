@@ -13,7 +13,7 @@ frostHelperIntegrationEntity.justification = {0.5, 0.5}
 -- Placements
 frostHelperIntegrationEntity.placements = {
     {
-        name = "frosthelper",
+        name = "main",
         data = {
             integrationMode = "Auto",
             shareParticles = true,

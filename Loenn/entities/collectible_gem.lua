@@ -7,7 +7,7 @@ collectibleGem.depth = 0
 
 collectibleGem.placements = {
     {
-        name = "blue",
+        name = "main",
         data = {
             gemType = "blue",
             isCollected = false,

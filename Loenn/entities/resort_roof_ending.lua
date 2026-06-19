@@ -8,9 +8,11 @@ resortRoofEnding.depth = 0
 resortRoofEnding.minimumSize = {8, 8}
 resortRoofEnding.canResize = {true, false}
 resortRoofEnding.placements = {
-    name = "resort_roof_ending",
-    data = {
+    {
+        name = "main",
+        data = {
         width = 24
+        }
     }
 }
 

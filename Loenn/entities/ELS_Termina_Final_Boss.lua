@@ -5,11 +5,13 @@ local elsTerminaFinalBoss = {}
 elsTerminaFinalBoss.name = "DZ/ELSTerminaFinalBoss"
 elsTerminaFinalBoss.depth = -12500
 elsTerminaFinalBoss.placements = {
-    name = "default",
-    data = {
+    {
+        name = "main",
+        data = {
         difficultyMode = 0,
         fromCutscene = false,
         hasFiveHeartGems = false
+        }
     }
 }
 

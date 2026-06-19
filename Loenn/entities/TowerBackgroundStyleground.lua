@@ -10,7 +10,7 @@ towerBackgroundStyleground.canResize = {true, true}
 
 towerBackgroundStyleground.placements = {
     {
-        name = "default_background",
+        name = "main",
         data = {
             backgroundStyle = "Default",
             tintRed = 128,

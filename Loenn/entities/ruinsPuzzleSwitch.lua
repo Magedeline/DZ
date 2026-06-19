@@ -22,7 +22,7 @@ ruinsPuzzleSwitch.fieldInformation = {
 }
 ruinsPuzzleSwitch.placements = {
     {
-        name = "simple",
+        name = "main",
         data = {
             switchType = "Simple",
             gateId = "",

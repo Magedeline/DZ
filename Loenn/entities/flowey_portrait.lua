@@ -7,7 +7,7 @@ floweyPortrait.name = "DZ/FloweyPortrait"
 
 floweyPortrait.placements = {
     {
-        name = "glitchy_freak",
+        name = "main",
         data = {
             portraitType = "glitchyfreak",
             displayDuration = 5.0,

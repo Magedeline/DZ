@@ -7,7 +7,7 @@ elsFloweyBoss.name = "DZ/ElsFloweyBoss"
 
 elsFloweyBoss.placements = {
     {
-        name = "elsflowey",
+        name = "main",
         data = {
             startingPhase = "Intro",
             maxHealth = 1000.0,

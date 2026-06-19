@@ -4,7 +4,7 @@ charaZoomAppearTrigger.name = "DZ/CharaZoomAppearTrigger"
 
 charaZoomAppearTrigger.placements = {
     {
-        name = "chara_zoom_appear",
+        name = "main",
         data = {
             width = 16,
             height = 16,

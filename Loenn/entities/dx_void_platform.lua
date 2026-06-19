@@ -9,7 +9,7 @@ dxVoidPlatform.canResize = {true, false}
 
 dxVoidPlatform.placements = {
     {
-        name = "DXVoidPlatform",
+        name = "main",
         data = {
             width = 48,
             phaseInterval = 2.0,

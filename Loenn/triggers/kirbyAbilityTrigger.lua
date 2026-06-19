@@ -75,7 +75,7 @@ trigger.fieldOrder = {
 
 trigger.placements = {
     {
-        name = "give_ability",
+        name = "main",
         data = {
             width = 16,
             height = 16,

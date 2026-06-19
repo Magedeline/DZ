@@ -9,7 +9,7 @@ mainCharaVisionActor.justification = {0.5, 1.0}
 
 mainCharaVisionActor.placements = {
     {
-        name = "default",
+        name = "main",
         data = {
             facing = "down",
             genocideMode = true,

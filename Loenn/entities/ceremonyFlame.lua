@@ -15,7 +15,7 @@ ceremonyFlame.fieldInformation = {
 }
 ceremonyFlame.placements = {
     {
-        name = "source",
+        name = "main",
         data = {
             isSource = true,
             spreadSpeed = 20,

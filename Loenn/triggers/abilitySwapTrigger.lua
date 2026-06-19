@@ -1,7 +1,7 @@
 local abilitySwapTrigger = {}
 abilitySwapTrigger.name = "DZ/AbilitySwapTrigger"
 abilitySwapTrigger.placements = {
-    { name = "AbilitySwapTrigger", data = { width = 16, height = 16, abilityName = "Sword", onlyOnce = false } }
+    { name = "main", data = { width = 16, height = 16, abilityName = "Sword", onlyOnce = false } }
 }
 abilitySwapTrigger.fieldInformation = {
     abilityName = { fieldType = "string" },

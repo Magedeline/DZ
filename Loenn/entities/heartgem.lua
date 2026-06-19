@@ -28,7 +28,7 @@ heartGem.fieldInformation = {
 
 heartGem.placements = {
     {
-        name = "heartgem",
+        name = "main",
         data = {
             fake = false,
             removeCameraTriggers = false,

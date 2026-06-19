@@ -7,7 +7,7 @@ fakeHeartGem.depth = -100
 fakeHeartGem.justification = {0.5, 0.5}
 fakeHeartGem.placements = {
     {
-        name = "fakegemheart",
+        name = "main",
         data = {
             persistent = false,
             collectMessage = "It's fake!",

@@ -26,7 +26,7 @@ kirbyTutorialBird.fieldInformation = {
 
 kirbyTutorialBird.placements = {
     {
-        name = "tutorial_bird",
+        name = "main",
         data = {
             birdId = "",
             dialogs = "",

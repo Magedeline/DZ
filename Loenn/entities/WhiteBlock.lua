@@ -8,7 +8,7 @@ whiteBlock.depth = -9000
 whiteBlock.minimumSize = {8, 8}
 whiteBlock.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             width = 16,
             height = 16

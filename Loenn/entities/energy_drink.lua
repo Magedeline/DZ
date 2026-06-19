@@ -8,7 +8,7 @@ energyDrink.depth = -50
 
 energyDrink.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             x = 0,
             y = 0

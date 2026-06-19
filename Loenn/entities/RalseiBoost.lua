@@ -43,19 +43,21 @@ return {
         "canSkip",
     },
     placements = {
-        name = "normal",
+    {
+        name = "main",
         data = {
-            lockCamera = false,
-            canSkip = false,
-            preLaunchDialog = "",
-            cutsceneTeleport = "",
-            goldenTeleport = "",
-            cutsceneBird = true,
-            ambientParticle1 = "f78ae7",
-            ambientParticle2 = "ffccf7",
-            moveParticleColor = "e0a8d8",
-            moveColor = "ff6def",
-            moveImage = ""
+        lockCamera = false,
+        canSkip = false,
+        preLaunchDialog = "",
+        cutsceneTeleport = "",
+        goldenTeleport = "",
+        cutsceneBird = true,
+        ambientParticle1 = "f78ae7",
+        ambientParticle2 = "ffccf7",
+        moveParticleColor = "e0a8d8",
+        moveColor = "ff6def",
+        moveImage = ""
         }
+    }
     }
 }

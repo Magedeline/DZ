@@ -31,7 +31,7 @@ floweyTrap.fieldInformation = {
 }
 floweyTrap.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             health = 2,
             detectionRange = 120,

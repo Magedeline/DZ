@@ -5,8 +5,11 @@ local maddycrystal = {}
 maddycrystal.name = "DZ/Maddy_crystal"
 maddycrystal.depth = 100
 maddycrystal.placements = {
-    name = "maddy_crystal",
+    {
+        name = "main",
+        data = {}
     }
+}
 
 -- Offset is from sprites.xml, not justifications
 local offsetY = -10

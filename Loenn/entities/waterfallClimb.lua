@@ -19,7 +19,7 @@ waterfallClimb.fieldInformation = {
 }
 waterfallClimb.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             width = 32,
             height = 64,

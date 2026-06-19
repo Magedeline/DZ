@@ -14,8 +14,9 @@ local defaultBounds = {
 waterFlowPuzzle.name = "DesoloZatnas/WaterFlowPuzzle"
 waterFlowPuzzle.depth = -10000
 waterFlowPuzzle.placements = {
-    name = "water_flow_puzzle",
-    data = {
+    {
+        name = "main",
+        data = {
         width = 32,
         height = 32,
         targetVolume = 50,
@@ -29,6 +30,7 @@ waterFlowPuzzle.placements = {
         anvilWeight = 20,
         requiresAnvil = true,
         requiresBalance = true
+        }
     }
 }
 

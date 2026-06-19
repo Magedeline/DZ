@@ -15,7 +15,7 @@ dxAsrielTranscendence.nodeLineRenderType = "line"
 
 dxAsrielTranscendence.placements = {
     {
-        name = "DXAsrielTranscendence",
+        name = "main",
         data = {
             maxHealth = 3500,
             maxTranscendence = 100.0,

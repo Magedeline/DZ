@@ -1,7 +1,7 @@
 local narratorTrigger = {}
 narratorTrigger.name = "DZ/NarratorTrigger"
 narratorTrigger.placements = {
-    { name = "NarratorTrigger", data = { width = 16, height = 16, dialogId = "", duration = 3.0, position = "Top", onlyOnce = true } }
+    { name = "main", data = { width = 16, height = 16, dialogId = "", duration = 3.0, position = "Top", onlyOnce = true } }
 }
 narratorTrigger.fieldInformation = {
     dialogId = { fieldType = "string" },

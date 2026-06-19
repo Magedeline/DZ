@@ -4,7 +4,7 @@ local trigger = {}
 trigger.name = "DZ/EnemySpawnTrigger"
 trigger.placements = {
     {
-        name = "waddle_dee",
+        name = "main",
         data = {
             width = 16,
             height = 16,

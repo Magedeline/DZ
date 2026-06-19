@@ -6,14 +6,16 @@ local waterLever = {}
 waterLever.name = "DesoloZatnas/WaterLever"
 waterLever.depth = -100
 waterLever.placements = {
-    name = "water_lever",
-    data = {
+    {
+        name = "main",
+        data = {
         flowDirection = "increase",
         flowAmount = 10,
         puzzleID = "puzzle_1",
         oneUse = false,
         requiresHold = false,
         leverType = "standard"
+        }
     }
 }
 

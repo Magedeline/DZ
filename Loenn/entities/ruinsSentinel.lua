@@ -24,7 +24,7 @@ ruinsSentinel.fieldInformation = {
 }
 ruinsSentinel.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             health = 3,
             detectionRange = 150,

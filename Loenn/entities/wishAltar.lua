@@ -12,7 +12,7 @@ wishAltar.fieldInformation = {
 }
 wishAltar.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             canInteract = true,
             dialoguePrefix = "WISH_ALTAR",

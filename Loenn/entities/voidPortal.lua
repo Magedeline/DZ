@@ -7,7 +7,7 @@ voidPortal.name = "DZ/VoidPortal"
 voidPortal.depth = -100
 voidPortal.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             destinationId = "",
             isFinalPortal = false

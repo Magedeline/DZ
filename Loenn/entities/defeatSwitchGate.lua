@@ -11,7 +11,7 @@ defeatSwitchGate.canResize = {true, true}
 
 defeatSwitchGate.placements = {
     {
-        name = "enemy_gate",
+        name = "main",
         data = {
             width = 16,
             height = 48,

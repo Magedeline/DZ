@@ -7,7 +7,7 @@ gravityFlipPlatform.fillColor = {0.4, 0.2, 0.8, 0.4}
 gravityFlipPlatform.borderColor = {0.6, 0.3, 1.0, 0.8}
 gravityFlipPlatform.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             width = 16,
             height = 8,

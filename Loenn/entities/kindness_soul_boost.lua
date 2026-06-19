@@ -34,7 +34,7 @@ kindnessSoulBoost.fieldOrder = {
 
 kindnessSoulBoost.placements = {
     {
-        name = "kindness_soul_boost",
+        name = "main",
         data = {
             lockCamera = true,
             canSkip = false,

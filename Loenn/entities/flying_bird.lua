@@ -26,7 +26,7 @@ flyingBird.fieldInformation = {
 
 flyingBird.placements = {
     {
-        name = "flying_bird",
+        name = "main",
         data = {
             loopPath = false,
             speed = 60.0,

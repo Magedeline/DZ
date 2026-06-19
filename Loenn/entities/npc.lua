@@ -48,7 +48,7 @@ local npc = {
     },
     placements = {
         {
-            name = "NPC (Theo)",
+            name = "main",
             data = {
                 spriteId = "theo",
                 dialogKey = "",

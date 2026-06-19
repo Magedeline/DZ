@@ -3,11 +3,13 @@ local KirbyHealthController = {}
 KirbyHealthController.name = "DZ/KirbyHealthRoomController"
 KirbyHealthController.depth = 0
 KirbyHealthController.placements = {
-    name = "default",
-    data = {
+    {
+        name = "main",
+        data = {
         maxHealth = 6,
         autoHealOnEnter = false,
         setAsRespawnRoom = false
+        }
     }
 }
 

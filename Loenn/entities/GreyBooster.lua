@@ -12,7 +12,7 @@ return {
     },
     placements = {
         {
-            name = "grey_booster_green",
+            name = "main",
             data = {
                 red = false
             }

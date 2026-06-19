@@ -7,7 +7,7 @@ obsidianShard.name = "DZ/ObsidianShard"
 obsidianShard.depth = -50
 obsidianShard.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {}
     }
 }

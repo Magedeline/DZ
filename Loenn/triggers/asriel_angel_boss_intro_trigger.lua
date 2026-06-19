@@ -11,7 +11,7 @@ asrielAngelBossIntroTrigger.canResize = {true, true}
 
 asrielAngelBossIntroTrigger.placements = {
     {
-        name = "default",
+        name = "main",
         data = {
             width = 32,
             height = 16,

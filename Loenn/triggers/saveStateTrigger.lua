@@ -1,7 +1,7 @@
 local saveStateTrigger = {}
 saveStateTrigger.name = "DZ/SaveStateTrigger"
 saveStateTrigger.placements = {
-    { name = "save", data = { width = 16, height = 16, action = "Save", slotId = "slot_1" } },
+    { name = "main", data = { width = 16, height = 16, action = "Save", slotId = "slot_1" } },
     { name = "load", data = { width = 16, height = 16, action = "Load", slotId = "slot_1" } }
 }
 saveStateTrigger.fieldInformation = {

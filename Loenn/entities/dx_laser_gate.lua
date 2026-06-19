@@ -12,7 +12,7 @@ dxLaserGate.nodeLineRenderType = "line"
 
 dxLaserGate.placements = {
     {
-        name = "DXLaserGate",
+        name = "main",
         data = {
             onTime = 2.0,
             offTime = 1.0,

@@ -8,7 +8,9 @@ forsakenCitySatellite.depth = 8999
 forsakenCitySatellite.nodeLineRenderType = "line"
 forsakenCitySatellite.nodeLimits = {2, 2}
 forsakenCitySatellite.placements = {
-    name = "satellite"
+    {
+        name = "main"
+    }
 }
 
 local birdTexture = "scenery/flutterbird/flap01"

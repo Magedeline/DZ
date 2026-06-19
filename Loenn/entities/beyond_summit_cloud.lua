@@ -17,7 +17,7 @@ beyondSummitCloud.fieldInformation = {
 
 beyondSummitCloud.placements = {
     {
-        name = "BeyondSummitCloud (Light)",
+        name = "main",
         data = {
             dark = false,
             speedMultiplier = 1.0,

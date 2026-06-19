@@ -9,13 +9,15 @@ beyondsummitBackgroundManager.fieldInformation = {
     }
 }
 beyondsummitBackgroundManager.placements = {
-    name = "BeyondSummitCloud",
-    data = {
+    {
+        name = "main",
+        data = {
         index = 0,
         cutscene = "",
         intro_launch = false,
         dark = false,
         ambience = ""
+        }
     }
 }
 

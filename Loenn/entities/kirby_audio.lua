@@ -9,7 +9,7 @@ kirbyAudio.name = "DesoloZantas/KirbyAudioEntity"
 kirbyAudio.depth = 0
 kirbyAudio.placements = {
     {
-        name = "Kirby Voice Box",
+        name = "main",
         data = {
             x = 0,
             y = 0,

@@ -2,7 +2,7 @@ local hologramProjector = {}
 hologramProjector.name = "DZ/HologramProjector"
 hologramProjector.depth = -100
 hologramProjector.placements = {
-    { name = "HologramProjector", data = { message = "Hello!", displayTime = 5.0, flag = "" } }
+    { name = "main", data = { message = "Hello!", displayTime = 5.0, flag = "" } }
 }
 hologramProjector.fieldInformation = {
     message = { fieldType = "string" },

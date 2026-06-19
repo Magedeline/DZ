@@ -4,7 +4,7 @@ areaCompleteTrigger.name = "DZ/AreaCompleteTrigger"
 
 areaCompleteTrigger.placements = {
     {
-        name = "AreaCompleteTrigger",
+        name = "main",
         data = {
             width = 16,
             height = 16,

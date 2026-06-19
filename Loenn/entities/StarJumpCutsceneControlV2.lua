@@ -32,8 +32,9 @@ starJumpCutsceneControlV2.fieldOrder = {
 }
 
 starJumpCutsceneControlV2.placements = {
-    name = "StarJumpControlCutscenesV2",
-    data = {
+    {
+        name = "main",
+        data = {
         musicEvent = "guid://{a8228c15-231d-46a1-a967-2bd255fca92f}",
         cutsceneFlag = "plateaumod_2",
         triggerHeight = 32,
@@ -41,6 +42,7 @@ starJumpCutsceneControlV2.placements = {
         triggerOffsetX = 0,
         triggerOffsetY = 0,
         useCustomTriggerBox = false
+        }
     }
 }
 

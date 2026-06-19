@@ -2,7 +2,7 @@ local darkZone = {}
 darkZone.name = "DZ/DarkZone"
 darkZone.depth = -50
 darkZone.placements = {
-    { name = "normal", data = { width = 64, height = 64, Kglobal::PlayerLightRadius = 40.0, flag = "" } },
+    { name = "main", data = { width = 64, height = 64, Kglobal::PlayerLightRadius = 40.0, flag = "" } },
     { name = "dim", data = { width = 64, height = 64, Kglobal::PlayerLightRadius = 60.0, flag = "" } }
 }
 darkZone.fieldInformation = {

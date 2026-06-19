@@ -21,7 +21,7 @@ virusCloud.fieldInformation = {
 }
 virusCloud.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             health = 3,
             spreadRadius = 100,

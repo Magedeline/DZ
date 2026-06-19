@@ -34,7 +34,7 @@ braverySoulBoost.fieldOrder = {
 
 braverySoulBoost.placements = {
     {
-        name = "bravery_soul_boost",
+        name = "main",
         data = {
             lockCamera = true,
             canSkip = false,

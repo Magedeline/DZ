@@ -6,7 +6,7 @@ windTunnel.fillColor = {0.8, 0.9, 1.0, 0.15}
 windTunnel.borderColor = {0.8, 0.9, 1.0, 0.4}
 windTunnel.placements = {
     {
-        name = "up",
+        name = "main",
         data = { width = 32, height = 64, direction = "Up", strength = 200.0, affectsKirbyMore = true }
     },
     {

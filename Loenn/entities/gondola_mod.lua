@@ -10,7 +10,7 @@ gondola_mod.nodeVisibility = "always"
 gondola_mod.nodeLimits = {1, 1}
 gondola_mod.placements = {
     {
-        name = "gondola_mod",
+        name = "main",
         placementType = "line",
         data = {
             active = true,

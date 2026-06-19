@@ -5,8 +5,11 @@ local internetCafeKirby = {}
 internetCafeKirby.name = "DZ/WaveFazeMachine"
 internetCafeKirby.depth = 1000
 internetCafeKirby.placements = {
-    name = "WaveFazeMachine",
+    {
+        name = "main",
+        data = {}
     }
+}
 
 local backTexture = "objects/wavefazetutorial/building_back"
 local leftTexture = "objects/wavefazetutorial/building_front_left"

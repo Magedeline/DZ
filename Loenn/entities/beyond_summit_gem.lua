@@ -31,10 +31,12 @@ beyondSummitGem.placements = {}
 for i = 0, 6 do
     local names = {"Purple", "Blue", "Red", "Green", "Gold", "Orange", "Pink"}
     beyondSummitGem.placements[i + 1] = {
-        name = "BeyondSummitGem (" .. names[i + 1] .. ")",
+    {
+        name = "main" .. names[i + 1] .. ")",
         data = {
-            gem = i,
-            sprite = "",
+        gem = i,
+        sprite = "",
+        }
     }
     }
 end

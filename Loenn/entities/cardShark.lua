@@ -24,7 +24,7 @@ cardShark.fieldInformation = {
 }
 cardShark.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             health = 2,
             detectionRange = 180,

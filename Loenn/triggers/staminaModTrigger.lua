@@ -1,7 +1,7 @@
 local staminaModTrigger = {}
 staminaModTrigger.name = "DZ/StaminaModTrigger"
 staminaModTrigger.placements = {
-    { name = "infinite", data = { width = 32, height = 32, staminaMultiplier = 999.0, regenMultiplier = 1.0 } },
+    { name = "main", data = { width = 32, height = 32, staminaMultiplier = 999.0, regenMultiplier = 1.0 } },
     { name = "half_stamina", data = { width = 32, height = 32, staminaMultiplier = 0.5, regenMultiplier = 1.0 } }
 }
 staminaModTrigger.fieldInformation = {

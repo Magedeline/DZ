@@ -10,7 +10,7 @@ mrBonesDoor.canResize = {false, true}
 
 mrBonesDoor.placements = {
     {
-        name = "MrBonesDoor",
+        name = "main",
         data = {
             height = 48,
             requiredKeys = 0,

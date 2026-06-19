@@ -6,7 +6,7 @@ local introPresentsTrigger = {}
 introPresentsTrigger.name = "DZ/IntroPresentsTrigger"
 introPresentsTrigger.placements = {
     {
-        name = "IntroPresentsTrigger",
+        name = "main",
         data = {
             width = 32,
             height = 32

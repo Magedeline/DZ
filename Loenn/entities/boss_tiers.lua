@@ -6,7 +6,7 @@ bossTier1.name = "DZ/BossTier1"
 bossTier1.depth = 0
 bossTier1.placements = {
     {
-        name = "boss_tier_1",
+        name = "main",
         data = {
             bossType = "BasicEnemy",
             tier = 1,
@@ -24,7 +24,7 @@ bossTier2.name = "DZ/BossTier2"
 bossTier2.depth = 0
 bossTier2.placements = {
     {
-        name = "boss_tier_2",
+        name = "main",
         data = {
             bossType = "ElementalGuardian",
             tier = 2,
@@ -42,7 +42,7 @@ bossTier3.name = "DZ/BossTier3"
 bossTier3.depth = 0
 bossTier3.placements = {
     {
-        name = "boss_tier_3",
+        name = "main",
         data = {
             bossType = "ShadowWarrior",
             tier = 3,
@@ -60,7 +60,7 @@ bossTier4.name = "DZ/BossTier4"
 bossTier4.depth = 0
 bossTier4.placements = {
     {
-        name = "boss_tier_4",
+        name = "main",
         data = {
             bossType = "CrystalLord",
             tier = 4,
@@ -78,7 +78,7 @@ bossTier5.name = "DZ/BossTier5"
 bossTier5.depth = 0
 bossTier5.placements = {
     {
-        name = "boss_tier_5",
+        name = "main",
         data = {
             bossType = "VoidKnight",
             tier = 5,
@@ -96,7 +96,7 @@ bossTier6.name = "DZ/BossTier6"
 bossTier6.depth = 0
 bossTier6.placements = {
     {
-        name = "boss_tier_6",
+        name = "main",
         data = {
             bossType = "BlackholeAngel",
             tier = 6,

@@ -8,7 +8,7 @@ vessel_creation_cutscene.nodeLimits = {0, 0}
 
 vessel_creation_cutscene.placements = {
     {
-        name = "Vessel Creation Cutscene",
+        name = "main",
         data = {}
     }
 }

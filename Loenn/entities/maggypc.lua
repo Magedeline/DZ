@@ -10,7 +10,7 @@ maggypc.texture = "objects/maggypc/pc0"
 
 maggypc.placements = {
     {
-        name = "MaggyPC",
+        name = "main",
         data = {}
     }
 }

@@ -43,7 +43,7 @@ patienceSoulBoost.fieldOrder = {
 
 patienceSoulBoost.placements = {
     {
-        name = "patience_soul_boost",
+        name = "main",
         data = {
             lockCamera = true,
             canSkip = false,

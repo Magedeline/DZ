@@ -2,7 +2,7 @@ local stormCloud = {}
 stormCloud.name = "DZ/StormCloud"
 stormCloud.depth = -200
 stormCloud.placements = {
-    { name = "StormCloud", data = { strikeInterval = 4.0, strikeRadius = 32.0, warningTime = 1.0 } },
+    { name = "main", data = { strikeInterval = 4.0, strikeRadius = 32.0, warningTime = 1.0 } },
     { name = "StormCloud_frequent", data = { strikeInterval = 2.0, strikeRadius = 48.0, warningTime = 0.5 } }
 }
 stormCloud.fieldInformation = {

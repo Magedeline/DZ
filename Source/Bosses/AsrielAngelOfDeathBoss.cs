@@ -1255,6 +1255,24 @@ namespace DZ
         }
         #endregion
 
+        #region Soul Player Collision
+        private void CheckSoulPlayerCollision()
+        {
+            if (IsVulnerable || CurrentPhase == BossPhase.Redemption || CurrentPhase == BossPhase.Defeated)
+                return;
+
+            if (Scene == null) return;
+
+            foreach (SoulPlayer soul in Scene.Tracker.GetEntities<SoulPlayer>())
+            {
+                if (soul != null && soul.Collidable && CollideCheck(soul))
+                {
+                    soul.TakeDamage(1);
+                }
+            }
+        }
+        #endregion
+
         #region Update - GML Converted Step Code
         public override void Update()
         {
@@ -1271,6 +1289,9 @@ namespace DZ
             {
                 player = level.Tracker.GetEntity<global::Celeste.Player>();
             }
+
+            // Check collision with soul players for the top-down battle path
+            CheckSoulPlayerCollision();
             
             // Update barrier position to follow arena
             if (activeBarrier != null && barrierActive)
@@ -2158,6 +2179,16 @@ namespace DZ
 
             Position += velocity * Engine.DeltaTime;
 
+            // Damage any SoulPlayer in the top-down battle path
+            foreach (SoulPlayer soul in Scene.Tracker.GetEntities<SoulPlayer>())
+            {
+                if (soul != null && soul.Collidable && CollideCheck(soul))
+                {
+                    soul.TakeDamage(1);
+                    if (bouncesLeft <= 0) RemoveSelf();
+                }
+            }
+
             if (bouncesLeft > 0)
             {
                 Level lv = SceneAs<Level>();
@@ -2216,6 +2247,15 @@ namespace DZ
             age += Engine.DeltaTime;
             float t = Math.Min(age / sweepDuration, 1f);
             Position.X = MathHelper.Lerp(startX, endX, t);
+
+            foreach (SoulPlayer soul in Scene.Tracker.GetEntities<SoulPlayer>())
+            {
+                if (soul != null && soul.Collidable && CollideCheck(soul))
+                {
+                    soul.TakeDamage(1);
+                }
+            }
+
             if (t >= 1f) RemoveSelf();
         }
 
@@ -2282,7 +2322,19 @@ namespace DZ
 
         private void OnPlayer(global::Celeste.Player p) => p.Die(Vector2.Zero);
 
-        public override void Update() { base.Update(); age += Engine.DeltaTime; }
+        public override void Update()
+        {
+            base.Update();
+            age += Engine.DeltaTime;
+
+            foreach (SoulPlayer soul in Scene.Tracker.GetEntities<SoulPlayer>())
+            {
+                if (soul != null && soul.Collidable && CollideCheck(soul))
+                {
+                    soul.TakeDamage(1);
+                }
+            }
+        }
 
         public override void Render()
         {

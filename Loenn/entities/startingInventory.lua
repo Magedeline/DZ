@@ -5,7 +5,7 @@ startingInventory.depth = 0
 
 startingInventory.placements = {
     {
-        name = "default",
+        name = "main",
         data = {
             inventoryType = "Default",
             debugVisible = false

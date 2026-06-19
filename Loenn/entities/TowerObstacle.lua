@@ -11,7 +11,7 @@ towerObstacle.canResize = {false, false}
 
 towerObstacle.placements = {
     {
-        name = "static_spikes",
+        name = "main",
         data = {
             obstacleType = "Spikes",
             movementPattern = "Static",

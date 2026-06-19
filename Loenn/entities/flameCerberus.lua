@@ -18,7 +18,7 @@ flameCerberus.fieldInformation = {
 }
 flameCerberus.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             headHealth = 3,
             detectionRange = 200,

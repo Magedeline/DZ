@@ -12,7 +12,7 @@ soulFragment.fieldInformation = {
 }
 soulFragment.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             fragmentId = "",
             requiredSouls = 3

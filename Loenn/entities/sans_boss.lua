@@ -9,7 +9,7 @@ sansBoss.justification = {0.5, 1.0}
 
 sansBoss.placements = {
     {
-        name = "sans_boss",
+        name = "main",
         data = {
             health = 1100,
             maxHealth = 1100,

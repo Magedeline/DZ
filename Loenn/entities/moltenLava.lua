@@ -7,7 +7,7 @@ moltenLava.minimumSize = { 16, 16 }
 
 moltenLava.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             width = 32,
             height = 32,

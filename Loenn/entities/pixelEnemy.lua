@@ -25,7 +25,7 @@ pixelEnemy.fieldInformation = {
 }
 pixelEnemy.placements = {
     {
-        name = "walker",
+        name = "main",
         data = {
             enemyType = "Walker",
             health = 2,

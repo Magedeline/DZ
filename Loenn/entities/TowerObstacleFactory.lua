@@ -11,7 +11,7 @@ towerObstacleFactory.canResize = {false, false}
 
 towerObstacleFactory.placements = {
     {
-        name = "beginner_set",
+        name = "main",
         data = {
             obstacleSetType = "Beginner",
             obstaclePattern = "Rings",

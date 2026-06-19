@@ -4,7 +4,7 @@ refill.name = "DZ/AdvancedRefill"
 refill.depth = -100
 refill.placements = {
     {
-        name = "one_dash",
+        name = "main",
         alternativeName = "one_dash_crystal",
         data = {
             oneUse = false,

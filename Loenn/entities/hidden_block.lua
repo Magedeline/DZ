@@ -25,7 +25,7 @@ hiddenBlock.fieldOrder = {
 
 hiddenBlock.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             width = 16,
             height = 16,

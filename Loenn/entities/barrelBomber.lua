@@ -21,7 +21,7 @@ barrelBomber.fieldInformation = {
 }
 barrelBomber.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             health = 1,
             detectionRange = 80,

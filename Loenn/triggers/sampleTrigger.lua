@@ -2,7 +2,7 @@ local sampleTrigger = {
     name = "DZ/SampleTrigger",
     placements = {
         {
-            name = "SessionFlagTriggerLegacy",
+            name = "main",
             data = {
                 width = 8,
                 height = 8,

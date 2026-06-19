@@ -15,7 +15,7 @@ finalCore.fieldInformation = {
 }
 finalCore.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             health = 10,
             attackInterval = 2.0

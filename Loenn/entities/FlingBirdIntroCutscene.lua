@@ -9,7 +9,7 @@ FlingBirdIntroCutscene.nodeLineRenderType = "line"
 
 FlingBirdIntroCutscene.placements = {
     {
-        name = "FlingBirdIntroCutscene_Crash",
+        name = "main",
         data = {
             crashes = true
         },

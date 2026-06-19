@@ -8,7 +8,7 @@ infernoMirror.minimumSize = {16, 16}
 
 infernoMirror.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             width = 32,
             height = 32,

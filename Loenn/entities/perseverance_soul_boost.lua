@@ -38,7 +38,7 @@ perseveranceSoulBoost.fieldOrder = {
 
 perseveranceSoulBoost.placements = {
     {
-        name = "perseverance_soul_boost",
+        name = "main",
         data = {
             lockCamera = true,
             canSkip = false,

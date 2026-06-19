@@ -21,7 +21,7 @@ emberWisp.fieldInformation = {
 }
 emberWisp.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             health = 1,
             floatSpeed = 40,

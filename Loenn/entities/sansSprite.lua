@@ -27,7 +27,7 @@ sansSprite.fieldInformation = {
 
 sansSprite.placements = {
     {
-        name = "default",
+        name = "main",
         data = {
             animation = "idle"
         }

@@ -7,7 +7,7 @@ powerSourceNumber.depth = -10010
 
 powerSourceNumber.placements = {
     {
-        name = "PowerSourceNumber",
+        name = "main",
         data = {
             index = 1,
             flag = "disable_lightning",

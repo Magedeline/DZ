@@ -63,7 +63,7 @@ finalTitanSummitBackgroundManager.fieldOrder = {
 }
 finalTitanSummitBackgroundManager.placements = {
     {
-        name = "FinalTitanSummitBackgroundManager",
+        name = "main",
         data = {
             width = 320,
             height = 180,

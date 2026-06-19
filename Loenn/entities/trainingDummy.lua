@@ -4,7 +4,7 @@ trainingDummy.depth = -100
 trainingDummy.justification = {0.5, 1.0}
 trainingDummy.texture = "characters/Kglobal::Player/idle00"
 trainingDummy.placements = {
-    { name = "TrainingDummy", data = { maxHealth = 10, showDamage = true, resetTime = 3.0 } }
+    { name = "main", data = { maxHealth = 10, showDamage = true, resetTime = 3.0 } }
 }
 trainingDummy.fieldInformation = {
     maxHealth = { fieldType = "integer", minimumValue = 1 },

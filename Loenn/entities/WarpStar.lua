@@ -8,7 +8,7 @@ warpStar.texture = "objects/warpstars/idle00"
 
 warpStar.placements = {
     {
-        name = "WarpStar",
+        name = "main",
         data = {
             oneUse = false,
             shielded = false,

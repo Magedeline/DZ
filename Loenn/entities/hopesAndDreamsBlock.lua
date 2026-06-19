@@ -3,7 +3,7 @@ local HopesAndDreamsBlock = {}
 HopesAndDreamsBlock.name = "DZ/HopesAndDreamsBlock"
 HopesAndDreamsBlock.placements = {
     {
-        name = "HopesAndDreamsBlock",
+        name = "main",
         data = {
             width = 16,
             height = 16,

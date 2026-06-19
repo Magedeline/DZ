@@ -7,7 +7,7 @@ cassette.depth = -1000000
 
 cassette.placements = {
     {
-        name = "Cassette",
+        name = "main",
         data = {
             onCollect = "",
             customAudio = "",

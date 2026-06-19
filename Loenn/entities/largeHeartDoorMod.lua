@@ -14,7 +14,7 @@ largeHeartDoorMod.nodeLineRenderType = "line"
 
 largeHeartDoorMod.placements = {
     {
-        name = "large_heart_door",
+        name = "main",
         data = {
             width = 64,
             requires = 0,

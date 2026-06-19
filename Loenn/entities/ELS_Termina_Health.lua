@@ -5,10 +5,12 @@ local elsTerminaHealth = {}
 elsTerminaHealth.name = "DZ/ELSTerminaHealth"
 elsTerminaHealth.depth = -100000
 elsTerminaHealth.placements = {
-    name = "default",
-    data = {
+    {
+        name = "main",
+        data = {
         maxHealth = 300,
         hardMode = false
+        }
     }
 }
 

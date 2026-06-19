@@ -12,7 +12,7 @@ blackholeRiser.name = "DZ/BlackholeRiser"
 blackholeRiser.depth = -50
 blackholeRiser.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             width = 32,
             speed = 120.0,

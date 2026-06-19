@@ -42,7 +42,7 @@ hole.fieldInformation = {
 
 hole.placements = {
     {
-        name = "black_hole",
+        name = "main",
         data = {
             holeType = "black",
             radius = 64.0,

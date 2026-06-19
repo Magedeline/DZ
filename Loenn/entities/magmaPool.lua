@@ -16,7 +16,7 @@ magmaPool.fieldInformation = {
 }
 magmaPool.placements = {
     {
-        name = "deadly",
+        name = "main",
         data = {
             width = 48,
             height = 16,

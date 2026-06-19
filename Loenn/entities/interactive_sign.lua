@@ -5,7 +5,7 @@ interactiveSign.depth = 0
 
 interactiveSign.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             dialogKey = "SIGN_DEFAULT",
             signType = "wooden",

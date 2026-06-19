@@ -16,7 +16,7 @@ firewallBarrier.fieldInformation = {
 }
 firewallBarrier.placements = {
     {
-        name = "active",
+        name = "main",
         data = {
             width = 32,
             height = 32,

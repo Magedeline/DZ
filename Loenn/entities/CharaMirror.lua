@@ -4,7 +4,9 @@ local dreamMirror = {}
 
 dreamMirror.name = "DZ/CharaMirror"
 dreamMirror.placements = {
-    name = "CharaMirror"
+    {
+        name = "main"
+    }
 }
 
 local frameTexture = "objects/mirror/frame"

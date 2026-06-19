@@ -8,7 +8,7 @@ dreamOrb.texture = "objects/dreamorb/00"
 
 dreamOrb.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             oneUse = false
         }

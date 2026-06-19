@@ -8,7 +8,7 @@ divingBoard.depth = -1
 
 divingBoard.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             launchSpeed = -300.0
         }

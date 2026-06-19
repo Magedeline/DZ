@@ -1,7 +1,7 @@
 local timerStartTrigger = {}
 timerStartTrigger.name = "DZ/TimerStartTrigger"
 timerStartTrigger.placements = {
-    { name = "TimerStartTrigger", data = { width = 16, height = 16, timerId = "timer_1", duration = 60.0, showDisplay = true } }
+    { name = "main", data = { width = 16, height = 16, timerId = "timer_1", duration = 60.0, showDisplay = true } }
 }
 timerStartTrigger.fieldInformation = {
     timerId = { fieldType = "string" },

@@ -1,7 +1,7 @@
 local disableAbilityTrigger = {}
 disableAbilityTrigger.name = "DZ/DisableAbilityTrigger"
 disableAbilityTrigger.placements = {
-    { name = "no_dash", data = { width = 32, height = 32, disableDash = true, disableGrab = false, disableJump = false } },
+    { name = "main", data = { width = 32, height = 32, disableDash = true, disableGrab = false, disableJump = false } },
     { name = "no_grab", data = { width = 32, height = 32, disableDash = false, disableGrab = true, disableJump = false } }
 }
 disableAbilityTrigger.fieldInformation = {

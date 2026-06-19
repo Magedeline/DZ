@@ -1,7 +1,7 @@
 local dualCharacterTrigger = {}
 dualCharacterTrigger.name = "DZ/DualCharacterTrigger"
 dualCharacterTrigger.placements = {
-    { name = "DualCharacterTrigger", data = { width = 16, height = 16, secondCharacter = "Kirby", swapKey = "Tab" } }
+    { name = "main", data = { width = 16, height = 16, secondCharacter = "Kirby", swapKey = "Tab" } }
 }
 dualCharacterTrigger.fieldInformation = {
     secondCharacter = { fieldType = "string", options = { "Madeline", "Kirby", "Badeline" }, editable = true },

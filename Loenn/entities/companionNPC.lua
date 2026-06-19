@@ -23,7 +23,7 @@ function companionNPC.texture(room, entity)
 end
 
 companionNPC.placements = {
-    { name = "normal", data = { companionType = "Bandana_Dee", followDistance = 24.0, canFight = true, dialogId = "" } }
+    { name = "main", data = { companionType = "Bandana_Dee", followDistance = 24.0, canFight = true, dialogId = "" } }
 }
 companionNPC.fieldInformation = {
     companionType = { fieldType = "string", options = { "Bandana_Dee", "Ribbon", "Adeleine", "Marx", "Magolor", "Taranza", "Susie", "Francisca", "Flamberge", "Zan_Partizanne" }, editable = true },

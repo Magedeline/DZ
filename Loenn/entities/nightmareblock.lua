@@ -7,7 +7,7 @@ dreamBlock.nodeLineRenderType = "line"
 dreamBlock.nodeLimits = {0, 1}
 dreamBlock.placements = {
     {
-        name = "nightmare_block",
+        name = "main",
         alternativeName = "space_jam",
         data = {
             fastMoving = false,

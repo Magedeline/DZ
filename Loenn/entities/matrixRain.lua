@@ -26,7 +26,7 @@ matrixRain.fieldInformation = {
 }
 matrixRain.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             rainWidth = 200,
             rainHeight = 400,

@@ -10,7 +10,7 @@ giygasGlitchBackground.fieldInformation = {
     }
 }
 giygasGlitchBackground.placements = {
-    name = "giygas_glitch_background",
+    name = "main",
     data = {
         duration = "Short",
         stay = false,

@@ -9,7 +9,7 @@ alphaApexPredatorBoss.justification = {0.5, 0.5}
 
 alphaApexPredatorBoss.placements = {
     {
-        name = "alpha_apex_predator_boss",
+        name = "main",
         data = {
             health = 1600,
             maxHealth = 1600,

@@ -6,7 +6,7 @@ icePlatform.fillColor = {0.7, 0.9, 1.0, 0.4}
 icePlatform.borderColor = {0.8, 1.0, 1.0, 0.7}
 icePlatform.placements = {
     {
-        name = "IcePlatform",
+        name = "main",
         data = { width = 32, friction = 0.98, canMelt = true }
     },
     {

@@ -2,7 +2,7 @@ local toxicFog = {}
 toxicFog.name = "DZ/ToxicFog"
 toxicFog.depth = -50
 toxicFog.placements = {
-    { name = "ToxicFog", data = { width = 64, height = 64, damageInterval = 1.0, slowFactor = 0.7 } },
+    { name = "main", data = { width = 64, height = 64, damageInterval = 1.0, slowFactor = 0.7 } },
     { name = "ToxicFog_dense", data = { width = 64, height = 64, damageInterval = 0.5, slowFactor = 0.5 } }
 }
 toxicFog.fieldInformation = {

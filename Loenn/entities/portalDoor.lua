@@ -8,7 +8,7 @@ portalDoor.nodeLimits = {0, 1}
 portalDoor.nodeLineRenderType = "line"
 portalDoor.placements = {
     {
-        name = "portal_A",
+        name = "main",
         data = { portalId = "portal_A", color = "00ffff" }
     },
     {

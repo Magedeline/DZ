@@ -10,7 +10,7 @@ dxVoidDashRefill.depth = -100
 
 dxVoidDashRefill.placements = {
     {
-        name = "DXVoidDashRefill",
+        name = "main",
         data = {
             respawnTime = 2.5,
             oneUse = false

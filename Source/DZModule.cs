@@ -3,6 +3,7 @@ using MonoMod.ModInterop;
 using DZ;
 using Celeste.Mod.DZ.HotReload;
 using Monocle;
+using Celeste.Entities;
 
 namespace Celeste.Mod.DZ;
 
@@ -39,6 +40,10 @@ public class DZModule : EverestModule {
         AudioReplacer.Load();
         EverestContentUpdateGuard.Load();
         LiveWatchPatcher.Load();
+        VignetteHooks.Load();
+        KirbyPlayerController.Load();
+        SoulPlayerController.Load();
+        BattlePlayerController.Load();
 
         // Hook into scene changes to add the HotReloadController
         On.Monocle.Engine.Update += OnEngineUpdate;
@@ -48,6 +53,10 @@ public class DZModule : EverestModule {
         AudioReplacer.Unload();
         EverestContentUpdateGuard.Unload();
         LiveWatchPatcher.Unload();
+        VignetteHooks.Unload();
+        KirbyPlayerController.Unload();
+        SoulPlayerController.Unload();
+        BattlePlayerController.Unload();
         On.Monocle.Engine.Update -= OnEngineUpdate;
     }
 

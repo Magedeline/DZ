@@ -9,7 +9,7 @@ tumbleKevinBoss.justification = {0.5, 0.5}
 
 tumbleKevinBoss.placements = {
     {
-        name = "tumble_kevin_boss",
+        name = "main",
         data = {
             health = 1200,
             maxHealth = 1200,

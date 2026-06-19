@@ -14,7 +14,7 @@ dxFloweyOmega.nodeLimits = {0, 0}
 
 dxFloweyOmega.placements = {
     {
-        name = "DXFloweyOmega",
+        name = "main",
         data = {
             maxHealth = 1500,
             corruptionLevel = 0.0,

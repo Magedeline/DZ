@@ -1,7 +1,7 @@
 local secretRevealTrigger = {}
 secretRevealTrigger.name = "DZ/SecretRevealTrigger"
 secretRevealTrigger.placements = {
-    { name = "SecretRevealTrigger", data = { width = 16, height = 16, flag = "secret_found", revealSound = "", cameraTarget = "" } }
+    { name = "main", data = { width = 16, height = 16, flag = "secret_found", revealSound = "", cameraTarget = "" } }
 }
 secretRevealTrigger.fieldInformation = {
     flag = { fieldType = "string" },

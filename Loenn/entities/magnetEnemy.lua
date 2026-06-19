@@ -2,7 +2,7 @@ local magnetEnemy = {}
 magnetEnemy.name = "DZ/MagnetEnemy"
 magnetEnemy.depth = -100
 magnetEnemy.placements = {
-    { name = "MagnetEnemy", data = { health = 2, pullStrength = 80.0, pullRange = 120.0 } },
+    { name = "main", data = { health = 2, pullStrength = 80.0, pullRange = 120.0 } },
     { name = "MagnetEnemystrong", data = { health = 3, pullStrength = 150.0, pullRange = 160.0 } }
 }
 magnetEnemy.fieldInformation = {

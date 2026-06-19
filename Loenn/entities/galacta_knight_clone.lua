@@ -9,7 +9,7 @@ galactaKnightClone.justification = {0.5, 1.0}
 
 galactaKnightClone.placements = {
     {
-        name = "default",
+        name = "main",
         data = {
             health = 12,
             moveSpeed = 150.0,

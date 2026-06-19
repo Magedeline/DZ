@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using Monocle;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using Celeste.Cutscenes;
 using Celeste.Entities.Bosses;
 using Celeste.Mod.DZ;
 using DZ;
@@ -2692,8 +2693,52 @@ namespace Celeste.Entities
             Stamina = ClimbMaxStamina;
         }
 
+        public void RefillHealth()
+        {
+            currentHealth = maxHealth;
+        }
+
+        public void ReviveFromRefusedDeath()
+        {
+            Dead = false;
+            Collidable = true;
+            StateMachine.Locked = false;
+            StateMachine.State = StNormal;
+            RefillHealth();
+            RefillDash();
+            RefillStamina();
+        }
+
+        public bool TryRefuseDeath()
+        {
+            if (Scene == null) return false;
+
+            var asrielGod = Scene.Tracker.GetEntity<AsrielGodBoss>();
+            if (asrielGod != null && !asrielGod.IsBossDefeated)
+            {
+                Scene.Add(new CS20_AsrielGodRefusedToDie(this));
+                return true;
+            }
+
+            var asrielAngel = Scene.Tracker.GetEntity<AsrielAngelOfDeathBoss>();
+            if (asrielAngel != null && asrielAngel.IsVulnerable == false && asrielAngel.CurrentPhase != AsrielAngelOfDeathBoss.BossPhase.Defeated)
+            {
+                Scene.Add(new CS20_AsrielGodRefusedToDie(this));
+                return true;
+            }
+
+            return false;
+        }
+
         public PlayerDeadBody Die(Vector2 direction, bool evenIfInvincible = false, bool registerDeathInStats = true)
         {
+            // Check for Asriel refusal sequence before dying
+            if (TryRefuseDeath())
+            {
+                return null;
+            }
+
+
             var session = level.Session;
             bool invincible = (!evenIfInvincible && SaveData.Instance.AssistMode && SaveData.Instance.Assists.Invincible);
 

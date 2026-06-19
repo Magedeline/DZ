@@ -48,7 +48,7 @@ gooeyDummy.fieldInformation = {
 
 gooeyDummy.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             facing = 1,
             animation = "idle",

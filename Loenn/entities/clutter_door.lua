@@ -26,12 +26,14 @@ clutterDoor.placements = {}
 
 for i, variant in ipairs(variants) do
     clutterDoor.placements[i] = {
+    {
         name = variant,
         data = {
-            width = 24,
-            height = 24,
-            ["type"] = variant
+        width = 24,
+        height = 24,
+        ["type"] = variant
         }
+    }
     }
 end
 

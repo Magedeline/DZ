@@ -38,7 +38,7 @@ energyBarrier.fieldInformation = {
 
 energyBarrier.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             barrierType = "normal",
             color = "00ffff",

@@ -7,7 +7,7 @@ infernoEye.depth = 8990
 
 infernoEye.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {}
     }
 }

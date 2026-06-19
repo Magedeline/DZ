@@ -4,7 +4,7 @@ entity.name = "DZ/DamageTrigger"
 entity.depth = 0
 entity.placements = {
     {
-        name = "Damage Trigger",
+        name = "main",
         data = {
             width = 16,
             height = 16,

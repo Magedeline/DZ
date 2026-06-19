@@ -38,7 +38,7 @@ determinationSoulBoost.fieldOrder = {
 
 determinationSoulBoost.placements = {
     {
-        name = "determination_soul_boost",
+        name = "main",
         data = {
             lockCamera = true,
             canSkip = false,

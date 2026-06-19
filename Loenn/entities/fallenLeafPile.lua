@@ -16,7 +16,7 @@ fallenLeafPile.fieldInformation = {
 }
 fallenLeafPile.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             hiddenContent = "Nothing",
             detectionRange = 40,

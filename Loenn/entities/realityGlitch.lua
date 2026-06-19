@@ -18,7 +18,7 @@ realityGlitch.fieldInformation = {
 }
 realityGlitch.placements = {
     {
-        name = "minor",
+        name = "main",
         data = {
             width = 32,
             height = 32,

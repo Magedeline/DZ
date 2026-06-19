@@ -9,7 +9,7 @@ krackoBoss.justification = {0.5, 0.5}
 
 krackoBoss.placements = {
     {
-        name = "kracko_boss",
+        name = "main",
         data = {
             health = 900,
             maxHealth = 900,

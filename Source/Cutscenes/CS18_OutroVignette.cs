@@ -8,7 +8,7 @@ namespace Celeste.Cutscenes
     /// <summary>
     /// Chapter 18 Outro Vignette - Phone call ending that closes the game
     /// </summary>
-    public class Cs18OutroVignette : Scene
+    public class Cs18OutroVignette : DesoloZantasVignette
     {
         public static class LoadingVignetteText
         {
@@ -32,7 +32,7 @@ namespace Celeste.Cutscenes
         private bool gameClosing = false;
         private EventInstance? phoneRumbleSfx;
 
-        public bool CanPause => menu == null;
+        public override bool CanPause => menu == null;
 
         public Cs18OutroVignette(Session session, TextMenu? menu = null)
         {
@@ -217,10 +217,6 @@ namespace Celeste.Cutscenes
                 if (!exiting)
                 {
                     textCoroutine?.Update();
-                    if (Input.Pause.Pressed || Input.ESC.Pressed)
-                    {
-                        OpenMenu();
-                    }
                 }
             }
             else if (!exiting)
@@ -237,8 +233,10 @@ namespace Celeste.Cutscenes
             }
         }
 
-        public void OpenMenu()
+        public override void OpenMenu()
         {
+            if (!CanPause || Paused) return;
+            Paused = true;
             pauseSfx();
             Audio.Play("event:/ui/game/pause");
             Add(menu = new TextMenu());
@@ -247,8 +245,9 @@ namespace Celeste.Cutscenes
             menu.OnCancel = menu.OnESC = menu.OnPause = closeMenu;
         }
 
-        private void closeMenu()
+        public override void CloseMenu()
         {
+            Paused = false;
             resumeSfx();
             Audio.Play("event:/ui/game/unpause");
             if (menu != null)
@@ -257,6 +256,8 @@ namespace Celeste.Cutscenes
             }
             menu = null;
         }
+
+        private void closeMenu() => CloseMenu();
 
         private void skipToEnd()
         {

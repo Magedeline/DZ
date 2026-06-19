@@ -35,7 +35,7 @@ puffRefill.fieldOrder = {
 
 puffRefill.placements = {
     {
-        name = "single_puff",
+        name = "main",
         alternativeName = "kirby_puff_refill_single",
         data = {
             puffCount = 3,

@@ -4,8 +4,9 @@ cartridge.name = "DZ/Cartridge"
 cartridge.depth = -100
 cartridge.justification = {0.5, 0.5}
 cartridge.placements = {
-    name = "cartridge",
-    data = {
+    {
+        name = "main",
+        data = {
         spritePath = "collectables/cartridge/",
         menuSprite = "collectables/cartridge",
         unlockText = "",
@@ -21,6 +22,7 @@ cartridge.placements = {
         collectDelay = 0.5,
         persistent = true,
         isChapter19Finale = false
+        }
     }
 }
 

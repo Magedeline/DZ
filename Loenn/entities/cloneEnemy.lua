@@ -2,7 +2,7 @@ local cloneEnemy = {}
 cloneEnemy.name = "DZ/CloneEnemy"
 cloneEnemy.depth = -100
 cloneEnemy.placements = {
-    { name = "normal", data = { health = 1, delaySeconds = 2.0, color = "8800ff" } },
+    { name = "main", data = { health = 1, delaySeconds = 2.0, color = "8800ff" } },
     { name = "short_delay", data = { health = 1, delaySeconds = 1.0, color = "ff0088" } }
 }
 cloneEnemy.fieldInformation = {

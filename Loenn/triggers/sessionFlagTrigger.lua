@@ -2,7 +2,7 @@ local sessionFlagTrigger = {
     name = "DZ/SessionFlagTrigger",
     placements = {
         {
-            name = "SessionFlagTrigger",
+            name = "main",
             data = {
                 width = 8,
                 height = 8,

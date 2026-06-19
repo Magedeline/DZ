@@ -2,14 +2,16 @@ local badelineDummyAttacherTrigger = {}
 
 badelineDummyAttacherTrigger.name = "DZ/BadelineDummyAttacherTrigger"
 badelineDummyAttacherTrigger.placements = {
-    name = "trigger",
-    data = {
+    {
+        name = "main",
+        data = {
         hoverOffsetX = -20,
         hoverOffsetY = -10,
         hoverSpeed = 2.0,
         hoverAmplitude = 4.0,
         once = true,
         removeOnExit = false
+        }
     }
 }
 

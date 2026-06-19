@@ -8,7 +8,7 @@ cs09_credit_trigger.name = "DZ/CS09_UntilNextTimeCreditTrigger"
 
 cs09_credit_trigger.placements = {
     {
-        name = "CS09_UntilNextTimeCreditTrigger",
+        name = "main",
         data = {
             width = 16,
             height = 16,

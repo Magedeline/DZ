@@ -11,7 +11,7 @@ kirbyPlayer.nodeLimits = {0, 0}
 
 kirbyPlayer.placements = {
     {
-        name = "kirby_player",
+        name = "main",
         data = {
         }
     }

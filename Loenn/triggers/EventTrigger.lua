@@ -50,6 +50,10 @@ local eventOptions = {
     "cs09_golden_flower",
     "cs09_message_end",
 
+    -- Chapter 13
+    "ch13_tenna_pre_intro_video",
+    "ch13_tenna_earth_video",
+
     -- Chapter 15
     "ch15_zantas_1",
     "ch15_zantas_2",
@@ -91,7 +95,7 @@ eventTrigger.name = "DZ/DZEventTrigger"
 eventTrigger.canResize = {true, true}
 eventTrigger.placements = {
     {
-        name = "DZEventTrigger",
+        name = "main",
         data = {
             x = 0,
             y = 0,

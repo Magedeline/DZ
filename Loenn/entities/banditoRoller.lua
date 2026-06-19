@@ -21,7 +21,7 @@ banditoRoller.fieldInformation = {
 }
 banditoRoller.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             health = 2,
             rollSpeed = 150,

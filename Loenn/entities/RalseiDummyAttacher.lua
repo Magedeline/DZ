@@ -30,7 +30,7 @@ ralseiDummyAttacher.fieldInformation = {
 
 ralseiDummyAttacher.placements = {
     {
-        name = "default",
+        name = "main",
         data = {
             hoverOffsetX = 20,
             hoverOffsetY = -10,

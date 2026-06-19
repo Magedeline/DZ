@@ -6,9 +6,11 @@ flingBird.nodeLineRenderType = "line"
 flingBird.texture = "characters/bird/Hover04"
 flingBird.nodeLimits = {0, -1}
 flingBird.placements = {
-    name = "fling_bird",
-    data = {
+    {
+        name = "main",
+        data = {
         waiting = false
+        }
     }
 }
 

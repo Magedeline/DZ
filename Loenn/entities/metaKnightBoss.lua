@@ -6,11 +6,13 @@ local metaKnightBoss = {}
 metaKnightBoss.name = "DZ/MetaKnightBoss"
 metaKnightBoss.depth = -10000
 metaKnightBoss.placements = {
-    name = "default",
-    data = {
+    {
+        name = "main",
+        data = {
         health = 20,
         attackCooldown = 0.8,
         bossMusic = "event:/pusheen/music/lvl13/metarminator_kight"
+        }
     }
 }
 

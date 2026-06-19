@@ -55,7 +55,7 @@ K_Player.fieldOrder = {
 
 K_Player.placements = {
     {
-        name = "K_Player (Madeline)",
+        name = "main",
         data = {
             spriteMode = "Madeline",
             introType = "Transition",

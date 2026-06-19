@@ -45,7 +45,7 @@ redLightning.fieldInformation = {
 
 redLightning.placements = {
     {
-        name = "dramatic_effect",
+        name = "main",
         data = {
             width = 32,
             height = 64,

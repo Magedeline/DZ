@@ -10,7 +10,7 @@ namespace Celeste.Cutscenes
     /// Vessel Creation Vignette - Interactive vessel creation cutscene 
     /// Based on Hollow Knight/Undertale inspired vessel creation sequence
     /// </summary>
-    public class VesselCreationVignette : Scene
+    public class VesselCreationVignette : DesoloZantasVignette
     {
         #region Constants
         private const float FADE_DURATION = 2f;
@@ -116,7 +116,7 @@ namespace Celeste.Cutscenes
             new[] { "Back", "Del", "Clear", "OK" }
         };
         
-        public bool CanPause => pauseMenu == null;
+        public override bool CanPause => pauseMenu == null && !textInputActive;
         #endregion
 
         #region Enums
@@ -1037,10 +1037,7 @@ namespace Celeste.Cutscenes
                         sequenceCoroutine.Update();
                     }
                     
-                    if (!textInputActive && (Input.Pause.Pressed || Input.ESC.Pressed))
-                    {
-                        OpenPauseMenu();
-                    }
+                    // Pause input is handled by DesoloZantasVignette.Update via OpenMenu().
                 }
             }
             else if (!exiting)
@@ -1055,6 +1052,8 @@ namespace Celeste.Cutscenes
         
         public void OpenPauseMenu()
         {
+            if (!CanPause || Paused) return;
+            Paused = true;
             PauseSfx();
             try { Audio.Play("event:/ui/game/pause"); }
             catch (Exception ex) { IngesteLogger.Warn($"[VesselCreation] Failed to play pause sound: {ex.Message}"); }
@@ -1063,9 +1062,14 @@ namespace Celeste.Cutscenes
             pauseMenu.Add(new TextMenu.Button(Dialog.Clean("intro_vignette_skip")).Pressed(SkipVignette));
             pauseMenu.OnCancel = pauseMenu.OnESC = pauseMenu.OnPause = ClosePauseMenu;
         }
+
+        public override void OpenMenu() => OpenPauseMenu();
         
+        public override void CloseMenu() => ClosePauseMenu();
+
         private void ClosePauseMenu()
         {
+            Paused = false;
             ResumeSfx();
             try { Audio.Play("event:/ui/game/unpause"); }
             catch (Exception ex) { IngesteLogger.Warn($"[VesselCreation] Failed to play unpause sound: {ex.Message}"); }

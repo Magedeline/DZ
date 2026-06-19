@@ -12,7 +12,7 @@ memoryFragment.fieldInformation = {
 }
 memoryFragment.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             fragmentId = "",
             dialogueKey = "MEMORY_FRAGMENT",

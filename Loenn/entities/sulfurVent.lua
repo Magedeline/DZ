@@ -7,7 +7,7 @@ sulfurVent.name = "DZ/SulfurVent"
 sulfurVent.depth = -50
 sulfurVent.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {}
     }
 }

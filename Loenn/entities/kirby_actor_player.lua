@@ -8,7 +8,7 @@ kirbyActorPlayer.justification = {0.5, 1.0}
 
 kirbyActorPlayer.placements = {
     {
-        name = "default",
+        name = "main",
         data = {
             startAnimation = "idle",
             faceLeft = false,

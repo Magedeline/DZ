@@ -12,7 +12,7 @@ nightmareFragment.fieldInformation = {
 }
 nightmareFragment.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             fragmentId = "",
             fragmentNumber = 1

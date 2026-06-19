@@ -5,7 +5,7 @@ torchEntity.depth = 0
 
 torchEntity.placements = {
     {
-        name = "Torch",
+        name = "main",
         data = {
             isLit = true,
             torchType = "wall",

@@ -4,7 +4,7 @@ launchCannon.name = "DZ/LaunchCannon"
 launchCannon.depth = -500
 launchCannon.placements = {
     {
-        name = "manual_aim",
+        name = "main",
         data = { launchSpeed = 400.0, autoFire = false, autoAngle = -90.0 }
     },
     {

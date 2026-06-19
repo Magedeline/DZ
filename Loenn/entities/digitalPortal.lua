@@ -12,7 +12,7 @@ digitalPortal.fieldInformation = {
 }
 digitalPortal.placements = {
     {
-        name = "two_way",
+        name = "main",
         data = {
             destinationId = "",
             transportDelay = 0.5,

@@ -33,8 +33,8 @@ namespace Celeste.Triggers
             {
                 hasTriggered = true;
 
-                // Start the cutscene using the correct signature
-                var cutscene = new CS18_Outro(player);
+                // Start the vignette using the correct signature (Session instead of Player)
+                var cutscene = new CS18_Outro(level.Session);
                 level.Add(cutscene);
             }
         }

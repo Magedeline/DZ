@@ -11,7 +11,7 @@ kirbyPlayerCore.nodeVisibility = "always"
 
 kirbyPlayerCore.placements = {
     {
-        name = "default",
+        name = "main",
         data = {
             maxHealth = 6,
             power = "None",

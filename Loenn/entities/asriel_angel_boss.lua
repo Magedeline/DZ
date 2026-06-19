@@ -16,7 +16,7 @@ asrielAngelBoss.nodeLineRenderType = "line"
 
 asrielAngelBoss.placements = {
     {
-        name = "AsrielAngelOfDeathBoss",
+        name = "main",
         data = {
             health = 2500,
             maxHealth = 2500,

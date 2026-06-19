@@ -15,7 +15,7 @@ wantedPoster.fieldInformation = {
 }
 wantedPoster.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             bountyName = "OUTLAW",
             bountyReward = 100,

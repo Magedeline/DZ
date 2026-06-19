@@ -9,7 +9,7 @@ ridgeGate.minimumSize = {8, 8}
 
 ridgeGate.placements = {
     {
-        name = "RidgeGate",
+        name = "main",
         data = {
             width = 8,
             height = 48,

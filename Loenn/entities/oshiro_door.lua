@@ -9,7 +9,9 @@ oshiroDoor.depth = 0
 oshiroDoor.fillColor = {74 / 255, 71 / 255, 135 / 255, 153}
 oshiroDoor.borderColor = {1.0, 1.0, 1.0, 1.0}
 oshiroDoor.placements = {
-    name = "oshiro_door"
+    {
+        name = "main"
+    }
 }
 
 local fillColor = {74 / 255, 71 / 255, 135 / 255, 153}

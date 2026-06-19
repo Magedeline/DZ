@@ -4,7 +4,7 @@ boss_difficulty_selector.name = "DesoloZantas/BossDifficultySelector"
 boss_difficulty_selector.depth = 0
 boss_difficulty_selector.placements = {
     {
-        name = "Boss Difficulty Selector",
+        name = "main",
         data = {
             bossId = "",
             defaultDifficulty = "normal",

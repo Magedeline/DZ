@@ -13,7 +13,7 @@ zoomMover.warnBelowSize = {16, 16}
 
 zoomMover.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             width = 16,
             height = 16,

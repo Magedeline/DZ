@@ -7,7 +7,7 @@ gordo.name = "DZ/Gordo"
 gordo.depth = 0
 gordo.placements = {
     {
-        name = "stationary",
+        name = "main",
         data = {
             movementType = "Stationary",
             moveDistance = 48.0,

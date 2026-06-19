@@ -46,7 +46,7 @@ local staffNames = {
 
 heartStaff.placements = {
     {
-        name = "red",
+        name = "main",
         data = {
             staffColor = "red",
             staffId = ""

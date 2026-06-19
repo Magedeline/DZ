@@ -2,7 +2,7 @@ local darkMatterMinion = {}
 darkMatterMinion.name = "DZ/DarkMatterMinion"
 darkMatterMinion.depth = -100
 darkMatterMinion.placements = {
-    { name = "normal", data = { health = 2, fireInterval = 2.5, beamLength = 80.0 } },
+    { name = "main", data = { health = 2, fireInterval = 2.5, beamLength = 80.0 } },
     { name = "long_range", data = { health = 2, fireInterval = 3.0, beamLength = 140.0 } }
 }
 darkMatterMinion.fieldInformation = {

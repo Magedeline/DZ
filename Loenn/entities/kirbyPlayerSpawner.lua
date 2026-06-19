@@ -10,7 +10,7 @@ kirbyPlayerSpawner.name = "DZ/KirbyPlayerSpawner"
 kirbyPlayerSpawner.depth = -1000000
 kirbyPlayerSpawner.placements = {
     {
-        name = "kirby_player_spawner",
+        name = "main",
         data = {
             enableKirbyMode = true,
             spawnCompanion = false,

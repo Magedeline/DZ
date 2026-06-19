@@ -15,7 +15,7 @@ shadowFigure.fieldInformation = {
 }
 shadowFigure.placements = {
     {
-        name = "passive",
+        name = "main",
         data = {
             detectionRange = 150,
             followDistance = 80,

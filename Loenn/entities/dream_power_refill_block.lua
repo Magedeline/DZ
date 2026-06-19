@@ -41,7 +41,7 @@ return {
     },
     placements = {
         {
-            name = "Dream Power Refill (default)",
+            name = "main",
             data = {
                 oneUse     = false,
                 refillDash = true,

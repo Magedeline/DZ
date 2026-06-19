@@ -7,7 +7,7 @@ charaBoostCutscene.depth = 0
 
 charaBoostCutscene.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             canSkip = true,
             oneUse = false,

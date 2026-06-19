@@ -3,7 +3,7 @@ local vesselCreationTrigger = {}
 vesselCreationTrigger.name = "DZ/VesselCreationTrigger"
 vesselCreationTrigger.placements = {
     {
-        name = "VesselCreationTrigger",
+        name = "main",
         data = {
             width = 16,
             height = 16,

@@ -16,7 +16,7 @@ distortionField.fieldInformation = {
 }
 distortionField.placements = {
     {
-        name = "reverse",
+        name = "main",
         data = {
             distortionType = "Reverse",
             intensity = 1.0,

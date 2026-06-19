@@ -9027,7 +9027,7 @@ I fear our seals won't hold forever.
 # ========== DARKER THAN DARK MATTER BOSS ==========
 
 DZ_CH11_EXTRA_DARKERDARK_INTRO=
-{dz_shake_screen 5.0 3.0}{dz_flash_screen 000000 1.0}
+
 
 [DARKER_DARK_MATTER left none]
 {big}{# ff0000}SO... YOU ARE THE ONES WHO FREED MY PREY.{#}{/big}
@@ -9079,7 +9079,7 @@ I should know... I AM Madeline's dark side!
 [DARKER_DARK_MATTER left fading]
 {big}{# ff0000}PERHAPS... THERE IS MORE... TO EXISTENCE...{#}{/big}
 {big}{# ff0000}THAN I... UNDERSTOOD...{#}{/big}
-{dz_flash_screen FFFFFF 2.0}
+
 
 # ========== EXTRA NPC DIALOGS ==========
 
@@ -10058,7 +10058,7 @@ you dare to break her free, now you will pay the price for it!
 [STARSI left surprised]
 Please just do not-
 {trigger 1 ten big black knife thrown into the lake}
-{dz_flash_screen FFFFFF 1.0}
+
 {trigger 2 massive dark fountain rise from the lake}
 [Apex_Predator left evil]
 enjoy while you can, little star warrior
@@ -10070,7 +10070,7 @@ Hey! Don't you dare-
 {trigger 4 dark fountain explodes destructively}
 {trigger 5 madeline and others get thrown back}
 {trigger 6 fountain turns into a tower}
-{dz_flash_screen FFFFFF 1.0}
+
 {trigger 7 tower started to crackle with eyes and a hand}
 {trigger 8 eye hand open look around and attack directly to madeline and others}
 
@@ -10283,7 +10283,7 @@ together!
 {trigger 1 madeline and kirby spins until the soul appear and shine bright to blow the titan up}
 
 DZ_CH12_TITAN_GONE=
-{dz_flash_screen FFFFFF 1.0}{trigger 0 madeline and kirby land on the ground safely}
+{trigger 0 madeline and kirby land on the ground safely}
 
 [MADELINE left normal]
 We... We did it... The titan is gone.
@@ -10741,7 +10741,7 @@ I sense another presence.
 Something far more dangerous lurking in the shadows.
 
 DZ_CH12_EXTRA_APEX_SECRET_REVEAL=
-{dz_shake_screen 8.0 5.0}{dz_flash_screen FF0000 1.5}
+
 
 [APEX_PREDATOR left menacing]
 Did you think destroying my titan would stop me?
@@ -10801,7 +10801,7 @@ I REFUSE!
 
 DZ_CH12_EXTRA_UNDYNE_UNDYING_TRANSFORMATION=
 [UNDYNE_HYPER left transforming]
-{dz_flash_screen 00FFFF 2.0}
+
 I won't die!
 Not here! Not NOW!
 EVERYONE IS COUNTING ON ME!
@@ -10863,8 +10863,8 @@ Remember this, heroes...
 In the end... darkness... always...
 {big}WINS!{/big}
 {trigger 0 apex predator explodes}
-{dz_flash_screen FFFFFF 3.0}
-{dz_shake_screen 10.0 5.0}
+
+
 
 [MADELINE left surprised]
 EVERYONE GET DOWN!
@@ -11215,7 +11215,7 @@ FROGGIT DREW NEAR!
 
 [CHARA left laughing]
 Now the rule is simple
-we each take one time per caharcter for each turn
+we each take one time per character for each turn
 and attack the enemy until it is defeated
 the fight is turn based attack
 the act button is for communicate with the enemy
@@ -11538,7 +11538,7 @@ so... uhh... good luck on your journey!
 ch13_second_boss_battle_defeated=
 [SNAKE right BOSS]
 {big}I... I YIELD...{/big}
-{dz_flash_screen FFFFFF 1.0}
+
 
 [BADELINE left normal]
 We did it! The snake is defeated!
@@ -11723,7 +11723,7 @@ you can't go in there alone!
 DZ_CH13_META_KNIGHT_ENCOUNTER=
 [BADELINE left worritedAlt]
 Wait... is that...?
-{dz_flash_screen 0000FF 0.5}
+
 
 [CHARA left laughing]
 that's Meta Knight!
@@ -11760,7 +11760,7 @@ We have to find a way to restore him!
 
 [METAMINATOR_KNIGHT right angry]
 {~}RESISTANCE IS FUTILE. PREPARE FOR TERMINATION.{/~}
-{dz_shake_screen 1.0 1.5}
+
 
 DZ_CH13_METAMINATOR_BATTLE_MID=
 [KIRBY right upset]
@@ -11781,7 +11781,7 @@ Keep talking to him! It's working!
 DZ_CH13_METAMINATOR_DEFEATED=
 [METAMINATOR_KNIGHT right sad]
 {~}KIRBY... I... REMEMBER...{/~}
-{dz_flash_screen FFFFFF 1.0}
+
 
 [META_KNIGHT right normal]
 Kirby... forgive me... I was not myself...
@@ -11982,9 +11982,63 @@ DZ_CH13_TENNA_EARTH_VIDEO_destructions=
 Breaking news! A massive dark entity has been spotted wreaking havoc across the globe from mountain celeste!
 Citizens are urged to stay indoors and avoid any contact with the creature, known as ELs.
 Authorities are working tirelessly to contain the situation, but the entity's destructive power is unlike anything we've ever seen before.
-Stay tuned for more updates on this developing story.
 
-[BADELINE left shocked]
+[HUMAN left NEWS]
+We are now receiving reports of catastrophic damage across multiple continents.
+Eyewitnesses describe the entity as a swirling vortex of darkness, consuming everything in its path.
+Major cities have gone dark as power grids fail under the strain of the assault.
+
+[HUMAN left NEWS]
+Emergency broadcasts are being issued worldwide.
+The United Nations has declared a state of global emergency and is urging all nations to cooperate.
+Military forces have been deployed, but their weapons appear to have little effect on the creature.
+
+[HUMAN left NEWS]
+In the latest update, the entity has been seen moving toward the coast, causing massive tidal waves.
+Coastal areas are being evacuated as we speak.
+Please remain calm and follow the instructions of local authorities.
+
+[HUMAN left NEWS]
+We have unconfirmed reports that the creature originated from Mount Celeste itself.
+Scientists are scrambling to understand the phenomenon, but so far, all theories remain inconclusive.
+The only thing we know for certain is that this threat is unlike anything in recorded history.
+
+[HUMAN left NEWS]
+Stay tuned for more updates on this developing story.
+May whatever force is out there have mercy on us all.
+
+[HUMAN left NEWS]
+Wait... we are receiving an audio transmission coming from the entity itself.
+This is not a human signal. It is... speaking.
+
+[ELS left angry]
+Foolish creatures of this fragile world.
+You stand before the end of everything you have ever known.
+
+[ELS left angry]
+I come from the space between stars, from the dark folds where your light cannot reach.
+My universe is not one of matter and warmth. It is the void that consumes all voids.
+
+[ELS left angry]
+Your world is a spark. A brief, arrogant flicker in an ocean of endless night.
+We have swallowed countless sparks before yours. We will swallow countless more after.
+
+[ELS left angry]
+Your mountains, your cities, your heroes... they are nothing but dust waiting to be scattered.
+I do not destroy out of hate. I destroy because it is the only truth that remains.
+
+[ELS left angry]
+Run. Hide. Pray to whatever fragile gods you cling to.
+But know that in the end, every light goes out.
+And I am the one who blows out the last flame.
+
+[ELS left angry]
+Welcome to the edge of your universe. Beyond me, there is only silence.
+
+[HUMAN left NEWS]
+The transmission has ended. We... we are not alone. And whatever that thing was, it is coming for us.
+
+[BADELINE left yell]
 This ELs the force of nature is causing destruction!
 
 [CHARA left worried]
@@ -12017,7 +12071,7 @@ you must step down for the greater good
 [AXIS left angry]
 nonsense?
 you think you can tell me what to do?
-one verse one on good robot against evil machine
+one verse one on good television from 1980s against evil machine
 
 [MADELINE left angry]
 We won't let you continue this madness, Axis!
@@ -12033,7 +12087,7 @@ DZ_CH13_AXIS_BATTLE_DEFEAT_BUT_NOT_OVER=
 error this isn't over...
 I will come back to take you down...
 heading to the digital dimension
-{dz_flash_screen FF0000 1.0}
+
 
 [BADELINE left normal]
 phew that was close...
@@ -12193,7 +12247,7 @@ Wait, are you famous here?
 
 [METTATON left posing]
 FAMOUS? Darling, I'm a SUPERSTAR!
-The most beautiful robot in the Underground!
+The most beautiful robot on the Mountian!
 
 [METTATON left dramatic]
 But alas, my ratings have been down lately.
@@ -12767,7 +12821,6 @@ This central hub... it feels familiar somehow.
 
 [KIRBY right surprised]
 That throne... it looks like King Dedede's!
-{dz_flash_screen 800080 0.7}
 
 [DIGITAL_DEDEDE left angry]
 {~}Well, well, well... if it isn't my old nemesis...{/~}
@@ -12839,7 +12892,6 @@ Don't give up! Fight against it!
 DZ_CH14_HOLLOW_PROGRAMMER_DEFEATED=
 [DIGITAL_DEDEDE left sad]
 {~}The corruption... it's fading...{/~}
-{dz_flash_screen FFFFFF 2.0}
 
 [KING_DEDEDE right normal]
 Kirby... I'm sorry... I don't know what came over me...
@@ -12859,7 +12911,6 @@ A massive mechanical entity... Axis has returned...
 
 DZ_CH14_GIANT_AXIS_APPROACH=
 [none left]
-{dz_shake_screen 3.0 5.0}
 
 [MADELINE left surprised]
 The whole dimension is shaking!
@@ -12885,7 +12936,7 @@ Size doesn't matter! We've come too far to give up now!
 [GIANT_AXIS left angry]
 {big}YOUR DETERMINATION IS IRRELEVANT.{/big}
 {big}INITIATING PLANET-KILLER PROTOCOLS.{/big}
-{dz_flash_screen FF0000 1.0}{dz_shake_screen 4.0 3.0}
+
 
 [KING_DEDEDE right determined]
 I may have been corrupted, but I'm not letting this tin can win!
@@ -12929,7 +12980,7 @@ DZ_CH14_GIANT_AXIS_BATTLE_DEFEAT=
 [GIANT_AXIS left angry]
 {big}SYSTEMS... FAILING...{/big}
 {big}MISSION... COMPROMISED...{/big}
-{dz_flash_screen FFFFFF 2.0}
+
 
 DZ_CH14_DIGITAL_DIMENSION_RESTORED=
 [DIGITAL_GUIDE left happy]
@@ -13154,7 +13205,7 @@ But... perhaps we can help each other.
 I want my throne back.
 You want to stop Axis.
 
-[MADELINE right angry]
+[MADELINE right upset]
 Why should we trust you?
 
 [CYBER_QUEEN left honest]
@@ -13165,6 +13216,12 @@ He wants to delete everything and start over.
 [CYBER_QUEEN left determined]
 Enemy of my enemy, et cetera.
 Do we have a deal?
+
+[MADELINE right distracted]
+This maybe a mistake but...
+
+[MADELINE right sad]
+Fine but just show us the way.
 
 # ========== DIGITAL AI - KIRBY'S PAST LORE ==========
 
@@ -13218,7 +13275,7 @@ Father: VOID DREAMER. A being of pure creation.
 I had... parents?
 
 [DIGITAL_AI left sad]
-Both were destroyed during the Great Star War.
+Both were destroyed during the Great Darkess War.
 They sacrificed themselves to seal away Void Termina.
 And to protect... you.
 
@@ -13233,7 +13290,7 @@ Her final words, recorded in stardust:
 And know that wherever you go...
 We will always love you."
 
-[KIRBY right angry]
+[KIRBY right panic]
 Mom... Dad...
 
 DZ_CH14_EXTRA_MADELINE_COMFORTS_KIRBY=
@@ -13372,7 +13429,7 @@ DZ_CH14_EXTRA_NPC_FRIENDLY_VIRUS=
 Hey! I'm a virus! But a NICE one!
 I only delete your bad memories!
 
-[BADELINE right alarmed]
+[BADELINE right yell]
 Stay away from me.
 
 [FRIENDLY_VIRUS left sad]
@@ -13495,7 +13552,7 @@ We've collected {gem_heart_count} Gem Hearts and {crystal_berry_count} Crystal B
 
 [CASTLE_GUARDIAN left normal]
 Your dedication is noted. But the true judgment lies ahead.
-{dz_flash_screen 9932CC 1.0}
+
 
 [CASTLE_GUARDIAN left serious]
 Enter the Hall of Truth. The Roaring Titan Council awaits.
@@ -13537,7 +13594,7 @@ We choose to protect. We've never sought to destroy, only to heal.
 DZ_CH15_BARRIER_REVELATION=
 [TITAN_COUNCIL_LEADER left sad]
 {big}BEHOLD... THE TRUTH OF OUR IMPRISONMENT.{/big}
-{dz_flash_screen FFFFFF 2.0}
+
 
 [MADELINE left surprised]
 The barrier... it's made of pure magical energy.
@@ -13561,7 +13618,7 @@ DZ_CH15_CEREMONY_OF_FLAME=
 [TITAN_COUNCIL_LEADER left serious]
 {big}NOW COMES THE FINAL TEST.{/big}
 {big}WE SHALL SET A FLAME TO DETERMINE IF YOU CAN FACE THE TRUE DARKNESS.{/big}
-{dz_flash_screen FF4500 1.5}{dz_shake_screen 1.0 2.0}
+
 
 [ROARING_TITAN_KING left normal]
 {big}I AM THE ROARING TITAN KING. FACE ME IN HONORABLE COMBAT.{/big}
@@ -13594,7 +13651,7 @@ I Have to set a flame barrier behind you, and you must proven worthy for your he
 DZ_CH15_ROARING_TITAN_KING_BATTLE=
 [ROARING_TITAN_KING left normal]
 {big}SHOW ME YOUR STRENGTH! PROVE YOU CAN FACE THE ULTIMATE EVIL!{/big}
-{dz_shake_screen 2.0 3.0}
+
 
 [MADELINE left angry]
 You may have put a fire barrier behind me![MADELINE left determined]But We fight not for destruction, but for freedom!
@@ -13606,18 +13663,18 @@ DZ_CH15_ROARING_TITAN_KING_BATTLE_MID=
 [ROARING_TITAN_KING left normal]
 {big}NOW THEN FOR THE NEXT PHASE!{/big}
 {big}PROVEN ME THAT YOU WILL SURVIVED THIS!{/big}
-{dz_shake_screen 2.0 3.0}
+
 
 DZ_CH15_ROARING_TITAN_KING_BATTLE_FINAL=
 [ROARING_TITAN_KING left normal]
 {big}I AM BEYOND IMPRESSED YOU HEART AND YOUR MIND ARE STRONG AS ONE!{/big}
 {big}NOW ON TO THE MOST SCACRED AND FINAL TEST!{/big}
 {big}SHOW ME YOUR PURE DETERMINATION WITH A PURE HEART FOR EXAMPLE OF THIS!{/big}
-{dz_shake_screen 2.0 3.0}
+
 
 DZ_CH15_ROARING_TITAN_HYPER_KING=
 [ROARING_TITAN_KING left normal]
-{dz_shake_screen 2.0 3.0}{big}BEHOLD THE HYPERRAORING!{/big}
+{big}BEHOLD THE HYPERRAORING!{/big}
 
 DZ_CH15_ROARING_TITAN_HYPER_KING_CANNOT_MOVE=
 [MADELINE left panic]
@@ -16808,7 +16865,7 @@ this will be your doom!
 
 DZ_CH20_ASRIEL_FIRST_SPECIAL_ATTACK=
 [ASRIEL_GOD left frustrated]
-UGH! You Power is quite enough
+UGH! Your power is quite enough
 It's Time for this Timeline to be purge once and for all!
 
 DZ_CH20_MADELINE_AND_BADELINE_SAVE_KIRBY_FROM_ASRIEL_FIRST_SPECIAL_ATTACK=

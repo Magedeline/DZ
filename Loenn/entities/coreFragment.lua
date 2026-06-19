@@ -15,7 +15,7 @@ coreFragment.fieldInformation = {
 }
 coreFragment.placements = {
     {
-        name = "protected",
+        name = "main",
         data = {
             fragmentId = "",
             fragmentIndex = 1,

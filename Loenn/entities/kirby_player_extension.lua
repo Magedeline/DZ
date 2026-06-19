@@ -73,7 +73,7 @@ local kirbyIntroTypes = {
 
 kirbyKglobal::PlayerExtension.placements = {
     {
-        name = "default",
+        name = "main",
         data = {
             maxHealth = 6,
             power = "None",

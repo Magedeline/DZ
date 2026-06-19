@@ -7,7 +7,7 @@ bridge.borderColor = {0.0, 0.0, 0.0, 1.0}
 
 bridge.placements = {
     {
-        name = "BridgeUWU",
+        name = "main",
         data = {
             width = 160,
             height = 8,

@@ -1,6 +1,6 @@
 local enhancedBirdNPC = {}
 
-enhancedBirdNPC.name = "DZ/KirbyTutorialBird"
+enhancedBirdNPC.name = "DZ/EnhancedBirdNPC"
 enhancedBirdNPC.depth = -1000000
 enhancedBirdNPC.nodeLineRenderType = "line"
 enhancedBirdNPC.justification = {0.5, 1.0}
@@ -30,7 +30,7 @@ enhancedBirdNPC.fieldInformation = {
 enhancedBirdNPC.placements = {
     -- Tutorial Modes
     {
-        name = "climbing_tutorial",
+        name = "main",
         description = "Teaches wall climbing mechanics",
         data = {
             mode = "ClimbingTutorial",

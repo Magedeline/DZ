@@ -7,7 +7,7 @@ maggyMemorial.justification = {0.5, 1.0}
 
 maggyMemorial.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             dialogKey = "MAGGY_MEMORIAL_DEFAULT",
             spritePath = "scenery/memorial/memorial",

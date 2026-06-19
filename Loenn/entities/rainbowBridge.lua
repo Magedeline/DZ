@@ -6,7 +6,7 @@ rainbowBridge.fillColor = {1.0, 0.5, 0.5, 0.3}
 rainbowBridge.borderColor = {1.0, 0.3, 0.3, 0.6}
 rainbowBridge.placements = {
     {
-        name = "RainbowBridge",
+        name = "main",
         data = { width = 64, height = 8, speedThreshold = 20.0 }
     }
 }

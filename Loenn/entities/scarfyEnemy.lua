@@ -6,12 +6,14 @@ local scarfyEnemy = {}
 scarfyEnemy.name = "DZ/ScarfyEnemy"
 scarfyEnemy.depth = 0
 scarfyEnemy.placements = {
-    name = "ScarfyEnemy",
-    data = {
+    {
+        name = "main",
+        data = {
         health = 2,
         moveSpeed = 20.0,
         chaseSpeed = 100.0,
         canBeInhaled = false
+        }
     }
 }
 

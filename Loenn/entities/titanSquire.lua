@@ -24,7 +24,7 @@ titanSquire.fieldInformation = {
 }
 titanSquire.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             health = 4,
             detectionRange = 180,

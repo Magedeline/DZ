@@ -9,7 +9,7 @@ tesseractBoss.justification = {0.5, 0.5}
 
 tesseractBoss.placements = {
     {
-        name = "tesseract_boss",
+        name = "main",
         data = {
             health = 1350,
             maxHealth = 1350,

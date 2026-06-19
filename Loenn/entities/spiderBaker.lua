@@ -18,7 +18,7 @@ spiderBaker.fieldInformation = {
 }
 spiderBaker.placements = {
     {
-        name = "neutral",
+        name = "main",
         data = {
             health = 2,
             detectionRange = 100,

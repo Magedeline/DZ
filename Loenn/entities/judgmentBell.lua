@@ -21,7 +21,7 @@ judgmentBell.fieldInformation = {
 }
 judgmentBell.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             shockwaveSpeed = 200,
             shockwaveRadius = 300,

@@ -13,7 +13,7 @@ local aiTypes = {
 
 dialogNPC.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             sprite = "characters/Kglobal::Player/idle00",
             aiType = "None",

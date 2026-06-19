@@ -42,7 +42,7 @@ vanishingWall.fieldInformation = {
 
 vanishingWall.placements = {
     {
-        name = "VanishingWall",
+        name = "main",
         data = {
             width = 16,
             height = 16,

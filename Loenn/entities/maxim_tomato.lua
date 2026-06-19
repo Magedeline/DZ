@@ -8,7 +8,7 @@ maximTomato.depth = -50
 
 maximTomato.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             x = 0,
             y = 0

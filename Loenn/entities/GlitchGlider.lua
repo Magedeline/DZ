@@ -36,13 +36,15 @@ return {
         "glitchColor2"
     },
     placements = {
-        name = "Glitch Glider",
+    {
+        name = "main",
         data = {
-            maxUses = 5,
-            throwSpeed = 200.0,
-            teleportRange = 300.0,
-            glitchColor1 = "FF00FF",
-            glitchColor2 = "00FFFF"
+        maxUses = 5,
+        throwSpeed = 200.0,
+        teleportRange = 300.0,
+        glitchColor1 = "FF00FF",
+        glitchColor2 = "00FFFF"
         }
+    }
     }
 }

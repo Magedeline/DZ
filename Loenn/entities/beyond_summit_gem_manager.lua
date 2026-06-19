@@ -5,9 +5,11 @@ beyondSummitGemManager.nodeLimits = {0, 7}
 beyondSummitGemManager.nodeLineRenderType = "line"
 
 beyondSummitGemManager.placements = {
-    name = "BeyondSummitGemManager",
-    data = {
+    {
+        name = "main",
+        data = {
         flag = "beyondsummit_gate_open",
+        }
     }
 }
 

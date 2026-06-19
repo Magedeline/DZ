@@ -10,7 +10,7 @@ lavaBubbleSpawner.depth = -200
 
 lavaBubbleSpawner.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             spawnInterval = 2.0,
             maxBubbles = 3

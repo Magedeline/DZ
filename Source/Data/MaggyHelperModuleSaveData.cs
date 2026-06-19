@@ -52,6 +52,7 @@ namespace Celeste.Mod.DZ
         public bool UnlockedChapter10 { get; set; }
         public bool PendingUnlockChapter16OnRestart { get; set; }
         public bool PendingUnlockChapter19OnRestart { get; set; }
+        public bool PendingRestartToChapter19 { get; set; }
         public bool PendingUnlockChapter20OnRestart { get; set; }
         public bool PendingUnlockChapter21OnRestart { get; set; }
         public bool BossRushUnlocked { get; set; }

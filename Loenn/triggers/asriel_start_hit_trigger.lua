@@ -11,7 +11,7 @@ asrielStartHitTrigger.nodeLineRenderType = "line"
 
 asrielStartHitTrigger.placements = {
     {
-        name = "AsrielStartHitTrigger",
+        name = "main",
         data = {
             width = 16,
             height = 16,

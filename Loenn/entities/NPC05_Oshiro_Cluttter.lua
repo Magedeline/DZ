@@ -7,7 +7,9 @@ npc03OshiroClutter.nodeLineRenderType = "line"
 npc03OshiroClutter.nodeLimits = {0, -1}
 
 npc03OshiroClutter.placements = {
-    name = "NPC03_Oshiro_Clutter"
+    {
+        name = "main"
+    }
 }
 
 return npc03OshiroClutter

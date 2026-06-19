@@ -22,7 +22,7 @@ dataStream.fieldInformation = {
 }
 dataStream.placements = {
     {
-        name = "right",
+        name = "main",
         data = {
             direction = "Right",
             flowSpeed = 150,

@@ -9,7 +9,7 @@ blueStarBlock.canResize = {true, true}
 
 blueStarBlock.placements = {
     {
-        name = "BlueStarBlock",
+        name = "main",
         data = {
             width = 8,
             height = 8

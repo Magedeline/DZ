@@ -38,7 +38,7 @@ justiceSoulBoost.fieldOrder = {
 
 justiceSoulBoost.placements = {
     {
-        name = "justice_soul_boost",
+        name = "main",
         data = {
             lockCamera = true,
             canSkip = false,

@@ -7,7 +7,7 @@ infernoBigEyeball.depth = -10000
 
 infernoBigEyeball.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {}
     }
 }

@@ -45,7 +45,7 @@ instantFallingBlock.fieldInformation = {
 
 instantFallingBlock.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             width = 16,
             height = 16,

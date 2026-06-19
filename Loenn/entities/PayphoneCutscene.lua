@@ -8,7 +8,7 @@ payphone_cutscene.nodeLimits = {0, 0}
 
 payphone_cutscene.placements = {
     {
-        name = "Payphone Dream Cutscene",
+        name = "main",
         data = {
             cutsceneType = "dream"
         }

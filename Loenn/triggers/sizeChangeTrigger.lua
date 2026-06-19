@@ -1,7 +1,7 @@
 local sizeChangeTrigger = {}
 sizeChangeTrigger.name = "DZ/SizeChangeTrigger"
 sizeChangeTrigger.placements = {
-    { name = "shrink", data = { width = 16, height = 16, scaleFactor = 0.5 } },
+    { name = "main", data = { width = 16, height = 16, scaleFactor = 0.5 } },
     { name = "grow", data = { width = 16, height = 16, scaleFactor = 2.0 } }
 }
 sizeChangeTrigger.fieldInformation = {

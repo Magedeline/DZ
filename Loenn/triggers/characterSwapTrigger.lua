@@ -1,7 +1,7 @@
 local characterSwapTrigger = {}
 characterSwapTrigger.name = "DZ/CharacterSwapTrigger"
 characterSwapTrigger.placements = {
-    { name = "CharacterSwapTrigger", data = { width = 16, height = 16, targetCharacter = "Kirby", onlyOnce = false } }
+    { name = "main", data = { width = 16, height = 16, targetCharacter = "Kirby", onlyOnce = false } }
 }
 characterSwapTrigger.fieldInformation = {
     targetCharacter = { fieldType = "string", options = { "Madeline", "Kirby", "Badeline" }, editable = true },

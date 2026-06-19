@@ -9,7 +9,7 @@ anotherVesselCorruptedBoss.justification = {0.5, 1.0}
 
 anotherVesselCorruptedBoss.placements = {
     {
-        name = "another_vessel_corrupted_boss",
+        name = "main",
         data = {
             health = 1000,
             maxHealth = 1000,

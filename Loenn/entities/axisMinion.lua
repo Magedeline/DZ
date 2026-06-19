@@ -21,7 +21,7 @@ axisMinion.fieldInformation = {
 }
 axisMinion.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             health = 2,
             moveSpeed = 60,

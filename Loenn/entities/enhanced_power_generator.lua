@@ -57,7 +57,7 @@ enhancedPowerGenerator.fieldInformation = {
 
 enhancedPowerGenerator.placements = {
     {
-        name = "solar",
+        name = "main",
         data = {
             generatorType = "solar",
             powerOutput = 25.0,

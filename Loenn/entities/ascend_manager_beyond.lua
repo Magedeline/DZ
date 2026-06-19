@@ -15,7 +15,7 @@ ascendManagerBeyond.fieldInformation = {
 
 ascendManagerBeyond.placements = {
     {
-        name = "AscendManagerBeyond",
+        name = "main",
         data = {
             width = 32,
             height = 32,

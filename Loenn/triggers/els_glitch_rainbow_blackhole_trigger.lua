@@ -45,7 +45,7 @@ elsGlitchRainbowBlackholeTrigger.fieldInformation = {
 
 elsGlitchRainbowBlackholeTrigger.placements = {
     {
-        name = "short_glitch_medium_strength",
+        name = "main",
         data = {
             width = 16,
             height = 16,

@@ -13,7 +13,7 @@ elementalEffectTrigger.depth = 0
 
 elementalEffectTrigger.placements = {
     {
-        name = "fire_effect",
+        name = "main",
         data = {
             width = 16,
             height = 16,

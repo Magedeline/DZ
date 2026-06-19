@@ -6,7 +6,7 @@ local tower3DTrigger = {}
 tower3DTrigger.name = "DZ/Tower3DTrigger"
 tower3DTrigger.placements = {
     {
-        name = "activate_tower",
+        name = "main",
         data = {
             triggerType = "Activate",
             towerHeight = 1000.0,

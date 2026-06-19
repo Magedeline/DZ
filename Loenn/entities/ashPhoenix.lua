@@ -18,7 +18,7 @@ ashPhoenix.fieldInformation = {
 }
 ashPhoenix.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             health = 3,
             flySpeed = 100,

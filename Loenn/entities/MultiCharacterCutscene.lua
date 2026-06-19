@@ -8,7 +8,7 @@ multi_character_cutscene.nodeLimits = {0, 0}
 
 multi_character_cutscene.placements = {
     {
-        name = "Mod Intro Cutscene",
+        name = "main",
         data = {
             cutsceneId = "DZ_CH0_MODINTRO",
             autoStart = true

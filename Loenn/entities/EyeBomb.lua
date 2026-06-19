@@ -8,7 +8,7 @@ eyeBomb.texture = "objects/eyebomb/eye"
 
 eyeBomb.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             detectionRadius = 64.0,
             explosionRadius = 48.0,

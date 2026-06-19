@@ -12,7 +12,7 @@ darkMirror.fieldInformation = {
 }
 darkMirror.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             health = 2,
             revealsSecret = false

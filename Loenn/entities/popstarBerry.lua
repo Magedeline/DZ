@@ -20,13 +20,15 @@ popstarBerry.fieldInformation = {
 }
 
 popstarBerry.placements = {
-    name = "PopstarBerry",
-    data = {
+    {
+        name = "main",
+        data = {
         collectSound       = "Elaborate",
         customCollectSound = "",
         levelSet           = "Maggy/DESOLO_ZANTAS/19-Space",
         maps               = "",
         requires           = ""
+        }
     }
 }
 

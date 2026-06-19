@@ -4,7 +4,7 @@ soul_barrier.name = "DesoloZantas/SoulBarrier"
 soul_barrier.depth = 0
 soul_barrier.placements = {
     {
-        name = "Soul Barrier",
+        name = "main",
         data = {
             width = 8,
             height = 32,

@@ -2,7 +2,7 @@ local swarmEnemy = {}
 swarmEnemy.name = "DZ/SwarmEnemy"
 swarmEnemy.depth = -100
 swarmEnemy.placements = {
-    { name = "small_swarm", data = { count = 5, chaseRange = 80.0 } },
+    { name = "main", data = { count = 5, chaseRange = 80.0 } },
     { name = "large_swarm", data = { count = 12, chaseRange = 120.0 } }
 }
 swarmEnemy.fieldInformation = {

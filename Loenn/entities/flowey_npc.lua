@@ -6,7 +6,7 @@ floweyNPC.justification = {0.5, 1.0}
 
 floweyNPC.placements = {
     {
-        name = "Flowey (Hidden - Cutscene)",
+        name = "main",
         data = {
             dialogId = "DZ_CH10_FLOWEY_INTRO",
             startHidden = true,

@@ -8,7 +8,7 @@ goldBlock.depth = -9000
 goldBlock.minimumSize = {8, 8}
 goldBlock.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             width = 16,
             height = 16

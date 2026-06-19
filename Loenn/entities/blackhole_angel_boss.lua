@@ -9,7 +9,7 @@ blackholeAngelBoss.depth = -8500
 
 blackholeAngelBoss.placements = {
     {
-        name = "blackhole_angel_boss",
+        name = "main",
         data = {
             health = 1500,
             maxHealth = 1500

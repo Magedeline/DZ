@@ -7,7 +7,7 @@ darkMatterEnemy.texture = "characters/darkmatter/idle00"
 
 darkMatterEnemy.placements = {
     {
-        name = "dark_matter_weak",
+        name = "main",
         data = {
             health = 8,
             minDamage = 2,

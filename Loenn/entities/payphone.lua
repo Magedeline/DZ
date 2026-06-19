@@ -7,7 +7,7 @@ payphone.texture = "scenery/payphone"
 
 payphone.placements = {
     {
-        name = "payphone_dream",
+        name = "main",
         data = {
             dreamDialogId = "DZ_CH2_DREAM_PHONECALL_TRAP",
             awakeDialogId = "DZ_CH2_AWAKE_PHONECALL_TRAP",

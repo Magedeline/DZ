@@ -4,7 +4,7 @@ trigger.name = "DZ/PCGTrigger"
 
 trigger.placements = {
     {
-        name = "default",
+        name = "main",
         data = {
             preset = "default",
             roomCount = 8,

@@ -4,7 +4,7 @@ questGiver.depth = -100
 questGiver.justification = {0.5, 1.0}
 questGiver.texture = "characters/oldlady/idle00"
 questGiver.placements = {
-    { name = "QuestGiver", data = { questId = "quest_1", dialogId = "", completionFlag = "quest_1_done", rewardType = "ability" } }
+    { name = "main", data = { questId = "quest_1", dialogId = "", completionFlag = "quest_1_done", rewardType = "ability" } }
 }
 questGiver.fieldInformation = {
     questId = { fieldType = "string" },

@@ -6,7 +6,7 @@ stickyWall.fillColor = {0.2, 0.6, 0.2, 0.3}
 stickyWall.borderColor = {0.3, 0.8, 0.3, 0.6}
 stickyWall.placements = {
     {
-        name = "StickyWall",
+        name = "main",
         data = { width = 8, height = 32, stickDuration = 5.0, infiniteStick = false }
     },
     {

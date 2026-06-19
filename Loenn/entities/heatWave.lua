@@ -21,7 +21,7 @@ heatWave.fieldInformation = {
 }
 heatWave.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             maxRadius = 150,
             expansionSpeed = 100,

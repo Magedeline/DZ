@@ -8,7 +8,7 @@ cs09_fakesavepoint_trigger.name = "DZ/CS09_FakeSavePointTrigger"
 
 cs09_fakesavepoint_trigger.placements = {
     {
-        name = "auto_stage",
+        name = "main",
         data = {
             width = 16,
             height = 16,

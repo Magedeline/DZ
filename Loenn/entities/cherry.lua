@@ -8,7 +8,7 @@ cherry.depth = -50
 
 cherry.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             x = 0,
             y = 0

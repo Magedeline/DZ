@@ -6,7 +6,7 @@ springCloud.fillColor = {0.9, 0.9, 1.0, 0.3}
 springCloud.borderColor = {1.0, 1.0, 1.0, 0.5}
 springCloud.placements = {
     {
-        name = "SpringCloud",
+        name = "main",
         data = { width = 24, respawnTime = 3.0, extraHeight = 50.0 }
     },
     {

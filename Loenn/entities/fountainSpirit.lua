@@ -19,7 +19,7 @@ fountainSpirit.fieldInformation = {
 }
 fountainSpirit.placements = {
     {
-        name = "healing",
+        name = "main",
         data = {
             spiritType = "Healing",
             healAmount = 3,

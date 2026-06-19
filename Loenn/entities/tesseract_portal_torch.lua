@@ -36,7 +36,7 @@ tesseractPortalTorch.fieldInformation = {
 
 tesseractPortalTorch.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             isLit = true,
             portalActive = false,

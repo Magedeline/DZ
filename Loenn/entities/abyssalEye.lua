@@ -18,7 +18,7 @@ abyssalEye.fieldInformation = {
 }
 abyssalEye.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             gazeRange = 200,
             gazeWidth = 30,

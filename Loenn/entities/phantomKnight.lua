@@ -2,7 +2,7 @@ local phantomKnight = {}
 phantomKnight.name = "DZ/PhantomKnight"
 phantomKnight.depth = -100
 phantomKnight.placements = {
-    { name = "PhantomKnight", data = { health = 3, hiddenTime = 2.0, attackTime = 0.5, slashRange = 30.0 } },
+    { name = "main", data = { health = 3, hiddenTime = 2.0, attackTime = 0.5, slashRange = 30.0 } },
     { name = "PhantomKnightAggressive", data = { health = 2, hiddenTime = 1.0, attackTime = 0.3, slashRange = 40.0 } }
 }
 phantomKnight.fieldInformation = {

@@ -2,7 +2,7 @@ local colorFilterBlock = {}
 colorFilterBlock.name = "DZ/ColorFilterBlock"
 colorFilterBlock.depth = 0
 colorFilterBlock.placements = {
-    { name = "red", data = { width = 16, height = 16, color = "ff0000" } },
+    { name = "main", data = { width = 16, height = 16, color = "ff0000" } },
     { name = "blue", data = { width = 16, height = 16, color = "0000ff" } },
     { name = "green", data = { width = 16, height = 16, color = "00ff00" } }
 }

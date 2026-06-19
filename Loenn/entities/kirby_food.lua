@@ -38,7 +38,7 @@ kirbyFood.fieldInformation = {
 
 kirbyFood.placements = {
     {
-        name = "Apple",
+        name = "main",
         data = {
             foodType = 0,
             healAmount = 0,

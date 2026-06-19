@@ -10,7 +10,7 @@ elsTerminaBossIntro.texture = "objects/Ingeste/sampleEntity/idle00"
 
 elsTerminaBossIntro.placements = {
     {
-        name = "default",
+        name = "main",
         data = {
             activationMode = "touch",
             requireFlag = "",

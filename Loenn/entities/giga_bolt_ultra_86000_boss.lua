@@ -9,7 +9,7 @@ gigaBoltUltraBoss.justification = {0.5, 0.5}
 
 gigaBoltUltraBoss.placements = {
     {
-        name = "giga_bolt_ultra_86000_boss",
+        name = "main",
         data = {
             health = 1100,
             maxHealth = 1100,

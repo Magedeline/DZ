@@ -7,7 +7,7 @@ local npc19_gravestone = {
     fieldInformation = {},
     placements = {
         {
-            name = "NPC19 Gravestone (Chara Boost)",
+            name = "main",
             data = {}
         }
     }

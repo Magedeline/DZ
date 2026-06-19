@@ -20,7 +20,7 @@ return {
     },
     placements = {
         {
-            name = "Dream Hover Block",
+            name = "main",
             data = {
                 width            = 16,
                 height           = 16,

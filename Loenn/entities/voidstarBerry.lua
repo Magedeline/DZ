@@ -105,7 +105,7 @@ end
 
 customBerry.placements = {
     {
-        name = "strawberry",
+        name = "main",
         data = {
             berryType = "strawberry",
             winged = false,

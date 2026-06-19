@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Celeste.Cutscenes;
 using DZ;
 
 namespace Celeste.Entities;
@@ -10,7 +11,7 @@ namespace Celeste.Entities;
 /// for the true finale chapter.
 /// </summary>
 [HotReloadable]
-public class TrueFinaleVignette : Scene
+public class TrueFinaleVignette : DesoloZantasVignette
 {
     private const string VignetteMusicEvent = "event:/Mods/pusheen/new_content/music/lvl21/climb";
 

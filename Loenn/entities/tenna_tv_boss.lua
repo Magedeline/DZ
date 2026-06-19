@@ -8,7 +8,7 @@ tennaTVBoss.justification = {0.5, 1.0}
 
 tennaTVBoss.placements = {
     {
-        name = "tenna_tv_boss",
+        name = "main",
         data = {
             health = 300,
             maxHealth = 300

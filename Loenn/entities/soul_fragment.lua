@@ -4,7 +4,7 @@ soul_fragment.name = "DesoloZantas/SoulFragment"
 soul_fragment.depth = -100
 soul_fragment.placements = {
     {
-        name = "Soul Fragment (Red)",
+        name = "main",
         data = {
             barrierId = "",
             color = "red"

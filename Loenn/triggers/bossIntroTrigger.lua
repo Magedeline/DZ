@@ -1,7 +1,7 @@
 local bossIntroTrigger = {}
 bossIntroTrigger.name = "DZ/BossIntroTrigger"
 bossIntroTrigger.placements = {
-    { name = "BossIntroTrigger", data = { width = 16, height = 16, bossName = "", dialogId = "", musicEvent = "", flag = "" } }
+    { name = "main", data = { width = 16, height = 16, bossName = "", dialogId = "", musicEvent = "", flag = "" } }
 }
 bossIntroTrigger.fieldInformation = {
     bossName = { fieldType = "string" },

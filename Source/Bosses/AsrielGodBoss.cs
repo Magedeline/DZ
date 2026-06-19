@@ -647,6 +647,9 @@ namespace Celeste.Entities
                     playerMercyActive = false;
             }
 
+            // Check contact with K_Player / SoulPlayer for the refusal/mercy system
+            CheckKirbyAndSoulPlayerCollision();
+
             Sprite sprite = this.Sprite != null ? this.Sprite : (Sprite)this.NormalSprite;
             if (!this.Sitting)
             {
@@ -855,6 +858,51 @@ namespace Celeste.Entities
             }
         }
         
+        /// <summary>
+        /// Check contact with K_Player and SoulPlayer for the refusal/mercy system.
+        /// </summary>
+        private void CheckKirbyAndSoulPlayerCollision()
+        {
+            if (currentState == BossState.Defeated || Scene == null)
+                return;
+
+            foreach (K_Player kirby in Scene.Tracker.GetEntities<K_Player>())
+            {
+                if (kirby != null && kirby.Collidable && !kirby.Dead && CollideCheck(kirby))
+                {
+                    OnKirbyPlayerHit(kirby);
+                }
+            }
+
+            foreach (SoulPlayer soul in Scene.Tracker.GetEntities<SoulPlayer>())
+            {
+                if (soul != null && soul.Collidable && !soul.IsDead && CollideCheck(soul))
+                {
+                    soul.TakeDamage(1);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Mercy handling for K_Player contact.
+        /// </summary>
+        private void OnKirbyPlayerHit(K_Player kirby)
+        {
+            if (playerMercyActive)
+                return;
+
+            playerMercyActive = true;
+            mercyTimer = 2.0f;
+            Audio.Play(SFX_SPELLCAST_GLITCH, kirby.Position);
+            level.Particles.Emit(PBurst, 10, kirby.Center, Vector2.One * 4f);
+
+            if (!dialogTriggered_StruckDown && dialog && patternIndex >= 0 && patternIndex <= 30)
+            {
+                dialogTriggered_StruckDown = true;
+                Add(new Coroutine(PlayStruckDownDialog()));
+            }
+        }
+
         /// <summary>
         /// Called when boss collides with non-attacking player - mercy system
         /// </summary>

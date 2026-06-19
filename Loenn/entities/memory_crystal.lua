@@ -4,7 +4,7 @@ memory_crystal.name = "DZ/MemoryCrystal"
 memory_crystal.depth = -100
 memory_crystal.placements = {
     {
-        name = "Memory Crystal",
+        name = "main",
         data = {
             memoryId = "",
             oneTime = true,

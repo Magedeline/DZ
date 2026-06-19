@@ -13,7 +13,7 @@ oshiroLobbyBell.justification = {0.5, 1.0}
 
 oshiroLobbyBell.placements = {
     {
-        name = "oshiroLobbyBell",
+        name = "main",
         data = {}
     }
 }

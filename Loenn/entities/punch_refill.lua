@@ -35,7 +35,7 @@ punchRefill.fieldOrder = {
 
 punchRefill.placements = {
     {
-        name = "single_punch",
+        name = "main",
         alternativeName = "punch_refill_single",
         data = {
             punchCount = 3,

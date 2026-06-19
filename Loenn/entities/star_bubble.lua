@@ -4,7 +4,7 @@ star_bubble.name = "DesoloZantas/StarBubble"
 star_bubble.depth = -100
 star_bubble.placements = {
     {
-        name = "Star Bubble",
+        name = "main",
         data = {
             duration = 5.0,
             floatSpeed = 80.0,

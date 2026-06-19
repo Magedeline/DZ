@@ -69,7 +69,7 @@ end
 
 strawberryRemix.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             winged = false,
             golden = false,

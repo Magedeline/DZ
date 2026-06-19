@@ -27,7 +27,7 @@ return {
     },
     placements = {
         {
-            name = "Kirby Dream Block",
+            name = "main",
             data = {
                 width      = 16,
                 height     = 16,

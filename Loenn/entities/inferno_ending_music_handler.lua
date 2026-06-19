@@ -7,7 +7,7 @@ infernoEndingMusicHandler.depth = 0
 
 infernoEndingMusicHandler.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             startLevel = "e-01",
             endLevel = "e-09",

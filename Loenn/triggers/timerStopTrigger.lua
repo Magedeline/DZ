@@ -1,7 +1,7 @@
 local timerStopTrigger = {}
 timerStopTrigger.name = "DZ/TimerStopTrigger"
 timerStopTrigger.placements = {
-    { name = "TimerStopTrigger", data = { width = 16, height = 16, timerId = "timer_1" } }
+    { name = "main", data = { width = 16, height = 16, timerId = "timer_1" } }
 }
 timerStopTrigger.fieldInformation = {
     timerId = { fieldType = "string" }

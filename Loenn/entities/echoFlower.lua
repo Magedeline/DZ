@@ -21,7 +21,7 @@ echoFlower.fieldInformation = {
 }
 echoFlower.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             echoDelay = 0.5,
             echoSpeed = 200,

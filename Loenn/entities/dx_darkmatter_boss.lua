@@ -14,7 +14,7 @@ dxDarkMatter.nodeLimits = {0, 0}
 
 dxDarkMatter.placements = {
     {
-        name = "DXDarkMatter",
+        name = "main",
         data = {
             maxHealth = 2000,
             autoStart = true,

@@ -2,14 +2,16 @@ local madelineDummyAttacherTrigger = {}
 
 madelineDummyAttacherTrigger.name = "DZ/MadelineDummyAttacherTrigger"
 madelineDummyAttacherTrigger.placements = {
-    name = "trigger",
-    data = {
+    {
+        name = "main",
+        data = {
         hoverOffsetX = -25,
         hoverOffsetY = -15,
         hoverSpeed = 2.5,
         hoverAmplitude = 5.0,
         once = true,
         removeOnExit = false
+        }
     }
 }
 

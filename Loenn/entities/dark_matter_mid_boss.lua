@@ -9,7 +9,7 @@ darkMatterMidBoss.nodeLineRenderType = "line"
 
 darkMatterMidBoss.placements = {
     {
-        name = "dark_matter_mid_boss",
+        name = "main",
         data = {
             health = 80
         }

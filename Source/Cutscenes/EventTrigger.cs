@@ -416,12 +416,66 @@ namespace Celeste.Triggers
             Register("ch15_zantas_1", (trigger, player, eventId) => new global::Celeste.Cutscenes.Cs15Zantas1(player));
             Register("ch15_zantas_2", (trigger, player, eventId) => new global::Celeste.Cutscenes.Cs15Zantas2(player));
             
+            // Chapter 12
+            Register("cs12_titan_boss_intro", (trigger, player, eventId) => new global::Celeste.Cutscenes.CS12_TitanBossIntro(player));
+            Register("cs12_titan_boss_outro", (trigger, player, eventId) => new global::Celeste.Cutscenes.CS12_TitanBossOutro(player));
+
+            // Chapter 13
+            Register("ch13_tenna_pre_intro_video", (trigger, player, eventId) => {
+                Engine.Scene = new global::Celeste.Cutscenes.Cs13TennaVideoVignette(player.SceneAs<Level>().Session, "DZ_CH13_TENNA_PRE_INTRO", "vignettes/ch13_tenna_pre_intro");
+                return null;
+            });
+            Register("ch13_tenna_earth_video", (trigger, player, eventId) => {
+                Engine.Scene = new global::Celeste.Cutscenes.Cs13TennaVideoVignette(player.SceneAs<Level>().Session, "DZ_CH13_TENNA_EARTH_VIDEO_destructions", "vignettes/ch13_tenna_earth_video");
+                return null;
+            });
+            // Chapter 13 cassette tape vignettes (individual tapes)
+            Register("ch13_tape_00", (trigger, player, eventId) => {
+                Engine.Scene = new global::Celeste.Cutscenes.Cs13TapeVignette(player.SceneAs<Level>().Session, global::Celeste.Cutscenes.Cs13TapeVignette.TapeKeys.Tape00);
+                return null;
+            });
+            Register("ch13_tape_01", (trigger, player, eventId) => {
+                Engine.Scene = new global::Celeste.Cutscenes.Cs13TapeVignette(player.SceneAs<Level>().Session, global::Celeste.Cutscenes.Cs13TapeVignette.TapeKeys.Tape01);
+                return null;
+            });
+            Register("ch13_tape_02", (trigger, player, eventId) => {
+                Engine.Scene = new global::Celeste.Cutscenes.Cs13TapeVignette(player.SceneAs<Level>().Session, global::Celeste.Cutscenes.Cs13TapeVignette.TapeKeys.Tape02);
+                return null;
+            });
+            Register("ch13_tape_03", (trigger, player, eventId) => {
+                Engine.Scene = new global::Celeste.Cutscenes.Cs13TapeVignette(player.SceneAs<Level>().Session, global::Celeste.Cutscenes.Cs13TapeVignette.TapeKeys.Tape03);
+                return null;
+            });
+            Register("ch13_tape_04", (trigger, player, eventId) => {
+                Engine.Scene = new global::Celeste.Cutscenes.Cs13TapeVignette(player.SceneAs<Level>().Session, global::Celeste.Cutscenes.Cs13TapeVignette.TapeKeys.Tape04);
+                return null;
+            });
+            Register("ch13_tape_05", (trigger, player, eventId) => {
+                Engine.Scene = new global::Celeste.Cutscenes.Cs13TapeVignette(player.SceneAs<Level>().Session, global::Celeste.Cutscenes.Cs13TapeVignette.TapeKeys.Tape05);
+                return null;
+            });
+            Register("ch13_tape_final", (trigger, player, eventId) => {
+                Engine.Scene = new global::Celeste.Cutscenes.Cs13TapeVignette(player.SceneAs<Level>().Session, global::Celeste.Cutscenes.Cs13TapeVignette.TapeKeys.TapeFinal);
+                return null;
+            });
+            // Chapter 13 full tape sequence vignette (plays all tapes in order)
+            Register("ch13_tape_vignette", (trigger, player, eventId) => {
+                Engine.Scene = new global::Celeste.Cutscenes.Cs13TapeVignette(player.SceneAs<Level>().Session);
+                return null;
+            });
+
+            // Chapter 15
+            Register("cs15_titan_king_boss", (trigger, player, eventId) => new global::Celeste.Cutscenes.CS15_TitanKingBoss(player));
+
             // Chapter 16
             Register("cs16_barrier_breaks", (trigger, player, eventId) => new global::Celeste.Cutscenes.CS16_BarrierBreaks(player));
             Register("cs16_corrupted_reality_intro", (trigger, player, eventId) => new global::Celeste.Cutscenes.CS16_CorruptedRealityIntro(player));
             Register("cs16_els_finale", (trigger, player, eventId) => new global::Celeste.Cutscenes.CS16_ElsFinale(player));
             Register("cs16_els_intro", (trigger, player, eventId) => new global::Celeste.Cutscenes.CS16_ElsIntro(player));
-            Register("cs16_els_outro", (trigger, player, eventId) => new global::Celeste.Cutscenes.CS16_ElsOutro(player));
+            Register("cs16_els_outro", (trigger, player, eventId) => {
+                Engine.Scene = new global::Celeste.Cutscenes.CS16_ElsOutro(player.SceneAs<Level>().Session);
+                return null; // Return null since we're replacing the scene
+            });
             Register("cs16_lost_souls_unite", (trigger, player, eventId) => new global::Celeste.Cutscenes.CS16_LostSoulsUnite(player));
             Register("cs16_save_file_battle", (trigger, player, eventId) => new global::Celeste.Cutscenes.CS16_SaveFileBattle(player));
             
@@ -435,6 +489,8 @@ namespace Celeste.Triggers
             Register("cs19_trapin_loop", (trigger, player, eventId) => new global::Celeste.Cutscenes.CS19_TrapinLoop(player));
 
             // Chapter 21
+            Register("cs21_els_termina_intro", (trigger, player, eventId) => new global::Celeste.Cutscenes.CS21_ElsTerminaBoss(player, false));
+            Register("cs21_els_termina_end", (trigger, player, eventId) => new global::Celeste.Cutscenes.CS21_ElsTerminaBoss(player, true));
             Register("cs21_cast", (trigger, player, eventId) => new global::Celeste.Cutscenes.CS21_Cast(player));
             Register("cs21_epilogue_credits", (trigger, player, eventId) => new global::Celeste.Cutscenes.CS21_EpilogueCredits(player));
             Register("cs21_fake_the_end", (trigger, player, eventId) => new global::Celeste.Cutscenes.CS21_FakeTheEnd(player));

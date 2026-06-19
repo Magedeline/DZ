@@ -6,7 +6,7 @@ timePlatform.fillColor = {0.3, 0.5, 0.7, 0.4}
 timePlatform.borderColor = {0.4, 0.6, 0.9, 0.7}
 timePlatform.placements = {
     {
-        name = "past",
+        name = "main",
         data = { width = 32, height = 8, timeEra = "past", flagName = "time_state_future" }
     },
     {

@@ -22,7 +22,7 @@ tumbleweedCluster.fieldInformation = {
 }
 tumbleweedCluster.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             rollSpeed = 180,
             pushForce = 100,

@@ -19,7 +19,7 @@ end
 
 heartCompanion.placements = {
 	{
-		name = "leader",
+		name = "main",
 		data = {
 			slotIndex = 0
 		}

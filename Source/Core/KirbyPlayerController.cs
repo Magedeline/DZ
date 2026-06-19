@@ -2,6 +2,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Monocle;
 using Celeste.Mod.DZ;
+using Celeste.Mod;
 
 namespace Celeste.Entities
 {
@@ -87,6 +88,9 @@ namespace Celeste.Entities
         private int djump;
         private int maxDjump = 1;
 
+        // Module integration
+        private static bool _hooksLoaded = false;
+
         // Collision state
         private bool wasOnGround;
         private bool onIce;
@@ -116,6 +120,24 @@ namespace Celeste.Entities
 
         #endregion
 
+        public static void Load()
+        {
+            if (_hooksLoaded)
+                return;
+
+            Logger.Log(LogLevel.Info, "DZ", "[KirbyPlayerController] Loaded");
+            _hooksLoaded = true;
+        }
+
+        public static void Unload()
+        {
+            if (!_hooksLoaded)
+                return;
+
+            Logger.Log(LogLevel.Info, "DZ", "[KirbyPlayerController] Unloaded");
+            _hooksLoaded = false;
+        }
+
         public KirbyPlayerController()
             : base(active: true, visible: true)
         {
@@ -139,9 +161,48 @@ namespace Celeste.Entities
             base.EntityAdded(scene);
             level = scene as Level;
 
+            // Apply max float jumps from settings
+            SyncFromSettings();
+
+            // Restore flying/inhaling state from session if Kirby mode was active
+            SyncFromSession();
+
             // Create inhale effect components
             inhaleParticles = new InhaleParticleSystem(player);
             player.Add(inhaleParticles);
+        }
+
+        private void SyncFromSettings()
+        {
+            var settings = DZModule.Settings;
+            if (settings != null)
+            {
+                maxDjump = Math.Max(1, settings.KirbyMaxFloatJumps);
+                djump = maxDjump;
+            }
+        }
+
+        private void SyncFromSession()
+        {
+            var session = DZModule.Session;
+            if (session == null)
+                return;
+
+            // If session says Kirby mode is active, ensure we start ready
+            if (session.IsKirbyModeActive)
+            {
+                CanInhale = true;
+                djump = maxDjump;
+            }
+        }
+
+        private void WriteToSession()
+        {
+            var session = DZModule.Session;
+            if (session == null)
+                return;
+
+            session.KirbyStamina = flapMult;
         }
 
         public override void EntityRemoved(Scene scene)
@@ -164,6 +225,16 @@ namespace Celeste.Entities
             base.Update();
 
             if (player == null || player.Dead) return;
+
+            // Respect the KirbyPlayerEnabled setting
+            var settings = DZModule.Settings;
+            if (settings != null && !settings.KirbyPlayerEnabled)
+            {
+                // Controller disabled by settings — ensure clean state
+                if (pFly || IsInhaling)
+                    Reset();
+                return;
+            }
 
             // Update center position (Kirby is 8x8, center at 4,4)
             CenterOffset = new Vector2(4, 4);
@@ -381,6 +452,9 @@ namespace Celeste.Entities
             wasOnGround = onGround;
             sprOff += Engine.DeltaTime;
             if (flapAnimTimer > 0) flapAnimTimer--;
+
+            // Sync runtime state back to session
+            WriteToSession();
         }
 
         private void UpdateMovement(int inputX, bool onGround)

@@ -5,7 +5,7 @@ cassetteTape.depth = -100
 cassetteTape.texture = "collectibles/desolozantas/cassettetape/idle00"
 cassetteTape.placements = {
     {
-        name = "cassette_tape",
+        name = "main",
         data = {
             tapeId = "tape_default",
             audioEvent = "",

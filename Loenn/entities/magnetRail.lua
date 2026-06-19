@@ -6,7 +6,7 @@ magnetRail.nodeLimits = {1, -1}
 magnetRail.nodeLineRenderType = "line"
 magnetRail.placements = {
     {
-        name = "MagnetRail",
+        name = "main",
         data = { speed = 120.0, color = "ffff00" }
     },
     {

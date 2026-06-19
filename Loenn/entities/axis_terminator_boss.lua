@@ -8,7 +8,7 @@ axisTerminatorBoss.justification = {0.5, 1.0}
 
 axisTerminatorBoss.placements = {
     {
-        name = "axis_terminator_boss",
+        name = "main",
         data = {
             health = 500,
             maxHealth = 500,

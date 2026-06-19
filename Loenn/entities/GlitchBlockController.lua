@@ -12,7 +12,7 @@ glitchBlockController.fieldInformation = {
 }
 glitchBlockController.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             syncInterval = 2.0
         }

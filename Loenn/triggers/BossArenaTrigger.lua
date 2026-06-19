@@ -4,7 +4,7 @@ entity.name = "DZ/BossArenaTrigger"
 entity.depth = 0
 entity.placements = {
     {
-        name = "Boss Arena Trigger",
+        name = "main",
         data = {
             width = 16,
             height = 16,

@@ -4,7 +4,7 @@ playerTrigger.name = "DZ/PlayerTrigger"
 
 playerTrigger.placements = {
     {
-        name = "default",
+        name = "main",
         data = {
             width = 16,
             height = 16,

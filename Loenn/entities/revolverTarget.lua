@@ -25,7 +25,7 @@ revolverTarget.fieldInformation = {
 }
 revolverTarget.placements = {
     {
-        name = "static",
+        name = "main",
         data = {
             targetType = "Static",
             points = 100,

@@ -6,7 +6,7 @@ dimensional_rift.nodeLimits = {1, 1}
 dimensional_rift.nodeLineRenderType = "line"
 dimensional_rift.placements = {
     {
-        name = "Dimensional Rift",
+        name = "main",
         data = {
             targetRoom = "",
             targetRiftId = "",

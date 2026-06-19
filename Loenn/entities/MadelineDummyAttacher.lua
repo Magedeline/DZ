@@ -30,7 +30,7 @@ madelineDummyAttacher.fieldInformation = {
 
 madelineDummyAttacher.placements = {
     {
-        name = "default",
+        name = "main",
         data = {
             hoverOffsetX = -25,
             hoverOffsetY = -15,

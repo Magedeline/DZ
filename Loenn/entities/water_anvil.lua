@@ -6,13 +6,15 @@ local waterAnvil = {}
 waterAnvil.name = "DesoloZatnas/WaterAnvil"
 waterAnvil.depth = -25
 waterAnvil.placements = {
-    name = "water_anvil",
-    data = {
+    {
+        name = "main",
+        data = {
         weight = 20,
         puzzleID = "puzzle_1",
         affectsBalance = true,
         canPickUp = true,
         requiresStrength = false
+        }
     }
 }
 

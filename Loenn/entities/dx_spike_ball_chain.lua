@@ -10,7 +10,7 @@ dxSpikeBallChain.depth = -9000
 
 dxSpikeBallChain.placements = {
     {
-        name = "DXSpikeBallChain",
+        name = "main",
         data = {
             chainLength = 80.0,
             swingSpeed = 2.0,

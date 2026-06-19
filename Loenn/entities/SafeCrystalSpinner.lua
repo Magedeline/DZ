@@ -4,7 +4,7 @@ safeCrystalSpinner.name = "DZ/SafeCrystalSpinner"
 safeCrystalSpinner.depth = -8500
 safeCrystalSpinner.placements = {
     {
-        name = "blue",
+        name = "main",
         data = {
             attachToSolid = false,
             color = "Blue"

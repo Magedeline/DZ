@@ -5,7 +5,7 @@ Kglobal::PlayerInventoryTrigger.depth = 0
 
 Kglobal::PlayerInventoryTrigger.placements = {
     {
-        name = "heart_power",
+        name = "main",
         data = {
             width = 16,
             height = 16,

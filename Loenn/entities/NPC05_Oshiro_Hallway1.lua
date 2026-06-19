@@ -7,7 +7,9 @@ npc05OshiroHallway1.nodeLineRenderType = "line"
 npc05OshiroHallway1.nodeLimits = {0, -1}
 
 npc05OshiroHallway1.placements = {
-    name = "NPC05_Oshiro_Hallway1"
+    {
+        name = "main"
+    }
 }
 
 return npc05OshiroHallway1

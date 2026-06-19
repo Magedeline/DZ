@@ -50,6 +50,27 @@ namespace Celeste.Entities.Projectiles
                 Explode();
                 return;
             }
+
+            // Check collision with K_Player and SoulPlayer
+            foreach (K_Player kirby in Scene.Tracker.GetEntities<K_Player>())
+            {
+                if (kirby != null && kirby.Collidable && !kirby.Dead && CollideCheck(kirby))
+                {
+                    kirby.Die(new Vector2(Math.Sign(velocity.X), 0f));
+                    Explode();
+                    return;
+                }
+            }
+
+            foreach (SoulPlayer soul in Scene.Tracker.GetEntities<SoulPlayer>())
+            {
+                if (soul != null && soul.Collidable && !soul.IsDead && CollideCheck(soul))
+                {
+                    soul.TakeDamage(1);
+                    Explode();
+                    return;
+                }
+            }
         }
 
         private void OnPlayerCollide(global::Celeste.Player player)

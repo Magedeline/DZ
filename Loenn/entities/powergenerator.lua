@@ -13,8 +13,9 @@ PowerGenerator.fieldInformation = {
     }
 }
 PowerGenerator.placements = {
-    name = "Power_Generator",
-    data = {
+    {
+        name = "main",
+        data = {
         flipX = false,
         health = 5,
         music_progress = -1,
@@ -22,6 +23,7 @@ PowerGenerator.placements = {
         music = "",
         flag = false,
         canTeleport = false -- Added missing comma and fixed field
+        }
     }
 }
 

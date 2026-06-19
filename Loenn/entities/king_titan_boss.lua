@@ -7,7 +7,7 @@ kingTitanBoss.justification = {0.5, 1.0}
 
 kingTitanBoss.placements = {
     {
-        name = "king_titan_boss",
+        name = "main",
         data = {
             health = 2000,
             maxHealth = 2000,

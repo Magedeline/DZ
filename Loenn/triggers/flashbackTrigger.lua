@@ -1,7 +1,7 @@
 local flashbackTrigger = {}
 flashbackTrigger.name = "DZ/FlashbackTrigger"
 flashbackTrigger.placements = {
-    { name = "FlashbackTrigger", data = { width = 16, height = 16, targetRoom = "", flashbackDuration = 5.0, dialogId = "", onlyOnce = true } }
+    { name = "main", data = { width = 16, height = 16, targetRoom = "", flashbackDuration = 5.0, dialogId = "", onlyOnce = true } }
 }
 flashbackTrigger.fieldInformation = {
     targetRoom = { fieldType = "string" },

@@ -2,7 +2,7 @@ local burrowingEnemy = {}
 burrowingEnemy.name = "DZ/BurrowingEnemy"
 burrowingEnemy.depth = -100
 burrowingEnemy.placements = {
-    { name = "normal", data = { health = 1, detectionRange = 80.0, surfaceTime = 2.0, burrowTime = 3.0 } },
+    { name = "main", data = { health = 1, detectionRange = 80.0, surfaceTime = 2.0, burrowTime = 3.0 } },
     { name = "quick", data = { health = 1, detectionRange = 100.0, surfaceTime = 1.0, burrowTime = 1.5 } }
 }
 burrowingEnemy.fieldInformation = {

@@ -3,7 +3,7 @@ shieldEnemy.name = "DZ/ShieldEnemy"
 shieldEnemy.depth = -100
 shieldEnemy.placements = {
     {
-        name = "ShieldEnemy",
+        name = "main",
         data = { health = 2, speed = 30.0, shieldHealth = 3 }
     }
 }

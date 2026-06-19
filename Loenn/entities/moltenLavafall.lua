@@ -7,7 +7,7 @@ moltenLavafall.minimumSize = { 8, 16 }
 
 moltenLavafall.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             width = 8,
             height = 64,

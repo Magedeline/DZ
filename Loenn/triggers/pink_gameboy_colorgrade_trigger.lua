@@ -5,7 +5,7 @@ pinkGameboyTrigger.name = "DZ/PinkGameboyColorGradeTrigger"
 
 pinkGameboyTrigger.placements = {
     {
-        name = "pink_gameboy_colorgrade",
+        name = "main",
         data = {
             flagToSet = "pink_gameboy_activated",
             colorGradeName = "pinkgameboy",

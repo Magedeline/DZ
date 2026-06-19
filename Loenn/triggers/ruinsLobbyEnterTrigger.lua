@@ -4,7 +4,7 @@ local ruinsLobbyEnterTrigger = {}
 
 ruinsLobbyEnterTrigger.name = "DZ/RuinsLobbyEnterTrigger"
 ruinsLobbyEnterTrigger.placements = {
-    { name = "Enter Ruins Lobby", data = { width = 16, height = 16 } }
+    { name = "main", data = { width = 16, height = 16 } }
 }
 
 ruinsLobbyEnterTrigger.fieldOrder = { "x", "y", "width", "height" }

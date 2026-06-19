@@ -7,7 +7,9 @@ local resortMirror = {}
 
 resortMirror.name = "DZ/ResortMirror"
 resortMirror.placements = {
-    name = "chara_resort_mirror"
+    {
+        name = "main"
+    }
 }
 
 function resortMirror.rectangle(room, entity)

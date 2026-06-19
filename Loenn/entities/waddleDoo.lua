@@ -6,12 +6,14 @@ local waddleDoo = {}
 waddleDoo.name = "DZ/WaddleDoo"
 waddleDoo.depth = 0
 waddleDoo.placements = {
-    name = "WaddleDoo",
-    data = {
+    {
+        name = "main",
+        data = {
         health = 2,
         moveSpeed = 25.0,
         attackCooldown = 3.0,
         canBeInhaled = true
+        }
     }
 }
 

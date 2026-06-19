@@ -30,7 +30,7 @@ badelineDummyAttacher.fieldInformation = {
 
 badelineDummyAttacher.placements = {
     {
-        name = "default",
+        name = "main",
         data = {
             hoverOffsetX = -20,
             hoverOffsetY = -10,

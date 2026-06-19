@@ -2,7 +2,7 @@ local timeCapsule = {}
 timeCapsule.name = "DZ/TimeCapsule"
 timeCapsule.depth = -100
 timeCapsule.placements = {
-    { name = "TimeCapsule", data = { slowFactor = 0.5, radius = 80.0, duration = 5.0 } },
+    { name = "main", data = { slowFactor = 0.5, radius = 80.0, duration = 5.0 } },
     { name = "TimeCapsule_strong_slow", data = { slowFactor = 0.2, radius = 100.0, duration = 4.0 } }
 }
 timeCapsule.fieldInformation = {

@@ -13,11 +13,13 @@ charamovinglavaBlock.fieldInformation = {
     }
 }
 charamovinglavaBlock.placements = {
-    name = "chara_moving_lava_block",
-    data = {
+    {
+        name = "main",
+        data = {
         nodeIndex = 0,
         width = 8,
         height = 8
+        }
     }
 }
 

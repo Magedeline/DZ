@@ -29,7 +29,7 @@ local staffColors = {
 
 heartStaffDoor.placements = {
     {
-        name = "heart_staff_door",
+        name = "main",
         data = {
             width = 80,
             requires = 7,

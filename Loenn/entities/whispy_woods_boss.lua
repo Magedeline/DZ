@@ -9,7 +9,7 @@ whispyWoodsBoss.nodeLimits = {1, 20}
 
 whispyWoodsBoss.placements = {
     {
-        name = "whispy_woods_boss",
+        name = "main",
         data = {
             patternIndex = 1,
             cameraPastY = 120.0,

@@ -6,9 +6,11 @@ flingAsrielGod.nodeLineRenderType = "line"
 flingAsrielGod.texture = "characters/asrielgodboss/idle00"
 flingAsrielGod.nodeLimits = {0, -1}
 flingAsrielGod.placements = {
-    name = "fling_asriel_god",
-    data = {
+    {
+        name = "main",
+        data = {
         waiting = false
+        }
     }
 }
 

@@ -44,7 +44,7 @@ reflectionTentacles.fieldInformation = {
 
 reflectionTentacles.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             tentacleCount = 3,
             speed = 80.0,

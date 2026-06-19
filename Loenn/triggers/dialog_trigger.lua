@@ -3,7 +3,7 @@ local dialogTrigger = {}
 dialogTrigger.name = "DZ/DialogTrigger"
 dialogTrigger.placements = {
     {
-        name = "DialogTrigger",
+        name = "main",
         data = {
             width = 16,
             height = 16,

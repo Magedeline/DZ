@@ -25,7 +25,7 @@ papyrusSprite.fieldInformation = {
 
 papyrusSprite.placements = {
     {
-        name = "default",
+        name = "main",
         data = {
             animation = "idle"
         }

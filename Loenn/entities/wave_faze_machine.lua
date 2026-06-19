@@ -5,7 +5,7 @@ wavePhazeMachine.depth = 0
 
 wavePhazeMachine.placements = {
     {
-        name = "WaveFazeTutorialMachine",
+        name = "main",
         data = {
             isActive = true,
             machineType = "tutorial",

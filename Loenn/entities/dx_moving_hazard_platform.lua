@@ -13,7 +13,7 @@ dxMovingHazardPlatform.nodeLineRenderType = "line"
 
 dxMovingHazardPlatform.placements = {
     {
-        name = "DXMovingHazardPlatform",
+        name = "main",
         data = {
             width = 48,
             speed = 80.0,

@@ -38,7 +38,7 @@ kirbyNPC.fieldInformation = {
 
 kirbyNPC.placements = {
     {
-        name = "Bandana Waddle Dee",
+        name = "main",
         data = {
             character = 0,
             behavior = 0,

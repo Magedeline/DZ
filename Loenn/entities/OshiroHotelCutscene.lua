@@ -8,7 +8,7 @@ oshiro_hotel_cutscene.nodeLimits = {0, 0}
 
 oshiro_hotel_cutscene.placements = {
     {
-        name = "Oshiro Front Desk",
+        name = "main",
         data = {
             phase = "front_desk"
         }

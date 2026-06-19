@@ -47,7 +47,7 @@ madelineGodDummy.fieldInformation = {
 
 madelineGodDummy.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             facing = 1,
             animation = "boost",

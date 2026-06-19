@@ -6,7 +6,7 @@ conveyorBelt.fillColor = {0.5, 0.5, 0.5, 0.4}
 conveyorBelt.borderColor = {0.7, 0.7, 0.7, 0.8}
 conveyorBelt.placements = {
     {
-        name = "right",
+        name = "main",
         data = { width = 48, speed = 60.0, moveRight = true }
     },
     {

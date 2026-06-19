@@ -5,7 +5,7 @@ transportPlatform.depth = 0
 
 transportPlatform.placements = {
     {
-        name = "TransportPlatform",
+        name = "main",
         data = {
             width = 32,
             height = 8,

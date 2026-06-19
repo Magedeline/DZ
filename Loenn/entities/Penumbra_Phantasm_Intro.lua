@@ -10,7 +10,7 @@ penumbraPhantasmIntro.texture = "objects/Ingeste/sampleEntity/idle00"
 
 penumbraPhantasmIntro.placements = {
     {
-        name = "default",
+        name = "main",
         data = {
             activationMode = "touch",
             requireFlag = "",

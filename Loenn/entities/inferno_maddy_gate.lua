@@ -9,7 +9,7 @@ infernoMaddyGate.canResize = {false, true}
 
 infernoMaddyGate.placements = {
     {
-        name = "close_behind_Kglobal::Player",
+        name = "main",
         data = {
             height = 48,
             sprite = "default",

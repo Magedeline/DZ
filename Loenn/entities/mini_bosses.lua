@@ -8,7 +8,7 @@ metaKnightTerminatorBoss.justification = {0.5, 1.0}
 
 metaKnightTerminatorBoss.placements = {
     {
-        name = "meta_knight_terminator_boss",
+        name = "main",
         data = {
             health = 400,
             maxHealth = 400
@@ -26,7 +26,7 @@ digitalKingDDDBoss.justification = {0.5, 1.0}
 
 digitalKingDDDBoss.placements = {
     {
-        name = "digital_king_ddd_boss",
+        name = "main",
         data = {
             health = 600,
             maxHealth = 600
@@ -44,7 +44,7 @@ martletBirdPossessBoss.justification = {0.5, 1.0}
 
 martletBirdPossessBoss.placements = {
     {
-        name = "martlet_bird_possess_boss",
+        name = "main",
         data = {
             health = 350
         }
@@ -61,7 +61,7 @@ blackDarkMatterBoss.justification = {0.5, 0.5}
 
 blackDarkMatterBoss.placements = {
     {
-        name = "black_dark_matter_boss",
+        name = "main",
         data = {
             health = 450
         }
@@ -78,7 +78,7 @@ darkMatterKnifeBoss.justification = {0.5, 0.5}
 
 darkMatterKnifeBoss.placements = {
     {
-        name = "dark_matter_knife_boss",
+        name = "main",
         data = {
             health = 550
         }

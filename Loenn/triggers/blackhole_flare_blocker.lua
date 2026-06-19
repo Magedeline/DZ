@@ -4,7 +4,7 @@ local blackholeFlareBlocker = {}
 blackholeFlareBlocker.name = "DZ/BlackholeFlareBlocker"
 blackholeFlareBlocker.placements = {
     {
-        name = "Blackhole Blocker stop",
+        name = "main",
         data = {
             width = 16,
             height = 64,

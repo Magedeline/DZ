@@ -7,7 +7,7 @@ madelineTentacle.name = "DZ/MadelineTentacle"
 
 madelineTentacle.placements = {
     {
-        name = "appear",
+        name = "main",
         data = {
             tentacleType = "appear",
             growthStage = 1,

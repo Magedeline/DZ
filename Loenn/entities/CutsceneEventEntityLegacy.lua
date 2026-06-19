@@ -11,7 +11,7 @@ cutsceneEventEntity.texture = "objects/Ingeste/sampleEntity/idle00"
 
 cutsceneEventEntity.placements = {
     {
-        name = "interact",
+        name = "main",
         data = {
             eventId = "",
             activationMode = "interact",

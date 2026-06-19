@@ -2,7 +2,7 @@ local mirrorEnemy = {}
 mirrorEnemy.name = "DZ/MirrorEnemy"
 mirrorEnemy.depth = -100
 mirrorEnemy.placements = {
-    { name = "MirrorEnemy", data = { health = 2, reflectRadius = 40.0 } }
+    { name = "main", data = { health = 2, reflectRadius = 40.0 } }
 }
 mirrorEnemy.fieldInformation = {
     health = { fieldType = "integer", minimumValue = 1 },

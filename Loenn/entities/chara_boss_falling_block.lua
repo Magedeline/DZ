@@ -5,10 +5,12 @@ local charafallingBlock = {}
 charafallingBlock.name = "DZ/CharaBossFallingBlocks"
 charafallingBlock.depth = 0
 charafallingBlock.placements = {
-    name = "chara_falling_block",
-    data = {
+    {
+        name = "main",
+        data = {
         width = 8,
         height = 8
+        }
     }
 }
 

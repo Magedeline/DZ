@@ -2,7 +2,7 @@ local magneticField = {}
 magneticField.name = "DZ/MagneticField"
 magneticField.depth = -50
 magneticField.placements = {
-    { name = "attract", data = { width = 64, height = 64, polarity = "Attract", strength = 100.0 } },
+    { name = "main", data = { width = 64, height = 64, polarity = "Attract", strength = 100.0 } },
     { name = "repel", data = { width = 64, height = 64, polarity = "Repel", strength = 100.0 } }
 }
 magneticField.fieldInformation = {

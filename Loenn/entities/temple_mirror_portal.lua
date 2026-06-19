@@ -5,8 +5,11 @@ local templeMirrorPortal = {}
 templeMirrorPortal.name = "DZ/TesseractMirrorPortal"
 templeMirrorPortal.depth = -1999
 templeMirrorPortal.placements = {
-    name = "tesseract_mirror",
+    {
+        name = "main",
+        data = {}
     }
+}
 
 local frameTexture = "objects/temple/portal/portalframe"
 local curtainTexture = "objects/temple/portal/portalcurtain00"

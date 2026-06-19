@@ -2,14 +2,16 @@ local charaDummyAttacherTrigger = {}
 
 charaDummyAttacherTrigger.name = "DZ/CharaDummyAttacherTrigger"
 charaDummyAttacherTrigger.placements = {
-    name = "trigger",
-    data = {
+    {
+        name = "main",
+        data = {
         hoverOffsetX = 25,
         hoverOffsetY = -15,
         hoverSpeed = 2.5,
         hoverAmplitude = 5.0,
         once = true,
         removeOnExit = false
+        }
     }
 }
 

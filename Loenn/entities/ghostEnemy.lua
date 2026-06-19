@@ -2,7 +2,7 @@ local ghostEnemy = {}
 ghostEnemy.name = "DZ/GhostEnemy"
 ghostEnemy.depth = -100
 ghostEnemy.placements = {
-    { name = "normal", data = { health = 3, chaseSpeed = 50.0 } },
+    { name = "main", data = { health = 3, chaseSpeed = 50.0 } },
     { name = "fast", data = { health = 2, chaseSpeed = 100.0 } }
 }
 ghostEnemy.fieldInformation = {

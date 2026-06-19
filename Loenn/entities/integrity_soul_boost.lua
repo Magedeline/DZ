@@ -38,7 +38,7 @@ integritySoulBoost.fieldOrder = {
 
 integritySoulBoost.placements = {
     {
-        name = "integrity_soul_boost",
+        name = "main",
         data = {
             lockCamera = true,
             canSkip = false,

@@ -5,7 +5,7 @@ void_gate.depth = -10000
 void_gate.canResize = {true, true}
 void_gate.placements = {
     {
-        name = "void_gate",
+        name = "main",
         data = {
             width = 160,
             height = 128,

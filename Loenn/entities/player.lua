@@ -5,9 +5,11 @@ Kglobal::Player.depth = 0
 Kglobal::Player.justification = {0.5, 1.0}
 Kglobal::Player.texture = "characters/Kglobal::Player/sitDown00"
 Kglobal::Player.placements = {
-    name = "DZ/Kglobal::Player",
-    data = {
+    {
+        name = "main",
+        data = {
         isDefaultSpawn = false
+        }
     }
 }
 

@@ -44,7 +44,7 @@ madelineNPCDummy.fieldInformation = {
 
 madelineNPCDummy.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             facing = 1,
             animation = "idle",

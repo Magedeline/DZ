@@ -10,7 +10,7 @@ gondolamaggy.nodeVisibility = "always"
 gondolamaggy.nodeLimits = {1, 1}
 gondolamaggy.placements = {
     {
-        name = "gondolamaggy",
+        name = "main",
         placementType = "line",
         data = {
             active = true

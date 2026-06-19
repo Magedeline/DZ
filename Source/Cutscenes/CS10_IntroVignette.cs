@@ -5,7 +5,7 @@ using FMOD.Studio;
 
 namespace Celeste.Cutscenes
 {
-    class Cs10IntroVignetteAlt : Scene
+    class Cs10IntroVignetteAlt : DesoloZantasVignette
     {
         public static class LoadingVignetteText
         {
@@ -26,7 +26,7 @@ namespace Celeste.Cutscenes
         private EventInstance? ringtone;
         private bool ringtoneActive = false;
 
-        public bool CanPause => menu == null;
+        public override bool CanPause => menu == null;
 
         public Cs10IntroVignetteAlt(Session session, TextMenu? menu, bool playRingtone = false, HiresSnow? _ = null)
         {
@@ -85,10 +85,6 @@ namespace Celeste.Cutscenes
                 if (!exiting)
                 {
                     textCoroutine?.Update();
-                    if (Input.Pause.Pressed || Input.ESC.Pressed)
-                    {
-                        OpenMenu();
-                    }
                 }
             }
             else if (!exiting)
@@ -100,8 +96,10 @@ namespace Celeste.Cutscenes
             fade = Calc.Approach(fade, 0f, Engine.DeltaTime);
         }
 
-        public void OpenMenu()
+        public override void OpenMenu()
         {
+            if (!CanPause || Paused) return;
+            Paused = true;
             PauseSfx();
             Audio.Play("event:/ui/game/pause");
             Add(menu = new TextMenu());
@@ -110,8 +108,9 @@ namespace Celeste.Cutscenes
             menu.OnCancel = menu.OnESC = menu.OnPause = CloseMenu;
         }
 
-        private void CloseMenu()
+        public override void CloseMenu()
         {
+            Paused = false;
             ResumeSfx();
             Audio.Play("event:/ui/game/unpause");
             menu?.RemoveSelf();

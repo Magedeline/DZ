@@ -8,7 +8,7 @@ luckyBlock.depth = -9000
 luckyBlock.minimumSize = {8, 8}
 luckyBlock.placements = {
     {
-        name = "luckyblock",
+        name = "main",
         data = {
             width = 16,
             height = 16,

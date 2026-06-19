@@ -9,7 +9,7 @@ morphoKnightClone.justification = {0.5, 1.0}
 
 morphoKnightClone.placements = {
     {
-        name = "default",
+        name = "main",
         data = {
             health = 10,
             moveSpeed = 142.0,

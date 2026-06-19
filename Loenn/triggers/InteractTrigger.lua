@@ -2,7 +2,7 @@ local InteractTrigger = {
     name = "DZ/IngesteInteractTrigger", -- Match the CustomEntity name in InteractTrigger.cs
     placements = {
         {
-            name = "InteractTrigger",
+            name = "main",
             data = {
                 x = 0,
                 y = 0,

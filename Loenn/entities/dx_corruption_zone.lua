@@ -13,7 +13,7 @@ dxCorruptionZone.borderColor = {0.8, 0.0, 0.8, 0.6}
 
 dxCorruptionZone.placements = {
     {
-        name = "DXCorruptionZone",
+        name = "main",
         data = {
             width = 64,
             height = 64,

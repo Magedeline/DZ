@@ -8,7 +8,7 @@ waveFazeSlammerMachine.name = "DZ/WaveFazeSlammerTutorialMachine"
 waveFazeSlammerMachine.depth = 1000
 waveFazeSlammerMachine.placements = {
     {
-        name = "WaveFazeSlammerTutorialMachine",
+        name = "main",
         data = {}
     }
 }

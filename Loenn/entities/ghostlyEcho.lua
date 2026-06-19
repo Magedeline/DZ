@@ -23,7 +23,7 @@ ghostlyEcho.fieldInformation = {
 }
 ghostlyEcho.placements = {
     {
-        name = "mirror",
+        name = "main",
         data = {
             behavior = "Mirror",
             mirrorDelay = 0.5,

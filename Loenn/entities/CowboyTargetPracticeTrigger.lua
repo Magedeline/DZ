@@ -3,7 +3,7 @@ local cowboyTargetPracticeTrigger = {}
 cowboyTargetPracticeTrigger.name = "DZ/CowboyTargetPracticeTrigger"
 cowboyTargetPracticeTrigger.placements = {
     {
-        name = "trigger",
+        name = "main",
         data = {
             width = 16,
             height = 16,

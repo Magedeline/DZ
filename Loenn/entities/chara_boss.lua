@@ -9,7 +9,7 @@ charaBoss.nodeLimits = {1, 20}
 
 charaBoss.placements = {
     {
-        name = "chara_boss",
+        name = "main",
         data = {
             patternIndex = 0,
             cameraPastY = 120.0,

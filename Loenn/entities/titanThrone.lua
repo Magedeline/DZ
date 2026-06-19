@@ -12,7 +12,7 @@ titanThrone.fieldInformation = {
 }
 titanThrone.placements = {
     {
-        name = "manual",
+        name = "main",
         data = {
             bossEntity = "DZ/KingTitanBoss",
             activationRadius = 100,

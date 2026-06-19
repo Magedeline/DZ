@@ -1,7 +1,7 @@
 local randomizerTrigger = {}
 randomizerTrigger.name = "DZ/RandomizerTrigger"
 randomizerTrigger.placements = {
-    { name = "RandomizerTrigger", data = { width = 16, height = 16, randomizeAbilities = true, randomizeGravity = false, randomizeSpeed = false, seed = 0 } }
+    { name = "main", data = { width = 16, height = 16, randomizeAbilities = true, randomizeGravity = false, randomizeSpeed = false, seed = 0 } }
 }
 randomizerTrigger.fieldInformation = {
     randomizeAbilities = { fieldType = "boolean" },

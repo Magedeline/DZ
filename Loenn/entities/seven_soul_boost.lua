@@ -47,7 +47,7 @@ sevenSoulBoost.fieldOrder = {
 
 sevenSoulBoost.placements = {
     {
-        name = "seven_soul_boost",
+        name = "main",
         data = {
             lockCamera = true,
             canSkip = false,

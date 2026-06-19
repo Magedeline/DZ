@@ -18,7 +18,7 @@ swingingDoor.fieldInformation = {
 }
 swingingDoor.placements = {
     {
-        name = "unlocked",
+        name = "main",
         data = {
             swingSpeed = 3.0,
             knockbackForce = 150,

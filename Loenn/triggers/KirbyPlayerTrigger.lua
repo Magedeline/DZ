@@ -114,7 +114,7 @@ kirbyPlayerTrigger.fieldOrder = {
 
 kirbyPlayerTrigger.placements = {
     {
-        name = "on_enter",
+        name = "main",
         data = {
             width = 16,
             height = 16,

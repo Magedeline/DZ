@@ -57,8 +57,9 @@ gate.fieldInformation = {
 }
 
 gate.placements = {
-    name = "normal",
-    data = {
+    {
+        name = "main",
+        data = {
         width = 16,
         height = 16,
         sprite = "stars",
@@ -66,6 +67,7 @@ gate.placements = {
         iconOrientation = "Auto",
         code = "U,D,L,R",
         columns = 1
+        }
     }
 }
 

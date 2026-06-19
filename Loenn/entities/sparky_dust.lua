@@ -43,7 +43,7 @@ sparkeyDust.fieldInformation = {
 
 sparkeyDust.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             particleColor = "ffff00",
             particleCount = 10,

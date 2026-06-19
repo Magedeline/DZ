@@ -8,7 +8,7 @@ bigBonfire.depth   = -5
 
 bigBonfire.placements = {
     {
-        name = "unlit",
+        name = "main",
         data = {
             mode        = "Unlit",
             scale       = 2.0,

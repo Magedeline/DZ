@@ -8,7 +8,7 @@ poppyBrosJr.depth = -100
 
 poppyBrosJr.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             x = 0,
             y = 0

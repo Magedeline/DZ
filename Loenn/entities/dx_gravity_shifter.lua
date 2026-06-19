@@ -13,7 +13,7 @@ dxGravityShifter.borderColor = {0.0, 0.8, 0.8, 0.6}
 
 dxGravityShifter.placements = {
     {
-        name = "DXGravityShifter_Reverse",
+        name = "main",
         data = {
             width = 80,
             height = 80,

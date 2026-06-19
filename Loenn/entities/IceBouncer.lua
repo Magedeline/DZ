@@ -28,12 +28,14 @@ return {
         "iceColor"
     },
     placements = {
-        name = "Ice Bouncer",
+    {
+        name = "main",
         data = {
-            requiresCoreMode = true,
-            dashesGranted = 2,
-            bounceStrength = -180.0,
-            iceColor = "87CEEB"
+        requiresCoreMode = true,
+        dashesGranted = 2,
+        bounceStrength = -180.0,
+        iceColor = "87CEEB"
         }
+    }
     }
 }

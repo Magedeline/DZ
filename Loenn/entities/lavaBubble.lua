@@ -10,7 +10,7 @@ lavaBubble.depth = -200
 
 lavaBubble.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             riseSpeed = 80.0,
             burstHeight = 100.0,

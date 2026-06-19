@@ -8,7 +8,7 @@ tower3D.depth = -8500
 tower3D.justification = {0.5, 1.0}
 tower3D.placements = {
     {
-        name = "basic_tower",
+        name = "main",
         data = {
             towerHeight = 1000,
             radius = 120,

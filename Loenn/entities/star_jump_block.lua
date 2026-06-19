@@ -9,11 +9,13 @@ starJumpBlock.name = "DZ/StarJumpBlock"
 starJumpBlock.depth = 9010
 starJumpBlock.warnBelowSize = {8, 8}
 starJumpBlock.placements = {
-    name = "star_jump_block",
-    data = {
+    {
+        name = "main",
+        data = {
         width = 8,
         height = 8,
         sinks = true
+        }
     }
 }
 

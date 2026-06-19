@@ -2,7 +2,7 @@ local trigger = {}
 
 trigger.name = "DZ/FinalRemixBerryCutsceneTrigger"
 trigger.placements = {
-    { name = "FinalRemixBerryCutsceneTrigger" }
+    { name = "main" }
 }
 
 return trigger

@@ -4,7 +4,7 @@ local charaChaserEnd = {}
 charaChaserEnd.name = "DZ/CharaChaserEnd"
 charaChaserEnd.placements = {
     {
-        name = "CharaChaserEnd",
+        name = "main",
         data = {
             width = 16,
             height = 16

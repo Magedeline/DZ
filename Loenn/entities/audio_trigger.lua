@@ -15,7 +15,7 @@ audioTrigger.name = "DesoloZantas/AudioTrigger"
 audioTrigger.depth = 0
 audioTrigger.placements = {
     {
-        name = "Audio Trigger",
+        name = "main",
         data = {
             width = 16,
             height = 16,

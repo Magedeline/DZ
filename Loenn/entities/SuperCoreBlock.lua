@@ -38,14 +38,16 @@ return {
         "superColor"
     },
     placements = {
-        name = "Super Core Block",
+    {
+        name = "main",
         data = {
-            speedMultiplier = 3.0,
-            launchRange = 400.0,
-            requiresCoreMode = false,
-            hotColor = "FF4500",
-            coldColor = "00BFFF", 
-            superColor = "FFD700"
+        speedMultiplier = 3.0,
+        launchRange = 400.0,
+        requiresCoreMode = false,
+        hotColor = "FF4500",
+        coldColor = "00BFFF", 
+        superColor = "FFD700"
         }
+    }
     }
 }

@@ -2,7 +2,7 @@ local echoOrb = {}
 echoOrb.name = "DZ/EchoOrb"
 echoOrb.depth = -100
 echoOrb.placements = {
-    { name = "normal", data = { revealRadius = 80.0, revealDuration = 3.0 } }
+    { name = "main", data = { revealRadius = 80.0, revealDuration = 3.0 } }
 }
 echoOrb.fieldInformation = {
     revealRadius = { fieldType = "number", minimumValue = 20.0 },

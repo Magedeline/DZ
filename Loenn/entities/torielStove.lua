@@ -15,7 +15,7 @@ torielStove.fieldInformation = {
 }
 torielStove.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             canInteract = true,
             hasPie = true,

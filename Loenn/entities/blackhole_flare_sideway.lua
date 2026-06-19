@@ -6,7 +6,7 @@ blackholeFlareSideway.name = "DZ/BlackholeFlareSideway"
 blackholeFlareSideway.depth = -50
 blackholeFlareSideway.placements = {
     {
-        name = "Blackhole Flare Sideway (Right)",
+        name = "main",
         data = {
             width = 32,
             height = 32,

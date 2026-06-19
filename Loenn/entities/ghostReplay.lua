@@ -4,7 +4,7 @@ ghostReplay.depth = -100
 ghostReplay.justification = {0.5, 1.0}
 ghostReplay.texture = "characters/Kglobal::Player/idle00"
 ghostReplay.placements = {
-    { name = "normal", data = { recordOnFlag = "record_ghost", replayOnFlag = "replay_ghost", ghostAlpha = 0.5 } }
+    { name = "main", data = { recordOnFlag = "record_ghost", replayOnFlag = "replay_ghost", ghostAlpha = 0.5 } }
 }
 ghostReplay.fieldInformation = {
     recordOnFlag = { fieldType = "string" },

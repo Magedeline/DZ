@@ -6,10 +6,12 @@ local kirbySpawnPoint = {}
 kirbySpawnPoint.name = "DZ/KirbySpawnPoint"
 kirbySpawnPoint.depth = -100
 kirbySpawnPoint.placements = {
-    name = "kirbyspawnpoint",
-    data = {
+    {
+        name = "main",
+        data = {
         spawnAsKirby = true,
         startingAbility = "None"
+        }
     }
 }
 

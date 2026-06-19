@@ -4,7 +4,9 @@ starClimbController.name = "starClimbController"
 starClimbController.depth = 0
 starClimbController.texture = "@Internal@/northern_lights"
 starClimbController.placements = {
-    name = "controller"
+    {
+        name = "main"
+    }
 }
 
 local everestStarClimbGraphicsController = {}
@@ -14,10 +16,12 @@ everestStarClimbGraphicsController.associatedMods = {"Everest"}
 everestStarClimbGraphicsController.depth = 0
 everestStarClimbGraphicsController.texture = "@Internal@/northern_lights"
 everestStarClimbGraphicsController.placements = {
-    name = "controller",
-    data = {
+    {
+        name = "main",
+        data = {
         fgColor = "A3FFFF",
         bgColor = "293E4B"
+        }
     }
 }
 everestStarClimbGraphicsController.fieldInformation = {

@@ -4,7 +4,7 @@ bubbleRaft.name = "DZ/BubbleRaft"
 bubbleRaft.depth = -500
 bubbleRaft.placements = {
     {
-        name = "normal",
+        name = "main",
         data = { duration = 5.0, floatSpeed = 30.0 }
     },
     {

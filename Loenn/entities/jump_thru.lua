@@ -49,7 +49,7 @@ jumpThru.fieldInformation = {
 
 jumpThru.placements = {
     {
-        name = "wood",
+        name = "main",
         data = {
             width = 24,
             height = 8,

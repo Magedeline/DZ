@@ -6,11 +6,13 @@ local dededeBoss = {}
 dededeBoss.name = "DZ/DededeBoss"
 dededeBoss.depth = -10000
 dededeBoss.placements = {
-    name = "default",
-    data = {
+    {
+        name = "main",
+        data = {
         health = 25,
         attackCooldown = 1.5,
         bossMusic = "guid://{38e2f39c-382d-4136-86fd-e24520f3b71e}"
+        }
     }
 }
 

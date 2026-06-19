@@ -33,7 +33,7 @@ local charaChaser = {
     },
     placements = {
         {
-            name = "CharaChaser",
+            name = "main",
             data = {
                 canChangeMusic = true,
                 aggressive = false,

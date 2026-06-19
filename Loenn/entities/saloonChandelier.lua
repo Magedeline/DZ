@@ -18,7 +18,7 @@ saloonChandelier.fieldInformation = {
 }
 saloonChandelier.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             swingPeriod = 3.0,
             swingAngle = 0.4,

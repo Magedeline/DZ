@@ -5,7 +5,7 @@ time_echo_platform.depth = 0
 time_echo_platform.canResize = {true, false}
 time_echo_platform.placements = {
     {
-        name = "Time Echo Platform",
+        name = "main",
         data = {
             width = 16,
             phaseTime = 2.0,

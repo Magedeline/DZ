@@ -8,7 +8,7 @@ voidGateArena.nodeLineRenderType = "line"
 
 voidGateArena.placements = {
     {
-        name = "void_gate_arena_easy",
+        name = "main",
         data = {
             requiredKills = 8,
             spawnBoss = false,

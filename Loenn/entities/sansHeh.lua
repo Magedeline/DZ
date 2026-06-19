@@ -26,7 +26,7 @@ sansHeh.fieldInformation = {
 
 sansHeh.placements = {
     {
-        name = "default",
+        name = "main",
         data = {
             ifset = "",
             triggerLaughSfx = false,

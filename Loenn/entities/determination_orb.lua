@@ -4,7 +4,7 @@ determination_orb.name = "DesoloZantas/DeterminationOrb"
 determination_orb.depth = -100
 determination_orb.placements = {
     {
-        name = "Determination Orb",
+        name = "main",
         data = {
             dashBoost = 1,
             speedMultiplier = 1.2,

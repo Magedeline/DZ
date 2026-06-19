@@ -5,7 +5,7 @@ rainbowBlackholeTrigger.name = "DZ/RainbowBlackholeTrigger"
 
 rainbowBlackholeTrigger.placements = {
     {
-        name = "enable",
+        name = "main",
         data = {
             width = 16,
             height = 16,

@@ -8,7 +8,7 @@ cs09_message_end_trigger.name = "DZ/CS09_MessageEndTrigger"
 
 cs09_message_end_trigger.placements = {
     {
-        name = "CS09_MessageEndTrigger",
+        name = "main",
         data = {
             width = 16,
             height = 16,

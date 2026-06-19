@@ -1,7 +1,7 @@
 local zoomTrigger = {}
 zoomTrigger.name = "DZ/ZoomTrigger"
 zoomTrigger.placements = {
-    { name = "zoom_in", data = { width = 16, height = 16, targetZoom = 2.0, zoomDuration = 1.0 } },
+    { name = "main", data = { width = 16, height = 16, targetZoom = 2.0, zoomDuration = 1.0 } },
     { name = "zoom_out", data = { width = 16, height = 16, targetZoom = 0.5, zoomDuration = 1.0 } }
 }
 zoomTrigger.fieldInformation = {

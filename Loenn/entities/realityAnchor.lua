@@ -12,7 +12,7 @@ realityAnchor.fieldInformation = {
 }
 realityAnchor.placements = {
     {
-        name = "normal",
+        name = "main",
         data = {
             stabilityRadius = 100
         }

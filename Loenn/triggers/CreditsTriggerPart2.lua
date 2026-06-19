@@ -4,7 +4,7 @@ CreditsTriggerPart2.name = "DZ/CreditsTriggerPart2"
 CreditsTriggerPart2.canResize = {true, true}
 CreditsTriggerPart2.placements = {
     {
-        name = "wait_jump_dash",
+        name = "main",
         data = {
             width = 16,
             height = 16,

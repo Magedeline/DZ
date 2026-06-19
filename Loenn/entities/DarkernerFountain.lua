@@ -70,7 +70,7 @@ darkernerFountain.fieldInformation = {
 
 darkernerFountain.placements = {
     {
-        name = "chaos_fountain",
+        name = "main",
         data = {
             width = 32,
             height = 48,

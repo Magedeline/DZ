@@ -3,7 +3,7 @@ local cutsceneTrigger = {}
 cutsceneTrigger.name = "DZ/CutsceneTrigger"
 cutsceneTrigger.placements = {
     {
-        name = "CutsceneTrigger",
+        name = "main",
         data = {
             width = 16,
             height = 16,

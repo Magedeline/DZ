@@ -9,7 +9,7 @@ buzzoBoss.depth = -8500
 
 buzzoBoss.placements = {
     {
-        name = "buzzo_boss",
+        name = "main",
         data = {
             health = 280,
             maxHealth = 280

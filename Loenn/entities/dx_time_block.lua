@@ -13,7 +13,7 @@ dxTimeBlock.borderColor = {0.7, 0.4, 1.0, 0.8}
 
 dxTimeBlock.placements = {
     {
-        name = "DXTimeBlock_GroupA",
+        name = "main",
         data = {
             width = 16,
             height = 16,

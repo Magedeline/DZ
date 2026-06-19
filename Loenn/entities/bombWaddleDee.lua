@@ -2,7 +2,7 @@ local bombWaddleDee = {}
 bombWaddleDee.name = "DZ/BombWaddleDee"
 bombWaddleDee.depth = -100
 bombWaddleDee.placements = {
-    { name = "normal", data = { health = 1, throwInterval = 2.0, throwRange = 120.0, bombSpeed = 150.0 } },
+    { name = "main", data = { health = 1, throwInterval = 2.0, throwRange = 120.0, bombSpeed = 150.0 } },
     { name = "rapid", data = { health = 1, throwInterval = 1.0, throwRange = 150.0, bombSpeed = 200.0 } }
 }
 bombWaddleDee.fieldInformation = {

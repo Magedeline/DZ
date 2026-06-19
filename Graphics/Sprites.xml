@@ -1117,6 +1117,13 @@
       <Loop id="runSlow" path="runSlow" delay="0.07" goto="runFast" />
       <Loop id="runFast" path="runFast" delay="0.05" />
       <Anim id="runStumble" path="runFast" delay="0.05" goto="runFast" />
+
+      <!-- Carry Movement -->
+      <Loop id="idle_carry" path="idle_carry" delay="0.1" />
+      <Loop id="runSlow_carry" path="run_carry" delay="0.07" />
+      <Loop id="carryTheoWalk" path="walk_carry_theo" delay="0.06" frames="0-11" />
+      <Anim id="carryTheoCollapse" path="walk_carry_theo" delay="0.06" frames="12-18" />
+
       <Loop id="jumpSlow" path="jumpSlow" delay="0.1" frames="0,1" />
       <Loop id="jumpFast" path="jumpFast" delay="0.1" frames="0,1" />
       <Anim id="jumpSlow_carry" path="jump_carry" delay="0.1" frames="0,1" />
@@ -3192,7 +3199,7 @@
       <Anim id="charaboss_attack2Lock" path="chara_charge" delay="0.06" frames="29-39" goto="charaboss_attack2Lock"/>
       <Anim id="charaboss_attack2Recoil" path="chara_charge" delay="0.06" frames="40-45" goto="charaboss_idle"/>
   
-      <Anim id="charaboss_getHit" path="chara_hit" delay="0.06" frames="0-8" goto="star"/>
+      <Anim id="charaboss_getHit" path="chara_hit" delay="0.06" frames="0-8" goto="charaboss_star"/>
       <Loop id="charaboss_star" path="chara_hit" delay="0.06" frames="3-5"/>
       <Anim id="charaboss_recoverHit" path="chara_hit" delay="0.06" frames="6-8" goto="charaboss_idle"/>
     </chara_boss>

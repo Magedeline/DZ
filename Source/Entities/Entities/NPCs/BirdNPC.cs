@@ -9,7 +9,6 @@ namespace Celeste.Entities;
 
     [Tracked(true)]
     [CustomEntity(ids: "DZ/BirdNPC")]
-    [Monocle.Tracked]
     [HotReloadable]
 
 public class BirdNPC : Actor

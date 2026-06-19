@@ -2,6 +2,7 @@ using System;
 using global::Celeste.Mod.Meta;
 using Microsoft.Xna.Framework;
 using Monocle;
+using MonoMod.Utils;
 
 namespace DZ;
 
@@ -49,16 +50,23 @@ public static class SideLockDisplaySystem
 
     private static bool _hookInstalled = false;
 
+    // Card bounds used for the lock overlay region (matches the vanilla chapter
+    // panel card size used by CosmicChapterPanelHook).
+    private static readonly Vector2 CardSize = new(480f, 272f);
+
+    // Vertical offset of the mode label region from the top of the card. The
+    // vanilla panel renders the A/B/C/D label near the bottom of the card.
+    private const float ModeLabelOffsetY = 200f;
+    private static readonly Vector2 ModeRegionSize = new(200f, 48f);
+
     public static void Load()
     {
         if (_hookInstalled)
             return;
         _hookInstalled = true;
 
-        // Hook chapter panel rendering or input to intercept locked side selection
-        // This depends on your chapter panel implementation
-        // For example: On.Celeste.OuiChapterPanel.ctor += OnChapterPanelCtor;
-        // Or: On.Celeste.OuiChapterPanel.Update += OnChapterPanelUpdate;
+        On.Celeste.OuiChapterPanel.Render += OnChapterPanelRender;
+        On.Celeste.OuiChapterPanel.Update += OnChapterPanelUpdate;
 
         Logger.Log(LogLevel.Info, "DZ", "SideLockDisplaySystem loaded");
     }
@@ -69,7 +77,157 @@ public static class SideLockDisplaySystem
             return;
         _hookInstalled = false;
 
+        On.Celeste.OuiChapterPanel.Render -= OnChapterPanelRender;
+        On.Celeste.OuiChapterPanel.Update -= OnChapterPanelUpdate;
+
         Logger.Log(LogLevel.Info, "DZ", "SideLockDisplaySystem unloaded");
+    }
+
+    // ── OuiChapterPanel hooks ────────────────────────────────────────────────
+
+    private static void OnChapterPanelRender(On.Celeste.OuiChapterPanel.orig_Render orig,
+        OuiChapterPanel self)
+    {
+        // Let vanilla (and other hooks, e.g. CosmicChapterPanelHook) draw first.
+        orig(self);
+
+        AreaData area = AreaData.Get(self.Area);
+        if (area == null || !AreaModeExtender.IsOurMap(area))
+            return;
+
+        // Don't render overlays while the panel is sliding in/out of view.
+        if (!self.Selected)
+            return;
+
+        int currentMode = TryGetCurrentMode(self);
+        Vector2 cardPos = GetCardPosition(self);
+
+        // Overlay the lock indicator/tooltip/progress for the currently displayed
+        // mode when it is a locked extended side.
+        if (IsExtendedMode(currentMode) && !AreaModeExtender.IsSideUnlocked(self.Area, currentMode))
+        {
+            Vector2 modePos = cardPos + new Vector2(-ModeRegionSize.X / 2f, ModeLabelOffsetY);
+            DrawLockIndicator(self.Area, currentMode, modePos, ModeRegionSize);
+            DrawLockTooltip(self.Area, currentMode, modePos, ModeRegionSize);
+            DrawProgressInfo(self.Area, currentMode, modePos, ModeRegionSize);
+        }
+
+        // Always render a compact legend listing every locked extended side so the
+        // player can see lock status even while browsing A/B/C.
+        DrawLockedSidesLegend(self.Area, area, cardPos);
+    }
+
+    private static void OnChapterPanelUpdate(On.Celeste.OuiChapterPanel.orig_Update orig,
+        OuiChapterPanel self)
+    {
+        // Block confirming into a locked extended side before vanilla handles the
+        // input. Skipping one Update frame only at the moment of the press is
+        // invisible to the player and prevents the level from being entered.
+        if (self.Selected && Input.MenuConfirm.Pressed)
+        {
+            int currentMode = TryGetCurrentMode(self);
+            if (IsExtendedMode(currentMode) && !AreaModeExtender.IsSideUnlocked(self.Area, currentMode))
+            {
+                if (!TrySelectSide(self.Area, currentMode))
+                    return; // TrySelectSide already played the invalid sound
+            }
+        }
+
+        orig(self);
+    }
+
+    // ── Helpers ──────────────────────────────────────────────────────────────
+
+    private static bool IsExtendedMode(int modeIndex)
+        => modeIndex == AreaModeExtender.MODE_DSIDE || modeIndex == AreaModeExtender.MODE_DXSIDE;
+
+    /// <summary>
+    /// Reads the chapter panel's currently displayed mode index via DynamicData.
+    /// Vanilla names the field <c>mode</c>; some builds expose <c>Mode</c>/
+    /// <c>currentMode</c>. Falls back to A-Side (0) when unavailable.
+    /// </summary>
+    private static int TryGetCurrentMode(OuiChapterPanel self)
+    {
+        try
+        {
+            var dyn = DynamicData.For(self);
+            if (dyn.TryGet("mode", out object m) && m is int mi)
+                return mi;
+            if (dyn.TryGet("Mode", out m) && m is int mi2)
+                return mi2;
+            if (dyn.TryGet("currentMode", out m) && m is int mi3)
+                return mi3;
+            if (dyn.TryGet("CurrentMode", out m) && m is int mi4)
+                return mi4;
+        }
+        catch (Exception ex)
+        {
+            Logger.Log(LogLevel.Warn, "DZ",
+                $"[SideLockDisplaySystem] Failed to read current mode: {ex.Message}");
+        }
+
+        return AreaModeExtender.MODE_NORMAL;
+    }
+
+    /// <summary>
+    /// Reads the panel's screen position via DynamicData, falling back to the
+    /// screen centre (matches CosmicChapterPanelHook behaviour).
+    /// </summary>
+    private static Vector2 GetCardPosition(OuiChapterPanel self)
+    {
+        try
+        {
+            var dyn = DynamicData.For(self);
+            if (dyn.TryGet("position", out object posObj) || dyn.TryGet("Position", out posObj))
+            {
+                if (posObj is Vector2 v)
+                    return v;
+            }
+        }
+        catch
+        {
+            // Fall through to default below.
+        }
+
+        return new Vector2(960f, 540f);
+    }
+
+    /// <summary>
+    /// Draws a small legend below the chapter card listing each locked extended
+    /// side (D/DX) that exists for this chapter, with its lock reason.
+    /// </summary>
+    private static void DrawLockedSidesLegend(AreaKey area, AreaData areaData, Vector2 cardPos)
+    {
+        if (areaData?.Mode == null)
+            return;
+
+        float y = cardPos.Y + CardSize.Y / 2f + 16f;
+        bool drewAny = false;
+
+        for (int mode = AreaModeExtender.MODE_DSIDE; mode <= AreaModeExtender.MODE_DXSIDE; mode++)
+        {
+            if (mode >= areaData.Mode.Length || areaData.Mode[mode] == null)
+                continue;
+
+            if (AreaModeExtender.IsSideUnlocked(area, mode))
+                continue;
+
+            string reason = GetLockReason(area, mode);
+            if (string.IsNullOrEmpty(reason))
+                continue;
+
+            Vector2 pos = new(cardPos.X, y);
+            string line = $"{GetSideName(mode)}: {reason}";
+            ActiveFont.DrawOutline(line, pos, new Vector2(0.5f, 0f), Vector2.One * 0.45f,
+                new Color(220, 220, 220), 1f, Color.Black);
+
+            y += 18f;
+            drewAny = true;
+        }
+
+        // If nothing was drawn, the legend silently disappears — no extra state to
+        // reset.
+        _ = drewAny;
     }
 
     /// <summary>

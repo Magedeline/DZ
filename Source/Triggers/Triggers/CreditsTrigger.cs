@@ -9,7 +9,7 @@ using Celeste.Cutscenes;
 
 namespace Celeste.Triggers
 {
-    [CustomEntity(ids: "DZ/CreditsTriggerPart2")]
+    [CustomEntity("DZ/CreditsTriggerPart2", "MaggyHelper/CreditsTriggerPart2")]
     [Tracked(true)]
     public class CreditsTriggerPart2 : global::Celeste.Trigger
     {
@@ -31,7 +31,7 @@ namespace Celeste.Triggers
     }
 
     // Added: Trigger for CsPart1Credit cutscene
-    [CustomEntity(ids: "DZ/CreditsTriggerPart1")]
+    [CustomEntity("DZ/CreditsTriggerPart1", "MaggyHelper/CreditsTriggerPart1")]
     [Tracked(true)]
     public class CreditsTriggerPart1 : global::Celeste.Trigger
     {
@@ -45,9 +45,9 @@ namespace Celeste.Triggers
         public override void OnEnter(global::Celeste.Player player)
         {
             base.OnEnter(player);
-            // Defer Oui creation to Overworld to avoid atlas/state issues
+            // LaunchPart1Credits handles both cases: Goto if already in Overworld,
+            // or loading OverworldLoader(StartMode.MainMenu) if not.
             DZModule.LaunchPart1Credits();
-            Engine.Scene = new OverworldLoader(Overworld.StartMode.MainMenu, null);
         }
     }
 }

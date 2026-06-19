@@ -45,6 +45,12 @@ public class DZModule : EverestModule {
         KirbyPlayerController.Load();
         SoulPlayerController.Load();
         BattlePlayerController.Load();
+        SideLockDisplaySystem.Load();
+        ChapterCompletionHooks.Load();
+        OverworldConnectorHooks.Load();
+
+        // Initialize metadata registries (loads .bin.maggyhelper.meta.yaml etc.)
+        MetadataRegistries.Initialize();
 
         // Hook into scene changes to add the HotReloadController
         On.Monocle.Engine.Update += OnEngineUpdate;
@@ -58,6 +64,9 @@ public class DZModule : EverestModule {
         KirbyPlayerController.Unload();
         SoulPlayerController.Unload();
         BattlePlayerController.Unload();
+        SideLockDisplaySystem.Unload();
+        ChapterCompletionHooks.Unload();
+        OverworldConnectorHooks.Unload();
         On.Monocle.Engine.Update -= OnEngineUpdate;
         _spriteBank = null;
     }
@@ -105,7 +114,7 @@ public class DZModule : EverestModule {
             var player = level.Tracker.GetEntity<global::Celeste.Player>();
             if (player != null)
             {
-                level.Add(new global::Celeste.Cutscenes.CS17_Credits(player));
+                level.Add(new global::Celeste.Cutscenes.CS17_Credits());
             }
         }
     }

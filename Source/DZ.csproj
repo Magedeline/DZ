@@ -8,6 +8,9 @@
         <CelestePrefix Condition="'$(CelestePrefix)' == '' And Exists('..\..\..\Celeste.dll')">..\..\..</CelestePrefix>
         <CelestePrefix Condition="'$(CelestePrefix)' == ''">lib-stripped</CelestePrefix>
         <ZippedFiles>..\everest.yaml;..\bin\**\*.*;..\Audio\**\*.*;..\Dialog\**\*.*;..\Graphics\**\*.*;..\Ahorn\**\*.*;..\Loenn\**\*.*</ZippedFiles>
+        <!-- Engine.TimeRate is obsolete in newer Celeste/Everest but is the vanilla API for time scaling.
+             Suppressed project-wide since it is used intentionally across many cutscenes and bosses. -->
+        <NoWarn>CS0618</NoWarn>
     </PropertyGroup>
 
     <!--Disable "Copy Local" for all references-->

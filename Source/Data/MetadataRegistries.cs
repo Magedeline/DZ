@@ -46,6 +46,7 @@ public static class MetadataRegistries
             AudioMetadataRegistry.Initialize(modRoot);
             ParticleMetadataRegistry.Initialize(modRoot);
             UIMetadataRegistry.Initialize(modRoot);
+            MaggyMapMetadataRegistry.Initialize(modRoot);
 
             _initialized = true;
             Logger.Log(LogLevel.Info, "DZ",
@@ -73,6 +74,7 @@ public static class MetadataRegistries
         AudioMetadataRegistry.Reload();
         ParticleMetadataRegistry.Reload();
         UIMetadataRegistry.Reload();
+        MaggyMapMetadataRegistry.Reload();
 
         Logger.Log(LogLevel.Info, "DZ",
             "All metadata registries reloaded successfully");

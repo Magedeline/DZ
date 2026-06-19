@@ -40,25 +40,16 @@ namespace Celeste.Cutscenes
 
             // Load outro postcard image
             Entity postcardHolder = new Entity();
-            if (GFX.Game.Has("postcards/ch3_outro"))
+            if (GFX.Gui.Has("Maggy/postcard"))
             {
-                postcard = new Image(GFX.Game["postcards/ch3_outro"]);
+                postcard = new Image(GFX.Gui["Maggy/postcard"]);
                 postcard.CenterOrigin();
                 postcard.Position = CelesteGame.TargetCenter;
                 postcardHolder.Add(postcard);
-            }
-            else if (GFX.Game.Has("postcards/ch3_intro"))
-            {
-                // Fallback to intro postcard
-                postcard = new Image(GFX.Game["postcards/ch3_intro"]);
-                postcard.CenterOrigin();
-                postcard.Position = CelesteGame.TargetCenter;
-                postcardHolder.Add(postcard);
-                IngesteLogger.Warn("Chapter 3 outro postcard not found, using intro postcard");
             }
             else
             {
-                IngesteLogger.Warn("Chapter 3 postcard images not found");
+                IngesteLogger.Warn("Chapter 3 postcard image not found");
             }
             Add(postcardHolder);
 

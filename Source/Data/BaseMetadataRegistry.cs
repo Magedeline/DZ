@@ -57,11 +57,11 @@ internal abstract class BaseMetadataRegistry<TMetadata, TRegistry>
                 try
                 {
                     var txt = File.ReadAllText(file);
-                    var list = Deserializer.Deserialize<List<TMetadata>>(txt);
-                    if (list == null)
+                    var items = DeserializeItems(txt);
+                    if (items == null)
                         continue;
 
-                    foreach (var item in list)
+                    foreach (var item in items)
                     {
                         Instance.OnItemLoaded(item);
                     }
@@ -82,6 +82,37 @@ internal abstract class BaseMetadataRegistry<TMetadata, TRegistry>
 
     /// <summary>Called after an item is deserialized. Override to customize storage behavior.</summary>
     protected abstract void OnItemLoaded(TMetadata item);
+
+    /// <summary>
+    /// Deserialize a YAML document into a sequence of metadata items.
+    /// Supports both list-shaped documents and single-object documents
+    /// (e.g. per-map .bin.maggyhelper.meta.yaml files that are single mappings).
+    /// </summary>
+    private static List<TMetadata> DeserializeItems(string text)
+    {
+        // Try list form first (the common case for batch metadata files).
+        try
+        {
+            var list = Deserializer.Deserialize<List<TMetadata>>(text);
+            if (list != null)
+                return list;
+        }
+        catch
+        {
+            // Not a list-shaped document; fall through to single-object form.
+        }
+
+        // Fall back to a single object, wrapped in a one-element list.
+        try
+        {
+            var single = Deserializer.Deserialize<TMetadata>(text);
+            return single != null ? new List<TMetadata> { single } : null;
+        }
+        catch
+        {
+            return null;
+        }
+    }
 
     /// <summary>Log an info message</summary>
     protected static void LogInfo(string message) =>

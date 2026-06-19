@@ -273,7 +273,7 @@ public static class ChapterProgressionManager
 
         // Flipped ending: Maggy appears on the DZ mountain instead of Maddy hiding
         self.Overworld.Maddy.Running();
-        var connector = self.Overworld.Entities.FindFirst<global::Celeste.OverworldConnector>();
+        var connector = self.Overworld.Entities.FindFirst<OverworldConnector>();
         connector?.EnableMaggyMarker();
 
         var save = global::Celeste.Mod.DZ.DZModule.SaveData;

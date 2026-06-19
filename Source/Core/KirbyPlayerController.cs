@@ -40,6 +40,7 @@ namespace Celeste.Entities
         private const float FlapMultIncrement = 0.75f;
         private const float FlapMultDecay = 0.9f;
         private const int FlapRepeatFrames = 9;       // Frames between auto-flaps
+        private const float FlapRepeatFrameTime = FlapRepeatFrames / 60f; // ~0.15s
 
         // Timers (converted from frames to seconds)
         private const float GraceTime = 0.1f;         // 6 frames @ 60fps
@@ -71,7 +72,7 @@ namespace Celeste.Entities
         private float jumpBuffer;
         private float flyBuffer = 1;
         private float flapTimer;
-        private int flapRepeatCounter;
+        private float flapRepeatTimer;
         private int flapAnimTimer;
         private float flapMult;
         private float mouthOpenTimer;
@@ -83,6 +84,7 @@ namespace Celeste.Entities
         private float inhaleTimer;
         private float glompTimer;
         private bool wasGlomping;
+        private FMOD.Studio.EventInstance inhaleSfx;
 
         // Jump state
         private int djump;
@@ -327,10 +329,18 @@ namespace Celeste.Entities
                     {
                         flapMult += FlapMultIncrement;
                     }
+                    // Count down toward the next allowed auto-flap
+                    if (flapRepeatTimer > 0)
+                    {
+                        flapRepeatTimer -= Engine.DeltaTime;
+                        if (flapRepeatTimer < 0)
+                            flapRepeatTimer = 0;
+                    }
                 }
                 else
                 {
                     flapTimer = 0;
+                    flapRepeatTimer = 0;
                     if (flapMult > 0)
                     {
                         flapMult *= FlapMultDecay;
@@ -351,6 +361,7 @@ namespace Celeste.Entities
             {
                 flapTimer = 0;
                 flapMult = 0;
+                flapRepeatTimer = 0;
             }
 
             // Exit flying state
@@ -394,7 +405,7 @@ namespace Celeste.Entities
                 {
                     IsInhaling = true;
                     inhaleParticles?.StartInhaling();
-                    Audio.Play("event:/game/general/assist_dreamblockbounce", player.Position);
+                    inhaleSfx = Audio.Play("event:/game/general/assist_dreamblockbounce", player.Position);
                     CreateMouthVoid();
                 }
                 graceTimer = 0;
@@ -546,7 +557,7 @@ namespace Celeste.Entities
                     CreateJumpCloud();
                     player.Speed.Y = -105f; // Standard Celeste jump speed
                 }
-                else if (pFly && (flapTimer == 0 || flapRepeatCounter % FlapRepeatFrames == 0))
+                else if (pFly && flapRepeatTimer <= 0)
                 {
                     // Flying flap
                     Audio.Play("event:/char/madeline/jump", player.Position);
@@ -554,6 +565,8 @@ namespace Celeste.Entities
                     float flapStrength = BaseFlapSpeed - (0.8f * flapMult);
                     player.Speed.Y = flapStrength;
                     flapAnimTimer = 6;
+                    // Schedule the next auto-flap
+                    flapRepeatTimer = FlapRepeatFrameTime;
                 }
             }
         }
@@ -582,7 +595,8 @@ namespace Celeste.Entities
         private void StopInhaling()
         {
             IsInhaling = false;
-            Audio.Stop(Audio.Play("event:/game/general/assist_dreamblockbounce", player.Position));
+            Audio.Stop(inhaleSfx);
+            inhaleSfx = default;
 
             if (mouthVoid != null)
             {
@@ -657,6 +671,9 @@ namespace Celeste.Entities
             graceTimer = 0;
             CanInhale = true;
 
+            Audio.Stop(inhaleSfx);
+            inhaleSfx = default;
+
             if (mouthVoid != null)
             {
                 mouthVoid.RemoveSelf();
@@ -676,6 +693,7 @@ namespace Celeste.Entities
         private int facingDir;
         private Vector2 offset;
         private Hitbox hitbox;
+        private readonly System.Collections.Generic.HashSet<Entity> consumed = new System.Collections.Generic.HashSet<Entity>();
 
         public MouthVoidCollider(K_Player player, int facingDir)
             : base(player.Position)
@@ -700,15 +718,19 @@ namespace Celeste.Entities
             // Check for inhaleable objects using components
             foreach (Entity entity in Scene.Entities)
             {
+                if (consumed.Contains(entity))
+                    continue;
+
                 var inhaleable = entity.Get<InhaleableComponent>();
                 if (inhaleable != null && CollideCheck(entity))
                 {
+                    consumed.Add(entity);
                     inhaleable.OnInhaled(player);
                 }
             }
 
             // Remove if player stops inhaling
-            if (!player.Get<KirbyPlayerController>()?.IsInhaling ?? true)
+            if (!(player.Get<KirbyPlayerController>()?.IsInhaling ?? false))
             {
                 RemoveSelf();
             }

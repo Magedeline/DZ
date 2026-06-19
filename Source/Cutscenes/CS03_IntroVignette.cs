@@ -47,9 +47,9 @@ namespace Celeste.Cutscenes
 
             // Load postcard image
             Entity postcardHolder = new Entity();
-            if (GFX.Game.Has("postcards/ch3_intro"))
+            if (GFX.Gui.Has("Maggy/postcard"))
             {
-                postcard = new Image(GFX.Game["postcards/ch3_intro"]);
+                postcard = new Image(GFX.Gui["Maggy/postcard"]);
                 postcard.CenterOrigin();
                 postcard.Position = CelesteGame.TargetCenter;
                 postcardHolder.Add(postcard);
@@ -82,6 +82,9 @@ namespace Celeste.Cutscenes
             fade = 0f;
 
             yield return 0.5f;
+
+            // Play intro music
+            introMusic = Audio.Play("event:/Mods/pusheen/music/lvl3/intro", Vector2.Zero);
 
             // Play intro vignette sound effect
             introVignetteSfx = Audio.Play("event:/Mods/pusheen/game/03_star/intro_vignette", Vector2.Zero);

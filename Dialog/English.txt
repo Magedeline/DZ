@@ -17983,43 +17983,38 @@ Then I'll give to them all.
 [els right normal]
 Try not to keep up Asriel...
 
-DZ_CH21_LAST_BIG_ROOM=
+DZ_CH21_ELS_SACRAFICE=
 [els right normal]
-This is it kirby, our final escape we need to get to the last powerchamber
-
-[KIRBY left determined]
-I'm On it, Lets Finish This once and for all
+there too powerful, working together to take down multiple of them won't be enough
+but there one last thing I must do to stop them.
+kirby you need to listen to me carefully
+I need your soul with light to channel through me of my darkness to erdicated them
+[kirby left angry]
+what! are you insane?!
+this will get both of us killed if we channel this to combinded it
+[els right normal]
+I know this may not gthe awnser as you wanted but it's the only way to defeat them
+[kirby left determined]
+alright then, let do this.
 
 DZ_CH21_ELS_LAST_BOOST=
 [els right normal]
-tell your parent to forgive me!
+Farewell Kirby...
 
 DZ_CH20_SAVED=
 {trigger 0 maddy baddy and everyone else walk in left}
 [MADELINE left surprised]
-Wait...
-I just realized something.
-[BADELINE right normal]
-What is it?
-[MADELINE left sadder]
-Els...
-He saved us.
-[KIRBY left surprised]
-Huh? What do you mean?
+Wait... Did you just defeat them with Combining both light and dark kirby?
+[KIRBY left sad]
+Yeah I did, why you ask?
 [MADELINE left sad]
 The terrible darkness of multiple zero...
 The void that was consuming everything.
-He held it back so we could escape.
-He gave us a second chance...
+He help you to finish the fight.
+He gave you a second chance...
 even after everything he did.
-[BADELINE right scoff]
-...
-He really did, didn't he?
-[MADELINE left normal]
-I hope he finds peace too.
-Wherever he is now.
-[KIRBY left determined]
-Yeah... me too.
+[KIRBY left thankyou]
+to be honest I glad that would happen...
 [Granny left normal]
 To be Clear all that matter is you finally pay it off and I own you too my grand daughter.
 {trigger 1 granny and titan king walk in right}

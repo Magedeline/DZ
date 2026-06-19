@@ -126,7 +126,7 @@ namespace Celeste.Cutscenes
 
             if (shouldExit && Overworld != null)
             {
-                Overworld.Goto<CsPart1Credit>();
+                Overworld.Goto<OuiMainMenu>();
             }
         }
 

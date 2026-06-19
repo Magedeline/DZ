@@ -79,6 +79,10 @@ namespace DZ
             // Pre-allocate wave offset arrays
             waveOffsetsX = new float[WAVE_LAYERS];
             waveOffsetsY = new float[WAVE_LAYERS];
+
+            // Load the Giygas background image. Render code null-checks this, so a
+            // missing atlas entry just skips the background layer instead of crashing.
+            backgroundTexture = GFX.Game["bgs/maggy/18/giygas/bg00"];
         }
 
         public GiygasBackdrop(BinaryPacker.Element data) : this()
@@ -256,10 +260,14 @@ namespace DZ
             // Build distorted mesh
             BuildDistortedMesh();
 
-            // Render the mesh
+            // Render the mesh.
+            // The mesh is solid vertex-colored (no texturing), so use FxPrimitive (the
+            // textureless vertex-color effect) instead of FxTexture. FxTexture samples
+            // sampler 0, but no texture is bound here and all UVs are (0,0), which made
+            // every fragment sample an arbitrary texel and the mesh render invisible.
             if (activeVertexCount > 0)
             {
-                GFX.DrawVertices(Matrix.Identity, vertices, activeVertexCount, GFX.FxTexture);
+                GFX.DrawVertices(Matrix.Identity, vertices, activeVertexCount);
             }
 
             // Add accent highlights

@@ -13,7 +13,8 @@ public class DZModule : EverestModule {
     public override Type SettingsType => typeof(DZModuleSettings);
     public static DZModuleSettings Settings => (DZModuleSettings) Instance._Settings;
 
-    public static SpriteBank SpriteBank => new SpriteBank(GFX.Game, "DZ/Sprites");
+    private static SpriteBank _spriteBank;
+    public static SpriteBank SpriteBank => _spriteBank ??= new SpriteBank(GFX.Game, "DZ/Sprites");
 
     public static ParticleType P_StarExplosion => new ParticleType();
 
@@ -58,6 +59,7 @@ public class DZModule : EverestModule {
         SoulPlayerController.Unload();
         BattlePlayerController.Unload();
         On.Monocle.Engine.Update -= OnEngineUpdate;
+        _spriteBank = null;
     }
 
     private static void OnEngineUpdate(On.Monocle.Engine.orig_Update orig, Engine self, GameTime gameTime)
@@ -78,27 +80,52 @@ public class DZModule : EverestModule {
     }
 
     /// <summary>
-    /// Launch part 1 credits.
+    /// Launch part 1 credits by navigating the Overworld to the CsPart1Credit Oui screen.
     /// </summary>
     public static void LaunchPart1Credits()
     {
-        // Stub implementation - does nothing
+        if (Engine.Scene is Overworld overworld)
+        {
+            overworld.Goto<global::Celeste.Cutscenes.CsPart1Credit>();
+        }
+        else
+        {
+            // Navigate via OverworldLoader if not already in the Overworld
+            Engine.Scene = new OverworldLoader(Overworld.StartMode.MainMenu, null);
+        }
     }
 
     /// <summary>
-    /// Launch part 2 credits.
+    /// Launch part 2 credits (CS17_Credits) from the current level.
     /// </summary>
     public static void LaunchPart2Credits()
     {
-        // Stub implementation - does nothing
+        if (Engine.Scene is Level level)
+        {
+            var player = level.Tracker.GetEntity<global::Celeste.Player>();
+            if (player != null)
+            {
+                level.Add(new global::Celeste.Cutscenes.CS17_Credits(player));
+            }
+        }
     }
 
     /// <summary>
-    /// Trigger the unlock everything cheat.
+    /// Trigger the unlock everything cheat — unlocks all chapters in save data.
     /// </summary>
     public static void TriggerUnlockEverythingCheat()
     {
-        // Stub implementation - does nothing
+        var saveData = SaveData;
+        if (saveData == null) return;
+
+        saveData.UnlockedChapter10 = true;
+        saveData.UnlockedChapter19 = true;
+        saveData.UnlockedChapter21 = true;
+        saveData.FinalDlcContentUnlocked = true;
+        saveData.TrueFinaleUnlocked = true;
+        saveData.BossRushUnlocked = true;
+        saveData.VoidMoonUnlocked = true;
+        saveData.HasSeenModIntro = true;
     }
 
     /// <summary>
@@ -107,11 +134,13 @@ public class DZModule : EverestModule {
     public static string Chapter17EpilogueSid => "DZ/17_Epilogue";
 
     /// <summary>
-    /// Marks chapter 17 epilogue as completed.
+    /// Marks chapter 17 epilogue as completed in save data.
     /// </summary>
     public static void MarkChapter17EpilogueCompleted()
     {
-        // Stub implementation
+        var saveData = SaveData;
+        if (saveData != null)
+            saveData.Chapter17EpilogueCompleted = true;
     }
 
     /// <summary>
@@ -119,14 +148,21 @@ public class DZModule : EverestModule {
     /// </summary>
     public static bool IsChapter17EpilogueCompleted()
     {
-        return false;
+        return SaveData?.Chapter17EpilogueCompleted == true;
     }
 
     /// <summary>
-    /// Launches chapter 17 epilogue.
+    /// Launches the chapter 17 epilogue cutscene in the current level.
     /// </summary>
     public static void LaunchChapter17Epilogue()
     {
-        // Stub implementation
+        if (Engine.Scene is Level level)
+        {
+            var player = level.Tracker.GetEntity<global::Celeste.Player>();
+            if (player != null)
+            {
+                level.Add(new global::Celeste.Cutscenes.Cs17Epilogue(player));
+            }
+        }
     }
 }

@@ -1,7 +1,8 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 
 namespace Celeste.NPCs
 {
+    [Tracked(true)]
     [CustomEntity("DZ/NPC_Sans")]
     public class NpcSans : NpcBase
     {
@@ -12,6 +13,7 @@ namespace Celeste.NPCs
         }
     }
 
+    [Tracked(true)]
     [CustomEntity("DZ/NPC_Undyne")]
     public class NpcUndyne : NpcBase
     {
@@ -22,6 +24,7 @@ namespace Celeste.NPCs
         }
     }
 
+    [Tracked(true)]
     [CustomEntity("DZ/NPC_Alphys")]
     public class NpcAlphys : NpcBase
     {
@@ -32,6 +35,7 @@ namespace Celeste.NPCs
         }
     }
 
+    [Tracked(true)]
     [CustomEntity("DZ/NPC_Asgore")]
     public class NpcAsgore : NpcBase
     {
@@ -42,6 +46,7 @@ namespace Celeste.NPCs
         }
     }
 
+    [Tracked(true)]
     [CustomEntity("DZ/NPC_Papyrus")]
     public class NpcPapyrus : NpcBase
     {
@@ -52,6 +57,7 @@ namespace Celeste.NPCs
         }
     }
 
+    [Tracked(true)]
     [CustomEntity("DZ/NPC_Susie")]
     public class NpcSusie : NpcBase
     {
@@ -62,6 +68,7 @@ namespace Celeste.NPCs
         }
     }
 
+    [Tracked(true)]
     [CustomEntity("DZ/NPC_TobySleepingDog")]
     public class NpcTobySleepingDog : NpcBase
     {

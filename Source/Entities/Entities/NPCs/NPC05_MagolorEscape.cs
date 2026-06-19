@@ -1,6 +1,7 @@
-using Celeste.Cutscenes;
+﻿using Celeste.Cutscenes;
 
 namespace Celeste.NPCs;
+    [Tracked(true)]
     [CustomEntity(ids: "DZ/NPC05_Magolor_Escaping")]
     public class NPC05_Magolor_Escaping : NPC
 {

@@ -1,5 +1,6 @@
-namespace Celeste.Entities
+﻿namespace Celeste.Entities
 {
+    [Tracked(true)]
     [CustomEntity(ids: "DZ/MadelineNPCDummy")]
     [HotReloadable]
     public class MadelineNPCDummy : Entity

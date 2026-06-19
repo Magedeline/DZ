@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Runtime.CompilerServices;
 using Celeste.Cutscenes;
@@ -7,6 +7,7 @@ using Monocle;
 
 namespace Celeste.Entities;
 
+    [Tracked(true)]
     [CustomEntity(ids: "DZ/BirdNPC")]
     [Monocle.Tracked]
     [HotReloadable]

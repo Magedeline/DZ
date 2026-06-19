@@ -1,10 +1,11 @@
-using Celeste.Cutscenes;
+﻿using Celeste.Cutscenes;
 
 namespace Celeste.NPCs
 {
     /// <summary>
     /// Meta Knight NPC for Chapter 13 - Can be corrupted or normal
     /// </summary>
+    [Tracked(true)]
     [CustomEntity(ids: "DZ/NPC_MetaKnight")]
     public class NPC_MetaKnight : Entity
     {

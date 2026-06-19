@@ -1,8 +1,9 @@
-using Celeste.Cutscenes;
+﻿using Celeste.Cutscenes;
 using Celeste.Entities;
 
 namespace Celeste.NPCs;
 
+[Tracked(true)]
 [CustomEntity(ids: "DZ/NPC08_Madeline_Plateau")]
 public class Npc08MadelinePlateau : global::Celeste.NPC
 {

@@ -1,5 +1,6 @@
-namespace Celeste.NPCs
+﻿namespace Celeste.NPCs
 {
+    [Tracked(true)]
     [CustomEntity(ids: "DZ/NPC03_Maggy")]
     public class Npc03Maggy : Entity
     {

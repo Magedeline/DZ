@@ -1,7 +1,8 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 
 namespace Celeste.NPCs
 {
+    [Tracked(true)]
     [CustomEntity("DZ/NPC_MadelineMother")]
     public class NpcMadelineMother : NpcBase
     {
@@ -12,6 +13,7 @@ namespace Celeste.NPCs
         }
     }
 
+    [Tracked(true)]
     [CustomEntity("DZ/NPC_TheoSisterAlexa")]
     public class NpcTheoSisterAlexa : NpcBase
     {
@@ -22,6 +24,7 @@ namespace Celeste.NPCs
         }
     }
 
+    [Tracked(true)]
     [CustomEntity("DZ/NPC_TheoSisterMadeline")]
     public class NpcTheoSisterMadeline : NpcBase
     {

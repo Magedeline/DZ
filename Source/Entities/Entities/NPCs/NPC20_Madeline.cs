@@ -1,7 +1,8 @@
-using Celeste.Entities;
+﻿using Celeste.Entities;
 
 namespace Celeste.NPCs
 {
+    [Tracked(true)]
     [CustomEntity(ids: "DZ/NPC20_Madeline")]
     public class Npc20Madeline : Entity
     {

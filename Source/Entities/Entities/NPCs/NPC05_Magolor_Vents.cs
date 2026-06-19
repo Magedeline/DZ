@@ -1,5 +1,6 @@
-namespace Celeste.NPCs
+﻿namespace Celeste.NPCs
 {
+    [Tracked(true)]
     [CustomEntity(ids: "DZ/NPC05_Magolor_Vents")]
     public class NPC05_Magolor_Vents : NPC
     {
@@ -38,7 +39,7 @@ namespace Celeste.NPCs
                 Audio.Play("event:/char/theo/resort_ceilingvent_popoff", Position);
                 falling = true;
                 speed = new Vector2(40f, 200f);
-                base.Collider = new Hitbox(2f, 2f, -1f);
+                base.Collider = new Hitbox(2f, 2f, -1f, -1f);
             }
 
             public override void Update()

@@ -1,10 +1,11 @@
-using Celeste.Cutscenes;
+﻿using Celeste.Cutscenes;
 
 namespace Celeste.NPCs
 {
     /// <summary>
     /// Digital Guide NPC for Chapter 14 - Digital Dimension helper
     /// </summary>
+    [Tracked(true)]
     [CustomEntity(ids: "DZ/NPC_DigitalGuide")]
     public class NPC_DigitalGuide : Entity
     {

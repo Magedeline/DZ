@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using Celeste.Entities;
 using Microsoft.Xna.Framework;
@@ -6,6 +6,7 @@ using Monocle;
 
 namespace Celeste.NPCs
 {
+    [Tracked(true)]
     [CustomEntity(ids: "DZ/NPC10_Wispy")]
     public class Npc10Wispy : Entity
     {

@@ -1,6 +1,7 @@
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 
 namespace Celeste.NPCs;
+[Tracked(true)]
 [CustomEntity(ids: "DZ/NPC05_Oshiro_Suite")]
 
 public class NPC05_Oshiro_Suite : NPC

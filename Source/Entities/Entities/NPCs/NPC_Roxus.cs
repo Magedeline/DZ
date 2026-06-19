@@ -1,10 +1,11 @@
-using Celeste.Cutscenes;
+﻿using Celeste.Cutscenes;
 
 namespace Celeste.NPCs
 {
     /// <summary>
     /// Roxus - Pirate Captain NPC for Chapter 10
     /// </summary>
+    [Tracked(true)]
     [CustomEntity(ids: "DZ/NPC_Roxus")]
     public class NPC_Roxus : Entity
     {

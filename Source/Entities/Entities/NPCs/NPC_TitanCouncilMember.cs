@@ -1,10 +1,11 @@
-using Celeste.Cutscenes;
+﻿using Celeste.Cutscenes;
 
 namespace Celeste.NPCs
 {
     /// <summary>
     /// Titan Council Member NPC for Chapter 15 - Roaring Titan Council
     /// </summary>
+    [Tracked(true)]
     [CustomEntity(ids: "DZ/NPC_TitanCouncilMember")]
     public class NPC_TitanCouncilMember : Entity
     {

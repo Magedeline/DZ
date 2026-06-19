@@ -61,6 +61,7 @@ namespace Celeste.Mod.DZ
         public bool FinalDlcContentUnlocked { get; set; }
         public bool TrueFinaleUnlocked { get; set; }
         public bool Chapter19Complete { get; set; }
+        public bool Chapter17EpilogueCompleted { get; set; }
 
         // ── Overworld 3D Save Data ──────────────────────────────────────────
         /// <summary>Whether custom mountain models have been registered.</summary>

@@ -1,7 +1,8 @@
-using Celeste.Entities;
+﻿using Celeste.Entities;
 
 namespace Celeste.NPCs
 {
+    [Tracked(true)]
     [CustomEntity(ids: "DZ/NPC08_Madeline_Ending_Bandage")]
     public class Npc08MadelineEndingBandage : Entity
     {

@@ -1,5 +1,6 @@
-namespace Celeste.NPCs
+﻿namespace Celeste.NPCs
 {
+    [Tracked(true)]
     [CustomEntity(ids: "DZ/NPC05_Oshiro_Hallway1")]
     public class NPC05_Oshiro_Hallway1 : NPC
     {

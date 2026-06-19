@@ -1,4 +1,4 @@
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using Microsoft.Xna.Framework;
 using Monocle;
 using Celeste.Cutscenes;
@@ -6,6 +6,7 @@ using ModOshiroSprite = DZ.MaggyOshiroSprite;
 
 namespace Celeste.NPCs;
 
+[Tracked(true)]
 [CustomEntity("DZ/NPC05_Oshiro_Rooftop")]
 
 public class NPC05_Oshiro_Rooftop : NPC

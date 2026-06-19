@@ -1,10 +1,11 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Runtime.CompilerServices;
 using Microsoft.Xna.Framework;
 using Monocle;
 
 namespace DZ;
 
+[Tracked(true)]
 [CustomEntity(ids: "DZ/NPC06_Theo")]
 public class NPC06_Theo : NPC
 {

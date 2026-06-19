@@ -1,10 +1,11 @@
-using Celeste.Cutscenes;
+﻿using Celeste.Cutscenes;
 
 namespace Celeste.NPCs
 {
     /// <summary>
     /// Axis - Royal Robot Guard NPC for Chapters 13 & 14
     /// </summary>
+    [Tracked(true)]
     [CustomEntity(ids: "DZ/NPC_Axis")]
     public class NPC_Axis : Entity
     {

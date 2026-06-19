@@ -1,7 +1,8 @@
-namespace Celeste.Entities {
+﻿namespace Celeste.Entities {
     /// <summary>
     /// Enhanced Dialog NPC with advanced AI and cutscene integration
     /// </summary>
+    [Tracked(true)]
     [CustomEntity("DZ/EnhancedDialogNPC", "DZ/DialogNPC")]
     public class EnhancedDialogNpc : Entity {
         public enum AiBehavior {

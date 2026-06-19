@@ -1,10 +1,11 @@
-using Celeste.Cutscenes;
+﻿using Celeste.Cutscenes;
 
 namespace Celeste.NPCs
 {
     /// <summary>
     /// Temmie NPC for Chapter 12 - Shop owner
     /// </summary>
+    [Tracked(true)]
     [CustomEntity(ids: "DZ/NPC_Temmie")]
     public class NPC_Temmie : Entity
     {

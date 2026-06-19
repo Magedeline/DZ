@@ -72,17 +72,26 @@ namespace Celeste.Entities
 
         private static Entity createBossFromData(BossData bossData)
         {
-            // Create a Boss entity from BossData
-            // Convert BossData to EntityData format
-            var entityData = new EntityData
+            // Build a minimal EntityData from BossData without relying on a
+            // parameterless constructor or a settable Values dictionary.
+            var entityData = new EntityData();
+            entityData.Position = bossData.Position;
+            entityData.Name = "DZ/Boss";
+            // Populate the Values dictionary via reflection so the Boss ctor can
+            // read data.Attr("bossType") as expected.
+            var valuesField = typeof(EntityData).GetField("Values",
+                System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
+            if (valuesField != null)
             {
-                Position = bossData.Position,
-                Values = new Dictionary<string, object>
+                var dict = valuesField.GetValue(entityData) as Dictionary<string, object>;
+                if (dict == null)
                 {
-                    ["bossType"] = bossData.BossType
+                    dict = new Dictionary<string, object>();
+                    valuesField.SetValue(entityData, dict);
                 }
-            };
-            
+                dict["bossType"] = bossData.BossType ?? "Generic";
+            }
+
             return new Boss(entityData, Vector2.Zero);
         }
 

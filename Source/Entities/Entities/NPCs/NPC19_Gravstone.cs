@@ -1,10 +1,11 @@
-using Celeste.Cutscenes;
+﻿using Celeste.Cutscenes;
 using System.Runtime.CompilerServices;
 using Microsoft.Xna.Framework;
 using Monocle;
 
 namespace DZ;
 
+[Tracked(true)]
 [CustomEntity("DesoloZantas/NPC19_Gravestone")]
 public class NPC19_Gravestone : NPC
 {

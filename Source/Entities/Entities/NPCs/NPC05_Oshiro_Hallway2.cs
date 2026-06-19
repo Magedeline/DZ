@@ -1,8 +1,9 @@
-using Celeste.Cutscenes;
+﻿using Celeste.Cutscenes;
 using ModOshiroSprite = DZ.MaggyOshiroSprite;
 
 namespace Celeste.NPCs
 {
+    [Tracked(true)]
     [CustomEntity(ids: "DZ/NPC05_Oshiro_Hallway2")]
     public class NPC05_Oshiro_Hallway2 : NPC
     {

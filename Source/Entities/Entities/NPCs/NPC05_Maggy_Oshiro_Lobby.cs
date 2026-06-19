@@ -1,10 +1,11 @@
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using Celeste.Cutscenes;
 using Celeste.Entities;
 using DZ;
 
 namespace Celeste.NPCs;
 
+[Tracked(true)]
 [CustomEntity(ids: "DZ/NPC05_Maggy_Oshiro_Lobby")]
 public class NPC05_Maggy_Oshiro_Lobby : NPC
 {

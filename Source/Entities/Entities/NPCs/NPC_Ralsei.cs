@@ -1,5 +1,6 @@
-namespace Celeste.NPCs
+﻿namespace Celeste.NPCs
 {
+    [Tracked(true)]
     [CustomEntity("DesoloZantas/NPC_Ralsei")]
     public class NPC_Ralsei : Entity
     {

@@ -1,7 +1,8 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 
 namespace Celeste.NPCs
 {
+    [Tracked(true)]
     [CustomEntity("DZ/NPC_Magolor")]
     public class NpcMagolor : NpcBase
     {
@@ -12,6 +13,7 @@ namespace Celeste.NPCs
         }
     }
 
+    [Tracked(true)]
     [CustomEntity("DZ/NPC_Hyness")]
     public class NpcHyness : NpcBase
     {
@@ -22,6 +24,7 @@ namespace Celeste.NPCs
         }
     }
 
+    [Tracked(true)]
     [CustomEntity("DZ/NPC_MageFrancisca")]
     public class NpcMageFrancisca : NpcBase
     {
@@ -32,6 +35,7 @@ namespace Celeste.NPCs
         }
     }
 
+    [Tracked(true)]
     [CustomEntity("DZ/NPC_MageFlamberge")]
     public class NpcMageFlamberge : NpcBase
     {
@@ -42,6 +46,7 @@ namespace Celeste.NPCs
         }
     }
 
+    [Tracked(true)]
     [CustomEntity("DZ/NPC_MageZanPartizanne")]
     public class NpcMageZanPartizanne : NpcBase
     {
@@ -52,6 +57,7 @@ namespace Celeste.NPCs
         }
     }
 
+    [Tracked(true)]
     [CustomEntity("DZ/NPC_SusieHaltmann")]
     public class NpcSusieHaltmann : NpcBase
     {
@@ -62,6 +68,7 @@ namespace Celeste.NPCs
         }
     }
 
+    [Tracked(true)]
     [CustomEntity("DZ/NPC_Adeleine")]
     public class NpcAdeleine : NpcBase
     {
@@ -72,6 +79,7 @@ namespace Celeste.NPCs
         }
     }
 
+    [Tracked(true)]
     [CustomEntity("DZ/NPC_Ribbon")]
     public class NpcRibbon : NpcBase
     {
@@ -82,6 +90,7 @@ namespace Celeste.NPCs
         }
     }
 
+    [Tracked(true)]
     [CustomEntity("DZ/NPC_BandanaDee")]
     public class NpcBandanaDee : NpcBase
     {
@@ -92,6 +101,7 @@ namespace Celeste.NPCs
         }
     }
 
+    [Tracked(true)]
     [CustomEntity("DZ/NPC_KingDedede")]
     public class NpcKingDedede : NpcBase
     {

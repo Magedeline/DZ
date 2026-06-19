@@ -1,10 +1,11 @@
-using Celeste.Cutscenes;
+﻿using Celeste.Cutscenes;
 
 namespace Celeste.NPCs
 {
     /// <summary>
     /// Els/Flowey NPC for Chapter 16 - Final Boss
     /// </summary>
+    [Tracked(true)]
     [CustomEntity(ids: "DZ/NPC_Els")]
     public class NPC_Els : NpcBase
     {

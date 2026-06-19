@@ -142,10 +142,12 @@ public class PlayerSelectionManager : Entity
     /// </summary>
     private void LoadDefaultFromSettings()
     {
-        // TODO: Integrate with global::Celeste.Settings when available
-        // For now, default to Kirby
-        defaultPlayerType = PlayerType.Kirby;
-        currentPlayerType = PlayerType.Kirby;
+        // Derive default from whether Kirby player is enabled in settings.
+        // KirbyPlayerEnabled == true  → Kirby is the default character.
+        // KirbyPlayerEnabled == false → Fall back to Madeline.
+        bool kirbyEnabled = DZModule.Settings?.KirbyPlayerEnabled ?? true;
+        defaultPlayerType = kirbyEnabled ? PlayerType.Kirby : PlayerType.Madeline;
+        currentPlayerType = defaultPlayerType;
         levelOverride = null;
     }
 

@@ -1,8 +1,9 @@
-using System.Collections;
+﻿using System.Collections;
 using Celeste.Entities;
 
 namespace Celeste.NPCs
 {
+    [Tracked(true)]
     [CustomEntity(ids: "DZ/NPC_FinalRemix_AsrielAndGranny")]
     public class NPC_FinalRemix_AsrielAndGranny : Entity
     {

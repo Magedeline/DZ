@@ -5,6 +5,7 @@ using Monocle;
 
 namespace DZ;
 
+[CustomEntity("DesoloZantas/NPC19_Gravestone")]
 public class NPC19_Gravestone : NPC
 {
     private const string Flag = "cs19_gravestone";
@@ -18,6 +19,19 @@ public class NPC19_Gravestone : NPC
         : base(data.Position + offset)
     {
         boostTarget = data.FirstNodeNullable(offset) ?? Vector2.Zero;
+        if (Sprite != null)
+        {
+            Remove(Sprite);
+            Sprite = null;
+        }
+        if (Talker != null)
+        {
+            Remove(Talker);
+            Talker = null;
+        }
+        Image image = new Image(GFX.Game["characters/gravestones/maddydead00"]);
+        image.CenterOrigin();
+        Add(image);
         Add(talk = new TalkComponent(new Rectangle(-24, -8, 32, 8), new Vector2(-0.5f, -20f), Interact));
         talk.PlayerMustBeFacing = false;
     }

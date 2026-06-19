@@ -555,7 +555,11 @@ namespace Celeste.Cutscenes
                 return true;
             }
 
-            public void Update() => Question.Portrait.Update();
+            public void Update()
+            {
+                if (Question.Portrait != null)
+                    Question.Portrait.Update();
+            }
 
             public void Render(Vector2 position, float ease)
             {
@@ -566,21 +570,25 @@ namespace Celeste.Cutscenes
                 Color color1 = Color.Lerp(Color.Gray, Color.White, amount) * easeOut;
                 float alpha = MathHelper.Lerp(0.6f, 1f, amount) * easeOut;
                 Color color2 = Color.White * (float)(0.5 + amount * 0.5);
-                GFX.Portraits[Question.Textbox].Draw(position, Vector2.Zero, color1);
+                if (Question.Textbox != null && GFX.Portraits.Has(Question.Textbox))
+                    GFX.Portraits[Question.Textbox].Draw(position, Vector2.Zero, color1);
                 Facings facings = Question.PortraitSide;
                 if (SaveData.Instance != null && SaveData.Instance.Assists.MirrorMode)
                     facings = (Facings)(-(int)facings);
                 float portraitSize = 100f;
-                Question.Portrait.Scale = Vector2.One * (portraitSize / Question.PortraitSize);
-                if (facings == Facings.Right)
+                if (Question.Portrait != null)
                 {
-                    Question.Portrait.Position = position + new Vector2((float)(1380.0 - portraitSize * 0.5), 70f);
-                    Question.Portrait.Scale.X *= -1f;
+                    Question.Portrait.Scale = Vector2.One * (portraitSize / Question.PortraitSize);
+                    if (facings == Facings.Right)
+                    {
+                        Question.Portrait.Position = position + new Vector2((float)(1380.0 - portraitSize * 0.5), 70f);
+                        Question.Portrait.Scale.X *= -1f;
+                    }
+                    else
+                        Question.Portrait.Position = position + new Vector2((float)(20.0 + portraitSize * 0.5), 70f);
+                    Question.Portrait.Color = color2 * easeOut;
+                    Question.Portrait.Render();
                 }
-                else
-                    Question.Portrait.Position = position + new Vector2((float)(20.0 + portraitSize * 0.5), 70f);
-                Question.Portrait.Color = color2 * easeOut;
-                Question.Portrait.Render();
                 float textVerticalPad = (float)((140.0 - ActiveFont.LineHeight * 0.699999988079071) / 2.0);
                 Vector2 position1 = new Vector2(0.0f, position.Y + 70f);
                 Vector2 justify = new Vector2(0.0f, 0.5f);
@@ -613,9 +621,10 @@ namespace Celeste.Cutscenes
                 AskText = FancyText.Parse(Dialog.Get(Ask), maxLineWidth, -1);
                 foreach (FancyText.Node node in AskText.Nodes)
                 {
-                    if (node is FancyText.Portrait)
+                    if (node is FancyText.Portrait portrait)
                     {
-                        FancyText.Portrait portrait = node as FancyText.Portrait;
+                        if (!GFX.PortraitsSpriteBank.Has(portrait.SpriteId))
+                            continue;
                         Portrait = GFX.PortraitsSpriteBank.Create(portrait.SpriteId);
                         Portrait.Play(portrait.IdleAnimation);
                         PortraitSide = (Facings)portrait.Side;

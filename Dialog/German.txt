@@ -4089,7 +4089,7 @@ Exactly. We're a team now.
 ...
 yeah I couldn't do this without you {+PART_OF_ME}
 
-DZ_CH8_MADELINE_ASK_CLIMB=[KIRBY left normal]
+DZ_CH8_MADELINE_ASK_CLIMB=[kirby left normal]
 What's is like on this mountain?
 
 DZ_CH8_MADELINE_SAY_CLIMB=[MADELINE left sad]
@@ -4120,7 +4120,7 @@ which I feel like that the reason why he call you for help.
 If you know about this.
 Then yeah he could be alive.
 
-DZ_CH8_MADELINE_ASK_GASTER=[KIRBY left normal]
+DZ_CH8_MADELINE_ASK_GASTER=[kirby left normal]
 Why do the monster want to break out?
 
 DZ_CH8_MADELINE_SAY_GASTER=[MADELINE left sad]
@@ -4156,7 +4156,7 @@ which to be honest your my friends and I'm somewhat your cousin.
 [MADELINE left normal]
 Well then your always welcome to my places with {+PART_OF_ME}.
 
-DZ_CH8_MADELINE_ASK_VOICE=[KIRBY left normal]
+DZ_CH8_MADELINE_ASK_VOICE=[kirby left normal]
 What was that voice that you heard of?
 [MADELINE left distracted]
 Oh that?
@@ -4177,7 +4177,7 @@ The same reason that he torture so many of our own monsterkind.
 [MADELINE left sad]
 Yeah it was pretty rough not gonna lied.
 
-DZ_CH8_MADELINE_ASK_MONSTER=[KIRBY left normal]
+DZ_CH8_MADELINE_ASK_MONSTER=[kirby left normal]
 Any kind of monster that you found out?
 
 DZ_CH8_MADELINE_SAY_MONSTER=[MADELINE left distracted]
@@ -4216,7 +4216,7 @@ Sheesh, {0.3} We only have getting up there for a month.
 [BADELINE right concerned]
 but there timeline is much faster than this world.
 
-DZ_CH8_MADELINE_ASK_GOAL=[KIRBY left normal]
+DZ_CH8_MADELINE_ASK_GOAL=[kirby left normal]
 What's your goal after this?
 
 DZ_CH8_MADELINE_SAY_GOAL=[RALSEI right distracted]
@@ -4243,7 +4243,7 @@ I'm really sorry for him, but he shouldn't be too harsh on you.
 It's okay.
 Once those monster kind gets out, then my father would be proud of me.
 
-DZ_CH8_MADELINE_ASK_ANYTHING=[KIRBY left normal]
+DZ_CH8_MADELINE_ASK_ANYTHING=[kirby left normal]
 anything else?
 
 DZ_CH8_MADELINE_SAY_ANYTHING=[MADELINE left normal]
@@ -4267,7 +4267,7 @@ Which they call me recently A Dirty Runt.
 [RALSEI right sad]
 Sheesh no wonder why they were so harsh on you.
 
-DZ_CH8_MADELINE_ASK_BADELINE=[KIRBY left normal]
+DZ_CH8_MADELINE_ASK_BADELINE=[kirby left normal]
 when did you two zuerst met?
 
 DZ_CH8_MADELINE_SAY_BADELINE=[MADELINE right sad]
@@ -4287,12 +4287,12 @@ But to be fair, I goth you my sis.
 [BADELINE right normal]
 Thanks Darling
 
-DZ_CH8_MADELINE_ASK_VOID=[KIRBY left normal]
+DZ_CH8_MADELINE_ASK_VOID=[kirby left normal]
 May I tell you void story?
 
 DZ_CH8_MADELINE_SAY_VOID=[MADELINE left normal]
 Sure let here it.
-[KIRBY left normal]
+[kirby left normal]
 When i in the final battle I see this void who was wicked.
 But at the same time he was being torture and held in the host demon body.
 Which I feel sorry for him.
@@ -4306,7 +4306,7 @@ I hope he would come back and help you out one last time.
 [BADELINE right angry]
 yeah but if he wasn't so mean like El's.
 
-DZ_CH8_MADELINE_ASK_GRANNY=[KIRBY left normal]
+DZ_CH8_MADELINE_ASK_GRANNY=[kirby left normal]
 Do you also have a grandma?
 
 DZ_CH8_MADELINE_SAY_GRANNY=[MADELINE left sad]
@@ -4321,7 +4321,7 @@ yeah we really miss her so much.
 [RALSEI right sadder]
 I am so sorry of what happen, but hopes your grandpa is alive in some what.
 
-DZ_CH8_MADELINE_ASK_SELFIE=[KIRBY left normal]
+DZ_CH8_MADELINE_ASK_SELFIE=[kirby left normal]
 Lets take a pictured to remember this for the night.
 
 DZ_CH8_MADELINE_SAY_SELFIE=[MADELINE left normal]
@@ -4338,7 +4338,7 @@ that then Good night everyone and stay Determined.
 You too.
 see you all tomorrow morning.
 
-DZ_CH8_MADELINE_ASK_SLEEP=[KIRBY left normal]
+DZ_CH8_MADELINE_ASK_SLEEP=[kirby left normal]
 Man I am really tired
 
 DZ_CH8_MADELINE_SAY_SLEEP=[MADELINE left sad]
@@ -4346,7 +4346,7 @@ are you sure about this.
 [MADELINE left normal]
 But we can still talk you know that right?
 
-DZ_CH8_MADELINE_ASK_SLEEP_CONFIRM=[KIRBY left normal]
+DZ_CH8_MADELINE_ASK_SLEEP_CONFIRM=[kirby left normal]
 Yeah, sorry, but I am really sleepy
 
 DZ_CH8_MADELINE_SAY_SLEEP_CONFIRM=[MADELINE left sad]
@@ -4355,7 +4355,7 @@ oh ok,
 well then hopes this goes well.
 {+CH6_THEO_SAY_SELFIE}
 
-DZ_CH8_MADELINE_ASK_SLEEP_CANCEL=[KIRBY left normal]
+DZ_CH8_MADELINE_ASK_SLEEP_CANCEL=[kirby left normal]
 I'll stay up and talk for abit.
 
 DZ_CH8_MADELINE_SAY_SLEEP_CANCEL=[MADELINE left normal]
@@ -4635,7 +4635,7 @@ And may I help?
 [MADELINE left distracted]
 Yeah, sure, but...
 after my heart is inserted, you've got to seal it, okay?
-[KIRBY left normal]
+[kirby left normal]
 Well, I think we still have time to save those monsters.
 [RALSEI left distracted]
 Oh, right, so {+MADELINE}!
@@ -4862,7 +4862,7 @@ Nothing more and nothing less.
 Wow that many children died in there.
 [CHARA right sad]
 yeah they died for the sake of hopes and dreams.
-[KIRBY left normal]
+[kirby left normal]
 Ok and do not worry {+CHARA}
 We will get them out of there as soon as we can.
 [MADELINE left distracted]
@@ -4886,7 +4886,7 @@ Yeah...
 I agree
 [THEO right serious]
 I would assume that.
-[KIRBY left normal]
+[kirby left normal]
 Me too with this
 But we will be okay
 Because we all each others back.
@@ -4935,7 +4935,7 @@ Yeah Me too.
 [MADELINE right normal]
 But don't give up just yet.
 infact you and I Part of me that we can do this then anyone can.
-[KIRBY left normal]
+[kirby left normal]
 All right if you say so Madeline
 [KIRBY left togetherzoom]
 So lets do this for all of us.
@@ -6494,7 +6494,7 @@ ah I see you must reconized it.
 it's not that just the lab
 it similar to my old friend susie haltmann
 she use to work with the haltman company
-[KIRBY left normal]
+[kirby left normal]
 but fourtaunly she left the company
 and do the right thing to stop bad company from harming the ecosystem nor the socieity
 [TORIEL left goawaykingtitan]
@@ -6745,7 +6745,7 @@ But you know what never changes?
 Hope. Hope always finds a way.
 Wa ha ha!
 
-DZ_CH11_INTRO=[KIRBY left normal]
+DZ_CH11_INTRO=[kirby left normal]
 Man this is very freezing everytime we climb
 [BADELINE left normal]
 No worries
@@ -6918,7 +6918,7 @@ although I was only capture to a few days ago.
 and then being saved by pink blob.
 [UNDYNE left uwu]
 the who?
-[KIRBY left normal]
+[kirby left normal]
 Oh, that's me! I'm Kirby!
 howdy fishy lady
 [UNDYNE left normal]
@@ -6999,7 +6999,7 @@ so... us try to collect 5 heart gem at least
 you can count on me starlo
 I won't let you down
 
-DZ_CH11_MAGGY=[KIRBY left normal]
+DZ_CH11_MAGGY=[kirby left normal]
 MAGOLOR!?
 what are you doing here?
 [Maggy left normal]
@@ -7811,7 +7811,7 @@ I felt bad for so many lost there lives
 that was taken by that monster
 [Kirby left sadder]
 me too...
-[Kirby left normal]
+[kirby left normal]
 but thats okay at least we got it through
 
 DZ_CH12_DARKNESS_MEETUP=[??? left normal]
@@ -9262,7 +9262,7 @@ A video camera? Where would we find one of those?
 [TENNA left none]
 Don't worry, there's a tech shop in the next town over.
 but you may want to grind coins in the battle before buying it.
-[KIRBY left normal]
+[kirby left normal]
 well that I think we can do that.
 
 DZ_CH13_TECH_SHOP_INTRO=[TECH left SHOP]
@@ -12172,7 +12172,7 @@ But if I am unwelcome, I shall take my leave.
 No no you can stay, {+OSHIRO}.
 It's nice that you came here to visit.
 {trigger 2 Oshiro settles in}
-[KIRBY left normal]
+[kirby left normal]
 Y'know, this is my zuerst time climbing and freeing those monsters.
 And I'm glad we all did it together.
 Also, {+MADELINE}, can you bake a pie for all of us?
@@ -16353,7 +16353,7 @@ I came here just to check up on you three.
 oh... I see...
 but wait you said three right?
 then who?
-[KIRBY left normal]
+[kirby left normal]
 yeah that would be me...
 [GRANNY left normal]
 oh right, I forgot about you.

@@ -22,7 +22,8 @@ public static class AreaModeExtender
     public const int TOTAL_MODES = 5;
 
     public const string MAP_PREFIX = "Maggy";
-    
+    private const string MapPrefixSlash = MAP_PREFIX + "/";
+
     /// <summary>Folder names for each side (A, B, C, D, DX)</summary>
     public static readonly string[] SideFolders =
     {
@@ -32,6 +33,14 @@ public static class AreaModeExtender
         "DSide",   // MODE_DSIDE (3)
         "DXSide"   // MODE_DXSIDE (4)
     };
+
+    /// <summary>Case-insensitive set of valid side folder names for O(1) membership tests.</summary>
+    private static readonly HashSet<string> SideFolderSet =
+        new(SideFolders, StringComparer.OrdinalIgnoreCase);
+
+    /// <summary>Pre-built SID prefixes ("Maggy/ASide/", etc.) used by <see cref="IsOurMap"/>.</summary>
+    private static readonly string[] SidePrefixes = Array.ConvertAll(
+        SideFolders, f => MapPrefixSlash + f + "/");
 
     public static readonly string[] SideSuffixes = { "", " B-Side", " C-Side", " D-Side", " DX-Side" };
     public static readonly string[] HeartGemColors = { "blue", "red", "gold", "rainbow", "void" };
@@ -52,10 +61,11 @@ public static class AreaModeExtender
 
     /// <summary>
     /// When set, the next OuiChapterPanel.Reset for this area ID should
-    /// snap the panel to the D-Side tab so the overworld returns to the
-    /// correct side after a D-Side level completion.
+    /// snap the panel to the stored mode tab so the overworld returns to the
+    /// correct side after an extended-side (D/DX) level completion.
     /// </summary>
-    private static int _pendingDSideReturnAreaId = -1;
+    private static int _pendingReturnAreaId = -1;
+    private static int _pendingReturnMode = -1;
 
     /// <summary>
     /// Queues the chapter panel to reopen on the D-Side tab the next time
@@ -64,7 +74,20 @@ public static class AreaModeExtender
     /// </summary>
     public static void SetPendingDSideReturn(int aSideAreaId)
     {
-        _pendingDSideReturnAreaId = aSideAreaId;
+        _pendingReturnAreaId = aSideAreaId;
+        _pendingReturnMode = MODE_DSIDE;
+    }
+
+    /// <summary>
+    /// Queues the chapter panel to reopen on the given extended-side tab the
+    /// next time <paramref name="areaId"/>'s chapter panel resets.
+    /// </summary>
+    public static void SetPendingSideReturn(int areaId, int modeIndex)
+    {
+        if (modeIndex < MODE_DSIDE)
+            return;
+        _pendingReturnAreaId = areaId;
+        _pendingReturnMode = modeIndex;
     }
 
     private delegate void orig_MapMetaModeProperties_ApplyTo(MapMetaModeProperties self, AreaData area, AreaMode mode);
@@ -88,7 +111,7 @@ public static class AreaModeExtender
             return MAP_PREFIX;
 
         // SIDs do not include the Maps/ prefix â€” Everest strips it when registering .bin files.
-        return $"{MAP_PREFIX}/{sideFolder}/{mapName}";
+        return $"{MapPrefixSlash}{sideFolder}/{mapName}";
     }
 
     public static string BuildASideSID(string mapName)
@@ -149,7 +172,8 @@ public static class AreaModeExtender
         _mapMetaApplyHook?.Dispose();
         _mapMetaApplyHook = null;
         EarlyMapMetaSkipLog.Clear();
-        _pendingDSideReturnAreaId = -1;
+        _pendingReturnAreaId = -1;
+        _pendingReturnMode = -1;
 
         Logger.Log(LogLevel.Info, "DZ", "AreaModeExtender unloaded");
     }
@@ -229,9 +253,23 @@ public static class AreaModeExtender
             Logger.Log(LogLevel.Warn, "DZ", $"ApplyHardcodedRuntimeData failed: {ex.Message}");
         }
 
+        // ApplyHardcodedRuntimeData re-extends every area.Mode to TOTAL_MODES and
+        // nulls out missing-side slots; trim those trailing nulls in one pass so
+        // vanilla mode-iteration code never sees a null Mode entry.
+        foreach (AreaData area in AreaData.Areas)
+        {
+            if (!IsOurMap(area))
+                continue;
+            TrimTrailingNullModes(area);
+        }
+
         ConfigureMainSideHierarchy();
 
         AltSidesHelperBridge.PostAreaDataLoad();
+
+        // The skip log only suppresses duplicate warnings during a single load cycle;
+        // clear it now so it doesn't grow unbounded across repeated area reloads.
+        EarlyMapMetaSkipLog.Clear();
 
         Logger.Log(LogLevel.Info, "DZ", $"AreaModeExtender refreshed areas, extended={extended}");
     }
@@ -296,18 +334,6 @@ public static class AreaModeExtender
                 newModes[mode] = null;
         }
 
-        // Prevent null trailing slots from leaking into mode iteration code.
-        int validLength = newModes.Length;
-        while (validLength > 0 && newModes[validLength - 1] == null)
-            validLength--;
-
-        if (validLength != newModes.Length)
-        {
-            ModeProperties[] trimmed = new ModeProperties[validLength];
-            Array.Copy(newModes, trimmed, validLength);
-            area.Mode = trimmed;
-        }
-
         try
         {
             AreaMapData.ApplyHardcodedRuntimeData(area);
@@ -317,7 +343,33 @@ public static class AreaModeExtender
             Logger.Log(LogLevel.Warn, "DZ", $"Runtime data apply failed for {area.SID}: {ex.Message}");
         }
 
+        // Trailing null slots are trimmed in a single pass after the global
+        // ApplyHardcodedRuntimeData call in OnAreaDataLoad, since that call
+        // re-extends every area.Mode to TOTAL_MODES and would undo a trim here.
         return true;
+    }
+
+    /// <summary>
+    /// Removes trailing null entries from <paramref name="area"/>'s Mode array
+    /// so vanilla mode-iteration code never encounters a null slot.  Inner nulls
+    /// (e.g. a chapter with DX but no D) are preserved so mode indices stay stable.
+    /// </summary>
+    private static void TrimTrailingNullModes(AreaData area)
+    {
+        ModeProperties[] modes = area?.Mode;
+        if (modes == null)
+            return;
+
+        int validLength = modes.Length;
+        while (validLength > 0 && modes[validLength - 1] == null)
+            validLength--;
+
+        if (validLength == modes.Length)
+            return;
+
+        ModeProperties[] trimmed = new ModeProperties[validLength];
+        Array.Copy(modes, trimmed, validLength);
+        area.Mode = trimmed;
     }
 
     private static ModeProperties BuildExtendedMode(AreaData area, string baseKey, int modeIndex)
@@ -418,25 +470,61 @@ public static class AreaModeExtender
 
         orig(self);
 
-        // If the player just completed a D-Side, snap the chapter panel to the
-        // D-Side tab so the overworld doesn't fall back to the A-Side.
-        if (_pendingDSideReturnAreaId >= 0 && area != null && area.ID == _pendingDSideReturnAreaId)
+        // If the player just completed an extended side (D/DX), snap the chapter
+        // panel to that side's tab so the overworld doesn't fall back to the A-Side.
+        // Vanilla OuiChapterPanel tracks the selected tab via the `option` property
+        // (an int indexing into the `modes`/`options` lists), not a `mode` field.
+        if (_pendingReturnAreaId >= 0 && area != null && area.ID == _pendingReturnAreaId)
         {
-            _pendingDSideReturnAreaId = -1;
+            int targetMode = _pendingReturnMode;
+            _pendingReturnAreaId = -1;
+            _pendingReturnMode = -1;
+
             try
             {
-                DynamicData panelDyn = DynamicData.For(self);
-                TrySetMember(self, panelDyn, "mode",      MODE_DSIDE);
-                TrySetMember(self, panelDyn, "Mode",      MODE_DSIDE);
-                TrySetMember(self, panelDyn, "currentMode", MODE_DSIDE);
-                TrySetMember(self, panelDyn, "CurrentMode", MODE_DSIDE);
+                int optionIndex = ResolveModeOptionIndex(self, area, targetMode);
+                if (optionIndex >= 0)
+                {
+                    DynamicData panelDyn = DynamicData.For(self);
+                    TrySetMember(self, panelDyn, "option", optionIndex);
+                }
+                else
+                {
+                    Logger.Log(LogLevel.Warn, "DZ",
+                        $"OnChapterPanelReset: could not find option tab for mode {targetMode} on '{area.SID}'.");
+                }
             }
             catch (Exception ex)
             {
                 Logger.Log(LogLevel.Warn, "DZ",
-                    $"OnChapterPanelReset: could not restore D-Side tab: {ex.Message}");
+                    $"OnChapterPanelReset: could not restore side tab (mode {targetMode}): {ex.Message}");
             }
         }
+    }
+
+    /// <summary>
+    /// Maps a logical mode index (e.g. <see cref="MODE_DSIDE"/>) to the index
+    /// inside <see cref="OuiChapterPanel"/>'s <c>modes</c> list.  Vanilla builds
+    /// the list by iterating <c>area.Mode</c> and adding one <c>Option</c> per
+    /// non-null entry, so the option index equals the count of non-null modes
+    /// at or before <paramref name="modeIndex"/>.
+    /// </summary>
+    private static int ResolveModeOptionIndex(OuiChapterPanel panel, AreaData area, int modeIndex)
+    {
+        if (area?.Mode == null || modeIndex < 0 || modeIndex >= area.Mode.Length)
+            return -1;
+
+        // Confirm the target mode slot exists; otherwise there is no tab to select.
+        if (area.Mode[modeIndex] == null)
+            return -1;
+
+        int optionIndex = 0;
+        for (int i = 0; i < modeIndex; i++)
+        {
+            if (area.Mode[i] != null)
+                optionIndex++;
+        }
+        return optionIndex;
     }
 
     private static void OnChapterPanelUpdateStats(On.Celeste.OuiChapterPanel.orig_UpdateStats orig,
@@ -500,8 +588,9 @@ public static class AreaModeExtender
         string heartId = $"{area.SID}_{GetModeName(mode)}";
         DZModule.SaveData?.CollectHeartGem(heartId);
 
-        if (mode >= 0 && mode < HeartGemGetSounds.Length)
-            Audio.Play(HeartGemGetSounds[mode]);
+        string sound = GetHeartGemSound(mode);
+        if (!string.IsNullOrEmpty(sound))
+            Audio.Play(sound);
     }
 
     private static void OnLevelExitCtor(On.Celeste.LevelExit.orig_ctor orig, LevelExit self,
@@ -517,13 +606,13 @@ public static class AreaModeExtender
             return;
 
         int completedMode = (int) session.Area.Mode;
-        if (completedMode is not MODE_BSIDE and not MODE_CSIDE and not MODE_DSIDE)
+        if (completedMode is not MODE_BSIDE and not MODE_CSIDE and not MODE_DSIDE and not MODE_DXSIDE)
             return;
 
-        // When returning to the overworld after a D-Side, make sure the chapter
-        // panel reopens on the D-Side tab rather than defaulting to the A-Side.
-        if (completedMode == MODE_DSIDE)
-            _pendingDSideReturnAreaId = area.ID;
+        // When returning to the overworld after an extended side, make sure the
+        // chapter panel reopens on that side's tab rather than defaulting to A-Side.
+        if (completedMode >= MODE_DSIDE)
+            SetPendingSideReturn(area.ID, completedMode);
 
         int unlockedMode = completedMode + 1;
         if (unlockedMode >= TOTAL_MODES)
@@ -607,7 +696,9 @@ public static class AreaModeExtender
                 }
             }
 
-            // Final fallback: retry with original payload so vanilla can own the error path.
+            // Third attempt: re-invoke with the original payload.  Both the safe
+            // and regenerated stats failed, so let vanilla throw its own error
+            // (the original payload is what vanilla would have seen without DZ).
             orig.DynamicInvoke(self, area, checkpoint, oldStats);
         }
     }
@@ -1043,15 +1134,95 @@ public static class AreaModeExtender
         return SetSaveAreaModeBool(areaId, modeIndex, "HeartGem", value);
     }
 
+    // ── Public typed accessors for side completion / heart-gem state ──────────
+
+    /// <summary>
+    /// Returns true when the player has collected the heart gem for the given
+    /// side of <paramref name="area"/>.  For ASH-owned D-Sides, checks DZ's
+    /// extended save data instead of the vanilla AreaModeStats slot.
+    /// </summary>
+    public static bool IsSideHeartGemCollected(AreaKey area, int modeIndex)
+    {
+        if (modeIndex < MODE_NORMAL || modeIndex >= TOTAL_MODES)
+            return false;
+
+        if (modeIndex == MODE_DSIDE)
+        {
+            AreaData areaData = AreaData.Get(area);
+            if (areaData != null && AltSidesHelperBridge.IsAshOwned(areaData))
+            {
+                string ashHeartId = $"{areaData.SID}_{GetModeName(MODE_DSIDE)}";
+                return DZModule.SaveData?.HasCollectedHeartGem(ashHeartId) == true;
+            }
+        }
+
+        return GetSaveAreaModeHeartGem(area.ID, modeIndex);
+    }
+
+    /// <summary>
+    /// Returns true when the player has completed (reached the end of) the given
+    /// side of <paramref name="area"/>.
+    /// </summary>
+    public static bool IsSideCompleted(AreaKey area, int modeIndex)
+    {
+        if (modeIndex < MODE_NORMAL || modeIndex >= TOTAL_MODES)
+            return false;
+
+        if (modeIndex == MODE_DSIDE)
+        {
+            AreaData areaData = AreaData.Get(area);
+            if (areaData != null && AltSidesHelperBridge.IsAshOwned(areaData))
+            {
+                string ashHeartId = $"{areaData.SID}_{GetModeName(MODE_DSIDE)}";
+                return DZModule.SaveData?.HasCollectedHeartGem(ashHeartId) == true
+                    || GetSaveAreaModeCompleted(area.ID, modeIndex);
+            }
+        }
+
+        return GetSaveAreaModeCompleted(area.ID, modeIndex);
+    }
+
+    /// <summary>
+    /// Returns true when the player has both completed the side and collected
+    /// its heart gem (the vanilla "full clear" condition for alt-sides).
+    /// </summary>
+    public static bool IsSideFullyCleared(AreaKey area, int modeIndex)
+        => IsSideCompleted(area, modeIndex) && IsSideHeartGemCollected(area, modeIndex);
+
+    // ── Public typed accessors for heart-gem presentation ─────────────────────
+
+    /// <summary>
+    /// Returns the heart-gem color name for the given side, or
+    /// <see cref="HeartGemColors"/>[<see cref="MODE_NORMAL"/>] when out of range.
+    /// </summary>
+    public static string GetHeartGemColor(int modeIndex)
+    {
+        if (modeIndex < 0 || modeIndex >= HeartGemColors.Length)
+            return HeartGemColors[MODE_NORMAL];
+        return HeartGemColors[modeIndex];
+    }
+
+    /// <summary>
+    /// Returns the heart-gem collect sound event for the given side, or
+    /// <c>null</c> when the side index is out of range.
+    /// </summary>
+    public static string GetHeartGemSound(int modeIndex)
+    {
+        if (modeIndex < 0 || modeIndex >= HeartGemGetSounds.Length)
+            return null;
+        return HeartGemGetSounds[modeIndex];
+    }
+
     public static bool IsOurMap(AreaData area)
     {
-        if (area?.SID == null)
+        string sid = area?.SID;
+        if (sid == null)
             return false;
 
         // Check if SID starts with "Maggy/" followed by one of our side folder names
-        foreach (var sideFolder in SideFolders)
+        foreach (string prefix in SidePrefixes)
         {
-            if (area.SID.StartsWith($"{MAP_PREFIX}/{sideFolder}/", StringComparison.OrdinalIgnoreCase))
+            if (sid.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
                 return true;
         }
 
@@ -1259,12 +1430,11 @@ public static class AreaModeExtender
             return false;
 
         // Check if this is one of our chapters (format: Maggy/SideFolder/MapName)
-        string prefix = MAP_PREFIX + "/";
-        if (!sid.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
+        if (!sid.StartsWith(MapPrefixSlash, StringComparison.OrdinalIgnoreCase))
             return false;
 
         // Extract everything after "Maggy/"
-        string remainder = sid[prefix.Length..];
+        string remainder = sid[MapPrefixSlash.Length..];
         var parts = remainder.Split('/');
 
         if (parts.Length < 2)
@@ -1273,18 +1443,8 @@ public static class AreaModeExtender
         sideFolder = parts[0];
         baseKey = parts[1];
 
-        // Verify it's a valid side folder
-        bool isKnownSideFolder = false;
-        foreach (string folder in SideFolders)
-        {
-            if (!string.Equals(folder, sideFolder, StringComparison.OrdinalIgnoreCase))
-                continue;
-
-            isKnownSideFolder = true;
-            break;
-        }
-
-        if (!isKnownSideFolder)
+        // Verify it's a valid side folder (O(1) lookup)
+        if (!SideFolderSet.Contains(sideFolder))
             return false;
 
         return !string.IsNullOrWhiteSpace(baseKey);
@@ -1344,10 +1504,9 @@ public static class AreaModeExtender
         if (effectiveTargetType.IsEnum)
             return IsValueCompatible(Enum.GetUnderlyingType(effectiveTargetType), valueType);
 
-        return effectiveTargetType == typeof(int) && valueType == typeof(int)
-            || effectiveTargetType == typeof(string) && valueType == typeof(string)
-            || effectiveTargetType == typeof(bool) && valueType == typeof(bool)
-            || effectiveTargetType == typeof(AreaKey) && valueType == typeof(AreaKey);
+        // Self-assignability for int/string/bool/AreaKey is already covered by the
+        // IsAssignableFrom check above; no additional special-casing needed.
+        return false;
     }
 
     private static T TryGetMember<T>(DynamicData dyn, string name, T fallback = default)

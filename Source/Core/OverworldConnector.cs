@@ -245,7 +245,7 @@ namespace DZ
 
             secondaryVisible = true;
             secondary.Visible = true;
-            Audio.Play("event:/Mods/pusheen/ui/unlock_newmountian_icon");
+            Audio.Play("event:/Mods/pusheen/ui/postgame/unlock_newchapter_icon");
             Add(new Coroutine(UnlockAnimationRoutine()));
         }
 

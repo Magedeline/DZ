@@ -71,7 +71,7 @@ public class CS10End : CutsceneEntity
         yield return 0.5f;
 
         // Set music for ending
-        Audio.SetMusic("event:/Mods/pusheen/ch10/music/chapter_end");
+        Audio.SetMusic("event:/pusheen/ch10/music/chapter_end");
 
         // Final dialog: Madeline thanks Wispy
         yield return Textbox.Say("DZ_CH10_END", OnMadelineGratitude, OnWispyFarewell);
@@ -102,7 +102,7 @@ public class CS10End : CutsceneEntity
         {
             // Madeline bows respectfully
             madelineNpc.Sprite.Play("idle", false);
-            Audio.Play("event:/Mods/pusheen/char/kirby/screenentry");
+            Audio.Play("event:/pusheen/char/kirby/screenentry");
             yield return 0.8f;
             madelineNpc.Sprite.Play("idle", false);
         }

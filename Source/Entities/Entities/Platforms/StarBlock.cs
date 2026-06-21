@@ -40,7 +40,7 @@ namespace Celeste.Entities
             // Kirby can inhale-break this block; everyone can dash-break it.
             if (player.IsKirbyMode() && IsKirbyInhaling(player))
             {
-                Audio.Play("event:/Mods/pusheen/char/kirby/inhale_start", Position);
+                Audio.Play("event:/pusheen/char/kirby/inhale_start", Position);
                 Break();
                 return;
             }
@@ -60,7 +60,7 @@ namespace Celeste.Entities
             {
                 if (player.IsKirbyMode() && IsKirbyInhaling(player))
                 {
-                    Audio.Play("event:/Mods/pusheen/char/kirby/inhale_start", Position);
+                    Audio.Play("event:/pusheen/char/kirby/inhale_start", Position);
                     Break();
                     return;
                 }

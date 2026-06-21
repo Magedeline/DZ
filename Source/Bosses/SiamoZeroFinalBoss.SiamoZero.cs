@@ -29,16 +29,16 @@ namespace Celeste.Entities
         private const string SiamoZeroContraPath = "siamo_zero_contra/";
 
         // SFX constants for Siamo Zero
-        private const string SFX_SIAMO_SWORD_SWING = "event:/Mods/pusheen/new_content/char/els/Els_Slice";
-        private const string SFX_SIAMO_BEAM_CHARGE = "event:/Mods/pusheen/new_content/char/els/Els_Charge";
-        private const string SFX_SIAMO_BEAM_FIRE = "event:/Mods/pusheen/new_content/char/els/Els_BeamSlash";
-        private const string SFX_SIAMO_TORNADO = "event:/Mods/pusheen/new_content/char/els/Els_Shell_Screamer";
-        private const string SFX_SIAMO_DRILL = "event:/Mods/pusheen/new_content/char/els/Els_Build";
-        private const string SFX_SIAMO_VORTEX = "event:/Mods/pusheen/new_content/char/els/Els_Time_Manipulator_Start";
-        private const string SFX_SIAMO_EMERGE = "event:/Mods/pusheen/new_content/char/els/dark_matter_spawn";
-        private const string SFX_SIAMO_TRANSFORM = "event:/Mods/pusheen/new_content/char/els/Els_Final_Cry";
-        private const string SFX_SIAMO_IMPACT = "event:/Mods/pusheen/new_content/char/els/big_hit";
-        private const string SFX_SIAMO_RISING = "event:/Mods/pusheen/new_content/char/els/Els_Rift";
+        private const string SFX_SIAMO_SWORD_SWING = "event:/pusheen/new_content/char/els/Els_Slice";
+        private const string SFX_SIAMO_BEAM_CHARGE = "event:/pusheen/new_content/char/els/Els_Charge";
+        private const string SFX_SIAMO_BEAM_FIRE = "event:/pusheen/new_content/char/els/Els_BeamSlash";
+        private const string SFX_SIAMO_TORNADO = "event:/pusheen/new_content/char/els/Els_Shell_Screamer";
+        private const string SFX_SIAMO_DRILL = "event:/pusheen/new_content/char/els/Els_Build";
+        private const string SFX_SIAMO_VORTEX = "event:/pusheen/new_content/char/els/Els_Time_Manipulator_Start";
+        private const string SFX_SIAMO_EMERGE = "event:/pusheen/new_content/char/els/dark_matter_spawn";
+        private const string SFX_SIAMO_TRANSFORM = "event:/pusheen/new_content/char/els/Els_Final_Cry";
+        private const string SFX_SIAMO_IMPACT = "event:/pusheen/new_content/char/els/big_hit";
+        private const string SFX_SIAMO_RISING = "event:/pusheen/new_content/char/els/Els_Rift";
 
         // Phase colors
         private static readonly Color SiamoAeonGold = new Color(255, 220, 128);

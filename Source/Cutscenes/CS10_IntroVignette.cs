@@ -51,7 +51,7 @@ namespace Celeste.Cutscenes
         {
             yield return 1f;
             // Use FMOD EventInstance for intro music
-            introMusic = Audio.Play("event:/Mods/pusheen/music/lvl10/intro");
+            introMusic = Audio.Play("event:/pusheen/music/lvl10/intro");
             yield return 4f;
             // Stop ringtone using FMOD EventInstance
             if (ringtoneActive && ringtone != null)

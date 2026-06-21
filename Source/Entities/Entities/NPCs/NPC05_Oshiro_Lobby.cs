@@ -1,4 +1,4 @@
-﻿using System.Runtime.CompilerServices;
+using System.Runtime.CompilerServices;
 using Celeste.Cutscenes;
 using ModOshiroSprite = DZ.MaggyOshiroSprite;
 
@@ -44,7 +44,7 @@ public class NPC05_Oshiro_Lobby : NPC
         base.Added(scene);
         if (base.Session.GetFlag("oshiro_resort_talked_1"))
         {
-            base.Session.Audio.Music.Event = "event:/Mods/pusheen/music/lvl5/explore";
+            base.Session.Audio.Music.Event = "event:/pusheen/music/lvl5/explore";
             base.Session.Audio.Music.Progress = 1;
             base.Session.Audio.Apply(forceSixteenthNoteHack: false);
             RemoveSelf();

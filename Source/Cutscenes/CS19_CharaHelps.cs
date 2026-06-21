@@ -76,7 +76,7 @@ namespace Celeste.Cutscenes
         private IEnumerator HeartBreak()
         {
             yield return 0.2f;
-            Audio.Play("event:/Mods/pusheen/new_content/char/kirby/heartbreak", this.player.Position);
+            Audio.Play("event:/pusheen/new_content/char/kirby/heartbreak", this.player.Position);
             Input.Rumble(RumbleStrength.Medium, RumbleLength.Medium);
             yield return 0.2f;
             yield break;
@@ -114,7 +114,7 @@ namespace Celeste.Cutscenes
         // Token: 0x06000CFA RID: 3322 RVA: 0x0002BF28 File Offset: 0x0002A128
         private void StartMusic()
         {
-            if (this.Level.Session.Audio.Music.Event != "event:/Mods/pusheen/new_content/music/lvl19/tape_rooms")
+            if (this.Level.Session.Audio.Music.Event != "event:/pusheen/new_content/music/lvl19/tape_rooms")
             {
                 int num = 0;
                 TapeBlockManager entity = this.Level.Tracker.GetEntity<TapeBlockManager>();
@@ -122,7 +122,7 @@ namespace Celeste.Cutscenes
                 {
                     num = entity.GetSixteenthNote();
                 }
-                this.Level.Session.Audio.Music.Event = "event:/Mods/pusheen/new_content/music/lvl19/tape_rooms";
+                this.Level.Session.Audio.Music.Event = "event:/pusheen/new_content/music/lvl19/tape_rooms";
                 this.Level.Session.Audio.Music.Param("sixteenth_note", (float)num);
                 this.Level.Session.Audio.Apply(true);
                 this.Level.Session.Audio.Music.Param("sixteenth_note", 7f);

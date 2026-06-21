@@ -77,7 +77,7 @@ namespace Celeste.Cutscenes
             yield return 1f;
 
             // Play outro music
-            outroMusic = Audio.Play("event:/Mods/pusheen/music/lvl3/outro");
+            outroMusic = Audio.Play("event:/pusheen/music/lvl3/outro");
             yield return 1f;
 
             // Show postcard with zoom in effect

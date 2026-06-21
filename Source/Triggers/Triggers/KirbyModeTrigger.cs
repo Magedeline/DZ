@@ -23,8 +23,8 @@ namespace Celeste.Triggers
         private bool triggered;
         
         // SFX paths
-        private const string SFX_ENABLE = "event:/Mods/pusheen/char/kirby/transform_in";
-        private const string SFX_DISABLE = "event:/Mods/pusheen/char/kirby/transform_out";
+        private const string SFX_ENABLE = "event:/pusheen/char/kirby/transform_in";
+        private const string SFX_DISABLE = "event:/pusheen/char/kirby/transform_out";
 
         public KirbyModeTrigger(EntityData data, Vector2 offset) : base(data, offset)
         {

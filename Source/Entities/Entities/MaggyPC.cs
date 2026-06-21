@@ -38,7 +38,7 @@ namespace Celeste.Entities
             subtex = spectogram.GetSubtexture(0, 0, SPECTOGRAM_WIDTH, SPECTOGRAM_HEIGHT, subtex);
 
             // Ambient sci-fi computer sound
-            Add(sfx = new SoundSource("event:/Mods/pusheen/new_content/env/19_pusheenpc"));
+            Add(sfx = new SoundSource("event:/pusheen/new_content/env/19_pusheenpc"));
             sfx.Param("pusheenpc_distance", 1f);
             sfx.Position = new Vector2(0f, -16f);
             

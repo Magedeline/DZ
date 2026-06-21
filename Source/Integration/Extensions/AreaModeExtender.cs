@@ -50,8 +50,8 @@ public static class AreaModeExtender
         "event:/game/general/crystalheart_blue_get",
         "event:/game/general/crystalheart_red_get",
         "event:/game/general/crystalheart_gold_get",
-        "event:/Mods/pusheen/game/general/crystalheart_rainbow_get",
-        "event:/Mods/pusheen/game/general/crystalheart_blue_get"
+        "event:/pusheen/game/general/crystalheart_rainbow_get",
+        "event:/pusheen/game/general/crystalheart_blue_get"
     };
 
     private static bool _loaded;

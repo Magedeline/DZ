@@ -41,7 +41,7 @@ public class CS19_KillTheBird : CutsceneEntity
 
     private IEnumerator Cutscene(Level level)
     {
-        Audio.SetMusic("event:/Mods/pusheen/new_content/music/lvl19/cinematic/bird_crash_second");
+        Audio.SetMusic("event:/pusheen/new_content/music/lvl19/cinematic/bird_crash_second");
         CharaBoost boost = Scene.Entities.FindFirst<CharaBoost>();
         if (boost != null)
         {
@@ -90,7 +90,7 @@ public class CS19_KillTheBird : CutsceneEntity
         yield return 0.6f;
         player.Sprite.Play("rollGetUp");
         yield return 0.8f;
-        level.Session.Audio.Music.Event = "event:/Mods/pusheen/new_content/music/lvl19/tragiclost";
+        level.Session.Audio.Music.Event = "event:/pusheen/new_content/music/lvl19/tragiclost";
         level.Session.Audio.Apply(false);
         yield return Textbox.Say("DZ_CH19_KILL_THE_BIRD", BirdLooksHurt, BirdSquakOnGround, ApproachBird, ApproachBirdAgain, BadelineAppears, WaitABeat, MadelineSits, BadelineHugs, StandUp, ShiftCameraToBird);
         yield return level.ZoomBack(0.5f);
@@ -262,7 +262,7 @@ public class CS19_KillTheBird : CutsceneEntity
                 item.ToggleCheck();
             }
             base.Scene.Tracker.GetEntity<LightningRenderer>()?.ToggleEdges(immediate: true);
-            level.Session.Audio.Music.Event = "event:/Mods/pusheen/new_content/music/lvl19/tragiclost";
+            level.Session.Audio.Music.Event = "event:/pusheen/new_content/music/lvl19/tragiclost";
             level.Session.Audio.Apply(false);
         }
         player.Speed = Vector2.Zero;

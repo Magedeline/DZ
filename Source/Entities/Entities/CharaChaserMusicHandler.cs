@@ -19,7 +19,7 @@ public class CharaChaserMusicHandler : Entity
         int boundsLeft = 1150;
         int boundsRight = 2832;
         Player player = base.Scene.Tracker.GetEntity<Player>();
-        if (player != null && Audio.CurrentMusic == "event:/Mods/pusheen/music/lvl2/chase")
+        if (player != null && Audio.CurrentMusic == "event:/pusheen/music/lvl2/chase")
         {
             float value = (player.X - (float)boundsLeft) / (float)(boundsRight - boundsLeft);
             Audio.SetMusicParam("escape", value);

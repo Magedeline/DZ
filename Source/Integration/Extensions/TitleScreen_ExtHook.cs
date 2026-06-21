@@ -22,7 +22,7 @@ public static class TitleScreen_ExtHook
     private static ILHook _titleScreenInputILHook;
 
     private const string VANILLA_TITLE_FIRSTINPUT = "event:/ui/main/title_firstinput";
-    private const string CUSTOM_TITLE_FIRSTINPUT = "event:/Mods/pusheen/ui/game/title_firstinput";
+    private const string CUSTOM_TITLE_FIRSTINPUT = "event:/pusheen/ui/game/title_firstinput";
 
     private static int _dSideUnlockCount = 0;
 

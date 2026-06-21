@@ -20,7 +20,8 @@ namespace Celeste.Cutscenes
         private const string FLAG_MINI_HEARTS_QUEST_STARTED = "ch11_mini_hearts_quest_started";
         private const string FLAG_MAGGY_ALLY = "ch11_maggy_ally";
         
-        private const string DIALOG_KEY_END = "DZ_CH11_MAGGY_END";
+        // Dialog key matches the entry in Dialog/English.txt (and all other locales)
+        private const string DIALOG_KEY_END = "DZ_CH11_DZ_END";
         private const string DIALOG_KEY_NOT_ENOUGH = "DZ_CH11_COLLECTING_MINIHEART_NOT_ENOUGH";
         
         // Required mini hearts to proceed
@@ -29,10 +30,6 @@ namespace Celeste.Cutscenes
 
         #region Fields
         private Player player;
-        private NPC maggy;
-        private NPC kirby;
-        private NPC madeline;
-        private NPC starlo;
         #endregion
 
         public CS11_MaggyEnd(EntityData data, Vector2 offset)
@@ -74,42 +71,15 @@ namespace Celeste.Cutscenes
 
         private void FindOrSpawnNPCs(Level level)
         {
-            // FindFirst API not available in this Monocle version
-            // NPCs would need to be found differently
-            maggy = null;
-            kirby = null;
-            madeline = null;
-            starlo = null;
+            // No NPC references needed for this cutscene — portrait animations are
+            // handled by dialog portrait tags ([Speaker side anim]) in the dialog file.
         }
 
         private IEnumerator CutsceneSequence(Level level)
         {
-            // Maggy recounts the disaster
-            yield return Textbox.Say(DIALOG_KEY_END, MaggyRecountsDisaster);
-            
-            // Kirby agrees it was bad
-            yield return Textbox.Say(DIALOG_KEY_END, KirbyAgreesItWasBad);
-            
-            yield return 0.3f;
-            
-            // Kirby panics about what to do
-            yield return Textbox.Say(DIALOG_KEY_END, KirbyPanics);
-            
-            yield return 0.5f;
-            
-            // Maggy says they need to stop it
-            yield return Textbox.Say(DIALOG_KEY_END, MaggySaysStopIt);
-            
-            // Kirby says they need to power up
-            yield return Textbox.Say(DIALOG_KEY_END, KirbySaysPowerUp);
-            
-            yield return 0.3f;
-            
-            // Kirby asks to collect mini heart gems
-            yield return Textbox.Say(DIALOG_KEY_END, KirbyCollectMiniHearts);
-            
-            // Maggy agrees
-            yield return Textbox.Say(DIALOG_KEY_END, MaggyAgrees);
+            // DZ_CH11_DZ_END contains only portrait tags ([Speaker side anim]) — no {trigger N} tags.
+            // Portrait tags are cosmetic and do not invoke C# callbacks, so no callbacks are needed here.
+            yield return Textbox.Say(DIALOG_KEY_END);
 
             // Set completion flags
             level.Session.SetFlag(FLAG_CUTSCENE_COMPLETE, true);
@@ -118,82 +88,6 @@ namespace Celeste.Cutscenes
 
             EndCutscene(level);
         }
-
-        #region Dialog Handlers
-        
-        private IEnumerator MaggyRecountsDisaster()
-        {
-            // [MAGGY left normal]
-            if (maggy != null && maggy.Sprite != null)
-            {
-                maggy.Sprite.Play("idle");
-                maggy.Sprite.Scale.X = -1;
-            }
-            yield return null;
-        }
-
-        private IEnumerator KirbyAgreesItWasBad()
-        {
-            // [Kirby left sadder]
-            if (kirby != null && kirby.Sprite != null)
-            {
-                kirby.Sprite.Play("sad");
-                kirby.Sprite.Scale.X = -1;
-            }
-            yield return null;
-        }
-
-        private IEnumerator KirbyPanics()
-        {
-            // [Kirby left panic]
-            if (kirby != null && kirby.Sprite != null)
-            {
-                kirby.Sprite.Play("panic");
-            }
-            yield return null;
-        }
-
-        private IEnumerator MaggySaysStopIt()
-        {
-            // [MAGGY left normal]
-            if (maggy != null && maggy.Sprite != null)
-            {
-                maggy.Sprite.Play("idle");
-            }
-            yield return null;
-        }
-
-        private IEnumerator KirbySaysPowerUp()
-        {
-            // [KIRBY left determined]
-            if (kirby != null && kirby.Sprite != null)
-            {
-                kirby.Sprite.Play("determined");
-            }
-            yield return null;
-        }
-
-        private IEnumerator KirbyCollectMiniHearts()
-        {
-            // [KIRBY left together]
-            if (kirby != null && kirby.Sprite != null)
-            {
-                kirby.Sprite.Play("together");
-            }
-            yield return null;
-        }
-
-        private IEnumerator MaggyAgrees()
-        {
-            // [MAGGY left normal]
-            if (maggy != null && maggy.Sprite != null)
-            {
-                maggy.Sprite.Play("idle");
-            }
-            yield return null;
-        }
-        
-        #endregion
 
         /// <summary>
         /// Check if player has collected enough mini hearts
@@ -249,7 +143,10 @@ namespace Celeste.Cutscenes
     public class CS11_MiniHeartDoor : Entity
     {
         private const int REQUIRED_MINI_HEARTS = 5;
-        private bool hasShownDialog = false;
+        // dialogRunning stays true for the entire duration of the dialog coroutine,
+        // preventing re-trigger while the dialog is open even if the player briefly
+        // exits and re-enters the collider.
+        private bool dialogRunning = false;
 
         public CS11_MiniHeartDoor(EntityData data, Vector2 offset)
             : base(data.Position + offset)
@@ -261,28 +158,23 @@ namespace Celeste.Cutscenes
         {
             base.Update();
 
-            Player player = Scene.Tracker.GetEntity<Player>();
-            if (player != null && CollideCheck(player))
-            {
-                Level level = Scene as Level;
-                int miniHeartCount = CS11_MaggyEnd.GetMiniHeartCount(level.Session);
+            if (dialogRunning) return;
 
-                if (miniHeartCount < REQUIRED_MINI_HEARTS && !hasShownDialog)
-                {
-                    hasShownDialog = true;
-                    // Use Add with Coroutine instead of AddCoroutine
-                    Add(new Coroutine(ShowDialog()));
-                }
-            }
-            else
+            Player player = Scene.Tracker.GetEntity<Player>();
+            if (player == null || !CollideCheck(player)) return;
+
+            Level level = Scene as Level;
+            if (CS11_MaggyEnd.GetMiniHeartCount(level.Session) < REQUIRED_MINI_HEARTS)
             {
-                hasShownDialog = false;
+                dialogRunning = true;
+                Add(new Coroutine(ShowDialog()));
             }
         }
 
         private IEnumerator ShowDialog()
         {
             yield return CS11_MaggyEnd.ShowNotEnoughMiniHeartsDialog();
+            dialogRunning = false;
         }
     }
 }

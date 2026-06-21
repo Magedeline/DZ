@@ -1,7 +1,7 @@
 namespace Celeste.Entities
 {
     /// <summary>
-    /// Small heart gem collectible for submaps in chapters 10-14
+    /// Small heart gem collectible for submaps in chapters 10-15
     /// </summary>
     [Tracked(false)]
     public class SmallHeartGem : Entity
@@ -143,12 +143,19 @@ namespace Celeste.Entities
             collected = true;
             Collidable = false;
 
-            DZProgressionManager.RecordMiniHeart(SceneAs<Level>(), gemId);
-            
-            // Set collection flag
             Level level = SceneAs<Level>();
+
+            DZProgressionManager.RecordMiniHeart(level, gemId);
+            
+            // Set per-gem collection flag
             string flag = COLLECTED_FLAG_PREFIX + gemId;
             level?.Session.SetFlag(flag, true);
+
+            // Increment the chapter-specific mini heart session counter used by SmallHeartDoor
+            // and the per-chapter unlock cutscenes to gate the door progression.
+            // Chapter 11 continues to use the same counter key that CS11_MaggyEnd expects.
+            if (chapterNumber >= 10 && chapterNumber <= 15 && level?.Session != null)
+                SmallHeartDoor.CollectMiniHeart(level.Session, chapterNumber);
             
             // Start collection sequence
             Add(new Coroutine(collectionSequence(player)));

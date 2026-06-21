@@ -13,9 +13,9 @@ namespace Celeste.Entities
     {
         private const float LAUNCH_SPEED_THRESHOLD = 300f;
 
-        private const string SFX_BREAK_GENERAL = "event:/Mods/pusheen/game/general/break_stone";
-        private const string SFX_BREAK_SPACE = "event:/Mods/pusheen/new_content/game/19_spaces/space_break_stone";
-        private const string SFX_BREAK_UNDERWATER = "event:/Mods/pusheen/game/general/underwater_break_stone";
+        private const string SFX_BREAK_GENERAL = "event:/pusheen/game/general/break_stone";
+        private const string SFX_BREAK_SPACE = "event:/pusheen/new_content/game/19_spaces/space_break_stone";
+        private const string SFX_BREAK_UNDERWATER = "event:/pusheen/game/general/underwater_break_stone";
 
         public enum BreakEnvironment
         {

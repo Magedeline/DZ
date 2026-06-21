@@ -57,7 +57,7 @@ public class CS10IntroductionStage : CutsceneEntity
         player.Sprite.Play("idle");
 
         // Set music for exploration/ruins
-        Audio.SetMusic("event:/Mods/pusheen/music/lvl10/main");
+        Audio.SetMusic("event:/pusheen/music/lvl10/main");
 
         // Fade in
         FadeWipe fadeWipe = new FadeWipe(level, wipeIn: true);

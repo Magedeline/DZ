@@ -66,7 +66,7 @@ public class FlingAsrielGod : Entity
         player.Speed = Vector2.Zero;
         state = States.Fling;
         Add(new Coroutine(DoFlingRoutine(player)));
-        Audio.Play("event:/Mods/pusheen/new_content/char/bosses/asriel/grab", Center);
+        Audio.Play("event:/pusheen/new_content/char/bosses/asriel/grab", Center);
     }
 
     public override void Awake(Scene scene)

@@ -13,7 +13,7 @@ namespace Celeste.Entities;
 [HotReloadable]
 public class TrueFinaleVignette : DesoloZantasVignette
 {
-    private const string VignetteMusicEvent = "event:/Mods/pusheen/new_content/music/lvl21/climb";
+    private const string VignetteMusicEvent = "event:/pusheen/new_content/music/lvl21/climb";
 
     private Session session;
     private MaggyHiresSnow snow;

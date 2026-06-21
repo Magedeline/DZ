@@ -112,7 +112,7 @@ namespace DZ
             
             if (audioPlaying)
             {
-                Audio.Play("event:/Mods/pusheen/new_content/music/lvl19/part01");
+                Audio.Play("event:/pusheen/new_content/music/lvl19/part01");
             }
             
             while (pageIndex < pages.Count)

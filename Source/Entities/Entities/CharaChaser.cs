@@ -166,7 +166,7 @@ public class CharaChaser : Entity
                     Sprite.Play("fallSlow");
                 }
                 
-                session.Audio.Music.Event = "event:/Mods/pusheen/music/lvl2/evil_chara";
+                session.Audio.Music.Event = "event:/pusheen/music/lvl2/evil_chara";
                 session.Audio.Apply(forceSixteenthNoteHack: false);
                 
                 // Add the intro cutscene only once per room load (if enabled).
@@ -206,7 +206,7 @@ public class CharaChaser : Entity
                         Sprite.Play("fallSlow");
                     }
                     
-                    session.Audio.Music.Event = "event:/Mods/pusheen/music/lvl2/evil_chara";
+                    session.Audio.Music.Event = "event:/pusheen/music/lvl2/evil_chara";
                     session.Audio.Apply(forceSixteenthNoteHack: false);
                     
                     // Add the intro cutscene only once per room load (if enabled).
@@ -225,7 +225,7 @@ public class CharaChaser : Entity
                     Visible = false;
                     if (Hair != null) Hair.Visible = false;
                     
-                    session.Audio.Music.Event = "event:/Mods/pusheen/music/lvl4/chara_warning";
+                    session.Audio.Music.Event = "event:/pusheen/music/lvl4/chara_warning";
                     session.Audio.Apply(forceSixteenthNoteHack: false);
                     
                     // Add the warning cutscene only once per room load (if enabled).
@@ -289,8 +289,8 @@ public class CharaChaser : Entity
         {
             // Set music based on current level
             string musicEvent = level.Session.Level.StartsWith("b-3") 
-                ? "event:/Mods/pusheen/music/lvl2/evil_chara"
-                : "event:/Mods/pusheen/music/lvl2/chase";
+                ? "event:/pusheen/music/lvl2/evil_chara"
+                : "event:/pusheen/music/lvl2/chase";
             level.Session.Audio.Music.Event = musicEvent;
             level.Session.Audio.Apply(forceSixteenthNoteHack: false);
         }

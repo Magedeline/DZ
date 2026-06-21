@@ -1,6 +1,7 @@
 // File: CS11_CollectingMiniHeartEnough.cs
 using System;
 using System.Collections;
+using System.Linq;
 using Celeste.Entities;
 using Microsoft.Xna.Framework;
 using Monocle;
@@ -26,18 +27,15 @@ namespace Celeste.Cutscenes
         // Spin effect constants
         private const float SPIN_DURATION = 1.5f;
         private const float SPIN_SPEED = 20f; // Rotations per second
-        private const string SFX_SPIN = "event:/Mods/pusheen/char/kirby/dreamblock_travel";
-        private const string SFX_OUTFIT_CHANGE = "event:/Mods/pusheen/char/kirby/appear";
+        private const string SFX_SPIN = "event:/pusheen/char/kirby/dreamblock_travel";
+        private const string SFX_OUTFIT_CHANGE = "event:/pusheen/char/kirby/appear";
         #endregion
 
         #region Fields
         private Player player;
-        private NPC maggy;
-        private NPC starlo;
+        // Only Madeline is referenced in code (spin effect). Portrait animations for other
+        // characters are handled by dialog portrait tags ([Speaker side anim]) in the dialog file.
         private NPC madeline;
-        private NPC kirby;
-        private NPC badeline;
-        private NPC chara;
         
         // For spin effect
         private float spinRotation = 0f;
@@ -83,64 +81,21 @@ namespace Celeste.Cutscenes
 
         private void FindOrSpawnNPCs(Level level)
         {
-            // FindFirst not available in this Monocle version
-            maggy = null;
-            starlo = null;
-            madeline = null;
-            kirby = null;
-            badeline = null;
-            chara = null;
+            // Only Madeline is needed in code — the spin sequence operates on her sprite.
+            madeline = level.Entities.OfType<NPC>().FirstOrDefault(npc =>
+                npc.GetType().Name.Contains("Madeline"));
         }
 
         private IEnumerator CutsceneSequence(Level level)
         {
-            // Maggy congratulates
-            yield return Textbox.Say(DIALOG_KEY, MaggyCongratulates);
-            
-            yield return 0.3f;
-            
-            // Starlo is proud
-            yield return Textbox.Say(DIALOG_KEY, StarloProud);
-            
-            // Madeline thanks Starlo
-            yield return Textbox.Say(DIALOG_KEY, MadelineThanks);
-            
-            yield return 0.2f;
-            
-            // Madeline shows off cowgirl hat
-            yield return Textbox.Say(DIALOG_KEY, MadelineShowsOffHat);
-            
-            yield return 0.3f;
-            
-            // Kirby disapproves
-            yield return Textbox.Say(DIALOG_KEY, KirbyDisapproves);
-            
-            // Badeline agrees with Kirby
-            yield return Textbox.Say(DIALOG_KEY, BadelineAgrees);
-            
-            yield return 0.2f;
-            
-            // Chara demands outfit removal
-            yield return Textbox.Say(DIALOG_KEY, CharaDemands);
-            
-            yield return 0.3f;
-            
-            // Madeline reluctantly agrees
-            yield return Textbox.Say(DIALOG_KEY, MadelineReluctantlyAgrees);
-            
-            // TRIGGER 0: Madeline spins rapidly to change outfit
-            yield return Textbox.Say(DIALOG_KEY, Trigger0SpinToNormal);
-            
-            yield return 0.5f;
-            
-            // Madeline asks if they're happy now
-            yield return Textbox.Say(DIALOG_KEY, MadelineAsksIfHappy);
-            
-            // Chara confirms satisfaction
-            yield return Textbox.Say(DIALOG_KEY, CharaSatisfied);
-            
-            // Chara doesn't want to see that again
-            yield return Textbox.Say(DIALOG_KEY, CharaNeverAgain);
+            // DZ_CH11_COLLECTING_MINIHEART_ENOUGH has one explicit {trigger 0} tag:
+            //   [MADELINE right sad] "oh... okay"
+            //   {trigger 0 spins fastest until return to normal}
+            // Portrait tags ([Speaker side anim]) are cosmetic and don't call C# callbacks.
+            // Only {trigger N} tags invoke the Nth callback passed to Textbox.Say.
+            yield return Textbox.Say(DIALOG_KEY,
+                Trigger0SpinToNormal   // {trigger 0} - Madeline spins to change outfit
+            );
 
             // Set completion flags
             level.Session.SetFlag(FLAG_CUTSCENE_COMPLETE, true);
@@ -151,94 +106,6 @@ namespace Celeste.Cutscenes
         }
 
         #region Dialog Handlers
-        
-        private IEnumerator MaggyCongratulates()
-        {
-            // [MAGGY left normal]
-            if (maggy != null && maggy.Sprite != null)
-            {
-                maggy.Sprite.Play("idle");
-                maggy.Sprite.Scale.X = -1;
-            }
-            yield break;
-        }
-
-        private IEnumerator StarloProud()
-        {
-            // [STARLO left normal]
-            if (starlo != null && starlo.Sprite != null)
-            {
-                starlo.Sprite.Play("idle");
-                starlo.Sprite.Scale.X = -1;
-            }
-            yield break;
-        }
-
-        private IEnumerator MadelineThanks()
-        {
-            // [MADELINE left normal]
-            if (madeline != null && madeline.Sprite != null)
-            {
-                madeline.Sprite.Play("idle");
-                madeline.Sprite.Scale.X = -1;
-            }
-            yield break;
-        }
-
-        private IEnumerator MadelineShowsOffHat()
-        {
-            // [MADELINE left together]
-            if (madeline != null && madeline.Sprite != null)
-            {
-                madeline.Sprite.Play("together");
-                madeline.Sprite.Scale.X = -1;
-            }
-            yield break;
-        }
-
-        private IEnumerator KirbyDisapproves()
-        {
-            // [KIRBY right upset]
-            if (kirby != null && kirby.Sprite != null)
-            {
-                kirby.Sprite.Play("upset");
-                kirby.Sprite.Scale.X = 1; // Face right
-            }
-            yield break;
-        }
-
-        private IEnumerator BadelineAgrees()
-        {
-            // [BADELINE left angry]
-            if (badeline != null && badeline.Sprite != null)
-            {
-                badeline.Sprite.Play("angry");
-                badeline.Sprite.Scale.X = -1;
-            }
-            yield break;
-        }
-
-        private IEnumerator CharaDemands()
-        {
-            // [CHARA left angry]
-            if (chara != null && chara.Sprite != null)
-            {
-                chara.Sprite.Play("angry");
-                chara.Sprite.Scale.X = -1;
-            }
-            yield break;
-        }
-
-        private IEnumerator MadelineReluctantlyAgrees()
-        {
-            // [MADELINE right sad]
-            if (madeline != null && madeline.Sprite != null)
-            {
-                madeline.Sprite.Play("sad");
-                madeline.Sprite.Scale.X = 1; // Face right
-            }
-            yield break;
-        }
 
         private IEnumerator Trigger0SpinToNormal()
         {
@@ -261,8 +128,6 @@ namespace Celeste.Cutscenes
             // Make Madeline NPC spin rapidly
             if (madeline != null)
             {
-                Vector2 originalPosition = madeline.Position;
-                
                 // Zoom in slightly for effect
                 Add(new Coroutine(level.ZoomTo(madeline.Position - level.Camera.Position + new Vector2(160f, 90f), 1.2f, 0.5f)));
                 
@@ -325,38 +190,6 @@ namespace Celeste.Cutscenes
             }
         }
 
-        private IEnumerator MadelineAsksIfHappy()
-        {
-            // [MADELINE right upset]
-            if (madeline != null && madeline.Sprite != null)
-            {
-                madeline.Sprite.Play("upset");
-                madeline.Sprite.Scale.X = 1; // Face right
-            }
-            yield break;
-        }
-
-        private IEnumerator CharaSatisfied()
-        {
-            // [CHARA left normal]
-            if (chara != null && chara.Sprite != null)
-            {
-                chara.Sprite.Play("idle");
-                chara.Sprite.Scale.X = -1;
-            }
-            yield break;
-        }
-
-        private IEnumerator CharaNeverAgain()
-        {
-            // [CHARA left bruh]
-            if (chara != null && chara.Sprite != null)
-            {
-                chara.Sprite.Play("bruh");
-            }
-            yield break;
-        }
-        
         #endregion
 
         public override void OnEnd(Level level)

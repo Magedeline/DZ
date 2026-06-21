@@ -19,8 +19,8 @@ namespace Celeste.Entities
     {
         #region Constants
 
-        private const string SFX_TRANSFORM_IN = "event:/Mods/pusheen/char/kirby/transform_in";
-        private const string SFX_TRANSFORM_OUT = "event:/Mods/pusheen/char/kirby/transform_out";
+        private const string SFX_TRANSFORM_IN = "event:/pusheen/char/kirby/transform_in";
+        private const string SFX_TRANSFORM_OUT = "event:/pusheen/char/kirby/transform_out";
         // Legacy/compatibility aliases
         private const string SFX_TRANSFORM = SFX_TRANSFORM_IN;
         private const string SFX_TRANSFORM_OUT_OLD = SFX_TRANSFORM_OUT;

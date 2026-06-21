@@ -34,7 +34,7 @@ namespace Celeste.Cutscenes
 
         private IEnumerator Routine()
         {
-            Audio.Play("event:/Mods/pusheen/game/08_edge/free_falling", null, 0f);
+            Audio.Play("event:/pusheen/game/08_edge/free_falling", null, 0f);
             mountain.EaseCamera(-1, startCamera, 0.4f, true);
             float duration = 4f;
             maddy.Position = startCamera.Target;

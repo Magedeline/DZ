@@ -46,7 +46,7 @@ namespace Celeste.Triggers
         private float particleTimer;
 
         // SFX paths
-        private const string SFX_TRANSFORM = "event:/Mods/pusheen/char/kirby/transform_in";
+        private const string SFX_TRANSFORM = "event:/pusheen/char/kirby/transform_in";
 
         #endregion
 

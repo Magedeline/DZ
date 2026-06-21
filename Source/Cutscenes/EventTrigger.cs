@@ -484,7 +484,15 @@ namespace Celeste.Triggers
             });
             Register("cs16_lost_souls_unite", (trigger, player, eventId) => new global::Celeste.Cutscenes.CS16_LostSoulsUnite(player));
             Register("cs16_save_file_battle", (trigger, player, eventId) => new global::Celeste.Cutscenes.CS16_SaveFileBattle(player));
-            
+
+            // Chapter 18 - Outro vignette (phone call ending that restarts to chapter 19).
+            // CS18_Outro is a DesoloZantasVignette (a Scene), so we replace Engine.Scene
+            // and return null, matching the cs16_els_outro registration pattern.
+            Register("ch18_outro", (trigger, player, eventId) => {
+                Engine.Scene = new global::Celeste.Cutscenes.CS18_Outro(player.SceneAs<Level>().Session);
+                return null; // Return null since we're replacing the scene
+            });
+
             // Chapter 19
             Register("cs19_another_dimension_intro", (trigger, player, eventId) => new global::Celeste.Cutscenes.CS19_AnotherDimensionIntro(player));
             Register("cs19_gravestone", (trigger, player, eventId) => new CS19_Gravestone(player, null, Vector2.Zero));

@@ -67,6 +67,9 @@ local eventOptions = {
     "cs16_lost_souls_unite",
     "cs16_save_file_battle",
 
+    -- Chapter 18
+    "ch18_outro",
+
     -- Chapter 19
     "cs19_another_dimension_intro",
     "cs19_gravestone",
@@ -91,7 +94,7 @@ local eventOptions = {
 
 local eventTrigger = {}
 
-eventTrigger.name = "DZ/DZEventTrigger"
+eventTrigger.name = "DZ/EventTrigger"
 eventTrigger.canResize = {true, true}
 eventTrigger.placements = {
     {

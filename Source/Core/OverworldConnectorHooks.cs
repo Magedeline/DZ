@@ -1,44 +1,36 @@
-using System;
-using Celeste.Entities;
-using Microsoft.Xna.Framework;
-using Monocle;
-
 namespace DZ;
 
+using Celeste;
+using Monocle;
+
 /// <summary>
-/// Spawns the <see cref="OverworldConnector"/> on the overworld scene so the mod's
-/// custom mountain visuals (secondary renderer, Maggy3D marker, Void-Moon / Astral
-/// Void) actually become live.  Without this hook the <see cref="OverworldConnector"/>
-/// is never instantiated and the entire mountain-visual system is dead code.
+/// Installs the <see cref="PortalOverworldConnector"/> into the Overworld scene.
+/// Registered/unregistered by <c>DZModule</c> alongside the other hook systems.
+///
+/// The connector is a lightweight, purely-visual entity that renders a portal
+/// marker for the floating-island-in-space chapter. It never hides or manipulates
+/// the overworld UI (Oui) - it only draws on top of the scene.
 /// </summary>
 public static class OverworldConnectorHooks
 {
     private static bool _hooked;
 
-    // World-space points for the primary/secondary mountain junction, derived from
-    // the chapter cursor positions in Maps/Maggy/ASide/*.meta.yaml:
-    //   - The main mountain's apex is chapter 09_Summit, cursor (0, 10, 15).
-    //   - The floating/cosmic tier (chapters 16, 19-21) sits high above at ~y=33.
-    // The connection point is the summit (where the two tiers visually meet); the
-    // secondary mountain slides in from a lateral offset to the right and slightly
-    // above, so the unlock animation has a sensible start position.
-    private static readonly Vector3 ConnectionPoint = new Vector3(0f, 10f, 15f);
-    private static readonly Vector3 SecondaryStartPoint = new Vector3(8f, 14f, 12f);
-
     public static void Load()
     {
-        if (_hooked) return;
-        _hooked = true;
+        if (_hooked)
+            return;
 
+        _hooked = true;
         On.Celeste.Overworld.Begin += OnOverworldBegin;
         Logger.Log(LogLevel.Info, "DZ", "[OverworldConnectorHooks] Loaded");
     }
 
     public static void Unload()
     {
-        if (!_hooked) return;
-        _hooked = false;
+        if (!_hooked)
+            return;
 
+        _hooked = false;
         On.Celeste.Overworld.Begin -= OnOverworldBegin;
         Logger.Log(LogLevel.Info, "DZ", "[OverworldConnectorHooks] Unloaded");
     }
@@ -47,24 +39,9 @@ public static class OverworldConnectorHooks
     {
         orig(self);
 
-        // The vanilla OverworldLoader creates the MountainRenderer before Begin runs,
-        // so self.Mountain is available here.  Guard against re-adding on re-entry.
-        if (self.Mountain == null)
-            return;
-
-        if (self.Entities.FindFirst<OverworldConnector>() != null)
-            return;
-
-        try
-        {
-            var connector = new OverworldConnector(self.Mountain, ConnectionPoint, SecondaryStartPoint);
-            self.Add(connector);
-            Logger.Log(LogLevel.Info, "DZ", "[OverworldConnectorHooks] OverworldConnector added to overworld");
-        }
-        catch (Exception ex)
-        {
-            Logger.Log(LogLevel.Warn, "DZ",
-                $"[OverworldConnectorHooks] Failed to create OverworldConnector: {ex.Message}");
-        }
+        // Add the portal connector once per Overworld instance. FindFirst guards
+        // against duplicates if Begin fires more than once.
+        if (self.Entities.FindFirst<PortalOverworldConnector>() == null)
+            self.Add(new PortalOverworldConnector());
     }
 }

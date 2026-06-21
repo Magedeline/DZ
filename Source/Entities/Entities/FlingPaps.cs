@@ -51,6 +51,8 @@ public class FlingPaps : Entity
 
     private void OnPlayer(global::Celeste.Player player)
     {
+        if (state != States.Wait)
+            return;
         flingSpeed = player.Speed * 0.4f;
         flingSpeed.Y = 120f;
         flingTargetSpeed = Vector2.Zero;
@@ -83,7 +85,7 @@ public class FlingPaps : Entity
             all.RemoveAt(index);
         }
         all.Sort((a, b) => Math.Sign(a.X - b.X));
-        if (all.Count > 0 && all[0].GetType() == typeof(FlingPaps))
+        if (all.Count > 0 && all[0] == this)
         {
             for (var index = 1; index < all.Count; ++index)
             {

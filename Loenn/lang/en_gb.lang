@@ -138,9 +138,6 @@ entities.DZ/AnotherVesselCorruptedBoss.placements.description.main=Corrupted ves
 # UTILITY ENTITIES
 # =============================================================================
 
-entities.DZ/DZEventTrigger.placements.name.main=DZ Event Trigger
-entities.DZ/DZEventTrigger.placements.description.main=Triggers custom events or cutscenes when activated.
-
 entities.DZ/PowerGenerator.placements.name.main=Power Generator
 entities.DZ/PowerGenerator.placements.description.main=Generates power for linked mechanisms. Activate to power up connected devices.
 

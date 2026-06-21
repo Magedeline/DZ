@@ -1,142 +1,94 @@
 using System;
-using System.Collections;
 using Microsoft.Xna.Framework;
 using Monocle;
 
 namespace Celeste.Entities
 {
     [CustomEntity(ids: "DZ/NightmareBlock")]
+    [TrackedAs(typeof(DreamBlock), true)]
     [Tracked]
-    public class NightmareBlock : Solid
+    public class NightmareBlock : DreamBlock
     {
-        private static readonly Color activeBackColor = Color.Black;
-        private static readonly Color disabledBackColor = Calc.HexToColor("8B0000");
-        private static readonly Color activeLineColor = Color.White;
-        private static readonly Color disabledLineColor = Calc.HexToColor("780606");
-        private bool playerHasDreamDash;
-        private Vector2? node;
-        private LightOcclude occlude;
-        private MTexture[] particleTextures;
-        private DreamParticle[] particles;
-        private float whiteFill;
-        private float whiteHeight = 1f;
-        private Vector2 shake;
-        private float animTimer;
-        private Shaker shaker;
-        private bool fastMoving;
-        private bool oneUse;
-        private float wobbleFrom = Calc.Random.NextFloat(6.28318548f);
-        private float wobbleTo = Calc.Random.NextFloat(6.28318548f);
-        private float wobbleEase;
-        
-        // Player tracking for dream dash
-        private Player playerInsideBlock;
-        
+        // Nightmare color palette - dark red theme for disabled state
+        private new static readonly Color activeBackColor = Color.Black;
+        private new static readonly Color disabledBackColor = Calc.HexToColor("8B0000");
+        private new static readonly Color activeLineColor = Color.White;
+        private new static readonly Color disabledLineColor = Calc.HexToColor("780606");
+
         // Timer for escape challenge - player must get through before timer expires
         private float escapeTimer;
         private float maxEscapeTime;
         private bool timerActive;
         private bool warningTriggered;
+        private Player playerInsideBlock;
+        private bool destroyed;
         private const float DEFAULT_ESCAPE_TIME = 1.5f; // Default 1.5 seconds to escape
         private const float WARNING_THRESHOLD = 0.5f;   // Start warning at 0.5 seconds left
 
-        public NightmareBlock(
-            Vector2 position,
-            float width,
-            float height,
-            Vector2? node,
-            bool fastMoving,
-            bool oneUse,
-            bool below)
-            : base(position, width, height, true)
-        {
-            Depth = -11000;
-            this.node = node;
-            this.fastMoving = fastMoving;
-            this.oneUse = oneUse;
-            if (below)
-                Depth = 5000;
-            SurfaceSoundIndex = 11;
-            particleTextures = new MTexture[4]
-            {
-                GFX.Game["objects/dreamblock/particles"].GetSubtexture(14, 0, 7, 7),
-                GFX.Game["objects/dreamblock/particles"].GetSubtexture(7, 0, 7, 7),
-                GFX.Game["objects/dreamblock/particles"].GetSubtexture(0, 0, 7, 7),
-                GFX.Game["objects/dreamblock/particles"].GetSubtexture(7, 0, 7, 7)
-            };
-        }
-
         public NightmareBlock(EntityData data, Vector2 offset)
-            : this(data.Position + offset, data.Width, data.Height, data.FirstNodeNullable(offset), data.Bool(nameof (fastMoving)), data.Bool(nameof (oneUse)), data.Bool("below"))
+            : base(data, offset)
         {
-            playerHasDreamDash = data.Bool("active", false);
             maxEscapeTime = data.Float("escapeTime", DEFAULT_ESCAPE_TIME);
             escapeTimer = maxEscapeTime;
         }
 
-        public override void Added(Scene scene)
+        public override void Update()
         {
-            base.Added(scene);
-            // Combine the "active" attribute with DreamDash inventory check
-            playerHasDreamDash |= SceneAs<Level>().Session.Inventory.DreamDash;
-            if (playerHasDreamDash && node.HasValue)
-            {
-                Vector2 start = Position;
-                Vector2 end = node.Value;
-                float duration = Vector2.Distance(start, end) / 12f;
-                if (fastMoving)
-                    duration /= 3f;
-                Tween tween = Tween.Create(Tween.TweenMode.YoyoLooping, Ease.SineInOut, duration, true);
-                tween.OnUpdate = t =>
-                {
-                    if (Collidable)
-                        MoveTo(Vector2.Lerp(start, end, t.Eased));
-                    else
-                        MoveToNaive(Vector2.Lerp(start, end, t.Eased));
-                };
-                Add(tween);
-            }
-            if (!playerHasDreamDash)
-                Add(occlude = new LightOcclude());
-            Setup();
-        }
+            base.Update();
+            if (destroyed)
+                return;
 
-        public void Setup()
-        {
-            particles = new DreamParticle[(int) (Width / 8.0 * (Height / 8.0) * 0.699999988079071)];
-            for (int index = 0; index < particles.Length; ++index)
+            Player player = Scene.Tracker.GetEntity<Player>();
+            if (player == null)
+                return;
+
+            // Detect player entering the block via dream dash
+            if (!timerActive && CollideCheck(player) && player.StateMachine.State == Player.StDreamDash)
             {
-                particles[index].Position = new Vector2(Calc.Random.NextFloat(Width), Calc.Random.NextFloat(Height));
-                particles[index].Layer = Calc.Random.Choose(0, 1, 1, 2, 2, 2);
-                particles[index].TimeOffset = Calc.Random.NextFloat();
-                particles[index].Color = Color.LightGray * (float) (0.5 + particles[index].Layer / 2.0 * 0.5);
-                if (playerHasDreamDash)
+                playerInsideBlock = player;
+                timerActive = true;
+                escapeTimer = maxEscapeTime;
+                warningTriggered = false;
+                Audio.Play("event:/game/06_reflection/dreamblock_enter", player.Position);
+            }
+
+            // Tick escape timer while player is inside
+            if (timerActive && playerInsideBlock != null)
+            {
+                escapeTimer -= Engine.DeltaTime;
+
+                // Warning effects when time is running low
+                if (escapeTimer <= WARNING_THRESHOLD && !warningTriggered)
                 {
-                    switch (particles[index].Layer)
-                    {
-                        case 0:
-                            particles[index].Color = Calc.Random.Choose(Calc.HexToColor("FFEF11"), Calc.HexToColor("FF00D0"), Calc.HexToColor("08a310"));
-                            continue;
-                        case 1:
-                            particles[index].Color = Calc.Random.Choose(Calc.HexToColor("5fcde4"), Calc.HexToColor("7fb25e"), Calc.HexToColor("E0564C"));
-                            continue;
-                        case 2:
-                            particles[index].Color = Calc.Random.Choose(Calc.HexToColor("5b6ee1"), Calc.HexToColor("CC3B3B"), Calc.HexToColor("7daa64"));
-                            continue;
-                        default:
-                            continue;
-                    }
+                    warningTriggered = true;
+                    TriggerWarningEffects();
+                }
+
+                // Timer expired - kill player and destroy block
+                if (escapeTimer <= 0)
+                {
+                    TimerExpiredKillPlayer();
+                    return;
+                }
+
+                // Player left the block or exited dream dash - successful escape
+                if (!CollideCheck(playerInsideBlock) || playerInsideBlock.StateMachine.State != Player.StDreamDash)
+                {
+                    OnEscapeSuccess(playerInsideBlock);
+                    return;
                 }
             }
         }
 
-        public void OnPlayerExit(Player player)
+        private void OnEscapeSuccess(Player player)
         {
-            // Player successfully escaped before timer expired!
-            // (If timer expired, TimerExpiredKillPlayer already handled it)
-            if (timerActive && escapeTimer > 0)
+            if (destroyed)
+                return;
+            destroyed = true;
+
+            // Player successfully escaped before timer expired
+            if (escapeTimer > 0)
             {
-                // Success - create escape burst effect
                 Level level = SceneAs<Level>();
                 if (level != null)
                 {
@@ -153,7 +105,8 @@ namespace Celeste.Entities
                 }
             }
 
-            // Self-destruct the block (whether escaped or expired)
+            timerActive = false;
+            playerInsideBlock = null;
             ShatterAndDestroy();
         }
 
@@ -185,75 +138,6 @@ namespace Celeste.Entities
             RemoveSelf();
         }
 
-        private void OneUseDestroy()
-        {
-            Collidable = Visible = false;
-            DisableStaticMovers();
-            RemoveSelf();
-        }
-
-
-        public override void Update()
-        {
-            base.Update();
-            if (!playerHasDreamDash)
-                return;
-            animTimer += 6f * Engine.DeltaTime;
-            wobbleEase += Engine.DeltaTime * 2f;
-            if (wobbleEase > 1.0)
-            {
-                wobbleEase = 0.0f;
-                wobbleFrom = wobbleTo;
-                wobbleTo = Calc.Random.NextFloat(6.28318548f);
-            }
-            SurfaceSoundIndex = 12;
-
-            Player player = Scene.Tracker.GetEntity<Player>();
-            if (player != null)
-            {
-                // Check if player is dashing into the block
-                if (Collidable && CollideCheck(player) && (player.StateMachine.State == Player.StDash || player.StateMachine.State == Player.StDreamDash))
-                {
-                    playerInsideBlock = player;
-                    Collidable = false;
-                    timerActive = true;
-                    escapeTimer = maxEscapeTime;
-                    warningTriggered = false;
-                    Audio.Play("event:/game/06_reflection/dreamblock_enter", player.Position);
-                }
-
-                // Player has left the block - successful escape!
-                if (playerInsideBlock != null && !CollideCheck(playerInsideBlock))
-                {
-                    OnPlayerExit(playerInsideBlock);
-                    playerInsideBlock = null;
-                    Collidable = true;
-                    timerActive = false;
-                    escapeTimer = maxEscapeTime;
-                    warningTriggered = false;
-                }
-            }
-
-            // Handle escape timer
-            if (timerActive && playerInsideBlock != null)
-            {
-                escapeTimer -= Engine.DeltaTime;
-
-                // Warning effects when time is running low
-                if (escapeTimer <= WARNING_THRESHOLD && !warningTriggered)
-                {
-                    warningTriggered = true;
-                    TriggerWarningEffects();
-                }
-
-                // Timer expired - kill player and destroy block
-                if (escapeTimer <= 0)
-                {
-                    TimerExpiredKillPlayer();
-                }
-            }
-        }
-
         private void TriggerWarningEffects()
         {
             Level level = SceneAs<Level>();
@@ -261,16 +145,16 @@ namespace Celeste.Entities
             {
                 // Intense screen shake
                 level.Shake(0.3f);
-                
+
                 // Warning sound
                 Audio.Play("event:/game/general/thing_booped", Center);
-                
+
                 // Red warning particles
                 for (int i = 0; i < 20; i++)
                 {
                     Vector2 offset = new Vector2(
-                        Calc.Random.Range(-Width/2, Width/2),
-                        Calc.Random.Range(-Height/2, Height/2)
+                        Calc.Random.Range(-Width / 2, Width / 2),
+                        Calc.Random.Range(-Height / 2, Height / 2)
                     );
                     level.ParticlesFG.Emit(Strawberry.P_WingsBurst, Center + offset, Color.Red);
                 }
@@ -279,89 +163,78 @@ namespace Celeste.Entities
 
         private void TimerExpiredKillPlayer()
         {
+            if (destroyed)
+                return;
+            destroyed = true;
+
+            // Kill the player for failing to escape in time
             if (playerInsideBlock != null)
             {
-                // Kill the player for failing to escape in time
                 playerInsideBlock.Die(Vector2.Zero);
                 playerInsideBlock = null;
             }
 
+            timerActive = false;
+
             // Self-destruct the block
             ShatterAndDestroy();
-            timerActive = false;
-        }
-
-        public bool BlockedCheck()
-        {
-            TheoCrystal actor1 = CollideFirst<TheoCrystal>();
-            if (actor1 != null && !TryActorWiggleUp(actor1))
-                return true;
-            Player actor2 = CollideFirst<Player>();
-            return actor2 != null && !TryActorWiggleUp(actor2);
-        }
-
-        private bool TryActorWiggleUp(Entity actor)
-        {
-            bool collidable = Collidable;
-            Collidable = true;
-            for (int index = 1; index <= 4; ++index)
-            {
-                if (!actor.CollideCheck<Solid>(actor.Position - Vector2.UnitY * index))
-                {
-                    actor.Position -= Vector2.UnitY * index;
-                    Collidable = collidable;
-                    return true;
-                }
-            }
-            Collidable = collidable;
-            return false;
         }
 
         public override void Render()
         {
+            // Custom nightmare rendering with dark-red disabled palette
+            // instead of vanilla DreamBlock's grey disabled palette.
+            // Accesses base's private fields via the CelesteMod.Publicizer.
             Camera camera = SceneAs<Level>().Camera;
             if (Right < (double) camera.Left || Left > (double) camera.Right || Bottom < (double) camera.Top || Top > (double) camera.Bottom)
                 return;
-            Draw.Rect(shake.X + X, shake.Y + Y, Width, Height, playerHasDreamDash ? NightmareBlock.activeBackColor : NightmareBlock.disabledBackColor);
-            Vector2 position = SceneAs<Level>().Camera.Position;
+
+            bool active = playerHasDreamDash;
+            Color backColor = active ? activeBackColor : disabledBackColor;
+            Color lineColor = active ? activeLineColor : disabledLineColor;
+
+            Draw.Rect(shake.X + X, shake.Y + Y, Width, Height, backColor);
+
+            Vector2 cameraPos = SceneAs<Level>().Camera.Position;
             for (int index = 0; index < particles.Length; ++index)
             {
                 int layer = particles[index].Layer;
-                Vector2 vector2 = PutInside(particles[index].Position + position * (float) (0.30000001192092896 + 0.25 * layer));
+                Vector2 pos = PutInside(particles[index].Position + cameraPos * (float)(0.30000001192092896 + 0.25 * layer));
                 Color color = particles[index].Color;
                 MTexture particleTexture;
                 switch (layer)
                 {
                     case 0:
-                        particleTexture = particleTextures[3 - (int) ((particles[index].TimeOffset * 4.0 + animTimer) % 4.0)];
+                        particleTexture = particleTextures[3 - (int)((particles[index].TimeOffset * 4.0 + animTimer) % 4.0)];
                         break;
                     case 1:
-                        particleTexture = particleTextures[1 + (int) ((particles[index].TimeOffset * 2.0 + animTimer) % 2.0)];
+                        particleTexture = particleTextures[1 + (int)((particles[index].TimeOffset * 2.0 + animTimer) % 2.0)];
                         break;
                     default:
                         particleTexture = particleTextures[2];
                         break;
                 }
-                if (vector2.X >= X + 2.0 && vector2.Y >= Y + 2.0 && vector2.X < Right - 2.0 && vector2.Y < Bottom - 2.0)
-                    particleTexture.DrawCentered(vector2 + shake, color);
+                if (pos.X >= X + 2.0 && pos.Y >= Y + 2.0 && pos.X < Right - 2.0 && pos.Y < Bottom - 2.0)
+                    particleTexture.DrawCentered(pos + shake, color);
             }
+
             if (whiteFill > 0.0)
                 Draw.Rect(X + shake.X, Y + shake.Y, Width, Height * whiteHeight, Color.White * whiteFill);
-            WobbleLine(shake + new Vector2(X, Y), shake + new Vector2(X + Width, Y), 0.0f);
-            WobbleLine(shake + new Vector2(X + Width, Y), shake + new Vector2(X + Width, Y + Height), 0.7f);
-            WobbleLine(shake + new Vector2(X + Width, Y + Height), shake + new Vector2(X, Y + Height), 1.5f);
-            WobbleLine(shake + new Vector2(X, Y + Height), shake + new Vector2(X, Y), 2.5f);
-            
+
+            WobbleLine(shake + new Vector2(X, Y), shake + new Vector2(X + Width, Y), 0.0f, lineColor, backColor);
+            WobbleLine(shake + new Vector2(X + Width, Y), shake + new Vector2(X + Width, Y + Height), 0.7f, lineColor, backColor);
+            WobbleLine(shake + new Vector2(X + Width, Y + Height), shake + new Vector2(X, Y + Height), 1.5f, lineColor, backColor);
+            WobbleLine(shake + new Vector2(X, Y + Height), shake + new Vector2(X, Y), 2.5f, lineColor, backColor);
+
             // Draw escape timer bar when player is inside
-            if (timerActive && playerInsideBlock != null)
-            {
+            if (timerActive && playerInsideBlock != null && !destroyed)
                 DrawTimerBar();
-            }
-            
-            Draw.Rect(shake + new Vector2(X, Y), 2f, 2f, playerHasDreamDash ? NightmareBlock.activeLineColor : NightmareBlock.disabledLineColor);
-            Draw.Rect(shake + new Vector2((float) (X + (double) Width - 2.0), Y), 2f, 2f, playerHasDreamDash ? NightmareBlock.activeLineColor : NightmareBlock.disabledLineColor);
-            Draw.Rect(shake + new Vector2(X, (float) (Y + (double) Height - 2.0)), 2f, 2f, playerHasDreamDash ? NightmareBlock.activeLineColor : NightmareBlock.disabledLineColor);
-            Draw.Rect(shake + new Vector2((float) (X + (double) Width - 2.0), (float) (Y + (double) Height - 2.0)), 2f, 2f, playerHasDreamDash ? NightmareBlock.activeLineColor : NightmareBlock.disabledLineColor);
+
+            // Corner accents
+            Draw.Rect(shake + new Vector2(X, Y), 2f, 2f, lineColor);
+            Draw.Rect(shake + new Vector2((float)(X + (double)Width - 2.0), Y), 2f, 2f, lineColor);
+            Draw.Rect(shake + new Vector2(X, (float)(Y + (double)Height - 2.0)), 2f, 2f, lineColor);
+            Draw.Rect(shake + new Vector2((float)(X + (double)Width - 2.0), (float)(Y + (double)Height - 2.0)), 2f, 2f, lineColor);
         }
 
         private void DrawTimerBar()
@@ -371,10 +244,10 @@ namespace Celeste.Entities
             int barHeight = 4;
             float barX = X + (Width - barWidth) / 2f;
             float barY = Y + Height - 8;
-            
+
             // Background (dark)
             Draw.Rect(barX, barY, barWidth, barHeight, Color.Black * 0.7f);
-            
+
             // Timer fill color based on urgency
             Color fillColor;
             if (timerPercent > 0.6f)
@@ -383,14 +256,14 @@ namespace Celeste.Entities
                 fillColor = Color.Yellow;    // Warning - yellow
             else
                 fillColor = Color.Red;       // Danger - red
-            
+
             // Fill bar
             int fillWidth = (int)(barWidth * timerPercent);
             if (fillWidth > 0)
             {
                 Draw.Rect(barX, barY, fillWidth, barHeight, fillColor);
             }
-            
+
             // Border
             Draw.Rect(barX - 1, barY - 1, barWidth + 2, 1, Color.White);
             Draw.Rect(barX - 1, barY + barHeight, barWidth + 2, 1, Color.White);
@@ -398,7 +271,7 @@ namespace Celeste.Entities
             Draw.Rect(barX + barWidth, barY, 1, barHeight, Color.White);
         }
 
-        private Vector2 PutInside(Vector2 pos)
+        private new Vector2 PutInside(Vector2 pos)
         {
             while (pos.X < (double) X)
                 pos.X += Width;
@@ -411,13 +284,13 @@ namespace Celeste.Entities
             return pos;
         }
 
-        private void WobbleLine(Vector2 from, Vector2 to, float offset)
+        private void WobbleLine(Vector2 from, Vector2 to, float offset, Color lineColor, Color backColor)
         {
             float length = (to - from).Length();
-            Vector2 vector2_1 = Vector2.Normalize(to - from);
-            Vector2 vector2_2 = new Vector2(vector2_1.Y, -vector2_1.X);
-            Color color1 = playerHasDreamDash ? NightmareBlock.activeLineColor : NightmareBlock.disabledLineColor;
-            Color color2 = playerHasDreamDash ? NightmareBlock.activeBackColor : NightmareBlock.disabledBackColor;
+            Vector2 dir = Vector2.Normalize(to - from);
+            Vector2 normal = new Vector2(dir.Y, -dir.X);
+            Color color1 = lineColor;
+            Color color2 = backColor;
             if (whiteFill > 0.0)
             {
                 color1 = Color.Lerp(color1, Color.White, whiteFill);
@@ -431,94 +304,17 @@ namespace Celeste.Entities
                 if (index + segmentStep >= (double) length)
                     amplitude = 0.0f;
                 float thisSegmentLen = Math.Min(segmentStep, length - 2f - index);
-                Vector2 start = from + vector2_1 * index + vector2_2 * prevAmplitude;
-                Vector2 end = from + vector2_1 * (index + thisSegmentLen) + vector2_2 * amplitude;
-                Draw.Line(start - vector2_2, end - vector2_2, color2);
-                Draw.Line(start - vector2_2 * 2f, end - vector2_2 * 2f, color2);
+                Vector2 start = from + dir * index + normal * prevAmplitude;
+                Vector2 end = from + dir * (index + thisSegmentLen) + normal * amplitude;
+                Draw.Line(start - normal, end - normal, color2);
+                Draw.Line(start - normal * 2f, end - normal * 2f, color2);
                 Draw.Line(start, end, color1);
                 prevAmplitude = amplitude;
             }
         }
 
-        private float LineAmplitude(float seed, float index) => (float) (Math.Sin(seed + index / 16.0 + Math.Sin(seed * 2.0 + index / 32.0) * 6.2831854820251465) + 1.0) * 1.5f;
+        private new float LineAmplitude(float seed, float index) => (float)(Math.Sin(seed + index / 16.0 + Math.Sin(seed * 2.0 + index / 32.0) * 6.2831854820251465) + 1.0) * 1.5f;
 
-        private float Lerp(float a, float b, float percent) => a + (b - a) * percent;
-
-        public IEnumerator Activate()
-        {
-            NightmareBlock nightmareBlock = this;
-            Level level = nightmareBlock.SceneAs<Level>();
-            yield return 1f;
-            Input.Rumble(RumbleStrength.Light, RumbleLength.Long);
-            // ISSUE: reference to a compiler-generated method
-            nightmareBlock.Add(shaker = new Shaker(true, delegate (Vector2 t)
-            {
-                    shake = t;
-            }));
-            nightmareBlock.shaker.Interval = 0.02f;
-            nightmareBlock.shaker.On = true;
-            float p;
-            for (p = 0.0f; p < 1.0; p += Engine.DeltaTime)
-            {
-                nightmareBlock.whiteFill = Ease.CubeIn(p);
-                yield return null;
-            }
-            nightmareBlock.shaker.On = false;
-            yield return 0.5f;
-            nightmareBlock.ActivateNoRoutine();
-            nightmareBlock.whiteHeight = 1f;
-            nightmareBlock.whiteFill = 1f;
-            for (p = 1f; p > 0.0; p -= Engine.DeltaTime * 0.5f)
-            {
-                nightmareBlock.whiteHeight = p;
-                if (level.OnInterval(0.1f))
-                {
-                    for (int index = 0; index < (double) nightmareBlock.Width; index += 4)
-                        level.ParticlesFG.Emit(Strawberry.P_WingsBurst, new Vector2(nightmareBlock.X + index, (float) (nightmareBlock.Y + nightmareBlock.Height * (double) nightmareBlock.whiteHeight + 1.0)));
-                }
-                if (level.OnInterval(0.1f))
-                    level.Shake();
-                Input.Rumble(RumbleStrength.Strong, RumbleLength.Short);
-                yield return null;
-            }
-            while (nightmareBlock.whiteFill > 0.0)
-            {
-                nightmareBlock.whiteFill -= Engine.DeltaTime * 3f;
-                yield return null;
-            }
-        }
-
-        public void ActivateNoRoutine()
-        {
-            if (!playerHasDreamDash)
-            {
-                playerHasDreamDash = true;
-                Setup();
-                Remove(occlude);
-            }
-            whiteHeight = 0.0f;
-            whiteFill = 0.0f;
-            if (shaker == null)
-                return;
-            shaker.On = false;
-        }
-
-        public void FootstepRipple(Vector2 position)
-        {
-            if (!playerHasDreamDash)
-                return;
-            DisplacementRenderer.Burst burst = (Scene as Level).Displacement.AddBurst(position, 0.5f, 0.0f, 40f);
-            burst.WorldClipCollider = Collider;
-            burst.WorldClipPadding = 1;
-        }
-
-        private struct DreamParticle
-        {
-            public Vector2 Position;
-            public int Layer;
-            public Color Color;
-            public float TimeOffset;
-        }
+        private new float Lerp(float a, float b, float percent) => a + (b - a) * percent;
     }
 }
-

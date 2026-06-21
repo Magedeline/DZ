@@ -62,6 +62,8 @@ internal class FlingBirdMod : Entity
 
     private void OnPlayer(global::Celeste.Player player)
     {
+        if (state != States.Wait)
+            return;
         flingSpeed = player.Speed * 0.4f;
         flingSpeed.Y = 120f;
         flingTargetSpeed = Vector2.Zero;
@@ -94,12 +96,13 @@ internal class FlingBirdMod : Entity
                 all.RemoveAt(index);
         }
         all.Sort((a, b) => Math.Sign(a.X - b.X));
-        for (var index = 1; index < all.Count; ++index)
-        {
-            NodeSegments.Add(all[index].NodeSegments[0]);
-            SegmentsWaiting.Add(all[index].SegmentsWaiting[0]);
-            all[index].RemoveSelf();
-        }
+        if (all[0] == this)
+            for (var index = 1; index < all.Count; ++index)
+            {
+                NodeSegments.Add(all[index].NodeSegments[0]);
+                SegmentsWaiting.Add(all[index].SegmentsWaiting[0]);
+                all[index].RemoveSelf();
+            }
 
         if (SegmentsWaiting[0])
         {

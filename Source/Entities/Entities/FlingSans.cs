@@ -52,6 +52,8 @@ public class FlingSans : Entity
 
     private void OnPlayer(global::Celeste.Player player)
     {
+        if (state != States.Wait)
+            return;
         flingSpeed = player.Speed * 0.4f;
         flingSpeed.Y = 120f;
         flingTargetSpeed = Vector2.Zero;

@@ -8,6 +8,7 @@ namespace Celeste.Cutscenes
     /// <summary>
     /// Chapter 18 Outro Vignette - Phone call ending that restarts game to chapter 19
     /// </summary>
+    [HotReloadable]
     public class CS18_Outro : DesoloZantasVignette
     {
         public static class LoadingVignetteText

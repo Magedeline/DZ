@@ -12,41 +12,41 @@ DarknessAlpha: 0.15
 BloomBase: 0.5
 BloomStrength: 1.0
 CassetteNoteColor: 33eea2
-CassetteSong: event:/pusheen/music/Cassette/05_facrtured
+CassetteSong: event:/music/pusheen/Cassette/05_facrtured
 
 Modes:
   - AudioState:
-      Music: event:/pusheen/music/lvl05/main
+      Music: event:/music/pusheen/lvl05/main
       Ambience: event:/env/pusheen/05_exterior
     Inventory: Default
     HeartIsEnd: false
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/pusheen/music/BSide/05_restore
+      Music: event:/music/pusheen/BSide/05_restore
       Ambience: event:/env/pusheen/05_exterior
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/pusheen/music/CSide/05_restore
+      Music: event:/music/pusheen/CSide/05_restore
       Ambience: event:/env/pusheen/05_exterior
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/pusheen/music/CSide/05_restore
+      Music: event:/music/pusheen/CSide/05_restore
       Ambience: event:/env/pusheen/05_exterior
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/pusheen/music/DSide/05_restore
+      Music: event:/music/pusheen/DSide/05_restore
       Ambience: event:/env/pusheen/05_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/pusheen/music/DXSide/05_restore
+      Music: event:/music/pusheen/DXSide/05_restore
       Ambience: event:/env/pusheen/05_main
     Inventory: Default
     HeartIsEnd: true
@@ -66,10 +66,10 @@ Modes:
     State: 0
 
 MusicBySide:
-  - event:/pusheen/music/menu/complete_area
-  - event:/pusheen/music/menu/complete_bside
-  - event:/pusheen/music/menu/complete_cside
-  - event:/pusheen/music/menu/complete_dxside
+  - event:/music/pusheen/menu/complete_area
+  - event:/music/pusheen/menu/complete_bside
+  - event:/music/pusheen/menu/complete_cside
+  - event:/music/pusheen/menu/complete_dxside
 Title:
   ASide: "Chapter Complete"
   BSide: "B Side Complete"

@@ -1,0 +1,421 @@
+﻿using System;
+using System.Collections;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
+using FMOD.Studio;
+using Microsoft.Xna.Framework;
+using Monocle;
+using MonoMod;
+using Celeste.Entities;
+using Celeste.Cutscenes;
+
+namespace Celeste;
+
+[CustomEntity(ids: "MaggyHelper/CharaBoost")]
+[Tracked]
+
+public class CharaBoost : Entity
+{
+    public static ParticleType P_Ambience;
+
+    public static ParticleType P_Move;
+
+    static CharaBoost()
+    {
+        P_Ambience = new ParticleType
+        {
+            Source = GFX.Game["particles/shard"],
+            Color = Calc.HexToColor("b01eff"),
+            Color2 = Calc.HexToColor("ae8aff"),
+            ColorMode = ParticleType.ColorModes.Blink,
+            FadeMode = ParticleType.FadeModes.Late,
+            LifeMin = 0.4f,
+            LifeMax = 0.8f,
+            Size = 0.8f,
+            SizeRange = 0.2f,
+            Direction = (float)Math.PI / 2f,
+            DirectionRange = (float)Math.PI / 4f,
+            SpeedMin = 10f,
+            SpeedMax = 20f
+        };
+
+        P_Move = new ParticleType(P_Ambience)
+        {
+            SpeedMin = 40f,
+            SpeedMax = 80f,
+            LifeMin = 0.2f,
+            LifeMax = 0.4f
+        };
+    }
+
+    private const float MoveSpeed = 320f;
+
+    private Sprite sprite;
+
+    private Image stretch;
+
+    private Wiggler wiggler;
+
+    private VertexLight light;
+
+    private BloomPoint bloom;
+
+    private bool canSkip;
+
+    private bool finalCh19Boost;
+
+    private bool finalCh19GoldenBoost;
+
+    private bool finalCh9Dialog;
+
+    private Vector2[] nodes;
+
+    private int nodeIndex;
+
+    private bool travelling;
+
+    private Player holding;
+
+    private SoundSource relocateSfx;
+
+    public FMOD.Studio.EventInstance Ch9FinalBoostSfx;
+
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    public CharaBoost(Vector2[] nodes, bool lockCamera, bool canSkip = false, bool finalCh19Boost = false, bool finalCh19GoldenBoost = false, bool finalCh9Dialog = false)
+        : base(nodes[0])
+    {
+        base.Depth = -1000000;
+        this.nodes = nodes;
+        this.canSkip = canSkip;
+        this.finalCh19Boost = finalCh19Boost;
+        this.finalCh19GoldenBoost = finalCh19GoldenBoost;
+        this.finalCh9Dialog = finalCh9Dialog;
+        base.Collider = new Circle(16f);
+        Add(new PlayerCollider(OnPlayer));
+        Add(sprite = GFX.SpriteBank.Create("charaBoost"));
+        Add(stretch = new Image(GFX.Game["objects/charaboost/stretch"]));
+        stretch.Visible = false;
+        stretch.CenterOrigin();
+        Add(light = new VertexLight(Color.White, 0.7f, 12, 20));
+        Add(bloom = new BloomPoint(0.5f, 12f));
+        Add(wiggler = Wiggler.Create(0.4f, 3f, [MethodImpl(MethodImplOptions.NoInlining)] (float f) =>
+        {
+            sprite.Scale = Vector2.One * (1f + wiggler.Value * 0.4f);
+        }));
+        if (lockCamera)
+        {
+            Add(new CameraLocker(Level.CameraLockModes.BoostSequence, 0f, 160f));
+        }
+        Add(relocateSfx = new SoundSource());
+    }
+
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    public CharaBoost(EntityData data, Vector2 offset)
+        : this(data.NodesWithPosition(offset), data.Bool("lockCamera", defaultValue: true), data.Bool("canSkip"), data.Bool("finalCh19Boost"), data.Bool("finalCh19GoldenBoost"), data.Bool("finalCh9Dialog"))
+    {
+    }
+
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    public override void Awake(Scene scene)
+    {
+        base.Awake(scene);
+        if (CollideCheck<FakeWall>())
+        {
+            base.Depth = -12500;
+        }
+    }
+
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    private void OnPlayer(Player player)
+    {
+        Add(new Coroutine(BoostRoutine(player)));
+    }
+
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    private IEnumerator BoostRoutine(Player player)
+    {
+        holding = player;
+        travelling = true;
+        nodeIndex++;
+        sprite.Visible = false;
+        sprite.Position = Vector2.Zero;
+        Collidable = false;
+        bool finalBoost = nodeIndex >= nodes.Length;
+        Level level = Scene as Level;
+        bool endLevel;
+        if (finalBoost && finalCh19GoldenBoost)
+        {
+            endLevel = true;
+        }
+        else
+        {
+            bool flag = false;
+            foreach (Follower follower in player.Leader.Followers)
+            {
+                if (follower.Entity is Strawberry { Golden: not false })
+                {
+                    flag = true;
+                    break;
+                }
+            }
+            endLevel = finalBoost && finalCh19Boost && !flag;
+        }
+        Stopwatch sw = new Stopwatch();
+        sw.Start();
+        if (finalCh19Boost)
+        {
+            Audio.Play("event:/new_content/char/pusheen/chara/booster_finalfinal_part1", Position);
+        }
+        else if (!finalBoost)
+        {
+            Audio.Play("event:/char/badeline/booster_begin", Position);
+        }
+        else
+        {
+            Audio.Play("event:/char/badeline/booster_final", Position);
+        }
+        if (player.Holding != null)
+        {
+            player.Drop();
+        }
+        player.StateMachine.State = 11;
+        player.DummyAutoAnimate = false;
+        player.DummyGravity = false;
+        if (player.Inventory.Dashes > 99)
+        {
+            player.Dashes = 99;
+        }
+        else
+        {
+            player.RefillDash();
+        }
+        player.RefillStamina();
+        player.Speed = Vector2.Zero;
+        int num = Math.Sign(player.X - X);
+        if (num == 0)
+        {
+            num = -1;
+        }
+        CharaDummy chara = new CharaDummy(Position);
+        Scene.Add(chara);
+        player.Facing = (Facings)(-num);
+        chara.Sprite.Scale.X = num;
+        Vector2 playerFrom = player.Position;
+        Vector2 playerTo = Position + new Vector2(num * 4, -3f);
+        Vector2 charaFrom = chara.Position;
+        Vector2 charaTo = Position + new Vector2(-num * 4, 3f);
+        for (float p = 0f; p < 1f; p += Engine.DeltaTime / 0.2f)
+        {
+            Vector2 vector = Vector2.Lerp(playerFrom, playerTo, p);
+            if (player.Scene != null)
+            {
+                player.MoveToX(vector.X);
+            }
+            if (player.Scene != null)
+            {
+                player.MoveToY(vector.Y);
+            }
+            chara.Position = Vector2.Lerp(charaFrom, charaTo, p);
+            yield return null;
+        }
+        if (finalBoost)
+        {
+            Vector2 screenSpaceFocusPoint = new Vector2(Calc.Clamp(player.X - level.Camera.X, 120f, 200f), Calc.Clamp(player.Y - level.Camera.Y, 60f, 120f));
+            Add(new Coroutine(level.ZoomTo(screenSpaceFocusPoint, 1.5f, 0.18f)));
+            Engine.TimeRate = 0.5f;
+        }
+        else
+        {
+            Audio.Play("event:/char/badeline/booster_throw", Position);
+        }
+        chara.Sprite.Play("boost");
+        yield return 0.1f;
+        if (!player.Dead)
+        {
+            player.MoveV(5f);
+        }
+        yield return 0.1f;
+        if (endLevel)
+        {
+            level.TimerStopped = true;
+            level.RegisterAreaComplete();
+        }
+        if (finalBoost && finalCh19Boost)
+        {
+            Scene.Add(new CS19_FinalLaunch(player, this, finalCh9Dialog));
+            player.Active = false;
+            chara.Active = false;
+            Active = false;
+            yield return null;
+            player.Active = true;
+            chara.Active = true;
+        }
+        Add(Alarm.Create(Alarm.AlarmMode.Oneshot, [MethodImpl(MethodImplOptions.NoInlining)] () =>
+        {
+            if (player.Dashes < player.Inventory.Dashes)
+            {
+                player.Dashes++;
+            }
+            Scene.Remove(chara);
+            (Scene as Level).Displacement.AddBurst(chara.Position, 0.25f, 8f, 32f, 0.5f);
+        }, 0.15f, start: true));
+        (Scene as Level).Shake();
+        holding = null;
+        if (!finalBoost)
+        {
+            player.BadelineBoostLaunch(CenterX);
+            Vector2 from = Position;
+            Vector2 to = nodes[nodeIndex];
+            float val = Vector2.Distance(from, to) / 320f;
+            val = Math.Min(3f, val);
+            stretch.Visible = true;
+            stretch.Rotation = (to - from).Angle();
+            Tween tween = Tween.Create(Tween.TweenMode.Oneshot, Ease.SineInOut, val, start: true);
+            tween.OnUpdate = [MethodImpl(MethodImplOptions.NoInlining)] (Tween t) =>
+            {
+                Position = Vector2.Lerp(from, to, t.Eased);
+                stretch.Scale.X = 1f + Calc.YoYo(t.Eased) * 2f;
+                stretch.Scale.Y = 1f - Calc.YoYo(t.Eased) * 0.75f;
+                if (t.Eased < 0.9f && Scene.OnInterval(0.03f))
+                {
+                    TrailManager.Add(this, Player.TwoDashesHairColor, 0.5f, false, false);
+                    level.ParticlesFG.Emit(P_Move, 1, Center, Vector2.One * 4f);
+                }
+            };
+            tween.OnComplete = [MethodImpl(MethodImplOptions.NoInlining)] (Tween t) =>
+            {
+                if (X >= (float)level.Bounds.Right)
+                {
+                    RemoveSelf();
+                }
+                else
+                {
+                    travelling = false;
+                    stretch.Visible = false;
+                    sprite.Visible = true;
+                    Collidable = true;
+                    Audio.Play("event:/char/badeline/booster_reappear", Position);
+                }
+            };
+            Add(tween);
+            relocateSfx.Play("event:/char/badeline/booster_relocate");
+            Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
+            level.DirectionalShake(-Vector2.UnitY);
+            level.Displacement.AddBurst(Center, 0.4f, 8f, 32f, 0.5f);
+        }
+        else
+        {
+            if (finalCh19Boost)
+            {
+                Ch9FinalBoostSfx = Audio.Play("event:/new_content/char/pusheen/chara/booster_finalfinal_part2", Position);
+            }
+            Engine.FreezeTimer = 0.1f;
+            yield return null;
+            if (endLevel)
+            {
+                level.TimerHidden = true;
+            }
+            Input.Rumble(RumbleStrength.Strong, RumbleLength.Long);
+            level.Flash(Color.White * 0.5f, drawPlayerOver: true);
+            level.DirectionalShake(-Vector2.UnitY, 0.6f);
+            level.Displacement.AddBurst(Center, 0.6f, 8f, 64f, 0.5f);
+            level.ResetZoom();
+            player.SummitLaunch(X);
+            Engine.TimeRate = 1f;
+            Finish();
+        }
+    }
+
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    private void Skip()
+    {
+        travelling = true;
+        nodeIndex++;
+        Collidable = false;
+        Level level = SceneAs<Level>();
+        Vector2 from = Position;
+        Vector2 to = nodes[nodeIndex];
+        float val = Vector2.Distance(from, to) / 320f;
+        val = Math.Min(3f, val);
+        stretch.Visible = true;
+        stretch.Rotation = (to - from).Angle();
+        Tween tween = Tween.Create(Tween.TweenMode.Oneshot, Ease.SineInOut, val, start: true);
+        tween.OnUpdate = [MethodImpl(MethodImplOptions.NoInlining)] (Tween t) =>
+        {
+            Position = Vector2.Lerp(from, to, t.Eased);
+            stretch.Scale.X = 1f + Calc.YoYo(t.Eased) * 2f;
+            stretch.Scale.Y = 1f - Calc.YoYo(t.Eased) * 0.75f;
+            if (t.Eased < 0.9f && Scene.OnInterval(0.03f))
+            {
+                TrailManager.Add(this, Player.TwoDashesHairColor, 0.5f, false, false);
+                level.ParticlesFG.Emit(P_Move, 1, Center, Vector2.One * 4f);
+            }
+        };
+        tween.OnComplete = [MethodImpl(MethodImplOptions.NoInlining)] (Tween t) =>
+        {
+            if (X >= (float)level.Bounds.Right)
+            {
+                RemoveSelf();
+            }
+            else
+            {
+                travelling = false;
+                stretch.Visible = false;
+                sprite.Visible = true;
+                Collidable = true;
+                Audio.Play("event:/char/badeline/booster_reappear", Position);
+            }
+        };
+        Add(tween);
+        relocateSfx.Play("event:/char/badeline/booster_relocate");
+        level.Displacement.AddBurst(base.Center, 0.4f, 8f, 32f, 0.5f);
+    }
+
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    public void Wiggle()
+    {
+        wiggler.Start();
+        (base.Scene as Level).Displacement.AddBurst(Position, 0.3f, 4f, 16f, 0.25f);
+        Audio.Play("event:/game/general/crystalheart_pulse", Position);
+    }
+
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    public override void Update()
+    {
+        if (sprite.Visible && base.Scene.OnInterval(0.05f))
+        {
+            SceneAs<Level>().ParticlesBG.Emit(P_Ambience, 1, base.Center, Vector2.One * 3f);
+        }
+        if (holding != null)
+        {
+            holding.Speed = Vector2.Zero;
+        }
+        if (!travelling)
+        {
+            Player entity = base.Scene.Tracker.GetEntity<Player>();
+            if (entity != null)
+            {
+                float num = Calc.ClampedMap((entity.Center - Position).Length(), 16f, 64f, 12f, 0f);
+                Vector2 vector = (entity.Center - Position).SafeNormalize();
+                sprite.Position = Calc.Approach(sprite.Position, vector * num, 32f * Engine.DeltaTime);
+                if (canSkip && entity.Position.X - base.X >= 100f && nodeIndex + 1 < nodes.Length)
+                {
+                    Skip();
+                }
+            }
+        }
+        light.Visible = (bloom.Visible = sprite.Visible || stretch.Visible);
+        base.Update();
+    }
+
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    private void Finish()
+    {
+        SceneAs<Level>().Displacement.AddBurst(base.Center, 0.5f, 24f, 96f, 0.4f);
+        SceneAs<Level>().Particles.Emit(BadelineOldsite.P_Vanish, 12, base.Center, Vector2.One * 6f);
+        SceneAs<Level>().CameraLockMode = Level.CameraLockModes.None;
+        SceneAs<Level>().CameraOffset = new Vector2(0f, -16f);
+        RemoveSelf();
+    }
+}
+

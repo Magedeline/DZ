@@ -3,7 +3,7 @@ using Celeste;
 namespace DZ;
 
 /// <summary>
-/// Intercepts Audio.Play calls and redirects vanilla event paths to
+/// Intercepts every Audio.Play overload and redirects vanilla event paths to
 /// their custom Pusheen equivalents in the mod's FMOD banks.
 /// </summary>
 public static class AudioReplacer
@@ -79,7 +79,6 @@ public static class AudioReplacer
         ["event:/ui/main/assist_button_info"]             = "event:/pusheen/ui/main/assist_button_info",
         ["event:/ui/main/assist_button_no"]               = "event:/pusheen/ui/main/assist_button_no",
         ["event:/ui/main/assist_button_yes"]              = "event:/pusheen/ui/main/assist_button_yes",
-        ["event:/ui/main/assist_info_whistle"]            = "event:/pusheen/ui/main/assist_info_whistle",
         ["event:/ui/main/bside_intro_text"]               = "event:/pusheen/ui/main/bside_intro_text",
         ["event:/ui/main/button_back"]                    = "event:/pusheen/ui/main/button_back",
         ["event:/ui/main/button_climb"]                   = "event:/pusheen/ui/main/button_climb",
@@ -101,8 +100,6 @@ public static class AudioReplacer
         ["event:/ui/main/postcard_ch5_out"]               = "event:/pusheen/ui/main/postcard_ch5_out",
         ["event:/ui/main/postcard_ch6_in"]                = "event:/pusheen/ui/main/postcard_ch6_in",
         ["event:/ui/main/postcard_ch6_out"]               = "event:/pusheen/ui/main/postcard_ch6_out",
-        ["event:/ui/main/postcard_csides_in"]             = "event:/pusheen/ui/main/postcard_csides_in",
-        ["event:/ui/main/postcard_csides_out"]            = "event:/pusheen/ui/main/postcard_csides_out",
         ["event:/ui/main/rename_entry_accept"]            = "event:/pusheen/ui/main/rename_entry_accept",
         ["event:/ui/main/rename_entry_backspace"]         = "event:/pusheen/ui/main/rename_entry_backspace",
         ["event:/ui/main/rename_entry_char"]              = "event:/pusheen/ui/main/rename_entry_char",
@@ -181,29 +178,55 @@ public static class AudioReplacer
     {
         if (_loaded) return;
         _loaded = true;
+
+        // Hook every Audio.Play overload so parameterized one-shots (footsteps,
+        // dash sounds, UI rolls, etc.) are also redirected to the custom bank.
         On.Celeste.Audio.Play_string += OnAudioPlay;
+        On.Celeste.Audio.Play_string_string_float += OnAudioPlayStringFloat;
         On.Celeste.Audio.Play_string_Vector2 += OnAudioPlayPosition;
+        On.Celeste.Audio.Play_string_Vector2_string_float += OnAudioPlayPositionParam;
+        On.Celeste.Audio.Play_string_Vector2_string_float_string_float += OnAudioPlayPositionParamParam;
     }
 
     public static void Unload()
     {
         if (!_loaded) return;
         _loaded = false;
+
         On.Celeste.Audio.Play_string -= OnAudioPlay;
+        On.Celeste.Audio.Play_string_string_float -= OnAudioPlayStringFloat;
         On.Celeste.Audio.Play_string_Vector2 -= OnAudioPlayPosition;
+        On.Celeste.Audio.Play_string_Vector2_string_float -= OnAudioPlayPositionParam;
+        On.Celeste.Audio.Play_string_Vector2_string_float_string_float -= OnAudioPlayPositionParamParam;
+    }
+
+    private static string ReplacePath(string path)
+    {
+        if (path != null && Replacements.TryGetValue(path, out string replacement))
+            return replacement;
+        return path;
     }
 
     private static FMOD.Studio.EventInstance OnAudioPlay(On.Celeste.Audio.orig_Play_string orig, string path)
-    {
-        if (path != null && Replacements.TryGetValue(path, out string replacement))
-            path = replacement;
-        return orig(path);
-    }
+        => orig(ReplacePath(path));
 
-    private static FMOD.Studio.EventInstance OnAudioPlayPosition(On.Celeste.Audio.orig_Play_string_Vector2 orig, string path, Microsoft.Xna.Framework.Vector2 position)
-    {
-        if (path != null && Replacements.TryGetValue(path, out string replacement))
-            path = replacement;
-        return orig(path, position);
-    }
+    private static FMOD.Studio.EventInstance OnAudioPlayStringFloat(
+        On.Celeste.Audio.orig_Play_string_string_float orig,
+        string path, string param, float value)
+        => orig(ReplacePath(path), param, value);
+
+    private static FMOD.Studio.EventInstance OnAudioPlayPosition(
+        On.Celeste.Audio.orig_Play_string_Vector2 orig,
+        string path, Microsoft.Xna.Framework.Vector2 position)
+        => orig(ReplacePath(path), position);
+
+    private static FMOD.Studio.EventInstance OnAudioPlayPositionParam(
+        On.Celeste.Audio.orig_Play_string_Vector2_string_float orig,
+        string path, Microsoft.Xna.Framework.Vector2 position, string param, float value)
+        => orig(ReplacePath(path), position, param, value);
+
+    private static FMOD.Studio.EventInstance OnAudioPlayPositionParamParam(
+        On.Celeste.Audio.orig_Play_string_Vector2_string_float_string_float orig,
+        string path, Microsoft.Xna.Framework.Vector2 position, string param, float value, string param2, float value2)
+        => orig(ReplacePath(path), position, param, value, param2, value2);
 }

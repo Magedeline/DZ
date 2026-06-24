@@ -1,0 +1,37 @@
+namespace Celeste.Cutscenes;
+
+[HotReloadable]
+public class Cs21SpecialThanks : CutsceneEntity
+{
+    public const string FLAG = "ch21_special_thanks_trigger";
+    private readonly global::Celeste.Player player;
+
+    public Cs21SpecialThanks(global::Celeste.Player player) : base(true, false)
+    {
+        this.player = player ?? throw new ArgumentNullException(nameof(player));
+    }
+
+    public override void OnBegin(Level level)
+    {
+        Add(new Coroutine(Cutscene(level)));
+    }
+
+    private IEnumerator Cutscene(Level level)
+    {
+        if (player?.StateMachine == null) yield break;
+
+        player.StateMachine.State = Player.StDummy; // Dummy state
+        yield return 0.5f;
+
+        yield return Textbox.Say("MAGGYHELPER_CH21_SPECIAL_THANKS");
+
+        yield return 0.5f;
+        EndCutscene(level);
+    }
+
+    public override void OnEnd(Level level)
+    {
+        if (player != null)
+            player.StateMachine.State = Player.StNormal; // Normal state
+    }
+}

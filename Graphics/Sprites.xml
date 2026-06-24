@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <Sprites>
 
   <player path="characters/player/" start="idle">
@@ -1117,13 +1117,6 @@
       <Loop id="runSlow" path="runSlow" delay="0.07" goto="runFast" />
       <Loop id="runFast" path="runFast" delay="0.05" />
       <Anim id="runStumble" path="runFast" delay="0.05" goto="runFast" />
-
-      <!-- Carry Movement -->
-      <Loop id="idle_carry" path="idle_carry" delay="0.1" />
-      <Loop id="runSlow_carry" path="run_carry" delay="0.07" />
-      <Loop id="carryTheoWalk" path="walk_carry_theo" delay="0.06" frames="0-11" />
-      <Anim id="carryTheoCollapse" path="walk_carry_theo" delay="0.06" frames="12-18" />
-
       <Loop id="jumpSlow" path="jumpSlow" delay="0.1" frames="0,1" />
       <Loop id="jumpFast" path="jumpFast" delay="0.1" frames="0,1" />
       <Anim id="jumpSlow_carry" path="jump_carry" delay="0.1" frames="0,1" />
@@ -2096,92 +2089,92 @@
       <Loop id="spin" path="save" delay="2.0" />
     </FakeSavePoint>
 
-  <DZ_lockdoor_wood path="objects/door/lockdoor" start="idle">
+  <MaggyHelper_lockdoor_wood path="objects/door/lockdoor" start="idle">
       <Justify x="0.5" y="0.5" />
       <Loop id="idle" path="" delay="0.1" frames="0"/>
       <Anim id="open" path="" delay="0.06" frames="0-9"/>
       <Anim id="burst" path="" delay="0.06" frames="10-18"/>
-    </DZ_lockdoor_wood>
+    </MaggyHelper_lockdoor_wood>
 
-  <DZ_lockdoor_temple_a path="objects/door/lockdoorTempleA" start="idle">
+  <MaggyHelper_lockdoor_temple_a path="objects/door/lockdoorTempleA" start="idle">
       <Justify x="0.5" y="0.5" />
       <Loop id="idle" path="" delay="0.1" frames="0"/>
       <Anim id="open" path="" delay="0.06" frames="0-9"/>
       <Anim id="burst" path="" delay="0.06" frames="10-18"/>
-    </DZ_lockdoor_temple_a>
+    </MaggyHelper_lockdoor_temple_a>
 
-  <DZ_lockdoor_temple_b path="objects/door/lockdoorTempleB" start="idle">
+  <MaggyHelper_lockdoor_temple_b path="objects/door/lockdoorTempleB" start="idle">
       <Justify x="0.5" y="0.5" />
       <Loop id="idle" path="" delay="0.1" frames="0"/>
       <Anim id="open" path="" delay="0.06" frames="0-9"/>
       <Anim id="burst" path="" delay="0.06" frames="10-18"/>
-    </DZ_lockdoor_temple_b>
+    </MaggyHelper_lockdoor_temple_b>
 
-  <DZ_lockdoor_moon path="objects/door/moonDoor" start="idle">
+  <MaggyHelper_lockdoor_moon path="objects/door/moonDoor" start="idle">
       <Justify x="0.5" y="0.5" />
       <Anim id="appear" path="" delay="0.05" frames="0-10"/>
       <Loop id="idle" path="" delay="0.08" frames="11-24"/>
       <Anim id="open" path="" delay="0.06" frames="25-32"/>
       <Anim id="burst" path="" delay="0.06" frames="33-43"/>
-    </DZ_lockdoor_moon>
+    </MaggyHelper_lockdoor_moon>
 
-  <DZ_door path="objects/door/" start="idle">
+  <MaggyHelper_door path="objects/door/" start="idle">
       <Justify x=".5" y="1" />
   
       <Loop id="idle" path="door" delay="0.1" frames="0"/>
       <Anim id="open" path="door" delay="0.05" frames="4,2,1" goto="close"/>
       <Anim id="close" path="door" delay="0.05" frames="1,1,1,1,1-4" goto="idle"/>
-    </DZ_door>
+    </MaggyHelper_door>
 
-  <DZ_metaldoor path="objects/door/" start="idle">
+  <MaggyHelper_metaldoor path="objects/door/" start="idle">
       <Justify x=".5" y="1" />
   
       <Loop id="idle" path="metaldoor" delay="0.1" frames="0"/>
       <Anim id="open" path="metaldoor" delay="0.05" frames="4,2,1" goto="close"/>
       <Anim id="close" path="metaldoor" delay="0.05" frames="1,1,1,1,1-4" goto="idle"/>
-    </DZ_metaldoor>
+    </MaggyHelper_metaldoor>
 
-  <DZ_ghost_door path="objects/door/" start="idle">
+  <MaggyHelper_ghost_door path="objects/door/" start="idle">
       <Justify x=".5" y=".5" />
   
       <Loop id="idle" path="ghost_door" delay="0.06" frames="0-19"/>
       <Anim id="open" path="ghost_door" delay="0.06" frames="20-28"/>
-    </DZ_ghost_door>
+    </MaggyHelper_ghost_door>
 
-  <DZ_trapdoor path="objects/door/" start="idle">
+  <MaggyHelper_trapdoor path="objects/door/" start="idle">
       <Justify x="0.5" y="0.5" />
   
       <Loop id="idle" path="trap" delay="0.1" frames="0"/>
       <Anim id="open" path="trap" delay="0.05" frames="0,1,2,3,3,4,5,6,7"/>
       <Anim id="open_partial" path="trap" delay="0.05" frames="0,1,2,3,4"/>
-    </DZ_trapdoor>
+    </MaggyHelper_trapdoor>
 
-  <DZ_glass path="objects/mirror/" start="idle">
+  <MaggyHelper_glass path="objects/mirror/" start="idle">
       <Justify x=".5" y="1" />
       
       <Loop id="idle" path="glassbg" delay="0.08" frames="0"/>
       <Anim id="break" path="glassbreak" delay="0.08" frames="0-8" goto="broken"/>
       <Loop id="broken" path="glassbreak" delay="0.08" frames="9"/>
-    </DZ_glass>
+    </MaggyHelper_glass>
 
-  <DZ_clutterCabinet path="objects/resortclutter/" start="idle">
+  <MaggyHelper_clutterCabinet path="objects/resortclutter/" start="idle">
       <Justify x=".5" y="0.5" />
       
       <Loop id="idle" path="cabinet" delay="0.09" frames="0"/>
       <Anim id="open" path="cabinet" delay="0.08" frames="0-2" goto="opened"/>
       <Loop id="opened" path="cabinet" delay="0.09" frames="2-7"/>
       <Anim id="close" path="cabinet" delay="0.08" frames="8-15" goto="idle"/>
-    </DZ_clutterCabinet>
+    </MaggyHelper_clutterCabinet>
 
-  <DZ_clutterSwitch path="objects/resortclutter/" start="idle">
+  <MaggyHelper_clutterSwitch path="objects/resortclutter/" start="idle">
       <Justify x=".5" y="1" />
   
       <Loop id="idle" path="clutter_button" delay="0.09" frames="0-7" />
       <Loop id="active" path="clutter_button" delay="0.09" frames="19-27" />
       <Anim id="break" path="clutter_button" delay="0.08" frames="8-18" goto="active"/>
-    </DZ_clutterSwitch>
+    </MaggyHelper_clutterSwitch>
 
-  <DZ_lookout path="objects/lookout/" start="idle">
+  <MaggyHelper_lookout path="objects/lookout/" start="idle">
       <Justify x=".5" y="1" />
       
       <Loop id="idle" path="lookout" delay="0.1" frames="5*9,6"/>
@@ -2222,90 +2215,90 @@
       <Loop id="nobackpack_lookingDownLeft" path="nobackpack" frames="12"/>
       <Loop id="nobackpack_lookingLeft" path="nobackpack" frames="13"/>
       <Loop id="nobackpack_lookingUpLeft" path="nobackpack" frames="14"/>
-    </DZ_lookout>
+    </MaggyHelper_lookout>
 
-  <DZ_flutterBird path="scenery/flutterbird/" start="idle">
+  <MaggyHelper_flutterBird path="scenery/flutterbird/" start="idle">
       <Justify x="0.5" y="1"/>
       <Loop id="idle" path="idle" delay="0.1" frames="0"/>
       <Loop id="fly" path="flap" delay="0.1" frames="0,1"/>
-    </DZ_flutterBird>
+    </MaggyHelper_flutterBird>
 
-  <DZ_swapBlockLight path="objects/swapblock/" start="idle">
+  <MaggyHelper_swapBlockLight path="objects/swapblock/" start="idle">
       <Justify x="0.5" y="0.5"/>
       <Loop id="idle" path="midBlock" delay="0.08" frames="0-3"/>
-    </DZ_swapBlockLight>
+    </MaggyHelper_swapBlockLight>
 
-  <DZ_swapBlockLightRed path="objects/swapblock/" start="idle">
+  <MaggyHelper_swapBlockLightRed path="objects/swapblock/" start="idle">
       <Justify x="0.5" y="0.5"/>
       <Loop id="idle" path="midBlockRed" delay="0.08" frames="0-3"/>
-    </DZ_swapBlockLightRed>
+    </MaggyHelper_swapBlockLightRed>
 
-  <DZ_swapBlockLightMoon path="objects/swapblock/moon/" start="idle">
+  <MaggyHelper_swapBlockLightMoon path="objects/swapblock/moon/" start="idle">
       <Justify x="0.5" y="0.5"/>
       <Loop id="idle" path="midBlock" delay="0.08" frames="0-3"/>
-    </DZ_swapBlockLightMoon>
+    </MaggyHelper_swapBlockLightMoon>
 
-  <DZ_swapBlockLightRedMoon path="objects/swapblock/moon/" start="idle">
+  <MaggyHelper_swapBlockLightRedMoon path="objects/swapblock/moon/" start="idle">
       <Justify x="0.5" y="0.5"/>
       <Loop id="idle" path="midBlockRed" delay="0.08" frames="0-3"/>
-    </DZ_swapBlockLightRedMoon>
+    </MaggyHelper_swapBlockLightRedMoon>
 
-  <DZ_swapBlockPathLight path="objects/swapblock/" start="idle">
+  <MaggyHelper_swapBlockPathLight path="objects/swapblock/" start="idle">
       <Justify x="0.5" y="0.5"/>
       <Loop id="idle" path="pathLights" delay="0.06" frames="0"/>
       <Anim id="flash" path="pathLights" delay="0.06" frames="0-4" goto="idle"/>
-    </DZ_swapBlockPathLight>
+    </MaggyHelper_swapBlockPathLight>
 
-  <DZ_templegate_default path="objects/door/" start="idle">
+  <MaggyHelper_templegate_default path="objects/door/" start="idle">
       <Justify x="0.5" y="0.5"/>
       <Loop id="idle" path="templeDoor" delay="0.1" frames="0"/>
       <Anim id="open" path="templeDoor" delay="0.1" frames="6-14" goto="idle"/>
       <Anim id="hit" path="templeDoor" delay="0.08" frames="0-4" goto="idle"/>
-    </DZ_templegate_default>
+    </MaggyHelper_templegate_default>
 
-  <DZ_templegate_mirror path="objects/door/" start="idle">
+  <MaggyHelper_templegate_mirror path="objects/door/" start="idle">
       <Justify x="0.5" y="0.5"/>
       <Loop id="idle" path="templeDoorB" delay="0.1" frames="0"/>
       <Anim id="open" path="templeDoorB" delay="0.1" frames="6-14" goto="idle"/>
       <Anim id="hit" path="templeDoorB" delay="0.08" frames="0-4" goto="idle"/>
-    </DZ_templegate_mirror>
+    </MaggyHelper_templegate_mirror>
 
-  <DZ_templegate_theo path="objects/door/" start="idle">
+  <MaggyHelper_templegate_theo path="objects/door/" start="idle">
       <Justify x="0.5" y="0.5"/>
       <Loop id="idle" path="templeDoorC" delay="0.1" frames="0"/>
       <Anim id="open" path="templeDoorC" delay="0.1" frames="6-14" goto="idle"/>
       <Anim id="hit" path="templeDoorC" delay="0.08" frames="0-4" goto="idle"/>
-    </DZ_templegate_theo>
+    </MaggyHelper_templegate_theo>
 
-  <DZ_dashSwitch_default path="objects/temple/dashButton" start="idle">
+  <MaggyHelper_dashSwitch_default path="objects/temple/dashButton" start="idle">
       <Justify x="0.5" y="0.5"/>
       <Loop id="idle" path="" delay="0.08" frames="0-20"/>
       <Loop id="pushed" path="" delay="0.08" frames="27"/>
       <Anim id="push" path="" delay="0.07" frames="21-27" goto="pushed"/>
-    </DZ_dashSwitch_default>
+    </MaggyHelper_dashSwitch_default>
 
-  <DZ_dashSwitch_mirror path="objects/temple/dashButtonMirror" start="idle">
+  <MaggyHelper_dashSwitch_mirror path="objects/temple/dashButtonMirror" start="idle">
       <Justify x="0.5" y="0.5"/>
       <Loop id="idle" path="" delay="0.08" frames="0-20"/>
       <Loop id="pushed" path="" delay="0.08" frames="27"/>
       <Anim id="push" path="" delay="0.07" frames="21-27" goto="pushed"/>
-    </DZ_dashSwitch_mirror>
+    </MaggyHelper_dashSwitch_mirror>
 
-  <DZ_gondola path="objects/gondola/" start="idle">
+  <MaggyHelper_gondola path="objects/gondola/" start="idle">
       <Loop id="idle" path="front" delay="0.1"/>
       <Loop id="pull" path="pull" delay="0.08" frames="6-0,1,2"/>
-    </DZ_gondola>
+    </MaggyHelper_gondola>
 
-  <DZ_booster path="objects/booster/" start="loop">
+  <MaggyHelper_booster path="objects/booster/" start="loop">
       <Justify x="0.5" y="0.5"/>
       <Loop id="loop" path="booster" delay="0.1" frames="0-4"/>
       <Loop id="inside" path="booster" delay="0.1" frames="5-8"/>
       <Loop id="spin" path="booster" delay="0.06" frames="18-25"/>
       <Anim id="pop" path="booster" delay="0.08" frames="9-17"/>
       <Loop id="oneuse_idle" path="booster" delay="0.1" frames="0-4"/>
-    </DZ_booster>
+    </MaggyHelper_booster>
 
-  <DZ_boosterRed path="objects/booster/" start="loop">
+  <MaggyHelper_boosterRed path="objects/booster/" start="loop">
       <Justify x="0.5" y="0.5"/>
       <Anim id="appear" path="boosterRed" delay="0.08" frames="26-34" goto="loop"/>
       <Loop id="loop" path="boosterRed" delay="0.1" frames="0-4"/>
@@ -2313,9 +2306,9 @@
       <Loop id="spin" path="boosterRed" delay="0.06" frames="18-25"/>
       <Anim id="pop" path="boosterRed" delay="0.08" frames="9-17"/>
       <Loop id="oneuse_idle" path="boosterRed" delay="0.1" frames="0-4"/>
-    </DZ_boosterRed>
+    </MaggyHelper_boosterRed>
 
-  <DZ_greyBooster path="objects/greybooster/" start="loop">
+  <MaggyHelper_greyBooster path="objects/greybooster/" start="loop">
   		<Justify x="0.5" y="0.5"/>
   		<Anim id="appear" path="greyBooster" delay="0.08" frames="26-34" goto="loop"/>
   		<Loop id="loop" path="greyBooster" delay="0.1" frames="0-4"/>
@@ -2323,13 +2316,13 @@
   		<Loop id="spin" path="greyBooster" delay="0.06" frames="18-25"/>
   		<Anim id="pop" path="greyBooster" delay="0.08" frames="9-17"/>
   		<Loop id="oneuse_idle" path="greyBooster" delay="0.1" frames="0-4"/>
-  	</DZ_greyBooster>
+  	</MaggyHelper_greyBooster>
 
-  <DZ_flyFeather path="objects/flyFeather/" start="loop">
+  <MaggyHelper_flyFeather path="objects/flyFeather/" start="loop">
       <Justify x="0.5" y="0.5"/>
       <Anim id="loop" path="idle" delay="0.06" frames="0-20" goto="flash"/>
       <Anim id="flash" path="flash" delay="0.06"  frames="0-20" goto="loop"/>
-    </DZ_flyFeather>
+    </MaggyHelper_flyFeather>
 
   <refill path="objects/refill/" start="idle">
       <Justify x="0.5" y="0.5"/>
@@ -2427,28 +2420,28 @@
       <Anim id="flash" path="flash" delay="0.05" frames="0-5"/>
     </puffrefillmultiFlash>
 
-  <DZ_glider path="objects/glider/" start="idle">
+  <MaggyHelper_glider path="objects/glider/" start="idle">
       <Justify x="0.5" y="0.5"/>
       <Loop id="idle" path="idle" delay="0.1"/>
       <Loop id="held" path="held" delay="0.1"/>
       <Anim id="fall" path="fall" delay="0.06" goto="fallLoop"/>
       <Loop id="fallLoop" path="fallLoop" delay="0.06"/>
       <Anim id="death" path="death" delay="0.06"/>
-    </DZ_glider>
+    </MaggyHelper_glider>
 
-  <DZ_torch path="objects/temple/" start="off">
+  <MaggyHelper_torch path="objects/temple/" start="off">
       <Justify x="0.5" y="0.5"/>
       <Loop id="off" path="torch" delay="0.1" frames="0"/>
       <Anim id="turnOn" path="torch" delay="0.08" frames="1-3" goto="on"/>
       <Loop id="on" path="torch" delay="0.08" frames="3-8"/>
-    </DZ_torch>
+    </MaggyHelper_torch>
 
-  <DZ_litTorch path="objects/temple/" start="off">
+  <MaggyHelper_litTorch path="objects/temple/" start="off">
       <Justify x="0.5" y="0.5"/>
       <Loop id="off" path="litTorch" delay="0.1" frames="0"/>
       <Anim id="turnOn" path="litTorch" delay="0.08" frames="1-3" goto="on"/>
       <Loop id="on" path="litTorch" delay="0.08" frames="3-8"/>
-    </DZ_litTorch>
+    </MaggyHelper_litTorch>
 
   <powergen path="objects/powergen/" start="idle">
       <Justify x="0.5" y="0.5"/>
@@ -2458,29 +2451,29 @@
       <Anim id="break" path="break" delay="0.06"/>
     </powergen>
 
-  <DZ_cloud path="objects/clouds/" start="idle">
+  <MaggyHelper_cloud path="objects/clouds/" start="idle">
       <Justify x="0.5" y="0.5"/>
       <Loop id="idle" path="cloud" delay="0.08" frames="0"/>
-    </DZ_cloud>
+    </MaggyHelper_cloud>
 
-  <DZ_cloudRemix path="objects/clouds/" start="idle">
+  <MaggyHelper_cloudRemix path="objects/clouds/" start="idle">
       <Justify x="0.5" y="0.5"/>
       <Loop id="idle" path="cloudRemix" delay="0.08" frames="0"/>
-    </DZ_cloudRemix>
+    </MaggyHelper_cloudRemix>
 
-  <DZ_cloudFragile path="objects/clouds/" start="idle">
+  <MaggyHelper_cloudFragile path="objects/clouds/" start="idle">
       <Justify x="0.5" y="0.5"/>
       <Loop id="idle" path="fragile" delay="0.08" frames="0"/>
       <Anim id="fade" path="fragile" delay="0.08" frames="0-5"/>
       <Anim id="spawn" path="fragile" delay="0.06" frames="6-12"/>
-    </DZ_cloudFragile>
+    </MaggyHelper_cloudFragile>
 
-  <DZ_cloudFragileRemix path="objects/clouds/" start="idle">
+  <MaggyHelper_cloudFragileRemix path="objects/clouds/" start="idle">
       <Justify x="0.5" y="0.5"/>
       <Loop id="idle" path="fragileRemix" delay="0.08" frames="0"/>
       <Anim id="fade" path="fragileRemix" delay="0.08" frames="0-5"/>
       <Anim id="spawn" path="fragileRemix" delay="0.06" frames="6-12"/>
-    </DZ_cloudFragileRemix>
+    </MaggyHelper_cloudFragileRemix>
 
   <maggy_crushblock_face path="objects/crushblock/" start="idle">
         <Center/>
@@ -3012,7 +3005,7 @@
       <Loop id="enemiessprites" path="enemiessprites" delay="0.1" />
     </npcs>
 
-  <DZ_seeker path="characters/monsters/" start="idle">
+  <MaggyHelper_seeker path="characters/monsters/" start="idle">
       <Justify x="0.5" y="0.5"/>
       <Loop id="idle" path="predator" delay="0.08" frames="0-19"/>
       <Loop id="search" path="predator" delay="0.08" frames="0-19,20-39"/>
@@ -3032,12 +3025,12 @@
   
       <Anim id="flipMouth" path="predator" delay="0.05" frames="61-63" goto="spotted"/>
       <Anim id="flipEyes" path="predator" delay="0.05" frames="68-74" goto="search"/>
-    </DZ_seeker>
+    </MaggyHelper_seeker>
 
-  <DZ_seekerShockWave path="characters/monsters/" start="shockwave">
+  <MaggyHelper_seekerShockWave path="characters/monsters/" start="shockwave">
       <Center/>
       <Anim id="shockwave" path="Shockwave" delay="0.05"/>
-    </DZ_seekerShockWave>
+    </MaggyHelper_seekerShockWave>
 
   <asriel_angelofdeath path="characters/asriel_angelofdeath/" start="idle">
       <Justify x="0.5" y="0.5" />
@@ -3199,7 +3192,7 @@
       <Anim id="charaboss_attack2Lock" path="chara_charge" delay="0.06" frames="29-39" goto="charaboss_attack2Lock"/>
       <Anim id="charaboss_attack2Recoil" path="chara_charge" delay="0.06" frames="40-45" goto="charaboss_idle"/>
   
-      <Anim id="charaboss_getHit" path="chara_hit" delay="0.06" frames="0-8" goto="charaboss_star"/>
+      <Anim id="charaboss_getHit" path="chara_hit" delay="0.06" frames="0-8" goto="star"/>
       <Loop id="charaboss_star" path="chara_hit" delay="0.06" frames="3-5"/>
       <Anim id="charaboss_recoverHit" path="chara_hit" delay="0.06" frames="6-8" goto="charaboss_idle"/>
     </chara_boss>

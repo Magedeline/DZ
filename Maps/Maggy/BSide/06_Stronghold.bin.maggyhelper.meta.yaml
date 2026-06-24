@@ -1,4 +1,4 @@
-schema: dz-map-meta-v1
+﻿schema: maggyhelper-map-meta-v1
 sid: Maggy/BSide/06_Stronghold
 baseKey: 06_Stronghold
 side: B
@@ -8,10 +8,10 @@ mainChapterSid: Maggy/ASide/06_Stronghold
 showInChapterSelect: false
 
 MusicBySide:
-  - event:/pusheen/music/menu/complete_area
-  - event:/pusheen/music/menu/complete_bside
-  - event:/pusheen/music/menu/complete_cside
-  - event:/pusheen/music/menu/complete_dxside
+  - event:/music/pusheen/menu/complete_area
+  - event:/music/pusheen/menu/complete_bside
+  - event:/music/pusheen/menu/complete_cside
+  - event:/music/pusheen/menu/complete_dxside
 Title:
   ASide: "Chapter Complete"
   BSide: "B Side Complete"

@@ -1,4 +1,4 @@
-schema: dz-map-meta-v1
+schema: maggyhelper-map-meta-v1
 sid: Maggy/ASide/16_Corruption
 baseKey: 16_Corruption
 side: A
@@ -8,10 +8,10 @@ mainChapterSid: Maggy/ASide/16_Corruption
 showInChapterSelect: true
 
 MusicBySide:
-  - event:/pusheen/music/menu/complete_summit
-  - event:/pusheen/music/menu/complete_bside_summit
-  - event:/pusheen/music/menu/complete_cside_summit
-  - event:/pusheen/music/menu/complete_cside_summit
+  - event:/music/pusheen/menu/complete_summit
+  - event:/music/pusheen/menu/complete_bside_summit
+  - event:/music/pusheen/menu/complete_cside_summit
+  - event:/music/pusheen/menu/complete_cside_summit
 Title:
   ASide: "Chapter Complete"
   BSide: "B Side Complete"

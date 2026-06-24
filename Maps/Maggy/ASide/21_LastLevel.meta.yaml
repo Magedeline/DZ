@@ -1,4 +1,4 @@
-Icon: areas/Maggy/lastlevel
+﻿Icon: areas/Maggy/lastlevel
 SID: Maggy/ASide/21_LastLevel
 Interlude: false
 TitleBaseColor: ffd819
@@ -110,15 +110,15 @@ LoadingVignetteScreen:
 
 Modes:
   - AudioState:
-      Music: event:/pusheen/new_content/music/lvl21/main
+      Music: event:/new_content/music/pusheen/lvl21/main
       Ambience: event:/
     Inventory: Summit
     HeartIsEnd: false
     SeekerSlowdown: false
 
 Mountain:
-    BackgroundMusic: event:/pusheen/music/menu/level_select
-    BackgroundAmbience: bus:/gameplay_sfx/ambience/pusheen
+    BackgroundMusic: event:/music/pusheen/menu/level_select
+    BackgroundAmbience: bus:/gameplay_sfx/ambience/pusheen/new_worldmap
     BackgroundMusicParams:
         moon_and_blackhole: 2
     MarkerTexture: marker/runNoBackpack

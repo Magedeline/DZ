@@ -1,4 +1,4 @@
-Icon: areas/Maggy/farewell
+﻿Icon: areas/Maggy/farewell
 SID: Maggy/ASide/19_Space
 Interlude: false
 TitleBaseColor: 240d7c
@@ -21,8 +21,8 @@ Modes:
     SeekerSlowdown: false
 
 Mountain:
-    BackgroundMusic: event:/pusheen/music/menu/level_select
-    BackgroundAmbience: bus:/gameplay_sfx/ambience/pusheen
+    BackgroundMusic: event:/music/pusheen/menu/level_select
+    BackgroundAmbience: bus:/gameplay_sfx/ambience/pusheen/new_worldmap
     BackgroundMusicParams:
         moon_and_blackhole: 1
     MarkerTexture: marker/runNoBackpack

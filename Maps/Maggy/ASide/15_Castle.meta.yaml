@@ -1,4 +1,4 @@
-Icon: areas/Maggy/castle
+﻿Icon: areas/Maggy/castle
 SID: Maggy/ASide/15_Castle
 Interlude: false
 TitleBaseColor: 4a1a6b
@@ -12,41 +12,41 @@ DarknessAlpha: 0.1
 BloomBase: 0.0
 BloomStrength: 1.0
 CassetteNoteColor: df72f9
-CassetteSong: event:/pusheen/music/Cassette/15_citadel
+CassetteSong: event:/music/pusheen/Cassette/15_citadel
 
 Modes:
   - AudioState:
-      Music: event:/pusheen/music/lvl15/main
+      Music: event:/music/pusheen/lvl15/main
       Ambience: event:/env/pusheen/15_castle
     Inventory: Default
     HeartIsEnd: false
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/pusheen/music/BSide/15_castle
+      Music: event:/music/pusheen/BSide/15_castle
       Ambience: event:/env/pusheen/15_castle
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/pusheen/music/CSide/15_castle
+      Music: event:/music/pusheen/CSide/15_castle
       Ambience: event:/env/pusheen/15_castle
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/pusheen/music/CSide/15_castle
+      Music: event:/music/pusheen/CSide/15_castle
       Ambience: event:/env/pusheen/15_castle
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/pusheen/music/DSide/15_castle
+      Music: event:/music/pusheen/DSide/15_castle
       Ambience: event:/env/pusheen/15_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/pusheen/music/DXSide/15_castle
+      Music: event:/music/pusheen/DXSide/15_castle
       Ambience: event:/env/pusheen/15_main
     Inventory: Default
     HeartIsEnd: true

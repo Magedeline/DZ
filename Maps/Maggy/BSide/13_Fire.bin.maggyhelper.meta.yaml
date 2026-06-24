@@ -1,4 +1,4 @@
-schema: dz-map-meta-v1
+﻿schema: maggyhelper-map-meta-v1
 sid: Maggy/BSide/13_Fire
 baseKey: 13_Fire
 side: B
@@ -8,10 +8,10 @@ mainChapterSid: Maggy/ASide/13_Fire
 showInChapterSelect: false
 
 MusicBySide:
-  - event:/pusheen/music/menu/complete_area
-  - event:/pusheen/music/menu/complete_bside
-  - event:/pusheen/music/menu/complete_cside
-  - event:/pusheen/music/menu/complete_dxside
+  - event:/music/pusheen/menu/complete_area
+  - event:/music/pusheen/menu/complete_bside
+  - event:/music/pusheen/menu/complete_cside
+  - event:/music/pusheen/menu/complete_dxside
 Title:
   ASide: "Chapter Complete"
   BSide: "B Side Complete"

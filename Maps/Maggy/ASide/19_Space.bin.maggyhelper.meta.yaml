@@ -1,4 +1,4 @@
-schema: dz-map-meta-v1
+schema: maggyhelper-map-meta-v1
 sid: Maggy/ASide/19_Space
 baseKey: 19_Space
 side: A
@@ -8,7 +8,7 @@ mainChapterSid: Maggy/ASide/19_Space
 showInChapterSelect: true
 
 MusicBySide:
-  - event:/pusheen/music/menu/complete_area
+  - event:/music/pusheen/menu/complete_area
 Title:
   ASide: "Chapter Complete"
   FullClear: "Chapter Clear"

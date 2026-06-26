@@ -1,7 +1,8 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Nez;
 using System;
 using KirbyCelesteStandalone.Entities.Core;
+using Component = Nez.Component;
 
 namespace KirbyCelesteStandalone.Entities.Level;
 

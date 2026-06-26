@@ -1,7 +1,8 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Nez;
 using System;
 using System.Collections.Generic;
+using Camera = Nez.Camera;
 
 namespace KirbyCelesteStandalone.Entities.Level;
 

@@ -1,8 +1,10 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Nez;
 using System;
 using System.Collections.Generic;
 using KirbyCelesteStandalone.Entities.Player;
+using Component = Nez.Component;
+using Scene = Nez.Scene;
 
 namespace KirbyCelesteStandalone.Entities.Level;
 

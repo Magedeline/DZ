@@ -1,26 +1,21 @@
+#nullable enable
+using Celeste.Mod.Entities;
 using Microsoft.Xna.Framework;
-using Nez;
-using System;
-using KirbyCelesteStandalone.Core;
+using Monocle;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace Celeste.Mod.DZ.Triggers;
 
-/// <summary>
-/// Trigger that sets whether the player can refill.
-/// Ported from Celeste (BloodLantern/Celeste)
-/// </summary>
-public class NoRefillTrigger : CelesteTrigger
-{
-    public bool State;
+[CustomEntity("DZ/NoRefillTrigger")]
+public class NoRefillTrigger : Trigger {
+    private bool state;
 
-    public NoRefillTrigger(Vector2 position, int width, int height, bool state) : base(position, width, height)
-    {
-        State = state;
+    public NoRefillTrigger(EntityData data, Vector2 offset) : base(data, offset) {
+        state = data.Bool("state", true);
     }
 
-    public override void OnEnter(PlayerController player)
-    {
-        // TODO: Set no refills state
-        // Session.Inventory.NoRefills = State;
+    public override void OnEnter(Player player) {
+        base.OnEnter(player);
+        Level level = SceneAs<Level>();
+        level.Session.Inventory.NoRefills = state;
     }
 }

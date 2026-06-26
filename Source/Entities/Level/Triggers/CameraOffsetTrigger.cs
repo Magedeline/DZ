@@ -1,28 +1,23 @@
+#nullable enable
+using Celeste.Mod.Entities;
 using Microsoft.Xna.Framework;
-using Nez;
-using System;
-using KirbyCelesteStandalone.Core;
+using Monocle;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace Celeste.Mod.DZ.Triggers;
 
-/// <summary>
-/// Trigger that sets a fixed camera offset.
-/// Ported from Celeste (BloodLantern/Celeste)
-/// </summary>
-public class CameraOffsetTrigger : CelesteTrigger
-{
-    public Vector2 CameraOffset;
+[CustomEntity("DZ/CameraOffsetTrigger")]
+public class CameraOffsetTrigger : Trigger {
+    private Vector2 cameraOffset;
 
-    public CameraOffsetTrigger(Vector2 position, int width, int height, Vector2 cameraOffset) : base(position, width, height)
-    {
-        CameraOffset = cameraOffset;
-        // In Celeste, the offset is multiplied by 48f (X) and 32f (Y)
-        CameraOffset.X *= 48f;
-        CameraOffset.Y *= 32f;
+    public CameraOffsetTrigger(EntityData data, Vector2 offset) : base(data, offset) {
+        cameraOffset = new Vector2(data.Float("cameraOffsetX", 0f), data.Float("cameraOffsetY", 0f));
+        cameraOffset.X *= 48f;
+        cameraOffset.Y *= 32f;
     }
 
-    public override void OnEnter(PlayerController player)
-    {
-        // TODO: Set camera offset: CameraOffset
+    public override void OnEnter(Player player) {
+        base.OnEnter(player);
+        Level level = SceneAs<Level>();
+        level.CameraOffset = cameraOffset;
     }
 }

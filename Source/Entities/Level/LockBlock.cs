@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using KirbyCelesteStandalone.Entities.Player;
 using KirbyCelesteStandalone.Entities.Core;
 using KirbyCelesteStandalone.Entities.Collectibles;
+using Key = KirbyCelesteStandalone.Entities.Collectibles.Key;
 
 namespace KirbyCelesteStandalone.Entities.Level;
 

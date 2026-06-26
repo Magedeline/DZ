@@ -1,32 +1,26 @@
+#nullable enable
+using Celeste.Mod.Entities;
 using Microsoft.Xna.Framework;
-using Nez;
-using System;
-using KirbyCelesteStandalone.Core;
+using Monocle;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace Celeste.Mod.DZ.Triggers;
 
-/// <summary>
-/// Trigger that fades lighting alpha based on player position.
-/// Ported from Celeste (BloodLantern/Celeste)
-/// </summary>
-public class LightFadeTrigger : CelesteTrigger
-{
-    public float LightAddFrom;
-    public float LightAddTo;
-    public PositionModes PositionMode;
+[CustomEntity("DZ/LightFadeTrigger")]
+public class LightFadeTrigger : Trigger {
+    private float lightAddFrom;
+    private float lightAddTo;
+    private PositionModes positionMode;
 
-    public LightFadeTrigger(Vector2 position, int width, int height, float lightAddFrom, float lightAddTo, PositionModes positionMode) : base(position, width, height)
-    {
-        LightAddFrom = lightAddFrom;
-        LightAddTo = lightAddTo;
-        PositionMode = positionMode;
+    public LightFadeTrigger(EntityData data, Vector2 offset) : base(data, offset) {
+        lightAddFrom = data.Float("lightAddFrom", 0f);
+        lightAddTo = data.Float("lightAddTo", 0f);
+        positionMode = data.Enum("positionMode", PositionModes.NoEffect);
     }
 
-    public override void OnStay(PlayerController player)
-    {
-        float lerp = GetPositionLerp(player, PositionMode);
-        float value = LightAddFrom + (LightAddTo - LightAddFrom) * MathHelper.Clamp(lerp, 0f, 1f);
-        // TODO: set lighting alpha: value
-        // Session.LightingAlphaAdd = value;
+    public override void OnStay(Player player) {
+        base.OnStay(player);
+        Level level = SceneAs<Level>();
+        float lerp = GetPositionLerp(player, positionMode);
+        level.Session.LightingAlphaAdd = lightAddFrom + (lightAddTo - lightAddFrom) * Calc.Clamp(lerp, 0f, 1f);
     }
 }

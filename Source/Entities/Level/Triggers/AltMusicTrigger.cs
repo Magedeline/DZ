@@ -1,34 +1,35 @@
+#nullable enable
+using Celeste.Mod.Entities;
 using Microsoft.Xna.Framework;
-using Nez;
-using System;
-using KirbyCelesteStandalone.Core;
+using Monocle;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace Celeste.Mod.DZ.Triggers;
 
-/// <summary>
-/// Trigger that sets alternative music when entered.
-/// Ported from Celeste (BloodLantern/Celeste)
-/// </summary>
-public class AltMusicTrigger : CelesteTrigger
-{
-    public string Track;
-    public bool ResetOnLeave;
+[CustomEntity("DZ/AltMusicTrigger")]
+public class AltMusicTrigger : Trigger {
+    private string track;
+    private bool resetOnLeave;
+    private string? oldTrack;
 
-    public AltMusicTrigger(Vector2 position, int width, int height, string track, bool resetOnLeave = true) : base(position, width, height)
-    {
-        Track = track;
-        ResetOnLeave = resetOnLeave;
+    public AltMusicTrigger(EntityData data, Vector2 offset) : base(data, offset) {
+        track = data.Attr("track", "");
+        resetOnLeave = data.Bool("resetOnLeave", true);
     }
 
-    public override void OnEnter(PlayerController player)
-    {
-        // TODO: play alt music: SFX.EventnameByHandle(Track)
+    public override void OnEnter(Player player) {
+        base.OnEnter(player);
+        Level level = SceneAs<Level>();
+        if (resetOnLeave)
+            oldTrack = level.Session.Audio.Music.Event;
+        level.Session.Audio.Music.Event = SFX.EventnameByHandle(track);
+        level.Session.Audio.Apply();
     }
 
-    public override void OnLeave(PlayerController player)
-    {
-        if (!ResetOnLeave)
-            return;
-        // TODO: stop alt music
+    public override void OnLeave(Player player) {
+        base.OnLeave(player);
+        if (!resetOnLeave) return;
+        Level level = SceneAs<Level>();
+        level.Session.Audio.Music.Event = oldTrack;
+        level.Session.Audio.Apply();
     }
 }

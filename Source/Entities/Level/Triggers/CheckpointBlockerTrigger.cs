@@ -1,20 +1,12 @@
+#nullable enable
+using Celeste.Mod.Entities;
 using Microsoft.Xna.Framework;
-using Nez;
-using System;
-using KirbyCelesteStandalone.Core;
+using Monocle;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace Celeste.Mod.DZ.Triggers;
 
-/// <summary>
-/// Trigger that blocks the player from getting a checkpoint.
-/// Ported from Celeste (BloodLantern/Celeste)
-/// </summary>
-public class CheckpointBlockerTrigger : CelesteTrigger
-{
-    public CheckpointBlockerTrigger(Vector2 position, int width, int height) : base(position, width, height)
-    {
+[CustomEntity("DZ/CheckpointBlockerTrigger")]
+public class CheckpointBlockerTrigger : Trigger {
+    public CheckpointBlockerTrigger(EntityData data, Vector2 offset) : base(data, offset) {
     }
-    
-    // This trigger acts as a marker/blocker - no additional logic needed
-    // Other systems check for this trigger's presence
 }

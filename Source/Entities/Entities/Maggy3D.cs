@@ -227,7 +227,7 @@ namespace Celeste.Entities
         }
 
         /// <summary>
-        /// Set custom marker texture path (e.g., "marker/magolor" or "DesoloZantas/marker/custom")
+        /// Set custom marker texture path (e.g., "marker/magolor" or "DZ/marker/custom")
         /// </summary>
         public void SetCustomMarker(string path)
         {

@@ -1,4 +1,4 @@
-﻿using Celeste.Cutscenes;
+using Celeste.Cutscenes;
 using System.Runtime.CompilerServices;
 using Microsoft.Xna.Framework;
 using Monocle;
@@ -6,7 +6,7 @@ using Monocle;
 namespace DZ;
 
 [Tracked(true)]
-[CustomEntity("DesoloZantas/NPC19_Gravestone")]
+[CustomEntity("DZ/NPC19_Gravestone")]
 public class NPC19_Gravestone : NPC
 {
     private const string Flag = "cs19_gravestone";

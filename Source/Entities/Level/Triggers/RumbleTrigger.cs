@@ -1,19 +1,15 @@
+﻿#nullable enable
+using Celeste.Mod.Entities;
 using Microsoft.Xna.Framework;
-using Nez;
-using System;
+using Monocle;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using KirbyCelesteStandalone.Core;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace Celeste.Mod.DZ.Triggers;
 
-/// <summary>
-/// Trigger that creates a rumble effect and can break crumble walls.
-/// Ported from Celeste (BloodLantern/Celeste)
-/// </summary>
-public class RumbleTrigger : CelesteTrigger
-{
+[CustomEntity("DZ/RumbleTrigger")]
+public class RumbleTrigger : Trigger {
     private bool manualTrigger;
     private bool started;
     private bool persistent;
@@ -22,112 +18,75 @@ public class RumbleTrigger : CelesteTrigger
     private float left;
     private float right;
     private List<Entity> decals = new();
-    private List<Entity> crumbles = new();
+    private List<CrumbleWallOnRumble> crumbles = new();
 
-    public RumbleTrigger(Vector2 position, int width, int height, bool manualTrigger = false, bool persistent = false, string id = "", Vector2[]? nodes = null) : base(position, width, height)
-    {
-        this.manualTrigger = manualTrigger;
-        this.persistent = persistent;
-        this.id = id;
-        
-        if (nodes != null && nodes.Length >= 2)
-        {
-            left = Math.Min(nodes[0].X, nodes[1].X);
-            right = Math.Max(nodes[0].X, nodes[1].X);
+    public RumbleTrigger(EntityData data, Vector2 offset) : base(data, offset) {
+        manualTrigger = data.Bool("manualTrigger", false);
+        persistent = data.Bool("persistent", false);
+        id = data.Attr("id", "");
+        var nodes = data.NodesOffset(offset);
+        if (nodes != null && nodes.Length >= 2) {
+            left = MathHelper.Min(nodes[0].X, nodes[1].X);
+            right = MathHelper.Max(nodes[0].X, nodes[1].X);
         }
     }
 
-    public override void OnAddedToScene()
-    {
-        base.OnAddedToScene();
-        
-        bool flag = false;
-        // if (persistent && Session.GetFlag(id))
-        //     flag = true;
-        
-        // Find crumble walls in range
-        // foreach (var crumble in Scene.FindComponentsOfType<CrumbleWallOnRumble>())
-        // {
-        //     if (crumble.Entity.Position.X >= left && crumble.Entity.Position.X <= right)
-        //     {
-        //         if (flag)
-        //             crumble.Entity.RemoveFromScene();
-        //         else
-        //             crumbles.Add(crumble.Entity);
-        //     }
-        // }
-        
-        if (!flag)
-        {
-            // Find crack decals in range
-            // foreach (var decal in Scene.Entities.Where(e => e.Name == "Decal"))
-            // {
-            //     // if (decal.IsCrack && decal.Position.X >= left && decal.Position.X <= right)
-            //     // {
-            //     //     decal.Visible = false;
-            //     //     decals.Add(decal);
-            //     // }
-            // }
-            
-            // Random sort
-            crumbles = crumbles.OrderBy(_ => Nez.Random.NextInt(int.MaxValue)).ToList();
+    public override void Added(Scene scene) {
+        base.Added(scene);
+        Level level = SceneAs<Level>();
+        bool flag = persistent && level.Session.GetFlag(id);
+        foreach (var crumble in Scene.Tracker.GetEntities<CrumbleWallOnRumble>()) {
+            var c = (CrumbleWallOnRumble)crumble;
+            if (c.X >= left && c.X <= right) {
+                if (flag)
+                    c.RemoveSelf();
+                else
+                    crumbles.Add(c);
+            }
         }
-        
-        if (flag)
-            Destroy();
+        if (flag) {
+            RemoveSelf();
+            return;
+        }
+        crumbles = crumbles.OrderBy(_ => Calc.Random.Next()).ToList();
     }
 
-    public override void OnEnter(PlayerController player)
-    {
-        if (manualTrigger)
-            return;
-        Invoke();
+    public override void OnEnter(Player player) {
+        base.OnEnter(player);
+        if (manualTrigger) return;
+        Invoke(0f);
     }
 
-    private void Invoke(float delay = 0f)
-    {
-        if (started)
-            return;
+    private void Invoke(float delay) {
+        if (started) return;
         started = true;
-        
-        // if (persistent)
-        //     Session.SetFlag(id);
-        
-        AddComponent(new CoroutineComponent(RumbleRoutine(delay)));
+        Level level = SceneAs<Level>();
+        if (persistent)
+            level.Session.SetFlag(id);
+        Add(new Coroutine(RumbleRoutine(delay)));
     }
 
-    private IEnumerator RumbleRoutine(float delay)
-    {
+    private IEnumerator RumbleRoutine(float delay) {
         yield return delay;
-        
         rumble = 1f;
-        // TODO: play sound: event:/new_content/game/10_farewell/quake_onset
-        // TODO: rumble medium medium
-        
-        foreach (var decal in decals)
-        {
-            // decal.Visible = true; // TODO: Visible not available in Nez.Entity
-        }
-        
-        foreach (var crumble in crumbles)
-        {
-            // crumble.GetComponent<CrumbleWallOnRumble>()?.Break();
+        Audio.Play("event:/new_content/game/10_farewell/quake_onset");
+        Input.Rumble(RumbleStrength.Medium, RumbleLength.Medium);
+        foreach (var crumble in crumbles) {
+            crumble.Break();
             yield return 0.05f;
         }
     }
 
-    public override void Update()
-    {
+    public override void Update() {
         base.Update();
-        rumble = MathHelper.Lerp(rumble, 0f, Time.DeltaTime * 0.7f);
+        rumble = Calc.Approach(rumble, 0f, Engine.DeltaTime * 0.7f);
     }
 
-    public static void ManuallyTrigger(float x, float delay)
-    {
-        // foreach (var trigger in Core.Scene.FindComponentsOfType<RumbleTrigger>())
-        // {
-        //     if (trigger.manualTrigger && x >= trigger.left && x <= trigger.right)
-        //         trigger.Invoke(delay);
-        // }
+    public static void ManuallyTrigger(float x, float delay) {
+        foreach (var trigger in Engine.Scene.Tracker.GetEntities<RumbleTrigger>()) {
+            var t = (RumbleTrigger)trigger;
+            if (t.manualTrigger && x >= t.left && x <= t.right)
+                t.Invoke(delay);
+        }
     }
 }

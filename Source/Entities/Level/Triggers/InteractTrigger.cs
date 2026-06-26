@@ -1,9 +1,10 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Nez;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using KirbyCelesteStandalone.Core;
+using Entity = Nez.Entity;
 
 namespace KirbyCelesteStandalone.Entities.Level;
 

@@ -53,9 +53,8 @@ public class WhiteBlock : CelesteJumpThru
 
     // ── Nez lifecycle ─────────────────────────────────────────────────────────
 
-    public override void OnAddedToScene()
+    public void OnAddedToScene()
     {
-        base.OnAddedToScene();
         // If a heart gem has already been collected, disable immediately.
         // TODO: check SaveData / session HeartGem flag
         // Disable();

@@ -1,6 +1,8 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Nez;
+using Nez.Sprites;
+using Component = Nez.Component;
 
 namespace KirbyCelesteStandalone.Core;
 
@@ -18,6 +20,10 @@ namespace KirbyCelesteStandalone.Core;
 /// </summary>
 public class PlayerController : Component, IUpdatable
 {
+    // IUpdatable explicit implementation (Nez.IUpdatable requires Enabled/UpdateOrder getters)
+    bool IUpdatable.Enabled => Enabled;
+    int IUpdatable.UpdateOrder => UpdateOrder;
+
     // Physics (using Nez's built-in Mover or Velcro Physics)
     public float MoveSpeed = 90f;     // Walk speed (pixels/sec)
     public float JumpForce = -120f;   // Jump velocity

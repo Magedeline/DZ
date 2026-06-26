@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Nez;
 using KirbyCelesteStandalone.Entities.Core;
 using KirbyCelesteStandalone.Entities.Level;
+using LavaRect = KirbyCelesteStandalone.Entities.Level.LavaRect;
 
 namespace KirbyCelesteStandalone.Entities.Movement;
 

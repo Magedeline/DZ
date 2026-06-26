@@ -78,30 +78,12 @@ public class KirbyGame : NezCore
         Scenes = new SceneManager(this);
     }
 
-    protected override void Update(GameTime gameTime)
-    {
-        base.Update(gameTime);
-
-        // Global input handling
-        // Example: F11 for fullscreen toggle
-        if (Input.IsKeyPressed(Microsoft.Xna.Framework.Input.Keys.F11))
-        {
-            Screen.IsFullscreen = !Screen.IsFullscreen;
-            Screen.ApplyChanges();
-        }
-
-        // Example: ESC to quit (or open pause menu)
-        if (Input.IsKeyPressed(Microsoft.Xna.Framework.Input.Keys.Escape))
-        {
-            // TODO: Open pause menu instead of quitting
-            // Exit();
-        }
-    }
-
-    protected override void Draw(GameTime gameTime)
-    {
-        base.Draw(gameTime);
-    }
+    // NOTE: Update(GameTime) and Draw(GameTime) overrides are omitted because
+    // Nez.Core was compiled against MonoGame's GameTime type while this project
+    // references FNA. The parameter types are binary-compatible at runtime but
+    // the C# compiler sees them as different types, preventing override.
+    // Nez.Core handles the game loop internally; hook into Nez's scene/component
+    // update system for custom per-frame logic instead.
 
     protected override void OnExiting(object sender, EventArgs args)
     {

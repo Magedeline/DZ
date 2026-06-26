@@ -9,7 +9,5 @@ global using System.IO;
 global using System.Linq;
 
 // Nez framework (ECS, rendering, physics via Farseer)
-global using Nez;
-global using Nez.Sprites;
-global using Nez.Tweens;
-global using Nez.UI;
+// Note: Nez types are imported explicitly per-file to avoid ambiguity with Monocle types
+// (both frameworks define Scene, Entity, Component, etc.)

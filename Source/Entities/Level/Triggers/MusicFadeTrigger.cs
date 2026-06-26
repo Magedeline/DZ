@@ -1,52 +1,33 @@
+#nullable enable
+using Celeste.Mod.Entities;
 using Microsoft.Xna.Framework;
-using Nez;
-using System;
-using KirbyCelesteStandalone.Core;
+using Monocle;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace Celeste.Mod.DZ.Triggers;
 
-/// <summary>
-/// Trigger that fades music volume based on player position.
-/// Ported from Celeste (BloodLantern/Celeste)
-/// </summary>
-public class MusicFadeTrigger : CelesteTrigger
-{
-    public bool LeftToRight;
-    public float FadeA;
-    public float FadeB;
-    public string? Parameter;
+[CustomEntity("DZ/MusicFadeTrigger")]
+public class MusicFadeTrigger : Trigger {
+    private bool leftToRight;
+    private float fadeA;
+    private float fadeB;
+    private string? parameter;
 
-    public MusicFadeTrigger(Vector2 position, int width, int height, bool leftToRight, float fadeA, float fadeB, string? parameter = null) : base(position, width, height)
-    {
-        LeftToRight = leftToRight;
-        FadeA = fadeA;
-        FadeB = fadeB;
-        Parameter = parameter;
+    public MusicFadeTrigger(EntityData data, Vector2 offset) : base(data, offset) {
+        leftToRight = data.Bool("leftToRight", false);
+        fadeA = data.Float("fadeA", 0f);
+        fadeB = data.Float("fadeB", 1f);
+        parameter = data.Attr("parameter", "");
     }
 
-    public override void OnStay(PlayerController player)
-    {
+    public override void OnStay(Player player) {
+        base.OnStay(player);
+        Level level = SceneAs<Level>();
         float value;
-        if (!LeftToRight)
-        {
-            // Map Y position to fade value
-            value = MathHelper.Clamp((player.Entity.Position.Y - Position.Y) / Height, 0f, 1f);
-            value = FadeA + (FadeB - FadeA) * value;
-        }
+        if (!leftToRight)
+            value = Calc.Clamp((player.Y - Y) / Height, 0f, 1f);
         else
-        {
-            // Map X position to fade value
-            value = MathHelper.Clamp((player.Entity.Position.X - Position.X) / Width, 0f, 1f);
-            value = FadeA + (FadeB - FadeA) * value;
-        }
-        
-        if (string.IsNullOrEmpty(Parameter))
-        {
-            // TODO: set music param: fade = value
-        }
-        else
-        {
-            // TODO: set music param: Parameter = value
-        }
+            value = Calc.Clamp((player.X - X) / Width, 0f, 1f);
+        value = fadeA + (fadeB - fadeA) * value;
+        level.Session.Audio.Apply();
     }
 }

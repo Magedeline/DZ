@@ -1,44 +1,24 @@
+#nullable enable
+using Celeste.Mod.Entities;
 using Microsoft.Xna.Framework;
-using Nez;
-using System;
-using KirbyCelesteStandalone.Core;
+using Monocle;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace Celeste.Mod.DZ.Triggers;
 
-/// <summary>
-/// Trigger that controls the wind pattern.
-/// Ported from Celeste (BloodLantern/Celeste)
-/// </summary>
-public class WindTrigger : CelesteTrigger
-{
-    public enum Patterns
-    {
-        None,
-        Left,
-        Right,
-        LeftStrong,
-        RightStrong,
-        LeftCrazy,
-        RightCrazy,
-        Alternating,
-        LeftGemsOnly,
-        RightGemsOnly
+[CustomEntity("DZ/WindTrigger")]
+public class WindTrigger : Trigger {
+    private WindController.Patterns pattern;
+
+    public WindTrigger(EntityData data, Vector2 offset) : base(data, offset) {
+        pattern = data.Enum("pattern", WindController.Patterns.None);
     }
 
-    public Patterns Pattern;
-
-    public WindTrigger(Vector2 position, int width, int height, Patterns pattern) : base(position, width, height)
-    {
-        Pattern = pattern;
-    }
-
-    public override void OnEnter(PlayerController player)
-    {
-        // TODO: Find or create WindController
-        // var controller = Scene.FindComponentOfType<WindController>();
-        // if (controller == null)
-        //     Scene.Add(new WindController(Pattern));
-        // else
-        //     controller.SetPattern(Pattern);
+    public override void OnEnter(Player player) {
+        base.OnEnter(player);
+        WindController? controller = Scene.Tracker.GetEntity<WindController>();
+        if (controller == null)
+            Scene.Add(new WindController(pattern));
+        else
+            controller.SetPattern(pattern);
     }
 }

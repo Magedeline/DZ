@@ -1,73 +1,50 @@
+#nullable enable
+using Celeste.Mod.Entities;
 using Microsoft.Xna.Framework;
-using Nez;
-using System;
-using System.Linq;
-using KirbyCelesteStandalone.Core;
+using Monocle;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace Celeste.Mod.DZ.Triggers;
 
-/// <summary>
-/// Trigger that displays a mini textbox when activated.
-/// Ported from Celeste (BloodLantern/Celeste)
-/// </summary>
-public class MiniTextboxTrigger : CelesteTrigger
-{
+[CustomEntity("DZ/MiniTextboxTrigger")]
+public class MiniTextboxTrigger : Trigger {
     private string[] dialogOptions;
     private Modes mode;
     private bool triggered;
     private bool onlyOnce;
     private int deathCount;
-    private string id;
+    private EntityID entityID;
 
-    public enum Modes
-    {
-        OnPlayerEnter,
-        OnLevelStart,
-        OnTheoEnter
+    public enum Modes { OnPlayerEnter, OnLevelStart, OnTheoEnter }
+
+    public MiniTextboxTrigger(EntityData data, Vector2 offset) : base(data, offset) {
+        mode = data.Enum("mode", Modes.OnPlayerEnter);
+        dialogOptions = data.Attr("dialogId", "").Split(',');
+        onlyOnce = data.Bool("onlyOnce", false);
+        deathCount = data.Int("deathCount", -1);
+        entityID = new EntityID(data.Name, data.ID);
     }
 
-    public MiniTextboxTrigger(Vector2 position, int width, int height, string dialogId, Modes mode = Modes.OnPlayerEnter, 
-        bool onlyOnce = false, int deathCount = -1, string id = "") : base(position, width, height)
-    {
-        this.mode = mode;
-        dialogOptions = dialogId.Split(',');
-        this.onlyOnce = onlyOnce;
-        this.deathCount = deathCount;
-        this.id = id;
-    }
-
-    public override void OnAddedToScene()
-    {
-        base.OnAddedToScene();
+    public override void Added(Scene scene) {
+        base.Added(scene);
         if (mode == Modes.OnLevelStart)
             Trigger();
     }
 
-    public override void OnEnter(PlayerController player)
-    {
-        if (mode != Modes.OnPlayerEnter)
-            return;
+    public override void OnEnter(Player player) {
+        base.OnEnter(player);
+        if (mode != Modes.OnPlayerEnter) return;
         Trigger();
     }
 
-    private void Trigger()
-    {
-        if (triggered)
+    private void Trigger() {
+        if (triggered) return;
+        Level level = SceneAs<Level>();
+        if (deathCount >= 0 && level.Session.DeathsInCurrentLevel != deathCount)
             return;
-        
-        // TODO: Check death count if specified
-        // if (deathCount >= 0 && Session.DeathsInCurrentLevel != deathCount)
-        //     return;
-        
         triggered = true;
-        
-        // TODO: Show mini textbox with random dialog choice
-        // Scene.Add(new MiniTextbox(Nez.Random.Choose(dialogOptions)));
-        
+        if (dialogOptions.Length > 0)
+            Scene.Add(new MiniTextbox(Calc.Random.Choose(dialogOptions)));
         if (onlyOnce)
-        {
-            // TODO: Add to DoNotLoad
-            // Session.DoNotLoad.Add(id);
-        }
+            level.Session.DoNotLoad.Add(entityID);
     }
 }

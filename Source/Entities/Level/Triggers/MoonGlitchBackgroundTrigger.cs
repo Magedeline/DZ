@@ -1,23 +1,15 @@
+﻿#nullable enable
+using Celeste.Mod.Entities;
 using Microsoft.Xna.Framework;
-using Nez;
-using System;
+using Monocle;
 using System.Collections;
-using KirbyCelesteStandalone.Core;
+using System.Linq;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace Celeste.Mod.DZ.Triggers;
 
-/// <summary>
-/// Trigger that creates a glitch effect on the moon/background.
-/// Ported from Celeste (BloodLantern/Celeste)
-/// </summary>
-public class MoonGlitchBackgroundTrigger : CelesteTrigger
-{
-    public enum Duration
-    {
-        Short,
-        Medium,
-        Long
-    }
+[CustomEntity("DZ/MoonGlitchBackgroundTrigger")]
+public class MoonGlitchBackgroundTrigger : Trigger {
+    public enum Duration { Short, Medium, Long }
 
     private Duration duration;
     private bool triggered;
@@ -25,151 +17,77 @@ public class MoonGlitchBackgroundTrigger : CelesteTrigger
     private bool running;
     private bool doGlitch;
 
-    public MoonGlitchBackgroundTrigger(Vector2 position, int width, int height, Duration duration, bool stay = false, bool glitch = true) : base(position, width, height)
-    {
-        this.duration = duration;
-        stayOn = stay;
-        doGlitch = glitch;
+    public MoonGlitchBackgroundTrigger(EntityData data, Vector2 offset) : base(data, offset) {
+        duration = data.Enum("duration", Duration.Short);
+        stayOn = data.Bool("stay", false);
+        doGlitch = data.Bool("glitch", true);
     }
 
-    public override void OnEnter(PlayerController player) => Invoke();
+    public override void OnEnter(Player player) {
+        base.OnEnter(player);
+        Invoke();
+    }
 
-    public void Invoke()
-    {
-        if (triggered)
-            return;
+    public void Invoke() {
+        if (triggered) return;
         triggered = true;
-        
         if (doGlitch)
-        {
-            AddComponent(new CoroutineComponent(InternalGlitchRoutine()));
-        }
+            Add(new Coroutine(GlitchRoutine()));
         else if (!stayOn)
-        {
+            Toggle(false);
+    }
+
+    private IEnumerator GlitchRoutine() {
+        running = true;
+        Tag = Tags.Persistent;
+        float glitchDuration = duration switch {
+            Duration.Short => 0.2f,
+            Duration.Medium => 0.5f,
+            _ => 1.25f,
+        };
+        Input.Rumble(RumbleStrength.Strong, duration == Duration.Long ? RumbleLength.Long : RumbleLength.Medium);
+        Audio.Play(duration == Duration.Long ? "event:/new_content/game/10_farewell/glitch_long"
+            : duration == Duration.Medium ? "event:/new_content/game/10_farewell/glitch_medium"
+            : "event:/new_content/game/10_farewell/glitch_short");
+        Toggle(true);
+        for (float a = 0f; a < 1f; a += Engine.DeltaTime / 0.1f) {
+            Fade(a, true);
+            yield return null;
+        }
+        Fade(1f);
+        yield return glitchDuration;
+        if (!stayOn) {
+            for (float a = 0f; a < 1f; a += Engine.DeltaTime / 0.1f) {
+                Fade(1f - a);
+                yield return null;
+            }
+            Fade(0f);
             Toggle(false);
         }
-    }
-
-    private IEnumerator InternalGlitchRoutine()
-    {
-        running = true;
-        SetTag(1); // Persistent tag
-        
-        float glitchDuration;
-        if (duration == Duration.Short)
-        {
-            glitchDuration = 0.2f;
-            // TODO: rumble strong medium
-            // TODO: play sound: event:/new_content/game/10_farewell/glitch_short
-        }
-        else if (duration == Duration.Medium)
-        {
-            glitchDuration = 0.5f;
-            // TODO: rumble strong medium
-            // TODO: play sound: event:/new_content/game/10_farewell/glitch_medium
-        }
-        else
-        {
-            glitchDuration = 1.25f;
-            // TODO: rumble strong long
-            // TODO: play sound: event:/new_content/game/10_farewell/glitch_long
-        }
-        
-        yield return GlitchRoutine(glitchDuration, stayOn);
-        
         Tag = 0;
         running = false;
     }
 
-    private static void Toggle(bool on)
-    {
-        // TODO: Toggle blackhole backdrops
-        // foreach (var backdrop in Scene.FindComponentsOfType<Backdrop>().Where(b => b.Name == "blackhole"))
-        //     backdrop.ForceVisible = on;
+    private static void Toggle(bool on) {
+        foreach (var backdrop in Engine.Scene.Entities.OfType<Backdrop>()) {
+            if (backdrop.Name == "blackhole")
+                backdrop.ForceVisible = on;
+        }
     }
 
-    private static void Fade(float alpha, bool max = false)
-    {
-        // TODO: Fade blackhole backdrops
-        // foreach (var backdrop in Scene.FindComponentsOfType<Backdrop>().Where(b => b.Name == "blackhole"))
-        //     backdrop.FadeAlphaMultiplier = max ? Math.Max(backdrop.FadeAlphaMultiplier, alpha) : alpha;
+    private static void Fade(float alpha, bool max = false) {
+        foreach (var backdrop in Engine.Scene.Entities.OfType<Backdrop>()) {
+            if (backdrop.Name == "blackhole")
+                backdrop.FadeAlphaMultiplier = max ? Math.Max(backdrop.FadeAlphaMultiplier, alpha) : alpha;
+        }
     }
 
-    public static IEnumerator GlitchRoutine(float glitchDuration, bool stayOn)
-    {
-        Toggle(true);
-        
-        // TODO: Check if flashes are disabled
-        // if (Settings.Instance.DisableFlashes)
-        // {
-            for (float a = 0f; a < 1f; a += Time.DeltaTime / 0.1f)
-            {
-                Fade(a, true);
-                yield return null;
-            }
-            Fade(1f);
-            yield return glitchDuration;
-            
-            if (!stayOn)
-            {
-                for (float a = 0f; a < 1f; a += Time.DeltaTime / 0.1f)
-                {
-                    Fade(1f - a);
-                    yield return null;
-                }
-                Fade(1f);
-            }
-        // }
-        // else if (glitchDuration > 0.4f)
-        // {
-        //     Glitch.Value = 0.3f;
-        //     yield return 0.2f;
-        //     Glitch.Value = 0f;
-        //     yield return glitchDuration - 0.4f;
-        //     if (!stayOn)
-        //         Glitch.Value = 0.3f;
-        //     yield return 0.2f;
-        //     Glitch.Value = 0f;
-        // }
-        // else
-        // {
-        //     Glitch.Value = 0.3f;
-        //     yield return glitchDuration;
-        //     Glitch.Value = 0f;
-        // }
-        
-        if (!stayOn)
-            Toggle(false);
-    }
-
-    public override void OnRemovedFromScene()
-    {
-        if (running)
-        {
-            // Glitch.Value = 0f;
-            Fade(1f);
+    public override void Removed(Scene scene) {
+        if (running) {
+            Fade(0f);
             if (!stayOn)
                 Toggle(false);
         }
-        base.OnRemovedFromScene();
-    }
-}
-
-/// <summary>
-/// Helper component to run coroutines
-/// </summary>
-public class CoroutineComponent : Component, IUpdatable
-{
-    private IEnumerator routine;
-
-    public CoroutineComponent(IEnumerator routine)
-    {
-        this.routine = routine;
-    }
-
-    public void Update()
-    {
-        if (!routine.MoveNext())
-            Entity.RemoveComponent(this);
+        base.Removed(scene);
     }
 }

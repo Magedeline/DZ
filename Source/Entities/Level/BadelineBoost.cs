@@ -1,10 +1,11 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Nez;
 using static Nez.Time;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using KirbyCelesteStandalone.Entities.Player;
+using Component = Nez.Component;
 
 namespace KirbyCelesteStandalone.Entities.Level;
 

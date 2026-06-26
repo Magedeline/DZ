@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Nez;
 using Nez.Sprites;
 using static Nez.Time;
@@ -6,6 +6,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using KirbyCelesteStandalone.Core;
+using Entity = Nez.Entity;
+using Scene = Nez.Scene;
 
 namespace KirbyCelesteStandalone.Entities.Bosses;
 

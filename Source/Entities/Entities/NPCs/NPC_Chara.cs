@@ -1,7 +1,7 @@
-﻿namespace Celeste.NPCs
+namespace Celeste.NPCs
 {
     [Tracked(true)]
-    [CustomEntity("DesoloZantas/NPC_Chara")]
+    [CustomEntity("DZ/NPC_Chara")]
     public class NPC_Chara : Entity
     {
         private const string DONE_TALKING = "chara_done_talking";

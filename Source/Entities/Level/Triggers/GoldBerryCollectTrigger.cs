@@ -1,20 +1,12 @@
+#nullable enable
+using Celeste.Mod.Entities;
 using Microsoft.Xna.Framework;
-using Nez;
-using System;
-using KirbyCelesteStandalone.Core;
+using Monocle;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace Celeste.Mod.DZ.Triggers;
 
-/// <summary>
-/// Trigger that marks an area for gold berry collection.
-/// Ported from Celeste (BloodLantern/Celeste)
-/// </summary>
-public class GoldBerryCollectTrigger : CelesteTrigger
-{
-    public GoldBerryCollectTrigger(Vector2 position, int width, int height) : base(position, width, height)
-    {
+[CustomEntity("DZ/GoldBerryCollectTrigger")]
+public class GoldBerryCollectTrigger : Trigger {
+    public GoldBerryCollectTrigger(EntityData data, Vector2 offset) : base(data, offset) {
     }
-    
-    // This trigger acts as a marker - no additional logic needed
-    // Other systems check for this trigger's presence
 }

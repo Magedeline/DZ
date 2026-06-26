@@ -1,0 +1,2176 @@
+# DZ Mod Loenn Language File
+# English (Great Britain)
+
+# Color Block
+entities.DoonvHelper/ColorBlock.placements.name.color_block=Color Block
+
+# Ability Swap Trigger
+triggers.DZ/AbilitySwapTrigger.placements.name.ability_swap_trigger=Ability Swap Trigger
+triggers.DZ/AbilitySwapTrigger.placements.name.ability=Ability
+triggers.DZ/AbilitySwapTrigger.placements.name.action=Action
+triggers.DZ/AbilitySwapTrigger.placements.name.onlyOnce=Only Once
+
+# Abyssal Eye
+entities.DZ/AbyssalEye.placements.name.abyssal_eye=Abyssal Eye
+entities.DZ/AbyssalEye.placements.name.health=Health
+entities.DZ/AbyssalEye.placements.name.gazeRange=Gaze Range
+entities.DZ/AbyssalEye.placements.name.gazeWidth=Gaze Width
+
+# Advanced Refill
+entities.DZ/AdvancedRefill.placements.name.advanced_refill=Advanced Refill
+entities.DZ/AdvancedRefill.placements.name.oneUse=One Use
+entities.DZ/AdvancedRefill.placements.name.respectInventoryLimits=Respect Inventory Limits
+entities.DZ/AdvancedRefill.placements.name.dashCount=Dash Count
+
+# Ambience Trigger
+entities.DZ/AmbienceTrigger.placements.name.ambience_trigger=Ambience Trigger
+
+# Area Complete Trigger
+entities.DZ/AreaCompleteTrigger.placements.name.area_complete_trigger=Area Complete Trigger
+
+# Ash Phoenix
+entities.DZ/AshPhoenix.placements.name.ash_phoenix=Ash Phoenix
+entities.DZ/AshPhoenix.placements.name.health=Health
+entities.DZ/AshPhoenix.placements.name.flySpeed=Fly Speed
+entities.DZ/AshPhoenix.placements.name.detectionRange=Detection Range
+
+# Ash Pile
+entities.DZ/AshPile.placements.name.ash_pile=Ash Pile
+entities.DZ/AshPile.placements.name.isClimbable=Is Climbable
+entities.DZ/AshPile.placements.name.climbSlowFactor=Climb Slow Factor
+entities.DZ/AshPile.placements.name.shiftInterval=Shift Interval
+
+# Asriel Dummy
+entities.DZ/AsrielDummy.placements.name.asriel_dummy=Asriel Dummy
+
+# Asriel Start Hit Trigger
+triggers.DZ/AsrielStartHitTrigger.placements.name.asriel_start_hit_trigger=Asriel Start Hit Trigger
+
+# Axis Minion
+entities.DZ/AxisMinion.placements.name.axis_minion=Axis Minion
+entities.DZ/AxisMinion.placements.name.health=Health
+entities.DZ/AxisMinion.placements.name.moveSpeed=Move Speed
+entities.DZ/AxisMinion.placements.name.detectionRange=Detection Range
+entities.DZ/AxisMinion.placements.name.patrolDistance=Patrol Distance
+
+# Badeline Dummy
+entities.DZ/BadelineDummy.placements.name.badeline_dummy=Badeline Dummy
+
+# Badeline Dummy Attacher
+entities.DZ/BadelineDummyAttacher.placements.name.badeline_dummy_attacher=Badeline Dummy Attacher
+entities.DZ/BadelineDummyAttacher.placements.name.hoverOffsetX=Hover Offset X
+entities.DZ/BadelineDummyAttacher.placements.name.hoverOffsetY=Hover Offset Y
+entities.DZ/BadelineDummyAttacher.placements.name.hoverSpeed=Hover Speed
+entities.DZ/BadelineDummyAttacher.placements.name.hoverAmplitude=Hover Amplitude
+
+# Badeline Dummy Attacher Trigger
+triggers.DZ/BadelineDummyAttacherTrigger.placements.name.badeline_dummy_attacher_trigger=Badeline Dummy Attacher Trigger
+triggers.DZ/BadelineDummyAttacherTrigger.placements.name.once=Once
+triggers.DZ/BadelineDummyAttacherTrigger.placements.name.removeOnExit=Remove On Exit
+triggers.DZ/BadelineDummyAttacherTrigger.placements.name.hoverOffsetX=Hover Offset X
+triggers.DZ/BadelineDummyAttacherTrigger.placements.name.hoverOffsetY=Hover Offset Y
+triggers.DZ/BadelineDummyAttacherTrigger.placements.name.hoverSpeed=Hover Speed
+triggers.DZ/BadelineDummyAttacherTrigger.placements.name.hoverAmplitude=Hover Amplitude
+
+# Bandana Dee Dummy
+entities.DZ/BandanaDeeDummy.placements.name.bandana_dee_dummy=Bandana Dee Dummy
+
+# Bandito Roller
+entities.DZ/BanditoRoller.placements.name.bandito_roller=Bandito Roller
+entities.DZ/BanditoRoller.placements.name.health=Health
+entities.DZ/BanditoRoller.placements.name.rollSpeed=Roll Speed
+entities.DZ/BanditoRoller.placements.name.bounceSpeed=Bounce Speed
+entities.DZ/BanditoRoller.placements.name.detectionRange=Detection Range
+
+# Barrel Bomber
+entities.DZ/BarrelBomber.placements.name.barrel_bomber=Barrel Bomber
+entities.DZ/BarrelBomber.placements.name.health=Health
+entities.DZ/BarrelBomber.placements.name.detectionRange=Detection Range
+entities.DZ/BarrelBomber.placements.name.explosionRadius=Explosion Radius
+entities.DZ/BarrelBomber.placements.name.fuseTime=Fuse Time
+
+# Bell Trigger
+triggers.DZ/BellTrigger.placements.name.bell_trigger=Bell Trigger
+triggers.DZ/BellTrigger.placements.name.canPlayerRing=Can Player Ring
+triggers.DZ/BellTrigger.placements.name.maxRings=Max Rings
+triggers.DZ/BellTrigger.placements.name.shockwaveSpeed=Shockwave Speed
+triggers.DZ/BellTrigger.placements.name.shockwaveRadius=Shockwave Radius
+triggers.DZ/BellTrigger.placements.name.cooldownTime=Cooldown Time
+
+# Beyond Summit Cloud Entity
+entities.DZ/BeyondSummitCloudEntity.placements.name.beyond_summit_cloud_entity=Beyond Summit Cloud Entity
+entities.DZ/BeyondSummitCloudEntity.placements.name.color=Color
+entities.DZ/BeyondSummitCloudEntity.placements.name.highlightColor=Highlight Color
+entities.DZ/BeyondSummitCloudEntity.placements.name.dark=Dark
+entities.DZ/BeyondSummitCloudEntity.placements.name.particleCount=Particle Count
+entities.DZ/BeyondSummitCloudEntity.placements.name.speedMultiplier=Speed Multiplier
+
+# Beyond Summit Gem
+entities.DZ/BeyondSummitGem.placements.name.beyond_summit_gem=Beyond Summit Gem
+entities.DZ/BeyondSummitGem.placements.name.sprite=Sprite
+entities.DZ/BeyondSummitGem.placements.name.gem=Gem
+
+# Big Bonfire
+entities.DZ/BigBonfire.placements.name.big_bonfire=Big Bonfire
+entities.DZ/BigBonfire.placements.name.scale=Scale
+entities.DZ/BigBonfire.placements.name.lightInner=Light Inner
+entities.DZ/BigBonfire.placements.name.lightOuter=Light Outer
+entities.DZ/BigBonfire.placements.name.bloomRadius=Bloom Radius
+
+# Bird NPC
+entities.DZ/BirdNPC.placements.name.bird_npc=Bird NPC
+
+# Blackhole Blocker Trigger
+triggers.DZ/BlackholeBlockerTrigger.placements.name.blackhole_blocker_trigger=Blackhole Blocker Trigger
+triggers.DZ/BlackholeBlockerTrigger.placements.name.releaseFlag=Release Flag
+triggers.DZ/BlackholeBlockerTrigger.placements.name.pullDirection=Pull Direction
+triggers.DZ/BlackholeBlockerTrigger.placements.name.oneUse=One Use
+triggers.DZ/BlackholeBlockerTrigger.placements.name.killPlayer=Kill Player
+triggers.DZ/BlackholeBlockerTrigger.placements.name.visualEffect=Visual Effect
+triggers.DZ/BlackholeBlockerTrigger.placements.name.stopDuration=Stop Duration
+triggers.DZ/BlackholeBlockerTrigger.placements.name.pullStrength=Pull Strength
+
+# Blackhole Flare Blocker
+entities.DZ/BlackholeFlareBlocker.placements.name.blackhole_flare_blocker=Blackhole Flare Blocker
+entities.DZ/BlackholeFlareBlocker.placements.name.behavior=Behavior
+entities.DZ/BlackholeFlareBlocker.placements.name.blockerColor=Blocker Color
+entities.DZ/BlackholeFlareBlocker.placements.name.affectsSideway=Affects Sideway
+entities.DZ/BlackholeFlareBlocker.placements.name.affectsRiser=Affects Riser
+entities.DZ/BlackholeFlareBlocker.placements.name.visualEffect=Visual Effect
+entities.DZ/BlackholeFlareBlocker.placements.name.width=Width
+entities.DZ/BlackholeFlareBlocker.placements.name.height=Height
+
+# Blackhole Flare Sideway
+entities.DZ/BlackholeFlareSideway.placements.name.blackhole_flare_sideway=Blackhole Flare Sideway
+entities.DZ/BlackholeFlareSideway.placements.name.direction=Direction
+entities.DZ/BlackholeFlareSideway.placements.name.glitchy=Glitchy
+entities.DZ/BlackholeFlareSideway.placements.name.speed=Speed
+entities.DZ/BlackholeFlareSideway.placements.name.width=Width
+entities.DZ/BlackholeFlareSideway.placements.name.height=Height
+
+# Blackhole Riser
+entities.DZ/BlackholeRiser.placements.name.blackhole_riser=Blackhole Riser
+entities.DZ/BlackholeRiser.placements.name.glitchy=Glitchy
+entities.DZ/BlackholeRiser.placements.name.looping=Looping
+entities.DZ/BlackholeRiser.placements.name.speed=Speed
+entities.DZ/BlackholeRiser.placements.name.maxHeight=Max Height
+entities.DZ/BlackholeRiser.placements.name.riseDelay=Rise Delay
+entities.DZ/BlackholeRiser.placements.name.width=Width
+
+# Blackhole Sandwich
+entities.DZ/BlackholeSandwich.placements.name.blackhole_sandwich=Blackhole Sandwich
+entities.DZ/BlackholeSandwich.placements.name.mode=Mode
+entities.DZ/BlackholeSandwich.placements.name.switchFlag=Switch Flag
+entities.DZ/BlackholeSandwich.placements.name.glitchy=Glitchy
+entities.DZ/BlackholeSandwich.placements.name.canSwitch=Can Switch
+entities.DZ/BlackholeSandwich.placements.name.speed=Speed
+entities.DZ/BlackholeSandwich.placements.name.width=Width
+entities.DZ/BlackholeSandwich.placements.name.height=Height
+
+# Blackhole Strength Trigger
+triggers.DZ/BlackholeStrengthTrigger.placements.name.blackhole_strength_trigger=Blackhole Strength Trigger
+triggers.DZ/BlackholeStrengthTrigger.placements.name.strength=Strength
+
+# Block Gate
+entities.DZ/BlockGate.placements.name.block_gate=Block Gate
+entities.DZ/BlockGate.placements.name.gateId=Gate Id
+entities.DZ/BlockGate.placements.name.sequenceOrder=Sequence Order
+entities.DZ/BlockGate.placements.name.holdTime=Hold Time
+entities.DZ/BlockGate.placements.name.timerDuration=Timer Duration
+
+# Book Trigger
+entities.DZ/BookTrigger.placements.name.book_trigger=Book Trigger
+entities.DZ/BookTrigger.placements.name.width=Width
+entities.DZ/BookTrigger.placements.name.height=Height
+
+# Boss Arena Trigger
+triggers.DZ/BossArenaTrigger.placements.name.boss_arena_trigger=Boss Arena Trigger
+triggers.DZ/BossArenaTrigger.placements.name.kirbyMode=Kirby Mode
+triggers.DZ/BossArenaTrigger.placements.name.showUI=Show UI
+triggers.DZ/BossArenaTrigger.placements.name.persistent=Persistent
+triggers.DZ/BossArenaTrigger.placements.name.trackBosses=Track Bosses
+triggers.DZ/BossArenaTrigger.placements.name.healOnEnter=Heal On Enter
+triggers.DZ/BossArenaTrigger.placements.name.maxHP=Max HP
+triggers.DZ/BossArenaTrigger.placements.name.displayMode=Display Mode
+triggers.DZ/BossArenaTrigger.placements.name.healAmount=Heal Amount
+
+# Boss Soul Barrier
+entities.DZ/BossSoulBarrier.placements.name.boss_soul_barrier=Boss Soul Barrier
+entities.DZ/BossSoulBarrier.placements.name.barrierId=Barrier Id
+entities.DZ/BossSoulBarrier.placements.name.breakAfterCutscene=Break After Cutscene
+entities.DZ/BossSoulBarrier.placements.name.bossType=Boss Type
+
+# Bounty Board
+entities.DZ/BountyBoard.placements.name.bounty_board=Bounty Board
+entities.DZ/BountyBoard.placements.name.bountyName=Bounty Name
+entities.DZ/BountyBoard.placements.name.enemyType=Enemy Type
+entities.DZ/BountyBoard.placements.name.bountyReward=Bounty Reward
+entities.DZ/BountyBoard.placements.name.enemyCount=Enemy Count
+
+# Bounty Reward
+entities.DZ/BountyReward.placements.name.bounty_reward=Bounty Reward
+entities.DZ/BountyReward.placements.name.bountyName=Bounty Name
+entities.DZ/BountyReward.placements.name.enemyType=Enemy Type
+entities.DZ/BountyReward.placements.name.bountyReward=Bounty Reward
+entities.DZ/BountyReward.placements.name.enemyCount=Enemy Count
+
+# Bridge
+entities.DZ/Bridge.placements.name.bridge=Bridge
+
+# Bridge Freeze Trigger
+triggers.DZ/BridgeFreezeTrigger.placements.name.bridge_freeze_trigger=Bridge Freeze Trigger
+triggers.DZ/BridgeFreezeTrigger.placements.name.freezeStrength=Freeze Strength
+
+# Bronto Burt
+entities.DZ/BrontoBurt.placements.name.bronto_burt=Bronto Burt
+
+# Butterscotch Pie
+entities.DZ/ButterscotchPie.placements.name.butterscotch_pie=Butterscotch Pie
+entities.DZ/ButterscotchPie.placements.name.dialogueId=Dialogue Id
+entities.DZ/ButterscotchPie.placements.name.canInteract=Can Interact
+entities.DZ/ButterscotchPie.placements.name.hasPie=Has Pie
+entities.DZ/ButterscotchPie.placements.name.healAmount=Heal Amount
+entities.DZ/ButterscotchPie.placements.name.cookDuration=Cook Duration
+
+# Camera Shake Trigger
+triggers.DZ/CameraShakeTrigger.placements.name.camera_shake_trigger=Camera Shake Trigger
+triggers.DZ/CameraShakeTrigger.placements.name.onlyOnce=Only Once
+triggers.DZ/CameraShakeTrigger.placements.name.intensity=Intensity
+triggers.DZ/CameraShakeTrigger.placements.name.duration=Duration
+
+# Card Shark
+entities.DZ/CardShark.placements.name.card_shark=Card Shark
+entities.DZ/CardShark.placements.name.health=Health
+entities.DZ/CardShark.placements.name.cardsPerThrow=Cards Per Throw
+entities.DZ/CardShark.placements.name.detectionRange=Detection Range
+entities.DZ/CardShark.placements.name.throwInterval=Throw Interval
+entities.DZ/CardShark.placements.name.patrolDistance=Patrol Distance
+
+# Cassette
+entities.DZ/Cassette.placements.name.cassette=Cassette
+entities.DZ/Cassette.placements.name.spritePath=Sprite Path
+entities.DZ/Cassette.placements.name.unlockText=Unlock Text
+entities.DZ/Cassette.placements.name.bSideToUnlock=B Side To Unlock
+
+# Cassette Tape
+entities.DZ/CassetteTape.placements.name.cassette_tape=Cassette Tape
+entities.DZ/CassetteTape.placements.name.tapeId=Tape Id
+entities.DZ/CassetteTape.placements.name.audioEvent=Audio Event
+entities.DZ/CassetteTape.placements.name.displayName=Display Name
+entities.DZ/CassetteTape.placements.name.description=Description
+entities.DZ/CassetteTape.placements.name.autoPlay=Auto Play
+entities.DZ/CassetteTape.placements.name.oneTimeUse=One Time Use
+entities.DZ/CassetteTape.placements.name.remixIndex=Remix Index
+
+# Celestial Hypergod Form
+entities.DZ/CelestialHypergodForm.placements.name.celestial_hypergod_form=Celestial Hypergod Form
+
+# Ceremony Flame
+entities.DZ/CeremonyFlame.placements.name.ceremony_flame=Ceremony Flame
+entities.DZ/CeremonyFlame.placements.name.isSource=Is Source
+entities.DZ/CeremonyFlame.placements.name.canSpread=Can Spread
+entities.DZ/CeremonyFlame.placements.name.spreadSpeed=Spread Speed
+entities.DZ/CeremonyFlame.placements.name.maxSpreadDistance=Max Spread Distance
+
+# CH18 Outro Trigger
+triggers.DZ/CH18OutroTrigger.placements.name.ch18_outro_trigger=CH18 Outro Trigger
+triggers.DZ/CH18OutroTrigger.placements.name.triggerOnce=Trigger Once
+
+# Chapter16 Cutscene Trigger
+triggers.DZ/Chapter16CutsceneTrigger.placements.name.chapter16_cutscene_trigger=Chapter16 Cutscene Trigger
+triggers.DZ/Chapter16CutsceneTrigger.placements.name.cutsceneId=Cutscene Id
+triggers.DZ/Chapter16CutsceneTrigger.placements.name.dialogKey=Dialog Key
+triggers.DZ/Chapter16CutsceneTrigger.placements.name.triggerOnce=Trigger Once
+triggers.DZ/Chapter16CutsceneTrigger.placements.name.playerOnly=Player Only
+triggers.DZ/Chapter16CutsceneTrigger.placements.name.autoStart=Auto Start
+triggers.DZ/Chapter16CutsceneTrigger.placements.name.enableEffects=Enable Effects
+triggers.DZ/Chapter16CutsceneTrigger.placements.name.enableTentacles=Enable Tentacles
+triggers.DZ/Chapter16CutsceneTrigger.placements.name.madnessLevel=Madness Level
+triggers.DZ/Chapter16CutsceneTrigger.placements.name.corruptionLevel=Corruption Level
+
+# Chapter16 Dialog Trigger
+triggers.DZ/Chapter16DialogTrigger.placements.name.chapter16_dialog_trigger=Chapter16 Dialog Trigger
+triggers.DZ/Chapter16DialogTrigger.placements.name.cutsceneId=Cutscene Id
+triggers.DZ/Chapter16DialogTrigger.placements.name.dialogKey=Dialog Key
+triggers.DZ/Chapter16DialogTrigger.placements.name.triggerOnce=Trigger Once
+triggers.DZ/Chapter16DialogTrigger.placements.name.playerOnly=Player Only
+triggers.DZ/Chapter16DialogTrigger.placements.name.autoStart=Auto Start
+triggers.DZ/Chapter16DialogTrigger.placements.name.enableEffects=Enable Effects
+triggers.DZ/Chapter16DialogTrigger.placements.name.enableTentacles=Enable Tentacles
+triggers.DZ/Chapter16DialogTrigger.placements.name.madnessLevel=Madness Level
+triggers.DZ/Chapter16DialogTrigger.placements.name.corruptionLevel=Corruption Level
+
+# Chapter16 Effects Trigger
+triggers.DZ/Chapter16EffectsTrigger.placements.name.chapter16_effects_trigger=Chapter16 Effects Trigger
+triggers.DZ/Chapter16EffectsTrigger.placements.name.cutsceneId=Cutscene Id
+triggers.DZ/Chapter16EffectsTrigger.placements.name.dialogKey=Dialog Key
+triggers.DZ/Chapter16EffectsTrigger.placements.name.triggerOnce=Trigger Once
+triggers.DZ/Chapter16EffectsTrigger.placements.name.playerOnly=Player Only
+triggers.DZ/Chapter16EffectsTrigger.placements.name.autoStart=Auto Start
+triggers.DZ/Chapter16EffectsTrigger.placements.name.enableEffects=Enable Effects
+triggers.DZ/Chapter16EffectsTrigger.placements.name.enableTentacles=Enable Tentacles
+triggers.DZ/Chapter16EffectsTrigger.placements.name.madnessLevel=Madness Level
+triggers.DZ/Chapter16EffectsTrigger.placements.name.corruptionLevel=Corruption Level
+
+# Chara Chaser
+entities.DZ/CharaChaser.placements.name.chara_chaser=Chara Chaser
+entities.DZ/CharaChaser.placements.name.speedMultiplier=Speed Multiplier
+
+# Chara Chaser End
+entities.DZ/CharaChaserEnd.placements.name.chara_chaser_end=Chara Chaser End
+
+# Character Refill
+entities.DZ/CharacterRefill.placements.name.character_refill=Character Refill
+entities.DZ/CharacterRefill.placements.name.customSpritePath=Custom Sprite Path
+entities.DZ/CharacterRefill.placements.name.customSoundEvent=Custom Sound Event
+entities.DZ/CharacterRefill.placements.name.oneUse=One Use
+entities.DZ/CharacterRefill.placements.name.characterModeOnly=Character Mode Only
+entities.DZ/CharacterRefill.placements.name.refillStamina=Refill Stamina
+entities.DZ/CharacterRefill.placements.name.characterType=Character Type
+entities.DZ/CharacterRefill.placements.name.dashCount=Dash Count
+
+# Chara Dummy
+entities.DZ/CharaDummy.placements.name.chara_dummy=Chara Dummy
+
+# Chara Dummy Attacher
+entities.DZ/CharaDummyAttacher.placements.name.chara_dummy_attacher=Chara Dummy Attacher
+entities.DZ/CharaDummyAttacher.placements.name.hoverOffsetX=Hover Offset X
+entities.DZ/CharaDummyAttacher.placements.name.hoverOffsetY=Hover Offset Y
+entities.DZ/CharaDummyAttacher.placements.name.hoverSpeed=Hover Speed
+entities.DZ/CharaDummyAttacher.placements.name.hoverAmplitude=Hover Amplitude
+
+# Chara Dummy Attacher Trigger
+triggers.DZ/CharaDummyAttacherTrigger.placements.name.chara_dummy_attacher_trigger=Chara Dummy Attacher Trigger
+triggers.DZ/CharaDummyAttacherTrigger.placements.name.once=Once
+triggers.DZ/CharaDummyAttacherTrigger.placements.name.removeOnExit=Remove On Exit
+triggers.DZ/CharaDummyAttacherTrigger.placements.name.hoverOffsetX=Hover Offset X
+triggers.DZ/CharaDummyAttacherTrigger.placements.name.hoverOffsetY=Hover Offset Y
+triggers.DZ/CharaDummyAttacherTrigger.placements.name.hoverSpeed=Hover Speed
+triggers.DZ/CharaDummyAttacherTrigger.placements.name.hoverAmplitude=Hover Amplitude
+
+# Chara Flower Vines
+entities.DZ/CharaFlowerVines.placements.name.chara_flower_vines=Chara Flower Vines
+
+# Chara Mirror
+entities.DZ/CharaMirror.placements.name.chara_mirror=Chara Mirror
+
+# Chara Zoom Appear Trigger
+triggers.DZ/CharaZoomAppearTrigger.placements.name.chara_zoom_appear_trigger=Chara Zoom Appear Trigger
+triggers.DZ/CharaZoomAppearTrigger.placements.name.onlyOnce=Only Once
+triggers.DZ/CharaZoomAppearTrigger.placements.name.affectChara=Affect Chara
+triggers.DZ/CharaZoomAppearTrigger.placements.name.affectBadeline=Affect Badeline
+triggers.DZ/CharaZoomAppearTrigger.placements.name.showOnEnter=Show On Enter
+triggers.DZ/CharaZoomAppearTrigger.placements.name.hideOnLeave=Hide On Leave
+triggers.DZ/CharaZoomAppearTrigger.placements.name.resetZoomOnLeave=Reset Zoom On Leave
+triggers.DZ/CharaZoomAppearTrigger.placements.name.targetZoom=Target Zoom
+triggers.DZ/CharaZoomAppearTrigger.placements.name.zoomSpeed=Zoom Speed
+
+# Cherry
+entities.DZ/Cherry.placements.name.cherry=Cherry
+
+# Clutter Block
+entities.DZ/ClutterBlock.placements.name.clutter_block=Clutter Block
+
+# Clutter Door
+entities.DZ/ClutterDoor.placements.name.clutter_door=Clutter Door
+
+# Clutter Switch
+entities.DZ/ClutterSwitch.placements.name.clutter_switch=Clutter Switch
+
+# Code Breaker
+entities.DZ/CodeBreaker.placements.name.code_breaker=Code Breaker
+entities.DZ/CodeBreaker.placements.name.code=Code
+entities.DZ/CodeBreaker.placements.name.inputTimeout=Input Timeout
+
+# Collectible Gem
+entities.DZ/CollectibleGem.placements.name.collectible_gem=Collectible Gem
+
+# Color Shift Trigger
+triggers.DZ/ColorShiftTrigger.placements.name.color_shift_trigger=Color Shift Trigger
+triggers.DZ/ColorShiftTrigger.placements.name.onlyOnce=Only Once
+triggers.DZ/ColorShiftTrigger.placements.name.intensity=Intensity
+triggers.DZ/ColorShiftTrigger.placements.name.duration=Duration
+
+# Companion NPC
+entities.DZ/CompanionNPC.placements.name.companion_npc=Companion NPC
+entities.DZ/CompanionNPC.placements.name.companionType=Companion Type
+entities.DZ/CompanionNPC.placements.name.sprite=Sprite
+entities.DZ/CompanionNPC.placements.name.canPressSwitch=Can Press Switch
+entities.DZ/CompanionNPC.placements.name.followSpeed=Follow Speed
+entities.DZ/CompanionNPC.placements.name.followDistance=Follow Distance
+
+# Core Fragment
+entities.DZ/CoreFragment.placements.name.core_fragment=Core Fragment
+entities.DZ/CoreFragment.placements.name.fragmentId=Fragment Id
+entities.DZ/CoreFragment.placements.name.requiresProtection=Requires Protection
+entities.DZ/CoreFragment.placements.name.fragmentIndex=Fragment Index
+entities.DZ/CoreFragment.placements.name.requiredShields=Required Shields
+
+# Corruption Crystal
+entities.DZ/CorruptionCrystal.placements.name.corruption_crystal=Corruption Crystal
+entities.DZ/CorruptionCrystal.placements.name.health=Health
+entities.DZ/CorruptionCrystal.placements.name.corruptionRadius=Corruption Radius
+entities.DZ/CorruptionCrystal.placements.name.spreadSpeed=Spread Speed
+
+# Cowboy Target Practice
+entities.DZ/CowboyTargetPractice.placements.name.cowboy_target_practice=Cowboy Target Practice
+entities.DZ/CowboyTargetPractice.placements.name.practiceType=Practice Type
+entities.DZ/CowboyTargetPractice.placements.name.movingTargets=Moving Targets
+entities.DZ/CowboyTargetPractice.placements.name.requiredTargets=Required Targets
+entities.DZ/CowboyTargetPractice.placements.name.timeLimit=Time Limit
+
+# Credits Trigger Part1
+entities.DZ/CreditsTriggerPart1.placements.name.credits_trigger_part1=Credits Trigger Part1
+
+# Credits Trigger Part2
+entities.DZ/CreditsTriggerPart2.placements.name.credits_trigger_part2=Credits Trigger Part2
+
+# Crown Bearing
+entities.DZ/CrownBearing.placements.name.crown_bearing=Crown Bearing
+entities.DZ/CrownBearing.placements.name.isActive=Is Active
+entities.DZ/CrownBearing.placements.name.gravityRadius=Gravity Radius
+entities.DZ/CrownBearing.placements.name.gravityStrength=Gravity Strength
+
+# Crown Bearing Controller
+entities.DZ/CrownBearingController.placements.name.crown_bearing_controller=Crown Bearing Controller
+entities.DZ/CrownBearingController.placements.name.isActive=Is Active
+entities.DZ/CrownBearingController.placements.name.gravityRadius=Gravity Radius
+entities.DZ/CrownBearingController.placements.name.gravityStrength=Gravity Strength
+
+# Crystal Heart Gate
+entities.DZ/CrystalHeartGate.placements.name.crystal_heart_gate=Crystal Heart Gate
+entities.DZ/CrystalHeartGate.placements.name.width=Width
+entities.DZ/CrystalHeartGate.placements.name.height=Height
+
+# Custom NPC
+entities.DZ/CustomNPC.placements.name.custom_npc=Custom NPC
+
+# Damage Trigger
+triggers.DZ/DamageTrigger.placements.name.damage_trigger=Damage Trigger
+triggers.DZ/DamageTrigger.placements.name.kirbyMode=Kirby Mode
+triggers.DZ/DamageTrigger.placements.name.showUI=Show UI
+triggers.DZ/DamageTrigger.placements.name.persistent=Persistent
+triggers.DZ/DamageTrigger.placements.name.trackBosses=Track Bosses
+triggers.DZ/DamageTrigger.placements.name.healOnEnter=Heal On Enter
+triggers.DZ/DamageTrigger.placements.name.maxHP=Max HP
+triggers.DZ/DamageTrigger.placements.name.displayMode=Display Mode
+triggers.DZ/DamageTrigger.placements.name.healAmount=Heal Amount
+
+# Darkerner Fountain
+entities.DZ/DarkernerFountain.placements.name.darkerner_fountain=Darkerner Fountain
+entities.DZ/DarkernerFountain.placements.name.fountainType=Fountain Type
+entities.DZ/DarkernerFountain.placements.name.requiresFlag=Requires Flag
+entities.DZ/DarkernerFountain.placements.name.soundEffect=Sound Effect
+entities.DZ/DarkernerFountain.placements.name.autoActivate=Auto Activate
+entities.DZ/DarkernerFountain.placements.name.transformsPlayer=Transforms Player
+entities.DZ/DarkernerFountain.placements.name.persistentEffect=Persistent Effect
+entities.DZ/DarkernerFountain.placements.name.particleCount=Particle Count
+entities.DZ/DarkernerFountain.placements.name.activationRadius=Activation Radius
+entities.DZ/DarkernerFountain.placements.name.intensity=Intensity
+entities.DZ/DarkernerFountain.placements.name.duration=Duration
+
+# Dark Matter Enemy
+entities.DZ/DarkMatterEnemy.placements.name.dark_matter_enemy=Dark Matter Enemy
+entities.DZ/DarkMatterEnemy.placements.name.health=Health
+entities.DZ/DarkMatterEnemy.placements.name.minDamage=Min Damage
+entities.DZ/DarkMatterEnemy.placements.name.maxDamage=Max Damage
+entities.DZ/DarkMatterEnemy.placements.name.patrolRadius=Patrol Radius
+
+# Dark Matter Mid Boss
+entities.DZ/DarkMatterMidBoss.placements.name.dark_matter_mid_boss=Dark Matter Mid Boss
+
+# Dark Mirror
+entities.DZ/DarkMirror.placements.name.dark_mirror=Dark Mirror
+entities.DZ/DarkMirror.placements.name.revealsSecret=Reveals Secret
+entities.DZ/DarkMirror.placements.name.health=Health
+
+# Dash Code Gate
+entities.DZ/DashCodeGate.placements.name.dash_code_gate=Dash Code Gate
+
+# Dash Refresh Trigger
+triggers.DZ/DashRefreshTrigger.placements.name.dash_refresh_trigger=Dash Refresh Trigger
+triggers.DZ/DashRefreshTrigger.placements.name.ability=Ability
+triggers.DZ/DashRefreshTrigger.placements.name.action=Action
+triggers.DZ/DashRefreshTrigger.placements.name.onlyOnce=Only Once
+
+# Data Stream
+entities.DZ/DataStream.placements.name.data_stream=Data Stream
+entities.DZ/DataStream.placements.name.streamWidth=Stream Width
+entities.DZ/DataStream.placements.name.streamLength=Stream Length
+entities.DZ/DataStream.placements.name.flowSpeed=Flow Speed
+
+# Defeat Switch Gate
+entities.DZ/DefeatSwitchGate.placements.name.defeat_switch_gate=Defeat Switch Gate
+entities.DZ/DefeatSwitchGate.placements.name.flag=Flag
+entities.DZ/DefeatSwitchGate.placements.name.useGlobalCounts=Use Global Counts
+entities.DZ/DefeatSwitchGate.placements.name.persistent=Persistent
+entities.DZ/DefeatSwitchGate.placements.name.requiredEnemyDefeats=Required Enemy Defeats
+entities.DZ/DefeatSwitchGate.placements.name.requiredBossDefeats=Required Boss Defeats
+
+# Detach Pink Platberry Trigger
+triggers.DZ/DetachPinkPlatberryTrigger.placements.name.detach_pink_platberry_trigger=Detach Pink Platberry Trigger
+triggers.DZ/DetachPinkPlatberryTrigger.placements.name.global=Global
+
+# Dialog NPC
+entities.DZ/DialogNPC.placements.name.dialog_npc=Dialog NPC
+
+# Dialog Trigger
+triggers.DZ/DialogTrigger.placements.name.dialog_trigger=Dialog Trigger
+
+# Digital Portal
+entities.DZ/DigitalPortal.placements.name.digital_portal=Digital Portal
+entities.DZ/DigitalPortal.placements.name.destinationId=Destination Id
+entities.DZ/DigitalPortal.placements.name.isTwoWay=Is Two Way
+entities.DZ/DigitalPortal.placements.name.transportDelay=Transport Delay
+
+# Disable Ability Trigger
+triggers.DZ/DisableAbilityTrigger.placements.name.disable_ability_trigger=Disable Ability Trigger
+triggers.DZ/DisableAbilityTrigger.placements.name.ability=Ability
+triggers.DZ/DisableAbilityTrigger.placements.name.action=Action
+triggers.DZ/DisableAbilityTrigger.placements.name.onlyOnce=Only Once
+
+# Distortion Field
+triggers.DZ/DistortionField.placements.name.distortion_field=Distortion Field
+triggers.DZ/DistortionField.placements.name.intensity=Intensity
+
+# Diving Board
+entities.DZ/DivingBoard.placements.name.diving_board=Diving Board
+entities.DZ/DivingBoard.placements.name.launchSpeed=Launch Speed
+
+# Dodge Credit Minigame
+entities.DZ/DodgeCreditMinigame.placements.name.dodge_credit_minigame=Dodge Credit Minigame
+
+# Double Dash Trigger
+entities.DZ/DoubleDashTrigger.placements.name.double_dash_trigger=Double Dash Trigger
+
+# Dream Orb
+entities.DZ/DreamOrb.placements.name.dream_orb=Dream Orb
+
+# Echo Flower Entity
+entities.DZ/EchoFlowerEntity.placements.name.echo_flower_entity=Echo Flower Entity
+entities.DZ/EchoFlowerEntity.placements.name.maxEchoes=Max Echoes
+entities.DZ/EchoFlowerEntity.placements.name.echoDelay=Echo Delay
+entities.DZ/EchoFlowerEntity.placements.name.echoSpeed=Echo Speed
+entities.DZ/EchoFlowerEntity.placements.name.cooldownTime=Cooldown Time
+
+# Echo Orb
+entities.DZ/EchoOrb.placements.name.echo_orb=Echo Orb
+entities.DZ/EchoOrb.placements.name.isDangerous=Is Dangerous
+entities.DZ/EchoOrb.placements.name.isSolid=Is Solid
+entities.DZ/EchoOrb.placements.name.mirrorDelay=Mirror Delay
+entities.DZ/EchoOrb.placements.name.fadeTime=Fade Time
+
+# Effect Trigger
+triggers.DZ/EffectTrigger.placements.name.effect_trigger=Effect Trigger
+
+# Elemental Effect Trigger
+triggers.DZ/ElementalEffectTrigger.placements.name.elemental_effect_trigger=Elemental Effect Trigger
+triggers.DZ/ElementalEffectTrigger.placements.name.effectType=Effect Type
+triggers.DZ/ElementalEffectTrigger.placements.name.elementType=Element Type
+triggers.DZ/ElementalEffectTrigger.placements.name.triggerOnEnter=Trigger On Enter
+triggers.DZ/ElementalEffectTrigger.placements.name.triggerOnExit=Trigger On Exit
+triggers.DZ/ElementalEffectTrigger.placements.name.oneUse=One Use
+triggers.DZ/ElementalEffectTrigger.placements.name.intensity=Intensity
+triggers.DZ/ElementalEffectTrigger.placements.name.radius=Radius
+triggers.DZ/ElementalEffectTrigger.placements.name.duration=Duration
+
+# Elevator Call Button
+entities.DZ/ElevatorCallButton.placements.name.elevator_call_button=Elevator Call Button
+entities.DZ/ElevatorCallButton.placements.name.elevatorId=Elevator Id
+entities.DZ/ElevatorCallButton.placements.name.moveSpeed=Move Speed
+entities.DZ/ElevatorCallButton.placements.name.waitTime=Wait Time
+
+# Els Glitch Rainbow Blackhole Trigger
+triggers.DZ/ElsGlitchRainbowBlackholeTrigger.placements.name.els_glitch_rainbow_blackhole_trigger=Els Glitch Rainbow Blackhole Trigger
+triggers.DZ/ElsGlitchRainbowBlackholeTrigger.placements.name.glitchDuration=Glitch Duration
+
+# Ember Wisp
+entities.DZ/EmberWisp.placements.name.ember_wisp=Ember Wisp
+entities.DZ/EmberWisp.placements.name.health=Health
+entities.DZ/EmberWisp.placements.name.floatSpeed=Float Speed
+entities.DZ/EmberWisp.placements.name.igniteRadius=Ignite Radius
+entities.DZ/EmberWisp.placements.name.burnDuration=Burn Duration
+
+# Enemy
+entities.DZ/Enemy.placements.name.enemy=Enemy
+
+# Energy Barrier
+entities.DZ/EnergyBarrier.placements.name.energy_barrier=Energy Barrier
+
+# Energy Drink
+entities.DZ/EnergyDrink.placements.name.energy_drink=Energy Drink
+
+# Enhanced Bird NPC
+entities.DZ/EnhancedBirdNPC.placements.name.enhanced_bird_npc=Enhanced Bird NPC
+entities.DZ/EnhancedBirdNPC.placements.name.allowPlayerInteraction=Allow Player Interaction
+
+# Enhanced Dialog NPC
+entities.DZ/EnhancedDialogNPC.placements.name.enhanced_dialog_npc=Enhanced Dialog NPC
+
+# Enhanced Power Generator
+entities.DZ/EnhancedPowerGenerator.placements.name.enhanced_power_generator=Enhanced Power Generator
+
+# Entity Reskin Trigger
+triggers.DZ/EntityReskinTrigger.placements.name.entity_reskin_trigger=Entity Reskin Trigger
+triggers.DZ/EntityReskinTrigger.placements.name.entityFullName=Entity Full Name
+triggers.DZ/EntityReskinTrigger.placements.name.newSpriteID=New Sprite ID
+triggers.DZ/EntityReskinTrigger.placements.name.oneUse=One Use
+triggers.DZ/EntityReskinTrigger.placements.name.entityIndex=Entity Index
+
+# Explosive Barrel
+entities.DZ/ExplosiveBarrel.placements.name.explosive_barrel=Explosive Barrel
+entities.DZ/ExplosiveBarrel.placements.name.health=Health
+entities.DZ/ExplosiveBarrel.placements.name.detectionRange=Detection Range
+entities.DZ/ExplosiveBarrel.placements.name.explosionRadius=Explosion Radius
+entities.DZ/ExplosiveBarrel.placements.name.fuseTime=Fuse Time
+
+# Eye Bomb
+entities.DZ/EyeBomb.placements.name.eye_bomb=Eye Bomb
+
+# Fake Heart Gem
+entities.DZ/FakeHeartGem.placements.name.fake_heart_gem=Fake Heart Gem
+entities.DZ/FakeHeartGem.placements.name.collectMessage=Collect Message
+entities.DZ/FakeHeartGem.placements.name.persistent=Persistent
+entities.DZ/FakeHeartGem.placements.name.respawnTime=Respawn Time
+
+# Fallen Leaf Pile
+entities.DZ/FallenLeafPile.placements.name.fallen_leaf_pile=Fallen Leaf Pile
+entities.DZ/FallenLeafPile.placements.name.enemyType=Enemy Type
+entities.DZ/FallenLeafPile.placements.name.collectibleType=Collectible Type
+entities.DZ/FallenLeafPile.placements.name.detectionRange=Detection Range
+
+# Falling Block Trigger
+entities.DZ/FallingBlockTrigger.placements.name.falling_block_trigger=Falling Block Trigger
+
+# Farewell Gate
+entities.DZ/FarewellGate.placements.name.farewell_gate=Farewell Gate
+
+# Final Core
+entities.DZ/FinalCore.placements.name.final_core=Final Core
+entities.DZ/FinalCore.placements.name.health=Health
+entities.DZ/FinalCore.placements.name.attackInterval=Attack Interval
+
+# Firewall Barrier
+entities.DZ/FirewallBarrier.placements.name.firewall_barrier=Firewall Barrier
+entities.DZ/FirewallBarrier.placements.name.startActive=Start Active
+entities.DZ/FirewallBarrier.placements.name.maxEnergy=Max Energy
+entities.DZ/FirewallBarrier.placements.name.energyDrain=Energy Drain
+
+# Firewall Switch
+entities.DZ/FirewallSwitch.placements.name.firewall_switch=Firewall Switch
+entities.DZ/FirewallSwitch.placements.name.startActive=Start Active
+entities.DZ/FirewallSwitch.placements.name.maxEnergy=Max Energy
+entities.DZ/FirewallSwitch.placements.name.energyDrain=Energy Drain
+
+# Flame Cerberus
+entities.DZ/FlameCerberus.placements.name.flame_cerberus=Flame Cerberus
+entities.DZ/FlameCerberus.placements.name.headHealth=Head Health
+entities.DZ/FlameCerberus.placements.name.detectionRange=Detection Range
+entities.DZ/FlameCerberus.placements.name.moveSpeed=Move Speed
+
+# Flame Extinguisher
+entities.DZ/FlameExtinguisher.placements.name.flame_extinguisher=Flame Extinguisher
+entities.DZ/FlameExtinguisher.placements.name.isSource=Is Source
+entities.DZ/FlameExtinguisher.placements.name.canSpread=Can Spread
+entities.DZ/FlameExtinguisher.placements.name.spreadSpeed=Spread Speed
+entities.DZ/FlameExtinguisher.placements.name.maxSpreadDistance=Max Spread Distance
+
+# Flame Geyser
+entities.DZ/FlameGeyser.placements.name.flame_geyser=Flame Geyser
+entities.DZ/FlameGeyser.placements.name.eruptInterval=Erupt Interval
+entities.DZ/FlameGeyser.placements.name.eruptDuration=Erupt Duration
+entities.DZ/FlameGeyser.placements.name.warningTime=Warning Time
+entities.DZ/FlameGeyser.placements.name.flameHeight=Flame Height
+entities.DZ/FlameGeyser.placements.name.damageRadius=Damage Radius
+
+# Fling Asriel God
+entities.DZ/FlingAsrielGod.placements.name.fling_asriel_god=Fling Asriel God
+
+# Fling Bird Intro
+entities.DZ/FlingBirdIntro.placements.name.fling_bird_intro=Fling Bird Intro
+
+# Fling Bird Mod
+entities.DZ/FlingBirdMod.placements.name.fling_bird_mod=Fling Bird Mod
+
+# Fling Papyrus
+entities.DZ/FlingPapyrus.placements.name.fling_papyrus=Fling Papyrus
+
+# Fling Sans
+entities.DZ/FlingSans.placements.name.fling_sans=Fling Sans
+
+# Flowey Intro Trigger
+entities.DZ/FloweyIntroTrigger.placements.name.flowey_intro_trigger=Flowey Intro Trigger
+entities.DZ/FloweyIntroTrigger.placements.name.startHidden=Start Hidden
+entities.DZ/FloweyIntroTrigger.placements.name.autoEmerge=Auto Emerge
+entities.DZ/FloweyIntroTrigger.placements.name.emergeDelay=Emerge Delay
+
+# Flowey NPC
+entities.DZ/FloweyNPC.placements.name.flowey_npc=Flowey NPC
+entities.DZ/FloweyNPC.placements.name.startHidden=Start Hidden
+entities.DZ/FloweyNPC.placements.name.autoEmerge=Auto Emerge
+entities.DZ/FloweyNPC.placements.name.emergeDelay=Emerge Delay
+
+# Flowey Trap
+entities.DZ/FloweyTrap.placements.name.flowey_trap=Flowey Trap
+entities.DZ/FloweyTrap.placements.name.health=Health
+entities.DZ/FloweyTrap.placements.name.pelletCount=Pellet Count
+entities.DZ/FloweyTrap.placements.name.detectionRange=Detection Range
+entities.DZ/FloweyTrap.placements.name.retractRange=Retract Range
+entities.DZ/FloweyTrap.placements.name.pelletSpeed=Pellet Speed
+entities.DZ/FloweyTrap.placements.name.attackInterval=Attack Interval
+
+# Flying Bird
+entities.DZ/FlyingBird.placements.name.flying_bird=Flying Bird
+
+# Fountain Spirit
+entities.DZ/FountainSpirit.placements.name.fountain_spirit=Fountain Spirit
+entities.DZ/FountainSpirit.placements.name.healAmount=Heal Amount
+entities.DZ/FountainSpirit.placements.name.buffDuration=Buff Duration
+
+# Galacta Knight Clone
+entities.DZ/GalactaKnightClone.placements.name.galacta_knight_clone=Galacta Knight Clone
+
+# Galactic Knight Clone
+entities.DZ/GalacticKnightClone.placements.name.galactic_knight_clone=Galactic Knight Clone
+
+# Ghostly Echo
+entities.DZ/GhostlyEcho.placements.name.ghostly_echo=Ghostly Echo
+entities.DZ/GhostlyEcho.placements.name.isDangerous=Is Dangerous
+entities.DZ/GhostlyEcho.placements.name.isSolid=Is Solid
+entities.DZ/GhostlyEcho.placements.name.mirrorDelay=Mirror Delay
+entities.DZ/GhostlyEcho.placements.name.fadeTime=Fade Time
+
+# Ghost Replay
+entities.DZ/GhostReplay.placements.name.ghost_replay=Ghost Replay
+entities.DZ/GhostReplay.placements.name.companionType=Companion Type
+entities.DZ/GhostReplay.placements.name.sprite=Sprite
+entities.DZ/GhostReplay.placements.name.canPressSwitch=Can Press Switch
+entities.DZ/GhostReplay.placements.name.followSpeed=Follow Speed
+entities.DZ/GhostReplay.placements.name.followDistance=Follow Distance
+
+# Glitch Block
+entities.DZ/GlitchBlock.placements.name.glitch_block=Glitch Block
+entities.DZ/GlitchBlock.placements.name.isPattern=Is Pattern
+entities.DZ/GlitchBlock.placements.name.stability=Stability
+entities.DZ/GlitchBlock.placements.name.glitchInterval=Glitch Interval
+entities.DZ/GlitchBlock.placements.name.visibleTime=Visible Time
+entities.DZ/GlitchBlock.placements.name.invisibleTime=Invisible Time
+
+# Glitch Block Controller
+entities.DZ/GlitchBlockController.placements.name.glitch_block_controller=Glitch Block Controller
+entities.DZ/GlitchBlockController.placements.name.isPattern=Is Pattern
+entities.DZ/GlitchBlockController.placements.name.stability=Stability
+entities.DZ/GlitchBlockController.placements.name.glitchInterval=Glitch Interval
+entities.DZ/GlitchBlockController.placements.name.visibleTime=Visible Time
+entities.DZ/GlitchBlockController.placements.name.invisibleTime=Invisible Time
+
+# Glitch Glider
+entities.DZ/GlitchGlider.placements.name.glitch_glider=Glitch Glider
+entities.DZ/GlitchGlider.placements.name.glitchColor1=Glitch Color1
+entities.DZ/GlitchGlider.placements.name.glitchColor2=Glitch Color2
+entities.DZ/GlitchGlider.placements.name.throwSpeed=Throw Speed
+entities.DZ/GlitchGlider.placements.name.teleportRange=Teleport Range
+
+# Gold Block
+entities.DZ/GoldBlock.placements.name.gold_block=Gold Block
+
+# Goldenstrawberry
+entities.DZ/Goldenstrawberry.placements.name.goldenstrawberry=Goldenstrawberry
+
+# Gondola Mod Darkness
+entities.DZ/GondolaModDarkness.placements.name.gondola_mod_darkness=Gondola Mod Darkness
+entities.DZ/GondolaModDarkness.placements.name.alpha=Alpha
+entities.DZ/GondolaModDarkness.placements.name.targetAlpha=Target Alpha
+entities.DZ/GondolaModDarkness.placements.name.fadeSpeed=Fade Speed
+
+# Gooey Dummy
+entities.DZ/GooeyDummy.placements.name.gooey_dummy=Gooey Dummy
+
+# Gordo
+entities.DZ/Gordo.placements.name.gordo=Gordo
+
+# Gravity Zone Trigger
+triggers.DZ/GravityZoneTrigger.placements.name.gravity_zone_trigger=Gravity Zone Trigger
+triggers.DZ/GravityZoneTrigger.placements.name.ability=Ability
+triggers.DZ/GravityZoneTrigger.placements.name.action=Action
+triggers.DZ/GravityZoneTrigger.placements.name.onlyOnce=Only Once
+
+# Health System Trigger
+triggers.DZ/HealthSystemTrigger.placements.name.health_system_trigger=Health System Trigger
+triggers.DZ/HealthSystemTrigger.placements.name.kirbyMode=Kirby Mode
+triggers.DZ/HealthSystemTrigger.placements.name.showUI=Show UI
+triggers.DZ/HealthSystemTrigger.placements.name.persistent=Persistent
+triggers.DZ/HealthSystemTrigger.placements.name.trackBosses=Track Bosses
+triggers.DZ/HealthSystemTrigger.placements.name.healOnEnter=Heal On Enter
+triggers.DZ/HealthSystemTrigger.placements.name.maxHP=Max HP
+triggers.DZ/HealthSystemTrigger.placements.name.displayMode=Display Mode
+triggers.DZ/HealthSystemTrigger.placements.name.healAmount=Heal Amount
+
+# Heal Trigger
+triggers.DZ/HealTrigger.placements.name.heal_trigger=Heal Trigger
+triggers.DZ/HealTrigger.placements.name.kirbyMode=Kirby Mode
+triggers.DZ/HealTrigger.placements.name.showUI=Show UI
+triggers.DZ/HealTrigger.placements.name.persistent=Persistent
+triggers.DZ/HealTrigger.placements.name.trackBosses=Track Bosses
+triggers.DZ/HealTrigger.placements.name.healOnEnter=Heal On Enter
+triggers.DZ/HealTrigger.placements.name.maxHP=Max HP
+triggers.DZ/HealTrigger.placements.name.displayMode=Display Mode
+triggers.DZ/HealTrigger.placements.name.healAmount=Heal Amount
+
+# Heart Door Mod
+entities.DZ/HeartDoorMod.placements.name.heart_door_mod=Heart Door Mod
+entities.DZ/HeartDoorMod.placements.name.width=Width
+
+# Heart Gem
+entities.DZ/HeartGem.placements.name.heart_gem=Heart Gem
+entities.DZ/HeartGem.placements.name.customSfx=Custom Sfx
+entities.DZ/HeartGem.placements.name.fake=Fake
+entities.DZ/HeartGem.placements.name.astral=Astral
+entities.DZ/HeartGem.placements.name.sevenbirdFlyby=Sevenbird Flyby
+entities.DZ/HeartGem.placements.name.unlockDside=Unlock Dside
+
+# Heart Gem Sattelite
+entities.DZ/HeartGemSattelite.placements.name.heart_gem_sattelite=Heart Gem Sattelite
+
+# Heart Staff
+entities.DZ/HeartStaff.placements.name.heart_staff=Heart Staff
+entities.DZ/HeartStaff.placements.name.staffId=Staff Id
+entities.DZ/HeartStaff.placements.name.staffColor=Staff Color
+
+# Heart Staff Door
+entities.DZ/HeartStaffDoor.placements.name.heart_staff_door=Heart Staff Door
+entities.DZ/HeartStaffDoor.placements.name.startHidden=Start Hidden
+entities.DZ/HeartStaffDoor.placements.name.width=Width
+
+# Heat Wave
+triggers.DZ/HeatWave.placements.name.heat_wave=Heat Wave
+triggers.DZ/HeatWave.placements.name.isActive=Is Active
+triggers.DZ/HeatWave.placements.name.maxRadius=Max Radius
+triggers.DZ/HeatWave.placements.name.expansionSpeed=Expansion Speed
+triggers.DZ/HeatWave.placements.name.pushForce=Push Force
+triggers.DZ/HeatWave.placements.name.interval=Interval
+
+# Heat Zone
+triggers.DZ/HeatZone.placements.name.heat_zone=Heat Zone
+triggers.DZ/HeatZone.placements.name.isActive=Is Active
+triggers.DZ/HeatZone.placements.name.maxRadius=Max Radius
+triggers.DZ/HeatZone.placements.name.expansionSpeed=Expansion Speed
+triggers.DZ/HeatZone.placements.name.pushForce=Push Force
+triggers.DZ/HeatZone.placements.name.interval=Interval
+
+# Hidden Block
+entities.DZ/HiddenBlock.placements.name.hidden_block=Hidden Block
+
+# Hopes And Dreams Block
+entities.DZ/HopesAndDreamsBlock.placements.name.hopes_and_dreams_block=Hopes And Dreams Block
+entities.DZ/HopesAndDreamsBlock.placements.name.primaryColor=Primary Color
+entities.DZ/HopesAndDreamsBlock.placements.name.secondaryColor=Secondary Color
+entities.DZ/HopesAndDreamsBlock.placements.name.tertiaryColor=Tertiary Color
+entities.DZ/HopesAndDreamsBlock.placements.name.showStars=Show Stars
+
+# Horse Hitch
+entities.DZ/HorseHitch.placements.name.horse_hitch=Horse Hitch
+entities.DZ/HorseHitch.placements.name.hitchId=Hitch Id
+entities.DZ/HorseHitch.placements.name.destinationId=Destination Id
+entities.DZ/HorseHitch.placements.name.isUnlocked=Is Unlocked
+
+# Horse Hitch Network
+entities.DZ/HorseHitchNetwork.placements.name.horse_hitch_network=Horse Hitch Network
+entities.DZ/HorseHitchNetwork.placements.name.hitchId=Hitch Id
+entities.DZ/HorseHitchNetwork.placements.name.destinationId=Destination Id
+entities.DZ/HorseHitchNetwork.placements.name.isUnlocked=Is Unlocked
+
+# Hot Platform
+entities.DZ/HotPlatform.placements.name.hot_platform=Hot Platform
+entities.DZ/HotPlatform.placements.name.heatRate=Heat Rate
+entities.DZ/HotPlatform.placements.name.coolRate=Cool Rate
+entities.DZ/HotPlatform.placements.name.maxHeat=Max Heat
+
+# Ice Bouncer
+entities.DZ/IceBouncer.placements.name.ice_bouncer=Ice Bouncer
+entities.DZ/IceBouncer.placements.name.iceColor=Ice Color
+entities.DZ/IceBouncer.placements.name.requiresCoreMode=Requires Core Mode
+entities.DZ/IceBouncer.placements.name.dashesGranted=Dashes Granted
+entities.DZ/IceBouncer.placements.name.bounceStrength=Bounce Strength
+
+# Inferno Big Eyeball
+entities.DZ/InfernoBigEyeball.placements.name.inferno_big_eyeball=Inferno Big Eyeball
+
+# Inferno Big Eyeball Shockwave
+entities.DZ/InfernoBigEyeballShockwave.placements.name.inferno_big_eyeball_shockwave=Inferno Big Eyeball Shockwave
+
+# Inferno Eye
+entities.DZ/InfernoEye.placements.name.inferno_eye=Inferno Eye
+
+# Inferno Maddy Gate
+entities.DZ/InfernoMaddyGate.placements.name.inferno_maddy_gate=Inferno Maddy Gate
+entities.DZ/InfernoMaddyGate.placements.name.sprite=Sprite
+entities.DZ/InfernoMaddyGate.placements.name.height=Height
+
+# Inferno Mirror
+entities.DZ/InfernoMirror.placements.name.inferno_mirror=Inferno Mirror
+
+# Inferno Mirror Vortex
+entities.DZ/InfernoMirrorVortex.placements.name.inferno_mirror_vortex=Inferno Mirror Vortex
+entities.DZ/InfernoMirrorVortex.placements.name.colorFrom=Color From
+entities.DZ/InfernoMirrorVortex.placements.name.colorTo=Color To
+entities.DZ/InfernoMirrorVortex.placements.name.flag=Flag
+entities.DZ/InfernoMirrorVortex.placements.name.distortion=Distortion
+entities.DZ/InfernoMirrorVortex.placements.name.width=Width
+entities.DZ/InfernoMirrorVortex.placements.name.height=Height
+
+# Instant Falling Block
+entities.DZ/InstantFallingBlock.placements.name.instant_falling_block=Instant Falling Block
+
+# Interactive Sign
+entities.DZ/InteractiveSign.placements.name.interactive_sign=Interactive Sign
+
+# Invincibility Candy
+entities.DZ/InvincibilityCandy.placements.name.invincibility_candy=Invincibility Candy
+
+# Invincibility Trigger
+triggers.DZ/InvincibilityTrigger.placements.name.invincibility_trigger=Invincibility Trigger
+triggers.DZ/InvincibilityTrigger.placements.name.ability=Ability
+triggers.DZ/InvincibilityTrigger.placements.name.action=Action
+triggers.DZ/InvincibilityTrigger.placements.name.onlyOnce=Only Once
+
+# Judgment Bell
+triggers.DZ/JudgmentBell.placements.name.judgment_bell=Judgment Bell
+triggers.DZ/JudgmentBell.placements.name.canPlayerRing=Can Player Ring
+triggers.DZ/JudgmentBell.placements.name.maxRings=Max Rings
+triggers.DZ/JudgmentBell.placements.name.shockwaveSpeed=Shockwave Speed
+triggers.DZ/JudgmentBell.placements.name.shockwaveRadius=Shockwave Radius
+triggers.DZ/JudgmentBell.placements.name.cooldownTime=Cooldown Time
+
+# King DDD Dummy
+entities.DZ/KingDDDDummy.placements.name.king_ddd_dummy=King DDD Dummy
+
+# Kirb Flag Trigger
+triggers.DZ/KirbFlagTrigger.placements.name.kirb_flag_trigger=Kirb Flag Trigger
+
+# Kirby Mode Toggle Trigger
+triggers.DZ/Kirby_Mode_Toggle_Trigger.placements.name.kirby_mode_toggle_trigger=Kirby Mode Toggle Trigger
+triggers.DZ/Kirby_Mode_Toggle_Trigger.placements.name.initialPower=Initial Power
+
+# Kirby Player Trigger
+triggers.DZ/Kirby_Player_Trigger.placements.name.kirby_player_trigger=Kirby Player Trigger
+triggers.DZ/Kirby_Player_Trigger.placements.name.requiredFlag=Required Flag
+triggers.DZ/Kirby_Player_Trigger.placements.name.initialPower=Initial Power
+triggers.DZ/Kirby_Player_Trigger.placements.name.playSound=Play Sound
+
+# Kirby Damage Trigger
+triggers.DZ/KirbyDamageTrigger.placements.name.kirby_damage_trigger=Kirby Damage Trigger
+triggers.DZ/KirbyDamageTrigger.placements.name.oncePerPlayer=Once Per Player
+triggers.DZ/KirbyDamageTrigger.placements.name.damage=Damage
+triggers.DZ/KirbyDamageTrigger.placements.name.cooldown=Cooldown
+
+# Kirby Dream Block
+entities.DZ/KirbyDreamBlock.placements.name.kirby_dream_block=Kirby Dream Block
+
+# Kirby Dummy
+entities.DZ/KirbyDummy.placements.name.kirby_dummy=Kirby Dummy
+
+# Kirby Hazard
+triggers.DZ/KirbyHazard.placements.name.kirby_hazard=Kirby Hazard
+triggers.DZ/KirbyHazard.placements.name.oncePerPlayer=Once Per Player
+triggers.DZ/KirbyHazard.placements.name.damage=Damage
+triggers.DZ/KirbyHazard.placements.name.cooldown=Cooldown
+
+# Kirby Health Room Controller
+triggers.DZ/KirbyHealthRoomController.placements.name.kirby_health_room_controller=Kirby Health Room Controller
+triggers.DZ/KirbyHealthRoomController.placements.name.enableHealth=Enable Health
+triggers.DZ/KirbyHealthRoomController.placements.name.fullHeal=Full Heal
+triggers.DZ/KirbyHealthRoomController.placements.name.setRespawnPoint=Set Respawn Point
+triggers.DZ/KirbyHealthRoomController.placements.name.onlyOnce=Only Once
+triggers.DZ/KirbyHealthRoomController.placements.name.maxHealth=Max Health
+triggers.DZ/KirbyHealthRoomController.placements.name.healAmount=Heal Amount
+
+# Kirby Health Trigger
+triggers.DZ/KirbyHealthTrigger.placements.name.kirby_health_trigger=Kirby Health Trigger
+triggers.DZ/KirbyHealthTrigger.placements.name.enableHealth=Enable Health
+triggers.DZ/KirbyHealthTrigger.placements.name.fullHeal=Full Heal
+triggers.DZ/KirbyHealthTrigger.placements.name.setRespawnPoint=Set Respawn Point
+triggers.DZ/KirbyHealthTrigger.placements.name.onlyOnce=Only Once
+triggers.DZ/KirbyHealthTrigger.placements.name.maxHealth=Max Health
+triggers.DZ/KirbyHealthTrigger.placements.name.healAmount=Heal Amount
+
+# Kirby Player Spawner
+entities.DZ/KirbyPlayerSpawner.placements.name.kirby_player_spawner=Kirby Player Spawner
+entities.DZ/KirbyPlayerSpawner.placements.name.startingAbility=Starting Ability
+entities.DZ/KirbyPlayerSpawner.placements.name.enableKirbyMode=Enable Kirby Mode
+entities.DZ/KirbyPlayerSpawner.placements.name.spawnCompanion=Spawn Companion
+
+# Kirby Puff Jump Refill = Kirby Puff Jump Refill
+entities.DZ/KirbyPuffJumpRefill = KirbyPuffJumpRefill.placements.name.kirby_puff_jump_refill = kirby_puff_jump_refill=Kirby Puff Jump Refill = Kirby Puff Jump Refill
+entities.DZ/KirbyPuffJumpRefill = KirbyPuffJumpRefill.placements.name.spriteVariant=Sprite Variant
+entities.DZ/KirbyPuffJumpRefill = KirbyPuffJumpRefill.placements.name.oneUse=One Use
+entities.DZ/KirbyPuffJumpRefill = KirbyPuffJumpRefill.placements.name.breakEvenWhenFull=Break Even When Full
+entities.DZ/KirbyPuffJumpRefill = KirbyPuffJumpRefill.placements.name.puffCount=Puff Count
+entities.DZ/KirbyPuffJumpRefill = KirbyPuffJumpRefill.placements.name.respawnTime=Respawn Time
+
+# Kirby Puff Refill = Kirby Puff Jump Refill
+entities.DZ/KirbyPuffRefill = KirbyPuffJumpRefill.placements.name.kirby_puff_refill = kirby_puff_jump_refill=Kirby Puff Refill = Kirby Puff Jump Refill
+entities.DZ/KirbyPuffRefill = KirbyPuffJumpRefill.placements.name.spriteVariant=Sprite Variant
+entities.DZ/KirbyPuffRefill = KirbyPuffJumpRefill.placements.name.oneUse=One Use
+entities.DZ/KirbyPuffRefill = KirbyPuffJumpRefill.placements.name.breakEvenWhenFull=Break Even When Full
+entities.DZ/KirbyPuffRefill = KirbyPuffJumpRefill.placements.name.puffCount=Puff Count
+entities.DZ/KirbyPuffRefill = KirbyPuffJumpRefill.placements.name.respawnTime=Respawn Time
+
+# Kirby Spawn Point
+entities.DZ/KirbySpawnPoint.placements.name.kirby_spawn_point=Kirby Spawn Point
+entities.DZ/KirbySpawnPoint.placements.name.startingAbility=Starting Ability
+entities.DZ/KirbySpawnPoint.placements.name.spawnAsKirby=Spawn As Kirby
+
+# Kirby Tutorial Bird
+entities.DZ/KirbyTutorialBird.placements.name.kirby_tutorial_bird=Kirby Tutorial Bird
+entities.DZ/KirbyTutorialBird.placements.name.allowPlayerInteraction=Allow Player Interaction
+
+# Kirby Tutorial Bird Trigger
+triggers.DZ/KirbyTutorialBirdTrigger.placements.name.kirby_tutorial_bird_trigger=Kirby Tutorial Bird Trigger
+triggers.DZ/KirbyTutorialBirdTrigger.placements.name.tutorialIndex=Tutorial Index
+
+# Lantern Puzzle Controller
+entities.DZ/LanternPuzzleController.placements.name.lantern_puzzle_controller=Lantern Puzzle Controller
+entities.DZ/LanternPuzzleController.placements.name.lanternId=Lantern Id
+entities.DZ/LanternPuzzleController.placements.name.startLit=Start Lit
+entities.DZ/LanternPuzzleController.placements.name.lightRadius=Light Radius
+entities.DZ/LanternPuzzleController.placements.name.flickerIntensity=Flicker Intensity
+
+# Large Heart Door Mod
+entities.DZ/LargeHeartDoorMod.placements.name.large_heart_door_mod=Large Heart Door Mod
+entities.DZ/LargeHeartDoorMod.placements.name.width=Width
+
+# Last Room Trigger
+triggers.DZ/LastRoomTrigger.placements.name.last_room_trigger=Last Room Trigger
+triggers.DZ/LastRoomTrigger.placements.name.enableGravity=Enable Gravity
+triggers.DZ/LastRoomTrigger.placements.name.enableRoomWrapper=Enable Room Wrapper
+triggers.DZ/LastRoomTrigger.placements.name.enableSparklingStars=Enable Sparkling Stars
+triggers.DZ/LastRoomTrigger.placements.name.enableRainbow=Enable Rainbow
+triggers.DZ/LastRoomTrigger.placements.name.triggerOnce=Trigger Once
+triggers.DZ/LastRoomTrigger.placements.name.starIntensity=Star Intensity
+triggers.DZ/LastRoomTrigger.placements.name.rainbowStrength=Rainbow Strength
+
+# Lava Bubble
+entities.DZ/LavaBubble.placements.name.lava_bubble=Lava Bubble
+entities.DZ/LavaBubble.placements.name.riseSpeed=Rise Speed
+entities.DZ/LavaBubble.placements.name.burstHeight=Burst Height
+entities.DZ/LavaBubble.placements.name.damageRadius=Damage Radius
+
+# Lava Bubble Spawner
+entities.DZ/LavaBubbleSpawner.placements.name.lava_bubble_spawner=Lava Bubble Spawner
+entities.DZ/LavaBubbleSpawner.placements.name.riseSpeed=Rise Speed
+entities.DZ/LavaBubbleSpawner.placements.name.burstHeight=Burst Height
+entities.DZ/LavaBubbleSpawner.placements.name.damageRadius=Damage Radius
+
+# Level Glitch Trigger
+triggers.DZ/LevelGlitchTrigger.placements.name.level_glitch_trigger=Level Glitch Trigger
+
+# Lightning Trigger
+entities.DZ/LightningTrigger.placements.name.lightning_trigger=Lightning Trigger
+
+# Lucky Block
+entities.DZ/LuckyBlock.placements.name.lucky_block=Lucky Block
+
+# Maddy Crystal Pedestal
+entities.DZ/MaddyCrystalPedestal.placements.name.maddy_crystal_pedestal=Maddy Crystal Pedestal
+
+# Madeline Bandage Dummy
+entities.DZ/MadelineBandageDummy.placements.name.madeline_bandage_dummy=Madeline Bandage Dummy
+
+# Madeline Dummy
+entities.DZ/MadelineDummy.placements.name.madeline_dummy=Madeline Dummy
+
+# Madeline Dummy Attacher
+entities.DZ/MadelineDummyAttacher.placements.name.madeline_dummy_attacher=Madeline Dummy Attacher
+entities.DZ/MadelineDummyAttacher.placements.name.hoverOffsetX=Hover Offset X
+entities.DZ/MadelineDummyAttacher.placements.name.hoverOffsetY=Hover Offset Y
+entities.DZ/MadelineDummyAttacher.placements.name.hoverSpeed=Hover Speed
+entities.DZ/MadelineDummyAttacher.placements.name.hoverAmplitude=Hover Amplitude
+
+# Madeline Dummy Attacher Trigger
+triggers.DZ/MadelineDummyAttacherTrigger.placements.name.madeline_dummy_attacher_trigger=Madeline Dummy Attacher Trigger
+triggers.DZ/MadelineDummyAttacherTrigger.placements.name.once=Once
+triggers.DZ/MadelineDummyAttacherTrigger.placements.name.removeOnExit=Remove On Exit
+triggers.DZ/MadelineDummyAttacherTrigger.placements.name.hoverOffsetX=Hover Offset X
+triggers.DZ/MadelineDummyAttacherTrigger.placements.name.hoverOffsetY=Hover Offset Y
+triggers.DZ/MadelineDummyAttacherTrigger.placements.name.hoverSpeed=Hover Speed
+triggers.DZ/MadelineDummyAttacherTrigger.placements.name.hoverAmplitude=Hover Amplitude
+
+# Madeline God Dummy
+entities.DZ/MadelineGodDummy.placements.name.madeline_god_dummy=Madeline God Dummy
+
+# Madeline NPC Dummy
+entities.DZ/MadelineNPCDummy.placements.name.madeline_npc_dummy=Madeline NPC Dummy
+
+# Madeline Player
+entities.DZ/MadelinePlayer.placements.name.madeline_player=Madeline Player
+
+# Maggy Memorial
+entities.DZ/MaggyMemorial.placements.name.maggy_memorial=Maggy Memorial
+
+# Maggy Oshiro Door
+entities.DZ/MaggyOshiroDoor.placements.name.maggy_oshiro_door=Maggy Oshiro Door
+
+# Maggy Oshiro Lobby Bell
+entities.DZ/MaggyOshiroLobbyBell.placements.name.maggy_oshiro_lobby_bell=Maggy Oshiro Lobby Bell
+entities.DZ/MaggyOshiroLobbyBell.placements.name.soundEffect=Sound Effect
+entities.DZ/MaggyOshiroLobbyBell.placements.name.isActive=Is Active
+
+# Maggy PC
+entities.DZ/MaggyPC.placements.name.maggy_pc=Maggy PC
+
+# Magic Fountain
+entities.DZ/MagicFountain.placements.name.magic_fountain=Magic Fountain
+entities.DZ/MagicFountain.placements.name.maxWaterHeight=Max Water Height
+entities.DZ/MagicFountain.placements.name.surgeInterval=Surge Interval
+
+# Magma Pool
+entities.DZ/MagmaPool.placements.name.magma_pool=Magma Pool
+entities.DZ/MagmaPool.placements.name.isInstantDeath=Is Instant Death
+entities.DZ/MagmaPool.placements.name.bubbleInterval=Bubble Interval
+entities.DZ/MagmaPool.placements.name.eruptInterval=Erupt Interval
+
+# Magolor Dummy
+entities.DZ/MagolorDummy.placements.name.magolor_dummy=Magolor Dummy
+
+# Main Chara Vision Actor
+entities.DZ/MainCharaVisionActor.placements.name.main_chara_vision_actor=Main Chara Vision Actor
+entities.DZ/MainCharaVisionActor.placements.name.facing=Facing
+entities.DZ/MainCharaVisionActor.placements.name.clampToRoomBounds=Clamp To Room Bounds
+entities.DZ/MainCharaVisionActor.placements.name.driveCameraWhenControlled=Drive Camera When Controlled
+entities.DZ/MainCharaVisionActor.placements.name.playerControlled=Player Controlled
+
+# Matrix Rain
+entities.DZ/MatrixRain.placements.name.matrix_rain=Matrix Rain
+entities.DZ/MatrixRain.placements.name.rainWidth=Rain Width
+entities.DZ/MatrixRain.placements.name.rainHeight=Rain Height
+entities.DZ/MatrixRain.placements.name.dropSpeed=Drop Speed
+entities.DZ/MatrixRain.placements.name.density=Density
+
+# Maxim Tomato
+entities.DZ/MaximTomato.placements.name.maxim_tomato=Maxim Tomato
+
+# Memory Fragment
+entities.DZ/MemoryFragment.placements.name.memory_fragment=Memory Fragment
+entities.DZ/MemoryFragment.placements.name.fragmentId=Fragment Id
+entities.DZ/MemoryFragment.placements.name.dialogueKey=Dialogue Key
+entities.DZ/MemoryFragment.placements.name.showDialogue=Show Dialogue
+entities.DZ/MemoryFragment.placements.name.fragmentNumber=Fragment Number
+
+# Memory Fragment Counter
+entities.DZ/MemoryFragmentCounter.placements.name.memory_fragment_counter=Memory Fragment Counter
+entities.DZ/MemoryFragmentCounter.placements.name.fragmentId=Fragment Id
+entities.DZ/MemoryFragmentCounter.placements.name.dialogueKey=Dialogue Key
+entities.DZ/MemoryFragmentCounter.placements.name.showDialogue=Show Dialogue
+entities.DZ/MemoryFragmentCounter.placements.name.fragmentNumber=Fragment Number
+
+# Meta Knight Dummy
+entities.DZ/MetaKnightDummy.placements.name.meta_knight_dummy=Meta Knight Dummy
+
+# Mirror Mode Trigger
+triggers.DZ/MirrorModeTrigger.placements.name.mirror_mode_trigger=Mirror Mode Trigger
+triggers.DZ/MirrorModeTrigger.placements.name.ability=Ability
+triggers.DZ/MirrorModeTrigger.placements.name.action=Action
+triggers.DZ/MirrorModeTrigger.placements.name.onlyOnce=Only Once
+
+# Moonberry
+entities.DZ/Moonberry.placements.name.moonberry=Moonberry
+
+# Morpho Knight Clone
+entities.DZ/MorphoKnightClone.placements.name.morpho_knight_clone=Morpho Knight Clone
+
+# Mr Bones Door
+entities.DZ/MrBonesDoor.placements.name.mr_bones_door=Mr Bones Door
+
+# Mystery Man Core Message
+entities.DZ/MysteryManCoreMessage.placements.name.mystery_man_core_message=Mystery Man Core Message
+entities.DZ/MysteryManCoreMessage.placements.name.dialogKey=Dialog Key
+entities.DZ/MysteryManCoreMessage.placements.name.baseColor=Base Color
+entities.DZ/MysteryManCoreMessage.placements.name.shimmerColor=Shimmer Color
+entities.DZ/MysteryManCoreMessage.placements.name.useRainbowShimmer=Use Rainbow Shimmer
+entities.DZ/MysteryManCoreMessage.placements.name.line=Line
+entities.DZ/MysteryManCoreMessage.placements.name.shimmerSpeed=Shimmer Speed
+entities.DZ/MysteryManCoreMessage.placements.name.textScale=Text Scale
+entities.DZ/MysteryManCoreMessage.placements.name.visibilityDistance=Visibility Distance
+
+# Nightmare Block
+entities.DZ/NightmareBlock.placements.name.nightmare_block=Nightmare Block
+
+# Nightmare Fragment
+entities.DZ/NightmareFragment.placements.name.nightmare_fragment=Nightmare Fragment
+entities.DZ/NightmareFragment.placements.name.fragmentId=Fragment Id
+entities.DZ/NightmareFragment.placements.name.fragmentNumber=Fragment Number
+
+# NPC
+entities.DZ/NPC.placements.name.npc=NPC
+
+# NPC Adeleine
+entities.DZ/NPC_Adeleine.placements.name.npc_adeleine=NPC Adeleine
+
+# NPC Alphys
+entities.DZ/NPC_Alphys.placements.name.npc_alphys=NPC Alphys
+
+# NPC Asgore
+entities.DZ/NPC_Asgore.placements.name.npc_asgore=NPC Asgore
+
+# NPC Axis
+entities.DZ/NPC_Axis.placements.name.npc_axis=NPC Axis
+
+# NPC Bandana Dee
+entities.DZ/NPC_BandanaDee.placements.name.npc_bandana_dee=NPC Bandana Dee
+
+# NPC Chara
+entities.DZ/NPC_Chara.placements.name.npc_chara=NPC Chara
+
+# NPC Digital Guide
+entities.DZ/NPC_DigitalGuide.placements.name.npc_digital_guide=NPC Digital Guide
+
+# NPC Els
+entities.DZ/NPC_Els.placements.name.npc_els=NPC Els
+
+# NPC Final Remix Asriel And Granny
+entities.DZ/NPC_FinalRemix_AsrielAndGranny.placements.name.npc_final_remix_asriel_and_granny=NPC Final Remix Asriel And Granny
+
+# NPC Hyness
+entities.DZ/NPC_Hyness.placements.name.npc_hyness=NPC Hyness
+
+# NPC King Dedede
+entities.DZ/NPC_KingDedede.placements.name.npc_king_dedede=NPC King Dedede
+
+# NPC Kirby
+entities.DZ/NPC_Kirby.placements.name.npc_kirby=NPC Kirby
+
+# NPC Madeline Mother
+entities.DZ/NPC_MadelineMother.placements.name.npc_madeline_mother=NPC Madeline Mother
+
+# NPC Mage Flamberge
+entities.DZ/NPC_MageFlamberge.placements.name.npc_mage_flamberge=NPC Mage Flamberge
+
+# NPC Mage Francisca
+entities.DZ/NPC_MageFrancisca.placements.name.npc_mage_francisca=NPC Mage Francisca
+
+# NPC Mage Zan Partizanne
+entities.DZ/NPC_MageZanPartizanne.placements.name.npc_mage_zan_partizanne=NPC Mage Zan Partizanne
+
+# NPC Magolor
+entities.DZ/NPC_Magolor.placements.name.npc_magolor=NPC Magolor
+
+# NPC Meta Knight
+entities.DZ/NPC_MetaKnight.placements.name.npc_meta_knight=NPC Meta Knight
+
+# NPC Papyrus
+entities.DZ/NPC_Papyrus.placements.name.npc_papyrus=NPC Papyrus
+
+# NPC Phone
+entities.DZ/NPC_Phone.placements.name.npc_phone=NPC Phone
+
+# NPC Ralsei
+entities.DZ/NPC_Ralsei.placements.name.npc_ralsei=NPC Ralsei
+
+# NPC Ribbon
+entities.DZ/NPC_Ribbon.placements.name.npc_ribbon=NPC Ribbon
+
+# NPC Roxus
+entities.DZ/NPC_Roxus.placements.name.npc_roxus=NPC Roxus
+
+# NPC Sans
+entities.DZ/NPC_Sans.placements.name.npc_sans=NPC Sans
+
+# NPC Susie
+entities.DZ/NPC_Susie.placements.name.npc_susie=NPC Susie
+
+# NPC Susie Haltmann
+entities.DZ/NPC_SusieHaltmann.placements.name.npc_susie_haltmann=NPC Susie Haltmann
+
+# NPC Temmie
+entities.DZ/NPC_Temmie.placements.name.npc_temmie=NPC Temmie
+
+# NPC Theo
+entities.DZ/NPC_Theo.placements.name.npc_theo=NPC Theo
+
+# NPC Theo Sister Alexa
+entities.DZ/NPC_TheoSisterAlexa.placements.name.npc_theo_sister_alexa=NPC Theo Sister Alexa
+
+# NPC Theo Sister Madeline
+entities.DZ/NPC_TheoSisterMadeline.placements.name.npc_theo_sister_madeline=NPC Theo Sister Madeline
+
+# NPC Titan Council Member
+entities.DZ/NPC_TitanCouncilMember.placements.name.npc_titan_council_member=NPC Titan Council Member
+
+# NPC Toby Sleeping Dog
+entities.DZ/NPC_TobySleepingDog.placements.name.npc_toby_sleeping_dog=NPC Toby Sleeping Dog
+
+# NPC Undyne
+entities.DZ/NPC_Undyne.placements.name.npc_undyne=NPC Undyne
+
+# NPC00 Theo
+entities.DZ/NPC00_Theo.placements.name.npc00_theo=NPC00 Theo
+
+# NPC01 Maggy
+entities.DZ/NPC01_Maggy.placements.name.npc01_maggy=NPC01 Maggy
+
+# NPC02 Maggy
+entities.DZ/NPC02_Maggy.placements.name.npc02_maggy=NPC02 Maggy
+
+# NPC02 Magolor
+entities.DZ/NPC02_Magolor.placements.name.npc02_magolor=NPC02 Magolor
+
+# NPC03 Maggy
+entities.DZ/NPC03_Maggy.placements.name.npc03_maggy=NPC03 Maggy
+
+# NPC03 Theo
+entities.DZ/NPC03_Theo.placements.name.npc03_theo=NPC03 Theo
+
+# NPC04 Magolor
+entities.DZ/NPC04_Magolor.placements.name.npc04_magolor=NPC04 Magolor
+
+# NPC04 Theo
+entities.DZ/NPC04_Theo.placements.name.npc04_theo=NPC04 Theo
+
+# NPC05 Maggy Oshiro Lobby
+entities.DZ/NPC05_Maggy_Oshiro_Lobby.placements.name.npc05_maggy_oshiro_lobby=NPC05 Maggy Oshiro Lobby
+
+# NPC05 Magolor Escaping
+entities.DZ/NPC05_Magolor_Escaping.placements.name.npc05_magolor_escaping=NPC05 Magolor Escaping
+
+# NPC05 Magolor Vents
+entities.DZ/NPC05_Magolor_Vents.placements.name.npc05_magolor_vents=NPC05 Magolor Vents
+
+# NPC05 Magolor Escape
+entities.DZ/NPC05_MagolorEscape.placements.name.npc05_magolor_escape=NPC05 Magolor Escape
+
+# NPC05 Oshiro Breakdown
+entities.DZ/NPC05_Oshiro_Breakdown.placements.name.npc05_oshiro_breakdown=NPC05 Oshiro Breakdown
+
+# NPC05 Oshiro Clutter
+entities.DZ/NPC05_Oshiro_Clutter.placements.name.npc05_oshiro_clutter=NPC05 Oshiro Clutter
+
+# NPC05 Oshiro Hallway1
+entities.DZ/NPC05_Oshiro_Hallway1.placements.name.npc05_oshiro_hallway1=NPC05 Oshiro Hallway1
+
+# NPC05 Oshiro Hallway2
+entities.DZ/NPC05_Oshiro_Hallway2.placements.name.npc05_oshiro_hallway2=NPC05 Oshiro Hallway2
+
+# NPC05 Oshiro Lobby
+entities.DZ/NPC05_Oshiro_Lobby.placements.name.npc05_oshiro_lobby=NPC05 Oshiro Lobby
+
+# NPC05 Oshiro Rooftop
+entities.DZ/NPC05_Oshiro_Rooftop.placements.name.npc05_oshiro_rooftop=NPC05 Oshiro Rooftop
+
+# NPC05 Oshiro Suite
+entities.DZ/NPC05_Oshiro_Suite.placements.name.npc05_oshiro_suite=NPC05 Oshiro Suite
+
+# NPC06 Magolor
+entities.DZ/NPC06_Magolor.placements.name.npc06_magolor=NPC06 Magolor
+
+# NPC06 Theo
+entities.DZ/NPC06_Theo.placements.name.npc06_theo=NPC06 Theo
+
+# NPC07 Chara
+entities.DZ/NPC07_Chara.placements.name.npc07_chara=NPC07 Chara
+
+# NPC07 Maddy Mirror
+entities.DZ/NPC07_Maddy_Mirror.placements.name.npc07_maddy_mirror=NPC07 Maddy Mirror
+
+# NPC08 Chara Crying
+entities.DZ/NPC08_Chara_Crying.placements.name.npc08_chara_crying=NPC08 Chara Crying
+
+# NPC08 Maddy And Theo Ending
+entities.DZ/NPC08_Maddy_and_Theo_Ending.placements.name.npc08_maddy_and_theo_ending=NPC08 Maddy And Theo Ending
+
+# NPC08 Madeline Ending Bandage
+entities.DZ/NPC08_Madeline_Ending_Bandage.placements.name.npc08_madeline_ending_bandage=NPC08 Madeline Ending Bandage
+
+# NPC08 Madeline Plateau
+entities.DZ/NPC08_Madeline_Plateau.placements.name.npc08_madeline_plateau=NPC08 Madeline Plateau
+
+# NPC08 Maggy Ending
+entities.DZ/NPC08_Maggy_Ending.placements.name.npc08_maggy_ending=NPC08 Maggy Ending
+
+# NPC08 Theo Ending
+entities.DZ/NPC08_Theo_Ending.placements.name.npc08_theo_ending=NPC08 Theo Ending
+
+# NPC09 X Madeline And Badeline Ending
+entities.DZ/NPC09X_Madeline_and_Badeline_Ending.placements.name.npc09_x_madeline_and_badeline_ending=NPC09 X Madeline And Badeline Ending
+
+# NPC10 Badeline
+entities.DZ/NPC10_Badeline.placements.name.npc10_badeline=NPC10 Badeline
+
+# NPC10 Chara
+entities.DZ/NPC10_Chara.placements.name.npc10_chara=NPC10 Chara
+
+# NPC10 Madeline
+entities.DZ/NPC10_Madeline.placements.name.npc10_madeline=NPC10 Madeline
+
+# NPC10 Theo
+entities.DZ/NPC10_Theo.placements.name.npc10_theo=NPC10 Theo
+
+# NPC10 Toriel
+entities.DZ/NPC10_Toriel.placements.name.npc10_toriel=NPC10 Toriel
+
+# NPC10 Wispy
+entities.DZ/NPC10_Wispy.placements.name.npc10_wispy=NPC10 Wispy
+
+# NPC15 X Madeline And Badeline Ending
+entities.DZ/NPC15X_Madeline_and_Badeline_Ending.placements.name.npc15_x_madeline_and_badeline_ending=NPC15 X Madeline And Badeline Ending
+
+# NPC16 Kirby
+entities.DZ/NPC16_Kirby.placements.name.npc16_kirby=NPC16 Kirby
+
+# NPC16 Oshiro
+entities.DZ/NPC16_Oshiro.placements.name.npc16_oshiro=NPC16 Oshiro
+
+# NPC17 Kirby
+entities.DZ/NPC17_Kirby.placements.name.npc17_kirby=NPC17 Kirby
+
+# NPC17 Oshiro
+entities.DZ/NPC17_Oshiro.placements.name.npc17_oshiro=NPC17 Oshiro
+
+# NPC17 Ralsei
+entities.DZ/NPC17_Ralsei.placements.name.npc17_ralsei=NPC17 Ralsei
+
+# NPC17 Theo
+entities.DZ/NPC17_Theo.placements.name.npc17_theo=NPC17 Theo
+
+# NPC17 Toriel
+entities.DZ/NPC17_Toriel.placements.name.npc17_toriel=NPC17 Toriel
+
+# NPC18 Toriel Inside
+entities.DZ/NPC18_Toriel_Inside.placements.name.npc18_toriel_inside=NPC18 Toriel Inside
+
+# NPC18 Toriel Outside
+entities.DZ/NPC18_Toriel_Outside.placements.name.npc18_toriel_outside=NPC18 Toriel Outside
+
+# NPC19 Gravestone
+entities.DZ/NPC19_Gravestone.placements.name.npc19_gravestone=NPC19 Gravestone
+
+# NPC19 Maggy Loop
+entities.DZ/NPC19_Maggy_Loop.placements.name.npc19_maggy_loop=NPC19 Maggy Loop
+
+# NPC20 Asriel
+entities.DZ/NPC20_Asriel.placements.name.npc20_asriel=NPC20 Asriel
+
+# NPC20 Granny
+entities.DZ/NPC20_Granny.placements.name.npc20_granny=NPC20 Granny
+
+# NPC20 Madeline
+entities.DZ/NPC20_Madeline.placements.name.npc20_madeline=NPC20 Madeline
+
+# NPC Event Interact
+entities.DZ/NPCEventInteract.placements.name.npc_event_interact=NPC Event Interact
+
+# Obsidian Shard
+entities.DZ/ObsidianShard.placements.name.obsidian_shard=Obsidian Shard
+entities.DZ/ObsidianShard.placements.name.isCollectible=Is Collectible
+entities.DZ/ObsidianShard.placements.name.health=Health
+
+# One Hit Trigger
+triggers.DZ/OneHitTrigger.placements.name.one_hit_trigger=One Hit Trigger
+triggers.DZ/OneHitTrigger.placements.name.ability=Ability
+triggers.DZ/OneHitTrigger.placements.name.action=Action
+triggers.DZ/OneHitTrigger.placements.name.onlyOnce=Only Once
+
+# Oshiro Lobby Bell
+entities.DZ/OshiroLobbyBell.placements.name.oshiro_lobby_bell=Oshiro Lobby Bell
+entities.DZ/OshiroLobbyBell.placements.name.soundEffect=Sound Effect
+
+# Oshiro Trigger
+triggers.DZ/OshiroTrigger.placements.name.oshiro_trigger=Oshiro Trigger
+triggers.DZ/OshiroTrigger.placements.name.state=State
+
+# Parallax Shift Trigger
+triggers.DZ/ParallaxShiftTrigger.placements.name.parallax_shift_trigger=Parallax Shift Trigger
+triggers.DZ/ParallaxShiftTrigger.placements.name.onlyOnce=Only Once
+triggers.DZ/ParallaxShiftTrigger.placements.name.intensity=Intensity
+triggers.DZ/ParallaxShiftTrigger.placements.name.duration=Duration
+
+# Payphone
+entities.DZ/Payphone.placements.name.payphone=Payphone
+entities.DZ/Payphone.placements.name.dreamDialogId=Dream Dialog Id
+entities.DZ/Payphone.placements.name.awakeDialogId=Awake Dialog Id
+entities.DZ/Payphone.placements.name.flagToSet=Flag To Set
+entities.DZ/Payphone.placements.name.onlyOnce=Only Once
+
+# Pink Gameboy Color Grade Trigger
+triggers.DZ/PinkGameboyColorGradeTrigger.placements.name.pink_gameboy_color_grade_trigger=Pink Gameboy Color Grade Trigger
+
+# Pink Plat Berry Collect Trigger
+triggers.DZ/PinkPlatBerryCollectTrigger.placements.name.pink_plat_berry_collect_trigger=Pink Plat Berry Collect Trigger
+
+# Pixelation Trigger
+triggers.DZ/PixelationTrigger.placements.name.pixelation_trigger=Pixelation Trigger
+triggers.DZ/PixelationTrigger.placements.name.onlyOnce=Only Once
+triggers.DZ/PixelationTrigger.placements.name.intensity=Intensity
+triggers.DZ/PixelationTrigger.placements.name.duration=Duration
+
+# Pixel Enemy
+entities.DZ/PixelEnemy.placements.name.pixel_enemy=Pixel Enemy
+entities.DZ/PixelEnemy.placements.name.health=Health
+entities.DZ/PixelEnemy.placements.name.gridSize=Grid Size
+entities.DZ/PixelEnemy.placements.name.moveSpeed=Move Speed
+entities.DZ/PixelEnemy.placements.name.detectionRange=Detection Range
+
+# Plateau Mod
+entities.DZ/PlateauMod.placements.name.plateau_mod=Plateau Mod
+
+# Player Anim Prefix Add On Trigger
+triggers.DZ/PlayerAnimPrefixAddOnTrigger.placements.name.player_anim_prefix_add_on_trigger=Player Anim Prefix Add On Trigger
+triggers.DZ/PlayerAnimPrefixAddOnTrigger.placements.name.characterId=Character Id
+triggers.DZ/PlayerAnimPrefixAddOnTrigger.placements.name.characterAnimPrefix=Character Anim Prefix
+triggers.DZ/PlayerAnimPrefixAddOnTrigger.placements.name.revertOnLeave=Revert On Leave
+triggers.DZ/PlayerAnimPrefixAddOnTrigger.placements.name.useCharacterAnimations=Use Character Animations
+
+# Player Inventory Trigger
+triggers.DZ/PlayerInventoryTrigger.placements.name.player_inventory_trigger=Player Inventory Trigger
+triggers.DZ/PlayerInventoryTrigger.placements.name.inventoryType=Inventory Type
+triggers.DZ/PlayerInventoryTrigger.placements.name.playerState=Player State
+triggers.DZ/PlayerInventoryTrigger.placements.name.kirbyPower=Kirby Power
+triggers.DZ/PlayerInventoryTrigger.placements.name.dreamDash=Dream Dash
+triggers.DZ/PlayerInventoryTrigger.placements.name.backpack=Backpack
+triggers.DZ/PlayerInventoryTrigger.placements.name.noRefills=No Refills
+triggers.DZ/PlayerInventoryTrigger.placements.name.triggerOnce=Trigger Once
+triggers.DZ/PlayerInventoryTrigger.placements.name.dashes=Dashes
+
+# Player Trigger
+triggers.DZ/PlayerTrigger.placements.name.player_trigger=Player Trigger
+
+# Popstar Berry
+entities.DZ/PopstarBerry.placements.name.popstar_berry=Popstar Berry
+
+# Power Generator
+entities.DZ/PowerGenerator.placements.name.power_generator=Power Generator
+
+# Power Source Number
+entities.DZ/PowerSourceNumber.placements.name.power_source_number=Power Source Number
+entities.DZ/PowerSourceNumber.placements.name.flag=Flag
+entities.DZ/PowerSourceNumber.placements.name.gotCollectable=Got Collectable
+entities.DZ/PowerSourceNumber.placements.name.index=Index
+
+# Punch Attack Refill = Punch Refill
+entities.DZ/PunchAttackRefill = PunchRefill.placements.name.punch_attack_refill = punch_refill=Punch Attack Refill = Punch Refill
+entities.DZ/PunchAttackRefill = PunchRefill.placements.name.spriteVariant=Sprite Variant
+entities.DZ/PunchAttackRefill = PunchRefill.placements.name.oneUse=One Use
+entities.DZ/PunchAttackRefill = PunchRefill.placements.name.breakEvenWhenFull=Break Even When Full
+entities.DZ/PunchAttackRefill = PunchRefill.placements.name.punchCount=Punch Count
+entities.DZ/PunchAttackRefill = PunchRefill.placements.name.respawnTime=Respawn Time
+
+# Punch Refill = Punch Refill
+entities.DZ/PunchRefill = PunchRefill.placements.name.punch_refill = punch_refill=Punch Refill = Punch Refill
+entities.DZ/PunchRefill = PunchRefill.placements.name.spriteVariant=Sprite Variant
+entities.DZ/PunchRefill = PunchRefill.placements.name.oneUse=One Use
+entities.DZ/PunchRefill = PunchRefill.placements.name.breakEvenWhenFull=Break Even When Full
+entities.DZ/PunchRefill = PunchRefill.placements.name.punchCount=Punch Count
+entities.DZ/PunchRefill = PunchRefill.placements.name.respawnTime=Respawn Time
+
+# Quest Giver
+entities.DZ/QuestGiver.placements.name.quest_giver=Quest Giver
+entities.DZ/QuestGiver.placements.name.companionType=Companion Type
+entities.DZ/QuestGiver.placements.name.sprite=Sprite
+entities.DZ/QuestGiver.placements.name.canPressSwitch=Can Press Switch
+entities.DZ/QuestGiver.placements.name.followSpeed=Follow Speed
+entities.DZ/QuestGiver.placements.name.followDistance=Follow Distance
+
+# Rainbow Blackhole Bg
+entities.DZ/RainbowBlackholeBg.placements.name.rainbow_blackhole_bg=Rainbow Blackhole Bg
+entities.DZ/RainbowBlackholeBg.placements.name.alpha=Alpha
+entities.DZ/RainbowBlackholeBg.placements.name.strength=Strength
+
+# Rainbow Blackhole Trigger
+triggers.DZ/RainbowBlackholeTrigger.placements.name.rainbow_blackhole_trigger=Rainbow Blackhole Trigger
+triggers.DZ/RainbowBlackholeTrigger.placements.name.action=Action
+
+# Ralsei Dummy
+entities.DZ/RalseiDummy.placements.name.ralsei_dummy=Ralsei Dummy
+
+# Ralsei Dummy Attacher
+entities.DZ/RalseiDummyAttacher.placements.name.ralsei_dummy_attacher=Ralsei Dummy Attacher
+entities.DZ/RalseiDummyAttacher.placements.name.hoverOffsetX=Hover Offset X
+entities.DZ/RalseiDummyAttacher.placements.name.hoverOffsetY=Hover Offset Y
+entities.DZ/RalseiDummyAttacher.placements.name.hoverSpeed=Hover Speed
+entities.DZ/RalseiDummyAttacher.placements.name.hoverAmplitude=Hover Amplitude
+
+# Ralsei Dummy Attacher Trigger
+triggers.DZ/RalseiDummyAttacherTrigger.placements.name.ralsei_dummy_attacher_trigger=Ralsei Dummy Attacher Trigger
+triggers.DZ/RalseiDummyAttacherTrigger.placements.name.once=Once
+triggers.DZ/RalseiDummyAttacherTrigger.placements.name.removeOnExit=Remove On Exit
+triggers.DZ/RalseiDummyAttacherTrigger.placements.name.hoverOffsetX=Hover Offset X
+triggers.DZ/RalseiDummyAttacherTrigger.placements.name.hoverOffsetY=Hover Offset Y
+triggers.DZ/RalseiDummyAttacherTrigger.placements.name.hoverSpeed=Hover Speed
+triggers.DZ/RalseiDummyAttacherTrigger.placements.name.hoverAmplitude=Hover Amplitude
+
+# Ralsei Mirror
+entities.DZ/RalseiMirror.placements.name.ralsei_mirror=Ralsei Mirror
+entities.DZ/RalseiMirror.placements.name.betacube=Betacube
+
+# Reality Anchor
+entities.DZ/RealityAnchor.placements.name.reality_anchor=Reality Anchor
+entities.DZ/RealityAnchor.placements.name.stabilityRadius=Stability Radius
+
+# Reality Glitch
+entities.DZ/RealityGlitch.placements.name.reality_glitch=Reality Glitch
+entities.DZ/RealityGlitch.placements.name.glitchIntensity=Glitch Intensity
+entities.DZ/RealityGlitch.placements.name.teleportChance=Teleport Chance
+entities.DZ/RealityGlitch.placements.name.width=Width
+entities.DZ/RealityGlitch.placements.name.height=Height
+
+# Resort Mirror
+entities.DZ/ResortMirror.placements.name.resort_mirror=Resort Mirror
+
+# Revolver Target
+entities.DZ/RevolverTarget.placements.name.revolver_target=Revolver Target
+entities.DZ/RevolverTarget.placements.name.points=Points
+entities.DZ/RevolverTarget.placements.name.showTime=Show Time
+entities.DZ/RevolverTarget.placements.name.resetTime=Reset Time
+entities.DZ/RevolverTarget.placements.name.moveSpeed=Move Speed
+
+# Ridge Gate
+entities.DZ/RidgeGate.placements.name.ridge_gate=Ridge Gate
+
+# Rock Spawner
+entities.DZ/RockSpawner.placements.name.rock_spawner=Rock Spawner
+entities.DZ/RockSpawner.placements.name.fallSpeed=Fall Speed
+entities.DZ/RockSpawner.placements.name.damageRadius=Damage Radius
+entities.DZ/RockSpawner.placements.name.triggerRange=Trigger Range
+
+# Roof Top Ending
+entities.DZ/RoofTopEnding.placements.name.roof_top_ending=Roof Top Ending
+
+# Ruins Puzzle Switch
+entities.DZ/RuinsPuzzleSwitch.placements.name.ruins_puzzle_switch=Ruins Puzzle Switch
+entities.DZ/RuinsPuzzleSwitch.placements.name.gateId=Gate Id
+entities.DZ/RuinsPuzzleSwitch.placements.name.sequenceOrder=Sequence Order
+entities.DZ/RuinsPuzzleSwitch.placements.name.holdTime=Hold Time
+entities.DZ/RuinsPuzzleSwitch.placements.name.timerDuration=Timer Duration
+
+# Ruins Sentinel
+entities.DZ/RuinsSentinel.placements.name.ruins_sentinel=Ruins Sentinel
+entities.DZ/RuinsSentinel.placements.name.health=Health
+entities.DZ/RuinsSentinel.placements.name.detectionRange=Detection Range
+entities.DZ/RuinsSentinel.placements.name.attackRange=Attack Range
+entities.DZ/RuinsSentinel.placements.name.moveSpeed=Move Speed
+entities.DZ/RuinsSentinel.placements.name.patrolDistance=Patrol Distance
+
+# Safe Crystal Spinner
+entities.DZ/SafeCrystalSpinner.placements.name.safe_crystal_spinner=Safe Crystal Spinner
+
+# Saloon Chandelier
+entities.DZ/SaloonChandelier.placements.name.saloon_chandelier=Saloon Chandelier
+entities.DZ/SaloonChandelier.placements.name.canFall=Can Fall
+entities.DZ/SaloonChandelier.placements.name.isHazard=Is Hazard
+entities.DZ/SaloonChandelier.placements.name.swingPeriod=Swing Period
+entities.DZ/SaloonChandelier.placements.name.swingAngle=Swing Angle
+entities.DZ/SaloonChandelier.placements.name.chainLength=Chain Length
+
+# Saloon Door Controller
+entities.DZ/SaloonDoorController.placements.name.saloon_door_controller=Saloon Door Controller
+entities.DZ/SaloonDoorController.placements.name.isLocked=Is Locked
+entities.DZ/SaloonDoorController.placements.name.isDoubleDoor=Is Double Door
+entities.DZ/SaloonDoorController.placements.name.swingSpeed=Swing Speed
+entities.DZ/SaloonDoorController.placements.name.knockbackForce=Knockback Force
+entities.DZ/SaloonDoorController.placements.name.autoCloseTime=Auto Close Time
+
+# Sample Actor
+entities.DZ/SampleActor.placements.name.sample_actor=Sample Actor
+
+# Sample Entity
+entities.DZ/SampleEntity.placements.name.sample_entity=Sample Entity
+
+# Sample Solid
+entities.DZ/SampleSolid.placements.name.sample_solid=Sample Solid
+
+# Sample Trigger
+triggers.DZ/SampleTrigger.placements.name.sample_trigger=Sample Trigger
+
+# Sans Heh
+entities.DZ/SansHeh.placements.name.sans_heh=Sans Heh
+
+# Screen Flash Trigger
+triggers.DZ/ScreenFlashTrigger.placements.name.screen_flash_trigger=Screen Flash Trigger
+triggers.DZ/ScreenFlashTrigger.placements.name.onlyOnce=Only Once
+triggers.DZ/ScreenFlashTrigger.placements.name.intensity=Intensity
+triggers.DZ/ScreenFlashTrigger.placements.name.duration=Duration
+
+# Sequence Puzzle Manager
+entities.DZ/SequencePuzzleManager.placements.name.sequence_puzzle_manager=Sequence Puzzle Manager
+entities.DZ/SequencePuzzleManager.placements.name.gateId=Gate Id
+entities.DZ/SequencePuzzleManager.placements.name.sequenceOrder=Sequence Order
+entities.DZ/SequencePuzzleManager.placements.name.holdTime=Hold Time
+entities.DZ/SequencePuzzleManager.placements.name.timerDuration=Timer Duration
+
+# Shadow Figure
+entities.DZ/ShadowFigure.placements.name.shadow_figure=Shadow Figure
+entities.DZ/ShadowFigure.placements.name.isHostile=Is Hostile
+entities.DZ/ShadowFigure.placements.name.detectionRange=Detection Range
+entities.DZ/ShadowFigure.placements.name.followDistance=Follow Distance
+
+# Shop Keeper
+entities.DZ/ShopKeeper.placements.name.shop_keeper=Shop Keeper
+entities.DZ/ShopKeeper.placements.name.companionType=Companion Type
+entities.DZ/ShopKeeper.placements.name.sprite=Sprite
+entities.DZ/ShopKeeper.placements.name.canPressSwitch=Can Press Switch
+entities.DZ/ShopKeeper.placements.name.followSpeed=Follow Speed
+entities.DZ/ShopKeeper.placements.name.followDistance=Follow Distance
+
+# Size Change Trigger
+triggers.DZ/SizeChangeTrigger.placements.name.size_change_trigger=Size Change Trigger
+triggers.DZ/SizeChangeTrigger.placements.name.ability=Ability
+triggers.DZ/SizeChangeTrigger.placements.name.action=Action
+triggers.DZ/SizeChangeTrigger.placements.name.onlyOnce=Only Once
+
+# Skin Swap Trigger
+triggers.DZ/SkinSwapTrigger.placements.name.skin_swap_trigger=Skin Swap Trigger
+triggers.DZ/SkinSwapTrigger.placements.name.characterId=Character Id
+triggers.DZ/SkinSwapTrigger.placements.name.revertOnLeave=Revert On Leave
+triggers.DZ/SkinSwapTrigger.placements.name.playerVariant=Player Variant
+triggers.DZ/SkinSwapTrigger.placements.name.otherselfVariant=Otherself Variant
+triggers.DZ/SkinSwapTrigger.placements.name.silhouetteVariant=Silhouette Variant
+triggers.DZ/SkinSwapTrigger.placements.name.enableCharacterAbilities=Enable Character Abilities
+
+# Small Heart Door
+entities.DZ/SmallHeartDoor.placements.name.small_heart_door=Small Heart Door
+entities.DZ/SmallHeartDoor.placements.name.notEnoughDialog=Not Enough Dialog
+entities.DZ/SmallHeartDoor.placements.name.unlockCutscene=Unlock Cutscene
+entities.DZ/SmallHeartDoor.placements.name.chapter=Chapter
+entities.DZ/SmallHeartDoor.placements.name.requires=Requires
+entities.DZ/SmallHeartDoor.placements.name.width=Width
+entities.DZ/SmallHeartDoor.placements.name.height=Height
+
+# Snow Berry
+entities.DZ/SnowBerry.placements.name.snow_berry=Snow Berry
+
+# Soul Fragment
+entities.DZ/SoulFragment.placements.name.soul_fragment=Soul Fragment
+entities.DZ/SoulFragment.placements.name.fragmentId=Fragment Id
+entities.DZ/SoulFragment.placements.name.requiredSouls=Required Souls
+
+# Speed Modifier Trigger
+triggers.DZ/SpeedModifierTrigger.placements.name.speed_modifier_trigger=Speed Modifier Trigger
+triggers.DZ/SpeedModifierTrigger.placements.name.ability=Ability
+triggers.DZ/SpeedModifierTrigger.placements.name.action=Action
+triggers.DZ/SpeedModifierTrigger.placements.name.onlyOnce=Only Once
+
+# Spider Baker
+entities.DZ/SpiderBaker.placements.name.spider_baker=Spider Baker
+entities.DZ/SpiderBaker.placements.name.startFriendly=Start Friendly
+entities.DZ/SpiderBaker.placements.name.health=Health
+entities.DZ/SpiderBaker.placements.name.detectionRange=Detection Range
+
+# Spider Treat
+entities.DZ/SpiderTreat.placements.name.spider_treat=Spider Treat
+entities.DZ/SpiderTreat.placements.name.startFriendly=Start Friendly
+entities.DZ/SpiderTreat.placements.name.health=Health
+entities.DZ/SpiderTreat.placements.name.detectionRange=Detection Range
+
+# Spiral Staircase
+entities.DZ/SpiralStaircase.placements.name.spiral_staircase=Spiral Staircase
+entities.DZ/SpiralStaircase.placements.name.clockwise=Clockwise
+entities.DZ/SpiralStaircase.placements.name.platformCount=Platform Count
+entities.DZ/SpiralStaircase.placements.name.rotationSpeed=Rotation Speed
+entities.DZ/SpiralStaircase.placements.name.maxSpeed=Max Speed
+entities.DZ/SpiralStaircase.placements.name.radius=Radius
+
+# Split Screen Trigger
+triggers.DZ/SplitScreenTrigger.placements.name.split_screen_trigger=Split Screen Trigger
+triggers.DZ/SplitScreenTrigger.placements.name.onlyOnce=Only Once
+triggers.DZ/SplitScreenTrigger.placements.name.intensity=Intensity
+triggers.DZ/SplitScreenTrigger.placements.name.duration=Duration
+
+# Stable
+entities.DZ/Stable.placements.name.stable=Stable
+entities.DZ/Stable.placements.name.hitchId=Hitch Id
+entities.DZ/Stable.placements.name.destinationId=Destination Id
+entities.DZ/Stable.placements.name.isUnlocked=Is Unlocked
+
+# Staircase Switch
+entities.DZ/StaircaseSwitch.placements.name.staircase_switch=Staircase Switch
+entities.DZ/StaircaseSwitch.placements.name.clockwise=Clockwise
+entities.DZ/StaircaseSwitch.placements.name.platformCount=Platform Count
+entities.DZ/StaircaseSwitch.placements.name.rotationSpeed=Rotation Speed
+entities.DZ/StaircaseSwitch.placements.name.maxSpeed=Max Speed
+entities.DZ/StaircaseSwitch.placements.name.radius=Radius
+
+# Stamina Mod Trigger
+triggers.DZ/StaminaModTrigger.placements.name.stamina_mod_trigger=Stamina Mod Trigger
+triggers.DZ/StaminaModTrigger.placements.name.ability=Ability
+triggers.DZ/StaminaModTrigger.placements.name.action=Action
+triggers.DZ/StaminaModTrigger.placements.name.onlyOnce=Only Once
+
+# Star Block
+entities.DZ/StarBlock.placements.name.star_block=Star Block
+
+# Star Jump Block
+entities.DZ/StarJumpBlock.placements.name.star_jump_block=Star Jump Block
+
+# Starting Inventory
+entities.DZ/StartingInventory.placements.name.starting_inventory=Starting Inventory
+entities.DZ/StartingInventory.placements.name.inventoryType=Inventory Type
+
+# Statue Controller
+entities.DZ/StatueController.placements.name.statue_controller=Statue Controller
+entities.DZ/StatueController.placements.name.canAwaken=Can Awaken
+entities.DZ/StatueController.placements.name.isAnimated=Is Animated
+entities.DZ/StatueController.placements.name.health=Health
+
+# Sulfur Vent
+entities.DZ/SulfurVent.placements.name.sulfur_vent=Sulfur Vent
+entities.DZ/SulfurVent.placements.name.ventDuration=Vent Duration
+entities.DZ/SulfurVent.placements.name.cooldownTime=Cooldown Time
+entities.DZ/SulfurVent.placements.name.gasSpeed=Gas Speed
+entities.DZ/SulfurVent.placements.name.gasRadius=Gas Radius
+
+# Super Core Block
+entities.DZ/SuperCoreBlock.placements.name.super_core_block=Super Core Block
+entities.DZ/SuperCoreBlock.placements.name.hotColor=Hot Color
+entities.DZ/SuperCoreBlock.placements.name.coldColor=Cold Color
+entities.DZ/SuperCoreBlock.placements.name.superColor=Super Color
+entities.DZ/SuperCoreBlock.placements.name.requiresCoreMode=Requires Core Mode
+entities.DZ/SuperCoreBlock.placements.name.speedMultiplier=Speed Multiplier
+entities.DZ/SuperCoreBlock.placements.name.launchRange=Launch Range
+
+# Supernova Star Death Blackhole
+entities.DZ/SupernovaStarDeathBlackhole.placements.name.supernova_star_death_blackhole=Supernova Star Death Blackhole
+
+# Swinging Door
+entities.DZ/SwingingDoor.placements.name.swinging_door=Swinging Door
+entities.DZ/SwingingDoor.placements.name.isLocked=Is Locked
+entities.DZ/SwingingDoor.placements.name.isDoubleDoor=Is Double Door
+entities.DZ/SwingingDoor.placements.name.swingSpeed=Swing Speed
+entities.DZ/SwingingDoor.placements.name.knockbackForce=Knockback Force
+entities.DZ/SwingingDoor.placements.name.autoCloseTime=Auto Close Time
+
+# Tape
+entities.DZ/Tape.placements.name.tape=Tape
+entities.DZ/Tape.placements.name.spritePath=Sprite Path
+entities.DZ/Tape.placements.name.menuSprite=Menu Sprite
+entities.DZ/Tape.placements.name.particleColor=Particle Color
+entities.DZ/Tape.placements.name.cSideToUnlock=C Side To Unlock
+entities.DZ/Tape.placements.name.unlockText=Unlock Text
+entities.DZ/Tape.placements.name.glowStrength=Glow Strength
+entities.DZ/Tape.placements.name.bloomStrength=Bloom Strength
+entities.DZ/Tape.placements.name.wiggleIntensity=Wiggle Intensity
+entities.DZ/Tape.placements.name.floatSpeed=Float Speed
+entities.DZ/Tape.placements.name.floatRange=Float Range
+entities.DZ/Tape.placements.name.previewParamValue=Preview Param Value
+
+# Tape Block
+entities.DZ/TapeBlock.placements.name.tape_block=Tape Block
+
+# Target Score Tracker
+entities.DZ/TargetScoreTracker.placements.name.target_score_tracker=Target Score Tracker
+entities.DZ/TargetScoreTracker.placements.name.points=Points
+entities.DZ/TargetScoreTracker.placements.name.showTime=Show Time
+entities.DZ/TargetScoreTracker.placements.name.resetTime=Reset Time
+entities.DZ/TargetScoreTracker.placements.name.moveSpeed=Move Speed
+
+# Target Spawner
+entities.DZ/TargetSpawner.placements.name.target_spawner=Target Spawner
+entities.DZ/TargetSpawner.placements.name.points=Points
+entities.DZ/TargetSpawner.placements.name.showTime=Show Time
+entities.DZ/TargetSpawner.placements.name.resetTime=Reset Time
+entities.DZ/TargetSpawner.placements.name.moveSpeed=Move Speed
+
+# Teleporter Deco
+entities.DZ/TeleporterDeco.placements.name.teleporter_deco=Teleporter Deco
+
+# Teleport Pad
+entities.DZ/TeleportPad.placements.name.teleport_pad=Teleport Pad
+
+# Teleport Pipe
+entities.DZ/TeleportPipe.placements.name.teleport_pipe=Teleport Pipe
+entities.DZ/TeleportPipe.placements.name.targetPipeId=Target Pipe Id
+entities.DZ/TeleportPipe.placements.name.targetRoom=Target Room
+entities.DZ/TeleportPipe.placements.name.pipeColor=Pipe Color
+entities.DZ/TeleportPipe.placements.name.autoEnter=Auto Enter
+entities.DZ/TeleportPipe.placements.name.targetX=Target X
+entities.DZ/TeleportPipe.placements.name.targetY=Target Y
+entities.DZ/TeleportPipe.placements.name.enterDelay=Enter Delay
+
+# Tesseract Mirror
+entities.DZ/TesseractMirror.placements.name.tesseract_mirror=Tesseract Mirror
+
+# Tesseract Mirror Portal
+entities.DZ/TesseractMirrorPortal.placements.name.tesseract_mirror_portal=Tesseract Mirror Portal
+
+# Tesseract Switch
+entities.DZ/TesseractSwitch.placements.name.tesseract_switch=Tesseract Switch
+
+# Throne Room Controller
+entities.DZ/ThroneRoomController.placements.name.throne_room_controller=Throne Room Controller
+entities.DZ/ThroneRoomController.placements.name.bossEntity=Boss Entity
+entities.DZ/ThroneRoomController.placements.name.cutsceneId=Cutscene Id
+entities.DZ/ThroneRoomController.placements.name.autoActivate=Auto Activate
+entities.DZ/ThroneRoomController.placements.name.activationRadius=Activation Radius
+
+# Titan Crown
+entities.DZ/TitanCrown.placements.name.titan_crown=Titan Crown
+entities.DZ/TitanCrown.placements.name.bossEntity=Boss Entity
+entities.DZ/TitanCrown.placements.name.cutsceneId=Cutscene Id
+entities.DZ/TitanCrown.placements.name.autoActivate=Auto Activate
+entities.DZ/TitanCrown.placements.name.activationRadius=Activation Radius
+
+# Titan Footprint
+entities.DZ/TitanFootprint.placements.name.titan_footprint=Titan Footprint
+entities.DZ/TitanFootprint.placements.name.warningDuration=Warning Duration
+entities.DZ/TitanFootprint.placements.name.crushDuration=Crush Duration
+entities.DZ/TitanFootprint.placements.name.crushWidth=Crush Width
+entities.DZ/TitanFootprint.placements.name.crushHeight=Crush Height
+entities.DZ/TitanFootprint.placements.name.cooldownTime=Cooldown Time
+entities.DZ/TitanFootprint.placements.name.triggerDistance=Trigger Distance
+
+# Titan Footprint Sequence
+entities.DZ/TitanFootprintSequence.placements.name.titan_footprint_sequence=Titan Footprint Sequence
+entities.DZ/TitanFootprintSequence.placements.name.warningDuration=Warning Duration
+entities.DZ/TitanFootprintSequence.placements.name.crushDuration=Crush Duration
+entities.DZ/TitanFootprintSequence.placements.name.crushWidth=Crush Width
+entities.DZ/TitanFootprintSequence.placements.name.crushHeight=Crush Height
+entities.DZ/TitanFootprintSequence.placements.name.cooldownTime=Cooldown Time
+entities.DZ/TitanFootprintSequence.placements.name.triggerDistance=Trigger Distance
+
+# Titan Squire
+entities.DZ/TitanSquire.placements.name.titan_squire=Titan Squire
+entities.DZ/TitanSquire.placements.name.health=Health
+entities.DZ/TitanSquire.placements.name.detectionRange=Detection Range
+entities.DZ/TitanSquire.placements.name.attackRange=Attack Range
+entities.DZ/TitanSquire.placements.name.moveSpeed=Move Speed
+entities.DZ/TitanSquire.placements.name.patrolDistance=Patrol Distance
+
+# Titan Statue
+entities.DZ/TitanStatue.placements.name.titan_statue=Titan Statue
+entities.DZ/TitanStatue.placements.name.canAwaken=Can Awaken
+entities.DZ/TitanStatue.placements.name.isAnimated=Is Animated
+entities.DZ/TitanStatue.placements.name.health=Health
+
+# Titan Throne
+entities.DZ/TitanThrone.placements.name.titan_throne=Titan Throne
+entities.DZ/TitanThrone.placements.name.bossEntity=Boss Entity
+entities.DZ/TitanThrone.placements.name.cutsceneId=Cutscene Id
+entities.DZ/TitanThrone.placements.name.autoActivate=Auto Activate
+entities.DZ/TitanThrone.placements.name.activationRadius=Activation Radius
+
+# Torch
+entities.DZ/Torch.placements.name.torch=Torch
+
+# Toriel Oven
+entities.DZ/TorielOven.placements.name.toriel_oven=Toriel Oven
+entities.DZ/TorielOven.placements.name.dialogueId=Dialogue Id
+entities.DZ/TorielOven.placements.name.canInteract=Can Interact
+entities.DZ/TorielOven.placements.name.hasPie=Has Pie
+entities.DZ/TorielOven.placements.name.healAmount=Heal Amount
+entities.DZ/TorielOven.placements.name.cookDuration=Cook Duration
+
+# Toriel Stove Entity
+entities.DZ/TorielStoveEntity.placements.name.toriel_stove_entity=Toriel Stove Entity
+entities.DZ/TorielStoveEntity.placements.name.dialogueId=Dialogue Id
+entities.DZ/TorielStoveEntity.placements.name.canInteract=Can Interact
+entities.DZ/TorielStoveEntity.placements.name.hasPie=Has Pie
+entities.DZ/TorielStoveEntity.placements.name.healAmount=Heal Amount
+entities.DZ/TorielStoveEntity.placements.name.cookDuration=Cook Duration
+
+# Tower3 D
+entities.DZ/Tower3D.placements.name.tower3_d=Tower3 D
+
+# Tower3 D Trigger
+triggers.DZ/Tower3DTrigger.placements.name.tower3_d_trigger=Tower3 D Trigger
+
+# Tower Background Styleground
+entities.DZ/TowerBackgroundStyleground.placements.name.tower_background_styleground=Tower Background Styleground
+
+# Tower Elevator
+entities.DZ/TowerElevator.placements.name.tower_elevator=Tower Elevator
+entities.DZ/TowerElevator.placements.name.elevatorId=Elevator Id
+entities.DZ/TowerElevator.placements.name.moveSpeed=Move Speed
+entities.DZ/TowerElevator.placements.name.waitTime=Wait Time
+
+# Tower Fountain Trigger
+triggers.DZ/TowerFountainTrigger.placements.name.tower_fountain_trigger=Tower Fountain Trigger
+triggers.DZ/TowerFountainTrigger.placements.name.requiresChapter12=Requires Chapter12
+
+# Tower Gargoyle
+entities.DZ/TowerGargoyle.placements.name.tower_gargoyle=Tower Gargoyle
+entities.DZ/TowerGargoyle.placements.name.health=Health
+entities.DZ/TowerGargoyle.placements.name.detectionRange=Detection Range
+entities.DZ/TowerGargoyle.placements.name.swoopSpeed=Swoop Speed
+entities.DZ/TowerGargoyle.placements.name.glideSpeed=Glide Speed
+
+# Tower Lantern
+entities.DZ/TowerLantern.placements.name.tower_lantern=Tower Lantern
+entities.DZ/TowerLantern.placements.name.lanternId=Lantern Id
+entities.DZ/TowerLantern.placements.name.startLit=Start Lit
+entities.DZ/TowerLantern.placements.name.lightRadius=Light Radius
+entities.DZ/TowerLantern.placements.name.flickerIntensity=Flicker Intensity
+
+# Tower Obstacle Factory
+entities.DZ/TowerObstacleFactory.placements.name.tower_obstacle_factory=Tower Obstacle Factory
+entities.DZ/TowerObstacleFactory.placements.name.obstacleSetType=Obstacle Set Type
+entities.DZ/TowerObstacleFactory.placements.name.obstaclePattern=Obstacle Pattern
+entities.DZ/TowerObstacleFactory.placements.name.backgroundStyle=Background Style
+entities.DZ/TowerObstacleFactory.placements.name.createBackground=Create Background
+entities.DZ/TowerObstacleFactory.placements.name.createObstacles=Create Obstacles
+entities.DZ/TowerObstacleFactory.placements.name.autoPositionAroundTower=Auto Position Around Tower
+entities.DZ/TowerObstacleFactory.placements.name.obstacleCount=Obstacle Count
+entities.DZ/TowerObstacleFactory.placements.name.towerRadius=Tower Radius
+entities.DZ/TowerObstacleFactory.placements.name.verticalSpacing=Vertical Spacing
+entities.DZ/TowerObstacleFactory.placements.name.patternRotation=Pattern Rotation
+entities.DZ/TowerObstacleFactory.placements.name.activationDelay=Activation Delay
+
+# Tower Window
+entities.DZ/TowerWindow.placements.name.tower_window=Tower Window
+entities.DZ/TowerWindow.placements.name.startLit=Start Lit
+entities.DZ/TowerWindow.placements.name.lightIntensity=Light Intensity
+
+# Training Dummy
+entities.DZ/TrainingDummy.placements.name.training_dummy=Training Dummy
+entities.DZ/TrainingDummy.placements.name.companionType=Companion Type
+entities.DZ/TrainingDummy.placements.name.sprite=Sprite
+entities.DZ/TrainingDummy.placements.name.canPressSwitch=Can Press Switch
+entities.DZ/TrainingDummy.placements.name.followSpeed=Follow Speed
+entities.DZ/TrainingDummy.placements.name.followDistance=Follow Distance
+
+# Transport Platform
+entities.DZ/TransportPlatform.placements.name.transport_platform=Transport Platform
+
+# Tumbleweed Cluster
+triggers.DZ/TumbleweedCluster.placements.name.tumbleweed_cluster=Tumbleweed Cluster
+triggers.DZ/TumbleweedCluster.placements.name.tumbleweedCount=Tumbleweed Count
+triggers.DZ/TumbleweedCluster.placements.name.rollSpeed=Roll Speed
+triggers.DZ/TumbleweedCluster.placements.name.pushForce=Push Force
+triggers.DZ/TumbleweedCluster.placements.name.bounceChance=Bounce Chance
+
+# Ultra Dash Block
+entities.DZ/UltraDashBlock.placements.name.ultra_dash_block=Ultra Dash Block
+
+# Uw Umper
+entities.DZ/UwUmper.placements.name.uw_umper=Uw Umper
+
+# Vanishing Wall
+entities.DZ/VanishingWall.placements.name.vanishing_wall=Vanishing Wall
+
+# Vignette Trigger
+triggers.DZ/VignetteTrigger.placements.name.vignette_trigger=Vignette Trigger
+triggers.DZ/VignetteTrigger.placements.name.onlyOnce=Only Once
+triggers.DZ/VignetteTrigger.placements.name.intensity=Intensity
+triggers.DZ/VignetteTrigger.placements.name.duration=Duration
+
+# Virus Cloud
+entities.DZ/VirusCloud.placements.name.virus_cloud=Virus Cloud
+entities.DZ/VirusCloud.placements.name.health=Health
+entities.DZ/VirusCloud.placements.name.spreadRadius=Spread Radius
+entities.DZ/VirusCloud.placements.name.moveSpeed=Move Speed
+entities.DZ/VirusCloud.placements.name.damageRate=Damage Rate
+
+# Void Barrier
+entities.DZ/VoidBarrier.placements.name.void_barrier=Void Barrier
+entities.DZ/VoidBarrier.placements.name.stabilityRadius=Stability Radius
+
+# Void Gate
+entities.DZ/VoidGate.placements.name.void_gate=Void Gate
+entities.DZ/VoidGate.placements.name.gateWidth=Gate Width
+entities.DZ/VoidGate.placements.name.gateHeight=Gate Height
+entities.DZ/VoidGate.placements.name.moveSpeed=Move Speed
+entities.DZ/VoidGate.placements.name.triggerWidth=Trigger Width
+entities.DZ/VoidGate.placements.name.triggerHeight=Trigger Height
+entities.DZ/VoidGate.placements.name.width=Width
+
+# Void Gate Arena
+entities.DZ/VoidGateArena.placements.name.void_gate_arena=Void Gate Arena
+entities.DZ/VoidGateArena.placements.name.completionFlag=Completion Flag
+entities.DZ/VoidGateArena.placements.name.spawnBoss=Spawn Boss
+entities.DZ/VoidGateArena.placements.name.requiredKills=Required Kills
+entities.DZ/VoidGateArena.placements.name.enemiesPerWave=Enemies Per Wave
+entities.DZ/VoidGateArena.placements.name.totalWaves=Total Waves
+
+# Void Portal
+entities.DZ/VoidPortal.placements.name.void_portal=Void Portal
+entities.DZ/VoidPortal.placements.name.destinationId=Destination Id
+entities.DZ/VoidPortal.placements.name.isFinalPortal=Is Final Portal
+
+# Voidstarberry
+entities.DZ/Voidstarberry.placements.name.voidstarberry=Voidstarberry
+
+# Volcanic Rock
+entities.DZ/VolcanicRock.placements.name.volcanic_rock=Volcanic Rock
+entities.DZ/VolcanicRock.placements.name.fallSpeed=Fall Speed
+entities.DZ/VolcanicRock.placements.name.damageRadius=Damage Radius
+entities.DZ/VolcanicRock.placements.name.triggerRange=Trigger Range
+
+# Waddle Dee
+entities.DZ/WaddleDee.placements.name.waddle_dee=Waddle Dee
+
+# Waddle Doo
+entities.DZ/WaddleDoo.placements.name.waddle_doo=Waddle Doo
+
+# Wanted Poster
+entities.DZ/WantedPoster.placements.name.wanted_poster=Wanted Poster
+entities.DZ/WantedPoster.placements.name.bountyName=Bounty Name
+entities.DZ/WantedPoster.placements.name.enemyType=Enemy Type
+entities.DZ/WantedPoster.placements.name.bountyReward=Bounty Reward
+entities.DZ/WantedPoster.placements.name.enemyCount=Enemy Count
+
+# Warp Star
+entities.DZ/WarpStar.placements.name.warp_star=Warp Star
+
+# Water Current Zone
+triggers.DZ/WaterCurrentZone.placements.name.water_current_zone=Water Current Zone
+triggers.DZ/WaterCurrentZone.placements.name.flowStrength=Flow Strength
+triggers.DZ/WaterCurrentZone.placements.name.rushInterval=Rush Interval
+triggers.DZ/WaterCurrentZone.placements.name.rushDuration=Rush Duration
+triggers.DZ/WaterCurrentZone.placements.name.width=Width
+triggers.DZ/WaterCurrentZone.placements.name.height=Height
+
+# Waterfall Climb
+triggers.DZ/WaterfallClimb.placements.name.waterfall_climb=Waterfall Climb
+triggers.DZ/WaterfallClimb.placements.name.flowStrength=Flow Strength
+triggers.DZ/WaterfallClimb.placements.name.rushInterval=Rush Interval
+triggers.DZ/WaterfallClimb.placements.name.rushDuration=Rush Duration
+triggers.DZ/WaterfallClimb.placements.name.width=Width
+triggers.DZ/WaterfallClimb.placements.name.height=Height
+
+# Wave Phaze Machine
+entities.DZ/WavePhazeMachine.placements.name.wave_phaze_machine=Wave Phaze Machine
+
+# White Block
+entities.DZ/WhiteBlock.placements.name.white_block=White Block
+
+# White Hole
+entities.DZ/WhiteHole.placements.name.white_hole=White Hole
+entities.DZ/WhiteHole.placements.name.SpeedModifier=Speed Modifier
+entities.DZ/WhiteHole.placements.name.ForceModifier=Force Modifier
+
+# Window Sequence
+entities.DZ/WindowSequence.placements.name.window_sequence=Window Sequence
+entities.DZ/WindowSequence.placements.name.startLit=Start Lit
+entities.DZ/WindowSequence.placements.name.lightIntensity=Light Intensity
+
+# Wind Zone
+triggers.DZ/WindZone.placements.name.wind_zone=Wind Zone
+triggers.DZ/WindZone.placements.name.tumbleweedCount=Tumbleweed Count
+triggers.DZ/WindZone.placements.name.rollSpeed=Roll Speed
+triggers.DZ/WindZone.placements.name.pushForce=Push Force
+triggers.DZ/WindZone.placements.name.bounceChance=Bounce Chance
+
+# Wish Altar
+entities.DZ/WishAltar.placements.name.wish_altar=Wish Altar
+entities.DZ/WishAltar.placements.name.dialoguePrefix=Dialogue Prefix
+entities.DZ/WishAltar.placements.name.canInteract=Can Interact
+entities.DZ/WishAltar.placements.name.requiredHearts=Required Hearts
+
+# Wish Orb
+entities.DZ/WishOrb.placements.name.wish_orb=Wish Orb
+entities.DZ/WishOrb.placements.name.dialoguePrefix=Dialogue Prefix
+entities.DZ/WishOrb.placements.name.canInteract=Can Interact
+entities.DZ/WishOrb.placements.name.requiredHearts=Required Hearts
+
+# Zoom Mover
+entities.DZ/ZoomMover.placements.name.zoom_mover=Zoom Mover
+
+# Zoom Trigger
+triggers.DZ/ZoomTrigger.placements.name.zoom_trigger=Zoom Trigger
+triggers.DZ/ZoomTrigger.placements.name.onlyOnce=Only Once
+triggers.DZ/ZoomTrigger.placements.name.intensity=Intensity
+triggers.DZ/ZoomTrigger.placements.name.duration=Duration
+
+# Credits Trigger Part1
+entities.MaggyHelper/CreditsTriggerPart1.placements.name.credits_trigger_part1=Credits Trigger Part1
+
+# Credits Trigger Part2
+entities.MaggyHelper/CreditsTriggerPart2.placements.name.credits_trigger_part2=Credits Trigger Part2

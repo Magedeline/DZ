@@ -1,27 +1,19 @@
+#nullable enable
+using Celeste.Mod.Entities;
 using Microsoft.Xna.Framework;
-using Nez;
-using System;
-using KirbyCelesteStandalone.Core;
+using Monocle;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace Celeste.Mod.DZ.Triggers;
 
-/// <summary>
-/// Trigger that stops the player's boost/summit launch state.
-/// Ported from Celeste (BloodLantern/Celeste)
-/// </summary>
-public class StopBoostTrigger : CelesteTrigger
-{
-    public StopBoostTrigger(Vector2 position, int width, int height) : base(position, width, height)
-    {
+[CustomEntity("DZ/StopBoostTrigger")]
+public class StopBoostTrigger : Trigger {
+    public StopBoostTrigger(EntityData data, Vector2 offset) : base(data, offset) {
     }
 
-    public override void OnEnter(PlayerController player)
-    {
-        // TODO: Check if in boost state (state 10 in Celeste)
-        // if (player.StateMachine.State != 10)
-        //     return;
-        
-        // TODO: Stop summit launch
-        // player.StopSummitLaunch();
+    public override void OnEnter(Player player) {
+        base.OnEnter(player);
+        if (player.StateMachine.State != Player.StSummitLaunch)
+            return;
+        player.StopSummitLaunch();
     }
 }

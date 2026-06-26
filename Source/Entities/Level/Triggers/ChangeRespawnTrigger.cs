@@ -1,39 +1,26 @@
+#nullable enable
+using Celeste.Mod.Entities;
 using Microsoft.Xna.Framework;
-using Nez;
-using System;
-using KirbyCelesteStandalone.Core;
+using Monocle;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace Celeste.Mod.DZ.Triggers;
 
-/// <summary>
-/// Trigger that changes the player's respawn point.
-/// Ported from Celeste (BloodLantern/Celeste)
-/// </summary>
-public class ChangeRespawnTrigger : CelesteTrigger
-{
-    public Vector2 Target;
+[CustomEntity("DZ/ChangeRespawnTrigger")]
+public class ChangeRespawnTrigger : Trigger {
+    private Vector2 target;
 
-    public ChangeRespawnTrigger(Vector2 position, int width, int height, Vector2 target) : base(position, width, height)
-    {
-        Target = target;
+    public ChangeRespawnTrigger(EntityData data, Vector2 offset) : base(data, offset) {
+        target = data.NodesOffset(offset).Length > 0 ? data.NodesOffset(offset)[0] : data.Position + offset;
     }
 
-    public override void OnEnter(PlayerController player)
-    {
-        if (!SolidCheck())
+    public override void OnEnter(Player player) {
+        base.OnEnter(player);
+        Level level = SceneAs<Level>();
+        Vector2 point = target + new Vector2(0f, -4f);
+        if (Scene.CollideCheck<Solid>(point))
             return;
-        
-        // TODO: Set respawn point
-        // Session.HitCheckpoint = true;
-        // Session.RespawnPoint = Target;
-        // Session.UpdateLevelStartDashes();
-    }
-
-    private bool SolidCheck()
-    {
-        Vector2 point = Target + new Vector2(0f, -4f);
-        // TODO: Check for solid collision at point
-        // return !Scene.CollideCheck<Solid>(point) || Scene.CollideCheck<FloatySpaceBlock>(point);
-        return true;
+        level.Session.HitCheckpoint = true;
+        level.Session.RespawnPoint = target;
+        level.Session.UpdateLevelStartDashes();
     }
 }

@@ -1,6 +1,6 @@
 namespace Celeste.Entities.Projectiles
 {
-    [CustomEntity("DesoloZantas/SupernovaStarDeathBlackhole")]
+    [CustomEntity("DZ/SupernovaStarDeathBlackhole")]
     public class SupernovaStarDeathBlackhole : Entity
     {
         private Sprite sprite;
@@ -33,7 +33,7 @@ namespace Celeste.Entities.Projectiles
             Collider = new Circle(damageRadius);
             
             // Setup sprite
-            Add(sprite = new Sprite(GFX.Game, "objects/DesoloZantas/blackhole/"));
+            Add(sprite = new Sprite(GFX.Game, "objects/DZ/blackhole/"));
             sprite.AddLoop("idle", "blackhole", 0.08f);
             sprite.CenterOrigin();
             sprite.Play("idle");

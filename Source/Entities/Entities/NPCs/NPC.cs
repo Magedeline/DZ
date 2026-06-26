@@ -9,7 +9,7 @@ using Monocle;
 
 namespace Celeste.Entities
 {
-    [CustomEntity(ids:"DesoloZantas/NPC,DZ/NPC")]
+    [CustomEntity(ids:"DZ/NPC,DZ/NPC")]
     [Tracked(true)]
     public partial class NPC : Entity
     {
@@ -426,7 +426,7 @@ namespace Celeste.Entities
     // Add NPC07_Badeline as a specialized NPC Event type
     // Generic NPC implementations from NPCs folder
     
-    [CustomEntity("DesoloZantas/NPC_Theo")]
+    [CustomEntity("DZ/NPC_Theo")]
     [Tracked(true)]
     public partial class Npc_Theo : NPC
     {
@@ -441,7 +441,7 @@ namespace Celeste.Entities
         }
     }
 
-    [CustomEntity("DesoloZantas/NPC_Chara")]
+    [CustomEntity("DZ/NPC_Chara")]
     [Tracked(true)]
     public partial class Npc_Chara : NPC
     {
@@ -456,7 +456,7 @@ namespace Celeste.Entities
         }
     }
 
-    [CustomEntity("DesoloZantas/NPC_Kirby")]
+    [CustomEntity("DZ/NPC_Kirby")]
     [Tracked(true)]
     public partial class Npc_Kirby : NPC
     {
@@ -471,7 +471,7 @@ namespace Celeste.Entities
         }
     }
 
-    [CustomEntity("DesoloZantas/NPC_Ralsei")]
+    [CustomEntity("DZ/NPC_Ralsei")]
     [Tracked(true)]
     public partial class Npc_Ralsei : NPC
     {
@@ -486,7 +486,7 @@ namespace Celeste.Entities
         }
     }
 
-    [CustomEntity("DesoloZantas/NPC_MetaKnight")]
+    [CustomEntity("DZ/NPC_MetaKnight")]
     [Tracked(true)]
     public partial class Npc_MetaKnight : NPC
     {
@@ -501,7 +501,7 @@ namespace Celeste.Entities
         }
     }
 
-    [CustomEntity("DesoloZantas/NPC_DigitalGuide")]
+    [CustomEntity("DZ/NPC_DigitalGuide")]
     [Tracked(true)]
     public partial class Npc_DigitalGuide : NPC
     {
@@ -516,7 +516,7 @@ namespace Celeste.Entities
         }
     }
 
-    [CustomEntity("DesoloZantas/NPC_Phone")]
+    [CustomEntity("DZ/NPC_Phone")]
     [Tracked(true)]
     public partial class Npc_Phone : NPC
     {
@@ -531,7 +531,7 @@ namespace Celeste.Entities
         }
     }
 
-    [CustomEntity("DesoloZantas/NPC_Roxus")]
+    [CustomEntity("DZ/NPC_Roxus")]
     [Tracked(true)]
     public partial class Npc_Roxus : NPC
     {
@@ -546,7 +546,7 @@ namespace Celeste.Entities
         }
     }
 
-    [CustomEntity("DesoloZantas/NPC_Temmie")]
+    [CustomEntity("DZ/NPC_Temmie")]
     [Tracked(true)]
     public partial class Npc_Temmie : NPC
     {
@@ -561,7 +561,7 @@ namespace Celeste.Entities
         }
     }
 
-    [CustomEntity("DesoloZantas/NPC_Axis")]
+    [CustomEntity("DZ/NPC_Axis")]
     [Tracked(true)]
     public partial class Npc_Axis : NPC
     {
@@ -576,7 +576,7 @@ namespace Celeste.Entities
         }
     }
 
-    [CustomEntity("DesoloZantas/NPC_Els")]
+    [CustomEntity("DZ/NPC_Els")]
     [Tracked(true)]
     public partial class Npc_Els : NPC
     {
@@ -591,7 +591,7 @@ namespace Celeste.Entities
         }
     }
 
-    [CustomEntity("DesoloZantas/NPC_TitanCouncilMember")]
+    [CustomEntity("DZ/NPC_TitanCouncilMember")]
     [Tracked(true)]
     public partial class Npc_TitanCouncilMember : NPC
     {
@@ -608,7 +608,7 @@ namespace Celeste.Entities
 
     // Chapter-specific NPC implementations
 
-    [CustomEntity("DesoloZantas/NPC00_Theo")]
+    [CustomEntity("DZ/NPC00_Theo")]
     [Tracked(true)]
     public partial class Npc00_Theo : NPC
     {
@@ -627,7 +627,7 @@ namespace Celeste.Entities
         }
     }
 
-    [CustomEntity("DesoloZantas/NPC01_Maggy")]
+    [CustomEntity("DZ/NPC01_Maggy")]
     [Tracked(true)]
     public partial class Npc01_Maggy : NPC
     {
@@ -642,7 +642,7 @@ namespace Celeste.Entities
         }
     }
 
-    [CustomEntity("DesoloZantas/NPC02_Maggy")]
+    [CustomEntity("DZ/NPC02_Maggy")]
     [Tracked(true)]
     public partial class Npc02_Maggy : NPC
     {
@@ -657,7 +657,7 @@ namespace Celeste.Entities
         }
     }
 
-    [CustomEntity("DesoloZantas/NPC03_Maggy")]
+    [CustomEntity("DZ/NPC03_Maggy")]
     [Tracked(true)]
     public partial class Npc03_Maggy : NPC
     {
@@ -672,7 +672,7 @@ namespace Celeste.Entities
         }
     }
 
-    [CustomEntity("DesoloZantas/NPC03_Theo")]
+    [CustomEntity("DZ/NPC03_Theo")]
     [Tracked(true)]
     public partial class Npc03_Theo : NPC
     {
@@ -687,7 +687,7 @@ namespace Celeste.Entities
         }
     }
 
-    [CustomEntity("DesoloZantas/NPC05_Magolor_Vents")]
+    [CustomEntity("DZ/NPC05_Magolor_Vents")]
     [Tracked(true)]
     public partial class Npc05_Magolor_Vents : NPC
     {
@@ -702,7 +702,7 @@ namespace Celeste.Entities
         }
     }
 
-    [CustomEntity("DesoloZantas/NPC05_MagolorEscape")]
+    [CustomEntity("DZ/NPC05_MagolorEscape")]
     [Tracked(true)]
     public partial class Npc05_Magolor_Escape : NPC
     {
@@ -725,7 +725,7 @@ namespace Celeste.Entities
         }
     }
 
-    [CustomEntity("DesoloZantas/NPC05_Oshiro_Breakdown")]
+    [CustomEntity("DZ/NPC05_Oshiro_Breakdown")]
     [Tracked(true)]
     public partial class Npc05_Oshiro_Breakdown : NPC
     {
@@ -740,7 +740,7 @@ namespace Celeste.Entities
         }
     }
 
-    [CustomEntity("DesoloZantas/NPC05_Oshiro_Clutter")]
+    [CustomEntity("DZ/NPC05_Oshiro_Clutter")]
     [Tracked(true)]
     public partial class Npc05_Oshiro_Clutter : NPC
     {
@@ -765,7 +765,7 @@ namespace Celeste.Entities
         }
     }
 
-    [CustomEntity("DesoloZantas/NPC05_Oshiro_Hallway1")]
+    [CustomEntity("DZ/NPC05_Oshiro_Hallway1")]
     [Tracked(true)]
     public partial class Npc05_Oshiro_Hallway1 : NPC
     {
@@ -788,7 +788,7 @@ namespace Celeste.Entities
         }
     }
 
-    [CustomEntity("DesoloZantas/NPC05_Oshiro_Hallway2")]
+    [CustomEntity("DZ/NPC05_Oshiro_Hallway2")]
     [Tracked(true)]
     public partial class Npc05_Oshiro_Hallway2 : NPC
     {
@@ -811,7 +811,7 @@ namespace Celeste.Entities
         }
     }
 
-    [CustomEntity("DesoloZantas/NPC05_Oshiro_Lobby")]
+    [CustomEntity("DZ/NPC05_Oshiro_Lobby")]
     [Tracked(true)]
     public partial class Npc05_Oshiro_Lobby : NPC
     {
@@ -834,7 +834,7 @@ namespace Celeste.Entities
         }
     }
 
-    [CustomEntity("DesoloZantas/NPC05_Oshiro_Rooftop")]
+    [CustomEntity("DZ/NPC05_Oshiro_Rooftop")]
     [Tracked(true)]
     public partial class Npc05_Oshiro_Rooftop : NPC
     {
@@ -857,7 +857,7 @@ namespace Celeste.Entities
         }
     }
 
-    [CustomEntity("DesoloZantas/NPC05_Oshiro_Suite")]
+    [CustomEntity("DZ/NPC05_Oshiro_Suite")]
     [Tracked(true)]
     public partial class Npc05_Oshiro_Suite : NPC
     {
@@ -880,7 +880,7 @@ namespace Celeste.Entities
         }
     }
 
-    [CustomEntity("DesoloZantas/NPC06_Magolor")]
+    [CustomEntity("DZ/NPC06_Magolor")]
     [Tracked(true)]
     public partial class Npc06_Magolor : NPC
     {
@@ -904,7 +904,7 @@ namespace Celeste.Entities
         }
     }
 
-    [CustomEntity("DesoloZantas/NPC06_Theo")]
+    [CustomEntity("DZ/NPC06_Theo")]
     [Tracked(true)]
     public partial class Npc06_Theo : NPC
     {
@@ -919,7 +919,7 @@ namespace Celeste.Entities
         }
     }
 
-    [CustomEntity("DesoloZantas/NPC07_Chara")]
+    [CustomEntity("DZ/NPC07_Chara")]
     [Tracked(true)]
     public partial class Npc07_Chara : NPC
     {
@@ -938,7 +938,7 @@ namespace Celeste.Entities
         }
     }
 
-    [CustomEntity("DesoloZantas/NPC07_Maddy_Mirror")]
+    [CustomEntity("DZ/NPC07_Maddy_Mirror")]
     [Tracked(true)]
     public partial class Npc07_Maddy_Mirror : NPC
     {
@@ -957,7 +957,7 @@ namespace Celeste.Entities
         }
     }
 
-    [CustomEntity("DesoloZantas/NPC08_Chara_Crying")]
+    [CustomEntity("DZ/NPC08_Chara_Crying")]
     [Tracked(true)]
     public partial class Npc08_Chara_Crying : NPC
     {
@@ -980,7 +980,7 @@ namespace Celeste.Entities
         }
     }
 
-    [CustomEntity("DesoloZantas/NPC08_Maddy_and_Theo_Ending")]
+    [CustomEntity("DZ/NPC08_Maddy_and_Theo_Ending")]
     [Tracked(true)]
     public partial class Npc08_Maddy_and_Theo_Ending : NPC
     {
@@ -1003,7 +1003,7 @@ namespace Celeste.Entities
         }
     }
 
-    [CustomEntity("DesoloZantas/NPC08_Madeline_Plateau")]
+    [CustomEntity("DZ/NPC08_Madeline_Plateau")]
     [Tracked(true)]
     public partial class Npc08_Madeline_Plateau : NPC
     {
@@ -1027,7 +1027,7 @@ namespace Celeste.Entities
         }
     }
 
-    [CustomEntity("DesoloZantas/NPC08_Maggy_Ending")]
+    [CustomEntity("DZ/NPC08_Maggy_Ending")]
     [Tracked(true)]
     public partial class Npc08_Maggy_Ending : NPC
     {
@@ -1071,7 +1071,7 @@ namespace Celeste.Entities
         }
     }
 
-    [CustomEntity("DesoloZantas/NPC17_Kirby")]
+    [CustomEntity("DZ/NPC17_Kirby")]
     [Tracked(true)]
     public partial class Npc17_Kirby : NPC
     {
@@ -1090,7 +1090,7 @@ namespace Celeste.Entities
         }
     }
 
-    [CustomEntity("DesoloZantas/NPC17_Oshiro")]
+    [CustomEntity("DZ/NPC17_Oshiro")]
     [Tracked(true)]
     public partial class Npc17_Oshiro : NPC
     {
@@ -1109,7 +1109,7 @@ namespace Celeste.Entities
         }
     }
 
-    [CustomEntity("DesoloZantas/NPC17_Ralsei")]
+    [CustomEntity("DZ/NPC17_Ralsei")]
     [Tracked(true)]
     public partial class Npc17_Ralsei : NPC
     {
@@ -1128,7 +1128,7 @@ namespace Celeste.Entities
         }
     }
 
-    [CustomEntity("DesoloZantas/NPC17_Theo")]
+    [CustomEntity("DZ/NPC17_Theo")]
     [Tracked(true)]
     public partial class Npc17_Theo : NPC
     {
@@ -1147,7 +1147,7 @@ namespace Celeste.Entities
         }
     }
 
-    [CustomEntity("DesoloZantas/NPC17_Toriel")]
+    [CustomEntity("DZ/NPC17_Toriel")]
     [Tracked(true)]
     public partial class Npc17_Toriel : NPC
     {
@@ -1166,7 +1166,7 @@ namespace Celeste.Entities
         }
     }
 
-    [CustomEntity("DesoloZantas/NPC18_Toriel_Inside")]
+    [CustomEntity("DZ/NPC18_Toriel_Inside")]
     [Tracked(true)]
     public partial class Npc18_Toriel_Inside : NPC
     {
@@ -1182,7 +1182,7 @@ namespace Celeste.Entities
         
     }
 
-    [CustomEntity("DesoloZantas/NPC18_Toriel_Outside")]
+    [CustomEntity("DZ/NPC18_Toriel_Outside")]
     [Tracked(true)]
     public partial class Npc18_Toriel_Outside : NPC
     {
@@ -1197,7 +1197,7 @@ namespace Celeste.Entities
         }
     }
 
-    [CustomEntity("DesoloZantas/NPC19_Gravestone")]
+    [CustomEntity("DZ/NPC19_Gravestone")]
     [Tracked(true)]
     public partial class Npc19_Gravestone : NPC
     {
@@ -1217,7 +1217,7 @@ namespace Celeste.Entities
         }
     }
 
-    [CustomEntity("DesoloZantas/NPC19_Maggy_Loop")]
+    [CustomEntity("DZ/NPC19_Maggy_Loop")]
     [Tracked(true)]
     public partial class Npc19_Maggy_Loop : NPC
     {
@@ -1236,7 +1236,7 @@ namespace Celeste.Entities
         }
     }
 
-    [CustomEntity("DesoloZantas/NPC20_Asriel")]
+    [CustomEntity("DZ/NPC20_Asriel")]
     [Tracked(true)]
     public partial class Npc20_Asriel : NPC
     {
@@ -1260,7 +1260,7 @@ namespace Celeste.Entities
         }
     }
 
-    [CustomEntity("DesoloZantas/NPC20_Granny")]
+    [CustomEntity("DZ/NPC20_Granny")]
     [Tracked(true)]
     public partial class Npc20_Granny : NPC
     {
@@ -1284,7 +1284,7 @@ namespace Celeste.Entities
         }
     }
 
-    [CustomEntity("DesoloZantas/NPC20_Madeline")]
+    [CustomEntity("DZ/NPC20_Madeline")]
     [Tracked(true)]
     public partial class Npc20_Madeline : NPC
     {
@@ -1307,7 +1307,7 @@ namespace Celeste.Entities
             TryAddCutscene(new CS21_Saved(player));
         }
     }
-    [CustomEntity("DesoloZantas/NPCEventInteract")]
+    [CustomEntity("DZ/NPCEventInteract")]
     [Tracked(true)]
     public class NPCEventInteract : NPC
     {

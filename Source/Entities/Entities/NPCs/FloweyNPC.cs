@@ -10,7 +10,7 @@ namespace Celeste.Entities
     /// Spawns Flowey with full sprite animations (idle, popin, knockout, grin, laugh, pissed, shout, evil).
     /// Used by FloweyIntroScene and other Chapter 10 cutscenes.
     /// </summary>
-    [CustomEntity("DesoloZantas/FloweyNPC")]
+    [CustomEntity("DZ/FloweyNPC")]
     [Tracked]
     [HotReloadable]
     public class FloweyNPC : Entity
@@ -347,7 +347,7 @@ namespace Celeste.Entities
     /// the player interacts with or enters a room containing a FloweyNPC.
     /// Place this as a trigger zone in the room to auto-start the cutscene on room entry.
     /// </summary>
-    [CustomEntity("DesoloZantas/FloweyIntroTrigger")]
+    [CustomEntity("DZ/FloweyIntroTrigger")]
     [HotReloadable]
     public class FloweyIntroSceneTrigger : CutsceneEntity
     {

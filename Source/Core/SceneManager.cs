@@ -1,8 +1,9 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Nez;
 using Nez.Sprites;
 using System;
 using NezCore = Nez.Core;
+using Scene = Nez.Scene;
 
 namespace KirbyCelesteStandalone.Core;
 

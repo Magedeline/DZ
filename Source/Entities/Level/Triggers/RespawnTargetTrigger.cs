@@ -1,28 +1,15 @@
+﻿#nullable enable
+using Celeste.Mod.Entities;
 using Microsoft.Xna.Framework;
-using Nez;
-using System;
-using KirbyCelesteStandalone.Core;
+using Monocle;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace Celeste.Mod.DZ.Triggers;
 
-/// <summary>
-/// Entity that marks a target position for respawning.
-/// Note: This is not a trigger, it extends Entity directly.
-/// Ported from Celeste (BloodLantern/Celeste)
-/// </summary>
-public class RespawnTargetTrigger : Entity
-{
+[CustomEntity("DZ/RespawnTargetTrigger")]
+public class RespawnTargetTrigger : Trigger {
     public Vector2 Target;
-    public float Width;
-    public float Height;
 
-    public RespawnTargetTrigger(Vector2 position, float width, float height, Vector2 target) : base("RespawnTargetTrigger")
-    {
-        Position = position;
-        Width = width;
-        Height = height;
-        Target = target;
-        
-        // Invisible and inactive in normal gameplay
+    public RespawnTargetTrigger(EntityData data, Vector2 offset) : base(data, offset) {
+        Target = data.NodesOffset(offset).Length > 0 ? data.NodesOffset(offset)[0] : data.Position + offset;
     }
 }

@@ -1,75 +1,49 @@
+#nullable enable
+using Celeste.Mod.Entities;
 using Microsoft.Xna.Framework;
-using Nez;
-using System;
-using System.Collections.Generic;
-using KirbyCelesteStandalone.Core;
+using Monocle;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace Celeste.Mod.DZ.Triggers;
 
-/// <summary>
-/// Advanced camera target trigger with separate X/Y lerp strengths and position modes.
-/// Ported from Celeste (BloodLantern/Celeste)
-/// </summary>
-public class CameraAdvanceTargetTrigger : CelesteTrigger
-{
-    public Vector2 Target;
-    public Vector2 LerpStrength;
-    public PositionModes PositionModeX;
-    public PositionModes PositionModeY;
-    public bool XOnly;
-    public bool YOnly;
+[CustomEntity("DZ/CameraAdvanceTargetTrigger")]
+public class CameraAdvanceTargetTrigger : Trigger {
+    private Vector2 target;
+    private Vector2 lerpStrength;
+    private PositionModes positionModeX;
+    private PositionModes positionModeY;
+    private bool xOnly;
+    private bool yOnly;
 
-    public CameraAdvanceTargetTrigger(Vector2 position, int width, int height, Vector2 target, Vector2 lerpStrength, 
-        PositionModes positionModeX, PositionModes positionModeY, bool xOnly = false, bool yOnly = false) : base(position, width, height)
-    {
-        Target = target;
-        LerpStrength = lerpStrength;
-        PositionModeX = positionModeX;
-        PositionModeY = positionModeY;
-        XOnly = xOnly;
-        YOnly = yOnly;
+    public CameraAdvanceTargetTrigger(EntityData data, Vector2 offset) : base(data, offset) {
+        target = new Vector2(data.Float("targetX", 0f), data.Float("targetY", 0f));
+        lerpStrength = new Vector2(data.Float("lerpStrengthX", 1f), data.Float("lerpStrengthY", 1f));
+        positionModeX = data.Enum("positionModeX", PositionModes.NoEffect);
+        positionModeY = data.Enum("positionModeY", PositionModes.NoEffect);
+        xOnly = data.Bool("xOnly", false);
+        yOnly = data.Bool("yOnly", false);
     }
 
-    public override void OnStay(PlayerController player)
-    {
-        // TODO: Set camera anchor to Target
-        // player.CameraAnchor = Target;
-        // player.CameraAnchorLerp.X = MathHelper.Clamp(LerpStrength.X * GetPositionLerp(player, PositionModeX), 0f, 1f);
-        // player.CameraAnchorLerp.Y = MathHelper.Clamp(LerpStrength.Y * GetPositionLerp(player, PositionModeY), 0f, 1f);
-        // player.CameraAnchorIgnoreX = YOnly;
-        // player.CameraAnchorIgnoreY = XOnly;
+    public override void OnStay(Player player) {
+        base.OnStay(player);
+        player.CameraAnchor = target;
+        player.CameraAnchorLerp.X = Calc.Clamp(lerpStrength.X * GetPositionLerp(player, positionModeX), 0f, 1f);
+        player.CameraAnchorLerp.Y = Calc.Clamp(lerpStrength.Y * GetPositionLerp(player, positionModeY), 0f, 1f);
+        player.CameraAnchorIgnoreX = yOnly;
+        player.CameraAnchorIgnoreY = xOnly;
     }
 
-    public override void OnLeave(PlayerController player)
-    {
+    public override void OnLeave(Player player) {
+        base.OnLeave(player);
         bool insideOther = false;
-        
-        // Check if inside any other CameraTargetTrigger
-        // foreach (var trigger in Scene.FindComponentsOfType<CameraTargetTrigger>())
-        // {
-        //     if (trigger.PlayerIsInside)
-        //     {
-        //         insideOther = true;
-        //         break;
-        //     }
-        // }
-        
-        // Check if inside any other CameraAdvanceTargetTrigger
-        if (!insideOther)
-        {
-            // foreach (var trigger in Scene.FindComponentsOfType<CameraAdvanceTargetTrigger>())
-            // {
-            //     if (trigger.PlayerIsInside)
-            //     {
-            //         insideOther = true;
-            //         break;
-            //     }
-            // }
+        foreach (var t in Scene.Tracker.GetEntities<CameraTargetTrigger>()) {
+            if (((CameraTargetTrigger)t).PlayerIsInside) { insideOther = true; break; }
         }
-        
-        if (!insideOther)
-        {
-            // player.CameraAnchorLerp = Vector2.Zero;
+        if (!insideOther) {
+            foreach (var t in Scene.Tracker.GetEntities<CameraAdvanceTargetTrigger>()) {
+                if (t != this && ((CameraAdvanceTargetTrigger)t).PlayerIsInside) { insideOther = true; break; }
+            }
         }
+        if (!insideOther)
+            player.CameraAnchorLerp = Vector2.Zero;
     }
 }

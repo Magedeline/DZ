@@ -1,10 +1,12 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Nez;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using KirbyCelesteStandalone.Entities.Player;
 using KirbyCelesteStandalone.Entities.Core;
+using Component = Nez.Component;
+using Collider = Nez.Collider;
 
 namespace KirbyCelesteStandalone.Entities.Collectibles;
 

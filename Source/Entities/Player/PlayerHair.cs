@@ -1,7 +1,8 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Nez;
 using System;
 using System.Collections.Generic;
+using Component = Nez.Component;
 
 namespace KirbyCelesteStandalone.Entities.Player;
 

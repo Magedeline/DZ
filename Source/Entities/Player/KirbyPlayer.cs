@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Nez;
 using Nez.Sprites;
@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using KirbyCelesteStandalone.Core;
 using KirbyCelesteStandalone.Entities.Core;
+using Entity = Nez.Entity;
 
 namespace KirbyCelesteStandalone.Entities.Player;
 

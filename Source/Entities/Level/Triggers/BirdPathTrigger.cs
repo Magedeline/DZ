@@ -1,43 +1,31 @@
+﻿#nullable enable
+using Celeste.Mod.Entities;
 using Microsoft.Xna.Framework;
-using Nez;
-using System;
-using KirbyCelesteStandalone.Core;
+using Monocle;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace Celeste.Mod.DZ.Triggers;
 
-/// <summary>
-/// Trigger that activates a BirdPath entity when entered.
-/// Ported from Celeste (BloodLantern/Celeste)
-/// </summary>
-public class BirdPathTrigger : CelesteTrigger
-{
-    private Entity? bird;
+[CustomEntity("DZ/BirdPathTrigger")]
+public class BirdPathTrigger : Trigger {
+    private BirdPath? bird;
     private bool triggered;
 
-    public BirdPathTrigger(Vector2 position, int width, int height) : base(position, width, height)
-    {
+    public BirdPathTrigger(EntityData data, Vector2 offset) : base(data, offset) {
     }
 
-    public override void OnAddedToScene()
-    {
-        base.OnAddedToScene();
-        // TODO: Find BirdPath entity in scene
-        // bird = Scene.FindComponentOfType<BirdPath>()?.Entity;
+    public override void Added(Scene scene) {
+        base.Added(scene);
+        bird = Scene.Tracker.GetEntity<BirdPath>();
         if (bird == null)
-        {
-            Scene?.Entities.Remove(this);
-        }
+            RemoveSelf();
         else
-        {
-            // bird.GetComponent<BirdPath>()?.WaitForTrigger();
-        }
+            bird.WaitForTrigger();
     }
 
-    public override void OnEnter(PlayerController player)
-    {
-        if (triggered)
-            return;
-        // TODO: bird.GetComponent<BirdPath>()?.Trigger();
+    public override void OnEnter(Player player) {
+        base.OnEnter(player);
+        if (triggered) return;
+        bird?.Trigger();
         triggered = true;
     }
 }

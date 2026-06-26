@@ -1,34 +1,15 @@
+﻿#nullable enable
+using Celeste.Mod.Entities;
 using Microsoft.Xna.Framework;
-using Nez;
-using System;
-using KirbyCelesteStandalone.Core;
+using Monocle;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace Celeste.Mod.DZ.Triggers;
 
-/// <summary>
-/// Entity that sets the facing direction when spawning.
-/// Note: This is not a trigger, it extends Entity directly.
-/// Ported from Celeste (BloodLantern/Celeste)
-/// </summary>
-public class SpawnFacingTrigger : Entity
-{
-    public enum Facings
-    {
-        Left = -1,
-        Right = 1
-    }
-
+[CustomEntity("DZ/SpawnFacingTrigger")]
+public class SpawnFacingTrigger : Trigger {
     public Facings Facing;
-    public float Width;
-    public float Height;
 
-    public SpawnFacingTrigger(Vector2 position, float width, float height, Facings facing) : base("SpawnFacingTrigger")
-    {
-        Position = position;
-        Width = width;
-        Height = height;
-        Facing = facing;
-        
-        // Invisible in normal gameplay
+    public SpawnFacingTrigger(EntityData data, Vector2 offset) : base(data, offset) {
+        Facing = data.Enum("facing", Facings.Right);
     }
 }

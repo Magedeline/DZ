@@ -1,0 +1,184 @@
+{
+  "server": {
+    "name": "gamelab-mcp",
+    "type": "sse",
+    "url": "http://api.gamelabstudio.co:8765/sse",
+    "api_key_header": "X-API-Key"
+  },
+  "project": {
+    "mod_name": "DZ",
+    "mod_version": "4.0.0",
+    "mod_prefix": "DZ/",
+    "map_directory": "Maps/Maggy",
+    "entity_catalog": "Loenn/pcg/entity_catalog.json",
+    "output_directory": "Loenn/pcg/output"
+  },
+  "generation_presets": {
+    "platforming_room": {
+      "description": "Standard platforming room with spikes, springs, and collectibles",
+      "entity_weights": {
+        "spring": 0.15,
+        "refill": 0.10,
+        "spikesUp": 0.20,
+        "spikesDown": 0.15,
+        "spikesLeft": 0.10,
+        "spikesRight": 0.10,
+        "crumbleBlock": 0.08,
+        "jumpThru": 0.12,
+        "spinner": 0.05,
+        "strawberry": 0.03,
+        "DZ/AdvancedRefill": 0.02
+      },
+      "tile_density": 0.3,
+      "hazard_density": 0.15,
+      "collectible_chance": 0.25
+    },
+    "kirby_combat_room": {
+      "description": "Kirby-mode combat room with enemies and hazards",
+      "entity_weights": {
+        "DZ/Enemy": 0.20,
+        "DZ/DarkMatterEnemy": 0.10,
+        "DZ/PixelEnemy": 0.15,
+        "DZ/AxisMinion": 0.10,
+        "DZ/InfernoEye": 0.08,
+        "DZ/BarrelBomber": 0.08,
+        "DZ/AdvancedRefill": 0.10,
+        "DZ/MaximTomato": 0.05,
+        "DZ/EnergyDrink": 0.08,
+        "DZ/CollectibleGem": 0.06
+      },
+      "tile_density": 0.4,
+      "hazard_density": 0.20,
+      "collectible_chance": 0.40,
+      "require_kirby_spawn": true
+    },
+    "puzzle_room": {
+      "description": "Puzzle room with switches, gates, and sequence elements",
+      "entity_weights": {
+        "DZ/RuinsPuzzleSwitch": 0.15,
+        "DZ/CodeBreaker": 0.10,
+        "DZ/SequencePuzzleManager": 0.08,
+        "DZ/LanternPuzzleController": 0.08,
+        "DZ/DashCodeGate": 0.12,
+        "DZ/BlockGate": 0.10,
+        "DZ/ColorBlock": 0.10,
+        "DZ/HiddenBlock": 0.08,
+        "DZ/StarBlock": 0.08,
+        "DZ/TeleportPad": 0.06,
+        "DZ/WindowSequence": 0.05
+      },
+      "tile_density": 0.35,
+      "hazard_density": 0.05,
+      "collectible_chance": 0.15
+    },
+    "boss_arena": {
+      "description": "Boss arena room with controlled layout",
+      "entity_weights": {
+        "DZ/DarkMatterMidBoss": 0.30,
+        "DZ/InfernoBigEyeball": 0.25,
+        "DZ/FlameCerberus": 0.20,
+        "DZ/CardShark": 0.25
+      },
+      "tile_density": 0.15,
+      "hazard_density": 0.05,
+      "collectible_chance": 0.10,
+      "require_arena_trigger": true,
+      "min_room_width": 320,
+      "min_room_height": 184
+    },
+    "narrative_room": {
+      "description": "Story/narrative room with NPCs and dialog triggers",
+      "entity_weights": {
+        "DZ/CustomNPC": 0.20,
+        "DZ/DialogNPC": 0.15,
+        "DZ/EnhancedDialogNPC": 0.15,
+        "DZ/DialogTrigger": 0.15,
+        "DZ/BirdNPC": 0.10,
+        "DZ/CompanionNPC": 0.10,
+        "DZ/InteractiveSign": 0.10,
+        "DZ/FloweyNPC": 0.05
+      },
+      "tile_density": 0.25,
+      "hazard_density": 0.0,
+      "collectible_chance": 0.05
+    },
+    "tower_climb": {
+      "description": "Vertical tower climbing room",
+      "entity_weights": {
+        "DZ/TowerObstacleFactory": 0.20,
+        "DZ/TowerElevator": 0.10,
+        "DZ/TowerGargoyle": 0.10,
+        "DZ/TowerLantern": 0.08,
+        "DZ/TowerWindow": 0.08,
+        "spring": 0.12,
+        "refill": 0.08,
+        "spikesUp": 0.10,
+        "spikesDown": 0.05,
+        "crumbleBlock": 0.09
+      },
+      "tile_density": 0.35,
+      "hazard_density": 0.20,
+      "collectible_chance": 0.15,
+      "vertical_priority": true
+    },
+    "speedrun_room": {
+      "description": "Speedrun-friendly room with flow elements",
+      "entity_weights": {
+        "spring": 0.20,
+        "booster": 0.15,
+        "feather": 0.10,
+        "refill": 0.12,
+        "zipMover": 0.10,
+        "moveBlock": 0.08,
+        "swapBlock": 0.08,
+        "DZ/ZoomMover": 0.10,
+        "DZ/AdvancedRefill": 0.07
+      },
+      "tile_density": 0.20,
+      "hazard_density": 0.10,
+      "collectible_chance": 0.10
+    }
+  },
+  "output_format": {
+    "type": "json",
+    "schema": {
+      "rooms": [
+        {
+          "name": "string",
+          "x": "integer",
+          "y": "integer",
+          "width": "integer",
+          "height": "integer",
+          "entities": [
+            {
+              "name": "string (entity type from catalog)",
+              "x": "integer (relative to room)",
+              "y": "integer (relative to room)",
+              "width": "integer",
+              "height": "integer",
+              "nodes": [{"x": "integer", "y": "integer"}],
+              "additional_properties": "varies by entity type"
+            }
+          ],
+          "triggers": [
+            {
+              "name": "string (trigger type from catalog)",
+              "x": "integer",
+              "y": "integer",
+              "width": "integer",
+              "height": "integer"
+            }
+          ],
+          "tilesFg": ["string rows of tile characters"],
+          "tilesBg": ["string rows of tile characters"],
+          "decalsFg": [{"texture": "string", "x": "integer", "y": "integer"}],
+          "decalsBg": [{"texture": "string", "x": "integer", "y": "integer"}],
+          "music": "string",
+          "ambience": "string",
+          "color": "integer",
+          "windPattern": "string"
+        }
+      ]
+    }
+  }
+}

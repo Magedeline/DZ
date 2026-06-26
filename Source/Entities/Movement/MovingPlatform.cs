@@ -58,10 +58,10 @@ public class MovingPlatform : CelesteJumpThru
 
     // ── Nez lifecycle ─────────────────────────────────────────────────────────
 
-    public override void OnAddedToScene()
+    public void OnAddedToScene()
     {
-        base.OnAddedToScene();
         // Place at the lerped position immediately (t=0 → _start).
+        // Note: base.OnAddedToScene() is called by the framework's virtual dispatch.
         Position = _start;
     }
 

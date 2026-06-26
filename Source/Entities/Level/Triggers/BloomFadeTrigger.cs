@@ -1,31 +1,26 @@
+#nullable enable
+using Celeste.Mod.Entities;
 using Microsoft.Xna.Framework;
-using Nez;
-using System;
-using KirbyCelesteStandalone.Core;
+using Monocle;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace Celeste.Mod.DZ.Triggers;
 
-/// <summary>
-/// Trigger that fades bloom intensity based on player position.
-/// Ported from Celeste (BloodLantern/Celeste)
-/// </summary>
-public class BloomFadeTrigger : CelesteTrigger
-{
-    public float BloomAddFrom;
-    public float BloomAddTo;
-    public PositionModes PositionMode;
+[CustomEntity("DZ/BloomFadeTrigger")]
+public class BloomFadeTrigger : Trigger {
+    private float bloomAddFrom;
+    private float bloomAddTo;
+    private PositionModes positionMode;
 
-    public BloomFadeTrigger(Vector2 position, int width, int height, float bloomAddFrom, float bloomAddTo, PositionModes positionMode) : base(position, width, height)
-    {
-        BloomAddFrom = bloomAddFrom;
-        BloomAddTo = bloomAddTo;
-        PositionMode = positionMode;
+    public BloomFadeTrigger(EntityData data, Vector2 offset) : base(data, offset) {
+        bloomAddFrom = data.Float("bloomAddFrom", 0f);
+        bloomAddTo = data.Float("bloomAddTo", 0f);
+        positionMode = data.Enum("positionMode", PositionModes.NoEffect);
     }
 
-    public override void OnStay(PlayerController player)
-    {
-        float lerp = GetPositionLerp(player, PositionMode);
-        float value = BloomAddFrom + (BloomAddTo - BloomAddFrom) * MathHelper.Clamp(lerp, 0f, 1f);
-        // TODO: set bloom intensity: value
+    public override void OnStay(Player player) {
+        base.OnStay(player);
+        Level level = SceneAs<Level>();
+        float lerp = GetPositionLerp(player, positionMode);
+        level.Session.BloomBaseAdd = bloomAddFrom + (bloomAddTo - bloomAddFrom) * Calc.Clamp(lerp, 0f, 1f);
     }
 }

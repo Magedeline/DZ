@@ -1657,9 +1657,9 @@
 {c44de5f6-ace1-4d57-b350-f494940c2d12} event:/pusheen/new_content/char/bosses/asriel/cinematiccut
 {6b7a518e-18b9-4f8a-81c2-b9f067db86bd} event:/pusheen/new_content/char/bosses/asriel/cinematiccut_2d
 {459f1aa2-d789-4f85-b687-d57cfbaab7ee} event:/pusheen/new_content/char/bosses/asriel/cinematiccut_3d
-{66de0fd6-6eaa-4277-b205-229e315bab5f} event:/pusheen/new_content/char/bosses/asriel/cinematiccut_Flame_2d
+{66de0fd6-6eaa-4277-b205-229e315bab5f} event:/pusheen/new_content/char/bosses/asriel/cinematiccut_flame_2d
 {e36cf3a3-5bdf-4758-b906-514895f1db19} event:/pusheen/new_content/char/bosses/asriel/crashbubbleburst
-{34087256-f241-4a86-8e48-8449bcb1800a} event:/pusheen/new_content/char/bosses/asriel/crashvubblecharge
+{34087256-f241-4a86-8e48-8449bcb1800a} event:/pusheen/new_content/char/bosses/asriel/crashbubblecharge
 {944b1800-6ca7-47d3-9098-8a6269c89680} event:/pusheen/new_content/char/bosses/asriel/create
 {82582cc7-ed51-495a-b554-19ad7456049e} event:/pusheen/new_content/char/bosses/asriel/finalbeam
 {3d85803e-1807-4188-b0f7-cf4d338c0f8a} event:/pusheen/new_content/char/bosses/asriel/get_hit
@@ -1749,6 +1749,7 @@
 {79f6c861-6e06-4913-97f3-a2f4b9782f86} event:/pusheen/new_content/env/19_rushingvoid
 {838a1fc6-ddfe-4126-8a7a-963a6e4fd566} event:/pusheen/new_content/env/19_space_underwater
 {6c8fbd88-c123-426c-9e0d-39cb893d134a} event:/pusheen/new_content/env/19_voidspiral
+{91fdeb0f-4f15-4315-a635-382c1310da4c} event:/pusheen/new_content/env/20_angel
 {dee47307-3250-4139-829e-2afbc015a5e3} event:/pusheen/new_content/env/21_heavenclouds
 {fc0d287f-64e2-4712-81a6-3edf620c4d04} event:/pusheen/new_content/game/19_spaces/bird_camera_pan_up
 {bd9c31ce-d51d-477b-bb13-16b4decc7865} event:/pusheen/new_content/game/19_spaces/bird_crashscene_leave
@@ -1841,10 +1842,8 @@
 {a8e6cf54-74ee-4fec-9e86-d7946c0f546e} event:/pusheen/new_content/music/lvl19/tape_rooms
 {8dd6c0a4-5e25-4a86-a56a-7409e827bb45} event:/pusheen/new_content/music/lvl20/cutscenes/donotgiveup
 {2c98aedd-b5af-47d0-936b-6f7234b5bc69} event:/pusheen/new_content/music/lvl20/cutscenes/gameover
-{0d7ca5d0-ca5f-49d6-aa8e-1a637333aa45} event:/pusheen/new_content/music/lvl20/angel
-{548b0b0f-4652-4bd2-8928-3ad077c561a4} event:/pusheen/new_content/music/lvl20/angel_ex
-{42882049-6050-4879-ba1d-98c78fd22492} event:/pusheen/new_content/music/lvl20/asriel
-{eeaccf32-c8e8-4602-a999-603be0fa7204} event:/pusheen/new_content/music/lvl20/asriel_ex
+{548b0b0f-4652-4bd2-8928-3ad077c561a4} event:/pusheen/new_content/music/lvl20/angel
+{eeaccf32-c8e8-4602-a999-603be0fa7204} event:/pusheen/new_content/music/lvl20/asriel
 {970368cc-d45a-4159-a9ec-e56e27d2f7ae} event:/pusheen/new_content/music/lvl20/burn_in_despair
 {de4f52bb-8acf-47fb-b869-b2a74453f67c} event:/pusheen/new_content/music/lvl20/els
 {34b45f00-d2e4-46df-a7f5-3e9ea8b29427} event:/pusheen/new_content/music/lvl20/feel
@@ -1864,7 +1863,6 @@
 {19b36b15-5b2a-4d4d-84af-07c40330c4d1} event:/pusheen/new_content/music/lvl21/granny_and_asriel_goodbye
 {682b3b7c-064f-4429-8755-cb257ce78d22} event:/pusheen/new_content/music/lvl21/greengreens_room
 {1c58fcb4-e6f7-4acb-8d2f-d3c6f79366cf} event:/pusheen/new_content/music/lvl21/main
-{4354bb0b-da0c-46db-8b47-9666e27190d0} event:/pusheen/new_content/music/lvl21/true_finale
 {b7afe04e-ec7b-4898-bf50-be5e25a725d3} event:/pusheen/new_content/music/sub/BlackRift
 {46b0ea8d-a506-40a9-93db-840a3d95027a} event:/pusheen/new_content/music/sub/FreshGreen
 {75bd1a76-1afd-4fd3-ba21-47c576e758aa} event:/pusheen/new_content/music/sub/HAL86

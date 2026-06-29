@@ -1656,7 +1656,7 @@
       </Metadata>
     </maggy_badeline>
 
-  <maggy_chara path="characters/chara/">
+  <chara path="characters/chara/">
       <Justify x=".5" y="1" />
       
       <Loop id="idle" path="idle" delay="0.1" />
@@ -1728,7 +1728,7 @@
         <Frames path="boost" hair="0,-2|0,-2|0,-2|0,-2|0,0|0,-6|0,-3|0,-1|0,-1|0,-2"/>
         <Frames path="hug" hair="0,2"/>
       </Metadata>
-    </maggy_chara>
+    </chara>
 
   <ralsei_playback path="characters/ralsei_playback/" start="idle">
       <Justify x=".5" y="1" />

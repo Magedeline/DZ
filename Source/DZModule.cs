@@ -86,9 +86,7 @@ public class DZModule : EverestModule {
         var scene = Monocle.Engine.Scene;
         if (scene != null)
         {
-            var tracker = scene.Tracker;
-            if (!tracker.Entities.ContainsKey(typeof(HotReloadController)) ||
-                tracker.GetEntity<HotReloadController>() == null)
+            if (scene.Entities.FindFirst<HotReloadController>() == null)
             {
                 scene.Add(new HotReloadController());
             }
@@ -96,8 +94,7 @@ public class DZModule : EverestModule {
             // Ensure GentleBreezeAssist exists in the current scene so the
             // dash-aim freeze / arrow render for the Kirby player when the
             // Gentle Breeze setting is enabled.
-            if (!tracker.Entities.ContainsKey(typeof(global::Celeste.Entities.GentleBreezeAssist)) ||
-                tracker.GetEntity<global::Celeste.Entities.GentleBreezeAssist>() == null)
+            if (scene.Entities.FindFirst<global::Celeste.Entities.GentleBreezeAssist>() == null)
             {
                 scene.Add(new global::Celeste.Entities.GentleBreezeAssist());
             }

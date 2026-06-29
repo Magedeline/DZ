@@ -18,7 +18,6 @@ namespace Celeste.Entities
     /// and self-disables when <c>DZModuleSettings.GentleBreezeMode</c> is off
     /// or no K_Player is present.
     /// </summary>
-    [Tracked]
     public class GentleBreezeAssist : Entity
     {
         private const string Sfx_GentleBreezeName = "event:/pusheen/ui/main/gentlebreeze_name";

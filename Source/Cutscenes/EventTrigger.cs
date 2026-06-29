@@ -405,6 +405,9 @@ namespace Celeste.Triggers
             Register("cs07_genocide_vision_finale", (trigger, player, eventId) => new global::Celeste.Cutscenes.CS07_GenocideVisionFinale(player));
             Register("cs07_genocide_vision_intro", (trigger, player, eventId) => new global::Celeste.Cutscenes.CS07_GenocideVisionIntro(player));
             Register("cs07_genocide_wakeup", (trigger, player, eventId) => new global::Celeste.Cutscenes.CS07_GenocideWakeup(player));
+
+            // Chapter 8
+            Register("cs08_charaboss_intro", (trigger, player, eventId) => new global::Celeste.Cutscenes.Cs08CharaBossIntro(player));
             
             // Chapter 9
             Register("cs09_area_complete", (trigger, player, eventId) => new global::Celeste.Cutscenes.CS09_AreaComplete(player));

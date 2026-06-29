@@ -5,6 +5,10 @@
       "headers": {
         "X-API-Key": "b73d0941bfdde2b7ed9379457fe7b3d7f03cfb4c7010fbcd845918ab6ddc7ed5"
       }
+    },
+    "loenn-mcp": {
+      "command": "npx",
+      "args": ["@loenn/mcp@5.2.1"]
     }
   }
 }

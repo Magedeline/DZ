@@ -5,7 +5,6 @@ using Monocle;
 
 namespace Celeste.Mod.DZ.HotReload
 {
-    [Tracked]
     public class HotReloadController : Entity
     {
         public HotReloadController()

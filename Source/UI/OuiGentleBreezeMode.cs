@@ -193,7 +193,7 @@ namespace Celeste.Mod.DZ
             self.Focused = false;
             self.Overworld.Goto<OuiFileSelect>();
             Audio.Play("event:/ui/main/button_back");
-            Audio.SetParameter(self.mainSfx, "gentlebreeze_progress", 6f);
+            Audio.SetParameter(self.mainSfx, "assist_progress", 6f);
         }
 
         public override void Update()

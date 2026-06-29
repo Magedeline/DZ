@@ -1,3 +1,4 @@
+#nullable enable
 using MonocleEngine = Monocle.Engine;
 
 namespace DZ.Nez
@@ -33,6 +34,6 @@ namespace DZ.Nez
         public static Monocle.Scene? Scene => MonocleEngine.Scene;
         public static Monocle.Commands? Commands => MonocleEngine.Commands;
         public static Monocle.Pooler? Pooler => MonocleEngine.Pooler;
-        public static Monocle.Scene? Instance => MonocleEngine.Scene;
+        public static MonocleEngine Instance => MonocleEngine.Instance;
     }
 }

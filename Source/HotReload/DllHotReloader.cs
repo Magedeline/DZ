@@ -126,9 +126,13 @@ namespace Celeste.Mod.DZ.HotReload
         private static void OnWatcherError(object sender, ErrorEventArgs e)
         {
             Logger.Log(LogLevel.Error, "DZ", $"[HotReload] File watcher error: {e.GetException()?.Message}");
-            // Try to restart the watcher after a brief delay
-            StopWatcher();
-            _debounceTimer = new Timer(_ => StartWatcher(), null, 2000, Timeout.Infinite);
+            // Try to restart the watcher after a brief delay.
+            // Lock to avoid racing with OnDllChanged which also touches _debounceTimer.
+            lock (_lock)
+            {
+                StopWatcher();
+                _debounceTimer = new Timer(_ => StartWatcher(), null, 2000, Timeout.Infinite);
+            }
         }
 
         private static void OnDllChanged(object sender, FileSystemEventArgs e)

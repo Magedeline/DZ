@@ -93,9 +93,6 @@ namespace Celeste.Entities
                 sfxPlayedThisFreeze = true;
             }
 
-            if (kPlayer == null)
-                return;
-
             float aim = Input.GetAimVector(kPlayer.Facing).Angle();
 
             if (Calc.AbsAngleDiff(aim, direction) >= 1.5807964f)
@@ -165,14 +162,14 @@ namespace Celeste.Entities
 
         public override void Removed(Scene scene)
         {
-            if (paused && !Scene.Paused)
+            if (paused && !scene.Paused)
                 Audio.PauseGameplaySfx = false;
             base.Removed(scene);
         }
 
         public override void SceneEnd(Scene scene)
         {
-            if (paused && !Scene.Paused)
+            if (paused && !scene.Paused)
                 Audio.PauseGameplaySfx = false;
             base.SceneEnd(scene);
         }

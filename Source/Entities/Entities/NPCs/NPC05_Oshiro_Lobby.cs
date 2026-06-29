@@ -59,7 +59,14 @@ public class NPC05_Oshiro_Lobby : NPC
     }
 
     [MethodImpl(MethodImplOptions.NoInlining)]
-    private void OnTalk(CelestePlayer player)
+    private void OnTalk(CelestePlayer player) => TriggerCutscene(player);
+
+    /// <summary>
+    /// Starts the Oshiro lobby cutscene. Called by both the NPC's own talker and the
+    /// <see cref="Celeste.Entities.OshiroLobbyBell"/> so either entry point works.
+    /// </summary>
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    public void TriggerCutscene(CelestePlayer player)
     {
         if (isInteracting) return;
         isInteracting = true;

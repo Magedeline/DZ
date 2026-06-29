@@ -1,3 +1,4 @@
+using Celeste.Cutscenes;
 using Celeste.NPCs;
 using Microsoft.Xna.Framework;
 using Monocle;
@@ -9,6 +10,7 @@ namespace Celeste.Entities
     {
         private TalkComponent talker;
         private string soundEffect;
+        private bool isInteracting;
 
         public OshiroLobbyBell(EntityData data, Vector2 offset)
             : base(data.Position + offset)
@@ -26,12 +28,33 @@ namespace Celeste.Entities
             talker.Enabled = false;
         }
 
-        private void OnTalk(global::Celeste.Player player) => Audio.Play(soundEffect, Position);
+        private void OnTalk(global::Celeste.Player player)
+        {
+            NPC05_Oshiro_Lobby npc = Scene.Entities.FindFirst<NPC05_Oshiro_Lobby>();
+            if (npc != null)
+            {
+                // Delegate to the NPC so both the talker and the bell share the same cutscene logic.
+                npc.TriggerCutscene(player);
+                isInteracting = true;
+                talker.Enabled = false;
+            }
+            else
+            {
+                // Fallback: NPC is already gone, just ring the bell.
+                Audio.Play(soundEffect, Position);
+            }
+        }
 
         public override void Update()
         {
-            if (!talker.Enabled && Scene.Entities.FindFirst<NPC05_Oshiro_Lobby>() == null)
+            // Enable the talker once the NPC has left (either removed or never present).
+            if (!talker.Enabled && !isInteracting && Scene.Entities.FindFirst<NPC05_Oshiro_Lobby>() == null)
                 talker.Enabled = true;
+
+            // Reset interacting state once the talker is re-enabled externally.
+            if (isInteracting && talker.Enabled)
+                isInteracting = false;
+
             base.Update();
         }
     }

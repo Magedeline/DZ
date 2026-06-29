@@ -83,17 +83,24 @@ public class DZModule : EverestModule {
         orig(self, gameTime);
 
         // Ensure HotReloadController exists in the current scene
-        if (Monocle.Engine.Scene != null && Monocle.Engine.Scene.Tracker.GetEntity<HotReloadController>() == null)
+        var scene = Monocle.Engine.Scene;
+        if (scene != null)
         {
-            Monocle.Engine.Scene.Add(new HotReloadController());
-        }
+            var tracker = scene.Tracker;
+            if (!tracker.Entities.ContainsKey(typeof(HotReloadController)) ||
+                tracker.GetEntity<HotReloadController>() == null)
+            {
+                scene.Add(new HotReloadController());
+            }
 
-        // Ensure GentleBreezeAssist exists in the current scene so the
-        // dash-aim freeze / arrow render for the Kirby player when the
-        // Gentle Breeze setting is enabled.
-        if (Monocle.Engine.Scene != null && Monocle.Engine.Scene.Tracker.GetEntity<global::Celeste.Entities.GentleBreezeAssist>() == null)
-        {
-            Monocle.Engine.Scene.Add(new global::Celeste.Entities.GentleBreezeAssist());
+            // Ensure GentleBreezeAssist exists in the current scene so the
+            // dash-aim freeze / arrow render for the Kirby player when the
+            // Gentle Breeze setting is enabled.
+            if (!tracker.Entities.ContainsKey(typeof(global::Celeste.Entities.GentleBreezeAssist)) ||
+                tracker.GetEntity<global::Celeste.Entities.GentleBreezeAssist>() == null)
+            {
+                scene.Add(new global::Celeste.Entities.GentleBreezeAssist());
+            }
         }
 
         // Ensure LiveWatchOverlay exists if frozen

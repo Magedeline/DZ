@@ -184,11 +184,26 @@ public class RainbowBlackholeBg : Backdrop
         }
     }
 
-    public RainbowBlackholeBg(BinaryPacker.Element data) : this() { }
+    public RainbowBlackholeBg(BinaryPacker.Element data) : this(data.AttrBool("rainbowMode", false))
+    {
+        Alpha = MathHelper.Clamp(data.AttrFloat("alpha", 1f), 0f, 1f);
+        Scale = data.AttrFloat("scale", 1f);
+        Direction = data.AttrFloat("direction", 1f);
+        string strengthStr = data.Attr("strength", "Mild");
+        if (Enum.TryParse<Strengths>(strengthStr, true, out var parsedStrength))
+        {
+            SetStrength(parsedStrength);
+        }
+        CenterOffset = new Vector2(data.AttrFloat("centerOffsetX", 0f), data.AttrFloat("centerOffsetY", 0f));
+        OffsetOffset = new Vector2(data.AttrFloat("offsetOffsetX", 0f), data.AttrFloat("offsetOffsetY", 0f));
+    }
+
+    public RainbowBlackholeBg() : this(false) { }
 
     [MethodImpl(MethodImplOptions.NoInlining)]
-    public RainbowBlackholeBg()
+    private RainbowBlackholeBg(bool rainbowMode)
     {
+        RainbowMode = rainbowMode;
         bgTexture = GFX.Game["objects/temple/portal/portal"];
         List<MTexture> atlasSubtextures = GFX.Game.GetAtlasSubtextures("bgs/maggy/19/say_goodbye/blackhole/particle");
         if (atlasSubtextures.Count == 0)
@@ -282,7 +297,7 @@ public class RainbowBlackholeBg : Backdrop
         if (!checkedFlag)
         {
             int counter = (scene as Level).Session.GetCounter("blackhole_strength");
-            if (counter >= 0)
+            if (counter > 0)
             {
                 SnapStrength(scene as Level, (Strengths)counter);
             }

@@ -1,11 +1,11 @@
-local kirbyPuffJumpRefill = KirbyPuffJumpRefill = {}
+local kirbyPuffJumpRefill = {}
 
-kirbyPuffJumpRefill = KirbyPuffJumpRefill.name = "DZ/KirbyPuffJumpRefill = KirbyPuffJumpRefill"
-kirbyPuffJumpRefill = KirbyPuffJumpRefill.depth = 0
-kirbyPuffJumpRefill = KirbyPuffJumpRefill.texture = "objects/DZ/kirby_puff_jump_refill = kirby_puff_jump_refill"
+kirbyPuffJumpRefill.name = "DZ/KirbyPuffJumpRefill"
+kirbyPuffJumpRefill.depth = 0
+kirbyPuffJumpRefill.texture = "objects/DZ/kirby_puff_jump_refill"
 
-kirbyPuffJumpRefill = KirbyPuffJumpRefill.placements = {
-    name = "kirby_puff_jump_refill = kirby_puff_jump_refill",
+kirbyPuffJumpRefill.placements = {
+    name = "kirby_puff_jump_refill",
     data = {
         spriteVariant = "auto",
         oneUse = false,
@@ -15,4 +15,4 @@ kirbyPuffJumpRefill = KirbyPuffJumpRefill.placements = {
     }
 }
 
-return kirbyPuffJumpRefill = KirbyPuffJumpRefill
+return kirbyPuffJumpRefill

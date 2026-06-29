@@ -1,11 +1,11 @@
-local punchAttackRefill = PunchRefill = {}
+local punchAttackRefill = {}
 
-punchAttackRefill = PunchRefill.name = "DZ/PunchAttackRefill = PunchRefill"
-punchAttackRefill = PunchRefill.depth = 0
-punchAttackRefill = PunchRefill.texture = "objects/DZ/punch_attack_refill = punch_refill"
+punchAttackRefill.name = "DZ/PunchAttackRefill"
+punchAttackRefill.depth = 0
+punchAttackRefill.texture = "objects/DZ/punch_attack_refill"
 
-punchAttackRefill = PunchRefill.placements = {
-    name = "punch_attack_refill = punch_refill",
+punchAttackRefill.placements = {
+    name = "punch_attack_refill",
     data = {
         spriteVariant = "auto",
         oneUse = false,
@@ -15,4 +15,4 @@ punchAttackRefill = PunchRefill.placements = {
     }
 }
 
-return punchAttackRefill = PunchRefill
+return punchAttackRefill

@@ -5,6 +5,7 @@ using Monocle;
 
 namespace DZ
 {
+    [Tracked(true)]
     [CustomEntity("DZ/OshiroLobbyBell")]
     public class OshiroLobbyBell : Entity
     {

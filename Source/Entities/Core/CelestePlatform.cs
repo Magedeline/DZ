@@ -83,10 +83,10 @@ public abstract class CelestePlatform : DZ.Nez.Entity
     public float Bottom => Position.Y + Height;
 
     /// <summary>The BoxCollider attached to this platform (mirrors Monocle).</summary>
-    public BoxCollider? Collider => GetComponent<BoxCollider>();
+    public BoxCollider Collider => GetComponent<BoxCollider>();
 
     /// <summary>Whether this platform is visible (Monocle API parity).</summary>
-    public bool Visible { get; set; } = true;
+    public virtual bool Visible { get; set; } = true;
 
     // -------------------------------------------------------------------------
     // Physics state
@@ -166,7 +166,7 @@ public abstract class CelestePlatform : DZ.Nez.Entity
     /// Signature: <c>(Vector2 dashDirection) => DashCollisionResults</c>.
     /// Return value is ignored in this simplified port; keep it for API parity.
     /// </summary>
-    public Action<Vector2>? OnDashCollide;
+    public Action<Vector2> OnDashCollide;
 
     // -------------------------------------------------------------------------
     // Constructor
@@ -316,7 +316,7 @@ public abstract class CelestePlatform : DZ.Nez.Entity
     /// </summary>
     /// <param name="moveH">Amount to move in pixels (fractional).</param>
     /// <param name="onCollide">Optional callback on collision.</param>
-    public bool MoveHCollideSolids(float moveH, Action<CelesteSolid>? onCollide = null)
+    public bool MoveHCollideSolids(float moveH, Action<CelesteSolid> onCollide = null)
     {
         movementCounter.X += moveH;
         int pixels = (int)MathF.Round(movementCounter.X);
@@ -347,7 +347,7 @@ public abstract class CelestePlatform : DZ.Nez.Entity
     /// </summary>
     /// <param name="moveV">Amount to move in pixels (fractional).</param>
     /// <param name="onCollide">Optional callback on collision.</param>
-    public bool MoveVCollideSolids(float moveV, Action<CelesteSolid>? onCollide = null)
+    public bool MoveVCollideSolids(float moveV, Action<CelesteSolid> onCollide = null)
     {
         movementCounter.Y += moveV;
         int pixels = (int)MathF.Round(movementCounter.Y);
@@ -448,7 +448,7 @@ public abstract class CelestePlatform : DZ.Nez.Entity
     /// world-space rectangle, excluding <c>this</c> entity.
     /// Returns the first match or <c>null</c>.
     /// </summary>
-    protected CelesteSolid? CollideSolidAt(Vector2 atPosition)
+    protected CelesteSolid CollideSolidAt(Vector2 atPosition)
     {
         if (Scene == null) return null;
         var testBounds = new RectangleF(atPosition.X, atPosition.Y, Width, Height);

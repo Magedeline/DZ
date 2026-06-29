@@ -98,12 +98,12 @@ public class FinalBossBeamPort : Entity, IUpdatable
 
     // ── References ────────────────────────────────────────────────────────────
 
-    private FinalBossPort? _boss;
+    private FinalBossPort _boss;
 
     /// <summary>
     /// The boss that owns this beam.  Set via <see cref="Init"/>.
     /// </summary>
-    public FinalBossPort? Boss => _boss;
+    public FinalBossPort Boss => _boss;
 
     // ── Constructor ──────────────────────────────────────────────────────────
 
@@ -149,7 +149,7 @@ public class FinalBossBeamPort : Entity, IUpdatable
     // ── IUpdatable ───────────────────────────────────────────────────────────
 
     /// <inheritdoc/>
-    public void Update()
+    public override void Update()
     {
         if (_boss == null || CurrentState == BeamState.Done) return;
 

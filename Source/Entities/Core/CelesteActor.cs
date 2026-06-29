@@ -149,14 +149,14 @@ public abstract class CelesteActor : DZ.Nez.Entity
     /// fails it calls <see cref="DZ.Nez.Entity.Destroy"/>.
     /// Assign a replacement to override death behaviour.
     /// </summary>
-    public Action? SquishCallback;
+    public Action SquishCallback;
 
     // -------------------------------------------------------------------------
     // Nez BoxCollider (added automatically)
     // -------------------------------------------------------------------------
 
     /// <summary>The Nez BoxCollider component attached to this entity.</summary>
-    public BoxCollider? Collider;
+    public BoxCollider Collider;
 
     // -------------------------------------------------------------------------
     // Constructor
@@ -231,7 +231,7 @@ public abstract class CelesteActor : DZ.Nez.Entity
     /// </summary>
     /// <param name="moveH">Fractional horizontal movement in pixels.</param>
     /// <param name="onCollide">Optional callback invoked if a <see cref="CelesteSolid"/> is hit.</param>
-    public void MoveH(float moveH, Action<CelesteSolid>? onCollide = null)
+    public void MoveH(float moveH, Action<CelesteSolid> onCollide = null)
     {
         if (TreatNaive)
         {
@@ -255,7 +255,7 @@ public abstract class CelesteActor : DZ.Nez.Entity
     /// </summary>
     /// <param name="moveV">Fractional vertical movement in pixels.</param>
     /// <param name="onCollide">Optional callback invoked if a <see cref="CelesteSolid"/> is hit.</param>
-    public void MoveV(float moveV, Action<CelesteSolid>? onCollide = null)
+    public void MoveV(float moveV, Action<CelesteSolid> onCollide = null)
     {
         if (TreatNaive)
         {
@@ -284,7 +284,7 @@ public abstract class CelesteActor : DZ.Nez.Entity
     /// If a solid is encountered the actor stops, the <see cref="CelesteSolid"/>'s
     /// squish logic runs, and <paramref name="onCollide"/> is invoked.
     /// </summary>
-    public void MoveHExact(int move, Action<CelesteSolid>? onCollide = null)
+    public void MoveHExact(int move, Action<CelesteSolid> onCollide = null)
     {
         int sign = Math.Sign(move);
         while (move != 0)
@@ -310,7 +310,7 @@ public abstract class CelesteActor : DZ.Nez.Entity
     /// When moving downward also checks for <see cref="CelesteJumpThru"/> platforms
     /// (unless <see cref="IgnoreJumpThrus"/> is set).
     /// </summary>
-    public void MoveVExact(int move, Action<CelesteSolid>? onCollide = null)
+    public void MoveVExact(int move, Action<CelesteSolid> onCollide = null)
     {
         int sign = Math.Sign(move);
         while (move != 0)
@@ -447,7 +447,7 @@ public abstract class CelesteActor : DZ.Nez.Entity
     /// Returns the first <see cref="CelesteSolid"/> whose bounds intersect
     /// <c>Bounds + offset</c>, or <c>null</c> if none.
     /// </summary>
-    protected CelesteSolid? CollideSolid(Vector2 offset)
+    protected CelesteSolid CollideSolid(Vector2 offset)
     {
         if (Scene == null) return null;
         var testBounds = GetBoundsAt(Position + offset);
@@ -466,7 +466,7 @@ public abstract class CelesteActor : DZ.Nez.Entity
     /// <c>Bounds + offset</c>, respecting one-way directionality (only land from above).
     /// Returns <c>null</c> if none.
     /// </summary>
-    protected CelesteJumpThru? CollideJumpThru(Vector2 offset)
+    protected CelesteJumpThru CollideJumpThru(Vector2 offset)
     {
         if (Scene == null || IgnoreJumpThrus) return null;
         var testBounds = GetBoundsAt(Position + offset);
@@ -528,9 +528,9 @@ public struct CollisionData
     public Vector2 Direction;
 
     /// <summary>The solid that caused the squish (may be null).</summary>
-    public CelesteSolid? Pusher;
+    public CelesteSolid Pusher;
 
-    public CollisionData(Vector2 direction, CelesteSolid? pusher = null)
+    public CollisionData(Vector2 direction, CelesteSolid pusher)
     {
         Direction = direction;
         Pusher    = pusher;

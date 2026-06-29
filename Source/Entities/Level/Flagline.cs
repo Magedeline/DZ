@@ -91,7 +91,7 @@ public class Flagline : DZ.Nez.Component, IUpdatable
     // IUpdatable
     // -------------------------------------------------------------------------
 
-    public void Update()
+    public override void Update()
     {
         _waveTimer += Time.DeltaTime;
     }
@@ -103,7 +103,7 @@ public class Flagline : DZ.Nez.Component, IUpdatable
     /// <summary>
     /// Draws the flagline.  <c>Entity.Position</c> is the start anchor.
     /// </summary>
-    public void Render()
+    public override void Render()
     {
         Vector2 from  = Entity.Position;
         // Always render left-to-right for consistent droop direction

@@ -208,7 +208,7 @@ public class CassetteBlockManager : Component, IUpdatable
     /// Fired whenever the beat index advances.
     /// The argument is the new <see cref="BeatIndex"/> (0–3).
     /// </summary>
-    public static event Action<int>? OnBeat;
+    public static event Action<int> OnBeat;
 
     // ── Beat configuration ────────────────────────────────────────────────────
 

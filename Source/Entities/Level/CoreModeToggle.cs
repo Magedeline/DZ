@@ -161,7 +161,7 @@ public class CoreModeToggle : DZ.Nez.Entity
 
     // ── Render ────────────────────────────────────────────────────────────────
 
-    public void Render()
+    public override void Render()
     {
         // TODO: render sprite
         Color c = _iceMode ? Color.CornflowerBlue : Color.OrangeRed;

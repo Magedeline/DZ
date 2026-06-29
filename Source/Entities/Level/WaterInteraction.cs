@@ -23,7 +23,7 @@ public class WaterInteraction : DZ.Nez.Component
     /// </summary>
     public System.Func<bool>? IsDashing;
 
-    public void Update()
+    public override void Update()
     {
         if (DrippingTimer > 0f)
             DrippingTimer -= Time.DeltaTime;

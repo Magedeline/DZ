@@ -12,9 +12,9 @@ namespace DZ.Entities.Level;
 /// </summary>
 public class CreditsTrigger : CelesteTrigger
 {
-    public string? Event;
+    public string Event;
 
-    public CreditsTrigger(Vector2 position, int width, int height, string? eventName = null) : base(position, width, height)
+    public CreditsTrigger(Vector2 position, int width, int height, string eventName) : base(position, width, height)
     {
         Event = eventName;
     }

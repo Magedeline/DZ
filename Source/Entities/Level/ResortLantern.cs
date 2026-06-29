@@ -22,8 +22,8 @@ public class ResortLantern : DZ.Nez.Component, IUpdatable
     // Private state
     // -------------------------------------------------------------------------
 
-    private VertexLight? _light;
-    private BloomPoint?  _bloom;
+    private VertexLight _light;
+    private BloomPoint  _bloom;
 
     private float _collideTimer;
     private float _alphaTimer;
@@ -36,7 +36,7 @@ public class ResortLantern : DZ.Nez.Component, IUpdatable
     private float _wiggleFreq     = 7.5f; // Hz
     private bool  _wiggling;
 
-    private MadelinePlayer? _player;
+    private MadelinePlayer _player;
 
     // -------------------------------------------------------------------------
     // Constructor
@@ -72,7 +72,7 @@ public class ResortLantern : DZ.Nez.Component, IUpdatable
     // IUpdatable
     // -------------------------------------------------------------------------
 
-    public void Update()
+    public override void Update()
     {
         float dt = Time.DeltaTime;
         _player ??= Entity.Scene?.FindEntityOfType<MadelinePlayer>();

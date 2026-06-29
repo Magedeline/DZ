@@ -33,12 +33,12 @@ public class Gondola : CelesteSolid
 
     // ── Anchor entities (added to scene in OnAddedToScene) ───────────────────
 
-    public DZ.Nez.Entity? LeftCliffside;
-    public DZ.Nez.Entity? RightCliffside;
+    public DZ.Nez.Entity LeftCliffside;
+    public DZ.Nez.Entity RightCliffside;
 
     // ── Rotation spring ───────────────────────────────────────────────────────
 
-    public float Rotation      { get; set; }
+    public virtual float Rotation      { get; set; }
     public float RotationSpeed { get; set; }
 
     // ── State ─────────────────────────────────────────────────────────────────
@@ -127,7 +127,7 @@ public class Gondola : CelesteSolid
 
     // ── Render ────────────────────────────────────────────────────────────────
 
-    public void Render()
+    public override void Render()
     {
         var batcher = Graphics.Instance.Batcher;
         // Render rope.

@@ -132,7 +132,7 @@ public class VertexLight : DZ.Nez.Component, IUpdatable
     // IUpdatable
     // -------------------------------------------------------------------------
 
-    public void Update()
+    public override void Update()
     {
         float dt = Time.DeltaTime;
         InSolidAlphaMultiplier = Approach(InSolidAlphaMultiplier, InSolid ? 0f : 1f, dt * 4f);
@@ -191,7 +191,7 @@ public class PulseTween : DZ.Nez.Component, IUpdatable
         _duration = duration;
     }
 
-    public void Update()
+    public override void Update()
     {
         float dt = Time.DeltaTime;
         _timer = Math.Min(_timer + dt, _duration);
@@ -219,7 +219,7 @@ public class FadeInTween : DZ.Nez.Component, IUpdatable
         _duration = duration;
     }
 
-    public void Update()
+    public override void Update()
     {
         float dt = Time.DeltaTime;
         _timer = Math.Min(_timer + dt, _duration);

@@ -284,7 +284,7 @@ public class Glider : CelesteActor, IUpdatable
     /// <summary>
     /// Destroys the glider.
     /// </summary>
-    public void Destroy()
+    public virtual void Destroy()
     {
         if (_destroyed) return;
 

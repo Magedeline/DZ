@@ -68,7 +68,7 @@ public class FlingBirdIntro : DZ.Nez.Component, IUpdatable
     private float _nodeDuration;   // seconds for current segment
 
     // Lazy player reference
-    private MadelinePlayer? _player;
+    private MadelinePlayer _player;
 
     // -------------------------------------------------------------------------
     // Constructor
@@ -118,7 +118,7 @@ public class FlingBirdIntro : DZ.Nez.Component, IUpdatable
     // IUpdatable
     // -------------------------------------------------------------------------
 
-    public void Update()
+    public override void Update()
     {
         float dt = Time.DeltaTime;
         _player ??= Entity.Scene?.FindEntitiesWithTag(0).OfType<MadelinePlayer>().FirstOrDefault();

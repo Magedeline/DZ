@@ -133,7 +133,7 @@ public class FinalBossPort : Entity, IUpdatable
 
     // ── Collider ─────────────────────────────────────────────────────────────
 
-    private CircleCollider? _collider;
+    private CircleCollider _collider;
 
     // ── Origin helpers ────────────────────────────────────────────────────────
 
@@ -202,7 +202,7 @@ public class FinalBossPort : Entity, IUpdatable
     // ── IUpdatable ───────────────────────────────────────────────────────────
 
     /// <inheritdoc/>
-    public void Update()
+    public override void Update()
     {
         if (State == FinalBossState.Dead) return;
 

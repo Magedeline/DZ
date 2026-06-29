@@ -30,7 +30,7 @@ public class BridgeFixed : CelesteSolid
 
     // ── Render ────────────────────────────────────────────────────────────────
 
-    public void Render()
+    public override void Render()
     {
         // Placeholder: brown rectangle at the bridge surface.
         Graphics.Instance.Batcher.DrawRect(Position.X, Position.Y, Width, Height, Color.SaddleBrown);

@@ -117,10 +117,10 @@ public class Strawberry : Component, IUpdatable
     private Vector2 _spawnPosition;
 
     /// <summary>Reference to the player while within range.</summary>
-    private PlayerController? _trackedPlayer;
+    private PlayerController _trackedPlayer;
 
     /// <summary>Box collider (14 × 14 trigger).</summary>
-    private BoxCollider? _collider;
+    private BoxCollider _collider;
 
     // -------------------------------------------------------------------------
     // Constructor
@@ -171,7 +171,7 @@ public class Strawberry : Component, IUpdatable
     // -------------------------------------------------------------------------
 
     /// <inheritdoc/>
-    public void Update()
+    public override void Update()
     {
         float dt = Time.DeltaTime;
 
@@ -329,7 +329,7 @@ public class Strawberry : Component, IUpdatable
     /// Returns the first <see cref="PlayerController"/> whose collider overlaps
     /// the strawberry's 14 × 14 hitbox, or <c>null</c> if none.
     /// </summary>
-    private PlayerController? FindNearbyPlayer()
+    private PlayerController FindNearbyPlayer()
     {
         if (_collider == null) return null;
 
@@ -356,7 +356,7 @@ public class Strawberry : Component, IUpdatable
     /// Returns the first player within <paramref name="range"/> pixels, or
     /// <c>null</c> if none is close enough.
     /// </summary>
-    private PlayerController? FindPlayerInRange(float range)
+    private PlayerController FindPlayerInRange(float range)
     {
         var player = Entity.Scene?.FindComponentOfType<PlayerController>();
         if (player == null) return null;

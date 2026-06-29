@@ -46,8 +46,8 @@ public class CharaBeam
     private float _damageTimer;
 
     // Components
-    private SpriteRenderer? _beamRenderer;
-    private BoxCollider? _hitCollider;
+    private SpriteRenderer _beamRenderer;
+    private BoxCollider _hitCollider;
 
     public CharaBeam(Vector2 origin, Vector2 direction, float duration,
         float width = 1f, bool fullScreen = false,
@@ -224,7 +224,7 @@ public class CharaBeam
             _beam = beam;
         }
 
-        public void Update()
+        public override void Update()
         {
             _beam.Update();
         }

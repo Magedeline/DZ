@@ -37,7 +37,7 @@ public class SafeGroundBlocker : DZ.Nez.Component
     /// Optional secondary collider to test against instead of the entity's
     /// default collider.  Null means use the entity's own collider.
     /// </summary>
-    public DZ.Nez.Collider? CheckWith;
+    public DZ.Nez.Collider CheckWith;
 
     // ── Constructor ───────────────────────────────────────────────────────────
 
@@ -47,7 +47,7 @@ public class SafeGroundBlocker : DZ.Nez.Component
     /// <param name="checkWith">
     ///   Optional override collider for the check.  Null = use entity collider.
     /// </param>
-    public SafeGroundBlocker(DZ.Nez.Collider? checkWith = null)
+    public SafeGroundBlocker(DZ.Nez.Collider checkWith = null)
     {
         CheckWith = checkWith;
     }

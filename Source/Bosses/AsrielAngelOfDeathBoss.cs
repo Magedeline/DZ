@@ -138,7 +138,7 @@ namespace DZ
         
         // Audio - FMOD Events
         private const string MUSIC_BURN_IN_DESPAIR = "event:/pusheen/new_content/music/lvl20/burn_in_despair";
-        private const string MUSIC_ANGEL_EX = "event:/pusheen/new_content/music/lvl20/angel_ex";
+        private const string MUSIC_ANGEL = "event:/pusheen/new_content/music/lvl20/angel";
         private const string MUSIC_FEEL = "event:/pusheen/new_content/music/lvl20/feel";
         private const string MUSIC_HIS_THEME_01 = "event:/new_content/music/pusheen/lvl20/his_theme01";
         private const string MUSIC_HIS_THEME_02 = "event:/new_content/music/pusheen/lvl20/his_theme02";
@@ -665,9 +665,9 @@ namespace DZ
             // The void responds
             yield return Textbox.Say("DZ_CH20_ASRIEL_ZERO_VOID_ANSWERS");
             
-            // Switch to phase 2 music: angel_ex
+            // Switch to phase 2 music: angel
             // angel_pitch ramps 0→1→0, fade ramps 1→0
-            Audio.SetMusic(MUSIC_ANGEL_EX);
+            Audio.SetMusic(MUSIC_ANGEL);
             Audio.SetMusicParam("angel_pitch", 0f);
             Audio.SetMusicParam("fade", 1f);
             Add(new Coroutine(AnimatePhase2MusicParams()));
@@ -1502,7 +1502,7 @@ namespace DZ
         }
 
         /// <summary>
-        /// Animates angel_pitch (0→1→0) and fade (1→0) for phase 2 music (angel_ex).
+        /// Animates angel_pitch (0→1→0) and fade (1→0) for phase 2 music (angel).
         /// </summary>
         private IEnumerator AnimatePhase2MusicParams()
         {
@@ -1662,7 +1662,7 @@ namespace DZ
         public void FinalAttackDuringRememberScene()
         {
             // GML: snd_play(snd_hurt1);
-            Audio.Play("event:/game/10/pit_hurt");
+            Audio.Play("event:/pusheen/char/kirby/predeath");
             
             // GML: if (instance_exists(obj_shaker) == 0) instance_create(0, 0, obj_shaker);
             // Shake the screen

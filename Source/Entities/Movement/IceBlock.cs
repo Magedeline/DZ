@@ -32,7 +32,7 @@ public class IceBlock : DZ.Nez.Entity
     // ── Children ──────────────────────────────────────────────────────────────
 
     private readonly LavaRect    _lava;
-    private CelesteSolid?        _solid;
+    private CelesteSolid        _solid;
 
     // ── Dimensions ────────────────────────────────────────────────────────────
 

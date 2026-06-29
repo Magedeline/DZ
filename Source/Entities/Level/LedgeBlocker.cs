@@ -32,7 +32,7 @@ public class LedgeBlocker : DZ.Nez.Component
     /// Optional per-player predicate; when non-null the block only applies
     /// if the predicate returns <c>true</c> for the querying player.
     /// </summary>
-    public Func<MadelinePlayer, bool>? BlockChecker;
+    public Func<MadelinePlayer, bool> BlockChecker;
 
     // ── Constructor ───────────────────────────────────────────────────────────
 
@@ -42,7 +42,7 @@ public class LedgeBlocker : DZ.Nez.Component
     /// <param name="blockChecker">
     ///   Optional predicate; null means always block when <see cref="Blocking"/> is true.
     /// </param>
-    public LedgeBlocker(Func<MadelinePlayer, bool>? blockChecker = null)
+    public LedgeBlocker(Func<MadelinePlayer, bool> blockChecker = null)
     {
         BlockChecker = blockChecker;
     }

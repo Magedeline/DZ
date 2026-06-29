@@ -137,10 +137,8 @@ public class RisingLava : DZ.Nez.Entity
     }
 
     // ── Collision ─────────────────────────────────────────────────────────────
-    private void CheckPlayerCollision(MadelinePlayer? player)
+    private void CheckPlayerCollision(MadelinePlayer player)
     {
-        if (player == null) return;
-
         var pPos = player.Position;
         // Hitbox is 340 × 120 starting at Position.
         if (PointInRect(pPos, Position, HitboxW, HitboxH))

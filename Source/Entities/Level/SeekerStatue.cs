@@ -73,7 +73,7 @@ public class SeekerStatue : Component, IUpdatable
     // Update
     // -------------------------------------------------------------------------
 
-    public void Update()
+    public override void Update()
     {
         if (_hatched || _hatching) return;
 

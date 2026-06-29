@@ -79,7 +79,7 @@ public class Trapdoor : DZ.Nez.Entity
 
     // ── Render ────────────────────────────────────────────────────────────────
 
-    public void Render()
+    public override void Render()
     {
         if (_opened) return;
         // TODO: render trapdoor sprite

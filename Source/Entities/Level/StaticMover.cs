@@ -32,33 +32,33 @@ public class StaticMover : DZ.Nez.Component
     // ── Callbacks ─────────────────────────────────────────────────────────────
 
     /// <summary>Returns <c>true</c> if this mover should ride the given solid.</summary>
-    public Func<CelesteSolid, bool>?      SolidChecker;
+    public Func<CelesteSolid, bool>      SolidChecker;
 
     /// <summary>Returns <c>true</c> if this mover should ride the given jump-thru.</summary>
-    public Func<CelesteJumpThru, bool>?   JumpThruChecker;
+    public Func<CelesteJumpThru, bool>   JumpThruChecker;
 
     /// <summary>Called each frame the linked platform moves, with the delta vector.</summary>
-    public Action<Vector2>? OnMove;
+    public Action<Vector2> OnMove;
 
     /// <summary>Called when the linked platform shakes.</summary>
-    public Action<Vector2>? OnShake;
+    public Action<Vector2> OnShake;
 
     /// <summary>Called when the linked platform is attached (first linked).</summary>
-    public Action<DZ.Nez.Entity>? OnAttach;
+    public Action<DZ.Nez.Entity> OnAttach;
 
     /// <summary>Called when the linked platform is destroyed. Default: remove self.</summary>
-    public Action? OnDestroy;
+    public Action OnDestroy;
 
     /// <summary>Called when the linked platform is disabled (collidable = false).</summary>
-    public Action? OnDisable;
+    public Action OnDisable;
 
     /// <summary>Called when the linked platform is re-enabled.</summary>
-    public Action? OnEnable;
+    public Action OnEnable;
 
     // ── Linked platform ───────────────────────────────────────────────────────
 
     /// <summary>The platform this mover is currently riding. Null if not attached.</summary>
-    public DZ.Nez.Entity? Platform { get; set; }
+    public DZ.Nez.Entity Platform { get; set; }
 
     // ── Constructor ───────────────────────────────────────────────────────────
 

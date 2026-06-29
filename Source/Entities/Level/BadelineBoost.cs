@@ -50,7 +50,7 @@ public class BadelineBoost : Component, IUpdatable
     private Vector2[] _nodes;
     private int _nodeIndex;
     private bool _travelling;
-    private MadelinePlayer? _holding;
+    private MadelinePlayer _holding;
     private float _canSkipTimer;
 
     // -------------------------------------------------------------------------

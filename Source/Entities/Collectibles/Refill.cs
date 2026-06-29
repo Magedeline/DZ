@@ -73,7 +73,7 @@ public class Refill : Component, IUpdatable
     private Vector2 _spawnPosition;
 
     /// <summary>Box collider attached to this entity (16 × 16).</summary>
-    private BoxCollider? _collider;
+    private BoxCollider _collider;
 
     // -------------------------------------------------------------------------
     // Constructor
@@ -123,7 +123,7 @@ public class Refill : Component, IUpdatable
     /// Each frame: bob the sprite, check for player overlap, and handle respawn
     /// countdown when inactive.
     /// </summary>
-    public void Update()
+    public override void Update()
     {
         float dt = Time.DeltaTime;
 

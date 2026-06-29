@@ -33,7 +33,7 @@ public class CliffFlags : DZ.Nez.Component
     // Nested component
     // -------------------------------------------------------------------------
 
-    private Flagline? _flagline;
+    private Flagline _flagline;
 
     // -------------------------------------------------------------------------
     // Configuration

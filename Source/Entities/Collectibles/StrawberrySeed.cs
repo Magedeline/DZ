@@ -50,13 +50,13 @@ public class StrawberrySeed : Component, IUpdatable
     private bool _losing;
     private float _canLoseTimer;
     private float _loseTimer;
-    private MadelinePlayer? _player;
+    private MadelinePlayer _player;
 
     private float _sineTimer;
     private float _shakerTime;
     private Vector2 _shakerOffset;
 
-    private BoxCollider? _collider;
+    private BoxCollider _collider;
 
     // -------------------------------------------------------------------------
     // Constructor
@@ -93,7 +93,7 @@ public class StrawberrySeed : Component, IUpdatable
     // Update
     // -------------------------------------------------------------------------
 
-    public void Update()
+    public override void Update()
     {
         float dt = Time.DeltaTime;
 

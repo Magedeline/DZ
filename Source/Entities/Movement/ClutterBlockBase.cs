@@ -79,7 +79,7 @@ public class ClutterBlockBase : CelesteSolid
 
     // ── Render ────────────────────────────────────────────────────────────────
 
-    public void Render()
+    public override void Render()
     {
         // Draw a filled rectangle; add 2 px to height when enabled (visual lip).
         float extraH = _enabled ? 2f : 0f;

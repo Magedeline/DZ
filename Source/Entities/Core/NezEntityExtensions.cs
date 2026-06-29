@@ -16,7 +16,7 @@ public static class NezEntityExtensions
     /// <summary>
     /// Returns the first entity of type <typeparamref name="T"/> in the list, or null.
     /// </summary>
-    public static T? FindEntityOfType<T>(this EntityList list) where T : class
+    public static T FindEntityOfType<T>(this EntityList list) where T : class
     {
         for (int i = 0; i < list.Count; i++)
         {
@@ -57,7 +57,7 @@ public static class NezEntityExtensions
     /// <summary>
     /// Returns the first entity of type <typeparamref name="T"/> in the scene, or null.
     /// </summary>
-    public static T? FindEntityOfType<T>(this Scene scene) where T : Entity
+    public static T FindEntityOfType<T>(this Scene scene) where T : Entity
         => scene.Entities.FindEntityOfType<T>();
 
     /// <summary>
@@ -69,7 +69,7 @@ public static class NezEntityExtensions
     /// <summary>
     /// Returns the first component of type <typeparamref name="T"/> in the scene, or null.
     /// </summary>
-    public static T? FindComponentOfType<T>(this Scene scene) where T : Component
+    public static T FindComponentOfType<T>(this Scene scene) where T : Component
     {
         for (int i = 0; i < scene.Entities.Count; i++)
         {
@@ -111,7 +111,7 @@ public static class NezEntityExtensions
     /// Returns true if this collider overlaps the other collider.
     /// Mirrors Monocle's <c>Collider.Collides(Collider)</c>.
     /// </summary>
-    public static bool Collides(this Collider self, Collider? other)
+    public static bool Collides(this Collider self, Collider other)
     {
         if (other == null) return false;
         return self.Overlaps(other);

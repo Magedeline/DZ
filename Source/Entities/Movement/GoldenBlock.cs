@@ -114,7 +114,7 @@ public class GoldenBlock : CelesteSolid
 
     // ── Render ────────────────────────────────────────────────────────────────
 
-    public void Render()
+    public override void Render()
     {
         if (!_visible) return;
 

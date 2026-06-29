@@ -40,7 +40,7 @@ public class Cassette : Component, IUpdatable
     private bool _isGhost;
     private float _hoverTimer;
 
-    private BoxCollider? _collider;
+    private BoxCollider _collider;
 
     // -------------------------------------------------------------------------
     // Constructor
@@ -79,7 +79,7 @@ public class Cassette : Component, IUpdatable
     // Update
     // -------------------------------------------------------------------------
 
-    public void Update()
+    public override void Update()
     {
         float dt = Time.DeltaTime;
 

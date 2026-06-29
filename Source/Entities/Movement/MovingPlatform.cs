@@ -59,7 +59,7 @@ public class MovingPlatform : CelesteJumpThru
 
     // ── Nez lifecycle ─────────────────────────────────────────────────────────
 
-    public void OnAddedToScene()
+    public override void OnAddedToScene()
     {
         // Place at the lerped position immediately (t=0 → _start).
         // Note: base.OnAddedToScene() is called by the framework's virtual dispatch.
@@ -128,7 +128,7 @@ public class MovingPlatform : CelesteJumpThru
     // ── Rider helpers ─────────────────────────────────────────────────────────
 
     /// <summary>Returns the <see cref="MadelinePlayer"/> currently standing on this platform, or null.</summary>
-    private MadelinePlayer? GetPlayerRider()
+    private MadelinePlayer GetPlayerRider()
     {
         if (Scene == null) return null;
         for (int _mpi = 0; _mpi < Scene.Entities.Count; _mpi++)

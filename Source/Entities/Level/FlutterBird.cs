@@ -56,7 +56,7 @@ public class FlutterBird : DZ.Nez.Component, IUpdatable
     // Scale squash/stretch
     private Vector2 _scale = Vector2.One;
 
-    private MadelinePlayer? _player;
+    private MadelinePlayer _player;
 
     // -------------------------------------------------------------------------
     // Constructor
@@ -86,7 +86,7 @@ public class FlutterBird : DZ.Nez.Component, IUpdatable
     // IUpdatable
     // -------------------------------------------------------------------------
 
-    public void Update()
+    public override void Update()
     {
         float dt = Time.DeltaTime;
         _player ??= Entity.Scene?.FindEntitiesWithTag(0).OfType<MadelinePlayer>().FirstOrDefault();

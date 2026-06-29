@@ -45,7 +45,7 @@ public class LightBeam : DZ.Nez.Component, IUpdatable
     private readonly Color _color = new Color(0.8f, 1f, 1f);
 
     // Lazy player reference
-    private MadelinePlayer? _player;
+    private MadelinePlayer _player;
 
     // -------------------------------------------------------------------------
     // Constructor
@@ -85,7 +85,7 @@ public class LightBeam : DZ.Nez.Component, IUpdatable
     // IUpdatable
     // -------------------------------------------------------------------------
 
-    public void Update()
+    public override void Update()
     {
         float dt = Time.DeltaTime;
         _timer += dt;
@@ -136,7 +136,7 @@ public class LightBeam : DZ.Nez.Component, IUpdatable
     /// Renders the beam texture strips.
     /// Call from the scene renderer after acquiring the "util/lightbeam" texture.
     /// </summary>
-    public void Render()
+    public override void Render()
     {
         if (_alpha <= 0f) return;
 

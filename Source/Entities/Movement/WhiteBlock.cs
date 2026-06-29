@@ -54,7 +54,7 @@ public class WhiteBlock : CelesteJumpThru
 
     // ── Nez lifecycle ─────────────────────────────────────────────────────────
 
-    public void OnAddedToScene()
+    public override void OnAddedToScene()
     {
         // If a heart gem has already been collected, disable immediately.
         // TODO: check SaveData / session HeartGem flag
@@ -116,7 +116,7 @@ public class WhiteBlock : CelesteJumpThru
 
     // ── Rider helpers ─────────────────────────────────────────────────────────
 
-    private DZ.Entities.Player.MadelinePlayer? GetPlayerRider()
+    private DZ.Entities.Player.MadelinePlayer GetPlayerRider()
     {
         if (Scene == null) return null;
         for (int _wi = 0; _wi < Scene.Entities.Count; _wi++)

@@ -82,7 +82,7 @@ public class BridgeTile : DZ.Entities.Core.CelesteJumpThru
 
     // ── Render ────────────────────────────────────────────────────────────────
 
-    public void Render()
+    public override void Render()
     {
         // TODO: draw actual bridge tile sprite slice at _rotation
         Graphics.Instance.Batcher.DrawRect(Position.X, Position.Y, _srcRect.Width, Math.Min(_srcRect.Height, 8f), Color.SaddleBrown);

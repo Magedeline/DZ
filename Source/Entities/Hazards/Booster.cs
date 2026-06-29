@@ -69,7 +69,7 @@ public class Booster : Entity
     public BoosterState State { get; private set; } = BoosterState.Available;
 
     /// <summary>The player currently being boosted, or <c>null</c>.</summary>
-    public PlayerController? BoostingPlayer { get; private set; }
+    public PlayerController BoostingPlayer { get; private set; }
 
     // ── Internal state ────────────────────────────────────────────────────────
 

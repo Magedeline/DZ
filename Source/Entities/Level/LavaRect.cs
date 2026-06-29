@@ -108,7 +108,7 @@ public class LavaRect : DZ.Nez.Component, IUpdatable
 
     // ── IUpdatable.Update ─────────────────────────────────────────────────────
 
-    public void Update()
+    public override void Update()
     {
         float dt = Time.DeltaTime;
         _timer += UpdateMultiplier * dt;
@@ -151,7 +151,7 @@ public class LavaRect : DZ.Nez.Component, IUpdatable
 
     // ── Component Render ──────────────────────────────────────────────────────
 
-    public void Render()
+    public override void Render()
     {
         if (Entity == null) return;
         Vector2 worldPos = Entity.Position + Position;

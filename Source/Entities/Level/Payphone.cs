@@ -25,8 +25,8 @@ public class Payphone : DZ.Nez.Component, IUpdatable
     // Lighting sub-components
     // -------------------------------------------------------------------------
 
-    private VertexLight? _light;
-    private BloomPoint?  _bloom;
+    private VertexLight _light;
+    private BloomPoint  _bloom;
 
     // -------------------------------------------------------------------------
     // Private state
@@ -75,7 +75,7 @@ public class Payphone : DZ.Nez.Component, IUpdatable
     // IUpdatable
     // -------------------------------------------------------------------------
 
-    public void Update()
+    public override void Update()
     {
         float dt = Time.DeltaTime;
 

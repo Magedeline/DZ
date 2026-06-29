@@ -21,7 +21,7 @@ public class DustEdge : DZ.Nez.Component
     /// Callback invoked by the dust-edge renderer each frame.
     /// Should contain the rendering logic for this entity's dust graphic.
     /// </summary>
-    public Action? RenderDust { get; set; }
+    public Action RenderDust { get; set; }
 
     // -------------------------------------------------------------------------
     // Constructor

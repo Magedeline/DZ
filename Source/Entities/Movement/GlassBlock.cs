@@ -158,7 +158,7 @@ public class GlassBlock : CelesteSolid
 
     // ── Render ────────────────────────────────────────────────────────────────
 
-    public void Render()
+    public override void Render()
     {
         var batcher = Graphics.Instance.Batcher;
         foreach (var (a, b) in _lines)

@@ -30,7 +30,7 @@ public class DustGraphic : DZ.Nez.Component, IUpdatable
     public float Scale { get; set; } = 1f;
 
     /// <summary>Action invoked when the owning entity is established (first in-view setup).</summary>
-    public Action? OnEstablish { get; set; }
+    public Action OnEstablish { get; set; }
 
     // Eye-tracking
     public Vector2 EyeTargetDirection { get; set; } = Vector2.UnitX;
@@ -81,7 +81,7 @@ public class DustGraphic : DZ.Nez.Component, IUpdatable
     // Dead-eyes flag (after hitting player)
     private bool _deadEyes;
 
-    private MadelinePlayer? _player;
+    private MadelinePlayer _player;
 
     // -------------------------------------------------------------------------
     // Nested types
@@ -156,7 +156,7 @@ public class DustGraphic : DZ.Nez.Component, IUpdatable
     // IUpdatable
     // -------------------------------------------------------------------------
 
-    public void Update()
+    public override void Update()
     {
         float dt = Time.DeltaTime;
         _player ??= Entity.Scene?.FindEntitiesWithTag(0).OfType<MadelinePlayer>().FirstOrDefault();

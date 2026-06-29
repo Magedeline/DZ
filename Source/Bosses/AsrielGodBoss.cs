@@ -424,7 +424,7 @@ namespace Celeste.Entities
             "event:/pusheen/new_content/music/lvl20/kirby_vs_asriel_fight_1",
         };
         
-        private const string ASRIEL_REMEMBER_PART_2 = "event:/pusheen/new_content/music/lvl20/asriel_ex";
+        private const string ASRIEL_REMEMBER_PART_2 = "event:/pusheen/new_content/music/lvl20/asriel";
         private bool asrielRememberTriggered = false;
         private bool hyperGonerPhaseTransitionTriggered = false;
         
@@ -3446,7 +3446,7 @@ namespace Celeste.Entities
             yield return 0.5f;
 
             // Start boss music now that the god boss has appeared
-            level.Session.Audio.Music.Event = "event:/pusheen/new_content/music/lvl20/asriel_ex";
+            level.Session.Audio.Music.Event = "event:/pusheen/new_content/music/lvl20/asriel";
             level.Session.Audio.Apply();
 
             // Restore player control

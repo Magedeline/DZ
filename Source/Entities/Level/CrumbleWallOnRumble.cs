@@ -143,7 +143,7 @@ public class CrumbleWallOnRumble : CelesteSolid
 
     // ── Render ────────────────────────────────────────────────────────────────
 
-    public void Render()
+    public override void Render()
     {
         if (_broken) return;
         // TODO: render tile-grid

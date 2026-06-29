@@ -97,7 +97,7 @@ public class BigWaterfall : DZ.Nez.Entity
 
     // ── Render ────────────────────────────────────────────────────────────────
 
-    public void Render()
+    public override void Render()
     {
         // Compute parallax render position (camera not directly available — use Position).
         // TODO: apply camera parallax offset via Scene.Camera when available.

@@ -109,8 +109,8 @@ public class AngryOshiro : Component, IUpdatable
     private float _stateTimer;
     private float _currentSpeedX;
     private Vector2 _attackDirection;
-    private PlayerController? _player;
-    private CircleCollider? _collider;
+    private PlayerController _player;
+    private CircleCollider _collider;
     private readonly Vector2 _spawnPosition;
 
     // -------------------------------------------------------------------------
@@ -157,7 +157,7 @@ public class AngryOshiro : Component, IUpdatable
     // -------------------------------------------------------------------------
 
     /// <inheritdoc/>
-    public void Update()
+    public override void Update()
     {
         float dt = Time.DeltaTime;
 

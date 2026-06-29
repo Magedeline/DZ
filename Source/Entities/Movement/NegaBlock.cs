@@ -58,7 +58,7 @@ public class NegaBlock : CelesteSolid
 
     // ── Render ────────────────────────────────────────────────────────────────
 
-    public void Render()
+    public override void Render()
     {
         // base.Render() not available on CelesteSolid
         Graphics.Instance.Batcher.DrawRect(Position.X, Position.Y, Width, Height, Color.Red * 0.6f);

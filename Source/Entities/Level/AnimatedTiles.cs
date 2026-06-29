@@ -28,7 +28,7 @@ public class AnimatedTiles : DZ.Nez.Component, IUpdatable
     // -------------------------------------------------------------------------
 
     /// <summary>Optional camera used for frustum culling (null = render all).</summary>
-    public Camera? ClipCamera { get; set; }
+    public Camera ClipCamera { get; set; }
 
     /// <summary>Local offset applied to tile-grid rendering origin.</summary>
     public Vector2 Position { get; set; } = Vector2.Zero;
@@ -53,7 +53,7 @@ public class AnimatedTiles : DZ.Nez.Component, IUpdatable
     /// Flat array of tile-lists, indexed [x + y * columns].
     /// null entries = empty cell.
     /// </summary>
-    private readonly List<TileEntry>?[] _tiles;
+    private readonly List<TileEntry>[] _tiles;
 
     // -------------------------------------------------------------------------
     // Constructor
@@ -67,7 +67,7 @@ public class AnimatedTiles : DZ.Nez.Component, IUpdatable
         _columns = columns;
         _rows    = rows;
         Bank     = bank;
-        _tiles   = new List<TileEntry>?[columns * rows];
+        _tiles   = new List<TileEntry>[columns * rows];
     }
 
     // -------------------------------------------------------------------------
@@ -76,7 +76,7 @@ public class AnimatedTiles : DZ.Nez.Component, IUpdatable
 
     private int Index(int x, int y) => x + y * _columns;
 
-    private List<TileEntry>? Get(int x, int y)
+    private List<TileEntry> Get(int x, int y)
     {
         if (x < 0 || x >= _columns || y < 0 || y >= _rows) return null;
         return _tiles[Index(x, y)];
@@ -133,7 +133,7 @@ public class AnimatedTiles : DZ.Nez.Component, IUpdatable
     // IUpdatable
     // -------------------------------------------------------------------------
 
-    public void Update()
+    public override void Update()
     {
         float dt = Time.DeltaTime;
         var clip = GetClippedRenderTiles(1);
@@ -229,6 +229,6 @@ public class AnimatedTilesBank
 
     public void Register(AnimationDef def) => _animations[def.Name] = def;
 
-    public AnimationDef? GetAnimation(string name)
+    public AnimationDef GetAnimation(string name)
         => _animations.TryGetValue(name, out var def) ? def : null;
 }

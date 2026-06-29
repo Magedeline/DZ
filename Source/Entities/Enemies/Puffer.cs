@@ -108,8 +108,8 @@ public class Puffer : Component, IUpdatable
     private float _patrolDir;           // 1 = right, -1 = left
     private bool _explosionApplied;     // ensures damage is dealt once per explosion
 
-    private PlayerController? _player;
-    private CircleCollider?  _collider;
+    private PlayerController _player;
+    private CircleCollider _collider;
 
     private readonly Vector2 _spawnPosition;
 
@@ -155,7 +155,7 @@ public class Puffer : Component, IUpdatable
     // -------------------------------------------------------------------------
 
     /// <inheritdoc/>
-    public void Update()
+    public override void Update()
     {
         float dt = Time.DeltaTime;
 

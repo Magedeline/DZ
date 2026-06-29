@@ -49,15 +49,15 @@ public class Torch : DZ.Nez.Component, IUpdatable
     // Private state
     // -------------------------------------------------------------------------
 
-    private VertexLight? _light;
-    private BloomPoint?  _bloom;
+    private VertexLight _light;
+    private BloomPoint  _bloom;
 
     // Light-in animation
     private bool  _animating;
     private float _animTimer;
     private const float AnimDuration = 0.5f; // seconds for light-in effect
 
-    private MadelinePlayer? _player;
+    private MadelinePlayer _player;
 
     // -------------------------------------------------------------------------
     // Constructor
@@ -102,7 +102,7 @@ public class Torch : DZ.Nez.Component, IUpdatable
     // IUpdatable
     // -------------------------------------------------------------------------
 
-    public void Update()
+    public override void Update()
     {
         float dt = Time.DeltaTime;
         _player ??= Entity.Scene?.FindEntityOfType<MadelinePlayer>();

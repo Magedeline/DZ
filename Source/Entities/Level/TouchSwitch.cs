@@ -46,8 +46,8 @@ public class TouchSwitch : Component, IUpdatable
     private float _ease;
     private float _timer;
     private float _pulse = 1f;
-    private BoxCollider? _collider;
-    private BoxCollider? _featherCollider;
+    private BoxCollider _collider;
+    private BoxCollider _featherCollider;
 
     // -------------------------------------------------------------------------
     // Constructor
@@ -176,7 +176,7 @@ public class TouchSwitch : Component, IUpdatable
 
     private static readonly Collider[] _overlapResults = new Collider[8];
 
-    private MadelinePlayer? FindPlayerInCollider(BoxCollider collider)
+    private MadelinePlayer FindPlayerInCollider(BoxCollider collider)
     {
         var rect = new RectangleF(
             Entity.Position.X + collider.LocalOffset.X,

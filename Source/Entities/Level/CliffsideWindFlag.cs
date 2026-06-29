@@ -96,7 +96,7 @@ public class CliffsideWindFlag : DZ.Nez.Component, IUpdatable
     // IUpdatable
     // -------------------------------------------------------------------------
 
-    public void Update()
+    public override void Update()
     {
         float dt = Time.DeltaTime;
 
@@ -118,7 +118,7 @@ public class CliffsideWindFlag : DZ.Nez.Component, IUpdatable
     /// <summary>
     /// Draws each flag segment.  Call from the scene's render pass.
     /// </summary>
-    public void Render()
+    public override void Render()
     {
         for (int i = 0; i < _segments.Length; i++)
         {

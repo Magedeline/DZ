@@ -84,7 +84,7 @@ public class FlyFeather : Component, IUpdatable
     private Vector2 _spawnPosition;
 
     /// <summary>Box collider attached to this entity (20 × 20).</summary>
-    private BoxCollider? _collider;
+    private BoxCollider _collider;
 
     // -------------------------------------------------------------------------
     // Constructor
@@ -133,7 +133,7 @@ public class FlyFeather : Component, IUpdatable
     /// Each frame: bob the sprite, check for player overlap (respecting
     /// <see cref="Shielded"/>), and tick the respawn countdown when inactive.
     /// </summary>
-    public void Update()
+    public override void Update()
     {
         float dt = Time.DeltaTime;
 

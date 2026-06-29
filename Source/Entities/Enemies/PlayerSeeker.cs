@@ -57,7 +57,7 @@ public class PlayerSeeker : DZ.Nez.Component, IUpdatable
     private Vector2 _scale = Vector2.One;
 
     // Lazy player reference (for kill-on-touch)
-    private MadelinePlayer? _player;
+    private MadelinePlayer _player;
 
     // -------------------------------------------------------------------------
     // Constructor
@@ -95,7 +95,7 @@ public class PlayerSeeker : DZ.Nez.Component, IUpdatable
     // IUpdatable
     // -------------------------------------------------------------------------
 
-    public void Update()
+    public override void Update()
     {
         float dt = Time.DeltaTime;
         _player ??= Entity.Scene?.FindEntitiesWithTag(0).OfType<MadelinePlayer>().FirstOrDefault();

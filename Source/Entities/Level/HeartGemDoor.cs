@@ -48,8 +48,8 @@ public class HeartGemDoor : Component, IUpdatable
     private Vector2 _spawnPosition;
     private float _openDistance;
     private float _openPercent;
-    private DZ.Entities.Core.CelesteSolid? _topSolid;
-    private DZ.Entities.Core.CelesteSolid? _botSolid;
+    private DZ.Entities.Core.CelesteSolid _topSolid;
+    private DZ.Entities.Core.CelesteSolid _botSolid;
     private float _offset;
     private Vector2 _mist;
     private bool _startHidden;
@@ -288,7 +288,7 @@ public class HeartGemDoor : Component, IUpdatable
     // Update
     // -------------------------------------------------------------------------
 
-    public void Update()
+    public override void Update()
     {
         // Update mist animation
         _offset -= Time.DeltaTime * 4f;

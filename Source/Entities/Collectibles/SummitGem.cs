@@ -62,7 +62,7 @@ public class SummitGem : Component, IUpdatable
     private float _moveWiggleTimer;
     private Vector2 _moveWiggleDir;
 
-    private BoxCollider? _collider;
+    private BoxCollider _collider;
 
     // -------------------------------------------------------------------------
     // Constructor
@@ -97,7 +97,7 @@ public class SummitGem : Component, IUpdatable
     // Update
     // -------------------------------------------------------------------------
 
-    public void Update()
+    public override void Update()
     {
         float dt = Time.DeltaTime;
 
@@ -247,7 +247,7 @@ public class SummitGem : Component, IUpdatable
             // TODO: set depth and tag
         }
 
-        public void Update()
+        public override void Update()
         {
             _alpha = Calc.Approach(_alpha, 0f, Time.DeltaTime * 0.5f);
             if (_alpha <= 0f)

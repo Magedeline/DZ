@@ -116,10 +116,10 @@ public class Seeker : Component, IUpdatable
     private Vector2 _dashDirection;
 
     /// <summary>Reference to the player (lazily fetched each frame if null).</summary>
-    private PlayerController? _player;
+    private PlayerController _player;
 
     /// <summary>Circle trigger collider.</summary>
-    private CircleCollider? _collider;
+    private CircleCollider _collider;
 
     // -------------------------------------------------------------------------
     // Constructor
@@ -162,7 +162,7 @@ public class Seeker : Component, IUpdatable
     // -------------------------------------------------------------------------
 
     /// <inheritdoc/>
-    public void Update()
+    public override void Update()
     {
         float dt = Time.DeltaTime;
 

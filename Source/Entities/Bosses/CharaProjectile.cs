@@ -41,7 +41,7 @@ public class CharaProjectile
     private float _cantKillTimer = 0.15f;
 
     // Visual
-    private SpriteRenderer? _spriteRenderer;
+    private SpriteRenderer _spriteRenderer;
 
     public CharaProjectile(Vector2 position, Vector2 direction, float speed,
         bool homing = false, float homingStrength = 0f,
@@ -204,7 +204,7 @@ public class CharaProjectile
             _projectile = projectile;
         }
 
-        public void Update()
+        public override void Update()
         {
             _projectile.Update();
         }

@@ -89,7 +89,7 @@ public class FinalBossShotPort : Entity, IUpdatable
 
     // ── References ────────────────────────────────────────────────────────────
 
-    private FinalBossPort? _boss;
+    private FinalBossPort _boss;
 
     // ── Constructor ──────────────────────────────────────────────────────────
 
@@ -156,7 +156,7 @@ public class FinalBossShotPort : Entity, IUpdatable
     // ── IUpdatable ───────────────────────────────────────────────────────────
 
     /// <inheritdoc/>
-    public void Update()
+    public override void Update()
     {
         float dt = Time.DeltaTime;
 

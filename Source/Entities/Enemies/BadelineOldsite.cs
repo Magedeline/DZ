@@ -58,7 +58,7 @@ public class BadelineOldsite : DZ.Nez.Component, IUpdatable
     private float _tweenDuration;
 
     // Lazy player reference
-    private MadelinePlayer? _player;
+    private MadelinePlayer _player;
 
     // -------------------------------------------------------------------------
     // Constructor
@@ -100,7 +100,7 @@ public class BadelineOldsite : DZ.Nez.Component, IUpdatable
     // IUpdatable
     // -------------------------------------------------------------------------
 
-    public void Update()
+    public override void Update()
     {
         float dt = Time.DeltaTime;
 

@@ -42,7 +42,7 @@ public class Cobweb : DZ.Nez.Component, IUpdatable
     /// <param name="anchorA">First anchor in world space (also entity position).</param>
     /// <param name="anchorB">Second anchor in world space.</param>
     /// <param name="offshootNodes">Additional wall-anchored offshoot positions.</param>
-    public Cobweb(Vector2 anchorA, Vector2 anchorB, IEnumerable<Vector2>? offshootNodes = null)
+    public Cobweb(Vector2 anchorA, Vector2 anchorB, IEnumerable<Vector2> offshootNodes = null)
     {
         _anchorA   = anchorA;
         _anchorB   = anchorB;
@@ -82,7 +82,7 @@ public class Cobweb : DZ.Nez.Component, IUpdatable
     // IUpdatable
     // -------------------------------------------------------------------------
 
-    public void Update()
+    public override void Update()
     {
         _waveTimer += Time.DeltaTime;
     }

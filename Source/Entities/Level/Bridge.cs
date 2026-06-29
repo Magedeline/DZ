@@ -72,7 +72,7 @@ public class Bridge : DZ.Nez.Entity
     {
         base.Update();
 
-        MadelinePlayer? player = null;
+        MadelinePlayer player = null;
         if (Scene != null)
             for (int _bi = 0; _bi < Scene.Entities.Count; _bi++)
                 if (Scene.Entities[_bi] is MadelinePlayer p) { player = p; break; }

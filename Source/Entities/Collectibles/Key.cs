@@ -44,7 +44,7 @@ public class Key : Component, IUpdatable
 
     private bool _collected;
     private bool _isFollowing;
-    private MadelinePlayer? _holder;
+    private MadelinePlayer _holder;
     private Vector2 _spawnPosition;
     private Vector2[] _nodes;
     private float _wobble;
@@ -56,7 +56,7 @@ public class Key : Component, IUpdatable
     // Constructor
     // -------------------------------------------------------------------------
 
-    public Key(Vector2 position, string id, Vector2[]? nodes = null)
+    public Key(Vector2 position, string id, Vector2[] nodes = null)
     {
         Id = id;
         _spawnPosition = position;
@@ -84,7 +84,7 @@ public class Key : Component, IUpdatable
     // Update
     // -------------------------------------------------------------------------
 
-    public void Update()
+    public override void Update()
     {
         float dt = Time.DeltaTime;
 

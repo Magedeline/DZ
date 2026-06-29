@@ -45,7 +45,7 @@ public class CelesteCheckpoint : Entity, IUpdatable
     /// Raised once the first time this checkpoint is activated by the player.
     /// Subscribe to record the respawn position in your game's save/session layer.
     /// </summary>
-    public static event Action<CelesteCheckpoint>? OnCheckpointReached;
+    public static event Action<CelesteCheckpoint> OnCheckpointReached;
 
     // ── State ────────────────────────────────────────────────────────────────
 
@@ -109,7 +109,7 @@ public class CelesteCheckpoint : Entity, IUpdatable
     // ── IUpdatable ───────────────────────────────────────────────────────────
 
     /// <inheritdoc/>
-    public void Update()
+    public override void Update()
     {
         float dt = Time.DeltaTime;
 
@@ -125,7 +125,7 @@ public class CelesteCheckpoint : Entity, IUpdatable
         }
 
         // ── Check player overlap ─────────────────────────────────────────────
-        PlayerController? player = Scene?.FindComponentOfType<PlayerController>();
+        PlayerController player = Scene?.FindComponentOfType<PlayerController>();
         if (player == null) return;
 
         RectangleF playerBounds = player.Entity.GetComponent<BoxCollider>()?.Bounds

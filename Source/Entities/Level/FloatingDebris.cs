@@ -37,7 +37,7 @@ public class FloatingDebris : DZ.Nez.Component, IUpdatable
     // TODO: image sub-texture index (chosen randomly from "scenery/debris")
     private readonly int _textureIndex;
 
-    private MadelinePlayer? _player;
+    private MadelinePlayer _player;
 
     // -------------------------------------------------------------------------
     // Constructor

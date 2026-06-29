@@ -36,7 +36,7 @@ public class SoundEmitter : DZ.Nez.Component, IUpdatable
     // Private state
     // -------------------------------------------------------------------------
 
-    private readonly DZ.Nez.Entity? _followTarget;
+    private readonly DZ.Nez.Entity _followTarget;
     private readonly Vector2     _offset;
 
     // Simple duration timer as a proxy for "is playing" when no audio system exists
@@ -107,7 +107,7 @@ public class SoundEmitter : DZ.Nez.Component, IUpdatable
     // IUpdatable
     // -------------------------------------------------------------------------
 
-    public void Update()
+    public override void Update()
     {
         float dt = Time.DeltaTime;
 

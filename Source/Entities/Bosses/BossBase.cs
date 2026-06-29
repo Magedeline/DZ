@@ -49,18 +49,18 @@ public abstract class BossBase : Component, IUpdatable
     protected float AttackCooldown { get; set; }
 
     // References
-    protected PlayerController? Player { get; private set; }
+    protected PlayerController Player { get; private set; }
     protected Scene Scene => Entity.Scene;
 
     // Events
-    public event Action? OnBossSpawned;
-    public event Action<int>? OnHealthChanged; // New health value
-    public event Action? OnPhaseChanged;
-    public event Action? OnBossDefeated;
+    public event Action OnBossSpawned;
+    public event Action<int> OnHealthChanged; // New health value
+    public event Action OnPhaseChanged;
+    public event Action OnBossDefeated;
 
     // Visual
-    protected SpriteRenderer? SpriteRenderer { get; private set; }
-    protected SpriteAnimator? Animator { get; private set; }
+    protected SpriteRenderer SpriteRenderer { get; private set; }
+    protected SpriteAnimator Animator { get; private set; }
 
     public override void OnAddedToEntity()
     {
@@ -84,7 +84,7 @@ public abstract class BossBase : Component, IUpdatable
         Console.WriteLine($"[Boss:{BossId}] Initialized with {MaxHealth} HP");
     }
 
-    public virtual void Update()
+    public override void Update()
     {
         if (IsDead) return;
 

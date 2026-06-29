@@ -46,7 +46,7 @@ public class BirdNPC : DZ.Nez.Component, IUpdatable
     public bool FlyAwayUp { get; set; } = true;
 
     /// <summary>Waypoint nodes for <see cref="BirdMode.MoveToNodes"/>.</summary>
-    public Vector2[]? Nodes { get; set; }
+    public Vector2[] Nodes { get; set; }
 
     // -------------------------------------------------------------------------
     // Private state
@@ -103,7 +103,7 @@ public class BirdNPC : DZ.Nez.Component, IUpdatable
     // IUpdatable
     // -------------------------------------------------------------------------
 
-    public void Update()
+    public override void Update()
     {
         float dt = Time.DeltaTime;
         _player ??= Entity.Scene?.FindEntitiesWithTag(0).OfType<MadelinePlayer>().FirstOrDefault();

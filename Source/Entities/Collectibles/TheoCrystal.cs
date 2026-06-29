@@ -49,7 +49,7 @@ public class TheoCrystal : CelesteActor, IUpdatable
     // Private state
     // -------------------------------------------------------------------------
 
-    private MadelinePlayer? _holder;
+    private MadelinePlayer _holder;
     private Vector2 _spawnPosition;
     private Vector2 _previousPosition;
     private Vector2 _prevLiftSpeed;

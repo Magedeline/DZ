@@ -140,10 +140,8 @@ public class SandwichLava : DZ.Nez.Entity
     }
 
     // ── Collision ─────────────────────────────────────────────────────────────
-    private void CheckPlayerCollision(MadelinePlayer? player)
+    private void CheckPlayerCollision(MadelinePlayer player)
     {
-        if (player == null) return;
-
         var pPos = player.Position;
 
         // Bottom lava hitbox.

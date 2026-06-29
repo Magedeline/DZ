@@ -62,7 +62,7 @@ public class HeartGem : Component, IUpdatable
     private float _moveWiggleValue;
     private float _moveWiggleTimer;
 
-    private BoxCollider? _collider;
+    private BoxCollider _collider;
 
     // -------------------------------------------------------------------------
     // Constructor
@@ -97,7 +97,7 @@ public class HeartGem : Component, IUpdatable
     // Update
     // -------------------------------------------------------------------------
 
-    public void Update()
+    public override void Update()
     {
         float dt = Time.DeltaTime;
 

@@ -25,16 +25,16 @@ public class Switch : Component, IUpdatable
     public bool GroundReset { get; private set; }
 
     /// <summary>Called when the switch is activated.</summary>
-    public Action? OnActivate;
+    public Action OnActivate;
 
     /// <summary>Called when the switch is deactivated.</summary>
-    public Action? OnDeactivate;
+    public Action OnDeactivate;
 
     /// <summary>Called when all switches in the level are finished.</summary>
-    public Action? OnFinish;
+    public Action OnFinish;
 
     /// <summary>Called when starting in a finished state.</summary>
-    public Action? OnStartFinished;
+    public Action OnStartFinished;
 
     /// <summary>Whether this switch is currently activated.</summary>
     public bool Activated { get; private set; }
@@ -43,10 +43,10 @@ public class Switch : Component, IUpdatable
     public bool Finished { get; private set; }
 
     /// <summary>Static event fired when any switch is activated.</summary>
-    public static event Action? OnAnySwitchActivated;
+    public static event Action OnAnySwitchActivated;
 
     /// <summary>Static event fired when all switches are finished.</summary>
-    public static event Action? OnAllSwitchesFinished;
+    public static event Action OnAllSwitchesFinished;
 
     // -------------------------------------------------------------------------
     // Constructor
@@ -76,7 +76,7 @@ public class Switch : Component, IUpdatable
     // Update
     // -------------------------------------------------------------------------
 
-    public void Update()
+    public override void Update()
     {
         if (!GroundReset || !Activated || Finished) return;
 

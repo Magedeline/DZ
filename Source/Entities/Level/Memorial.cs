@@ -35,7 +35,7 @@ public class Memorial : DZ.Nez.Component, IUpdatable
     // -------------------------------------------------------------------------
 
     private bool _wasShowing;
-    private MadelinePlayer? _player;
+    private MadelinePlayer _player;
 
     // Hitbox dimensions matching Celeste's (60x80, offset -30,-60)
     private const float HitW = 60f, HitH = 80f, HitOX = -30f, HitOY = -60f;
@@ -82,7 +82,7 @@ public class Memorial : DZ.Nez.Component, IUpdatable
     // IUpdatable
     // -------------------------------------------------------------------------
 
-    public void Update()
+    public override void Update()
     {
         _player ??= Entity.Scene?.FindEntityOfType<MadelinePlayer>();
 

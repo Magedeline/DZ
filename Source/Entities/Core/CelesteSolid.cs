@@ -285,7 +285,7 @@ public class CelesteSolid : CelestePlatform
     /// Returns the <see cref="PlayerController"/> component of the first entity that is
     /// riding this solid, or <c>null</c> if no player rider exists.
     /// </summary>
-    public PlayerController? GetPlayerRider()
+    public PlayerController GetPlayerRider()
     {
         if (Scene == null) return null;
         for (int i = 0; i < Scene.Entities.Count; i++)
@@ -343,7 +343,7 @@ public class CelesteSolid : CelestePlatform
     /// Finds the <see cref="PlayerController"/> in the current scene, or
     /// <c>null</c> when no scene is loaded or no player entity exists.
     /// </summary>
-    protected PlayerController? GetPlayer()
+    protected PlayerController GetPlayer()
         => Scene?.FindComponentOfType<PlayerController>();
 
     /// <summary>

@@ -72,7 +72,7 @@ public class SeekerEffectsController : DZ.Nez.Component, IUpdatable
     // IUpdatable
     // -------------------------------------------------------------------------
 
-    public void Update()
+    public override void Update()
     {
         float dt = Time.DeltaTime;
         var seekers = Entity.Scene?.FindComponentsOfType<Seeker>();

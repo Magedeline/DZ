@@ -65,7 +65,7 @@ public class DashSwitch : CelesteSolid
     private bool _mirrorMode;
     private float _colliderWidth;
     private float _colliderHeight;
-    private BoxCollider? _collider;
+    private BoxCollider _collider;
 
     // -------------------------------------------------------------------------
     // Constructor
@@ -257,9 +257,9 @@ public class DashSwitch : CelesteSolid
         }
     }
 
-    private TempleGate? GetNearestGate()
+    private TempleGate GetNearestGate()
     {
-        TempleGate? nearest = null;
+        TempleGate nearest = null;
         float nearestDistSq = float.MaxValue;
 
         foreach (var gate in Scene.FindEntitiesWithTag(0).OfType<TempleGate>())
@@ -283,7 +283,7 @@ public class DashSwitch : CelesteSolid
         return nearest;
     }
 
-    private MadelinePlayer? GetPlayerOnTop()
+    private MadelinePlayer GetPlayerOnTop()
     {
         // Check for player colliding with the switch
         var colliderWidth = _collider?.Bounds.Width ?? Width;

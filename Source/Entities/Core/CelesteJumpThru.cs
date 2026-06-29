@@ -277,7 +277,7 @@ public class CelesteJumpThru : CelestePlatform
     /// Returns the <see cref="PlayerController"/> component of the first entity riding
     /// this platform, or <c>null</c> if none.
     /// </summary>
-    public PlayerController? GetPlayerRider()
+    public PlayerController GetPlayerRider()
     {
         if (Scene == null) return null;
         for (int i = 0; i < Scene.Entities.Count; i++)

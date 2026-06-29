@@ -43,14 +43,14 @@ public class Lookout : Component, IUpdatable
     private string _animPrefix = "";
     private int _nodeIndex;
     private float _nodePercent;
-    private Hud? _hud;
+    private Hud _hud;
     private Vector2 _interactOffset;
 
     // -------------------------------------------------------------------------
     // Constructor
     // -------------------------------------------------------------------------
 
-    public Lookout(Vector2 position, bool summit = false, bool onlyY = false, Vector2[]? nodes = null)
+    public Lookout(Vector2 position, bool summit = false, bool onlyY = false, Vector2[] nodes = null)
     {
         Entity.Position = position;
         // Depth = -8500; // TODO: Depth not available in DZ.Nez.Entity
@@ -100,7 +100,7 @@ public class Lookout : Component, IUpdatable
     // Update
     // -------------------------------------------------------------------------
 
-    public void Update()
+    public override void Update()
     {
         if (!_interacting) return;
 
@@ -284,12 +284,12 @@ public class Hud : Entity, IUpdatable
     public bool OnlyY { get; set; }
     public float Easer { get; set; }
 
-    public void Update()
+    public override void Update()
     {
         // Update HUD state
     }
 
-    public void Render()
+    public override void Render()
     {
         // Draw HUD elements
         // TODO: draw vignette, track indicators, etc.

@@ -46,7 +46,7 @@ public class LockBlock : CelesteSolid
     // Constructor
     // -------------------------------------------------------------------------
 
-    public LockBlock(Vector2 position, string id, bool stepMusicProgress, string spriteName, string? unlockSfx = null)
+    public LockBlock(Vector2 position, string id, bool stepMusicProgress, string spriteName, string unlockSfx = null)
         : base(position, 32f, 32f, safe: false)
     {
         Id = id;

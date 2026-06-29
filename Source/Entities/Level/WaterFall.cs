@@ -67,7 +67,7 @@ public class WaterFall : DZ.Nez.Entity
 
     // ── Render ────────────────────────────────────────────────────────────────
 
-    public void Render()
+    public override void Render()
     {
         var batcher = Graphics.Instance.Batcher;
         if (_water?.TopSurface == null)

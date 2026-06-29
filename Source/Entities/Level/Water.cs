@@ -29,9 +29,9 @@ public class Water : DZ.Nez.Entity
 
     // ── Surfaces ──────────────────────────────────────────────────────────────
 
-    public Surface?       TopSurface;
-    public Surface?       BottomSurface;
-    public List<Surface>  Surfaces = new();
+    public Surface       TopSurface;
+    public Surface       BottomSurface;
+    public List<Surface> Surfaces = new();
 
     // ── Dimensions ────────────────────────────────────────────────────────────
 

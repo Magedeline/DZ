@@ -56,7 +56,7 @@ public class MoonCreature : DZ.Nez.Component, IUpdatable
     private readonly Color       _orbColor;
     private readonly Color       _centerColor;
 
-    private MadelinePlayer? _player;
+    private MadelinePlayer _player;
 
     // Spawn count for additional creatures
     private readonly int _spawnExtra;
@@ -122,7 +122,7 @@ public class MoonCreature : DZ.Nez.Component, IUpdatable
     // IUpdatable
     // -------------------------------------------------------------------------
 
-    public void Update()
+    public override void Update()
     {
         float dt = Time.DeltaTime;
         _player ??= Entity.Scene?.FindEntityOfType<MadelinePlayer>();
@@ -196,7 +196,7 @@ public class MoonCreature : DZ.Nez.Component, IUpdatable
     // Rendering (call from scene renderer)
     // -------------------------------------------------------------------------
 
-    public void Render()
+    public override void Render()
     {
         // Render trail from back to front
         for (int i = _trail.Length - 1; i >= 0; i--)

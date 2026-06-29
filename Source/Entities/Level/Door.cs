@@ -171,7 +171,7 @@ public class Door : CelesteActor
 /// </summary>
 public static class DoorCollisionExtensions
 {
-    public static bool Collides(this Collider? a, Collider? b)
+    public static bool Collides(this Collider a, Collider? b)
     {
         if (a == null || b == null) return false;
         return a.Bounds.Intersects(b.Bounds);

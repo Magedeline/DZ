@@ -35,8 +35,8 @@ public class HangingLamp : DZ.Nez.Component, IUpdatable
     private float _rotation;
     private float _soundDelay;
 
-    private VertexLight? _light;
-    private BloomPoint?  _bloom;
+    private VertexLight _light;
+    private BloomPoint _bloom;
 
     private readonly Vector2 _attachOffset = new Vector2(4f, 0f); // right-centre offset
 
@@ -53,7 +53,7 @@ public class HangingLamp : DZ.Nez.Component, IUpdatable
     }
 
     private readonly Vector2 _spawnPosition;
-    private MadelinePlayer?  _player;
+    private MadelinePlayer _player;
 
     // -------------------------------------------------------------------------
     // Nez lifecycle
@@ -80,10 +80,10 @@ public class HangingLamp : DZ.Nez.Component, IUpdatable
     // IUpdatable
     // -------------------------------------------------------------------------
 
-    public void Update()
+    public override void Update()
     {
         float dt = Time.DeltaTime;
-        _player ??= Entity.Scene?.FindEntityOfType<MadelinePlayer>();
+        _player = Entity.Scene.FindEntityOfType<MadelinePlayer>();
         _soundDelay -= dt;
 
         // Player collision → impart angular speed

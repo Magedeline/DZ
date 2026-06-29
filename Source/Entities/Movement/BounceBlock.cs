@@ -64,7 +64,7 @@ public class BounceBlock : CelesteSolid
     private Vector2 _launchDirection;
 
     /// <summary>Cached reference to the player, held across wind-up so we can launch them.</summary>
-    private PlayerController? _targetPlayer;
+    private PlayerController _targetPlayer;
 
     // ── Constructor ───────────────────────────────────────────────────────────
 

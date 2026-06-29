@@ -16652,9 +16652,14 @@ YOUR FIGHT IS WITH {*}ME{/*}!
 {# 560000}you've been controlling kirby this whole because god who knows how disgusting you are.{#}
 {# 560000}and you know what? I don't care if you have been controlling him or not, because in the end, it doesn't matter.{#}
 {# 560000}because you are just as powerless as he is, and you have no say in this.{#}
-{# 560000}and to that in mind{#}
+{# 560000}... Listen.{#}
+{# 560000}If you do Defeat me, I'll Help you to stop multiple darkness.{#}
+{# 560000}I'll help you to escape from them and I'll sacrafice myself to save you all and end this tragedy.{#}
+{# 560000}However that won't happen.{#}
+{# 560000}From you.{#}
+{# 560000}I'll keep you with me watching all of you no matter what{#}
 {trigger 2 kirby soul lifted up the determination soul}
-{# 560000}Time to die for a Billion times{#}
+{# 560000}Even Killing you for a Billion times{#}
 
 {trigger 3 zero damage the soul until chara block his final attack}
 
@@ -16674,7 +16679,7 @@ we will never abandon you!
 [sans left normal]
 {+KIRBY}... you are stronger than you think!
 but consider this freak whos gonna have a bad time if you let him win!
-I'll say your gonna have a good time, Wink.
+I'll say your gonna have a good time... Wink.
 
 [papyrus left normal]
 {+KIRBY}... you are a true friend!
@@ -16712,20 +16717,18 @@ froggit...:3
 
 [ELS left normal]
 {# 560000}No... NOO! THIS CAN'T BE HAPPENING!{#}
-{# 560000}Fucking Unbelievable!{#}
+{# 560000}Fucking...! Unbelievable!{#}
 {# 560000}You... you are all... just{#}
 {trigger 4 music mute}
 [ELS left normal]
 {# 560000}I can't believe this... that you are all too stupid.{#}
-{# 560000}all of there soul are now mine!!!!!{#}
+{# 560000}all of your soul are now mine!!!!!{#}
 
 MAGGYHELPER_CH20_ASRIEL_FINALLY=
-[ASRIEL_KID right glitch]
+[ASRIEL_KID right none]
 Finally...
 I was so tired of being in the total darkness.
-[KIRBY left surprised]
-...!
-[ASRIEL_KID right glitch]
+[ASRIEL_KID right none]
 Trapped in that form...
 Unable to feel anything...
 But now...
@@ -16734,11 +16737,11 @@ Now I can feel again!
 
 # Phase 5-6: "Howdy!" - Kid Asriel appearance
 MAGGYHELPER_CH20_ASRIEL_HOWDY=
-[ASRIEL_KID right normal]
+[ASRIEL_KID right glitch]
 Howdy!
 [KIRBY left surprised]
 Asriel...?
-[ASRIEL_KID right smile]
+[ASRIEL_KID right glitch]
 Are you there?
 It's me...
 Your best friend.
@@ -16756,44 +16759,44 @@ MAGGYHELPER_CH20_KIRBY_THEEND_INTRO=
 [KIRBY left sadder]
 This is The End...
 
-azzyboss_02=
+MAGGYHELPER_CH20_KIRBY_THEEND_ASRIEL_A=
 You Know what?
 I don't even care about destroying this reality anymore.
 
-azzyboss_04=
+MAGGYHELPER_CH20_KIRBY_THEEND_ASRIEL_B=
 after We defeat you and gain access to the void.
 I will just create a new one, and I will make sure that you are not in it.
 
-azzyboss_06=
+MAGGYHELPER_CH20_KIRBY_THEEND_ASRIEL_C=
 All your progress, all your efforts, all your sacrifices...
 I will make everyting fall to zero!
 
-azzyboss_08=
+MAGGYHELPER_CH20_KIRBY_THEEND_ASRIEL_D=
 then we can do this all over again!
 
-azzyboss_10=
+MAGGYHELPER_CH20_KIRBY_THEEND_ASRIEL_E=
 infact did you know what the best part about all of this is?
 you'll do it...
 
-azzyboss_12=
+MAGGYHELPER_CH20_KIRBY_THEEND_ASRIEL_F=
 and then you lose to me again...
 
-azzyboss_14=
+MAGGYHELPER_CH20_KIRBY_THEEND_ASRIEL_G=
 and again!
 
-azzyboss_16=
+MAGGYHELPER_CH20_KIRBY_THEEND_ASRIEL_H=
 AND AGAIN!!!
 
-azzyboss_18=
+MAGGYHELPER_CH20_KIRBY_THEEND_ASRIEL_I=
 because you want a final ending
 
-azzyboss_20=
+MAGGYHELPER_CH20_KIRBY_THEEND_ASRIEL_J=
 because you love your friends.
 
-azzyboss_22=
+MAGGYHELPER_CH20_KIRBY_THEEND_ASRIEL_K=
 because you never ever give up!
 
-azzyboss_24=
+MAGGYHELPER_CH20_KIRBY_THEEND_ASRIEL_L=
 is this wonderful or what?
 your determination, that power let you get this far.
 this will be your doom!
@@ -16807,17 +16810,17 @@ MAGGYHELPER_CH20_MADELINE_AND_BADELINE_SAVE_KIRBY_FROM_ASRIEL_FIRST_SPECIAL_ATTA
 [KIRBY left surprised]
 Oh god no!
 {trigger 1 a slice cut the meterorite in half}
-[MADELINE_SPIRIT left together]
+[MADELINE left together]
 Sorry were late after us were erased
 [KIRBY left surprised]
 MADELINE! YOUR BACK!!!?
 [KIRBY left distracted]
 but I thought you were...
-[MADELINE_SPIRIT right upset]
+[MADELINE right upset]
 Dead well yeah.
-[MADELINE_SPIRIT right normal]
+[MADELINE right normal]
 but turns out death is just another thing to climb the mountain.
-[BADELINE_SPIRIT right scoff]
+[BADELINE right scoff]
 and this time your not alone with us.
 
 [ASRIEL_GOD left normal]
@@ -16826,10 +16829,10 @@ Madeline and Badeline are back!?
 No! This can't be happening!
 You can't be alive! I killed you both!
 
-[BADELINE_SPIRIT right angryalt]
+[BADELINE right angryalt]
 Watch it you goat boy, you better not hurt my friend here or I will end you right here and now!
 
-[MADELINE_SPIRIT left sad]
+[MADELINE left sad]
 {# AAAAFF}Infact We never really left, {+KIRBY}.{#}
 {# AAAAFF}Our love for you {~}TRANSCENDED{/~} mortality itself.{#}
 
@@ -16873,12 +16876,12 @@ MAGGYHELPER_CH20_ASRIEL_ZERO_RISE_KILL=
 [ASRIEL_ZERO left transcendent]
 {# ffffff}BEHOLD MY TRUE POWER.{#}
 {trigger 1 gravity overwiegths kirby and mad with bad down and lift the soul up}
-[KIRBY right panic]
+[MADELINE right panic]
 I... I can't {~}MOVE{/~}!
 [ASRIEL_ZERO left omnipotent]
-{# ffffff}Hah Finally At last I can feel your death!{#}
+{# ffffff}Hah Finally At last I can feel your presence of death!{#}
 {# ffffff}Everytime you three died, this world slip you away!{#}
-{# ffffff}Everytime you died, your friend and family forget you abit more!{#}
+{# ffffff}Everytime you three died, your friend and family forget you abit more!{#}
 {# ffffff}Your Life Will End Here where in this world is truly Game Over!{#}
 {trigger 2 angel lift them up and smack harder to the ground lifting out of there soul out of them}
 [MADELINE left panic]
@@ -16897,7 +16900,7 @@ I... I can't {~}MOVE{/~}!
 {# ffffff}Show me how much you want to live!{#}
 {# ffffff}Show me how much you want to save your friends and family!{#}
 {# ffffff}Show me how much you want to save this world!{#}
-{# ffffff}NOW SHOW IT TO ME!{#}
+{# ffffff}NOW SHOW IT TO ME NOW!{#}
 
 {trigger 4 faded back to black and show the soul of kirby and mad with bad floating in the air}
 
@@ -16910,7 +16913,7 @@ How will you overcome this seemingly insurmountable obstacle and save your frien
 {trigger 5 save point ui apears}
 []
 no that wouldn't work,
-theres has to be a way to save everyone, and stop Asriel Zero from taking you all away, but how?
+theres has to be a way to save everyone, and stop Els from taking all our power away, but how?
 ...
 ... unless...
 I reach out to the abyss and call someone else for help.
@@ -17055,7 +17058,7 @@ nothing matters... everyone i care about always...
 
 MAGGYHELPER_CH20_ASRIEL_ZERO_SOUL_SANS_SAVED=
 [SANS left normal]
-heh... yeah, you're right, kiddo.
+heh... yeah, you're right, kiddoby.
 i remember now... protecting the people i {~}love{/~}...
 that's what REALLY matters.
 
@@ -17153,7 +17156,7 @@ MAGGYHELPER_CH20_ASRIEL_ZERO_LOSING_CONTROL=
 [ELS left normal]
 {# 560000}WORTHLESS {*}CHILD{/*}! OBEY ME!{#}
 {# 560000}I WON'T HOLD MUCH {~}LONGER{/~}...{#}
-{# 560000}THEN I'LL USE THE {*}FINAL{/*} BEAM!{#}
+{# 560000}THEN I'LL USE THE {*}FINAL{/*} ATTACK!{#}
 
 MAGGYHELPER_CH20_ASRIEL_ZERO_REMEMBER=
 [ASRIEL_ZERO left crying]
@@ -17250,173 +17253,33 @@ UGH... INSUFFERABLE FOOLS.
 {trigger 1 camera slightly move to els on the right}
 
 [MADELINE left angry]
-ASRIEL'S CORRUPTOR REVEALS ITSELF.
+ELLICA DOPPIA REVEALS YOURSELF... NOW!
 
 {trigger 2 madeline walk forward and confront els}
 
 [ASRIEL left sad]
 {# 000000}Els... the darkness controlling me throughout.{#}
-{# 000000}Deception was your method!{#}
-{# 000000}Better expectations existed for you.{#}
-{# 000000}Clearly mistaken.{#}
-{# 000000}You Are The True Final Zeros.{#}
-{# 000000}Just Like The Others mirror From Them.{#}
-{# 000000}Power and dominance alone matter.{#}
-{# 000000}Choice elimination was your agenda.{#}
-{# 000000}Concern for others... absent.{#}
+{# 000000}Your used and manipulated me!{#}
+{# 000000}I thought your better than this with us.{#}
+{# 000000}But I was wrong completely.{#}
+{# 000000}Infact You Are The True Final Zeros.{#}
+{# 000000}Just Like The Others mirror From One of them.{#}
+{# 000000}You conqurered, consumed, killed, betrayed, and manipulated everyone.{#}
+{# 000000}and Top all of that.{#}
+{# 000000}Your consequences is above You!{#}
 
 {trigger 3 els start angry with disortion effect}
 
 [ELS left normal]
-{# 000000}HONESTLY ALL FIVE OF YOU GENERATE ABSOLUTE DISGUSTING!{#}
+{# 000000}SHUT THE FUCK UP YOUR ALL FIVE OF YOU GENERATE ABSOLUTE DISGUSTING!{#}
 
 {trigger 4 els calm down and disapointed}
 
 [ELS left normal]
-{# 000000}TEMPORAL LIMITATIONS APPROACH!{#}
+{# 000000}PERHAPS IT'S A GOOD TIME TO SHOWN TO OURSELF!{#}
 {# 000000}.... YOU WANT TO KNOW THE TRUTH?{#}
 {# 000000}FINE, SO BE IF SO THEN...{#}
-
-{trigger 5 els start to transform into a more humanoid form with glitch effects}
-
-{# 000000}SURVIVAL THIS PHASE!{#}
-
-{trigger 6 els fadded to black}
-
-# ====================================================================
-# THE FALLEN PATH - SIAMO ZERO ("We Are Zero")
-# Els reveals what Kirby could become without love and friendship.
-# Based on Desolo Zantas' "Fallen Path (Siamo Zero)" - Kirby 30th Anniversary
-# The nightmare scenario: a Kirby corrupted by darkness, no longer shaped like a friend.
-# ====================================================================
-
-MAGGYHELPER_CH20_FALLEN_PATH_VISION=
-{trigger 0 Reality distorts - Els pulls Kirby into a vision of an alternate timeline}
-[ELS left normal]
-{# 000000}Before we begin... let me show you something.{#}
-{# 000000}A truth you have always feared to face.{#}
-
-[KIRBY left panic]
-What... what is this place?!
-The air itself feels like it's {*}DYING{/*}!
-
-[ELS left normal]
-{# 000000}Universes like yours are {~}DESTINED{/~} to end.{#}
-{# 000000}There is no escape from this {*}FATE{/*}.{#}
-{# 000000}Let me show you... {~}one possible scenario{/~}.{#}
-{trigger 1 A corrupted silhouette of Kirby materializes - Siamo Zero}
-
-[KIRBY left panic]
-That... that thing... it looks like {*}ME{/*}?!
-But twisted... broken... no longer shaped like...
-
-[ELS left normal]
-{# 000000}You became your {*}DARKEST NIGHTMARE{/*}.{#}
-{# 000000}{~}Ohne{/~} my presence...{#}
-{# 000000}You would have grown more {*}SINISTER{/*} over time.{#}
-{# 000000}This is what happens to a hero left {~}HEARTBROKEN{/~} and {~}FORGOTTEN{/~}.{#}
-
-[MADELINE_SPIRIT left shocked]
-{# AAAAFF}That's... a version of {+KIRBY}?!{#}
-{# AAAAFF}The skin color... the eyes... it's HIM but... {~}WRONG{/~}!{#}
-
-[BADELINE_SPIRIT right angryalt]
-{# DDAAFF}What did you DO to him in that timeline?!{#}
-
-[ELS left normal]
-{# 000000}I did {~}NOTHING{/~}. That is the point.{#}
-{# 000000}Without love... without friends... without gentle breezes...{#}
-{# 000000}Without a sweet treat at the end of the day...{#}
-{# 000000}The child of the stars becomes {*}ONE WITH THE VOID{/*}.{#}
-{# 000000}A Kirby molded by sorrow... by hate... by {~}JEALOUSY{/~}...{#}
-{# 000000}And by an all-consuming {*}LONELINESS{/*}.{#}
-
-{trigger 2 Siamo Zero's eye opens - terrified, confused, realizing what it has done}
-[KIRBY left sadder]
-It's... looking around... almost {~}TERRIFIED{/~}...
-As if it just realized what it {*}DID{/*}...
-Proving this really IS its worst nightmare...
-
-[ASRIEL left sad]
-{# FFAAAA}I know that feeling...{#}
-{# FFAAAA}I Recognized it...{#}
-{# FFAAAA}It's when the darkness takes everything and you finally see what you've {~}BECOME{/~}...{#}
-{# FFAAAA}As it for me I become too a acurrate deltarune to clash with kirby and madeline and badeline against you...{#}
-
-[ELS left normal]
-{# 000000}{~}SIAMO ZERO{/~}... "We Are Zero."{#}
-{# 000000}The deteriorated paragon. An eternal constant from a universe long {*}EXTINGUISHED{/*}.{#}
-{# 000000}All it takes is {~}ONE{/~} hero to fall... for the story to {*}END{/*}.{#}
-{# 000000}As corruption takes your heroes... everything will fall to {~}ZERO{/~}.{#}
-{trigger 3 The vision shatters - Siamo Zero fades}
-
-[KIRBY left determined]
-You think showing me what I {*}COULD{/*} become will make me {~}AFRAID{/~}?!
-All you've done is shown me WHY I need my friends!
-Why I need {+MADELINE}! Why I need {+BADELINE}! Why I need {+ASRIEL}!
-You've shown me the one thing that {*}SEPARATES{/*} me from that nightmare!
-{~}LOVE{/~}!
-
-[ELS left normal]
-{# 000000}FOOLISH SENTIMENT! Then face the TRUE end!{#}
-
-MAGGYHELPER_CH20_DOPPIA_ELICA_BOSS_START=
-[DoppiaElica left omnipotent]
-{# 000000}The Accurated Fallen Angel{#}
-{# 000000}Penumbra Phastasm / Doppia Ellica{#}
-{# 000000}ZERO... ELS... I HAVE {~}TRANSCENDED{/~} THEM ALL...{#}
-{# 000000}NOW BEHOLD... {*}DOPPIA ELICA{/*}!{#}
-{# 000000}THE EMBODIMENT OF {~}ABSOLUTE{/~} ANNIHILATION!{#}
-{# 000000}YOUR STORY ENDS! YOUR HOPE DIES! YOUR EXISTENCE {*}CEASES{/*}!{#}
-
-[KIRBY left determined]
-This presence... it's trying to {*}ERASE{/*} me just by being near!
-My very SOUL is screaming in terror!
-
-[DoppiaElica left omnipotent]
-{# 000000}LIFE... DEATH... I STAND {~}BEYOND{/~} BOTH!{#}
-{# 000000}I AM THE DARKNESS THAT EXISTED {*}BEFORE{/*} CREATION!{#}
-
-[DoppiaElica left omnipotentA]
-{# 000000}THE {~}VOID{/~} THAT SWALLOWS ALL LIGHT!{#}
-{# 000000}THE {*}SILENCE{/*} AFTER THE LAST STAR DIES!{#}
-
-[MADELINE_SPIRIT left determined]
-{# AAAAFF}We don't care what you've become! We'll {*}NEVER{/*} stop!{#}
-
-[BADELINE_SPIRIT right angryalt]
-{# DDAAFF}You want to end our story?! Too bad! We're {*}WRITING{/*} a new ending!{#}
-
-[ASRIEL left sad]
-{# FFDDAA}I was lost in the darkness... but they {~}FOUND{/~} me!{#}
-{# FFDDAA}I am {*}ASRIEL DREEMURR{/*}... and I choose to fight for {~}LOVE{/~}!{#}
-{# FFDDAA}For EVERYONE! For {*}CHARA{/*}, my best friend!{#}
-{# FFDDAA}This time... I won't run away!{#}
-
-[KIRBY left angry]
-You think you're unbeatable...
-But we have something {*}STRONGER{/*} than darkness!
-A light that will {~}NEVER{/~} be extinguished!
-Hope that survives even in the {*}DEEPEST{/*} despair!
-
-[Doppia left Elica]
-{# 000000}THEN LET US BEGIN...{#}
-{# 000000}THE {*}FINAL{/*} ACT... IN THE THEATER OF {~}OBLIVION{/~}!{#}
-
-MAGGYHELPER_CH20_DOPPIA_ELICA_BOSS_END=
-[Doppia left Elica]
-{# 000000}You actually think you can {*}DEFEAT{/*} me?{#}
-{# 000000}Wait... what is that {~}MUSIC{/~}...?{#}
-{# 000000}Why are my legs... {*}MOVING{/*} on their own...?{#}
-{# 000000}WHAT HAVE YOU {~}DONE{/~} TO ME, YOU WRETCHED INSECTS?!{#}
-
-[MADELINE_SPIRIT left together]
-You like that?! That's {*}PENUMBRA PHASTASM{/*}, fool!
-Toby Fox's greatest musical {~}MASTERPIECE{/~}!
-
-[Doppia left Elica]
-{# 000000}YOU THINK YOU CAN {*}DANCE{/*} ME TO DEATH?!{#}
-{# 000000}FINE! I ACCEPT YOUR {~}RIDICULOUS{/~} CHALLENGE!{#}
+{# 000000}TIME FOR YOUR FINAL CHANNELENGE!{#}
 
 MAGGYHELPER_CH20_ELS_SUMMON_THE_FINAL_MOUNTIAN=
 [ELS left normal]

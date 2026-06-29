@@ -1,5 +1,6 @@
 using System.Runtime.CompilerServices;
 using Celeste.Cutscenes;
+using DZ;
 using ModOshiroSprite = DZ.MaggyOshiroSprite;
 
 namespace Celeste.NPCs;
@@ -13,6 +14,11 @@ public class NPC05_Oshiro_Lobby : NPC
     private float startX;
     protected new TalkComponent Talker;
     private bool isInteracting;
+    public bool IsInteracting => isInteracting;
+
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    public NPC05_Oshiro_Lobby(EntityData data, Vector2 offset)
+        : this(data.Position + offset) { }
 
     [MethodImpl(MethodImplOptions.NoInlining)]
     public NPC05_Oshiro_Lobby(Vector2 position)
@@ -48,12 +54,10 @@ public class NPC05_Oshiro_Lobby : NPC
             base.Session.Audio.Music.Progress = 1;
             base.Session.Audio.Apply(forceSixteenthNoteHack: false);
             RemoveSelf();
+            return;
         }
-        else
-        {
-            base.Session.Audio.Music.Event = null;
-            base.Session.Audio.Apply(forceSixteenthNoteHack: false);
-        }
+        base.Session.Audio.Music.Event = null;
+        base.Session.Audio.Apply(forceSixteenthNoteHack: false);
         scene.Add(new OshiroLobbyBell(new Vector2(base.X - 14f, base.Y)));
         startX = Position.X;
     }

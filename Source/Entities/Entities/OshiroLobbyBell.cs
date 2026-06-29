@@ -3,58 +3,50 @@ using Celeste.NPCs;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace Celeste.Entities
+namespace DZ
 {
     [CustomEntity("DZ/OshiroLobbyBell")]
     public class OshiroLobbyBell : Entity
     {
         private TalkComponent talker;
         private string soundEffect;
+
         private bool isInteracting;
+
+        public OshiroLobbyBell(Vector2 position)
+            : base(position)
+        {
+            Add(talker = new TalkComponent(new Rectangle(-8, -8, 16, 16), new Vector2(0f, -24f), OnTalk));
+        }
 
         public OshiroLobbyBell(EntityData data, Vector2 offset)
             : base(data.Position + offset)
         {
             soundEffect = data.Attr("soundEffect", "event:/game/03_resort/deskbell_again");
             Add(talker = new TalkComponent(new Rectangle(-8, -8, 16, 16), new Vector2(0.0f, -24f), OnTalk));
-            talker.Enabled = false;
         }
 
-        public OshiroLobbyBell(Vector2 position)
-            : base(position)
+        private void OnTalk(CelestePlayer player)
         {
-            soundEffect = "event:/game/03_resort/deskbell_again";
-            Add(talker = new TalkComponent(new Rectangle(-8, -8, 16, 16), new Vector2(0.0f, -24f), OnTalk));
+            if (isInteracting) return;
+            isInteracting = true;
             talker.Enabled = false;
-        }
-
-        private void OnTalk(global::Celeste.Player player)
-        {
-            NPC05_Oshiro_Lobby npc = Scene.Entities.FindFirst<NPC05_Oshiro_Lobby>();
-            if (npc != null)
-            {
-                // Delegate to the NPC so both the talker and the bell share the same cutscene logic.
-                npc.TriggerCutscene(player);
-                isInteracting = true;
-                talker.Enabled = false;
-            }
-            else
-            {
-                // Fallback: NPC is already gone, just ring the bell.
-                Audio.Play(soundEffect, Position);
-            }
+            Audio.Play(soundEffect ?? "event:/game/03_resort/deskbell_again", Position);
+            var target = base.Scene.Entities.FindFirst<NPC05_Oshiro_Lobby>();
+            target?.TriggerCutscene(player);
         }
 
         public override void Update()
         {
-            // Enable the talker once the NPC has left (either removed or never present).
-            if (!talker.Enabled && !isInteracting && Scene.Entities.FindFirst<NPC05_Oshiro_Lobby>() == null)
-                talker.Enabled = true;
-
-            // Reset interacting state once the talker is re-enabled externally.
-            if (isInteracting && talker.Enabled)
-                isInteracting = false;
-
+            if (isInteracting)
+            {
+                var npc = base.Scene.Entities.FindFirst<NPC05_Oshiro_Lobby>();
+                if (npc == null || !npc.IsInteracting)
+                {
+                    isInteracting = false;
+                    talker.Enabled = true;
+                }
+            }
             base.Update();
         }
     }

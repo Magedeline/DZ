@@ -1,10 +1,14 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
+using Collider = DZ.Nez.Collider;
+using BoxCollider = DZ.Nez.BoxCollider;
 using System;
 using System.Collections.Generic;
-using KirbyCelesteStandalone.Core;
+using DZ.Core;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Core;
+namespace DZ.Entities.Core;
 
 /// <summary>
 /// Port of Celeste's Solid.cs.
@@ -31,7 +35,7 @@ namespace KirbyCelesteStandalone.Entities.Core;
 /// Nez port notes:
 /// <list type="bullet">
 ///   <item>Inherits from <see cref="CelestePlatform"/>, which in turn inherits from
-///         <see cref="Nez.Entity"/>.</item>
+///         <see cref="DZ.Nez.Entity"/>.</item>
 ///   <item>Collision detection uses direct scene entity iteration (no Monocle Tracker).</item>
 ///   <item>Audio, GFX, SaveData and Tracker references have all been removed.</item>
 /// </list>
@@ -332,7 +336,7 @@ public class CelesteSolid : CelestePlatform
 
     // -------------------------------------------------------------------------
     // Movement-entity helper methods
-    // Used by subclasses in the KirbyCelesteStandalone.Entities.Movement namespace.
+    // Used by subclasses in the DZ.Entities.Movement namespace.
     // -------------------------------------------------------------------------
 
     /// <summary>

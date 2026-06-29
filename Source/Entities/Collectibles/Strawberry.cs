@@ -1,12 +1,15 @@
-﻿using Microsoft.Xna.Framework;
-using Nez;
+using Microsoft.Xna.Framework;
+using DZ.Nez;
+using Entity = DZ.Nez.Entity;
+using Component = DZ.Nez.Component;
+using Collider = DZ.Nez.Collider;
+using BoxCollider = DZ.Nez.BoxCollider;
 using System;
 using System.Collections.Generic;
-using KirbyCelesteStandalone.Core;
-using Component = Nez.Component;
-using Collider = Nez.Collider;
+using DZ.Core;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Collectibles;
+namespace DZ.Entities.Collectibles;
 
 /// <summary>
 /// Simplified port of Celeste's Strawberry.cs.
@@ -336,7 +339,7 @@ public class Strawberry : Component, IUpdatable
             14f,
             14f);
 
-        int count = Nez.Physics.OverlapRectangleAll(ref rect, _overlapResults);
+        int count = DZ.Nez.Physics.OverlapRectangleAll(ref rect, _overlapResults);
 
         for (int i = 0; i < count; i++)
         {
@@ -384,7 +387,7 @@ public class Strawberry : Component, IUpdatable
         // e.g. GetComponent<SpriteRenderer>()?.SetEnabled(false);
 
         // Optionally remove entity after a brief delay.
-        Nez.Core.Schedule(1f, _ => Entity.Destroy());
+        DZ.Nez.Core.Schedule(1f, _ => Entity.Destroy());
     }
 
     /// <summary>

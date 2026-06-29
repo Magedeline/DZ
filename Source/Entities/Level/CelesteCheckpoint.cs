@@ -1,10 +1,13 @@
-﻿using Microsoft.Xna.Framework;
-using Nez;
+using Microsoft.Xna.Framework;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
+using Entity = DZ.Nez.Entity;
+using BoxCollider = DZ.Nez.BoxCollider;
 using System;
-using KirbyCelesteStandalone.Core;
-using Entity = Nez.Entity;
+using DZ.Core;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Port of Celeste's Checkpoint entity.

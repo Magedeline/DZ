@@ -1,4 +1,4 @@
-﻿#nullable enable
+#nullable enable
 using Celeste.Mod.Entities;
 using Microsoft.Xna.Framework;
 using Monocle;

@@ -1,12 +1,13 @@
-﻿using Microsoft.Xna.Framework;
-using Nez;
+using Microsoft.Xna.Framework;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
+using Entity = DZ.Nez.Entity;
+using Component = DZ.Nez.Component;
 using System;
 using System.Collections.Generic;
-using KirbyCelesteStandalone.Entities.Player;
-using Component = Nez.Component;
-using Scene = Nez.Scene;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Port of Celeste's Switch.cs.

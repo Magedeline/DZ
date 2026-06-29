@@ -1,9 +1,10 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
 using System;
-using KirbyCelesteStandalone.Entities.Core;
+using DZ.Entities.Core;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Port of Celeste's CrumbleWallOnRumble.cs.
@@ -76,7 +77,7 @@ public class CrumbleWallOnRumble : CelesteSolid
             for (int _cri = 0; _cri < Scene.Entities.Count; _cri++)
             {
                 var e = Scene.Entities[_cri];
-                if (e is KirbyCelesteStandalone.Entities.Player.MadelinePlayer p)
+                if (e is DZ.Entities.Player.MadelinePlayer p)
                 {
                     var pb = new RectangleF(
                         p.Position.X, p.Position.Y,

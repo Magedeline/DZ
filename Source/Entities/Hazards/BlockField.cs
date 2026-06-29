@@ -1,7 +1,8 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
 
-namespace KirbyCelesteStandalone.Entities.Hazards;
+namespace DZ.Entities.Hazards;
 
 /// <summary>
 /// An invisible rectangular field that blocks certain projectiles or enemies
@@ -18,7 +19,7 @@ namespace KirbyCelesteStandalone.Entities.Hazards;
 ///         <c>Scene.FindComponentsOfType&lt;BlockField&gt;()</c>.</item>
 /// </list>
 /// </summary>
-public class BlockField : Nez.Entity
+public class BlockField : DZ.Nez.Entity
 {
     // ── Geometry ──────────────────────────────────────────────────────────────
     public float Width  { get; private set; }

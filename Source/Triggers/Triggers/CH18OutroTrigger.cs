@@ -1,11 +1,11 @@
 using Celeste.Cutscenes;
 
-namespace Celeste.Triggers
+namespace DZ
 {
     /// <summary>
     /// Trigger that starts the Chapter 18 outro cutscene with game closing effect
     /// </summary>
-    [CustomEntity(ids: "DZ/CH18OutroTrigger")]
+    [CustomEntity("DZ/CH18OutroTrigger")]
     public class CH18OutroTrigger : Trigger
     {
         private bool hasTriggered;

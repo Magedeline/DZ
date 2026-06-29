@@ -1,13 +1,16 @@
-﻿using Microsoft.Xna.Framework;
-using Nez;
+using Microsoft.Xna.Framework;
+using DZ.Nez;
+using Entity = DZ.Nez.Entity;
+using Component = DZ.Nez.Component;
+using Collider = DZ.Nez.Collider;
+using BoxCollider = DZ.Nez.BoxCollider;
+using Camera = DZ.Nez.Camera;
 using System;
 using System.Collections;
-using KirbyCelesteStandalone.Entities.Player;
-using KirbyCelesteStandalone.Entities.Core;
-using Component = Nez.Component;
-using Collider = Nez.Collider;
+using DZ.Entities.Player;
+using DZ.Entities.Core;
 
-namespace KirbyCelesteStandalone.Entities.Collectibles;
+namespace DZ.Entities.Collectibles;
 
 /// <summary>
 /// Port of Celeste's Cassette.cs.
@@ -112,7 +115,7 @@ public class Cassette : Component, IUpdatable
             16f,
             16f);
 
-        int count = Nez.Physics.OverlapRectangleAll(ref rect, _overlapResults);
+        int count = DZ.Nez.Physics.OverlapRectangleAll(ref rect, _overlapResults);
 
         for (int i = 0; i < count; i++)
         {

@@ -9,11 +9,11 @@ public class CS05_OshiroClutter : CutsceneEntity
 {
     private readonly int index;
     private readonly global::Celeste.Player player;
-    private readonly NPC05_Oshiro_Cluttter oshiro;
+    private readonly NPC05_Oshiro_Clutter oshiro;
     private List<ClutterDoor> doors;
 
     [MethodImpl(MethodImplOptions.NoInlining)]
-    public CS05_OshiroClutter(global::Celeste.Player player, NPC05_Oshiro_Cluttter oshiro, int index)
+    public CS05_OshiroClutter(global::Celeste.Player player, NPC05_Oshiro_Clutter oshiro, int index)
     {
         this.player = player;
         this.oshiro = oshiro;

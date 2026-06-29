@@ -1,10 +1,13 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Entity = DZ.Nez.Entity;
+using Random = DZ.Nez.Random;
 using System;
 using System.Linq;
-using KirbyCelesteStandalone.Entities.Player;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Enemies;
+
+namespace DZ.Entities.Enemies;
 
 /// <summary>
 /// Manages global Seeker-proximity effects: time-slowing and screen distortion.
@@ -18,7 +21,7 @@ namespace KirbyCelesteStandalone.Entities.Enemies;
 /// </list>
 /// Disables itself automatically when all seekers are gone and effects are cleared.
 /// </summary>
-public class SeekerEffectsController : Nez.Component, IUpdatable
+public class SeekerEffectsController : DZ.Nez.Component, IUpdatable
 {
     // -------------------------------------------------------------------------
     // Constants
@@ -82,7 +85,7 @@ public class SeekerEffectsController : Nez.Component, IUpdatable
             if (_intervalTimer >= 0.05f)
             {
                 _intervalTimer = 0f;
-                _randomAnxietyOffset = Nez.Random.Range(-0.2f, 0.2f);
+                _randomAnxietyOffset = Random.Range(-0.2f, 0.2f);
             }
 
             var player = Entity.Scene?.FindEntitiesWithTag(0).OfType<MadelinePlayer>().FirstOrDefault();

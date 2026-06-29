@@ -1,10 +1,12 @@
-﻿using Microsoft.Xna.Framework;
-using Nez;
+using Microsoft.Xna.Framework;
+using DZ.Nez;
+using Entity = DZ.Nez.Entity;
+using Component = DZ.Nez.Component;
+using Camera = DZ.Nez.Camera;
 using System;
 using System.Collections.Generic;
-using Camera = Nez.Camera;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Animated tile grid component.  Ported from Celeste's AnimatedTiles.cs.
@@ -19,7 +21,7 @@ namespace KirbyCelesteStandalone.Entities.Level;
 ///   tiles.Set(x, y, "lava", scaleX: 1, scaleY: 1);
 /// </code>
 /// </summary>
-public class AnimatedTiles : Nez.Component, IUpdatable
+public class AnimatedTiles : DZ.Nez.Component, IUpdatable
 {
     // -------------------------------------------------------------------------
     // Public
@@ -104,7 +106,7 @@ public class AnimatedTiles : Nez.Component, IUpdatable
         GetOrCreate(x, y).Add(new TileEntry
         {
             AnimationName = animationName,
-            Frame         = Nez.Random.NextInt(Math.Max(1, anim.FrameCount)),
+            Frame         = DZ.Nez.Random.NextInt(Math.Max(1, anim.FrameCount)),
             Scale         = new Vector2(scaleX, scaleY)
         });
     }

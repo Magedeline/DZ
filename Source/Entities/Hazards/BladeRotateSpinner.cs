@@ -1,8 +1,8 @@
 using Microsoft.Xna.Framework;
-using Nez;
-using KirbyCelesteStandalone.Entities.Player;
+using DZ.Nez;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Hazards;
+namespace DZ.Entities.Hazards;
 
 /// <summary>
 /// A temple blade that orbits a fixed pivot point, emitting a particle trail

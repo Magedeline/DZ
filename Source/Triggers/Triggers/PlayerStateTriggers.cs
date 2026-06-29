@@ -178,8 +178,8 @@ namespace DZ
         {
             base.OnEnter(player);
             Level level = SceneAs<Level>();
-            level.Session.SetFlag("size_small", sizeMode == "small");
-            level.Session.SetFlag("size_large", sizeMode == "large");
+            level.Session.SetFlag("size_small", string.Equals(sizeMode, "small", StringComparison.OrdinalIgnoreCase));
+            level.Session.SetFlag("size_large", string.Equals(sizeMode, "large", StringComparison.OrdinalIgnoreCase));
             Audio.Play("event:/game/general/spring", Position);
         }
 

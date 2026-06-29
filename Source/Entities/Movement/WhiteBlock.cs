@@ -1,9 +1,10 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
 using System;
-using KirbyCelesteStandalone.Entities.Core;
+using DZ.Entities.Core;
 
-namespace KirbyCelesteStandalone.Entities.Movement;
+namespace DZ.Entities.Movement;
 
 /// <summary>
 /// Port of Celeste's WhiteBlock.cs.
@@ -96,7 +97,7 @@ public class WhiteBlock : CelesteJumpThru
 
     // ── Activate / Disable ────────────────────────────────────────────────────
 
-    private void Activate(KirbyCelesteStandalone.Entities.Player.MadelinePlayer player)
+    private void Activate(DZ.Entities.Player.MadelinePlayer player)
     {
         // TODO: play "event:/game/04_cliffside/whiteblock_fallthru" sound
         _activated = true;
@@ -115,16 +116,16 @@ public class WhiteBlock : CelesteJumpThru
 
     // ── Rider helpers ─────────────────────────────────────────────────────────
 
-    private KirbyCelesteStandalone.Entities.Player.MadelinePlayer? GetPlayerRider()
+    private DZ.Entities.Player.MadelinePlayer? GetPlayerRider()
     {
         if (Scene == null) return null;
         for (int _wi = 0; _wi < Scene.Entities.Count; _wi++)
-            if (Scene.Entities[_wi] is KirbyCelesteStandalone.Entities.Player.MadelinePlayer p && IsRiding(p))
+            if (Scene.Entities[_wi] is DZ.Entities.Player.MadelinePlayer p && IsRiding(p))
                 return p;
         return null;
     }
 
-    private bool IsRiding(KirbyCelesteStandalone.Entities.Player.MadelinePlayer player) =>
+    private bool IsRiding(DZ.Entities.Player.MadelinePlayer player) =>
         Math.Abs(player.Position.Y + player.Height - Position.Y) <= 2f
         && player.Position.X + player.Width > Position.X
         && player.Position.X < Position.X + Width;

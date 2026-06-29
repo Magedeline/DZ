@@ -746,7 +746,7 @@ namespace Celeste.Entities
     {
         private int index;
         #pragma warning disable CS0649
-            private NPC05_Oshiro_Cluttter sectionsComplete;
+            private NPC05_Oshiro_Clutter sectionsComplete;
         #pragma warning restore CS0649
 
         public Npc05_Oshiro_Clutter(EntityData data, Vector2 offset) : base(data.Position + offset)

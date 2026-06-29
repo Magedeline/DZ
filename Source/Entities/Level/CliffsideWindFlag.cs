@@ -1,8 +1,9 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Entity = DZ.Nez.Entity;
 using System;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Cliffside wind-blown flag decoration.
@@ -12,7 +13,7 @@ namespace KirbyCelesteStandalone.Entities.Level;
 /// horizontal and vertical offsets are animated based on the current wind speed.
 /// Each segment is driven by a sine wave so the fabric ripples naturally.
 /// </summary>
-public class CliffsideWindFlag : Nez.Component, IUpdatable
+public class CliffsideWindFlag : DZ.Nez.Component, IUpdatable
 {
     // -------------------------------------------------------------------------
     // Nested types
@@ -72,8 +73,8 @@ public class CliffsideWindFlag : Nez.Component, IUpdatable
                 Offset     = new Vector2(i, 0f)
             };
         }
-        _sine   = Nez.Random.NextFloat() * MathF.PI * 2f;
-        _random = Nez.Random.NextFloat();
+        _sine   = DZ.Nez.Random.NextFloat() * MathF.PI * 2f;
+        _random = DZ.Nez.Random.NextFloat();
     }
 
     private readonly Vector2 _spawnPosition;

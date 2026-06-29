@@ -1,10 +1,11 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
 using System;
 using System.Linq;
-using KirbyCelesteStandalone.Entities.Player;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Hazards;
+namespace DZ.Entities.Hazards;
 
 /// <summary>
 /// A fireball / iceball that travels continuously along a multi-node path,
@@ -22,7 +23,7 @@ namespace KirbyCelesteStandalone.Entities.Hazards;
 ///   <item>Sprite / SFX replaced with TODO stubs.</item>
 /// </list>
 /// </summary>
-public class FireBall : Nez.Entity
+public class FireBall : DZ.Nez.Entity
 {
     // ── Constants ─────────────────────────────────────────────────────────────
     private const float FireSpeed         = 60f;

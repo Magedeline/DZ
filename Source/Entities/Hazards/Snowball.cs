@@ -1,10 +1,12 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
+using Camera = DZ.Nez.Camera;
 using System;
 using System.Linq;
-using KirbyCelesteStandalone.Entities.Player;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Hazards;
+namespace DZ.Entities.Hazards;
 
 /// <summary>
 /// A snowball that spawns off-screen to the right, drifts left while bobbing
@@ -16,12 +18,12 @@ namespace KirbyCelesteStandalone.Entities.Hazards;
 /// Porting notes:
 /// <list type="bullet">
 ///   <item>SineWave replaced with a manual accumulator (<see cref="sineTime"/>).</item>
-///   <item>Camera bounds approximated via <c>Nez.Core.Scene.Camera</c>.</item>
+///   <item>Camera bounds approximated via <c>DZ.Nez.Core.Scene.Camera</c>.</item>
 ///   <item>Audio / sprite replaced with TODO stubs.</item>
 ///   <item>Screen freeze (<c>Celeste.Freeze</c>) noted as TODO.</item>
 /// </list>
 /// </summary>
-public class Snowball : Nez.Entity
+public class Snowball : DZ.Nez.Entity
 {
     // ── Constants ─────────────────────────────────────────────────────────────
     private const float MoveSpeed       = 200f;   // px/s leftward

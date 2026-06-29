@@ -1,10 +1,12 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
+using Camera = DZ.Nez.Camera;
 using System;
 using System.Linq;
-using KirbyCelesteStandalone.Entities.Player;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Hazards;
+namespace DZ.Entities.Hazards;
 
 /// <summary>
 /// Lava (or ice) that rises from the bottom of the screen, killing any player
@@ -20,7 +22,7 @@ namespace KirbyCelesteStandalone.Entities.Hazards;
 ///   <item>Camera access via <c>Scene.Camera</c>.</item>
 /// </list>
 /// </summary>
-public class RisingLava : Nez.Entity
+public class RisingLava : DZ.Nez.Entity
 {
     // ── Colours (mirrors Celeste's static arrays) ─────────────────────────────
     public static readonly Color[] Hot  =

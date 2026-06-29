@@ -34,7 +34,7 @@ namespace Celeste.Entities {
         private const float AvoidRadius = 12f;
         
         public Sprite Sprite;
-        public global::Celeste.PlayerSprite NormalSprite;
+        public Sprite NormalSprite;
         private PlayerHair normalHair;
         private Vector2 avoidPos;
         public float CameraYPastMax;
@@ -63,7 +63,7 @@ namespace Celeste.Entities {
         private bool canChangeMusic;
         private string attackSequence;
 
-        private Sprite ActiveVisualSprite => this.Sprite ?? (Sprite)this.NormalSprite;
+        private Sprite ActiveVisualSprite => this.Sprite ?? this.NormalSprite;
 
         public Vector2 BeamOrigin => this.Center + (this.ActiveVisualSprite?.Position ?? Vector2.Zero) + new Vector2(0.0f, -14f);
         public Vector2 ShotOrigin => this.Center + (this.ActiveVisualSprite?.Position ?? Vector2.Zero) + new Vector2(6f * (this.ActiveVisualSprite?.Scale.X ?? (this.facing == 0 ? -1f : (float)this.facing)), 2f);
@@ -117,7 +117,7 @@ namespace Celeste.Entities {
             this.level = this.SceneAs<Level>();
             if (this.patternIndex == 0)
             {
-                this.NormalSprite = new global::Celeste.PlayerSprite((global::Celeste.PlayerSpriteMode)PlayerSpriteModeExtensions.Chara);
+                this.NormalSprite = GFX.SpriteBank.Create("maggy_chara");
                 this.NormalSprite.Scale.X = -1f;
                 if (this.NormalSprite.Has("angry"))
                     this.NormalSprite.Play("angry");
@@ -182,7 +182,7 @@ namespace Celeste.Entities {
         {
             base.Update();
             
-            Sprite sprite = this.Sprite != null ? this.Sprite : (Sprite)this.NormalSprite;
+            Sprite sprite = this.Sprite != null ? this.Sprite : this.NormalSprite;
             if (!this.Sitting)
             {
                 var entity = this.Scene.Tracker.GetEntity<global::Celeste.Player>();

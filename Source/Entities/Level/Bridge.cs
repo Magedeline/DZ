@@ -1,9 +1,10 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
 using System.Collections.Generic;
-using KirbyCelesteStandalone.Entities.Player;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Port of Celeste's Bridge.cs (Chapter 1 — Prologue).
@@ -17,7 +18,7 @@ namespace KirbyCelesteStandalone.Entities.Level;
 ///
 /// Audio, music cue, and exact tile-size atlas data are omitted (TODO).
 /// </summary>
-public class Bridge : Nez.Entity
+public class Bridge : DZ.Nez.Entity
 {
     // ── Tuning ────────────────────────────────────────────────────────────────
 
@@ -94,7 +95,7 @@ public class Bridge : Nez.Entity
                 int toDrop = System.Math.Min(11, _tiles.Count);
                 for (int i = 0; i < toDrop; i++)
                 {
-                    _tiles[0].Fall(Nez.Random.Range(0.1f, 0.5f));
+                    _tiles[0].Fall(DZ.Nez.Random.Range(0.1f, 0.5f));
                     _tiles.RemoveAt(0);
                 }
             }
@@ -108,7 +109,7 @@ public class Bridge : Nez.Entity
                 int toDrop = System.Math.Min(5, _tiles.Count - 8 > 0 ? 5 : 0);
                 for (int i = 0; i < toDrop && _tiles.Count > 8; i++)
                 {
-                    _tiles[_tiles.Count - 8].Fall(Nez.Random.Range(0.1f, 0.5f));
+                    _tiles[_tiles.Count - 8].Fall(DZ.Nez.Random.Range(0.1f, 0.5f));
                     _tiles.RemoveAt(_tiles.Count - 8);
                 }
             }
@@ -117,7 +118,7 @@ public class Bridge : Nez.Entity
                 _canEndCollapseB = false;
                 for (int i = 0; i < 7 && _tiles.Count > 0; i++)
                 {
-                    _tiles[_tiles.Count - 1].Fall(Nez.Random.Range(0.1f, 0.3f));
+                    _tiles[_tiles.Count - 1].Fall(DZ.Nez.Random.Range(0.1f, 0.3f));
                     _tiles.RemoveAt(_tiles.Count - 1);
                 }
             }

@@ -1,15 +1,16 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Nez;
+using DZ.Nez;
+using Entity = DZ.Nez.Entity;
 using System;
 using System.Collections.Generic;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Port of Celeste's LavaRect.cs.
 ///
-/// A <see cref="Nez.Component"/> that renders an animated lava/liquid surface
+/// A <see cref="DZ.Nez.Component"/> that renders an animated lava/liquid surface
 /// with:
 /// <list type="bullet">
 ///   <item>A sine-wave surface edge that ripples along each side.</item>
@@ -21,11 +22,11 @@ namespace KirbyCelesteStandalone.Entities.Level;
 /// <see cref="OnlyMode"/> controls whether the wave appears on all four sides
 /// (None) or only on specific faces.
 ///
-/// Attach to a <see cref="Nez.Entity"/> (e.g., <see cref="IceBlock"/>) and
+/// Attach to a <see cref="DZ.Nez.Entity"/> (e.g., <see cref="IceBlock"/>) and
 /// call <see cref="Render"/> in the owning entity's Render method, or rely on
 /// the component's own Render override.
 /// </summary>
-public class LavaRect : Nez.Component, IUpdatable
+public class LavaRect : DZ.Nez.Component, IUpdatable
 {
     // ── Only-mode ─────────────────────────────────────────────────────────────
 
@@ -74,7 +75,7 @@ public class LavaRect : Nez.Component, IUpdatable
     /// <param name="step">Surface sample step in pixels (smaller = smoother wave).</param>
     public LavaRect(float width, float height, int step)
     {
-        _timer = Nez.Random.NextFloat(100f);
+        _timer = DZ.Nez.Random.NextFloat(100f);
         Resize(width, height, step);
     }
 
@@ -93,9 +94,9 @@ public class LavaRect : Nez.Component, IUpdatable
         {
             _bubbles[i] = new Bubble
             {
-                Position = new Vector2(1f + Nez.Random.NextFloat(width - 2f), Nez.Random.NextFloat(height)),
-                Speed    = Nez.Random.Range(4, 12),
-                Alpha    = Nez.Random.Range(0.4f, 0.8f),
+                Position = new Vector2(1f + DZ.Nez.Random.NextFloat(width - 2f), DZ.Nez.Random.NextFloat(height)),
+                Speed    = DZ.Nez.Random.Range(4, 12),
+                Alpha    = DZ.Nez.Random.Range(0.4f, 0.8f),
             };
         }
 
@@ -125,7 +126,7 @@ public class LavaRect : Nez.Component, IUpdatable
                 _bubbles[i].Position.Y = Height - 1f;
 
                 // Promote to surface bubble occasionally.
-                if (Nez.Random.NextFloat() < 0.75f)
+                if (DZ.Nez.Random.NextFloat() < 0.75f)
                 {
                     _surfaceBubbles[_surfaceBubbleIndex].X     = _bubbles[i].Position.X;
                     _surfaceBubbles[_surfaceBubbleIndex].Frame  = 0f;

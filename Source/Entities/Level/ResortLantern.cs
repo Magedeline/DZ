@@ -1,9 +1,12 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Entity = DZ.Nez.Entity;
+using Collider = DZ.Nez.Collider;
+using BoxCollider = DZ.Nez.BoxCollider;
 using System;
-using KirbyCelesteStandalone.Entities.Player;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Resort lantern that wiggles when bumped by the player.
@@ -13,7 +16,7 @@ namespace KirbyCelesteStandalone.Entities.Level;
 /// non-zero and they touch the lantern, it spins on a damped oscillation.
 /// The bloom/light alpha breathes gently with a slow sine wave.
 /// </summary>
-public class ResortLantern : Nez.Component, IUpdatable
+public class ResortLantern : DZ.Nez.Component, IUpdatable
 {
     // -------------------------------------------------------------------------
     // Private state
@@ -112,7 +115,7 @@ public class ResortLantern : Nez.Component, IUpdatable
         {
             if (_player.Speed == Vector2.Zero) return;
             _collideTimer = 0.5f;
-            _wiggleSign   = Nez.Random.Choose(1, -1);
+            _wiggleSign   = DZ.Nez.Random.Choose(1, -1);
             StartWiggle();
             // TODO: play sound: event:/game/03_resort/lantern_bump
         }

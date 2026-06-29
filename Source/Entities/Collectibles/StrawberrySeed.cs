@@ -1,14 +1,16 @@
-﻿using Microsoft.Xna.Framework;
-using Nez;
+using Microsoft.Xna.Framework;
+using DZ.Nez;
+using Entity = DZ.Nez.Entity;
+using Component = DZ.Nez.Component;
+using Collider = DZ.Nez.Collider;
+using BoxCollider = DZ.Nez.BoxCollider;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using KirbyCelesteStandalone.Entities.Player;
-using KirbyCelesteStandalone.Entities.Core;
-using Component = Nez.Component;
-using Collider = Nez.Collider;
+using DZ.Entities.Player;
+using DZ.Entities.Core;
 
-namespace KirbyCelesteStandalone.Entities.Collectibles;
+namespace DZ.Entities.Collectibles;
 
 /// <summary>
 /// Port of Celeste's StrawberrySeed.cs.
@@ -82,7 +84,7 @@ public class StrawberrySeed : Component, IUpdatable
         _collider.IsTrigger = true;
 
         // Randomize sine wave phase
-        _sineTimer = Nez.Random.NextFloat() * MathF.PI * 2f;
+        _sineTimer = DZ.Nez.Random.NextFloat() * MathF.PI * 2f;
 
         // TODO: load sprite based on ghost/gold/normal state
     }
@@ -130,8 +132,8 @@ public class StrawberrySeed : Component, IUpdatable
             if (_shakerTime > 0f)
             {
                 _shakerOffset = new Vector2(
-                    (Nez.Random.NextFloat() - 0.5f) * 2f,
-                    (Nez.Random.NextFloat() - 0.5f) * 2f);
+                    (DZ.Nez.Random.NextFloat() - 0.5f) * 2f,
+                    (DZ.Nez.Random.NextFloat() - 0.5f) * 2f);
             }
             else
             {
@@ -168,7 +170,7 @@ public class StrawberrySeed : Component, IUpdatable
             12f,
             12f);
 
-        int count = Nez.Physics.OverlapRectangleAll(ref rect, _overlapResults);
+        int count = DZ.Nez.Physics.OverlapRectangleAll(ref rect, _overlapResults);
 
         for (int i = 0; i < count; i++)
         {

@@ -1,10 +1,12 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
+using Collider = DZ.Nez.Collider;
 using System;
 using System.Linq;
-using KirbyCelesteStandalone.Entities.Player;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Hazards;
+namespace DZ.Entities.Hazards;
 
 /// <summary>
 /// Static crystal spinner — a lethal spike cluster that kills the player on contact.
@@ -20,7 +22,7 @@ namespace KirbyCelesteStandalone.Entities.Hazards;
 ///   <item>Sprite/texture loading replaced with TODO comments.</item>
 /// </list>
 /// </summary>
-public class CrystalSpinner : Nez.Entity
+public class CrystalSpinner : DZ.Nez.Entity
 {
     // ── Constants ─────────────────────────────────────────────────────────────
     /// <summary>Circle radius of the primary collider.</summary>
@@ -57,7 +59,7 @@ public class CrystalSpinner : Nez.Entity
         Position     = position;
         AttachToSolid = attachToSolid;
         Color        = color;
-        offset       = Nez.Random.NextFloat();
+        offset       = DZ.Nez.Random.NextFloat();
         Name         = $"CrystalSpinner_{color}";
         // TODO: load sprites for crystal color variant: danger/crystal/fg_{color}
         // TODO: emit particles: CrystalSpinner_Move when in motion

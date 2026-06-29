@@ -1,10 +1,11 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
 using System;
 using System.Linq;
-using KirbyCelesteStandalone.Entities.Player;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Hazards;
+namespace DZ.Entities.Hazards;
 
 /// <summary>
 /// A static dust-bunny spinner — a lethal dust-graphic hazard that kills on
@@ -19,7 +20,7 @@ namespace KirbyCelesteStandalone.Entities.Hazards;
 ///   <item>Dust graphic rendering replaced with TODO stubs.</item>
 /// </list>
 /// </summary>
-public class DustStaticSpinner : Nez.Entity
+public class DustStaticSpinner : DZ.Nez.Entity
 {
     // ── Constants ─────────────────────────────────────────────────────────────
     public const float ParticleInterval  = 0.02f;
@@ -48,7 +49,7 @@ public class DustStaticSpinner : Nez.Entity
     {
         Position    = position;
         AttachToSolid = attachToSolid;
-        offset      = Nez.Random.NextFloat();
+        offset      = DZ.Nez.Random.NextFloat();
         Name        = "DustStaticSpinner";
         // TODO: load sprite: DustGraphic (dust bunny, ignoreSolids=false, flicker=true, autoExpand=true)
     }

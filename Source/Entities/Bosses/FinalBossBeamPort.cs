@@ -1,10 +1,12 @@
-﻿using Microsoft.Xna.Framework;
-using Nez;
+using Microsoft.Xna.Framework;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
+using Entity = DZ.Nez.Entity;
 using System;
-using KirbyCelesteStandalone.Core;
-using Entity = Nez.Entity;
+using DZ.Core;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Bosses;
+namespace DZ.Entities.Bosses;
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // Beam state enum

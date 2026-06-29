@@ -1,9 +1,12 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Entity = DZ.Nez.Entity;
+using Collider = DZ.Nez.Collider;
+using Camera = DZ.Nez.Camera;
 using System;
 using System.Collections.Generic;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Visual decal entity – a sprite or animated sprite placed in the world as
@@ -20,7 +23,7 @@ namespace KirbyCelesteStandalone.Entities.Level;
 /// </list>
 /// Rendering is handled by the component's own <see cref="Render"/> call.
 /// </summary>
-public class Decal : Nez.Component, IUpdatable
+public class Decal : DZ.Nez.Component, IUpdatable
 {
     // -------------------------------------------------------------------------
     // Public properties
@@ -277,7 +280,7 @@ public class Decal : Nez.Component, IUpdatable
     private void MakeFloaty()
     {
         _floaty = true;
-        _floatySine = Nez.Random.NextFloat() * MathF.PI * 2f;
+        _floatySine = DZ.Nez.Random.NextFloat() * MathF.PI * 2f;
     }
 
     private void MakeBanner(float amplitude, float frequency)
@@ -285,7 +288,7 @@ public class Decal : Nez.Component, IUpdatable
         _banner = true;
         _bannerAmplitude = amplitude;
         _bannerFrequency = frequency;
-        _bannerWaveTimer = Nez.Random.NextFloat() * MathF.PI * 2f;
+        _bannerWaveTimer = DZ.Nez.Random.NextFloat() * MathF.PI * 2f;
     }
 
     private void MakeScaredAnimation()

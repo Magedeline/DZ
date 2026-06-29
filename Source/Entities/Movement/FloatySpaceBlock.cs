@@ -1,10 +1,11 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
 using System;
 using System.Collections.Generic;
-using KirbyCelesteStandalone.Entities.Core;
+using DZ.Entities.Core;
 
-namespace KirbyCelesteStandalone.Entities.Movement;
+namespace DZ.Entities.Movement;
 
 /// <summary>
 /// Port of Celeste's FloatySpaceBlock.cs.
@@ -72,7 +73,7 @@ public class FloatySpaceBlock : CelesteSolid
         : base(position, width, height, safe: false)
     {
         _tileType  = tileType;
-        _sineWave  = disableSpawnOffset ? 0f : Nez.Random.NextFloat() * (float)(2 * Math.PI);
+        _sineWave  = disableSpawnOffset ? 0f : DZ.Nez.Random.NextFloat() * (float)(2 * Math.PI);
         Name       = "FloatySpaceBlock";
     }
 
@@ -223,14 +224,14 @@ public class FloatySpaceBlock : CelesteSolid
         if (Scene == null) return false;
         for (int _fsj = 0; _fsj < Scene.Entities.Count; _fsj++)
         {
-            if (Scene.Entities[_fsj] is KirbyCelesteStandalone.Entities.Player.MadelinePlayer p
+            if (Scene.Entities[_fsj] is DZ.Entities.Player.MadelinePlayer p
                 && IsPlayerRiding(p))
                 return true;
         }
         return false;
     }
 
-    private bool IsPlayerRiding(KirbyCelesteStandalone.Entities.Player.MadelinePlayer player) =>
+    private bool IsPlayerRiding(DZ.Entities.Player.MadelinePlayer player) =>
         Math.Abs(player.Position.Y + player.Height - Position.Y) <= 2f
         && player.Position.X + player.Width > Position.X
         && player.Position.X < Position.X + Width;

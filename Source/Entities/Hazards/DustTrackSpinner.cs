@@ -1,9 +1,9 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
 using System;
-using KirbyCelesteStandalone.Entities.Player;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Hazards;
+namespace DZ.Entities.Hazards;
 
 /// <summary>
 /// A dust-bunny spinner that slides along a fixed track (Start ↔ End),

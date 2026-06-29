@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Nez;
+namespace DZ.Nez;
 
 /// <summary>
 /// Extension methods that add missing Celeste/Monocle-style APIs to Nez types.

@@ -1,10 +1,12 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
+using static DZ.Nez.Time;
 using System;
 using System.Collections.Generic;
-using KirbyCelesteStandalone.Entities.Player;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Port of Celeste's Water.cs.
@@ -17,7 +19,7 @@ namespace KirbyCelesteStandalone.Entities.Level;
 /// - Displacement rendering, GameplayRenderer.Begin/End, and audio omitted (TODO).
 /// - Surface wave mesh rendering is simplified to a line.
 /// </summary>
-public class Water : Nez.Entity
+public class Water : DZ.Nez.Entity
 {
     // ── Colours ───────────────────────────────────────────────────────────────
 
@@ -136,7 +138,7 @@ public class Water : Nez.Entity
 
     // ── Overlap helper ────────────────────────────────────────────────────────
 
-    private bool Overlaps(Nez.Entity e)
+    private bool Overlaps(DZ.Nez.Entity e)
     {
         var wb = new Microsoft.Xna.Framework.Rectangle(
             (int)Position.X, (int)Position.Y, (int)BodyWidth, (int)BodyHeight);

@@ -1,7 +1,9 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Entity = DZ.Nez.Entity;
+using Component = DZ.Nez.Component;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Bloom light-point data component.  Ported from Celeste's BloomPoint.cs.
@@ -10,7 +12,7 @@ namespace KirbyCelesteStandalone.Entities.Level;
 /// bloom/lighting renderer system.  Components that want to emit bloom simply
 /// attach a <see cref="BloomPoint"/> to their entity with the desired parameters.
 /// </summary>
-public class BloomPoint : Nez.Component
+public class BloomPoint : DZ.Nez.Component
 {
     // -------------------------------------------------------------------------
     // Public state

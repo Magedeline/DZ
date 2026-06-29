@@ -8,6 +8,6 @@ global using System.Collections.Generic;
 global using System.IO;
 global using System.Linq;
 
-// Nez framework (ECS, rendering, physics via Farseer)
-// Note: Nez types are imported explicitly per-file to avoid ambiguity with Monocle types
+// DZ.Nez (ECS, rendering, physics — Nez-compatible shim)
+// Note: DZ.Nez types are imported explicitly per-file to avoid ambiguity with Monocle types
 // (both frameworks define Scene, Entity, Component, etc.)

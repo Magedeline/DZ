@@ -1,13 +1,17 @@
-﻿using Microsoft.Xna.Framework;
-using Nez;
-using static Nez.Time;
+using Microsoft.Xna.Framework;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
+using Entity = DZ.Nez.Entity;
+using Component = DZ.Nez.Component;
+using Collider = DZ.Nez.Collider;
+using Camera = DZ.Nez.Camera;
+using static DZ.Nez.Time;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using KirbyCelesteStandalone.Entities.Player;
-using Component = Nez.Component;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Port of Celeste's BadelineBoost.cs.
@@ -61,7 +65,7 @@ public class BadelineBoost : Component, IUpdatable
         FinalCh9Boost = finalCh9Boost;
         FinalCh9GoldenBoost = finalCh9GoldenBoost;
         FinalCh9Dialog = finalCh9Dialog;
-        // Depth = -1000000; // TODO: Depth not available in Nez.Entity
+        // Depth = -1000000; // TODO: Depth not available in DZ.Nez.Entity
 
         if (lockCamera)
         {
@@ -220,9 +224,9 @@ public class BadelineBoost : Component, IUpdatable
         if (finalBoost && FinalCh9Boost)
         {
             // TODO: Scene.Add(new CS10_FinalLaunch(player, this, FinalCh9Dialog));
-            // player.Active = false; // TODO: Active not available in Nez.Entity
+            // player.Active = false; // TODO: Active not available in DZ.Nez.Entity
             // TODO: badeline.Active = false;
-            // Entity.Active = false; // TODO: Active not available in Nez.Entity
+            // Entity.Active = false; // TODO: Active not available in DZ.Nez.Entity
             yield break;
         }
 

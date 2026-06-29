@@ -1,10 +1,14 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
+using Component = DZ.Nez.Component;
+using Collider = DZ.Nez.Collider;
+using BoxCollider = DZ.Nez.BoxCollider;
 using System;
 using System.Linq;
-using KirbyCelesteStandalone.Entities.Player;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Hazards;
+namespace DZ.Entities.Hazards;
 
 /// <summary>
 /// A 32×32 breakable fuse-box that, when dash-hit twice, removes all
@@ -13,7 +17,7 @@ namespace KirbyCelesteStandalone.Entities.Hazards;
 ///
 /// Porting notes:
 /// <list type="bullet">
-///   <item>Extends <see cref="Nez.Entity"/> rather than Monocle Solid; the box is
+///   <item>Extends <see cref="DZ.Nez.Entity"/> rather than Monocle Solid; the box is
 ///         treated as a static collidable via a <see cref="BoxCollider"/> component.</item>
 ///   <item>Dash detection is polled in <see cref="Update"/> instead of via a callback.
 ///         Call <see cref="OnDash"/> from the player's dash-collision handler.</item>
@@ -23,7 +27,7 @@ namespace KirbyCelesteStandalone.Entities.Hazards;
 ///   <item>Sprite / audio replaced with TODO stubs.</item>
 /// </list>
 /// </summary>
-public class LightningBreakerBox : Nez.Entity
+public class LightningBreakerBox : DZ.Nez.Entity
 {
     // ── Constants ─────────────────────────────────────────────────────────────
     public const float BoxSize = 32f;

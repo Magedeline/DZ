@@ -1,9 +1,10 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
 using System;
-using KirbyCelesteStandalone.Entities.Core;
+using DZ.Entities.Core;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Port of Celeste's Gondola.cs (Chapter 7 — The Summit).
@@ -32,8 +33,8 @@ public class Gondola : CelesteSolid
 
     // ── Anchor entities (added to scene in OnAddedToScene) ───────────────────
 
-    public Nez.Entity? LeftCliffside;
-    public Nez.Entity? RightCliffside;
+    public DZ.Nez.Entity? LeftCliffside;
+    public DZ.Nez.Entity? RightCliffside;
 
     // ── Rotation spring ───────────────────────────────────────────────────────
 
@@ -77,8 +78,8 @@ public class Gondola : CelesteSolid
         base.OnAddedToScene();
 
         // Spawn cliff anchor entities.
-        LeftCliffside  = new Nez.Entity { Position = Position + new Vector2(-124f, 0f) };
-        RightCliffside = new Nez.Entity { Position = Destination + new Vector2(144f, -104f) };
+        LeftCliffside  = new DZ.Nez.Entity { Position = Position + new Vector2(-124f, 0f) };
+        RightCliffside = new DZ.Nez.Entity { Position = Destination + new Vector2(144f, -104f) };
         Scene.AddEntity(LeftCliffside);
         Scene.AddEntity(RightCliffside);
 

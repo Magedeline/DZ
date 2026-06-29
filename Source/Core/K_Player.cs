@@ -1094,6 +1094,14 @@ namespace Celeste.Entities
             if (SaveData.Instance.AssistMode && SaveData.Instance.Assists.InfiniteStamina)
                 Stamina = ClimbMaxStamina;
 
+            // Gentle Breeze: engage the slow-mo dash-aim freeze while the
+            // dash button is held and a dash is available. The
+            // GentleBreezeAssist entity renders the arrow and plays the cue.
+            if (DZModule.Settings?.GentleBreezeMode == true && !Dead)
+                Engine.DashAssistFreeze = CanDash;
+            else if (Engine.DashAssistFreeze)
+                Engine.DashAssistFreeze = false;
+
             PreviousPosition = Position;
 
             // Rising edge of the jump button this frame (not a held/buffered press).
@@ -1246,7 +1254,8 @@ namespace Celeste.Entities
                             RefillDash();
                         else if (onGround)
                             if (CollideCheck<Solid, NegaBlock>(Position + Vector2.UnitY) || CollideCheckOutside<JumpThru>(Position + Vector2.UnitY))
-                                if (!CollideCheck<Spikes>(Position) || (SaveData.Instance.AssistMode && SaveData.Instance.Assists.Invincible))
+                                if (!CollideCheck<Spikes>(Position) || (SaveData.Instance.AssistMode && SaveData.Instance.Assists.Invincible)
+                                    || DZModule.Settings?.GentleBreezeMode == true)
                                     RefillDash();
                     }
                 }
@@ -2740,7 +2749,8 @@ namespace Celeste.Entities
 
 
             var session = level.Session;
-            bool invincible = (!evenIfInvincible && SaveData.Instance.AssistMode && SaveData.Instance.Assists.Invincible);
+            bool invincible = (!evenIfInvincible && SaveData.Instance.AssistMode && SaveData.Instance.Assists.Invincible)
+                || (!evenIfInvincible && DZModule.Settings?.GentleBreezeMode == true);
 
             if (!Dead && !invincible && StateMachine.State != StReflectionFall)
             {
@@ -5136,7 +5146,8 @@ namespace Celeste.Entities
             {
                 if (DreamDashedIntoSolid())
                 {
-                    if (SaveData.Instance.AssistMode && SaveData.Instance.Assists.Invincible)
+                    if ((SaveData.Instance.AssistMode && SaveData.Instance.Assists.Invincible)
+                        || DZModule.Settings?.GentleBreezeMode == true)
                     {
                         Position = oldPos;
                         Speed *= -1;

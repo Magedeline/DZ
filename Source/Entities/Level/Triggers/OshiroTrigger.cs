@@ -1,9 +1,11 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
 using System;
-using KirbyCelesteStandalone.Core;
+using DZ.Core;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Trigger that spawns or removes AngryOshiro.

@@ -4,6 +4,7 @@ namespace Celeste.Effects.ShaderEffects
     /// Applies color grading using LUT (Look-Up Table) textures.
     /// Based on ColorGrade.fx shader from CelesteEffects.
     /// </summary>
+    [CustomBackdrop("DZ/ColorGradeEffect")]
     [HotReloadable]
     public class ColorGradeEffect : Backdrop
     {

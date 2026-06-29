@@ -1,16 +1,17 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Entity = DZ.Nez.Entity;
 using System;
-using KirbyCelesteStandalone.Entities.Player;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Small decorative flutter bird that hops around its spawn point and flies away
 /// when the player gets too close (startling nearby birds too).
 /// Ported from Celeste's FlutterBird.cs.
 /// </summary>
-public class FlutterBird : Nez.Component, IUpdatable
+public class FlutterBird : DZ.Nez.Component, IUpdatable
 {
     // -------------------------------------------------------------------------
     // Colour palette
@@ -64,7 +65,7 @@ public class FlutterBird : Nez.Component, IUpdatable
     public FlutterBird(Vector2 position)
     {
         _startPosition = position;
-        _idleDelay     = 0.25f + Nez.Random.NextFloat();
+        _idleDelay     = 0.25f + DZ.Nez.Random.NextFloat();
     }
 
     // -------------------------------------------------------------------------
@@ -77,7 +78,7 @@ public class FlutterBird : Nez.Component, IUpdatable
         Entity.Position = _startPosition;
 
         // TODO: add "flutterbird" sprite renderer
-        // TODO: sprite.Color = Nez.Random.Choose(Colors)
+        // TODO: sprite.Color = DZ.Nez.Random.Choose(Colors)
         // TODO: play sound loop: event:/game/general/birdbaby_tweet_loop
     }
 
@@ -134,7 +135,7 @@ public class FlutterBird : Nez.Component, IUpdatable
             if (dx < 48f && dy > -40f && dy < 8f)
             {
                 FlyAway(Math.Sign(Entity.Position.X - _player.Position.X),
-                        Nez.Random.NextFloat() * 0.2f);
+                        DZ.Nez.Random.NextFloat() * 0.2f);
                 return;
             }
         }
@@ -143,11 +144,11 @@ public class FlutterBird : Nez.Component, IUpdatable
         if (_idleTimer >= _idleDelay)
         {
             _idleTimer = 0f;
-            _idleDelay = 0.25f + Nez.Random.NextFloat();
+            _idleDelay = 0.25f + DZ.Nez.Random.NextFloat();
 
             // Begin hop
             _hopFrom = Entity.Position;
-            _hopTo   = _startPosition + new Vector2(Nez.Random.NextFloat() * 8f - 4f, 0f);
+            _hopTo   = _startPosition + new Vector2(DZ.Nez.Random.NextFloat() * 8f - 4f, 0f);
             _hopCtrl = (_hopFrom + _hopTo) * 0.5f - Vector2.UnitY * 14f;
             _hopProgress = 0f;
 

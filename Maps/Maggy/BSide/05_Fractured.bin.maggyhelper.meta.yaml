@@ -1,10 +1,10 @@
-﻿schema: maggyhelper-map-meta-v1
-sid: Maggy/BSide/05_Restore
-baseKey: 05_Restore
+schema: maggyhelper-map-meta-v1
+sid: Maggy/BSide/05_Fractured
+baseKey: 05_Fractured
 side: B
 modeIndex: 1
 isMainChapterEntry: false
-mainChapterSid: Maggy/ASide/05_Restore
+mainChapterSid: Maggy/ASide/05_Fractured
 showInChapterSelect: false
 
 MusicBySide:

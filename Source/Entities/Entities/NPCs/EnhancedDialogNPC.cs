@@ -1,4 +1,4 @@
-﻿namespace Celeste.Entities {
+namespace Celeste.Entities {
     /// <summary>
     /// Enhanced Dialog NPC with advanced AI and cutscene integration
     /// </summary>
@@ -263,6 +263,4 @@
         }
     }
 }
-
-
 

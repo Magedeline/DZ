@@ -1,14 +1,18 @@
-﻿using Microsoft.Xna.Framework;
-using Nez;
+using Microsoft.Xna.Framework;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
+using Entity = DZ.Nez.Entity;
+using Component = DZ.Nez.Component;
+using Collider = DZ.Nez.Collider;
+using BoxCollider = DZ.Nez.BoxCollider;
+using Camera = DZ.Nez.Camera;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using KirbyCelesteStandalone.Entities.Player;
-using Component = Nez.Component;
-using Entity = Nez.Entity;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Port of Celeste's Lookout.cs.
@@ -49,7 +53,7 @@ public class Lookout : Component, IUpdatable
     public Lookout(Vector2 position, bool summit = false, bool onlyY = false, Vector2[]? nodes = null)
     {
         Entity.Position = position;
-        // Depth = -8500; // TODO: Depth not available in Nez.Entity
+        // Depth = -8500; // TODO: Depth not available in DZ.Nez.Entity
         Summit = summit;
         OnlyY = onlyY;
 

@@ -1,4 +1,4 @@
-﻿namespace Celeste.NPCs
+namespace Celeste.NPCs
 {
     [Tracked(true)]
     [CustomEntity(ids: "DZ/NPC19_Maggy_Loop")]
@@ -109,7 +109,4 @@
         }
     }
 }
-
-
-
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
 
-namespace KirbyCelesteStandalone.Core;
+namespace DZ.Core;
 
 /// <summary>
 /// Standalone FMOD Audio Manager.
@@ -93,8 +93,8 @@ public class AudioManager
             return;
         }
 
-        string bankPath = Path.Combine(KirbyGame.AudioBankPath, $"{bankName}.bank");
-        string stringsPath = Path.Combine(KirbyGame.AudioBankPath, $"{bankName}.strings.bank");
+        string bankPath = Path.Combine(DZGame.AudioBankPath, $"{bankName}.bank");
+        string stringsPath = Path.Combine(DZGame.AudioBankPath, $"{bankName}.strings.bank");
 
         if (!File.Exists(bankPath))
         {
@@ -262,7 +262,7 @@ public class AudioManager
             return;
 
         // Set 3D attributes
-        var attributes = new FMOD.ATTRIBUTES_3D
+        var attributes = new FMOD.Studio._3D_ATTRIBUTES
         {
             position = new FMOD.VECTOR { x = position.X, y = position.Y, z = 0 },
             forward = new FMOD.VECTOR { x = 0, y = 0, z = 1 },

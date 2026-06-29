@@ -1,12 +1,14 @@
-﻿using Microsoft.Xna.Framework;
-using Nez;
+using Microsoft.Xna.Framework;
+using DZ.Nez;
+using Entity = DZ.Nez.Entity;
+using Component = DZ.Nez.Component;
+using Collider = DZ.Nez.Collider;
 using System;
 using System.Collections.Generic;
-using KirbyCelesteStandalone.Core;
-using Component = Nez.Component;
-using Collider = Nez.Collider;
+using DZ.Core;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Enemies;
+namespace DZ.Entities.Enemies;
 
 /// <summary>
 /// Simplified port of Celeste's Seeker.cs.
@@ -274,7 +276,7 @@ public class Seeker : Component, IUpdatable
     {
         if (_collider == null || _player == null) return;
 
-        int count = Nez.Physics.OverlapCircleAll(Entity.Position, ColliderRadius, _overlapResults);
+        int count = DZ.Nez.Physics.OverlapCircleAll(Entity.Position, ColliderRadius, _overlapResults);
 
         for (int i = 0; i < count; i++)
         {

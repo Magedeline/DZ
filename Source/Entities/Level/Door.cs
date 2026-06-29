@@ -1,14 +1,15 @@
-﻿using Microsoft.Xna.Framework;
-using Nez;
+using Microsoft.Xna.Framework;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
+using Collider = DZ.Nez.Collider;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using KirbyCelesteStandalone.Entities.Player;
-using KirbyCelesteStandalone.Entities.Core;
-using CollisionData = KirbyCelesteStandalone.Entities.Core.CollisionData;
-using Collider = Nez.Collider;
+using DZ.Entities.Player;
+using DZ.Entities.Core;
+using CollisionData = DZ.Entities.Core.CollisionData;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Port of Celeste's Door.cs.
@@ -43,7 +44,7 @@ public class Door : CelesteActor
     public Door(Vector2 position, string type = "wood") : base(position, 12f, 22f)
     {
         Type = type;
-        // Depth = 8998; // TODO: Depth not available in Nez.Entity
+        // Depth = 8998; // TODO: Depth not available in DZ.Nez.Entity
 
         if (type == "wood")
         {

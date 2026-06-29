@@ -1,11 +1,14 @@
-﻿using Microsoft.Xna.Framework;
-using Nez;
+using Microsoft.Xna.Framework;
+using DZ.Nez;
+using Entity = DZ.Nez.Entity;
+using Component = DZ.Nez.Component;
+using Collider = DZ.Nez.Collider;
 using System;
 using System.Collections.Generic;
-using KirbyCelesteStandalone.Core;
-using Component = Nez.Component;
+using DZ.Core;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Enemies;
+namespace DZ.Entities.Enemies;
 
 /// <summary>
 /// Simplified port of Celeste's Puffer.cs.

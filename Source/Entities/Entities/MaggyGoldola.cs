@@ -3,6 +3,7 @@ using System.Collections;
 using DZ;
 using Microsoft.Xna.Framework;
 using Monocle;
+using CelesteJumpThru = Celeste.JumpThru;
 
 namespace Celeste.Entities
 {

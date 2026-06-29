@@ -1,7 +1,7 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
 
-namespace KirbyCelesteStandalone.Entities.Hazards;
+namespace DZ.Entities.Hazards;
 
 /// <summary>
 /// An invisible rectangular zone that acts as an impassable wall for the
@@ -17,7 +17,7 @@ namespace KirbyCelesteStandalone.Entities.Hazards;
 ///         scene and treat them as solid walls during path-finding.</item>
 /// </list>
 /// </summary>
-public class ChaserBarrier : Nez.Entity
+public class ChaserBarrier : DZ.Nez.Entity
 {
     // ── Geometry ──────────────────────────────────────────────────────────────
     public float Width  { get; private set; }

@@ -2,6 +2,7 @@ using System.Reflection.Metadata;
 using Celeste.Entities;
 using BadelineDummy = Celeste.Entities.BadelineDummy;
 using MaggyBreathingGame = Celeste.Entities.TestBreathingGame;
+using CelesteJumpThru = Celeste.JumpThru;
 using DZ;
 
 namespace Celeste.Cutscenes

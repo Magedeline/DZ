@@ -1,13 +1,17 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
+using Collider = DZ.Nez.Collider;
+using BoxCollider = DZ.Nez.BoxCollider;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using KirbyCelesteStandalone.Entities.Player;
-using KirbyCelesteStandalone.Entities.Core;
+using DZ.Entities.Player;
+using DZ.Entities.Core;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Port of Celeste's DashSwitch.cs.

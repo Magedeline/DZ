@@ -1,13 +1,16 @@
 using Microsoft.Xna.Framework;
-using Nez;
-using KirbyCelesteStandalone.Entities.Player;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
+using Entity = DZ.Nez.Entity;
+using Collider = DZ.Nez.Collider;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Movement;
+namespace DZ.Entities.Movement;
 
 /// <summary>
 /// Port of Celeste's SafeGroundBlocker.cs.
 ///
-/// A non-updating, non-rendering <see cref="Nez.Component"/> that, when
+/// A non-updating, non-rendering <see cref="DZ.Nez.Component"/> that, when
 /// attached to an entity, prevents the player from treating that entity as
 /// "safe ground" (i.e., a respawn point after death).
 ///
@@ -20,7 +23,7 @@ namespace KirbyCelesteStandalone.Entities.Movement;
 /// <see cref="SafeGroundBlocker"/> components in the scene to determine
 /// whether a given surface is safe.
 /// </summary>
-public class SafeGroundBlocker : Nez.Component
+public class SafeGroundBlocker : DZ.Nez.Component
 {
     // ── State ─────────────────────────────────────────────────────────────────
 
@@ -34,7 +37,7 @@ public class SafeGroundBlocker : Nez.Component
     /// Optional secondary collider to test against instead of the entity's
     /// default collider.  Null means use the entity's own collider.
     /// </summary>
-    public Nez.Collider? CheckWith;
+    public DZ.Nez.Collider? CheckWith;
 
     // ── Constructor ───────────────────────────────────────────────────────────
 
@@ -44,7 +47,7 @@ public class SafeGroundBlocker : Nez.Component
     /// <param name="checkWith">
     ///   Optional override collider for the check.  Null = use entity collider.
     /// </param>
-    public SafeGroundBlocker(Nez.Collider? checkWith = null)
+    public SafeGroundBlocker(DZ.Nez.Collider? checkWith = null)
     {
         CheckWith = checkWith;
     }
@@ -62,7 +65,7 @@ public class SafeGroundBlocker : Nez.Component
         if (!Blocking || Entity == null) return false;
 
         // Determine which collider to use.
-        var col = CheckWith ?? Entity.GetComponent<Nez.Collider>();
+        var col = CheckWith ?? Entity.GetComponent<DZ.Nez.Collider>();
         if (col == null) return false;
 
         // Axis-aligned bounding-box overlap between player and our collider.
@@ -81,7 +84,7 @@ public class SafeGroundBlocker : Nez.Component
     /// Convenience: checks all <see cref="SafeGroundBlocker"/> components in
     /// <paramref name="scene"/> and returns <c>true</c> if any block the player.
     /// </summary>
-    public static bool CheckAll(Nez.Scene scene, MadelinePlayer player)
+    public static bool CheckAll(DZ.Nez.Scene scene, MadelinePlayer player)
     {
         for (int _sgbi = 0; _sgbi < scene.Entities.Count; _sgbi++)
         {

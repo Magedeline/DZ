@@ -257,7 +257,7 @@ namespace DZ
                     Decal decal = null;
                     foreach (Decal item in base.Scene.Entities.FindAll<Decal>())
                     {
-                        if (item.Name.ToLower() == "decals/10-farewell/finalflag")
+                        if (item.Name.Equals("decals/10-farewell/finalflag", StringComparison.OrdinalIgnoreCase))
                         {
                             decal = item;
                             break;

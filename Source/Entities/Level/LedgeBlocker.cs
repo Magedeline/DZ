@@ -1,14 +1,15 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Entity = DZ.Nez.Entity;
 using System;
-using KirbyCelesteStandalone.Entities.Player;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Port of Celeste's LedgeBlocker.cs.
 ///
-/// A non-active, non-visible <see cref="Nez.Component"/> that prevents the
+/// A non-active, non-visible <see cref="DZ.Nez.Component"/> that prevents the
 /// player from performing ledge-hop, jump-thru boost, or dash-correct
 /// manoeuvres on the entity it is attached to.
 ///
@@ -20,7 +21,7 @@ namespace KirbyCelesteStandalone.Entities.Level;
 /// The player's movement code should call the relevant static check methods
 /// to determine whether an action is blocked.
 /// </summary>
-public class LedgeBlocker : Nez.Component
+public class LedgeBlocker : DZ.Nez.Component
 {
     // ── State ─────────────────────────────────────────────────────────────────
 
@@ -57,7 +58,7 @@ public class LedgeBlocker : Nez.Component
         if (!Blocking || Entity == null) return false;
 
         // Check if player would overlap us 8 px ahead.
-        Vector2 testPos = player.Position + new Vector2(player.Facing * 8f, 0f);
+        Vector2 testPos = player.Position + new Vector2((int)player.Facing * 8f, 0f);
         if (!OverlapsAt(player, testPos)) return false;
 
         return BlockChecker == null || BlockChecker(player);
@@ -100,7 +101,7 @@ public class LedgeBlocker : Nez.Component
     {
         if (Entity == null) return false;
 
-        var col = Entity.GetComponent<Nez.Collider>();
+        var col = Entity.GetComponent<DZ.Nez.Collider>();
         if (col == null) return false;
 
         var eb = new Microsoft.Xna.Framework.Rectangle(

@@ -1,12 +1,14 @@
-﻿using Microsoft.Xna.Framework;
-using Nez;
+using Microsoft.Xna.Framework;
+using DZ.Nez;
+using Entity = DZ.Nez.Entity;
+using Component = DZ.Nez.Component;
+using Collider = DZ.Nez.Collider;
+using BoxCollider = DZ.Nez.BoxCollider;
 using System;
-using KirbyCelesteStandalone.Entities.Player;
-using KirbyCelesteStandalone.Entities.Core;
-using Component = Nez.Component;
-using Collider = Nez.Collider;
+using DZ.Entities.Player;
+using DZ.Entities.Core;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Port of Celeste's TouchSwitch.cs.
@@ -182,7 +184,7 @@ public class TouchSwitch : Component, IUpdatable
             collider.Width,
             collider.Height);
 
-        int count = Nez.Physics.OverlapRectangleAll(ref rect, _overlapResults);
+        int count = DZ.Nez.Physics.OverlapRectangleAll(ref rect, _overlapResults);
         for (int i = 0; i < count; i++)
         {
             var hit = _overlapResults[i];

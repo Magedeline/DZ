@@ -1,9 +1,10 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Entity = DZ.Nez.Entity;
 using System;
-using KirbyCelesteStandalone.Entities.Player;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Angled light-beam decoration.  Ported from Celeste's LightBeam.cs.
@@ -13,7 +14,7 @@ namespace KirbyCelesteStandalone.Entities.Level;
 /// The beam itself is drawn as a series of overlapping transparent texture
 /// strips that animate via a sine-wave timer to create a shimmering effect.
 /// </summary>
-public class LightBeam : Nez.Component, IUpdatable
+public class LightBeam : DZ.Nez.Component, IUpdatable
 {
     // -------------------------------------------------------------------------
     // Public configuration
@@ -63,7 +64,7 @@ public class LightBeam : Nez.Component, IUpdatable
         LightLength    = lightLength;
         Rotation       = rotationDegrees * MathF.PI / 180f;
         Flag           = flag;
-        _timer         = Nez.Random.NextFloat() * 1000f;
+        _timer         = DZ.Nez.Random.NextFloat() * 1000f;
     }
 
     private readonly Vector2 _spawnPosition;

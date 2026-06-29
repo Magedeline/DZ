@@ -1,9 +1,11 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
+using Camera = DZ.Nez.Camera;
 using System;
 using System.Collections.Generic;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Port of Celeste's BigWaterfall.cs.
@@ -17,7 +19,7 @@ namespace KirbyCelesteStandalone.Entities.Level;
 ///
 /// Audio (looping sfx) and transition-fade listener are TODO.
 /// </summary>
-public class BigWaterfall : Nez.Entity
+public class BigWaterfall : DZ.Nez.Entity
 {
     // ── Layer enum ────────────────────────────────────────────────────────────
 
@@ -57,7 +59,7 @@ public class BigWaterfall : Nez.Entity
 
         if (layer == WaterfallLayer.FG)
         {
-            _parallax     = 0.1f + Nez.Random.NextFloat() * 0.2f;
+            _parallax     = 0.1f + DZ.Nez.Random.NextFloat() * 0.2f;
             _surfaceColor = Water.SurfaceColor;
             _fillColor    = Water.FillColor;
 
@@ -68,7 +70,7 @@ public class BigWaterfall : Nez.Entity
         }
         else
         {
-            _parallax     = -(0.7f + Nez.Random.NextFloat() * 0.2f);
+            _parallax     = -(0.7f + DZ.Nez.Random.NextFloat() * 0.2f);
             _surfaceColor = new Color(0x89, 0xDB, 0xF0) * 0.5f;
             _fillColor    = new Color(0x29, 0xA7, 0xEA) * 0.3f;
 
@@ -79,9 +81,9 @@ public class BigWaterfall : Nez.Entity
         // Add random interior lines if wide enough.
         if (width > 16f)
         {
-            int count = Nez.Random.Range(0, (int)(width / 16f));
+            int count = DZ.Nez.Random.Range(0, (int)(width / 16f));
             for (int i = 0; i < count; i++)
-                _lines.Add(8f + Nez.Random.NextFloat(width - 16f));
+                _lines.Add(8f + DZ.Nez.Random.NextFloat(width - 16f));
         }
     }
 

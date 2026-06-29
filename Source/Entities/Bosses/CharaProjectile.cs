@@ -1,14 +1,17 @@
-﻿using Microsoft.Xna.Framework;
-using Nez;
-using Nez.Sprites;
+using Microsoft.Xna.Framework;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
+using Entity = DZ.Nez.Entity;
+using Component = DZ.Nez.Component;
+using Collider = DZ.Nez.Collider;
+using Camera = DZ.Nez.Camera;
+using DZ.Nez.Sprites;
 using System;
 using System.Collections;
-using KirbyCelesteStandalone.Core;
-using KirbyCelesteStandalone.Entities.Player;
-using Entity = Nez.Entity;
-using Component = Nez.Component;
+using DZ.Core;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Bosses;
+namespace DZ.Entities.Bosses;
 
 /// <summary>
 /// Chara's projectile shot - can be homing, bouncing, or falling.
@@ -172,7 +175,7 @@ public class CharaProjectile
     {
         // Check if far outside screen bounds
         const float margin = 200f;
-        var cameraBounds = Nez.Core.Scene?.Camera?.Bounds ?? new RectangleF(-1000, -1000, 2000, 2000);
+        var cameraBounds = DZ.Nez.Core.Scene?.Camera?.Bounds ?? new RectangleF(-1000, -1000, 2000, 2000);
 
         return _position.X < cameraBounds.Left - margin ||
                _position.X > cameraBounds.Right + margin ||

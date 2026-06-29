@@ -1,9 +1,11 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
+using Collider = DZ.Nez.Collider;
 using System;
 using System.Collections.Generic;
 
-namespace KirbyCelesteStandalone.Entities.Movement;
+namespace DZ.Entities.Movement;
 
 /// <summary>
 /// Port of Celeste's ClutterBlock.cs.
@@ -12,10 +14,10 @@ namespace KirbyCelesteStandalone.Entities.Movement;
 /// When a player touches its top or sides it "weights down" (snaps to ground
 /// offset = 0) and propagates the weight-down to all blocks stacked below.
 ///
-/// These are not solids; they use a simple non-blocking <see cref="Nez.BoxCollider"/>
+/// These are not solids; they use a simple non-blocking <see cref="DZ.Nez.BoxCollider"/>
 /// for player-proximity detection only.
 /// </summary>
-public class ClutterBlock : Nez.Entity
+public class ClutterBlock : DZ.Nez.Entity
 {
     // ── Block colour enum ─────────────────────────────────────────────────────
 
@@ -113,7 +115,7 @@ public class ClutterBlock : Nez.Entity
             {
                 for (int _ci = 0; _ci < Scene.Entities.Count; _ci++)
                 {
-                    if (Scene.Entities[_ci] is not KirbyCelesteStandalone.Entities.Player.MadelinePlayer player) continue;
+                    if (Scene.Entities[_ci] is not DZ.Entities.Player.MadelinePlayer player) continue;
 
                     float pRight  = player.Position.X + player.Width;
                     float pLeft   = player.Position.X;

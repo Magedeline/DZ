@@ -1,8 +1,8 @@
 using Microsoft.Xna.Framework;
-using Nez;
-using KirbyCelesteStandalone.Entities.Core;
+using DZ.Nez;
+using DZ.Entities.Core;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Port of Celeste's BridgeFixed.cs.

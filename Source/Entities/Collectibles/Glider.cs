@@ -1,11 +1,12 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Collider = DZ.Nez.Collider;
 using System;
 using System.Collections;
-using KirbyCelesteStandalone.Entities.Player;
-using KirbyCelesteStandalone.Entities.Core;
+using DZ.Entities.Player;
+using DZ.Entities.Core;
 
-namespace KirbyCelesteStandalone.Entities.Collectibles;
+namespace DZ.Entities.Collectibles;
 
 /// <summary>
 /// Port of Celeste's Glider.cs.

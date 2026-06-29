@@ -1,14 +1,15 @@
-﻿using Microsoft.Xna.Framework;
-using Nez;
+using Microsoft.Xna.Framework;
+using DZ.Nez;
+using Entity = DZ.Nez.Entity;
+using Component = DZ.Nez.Component;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using KirbyCelesteStandalone.Entities.Player;
-using KirbyCelesteStandalone.Entities.Core;
-using Component = Nez.Component;
+using DZ.Entities.Player;
+using DZ.Entities.Core;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Port of Celeste's HeartGemDoor.cs.
@@ -47,8 +48,8 @@ public class HeartGemDoor : Component, IUpdatable
     private Vector2 _spawnPosition;
     private float _openDistance;
     private float _openPercent;
-    private KirbyCelesteStandalone.Entities.Core.CelesteSolid? _topSolid;
-    private KirbyCelesteStandalone.Entities.Core.CelesteSolid? _botSolid;
+    private DZ.Entities.Core.CelesteSolid? _topSolid;
+    private DZ.Entities.Core.CelesteSolid? _botSolid;
     private float _offset;
     private Vector2 _mist;
     private bool _startHidden;
@@ -85,9 +86,9 @@ public class HeartGemDoor : Component, IUpdatable
         {
             _particles[i] = new DoorParticle
             {
-                Position = new Vector2(Nez.Random.NextFloat() * Size, Nez.Random.NextFloat() * 1000f),
-                Speed = Nez.Random.Range(4, 12),
-                Color = Color.White * Nez.Random.Range(0.2f, 0.6f)
+                Position = new Vector2(DZ.Nez.Random.NextFloat() * Size, DZ.Nez.Random.NextFloat() * 1000f),
+                Speed = DZ.Nez.Random.Range(4, 12),
+                Color = Color.White * DZ.Nez.Random.Range(0.2f, 0.6f)
             };
         }
 
@@ -95,11 +96,11 @@ public class HeartGemDoor : Component, IUpdatable
         if (Entity.Scene != null)
         {
             // Top solid (above door)
-            _topSolid = new KirbyCelesteStandalone.Entities.Core.CelesteSolid(new Vector2(Entity.Position.X, Entity.Position.Y - 1000f), Size, 1000f, safe: true);
+            _topSolid = new DZ.Entities.Core.CelesteSolid(new Vector2(Entity.Position.X, Entity.Position.Y - 1000f), Size, 1000f, safe: true);
             Entity.Scene?.AddEntity(_topSolid);
 
             // Bottom solid (below door)
-            _botSolid = new KirbyCelesteStandalone.Entities.Core.CelesteSolid(Entity.Position, Size, 1000f, safe: true);
+            _botSolid = new DZ.Entities.Core.CelesteSolid(Entity.Position, Size, 1000f, safe: true);
             Entity.Scene?.AddEntity(_botSolid);
         }
 
@@ -358,5 +359,4 @@ public class HeartGemDoor : Component, IUpdatable
         }
     }
 }
-
 

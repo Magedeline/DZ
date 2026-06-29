@@ -1,10 +1,11 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
 using System;
 using System.Collections.Generic;
-using KirbyCelesteStandalone.Entities.Core;
+using DZ.Entities.Core;
 
-namespace KirbyCelesteStandalone.Entities.Movement;
+namespace DZ.Entities.Movement;
 
 /// <summary>
 /// Port of Celeste's GlassBlock.cs.
@@ -170,12 +171,12 @@ public class GlassBlock : CelesteSolid
     {
         if (Scene == null) return false;
         for (int _gli2 = 0; _gli2 < Scene.Entities.Count; _gli2++)
-            if (Scene.Entities[_gli2] is KirbyCelesteStandalone.Entities.Player.MadelinePlayer p && IsRiding(p))
+            if (Scene.Entities[_gli2] is DZ.Entities.Player.MadelinePlayer p && IsRiding(p))
                 return true;
         return false;
     }
 
-    private bool IsRiding(KirbyCelesteStandalone.Entities.Player.MadelinePlayer player) =>
+    private bool IsRiding(DZ.Entities.Player.MadelinePlayer player) =>
         Math.Abs(player.Position.Y + player.Height - Position.Y) <= 2f
         && player.Position.X + player.Width > Position.X
         && player.Position.X < Position.X + Width;

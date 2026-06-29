@@ -1,10 +1,12 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
+using Collider = DZ.Nez.Collider;
 using System;
 using System.Linq;
-using KirbyCelesteStandalone.Entities.Player;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Hazards;
+namespace DZ.Entities.Hazards;
 
 /// <summary>
 /// Base class for spinning hazards that orbit a fixed centre point.
@@ -15,7 +17,7 @@ namespace KirbyCelesteStandalone.Entities.Hazards;
 /// rotates toward the negative angle.  A 6-pixel-radius circle collider is used
 /// for player contact detection.
 /// </summary>
-public class RotateSpinner : Nez.Entity
+public class RotateSpinner : DZ.Nez.Entity
 {
     // ── Constants ─────────────────────────────────────────────────────────────
     private const float RotationTime = 1.8f;

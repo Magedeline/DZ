@@ -1,8 +1,11 @@
 using Microsoft.Xna.Framework;
-using Nez;
-using KirbyCelesteStandalone.Entities.Player;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
+using Entity = DZ.Nez.Entity;
+using Collider = DZ.Nez.Collider;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Port of Celeste's CoreModeToggle.cs (Chapter 9 — Core).
@@ -20,7 +23,7 @@ namespace KirbyCelesteStandalone.Entities.Level;
 ///
 /// Sprite loading and audio are TODO.
 /// </summary>
-public class CoreModeToggle : Nez.Entity
+public class CoreModeToggle : DZ.Nez.Entity
 {
     // ── Core mode enum ────────────────────────────────────────────────────────
 

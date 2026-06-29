@@ -1,10 +1,14 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
+using Collider = DZ.Nez.Collider;
 using System;
-using KirbyCelesteStandalone.Entities.Player;
-using KirbyCelesteStandalone.Entities.Core;
+using DZ.Entities.Player;
+using DZ.Entities.Core;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+
+
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Port of Celeste's ExitBlock.cs.
@@ -32,7 +36,7 @@ public class ExitBlock : CelesteSolid
         : base(position, width, height, safe: true)
     {
         _tileType = tileType;
-        // Depth = -13000; // TODO: Depth not available in Nez.Entity
+        // Depth = -13000; // TODO: Depth not available in DZ.Nez.Entity
         Collidable = false; // Start non-collidable, fade in when player leaves
     }
 

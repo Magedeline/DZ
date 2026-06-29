@@ -1,13 +1,15 @@
-﻿using Microsoft.Xna.Framework;
-using Nez;
+using Microsoft.Xna.Framework;
+using DZ.Nez;
+using Entity = DZ.Nez.Entity;
+using Component = DZ.Nez.Component;
+using Collider = DZ.Nez.Collider;
+using BoxCollider = DZ.Nez.BoxCollider;
 using System;
 using System.Collections;
-using KirbyCelesteStandalone.Entities.Player;
-using KirbyCelesteStandalone.Entities.Core;
-using Component = Nez.Component;
-using Collider = Nez.Collider;
+using DZ.Entities.Player;
+using DZ.Entities.Core;
 
-namespace KirbyCelesteStandalone.Entities.Collectibles;
+namespace DZ.Entities.Collectibles;
 
 /// <summary>
 /// Port of Celeste's Key.cs.
@@ -101,7 +103,7 @@ public class Key : Component, IUpdatable
         if (_isFollowing && _holder != null && !IsUsed)
         {
             // Key follows behind player at an offset
-            float followOffsetX = -12f * _holder.Facing;
+            float followOffsetX = -12f * (int)_holder.Facing;
             Vector2 targetPos = _holder.Position + new Vector2(followOffsetX, -8f);
             Entity.Position = Vector2.Lerp(Entity.Position, targetPos, 0.2f);
         }
@@ -123,7 +125,7 @@ public class Key : Component, IUpdatable
             12f,
             12f);
 
-        int count = Nez.Physics.OverlapRectangleAll(ref rect, _overlapResults);
+        int count = DZ.Nez.Physics.OverlapRectangleAll(ref rect, _overlapResults);
 
         for (int i = 0; i < count; i++)
         {

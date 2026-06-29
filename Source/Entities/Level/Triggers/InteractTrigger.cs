@@ -1,12 +1,14 @@
-﻿using Microsoft.Xna.Framework;
-using Nez;
+using Microsoft.Xna.Framework;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
+using Entity = DZ.Nez.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using KirbyCelesteStandalone.Core;
-using Entity = Nez.Entity;
+using DZ.Core;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Trigger that allows player interaction (talk) to trigger events.

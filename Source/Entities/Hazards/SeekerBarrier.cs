@@ -1,10 +1,11 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace KirbyCelesteStandalone.Entities.Hazards;
+namespace DZ.Entities.Hazards;
 
 /// <summary>
 /// A semi-transparent energy barrier that the Seeker (enemy) cannot pass through,
@@ -15,7 +16,7 @@ namespace KirbyCelesteStandalone.Entities.Hazards;
 ///
 /// Porting notes:
 /// <list type="bullet">
-///   <item>Original extended <c>Solid</c>; here it is a plain <see cref="Nez.Entity"/>
+///   <item>Original extended <c>Solid</c>; here it is a plain <see cref="DZ.Nez.Entity"/>
 ///         — actual solid behaviour for Seekers should be handled by the Seeker's AI
 ///         via <see cref="ContainsPoint"/>.</item>
 ///   <item>Particle rendering (falling dots) kept as a data list; callers draw via
@@ -23,7 +24,7 @@ namespace KirbyCelesteStandalone.Entities.Hazards;
 ///   <item>SeekerBarrierRenderer tracking replaced with TODO stub.</item>
 /// </list>
 /// </summary>
-public class SeekerBarrier : Nez.Entity
+public class SeekerBarrier : DZ.Nez.Entity
 {
     // ── Geometry ──────────────────────────────────────────────────────────────
     public float Width  { get; private set; }
@@ -62,8 +63,8 @@ public class SeekerBarrier : Nez.Entity
         int count = (int)(width * height / 16f);
         for (int i = 0; i < count; i++)
             particles.Add(new Vector2(
-                Nez.Random.NextFloat(width  - 1f),
-                Nez.Random.NextFloat(height - 1f)));
+                DZ.Nez.Random.NextFloat(width  - 1f),
+                DZ.Nez.Random.NextFloat(height - 1f)));
 
         // TODO: register with SeekerBarrierRenderer tracker
     }

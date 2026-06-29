@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using Celeste.Entities;
 
 namespace Celeste.NPCs

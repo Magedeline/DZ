@@ -1,8 +1,10 @@
 using Microsoft.Xna.Framework;
-using Nez;
-using KirbyCelesteStandalone.Entities.Core;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
+using Collider = DZ.Nez.Collider;
+using DZ.Entities.Core;
 
-namespace KirbyCelesteStandalone.Entities.Movement;
+namespace DZ.Entities.Movement;
 
 /// <summary>
 /// Port of Celeste's NegaBlock.cs.
@@ -41,7 +43,7 @@ public class NegaBlock : CelesteSolid
         for (int _ni = 0; _ni < Scene.Entities.Count; _ni++)
         {
             var e = Scene.Entities[_ni];
-            if (e is not KirbyCelesteStandalone.Entities.Player.MadelinePlayer player) continue;
+            if (e is not DZ.Entities.Player.MadelinePlayer player) continue;
 
             var pb = new RectangleF(
                 player.Position.X, player.Position.Y,

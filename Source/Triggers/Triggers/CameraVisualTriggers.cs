@@ -54,7 +54,7 @@ namespace DZ
         {
             base.OnStay(player);
             Level level = SceneAs<Level>();
-            level.Camera.Zoom = Calc.Approach(level.Camera.Zoom, targetZoom, zoomSpeed * Engine.DeltaTime);
+            level.Camera.Zoom = Calc.Approach(level.Camera.Zoom, targetZoom, zoomSpeed * Engine.FreezeTimer);
         }
 
         public override void OnLeave(Player player)

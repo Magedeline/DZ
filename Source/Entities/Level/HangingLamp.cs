@@ -1,10 +1,13 @@
 using Microsoft.Xna.Framework;
-using Nez;
-using static Nez.Time;
+using DZ.Nez;
+using Entity = DZ.Nez.Entity;
+using Collider = DZ.Nez.Collider;
+using BoxCollider = DZ.Nez.BoxCollider;
+using static DZ.Nez.Time;
 using System;
-using KirbyCelesteStandalone.Entities.Player;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Hanging lamp that sways when the player passes through it.
@@ -15,7 +18,7 @@ namespace KirbyCelesteStandalone.Entities.Level;
 /// and vertical position within the lamp.  The lamp clacks sounds as it
 /// passes the resting angle.
 /// </summary>
-public class HangingLamp : Nez.Component, IUpdatable
+public class HangingLamp : DZ.Nez.Component, IUpdatable
 {
     // -------------------------------------------------------------------------
     // Public

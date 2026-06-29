@@ -49,11 +49,11 @@ namespace Celeste.Mod.DZ.HotReload
             // F11 and F12: Only work when hot reload is enabled
             if (isEnabled)
             {
-                // F11: Manual reload
+                // F11: Force-reload the DZ.dll assembly at runtime (no restart needed)
                 if (curF11 && !_lastF11)
                 {
-                    HotReloadUI.Show("Manual Reload Triggered", Color.Yellow);
-                    global::Celeste.HotReload.HotReloadHandler.NotifyEverestReload();
+                    HotReloadUI.Show("Force Reload Triggered", Color.Yellow);
+                    DllHotReloader.ForceReload();
                 }
 
                 // F12: Toggle UI

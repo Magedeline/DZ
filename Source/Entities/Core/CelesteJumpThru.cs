@@ -1,10 +1,14 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
+using Collider = DZ.Nez.Collider;
+using BoxCollider = DZ.Nez.BoxCollider;
 using System;
 using System.Collections.Generic;
-using KirbyCelesteStandalone.Core;
+using DZ.Core;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Core;
+namespace DZ.Entities.Core;
 
 // =============================================================================
 //  CelesteJumpThru

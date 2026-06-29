@@ -181,5 +181,3 @@ namespace Celeste.NPCs
     }
 }
 
-
-

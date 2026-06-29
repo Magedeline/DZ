@@ -1,8 +1,12 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
+using Entity = DZ.Nez.Entity;
+using Collider = DZ.Nez.Collider;
+using BoxCollider = DZ.Nez.BoxCollider;
 using System;
 
-namespace KirbyCelesteStandalone.Entities.Core;
+namespace DZ.Entities.Core;
 
 /// <summary>
 /// Port of Celeste's Platform.cs.
@@ -26,7 +30,7 @@ namespace KirbyCelesteStandalone.Entities.Core;
 ///
 /// Subclasses must implement <see cref="MoveHExact"/> and <see cref="MoveVExact"/>.
 /// </summary>
-public abstract class CelestePlatform : Nez.Entity
+public abstract class CelestePlatform : DZ.Nez.Entity
 {
     // -------------------------------------------------------------------------
     // Geometry
@@ -50,7 +54,7 @@ public abstract class CelestePlatform : Nez.Entity
     // Celeste geometry helpers (mirrors Monocle.Entity)
     // -------------------------------------------------------------------------
 
-    /// <summary>Render / update depth. Maps to Nez <see cref="Nez.Entity.UpdateOrder"/>.</summary>
+    /// <summary>Render / update depth. Maps to Nez <see cref="DZ.Nez.Entity.UpdateOrder"/>.</summary>
     public int Depth
     {
         get => UpdateOrder;
@@ -91,7 +95,7 @@ public abstract class CelestePlatform : Nez.Entity
     /// <summary>
     /// Sub-pixel remainder accumulator (mirrors Celeste's <c>movementCounter</c>).
     /// Fractional movement is accumulated here; only integer pixels are actually
-    /// applied to <see cref="Nez.Entity.Position"/>.
+    /// applied to <see cref="DZ.Nez.Entity.Position"/>.
     /// </summary>
     protected Vector2 movementCounter;
 
@@ -217,8 +221,8 @@ public abstract class CelestePlatform : Nez.Entity
             {
                 // Random sub-pixel offset for a visual wiggle effect.
                 ShakeOffset = new Vector2(
-                    Nez.Random.Range(-1, 2),
-                    Nez.Random.Range(-1, 2));
+                    DZ.Nez.Random.Range(-1, 2),
+                    DZ.Nez.Random.Range(-1, 2));
             }
         }
 
@@ -425,13 +429,13 @@ public abstract class CelestePlatform : Nez.Entity
     // -------------------------------------------------------------------------
 
     /// <summary>
-    /// The exact floating-point position (same as <see cref="Nez.Entity.Position"/>),
+    /// The exact floating-point position (same as <see cref="DZ.Nez.Entity.Position"/>),
     /// exposed for clarity when computing MoveToX/Y offsets.
     /// </summary>
     public Vector2 ExactPosition => Position;
 
     /// <summary>
-    /// Recomputes <see cref="Bounds"/> from the current <see cref="Nez.Entity.Position"/>,
+    /// Recomputes <see cref="Bounds"/> from the current <see cref="DZ.Nez.Entity.Position"/>,
     /// <see cref="Width"/>, and <see cref="Height"/>.  Call after any position change.
     /// </summary>
     protected void UpdateBounds()

@@ -1,4 +1,4 @@
-﻿using Celeste.Entities;
+using Celeste.Entities;
 
 namespace Celeste.NPCs
 {

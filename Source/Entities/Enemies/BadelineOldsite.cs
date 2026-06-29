@@ -1,10 +1,12 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Entity = DZ.Nez.Entity;
+using Collider = DZ.Nez.Collider;
 using System;
 using System.Linq;
-using KirbyCelesteStandalone.Entities.Player;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Enemies;
+namespace DZ.Entities.Enemies;
 
 /// <summary>
 /// Badeline (Old Site chase enemy). Ported from Celeste's BadelineOldsite.cs.
@@ -13,7 +15,7 @@ namespace KirbyCelesteStandalone.Entities.Enemies;
 /// with a delay. Speeds up when the player is fast. Kills on contact.
 /// Laughs and hovers when the player is dead.
 /// </summary>
-public class BadelineOldsite : Nez.Component, IUpdatable
+public class BadelineOldsite : DZ.Nez.Component, IUpdatable
 {
     // -------------------------------------------------------------------------
     // Constants

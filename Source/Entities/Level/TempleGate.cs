@@ -1,14 +1,17 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
+using Collider = DZ.Nez.Collider;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using KirbyCelesteStandalone.Entities.Player;
-using KirbyCelesteStandalone.Entities.Core;
-using KirbyCelesteStandalone.Entities.Collectibles;
+using DZ.Entities.Player;
+using DZ.Entities.Core;
+using DZ.Entities.Collectibles;
+using TheoCrystal = DZ.Entities.Collectibles.TheoCrystal;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Port of Celeste's TempleGate.cs.

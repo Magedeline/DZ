@@ -1,13 +1,14 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Entity = DZ.Nez.Entity;
 using System;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Port of Celeste's WindMover.cs.
 ///
-/// A non-active, non-visible <see cref="Nez.Component"/> that allows its
+/// A non-active, non-visible <see cref="DZ.Nez.Component"/> that allows its
 /// owning entity to be pushed by wind controlled by a
 /// <see cref="WindController"/> in the scene.
 ///
@@ -22,7 +23,7 @@ namespace KirbyCelesteStandalone.Entities.Level;
 ///   }));
 /// </code>
 /// </summary>
-public class WindMover : Nez.Component
+public class WindMover : DZ.Nez.Component
 {
     // ── Callback ──────────────────────────────────────────────────────────────
 

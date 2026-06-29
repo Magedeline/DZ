@@ -16,18 +16,11 @@ public static class MetadataRegistries
 
         try
         {
-            var mod = Everest.Content.Mods
-                .FirstOrDefault(m => m.Name == "DZ");
-
-            string modRoot = "";
-            if (mod != null)
-            {
-                var mapPath = mod.Map?.FirstOrDefault().Key;
-                if (!string.IsNullOrEmpty(mapPath))
-                {
-                    modRoot = Path.GetDirectoryName(mapPath) ?? "";
-                }
-            }
+            // Use EverestModuleMetadata.PathDirectory, which is set at runtime and
+            // reliably gives the mod's root directory (empty for .zip mods).
+            // The previous approach (mod.Map?.FirstOrDefault().Key) failed because
+            // maps are not loaded yet when DZModule.Load() runs.
+            string modRoot = DZModule.Instance?.Metadata?.PathDirectory ?? "";
 
             if (string.IsNullOrEmpty(modRoot))
             {

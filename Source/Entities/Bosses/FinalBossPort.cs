@@ -1,10 +1,13 @@
-﻿using Microsoft.Xna.Framework;
-using Nez;
+using Microsoft.Xna.Framework;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
+using Entity = DZ.Nez.Entity;
+using Collider = DZ.Nez.Collider;
 using System;
-using KirbyCelesteStandalone.Core;
-using Entity = Nez.Entity;
+using DZ.Core;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Bosses;
+namespace DZ.Entities.Bosses;
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // State enum
@@ -341,7 +344,7 @@ public class FinalBossPort : Entity, IUpdatable
                 Moving = false;
                 // TODO: play sound: event:/game/07_summit/boss_finalexplosion
                 // TODO: emit particles – large explosion/death burst
-                Nez.Core.Schedule(2.5f, _ => Destroy());
+                DZ.Nez.Core.Schedule(2.5f, _ => Destroy());
                 break;
         }
     }
@@ -406,7 +409,7 @@ public class FinalBossPort : Entity, IUpdatable
             case 6:
                 // Pattern 6: double beam.
                 FireBeam(target);
-                Nez.Core.Schedule(0.6f, _ => FireBeam(target));
+                DZ.Nez.Core.Schedule(0.6f, _ => FireBeam(target));
                 _stateTimer = 2.8f;
                 break;
 

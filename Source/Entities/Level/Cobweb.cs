@@ -1,10 +1,11 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Entity = DZ.Nez.Entity;
 using System;
 using System.Collections.Generic;
-using KirbyCelesteStandalone.Entities.Player;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Cobweb decoration stretched between two anchor points with optional
@@ -17,7 +18,7 @@ namespace KirbyCelesteStandalone.Entities.Level;
 /// Player contact: not implemented as damage – the original Cobweb only
 /// provides a visual.  To slow the player add a trigger zone separately.
 /// </summary>
-public class Cobweb : Nez.Component, IUpdatable
+public class Cobweb : DZ.Nez.Component, IUpdatable
 {
     // -------------------------------------------------------------------------
     // Private state
@@ -45,7 +46,7 @@ public class Cobweb : Nez.Component, IUpdatable
     {
         _anchorA   = anchorA;
         _anchorB   = anchorB;
-        _waveTimer = Nez.Random.NextFloat();
+        _waveTimer = DZ.Nez.Random.NextFloat();
 
         if (offshootNodes != null)
         {
@@ -54,7 +55,7 @@ public class Cobweb : Nez.Component, IUpdatable
             {
                 if (first) { first = false; continue; } // first node = anchorB
                 _offshoots.Add(node);
-                _offshootEnds.Add(0.3f + Nez.Random.NextFloat() * 0.4f);
+                _offshootEnds.Add(0.3f + DZ.Nez.Random.NextFloat() * 0.4f);
             }
         }
 

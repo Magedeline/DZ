@@ -1,9 +1,13 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
+using Entity = DZ.Nez.Entity;
+using Collider = DZ.Nez.Collider;
+using BoxCollider = DZ.Nez.BoxCollider;
 using System;
-using KirbyCelesteStandalone.Core;
+using DZ.Core;
 
-namespace KirbyCelesteStandalone.Entities.Core;
+namespace DZ.Entities.Core;
 
 /// <summary>
 /// Port of Celeste's Actor.cs.
@@ -14,19 +18,19 @@ namespace KirbyCelesteStandalone.Entities.Core;
 ///
 /// Design notes (Nez port):
 /// <list type="bullet">
-///   <item>Inherits from <see cref="Nez.Entity"/> directly — it IS the scene object.</item>
+///   <item>Inherits from <see cref="DZ.Nez.Entity"/> directly — it IS the scene object.</item>
 ///   <item>Sub-pixel movement is accumulated in <see cref="movementCounter"/> so the
 ///         actor always moves in whole pixels while keeping fractional precision.</item>
 ///   <item>Collision detection iterates scene entities rather than using Monocle's
 ///         Tracker; see <see cref="CollideSolid(Vector2)"/> and related helpers.</item>
-///   <item>A <see cref="Nez.BoxCollider"/> component is added automatically in
+///   <item>A <see cref="DZ.Nez.BoxCollider"/> component is added automatically in
 ///         <see cref="OnAddedToScene"/>; subclasses should set <see cref="Width"/>
 ///         and <see cref="Height"/> before that point (e.g., in their constructor).</item>
 ///   <item>All <c>Audio.Play</c>, <c>GFX</c>, <c>SaveData</c>, and Tracker references
 ///         from the original source have been removed.</item>
 /// </list>
 /// </summary>
-public abstract class CelesteActor : Nez.Entity
+public abstract class CelesteActor : DZ.Nez.Entity
 {
     // -------------------------------------------------------------------------
     // Geometry
@@ -49,7 +53,7 @@ public abstract class CelesteActor : Nez.Entity
     // Celeste geometry helpers (mirrors Monocle.Entity)
     // -------------------------------------------------------------------------
 
-    /// <summary>Render / update depth. Maps to Nez <see cref="Nez.Entity.UpdateOrder"/>.</summary>
+    /// <summary>Render / update depth. Maps to Nez <see cref="DZ.Nez.Entity.UpdateOrder"/>.</summary>
     public int Depth
     {
         get => UpdateOrder;
@@ -142,7 +146,7 @@ public abstract class CelesteActor : Nez.Entity
     /// <summary>
     /// Called when a solid tries to crush this actor and there is no room to
     /// dodge. The default implementation tries to wiggle the actor free; if that
-    /// fails it calls <see cref="Nez.Entity.Destroy"/>.
+    /// fails it calls <see cref="DZ.Nez.Entity.Destroy"/>.
     /// Assign a replacement to override death behaviour.
     /// </summary>
     public Action? SquishCallback;
@@ -494,7 +498,7 @@ public abstract class CelesteActor : Nez.Entity
     // -------------------------------------------------------------------------
 
     /// <summary>
-    /// Recomputes <see cref="Bounds"/> from current <see cref="Nez.Entity.Position"/>,
+    /// Recomputes <see cref="Bounds"/> from current <see cref="DZ.Nez.Entity.Position"/>,
     /// <see cref="Width"/>, and <see cref="Height"/>.
     /// </summary>
     protected void UpdateBounds()

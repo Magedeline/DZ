@@ -1,8 +1,8 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
 using System;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Static utility class for emitting dust particles at a world position.
@@ -34,8 +34,8 @@ public static class Dust
         for (int i = 0; i < count; i++)
         {
             Vector2 offset = new Vector2(
-                Nez.Random.Range(-spread.X, spread.X),
-                Nez.Random.Range(-spread.Y, spread.Y));
+                DZ.Nez.Random.Range(-spread.X, spread.X),
+                DZ.Nez.Random.Range(-spread.Y, spread.Y));
             // TODO: emit "Dust" particle at (position + offset) with direction,
             //       into the background particle layer.
         }
@@ -55,8 +55,8 @@ public static class Dust
         for (int i = 0; i < count; i++)
         {
             Vector2 offset = new Vector2(
-                Nez.Random.Range(-spread.X, spread.X),
-                Nez.Random.Range(-spread.Y, spread.Y));
+                DZ.Nez.Random.Range(-spread.X, spread.X),
+                DZ.Nez.Random.Range(-spread.Y, spread.Y));
             // TODO: emit "Dust" particle at (position + offset) with direction,
             //       into the foreground particle layer.
         }

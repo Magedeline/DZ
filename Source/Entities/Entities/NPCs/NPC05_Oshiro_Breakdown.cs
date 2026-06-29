@@ -1,4 +1,4 @@
-﻿namespace Celeste.NPCs
+namespace Celeste.NPCs
 {
     [Tracked(true)]
     [CustomEntity(ids: "DZ/NPC05_Oshiro_Breakdown")]
@@ -37,7 +37,4 @@
         }
     }
 }
-
-
-
 

@@ -1,9 +1,9 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
 using System;
 using System.Collections.Generic;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Northern lights (aurora borealis) background effect.
@@ -11,10 +11,10 @@ namespace KirbyCelesteStandalone.Entities.Level;
 ///
 /// Renders glowing curtain-like vertical strands across the sky plus drifting
 /// star particles.  In Celeste this is a <c>Backdrop</c>; here it is a
-/// standalone <see cref="Nez.Component"/> that manages its own data and exposes
+/// standalone <see cref="DZ.Nez.Component"/> that manages its own data and exposes
 /// a <see cref="Render"/> method for a custom renderer to call.
 /// </summary>
-public class NorthernLights : Nez.Component, IUpdatable
+public class NorthernLights : DZ.Nez.Component, IUpdatable
 {
     // -------------------------------------------------------------------------
     // Colour palette
@@ -60,15 +60,15 @@ public class NorthernLights : Nez.Component, IUpdatable
         public void Reset(float startPercent)
         {
             Percent  = startPercent;
-            Duration = 12f + Nez.Random.NextFloat() * 20f;
+            Duration = 12f + DZ.Nez.Random.NextFloat() * 20f;
             Alpha    = 0f;
             Nodes.Clear();
 
             Vector2 pos = new Vector2(
-                Nez.Random.Range(-40, 60),
-                Nez.Random.Range(40, 90));
-            float   texOff = Nez.Random.NextFloat();
-            Color   col    = Colors[Nez.Random.NextInt(Colors.Length)];
+                DZ.Nez.Random.Range(-40, 60),
+                DZ.Nez.Random.Range(40, 90));
+            float   texOff = DZ.Nez.Random.NextFloat();
+            Color   col    = Colors[DZ.Nez.Random.NextInt(Colors.Length)];
 
             for (int i = 0; i < 40; i++)
             {
@@ -76,17 +76,17 @@ public class NorthernLights : Nez.Component, IUpdatable
                 {
                     Position      = pos,
                     TextureOffset = texOff,
-                    Height        = Nez.Random.Range(10, 80),
-                    TopAlpha      = Nez.Random.Range(0.3f, 0.8f),
-                    BottomAlpha   = Nez.Random.Range(0.5f, 1f),
-                    SineOffset    = Nez.Random.NextFloat() * MathF.PI * 2f,
-                    Color         = Color.Lerp(col, Colors[Nez.Random.NextInt(Colors.Length)],
-                                               Nez.Random.Range(0f, 0.3f))
+                    Height        = DZ.Nez.Random.Range(10, 80),
+                    TopAlpha      = DZ.Nez.Random.Range(0.3f, 0.8f),
+                    BottomAlpha   = DZ.Nez.Random.Range(0.5f, 1f),
+                    SineOffset    = DZ.Nez.Random.NextFloat() * MathF.PI * 2f,
+                    Color         = Color.Lerp(col, Colors[DZ.Nez.Random.NextInt(Colors.Length)],
+                                               DZ.Nez.Random.Range(0f, 0.3f))
                 });
-                texOff += Nez.Random.Range(0.02f, 0.2f);
+                texOff += DZ.Nez.Random.Range(0.02f, 0.2f);
                 pos    += new Vector2(
-                    Nez.Random.Range(4, 20),
-                    Nez.Random.Range(-15, 15));
+                    DZ.Nez.Random.Range(4, 20),
+                    DZ.Nez.Random.Range(-15, 15));
             }
         }
     }
@@ -119,7 +119,7 @@ public class NorthernLights : Nez.Component, IUpdatable
         for (int i = 0; i < 3; i++)
         {
             var s = new Strand();
-            s.Reset(Nez.Random.NextFloat());
+            s.Reset(DZ.Nez.Random.NextFloat());
             _strands.Add(s);
         }
 
@@ -127,9 +127,9 @@ public class NorthernLights : Nez.Component, IUpdatable
         {
             _particles[i] = new Particle
             {
-                Position = new Vector2(Nez.Random.Range(0, 320), Nez.Random.Range(0, 180)),
-                Speed    = Nez.Random.Range(4f, 14f),
-                Color    = Colors[Nez.Random.NextInt(Colors.Length)]
+                Position = new Vector2(DZ.Nez.Random.Range(0, 320), DZ.Nez.Random.Range(0, 180)),
+                Speed    = DZ.Nez.Random.Range(4f, 14f),
+                Color    = Colors[DZ.Nez.Random.NextInt(Colors.Length)]
             };
         }
     }

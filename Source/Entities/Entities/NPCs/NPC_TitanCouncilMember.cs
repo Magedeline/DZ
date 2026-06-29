@@ -1,4 +1,4 @@
-﻿using Celeste.Cutscenes;
+using Celeste.Cutscenes;
 
 namespace Celeste.NPCs
 {

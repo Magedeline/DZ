@@ -1,10 +1,10 @@
 schema: maggyhelper-map-meta-v1
-sid: Maggy/ASide/07_Hell
-baseKey: 07_Hell
+sid: Maggy/ASide/07_Inferno
+baseKey: 07_Inferno
 side: A
 modeIndex: 0
 isMainChapterEntry: true
-mainChapterSid: Maggy/ASide/07_Hell
+mainChapterSid: Maggy/ASide/07_Inferno
 showInChapterSelect: true
 
 MusicBySide:

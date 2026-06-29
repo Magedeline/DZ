@@ -1,4 +1,4 @@
-﻿namespace Celeste.NPCs
+namespace Celeste.NPCs
 {
     [Tracked(true)]
     [CustomEntity(ids: "DZ/NPC02_Magolor")]
@@ -137,6 +137,4 @@
         }
     }
 }
-
-
 

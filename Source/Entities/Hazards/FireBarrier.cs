@@ -1,9 +1,10 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
 using System.Linq;
-using KirbyCelesteStandalone.Entities.Player;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Hazards;
+namespace DZ.Entities.Hazards;
 
 /// <summary>
 /// A lava-gate barrier that is only lethal (and only solid) while the level is
@@ -19,7 +20,7 @@ namespace KirbyCelesteStandalone.Entities.Hazards;
 ///   <item>Deactivation particle burst is noted as a TODO.</item>
 /// </list>
 /// </summary>
-public class FireBarrier : Nez.Entity
+public class FireBarrier : DZ.Nez.Entity
 {
     // ── Geometry ──────────────────────────────────────────────────────────────
     private readonly float width;
@@ -79,8 +80,8 @@ public class FireBarrier : Nez.Entity
                     Vector2 pPos = Position + new Vector2(x + 2f, y + 2f);
                     // Add a tiny random jitter (±2 px).
                     pPos += new Vector2(
-                        Nez.Random.Range(-2f, 2f),
-                        Nez.Random.Range(-2f, 2f));
+                        DZ.Nez.Random.Range(-2f, 2f),
+                        DZ.Nez.Random.Range(-2f, 2f));
                     float dir = (float)System.Math.Atan2(pPos.Y - centre.Y, pPos.X - centre.X);
                     // TODO: emit particles: FireBarrier_Deactivate at pPos facing dir
                 }

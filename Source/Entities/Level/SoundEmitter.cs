@@ -1,7 +1,9 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
+using Entity = DZ.Nez.Entity;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// One-shot ambient sound emitter that removes itself when the sound finishes.
@@ -18,7 +20,7 @@ namespace KirbyCelesteStandalone.Entities.Level;
 /// The emitter component is added to a new entity in the current scene.
 /// When the sound finishes playing the entity is automatically destroyed.
 /// </summary>
-public class SoundEmitter : Nez.Component, IUpdatable
+public class SoundEmitter : DZ.Nez.Component, IUpdatable
 {
     // -------------------------------------------------------------------------
     // Public
@@ -34,7 +36,7 @@ public class SoundEmitter : Nez.Component, IUpdatable
     // Private state
     // -------------------------------------------------------------------------
 
-    private readonly Nez.Entity? _followTarget;
+    private readonly DZ.Nez.Entity? _followTarget;
     private readonly Vector2     _offset;
 
     // Simple duration timer as a proxy for "is playing" when no audio system exists
@@ -50,7 +52,7 @@ public class SoundEmitter : Nez.Component, IUpdatable
     /// </summary>
     public static SoundEmitter Play(string sfx)
     {
-        var entity  = new Nez.Entity("SoundEmitter");
+        var entity  = new DZ.Nez.Entity("SoundEmitter");
         var emitter = new SoundEmitter(sfx);
         entity.AddComponent(emitter);
 
@@ -61,9 +63,9 @@ public class SoundEmitter : Nez.Component, IUpdatable
     /// <summary>
     /// Creates a sound emitter that follows <paramref name="follow"/>.
     /// </summary>
-    public static SoundEmitter Play(string sfx, Nez.Entity follow, Vector2 offset = default)
+    public static SoundEmitter Play(string sfx, DZ.Nez.Entity follow, Vector2 offset = default)
     {
-        var entity  = new Nez.Entity("SoundEmitter");
+        var entity  = new DZ.Nez.Entity("SoundEmitter");
         var emitter = new SoundEmitter(sfx, follow, offset);
         entity.AddComponent(emitter);
 
@@ -81,7 +83,7 @@ public class SoundEmitter : Nez.Component, IUpdatable
         // TODO: play sound event: sfx at Entity.Position
     }
 
-    public SoundEmitter(string sfx, Nez.Entity follow, Vector2 offset)
+    public SoundEmitter(string sfx, DZ.Nez.Entity follow, Vector2 offset)
     {
         SfxEvent      = sfx;
         _followTarget = follow;

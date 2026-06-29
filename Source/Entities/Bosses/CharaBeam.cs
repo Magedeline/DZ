@@ -1,14 +1,16 @@
-﻿using Microsoft.Xna.Framework;
-using Nez;
-using Nez.Sprites;
+using Microsoft.Xna.Framework;
+using DZ.Nez;
+using Entity = DZ.Nez.Entity;
+using Component = DZ.Nez.Component;
+using Collider = DZ.Nez.Collider;
+using BoxCollider = DZ.Nez.BoxCollider;
+using DZ.Nez.Sprites;
 using System;
 using System.Collections;
-using KirbyCelesteStandalone.Core;
-using KirbyCelesteStandalone.Entities.Player;
-using Entity = Nez.Entity;
-using Component = Nez.Component;
+using DZ.Core;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Bosses;
+namespace DZ.Entities.Bosses;
 
 /// <summary>
 /// Chara's laser beam attack - sweeps across the arena.
@@ -98,7 +100,7 @@ public class CharaBeam
         Entity.AddComponent(new BeamUpdateComponent(this));
 
         // Play beam sound
-        KirbyGame.Audio.PlaySfx("event:/pusheen/game/boss/chara_beam_fire");
+        DZGame.Audio.PlaySfx("event:/pusheen/game/boss/chara_beam_fire");
     }
 
     public void Update()
@@ -203,7 +205,7 @@ public class CharaBeam
         if (Entity != null)
         {
             // Stop beam sound
-            KirbyGame.Audio.PlaySfx("event:/pusheen/game/boss/chara_beam_stop");
+            DZGame.Audio.PlaySfx("event:/pusheen/game/boss/chara_beam_stop");
 
             Entity.Destroy();
             Entity = null;

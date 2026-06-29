@@ -1,4 +1,4 @@
-﻿using Celeste.Cutscenes;
+using Celeste.Cutscenes;
 
 namespace Celeste.NPCs;
     [Tracked(true)]
@@ -128,8 +128,4 @@ namespace Celeste.NPCs;
         Scene.Remove(this);
     }
 }
-
-
-
-
 

@@ -1,8 +1,8 @@
 using Microsoft.Xna.Framework;
-using Nez;
-using KirbyCelesteStandalone.Entities.Core;
+using DZ.Nez;
+using DZ.Entities.Core;
 
-namespace KirbyCelesteStandalone.Entities.Movement;
+namespace DZ.Entities.Movement;
 
 /// <summary>
 /// Port of Celeste's ClutterBlockBase.cs.

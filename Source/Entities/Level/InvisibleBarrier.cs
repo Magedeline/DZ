@@ -1,9 +1,10 @@
 using Microsoft.Xna.Framework;
-using Nez;
-using KirbyCelesteStandalone.Entities.Core;
-using KirbyCelesteStandalone.Entities.Player;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
+using DZ.Entities.Core;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Port of Celeste's InvisibleBarrier.cs.

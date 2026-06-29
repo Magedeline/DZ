@@ -1,10 +1,13 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Entity = DZ.Nez.Entity;
+using Collider = DZ.Nez.Collider;
+using Camera = DZ.Nez.Camera;
 using System;
 using System.Linq;
-using KirbyCelesteStandalone.Entities.Player;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Enemies;
+namespace DZ.Entities.Enemies;
 
 /// <summary>
 /// Player-controlled Seeker entity used in the Mirror Temple void sequence.
@@ -14,7 +17,7 @@ namespace KirbyCelesteStandalone.Entities.Enemies;
 /// stick. Pressing Dash triggers a high-speed lunge in the aimed direction.
 /// The intro plays an un-hatching animation before control is granted.
 /// </summary>
-public class PlayerSeeker : Nez.Component, IUpdatable
+public class PlayerSeeker : DZ.Nez.Component, IUpdatable
 {
     // -------------------------------------------------------------------------
     // Constants

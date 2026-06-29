@@ -62,10 +62,10 @@ namespace Celeste.Cutscenes {
             Cs08CharaBossIntro cs08CharaBossIntro = this;
             cs08CharaBossIntro.Add((Component)new Coroutine(cs08CharaBossIntro.Level.ZoomTo(new Vector2(170f, 110f), 2f, 1f)));
             Audio.Play("event:/char/badeline/boss_prefight_getup", cs08CharaBossIntro.CharaBoss.Position);
-            if (cs08CharaBossIntro.CharaBoss.NormalSprite is global::Celeste.PlayerSprite normalSprite && normalSprite.Has("pretendDead")) {
+            if (cs08CharaBossIntro.CharaBoss.NormalSprite is Sprite normalSprite && normalSprite.Has("pretendDead")) {
                 normalSprite.Play("pretendDead");
             }
-            if (cs08CharaBossIntro.CharaBoss.NormalSprite is global::Celeste.PlayerSprite normalSprite2) {
+            if (cs08CharaBossIntro.CharaBoss.NormalSprite is Sprite normalSprite2) {
                 normalSprite2.Play("fallSlow");
                 normalSprite2.Scale.X = -1f;
             }
@@ -99,7 +99,7 @@ namespace Celeste.Cutscenes {
 
             if (this.CharaBoss != null) {
                 this.CharaBoss.Position = this.charabossEndPosition;
-                if (this.CharaBoss.NormalSprite is global::Celeste.PlayerSprite normalSprite) {
+                if (this.CharaBoss.NormalSprite is Sprite normalSprite) {
                     normalSprite.Scale.X = -1f;
                     if (normalSprite.Has("angry"))
                         normalSprite.Play("angry");

@@ -1,10 +1,11 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
 using System;
-using KirbyCelesteStandalone.Entities.Core;
-using KirbyCelesteStandalone.Entities.Player;
+using DZ.Entities.Core;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Movement;
+namespace DZ.Entities.Movement;
 
 /// <summary>
 /// Port of Celeste's MovingPlatform.cs.

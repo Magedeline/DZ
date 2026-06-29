@@ -1,14 +1,17 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
+using Collider = DZ.Nez.Collider;
+using BoxCollider = DZ.Nez.BoxCollider;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using KirbyCelesteStandalone.Entities.Player;
-using KirbyCelesteStandalone.Entities.Core;
-using KirbyCelesteStandalone.Entities.Collectibles;
-using Key = KirbyCelesteStandalone.Entities.Collectibles.Key;
+using DZ.Entities.Player;
+using DZ.Entities.Core;
+using DZ.Entities.Collectibles;
+using Key = DZ.Entities.Collectibles.Key;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Port of Celeste's LockBlock.cs.
@@ -144,7 +147,7 @@ public class LockBlock : CelesteSolid
     private bool CheckLineOfSightBlocked(Vector2 from, Vector2 to)
     {
         // Simple line of sight check - cast ray
-        var raycastHit = Nez.Physics.Linecast(from, to);
+        var raycastHit = DZ.Nez.Physics.Linecast(from, to);
         return raycastHit.Collider != null;
     }
 

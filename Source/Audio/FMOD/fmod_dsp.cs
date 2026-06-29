@@ -45,7 +45,6 @@ namespace FMOD
         ROTATION_NOT_BIASED = 1,
     }
 
-
     /*
         DSP callbacks
     */
@@ -68,7 +67,6 @@ namespace FMOD
     public delegate RESULT DSP_SYSTEM_DEREGISTER_CALLBACK       (ref DSP_STATE dsp_state);
     public delegate RESULT DSP_SYSTEM_MIX_CALLBACK              (ref DSP_STATE dsp_state, int stage);
 
-
     /*
         DSP functions
     */
@@ -90,7 +88,6 @@ namespace FMOD
     public delegate RESULT DSP_PAN_SUMMONOTOSURROUNDMATRIX_FUNC   (ref DSP_STATE dsp_state, int targetSpeakerMode, float direction, float extent, float lowFrequencyGain, float overallGain, int matrixHop, IntPtr matrix);
     public delegate RESULT DSP_PAN_SUMSTEREOTOSURROUNDMATRIX_FUNC (ref DSP_STATE dsp_state, int targetSpeakerMode, float direction, float extent, float rotation, float lowFrequencyGain, float overallGain, int matrixHop, IntPtr matrix);
     public delegate RESULT DSP_PAN_GETROLLOFFGAIN_FUNC            (ref DSP_STATE dsp_state, DSP_PAN_3D_ROLLOFF_TYPE rolloff, float distance, float mindistance, float maxdistance, out float gain);
-
 
     public enum DSP_TYPE : int
     {
@@ -164,7 +161,6 @@ namespace FMOD
         public DSP_PARAMETER_FLOAT_MAPPING_TYPE type;
         public DSP_PARAMETER_FLOAT_MAPPING_PIECEWISE_LINEAR piecewiselinearmapping;
     }
-
 
     [StructLayout(LayoutKind.Sequential)]
     public struct DSP_PARAMETER_DESC_FLOAT
@@ -749,14 +745,12 @@ namespace FMOD
         DOMINANT_FREQ
     }
 
-
     public enum DSP_LOUDNESS_METER : int
     {
         STATE,
         WEIGHTING,
         INFO
     }
-
 
     public enum DSP_LOUDNESS_METER_STATE_TYPE : int
     {

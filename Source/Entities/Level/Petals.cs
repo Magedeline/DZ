@@ -1,8 +1,9 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Camera = DZ.Nez.Camera;
 using System;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Falling cherry-blossom petal background effect.
@@ -12,7 +13,7 @@ namespace KirbyCelesteStandalone.Entities.Level;
 /// virtual viewport (slightly larger than the 320×180 camera) so they appear
 /// seamlessly even with camera movement.
 /// </summary>
-public class Petals : Nez.Component, IUpdatable
+public class Petals : DZ.Nez.Component, IUpdatable
 {
     // -------------------------------------------------------------------------
     // Colour palette
@@ -114,12 +115,12 @@ public class Petals : Nez.Component, IUpdatable
     {
         _petals[i] = new Petal
         {
-            Position        = new Vector2(Nez.Random.Range(0, 352), Nez.Random.Range(0, 212)),
-            Speed           = Nez.Random.Range(6f, 16f),
-            Spin            = Nez.Random.Range(8f, 12f) * 0.2f,
-            MaxRotate       = Nez.Random.Range(0.3f, 0.6f) * MathF.PI * 0.5f,
-            ColorIndex      = Nez.Random.NextInt(Colors.Length),
-            RotationCounter = Nez.Random.NextAngle()
+            Position        = new Vector2(DZ.Nez.Random.Range(0, 352), DZ.Nez.Random.Range(0, 212)),
+            Speed           = DZ.Nez.Random.Range(6f, 16f),
+            Spin            = DZ.Nez.Random.Range(8f, 12f) * 0.2f,
+            MaxRotate       = DZ.Nez.Random.Range(0.3f, 0.6f) * MathF.PI * 0.5f,
+            ColorIndex      = DZ.Nez.Random.NextInt(Colors.Length),
+            RotationCounter = DZ.Nez.Random.NextAngle()
         };
     }
 

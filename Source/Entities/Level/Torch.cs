@@ -1,9 +1,12 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Entity = DZ.Nez.Entity;
+using Collider = DZ.Nez.Collider;
+using BoxCollider = DZ.Nez.BoxCollider;
 using System;
-using KirbyCelesteStandalone.Entities.Player;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Lit/unlit torch that the player activates by touching.
@@ -13,7 +16,7 @@ namespace KirbyCelesteStandalone.Entities.Level;
 /// the lit colour, emit particles, and remember their state via a session flag
 /// so they remain lit after room transitions.
 /// </summary>
-public class Torch : Nez.Component, IUpdatable
+public class Torch : DZ.Nez.Component, IUpdatable
 {
     // -------------------------------------------------------------------------
     // Constants

@@ -1,10 +1,12 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Entity = DZ.Nez.Entity;
+using Collider = DZ.Nez.Collider;
 using System;
 using System.Linq;
-using KirbyCelesteStandalone.Entities.Player;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Enemies;
+namespace DZ.Entities.Enemies;
 
 /// <summary>
 /// Bird that flings / carries the player through a set of waypoint nodes in a
@@ -18,7 +20,7 @@ namespace KirbyCelesteStandalone.Entities.Enemies;
 /// callback fires, locking player movement and driving the bird along its node
 /// path via a manual Bezier curve lerp each segment.
 /// </summary>
-public class FlingBirdIntro : Nez.Component, IUpdatable
+public class FlingBirdIntro : DZ.Nez.Component, IUpdatable
 {
     // -------------------------------------------------------------------------
     // Public state

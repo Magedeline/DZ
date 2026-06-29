@@ -1,10 +1,10 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
 using System;
-using KirbyCelesteStandalone.Core;
-using KirbyCelesteStandalone.Entities.Core;
+using DZ.Core;
+using DZ.Entities.Core;
 
-namespace KirbyCelesteStandalone.Entities.Movement;
+namespace DZ.Entities.Movement;
 
 // ── State enum ─────────────────────────────────────────────────────────────────
 

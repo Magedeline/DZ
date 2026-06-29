@@ -1,9 +1,10 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
 using System.Collections;
-using KirbyCelesteStandalone.Entities.Player;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Port of Celeste's Trapdoor.cs.
@@ -19,7 +20,7 @@ namespace KirbyCelesteStandalone.Entities.Level;
 ///
 /// Sprite loading is TODO.  Current implementation uses a placeholder grey rect.
 /// </summary>
-public class Trapdoor : Nez.Entity
+public class Trapdoor : DZ.Nez.Entity
 {
     // ── Dimensions ────────────────────────────────────────────────────────────
 

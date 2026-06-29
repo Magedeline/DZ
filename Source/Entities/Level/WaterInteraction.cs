@@ -1,6 +1,7 @@
-using Nez;
+using DZ.Nez;
+using Entity = DZ.Nez.Entity;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Marker component attached to any entity that should interact with
@@ -8,7 +9,7 @@ namespace KirbyCelesteStandalone.Entities.Level;
 ///
 /// Attach to the player or any other swimming entity.
 /// </summary>
-public class WaterInteraction : Nez.Component
+public class WaterInteraction : DZ.Nez.Component
 {
     /// <summary>
     /// When positive the entity recently left the water and is dripping.

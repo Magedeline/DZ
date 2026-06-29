@@ -1,13 +1,15 @@
 using Microsoft.Xna.Framework;
-using Nez;
-using KirbyCelesteStandalone.Entities.Player;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
+using Entity = DZ.Nez.Entity;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Port of Celeste's ClimbBlocker.cs.
 ///
-/// A non-active, non-visible <see cref="Nez.Component"/> that signals the player
+/// A non-active, non-visible <see cref="DZ.Nez.Component"/> that signals the player
 /// system that the owning entity cannot be wall-climbed.
 ///
 /// When <see cref="Edge"/> is <c>true</c> it also blocks the player from
@@ -18,10 +20,10 @@ namespace KirbyCelesteStandalone.Entities.Level;
 ///   myEntity.AddComponent(new ClimbBlocker(edge: false));
 /// </code>
 ///
-/// The player's climbing logic should call <see cref="Check(Nez.Scene, Nez.Entity)"/>
+/// The player's climbing logic should call <see cref="Check(DZ.Nez.Scene, DZ.Nez.Entity)"/>
 /// each frame to determine whether the wall in front of it is climbable.
 /// </summary>
-public class ClimbBlocker : Nez.Component
+public class ClimbBlocker : DZ.Nez.Component
 {
     // ── State ─────────────────────────────────────────────────────────────────
 
@@ -53,7 +55,7 @@ public class ClimbBlocker : Nez.Component
     /// Returns <c>true</c> if <paramref name="entity"/> overlaps any active
     /// <see cref="ClimbBlocker"/> in <paramref name="scene"/>.
     /// </summary>
-    public static bool Check(Nez.Scene scene, Nez.Entity entity)
+    public static bool Check(DZ.Nez.Scene scene, DZ.Nez.Entity entity)
     {
         for (int _cbi = 0; _cbi < scene.Entities.Count; _cbi++)
         {
@@ -71,7 +73,7 @@ public class ClimbBlocker : Nez.Component
     /// Returns <c>true</c> if <paramref name="entity"/> overlaps any active
     /// <see cref="ClimbBlocker"/> when placed at <paramref name="at"/>.
     /// </summary>
-    public static bool Check(Nez.Scene scene, Nez.Entity entity, Vector2 at)
+    public static bool Check(DZ.Nez.Scene scene, DZ.Nez.Entity entity, Vector2 at)
     {
         Vector2 orig = entity.Position;
         entity.Position = at;
@@ -84,7 +86,7 @@ public class ClimbBlocker : Nez.Component
     /// Returns <c>true</c> if any <see cref="Edge"/>-marked blocker is touched
     /// when <paramref name="player"/> moves <paramref name="dir"/> pixels on X.
     /// </summary>
-    public static bool EdgeCheck(Nez.Scene scene, Nez.Entity entity, int dir)
+    public static bool EdgeCheck(DZ.Nez.Scene scene, DZ.Nez.Entity entity, int dir)
     {
         for (int _cbj = 0; _cbj < scene.Entities.Count; _cbj++)
         {
@@ -101,10 +103,10 @@ public class ClimbBlocker : Nez.Component
 
     // ── AABB helpers ──────────────────────────────────────────────────────────
 
-    private static bool Overlaps(Nez.Entity a, Nez.Entity b)
+    private static bool Overlaps(DZ.Nez.Entity a, DZ.Nez.Entity b)
     {
-        var colA = a.GetComponent<Nez.Collider>();
-        var colB = b.GetComponent<Nez.Collider>();
+        var colA = a.GetComponent<DZ.Nez.Collider>();
+        var colB = b.GetComponent<DZ.Nez.Collider>();
         if (colA == null || colB == null) return false;
 
         var ra = new Microsoft.Xna.Framework.Rectangle(
@@ -117,7 +119,7 @@ public class ClimbBlocker : Nez.Component
         return ra.Intersects(rb);
     }
 
-    private static bool OverlapsAt(Nez.Entity a, Vector2 aPos, Nez.Entity b)
+    private static bool OverlapsAt(DZ.Nez.Entity a, Vector2 aPos, DZ.Nez.Entity b)
     {
         Vector2 orig = a.Position;
         a.Position = aPos;

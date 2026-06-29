@@ -1730,7 +1730,6 @@ namespace FMOD
         #endregion
     }
 
-
     /*
         'Sound' API.
     */

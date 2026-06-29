@@ -1,9 +1,10 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
 using System;
-using KirbyCelesteStandalone.Entities.Core;
+using DZ.Entities.Core;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Port of Celeste's WaterFall.cs.
@@ -19,7 +20,7 @@ namespace KirbyCelesteStandalone.Entities.Level;
 ///
 /// Audio and displacement rendering are TODO.
 /// </summary>
-public class WaterFall : Nez.Entity
+public class WaterFall : DZ.Nez.Entity
 {
     // ── State ─────────────────────────────────────────────────────────────────
 

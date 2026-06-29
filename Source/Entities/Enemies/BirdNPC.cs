@@ -1,10 +1,11 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Entity = DZ.Nez.Entity;
 using System;
 using System.Linq;
-using KirbyCelesteStandalone.Entities.Player;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Enemies;
+namespace DZ.Entities.Enemies;
 
 /// <summary>
 /// Bird NPC with path following, tutorial guidance, and flee-on-approach behaviour.
@@ -16,7 +17,7 @@ namespace KirbyCelesteStandalone.Entities.Enemies;
 ///   <see cref="BirdMode.FlyAway"/>    – waits until player approaches, then startles and flies off.
 ///   <see cref="BirdMode.Sleeping"/>   – plays sleep animation, ignores player.
 /// </summary>
-public class BirdNPC : Nez.Component, IUpdatable
+public class BirdNPC : DZ.Nez.Component, IUpdatable
 {
     // -------------------------------------------------------------------------
     // Public types
@@ -168,7 +169,7 @@ public class BirdNPC : Nez.Component, IUpdatable
         _peckTimer -= dt;
         if (_peckTimer <= 0f)
         {
-            _peckTimer = 1f + Nez.Random.NextFloat() * 2f;
+            _peckTimer = 1f + DZ.Nez.Random.NextFloat() * 2f;
             // TODO: play "peck" animation
             // TODO: play sound: event:/game/general/bird_peck
         }

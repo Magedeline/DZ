@@ -1,15 +1,15 @@
-﻿using Microsoft.Xna.Framework;
-using Nez;
-using Nez.Sprites;
-using static Nez.Time;
+using Microsoft.Xna.Framework;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
+using Entity = DZ.Nez.Entity;
+using DZ.Nez.Sprites;
+using static DZ.Nez.Time;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using KirbyCelesteStandalone.Core;
-using Entity = Nez.Entity;
-using Scene = Nez.Scene;
+using DZ.Core;
 
-namespace KirbyCelesteStandalone.Entities.Bosses;
+namespace DZ.Entities.Bosses;
 
 /// <summary>
 /// Asriel God of Hyperdeath boss - ported from your mod!
@@ -18,7 +18,7 @@ namespace KirbyCelesteStandalone.Entities.Bosses;
 /// Shows the key differences between Everest Entity and Nez Entity system.
 ///
 /// Original: Celeste.Mod.MaggyHelper.AsrielGodBoss (Celeste Entity)
-/// New: KirbyCelesteStandalone.Entities.Bosses.AsrielGodBoss (Nez Component)
+/// New: DZ.Entities.Bosses.AsrielGodBoss (Nez Component)
 /// </summary>
 public class AsrielGodBoss : BossBase
 {
@@ -77,7 +77,7 @@ public class AsrielGodBoss : BossBase
         base.OnSpawn();
 
         // Play dramatic music
-        KirbyGame.Audio.PlayMusic("event:/pusheen/music/boss/asriel_phase1", fadeIn: true);
+        DZGame.Audio.PlayMusic("event:/pusheen/music/boss/asriel_phase1", fadeIn: true);
 
         // Create wing effect
         CreateWingEntity();
@@ -199,7 +199,7 @@ public class AsrielGodBoss : BossBase
             StateTimer = 4f;
 
             // Change music
-            KirbyGame.Audio.PlayMusic("event:/pusheen/music/boss/asriel_phase2");
+            DZGame.Audio.PlayMusic("event:/pusheen/music/boss/asriel_phase2");
         }
         // Phase 3 at 33% health
         else if (healthPercent <= 0.33f && !_hasTransformedToPhase3)
@@ -209,7 +209,7 @@ public class AsrielGodBoss : BossBase
             StateTimer = 5f;
 
             // Change to final music
-            KirbyGame.Audio.PlayMusic("event:/pusheen/music/boss/asriel_phase3_final");
+            DZGame.Audio.PlayMusic("event:/pusheen/music/boss/asriel_phase3_final");
         }
     }
 
@@ -259,7 +259,7 @@ public class AsrielGodBoss : BossBase
         }
 
         // Pick one
-        int chosen = possibleAttacks[Nez.Random.NextInt(possibleAttacks.Count)];
+        int chosen = possibleAttacks[DZ.Nez.Random.NextInt(possibleAttacks.Count)];
         ExecuteAttack(chosen);
 
         // Set attack duration
@@ -322,7 +322,7 @@ public class AsrielGodBoss : BossBase
 
         // Tween upward
         // Entity.TweenPositionTo(ArenaCenter, 2f)
-        //     .SetEaseType(Nez.EaseType.ExpoOut)
+        //     .SetEaseType(DZ.Nez.EaseType.ExpoOut)
     }
 
     private void PlayChargeEffect()
@@ -373,14 +373,14 @@ public class AsrielGodBoss : BossBase
             var asriel = (AsrielGodBoss)boss;
 
             // Play attack sound
-            KirbyGame.Audio.PlaySfx("event:/pusheen/game/boss/asriel/star_shower");
+            DZGame.Audio.PlaySfx("event:/pusheen/game/boss/asriel/star_shower");
 
             // Spawn falling stars
             int starCount = asriel.PhaseIndex >= 3 ? 8 : 5;
 
             for (int i = 0; i < starCount; i++)
             {
-                float xOffset = Nez.Random.NextFloat(200) - 100;
+                float xOffset = DZ.Nez.Random.NextFloat(200) - 100;
                 var star = boss.Entity.Scene.CreateEntity($"star_{i}");
                 star.Position = new Vector2(
                     boss.Entity.Position.X + xOffset,
@@ -409,15 +409,15 @@ public class AsrielGodBoss : BossBase
             var asriel = (AsrielGodBoss)boss;
 
             // Play sound
-            KirbyGame.Audio.PlaySfx("event:/pusheen/game/boss/asriel/chaos_saber");
+            DZGame.Audio.PlaySfx("event:/pusheen/game/boss/asriel/chaos_saber");
 
             // Spawn saber projectiles that sweep across
             // Left to right then right to left
-            bool leftToRight = Nez.Random.Chance(50);
+            bool leftToRight = DZ.Nez.Random.Chance(50);
 
             for (int i = 0; i < 3; i++)
             {
-                Nez.Core.Schedule(i * 0.5f, _ =>
+                DZ.Nez.Core.Schedule(i * 0.5f, _ =>
                 {
                     var saber = boss.Entity.Scene.CreateEntity("chaos_saber");
                     saber.Position = boss.Entity.Position;
@@ -442,7 +442,7 @@ public class AsrielGodBoss : BossBase
         public override void Execute(BossBase boss)
         {
             // Ultimate attack - only in phase 3
-            KirbyGame.Audio.PlaySfx("event:/pusheen/game/boss/asriel/hyper_goner");
+            DZGame.Audio.PlaySfx("event:/pusheen/game/boss/asriel/hyper_goner");
 
             // Large energy beam that fills the arena
             var goner = boss.Entity.Scene.CreateEntity("hyper_goner_beam");
@@ -465,7 +465,7 @@ public class AsrielGodBoss : BossBase
         public override void Execute(BossBase boss)
         {
             // Quick fireballs at player
-            KirbyGame.Audio.PlaySfx("event:/pusheen/game/boss/asriel/fire_magic");
+            DZGame.Audio.PlaySfx("event:/pusheen/game/boss/asriel/fire_magic");
 
             for (int i = 0; i < 3; i++)
             {

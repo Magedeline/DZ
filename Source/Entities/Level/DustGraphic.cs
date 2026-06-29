@@ -1,10 +1,12 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Entity = DZ.Nez.Entity;
+using Component = DZ.Nez.Component;
 using System;
 using System.Collections.Generic;
-using KirbyCelesteStandalone.Entities.Player;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Animated dust creature / dust-hazard visual component.
@@ -15,7 +17,7 @@ namespace KirbyCelesteStandalone.Entities.Level;
 /// registers a <see cref="DustEdge"/> callback so the dust renderer can collect
 /// and sort all dust visuals.
 /// </summary>
-public class DustGraphic : Nez.Component, IUpdatable
+public class DustGraphic : DZ.Nez.Component, IUpdatable
 {
     // -------------------------------------------------------------------------
     // Public
@@ -115,17 +117,17 @@ public class DustGraphic : Nez.Component, IUpdatable
         _autoControlEyes = autoControlEyes;
         _autoExpandDust  = autoExpandDust;
 
-        _offset = Nez.Random.NextFloat() * 4f;
-        _timer  = Nez.Random.NextFloat();
+        _offset = DZ.Nez.Random.NextFloat() * 4f;
+        _timer  = DZ.Nez.Random.NextFloat();
 
         EyeTargetDirection = EyeDirection =
-            new Vector2(MathF.Cos(Nez.Random.NextFloat() * MathF.PI * 2f),
-                        MathF.Sin(Nez.Random.NextFloat() * MathF.PI * 2f));
+            new Vector2(MathF.Cos(DZ.Nez.Random.NextFloat() * MathF.PI * 2f),
+                        MathF.Sin(DZ.Nez.Random.NextFloat() * MathF.PI * 2f));
 
         if (autoControlEyes)
         {
-            _eyesExist      = Nez.Random.Chance(0.5f);
-            _eyesFollowPlayer = Nez.Random.Chance(0.3f);
+            _eyesExist      = DZ.Nez.Random.Chance(0.5f);
+            _eyesFollowPlayer = DZ.Nez.Random.Chance(0.3f);
         }
         else
         {
@@ -133,7 +135,7 @@ public class DustGraphic : Nez.Component, IUpdatable
         }
 
         // Blink timing
-        _blinkInterval = Nez.Random.Range(2f, 5f);
+        _blinkInterval = DZ.Nez.Random.Range(2f, 5f);
     }
 
     // -------------------------------------------------------------------------
@@ -169,8 +171,8 @@ public class DustGraphic : Nez.Component, IUpdatable
                 _shakeValue = Vector2.Zero;
             else if (Entity?.Scene != null && (int)(Time.TotalTime / 0.05f) !=
                                              (int)((Time.TotalTime - dt) / 0.05f))
-                _shakeValue = new Vector2(Nez.Random.Range(-1f, 1f),
-                                          Nez.Random.Range(-1f, 1f));
+                _shakeValue = new Vector2(DZ.Nez.Random.Range(-1f, 1f),
+                                          DZ.Nez.Random.Range(-1f, 1f));
         }
 
         // Eyes
@@ -205,7 +207,7 @@ public class DustGraphic : Nez.Component, IUpdatable
             if (_blinkTimer >= _blinkInterval)
             {
                 _blinkTimer    = 0f;
-                _blinkInterval = Nez.Random.Range(2f, 5f);
+                _blinkInterval = DZ.Nez.Random.Range(2f, 5f);
                 _leftEyeVisible  = false;
                 _rightEyeVisible = false;
                 // TODO: schedule re-show after ~0.1 s using a coroutine or timer

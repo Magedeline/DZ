@@ -158,7 +158,7 @@ namespace DZ.Entities
             }
 
             // Remove if off screen
-            Level level = Scene as Level;
+            global::Celeste.Level level = Scene as global::Celeste.Level;
             if (level != null)
             {
                 if (X < level.Bounds.Left - width - 64f || X > level.Bounds.Right + 64f)
@@ -170,7 +170,7 @@ namespace DZ.Entities
 
         private void EmitParticles()
         {
-            Level level = Scene as Level;
+            global::Celeste.Level level = Scene as global::Celeste.Level;
             if (level == null) return;
 
             Vector2 particlePos = Position + new Vector2(width / 2f, height / 2f);
@@ -201,7 +201,7 @@ namespace DZ.Entities
             player.Die(direction * 100f);
             
             // Visual effect
-            Level level = Scene as Level;
+            global::Celeste.Level level = Scene as global::Celeste.Level;
             if (level != null)
             {
                 level.Shake(0.3f);

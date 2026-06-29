@@ -1,8 +1,10 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Entity = DZ.Nez.Entity;
+using Component = DZ.Nez.Component;
 using System;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Dynamic vertex light component.  Ported from Celeste's VertexLight.cs.
@@ -14,7 +16,7 @@ namespace KirbyCelesteStandalone.Entities.Level;
 /// Optional spotlight mode narrows the light to a cone defined by
 /// <see cref="SpotlightDirection"/> and <see cref="SpotlightPush"/>.
 /// </summary>
-public class VertexLight : Nez.Component, IUpdatable
+public class VertexLight : DZ.Nez.Component, IUpdatable
 {
     // -------------------------------------------------------------------------
     // Public state
@@ -173,7 +175,7 @@ public class VertexLight : Nez.Component, IUpdatable
 // ---------------------------------------------------------------------------
 
 /// <summary>Manual pulse tween for <see cref="VertexLight"/> radii.</summary>
-public class PulseTween : Nez.Component, IUpdatable
+public class PulseTween : DZ.Nez.Component, IUpdatable
 {
     private readonly VertexLight _light;
     private readonly float _startA, _startB, _endA, _endB, _duration;
@@ -203,7 +205,7 @@ public class PulseTween : Nez.Component, IUpdatable
 }
 
 /// <summary>Manual fade-in tween for <see cref="VertexLight.Alpha"/>.</summary>
-public class FadeInTween : Nez.Component, IUpdatable
+public class FadeInTween : DZ.Nez.Component, IUpdatable
 {
     private readonly VertexLight _light;
     private readonly float _from, _to, _duration;

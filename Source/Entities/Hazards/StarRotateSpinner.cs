@@ -1,8 +1,8 @@
 using Microsoft.Xna.Framework;
-using Nez;
-using KirbyCelesteStandalone.Entities.Player;
+using DZ.Nez;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Hazards;
+namespace DZ.Entities.Hazards;
 
 /// <summary>
 /// A moon-blade / star spinner that orbits a pivot point, cycling through three
@@ -33,7 +33,7 @@ public class StarRotateSpinner : RotateSpinner
     public StarRotateSpinner(Vector2 position, Vector2 pivotCenter, bool clockwise)
         : base(position, pivotCenter, clockwise)
     {
-        colorID = Nez.Random.Range(0, ColorCount);
+        colorID = DZ.Nez.Random.Range(0, ColorCount);
         Name    = "StarRotateSpinner";
         // TODO: load sprite: moonBlade — play animation "idle{colorID}"
     }

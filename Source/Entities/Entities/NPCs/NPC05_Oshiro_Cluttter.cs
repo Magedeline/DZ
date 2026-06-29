@@ -1,11 +1,11 @@
-﻿using Celeste.Cutscenes;
+using Celeste.Cutscenes;
 using ModOshiroSprite = DZ.MaggyOshiroSprite;
 
 namespace Celeste.NPCs
 {
     [Tracked(true)]
     [CustomEntity(ids: "DZ/NPC05_Oshiro_Clutter")]
-    public class NPC05_Oshiro_Cluttter : NPC
+    public class NPC05_Oshiro_Clutter : NPC
     {
         public const string TalkFlagsA = "oshiro_clutter_";
         public const string TalkFlagsB = "oshiro_clutter_optional_";
@@ -38,7 +38,7 @@ namespace Celeste.NPCs
             }
         }
 
-        public NPC05_Oshiro_Cluttter(EntityData data, Vector2 offset)
+        public NPC05_Oshiro_Clutter(EntityData data, Vector2 offset)
             : base(data.Position + offset)
         {
             Add(Sprite = new ModOshiroSprite(-1));

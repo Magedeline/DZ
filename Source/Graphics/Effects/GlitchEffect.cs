@@ -4,6 +4,7 @@ namespace Celeste.Effects.ShaderEffects
     /// Applies glitch/corruption visual effects with randomized pixelation and RGB offset.
     /// Based on Glitch.fx shader from CelesteEffects.
     /// </summary>
+    [CustomBackdrop("DZ/GlitchEffect")]
     [HotReloadable]
     public class GlitchEffect : Backdrop
     {

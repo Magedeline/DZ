@@ -1,9 +1,9 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
 using System;
-using KirbyCelesteStandalone.Entities.Core;
+using DZ.Entities.Core;
 
-namespace KirbyCelesteStandalone.Entities.Movement;
+namespace DZ.Entities.Movement;
 
 /// <summary>
 /// Port of Celeste's RotatingPlatform.cs.

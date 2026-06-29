@@ -4,6 +4,7 @@ namespace Celeste.Effects.ShaderEffects
     /// Applies distortion, displacement, and chromatic aberration effects.
     /// Based on Distort.fx shader from CelesteEffects.
     /// </summary>
+    [CustomBackdrop("DZ/DistortionEffect")]
     [HotReloadable]
     public class DistortionEffect : Backdrop
     {

@@ -1,8 +1,9 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Entity = DZ.Nez.Entity;
 using System;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Component that renders a string of decorative cloth flags hung between two
@@ -12,7 +13,7 @@ namespace KirbyCelesteStandalone.Entities.Level;
 /// distance/8 units) with small coloured rectangles ("cloth") spaced along it.
 /// Each cloth piece has a slight secondary droop and sways with a sine timer.
 /// </summary>
-public class Flagline : Nez.Component, IUpdatable
+public class Flagline : DZ.Nez.Component, IUpdatable
 {
     // -------------------------------------------------------------------------
     // Nested types
@@ -67,7 +68,7 @@ public class Flagline : Nez.Component, IUpdatable
         _lineColor  = lineColor;
         _pinColor   = pinColor;
         _colors     = colors;
-        _waveTimer  = Nez.Random.NextFloat() * MathF.PI * 2f;
+        _waveTimer  = DZ.Nez.Random.NextFloat() * MathF.PI * 2f;
 
         _highlights = new Color[colors.Length];
         for (int i = 0; i < colors.Length; i++)
@@ -78,10 +79,10 @@ public class Flagline : Nez.Component, IUpdatable
         {
             _clothes[i] = new Cloth
             {
-                ColorIndex = Nez.Random.NextInt(colors.Length),
-                Height     = minFlagHeight + Nez.Random.NextInt(maxFlagHeight - minFlagHeight + 1),
-                Length     = minFlagLength + Nez.Random.NextInt(maxFlagLength - minFlagLength + 1),
-                Step       = minSpace      + Nez.Random.NextInt(maxSpace      - minSpace      + 1),
+                ColorIndex = DZ.Nez.Random.NextInt(colors.Length),
+                Height     = minFlagHeight + DZ.Nez.Random.NextInt(maxFlagHeight - minFlagHeight + 1),
+                Length     = minFlagLength + DZ.Nez.Random.NextInt(maxFlagLength - minFlagLength + 1),
+                Step       = minSpace      + DZ.Nez.Random.NextInt(maxSpace      - minSpace      + 1),
             };
         }
     }

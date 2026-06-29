@@ -1,8 +1,8 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
 using System;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// A single tile of a <see cref="Bridge"/>.
@@ -14,7 +14,7 @@ namespace KirbyCelesteStandalone.Entities.Level;
 /// The tile also acts as a JumpThru while it is still solid (before falling).
 /// Sprite rendering is TODO; for now draws a placeholder rectangle.
 /// </summary>
-public class BridgeTile : KirbyCelesteStandalone.Entities.Core.CelesteJumpThru
+public class BridgeTile : DZ.Entities.Core.CelesteJumpThru
 {
     // ── Tuning ────────────────────────────────────────────────────────────────
 
@@ -50,7 +50,7 @@ public class BridgeTile : KirbyCelesteStandalone.Entities.Core.CelesteJumpThru
         if (_falling) return;
         _falling       = true;
         _fallDelay     = delay;
-        _rotationSpeed = Nez.Random.Range(-3f, 3f);
+        _rotationSpeed = DZ.Nez.Random.Range(-3f, 3f);
         Collidable     = false;
     }
 

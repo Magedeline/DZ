@@ -1,9 +1,10 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
 using System;
-using KirbyCelesteStandalone.Entities.Core;
+using DZ.Entities.Core;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Port of Celeste's TempleCrackedBlock.cs.
@@ -70,7 +71,7 @@ public class TempleCrackedBlock : CelesteSolid
             for (int _tci = 0; _tci < Scene.Entities.Count; _tci++)
             {
                 var e = Scene.Entities[_tci];
-                if (e is KirbyCelesteStandalone.Entities.Player.MadelinePlayer p)
+                if (e is DZ.Entities.Player.MadelinePlayer p)
                 {
                     var pb = new RectangleF(
                         p.Position.X, p.Position.Y,

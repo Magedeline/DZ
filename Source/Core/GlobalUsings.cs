@@ -34,7 +34,6 @@ global using IngesteLogger = Celeste.Helpers.IngesteLogger;
 global using CelesteGame = Celeste.Celeste;
 global using CelesteBridge = Celeste.Bridge;
 global using CelesteDashBlock = Celeste.DashBlock;
-global using CelesteJumpThru = Celeste.JumpThru;
 global using CelesteNPC = Celeste.NPC;
 global using CelestePlayer = Celeste.Player;
 global using CelestePlayerSprite = Celeste.PlayerSprite;

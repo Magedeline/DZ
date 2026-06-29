@@ -1,10 +1,12 @@
 using Microsoft.Xna.Framework;
-using Nez;
-using KirbyCelesteStandalone.Entities.Core;
-using KirbyCelesteStandalone.Entities.Level;
-using LavaRect = KirbyCelesteStandalone.Entities.Level.LavaRect;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
+using DZ.Entities.Core;
+using DZ.Entities.Level;
+using LavaRect = DZ.Entities.Level.LavaRect;
+using CoreModeToggle = DZ.Entities.Level.CoreModeToggle;
 
-namespace KirbyCelesteStandalone.Entities.Movement;
+namespace DZ.Entities.Movement;
 
 /// <summary>
 /// Port of Celeste's IceBlock.cs.
@@ -19,7 +21,7 @@ namespace KirbyCelesteStandalone.Entities.Movement;
 /// When core mode switches away from Cold the block (and its inner solid)
 /// become non-collidable and emit deactivation particles.
 /// </summary>
-public class IceBlock : Nez.Entity
+public class IceBlock : DZ.Nez.Entity
 {
     // ── Ice colours ───────────────────────────────────────────────────────────
 
@@ -108,7 +110,7 @@ public class IceBlock : Nez.Entity
             for (int _ii = 0; _ii < Scene.Entities.Count; _ii++)
             {
                 var e = Scene.Entities[_ii];
-                if (e is KirbyCelesteStandalone.Entities.Player.MadelinePlayer player)
+                if (e is DZ.Entities.Player.MadelinePlayer player)
                 {
                     var bounds = new Microsoft.Xna.Framework.Rectangle(
                         (int)Position.X, (int)Position.Y, (int)_width, (int)_height);

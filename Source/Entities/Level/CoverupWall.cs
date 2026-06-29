@@ -1,10 +1,13 @@
-﻿using Microsoft.Xna.Framework;
-using Nez;
+using Microsoft.Xna.Framework;
+using DZ.Nez;
+using Entity = DZ.Nez.Entity;
+using Component = DZ.Nez.Component;
+using Collider = DZ.Nez.Collider;
+using BoxCollider = DZ.Nez.BoxCollider;
 using System;
-using KirbyCelesteStandalone.Entities.Core;
-using Component = Nez.Component;
+using DZ.Entities.Core;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Port of Celeste's CoverupWall.cs.
@@ -31,7 +34,7 @@ public class CoverupWall : Component
         _fillTile = tile;
         _width = width;
         _height = height;
-        // Depth = -13000; // TODO: Depth not available in Nez.Entity
+        // Depth = -13000; // TODO: Depth not available in DZ.Nez.Entity
     }
 
     // -------------------------------------------------------------------------

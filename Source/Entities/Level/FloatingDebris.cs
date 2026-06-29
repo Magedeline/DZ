@@ -1,9 +1,12 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Entity = DZ.Nez.Entity;
+using Collider = DZ.Nez.Collider;
+using BoxCollider = DZ.Nez.BoxCollider;
 using System;
-using KirbyCelesteStandalone.Entities.Player;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Decorative floating debris piece that bobs in place and gets knocked around
@@ -13,7 +16,7 @@ namespace KirbyCelesteStandalone.Entities.Level;
 /// and slowly rotates.  When pushed, it drifts away from the contact point
 /// then gradually floats back to its spawn position.
 /// </summary>
-public class FloatingDebris : Nez.Component, IUpdatable
+public class FloatingDebris : DZ.Nez.Component, IUpdatable
 {
     // -------------------------------------------------------------------------
     // Private state
@@ -43,11 +46,11 @@ public class FloatingDebris : Nez.Component, IUpdatable
     public FloatingDebris(Vector2 position)
     {
         _startPosition = position;
-        _sinePhase     = Nez.Random.NextFloat() * MathF.PI * 2f;
-        _textureIndex  = Nez.Random.NextInt(8); // assume 8 columns in debris sheet
+        _sinePhase     = DZ.Nez.Random.NextFloat() * MathF.PI * 2f;
+        _textureIndex  = DZ.Nez.Random.NextInt(8); // assume 8 columns in debris sheet
 
         // Random rotation speed (some pieces don't rotate)
-        int rChoice = Nez.Random.NextInt(10);
+        int rChoice = DZ.Nez.Random.NextInt(10);
         int deg     = rChoice switch { 0 => -2, 1 => -1, 8 => 1, 9 => 2, _ => 0 };
         _rotateSpeed = deg * 40f * MathF.PI / 180f;
     }

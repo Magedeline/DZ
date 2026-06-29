@@ -1,8 +1,10 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Entity = DZ.Nez.Entity;
+using Camera = DZ.Nez.Camera;
 using System;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Foreground debris decoration that appears in front of gameplay elements and
@@ -12,7 +14,7 @@ namespace KirbyCelesteStandalone.Entities.Level;
 /// Renders a layered rock sprite (multiple textures stacked) with a small
 /// sine-wave bob and a subtle parallax offset relative to the camera.
 /// </summary>
-public class ForegroundDebris : Nez.Component, IUpdatable
+public class ForegroundDebris : DZ.Nez.Component, IUpdatable
 {
     // -------------------------------------------------------------------------
     // Private state
@@ -38,8 +40,8 @@ public class ForegroundDebris : Nez.Component, IUpdatable
     public ForegroundDebris(Vector2 position)
     {
         _startPosition  = position;
-        _parallaxAmount = 0.05f + Nez.Random.NextFloat() * 0.08f;
-        _variant        = Nez.Random.Choose("rock_a", "rock_b");
+        _parallaxAmount = 0.05f + DZ.Nez.Random.NextFloat() * 0.08f;
+        _variant        = DZ.Nez.Random.Choose("rock_a", "rock_b");
         _layerCount     = 2; // adjust to match actual atlas sub-texture count
     }
 
@@ -60,7 +62,7 @@ public class ForegroundDebris : Nez.Component, IUpdatable
         _sinePhases  = new float[_layerCount];
         _sineOffsets = new float[_layerCount];
         for (int i = 0; i < _layerCount; i++)
-            _sinePhases[i] = Nez.Random.NextFloat() * MathF.PI * 2f;
+            _sinePhases[i] = DZ.Nez.Random.NextFloat() * MathF.PI * 2f;
     }
 
     // -------------------------------------------------------------------------

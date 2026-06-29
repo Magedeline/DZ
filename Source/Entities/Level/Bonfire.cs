@@ -1,8 +1,9 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Entity = DZ.Nez.Entity;
 using System;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Bonfire / campfire decoration with animated flame, vertex light, and bloom.
@@ -13,7 +14,7 @@ namespace KirbyCelesteStandalone.Entities.Level;
 ///   <see cref="BonfireMode.Lit"/>     – burning, flickering light and bloom.
 ///   <see cref="BonfireMode.Smoking"/> – extinguished, smoke animation only.
 /// </summary>
-public class Bonfire : Nez.Component, IUpdatable
+public class Bonfire : DZ.Nez.Component, IUpdatable
 {
     // -------------------------------------------------------------------------
     // Public types
@@ -103,7 +104,7 @@ public class Bonfire : Nez.Component, IUpdatable
             if (_flickerTimer >= FlickerInterval)
             {
                 _flickerTimer = 0f;
-                _brightness   = 0.5f + Nez.Random.NextFloat() * 0.5f;
+                _brightness   = 0.5f + DZ.Nez.Random.NextFloat() * 0.5f;
                 StartWiggle();
             }
         }

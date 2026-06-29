@@ -3,6 +3,7 @@ namespace Celeste.Effects
     /// <summary>
     /// Magical Aura effect that creates floating magical particles in the background
     /// </summary>
+    [CustomBackdrop("DZ/MagicalAura")]
     [HotReloadable]
     public class MagicalAura : Backdrop
     {

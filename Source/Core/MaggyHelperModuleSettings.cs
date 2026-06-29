@@ -27,6 +27,32 @@ namespace Celeste.Mod.DZ
         public bool EnableBossMusic { get; set; } = true;
         public bool KirbyPlayerEnabled { get; set; } = true;
         public int KirbyMaxFloatJumps { get; set; } = 5;
+
+        /// <summary>
+        /// Gentle Breeze mode: a full assist bundle for the Kirby player.
+        /// Enables dash-assist freeze (slow-mo aim arrow), infinite stamina,
+        /// infinite dashes, and invincibility. Plays the gentlebreeze audio
+        /// cue when the dash-assist freeze activates.
+        /// </summary>
+        [SettingName("DZ_GENTLEBREEZE_MODE")]
+        public bool GentleBreezeMode { get; set; }
+
+        /// <summary>
+        /// Last Endemy mode: CelesteNet online multiplayer for the DZ mod.
+        /// When enabled, the player can play online with other players.
+        /// Requires the player to have agreed to the rules via OuiLastEndemyMode.
+        /// </summary>
+        [SettingName("DZ_LASTENDEMY_MODE")]
+        public bool LastEndemyMode { get; set; }
+
+        /// <summary>
+        /// Tracks whether the player has agreed to the Last Endemy online rules
+        /// and code of conduct presented in OuiLastEndemyMode. Persisted so the
+        /// agreement only needs to be accepted once.
+        /// </summary>
+        [SettingIgnore]
+        public bool LastEndemyAgreed { get; set; }
+
         public bool DebugMode { get; set; }
         public bool SkipModIntro { get; set; }
         public bool HasSeenIntroWarning { get; set; }

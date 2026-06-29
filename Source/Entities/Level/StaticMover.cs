@@ -1,14 +1,15 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Entity = DZ.Nez.Entity;
 using System;
-using KirbyCelesteStandalone.Entities.Core;
+using DZ.Entities.Core;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Port of Celeste's StaticMover.cs.
 ///
-/// A non-active, non-visible <see cref="Nez.Component"/> that makes its owning
+/// A non-active, non-visible <see cref="DZ.Nez.Component"/> that makes its owning
 /// entity "ride" a <see cref="CelesteSolid"/> or <see cref="CelesteJumpThru"/>
 /// platform.
 ///
@@ -26,7 +27,7 @@ namespace KirbyCelesteStandalone.Entities.Level;
 ///
 /// Actual platform-scanning and attachment are TODO (needs Tracker equivalent).
 /// </summary>
-public class StaticMover : Nez.Component
+public class StaticMover : DZ.Nez.Component
 {
     // ── Callbacks ─────────────────────────────────────────────────────────────
 
@@ -43,7 +44,7 @@ public class StaticMover : Nez.Component
     public Action<Vector2>? OnShake;
 
     /// <summary>Called when the linked platform is attached (first linked).</summary>
-    public Action<Nez.Entity>? OnAttach;
+    public Action<DZ.Nez.Entity>? OnAttach;
 
     /// <summary>Called when the linked platform is destroyed. Default: remove self.</summary>
     public Action? OnDestroy;
@@ -57,7 +58,7 @@ public class StaticMover : Nez.Component
     // ── Linked platform ───────────────────────────────────────────────────────
 
     /// <summary>The platform this mover is currently riding. Null if not attached.</summary>
-    public Nez.Entity? Platform { get; set; }
+    public DZ.Nez.Entity? Platform { get; set; }
 
     // ── Constructor ───────────────────────────────────────────────────────────
 

@@ -1,12 +1,13 @@
-﻿using Microsoft.Xna.Framework;
-using Nez;
+using Microsoft.Xna.Framework;
+using DZ.Nez;
+using Entity = DZ.Nez.Entity;
+using Component = DZ.Nez.Component;
 using System;
 using System.Collections.Generic;
-using KirbyCelesteStandalone.Core;
-using KirbyCelesteStandalone.Entities.Core;
-using Component = Nez.Component;
+using DZ.Core;
+using DZ.Entities.Core;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // CassetteBlock

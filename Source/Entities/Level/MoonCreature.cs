@@ -1,9 +1,12 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Entity = DZ.Nez.Entity;
+using Collider = DZ.Nez.Collider;
+using BoxCollider = DZ.Nez.BoxCollider;
 using System;
-using KirbyCelesteStandalone.Entities.Player;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Ambient moon creature that floats around a spawn origin and optionally
@@ -12,7 +15,7 @@ namespace KirbyCelesteStandalone.Entities.Level;
 /// Each creature has a 10-node trail that lags behind with spring-like
 /// physics, giving a worm/ribbon visual effect.
 /// </summary>
-public class MoonCreature : Nez.Component, IUpdatable
+public class MoonCreature : DZ.Nez.Component, IUpdatable
 {
     // -------------------------------------------------------------------------
     // Constants
@@ -71,7 +74,7 @@ public class MoonCreature : Nez.Component, IUpdatable
 
         // Colour
         _orbColor    = new Color(0xB0, 0xE6, 0xFF);
-        _centerColor = Nez.Random.Choose(
+        _centerColor = DZ.Nez.Random.Choose(
             new Color(0xC3, 0x4F, 0xC7),
             new Color(0x4F, 0x95, 0xC7),
             new Color(0x53, 0xC7, 0x4F));
@@ -89,7 +92,7 @@ public class MoonCreature : Nez.Component, IUpdatable
 
         // Start with a random target
         PickRandomTarget();
-        _target = position + Nez.Random.NextUnitVector() * Nez.Random.NextFloat() * 32f;
+        _target = position + DZ.Nez.Random.NextUnitVector() * DZ.Nez.Random.NextFloat() * 32f;
     }
 
     // -------------------------------------------------------------------------
@@ -109,9 +112,9 @@ public class MoonCreature : Nez.Component, IUpdatable
         {
             var extra = new MoonCreature(
                 _startPosition + new Vector2(
-                    Nez.Random.Range(-4f, 4f),
-                    Nez.Random.Range(-4f, 4f)));
-            Entity.Scene?.AddEntity(new Nez.Entity()).AddComponent(extra);
+                    DZ.Nez.Random.Range(-4f, 4f),
+                    DZ.Nez.Random.Range(-4f, 4f)));
+            Entity.Scene?.AddEntity(new DZ.Nez.Entity()).AddComponent(extra);
         }
     }
 
@@ -129,7 +132,7 @@ public class MoonCreature : Nez.Component, IUpdatable
             _targetTimer -= dt;
             if (_targetTimer <= 0f)
             {
-                _targetTimer = Nez.Random.Range(0.8f, 4f);
+                _targetTimer = DZ.Nez.Random.Range(0.8f, 4f);
                 PickRandomTarget();
             }
         }
@@ -139,7 +142,7 @@ public class MoonCreature : Nez.Component, IUpdatable
             _targetTimer -= dt;
             if (_targetTimer <= 0f)
             {
-                _targetTimer = Nez.Random.Range(0.8f, 2f);
+                _targetTimer = DZ.Nez.Random.Range(0.8f, 2f);
                 PickFollowOffset();
             }
             _target = _following.Position + _followOffset;
@@ -220,7 +223,7 @@ public class MoonCreature : Nez.Component, IUpdatable
         if (distToStart < MaxFollowDistance && _following == null)
         {
             _following   = player;
-            _followTime  = Nez.Random.Range(6f, 12f);
+            _followTime  = DZ.Nez.Random.Range(6f, 12f);
             PickFollowOffset();
         }
     }
@@ -232,13 +235,13 @@ public class MoonCreature : Nez.Component, IUpdatable
     private void PickRandomTarget()
     {
         _target = _startPosition
-                + Nez.Random.NextUnitVector() * Nez.Random.NextFloat() * 32f;
+                + DZ.Nez.Random.NextUnitVector() * DZ.Nez.Random.NextFloat() * 32f;
     }
 
     private void PickFollowOffset()
     {
         _followOffset = new Vector2(
-            Nez.Random.Choose(-1, 1) * Nez.Random.Range(8f, 16f),
-            Nez.Random.Range(-20f, 0f));
+            DZ.Nez.Random.Choose(-1, 1) * DZ.Nez.Random.Range(8f, 16f),
+            DZ.Nez.Random.Range(-20f, 0f));
     }
 }

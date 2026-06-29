@@ -1,10 +1,12 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
+using Camera = DZ.Nez.Camera;
 using System;
 using System.Linq;
-using KirbyCelesteStandalone.Entities.Player;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Hazards;
+namespace DZ.Entities.Hazards;
 
 /// <summary>
 /// Two lava slabs — one rising from the bottom and one descending from the top —
@@ -20,7 +22,7 @@ namespace KirbyCelesteStandalone.Entities.Hazards;
 ///   <item>LavaRect visuals, audio, and assist invincibility replaced with TODO stubs.</item>
 /// </list>
 /// </summary>
-public class SandwichLava : Nez.Entity
+public class SandwichLava : DZ.Nez.Entity
 {
     // ── Colours (shared with RisingLava) ──────────────────────────────────────
     private static readonly Color[] Hot  = RisingLava.Hot;

@@ -1,4 +1,4 @@
-﻿namespace Celeste.NPCs
+namespace Celeste.NPCs
 {
     [Tracked(true)]
     [CustomEntity(ids: "DZ/NPC07_Chara")]
@@ -109,7 +109,4 @@
         }
     }
 }
-
-
-
 

@@ -54,7 +54,7 @@ internal static class ChapterRegistry
         // Chapter 5: Fractured Memories
         Register(chapters, new AreaMapData.ChapterDef
         {
-            Number = 5, SID = AreaModeExtender.BuildASideSID("05_Restore"), Name = "Fractured Memories",
+            Number = 5, SID = AreaModeExtender.BuildASideSID("05_Fractured"), Name = "Fractured Memories",
             Icon = "areas/Maggy/resort", HasBSide = true, HasCSide = true, HasDSide = true, HasDXSide = false,
         });
 
@@ -68,7 +68,7 @@ internal static class ChapterRegistry
         // Chapter 7: Infernal Reflections
         Register(chapters, new AreaMapData.ChapterDef
         {
-            Number = 7, SID = AreaModeExtender.BuildASideSID("07_Hell"), Name = "Infernal Reflections",
+            Number = 7, SID = AreaModeExtender.BuildASideSID("07_Inferno"), Name = "Infernal Reflections",
             Icon = "areas/Maggy/hell", HasBSide = true, HasCSide = true, HasDSide = true, HasDXSide = false,
         });
 

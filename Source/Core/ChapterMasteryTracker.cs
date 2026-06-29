@@ -33,9 +33,9 @@ public static class ChapterMasteryTracker
         { AreaModeExtender.BuildASideSID("02_Veil"),        TicksFromMinutes(10) },
         { AreaModeExtender.BuildASideSID("03_Arrival"),     TicksFromMinutes(8)  },
         { AreaModeExtender.BuildASideSID("04_Chronicles"),  TicksFromMinutes(10) },
-        { AreaModeExtender.BuildASideSID("05_Memories"),    TicksFromMinutes(12) },
+        { AreaModeExtender.BuildASideSID("05_Fractured"),    TicksFromMinutes(12) },
         { AreaModeExtender.BuildASideSID("06_Fortress"),    TicksFromMinutes(14) },
-        { AreaModeExtender.BuildASideSID("07_Hell"),        TicksFromMinutes(15) },
+        { AreaModeExtender.BuildASideSID("07_Inferno"),     TicksFromMinutes(15) },
         { AreaModeExtender.BuildASideSID("08_Revelation"),  TicksFromMinutes(18) },
         { AreaModeExtender.BuildASideSID("09_Apex"),        TicksFromMinutes(20) },
         { AreaModeExtender.BuildASideSID("10_Ruins"),       TicksFromMinutes(14) },
@@ -233,7 +233,7 @@ public static class ChapterMasteryTracker
     // ── Helpers ─────────────────────────────────────────────────────────────
 
     /// <summary>
-    /// Extracts the chapter number from a SID segment such as "07_Hell" → 7.
+    /// Extracts the chapter number from a SID segment such as "07_Inferno" → 7.
     /// </summary>
     private static int ParseChapterNumber(string sid)
     {

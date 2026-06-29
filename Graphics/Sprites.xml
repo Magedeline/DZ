@@ -3177,22 +3177,22 @@
       <Justify x="0.5" y=".64" />
       <Loop id="charaboss_idle" path="chara_boss" delay="0.06" frames="0-23"/>
   
-      <Loop id="charaboss_scaredIdle" path="scared" delay="0.06" frames="0-19"/>
-      <Anim id="charaboss_scaredTransition" path="scared" delay="0.1" frames="20-29" goto="charaboss_calm"/>
-      <Loop id="charaboss_calm" path="scared" delay="0.06" frames="30"/>
-      <Anim id="charaboss_lookUp" path="scared" delay="0.08" frames="30-30" goto="charaboss_lookingUp"/>
-      <Loop id="charaboss_lookingUp" path="scared" delay="0.08" frames="35"/>
+      <Loop id="charaboss_scaredIdle" path="chara_scared" delay="0.06" frames="0-19"/>
+      <Anim id="charaboss_scaredTransition" path="chara_scared" delay="0.1" frames="20-29" goto="charaboss_calm"/>
+      <Loop id="charaboss_calm" path="chara_scared" delay="0.06" frames="30"/>
+      <Anim id="charaboss_lookUp" path="chara_scared" delay="0.08" frames="30-30" goto="charaboss_lookingUp"/>
+      <Loop id="charaboss_lookingUp" path="chara_scared" delay="0.08" frames="35"/>
   
-      <Anim id="charaboss_attack1Begin" path="boss" delay="0.06" frames="24-29" goto="charaboss_attack1Loop"/>
-      <Anim id="charaboss_attack1Loop" path="boss" delay="0.06" frames="30-36" goto="charaboss_attack1Loop"/>
-      <Anim id="charaboss_attack1Recoil" path="boss" delay="0.06" frames="40-45" goto="charaboss_idle"/>
+      <Anim id="charaboss_attack1Begin" path="chara_boss" delay="0.06" frames="24-29" goto="charaboss_attack1Loop"/>
+      <Anim id="charaboss_attack1Loop" path="chara_boss" delay="0.06" frames="30-36" goto="charaboss_attack1Loop"/>
+      <Anim id="charaboss_attack1Recoil" path="chara_boss" delay="0.06" frames="40-45" goto="charaboss_idle"/>
   
       <Anim id="charaboss_attack2Begin" path="chara_charge" delay="0.06" frames="0-17" goto="charaboss_attack2Aim"/>
       <Anim id="charaboss_attack2Aim" path="chara_charge" delay="0.06" frames="18-28" goto="charaboss_attack2Aim"/>
       <Anim id="charaboss_attack2Lock" path="chara_charge" delay="0.06" frames="29-39" goto="charaboss_attack2Lock"/>
       <Anim id="charaboss_attack2Recoil" path="chara_charge" delay="0.06" frames="40-45" goto="charaboss_idle"/>
   
-      <Anim id="charaboss_getHit" path="chara_hit" delay="0.06" frames="0-8" goto="star"/>
+      <Anim id="charaboss_getHit" path="chara_hit" delay="0.06" frames="0-8" goto="charaboss_star"/>
       <Loop id="charaboss_star" path="chara_hit" delay="0.06" frames="3-5"/>
       <Anim id="charaboss_recoverHit" path="chara_hit" delay="0.06" frames="6-8" goto="charaboss_idle"/>
     </chara_boss>
@@ -3345,20 +3345,6 @@
       <Loop id="projectile" path="projectile" delay="0.1" frames="0-12" />
       <Loop id="scared" path="scared" delay="0.1" frames="0-36" />
     </badelineBoss>
-
-  <chara_beam path="characters/charaBoss/" start="charge">
-      <Justify x="0" y=".5" />
-  
-      <Anim id="charge" path="charge" delay="0.06" frames="0-23" />
-      <Loop id="lock" path="charge" delay="0.06" frames="23" />
-      <Anim id="shoot" path="finalbeam" delay="0.06" frames="0-42" />
-    </chara_beam>
-
-  <chara_beam_start path="characters/charaBoss/" start="shoot">
-      <Justify x=".5" y=".5" />
-  
-      <Anim id="shoot" path="beamStart" delay="0.1" frames="0-4" />
-    </chara_beam_start>
 
   <bonkers path="characters/bonkers/" start="boss">
       <Justify x=".5" y="1" />

@@ -2,6 +2,7 @@ using System;
 using Celeste.Entities;
 using Microsoft.Xna.Framework;
 using Monocle;
+using CelesteJumpThru = Celeste.JumpThru;
 
 namespace Celeste.Entities
 {

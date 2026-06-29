@@ -1,15 +1,17 @@
-﻿using Microsoft.Xna.Framework;
-using Nez;
-using Nez.Sprites;
+using Microsoft.Xna.Framework;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
+using Entity = DZ.Nez.Entity;
+using Collider = DZ.Nez.Collider;
+using Camera = DZ.Nez.Camera;
+using DZ.Nez.Sprites;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using KirbyCelesteStandalone.Core;
-using Scene = Nez.Scene;
-using Entity = Nez.Entity;
+using DZ.Core;
 
-namespace KirbyCelesteStandalone.Entities.Bosses;
+namespace DZ.Entities.Bosses;
 
 /// <summary>
 /// Chara Dreemurr boss - ported from mod.
@@ -101,7 +103,7 @@ public class CharaBoss : BossBase
         if (_patternIndex == 0)
         {
             _sitting = true;
-            KirbyGame.Audio.PlayMusic("event:/pusheen/music/lvl2/phone_loop");
+            DZGame.Audio.PlayMusic("event:/pusheen/music/lvl2/phone_loop");
         }
         else
         {
@@ -212,7 +214,7 @@ public class CharaBoss : BossBase
             PhaseIndex = 2;
             ChangeState(BossState.PhaseTransition);
             StateTimer = 3f;
-            KirbyGame.Audio.PlayMusic("event:/pusheen/music/lvl8/chara_glitch");
+            DZGame.Audio.PlayMusic("event:/pusheen/music/lvl8/chara_glitch");
             TriggerGlitch(0.6f);
         }
         else if (healthPercent <= 0.33f && PhaseIndex == 2)
@@ -220,7 +222,7 @@ public class CharaBoss : BossBase
             PhaseIndex = 3;
             ChangeState(BossState.PhaseTransition);
             StateTimer = 4f;
-            KirbyGame.Audio.PlayMusic("event:/pusheen/music/lvl8/chara_core");
+            DZGame.Audio.PlayMusic("event:/pusheen/music/lvl8/chara_core");
             TriggerGlitch(0.8f);
         }
     }
@@ -246,7 +248,7 @@ public class CharaBoss : BossBase
         TriggerGlitch(0.4f);
 
         // Play hit sound
-        KirbyGame.Audio.PlaySfx("event:/pusheen/game/boss/chara_hit");
+        DZGame.Audio.PlaySfx("event:/pusheen/game/boss/chara_hit");
 
         // Start recovery sequence
         ChangeState(BossState.Vulnerable);
@@ -256,7 +258,7 @@ public class CharaBoss : BossBase
         // Move to next position
         if (_nodeIndex < _nodes.Length)
         {
-            Nez.Core.StartCoroutine(MoveToNextNode());
+            DZ.Nez.Core.StartCoroutine(MoveToNextNode());
         }
     }
 
@@ -352,7 +354,7 @@ public class CharaBoss : BossBase
         int pattern = GetPatternForPhase();
         if (_attackPatterns.TryGetValue(pattern, out var patternFunc))
         {
-            Nez.Core.StartCoroutine(patternFunc());
+            DZ.Nez.Core.StartCoroutine(patternFunc());
         }
     }
 
@@ -366,9 +368,9 @@ public class CharaBoss : BossBase
     {
         return PhaseIndex switch
         {
-            1 => Nez.Random.NextInt(6) + 1,  // Patterns 1-6
-            2 => Nez.Random.NextInt(8) + 1,  // Patterns 1-8
-            3 => Nez.Random.NextInt(10) + 1, // Patterns 1-10 + 21
+            1 => DZ.Nez.Random.NextInt(6) + 1,  // Patterns 1-6
+            2 => DZ.Nez.Random.NextInt(8) + 1,  // Patterns 1-8
+            3 => DZ.Nez.Random.NextInt(10) + 1, // Patterns 1-10 + 21
             _ => 1
         };
     }
@@ -476,7 +478,7 @@ public class CharaBoss : BossBase
             FireShot(dir, speed: 140f);
         }
 
-        KirbyGame.Audio.PlaySfx("event:/pusheen/game/boss/chara_circle_burst");
+        DZGame.Audio.PlaySfx("event:/pusheen/game/boss/chara_circle_burst");
 
         yield return 1f;
 
@@ -519,7 +521,7 @@ public class CharaBoss : BossBase
 
         // Long charge
         StartCharge();
-        KirbyGame.Audio.PlaySfx("event:/pusheen/game/boss/chara_charge");
+        DZGame.Audio.PlaySfx("event:/pusheen/game/boss/chara_charge");
 
         yield return 1.5f;
 
@@ -542,7 +544,7 @@ public class CharaBoss : BossBase
         while (elapsed < duration)
         {
             // Rain from above
-            float xPos = Entity.Position.X + Nez.Random.NextFloat(200) - 100;
+            float xPos = Entity.Position.X + DZ.Nez.Random.NextFloat(200) - 100;
             Vector2 spawnPos = new Vector2(xPos, Entity.Position.Y - 150);
             FireFallingShot(spawnPos, targetY: Entity.Position.Y + 50);
 
@@ -592,7 +594,7 @@ public class CharaBoss : BossBase
         Scene.AddEntity(shot.Entity);
         _activeProjectiles.Add(shot);
 
-        KirbyGame.Audio.PlaySfx("event:/pusheen/game/boss/chara_shot");
+        DZGame.Audio.PlaySfx("event:/pusheen/game/boss/chara_shot");
     }
 
     private void FireBouncingShot(Vector2 direction, float speed, int bounces)
@@ -619,7 +621,7 @@ public class CharaBoss : BossBase
         Scene.AddEntity(beam.Entity);
         _activeBeams.Add(beam);
 
-        KirbyGame.Audio.PlaySfx("event:/pusheen/game/boss/chara_beam");
+        DZGame.Audio.PlaySfx("event:/pusheen/game/boss/chara_beam");
     }
 
     private void FireSweepingBeam(float duration, float sweepAngle)
@@ -734,8 +736,8 @@ public class CharaBoss : BossBase
     private Vector2 RandomOffset(float magnitude)
     {
         return new Vector2(
-            Nez.Random.NextFloat(magnitude * 2) - magnitude,
-            Nez.Random.NextFloat(magnitude * 2) - magnitude
+            DZ.Nez.Random.NextFloat(magnitude * 2) - magnitude,
+            DZ.Nez.Random.NextFloat(magnitude * 2) - magnitude
         );
     }
 

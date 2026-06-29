@@ -1,10 +1,12 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
+using Camera = DZ.Nez.Camera;
 using System;
 using System.Linq;
-using KirbyCelesteStandalone.Entities.Player;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Hazards;
+namespace DZ.Entities.Hazards;
 
 /// <summary>
 /// A rectangular block of lightning that kills the player on contact.
@@ -22,7 +24,7 @@ namespace KirbyCelesteStandalone.Entities.Hazards;
 ///   <item>Particle shatter emits noted as TODO.</item>
 /// </list>
 /// </summary>
-public class Lightning : Nez.Entity
+public class Lightning : DZ.Nez.Entity
 {
     // ── Geometry ──────────────────────────────────────────────────────────────
     public int VisualWidth  { get; private set; }
@@ -43,7 +45,7 @@ public class Lightning : Nez.Entity
         set
         {
             collidable = value;
-            // Visible = value; // TODO: Visible not available in Nez.Entity
+            // Visible = value; // TODO: Visible not available in DZ.Nez.Entity
         }
     }
 
@@ -74,7 +76,7 @@ public class Lightning : Nez.Entity
         Position       = position;
         VisualWidth    = width;
         VisualHeight   = height;
-        toggleOffset   = Nez.Random.NextFloat();
+        toggleOffset   = DZ.Nez.Random.NextFloat();
         Name           = "Lightning";
 
         if (node.HasValue)

@@ -56,9 +56,9 @@
 # Chapter 2 - Nightmare
 # Chapter 3 - Stars
 # Chapter 4 - Legend
-# Chapter 5 - Restore
+# Chapter 5 - Fractured
 # Chapter 6 - Stronghold
-# Chapter 7 - Hell
+# Chapter 7 - Inferno
 # Chapter 8 - Truth
 # Chapter 9 - Summit
 # Chapter 10 - Ruins
@@ -816,11 +816,11 @@ Maggy_ASide_03_Stars_A=Arrival
 
 Maggy_ASide_04_Legend_A=Chronicles of Destiny
 
-Maggy_ASide_05_Restore_A=Fractured Memories
+Maggy_ASide_05_Fractured_A=Fractured Memories
 
 Maggy_ASide_06_Stronghold_A=Fortress of Solitude
 
-Maggy_ASide_07_Hell_A=Infernal Reflections
+Maggy_ASide_07_Inferno_A=Infernal Reflections
 
 Maggy_ASide_08_Truth_A=Revelation's Edge
 
@@ -950,11 +950,11 @@ Maggy_BSide_03_Stars_B=Arrival
 
 Maggy_BSide_04_Legend_B=Chronicles of Destiny
 
-Maggy_BSide_05_Restore_B=Fractured Memories
+Maggy_BSide_05_Fractured_B=Fractured Memories
 
 Maggy_BSide_06_Stronghold_B=Fortress of Solitude
 
-Maggy_BSide_07_Hell_B=Infernal Reflections
+Maggy_BSide_07_Inferno_B=Infernal Reflections
 
 Maggy_BSide_08_Truth_B=Revelation's Edge
 
@@ -982,11 +982,11 @@ Maggy_CSide_03_Stars_C=Arrival
 
 Maggy_CSide_04_Legend_C=Chronicles of Destiny
 
-Maggy_CSide_05_Restore_C=Fractured Memories
+Maggy_CSide_05_Fractured_C=Fractured Memories
 
 Maggy_CSide_06_Stronghold_C=Fortress of Solitude
 
-Maggy_CSide_07_Hell_C=Infernal Reflections
+Maggy_CSide_07_Inferno_C=Infernal Reflections
 
 Maggy_CSide_08_Truth_C=Revelation's Edge
 
@@ -1014,11 +1014,11 @@ Maggy_DSide_03_Stars_D=Arrival
 
 Maggy_DSide_04_Legend_D=Chronicles of Destiny
 
-Maggy_DSide_05_Restore_D=Fractured Memories
+Maggy_DSide_05_Fractured_D=Fractured Memories
 
 Maggy_DSide_06_Stronghold_D=Fortress of Solitude
 
-Maggy_DSide_07_Hell_D=Infernal Reflections
+Maggy_DSide_07_Inferno_D=Infernal Reflections
 
 Maggy_DSide_08_Truth_D=Revelation's Edge
 
@@ -1046,11 +1046,11 @@ Maggy_DXSide_03_Stars_DX=Arrival DX
 
 Maggy_DXSide_04_Legend_DX=Chronicles of Destiny DX
 
-Maggy_DXSide_05_Restore_DX=Fractured Memories DX
+Maggy_DXSide_05_Fractured_DX=Fractured Memories DX
 
 Maggy_DXSide_06_Stronghold_DX=Fortress of Solitude DX
 
-Maggy_DXSide_07_Hell_DX=Infernal Reflections DX
+Maggy_DXSide_07_Inferno_DX=Infernal Reflections DX
 
 Maggy_DXSide_08_Truth_DX=Revelation's Edge DX
 
@@ -1096,11 +1096,11 @@ Maggy_ASide_03_Stars_A_b_10d=Jumping the Gap
 
 Maggy_ASide_03_Stars_A_b_9b=Going up
 
-Maggy_ASide_05_Restore_A_08_a=Huge Cluttering Mess
+Maggy_ASide_05_Fractured_A_08_a=Huge Cluttering Mess
 
-Maggy_ASide_05_Restore_A_09_d=Broken Elevator
+Maggy_ASide_05_Fractured_A_09_d=Broken Elevator
 
-Maggy_ASide_05_Restore_A_00_d=Luxury with Destructions
+Maggy_ASide_05_Fractured_A_00_d=Luxury with Destructions
 
 Maggy_ASide_06_Stronghold_A_b_00=Shrine of Winds
 
@@ -1108,13 +1108,13 @@ Maggy_ASide_06_Stronghold_A_c_00=The Lost of Two Children
 
 Maggy_ASide_06_Stronghold_A_d_00=Freedom
 
-Maggy_ASide_07_Hell_A_b_00=Depths
+Maggy_ASide_07_Inferno_A_b_00=Depths
 
-Maggy_ASide_07_Hell_A_c_00=Unravelling
+Maggy_ASide_07_Inferno_A_c_00=Unravelling
 
-Maggy_ASide_07_Hell_A_d_00=The Search
+Maggy_ASide_07_Inferno_A_d_00=The Search
 
-Maggy_ASide_07_Hell_A_e_00=Rescuing Madeline
+Maggy_ASide_07_Inferno_A_e_00=Rescuing Madeline
 
 Maggy_ASide_08_Truth_A_00=Lake
 
@@ -1212,13 +1212,13 @@ Maggy_BSide_02_Nightmare_B_b_00=Lock The Flip In
 
 Maggy_BSide_02_Nightmare_B_c_00=Darkess Nightmare
 
-Maggy_BSide_05_Restore_B_B_00=Start
+Maggy_BSide_05_Fractured_B_B_00=Start
 
-Maggy_BSide_05_Restore_B_06=Staff Quarters
+Maggy_BSide_05_Fractured_B_06=Staff Quarters
 
-Maggy_BSide_05_Restore_B_11=Library
+Maggy_BSide_05_Fractured_B_11=Library
 
-Maggy_BSide_05_Restore_B_16=Rooftop
+Maggy_BSide_05_Fractured_B_16=Rooftop
 
 Maggy_BSide_06_Stronghold_B_A_00va=Start
 
@@ -1228,13 +1228,13 @@ Maggy_BSide_06_Stronghold_B_c_00=Gusty Canyon
 
 Maggy_BSide_06_Stronghold_B_d_00=Eye of the Storm
 
-Maggy_BSide_07_Hell_B_start=Start
+Maggy_BSide_07_Inferno_B_start=Start
 
-Maggy_BSide_07_Hell_B_B_00=Central Chamber
+Maggy_BSide_07_Inferno_B_B_00=Central Chamber
 
-Maggy_BSide_07_Hell_B_c_00=Discovery
+Maggy_BSide_07_Inferno_B_c_00=Discovery
 
-Maggy_BSide_07_Hell_B_d_00=Theo Mix Master
+Maggy_BSide_07_Inferno_B_d_00=Theo Mix Master
 
 Maggy_BSide_08_Truth_B_A_00=Start
 
@@ -1282,13 +1282,13 @@ Maggy_CSide_02_Nightmare_C_B_00=Proceed to Kill
 
 Maggy_CSide_02_Nightmare_C_C_00=But Nobody Came
 
-Maggy_CSide_05_Restore_C_A_00=Start
+Maggy_CSide_05_Fractured_C_A_00=Start
 
-Maggy_CSide_05_Restore_C_B_00=Dust Bunnys
+Maggy_CSide_05_Fractured_C_B_00=Dust Bunnys
 
-Maggy_CSide_05_Restore_C_B_05=Shatter Shelf
+Maggy_CSide_05_Fractured_C_B_05=Shatter Shelf
 
-Maggy_CSide_05_Restore_C_d_00=ANGY OSHIRO NOISE
+Maggy_CSide_05_Fractured_C_d_00=ANGY OSHIRO NOISE
 
 Maggy_CSide_06_Stronghold_C_A_00va=Start
 
@@ -1296,15 +1296,15 @@ Maggy_CSide_06_Stronghold_C_B_00=Gusting of Breeze
 
 Maggy_CSide_06_Stronghold_C_C_00=Fluff The Wind
 
-Maggy_CSide_07_Hell_C_A_00=Start
+Maggy_CSide_07_Inferno_C_A_00=Start
 
-Maggy_CSide_07_Hell_C_B_00=Dancing in the Darkness
+Maggy_CSide_07_Inferno_C_B_00=Dancing in the Darkness
 
-Maggy_CSide_07_Hell_C_C_00=Discovery
+Maggy_CSide_07_Inferno_C_C_00=Discovery
 
-Maggy_CSide_07_Hell_C_d_00=The Finder and Keepers
+Maggy_CSide_07_Inferno_C_d_00=The Finder and Keepers
 
-Maggy_CSide_07_Hell_C_e_00=Madeline Mix Master
+Maggy_CSide_07_Inferno_C_e_00=Madeline Mix Master
 
 Maggy_CSide_08_Truth_C_A_00=Start
 
@@ -1348,17 +1348,17 @@ Maggy_BSide_02_Nightmare_B_remix=Wingdings
 
 Maggy_BSide_02_Nightmare_B_remix_artist=Maggy
 
-Maggy_BSide_05_Restore_B_remix=Scatter and Lost
+Maggy_BSide_05_Fractured_B_remix=Scatter and Lost
 
-Maggy_BSide_05_Restore_B_remix_artist=Kyle Gamer
+Maggy_BSide_05_Fractured_B_remix_artist=Kyle Gamer
 
 Maggy_BSide_06_Stronghold_B_remix=Golden Feather Remix
 
 Maggy_BSide_06_Stronghold_B_remix_artist=Kyle Gamer
 
-Maggy_BSide_07_Hell_B_remix=Mirror of magic
+Maggy_BSide_07_Inferno_B_remix=Mirror of magic
 
-Maggy_BSide_07_Hell_B_remix_artist=Mello
+Maggy_BSide_07_Inferno_B_remix_artist=Mello
 
 Maggy_BSide_08_Truth_B_remix=Confronting Yourself
 
@@ -1380,17 +1380,17 @@ Maggy_CSide_02_Nightmare_C_remix=Ressurection Remix
 
 Maggy_CSide_02_Nightmare_C_remix_artist=Kyle Gamer
 
-Maggy_CSide_05_Restore_C_remix=Tidying things up
+Maggy_CSide_05_Fractured_C_remix=Tidying things up
 
-Maggy_CSide_05_Restore_C_remix_artist=Nintendo and Hal Laboratory
+Maggy_CSide_05_Fractured_C_remix_artist=Nintendo and Hal Laboratory
 
 Maggy_CSide_06_Stronghold_C_remix=Echo Edges
 
 Maggy_CSide_06_Stronghold_C_remix_artist=Nintendo and Hal Laboratory
 
-Maggy_CSide_07_Hell_C_remix=In The Mirror Remix
+Maggy_CSide_07_Inferno_C_remix=In The Mirror Remix
 
-Maggy_CSide_07_Hell_C_remix_artist=Kyle Gamer
+Maggy_CSide_07_Inferno_C_remix_artist=Kyle Gamer
 
 Maggy_CSide_08_Truth_C_remix=Necrolovania
 
@@ -1414,11 +1414,11 @@ Maggy_ASide_03_Stars_A_postcard=It's About Time.
 
 Maggy_ASide_04_Legend_A_postcard=If your struggling to keep up, don't push yourself and patient is a key to your success
 
-Maggy_ASide_05_Restore_A_postcard=Fun Fact did you know that Kirby use to have no copy ability's since Gameboy classic, that amazing isn't it.
+Maggy_ASide_05_Fractured_A_postcard=Fun Fact did you know that Kirby use to have no copy ability's since Gameboy classic, that amazing isn't it.
 
 Maggy_ASide_06_Stronghold_A_postcard=To Understand the lore about it history you must go back and play from past Kirby Games that way you will get a bigger picture of it's own deeper lore origin.
 
-Maggy_ASide_07_Hell_A_postcard=Many bosses can have shape and sized but it's doesn't come without a scary final boss which that what they did from the past.
+Maggy_ASide_07_Inferno_A_postcard=Many bosses can have shape and sized but it's doesn't come without a scary final boss which that what they did from the past.
 
 Maggy_ASide_08_Truth_A_postcard=Did you know that Madeline is Hiding Something...?
 
@@ -1536,11 +1536,11 @@ soul_Maggy_ASide_01_City_A=Useless Garbage Machine
 
 soul_Maggy_ASide_02_Nightmare_A=Reawaken
 
-soul_Maggy_ASide_05_Restore_A=Hopeless and Hopelessly Lost
+soul_Maggy_ASide_05_Fractured_A=Hopeless and Hopelessly Lost
 
 soul_Maggy_ASide_06_Stronghold_A=The Legend
 
-soul_Maggy_ASide_07_Hell_A=Lighter and Darker
+soul_Maggy_ASide_07_Inferno_A=Lighter and Darker
 
 soul_Maggy_ASide_08_Truth_A=Out of Reached
 
@@ -1558,11 +1558,11 @@ soul_Maggy_BSide_01_City_B=Sever the Skyline
 
 soul_Maggy_BSide_02_Nightmare_B=Black Moon Rise
 
-soul_Maggy_BSide_05_Restore_B=Good karma
+soul_Maggy_BSide_05_Fractured_B=Good karma
 
 soul_Maggy_BSide_06_Stronghold_B=Golden Feather
 
-soul_Maggy_BSide_07_Hell_B=Mirror of Magic
+soul_Maggy_BSide_07_Inferno_B=Mirror of Magic
 
 soul_Maggy_BSide_08_Truth_B=Center of the Mountain
 
@@ -1574,11 +1574,11 @@ soul_Maggy_CSide_01_City_C=Taking Over the Streets
 
 soul_Maggy_CSide_02_Nightmare_C=Under my Control
 
-soul_Maggy_CSide_05_Restore_C=Amazing karma
+soul_Maggy_CSide_05_Fractured_C=Amazing karma
 
 soul_Maggy_CSide_06_Stronghold_C=Zantas Feather
 
-soul_Maggy_CSide_07_Hell_C=Jazzy Move
+soul_Maggy_CSide_07_Inferno_C=Jazzy Move
 
 soul_Maggy_CSide_08_Truth_C=Megalovania
 

@@ -1,8 +1,9 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Entity = DZ.Nez.Entity;
 using System;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Payphone decoration with flickering light.  Ported from Celeste's Payphone.cs.
@@ -11,7 +12,7 @@ namespace KirbyCelesteStandalone.Entities.Level;
 /// at randomised intervals.  Breaking the phone hides all lights and silences
 /// the ambient buzz.
 /// </summary>
-public class Payphone : Nez.Component, IUpdatable
+public class Payphone : DZ.Nez.Component, IUpdatable
 {
     // -------------------------------------------------------------------------
     // Public state
@@ -86,15 +87,15 @@ public class Payphone : Nez.Component, IUpdatable
             {
                 // Rapid flicker phase: toggle every ~0.025 s
                 // We use a simple sub-timer approximation
-                bool flickerOn = Nez.Random.NextFloat() > 0.5f;
+                bool flickerOn = DZ.Nez.Random.NextFloat() > 0.5f;
                 SetLightVisible(flickerOn);
                 // TODO: play "blink" image visible = !flickerOn
 
                 if (_lightFlickerTimer < -_lightFlickerFor)
                 {
                     // End flicker phase; pick next stable-on duration
-                    _lightFlickerTimer = Nez.Random.Choose(0.4f, 0.6f, 0.8f, 1f);
-                    _lightFlickerFor   = Nez.Random.Choose(0.1f, 0.2f, 0.05f);
+                    _lightFlickerTimer = DZ.Nez.Random.Choose(0.4f, 0.6f, 0.8f, 1f);
+                    _lightFlickerFor   = DZ.Nez.Random.Choose(0.1f, 0.2f, 0.05f);
                     SetLightVisible(true);
                     // TODO: set sound param "on" = 1
                 }

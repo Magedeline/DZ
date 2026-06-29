@@ -1,8 +1,8 @@
 using Microsoft.Xna.Framework;
-using Nez;
-using KirbyCelesteStandalone.Entities.Player;
+using DZ.Nez;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Hazards;
+namespace DZ.Entities.Hazards;
 
 /// <summary>
 /// A moon-blade / star spinner that slides along a fixed track (Start ↔ End),
@@ -39,7 +39,7 @@ public class StarTrackSpinner : TrackSpinner
     public StarTrackSpinner(Vector2 start, Vector2 end, Speeds speed, bool startCenter = false)
         : base(start, end, speed, startCenter)
     {
-        colorID = Nez.Random.Range(0, ColorCount);
+        colorID = DZ.Nez.Random.Range(0, ColorCount);
         Name    = "StarTrackSpinner";
         // TODO: load sprite: moonBlade — play animation "idle{colorID}"
     }

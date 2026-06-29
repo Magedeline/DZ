@@ -1,8 +1,9 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
 using System;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Port of Celeste's WindController.cs.
@@ -23,7 +24,7 @@ namespace KirbyCelesteStandalone.Entities.Level;
 /// The global <see cref="WindDirection"/> property is read by other systems
 /// (e.g., particle emitters) that need to know the current wind vector.
 /// </summary>
-public class WindController : Nez.Entity
+public class WindController : DZ.Nez.Entity
 {
     // ── Constants ─────────────────────────────────────────────────────────────
 

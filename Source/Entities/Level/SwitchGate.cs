@@ -1,11 +1,11 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using KirbyCelesteStandalone.Entities.Core;
+using DZ.Entities.Core;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Port of Celeste's SwitchGate.cs.

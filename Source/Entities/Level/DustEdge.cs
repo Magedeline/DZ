@@ -1,7 +1,7 @@
 using System;
-using Nez;
+using DZ.Nez;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Marker component that holds a render-dust callback.
@@ -15,7 +15,7 @@ namespace KirbyCelesteStandalone.Entities.Level;
 ///
 /// This is a pure data/callback component – no <c>Update</c> logic.
 /// </summary>
-public class DustEdge : Nez.Component
+public class DustEdge : DZ.Nez.Component
 {
     /// <summary>
     /// Callback invoked by the dust-edge renderer each frame.

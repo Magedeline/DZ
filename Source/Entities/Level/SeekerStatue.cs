@@ -1,11 +1,12 @@
-﻿using Microsoft.Xna.Framework;
-using Nez;
+using Microsoft.Xna.Framework;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
+using Entity = DZ.Nez.Entity;
+using Component = DZ.Nez.Component;
 using System;
-using KirbyCelesteStandalone.Entities.Player;
-using Component = Nez.Component;
-using Entity = Nez.Entity;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Port of Celeste's SeekerStatue.cs.
@@ -148,8 +149,8 @@ public class SeekerStatue : Component, IUpdatable
         // Emit particles in a circle
         for (float angle = 0f; angle < MathF.PI * 2f; angle += 0.17453292f) // ~10 degrees
         {
-            float spread = (Nez.Random.NextFloat() - 0.5f) * MathF.PI / 45f; // ±2 degrees
-            float distance = Nez.Random.Range(12, 20);
+            float spread = (DZ.Nez.Random.NextFloat() - 0.5f) * MathF.PI / 45f; // ±2 degrees
+            float distance = DZ.Nez.Random.Range(12, 20);
 
             Vector2 direction = new Vector2(MathF.Cos(angle + spread), MathF.Sin(angle + spread));
             Vector2 position = Entity.Position + direction * distance;

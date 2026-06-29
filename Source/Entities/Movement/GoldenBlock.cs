@@ -1,9 +1,10 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
 using System;
-using KirbyCelesteStandalone.Entities.Core;
+using DZ.Entities.Core;
 
-namespace KirbyCelesteStandalone.Entities.Movement;
+namespace DZ.Entities.Movement;
 
 /// <summary>
 /// Port of Celeste's GoldenBlock.cs.
@@ -81,7 +82,7 @@ public class GoldenBlock : CelesteSolid
             for (int _gi = 0; _gi < Scene.Entities.Count; _gi++)
             {
                 var e = Scene.Entities[_gi];
-                if (e is KirbyCelesteStandalone.Entities.Player.MadelinePlayer player
+                if (e is DZ.Entities.Player.MadelinePlayer player
                     && player.Position.X > Position.X - ActivateXOffset)
                 {
                     _visible   = true;
@@ -130,12 +131,12 @@ public class GoldenBlock : CelesteSolid
     {
         if (Scene == null) return false;
         for (int _gi2 = 0; _gi2 < Scene.Entities.Count; _gi2++)
-            if (Scene.Entities[_gi2] is KirbyCelesteStandalone.Entities.Player.MadelinePlayer p && IsRiding(p))
+            if (Scene.Entities[_gi2] is DZ.Entities.Player.MadelinePlayer p && IsRiding(p))
                 return true;
         return false;
     }
 
-    private bool IsRiding(KirbyCelesteStandalone.Entities.Player.MadelinePlayer player) =>
+    private bool IsRiding(DZ.Entities.Player.MadelinePlayer player) =>
         Math.Abs(player.Position.Y + player.Height - Position.Y) <= 2f
         && player.Position.X + player.Width > Position.X
         && player.Position.X < Position.X + Width;

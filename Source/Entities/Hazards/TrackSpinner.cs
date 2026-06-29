@@ -1,10 +1,11 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
 using System;
 using System.Linq;
-using KirbyCelesteStandalone.Entities.Player;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Hazards;
+namespace DZ.Entities.Hazards;
 
 /// <summary>
 /// Base class for spinners that slide back and forth along a line segment
@@ -16,7 +17,7 @@ namespace KirbyCelesteStandalone.Entities.Hazards;
 /// <see cref="OnTrackStart"/> / <see cref="OnTrackEnd"/> callbacks
 /// for audio/particle effects.
 /// </summary>
-public class TrackSpinner : Nez.Entity
+public class TrackSpinner : DZ.Nez.Entity
 {
     // ── Speed tables (mirrors Celeste source exactly) ─────────────────────────
     public static readonly float[] PauseTimes = { 0.3f, 0.2f, 0.6f };

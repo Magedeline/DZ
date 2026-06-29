@@ -1,7 +1,8 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Entity = DZ.Nez.Entity;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Small decorative pennant flags strung between two cliff anchor points.
@@ -11,7 +12,7 @@ namespace KirbyCelesteStandalone.Entities.Level;
 /// with the four traditional cliff flag colours, short cloth pieces, and a
 /// subtle drooping amount.
 /// </summary>
-public class CliffFlags : Nez.Component
+public class CliffFlags : DZ.Nez.Component
 {
     // -------------------------------------------------------------------------
     // Colour palette (matching original hex values)

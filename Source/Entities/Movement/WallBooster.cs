@@ -1,9 +1,13 @@
 using Microsoft.Xna.Framework;
-using Nez;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
+using Collider = DZ.Nez.Collider;
+using BoxCollider = DZ.Nez.BoxCollider;
 using System;
-using KirbyCelesteStandalone.Core;
+using DZ.Core;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Movement;
+namespace DZ.Entities.Movement;
 
 /// <summary>
 /// Port of Celeste's WallBooster.cs to Nez/MonoGame.
@@ -13,8 +17,8 @@ namespace KirbyCelesteStandalone.Entities.Movement;
 /// vertical speed is boosted upward, effectively giving them a speed-booster
 /// wall section.
 ///
-/// Unlike solid blocks this class extends <see cref="Nez.Entity"/> directly
-/// (not <see cref="KirbyCelesteStandalone.Entities.Core.CelesteSolid"/>)
+/// Unlike solid blocks this class extends <see cref="DZ.Nez.Entity"/> directly
+/// (not <see cref="DZ.Entities.Core.CelesteSolid"/>)
 /// because it carries no collision geometry of its own — it is purely a
 /// proximity detector.
 ///
@@ -29,7 +33,7 @@ namespace KirbyCelesteStandalone.Entities.Movement;
 ///   </item>
 /// </list>
 /// </summary>
-public class WallBooster : Nez.Entity, IUpdatable
+public class WallBooster : DZ.Nez.Entity, IUpdatable
 {
     // ── Tuning constants ──────────────────────────────────────────────────────
 

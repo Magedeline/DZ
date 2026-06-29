@@ -3,6 +3,7 @@ namespace Celeste.Effects
     /// <summary>
     /// Ancient Runes effect that displays glowing runes with animation
     /// </summary>
+    [CustomBackdrop("DZ/AncientRunes")]
     public class AncientRunes : Backdrop
     {
         private struct Rune

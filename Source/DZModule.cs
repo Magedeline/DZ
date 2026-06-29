@@ -41,6 +41,10 @@ public class DZModule : EverestModule {
         AudioReplacer.Load();
         EverestContentUpdateGuard.Load();
         LiveWatchPatcher.Load();
+
+        // Set up DLL hot-reload: file watcher on bin/ + enable Everest CodeReload_WIP.
+        DllHotReloader.Initialize();
+
         VignetteHooks.Load();
         KirbyPlayerController.Load();
         SoulPlayerController.Load();
@@ -48,6 +52,7 @@ public class DZModule : EverestModule {
         SideLockDisplaySystem.Load();
         ChapterCompletionHooks.Load();
         OverworldConnectorHooks.Load();
+        OuiModeSelectHooks.Load();
 
         // Initialize metadata registries (loads .bin.maggyhelper.meta.yaml etc.)
         MetadataRegistries.Initialize();
@@ -60,6 +65,7 @@ public class DZModule : EverestModule {
         AudioReplacer.Unload();
         EverestContentUpdateGuard.Unload();
         LiveWatchPatcher.Unload();
+        DllHotReloader.Shutdown();
         VignetteHooks.Unload();
         KirbyPlayerController.Unload();
         SoulPlayerController.Unload();
@@ -67,24 +73,33 @@ public class DZModule : EverestModule {
         SideLockDisplaySystem.Unload();
         ChapterCompletionHooks.Unload();
         OverworldConnectorHooks.Unload();
+        OuiModeSelectHooks.Unload();
         On.Monocle.Engine.Update -= OnEngineUpdate;
         _spriteBank = null;
     }
 
-    private static void OnEngineUpdate(On.Monocle.Engine.orig_Update orig, Engine self, GameTime gameTime)
+    private static void OnEngineUpdate(On.Monocle.Engine.orig_Update orig, Monocle.Engine self, GameTime gameTime)
     {
         orig(self, gameTime);
 
         // Ensure HotReloadController exists in the current scene
-        if (Engine.Scene != null && Engine.Scene.Tracker.GetEntity<HotReloadController>() == null)
+        if (Monocle.Engine.Scene != null && Monocle.Engine.Scene.Tracker.GetEntity<HotReloadController>() == null)
         {
-            Engine.Scene.Add(new HotReloadController());
+            Monocle.Engine.Scene.Add(new HotReloadController());
+        }
+
+        // Ensure GentleBreezeAssist exists in the current scene so the
+        // dash-aim freeze / arrow render for the Kirby player when the
+        // Gentle Breeze setting is enabled.
+        if (Monocle.Engine.Scene != null && Monocle.Engine.Scene.Tracker.GetEntity<global::Celeste.Entities.GentleBreezeAssist>() == null)
+        {
+            Monocle.Engine.Scene.Add(new global::Celeste.Entities.GentleBreezeAssist());
         }
 
         // Ensure LiveWatchOverlay exists if frozen
-        if (Engine.Scene != null && LiveWatchPatcher.IsFrozen && Engine.Scene.Entities.FindFirst<LiveWatchOverlay>() == null)
+        if (Monocle.Engine.Scene != null && LiveWatchPatcher.IsFrozen && Monocle.Engine.Scene.Entities.FindFirst<LiveWatchOverlay>() == null)
         {
-            Engine.Scene.Add(new LiveWatchOverlay(LiveWatchPatcher.LastError, DateTime.Now));
+            Monocle.Engine.Scene.Add(new LiveWatchOverlay(LiveWatchPatcher.LastError, DateTime.Now));
         }
     }
 
@@ -93,14 +108,14 @@ public class DZModule : EverestModule {
     /// </summary>
     public static void LaunchPart1Credits()
     {
-        if (Engine.Scene is Overworld overworld)
+        if (Monocle.Engine.Scene is Overworld overworld)
         {
             overworld.Goto<global::Celeste.Cutscenes.CsPart1Credit>();
         }
         else
         {
             // Navigate via OverworldLoader if not already in the Overworld
-            Engine.Scene = new OverworldLoader(Overworld.StartMode.MainMenu, null);
+            Monocle.Engine.Scene = new OverworldLoader(Overworld.StartMode.MainMenu, null);
         }
     }
 
@@ -109,7 +124,7 @@ public class DZModule : EverestModule {
     /// </summary>
     public static void LaunchPart2Credits()
     {
-        if (Engine.Scene is Level level)
+        if (Monocle.Engine.Scene is Level level)
         {
             var player = level.Tracker.GetEntity<global::Celeste.Player>();
             if (player != null)
@@ -165,7 +180,7 @@ public class DZModule : EverestModule {
     /// </summary>
     public static void LaunchChapter17Epilogue()
     {
-        if (Engine.Scene is Level level)
+        if (Monocle.Engine.Scene is Level level)
         {
             var player = level.Tracker.GetEntity<global::Celeste.Player>();
             if (player != null)

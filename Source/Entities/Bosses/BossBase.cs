@@ -1,14 +1,18 @@
-﻿using Microsoft.Xna.Framework;
-using Nez;
-using Nez.Sprites;
+using Microsoft.Xna.Framework;
+using DZ.Nez;
+using Scene = DZ.Nez.Scene;
+using Entity = DZ.Nez.Entity;
+using Component = DZ.Nez.Component;
+using Collider = DZ.Nez.Collider;
+using BoxCollider = DZ.Nez.BoxCollider;
+using DZ.Nez.Sprites;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using KirbyCelesteStandalone.Core;
-using Component = Nez.Component;
-using Scene = Nez.Scene;
+using DZ.Core;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Bosses;
+namespace DZ.Entities.Bosses;
 
 /// <summary>
 /// Base class for all boss entities.
@@ -167,10 +171,10 @@ public abstract class BossBase : Component, IUpdatable
         PlayDeathEffect();
 
         // Play defeat music/SFX
-        KirbyGame.Audio.PlayMusic("event:/pusheen/music/boss_defeat");
+        DZGame.Audio.PlayMusic("event:/pusheen/music/boss_defeat");
 
         // Cleanup after delay
-        Nez.Core.Schedule(3f, _ =>
+        DZ.Nez.Core.Schedule(3f, _ =>
         {
             // Spawn rewards, open exit, etc.
             OnBossDefeated?.Invoke();
@@ -364,7 +368,7 @@ public abstract class BossBase : Component, IUpdatable
     protected void StartInvulnerability(float duration)
     {
         IsInvulnerable = true;
-        Nez.Core.Schedule(duration, _ => IsInvulnerable = false);
+        DZ.Nez.Core.Schedule(duration, _ => IsInvulnerable = false);
     }
 
     // ═══════════════════════════════════════════════════════════════════════
@@ -374,25 +378,25 @@ public abstract class BossBase : Component, IUpdatable
     protected virtual void PlaySpawnEffect()
     {
         // Play spawn sound
-        KirbyGame.Audio.PlaySfx("event:/pusheen/game/boss/spawn");
+        DZGame.Audio.PlaySfx("event:/pusheen/game/boss/spawn");
     }
 
     protected virtual void PlayHitEffect()
     {
         // Flash white, play hit sound
-        KirbyGame.Audio.PlaySfx("event:/pusheen/game/boss/hit");
+        DZGame.Audio.PlaySfx("event:/pusheen/game/boss/hit");
     }
 
     protected virtual void PlayDeathEffect()
     {
         // Explosion particles, screen shake
-        KirbyGame.Audio.PlaySfx("event:/pusheen/game/boss/death");
+        DZGame.Audio.PlaySfx("event:/pusheen/game/boss/death");
     }
 
     protected virtual void PlayPhaseEffect()
     {
         // Phase transition visual/sound
-        KirbyGame.Audio.PlaySfx("event:/pusheen/game/boss/phase_change");
+        DZGame.Audio.PlaySfx("event:/pusheen/game/boss/phase_change");
     }
 
     protected virtual void UpdateAnimation()
@@ -423,7 +427,7 @@ public abstract class BossBase : Component, IUpdatable
     {
         if (AttackPatterns.Count == 0) return;
 
-        int randomIndex = Nez.Random.NextInt(AttackPatterns.Count);
+        int randomIndex = DZ.Nez.Random.NextInt(AttackPatterns.Count);
         ExecuteAttack(randomIndex);
     }
 }

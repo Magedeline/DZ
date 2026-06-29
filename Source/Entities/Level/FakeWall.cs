@@ -1,12 +1,16 @@
-﻿using Microsoft.Xna.Framework;
-using Nez;
+#nullable enable
+using Microsoft.Xna.Framework;
+using DZ.Nez;
+using Entity = DZ.Nez.Entity;
+using Component = DZ.Nez.Component;
+using Collider = DZ.Nez.Collider;
+using BoxCollider = DZ.Nez.BoxCollider;
 using System;
 using System.Collections.Generic;
-using KirbyCelesteStandalone.Entities.Player;
-using KirbyCelesteStandalone.Entities.Core;
-using Component = Nez.Component;
+using DZ.Entities.Player;
+using DZ.Entities.Core;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Port of Celeste's FakeWall.cs.
@@ -62,7 +66,7 @@ public class FakeWall : Component, IUpdatable
         _width = width;
         _height = height;
         _playRevealWhenTransitionedInto = playRevealWhenTransitionedInto;
-        // Depth = -13000; // TODO: Depth not available in Nez.Entity
+        // Depth = -13000; // TODO: Depth not available in DZ.Nez.Entity
     }
 
     // -------------------------------------------------------------------------
@@ -135,7 +139,7 @@ public class FakeWall : Component, IUpdatable
     // Update
     // -------------------------------------------------------------------------
 
-    public void Update()
+    public override void Update()
     {
         float dt = Time.DeltaTime;
 

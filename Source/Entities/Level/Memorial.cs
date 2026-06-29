@@ -1,8 +1,11 @@
 using Microsoft.Xna.Framework;
-using Nez;
-using KirbyCelesteStandalone.Entities.Player;
+using DZ.Nez;
+using Entity = DZ.Nez.Entity;
+using Collider = DZ.Nez.Collider;
+using BoxCollider = DZ.Nez.BoxCollider;
+using DZ.Entities.Player;
 
-namespace KirbyCelesteStandalone.Entities.Level;
+namespace DZ.Entities.Level;
 
 /// <summary>
 /// Memorial stone decoration that shows an inscription when the player stands
@@ -12,7 +15,7 @@ namespace KirbyCelesteStandalone.Entities.Level;
 /// visible and a sound plays.  A dreaming-mode variant displays a floaty
 /// animated text sprite instead.
 /// </summary>
-public class Memorial : Nez.Component, IUpdatable
+public class Memorial : DZ.Nez.Component, IUpdatable
 {
     // -------------------------------------------------------------------------
     // Public state

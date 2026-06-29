@@ -137,7 +137,9 @@ namespace DZ
         private bool barrierActive;
         
         // Audio - FMOD Events
-        private const string MUSIC_BURN_IN_DESPAIR = "event:/new_content/music/pusheen/lvl20/burn_in_despair";
+        private const string MUSIC_BURN_IN_DESPAIR = "event:/pusheen/new_content/music/lvl20/burn_in_despair";
+        private const string MUSIC_ANGEL_EX = "event:/pusheen/new_content/music/lvl20/angel_ex";
+        private const string MUSIC_FEEL = "event:/pusheen/new_content/music/lvl20/feel";
         private const string MUSIC_HIS_THEME_01 = "event:/new_content/music/pusheen/lvl20/his_theme01";
         private const string MUSIC_HIS_THEME_02 = "event:/new_content/music/pusheen/lvl20/his_theme02";
         private const string MUSIC_KIRBY_VS_ASRIEL = "event:/new_content/music/pusheen/lvl20/angel";
@@ -457,8 +459,12 @@ namespace DZ
             // Make boss visible
             Visible = true;
             
-            // Start with ominous music
+            // Start phase 1 music: burn_in_despair
+            // angel_pitch ramps 0→1→0, fade ramps 1→0
             Audio.SetMusic(MUSIC_BURN_IN_DESPAIR);
+            Audio.SetMusicParam("angel_pitch", 0f);
+            Audio.SetMusicParam("fade", 1f);
+            Add(new Coroutine(AnimatePhase1MusicParams()));
             
             // Position behind where player will see
             Position = riseStartPosition;
@@ -659,8 +665,12 @@ namespace DZ
             // The void responds
             yield return Textbox.Say("DZ_CH20_ASRIEL_ZERO_VOID_ANSWERS");
             
-            // Switch music to His Theme (hopeful version)
-            Audio.SetMusic(MUSIC_KIRBY_VS_ASRIEL);
+            // Switch to phase 2 music: angel_ex
+            // angel_pitch ramps 0→1→0, fade ramps 1→0
+            Audio.SetMusic(MUSIC_ANGEL_EX);
+            Audio.SetMusicParam("angel_pitch", 0f);
+            Audio.SetMusicParam("fade", 1f);
+            Add(new Coroutine(AnimatePhase2MusicParams()));
             
             // Re-enable player with new determination
             if (player != null)
@@ -874,17 +884,28 @@ namespace DZ
         #region Phase 7: Final Beam - Els still possessing Asriel
         private IEnumerator FinalBeamPhase()
         {
-            // Switch to intense battle music
-            Audio.SetMusic(MUSIC_HIS_THEME_02);
+            // Switch to phase 3 (final) music: feel
+            // "feel" parameter drives progression through this track
+            Audio.SetMusic(MUSIC_FEEL);
+            Audio.SetMusicParam("feel", 0f);
             
             // Els forces one final attack
             yield return Textbox.Say("DZ_CH20_ASRIEL_REMEMBER_FINAL");
             
+            // Advance feel progression: opening → charge
+            Audio.SetMusicParam("feel", 1f);
+            
             // Charge final beam
             yield return FinalBeamChargeSequence();
             
+            // Advance feel progression: charge → beam firing
+            Audio.SetMusicParam("feel", 2f);
+            
             // Execute devastating attack
             yield return FinalBeamAttack();
+            
+            // Advance feel progression: beam → resolution
+            Audio.SetMusicParam("feel", 2f);
             
             // After the beam, Asriel breaks free
             yield return Textbox.Say("DZ_CH20_ASRIEL_REMEMBER_F");
@@ -1470,6 +1491,58 @@ namespace DZ
                     army = (float)Math.Sin(angleRad) * 150f;
                 }
             }
+        }
+
+        /// <summary>
+        /// Animates angel_pitch (0→1→0) and fade (1→0) for phase 1 music (burn_in_despair).
+        /// </summary>
+        private IEnumerator AnimatePhase1MusicParams()
+        {
+            yield return AnimateAngelPitchAndFade();
+        }
+
+        /// <summary>
+        /// Animates angel_pitch (0→1→0) and fade (1→0) for phase 2 music (angel_ex).
+        /// </summary>
+        private IEnumerator AnimatePhase2MusicParams()
+        {
+            yield return AnimateAngelPitchAndFade();
+        }
+
+        /// <summary>
+        /// Shared routine: ramps angel_pitch 0→1 over the first half, then 1→0 over the second half,
+        /// while fading the fade parameter from 1→0 across the full duration.
+        /// Duration is driven by the phase length (riseTime / lost-souls combat time).
+        /// Here we use a fixed envelope duration that covers the bulk of each phase.
+        /// </summary>
+        private IEnumerator AnimateAngelPitchAndFade()
+        {
+            const float rampUpDuration = 15f;   // seconds to reach pitch peak
+            const float rampDownDuration = 15f; // seconds to return pitch to 0
+            const float totalDuration = rampUpDuration + rampDownDuration;
+
+            float elapsed = 0f;
+
+            while (elapsed < totalDuration)
+            {
+                elapsed += Engine.DeltaTime;
+                float t = elapsed / totalDuration;
+
+                // angel_pitch: triangle 0→1→0
+                float pitchT = elapsed < rampUpDuration
+                    ? elapsed / rampUpDuration
+                    : 1f - (elapsed - rampUpDuration) / rampDownDuration;
+                Audio.SetMusicParam("angel_pitch", MathHelper.Clamp(pitchT, 0f, 1f));
+
+                // fade: 1→0 over the full duration
+                Audio.SetMusicParam("fade", MathHelper.Clamp(1f - t, 0f, 1f));
+
+                yield return null;
+            }
+
+            // Ensure final values are set
+            Audio.SetMusicParam("angel_pitch", 0f);
+            Audio.SetMusicParam("fade", 0f);
         }
 
         private void UpdateSongController()

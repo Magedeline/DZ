@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Input;
 using Celeste.Cutscenes;
 using Celeste.Entities.Bosses;
 using Celeste.Mod.DZ;
+using Celeste.Projectiles;
 using DZ;
 using static Monocle.Calc;
 
@@ -7191,23 +7192,15 @@ namespace Celeste.Entities
 
         private void SpawnKirbyStarProjectile(Vector2 from, Vector2 direction)
         {
-            // deal damage along the projectile path instantly (simplified) —
-            // one swing, so each enemy on the path is hit exactly once
-            StartSwing();
             direction = direction.SafeNormalize();
-            for (float d = 0; d < 120f; d += 8f)
-            {
-                Vector2 checkPos = from + direction * d;
+            level.Add(new PlayerStarBullet(
+                from + direction * 8f,
+                direction * KirbyStarSpitSpeed,
+                this,
+                KirbyStarSpitDamage));
 
-                if (Scene.CollideCheck<Solid>(checkPos))
-                    break;
-
-                DealCombatDamageAtPoint(checkPos, 12f, KirbyStarSpitDamage);
-            }
-
-            // visual
-            level.ParticlesFG.Emit(P_DashA, 8, from + direction * 16f, Vector2.One * 4, direction.Angle());
-            level.Displacement.AddBurst(from + direction * 32f, .3f, 4, 32, .3f, Ease.QuadOut, Ease.QuadOut);
+            level.ParticlesFG.Emit(P_DashA, 4, from + direction * 8f, Vector2.One * 4, direction.Angle());
+            level.Displacement.AddBurst(from + direction * 8f, .3f, 4, 24, .3f, Ease.QuadOut, Ease.QuadOut);
         }
 
         #endregion
@@ -8332,6 +8325,12 @@ namespace Celeste.Entities
                 Dust.Burst(target.Center, knockbackDir.Angle(), 4);
             }
         }
+
+        // Called by PlayerStarBullet so the projectile can damage enemies using the same
+        // target validation and hit-feedback as melee attacks.
+        public bool IsValidTarget(Entity entity) => IsDamageableTarget(entity);
+        public void DealProjectileDamage(Entity target, int damage, Vector2 knockbackDir)
+            => ApplyCombatDamage(target, damage, knockbackDir);
 
         #region Phase 3: Extended Kirby Mechanics (Multi-Jump & Alternate Dash)
 

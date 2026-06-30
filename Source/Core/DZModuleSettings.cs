@@ -158,5 +158,44 @@ namespace Celeste.Mod.DZ
         }
 
         #endregion
+
+        /// <summary>Reset settings to defaults for hot reload.</summary>
+        public void Reset()
+        {
+            // Reset key bindings
+            InGameMapEditor = new ButtonBinding(Buttons.LeftTrigger, Keys.F10);
+
+            // Reset boss/Kirby settings
+            BossesExampleResetKeysForSession = false;
+            BossDifficultyMultiplier = 1;
+            EnableBossMusic = true;
+            KirbyPlayerEnabled = true;
+            KirbyMaxFloatJumps = 5;
+            GentleBreezeMode = false;
+            LastEndemyMode = false;
+            LastEndemyAgreed = false;
+
+            // Reset debug settings
+            DebugMode = false;
+            SkipModIntro = false;
+            HasSeenIntroWarning = false;
+            AudioThemeMode = AudioThemeMode.Pusheen;
+            DeveloperBypass = false;
+
+            // Reset overworld settings
+            EnableCustomMountainModels = true;
+            LockMountainCameraRotation = true;
+            SmoothCameraTransitions = true;
+            EnableMountainFogEffects = true;
+            ShowChapterPreviewInOverworld = true;
+            DefaultMountainStateOverride = 0;
+
+            // Reset area data display settings
+            ShowSideUnlockNotifications = true;
+            ShowChapterMasteryOnPanel = true;
+            EnableCosmicBackgroundEffect = true;
+            ShowDSideDXSideInMenu = true;
+            ChapterDisplayMode = 0;
+        }
     }
 }

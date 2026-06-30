@@ -36,7 +36,7 @@ public class DZModule : EverestModule {
     }
 
     public override void Load() {
-        // typeof(DZExports).ModInterop(); // TODO: delete this line if you do not need to export any functions
+        typeof(DZExports).ModInterop();
 
         AudioReplacer.Load();
         EverestContentUpdateGuard.Load();
@@ -44,6 +44,13 @@ public class DZModule : EverestModule {
 
         // Set up DLL hot-reload: file watcher on bin/ + enable Everest CodeReload_WIP.
         DllHotReloader.Initialize();
+
+        // Initialize area map data and apply hardcoded runtime data
+        AreaMapData.Initialize();
+        AreaMapData.ApplyHardcodedRuntimeData();
+
+        // Load D-Side hook registry (DSide, Music, TitleScreen hooks)
+        DSideHookRegistry.InitializeAll();
 
         VignetteHooks.Load();
         KirbyPlayerController.Load();
@@ -59,6 +66,8 @@ public class DZModule : EverestModule {
 
         // Hook into scene changes to add the HotReloadController
         On.Monocle.Engine.Update += OnEngineUpdate;
+
+        Logger.Log(LogLevel.Info, nameof(DZModule), "DZ mod loaded successfully");
     }
 
     public override void Unload() {
@@ -66,6 +75,10 @@ public class DZModule : EverestModule {
         EverestContentUpdateGuard.Unload();
         LiveWatchPatcher.Unload();
         DllHotReloader.Shutdown();
+
+        // Unload D-Side hook registry
+        DSideHookRegistry.UninitializeAll();
+
         VignetteHooks.Unload();
         KirbyPlayerController.Unload();
         SoulPlayerController.Unload();
@@ -76,6 +89,8 @@ public class DZModule : EverestModule {
         OuiModeSelectHooks.Unload();
         On.Monocle.Engine.Update -= OnEngineUpdate;
         _spriteBank = null;
+
+        Logger.Log(LogLevel.Info, nameof(DZModule), "DZ mod unloaded");
     }
 
     private static void OnEngineUpdate(On.Monocle.Engine.orig_Update orig, Monocle.Engine self, GameTime gameTime)

@@ -23,4 +23,13 @@ public static class DZGame
 
     /// <summary>Path to FMOD bank files (stub: empty).</summary>
     public static string AudioBankPath { get; set; } = string.Empty;
+
+    /// <summary>Initialize game state (stub: no-op).</summary>
+    public static void Initialize() { }
+
+    /// <summary>Reload game state for hot reload (stub: no-op).</summary>
+    public static void Reload() { }
+
+    /// <summary>Shutdown game state (stub: no-op).</summary>
+    public static void Shutdown() { }
 }

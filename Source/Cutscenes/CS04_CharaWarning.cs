@@ -21,6 +21,7 @@ namespace Celeste.Cutscenes
         public static void ResetTriggeredState() => HasTriggered = false;
 
         #region Constants
+        public const string Flag = "evil_chara_warning";
         private const float ANXIETY_FADE_SPEED = 3f;
         private const float ANXIETY_INTERVAL = 0.08f;
         private const float ANXIETY_SINE_RATE = 0.4f;
@@ -125,7 +126,6 @@ namespace Celeste.Cutscenes
             // Play warning dialog
             yield return Textbox.Say("DZ_CH4_CHARA_WARNING", new Func<IEnumerator>[] {
                 CharaLaugh,
-                CharaDisappear,
             });
 
             anxietyFadeTarget = 0f;
@@ -205,101 +205,31 @@ namespace Celeste.Cutscenes
             
             chara.Sprite.Play("angry");
             yield return 0.3f;
-        }
 
-        private IEnumerator CharaDisappear()
-        {
-            yield return 0.3f;
-            
-            // Flash and disappear
-            Audio.Play(CHARA_DISAPPEAR_SOUND, chara.Position);
-            
-            Level level = Scene as Level;
-            level.Displacement.AddBurst(chara.Center, 0.6f, 16f, 128f, 0.5f);
-            
-            // Emit particles
-            if (CharaChaser.P_Vanish != null)
-            {
-                level.Particles.Emit(CharaChaser.P_Vanish, 16, chara.Center, Vector2.One * 8f);
-            }
-
-            // Fade out animation
-            for (float t = 0f; t < 1f; t += Engine.DeltaTime * 3f)
-            {
-                chara.Sprite.Scale = Vector2.One * (1f - Ease.CubeIn(t));
-                chara.Sprite.Color = Color.White * (1f - Ease.CubeIn(t));
-                yield return null;
-            }
-
-            chara.Visible = false;
-            chara.Position = charaStartPosition;
-            
-            yield return 0.5f;
+            // Signal CharaChaser that intro is complete and it should begin chasing
+            chara.BeginChasing();
+            Level.Session.SetFlag("evil_chara_warning");
         }
 
         public override void OnEnd(Level level)
         {
-            try
+            // Reset anxiety effects
+            Distort.Anxiety = 0f;
+            anxietyFade = 0f;
+            anxietyFadeTarget = 0f;
+
+            // Restore player state
+            if (player != null)
             {
-                // Clear anxiety effects
-                Distort.Anxiety = 0f;
-
-                // Unlock player
-                if (player != null)
-                {
-                    player.StateMachine.Locked = false;
-                    player.StateMachine.State = Player.StNormal;
-                    player.JustRespawned = true;
-                }
-
-                // Set warning flag so cutscene doesn't play again
-                level.Session.SetFlag("maggy_chara_warning", true);
-
-                // Reset chara state
-                if (chara != null)
-                {
-                    chara.Visible = false;
-                    chara.Position = charaStartPosition;
-                    chara.Hovering = false;
-                    
-                    // Now start the actual chase after the warning
-                    level.Add(new ChaseStarter(chara, level));
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.Log(LogLevel.Error, "DZ",
-                    $"Error in CS04_CharaWarning.OnEnd: {ex}");
-            }
-        }
-
-        /// <summary>
-        /// Helper entity to start the chase after the cutscene ends
-        /// </summary>
-        private class ChaseStarter : Entity
-        {
-            private readonly CharaChaser chara;
-            private readonly Level level;
-
-            public ChaseStarter(CharaChaser charaChaser, Level level)
-            {
-                chara = charaChaser;
-                this.level = level;
-                Add(new Coroutine(StartChase()));
+                player.StateMachine.Locked = false;
+                player.StateMachine.State = Player.StNormal;
             }
 
-            private IEnumerator StartChase()
-            {
-                yield return 1f;
-                
-                if (chara != null)
-                {
-                    // Start the chase routine
-                    chara.Add(new Coroutine(chara.StartChasingRoutine(level)));
-                }
+            // Restore camera
+            level.Zoom = 1f;
 
-                RemoveSelf();
-            }
+            // Set flag so this cutscene doesn't re-trigger
+            level.Session.SetFlag(Flag);
         }
     }
 }

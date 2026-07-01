@@ -44,6 +44,8 @@ eventTrigger.fieldInformation = {
             "cs01_mod_ending",
             -- Chapter 2
             "cs02_chara_intro",
+            "cs02_dreaming_phonecall_portal",
+            "cs02_awake_phonecall_ending",
             -- Chapter 3
             "cs03_first_step",
             "cs03_meetup",
@@ -77,6 +79,8 @@ eventTrigger.fieldInformation = {
             "ch13_tape_05",
             "ch13_tape_final",
             "ch13_tape_vignette",
+            -- Payphone
+            "payphone_eat",
             -- Chapter 15
             "ch15_zantas_1",
             "ch15_zantas_2",

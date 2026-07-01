@@ -89,7 +89,7 @@ public class CharaChaser : Entity
         base.Depth = -1;
         base.Collider = new Hitbox(6f, 6f, -3f, -7f);
         Collidable = false;
-        Sprite = GFX.SpriteBank.Create("maggy_chara");
+        Sprite = GFX.SpriteBank.Create("chara");
         Sprite.Play("fallSlow", restart: true);
         // Chara doesn't use PlayerHair - skip hair initialization to avoid NullReferenceException
         Hair = null;
@@ -124,148 +124,55 @@ public class CharaChaser : Entity
     [MethodImpl(MethodImplOptions.NoInlining)]
     public override void Added(Scene scene)
     {
-        base.Added(scene);
         Level level = scene as Level;
-        
-        if (level == null)
+        if (level?.Session.Area.GetLevelSet() == "Celeste")
         {
-            RemoveSelf();
+            orig_Added(scene);
             return;
         }
+        base.Added(scene);
+        Add(new Coroutine(StartChasingRoutine(level)));
+    }
 
-        Session session = level.Session;
-        
-        // Check if this is the DesoloZantas campaign - if so, apply story-specific logic
-        bool isDesoloZantasCampaign = session.Area.GetLevelSet() == "DesoloZantas";
-        
-        // Check if this is the Maggy campaign
-        bool isMaggyCampaign = session.Area.GetLevelSet() == "Maggy";
-        
-        if (isDesoloZantasCampaign)
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    public void orig_Added(Scene scene)
+    {
+        base.Added(scene);
+        Session session = SceneAs<Level>().Session;
+        if (session.GetLevelFlag("b_chase") && session.Area.Mode == AreaMode.Normal)
         {
-            // Check if already completed the chara intro
-            if (session.GetLevelFlag("b-14") && session.Area.Mode == AreaMode.Normal)
-            {
-                RemoveSelf();
-                return;
-            }
-
-            // Trigger CS02 intro once when entering the intended room before the intro flag is set.
-            if (!session.GetFlag("evil_chara_intro") && session.Level == "b-3" && session.Area.Mode == AreaMode.Normal)
-            {
-                // Set up for cutscene - player finds Chara pretending to be dead
-                Hovering = false;
-                Visible = true;
-                if (Hair != null) Hair.Visible = false;
-                if (Sprite.Has("pretendDead"))
-                {
-                    Sprite.Play("pretendDead");
-                }
-                else if (Sprite.Has("fallSlow"))
-                {
-                    Sprite.Play("fallSlow");
-                }
-                
-                session.Audio.Music.Event = "event:/pusheen/music/lvl2/evil_chara";
-                session.Audio.Apply(forceSixteenthNoteHack: false);
-                
-                // Add the intro cutscene only once per room load (if enabled).
-                if (triggerIntro && scene.Tracker.GetEntity<CS02_CharaIntro>() == null)
-                {
-                    scene.Add(new CS02_CharaIntro(this));
-                }
-                return;
-            }
-
-            // Normal chase behavior for DesoloZantas - only start if intro was already seen
-            if (session.GetFlag("evil_chara_intro") || session.GetFlag("chara_intro"))
-            {
-                Add(new Coroutine(StartChasingRoutine(level)));
-            }
+            RemoveSelf();
         }
-        else if (isMaggyCampaign)
+        else if (!session.GetLevelFlag("14_end") && session.Area.Mode == AreaMode.Normal)
         {
-            // Maggy campaign specific logic
-            
-            // Check for ASide group and specific maps
+            RemoveSelf();
+        }
+        else if (!session.GetFlag("evil_chara_intro") && session.Level == "3" && session.Area.Mode == AreaMode.Normal)
+        {
+            Hovering = false;
+            Visible = true;
+            if (Hair != null) Hair.Visible = false;
+            if (Sprite.Has("pretendDead"))
+            {
+                Sprite.Play("pretendDead");
+            }
+            else if (Sprite.Has("fallSlow"))
+            {
+                Sprite.Play("fallSlow");
+            }
             if (session.Area.Mode == AreaMode.Normal)
             {
-                // Map 02_nightmare, level b-3 - trigger CS02_CharaIntro
-                if (session.Level == "b-3" && !session.GetFlag("maggy_chara_intro"))
-                {
-                    // Set up for cutscene - player finds Chara pretending to be dead
-                    Hovering = false;
-                    Visible = true;
-                    if (Hair != null) Hair.Visible = false;
-                    if (Sprite.Has("pretendDead"))
-                    {
-                        Sprite.Play("pretendDead");
-                    }
-                    else if (Sprite.Has("fallSlow"))
-                    {
-                        Sprite.Play("fallSlow");
-                    }
-                    
-                    session.Audio.Music.Event = "event:/pusheen/music/lvl2/evil_chara";
-                    session.Audio.Apply(forceSixteenthNoteHack: false);
-                    
-                    // Add the intro cutscene only once per room load (if enabled).
-                    if (triggerIntro && scene.Tracker.GetEntity<CS02_CharaIntro>() == null)
-                    {
-                        scene.Add(new CS02_CharaIntro(this));
-                    }
-                    return;
-                }
-                
-                // Map 04_Legend, level b-03 - trigger CS04_CharaWarning
-                if (session.Level == "b-03" && !session.GetFlag("maggy_chara_warning"))
-                {
-                    // Set up for warning cutscene
-                    Hovering = false;
-                    Visible = false;
-                    if (Hair != null) Hair.Visible = false;
-                    
-                    session.Audio.Music.Event = "event:/pusheen/music/lvl4/chara_warning";
-                    session.Audio.Apply(forceSixteenthNoteHack: false);
-                    
-                    // Add the warning cutscene only once per room load (if enabled).
-                    if (triggerIntro && scene.Tracker.GetEntity<CS04_CharaWarning>() == null)
-                    {
-                        scene.Add(new CS04_CharaWarning(this));
-                    }
-                    return;
-                }
+                session.Audio.Music.Event = null;
+                session.Audio.Apply(forceSixteenthNoteHack: false);
             }
-            
-            // Normal chase behavior for Maggy - start if intro was already seen
-            if (session.GetFlag("maggy_chara_intro") || session.GetFlag("maggy_chara_warning"))
+            if (triggerIntro && scene.Tracker.GetEntity<CS02_CharaIntro>() == null)
             {
-                Add(new Coroutine(StartChasingRoutine(level)));
+                scene.Add(new CS02_CharaIntro(this));
             }
         }
         else
         {
-            // For other maps/mods - check if intro cutscene is running
-            try
-            {
-                if (scene.Tracker.GetEntity<CS02_CharaIntro>() != null)
-                {
-                    // Intro cutscene is playing - don't chase yet, wait for it to complete
-                    introComplete = false;
-                }
-                else
-                {
-                    // No intro cutscene - start chasing immediately
-                    introComplete = true;
-                    Add(new Coroutine(StartChasingRoutine(level)));
-                }
-            }
-            catch
-            {
-                // CS02_CharaIntro type not registered - start chasing immediately
-                introComplete = true;
-                Add(new Coroutine(StartChasingRoutine(level)));
-            }
+            Add(new Coroutine(StartChasingRoutine(base.Scene as Level)));
         }
     }
 
@@ -302,7 +209,7 @@ public class CharaChaser : Entity
         {
             level.Add(new CharaChaserMusicHandler());
         }
-        if (IsChaseEnd(level))
+        if (IsChaseEnd(level.Session.Level == "2"))
         {
             Add(new Coroutine(StopChasing()));
         }
@@ -330,21 +237,39 @@ public class CharaChaser : Entity
 
     private IEnumerator StopChasing()
     {
-        Level level = Scene as Level;
-        if (level.Session.Area.GetLevelSet() == "DesoloZantas")
+        if ((base.Scene as Level).Session.Area.GetLevelSet() == "Celeste")
         {
-            return custom_StopChasing();
+            return orig_StopChasing();
         }
-        return orig_StopChasing();
+        return custom_StopChasing();
     }
 
     private IEnumerator orig_StopChasing()
     {
-        // Original vanilla-style behavior - no custom end zone
-        while (true)
+        Level level = SceneAs<Level>();
+        int boundsRight = level.Bounds.X + 148;
+        int boundsBottom = level.Bounds.Y + 168 + 184;
+        while (X != (float)boundsRight || Y != (float)boundsBottom)
         {
             yield return null;
+            if (X > (float)boundsRight)
+            {
+                X = boundsRight;
+            }
+            if (Y > (float)boundsBottom)
+            {
+                Y = boundsBottom;
+            }
         }
+        following = false;
+        ignorePlayerAnim = true;
+        Sprite.Play("laugh");
+        Sprite.Scale.X = 1f;
+        yield return 1f;
+        Audio.Play("event:/char/badeline/disappear", Position);
+        level.Displacement.AddBurst(Center, 0.5f, 24f, 96f, 0.4f);
+        level.Particles.Emit(P_Vanish, 12, Center, Vector2.One * 6f);
+        RemoveSelf();
     }
 
     private IEnumerator custom_StopChasing()
@@ -508,18 +433,23 @@ public class CharaChaser : Entity
         return false;
     }
 
-    private bool IsChaseEnd(Level level)
+    public bool IsChaseEnd(bool value)
     {
-        if (level.Session.Area.GetLevelSet() == "DesoloZantas")
+        Level level = base.Scene as Level;
+        if (level.Session.Area.GetLevelSet() == "Celeste")
         {
-            return level.Tracker.CountEntities<CharaChaserEnd>() != 0;
+            return value;
+        }
+        if (level.Tracker.CountEntities<CharaChaserEnd>() != 0)
+        {
+            return true;
         }
         return false;
     }
 
     public bool CanChangeMusic(bool value)
     {
-        if ((base.Scene as Level).Session.Area.GetLevelSet() == "DesoloZantas")
+        if ((base.Scene as Level).Session.Area.GetLevelSet() == "Celeste")
         {
             return value;
         }

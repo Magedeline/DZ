@@ -1848,18 +1848,21 @@ There something that I found and I need him to come here.
 [susiehaltmann right normal]
 Okay I'll be right back and call him would ya?
 
-MAGGYHELPER_CH3_KIRBY_INTRO=
+DZ_CH3_KIRBY_INTRO=
 Okay Remember what Susie said to me.
 Don't panic and Just Breath...
 Man it's very freezing out here.
 
-MAGGYHELPER_CH3_MAGGY_A=
+DZ_CH3_MAGGY_A=
+{trigger 0 init panzoom}
 [Magolor right happy]
 {~}Yooooo!{/~} Wassup {+KIRBY} how you been!
 
+{trigger 1 badeline walk}
 [BADELINE right concerned]
 So Wait who this kid again?
 
+{trigger 2 magolor turn right}
 [Magolor right annoyed]
 He is a star warrior and yes he may be a kid.
 
@@ -1873,9 +1876,11 @@ But he is more than meet to your eye!
 You can Help me.
 But if you fool me that I was an idiot...
 
+{trigger 3 badeline tentacle hair}
 [BADELINE right freakA]
 {%}{big}Then I'll tear your soul apart!{/big}{/%}
 
+{trigger 4 magolor suggest}
 [Magolor right annoyed]
 ...
 You would need to work on your anger issue.
@@ -1883,7 +1888,9 @@ You would need to work on your anger issue.
 [BADELINE right worriedalt]
 Sorry I didn't mean to say that.
 
-MAGGYHELPER_CH3_MAGGY_B=
+{trigger 5 badeline merge}
+
+DZ_CH3_MAGGY_B=
 [Magolor right normal]
 So.. uhh..
 you came here and might be asking this.
@@ -1915,7 +1922,7 @@ a {# ff0000}{*}Knife{/*}{#}
 ...
 Yeah anyways
 
-MAGGYHELPER_CH3_MAGGY_C=
+DZ_CH3_MAGGY_C=
 [Magolor right normal]
 You know what's interesting though?
 Despite everything that's happened...
@@ -1930,7 +1937,7 @@ This whole situation is getting more complicated by the minute.
 [Magolor right normal]
 At least you're not dealing with this alone, right?
 
-MAGGYHELPER_CH3_MAGGY_D=
+DZ_CH3_MAGGY_D=
 [BADELINE right worriedalt]
 I've been thinking...
 Maybe there's a reason we all ended up here together.
@@ -1946,7 +1953,12 @@ What if this wasn't just random?
 I suppose stranger things have happened.
 We'll figure it out eventually.
 
-MAGGYHELPER_CH3_FIRST_STEP=
+DZ_CH3_MAGGY_DEFAULT=
+[Magolor right normal]
+Hey, we've already talked about this, haven't we?
+Just focus on finding {+MADELINE}.
+
+DZ_CH3_FIRST_STEP=
 [BADELINE left simple_sigh]
 Okay {0.3}Listen up Kid
 an order to find {+MADELINE}
@@ -5100,7 +5112,7 @@ We'll do our best as much as we can.
 
 {trigger 2 Camera Zooms Out}
 
-MAGGYHELPER_CH8_CHARA_BOSS_START=
+DZ_CH8_CHARA_BOSS_START=
 {trigger 0 Camera Pan right}
 
 [CHARA right disapointed flip]
@@ -5147,31 +5159,31 @@ so let's climb our way out to the mountain together
 [CHARA right angry]
 Don't you dare to come closer to me your not gonna like it.
 
-MAGGYHELPER_CH8_CHARA_BOSS_TIRED_A=
+DZ_CH8_CHARA_BOSS_TIRED_A=
 [CHARA right angry]
 YOUR NOT A FIGHTER!!!
 
-MAGGYHELPER_CH8_CHARA_BOSS_TIRED_B=
+DZ_CH8_CHARA_BOSS_TIRED_B=
 [CHARA right angry]
 YOU'RE JUST ANOTHER IDIOTIC MOUNTAIN CLIMBER!!!
 
-MAGGYHELPER_CH8_CHARA_BOSS_TIRED_C=
+DZ_H8_CHARA_BOSS_TIRED_C=
 [CHARA right angry]
 UGH!!!
 
-MAGGYHELPER_CH8_CHARA_BOSS_MIDDLE=
+DZ_CH8_CHARA_BOSS_MIDDLE=
 [CHARA right angry]
 You know what... {0.4} fine!
 Prove to me if your really are a fighter.
 Do not disapointed me ever Again...!
 
-MAGGYHELPER_CH8_CHARA_BOSS_AFTER_MIDDLE=
+DZ_CH8_CHARA_BOSS_AFTER_MIDDLE=
 [CHARA right angry]
 Still fighting?
 You won't give up, will you...
 Then let's see what you've really got!
 
-MAGGYHELPER_CH8_CHARA_BOSS_ENDING=
+DZ_CH8_CHARA_BOSS_ENDING=
 [CHARA right upset flip]
 Fine.
 You win.

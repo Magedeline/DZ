@@ -15,15 +15,15 @@ public class DZUnlockEverything : CheatListener
     public DZUnlockEverything()
     {
         // MIDI-derived input pattern: C7=l, D7=r, E7=d, F7=r, G7=u, high=L/R/A
-        // Sequence: l,u,u,l,l,u,r,d,r,r,L,R,A
+        // Sequence: l,u,u,l,l,u,r,d,r,r,Z,X,C
         AddInput('l', [MethodImpl(MethodImplOptions.NoInlining)] () => Input.MenuLeft.Pressed && !Input.MenuLeft.Repeating);
         AddInput('r', [MethodImpl(MethodImplOptions.NoInlining)] () => Input.MenuRight.Pressed && !Input.MenuRight.Repeating);
         AddInput('u', [MethodImpl(MethodImplOptions.NoInlining)] () => Input.MenuUp.Pressed && !Input.MenuUp.Repeating);
         AddInput('d', [MethodImpl(MethodImplOptions.NoInlining)] () => Input.MenuDown.Pressed && !Input.MenuDown.Repeating);
-        AddInput('L', () => Input.MenuJournal.Pressed);
-        AddInput('R', [MethodImpl(MethodImplOptions.NoInlining)] () => Input.Grab.Pressed && !Input.MenuJournal.Pressed);
-        AddInput('A', () => Input.MenuConfirm.Pressed);
-        AddCheat("luulurdrrLRA", EnteredCheat);
+        AddInput('Z', () => Input.Dash.Pressed);
+        AddInput('X', [MethodImpl(MethodImplOptions.NoInlining)] () => Input.Grab.Pressed);
+        AddInput('C', () => Input.Jump.Pressed);
+        AddCheat("luulurdrrZXC", EnteredCheat);
         Logging = true;
     }
 
@@ -42,21 +42,31 @@ public class DZUnlockEverything : CheatListener
         RemoveSelf();
     }
 
-    // Room ID and Area ID for automatic unlock trigger
-    private const string TriggerRoomID = "intro-z1";
-    private const int TriggerAreaID = 0;
+    // Room ID for automatic unlock trigger in the DZ prologue
+    private const string TriggerRoomID = "z1";
 
     [MethodImpl(MethodImplOptions.NoInlining)]
     public override void Added(Scene scene)
     {
         base.Added(scene);
-        // Check if we're in the trigger room/area for automatic unlock
-        if (scene is Level level)
+        if (scene is not Level level)
+            return;
+
+        var save = global::Celeste.Mod.DZ.DZModule.SaveData;
+        // Skip if already triggered (HasSeenModIntro is set synchronously before EnteredCheat fires,
+        // so any re-added entity sees the flag and exits — no re-trigger loop).
+        if (save == null || save.HasSeenModIntro)
+            return;
+
+        // Check we're in a DZ map (SID prefix "Maggy/") in the trigger room
+        var area = AreaData.Get(level.Session.Area);
+        bool isOurMap = area?.SID?.StartsWith(
+            AreaModeExtender.MAP_PREFIX + "/", StringComparison.OrdinalIgnoreCase) == true;
+
+        if (isOurMap && level.Session.Level == TriggerRoomID)
         {
-            if (level.Session.Level == TriggerRoomID && level.Session.Area.ID == TriggerAreaID)
-            {
-                EnteredCheat();
-            }
+            save.HasSeenModIntro = true; // Set now so any re-added entity won't re-trigger
+            EnteredCheat();
         }
     }
 
@@ -67,7 +77,7 @@ public class DZUnlockEverything : CheatListener
 
         // Also unlock vanilla content if in Celeste level set
         SaveData saveData = SaveData.Instance;
-        if (saveData.LevelSet == "DesoloZantas")
+        if (saveData.LevelSet == AreaModeExtender.MAP_PREFIX)
         {
             foreach (LevelSetStats levelSet in saveData.LevelSets)
             {

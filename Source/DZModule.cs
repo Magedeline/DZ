@@ -53,6 +53,7 @@ public class DZModule : EverestModule {
         DSideHookRegistry.InitializeAll();
 
         VignetteHooks.Load();
+        global::DZ.Entities.Payphone.LoadParticles();
         KirbyPlayerController.Load();
         SoulPlayerController.Load();
         BattlePlayerController.Load();
@@ -112,6 +113,12 @@ public class DZModule : EverestModule {
             if (scene.Entities.FindFirst<global::Celeste.Entities.GentleBreezeAssist>() == null)
             {
                 scene.Add(new global::Celeste.Entities.GentleBreezeAssist());
+            }
+
+            // Ensure cheat listener exists in level scenes
+            if (scene is Level && scene.Entities.FindFirst<DZUnlockEverything>() == null)
+            {
+                scene.Add(new DZUnlockEverything());
             }
         }
 

@@ -2048,6 +2048,19 @@ On these days Ladies like you
 [CHARA left revenge]
 SHOULD BE BURNED IN HELL
 
+DZ_CH2_DREAM_PHONECALLPORTAL=[CHARA right normal]
+Hello, {+MADELINE}...
+It seems you've found your way here.
+
+[MADELINE_PHONE left distracted]
+Who... who are you?
+
+[CHARA right smirk]
+Someone from the other side.
+Someone who knows your fate.
+
+{trigger 0 Chara vanishes}
+
 MAGGYHELPER_CH2_DREAM_PHONECALL_TRAP=[MADELINE_PHONE left distracted]
 Hello?
 [GASTER right normal]
@@ -2239,26 +2252,41 @@ MAGGYHELPER_CH3_KIRBY_INTRO=Okay Remember what Susie said to me.
 Don't panic and Just Breath...
 Man it's very freezing out here.
 
-MAGGYHELPER_CH3_MAGGY_A=[Magolor right happy]
+MAGGYHELPER_CH3_MAGGY_A={trigger 0 init panzoom}
+[Magolor right happy]
 {~}Yooooo!{/~} Wassup {+KIRBY} how you been!
+
+{trigger 1 badeline walk}
 [BADELINE right concerned]
 So Wait who this kid again?
+
+{trigger 2 magolor turn right}
 [Magolor right annoyed]
 He is a star warrior and yes he may be a kid.
+
 [Magolor right happy]
 But he is more than meet to your eye!
+
 [BADELINE right sigh]
 ...Fine
+
 [BADELINE right simple_sigh]
 You can Help me.
 But if you fool me that I was an idiot...
+
+{trigger 3 badeline tentacle hair}
 [BADELINE right freakA]
 {%}{big}Then I'll tear your soul apart!{/big}{/%}
+
+{trigger 4 magolor suggest}
 [Magolor right annoyed]
 ...
 You would need to work on your anger issue.
+
 [BADELINE right worriedalt]
 Sorry I didn't mean to say that.
+
+{trigger 5 badeline merge}
 
 MAGGYHELPER_CH3_MAGGY_B=[Magolor right normal]
 So.. uhh..
@@ -2306,6 +2334,11 @@ What if this wasn't just random?
 [Magolor right normal]
 I suppose stranger things have happened.
 We'll figure it out eventually.
+
+DZ_CH3_MAGGY_DEFAULT=
+[Magolor right normal]
+Hey, we've already talked about this, haven't we?
+Just focus on finding {+MADELINE}.
 
 MAGGYHELPER_CH3_FIRST_STEP=[BADELINE left simple_sigh]
 Okay {0.3}Listen up Kid

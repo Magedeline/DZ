@@ -53,6 +53,7 @@ public class CS02_CharaIntro : CutsceneEntity
     }
 
     [MethodImpl(MethodImplOptions.NoInlining)]
+
     private IEnumerator Cutscene(Level level)
     {
         anxietyFadeTarget = 1f;
@@ -139,21 +140,9 @@ public class CS02_CharaIntro : CutsceneEntity
         }
         chara.Position = charaEndPosition;
         chara.Visible = true;
-        if (chara.Hair != null) chara.Hair.Visible = true;
         chara.Sprite.Play("fallSlow");
         chara.Hovering = false;
-
-        // Signal CharaChaser that intro is complete and it should begin chasing
-        chara.BeginChasing();
-
-        // Set appropriate flag based on campaign
-        if (level.Session.Area.GetLevelSet() == "Maggy")
-        {
-            level.Session.SetFlag("maggy_chara_intro");
-        }
-        else
-        {
-            level.Session.SetFlag("evil_chara_intro");
-        }
+        chara.Add(new Coroutine(chara.StartChasingRoutine(level)));
+        level.Session.SetFlag("evil_chara_intro");
     }
 }

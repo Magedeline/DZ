@@ -79,7 +79,12 @@ namespace Celeste.NPCs
         {
             player.StateMachine.State = global::Celeste.Player.StDummy;
 
-            if (currentConversation == 1)
+            if (currentConversation == 0)
+            {
+                yield return playerapproach(player, 48f);
+                yield return Textbox.Say("DZ_CH3_KIRBY_INTRO");
+            }
+            else if (currentConversation == 1)
             {
                 yield return playerapproach(player, 48f);
                 yield return Textbox.Say("DZ_CH3_MAGGY_A");

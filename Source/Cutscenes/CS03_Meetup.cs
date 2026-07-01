@@ -9,7 +9,7 @@ public class Cs03Meetup(
     Coroutine zoomCoroutine,
     int currentConversation = 0)
     : CutsceneEntity {
-    public const string FLAG = "maggy_03_Meetup";
+    public const string FLAG = "cs03_meetup";
     private readonly Vector2 endPlayerPosition = magolor.Position + new Vector2(48f, 0.0f);
     private Coroutine zoomCoroutine = zoomCoroutine;
     private object badelineDummy;
@@ -26,6 +26,10 @@ public class Cs03Meetup(
         if (magolor == null)
             yield break;
 
+        var level = Level;
+        if (level == null)
+            yield break;
+
         // Determine conversation gating based on SaveData, like the NPC Talk logic
         int conv = currentConversation;
         if (!(global::Celeste.SaveData.Instance?.HasFlag("WassupMagolor") ?? false) ||
@@ -40,73 +44,80 @@ public class Cs03Meetup(
         // If we have a recognized conversation (1..4), run that path
         if (conv >= 1 && conv <= 4)
         {
-            yield return playerApproachRightSideForConversation();
-            switch (conv)
+            // Trigger 0: Init and pan/zoom to Kirby and Magolor (use the zoom coroutine from trigger)
+            if (zoomCoroutine != null)
             {
-                case 1:
-                    // Dynamically create BadelineDummy and float to player before dialog
-                    {
-                        var level = Level;
-                        if (level != null && player != null)
-                        {
-                            var badelineType = System.Type.GetType("global::Celeste.Mod.DesoloZantasHelper.Entities.BadelineDummy, IngesteHelper");
-                            if (badelineType != null)
-                            {
-                                var badeline = System.Activator.CreateInstance(badelineType, player.Position);
-                                badelineDummy = badeline;
-                                level.Add((Entity)badeline);
-                                var floatToMethod = badelineType.GetMethod("FloatTo");
-                                if (floatToMethod != null)
-                                {
-                                    var enumerator = (IEnumerator)floatToMethod.Invoke(badeline, new object[] { player.Position + new Vector2(20f, -16f), false });
-                                    while (enumerator.MoveNext())
-                                        yield return enumerator.Current;
-                                }
-                            }
-                        }
-                    }
+                yield return zoomCoroutine;
+            }
+            yield return 0.3f;
 
-                    yield return Textbox.Say("DZ_CH3_MAGGY_A");
-
-                    // Merge Badeline after dialog and give dashes
-                    {
-                        var level = Level;
-                        if (badelineDummy != null && level != null && player != null)
-                        {
-                            var badelineType = badelineDummy.GetType();
-                            var posProp = badelineType.GetProperty(nameof(Position));
-                            var from = (Vector2)posProp.GetValue(badelineDummy);
-
-                            for (float p = 0f; p < 1f; p += global::Monocle.Engine.DeltaTime / 0.25f)
-                            {
-                                posProp.SetValue(badelineDummy, Vector2.Lerp(from, player.Position, global::Monocle.Ease.CubeIn(p)));
-                                yield return null;
-                            }
-
-                            var removeSelf = badelineType.GetMethod(nameof(RemoveSelf));
-                            removeSelf?.Invoke(badelineDummy, null);
-                            badelineDummy = null;
-
-                            player.Dashes = 2;
-                            level.Session.Inventory.Dashes = 2;
-                        }
-                    }
-                    break;
-
-                case 2:
-                    yield return Textbox.Say("DZ_CH3_MAGGY_B");
-                    break;
-
-                case 3:
-                    yield return Textbox.Say("DZ_CH3_MAGGY_C");
-                    break;
-
-                case 4:
-                    yield return Textbox.Say("DZ_CH3_MAGGY_D");
-                    break;
+            // Trigger 1: Badeline walks to left of Magolor
+            var badelineType = System.Type.GetType("global::Celeste.Mod.DesoloZantasHelper.Entities.BadelineDummy");
+            if (badelineType != null)
+            {
+                var badeline = System.Activator.CreateInstance(badelineType, magolor.Position + new Vector2(-40f, 0f));
+                badelineDummy = badeline;
+                level.Add((Entity)badeline);
+                
+                var walkToMethod = badelineType.GetMethod("WalkTo");
+                if (walkToMethod != null)
+                {
+                    var enumerator = (IEnumerator)walkToMethod.Invoke(badeline, new object[] { magolor.X - 24f, 64f });
+                    while (enumerator.MoveNext())
+                        yield return enumerator.Current;
+                }
             }
 
-            endCutscene(Level);
+            yield return 0.3f;
+
+            // Trigger 2: Magolor turns left and encourages Badeline for Kirby to help find Madeline
+            // Use reflection to access the private sprite field and flip it
+            var spriteField = typeof(Npc03Maggy).GetField("sprite", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            if (spriteField != null)
+            {
+                var sprite = spriteField.GetValue(magolor) as Sprite;
+                if (sprite != null)
+                {
+                    sprite.Scale.X = -1f;
+                }
+            }
+            yield return Textbox.Say("MAGGYHELPER_CH3_MAGGY_A");
+
+            yield return 0.5f;
+
+            // Trigger 3: Badeline sighs and says fine, but if he messes up she'll tear his soul apart with scary tentacle hair
+            // (This is part of the dialog, shown via triggers in the dialog file)
+
+            yield return 0.5f;
+
+            // Trigger 4: Magolor suggests never doing that and Badeline puts tentacle hair away
+            // (This is also part of the dialog sequence)
+
+            yield return 0.5f;
+
+            // Trigger 5: Badeline joins Kirby and merges
+            if (badelineDummy != null && level != null && player != null)
+            {
+                var posProp = badelineType.GetProperty(nameof(Position));
+                var from = (Vector2)posProp.GetValue(badelineDummy);
+
+                // Move Badeline to player position
+                for (float p = 0f; p < 1f; p += global::Monocle.Engine.DeltaTime / 0.25f)
+                {
+                    posProp.SetValue(badelineDummy, Vector2.Lerp(from, player.Position, global::Monocle.Ease.CubeIn(p)));
+                    yield return null;
+                }
+
+                // Remove Badeline and give player dashes
+                var removeSelf = badelineType.GetMethod(nameof(RemoveSelf));
+                removeSelf?.Invoke(badelineDummy, null);
+                badelineDummy = null;
+
+                player.Dashes = 2;
+                level.Session.Inventory.Dashes = 2;
+            }
+
+            endCutscene(level);
             yield break;
         }
     }
@@ -142,7 +153,7 @@ public class Cs03Meetup(
         // Mark conversations complete if we reached the final one
         if (currentConversation == 4)
         {
-            level.Session.SetFlag("maggy_03_Meetup");
+            level.Session.SetFlag("cs03_meetup");
         }
 
         level.Session.SetFlag(FLAG);

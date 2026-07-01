@@ -145,14 +145,13 @@ namespace Celeste.Entities
 
             if (!string.IsNullOrWhiteSpace(EventId))
             {
-                bool dispatched = CutsceneEventDispatcher.TryDispatch(
-                    level,
-                    player,
-                    EventId,
-                    (flag, factory) => TriggerNpcEvent(level, flag, factory),
-                    (flag, action) => RunNpcActionOnce(level, flag, action));
+                player.StateMachine.State = Player.StDummy;
+                level.StartCutscene(ctx => {
+                    Player p = ctx.Tracker.GetEntity<Player>();
+                    if (p != null) p.StateMachine.State = Player.StNormal;
+                });
 
-                if (dispatched && !string.IsNullOrWhiteSpace(FlagName))
+                if (!string.IsNullOrWhiteSpace(FlagName))
                 {
                     level.Session.SetFlag(FlagName, true);
                 }
@@ -222,7 +221,7 @@ namespace Celeste.Entities
                 "ralsei" => "ralsei",
                 "madeline" => "madeline",
                 "badeline" => "badeline",
-                "maggy" => "maggy",
+                "maggy" => "magolor",
                 "magolor" => "magolor",
                 "magalor" => "magolor",
                 "toriel" => "toriel",
@@ -652,25 +651,11 @@ namespace Celeste.Entities
             {
                 Remove(Sprite);
             }
-            Add(Sprite = GFX.SpriteBank.Create("maggy"));
+            Add(Sprite = GFX.SpriteBank.Create("magolor"));
             Sprite.CenterOrigin();
         }
     }
 
-    [CustomEntity("DZ/NPC03_Maggy")]
-    [Tracked(true)]
-    public partial class Npc03_Maggy : NPC
-    {
-        public Npc03_Maggy(EntityData data, Vector2 offset) : base(data.Position + offset)
-        {
-            if (Sprite != null)
-            {
-                Remove(Sprite);
-            }
-            Add(Sprite = GFX.SpriteBank.Create("maggy"));
-            Sprite.CenterOrigin();
-        }
-    }
 
     [CustomEntity("DZ/NPC03_Theo")]
     [Tracked(true)]
@@ -1037,7 +1022,7 @@ namespace Celeste.Entities
             {
                 Remove(Sprite);
             }
-            Add(Sprite = GFX.SpriteBank.Create("maggy"));
+            Add(Sprite = GFX.SpriteBank.Create("magolor"));
             Sprite.CenterOrigin();
         }
         protected override void OnTalk(global::Celeste.Player player)

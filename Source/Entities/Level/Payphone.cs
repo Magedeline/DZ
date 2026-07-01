@@ -1,124 +1,139 @@
+using System.Runtime.CompilerServices;
 using Microsoft.Xna.Framework;
-using DZ.Nez;
-using Entity = DZ.Nez.Entity;
-using System;
+using Monocle;
+using Celeste;
 
-namespace DZ.Entities.Level;
+namespace DZ.Entities;
 
-/// <summary>
-/// Payphone decoration with flickering light.  Ported from Celeste's Payphone.cs.
-///
-/// When <see cref="Broken"/> is false the phone's vertex light and bloom flicker
-/// at randomised intervals.  Breaking the phone hides all lights and silences
-/// the ambient buzz.
-/// </summary>
-public class Payphone : DZ.Nez.Component, IUpdatable
+[CustomEntity(ids: "DZ/Payphone")]
+[Tracked]
+[HotReloadable]
+public class Payphone : Entity
 {
-    // -------------------------------------------------------------------------
-    // Public state
-    // -------------------------------------------------------------------------
+    public static ParticleType P_Snow;
 
-    /// <summary>When true the phone's lights and buzz are turned off.</summary>
-    public bool Broken { get; set; }
+    public static ParticleType P_SnowB;
 
-    // -------------------------------------------------------------------------
-    // Lighting sub-components
-    // -------------------------------------------------------------------------
-
-    private VertexLight _light;
-    private BloomPoint  _bloom;
-
-    // -------------------------------------------------------------------------
-    // Private state
-    // -------------------------------------------------------------------------
-
-    private float _lightFlickerTimer;
-    private float _lightFlickerFor = 0.1f;
-    private bool  _lightOn = true;
-
-    // Light offset (matching Celeste's -6, -45)
-    private static readonly Vector2 LightOffset = new Vector2(-6f, -45f);
-
-    // -------------------------------------------------------------------------
-    // Constructor
-    // -------------------------------------------------------------------------
-
-    public Payphone(Vector2 position)
+    public static void LoadParticles()
     {
-        _spawnPosition = position;
+        P_Snow = new ParticleType
+        {
+            Size = 1f,
+            Color = Color.White,
+            Color2 = Color.LightGray,
+            ColorMode = ParticleType.ColorModes.Fade,
+            FadeMode = ParticleType.FadeModes.Late,
+            LifeMin = 1.5f,
+            LifeMax = 3.0f,
+            SpeedMin = 10f,
+            SpeedMax = 30f,
+            DirectionRange = (float)Math.PI * 0.5f,
+            Acceleration = new Vector2(0f, 20f),
+            SpinMin = -1f,
+            SpinMax = 1f
+        };
+
+        P_SnowB = new ParticleType
+        {
+            Size = 0.7f,
+            Color = Color.LightBlue,
+            Color2 = Color.White,
+            ColorMode = ParticleType.ColorModes.Fade,
+            FadeMode = ParticleType.FadeModes.Late,
+            LifeMin = 1.0f,
+            LifeMax = 2.0f,
+            SpeedMin = 8f,
+            SpeedMax = 20f,
+            DirectionRange = (float)Math.PI * 0.4f,
+            Acceleration = new Vector2(0f, 15f),
+            SpinMin = -0.5f,
+            SpinMax = 0.5f
+        };
     }
 
-    private readonly Vector2 _spawnPosition;
+    public bool Broken;
 
-    // -------------------------------------------------------------------------
-    // Nez lifecycle
-    // -------------------------------------------------------------------------
+    public Sprite Sprite;
 
-    public override void OnAddedToEntity()
+    public Image Blink;
+
+    private VertexLight light;
+
+    private BloomPoint bloom;
+
+    private float lightFlickerTimer;
+
+    private float lightFlickerFor = 0.1f;
+
+    private int lastFrame;
+
+    private SoundSource buzzSfx;
+
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    public Payphone(EntityData data, Vector2 offset)
+        : base(data.Position + offset)
     {
-        base.OnAddedToEntity();
-        Entity.Position = _spawnPosition;
-
-        // Add lighting components
-        _light = Entity.AddComponent(new VertexLight(LightOffset, Color.White, 1f, 8, 96));
-        _light.Spotlight          = true;
-        _light.SpotlightDirection = MathF.PI * 0.5f; // pointing downward
-
-        _bloom = Entity.AddComponent(new BloomPoint(LightOffset, 0.8f, 8f));
-
-        // TODO: add "payphone" sprite renderer, play "idle" animation
-        // TODO: add "blink" image overlay (initially hidden)
-        // TODO: play ambient sound: event:/env/local/02_old_site/phone_lamp (param "on" = 1)
+        LoadParticles();
+        base.Depth = 1;
+        Add(Sprite = GFX.SpriteBank.Create("payphone"));
+        Sprite.Play("idle");
+        Add(Blink = new Image(GFX.Game["cutscenes/payphone/blink"]));
+        Blink.Origin = Sprite.Origin;
+        Blink.Visible = false;
+        Add(light = new VertexLight(new Vector2(-6f, -45f), Color.White, 1f, 8, 96));
+        light.Spotlight = true;
+        light.SpotlightDirection = new Vector2(0f, 1f).Angle();
+        Add(bloom = new BloomPoint(new Vector2(-6f, -45f), 0.8f, 8f));
+        Add(buzzSfx = new SoundSource());
+        buzzSfx.Play("event:/env/local/02_old_site/phone_lamp");
+        buzzSfx.Param("on", 1f);
     }
 
-    // -------------------------------------------------------------------------
-    // IUpdatable
-    // -------------------------------------------------------------------------
-
+    [MethodImpl(MethodImplOptions.NoInlining)]
     public override void Update()
     {
-        float dt = Time.DeltaTime;
-
+        base.Update();
         if (!Broken)
         {
-            _lightFlickerTimer -= dt;
-
-            if (_lightFlickerTimer <= 0f)
+            lightFlickerTimer -= Engine.DeltaTime;
+            if (lightFlickerTimer <= 0f)
             {
-                // Rapid flicker phase: toggle every ~0.025 s
-                // We use a simple sub-timer approximation
-                bool flickerOn = DZ.Nez.Random.NextFloat() > 0.5f;
-                SetLightVisible(flickerOn);
-                // TODO: play "blink" image visible = !flickerOn
-
-                if (_lightFlickerTimer < -_lightFlickerFor)
+                if (base.Scene.OnInterval(0.025f))
                 {
-                    // End flicker phase; pick next stable-on duration
-                    _lightFlickerTimer = DZ.Nez.Random.Choose(0.4f, 0.6f, 0.8f, 1f);
-                    _lightFlickerFor   = DZ.Nez.Random.Choose(0.1f, 0.2f, 0.05f);
-                    SetLightVisible(true);
-                    // TODO: set sound param "on" = 1
+                    bool flag = Calc.Random.NextFloat() > 0.5f;
+                    light.Visible = flag;
+                    bloom.Visible = flag;
+                    Blink.Visible = !flag;
+                    buzzSfx.Param("on", flag ? 1 : 0);
+                }
+                if (lightFlickerTimer < 0f - lightFlickerFor)
+                {
+                    lightFlickerTimer = Calc.Random.Choose(0.4f, 0.6f, 0.8f, 1f);
+                    lightFlickerFor = Calc.Random.Choose(0.1f, 0.2f, 0.05f);
+                    light.Visible = true;
+                    bloom.Visible = true;
+                    Blink.Visible = false;
+                    buzzSfx.Param("on", 1f);
                 }
             }
         }
         else
         {
-            SetLightVisible(false);
-            // TODO: set sound param "on" = 0
+            Blink.Visible = (bloom.Visible = (light.Visible = false));
+            buzzSfx.Param("on", 0f);
         }
-
-        // TODO: "eat" animation frame-6 → emit P_Snow / P_SnowB particles
-        // TODO: "eat" animation last-5 frames → rumble light
-    }
-
-    // -------------------------------------------------------------------------
-    // Helpers
-    // -------------------------------------------------------------------------
-
-    private void SetLightVisible(bool on)
-    {
-        if (_light  != null) _light.Enabled  = on;
-        if (_bloom  != null) _bloom.Enabled  = on;
-        _lightOn = on;
+        if (Sprite.CurrentAnimationID == "eat" && Sprite.CurrentAnimationFrame == 5 && lastFrame != Sprite.CurrentAnimationFrame)
+        {
+            Celeste.Level level = SceneAs<Celeste.Level>();
+            level.ParticlesFG.Emit(P_Snow, 10, level.Camera.Position + new Vector2(236f, 152f), new Vector2(10f, 0f));
+            level.ParticlesFG.Emit(P_SnowB, 8, level.Camera.Position + new Vector2(236f, 152f), new Vector2(6f, 0f));
+            level.DirectionalShake(Vector2.UnitY);
+            Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
+        }
+        if (Sprite.CurrentAnimationID == "eat" && Sprite.CurrentAnimationFrame == Sprite.CurrentAnimationTotalFrames - 5 && lastFrame != Sprite.CurrentAnimationFrame)
+        {
+            Input.Rumble(RumbleStrength.Light, RumbleLength.Medium);
+        }
+        lastFrame = Sprite.CurrentAnimationFrame;
     }
 }

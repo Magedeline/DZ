@@ -2569,7 +2569,7 @@
       <Loop id="torielwalk" path="torielwalk" delay="0.2" />
     </toriel>
 
-  <maggy_flowey path="characters/flowey/" start="idle">
+  <flowey path="characters/flowey/" start="idle">
       <Justify x=".5" y="1" />
   
       <Loop id="idle" path="idle" delay="0.15" frames="0-3" />
@@ -2591,7 +2591,7 @@
       <!-- Flowey vines -->
       <Anim id="grab" path="vines/grab" delay="0.06" frames="0-4" />
       <Anim id="letgo" path="vines/letgo" delay="0.06" frames="0-7" />
-    </maggy_flowey>
+    </flowey>
 
   <titan_king path="characters/king_titan/" start="idle">
       <Justify x=".5" y="1" />
@@ -2601,7 +2601,7 @@
       <Loop id="run" path="boss" delay="0.08" />
     </titan_king>
 
-  <Magolor path="characters/magolor/" start="idle">
+  <magolor path="characters/magolor/" start="idle">
       <Justify x=".5" y="1" />
   
       <Loop id="idle" path="idle" delay="0.1" frames="0-9" />
@@ -2641,7 +2641,7 @@
       <Loop id="tired" path="tired" delay="0.15" frames="0-5"/>
       
       <Anim id="alert" path="alert" delay="0.08"/>
-    </Magolor>
+    </magolor>
 
   <asriel path="characters/asriel/" start="idle">
       <Justify x="0.5" y="1" />
@@ -3172,6 +3172,15 @@
       <Loop id="phase2_ultimate" path="bg/" delay="0.025" frames="0-7"/>
       
     </asriel_angelofdeath>
+
+  <maggy_chara path="characters/charaBoss/" start="pretendDead">
+      <Justify x="0.5" y="0.64" />
+      <Loop id="idle" path="idle" delay="0.06" frames="0-8"/>
+      <Loop id="angry" path="angry" delay="0.06" frames="0-4"/>
+      <Loop id="pretendDead" path="pretendDead" delay="0.06" frames="0-1"/>
+      <Loop id="laugh" path="laugh" delay="0.06" frames="0-4"/>
+      <Anim id="fallSlow" path="fallSlow" delay="0.08" frames="0-10"/>
+  </maggy_chara>
 
   <chara_boss path="characters/charaBoss/" start="charaboss_idle">
       <Justify x="0.5" y=".64" />

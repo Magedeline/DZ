@@ -101,8 +101,9 @@ public class DZModule : EverestModule {
         global::Celeste.Entities.StarJumpBlock.Load();
         global::Celeste.Entities.WhiteHole.Load();
         global::Celeste.Entities.PlateauMod.Load();
-        global::Celeste.Mod.DZ.BossesExample.Entities.DarkLightningRenderer.Load();
-        global::Celeste.Mod.DZ.BossesExample.Entities.ResetZoneRenderer.Load();
+        // BossesExampleModule.Load() already calls DarkLightningRenderer.Load()
+        // and ResetZoneRenderer.Load() internally — do NOT call them separately
+        // or Everest will throw a double-hook crime on LevelLoader.LoadingThread.
         global::Celeste.Mod.DZ.BossesExample.BossesExampleModule.Load();
 
         // Sub-chapter system (experimental)
@@ -172,8 +173,7 @@ public class DZModule : EverestModule {
         global::Celeste.Entities.StarJumpBlock.Unload();
         global::Celeste.Entities.WhiteHole.Unload();
         global::Celeste.Entities.PlateauMod.Unload();
-        global::Celeste.Mod.DZ.BossesExample.Entities.DarkLightningRenderer.Unload();
-        global::Celeste.Mod.DZ.BossesExample.Entities.ResetZoneRenderer.Unload();
+        // BossesExampleModule.Unload() already calls DarkLightningRenderer/ResetZoneRenderer
         global::Celeste.Mod.DZ.BossesExample.BossesExampleModule.Unload();
 
         // Sub-chapter system

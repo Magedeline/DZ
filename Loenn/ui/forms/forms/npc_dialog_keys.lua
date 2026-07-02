@@ -16,10 +16,10 @@ npcDialogKeys.options = {
     "DZ_CH0_END",
     
     -- Chapter 1 - Forbidden City
-    "DZ_CH1_DZ_A",
-    "DZ_CH1_DZ_B",
-    "DZ_CH1_DZ_C",
-    "DZ_CH1_DZ_D",
+    "DZ_CH1_MAGOLOR_A",
+    "DZ_CH1_MAGOLOR_B",
+    "DZ_CH1_MAGOLOR_C",
+    "DZ_CH1_MAGOLOR_D",
     "DZ_CH1_ENDMADELINE",
     "DZ_CH1_KIRBY_INTRO",
     "DZ_CH1_KIRBY_FIRST_STEP_INTRO",

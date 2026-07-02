@@ -250,7 +250,7 @@ public static class AreaMapData
 
             chapter.Has1 = HasLoade2(baseKey, AreaModeExtender.MODE_1);
             chapter.Has2 = HasLoade2(baseKey, AreaModeExtender.MODE_2);
-            chapter.Has2 = HasLoade2(baseKey, AreaModeExtender.MODE_2);
+            chapter.HasDSide = HasLoade2(baseKey, AreaModeExtender.MODE_DSIDE);
             chapter.HasDXSide = HasLoade2(baseKey, AreaModeExtender.MODE_DXSIDE);
         }
     }
@@ -309,8 +309,8 @@ public static class AreaMapData
             ? BuildOrUpdateMode(area.Mode[2], AreaModeExtender.BuildDSideSID(AreaModeExtender.MODE_2, baseKey), GetMusic(chapter, 2), GetAmbience(chapter, 2))
             : null;
 
-        area.Mode[3] = chapter.Has2
-            ? BuildOrUpdateMode(area.Mode[3], AreaModeExtender.BuildDSideSID(AreaModeExtender.MODE_2, baseKey), GetMusic(chapter, 3), GetAmbience(chapter, 3))
+        area.Mode[3] = chapter.HasDSide
+            ? BuildOrUpdateMode(area.Mode[3], AreaModeExtender.BuildDSideSID(AreaModeExtender.MODE_DSIDE, baseKey), GetMusic(chapter, 3), GetAmbience(chapter, 3))
             : null;
 
         area.Mode[4] = chapter.HasDXSide
@@ -490,11 +490,11 @@ public static class AreaMapData
         }
         area.MountainState = chapter.MountainState;
 
-        bool hasAltSides = chapter.Has1 || chapter.Has2 || chapter.Has2 || chapter.HasDXSide;
+        bool hasAltSides = chapter.Has1 || chapter.Has2 || chapter.HasDSide || chapter.HasDXSide;
         if (hasAltSides)
         {
             Logger.Log(LogLevel.Verbose, "DZ",
-                $"ApplyHardcodedRuntimeData: '{area.SID}' has alt-sides (B={chapter.Has1}, C={chapter.Has2}, D={chapter.Has2}, DX={chapter.HasDXSide})");
+                $"ApplyHardcodedRuntimeData: '{area.SID}' has alt-sides (B={chapter.Has1}, C={chapter.Has2}, D={chapter.HasDSide}, DX={chapter.HasDXSide})");
             EnsureModeArray(area);
             ApplyModes(area, chapter);
         }

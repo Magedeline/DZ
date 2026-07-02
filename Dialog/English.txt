@@ -1242,12 +1242,12 @@ DZ_CH0_END_YOURDZ_CHOICE_MATTERS=
 [none left]
 Remember {3.0} {~}Choices Matters.{/~}
 
-DZ_CH1_DZ_A=
+DZ_CH1_MAGOLOR_A=
 [Magolor left normal]
 Well look who is here!
 
 [BADELINE right normal]
-Oh Hey DZ!
+Oh Hey Magolor!
 
 {trigger 0 Madeline walks forward}
 
@@ -1314,7 +1314,7 @@ but there a chances that they're good people that the legend said.
 [MADELINE right normal]
 Well then Take care and best of luck.
 
-DZ_CH1_DZ_B=
+DZ_CH1_MAGOLOR_B=
 [MADELINE right distracted]
 So... is anyone okay over there?
 
@@ -1334,7 +1334,7 @@ It's not in his diet but were trying to change it.
 [MADELINE right distracted]
 alright then.
 
-DZ_CH1_DZ_C=
+DZ_CH1_MAGOLOR_C=
 [BADELINE right angryalt]
 Theo also told us that you came here just because {n} your a {~}Interdimensional Traveller{/~}, {1.0} Right?
 
@@ -1359,7 +1359,7 @@ say does it weather is connected to the same Mountain of Celeste?
 [MADELINE right sad]
 Maybe...
 
-DZ_CH1_DZ_D=
+DZ_CH1_MAGOLOR_D=
 [MADELINE right distracted]
 You know {0.2} I've had a dream that is something weird.
 

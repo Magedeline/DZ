@@ -2,10 +2,10 @@ local npc08DZEnding = {}
 
 npc08DZEnding.name = "DZ/NPC08_MAGOLOR_Ending"
 npc08DZEnding.depth = 0
-npc08DZEnding.texture = "Character/DZ/DZ_ending"
+npc08DZEnding.texture = "Character/DZ/magolor"
 
 npc08DZEnding.placements = {
-    name = "npc08_DZ_ending",
+    name = "npc08_magolor_ending",
     data = {
     }
 }

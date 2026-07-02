@@ -5,7 +5,7 @@ npc05DZOshiroLobby.depth = 0
 npc05DZOshiroLobby.texture = "Character/DZ/magolor"
 
 npc05DZOshiroLobby.placements = {
-    name = "npc05_DZ_oshiro_lobby",
+    name = "npc05_magolor_oshiro_lobby",
     data = {
     }
 }

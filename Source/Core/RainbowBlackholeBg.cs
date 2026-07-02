@@ -204,10 +204,10 @@ public class RainbowBlackholeBg : Backdrop
     private RainbowBlackholeBg(bool rainbowMode)
     {
         RainbowMode = rainbowMode;
-        bgTexture = GFX.Game["objects/DZ/DZ/temple/portal/portal"];
-        List<MTexture> atlasSubtextures = GFX.Game.GetAtlasSubtextures("bgs/DZ/19/say_goodbye/blackhole/particle");
+        bgTexture = GFX.Game["objects/DZ/temple/portal"];
+        List<MTexture> atlasSubtextures = GFX.Game.GetAtlasSubtextures("bgs/DZ/19/found/blackhole/particle");
         if (atlasSubtextures.Count == 0)
-            atlasSubtextures = GFX.Game.GetAtlasSubtextures("bgs/10/blackhole/particle");
+            atlasSubtextures = GFX.Game.GetAtlasSubtextures("bgs/DZ/19/blackhole/particle");
         Color[] activeColors = RainbowMode ? colorsRainbow : colorsMild;
         int num = 0;
         for (int i = 0; i < 50; i++)

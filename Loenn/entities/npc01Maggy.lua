@@ -5,7 +5,7 @@ npc01DZ.depth = 0
 npc01DZ.texture = "Character/DZ/magolor"
 
 npc01DZ.placements = {
-    name = "npc01_DZ",
+    name = "npc01_magolor",
     data = {
     }
 }

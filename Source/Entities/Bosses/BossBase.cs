@@ -16,7 +16,7 @@ namespace DZ.Entities.Bosses;
 
 /// <summary>
 /// Base class for all boss entities.
-/// Replaces: Celeste.Mod.MaggyHelper.Boss + BaseBoss from your mod
+/// Replaces: Celeste.Mod.DZ.Boss + BaseBoss from your mod
 ///
 /// This provides the foundation for porting your 40+ bosses to standalone.
 /// </summary>

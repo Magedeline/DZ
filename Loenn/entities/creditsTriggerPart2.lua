@@ -1,6 +1,6 @@
 local creditsTriggerPart2 = {}
 
-creditsTriggerPart2.name = "MaggyHelper/CreditsTriggerPart2"
+creditsTriggerPart2.name = "DZ/CreditsTriggerPart2"
 creditsTriggerPart2.depth = 0
 creditsTriggerPart2.texture = "objects/DZ/credits_trigger_part2"
 

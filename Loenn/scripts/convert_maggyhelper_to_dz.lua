@@ -1,15 +1,15 @@
--- MaggyHelper to DZ Entity Converter for Loenn
--- Converts all MaggyHelper/ entities and triggers to DZ/ across all rooms in the map
--- Run from Loenn: Map -> Run Script -> convert_maggyhelper_to_dz
+-- DZ to DZ Entity Converter for Loenn
+-- Converts all DZ/ entities and triggers to DZ/ across all rooms in the map
+-- Run from Loenn: Map -> Run Script -> convert_DZ_to_dz
 
 local state = require("loaded_state")
 local history = require("history")
 
 local script = {}
 
-script.name = "convertMaggyHelperToDZ"
-script.displayName = "CONVERT: MaggyHelper -> DZ (All Rooms)"
-script.tooltip = "Converts all MaggyHelper/ entities and triggers to DZ/ prefix.\nApplies to all rooms in the currently loaded map."
+script.name = "convertDZToDZ"
+script.displayName = "CONVERT: DZ -> DZ (All Rooms)"
+script.tooltip = "Converts all DZ/ entities and triggers to DZ/ prefix.\nApplies to all rooms in the currently loaded map."
 
 script.parameters = {
     dryRun = true,
@@ -31,7 +31,7 @@ function script.run(args)
         return
     end
 
-    local oldPrefix = "MaggyHelper/"
+    local oldPrefix = "DZ/"
     local newPrefix = "DZ/"
 
     print(string.format("\n=== %s ===", args.dryRun and "DRY RUN (Preview)" or "LIVE CONVERSION"))
@@ -90,7 +90,7 @@ function script.run(args)
     print("\n=== CONVERSION REPORT ===")
 
     if next(conversions) == nil then
-        print("  (no MaggyHelper entities found in this map)")
+        print("  (no DZ entities found in this map)")
     else
         for oldName, data in pairs(conversions) do
             print(string.format("  %s -> %s (%s, count: %d)", oldName, data.newName, data.kind, #data.rooms))
@@ -109,7 +109,7 @@ function script.run(args)
         print("Set 'dryRun' to false to actually apply conversions.")
     else
         print("\n[LIVE CONVERSION COMPLETE]")
-        print("All MaggyHelper entities/triggers have been renamed to DZ.")
+        print("All DZ entities/triggers have been renamed to DZ.")
         print("Use Ctrl+Z in Loenn to undo if needed.")
         print("Remember to save the map (Ctrl+S) to persist changes.")
         print("\nReminder: Make sure your DZ mod has the corresponding")

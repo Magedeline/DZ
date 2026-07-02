@@ -86,7 +86,7 @@ internal abstract class BaseMetadataRegistry<TMetadata, TRegistry>
     /// <summary>
     /// Deserialize a YAML document into a sequence of metadata items.
     /// Supports both list-shaped documents and single-object documents
-    /// (e.g. per-map .bin.maggyhelper.meta.yaml files that are single mappings).
+    /// (e.g. per-map .bin.DZ.meta.yaml files that are single mappings).
     /// </summary>
     private static List<TMetadata> DeserializeItems(string text)
     {

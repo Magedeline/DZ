@@ -17,7 +17,7 @@ namespace DZ.Entities.Bosses;
 /// This demonstrates how to convert a Celeste mod boss to standalone.
 /// Shows the key differences between Everest Entity and Nez Entity system.
 ///
-/// Original: Celeste.Mod.MaggyHelper.AsrielGodBoss (Celeste Entity)
+/// Original: Celeste.Mod.DZ.AsrielGodBoss (Celeste Entity)
 /// New: DZ.Entities.Bosses.AsrielGodBoss (Nez Component)
 /// </summary>
 public class AsrielGodBoss : BossBase

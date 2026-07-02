@@ -51,7 +51,7 @@ namespace Celeste.Cutscenes
             yield return this.badeline.FloatTo(this.player.Position + new Vector2(24f, -20f), -1, false);
             yield return this.chara.FloatTo(this.player.Position + new Vector2(-24f, -20f), -1, false);
             yield return level.ZoomTo(new Vector2(160f, 120f), 2f, 1f);
-            yield return Textbox.Say("ch8_ending", new Func<IEnumerator>[]
+            yield return Textbox.Say("DZ_CH8_ENDING", new Func<IEnumerator>[]
             {
                 this.TheoNMaddyEnter,
                 this.MagolorEnter,
@@ -73,31 +73,31 @@ namespace Celeste.Cutscenes
         private IEnumerator TheoNMaddyEnter()
         {
             yield return 0.25f;
-            this.badeline.Sprite.Scale.X = 1f;
+            if (this.badeline != null) this.badeline.Sprite.Scale.X = 1f;
             yield return 0.1f;
-            this.madelineBandage.Visible = true;
-            this.theo.Visible = true;
-            base.Add(new Coroutine(this.badeline.FloatTo(new Vector2(this.badeline.X - 10f, this.badeline.Y), 1, false), true));
-            yield return this.madelineBandage.WalkTo(this.player.Position + new Vector2(40f, 0.0f));
-            yield return this.theo.WalkTo(this.player.Position + new Vector2(45f, 0.0f));
+            if (this.madelineBandage != null) this.madelineBandage.Visible = true;
+            if (this.theo != null) this.theo.Visible = true;
+            if (this.badeline != null) base.Add(new Coroutine(this.badeline.FloatTo(new Vector2(this.badeline.X - 10f, this.badeline.Y), 1, false), true));
+            if (this.madelineBandage != null) yield return this.madelineBandage.WalkTo(this.player.Position + new Vector2(40f, 0.0f));
+            if (this.theo != null) yield return this.theo.WalkTo(this.player.Position + new Vector2(45f, 0.0f));
         }
 
         private IEnumerator MagolorEnter()
         {
             this.player.Facing = Facings.Left;
-            this.badeline.Sprite.Scale.X = -1f;
+            if (this.badeline != null) this.badeline.Sprite.Scale.X = -1f;
             yield return 0.25f;
             yield return CutsceneEntity.CameraTo(new Vector2(this.Level.Camera.X - 40f, this.Level.Camera.Y), 1f, null, 0f);
-            this.magolor.Visible = true;
+            if (this.magolor != null) this.magolor.Visible = true;
             base.Add(new Coroutine(CutsceneEntity.CameraTo(new Vector2(this.Level.Camera.X + 40f, this.Level.Camera.Y), 2f, null, 1f), true));
-            base.Add(new Coroutine(this.badeline.FloatTo(new Vector2(this.badeline.X + 6f, this.badeline.Y + 4f), -1, false), true));
-            yield return this.magolor.MoveTo(this.player.Position + new Vector2(-32f, 0.0f));
-            this.magolor.Sprite.Play("idle");
+            if (this.badeline != null) base.Add(new Coroutine(this.badeline.FloatTo(new Vector2(this.badeline.X + 6f, this.badeline.Y + 4f), -1, false), true));
+            if (this.magolor != null) yield return this.magolor.MoveTo(this.player.Position + new Vector2(-32f, 0.0f));
+            if (this.magolor != null) this.magolor.Sprite.Play("idle");
         }
 
         private IEnumerator MaggyStopTired()
         {
-            this.magolor.Sprite.Play("idle");
+            if (this.magolor != null) this.magolor.Sprite.Play("idle");
             yield return null;
         }
 
@@ -106,32 +106,36 @@ namespace Celeste.Cutscenes
             yield return 0.1f;
             this.player.Facing = Facings.Right;
             yield return 0.1f;
-            yield return this.badeline.FloatTo(this.badeline.Position + new Vector2(-2f, 10f), -1, false);
+            if (this.badeline != null) yield return this.badeline.FloatTo(this.badeline.Position + new Vector2(-2f, 10f), -1, false);
             yield return 0.1f;
         }
 
         private IEnumerator BadelineTurnsRight()
         {
             yield return 0.1f;
-            this.badeline.Sprite.Scale.X = 1f;
+            if (this.badeline != null) this.badeline.Sprite.Scale.X = 1f;
             yield return 0.1f;
         }
 
         private IEnumerator BadelineandCharaTurnsLeft()
         {
             yield return 0.1f;
-            this.badeline.Sprite.Scale.X = -1f;
+            if (this.badeline != null) this.badeline.Sprite.Scale.X = -1f;
             yield return 0.1f;
-            var charaSprite = chara.Sprite;
-            if (charaSprite != null) charaSprite.Scale.X = -1f;
+            if (this.chara != null) {
+                var charaSprite = chara.Sprite;
+                if (charaSprite != null) charaSprite.Scale.X = -1f;
+            }
             yield return 0.1f;
         }
 
         private IEnumerator CharaTurnsRight()
         {
             yield return 0.1f;
-            var charaSprite = chara.Sprite;
-            if (charaSprite != null) charaSprite.Scale.X = 1f;
+            if (this.chara != null) {
+                var charaSprite = chara.Sprite;
+                if (charaSprite != null) charaSprite.Scale.X = 1f;
+            }
             yield return 0.1f;
         }
 
@@ -142,7 +146,7 @@ namespace Celeste.Cutscenes
 
         private IEnumerator TheoRaiseHand()
         {
-            this.magolor.Sprite.Play("yolo");
+            if (this.magolor != null) this.magolor.Sprite.Play("yolo");
             yield return 0.8f;
         }
 
@@ -151,7 +155,7 @@ namespace Celeste.Cutscenes
             yield return 0.1f;
             this.player.Facing = Facings.Left;
             yield return 0.05f;
-            this.badeline.Sprite.Scale.X = -1f;
+            if (this.badeline != null) this.badeline.Sprite.Scale.X = -1f;
             yield return 0.1f;
         }
 

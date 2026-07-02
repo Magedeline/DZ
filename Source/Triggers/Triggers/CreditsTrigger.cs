@@ -9,7 +9,7 @@ using Celeste.Cutscenes;
 
 namespace Celeste.Triggers
 {
-    [CustomEntity("DZ/CreditsTriggerPart2", "MaggyHelper/CreditsTriggerPart2")]
+    [CustomEntity("DZ/CreditsTriggerPart2", "DZ/CreditsTriggerPart2")]
     [Tracked(true)]
     public class CreditsTriggerPart2 : global::Celeste.Trigger
     {
@@ -31,7 +31,7 @@ namespace Celeste.Triggers
     }
 
     // Added: Trigger for CsPart1Credit cutscene
-    [CustomEntity("DZ/CreditsTriggerPart1", "MaggyHelper/CreditsTriggerPart1")]
+    [CustomEntity("DZ/CreditsTriggerPart1", "DZ/CreditsTriggerPart1")]
     [Tracked(true)]
     public class CreditsTriggerPart1 : global::Celeste.Trigger
     {

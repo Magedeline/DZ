@@ -9,7 +9,7 @@ using DZ;
 
 namespace Celeste.Entities;
 
-[CustomEntity(ids: "MaggyHelper/KirbyTutorialBird, MaggyHelper/EnhancedBirdNPC")]
+[CustomEntity(ids: "DZ/KirbyTutorialBird, DZ/EnhancedBirdNPC")]
 [Tracked]
 [HotReloadable]
 public class EnhancedBirdNPC : Actor

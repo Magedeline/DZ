@@ -574,7 +574,7 @@ namespace Celeste.Entities {
 
         private void PushPlayer(global::Celeste.Player player)
         {
-            if (player != null && !player.Dead)
+            if (player != null && !player.Dead && nodeIndex < nodes.Length)
             {
                 int num = Math.Sign(X - nodes[nodeIndex].X);
                 if (num == 0)

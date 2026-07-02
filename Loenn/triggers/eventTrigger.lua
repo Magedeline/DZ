@@ -57,6 +57,8 @@ eventTrigger.fieldInformation = {
             "cs07_genocide_wakeup",
             -- Chapter 8
             "cs08_charaboss_intro",
+            "ch8_chara_boss_center",
+            "ch8_end",
             -- Chapter 9
             "cs09_area_complete",
             "cs09_credits",
@@ -103,6 +105,9 @@ eventTrigger.fieldInformation = {
             "cs19_edge_of_universe",
             "cs19_hub_second_intro",
             "cs19_trapin_loop",
+            "ch20_asriel_true_reveal",
+            "ch20_end_later",
+            "ch20_end_cinematic",
             -- Chapter 21
             "cs21_els_termina_intro",
             "cs21_els_termina_end",

@@ -2170,7 +2170,7 @@ triggers.DZ/ZoomTrigger.placements.name.intensity=Intensity
 triggers.DZ/ZoomTrigger.placements.name.duration=Duration
 
 # Credits Trigger Part1
-entities.MaggyHelper/CreditsTriggerPart1.placements.name.credits_trigger_part1=Credits Trigger Part1
+entities.DZ/CreditsTriggerPart1.placements.name.credits_trigger_part1=Credits Trigger Part1
 
 # Credits Trigger Part2
-entities.MaggyHelper/CreditsTriggerPart2.placements.name.credits_trigger_part2=Credits Trigger Part2
+entities.DZ/CreditsTriggerPart2.placements.name.credits_trigger_part2=Credits Trigger Part2

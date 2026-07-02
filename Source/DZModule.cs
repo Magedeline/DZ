@@ -62,7 +62,7 @@ public class DZModule : EverestModule {
         OverworldConnectorHooks.Load();
         OuiModeSelectHooks.Load();
 
-        // Initialize metadata registries (loads .bin.maggyhelper.meta.yaml etc.)
+        // Initialize metadata registries (loads .bin.DZ.meta.yaml etc.)
         MetadataRegistries.Initialize();
 
         // Hook into scene changes to add the HotReloadController

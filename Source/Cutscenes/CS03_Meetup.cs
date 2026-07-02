@@ -81,7 +81,7 @@ public class Cs03Meetup(
                     sprite.Scale.X = -1f;
                 }
             }
-            yield return Textbox.Say("MAGGYHELPER_CH3_MAGGY_A");
+            yield return Textbox.Say("DZ_CH3_MAGGY_A");
 
             yield return 0.5f;
 

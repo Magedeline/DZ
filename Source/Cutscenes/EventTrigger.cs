@@ -483,6 +483,27 @@ namespace DZ
                 case "cs21_ending":
                     base.Scene.Add(new global::Celeste.Cutscenes.CS21_Ending(player2));
                     break;
+                case "ch8_chara_boss_center":
+                    base.Scene.Add(new global::Celeste.Cutscenes.Cs08CharaBossIntro(player2));
+                    break;
+                case "ch8_end":
+                    base.Scene.Add(new global::Celeste.Cutscenes.Cs08End(player2));
+                    break;
+                case "ch20_asriel_true_reveal":
+                {
+                    var asrielBoss = level.Entities.FindFirst<AsrielGodBoss>();
+                    if (asrielBoss != null)
+                    {
+                        level.Add(new CS20_AsrielRevealIdentity(player2, asrielBoss));
+                    }
+                    break;
+                }
+                case "ch20_end_later":
+                    base.Scene.Add(new global::Celeste.Cutscenes.CS20_Later(player2));
+                    break;
+                case "ch20_end_cinematic":
+                    base.Scene.Add(new global::Celeste.Cutscenes.CS21_Ending(player2));
+                    break;
                 default:
                     throw new Exception("Event '" + Event + "' does not exist!");
             }

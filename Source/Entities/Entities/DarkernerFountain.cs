@@ -33,7 +33,7 @@ namespace Celeste.Entities
         private Level level;
 
         public static ParticleType P_DarkParticle;
-        public static ParticleType P_ChaosParticle;
+        public static ParticleType PDZ_CHaosParticle;
         public static ParticleType P_VoidParticle;
 
         static DarkernerFountain()
@@ -54,7 +54,7 @@ namespace Celeste.Entities
                 FadeMode = ParticleType.FadeModes.Late
             };
 
-            P_ChaosParticle = new ParticleType
+            PDZ_CHaosParticle = new ParticleType
             {
                 Color = Color.Purple,
                 Color2 = Color.Magenta,
@@ -116,7 +116,7 @@ namespace Celeste.Entities
         {
             string spritePath = Type switch
             {
-                FountainType.Chaos => "objects/DZ/DZ/fountain_chaos",
+                FountainType.Chaos => "objects/DZ/DZ/fountainDZ_CHaos",
                 FountainType.Pure => "objects/DZ/DZ/fountain_pure",
                 FountainType.Void => "objects/DZ/DZ/fountain_void",
                 _ => "objects/DZ/DZ/fountain_darkener"
@@ -209,7 +209,7 @@ namespace Celeste.Entities
 
             ParticleType particleType = Type switch
             {
-                FountainType.Chaos => P_ChaosParticle,
+                FountainType.Chaos => PDZ_CHaosParticle,
                 FountainType.Void => P_VoidParticle,
                 _ => P_DarkParticle
             };

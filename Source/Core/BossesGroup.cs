@@ -160,7 +160,7 @@ namespace Celeste.Entities
                 {
                     "kingtitan" or "king_titan" or "titanking" => new KingTitanBoss(data, Vector2.Zero),
                     "titanguardian" or "guardian_titan" or "titantis" => new TitantisBoss(data, Vector2.Zero),
-                    "els" or "chapter16els" or "els_ch16" => new ELSTerminaBoss(data, Vector2.Zero),
+                    "els" or "chapter16els" or "elsDZ_CH16" => new ELSTerminaBoss(data, Vector2.Zero),
                     "asrielangel" or "asriel_angel_of_death" or "angelofdeath" => new AsrielAngelOfDeathBoss(position),
                     "elstruefinal" or "els_true_final" or "elsfinal" => new ELSTerminaFinalBoss(data, Vector2.Zero),
                     "asrielgod" or "asriel_god" or "godasriel" => new AsrielGodBoss(data, Vector2.Zero),

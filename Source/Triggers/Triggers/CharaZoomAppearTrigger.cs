@@ -84,7 +84,7 @@ namespace Celeste.Triggers
                     setEntityShown(entity, shown);
                 }
 
-                foreach (Entity entity in Scene.Tracker.GetEntities<global::Celeste.NPCs.NPC_Chara>())
+                foreach (Entity entity in Scene.Tracker.GetEntities<global::Celeste.NPCs.NPCDZ_CHara>())
                 {
                     setEntityShown(entity, shown);
                 }

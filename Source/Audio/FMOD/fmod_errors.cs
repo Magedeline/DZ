@@ -19,8 +19,8 @@ namespace FMOD
             {
                 case FMOD.RESULT.OK:                            return "No errors.";
                 case FMOD.RESULT.ERR_BADCOMMAND:                return "Tried to call a function on a data type that does not allow this type of functionality (ie calling Sound::lock on a streaming sound).";
-                case FMOD.RESULT.ERR_CHANNEL_ALLOC:             return "Error trying to allocate a channel.";
-                case FMOD.RESULT.ERR_CHANNEL_STOLEN:            return "The specified channel has been reused to play another sound.";
+                case FMOD.RESULT.ERRDZ_CHANNEL_ALLOC:             return "Error trying to allocate a channel.";
+                case FMOD.RESULT.ERRDZ_CHANNEL_STOLEN:            return "The specified channel has been reused to play another sound.";
                 case FMOD.RESULT.ERR_DMA:                       return "DMA Failure.  See debug output for more information.";
                 case FMOD.RESULT.ERR_DSP_CONNECTION:            return "DSP connection error.  Connection possibly caused a cyclic dependency or connected dsps with incompatible buffer counts.";
                 case FMOD.RESULT.ERR_DSP_DONTPROCESS:           return "DSP return code from a DSP process query callback.  Tells mixer not to call the process callback and therefore not consume CPU.  Use this to optimize the DSP graph.";
@@ -75,7 +75,7 @@ namespace FMOD
                 case FMOD.RESULT.ERR_PLUGIN_RESOURCE:           return "A resource that the plugin requires cannot be allocated or found. (ie the DLS file for MIDI playback)";
                 case FMOD.RESULT.ERR_PLUGIN_VERSION:            return "A plugin was built with an unsupported SDK version.";
                 case FMOD.RESULT.ERR_RECORD:                    return "An error occurred trying to initialize the recording device.";
-                case FMOD.RESULT.ERR_REVERB_CHANNELGROUP:       return "Reverb properties cannot be set on this channel because a parent channelgroup owns the reverb connection.";
+                case FMOD.RESULT.ERR_REVERBDZ_CHANNELGROUP:       return "Reverb properties cannot be set on this channel because a parent channelgroup owns the reverb connection.";
                 case FMOD.RESULT.ERR_REVERB_INSTANCE:           return "Specified instance in FMOD_REVERB_PROPERTIES couldn't be set. Most likely because it is an invalid instance number or the reverb doesn't exist.";
                 case FMOD.RESULT.ERR_SUBSOUNDS:                 return "The error occurred because the sound referenced contains subsounds when it shouldn't have, or it doesn't contain subsounds when it should have.  The operation may also not be able to be performed on a parent sound.";
                 case FMOD.RESULT.ERR_SUBSOUND_ALLOCATED:        return "This subsound is already being used by another sound, you cannot have more than one parent to a sound.  Null out the other parent's entry first.";

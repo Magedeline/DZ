@@ -1,8 +1,8 @@
 namespace Celeste.NPCs
 {
     [Tracked(true)]
-    [CustomEntity("DZ/NPC_Chara")]
-    public class NPC_Chara : Entity
+    [CustomEntity("DZ/NPCDZ_CHara")]
+    public class NPCDZ_CHara : Entity
     {
         private const string DONE_TALKING = "chara_done_talking";
         
@@ -20,7 +20,7 @@ namespace Celeste.NPCs
             set => (Scene as Level)?.Session.SetCounter("chara_conversation", value);
         }
 
-        public NPC_Chara(EntityData data, Vector2 offset) : base(data.Position + offset)
+        public NPCDZ_CHara(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
             dialogKey = data.Attr("dialogKey", "DZ_CH2_CHARA_INTRO");
             flagName = data.Attr("flagName", "chara_met");
@@ -33,7 +33,7 @@ namespace Celeste.NPCs
 
         private void setupSprite()
         {
-            Add(sprite = GFX.SpriteBank.Create("DZ_chara"));
+            Add(sprite = GFX.SpriteBank.Create("DZ_CHara"));
             sprite.Play("idle");
             sprite.Color = Color.White;
         }

@@ -155,9 +155,9 @@ namespace Celeste.Cutscenes
     /// Cutscene for the Chapter 16 Els barrier.
     /// </summary>
     [HotReloadable]
-    public class CS_SoulBarrier_Chapter16Els : SoulBarrierCutscene
+    public class CS_SoulBarrierDZ_CHapter16Els : SoulBarrierCutscene
     {
-        public CS_SoulBarrier_Chapter16Els(SoulPlayer soul, BossSoulBarrier barrier) : base(soul, barrier) { }
+        public CS_SoulBarrierDZ_CHapter16Els(SoulPlayer soul, BossSoulBarrier barrier) : base(soul, barrier) { }
 
         public override void OnBegin(Level level)
         {
@@ -167,15 +167,15 @@ namespace Celeste.Cutscenes
         private IEnumerator Cutscene(Level level)
         {
             level.Flash(Color.DarkRed * 0.5f, true);
-            yield return Textbox.Say("DZ_SOULBARRIER_CH16_ELS_INTRO");
+            yield return Textbox.Say("DZ_SOULBARRIERDZ_CH16_ELS_INTRO");
 
             SpawnBossGroup(barrier.Center, "Chapter16Els", "els");
             yield return 0.5f;
             StartBattleAfterDelay(0.5f);
-            yield return Textbox.Say("DZ_SOULBARRIER_CH16_ELS_FIGHT");
+            yield return Textbox.Say("DZ_SOULBARRIERDZ_CH16_ELS_FIGHT");
 
             while (!battleWon) yield return null;
-            yield return Textbox.Say("DZ_SOULBARRIER_CH16_ELS_DEFEAT");
+            yield return Textbox.Say("DZ_SOULBARRIERDZ_CH16_ELS_DEFEAT");
             BreakBarrierAfterDelay(0.3f);
             yield return 1f;
 

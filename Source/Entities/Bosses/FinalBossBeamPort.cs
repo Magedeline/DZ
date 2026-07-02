@@ -135,7 +135,7 @@ public class FinalBossBeamPort : Entity, IUpdatable
         CurrentState  = BeamState.Charging;
 
         // TODO: load sprite – add SpriteRenderer or custom render component for beam visuals
-        // TODO: play sound: event:/game/07_summit/boss_beam_charge
+        // TODO: play sound: event:/game/07_summit/boss_beamDZ_CHarge
     }
 
     // ── Nez lifecycle ─────────────────────────────────────────────────────────

@@ -5,10 +5,10 @@ using FMOD.Studio;
 namespace Celeste.Cutscenes
 {
     // Token: 0x0200016B RID: 363
-    public class CS19_CharaHelps : CutsceneEntity
+    public class CS19DZ_CHaraHelps : CutsceneEntity
     {
         // Token: 0x06000CF2 RID: 3314 RVA: 0x0002BE94 File Offset: 0x0002A094
-        public CS19_CharaHelps(global::Celeste.Player player) : base(true, false)
+        public CS19DZ_CHaraHelps(global::Celeste.Player player) : base(true, false)
         {
             base.Depth = -8500;
             this.player = player;

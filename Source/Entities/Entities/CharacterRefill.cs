@@ -485,7 +485,7 @@ namespace Celeste.Entities
                     break;
                     
                 case CharacterType.Badeline:
-                    level?.Session.SetFlag("dream_dash_charged", true);
+                    level?.Session.SetFlag("dream_dashDZ_CHarged", true);
                     break;
                     
                 case CharacterType.Asriel:

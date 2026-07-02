@@ -35,7 +35,7 @@ namespace Celeste.Entities
         private const string SFX_ELS_BIGHIT = "event:/pusheen/new_content/char/els/big_hit";
         private const string SFX_ELS_BUBBLE = "event:/pusheen/new_content/char/els/Els_Bubble";
         private const string SFX_ELS_BUILD = "event:/pusheen/new_content/char/els/Els_Build";
-        private const string SFX_ELS_CHARGE = "event:/pusheen/new_content/char/els/Els_Charge";
+        private const string SFX_ELSDZ_CHARGE = "event:/pusheen/new_content/char/els/ElsDZ_CHarge";
         private const string SFX_ELS_CREATE = "event:/pusheen/new_content/char/els/create";
         private const string SFX_ELS_DARKMATTER_SPAWN = "event:/pusheen/new_content/char/els/dark_matter_spawn";
         private const string SFX_ELS_FINAL_CRY = "event:/pusheen/new_content/char/els/Els_Final_Cry";
@@ -1169,7 +1169,7 @@ namespace Celeste.Entities
                 Sprite.Play("getHit");
             Audio.Play("event:/pusheen/new_content/char/els/Els_Scream_Hit", Position);
             chargeSfx.Stop();
-            if (laserSfx.EventName == "event:/char/badeline/boss_laser_charge" && laserSfx.Playing)
+            if (laserSfx.EventName == "event:/char/badeline/boss_laserDZ_CHarge" && laserSfx.Playing)
                 laserSfx.Stop();
             
             // Disable shockwave effects to prevent player from getting stuck
@@ -1744,7 +1744,7 @@ namespace Celeste.Entities
                 if (dimensionRiftPower >= MAX_RIFT_POWER && !canUseUltimateRiftAttack)
                 {
                     canUseUltimateRiftAttack = true;
-                    Audio.Play("event:/boss/els_rift_charged", Position);
+                    Audio.Play("event:/boss/els_riftDZ_CHarged", Position);
                     phaseWiggler.Start();
                 }
             }
@@ -2055,7 +2055,7 @@ namespace Celeste.Entities
         
         private void dualityWave()
         {
-            Audio.Play(SFX_ELS_CHARGE, Position);
+            Audio.Play(SFX_ELSDZ_CHARGE, Position);
             
             PlayBossAnimationSet(ElsPhase.DoppiaElillca, "duality", "boss");
             
@@ -2175,7 +2175,7 @@ namespace Celeste.Entities
             if (healCooldown > 0f) return;
             
             Audio.Play(SFX_ELS_REVIVAL, Position);
-            Audio.Play(SFX_ELS_CHARGE, Position);
+            Audio.Play(SFX_ELSDZ_CHARGE, Position);
             
             int healAmount = (int)(MaxHealth * 0.15f); // Heal 15% of max health
             Health = Math.Min(Health + healAmount, MaxHealth);
@@ -2539,7 +2539,7 @@ namespace Celeste.Entities
             if (healCooldown > 0f) return;
             
             Audio.Play(SFX_ELS_REVIVAL, Position);
-            Audio.Play(SFX_ELS_CHARGE, Position);
+            Audio.Play(SFX_ELSDZ_CHARGE, Position);
             
             int healAmount = (int)(MaxHealth * 0.20f); // Heal 20% in phase 2
             Health = Math.Min(Health + healAmount, MaxHealth);
@@ -2706,7 +2706,7 @@ namespace Celeste.Entities
             
             // Charge up
             Audio.Play(SFX_ELS_BUILD, Position);
-            Audio.Play(SFX_ELS_CHARGE, Position);
+            Audio.Play(SFX_ELSDZ_CHARGE, Position);
             level?.Shake(1f);
             
             for (float t = 0; t < 2f; t += Engine.DeltaTime)

@@ -313,11 +313,11 @@ triggers.DZ/Chapter16EffectsTrigger.placements.name.madnessLevel=Madness Level
 triggers.DZ/Chapter16EffectsTrigger.placements.name.corruptionLevel=Corruption Level
 
 # Chara Chaser
-entities.DZ/CharaChaser.placements.name.chara_chaser=Chara Chaser
+entities.DZ/CharaChaser.placements.name.charaDZ_CHaser=Chara Chaser
 entities.DZ/CharaChaser.placements.name.speedMultiplier=Speed Multiplier
 
 # Chara Chaser End
-entities.DZ/CharaChaserEnd.placements.name.chara_chaser_end=Chara Chaser End
+entities.DZ/CharaChaserEnd.placements.name.charaDZ_CHaser_end=Chara Chaser End
 
 # Character Refill
 entities.DZ/CharacterRefill.placements.name.character_refill=Character Refill
@@ -1134,7 +1134,7 @@ entities.DZ/MagmaPool.placements.name.eruptInterval=Erupt Interval
 entities.DZ/MagolorDummy.placements.name.magolor_dummy=Magolor Dummy
 
 # Main Chara Vision Actor
-entities.DZ/MainCharaVisionActor.placements.name.main_chara_vision_actor=Main Chara Vision Actor
+entities.DZ/MainCharaVisionActor.placements.name.mainDZ_CHara_vision_actor=Main Chara Vision Actor
 entities.DZ/MainCharaVisionActor.placements.name.facing=Facing
 entities.DZ/MainCharaVisionActor.placements.name.clampToRoomBounds=Clamp To Room Bounds
 entities.DZ/MainCharaVisionActor.placements.name.driveCameraWhenControlled=Drive Camera When Controlled
@@ -1220,7 +1220,7 @@ entities.DZ/NPC_Axis.placements.name.npc_axis=NPC Axis
 entities.DZ/NPC_BandanaDee.placements.name.npc_bandana_dee=NPC Bandana Dee
 
 # NPC Chara
-entities.DZ/NPC_Chara.placements.name.npc_chara=NPC Chara
+entities.DZ/NPCDZ_CHara.placements.name.npcDZ_CHara=NPC Chara
 
 # NPC Digital Guide
 entities.DZ/NPC_DigitalGuide.placements.name.npc_digital_guide=NPC Digital Guide
@@ -1367,13 +1367,13 @@ entities.DZ/NPC06_Magolor.placements.name.npc06_magolor=NPC06 Magolor
 entities.DZ/NPC06_Theo.placements.name.npc06_theo=NPC06 Theo
 
 # NPC07 Chara
-entities.DZ/NPC07_Chara.placements.name.npc07_chara=NPC07 Chara
+entities.DZ/NPC07DZ_CHara.placements.name.npc07DZ_CHara=NPC07 Chara
 
 # NPC07 Maddy Mirror
 entities.DZ/NPC07_Maddy_Mirror.placements.name.npc07_maddy_mirror=NPC07 Maddy Mirror
 
 # NPC08 Chara Crying
-entities.DZ/NPC08_Chara_Crying.placements.name.npc08_chara_crying=NPC08 Chara Crying
+entities.DZ/NPC08DZ_CHara_Crying.placements.name.npc08DZ_CHara_crying=NPC08 Chara Crying
 
 # NPC08 Maddy And Theo Ending
 entities.DZ/NPC08_Maddy_and_Theo_Ending.placements.name.npc08_maddy_and_theo_ending=NPC08 Maddy And Theo Ending
@@ -1397,7 +1397,7 @@ entities.DZ/NPC09X_Madeline_and_Badeline_Ending.placements.name.npc09_x_madeline
 entities.DZ/NPC10_Badeline.placements.name.npc10_badeline=NPC10 Badeline
 
 # NPC10 Chara
-entities.DZ/NPC10_Chara.placements.name.npc10_chara=NPC10 Chara
+entities.DZ/NPC10DZ_CHara.placements.name.npc10DZ_CHara=NPC10 Chara
 
 # NPC10 Madeline
 entities.DZ/NPC10_Madeline.placements.name.npc10_madeline=NPC10 Madeline
@@ -1654,7 +1654,7 @@ entities.DZ/RuinsSentinel.placements.name.patrolDistance=Patrol Distance
 entities.DZ/SafeCrystalSpinner.placements.name.safe_crystal_spinner=Safe Crystal Spinner
 
 # Saloon Chandelier
-entities.DZ/SaloonChandelier.placements.name.saloon_chandelier=Saloon Chandelier
+entities.DZ/SaloonChandelier.placements.name.saloonDZ_CHandelier=Saloon Chandelier
 entities.DZ/SaloonChandelier.placements.name.canFall=Can Fall
 entities.DZ/SaloonChandelier.placements.name.isHazard=Is Hazard
 entities.DZ/SaloonChandelier.placements.name.swingPeriod=Swing Period
@@ -1712,7 +1712,7 @@ entities.DZ/ShopKeeper.placements.name.followSpeed=Follow Speed
 entities.DZ/ShopKeeper.placements.name.followDistance=Follow Distance
 
 # Size Change Trigger
-triggers.DZ/SizeChangeTrigger.placements.name.size_change_trigger=Size Change Trigger
+triggers.DZ/SizeChangeTrigger.placements.name.sizeDZ_CHange_trigger=Size Change Trigger
 triggers.DZ/SizeChangeTrigger.placements.name.ability=Ability
 triggers.DZ/SizeChangeTrigger.placements.name.action=Action
 triggers.DZ/SizeChangeTrigger.placements.name.onlyOnce=Only Once

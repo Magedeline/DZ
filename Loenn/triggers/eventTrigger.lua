@@ -23,7 +23,7 @@ eventTrigger.fieldInformation = {
             "ch5_see_theo",
             "ch5_found_theo",
             "ch5_mirror_reflection",
-            "cancel_ch5_see_theo",
+            "cancelDZ_CH5_see_theo",
             "ch6_boss_intro",
             "ch6_reflect",
             "ch7_summit",
@@ -43,7 +43,7 @@ eventTrigger.fieldInformation = {
             -- Chapter 1
             "cs01_mod_ending",
             -- Chapter 2
-            "cs02_chara_intro",
+            "cs02DZ_CHara_intro",
             "cs02_dreaming_phonecall_portal",
             "cs02_awake_phonecall_ending",
             -- Chapter 3
@@ -56,8 +56,8 @@ eventTrigger.fieldInformation = {
             "cs07_genocide_vision_intro",
             "cs07_genocide_wakeup",
             -- Chapter 8
-            "cs08_charaboss_intro",
-            "ch8_chara_boss_center",
+            "cs08DZ_CHaraboss_intro",
+            "ch8DZ_CHara_boss_center",
             "ch8_end",
             -- Chapter 9
             "cs09_area_complete",
@@ -101,7 +101,7 @@ eventTrigger.fieldInformation = {
             "cs19_another_dimension_intro",
             "cs19_gravestone",
             "cs19_beyond_the_void",
-            "cs19_chara_helps",
+            "cs19DZ_CHara_helps",
             "cs19_edge_of_universe",
             "cs19_hub_second_intro",
             "cs19_trapin_loop",

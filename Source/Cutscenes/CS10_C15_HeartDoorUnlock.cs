@@ -74,7 +74,7 @@ namespace Celeste.Cutscenes
     {
         private const string DIALOG_KEY = "DZ_CH10_DOOR_UNLOCKED_AFTER_ENOUGH_MINIHEARTS";
         private const string FLAG_COMPLETE = "ch10_heartdoor_unlock_complete";
-        private const string FLAG_DOOR_UNLOCKED = "small_heart_door_unlocked_ch10";
+        private const string FLAG_DOOR_UNLOCKED = "small_heart_door_unlockedDZ_CH10";
 
         public CS10_HeartDoorUnlock(Player player) : base(player, DIALOG_KEY, FLAG_COMPLETE, FLAG_DOOR_UNLOCKED) { }
         public CS10_HeartDoorUnlock(EntityData data, Vector2 offset) : base(null, DIALOG_KEY, FLAG_COMPLETE, FLAG_DOOR_UNLOCKED) { }
@@ -88,7 +88,7 @@ namespace Celeste.Cutscenes
     {
         private const string DIALOG_KEY = "DZ_CH11_COLLECTING_MINIHEART_ENOUGH";
         private const string FLAG_COMPLETE = "ch11_heartdoor_unlock_complete";
-        private const string FLAG_DOOR_UNLOCKED = "small_heart_door_unlocked_ch11";
+        private const string FLAG_DOOR_UNLOCKED = "small_heart_door_unlockedDZ_CH11";
 
         public CS11_HeartDoorUnlock(Player player) : base(player, DIALOG_KEY, FLAG_COMPLETE, FLAG_DOOR_UNLOCKED) { }
         public CS11_HeartDoorUnlock(EntityData data, Vector2 offset) : base(null, DIALOG_KEY, FLAG_COMPLETE, FLAG_DOOR_UNLOCKED) { }
@@ -102,7 +102,7 @@ namespace Celeste.Cutscenes
     {
         private const string DIALOG_KEY = "DZ_CH12_COLLECTING_MINIHEART_ENOUGH";
         private const string FLAG_COMPLETE = "ch12_heartdoor_unlock_complete";
-        private const string FLAG_DOOR_UNLOCKED = "small_heart_door_unlocked_ch12";
+        private const string FLAG_DOOR_UNLOCKED = "small_heart_door_unlockedDZ_CH12";
 
         public CS12_HeartDoorUnlock(Player player) : base(player, DIALOG_KEY, FLAG_COMPLETE, FLAG_DOOR_UNLOCKED) { }
         public CS12_HeartDoorUnlock(EntityData data, Vector2 offset) : base(null, DIALOG_KEY, FLAG_COMPLETE, FLAG_DOOR_UNLOCKED) { }
@@ -116,7 +116,7 @@ namespace Celeste.Cutscenes
     {
         private const string DIALOG_KEY = "DZ_CH13_HEARTGEM_POEM";
         private const string FLAG_COMPLETE = "ch13_heartdoor_unlock_complete";
-        private const string FLAG_DOOR_UNLOCKED = "small_heart_door_unlocked_ch13";
+        private const string FLAG_DOOR_UNLOCKED = "small_heart_door_unlockedDZ_CH13";
 
         public CS13_HeartDoorUnlock(Player player) : base(player, DIALOG_KEY, FLAG_COMPLETE, FLAG_DOOR_UNLOCKED) { }
         public CS13_HeartDoorUnlock(EntityData data, Vector2 offset) : base(null, DIALOG_KEY, FLAG_COMPLETE, FLAG_DOOR_UNLOCKED) { }
@@ -130,7 +130,7 @@ namespace Celeste.Cutscenes
     {
         private const string DIALOG_KEY = "DZ_CH14_HEARTGEM_POEM";
         private const string FLAG_COMPLETE = "ch14_heartdoor_unlock_complete";
-        private const string FLAG_DOOR_UNLOCKED = "small_heart_door_unlocked_ch14";
+        private const string FLAG_DOOR_UNLOCKED = "small_heart_door_unlockedDZ_CH14";
 
         public CS14_HeartDoorUnlock(Player player) : base(player, DIALOG_KEY, FLAG_COMPLETE, FLAG_DOOR_UNLOCKED) { }
         public CS14_HeartDoorUnlock(EntityData data, Vector2 offset) : base(null, DIALOG_KEY, FLAG_COMPLETE, FLAG_DOOR_UNLOCKED) { }
@@ -144,7 +144,7 @@ namespace Celeste.Cutscenes
     {
         private const string DIALOG_KEY = "DZ_CH15_HEARTGEM_POEM";
         private const string FLAG_COMPLETE = "ch15_heartdoor_unlock_complete";
-        private const string FLAG_DOOR_UNLOCKED = "small_heart_door_unlocked_ch15";
+        private const string FLAG_DOOR_UNLOCKED = "small_heart_door_unlockedDZ_CH15";
 
         public CS15_HeartDoorUnlock(Player player) : base(player, DIALOG_KEY, FLAG_COMPLETE, FLAG_DOOR_UNLOCKED) { }
         public CS15_HeartDoorUnlock(EntityData data, Vector2 offset) : base(null, DIALOG_KEY, FLAG_COMPLETE, FLAG_DOOR_UNLOCKED) { }

@@ -8,7 +8,7 @@ local history = require("history")
 -- Configuration
 local CONFIG = {
     CHECKPOINTS = 12,
-    ROOMS_PER_CHECKPOINT = 10,
+    ROOMS_PERDZ_CHECKPOINT = 10,
     ROOM_WIDTH = 320,
     ROOM_HEIGHT = 184,
     ROOM_SPACING_X = 400,  -- Horizontal spacing between rooms
@@ -27,8 +27,8 @@ function buildSummitMap()
     
     print("[INFO] Building summit map for lastlevel.bin...")
     print(string.format("[INFO] Creating %d checkpoints with %d rooms each = %d total rooms",
-        CONFIG.CHECKPOINTS, CONFIG.ROOMS_PER_CHECKPOINT, 
-        CONFIG.CHECKPOINTS * CONFIG.ROOMS_PER_CHECKPOINT))
+        CONFIG.CHECKPOINTS, CONFIG.ROOMS_PERDZ_CHECKPOINT, 
+        CONFIG.CHECKPOINTS * CONFIG.ROOMS_PERDZ_CHECKPOINT))
     
     -- Create history snapshot for undo
     history.addSnapshot()
@@ -54,8 +54,8 @@ function buildSummitMap()
         
         print(string.format("[INFO] Creating checkpoint %s...", checkpointId))
         
-        for roomNum = 1, CONFIG.ROOMS_PER_CHECKPOINT do
-            local roomIndex = ((cp - 1) * CONFIG.ROOMS_PER_CHECKPOINT) + roomNum
+        for roomNum = 1, CONFIG.ROOMS_PERDZ_CHECKPOINT do
+            local roomIndex = ((cp - 1) * CONFIG.ROOMS_PERDZ_CHECKPOINT) + roomNum
             local roomName = string.format("summit_%02d_%02d", cp, roomNum)
             
             -- Calculate position (vertical summit climb with slight zigzag)
@@ -71,13 +71,13 @@ function buildSummitMap()
             totalRooms = totalRooms + 1
         end
         
-        print(string.format("[INFO] Checkpoint %s complete (%d rooms)", checkpointId, CONFIG.ROOMS_PER_CHECKPOINT))
+        print(string.format("[INFO] Checkpoint %s complete (%d rooms)", checkpointId, CONFIG.ROOMS_PERDZ_CHECKPOINT))
     end
     
     print(string.format("\n[SUCCESS] Summit map built!"))
     print(string.format("  Total rooms created: %d", totalRooms))
     print(string.format("  Total checkpoints: %d", CONFIG.CHECKPOINTS))
-    print(string.format("  Rooms per checkpoint: %d", CONFIG.ROOMS_PER_CHECKPOINT))
+    print(string.format("  Rooms per checkpoint: %d", CONFIG.ROOMS_PERDZ_CHECKPOINT))
     print(string.format("\n[IMPORTANT] Remember to:"))
     print("  1. Save the map (Ctrl+S)")
     print("  2. Add tilemap data (fg/bg tiles) to rooms")
@@ -140,7 +140,7 @@ function createRoom(name, x, y, width, height, checkpointId, cpNum, roomNum)
     end
     
     -- Add level end trigger for final room
-    if cpNum == CONFIG.CHECKPOINTS and roomNum == CONFIG.ROOMS_PER_CHECKPOINT then
+    if cpNum == CONFIG.CHECKPOINTS and roomNum == CONFIG.ROOMS_PERDZ_CHECKPOINT then
         table.insert(room.triggers, {
             _name = "levelEndTrigger",
             name = "levelEndTrigger",

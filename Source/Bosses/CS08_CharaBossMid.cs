@@ -31,7 +31,7 @@ namespace Celeste.Cutscenes
             }
             yield return player.DummyWalkToExact((int)player.X + 20);
             yield return level.ZoomTo(new Vector2(80f, 110f), 2f, 0.5f);
-            yield return Textbox.Say("ch8_chara_boss_middle");
+            yield return Textbox.Say("ch8DZ_CHara_boss_middle");
             yield return 0.1f;
             yield return level.ZoomBack(0.4f);
             EndCutscene(level);

@@ -122,9 +122,9 @@ namespace DZ
                         base.Scene.Add(new CS05_Reflection1(player2));
                     }
                     break;
-                case "cancel_ch5_see_theo":
-                    level.Session.SetFlag("it_ch5_see_theo");
-                    level.Session.SetFlag("it_ch5_see_theo_b");
+                case "cancelDZ_CH5_see_theo":
+                    level.Session.SetFlag("itDZ_CH5_see_theo");
+                    level.Session.SetFlag("itDZ_CH5_see_theo_b");
                     level.Session.SetFlag("ignore_darkness_" + level.Session.Level);
                     Add(new Coroutine(Brighten()));
                     break;
@@ -259,11 +259,11 @@ namespace DZ
                 case "cs01_mod_ending":
                     base.Scene.Add(new global::Celeste.Cutscenes.Cs01ModEnding(player2));
                     break;
-                case "cs02_chara_intro":
+                case "cs02DZ_CHara_intro":
                 {
                     var chara = level.Entities.FindFirst<global::Celeste.Entities.CharaChaser>();
                     if (chara != null)
-                        base.Scene.Add(new global::Celeste.Cutscenes.CS02_CharaIntro(chara));
+                        base.Scene.Add(new global::Celeste.Cutscenes.CS02DZ_CHaraIntro(chara));
                     break;
                 }
                 case "cs02_dreaming_phonecall_portal":
@@ -333,7 +333,7 @@ namespace DZ
                 case "cs07_genocide_wakeup":
                     base.Scene.Add(new global::Celeste.Cutscenes.CS07_GenocideWakeup(player2));
                     break;
-                case "cs08_charaboss_intro":
+                case "cs08DZ_CHaraboss_intro":
                     base.Scene.Add(new global::Celeste.Cutscenes.Cs08CharaBossIntro(player2));
                     break;
                 case "cs09_area_complete":
@@ -435,8 +435,8 @@ namespace DZ
                 case "cs19_beyond_the_void":
                     base.Scene.Add(new global::Celeste.Cutscenes.CS19_BeyondTheVoid(player2));
                     break;
-                case "cs19_chara_helps":
-                    base.Scene.Add(new global::Celeste.Cutscenes.CS19_CharaHelps(player2));
+                case "cs19DZ_CHara_helps":
+                    base.Scene.Add(new global::Celeste.Cutscenes.CS19DZ_CHaraHelps(player2));
                     break;
                 case "cs19_edge_of_universe":
                     base.Scene.Add(new global::Celeste.Cutscenes.CS19_EdgeOfUniverse(player2));
@@ -483,7 +483,7 @@ namespace DZ
                 case "cs21_ending":
                     base.Scene.Add(new global::Celeste.Cutscenes.CS21_Ending(player2));
                     break;
-                case "ch8_chara_boss_center":
+                case "ch8DZ_CHara_boss_center":
                     base.Scene.Add(new global::Celeste.Cutscenes.Cs08CharaBossIntro(player2));
                     break;
                 case "ch8_end":

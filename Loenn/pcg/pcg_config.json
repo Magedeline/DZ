@@ -31,7 +31,7 @@
       },
       "tile_density": 0.3,
       "hazard_density": 0.15,
-      "collectible_chance": 0.25
+      "collectibleDZ_CHance": 0.25
     },
     "kirby_combat_room": {
       "description": "Kirby-mode combat room with enemies and hazards",
@@ -49,7 +49,7 @@
       },
       "tile_density": 0.4,
       "hazard_density": 0.20,
-      "collectible_chance": 0.40,
+      "collectibleDZ_CHance": 0.40,
       "require_kirby_spawn": true
     },
     "puzzle_room": {
@@ -69,7 +69,7 @@
       },
       "tile_density": 0.35,
       "hazard_density": 0.05,
-      "collectible_chance": 0.15
+      "collectibleDZ_CHance": 0.15
     },
     "boss_arena": {
       "description": "Boss arena room with controlled layout",
@@ -81,7 +81,7 @@
       },
       "tile_density": 0.15,
       "hazard_density": 0.05,
-      "collectible_chance": 0.10,
+      "collectibleDZ_CHance": 0.10,
       "require_arena_trigger": true,
       "min_room_width": 320,
       "min_room_height": 184
@@ -100,7 +100,7 @@
       },
       "tile_density": 0.25,
       "hazard_density": 0.0,
-      "collectible_chance": 0.05
+      "collectibleDZ_CHance": 0.05
     },
     "tower_climb": {
       "description": "Vertical tower climbing room",
@@ -118,7 +118,7 @@
       },
       "tile_density": 0.35,
       "hazard_density": 0.20,
-      "collectible_chance": 0.15,
+      "collectibleDZ_CHance": 0.15,
       "vertical_priority": true
     },
     "speedrun_room": {
@@ -136,7 +136,7 @@
       },
       "tile_density": 0.20,
       "hazard_density": 0.10,
-      "collectible_chance": 0.10
+      "collectibleDZ_CHance": 0.10
     }
   },
   "output_format": {

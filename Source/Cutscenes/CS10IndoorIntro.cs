@@ -133,7 +133,7 @@ public class CS10IndoorIntro : CutsceneEntity
         {
             charaNpc = new Npc10Chara(new EntityData(), player.Position + new Vector2(-32f, -20f));
             charaNpc.IdleAnim = "idle";
-            charaNpc.Add(charaNpc.Sprite = GFX.SpriteBank.Create("DZ_chara"));
+            charaNpc.Add(charaNpc.Sprite = GFX.SpriteBank.Create("DZ_CHara"));
             charaNpc.Sprite.Color = Color.White * 0.7f; // Semi-transparent for ghost effect
             Scene.Add(charaNpc);
         }

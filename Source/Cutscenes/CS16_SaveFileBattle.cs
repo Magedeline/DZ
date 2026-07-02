@@ -140,7 +140,7 @@ namespace Celeste.Cutscenes
             yield return 0.3f;
             
             // Giant vines/hands appear from above
-            Audio.Play("event:/new_content/game/10_farewell/badeline_chase_rumble");
+            Audio.Play("event:/new_content/game/10_farewell/badelineDZ_CHase_rumble");
             level.Shake(2.0f);
             
             // Multiple crushing impacts
@@ -168,7 +168,7 @@ namespace Celeste.Cutscenes
             IngesteLogger.Info("LASER BEAM ATTACK SEQUENCE");
             
             // Charging sound and visual
-            Audio.Play("event:/new_content/game/10_farewell/badeline_chase_pulse");
+            Audio.Play("event:/new_content/game/10_farewell/badelineDZ_CHase_pulse");
             
             // Screen flickers with energy
             for (int i = 0; i < 6; i++)
@@ -204,7 +204,7 @@ namespace Celeste.Cutscenes
             IngesteLogger.Info("TENTACLE ATTACK SEQUENCE");
             
             // Ominous rumbling from below
-            Audio.Play("event:/new_content/game/10_farewell/badeline_chase_rumble");
+            Audio.Play("event:/new_content/game/10_farewell/badelineDZ_CHase_rumble");
             level.Shake(1.5f);
             yield return 0.8f;
             
@@ -292,7 +292,7 @@ namespace Celeste.Cutscenes
             IngesteLogger.Info("FLOWEY CIRCLING SEQUENCE");
             
             // Flowey begins circling the party
-            Audio.Play("event:/new_content/game/10_farewell/badeline_chase_spiral");
+            Audio.Play("event:/new_content/game/10_farewell/badelineDZ_CHase_spiral");
             
             // Spinning visual effect
             for (int i = 0; i < 8; i++)
@@ -460,7 +460,7 @@ namespace Celeste.Cutscenes
             
             // ELS powers up
             level.Flash(Color.Cyan, false);
-            Audio.Play("event:/new_content/game/10_farewell/badeline_chase_pulse");
+            Audio.Play("event:/new_content/game/10_farewell/badelineDZ_CHase_pulse");
             level.Shake(4.0f);
             yield return 1f;
             

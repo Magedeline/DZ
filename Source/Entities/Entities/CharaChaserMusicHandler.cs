@@ -23,7 +23,7 @@ public class CharaChaserMusicHandler : Entity
         }
 
         string music = Audio.CurrentMusic;
-        if (music == "event:/pusheen/music/lvl2/chase" || music == "event:/pusheen/music/lvl2/evil_chara")
+        if (music == "event:/pusheen/music/lvl2/chase" || music == "event:/pusheen/music/lvl2/evilDZ_CHara")
         {
             int boundsLeft = 1150;
             int boundsRight = 2832;

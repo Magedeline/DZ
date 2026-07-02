@@ -95,7 +95,7 @@ namespace Celeste.Entities.Bosses
             Add(riderSprite = new Sprite(GFX.Game, "characters/DZ/dragoneerjr/"));
             riderSprite.AddLoop("idle", "rider_idle", 0.12f);
             riderSprite.AddLoop("attack", "rider_attack", 0.05f);
-            riderSprite.AddLoop("charging", "rider_charging", 0.08f);
+            riderSprite.AddLoop("charging", "riderDZ_CHarging", 0.08f);
             riderSprite.Add("fall", "rider_fall", 0.1f);
             riderSprite.CenterOrigin();
             riderSprite.Position = new Vector2(0f, -30f);

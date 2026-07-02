@@ -81,7 +81,7 @@ public class StartingInventory : Entity
             // Play a subtle activation sound (optional)
             if (debugVisible)
             {
-                Audio.Play("event:/char/kirby/inventory_change", Position);
+                Audio.Play("event:/char/kirby/inventoryDZ_CHange", Position);
                 
                 // Visual effect for debug mode
                 level.ParticlesFG?.Emit(ParticleTypes.SparkyDust, 10, Center, Vector2.One * 16f);

@@ -2,10 +2,10 @@ local charaChaser = {}
 
 charaChaser.name = "DZ/CharaChaser"
 charaChaser.depth = 0
-charaChaser.texture = "objects/DZ/DZ/DZ/chara_chaser"
+charaChaser.texture = "objects/DZ/DZ/DZ/charaDZ_CHaser"
 
 charaChaser.placements = {
-    name = "chara_chaser",
+    name = "charaDZ_CHaser",
     data = {
         speedMultiplier = 1.0
     }

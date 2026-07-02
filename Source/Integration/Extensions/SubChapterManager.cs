@@ -93,8 +93,8 @@ public static class SubChapterManager
     private const string LogTag = "SubChapterManager";
 
     // ── Constraints ─────────────────────────────────────────────────────
-    public const int MIN_SUB_CHAPTERS = 5;
-    public const int MAX_SUB_CHAPTERS = 20;
+    public const int MIN_SUBDZ_CHAPTERS = 5;
+    public const int MAX_SUBDZ_CHAPTERS = 20;
 
     // ── State ───────────────────────────────────────────────────────────
     private static bool _loaded;
@@ -233,11 +233,11 @@ public static class SubChapterManager
         }
 
         int count = group.SubChapters?.Count ?? 0;
-        if (count < MIN_SUB_CHAPTERS || count > MAX_SUB_CHAPTERS)
+        if (count < MIN_SUBDZ_CHAPTERS || count > MAX_SUBDZ_CHAPTERS)
         {
             Logger.Log(LogLevel.Warn, LogTag,
                 $"Group '{group.GroupKey}' has {count} sub-chapters; " +
-                $"must be between {MIN_SUB_CHAPTERS} and {MAX_SUB_CHAPTERS}");
+                $"must be between {MIN_SUBDZ_CHAPTERS} and {MAX_SUBDZ_CHAPTERS}");
             return false;
         }
 

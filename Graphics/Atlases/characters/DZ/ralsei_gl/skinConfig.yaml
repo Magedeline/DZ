@@ -1,0 +1,28 @@
+skinName: "Ralsei (Glasses)"
+spritePath: "Ralsei/RalseiGL"
+
+hair:
+	enabled: true
+	color: "#4A4A4A"
+	style: "fluffy"
+
+effects:
+	- name: "heal_prayer"
+		trigger: "dash"
+		color: "#90EE90"
+	- name: "pacify"
+		trigger: "jump"
+		color: "#FFB6C1"
+
+animations:
+	idle: "idle"
+	walk: "runSlow"
+	run: "runFast"
+	jump: "jumpSlow"
+	dash: "dashAttack"
+	climb: "climbUp"
+	fall: "fallSlow"
+
+properties:
+	showHat: true
+	showGlasses: true

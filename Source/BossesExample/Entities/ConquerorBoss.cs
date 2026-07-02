@@ -127,10 +127,10 @@ public class ConquerorBoss : Actor
     this.Phase = phase;
     ((Entity) this).Add((Component) (this.Sprite = global::Celeste.Mod.DZ.BossesExample.BossesExampleModule.SpriteBank.Create("conqueror_boss")));
     ((Entity) this).Add((Component) (this.chargeWave = global::Celeste.Mod.DZ.BossesExample.BossesExampleModule.SpriteBank.Create("beamCharge")));
-    ((Entity) this).Add((Component) (this.lightning = global::Celeste.Mod.DZ.BossesExample.BossesExampleModule.SpriteBank.Create("boss_lightning_charge")));
+    ((Entity) this).Add((Component) (this.lightning = global::Celeste.Mod.DZ.BossesExample.BossesExampleModule.SpriteBank.Create("boss_lightningDZ_CHarge")));
     ((Component) this.lightning).Visible = false;
     this.lightning.OnFinish = (Action<string>) (_param1 => this.lightningVisible = false);
-    ((Entity) this).Add((Component) (this.lightningV = global::Celeste.Mod.DZ.BossesExample.BossesExampleModule.SpriteBank.Create("boss_lightningv_charge")));
+    ((Entity) this).Add((Component) (this.lightningV = global::Celeste.Mod.DZ.BossesExample.BossesExampleModule.SpriteBank.Create("boss_lightningvDZ_CHarge")));
     ((Component) this.lightningV).Visible = false;
     this.lightningV.OnFinish = (Action<string>) (_param1 => this.lightningVVisible = false);
     ((Entity) this).Collider = (Collider) new Hitbox(30f, 24f, -15f, -12f);
@@ -765,7 +765,7 @@ public class ConquerorBoss : Actor
 
   private IEnumerator Beam()
   {
-    this.laserSfx1.Play("event:/char/badeline/boss_laser_charge", (string) null, 0.0f);
+    this.laserSfx1.Play("event:/char/badeline/boss_laserDZ_CHarge", (string) null, 0.0f);
     this.chargeWave.Play("chargeBeam", false, false);
     yield return (object) 0.1f;
     Player entity = ((Scene) this.level).Tracker.GetEntity<Player>();

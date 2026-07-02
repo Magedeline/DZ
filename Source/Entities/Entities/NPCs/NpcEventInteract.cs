@@ -41,7 +41,7 @@ namespace Celeste.Entities
             SpriteId = data.Attr("spriteId", "theo");
             NpcName = data.Attr("npcName", "NPC");
             EnableSpriteSwap = data.Bool("enableSpriteSwap", false);
-            AlternateSprite = data.Attr("alternateSprite", "DZ_chara");
+            AlternateSprite = data.Attr("alternateSprite", "DZ_CHara");
             CsFlag = data.Attr("csFlag", "");
             DialogKey = data.Attr("dialogKey", "");
             TriggerFlag = data.Attr("triggerFlag", "");
@@ -142,7 +142,7 @@ namespace Celeste.Entities
             {
                 // Generic NPCs
                 "NPC_Theo" => Npc_TheoInteraction,
-                "NPC_Chara" => Npc_CharaInteraction,
+                "NPCDZ_CHara" => NpcDZ_CHaraInteraction,
                 "NPC_DigitalGuide" => Npc_DigitalGuideInteraction,
                 "NPC_Els" => Npc_ElsInteraction,
                 "NPC_Kirby" => Npc_KirbyInteraction,
@@ -169,9 +169,9 @@ namespace Celeste.Entities
                 "NPC05_Oshiro_Suite" => Npc05_Oshiro_SuiteInteraction,
                 "NPC06_Magolor" => Npc06_MagolorInteraction,
                 "NPC06_Theo" => Npc06_TheoInteraction,
-                "NPC07_Chara" => Npc07_CharaInteraction,
+                "NPC07DZ_CHara" => Npc07DZ_CHaraInteraction,
                 "NPC07_Maddy_Mirror" => Npc07_Maddy_MirrorInteraction,
-                "NPC08_Chara_Crying" => Npc08_Chara_CryingInteraction,
+                "NPC08DZ_CHara_Crying" => Npc08DZ_CHara_CryingInteraction,
                 "NPC08_Maddy_and_Theo_Ending" => Npc08_Maddy_and_Theo_EndingInteraction,
                 "NPC08_Madeline_Plateau" => Npc08_Madeline_PlateauInteraction,
                 "NPC08_DZ_Ending" => Npc08_DZ_EndingInteraction,
@@ -335,7 +335,7 @@ namespace Celeste.Entities
 
         // Generic NPC interactions
         private void Npc_TheoInteraction(Level level, global::Celeste.Player player, NpcEventInteract npc) => GenericDialogInteraction(level, player, DialogKey);
-        private void Npc_CharaInteraction(Level level, global::Celeste.Player player, NpcEventInteract npc) => GenericDialogInteraction(level, player, DialogKey);
+        private void NpcDZ_CHaraInteraction(Level level, global::Celeste.Player player, NpcEventInteract npc) => GenericDialogInteraction(level, player, DialogKey);
         private void Npc_DigitalGuideInteraction(Level level, global::Celeste.Player player, NpcEventInteract npc) => GenericDialogInteraction(level, player, DialogKey);
         private void Npc_ElsInteraction(Level level, global::Celeste.Player player, NpcEventInteract npc) => GenericDialogInteraction(level, player, DialogKey);
         private void Npc_KirbyInteraction(Level level, global::Celeste.Player player, NpcEventInteract npc) => GenericDialogInteraction(level, player, DialogKey);
@@ -376,11 +376,11 @@ namespace Celeste.Entities
         private void Npc06_TheoInteraction(Level level, global::Celeste.Player player, NpcEventInteract npc) => GenericDialogInteraction(level, player, DialogKey);
 
         // Chapter 7 NPCs
-        private void Npc07_CharaInteraction(Level level, global::Celeste.Player player, NpcEventInteract npc) => GenericDialogInteraction(level, player, DialogKey);
+        private void Npc07DZ_CHaraInteraction(Level level, global::Celeste.Player player, NpcEventInteract npc) => GenericDialogInteraction(level, player, DialogKey);
         private void Npc07_Maddy_MirrorInteraction(Level level, global::Celeste.Player player, NpcEventInteract npc) => GenericDialogInteraction(level, player, DialogKey);
 
         // Chapter 8 NPCs
-        private void Npc08_Chara_CryingInteraction(Level level, global::Celeste.Player player, NpcEventInteract npc) => GenericDialogInteraction(level, player, DialogKey);
+        private void Npc08DZ_CHara_CryingInteraction(Level level, global::Celeste.Player player, NpcEventInteract npc) => GenericDialogInteraction(level, player, DialogKey);
         private void Npc08_Maddy_and_Theo_EndingInteraction(Level level, global::Celeste.Player player, NpcEventInteract npc) => GenericDialogInteraction(level, player, DialogKey);
         private void Npc08_Madeline_PlateauInteraction(Level level, global::Celeste.Player player, NpcEventInteract npc) => GenericDialogInteraction(level, player, DialogKey);
         private void Npc08_DZ_EndingInteraction(Level level, global::Celeste.Player player, NpcEventInteract npc) => GenericDialogInteraction(level, player, DialogKey);

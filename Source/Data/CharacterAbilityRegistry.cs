@@ -57,7 +57,7 @@ namespace DZ
             { "susie", new CharacterData("susie_haltmann", "Susie", true) },
             { "dark_meta_knight", new CharacterData("dark_meta_knight", "Dark Meta Knight", true) },
             { "frisk", new CharacterData("frisk", "Frisk") },
-            { "chara", new CharacterData("DZ_chara", "Chara") },
+            { "chara", new CharacterData("DZ_CHara", "Chara") },
             { "asriel", new CharacterData("asriel", "Asriel") },
             { "ralsei", new CharacterData("ralsei", "Ralsei") },
             { "ness", new CharacterData("ness", "Ness") },

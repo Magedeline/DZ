@@ -9,7 +9,7 @@ using CharaMirror = Celeste.Entities.CharaMirror;
 namespace Celeste.Cutscenes
 {
     [HotReloadable]
-    public class CS02_CharaMirror : CutsceneEntity
+    public class CS02DZ_CHaraMirror : CutsceneEntity
     {
         private Player player;
         private CharaMirror charaMirror;
@@ -17,7 +17,7 @@ namespace Celeste.Cutscenes
         private int direction = 1;
         private SoundSource sfx;
 
-        public CS02_CharaMirror(Player player, CharaMirror charaMirror)
+        public CS02DZ_CHaraMirror(Player player, CharaMirror charaMirror)
         {
             this.player = player;
             this.charaMirror = charaMirror;
@@ -27,7 +27,7 @@ namespace Celeste.Cutscenes
 
         private IEnumerator Cutscene(Level level)
         {
-            CS02_CharaMirror cs02CharaMirror = this;
+            CS02DZ_CHaraMirror cs02CharaMirror = this;
             cs02CharaMirror.Add(cs02CharaMirror.sfx = new SoundSource());
             cs02CharaMirror.sfx.Position = cs02CharaMirror.charaMirror.Center;
             cs02CharaMirror.sfx.Play("event:/pusheen/music/lvl2/dreamblock_sting_pt1");
@@ -71,7 +71,7 @@ namespace Celeste.Cutscenes
 
         private IEnumerator ZoomBack()
         {
-            CS02_CharaMirror cs02CharaMirror = this;
+            CS02DZ_CHaraMirror cs02CharaMirror = this;
             yield return 1.2f;
             yield return cs02CharaMirror.Level.ZoomBack(3f);
         }

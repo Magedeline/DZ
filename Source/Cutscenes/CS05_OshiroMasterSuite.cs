@@ -124,7 +124,7 @@ namespace Celeste.Cutscenes
             {
                 mirror.EvilAppear();
                 SetEvilMusic();
-                Audio.Play("event:/pusheen/game/05_restore/suite_chara_intro", mirror.Position);
+                Audio.Play("event:/pusheen/game/05_restore/suiteDZ_CHara_intro", mirror.Position);
                 Vector2 from = Level.ZoomFocusPoint;
                 Vector2 to = new Vector2(216f, 110f);
                 for (float p = 0f; p < 1f; p += Engine.DeltaTime * 2f)
@@ -195,7 +195,7 @@ namespace Celeste.Cutscenes
             if (Level.Session.Area.Mode == AreaMode.Normal)
             {
                 Level level = base.Scene as Level;
-                level.Session.Audio.Music.Event = "event:/pusheen/music/lvl2/evil_chara";
+                level.Session.Audio.Music.Event = "event:/pusheen/music/lvl2/evilDZ_CHara";
                 level.Session.Audio.Apply(forceSixteenthNoteHack: false);
             }
         }

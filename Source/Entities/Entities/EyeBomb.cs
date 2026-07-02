@@ -78,7 +78,7 @@ namespace Celeste.Entities
                 triggered = true;
                 fuseTimer = fuseTime;
                 targetPlayer = player;
-                Audio.Play("event:/game/09_core/rising_flame_charge", Position);
+                Audio.Play("event:/game/09_core/rising_flameDZ_CHarge", Position);
                 wiggler.Start();
             }
             

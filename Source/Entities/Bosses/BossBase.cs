@@ -396,7 +396,7 @@ public abstract class BossBase : Component, IUpdatable
     protected virtual void PlayPhaseEffect()
     {
         // Phase transition visual/sound
-        DZGame.Audio.PlaySfx("event:/pusheen/game/boss/phase_change");
+        DZGame.Audio.PlaySfx("event:/pusheen/game/boss/phaseDZ_CHange");
     }
 
     protected virtual void UpdateAnimation()

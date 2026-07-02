@@ -162,7 +162,7 @@ public class ELSTerminaFinalBoss : Actor
     private void PlayBigHit() => PlayAudio("event:/pusheen/new_content/char/els/big_hit");
     private void PlayBubble() => PlayAudio("event:/pusheen/new_content/char/els/Els_Bubble");
     private void PlayBuild() => PlayAudio("event:/pusheen/new_content/char/els/Els_Build");
-    private void PlayCharge() => PlayAudio("event:/pusheen/new_content/char/els/Els_Charge");
+    private void PlayCharge() => PlayAudio("event:/pusheen/new_content/char/els/ElsDZ_CHarge");
     private void PlayConsume() => PlayAudio("event:/pusheen/new_content/char/els/consume_crystal_heart");
     private void PlayCreate() => PlayAudio("event:/pusheen/new_content/char/els/create");
     private void PlayCryingDeath() => PlayAudio("event:/pusheen/new_content/char/els/crying_death");

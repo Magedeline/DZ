@@ -7,7 +7,7 @@ namespace Celeste.Cutscenes
     /// </summary>
     public class CS09_AreaComplete : CutsceneEntity
     {
-        public const string FlagChapter9Complete = "ch9_chapter_complete";
+        public const string FlagChapter9Complete = "ch9DZ_CHapter_complete";
         
         private global::Celeste.Player player;
         private float fadeAlpha;

@@ -1,7 +1,7 @@
 namespace Celeste.NPCs
 {
     [Tracked(true)]
-    [CustomEntity(ids: "DZ/NPC07_Chara")]
+    [CustomEntity(ids: "DZ/NPC07DZ_CHara")]
     public class Npc07Chara : Entity
     {
         private const string donetalking = "charaDoneTalking";
@@ -20,7 +20,7 @@ namespace Celeste.NPCs
 
         private void setupSprite()
         {
-            Add(sprite = GFX.SpriteBank.Create("DZ_chara"));
+            Add(sprite = GFX.SpriteBank.Create("DZ_CHara"));
             sprite.Play("idle");
         }
 

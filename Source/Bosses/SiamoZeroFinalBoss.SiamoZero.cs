@@ -30,7 +30,7 @@ namespace Celeste.Entities
 
         // SFX constants for Siamo Zero
         private const string SFX_SIAMO_SWORD_SWING = "event:/pusheen/new_content/char/els/Els_Slice";
-        private const string SFX_SIAMO_BEAM_CHARGE = "event:/pusheen/new_content/char/els/Els_Charge";
+        private const string SFX_SIAMO_BEAMDZ_CHARGE = "event:/pusheen/new_content/char/els/ElsDZ_CHarge";
         private const string SFX_SIAMO_BEAM_FIRE = "event:/pusheen/new_content/char/els/Els_BeamSlash";
         private const string SFX_SIAMO_TORNADO = "event:/pusheen/new_content/char/els/Els_Shell_Screamer";
         private const string SFX_SIAMO_DRILL = "event:/pusheen/new_content/char/els/Els_Build";
@@ -618,7 +618,7 @@ namespace Celeste.Entities
             PlayBossAnimationSet(ElsPhase.SiamoZero, "hit", "boss");
             PlaySiamoOverlay(SiamoSubPhase.AeonHeroFake, "crescent_beam_shot");
 
-            Audio.Play(SFX_SIAMO_BEAM_CHARGE, Position);
+            Audio.Play(SFX_SIAMO_BEAMDZ_CHARGE, Position);
 
             var lvl = Scene as Level;
             lvl?.Displacement.AddBurst(Position, 0.6f, 96f, 192f, 0.8f);
@@ -727,7 +727,7 @@ namespace Celeste.Entities
             PlayBossAnimationSet(ElsPhase.SiamoZero, "hit", "boss");
             PlaySiamoOverlay(SiamoSubPhase.AeonHeroFake, "glide_sword");
 
-            Audio.Play(SFX_SIAMO_BEAM_CHARGE, Position);
+            Audio.Play(SFX_SIAMO_BEAMDZ_CHARGE, Position);
             ShowTelegraph(BossTelegraphType.DashCyan, GetSiamoValue(0.42f, 0.34f, 0.26f));
 
             Add(new Coroutine(siamoConqueredPeakCascadeSequence()));
@@ -1121,7 +1121,7 @@ namespace Celeste.Entities
             PlayBossAnimationSet(ElsPhase.SiamoZero, "hit", "boss");
             PlaySiamoOverlay(SiamoSubPhase.AeonHeroFake, "thirty_energy_shower");
 
-            Audio.Play(SFX_SIAMO_BEAM_CHARGE, Position);
+            Audio.Play(SFX_SIAMO_BEAMDZ_CHARGE, Position);
 
             Add(new Coroutine(siamoEnergyShowerSequence()));
         }

@@ -150,7 +150,7 @@ namespace Celeste.Entities
         {
             string spriteId = BossType.ToLower() switch
             {
-                "chara" => "boss_chara",
+                "chara" => "bossDZ_CHara",
                 "flowey" => "boss_flowey",
                 "final" => "boss_final",
                 _ => "boss_generic"

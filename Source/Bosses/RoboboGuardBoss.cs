@@ -307,7 +307,7 @@ namespace Celeste.Entities.Bosses
         {
             armsSprite.Play("laser");
             eyeSprite.Play("scan");
-            Audio.Play("event:/robobo_laser_charge", Position);
+            Audio.Play("event:/robobo_laserDZ_CHarge", Position);
             
             var level = Scene as Level;
             var player = Scene.Tracker.GetEntity<global::Celeste.Player>();
@@ -373,7 +373,7 @@ namespace Celeste.Entities.Bosses
         {
             armsSprite.Play("guard");
             ActivateShield();
-            Audio.Play("event:/robobo_shield_charge", Position);
+            Audio.Play("event:/robobo_shieldDZ_CHarge", Position);
             
             var level = Scene as Level;
             var player = Scene.Tracker.GetEntity<global::Celeste.Player>();

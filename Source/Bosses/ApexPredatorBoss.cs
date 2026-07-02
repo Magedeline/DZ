@@ -492,7 +492,7 @@ namespace Celeste.Entities.Bosses
         private IEnumerator BloodlustChargeAttack()
         {
             predatorSprite.Play("run");
-            Audio.Play("event:/apexpredator_bloodlust_charge", Position);
+            Audio.Play("event:/apexpredator_bloodlustDZ_CHarge", Position);
             
             var player = Scene.Tracker.GetEntity<global::Celeste.Player>();
             

@@ -22,19 +22,19 @@ namespace Celeste.Entities
         private const string SFX_BIG_LASER             = "event:/pusheen/new_content/char/bosses/asriel/big_laser";
         private const string SFX_BIG_STAR              = "event:/pusheen/new_content/char/bosses/asriel/big_star";
         private const string SFX_BIGGER_GUN_MECHANIZED = "event:/pusheen/new_content/char/bosses/asriel/biggergunmechanized";
-        private const string SFX_CHARGE_INTRO          = "event:/pusheen/new_content/char/bosses/asriel/charge_intro";
+        private const string SFXDZ_CHARGE_INTRO          = "event:/pusheen/new_content/char/bosses/asriel/charge_intro";
         private const string SFX_CINEMATIC_CUT         = "event:/pusheen/new_content/char/bosses/asriel/cinematiccut";
         private const string SFX_CINEMATIC_CUT_2D      = "event:/pusheen/new_content/char/bosses/asriel/cinematiccut_2d";
         private const string SFX_CINEMATIC_CUT_3D      = "event:/pusheen/new_content/char/bosses/asriel/cinematiccut_3d";
         private const string SFX_CINEMATIC_CUT_FLAME   = "event:/pusheen/new_content/char/bosses/asriel/cinematiccut_flame_2d";
         private const string SFX_CRASH_BUBBLE_BURST    = "event:/pusheen/new_content/char/bosses/asriel/crashbubbleburst";
-        private const string SFX_CRASH_BUBBLE_CHARGE   = "event:/pusheen/new_content/char/bosses/asriel/crashbubblecharge";
+        private const string SFX_CRASH_BUBBLEDZ_CHARGE   = "event:/pusheen/new_content/char/bosses/asriel/crashbubblecharge";
         private const string SFX_CREATE                = "event:/pusheen/new_content/char/bosses/asriel/create";
         private const string SFX_FINAL_BEAM            = "event:/pusheen/new_content/char/bosses/asriel/finalbeam";
         private const string SFX_GET_HIT               = "event:/pusheen/new_content/char/bosses/asriel/get_hit";
         private const string SFX_GRAB                  = "event:/pusheen/new_content/char/bosses/asriel/grab";
         private const string SFX_GUNSHOT               = "event:/pusheen/new_content/char/bosses/asriel/gunshot";
-        private const string SFX_HYPERGONER_CHARGE     = "event:/pusheen/new_content/char/bosses/asriel/hypergoner_charge";
+        private const string SFX_HYPERGONERDZ_CHARGE     = "event:/pusheen/new_content/char/bosses/asriel/hypergonerDZ_CHarge";
         private const string SFX_LASER                 = "event:/pusheen/new_content/char/bosses/asriel/laser";
         private const string SFX_LASER_BEAM_STRIKE     = "event:/pusheen/new_content/char/bosses/asriel/laser_Beam_strike_impact";
         private const string SFX_LASER_INTRO           = "event:/pusheen/new_content/char/bosses/asriel/laser_intro";
@@ -49,12 +49,12 @@ namespace Celeste.Entities
         // Remapped: BarrierShatter -> crashbubbleburst, BiggerGunFire -> phaser_blast, SegaPower01 -> charge_intro
         private const string SFX_BARRIER_SHATTER       = SFX_CRASH_BUBBLE_BURST;
         private const string SFX_BIGGER_GUN_FIRE       = SFX_PHASER_BLAST;
-        private const string SFX_SEGA_POWER_01         = SFX_CHARGE_INTRO;
+        private const string SFX_SEGA_POWER_01         = SFXDZ_CHARGE_INTRO;
         // Remapped: Lightninghit -> lightning_hit1, BiggerLightninghit -> lightning_hit2
         private const string SFX_LIGHTNING_HIT         = SFX_LIGHTNING_HIT1;
         private const string SFX_BIGGER_LIGHTNING_HIT  = SFX_LIGHTNING_HIT2;
         private const string SFX_BOSS_HIT = "event:/char/badeline/boss_hug";
-        private const string SFX_BOSS_LASER_CHARGE = "event:/char/badeline/boss_laser_charge";
+        private const string SFX_BOSS_LASERDZ_CHARGE = "event:/char/badeline/boss_laserDZ_CHarge";
         private const string SFX_BOSS_LASER_FIRE = "event:/char/badeline/boss_laser_fire";
         private const string SFX_BOSS_BULLET = "event:/char/badeline/boss_bullet";
         
@@ -286,7 +286,7 @@ namespace Celeste.Entities
             const float SAFE_DISTANCE = 40f;
             
             level.Add(new HyperGonerVortex(Position, PULL_STRENGTH, SAFE_DISTANCE));
-            Audio.Play(SFX_HYPERGONER_CHARGE, Position);
+            Audio.Play(SFX_HYPERGONERDZ_CHARGE, Position);
         }
         
         #endregion
@@ -2711,7 +2711,7 @@ namespace Celeste.Entities
         {
             var asrielboss = this;
             currentAttackPhase = AttackPhase.Charging;
-            asrielboss.laserSfx.Play(SFX_BOSS_LASER_CHARGE);
+            asrielboss.laserSfx.Play(SFX_BOSS_LASERDZ_CHARGE);
             asrielboss.Sprite.Play("beamStart", true);
             yield return 0.1f;
             var entity = asrielboss.level.Tracker.GetEntity<global::Celeste.Player>();
@@ -2735,7 +2735,7 @@ namespace Celeste.Entities
         {
             var asrielboss = this;
             currentAttackPhase = AttackPhase.Charging;
-            asrielboss.laserSfx.Play(SFX_BOSS_LASER_CHARGE);
+            asrielboss.laserSfx.Play(SFX_BOSS_LASERDZ_CHARGE);
             asrielboss.Sprite.Play("beamStart", true);
             yield return 0.2f;
             var entity = asrielboss.level.Tracker.GetEntity<global::Celeste.Player>();
@@ -2759,7 +2759,7 @@ namespace Celeste.Entities
         {
             var asrielboss = this;
             currentAttackPhase = AttackPhase.Charging;
-            asrielboss.laserSfx.Play(SFX_BOSS_LASER_CHARGE);
+            asrielboss.laserSfx.Play(SFX_BOSS_LASERDZ_CHARGE);
             asrielboss.Sprite.Play("beamStart", true);
             yield return 0.3f;
             var entity = asrielboss.level.Tracker.GetEntity<global::Celeste.Player>();
@@ -2885,7 +2885,7 @@ namespace Celeste.Entities
             
             // Play the hypergoner sprite animation
             asrielboss.Sprite.Play("hypergoner", true);
-            Audio.Play(SFX_HYPERGONER_CHARGE, asrielboss.Position);
+            Audio.Play(SFX_HYPERGONERDZ_CHARGE, asrielboss.Position);
             yield return 0.5f;
             
             // Start the inhale animation

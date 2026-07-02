@@ -10,7 +10,7 @@ namespace Celeste.Entities
     {
         private const string SFX_DASH_LEFT = "event:/pusheen/char/kirby/dash_red_left";
         private const string SFX_DASH_RIGHT = "event:/pusheen/char/kirby/dash_red_right";
-        private const string SFX_DASH_CHARGE = "event:/pusheen/char/kirby/dash_charge";
+        private const string SFX_DASHDZ_CHARGE = "event:/pusheen/char/kirby/dashDZ_CHarge";
         
         /// <summary>
         /// Perform a warper-style dash effect
@@ -55,7 +55,7 @@ namespace Celeste.Entities
             direction = direction.LengthSquared() > 0 ? direction.SafeNormalize() : Vector2.UnitX;
             
             // Play charged dash sound
-            Audio.Play(SFX_DASH_CHARGE, position);
+            Audio.Play(SFX_DASHDZ_CHARGE, position);
             
             // Enhanced particle effect
             int particleCount = (int)(16 * chargeLevel);

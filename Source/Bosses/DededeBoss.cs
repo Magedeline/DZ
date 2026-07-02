@@ -246,7 +246,7 @@ namespace Celeste.Entities.Bosses
 
         private void UpdateHammerCharge()
         {
-            sprite?.Play("hammer_charge");
+            sprite?.Play("hammerDZ_CHarge");
             Speed.X = 0;
             
             if (stateTimer > 1f)

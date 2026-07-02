@@ -289,7 +289,7 @@ public class AngyOshiro : Entity
         {
             Alarm.Set(this, 0.216f, [MethodImpl(MethodImplOptions.NoInlining)] () =>
             {
-                chargeSfx.Play("event:/char/oshiro/boss_charge");
+                chargeSfx.Play("event:/char/oshiro/bossDZ_CHarge");
             });
             state.State = 1;
         }

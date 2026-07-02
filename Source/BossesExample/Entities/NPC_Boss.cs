@@ -37,7 +37,7 @@ internal class NPC_Boss : NPC
     : base(position)
   {
     ((Entity) this).Add((Component) (this.Sprite = global::Celeste.Mod.DZ.BossesExample.BossesExampleModule.SpriteBank.Create("boss_sprite")));
-    ((Entity) this).Add((Component) (this.lightning = global::Celeste.Mod.DZ.BossesExample.BossesExampleModule.SpriteBank.Create("boss_lightning_charge")));
+    ((Entity) this).Add((Component) (this.lightning = global::Celeste.Mod.DZ.BossesExample.BossesExampleModule.SpriteBank.Create("boss_lightningDZ_CHarge")));
     ((Component) this.lightning).Visible = false;
     this.lightning.OnFinish = (Action<string>) (_param1 => this.lightningVisible = false);
     ((Entity) this).Visible = false;

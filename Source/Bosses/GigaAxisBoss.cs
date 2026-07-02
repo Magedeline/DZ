@@ -119,7 +119,7 @@ namespace Celeste.Entities.Bosses
             Add(cannonSprite = new Sprite(GFX.Game, "characters/DZ/gigaaxis/"));
             cannonSprite.AddLoop("hidden", "cannon_hidden", 0.1f);
             cannonSprite.AddLoop("deploy", "cannon_deploy", 0.08f);
-            cannonSprite.AddLoop("charge", "cannon_charge", 0.05f);
+            cannonSprite.AddLoop("charge", "cannonDZ_CHarge", 0.05f);
             cannonSprite.AddLoop("fire", "cannon_fire", 0.03f);
             cannonSprite.CenterOrigin();
             cannonSprite.Position = new Vector2(0f, -70f);
@@ -559,7 +559,7 @@ namespace Celeste.Entities.Bosses
         private IEnumerator BoostChargeAttack()
         {
             wingsSprite.Play("boost");
-            Audio.Play("event:/gigaaxis_boost_charge", Position);
+            Audio.Play("event:/gigaaxis_boostDZ_CHarge", Position);
             
             var player = Scene.Tracker.GetEntity<global::Celeste.Player>();
             if (player != null)
@@ -588,7 +588,7 @@ namespace Celeste.Entities.Bosses
         private IEnumerator OrbitalCannonAttack()
         {
             cannonSprite.Play("charge");
-            Audio.Play("event:/gigaaxis_orbital_cannon_charge", Position);
+            Audio.Play("event:/gigaaxis_orbital_cannonDZ_CHarge", Position);
             
             var level = Scene as Level;
             
@@ -836,7 +836,7 @@ namespace Celeste.Entities.Bosses
         {
             coreSprite.Play("critical");
             cannonSprite.Play("charge");
-            Audio.Play("event:/gigaaxis_giga_beam_charge", Position);
+            Audio.Play("event:/gigaaxis_giga_beamDZ_CHarge", Position);
             
             var level = Scene as Level;
             

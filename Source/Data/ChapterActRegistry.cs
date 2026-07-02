@@ -28,7 +28,7 @@ public static class ChapterActRegistry
         public bool IsInterlude { get; init; }
     }
 
-    private static readonly List<ChapterInfo> _chapters = new();
+    private static readonly List<ChapterInfo> DZ_CHapters = new();
     private static readonly Dictionary<int, ChapterInfo> _byNumber = new();
 
     private static bool _initialized;
@@ -38,7 +38,7 @@ public static class ChapterActRegistry
         get
         {
             EnsureInitialized();
-            return _chapters;
+            return DZ_CHapters;
         }
     }
 
@@ -53,7 +53,7 @@ public static class ChapterActRegistry
 
     public static void Initialize()
     {
-        _chapters.Clear();
+        DZ_CHapters.Clear();
         _byNumber.Clear();
 
         // ═══════════════════════════════════════════════════════════
@@ -242,7 +242,7 @@ public static class ChapterActRegistry
         });
 
         Logger.Log(LogLevel.Info, "DZ",
-            $"ChapterActRegistry: {_chapters.Count} chapters across 3 acts");
+            $"ChapterActRegistry: {DZ_CHapters.Count} chapters across 3 acts");
     }
 
     // ── Queries ──────────────────────────────────────────────────────
@@ -262,7 +262,7 @@ public static class ChapterActRegistry
     public static IEnumerable<ChapterInfo> GetChaptersInAct(Act act)
     {
         EnsureInitialized();
-        return _chapters.Where(c => c.Act == act);
+        return DZ_CHapters.Where(c => c.Act == act);
     }
 
     public static (int first, int last) GetActRange(Act act) => act switch
@@ -289,7 +289,7 @@ public static class ChapterActRegistry
 
     private static void Add(ChapterInfo info)
     {
-        _chapters.Add(info);
+        DZ_CHapters.Add(info);
         _byNumber[info.Number] = info;
     }
 }

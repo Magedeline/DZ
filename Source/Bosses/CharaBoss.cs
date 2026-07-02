@@ -117,7 +117,7 @@ namespace Celeste.Entities {
             this.level = this.SceneAs<Level>();
             if (this.patternIndex == 0)
             {
-                this.NormalSprite = GFX.SpriteBank.Create("DZ_chara");
+                this.NormalSprite = GFX.SpriteBank.Create("DZ_CHara");
                 this.NormalSprite.Scale.X = -1f;
                 if (this.NormalSprite.Has("angry"))
                     this.NormalSprite.Play("angry");
@@ -261,7 +261,7 @@ namespace Celeste.Entities {
             Sprite.Play("charaboss_getHit");
             Audio.Play("event:/char/badeline/boss_hug", Position);
             chargeSfx.Stop();
-            if (laserSfx.EventName == "event:/char/badeline/boss_laser_charge" && laserSfx.Playing)
+            if (laserSfx.EventName == "event:/char/badeline/boss_laserDZ_CHarge" && laserSfx.Playing)
                 laserSfx.Stop();
 
             Collidable = false;
@@ -271,11 +271,11 @@ namespace Celeste.Entities {
             if (dialog)
             {
                 if (nodeIndex == 1)
-                    Scene.Add(new MiniTextbox("ch8_charaboss_tired_a"));
+                    Scene.Add(new MiniTextbox("ch8DZ_CHaraboss_tired_a"));
                 else if (nodeIndex == 2)
-                    Scene.Add(new MiniTextbox("ch8_charaboss_tired_b"));
+                    Scene.Add(new MiniTextbox("ch8DZ_CHaraboss_tired_b"));
                 else if (nodeIndex == 3)
-                    Scene.Add(new MiniTextbox("ch8_charaboss_tired_c"));
+                    Scene.Add(new MiniTextbox("ch8DZ_CHaraboss_tired_c"));
             }
 
             foreach (var entity in level.Tracker.GetEntities<CharaBossShot>())
@@ -1065,7 +1065,7 @@ namespace Celeste.Entities {
 
         private IEnumerator Beam()
         {
-            laserSfx.Play("event:/char/badeline/boss_laser_charge");
+            laserSfx.Play("event:/char/badeline/boss_laserDZ_CHarge");
             Sprite.Play("charaboss_attack2Begin", restart: true);
             yield return 0.1f;
             global::Celeste.Player entity = level.Tracker.GetEntity<global::Celeste.Player>();
@@ -1083,7 +1083,7 @@ namespace Celeste.Entities {
         // Keep BiggerBeam method
         private IEnumerator BiggerBeam()
         {
-            laserSfx.Play("event:/char/badeline/boss_laser_charge");
+            laserSfx.Play("event:/char/badeline/boss_laserDZ_CHarge");
             Sprite.Play("charaboss_attack2Begin", restart: true);
             yield return 0.2f; // Longer charge setup
             global::Celeste.Player entity = level.Tracker.GetEntity<global::Celeste.Player>();

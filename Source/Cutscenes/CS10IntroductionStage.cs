@@ -293,7 +293,7 @@ public class CS10IntroductionStage : CutsceneEntity
     public void OnMiniHeartCollected()
     {
         collectedMiniHearts++;
-        Audio.Play("event:/ui/game/reflect_check");
+        Audio.Play("event:/ui/game/reflectDZ_CHeck");
     }
 
     [MethodImpl(MethodImplOptions.NoInlining)]

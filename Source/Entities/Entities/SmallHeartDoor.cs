@@ -15,7 +15,7 @@ namespace Celeste.Entities
     public class SmallHeartDoor : Entity
     {
         private const string COLLECTED_COUNTER_KEY = "ch{0}_mini_hearts_collected";
-        private const string UNLOCKED_FLAG_KEY = "small_heart_door_unlocked_ch{0}";
+        private const string UNLOCKED_FLAG_KEY = "small_heart_door_unlockedDZ_CH{0}";
 
         private readonly int chapterNumber;
         private readonly int requiredHearts;

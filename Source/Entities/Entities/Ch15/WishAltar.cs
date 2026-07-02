@@ -184,7 +184,7 @@ namespace Celeste.Entities.Chapters.Ch15
             // In a real implementation, this would show a TextMenu with options
             // For now, we'll use dialogue choices
             
-            yield return Textbox.Say(DialoguePrefix + "_CHOICES");
+            yield return Textbox.Say(DialoguePrefix + "DZ_CHOICES");
             
             // The actual wish selection would come from dialogue choices
             // This is a simplified version

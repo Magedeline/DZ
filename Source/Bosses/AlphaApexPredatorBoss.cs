@@ -232,7 +232,7 @@ namespace Celeste.Entities.Bosses
             global::Celeste.Player player = Scene?.Tracker.GetEntity<global::Celeste.Player>();
             float direction = player != null && player.X < X ? -1f : 1f;
 
-            Audio.Play("event:/apexpredator_bloodlust_charge", Position);
+            Audio.Play("event:/apexpredator_bloodlustDZ_CHarge", Position);
             yield return MoveTo(arenaAnchor + new Vector2(-direction * 150f, -12f), 0.16f);
             yield return DashTo(arenaAnchor + new Vector2(direction * 170f, Calc.Random.Range(-18f, 18f)), 0.14f);
             PushNearbyPlayer(new Vector2(direction, 0f), 118f, currentPhase == BossPhase.Extinction ? 240f : 180f);

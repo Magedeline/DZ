@@ -1,11 +1,11 @@
 local npcChara = {}
 
-npcChara.name = "DZ/NPC_Chara"
+npcChara.name = "DZ/NPCDZ_CHara"
 npcChara.depth = 0
-npcChara.texture = "objects/DZ/DZ/DZ/npc_chara"
+npcChara.texture = "objects/DZ/DZ/DZ/npcDZ_CHara"
 
 npcChara.placements = {
-    name = "npc_chara",
+    name = "npcDZ_CHara",
     data = {
     }
 }

@@ -156,7 +156,7 @@ namespace Celeste.Entities
         
         private IEnumerator plasmaCannonAttack()
         {
-            Audio.Play("event:/axis2_plasma_charge", Position);
+            Audio.Play("event:/axis2_plasmaDZ_CHarge", Position);
             
             // Charge up
             for (int i = 0; i < 3; i++)

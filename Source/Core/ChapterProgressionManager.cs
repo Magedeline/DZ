@@ -556,7 +556,7 @@ public static class ChapterProgressionManager
         return slash > 0 ? sid[..slash] : sid;
     }
 
-    [Command("DZ_chapter_test", "Test late chapter unlock flow. Usage: DZ_chapter_test [status|queue16|queue19|queue20|queue21|unlock16|unlock19|unlock20|unlock21|apply]")]
+    [Command("DZ_CHapter_test", "Test late chapter unlock flow. Usage: DZ_CHapter_test [status|queue16|queue19|queue20|queue21|unlock16|unlock19|unlock20|unlock21|apply]")]
     private static void CmdChapterTest(string action = "status")
     {
         var save = global::Celeste.Mod.DZ.DZModule.SaveData;
@@ -739,7 +739,7 @@ public static class ChapterProgressionManager
         Engine.Commands?.Log("Reopen chapter select to see changes.");
     }
 
-    [Command("DZ_reset_chapters", "Reset all chapter unlocks (18-21) for testing. Usage: DZ_reset_chapters [confirm]")]
+    [Command("DZ_resetDZ_CHapters", "Reset all chapter unlocks (18-21) for testing. Usage: DZ_resetDZ_CHapters [confirm]")]
     private static void CmdResetChapters(string confirm = "")
     {
         var save = global::Celeste.Mod.DZ.DZModule.SaveData;
@@ -753,7 +753,7 @@ public static class ChapterProgressionManager
         if (confirm.ToLowerInvariant() != "confirm")
         {
             Engine.Commands?.Log("[DZ] WARNING: This will reset chapter 18-21 unlocks!");
-            Engine.Commands?.Log("Run 'DZ_reset_chapters confirm' to proceed.");
+            Engine.Commands?.Log("Run 'DZ_resetDZ_CHapters confirm' to proceed.");
             return;
         }
 

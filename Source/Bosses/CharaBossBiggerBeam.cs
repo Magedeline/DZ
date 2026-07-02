@@ -9,7 +9,7 @@ public partial class CharaBossBiggerBeam : Entity
     public const float CHARGE_TIME = 2.0f; // Longer charge time for bigger beam
     public const float FOLLOW_TIME = 0.5f; // Shorter follow time since it's horizontal
     public const float ACTIVE_TIME = 0.3f; // Longer active time for bigger beam
-    private const float collide_check_sep = 4f; // Bigger collision separation
+    private const float collideDZ_CHeck_sep = 4f; // Bigger collision separation
     private const float beam_length = 2000f;
     private const float beam_start_dist = 12f;
     private const int beams_drawn = 25; // More beams drawn for bigger beam
@@ -59,7 +59,7 @@ public partial class CharaBossBiggerBeam : Entity
         chargeTimer = CHARGE_TIME;
         followTimer = FOLLOW_TIME;
         activeTimer = ACTIVE_TIME;
-        beamSprite.Play("charaboss_charge");
+        beamSprite.Play("charabossDZ_CHarge");
         sideFadeAlpha = 0.0f;
         beamAlpha = 0.0f;
         isLocked = false;
@@ -117,7 +117,7 @@ public partial class CharaBossBiggerBeam : Entity
                 
                 angle = Calc.Approach(angle, targetAngle, 2f * Engine.DeltaTime);
             }
-            else if (beamSprite.CurrentAnimationID == "charaboss_charge" && followTimer <= 0.0)
+            else if (beamSprite.CurrentAnimationID == "charabossDZ_CHarge" && followTimer <= 0.0)
             {
                 beamSprite.Play("charaboss_lock");
                 isLocked = true;

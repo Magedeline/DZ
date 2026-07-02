@@ -9,7 +9,7 @@ namespace Celeste.Cutscenes
     public class Cs08Campfire : CutsceneEntity
     {
         #region Constants
-        public const string FLAG = "campfire_chat_mod";
+        public const string FLAG = "campfireDZ_CHat_mod";
         public const string CH8_PLAT_FLAG = "ch8_plat";
         public const string DUSK_BACKGROUND_FLAG = "duskbg";
         public const string STARS_BACKGROUND_FLAG = "starsbg";

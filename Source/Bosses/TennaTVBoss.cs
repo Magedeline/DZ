@@ -68,16 +68,16 @@ namespace Celeste.Entities
             tvSprite.AddLoop("idle", "tv_idle", 0.1f);
             tvSprite.AddLoop("attack", "tv_attack", 0.08f);
             tvSprite.AddLoop("damaged", "tv_damaged", 0.12f);
-            tvSprite.AddLoop("channel_change", "tv_channel_change", 0.15f);
+            tvSprite.AddLoop("channelDZ_CHange", "tvDZ_CHannelDZ_CHange", 0.15f);
             tvSprite.Play("idle");
             tvSprite.CenterOrigin();
             
             // Screen sprite (separate layer)
             Add(screenSprite = new Sprite(GFX.Game, "characters/DZ/tenna/"));
             screenSprite.AddLoop("static", "screen_static", 0.05f);
-            screenSprite.AddLoop("channel_1", "screen_ch1", 0.1f);
-            screenSprite.AddLoop("channel_2", "screen_ch2", 0.1f);
-            screenSprite.AddLoop("channel_3", "screen_ch3", 0.1f);
+            screenSprite.AddLoop("channel_1", "screenDZ_CH1", 0.1f);
+            screenSprite.AddLoop("channel_2", "screenDZ_CH2", 0.1f);
+            screenSprite.AddLoop("channel_3", "screenDZ_CH3", 0.1f);
             screenSprite.Play("channel_1");
             screenSprite.CenterOrigin();
             screenSprite.Position = new Vector2(0f, -20f);
@@ -246,8 +246,8 @@ namespace Celeste.Entities
         private IEnumerator channelSwapAttack()
         {
             isChannelChanging = true;
-            tvSprite.Play("channel_change");
-            channelSfx.Play("event:/tenna_channel_change");
+            tvSprite.Play("channelDZ_CHange");
+            channelSfx.Play("event:/tennaDZ_CHannelDZ_CHange");
             
             // Cycle through channels
             for (int i = 0; i < 3; i++)
@@ -301,11 +301,11 @@ namespace Celeste.Entities
                     }
                     break;
                 case 2: // Action channel - spawns explosions
-                    Audio.Play("event:/tenna_action_channel", Position);
+                    Audio.Play("event:/tenna_actionDZ_CHannel", Position);
                     level?.Shake(0.5f);
                     break;
                 case 3: // Horror channel - screen distortion
-                    Audio.Play("event:/tenna_horror_channel", Position);
+                    Audio.Play("event:/tenna_horrorDZ_CHannel", Position);
                     level?.Displacement.AddBurst(Position, 0.5f, 64f, 128f, 0.5f);
                     break;
             }

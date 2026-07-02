@@ -28,7 +28,7 @@ namespace Celeste.Cutscenes
         private const float SPIN_DURATION = 1.5f;
         private const float SPIN_SPEED = 20f; // Rotations per second
         private const string SFX_SPIN = "event:/pusheen/char/kirby/dreamblock_travel";
-        private const string SFX_OUTFIT_CHANGE = "event:/pusheen/char/kirby/appear";
+        private const string SFX_OUTFITDZ_CHANGE = "event:/pusheen/char/kirby/appear";
         #endregion
 
         #region Fields
@@ -162,7 +162,7 @@ namespace Celeste.Cutscenes
                 
                 // Flash effect for outfit change
                 level.Flash(Color.White * 0.5f, true);
-                Audio.Play(SFX_OUTFIT_CHANGE);
+                Audio.Play(SFX_OUTFITDZ_CHANGE);
                 
                 // Stop spinning
                 isSpinning = false;

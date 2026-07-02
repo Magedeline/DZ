@@ -5,7 +5,7 @@ namespace Celeste.Entities;
 
 /// <summary>
 /// CharaChaser - A chaser entity that follows the player with Chara's appearance.
-/// This chaser triggers the CS02_CharaIntro cutscene when appropriate conditions are met.
+/// This chaser triggers the CS02DZ_CHaraIntro cutscene when appropriate conditions are met.
 /// </summary>
 [CustomEntity(ids: "DZ/CharaChaser")]
 [Tracked]
@@ -139,7 +139,7 @@ public class CharaChaser : Entity
     {
         base.Added(scene);
         Session session = SceneAs<Level>().Session;
-        if (session.GetLevelFlag("b_chase") && session.Area.Mode == AreaMode.Normal)
+        if (session.GetLevelFlag("bDZ_CHase") && session.Area.Mode == AreaMode.Normal)
         {
             RemoveSelf();
         }
@@ -147,7 +147,7 @@ public class CharaChaser : Entity
         {
             RemoveSelf();
         }
-        else if (!session.GetFlag("evil_chara_intro") && session.Level == "3" && session.Area.Mode == AreaMode.Normal)
+        else if (!session.GetFlag("evilDZ_CHara_intro") && session.Level == "3" && session.Area.Mode == AreaMode.Normal)
         {
             Hovering = false;
             Visible = true;
@@ -165,9 +165,9 @@ public class CharaChaser : Entity
                 session.Audio.Music.Event = null;
                 session.Audio.Apply(forceSixteenthNoteHack: false);
             }
-            if (triggerIntro && scene.Tracker.GetEntity<CS02_CharaIntro>() == null)
+            if (triggerIntro && scene.Tracker.GetEntity<CS02DZ_CHaraIntro>() == null)
             {
-                scene.Add(new CS02_CharaIntro(this));
+                scene.Add(new CS02DZ_CHaraIntro(this));
             }
         }
         else
@@ -196,7 +196,7 @@ public class CharaChaser : Entity
         {
             // Set music based on current level
             string musicEvent = level.Session.Level.StartsWith("b-3") 
-                ? "event:/pusheen/music/lvl2/evil_chara"
+                ? "event:/pusheen/music/lvl2/evilDZ_CHara"
                 : "event:/pusheen/music/lvl2/chase";
             level.Session.Audio.Music.Event = musicEvent;
             level.Session.Audio.Apply(forceSixteenthNoteHack: false);
@@ -477,7 +477,7 @@ public class CharaChaser : Entity
     }
 
     /// <summary>
-    /// Called by CS02_CharaIntro when the cutscene completes.
+    /// Called by CS02DZ_CHaraIntro when the cutscene completes.
     /// Starts the chasing behavior.
     /// </summary>
     public void BeginChasing()

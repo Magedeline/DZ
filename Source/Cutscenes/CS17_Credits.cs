@@ -541,8 +541,8 @@ namespace Celeste.Cutscenes
             bool prevBadelineAutoFloat = this.badelineAutoFloat;
             bool prevBadelineAutoWalk = this.badelineAutoWalk;
             bool prevCharaVisible = this.chara?.Visible ?? false;
-            bool previous_chara_auto_float = this.chara_auto_float;
-            bool previous_chara_auto_walk = this.chara_auto_walk;
+            bool previousDZ_CHara_auto_float = this.chara_auto_float;
+            bool previousDZ_CHara_auto_walk = this.chara_auto_walk;
             bool prevPlayerVisible = this.player?.Visible ?? true;
             bool prevPlayerAutoAnimate = this.player?.DummyAutoAnimate ?? true;
 
@@ -691,8 +691,8 @@ namespace Celeste.Cutscenes
             }
             if (this.chara != null)
                 this.chara.Visible = prevCharaVisible;
-            this.chara_auto_float = previous_chara_auto_float;
-            this.chara_auto_walk = previous_chara_auto_walk;
+            this.chara_auto_float = previousDZ_CHara_auto_float;
+            this.chara_auto_walk = previousDZ_CHara_auto_walk;
             if (this.kirbyFollower != null) this.kirbyFollower.Visible = prevKirbyVisible1;
             this.kirby_auto_walk = previous_kirby_auto_walk_1;
             if (this.ralseiFollower != null) this.ralseiFollower.Visible = prevRalseiVisible1;
@@ -710,8 +710,8 @@ namespace Celeste.Cutscenes
             bool prevBadelineAutoFloat = this.badelineAutoFloat;
             bool prevBadelineAutoWalk = this.badelineAutoWalk;
             bool prevCharaVisible = this.chara?.Visible ?? true;
-            bool previous_chara_auto_float = this.chara_auto_float;
-            bool previous_chara_auto_walk = this.chara_auto_walk;
+            bool previousDZ_CHara_auto_float = this.chara_auto_float;
+            bool previousDZ_CHara_auto_walk = this.chara_auto_walk;
             bool prevPlayerVisible = this.player?.Visible ?? true;
             bool prevPlayerAutoAnimate = this.player?.DummyAutoAnimate ?? true;
 
@@ -796,8 +796,8 @@ namespace Celeste.Cutscenes
             }
             if (this.chara != null)
                 this.chara.Visible = prevCharaVisible;
-            this.chara_auto_float = previous_chara_auto_float;
-            this.chara_auto_walk = previous_chara_auto_walk;
+            this.chara_auto_float = previousDZ_CHara_auto_float;
+            this.chara_auto_walk = previousDZ_CHara_auto_walk;
             if (this.kirbyFollower != null) this.kirbyFollower.Visible = prevKirbyVisible2;
             this.kirby_auto_walk = previous_kirby_auto_walk_2;
             if (this.ralseiFollower != null) this.ralseiFollower.Visible = prevRalseiVisible2;
@@ -819,7 +819,7 @@ namespace Celeste.Cutscenes
 
         private Entity SpawnCreditsChara(Vector2 position)
         {
-            Sprite sprite = GFX.SpriteBank.Create("DZ_chara");
+            Sprite sprite = GFX.SpriteBank.Create("DZ_CHara");
             if (sprite.Has("idle"))
                 sprite.Play("idle", false, false);
             sprite.CenterOrigin();

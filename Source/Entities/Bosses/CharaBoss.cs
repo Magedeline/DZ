@@ -49,8 +49,8 @@ public class CharaBoss : BossBase
     private readonly List<CharaProjectile> _activeProjectiles = new();
     private readonly List<CharaBeam> _activeBeams = new();
     private float _attackTimer;
-    private bool _charging;
-    private float _chargeTimer;
+    private bool DZ_CHarging;
+    private float DZ_CHargeTimer;
 
     // Attack patterns
     private readonly Dictionary<int, Func<IEnumerator>> _attackPatterns = new();
@@ -131,12 +131,12 @@ public class CharaBoss : BossBase
         _activeBeams.RemoveAll(b => !b.IsActive);
 
         // Update audio
-        if (_charging)
+        if (DZ_CHarging)
         {
-            _chargeTimer -= Time.DeltaTime;
-            if (_chargeTimer <= 0)
+            DZ_CHargeTimer -= Time.DeltaTime;
+            if (DZ_CHargeTimer <= 0)
             {
-                _charging = false;
+                DZ_CHarging = false;
                 FireChargedAttack();
             }
         }
@@ -521,7 +521,7 @@ public class CharaBoss : BossBase
 
         // Long charge
         StartCharge();
-        DZGame.Audio.PlaySfx("event:/pusheen/game/boss/chara_charge");
+        DZGame.Audio.PlaySfx("event:/pusheen/game/boss/charaDZ_CHarge");
 
         yield return 1.5f;
 
@@ -635,8 +635,8 @@ public class CharaBoss : BossBase
 
     private void StartCharge()
     {
-        _charging = true;
-        _chargeTimer = 1f;
+        DZ_CHarging = true;
+        DZ_CHargeTimer = 1f;
 
         // Visual charge effect
         // Spawn particles around Chara

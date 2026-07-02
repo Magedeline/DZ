@@ -106,7 +106,7 @@ namespace Celeste.Entities.Bosses
             base.Added(scene);
             
             chainsawSprite.Play("idle");
-            chainsawLoop.Play("event:/buzzo_chainsaw_idle");
+            chainsawLoop.Play("event:/buzzoDZ_CHainsaw_idle");
             
             Add(new Coroutine(BossRoutine()));
         }
@@ -268,7 +268,7 @@ namespace Celeste.Entities.Bosses
         private IEnumerator ChainsawSwipeAttack()
         {
             chainsawSprite.Play("swing");
-            Audio.Play("event:/buzzo_chainsaw_swing", Position);
+            Audio.Play("event:/buzzoDZ_CHainsaw_swing", Position);
             
             var level = Scene as Level;
             
@@ -391,7 +391,7 @@ namespace Celeste.Entities.Bosses
             if (player != null && Vector2.Distance(Position, player.Position) < 50f)
             {
                 chainsawSprite.Play("swing");
-                Audio.Play("event:/buzzo_chainsaw_swing", Position);
+                Audio.Play("event:/buzzoDZ_CHainsaw_swing", Position);
                 
                 level?.Shake(1.2f);
                 level?.Displacement.AddBurst(Position, 0.8f, 32f, 72f, 0.5f);
@@ -410,7 +410,7 @@ namespace Celeste.Entities.Bosses
             bodySprite.Play("frenzy");
             chainsawSprite.Play("rev");
             chainsawLoop.Stop();
-            chainsawLoop.Play("event:/buzzo_chainsaw_rev");
+            chainsawLoop.Play("event:/buzzoDZ_CHainsaw_rev");
             
             var level = Scene as Level;
             level?.Shake(1f);

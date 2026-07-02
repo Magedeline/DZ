@@ -323,7 +323,7 @@ namespace Celeste.Entities
             level?.Flash(Color.Gold * 0.5f);
             
             // Charge time with audio cue
-            Audio.Play("event:/final_boss/cosmic_judgment_charge", Position);
+            Audio.Play("event:/final_boss/cosmic_judgmentDZ_CHarge", Position);
             yield return 3f;
             
             // Massive screen-clearing attack
@@ -338,10 +338,10 @@ namespace Celeste.Entities
         private IEnumerator chargeFinalAnnihilation()
         {
             isChargingFinalAttack = true;
-            sprite.Play("final_annihilation_charge");
+            sprite.Play("final_annihilationDZ_CHarge");
             
             // Extended charge sequence
-            Audio.Play("event:/final_boss/final_annihilation_charge", Position);
+            Audio.Play("event:/final_boss/final_annihilationDZ_CHarge", Position);
             
             var level = Scene as Level;
             level?.Flash(Color.Red * 0.7f);

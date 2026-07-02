@@ -90,7 +90,7 @@ public class CS05_Ending : CutsceneEntity
         yield return level.ZoomTo(new Vector2(130f, 60f), 2f, 0.5f);
         player.Facing = Facings.Left;
         yield return 0.5f;
-        yield return Textbox.Say("DZ_CH5_OSHIRO_CHASE_END", GhostSmash);
+        yield return Textbox.Say("DZ_CH5_OSHIRODZ_CHASE_END", GhostSmash);
         yield return GhostSmash(0.5f, final: true);
         Audio.SetMusic(null);
         oshiroSprite = null;

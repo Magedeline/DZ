@@ -440,11 +440,11 @@ namespace Celeste.Entities
         }
     }
 
-    [CustomEntity("DZ/NPC_Chara")]
+    [CustomEntity("DZ/NPCDZ_CHara")]
     [Tracked(true)]
-    public partial class Npc_Chara : NPC
+    public partial class NpcDZ_CHara : NPC
     {
-        public Npc_Chara(EntityData data, Vector2 offset) : base(data.Position + offset)
+        public NpcDZ_CHara(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
             if (Sprite != null)
             {
@@ -904,11 +904,11 @@ namespace Celeste.Entities
         }
     }
 
-    [CustomEntity("DZ/NPC07_Chara")]
+    [CustomEntity("DZ/NPC07DZ_CHara")]
     [Tracked(true)]
-    public partial class Npc07_Chara : NPC
+    public partial class Npc07DZ_CHara : NPC
     {
-        public Npc07_Chara(EntityData data, Vector2 offset) : base(data.Position + offset)
+        public Npc07DZ_CHara(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
             if (Sprite != null)
             {
@@ -942,11 +942,11 @@ namespace Celeste.Entities
         }
     }
 
-    [CustomEntity("DZ/NPC08_Chara_Crying")]
+    [CustomEntity("DZ/NPC08DZ_CHara_Crying")]
     [Tracked(true)]
-    public partial class Npc08_Chara_Crying : NPC
+    public partial class Npc08DZ_CHara_Crying : NPC
     {
-        public Npc08_Chara_Crying(EntityData data, Vector2 offset) : base(data.Position + offset)
+        public Npc08DZ_CHara_Crying(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
             if (Sprite != null)
             {

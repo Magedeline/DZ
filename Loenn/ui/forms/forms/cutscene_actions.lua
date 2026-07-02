@@ -13,7 +13,7 @@ cutsceneActions.options = {
     "walk_to_position",
     "face_direction", 
     "face_player",
-    "face_character",
+    "faceDZ_CHaracter",
     "play_animation",
     "set_emotion",
     "gesture",
@@ -148,7 +148,7 @@ cutsceneActions.options = {
     "boss_enter",
     "boss_attack",
     "boss_vulnerable",
-    "boss_phase_change",
+    "boss_phaseDZ_CHange",
     "boss_defeated",
     "boss_escape",
     
@@ -161,11 +161,11 @@ cutsceneActions.options = {
     "nightmare_effect",
     
     -- Environmental Actions
-    "weather_change",
+    "weatherDZ_CHange",
     "time_of_day",
-    "lighting_change",
-    "background_change",
-    "foreground_change",
+    "lightingDZ_CHange",
+    "backgroundDZ_CHange",
+    "foregroundDZ_CHange",
     "wind_effect",
     "rain_effect",
     "snow_effect"

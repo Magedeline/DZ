@@ -214,7 +214,7 @@ public class CS21_RestorationAndFarewell : CutsceneEntity
         yield return null;
         
         noelle = CreateNPC("noelle", player.Position + new Vector2(rightOffset + 240f, 0f), "noelle");
-        chara = CreateNPC("chara", player.Position + new Vector2(farRight + 60f, 0f), "DZ_chara");
+        chara = CreateNPC("chara", player.Position + new Vector2(farRight + 60f, 0f), "DZ_CHara");
         yield return null;
         
         flowey = CreateNPC("flowey", player.Position + new Vector2(farRight + 90f, 0f), "DZ_flowey");

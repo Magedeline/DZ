@@ -206,11 +206,11 @@ namespace Celeste.Entities
             if (collectedGems >= totalGems)
             {
                 // All gems collected - unlock next submap or complete chapter
-                string completionFlag = $"submap_complete_ch{chapterNumber}_{submapNumber}";
+                string completionFlag = $"submap_completeDZ_CH{chapterNumber}_{submapNumber}";
                 level.Session.SetFlag(completionFlag, true);
                 
                 // Show completion message
-                level.Add(new MiniTextbox($"SUBMAP_COMPLETE_CH{chapterNumber}_{submapNumber}"));
+                level.Add(new MiniTextbox($"SUBMAP_COMPLETEDZ_CH{chapterNumber}_{submapNumber}"));
                 
                 // Play completion sound
                 Audio.Play("event:/game/general/crystalheart_blue_get", Position);

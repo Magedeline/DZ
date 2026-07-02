@@ -37,7 +37,7 @@ namespace Celeste.Cutscenes
         private const string CREATION_MUSIC_EVENT = "event:/pusheen/music/lvl0/creation/create";
         private const string DRONE_MUSIC_EVENT = "event:/pusheen/music/lvl0/creation/drone";
         private const string HEART_APPEAR_EVENT = "event:/pusheen/music/lvl0/creation/heart_appear";
-        private const string HEART_CHANGE_EVENT = "event:/pusheen/music/lvl0/creation/heart_change";
+        private const string HEARTDZ_CHANGE_EVENT = "event:/pusheen/music/lvl0/creation/heartDZ_CHange";
         private const string CHOICE_APPEAR_EVENT = "event:/ui/game/chatoptions_appear";
         private const string CHOICE_SELECT_EVENT = "event:/ui/game/chatoptions_select";
         private const string CHOICE_MOVE_EVENT = "event:/ui/game/chatoptions_roll_down";
@@ -224,7 +224,7 @@ namespace Celeste.Cutscenes
             
             yield return 0.75f;
             
-            try { Audio.Play(HEART_CHANGE_EVENT); IngesteLogger.Debug("[VesselCreation] Heart change sound played"); }
+            try { Audio.Play(HEARTDZ_CHANGE_EVENT); IngesteLogger.Debug("[VesselCreation] Heart change sound played"); }
             catch (Exception ex) { IngesteLogger.Warn($"[VesselCreation] Failed to play heart change: {ex.Message}"); }
             
             yield return 0.75f;
@@ -248,8 +248,8 @@ namespace Celeste.Cutscenes
             // Fade the vessel in before the prompt â€” Deltarune shows the vessel throughout selection
             yield return fadeVesselIn();
 
-            yield return showText("VESSEL_CREATION_LEG_CHOICE");
-            try { Audio.Play(HEART_CHANGE_EVENT); }
+            yield return showText("VESSEL_CREATION_LEGDZ_CHOICE");
+            try { Audio.Play(HEARTDZ_CHANGE_EVENT); }
             catch (Exception ex) { IngesteLogger.Warn($"[VesselCreation] Failed to play heart change: {ex.Message}"); }
 
             // Left/Right cycler with live vessel preview (Deltarune-style)
@@ -268,8 +268,8 @@ namespace Celeste.Cutscenes
             currentPhase = CreationPhase.TorsoSelection;
             IngesteLogger.Info("[VesselCreation] Phase: Torso Selection");
 
-            yield return showText("VESSEL_CREATION_TORSO_CHOICE");
-            try { Audio.Play(HEART_CHANGE_EVENT); }
+            yield return showText("VESSEL_CREATION_TORSODZ_CHOICE");
+            try { Audio.Play(HEARTDZ_CHANGE_EVENT); }
             catch (Exception ex) { IngesteLogger.Warn($"[VesselCreation] Failed to play heart change: {ex.Message}"); }
 
             yield return showVesselPartCycleSelector(
@@ -287,8 +287,8 @@ namespace Celeste.Cutscenes
             currentPhase = CreationPhase.HeadSelection;
             IngesteLogger.Info("[VesselCreation] Phase: Head Selection");
 
-            yield return showText("VESSEL_CREATION_HEAD_CHOICE");
-            try { Audio.Play(HEART_CHANGE_EVENT); }
+            yield return showText("VESSEL_CREATION_HEADDZ_CHOICE");
+            try { Audio.Play(HEARTDZ_CHANGE_EVENT); }
             catch (Exception ex) { IngesteLogger.Warn($"[VesselCreation] Failed to play heart change: {ex.Message}"); }
 
             yield return showVesselPartCycleSelector(
@@ -549,13 +549,13 @@ namespace Celeste.Cutscenes
                 if (Input.MenuLeft.Pressed || Input.MenuLeft.Repeating)
                 {
                     setIndex((getIndex() - 1 + count) % count);
-                    try { Audio.Play(HEART_CHANGE_EVENT); }
+                    try { Audio.Play(HEARTDZ_CHANGE_EVENT); }
                     catch (Exception ex) { IngesteLogger.Warn($"[VesselCreation] Failed to play heart change: {ex.Message}"); }
                 }
                 else if (Input.MenuRight.Pressed || Input.MenuRight.Repeating)
                 {
                     setIndex((getIndex() + 1) % count);
-                    try { Audio.Play(HEART_CHANGE_EVENT); }
+                    try { Audio.Play(HEARTDZ_CHANGE_EVENT); }
                     catch (Exception ex) { IngesteLogger.Warn($"[VesselCreation] Failed to play heart change: {ex.Message}"); }
                 }
 
@@ -606,9 +606,9 @@ namespace Celeste.Cutscenes
             // Add a title if we're in a vessel part selection phase
             string title = currentPhase switch
             {
-                CreationPhase.LegSelection   => Dialog.Clean("VESSEL_CREATION_LEG_CHOICE"),
-                CreationPhase.TorsoSelection => Dialog.Clean("VESSEL_CREATION_TORSO_CHOICE"),
-                CreationPhase.HeadSelection  => Dialog.Clean("VESSEL_CREATION_HEAD_CHOICE"),
+                CreationPhase.LegSelection   => Dialog.Clean("VESSEL_CREATION_LEGDZ_CHOICE"),
+                CreationPhase.TorsoSelection => Dialog.Clean("VESSEL_CREATION_TORSODZ_CHOICE"),
+                CreationPhase.HeadSelection  => Dialog.Clean("VESSEL_CREATION_HEADDZ_CHOICE"),
                 _                            => ""
             };
 

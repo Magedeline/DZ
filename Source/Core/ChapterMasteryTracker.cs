@@ -32,7 +32,7 @@ public static class ChapterMasteryTracker
         { AreaModeExtender.Build0SID("01_Metropolis"),  TicksFromMinutes(12) },
         { AreaModeExtender.Build0SID("02_Veil"),        TicksFromMinutes(10) },
         { AreaModeExtender.Build0SID("03_Arrival"),     TicksFromMinutes(8)  },
-        { AreaModeExtender.Build0SID("04_Chronicles"),  TicksFromMinutes(10) },
+        { AreaModeExtender.Build0SID("04DZ_CHronicles"),  TicksFromMinutes(10) },
         { AreaModeExtender.Build0SID("05_Fractured"),    TicksFromMinutes(12) },
         { AreaModeExtender.Build0SID("06_Fortress"),    TicksFromMinutes(14) },
         { AreaModeExtender.Build0SID("07_Inferno"),     TicksFromMinutes(15) },

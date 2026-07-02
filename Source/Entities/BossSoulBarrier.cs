@@ -112,7 +112,7 @@ namespace Celeste.Entities
             {
                 BarrierBoss.TitanKing => new Cutscenes.CS_SoulBarrier_TitanKing(soul, this),
                 BarrierBoss.GuardianTitan => new Cutscenes.CS_SoulBarrier_GuardianTitan(soul, this),
-                BarrierBoss.Chapter16Els => new Cutscenes.CS_SoulBarrier_Chapter16Els(soul, this),
+                BarrierBoss.Chapter16Els => new Cutscenes.CS_SoulBarrierDZ_CHapter16Els(soul, this),
                 BarrierBoss.AsrielAngelOfDeath => new Cutscenes.CS_SoulBarrier_AsrielAngelOfDeath(soul, this),
                 BarrierBoss.ElsTrueFinal => new Cutscenes.CS_SoulBarrier_ElsTrueFinal(soul, this),
                 BarrierBoss.AsrielBreakGiygas => new Cutscenes.CS_SoulBarrier_AsrielBreakGiygas(soul, this),

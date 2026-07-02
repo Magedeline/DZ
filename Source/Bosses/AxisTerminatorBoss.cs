@@ -73,7 +73,7 @@ namespace Celeste.Entities
             robotSprite.AddLoop("idle", "terminator_idle", 0.1f);
             robotSprite.AddLoop("walk", "terminator_walk", 0.08f);
             robotSprite.AddLoop("attack", "terminator_attack", 0.06f);
-            robotSprite.AddLoop("charge", "terminator_charge", 0.05f);
+            robotSprite.AddLoop("charge", "terminatorDZ_CHarge", 0.05f);
             robotSprite.AddLoop("damaged", "terminator_damaged", 0.12f);
             robotSprite.Play("idle");
             robotSprite.CenterOrigin();
@@ -257,7 +257,7 @@ namespace Celeste.Entities
         private IEnumerator laserSightAttack()
         {
             weaponSprite.Play("laser");
-            Audio.Play("event:/axis_laser_charge", Position);
+            Audio.Play("event:/axis_laserDZ_CHarge", Position);
             
             var level = Scene as Level;
             
@@ -290,7 +290,7 @@ namespace Celeste.Entities
         
         private IEnumerator electricPulseAttack()
         {
-            Audio.Play("event:/axis_electric_charge", Position);
+            Audio.Play("event:/axis_electricDZ_CHarge", Position);
             
             var level = Scene as Level;
             
@@ -326,7 +326,7 @@ namespace Celeste.Entities
         
         private IEnumerator chargeTackleAttack()
         {
-            Audio.Play("event:/axis_charge_start", Position);
+            Audio.Play("event:/axisDZ_CHarge_start", Position);
             robotSprite.Play("charge");
             
             isCharging = true;
@@ -357,7 +357,7 @@ namespace Celeste.Entities
             Speed = Vector2.Zero;
             
             // Impact
-            Audio.Play("event:/axis_charge_impact", Position);
+            Audio.Play("event:/axisDZ_CHarge_impact", Position);
             level?.Shake(0.8f);
             
             yield return 0.5f;

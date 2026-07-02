@@ -7,7 +7,7 @@ using Monocle;
 namespace Celeste.NPCs
 {
     [Tracked(true)]
-    [CustomEntity(ids: "DZ/NPC10_Chara")]
+    [CustomEntity(ids: "DZ/NPC10DZ_CHara")]
     public class Npc10Chara : Entity
     {
         public Sprite sprite;
@@ -22,7 +22,7 @@ namespace Celeste.NPCs
 
         private void setupSprite()
         {
-            Add(sprite = GFX.SpriteBank.Create("DZ_chara"));
+            Add(sprite = GFX.SpriteBank.Create("DZ_CHara"));
             sprite.Play("idle");
         }
 

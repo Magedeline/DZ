@@ -1617,15 +1617,15 @@ You are about to create something wonderful.
 A vessel. A being of pure potential.
 Choose carefully, for each decision shapes what this vessel will become.
 
-VESSEL_CREATION_LEG_CHOICE=First, we must choose the foundation.
+VESSEL_CREATION_LEGDZ_CHOICE=First, we must choose the foundation.
 What legs shall support this vessel?
 Each choice carries its own weight, its own purpose.
 
-VESSEL_CREATION_TORSO_CHOICE=Now, the core of the being.
+VESSEL_CREATION_TORSODZ_CHOICE=Now, the core of the being.
 What torso shall house the vessel's essence?
 This will determine how the vessel moves through the world.
 
-VESSEL_CREATION_HEAD_CHOICE=Finally, the seat of thought and perception.
+VESSEL_CREATION_HEADDZ_CHOICE=Finally, the seat of thought and perception.
 What head shall crown this creation?
 This choice will shape how the vessel sees and understands.
 
@@ -1799,7 +1799,7 @@ But with that.
 [MADELINE right sad]
 Thanks for a heads up.
 
-DZ_CH0_END_YOUR_CHOICE_MATTERS=[none left]
+DZ_CH0_END_YOURDZ_CHOICE_MATTERS=[none left]
 Remember {3.0} {~}Choices Matters.{/~}
 
 DZ_CH1_DZ_A=[Magolor left normal]
@@ -3269,7 +3269,7 @@ DZ_CH5_OSHIRO_SUITE_SAD5=[OSHIRO right serious]
 DZ_CH5_OSHIRO_SUITE_SAD6=[OSHIRO right sideworried]
 {+thought}Maybe I deserve to be alone.{n}Maybe this hotel is my punishment.{+endthought}
 
-DZ_CH5_OSHIRO_START_CHASE={trigger 0 Chara appears}
+DZ_CH5_OSHIRO_STARTDZ_CHASE={trigger 0 Chara appears}
 [CHARA left disappointed]
 I thought both of you would stay but no you ditched him.
 and You kind of owe me one {0.4} {~}Big Time.{/~}
@@ -3366,7 +3366,7 @@ And you... {0.5}all of you...
 {*}OR I WILL DRAG YOU OUT MYSELF!!!{/*}
 {trigger 7 Oshiro transforms into boss form, chase begins}
 
-DZ_CH5_OSHIRO_CHASE_END=[RALSEI right surprised]
+DZ_CH5_OSHIRODZ_CHASE_END=[RALSEI right surprised]
 {+mroshiro}, stop!!!
 {trigger 0 Oshiro slams the roof below their feet and it begins shaking}
 [RALSEI right surprised]
@@ -5094,11 +5094,11 @@ DZ_CH9_CREDITS_BOUNCEHELPER=BounceHelper
 
 DZ_CH9_CREDITS_BROKEMIAHELPER=BrokemiaHelper
 
-DZ_CH9_CREDITS_CHERRYHELPER=CherryHelper
+DZ_CH9_CREDITSDZ_CHERRYHELPER=CherryHelper
 
-DZ_CH9_CREDITS_CHRONIAHELPER=ChroniaHelper
+DZ_CH9_CREDITSDZ_CHRONIAHELPER=ChroniaHelper
 
-DZ_CH9_CREDITS_CHRONOHELPER=ChronoHelper
+DZ_CH9_CREDITSDZ_CHRONOHELPER=ChronoHelper
 
 DZ_CH9_CREDITS_COMMUNALHELPER=CommunalHelper
 
@@ -5186,15 +5186,15 @@ DZ_CH9_CREDITS_TOBY_FOX=Toby Fox - Undertale/Deltarune OST
 
 DZ_CH9_CREDITS_JUN_ISHIKAWA=Jun Ishikawa - Kirby OST
 
-DZ_CH9_CREDITS_CHARACTER_INSPIRATIONS=Character Inspirations
+DZ_CH9_CREDITSDZ_CHARACTER_INSPIRATIONS=Character Inspirations
 
 DZ_CH9_CREDITS_MADELINE_BADELINE=Madeline & Badeline - Celeste
 
-DZ_CH9_CREDITS_UNDERTALE_CHARS=Chara, Sans, Papyrus, Toriel - Undertale
+DZ_CH9_CREDITS_UNDERTALEDZ_CHARS=Chara, Sans, Papyrus, Toriel - Undertale
 
 DZ_CH9_CREDITS_RALSEI=Ralsei - Deltarune
 
-DZ_CH9_CREDITS_KIRBY_CHARS=Kirby, Meta Knight, King Dedede - Kirby Series
+DZ_CH9_CREDITS_KIRBYDZ_CHARS=Kirby, Meta Knight, King Dedede - Kirby Series
 
 DZ_CH9_CREDITS_MAGOLOR=Magolor - Kirby's Retournez au Dream Land
 
@@ -5412,7 +5412,7 @@ That's a nice name,
 [ELS left normal]
 My {0.4} Name {0.6} Is...
 
-DZ_CH10_MADDY_AND_BADDY_AND_CHARA=[BADELINE right yell]
+DZ_CH10_MADDY_AND_BADDY_ANDDZ_CHARA=[BADELINE right yell]
 Madeline I swear if you do not tell me of where we-
 [MADELINE left upset]
 ...
@@ -5442,13 +5442,13 @@ Who Said that?
 I'm on the right side.
 If you come over here you can able to see me.
 
-DZ_CH10_TALK_TO_BADDY_AND_CHARA0=[MADELINE right distracted]
+DZ_CH10_TALK_TO_BADDY_ANDDZ_CHARA0=[MADELINE right distracted]
 Do you know this places {+Chara}?
 [CHARA right sad]
 well as far I know about this I been here before you and Kirby and 6 missing human came to this mountain.
 But despite all of this it's probably not worth to stick around here.
 
-DZ_CH10_TALK_TO_BADDY_AND_CHARA1=[BADELINE left angry]
+DZ_CH10_TALK_TO_BADDY_ANDDZ_CHARA1=[BADELINE left angry]
 Okay I would need you to answer this.
 Why did you exactly climb celeste mountain just only for you get warp into another mountain.
 Because I want to know that is so special about this mountain and celeste mountain.
@@ -5465,7 +5465,7 @@ Meaning It's contained Hopes and Dreams
 Actually I never know this before.
 But I actually Understand now.
 
-DZ_CH10_TALK_TO_BADDY_AND_CHARA2=[MADELINE left sad]
+DZ_CH10_TALK_TO_BADDY_ANDDZ_CHARA2=[MADELINE left sad]
 Anything before we go to the right?
 [CHARA right happy]
 Yes I do want to mention those monster are friendly.
@@ -5477,7 +5477,7 @@ But some aren't so nice.
 Okay, I see now.
 Thanks for an heads up.
 
-DZ_CH10_TALK_TO_BADDY_AND_CHARA3=[CHARA right sad]
+DZ_CH10_TALK_TO_BADDY_ANDDZ_CHARA3=[CHARA right sad]
 Also I almost forgot but let me warn you one last thing.
 Do you remember Asriel that you mention?
 [MADELINE left sad]
@@ -5652,7 +5652,7 @@ But we're not giving up.
 [MADELINE left togetherzoom]
 Assists or not, let's do this!
 
-DZ_CH10_FLOWEY_EASTER_CH1_FORSAKEN_CITY=[FLOWEY right makeadeal]
+DZ_CH10_FLOWEY_EASTERDZ_CH1_FORSAKEN_CITY=[FLOWEY right makeadeal]
 Oh, I remember your d'abord steps in Forsaken City...
 You died {# ff0000#}SO MANY TIMES{#} on those simple platforms!
 [MADELINE left upset]
@@ -5679,7 +5679,7 @@ Those jumps... they changed how I thought about precision.
 [MADELINE left sad]
 But you shouldn't have been able to see any of that...
 
-DZ_CH10_FLOWEY_EASTER_CH2_OLD_SITE=[FLOWEY right makeadeal]
+DZ_CH10_FLOWEY_EASTERDZ_CH2_OLD_SITE=[FLOWEY right makeadeal]
 Ah, the Old Site... where you d'abord met your {# 8000ff#}dark side{#}.
 [MADELINE left angry]
 My... my anxiety? You saw that too?
@@ -5711,7 +5711,7 @@ Those nightmares felt so real...
 [MADELINE left upset]
 Wait, if you saw all that, then you know about my panic attacks...
 
-DZ_CH10_FLOWEY_EASTER_CH3_CELESTIAL_RESORT=[FLOWEY right makeadeal]
+DZ_CH10_FLOWEY_EASTERDZ_CH3_CELESTIAL_RESORT=[FLOWEY right makeadeal]
 The Celestial Resort... such a "relaxing" vacation spot!
 [MADELINE left upset]
 That place was anything BUT relaxing!
@@ -5743,7 +5743,7 @@ Even Oshiro couldn't clean up that mess!
 Stop it! You're making me remember all the pain...
 Why are you doing this to me?
 
-DZ_CH10_FLOWEY_EASTER_CH4_GOLDEN_RIDGE=[FLOWEY right makeadeal]
+DZ_CH10_FLOWEY_EASTERDZ_CH4_GOLDEN_RIDGE=[FLOWEY right makeadeal]
 Golden Ridge... where the wind tried to blow you away!
 [MADELINE left upset]
 The wind was so unpredictable there...
@@ -5775,7 +5775,7 @@ Nature itself tried to stop you!
 It felt like the mountain was fighting against me...
 Like it didn't want me to succeed.
 
-DZ_CH10_FLOWEY_EASTER_CH5_MIRROR_TEMPLE=[FLOWEY right makeadeal]
+DZ_CH10_FLOWEY_EASTERDZ_CH5_MIRROR_TEMPLE=[FLOWEY right makeadeal]
 The Mirror Temple... where {# 8000ff#}Theo{#} learned about anxiety...
 [MADELINE left angry]
 Theo... he was going through so much there.
@@ -5806,7 +5806,7 @@ Including your {# ff0000#}SANITY{#}!
 Stop... please stop reminding me...
 Those were some of my darkest moments.
 
-DZ_CH10_FLOWEY_EASTER_CH6_REFLECTION=[FLOWEY right makeadeal]
+DZ_CH10_FLOWEY_EASTERDZ_CH6_REFLECTION=[FLOWEY right makeadeal]
 Reflection... where you faced your {# 8000ff#}true self{#}.
 [MADELINE left upset]
 My reflection... Badeline... that was the hardest part.
@@ -5838,7 +5838,7 @@ Your inner demons... they're still there, Madeline!
 No... I've made peace with that part of myself...
 She's not my enemy anymore!
 
-DZ_CH10_FLOWEY_EASTER_CH7_SUMMIT=[FLOWEY right makeadeal]
+DZ_CH10_FLOWEY_EASTERDZ_CH7_SUMMIT=[FLOWEY right makeadeal]
 The Summit... where you thought you'd "won"...
 [MADELINE left upset]
 I did win! I reached the top with Badeline!
@@ -5868,7 +5868,7 @@ You died at the peak of your journey!
 Even at the summit... the challenges never ended...
 But I kept climbing anyway.
 
-DZ_CH10_FLOWEY_EASTER_CH8_CORE=[FLOWEY right makeadeal]
+DZ_CH10_FLOWEY_EASTERDZ_CH8_CORE=[FLOWEY right makeadeal]
 The Core... where everything got {# ff0000#}HOT{#}!
 [MADELINE left upset]
 The heat was unbearable...
@@ -5899,7 +5899,7 @@ Stop it! I can still feel the heat sometimes...
 [MADELINE left upset]
 Those memories are painful enough!
 
-DZ_CH10_FLOWEY_EASTER_CH9_FAREWELL=[FLOWEY right makeadeal]
+DZ_CH10_FLOWEY_EASTERDZ_CH9_FAREWELL=[FLOWEY right makeadeal]
 Farewell... the {# 8000ff#}DLC{#} that broke so many players...
 [MADELINE left upset]
 That chapter was the hardest thing I've ever done...
@@ -7285,7 +7285,7 @@ I THINK HE'S JUST JEALOUS!
 HE SLEEPS ON A MATTRESS ON THE FLOOR.
 IT'S... CONCERNING, ACTUALLY.
 
-DZ_CH11_EXTRA_PAPYRUS_DATE_PUZZLE_CHALLENGE=[PAPYRUS left blush]
+DZ_CH11_EXTRA_PAPYRUS_DATE_PUZZLEDZ_CHALLENGE=[PAPYRUS left blush]
 NOW! FOR THE MAIN EVENT!
 A PUZZLE CHALLENGE!
 [BADELINE right scoff]
@@ -9411,7 +9411,7 @@ oh that crocodile girl suzy
 [BADELINE left angry]
 that is none of your buiness ralsei
 
-ch13_proceed_show_check=Are you ready to proceed the show?
+ch13_proceed_showDZ_CHeck=Are you ready to proceed the show?
 YES
 {trigger 0 tenna return left}
 NO
@@ -11164,7 +11164,7 @@ This power is not to be taken lightly.
 {0.5}
 {trigger star_rod_appears The Star Rod materializes above the fountain}
 
-DZ_CH15_FOUNTAIN_OF_DREAMS_MADELINE_CHOICE=[MADELINE left surprised]
+DZ_CH15_FOUNTAIN_OF_DREAMS_MADELINEDZ_CHOICE=[MADELINE left surprised]
 A... wish?
 {0.3}
 [MADELINE left angry]
@@ -11722,46 +11722,46 @@ STOOOOP!
 [MADELINE left panic]
 I wish to undo flowey last wish
 
-DZ_CH16_YOUR_CHOICES_FIGHT=[FLOWEYELS left normal]
+DZ_CH16_YOURDZ_CHOICES_FIGHT=[FLOWEYELS left normal]
 I Knew it's within you!
 
-DZ_CH16_YOUR_CHOICES_SPARE_00=[FLOWEYELS left ignored]
+DZ_CH16_YOURDZ_CHOICES_SPARE_00=[FLOWEYELS left ignored]
 what are you even doing?
 do you even have anything better to do?
 ... No...
 
-DZ_CH16_YOUR_CHOICES_SPARE_01=[FLOWEYELS left ignored]
+DZ_CH16_YOURDZ_CHOICES_SPARE_01=[FLOWEYELS left ignored]
 sparing won't work
 killing is the only way to end this
 
-DZ_CH16_YOUR_CHOICES_SPARE_02=[FLOWEYELS left unignored]
+DZ_CH16_YOURDZ_CHOICES_SPARE_02=[FLOWEYELS left unignored]
 if you spare me
 I Will come back
 
-DZ_CH16_YOUR_CHOICES_SPARE_03=[FLOWEYELS left unignoredalt]
+DZ_CH16_YOURDZ_CHOICES_SPARE_03=[FLOWEYELS left unignoredalt]
 I Will Kill you Madeline
 
-DZ_CH16_YOUR_CHOICES_SPARE_04=[FLOWEYELS left unignoredaltalt]
+DZ_CH16_YOURDZ_CHOICES_SPARE_04=[FLOWEYELS left unignoredaltalt]
 I will Kill Everyone
 
-DZ_CH16_YOUR_CHOICES_SPARE_05=[FLOWEYELS left unignoredaltaltalt]
+DZ_CH16_YOURDZ_CHOICES_SPARE_05=[FLOWEYELS left unignoredaltaltalt]
 I WILL KILL EVERYONE THAT YOU LOVED.
 
-DZ_CH16_YOUR_CHOICES_SPARE_06=[FLOWEYELS left wut]
+DZ_CH16_YOURDZ_CHOICES_SPARE_06=[FLOWEYELS left wut]
 ...
 
-DZ_CH16_YOUR_CHOICES_SPARE_07=[FLOWEYELS left wut]
+DZ_CH16_YOURDZ_CHOICES_SPARE_07=[FLOWEYELS left wut]
 huh?
 why are you
 being so nice to me?
 
-DZ_CH16_YOUR_CHOICES_SPARE_08=[FLOWEYELS left wtf]
+DZ_CH16_YOURDZ_CHOICES_SPARE_08=[FLOWEYELS left wtf]
 I don't Understand
 
-DZ_CH16_YOUR_CHOICES_SPARE_09=[FLOWEYELS left wtfalt]
+DZ_CH16_YOURDZ_CHOICES_SPARE_09=[FLOWEYELS left wtfalt]
 I don't Realy Understand
 
-DZ_CH16_YOUR_CHOICES_SPARE_LAST=[FLOWEYELS left wtf]
+DZ_CH16_YOURDZ_CHOICES_SPARE_LAST=[FLOWEYELS left wtf]
 I don't Actaully do not Fucking Understand.
 
 DZ_CH16_FLOWEY_ELS_RAN_AWAY=FLOWEY RAN AWAY....
@@ -11789,7 +11789,7 @@ I... I'm not sure. Everything went white and then...
 {~}*A strange silence fills the air...*{/~}
 {~}*The mountain feels... different now...*{/~}
 
-DZ_CH16_OUTRO_CHECK_KIRBY=[MADELINE left angry]
+DZ_CH16_OUTRODZ_CHECK_KIRBY=[MADELINE left angry]
 Kirby, are you okay?
 [KIRBY right angry]
 I used... a lot of my power back there...
@@ -11799,7 +11799,7 @@ Thank you for fighting alongside us.
 [KIRBY right angry]
 That's what friends are for!
 
-DZ_CH16_OUTRO_CHECK_CHARA=[MADELINE left angry]
+DZ_CH16_OUTRODZ_CHECKDZ_CHARA=[MADELINE left angry]
 Chara... how are you holding up?
 [CHARA right sad]
 Seeing Asriel like that... as Flowey...
@@ -11809,7 +11809,7 @@ I'm sorry you had to go through that again.
 [CHARA right laughing]
 No... I needed to face it. For both of us.
 
-DZ_CH16_OUTRO_CHECK_BADELINE=[MADELINE left angry]
+DZ_CH16_OUTRODZ_CHECK_BADELINE=[MADELINE left angry]
 Badeline, you look exhausted.
 [BADELINE left tired]
 Using that much power took everything out of me...
@@ -13701,11 +13701,11 @@ You're my {*}BEST FRIEND{/*}, Kirby!
 You and everyone else... you {~}SAVED{/~} me!
 I remember now... I remember what {*}FRIENDSHIP{/*} feels like!
 
-DZ_CH20_ASRIEL_ZERO_SOUL_CHARA_LOST=[CHARA left sad]
+DZ_CH20_ASRIEL_ZERO_SOULDZ_CHARA_LOST=[CHARA left sad]
 Monsters should be extinct... humanity must pay for their sins...
 There's no point in {~}MERCY{/~}... only {*}POWER{/*} matters...
 
-DZ_CH20_ASRIEL_ZERO_SOUL_CHARA_SAVED=[CHARA left happy]
+DZ_CH20_ASRIEL_ZERO_SOULDZ_CHARA_SAVED=[CHARA left happy]
 Wait... that's wrong.
 I don't hate humans OR monsters. I {~}LOVE{/~} them both.
 I love YOU, Kirby! I remember {*}EVERYTHING{/*} now!
@@ -15455,7 +15455,7 @@ DZ_BIND_COMBAT_TOGGLE=Toggle Combat Mode
 
 DZ_BIND_MAD_MELEE=Madeline Melee
 
-DZ_BIND_MAD_CHARGE=Madeline Charge Attack
+DZ_BIND_MADDZ_CHARGE=Madeline Charge Attack
 
 DZ_BIND_MAD_WEAPON_CYCLE=Cycle Madeline Weapon
 
@@ -15944,7 +15944,7 @@ and encourage the final titan protector to follow you as well.
 [kirby left thankyou]
 I won't let you down.
 
-DXFINALAREA_CH20_ROARING_TITAN_GATE={trigger 0 kirby reaches the threshold between the fourth area and els domain and the ground begins to quake violently}
+DXFINALAREADZ_CH20_ROARING_TITAN_GATE={trigger 0 kirby reaches the threshold between the fourth area and els domain and the ground begins to quake violently}
 [KIRBY left angry]
 ...this is it.
 [roaring_titan left booming]
@@ -15972,7 +15972,7 @@ so be prepared for anything.
 [KIRBY left together]
 then lets do this!
 
-DXFINALAREA_CH20_ROARING_TITAN_GATE_END=[roaring_titan left stunning]
+DXFINALAREADZ_CH20_ROARING_TITAN_GATE_END=[roaring_titan left stunning]
 impressive.
 you have proven yourself worthy pour entrer the realm of els.
 but be warned, the final battle will be unlike anything you have ever faced before.
@@ -15983,7 +15983,7 @@ were waiting for your order as you wish.
 [kirby left determined]
 Go onward to the event horizon and stop els!
 
-DXFINALAREA_CH19_END=[chara right normal]
+DXFINALAREADZ_CH19_END=[chara right normal]
 kirby you made it back here, I thought you would never make it.
 [KIRBY left sad]
 and how it my dream friends
@@ -15995,7 +15995,7 @@ thank you all of you for bringing me here and helping me get this far.
 [chara right normal]
 please be careful, my little pink puff ball.
 
-DXFINALAREA_CH20_INTRO=[kirby left angry]
+DXFINALAREADZ_CH20_INTRO=[kirby left angry]
 this is it.
 this is the final battle against els.
 wait... I see...
@@ -16056,7 +16056,7 @@ help us kirby!
 what you have done!
 {trigger 0 fade to black}
 
-DXFINALAREA_CH20_HOMESTUCK_INTRO=[]
+DXFINALAREADZ_CH20_HOMESTUCK_INTRO=[]
 hey jade do you wanna go to the mall?
 uh sure but I have to finish this quest d'abord.
 well can I help you with that?
@@ -16078,7 +16078,7 @@ but you know what?
 they can still fight for what they want.
 {trigger 1 evil jade laugh}
 
-DXFINALAREA_CH20_ELS_INFORMATION=[status]
+DXFINALAREADZ_CH20_ELS_INFORMATION=[status]
 NAME: JADES
 reality name: homestuck
 age: unknown
@@ -16086,11 +16086,11 @@ power: reality warping, time manipulation, space manipulation, and more
 his goal is to consume all realities and become the ultimate being in the multiverse
 and he won't stop until he achieves his goal to become penumbra phastasm.
 
-DXFINALAREA_CH20_KIRBY_REFUSED_TO_DIED=but you refused...!
+DXFINALAREADZ_CH20_KIRBY_REFUSED_TO_DIED=but you refused...!
 
-DXFINALAREA_CH20_KIRBY_1_A=it's penumbra phastasm.
+DXFINALAREADZ_CH20_KIRBY_1_A=it's penumbra phastasm.
 
-DXFINALAREA_CH20_JADES_PHASE_1_A=[JADE left bruh]
+DXFINALAREADZ_CH20_JADES_PHASE_1_A=[JADE left bruh]
 you know what, I don't even care about you or your goals.
 I just want to have fun and fight you.
 thats all I care about.
@@ -16100,52 +16100,52 @@ you can't take someone who has that power lightly.
 oh I know, but I also know that you have been through a lot and you have a lot of power too.
 then lets see of how far we can go for it...
 
-DXFINALAREA_CH20_JADES_PHASE_1_B=[JADE left eye_roll]
+DXFINALAREADZ_CH20_JADES_PHASE_1_B=[JADE left eye_roll]
 all of your progess and power is impressive but it won't be enough to stop me.
 everything will fall to zero.
 [kirby left determined]
 I am not zero and I will never be zero.
 I am a star warrior and thats who I am.
 
-DXFINALAREA_CH20_JADES_PHASE_1_C=[JADE left again]
+DXFINALAREADZ_CH20_JADES_PHASE_1_C=[JADE left again]
 then we can do this fight after death all over again!
 
-DXFINALAREA_CH20_JADES_PHASE_1_D=[JADE left smirkle]
+DXFINALAREADZ_CH20_JADES_PHASE_1_D=[JADE left smirkle]
 and do you know what is the awesome part about this?
 you get off the game over screen and you get to fight me again and again until you finally get it right.
 [kirby left angry]
 oh shut up!
 
-DXFINALAREA_CH20_JADES_PHASE_1_E=[JADE left bruh]
+DXFINALAREADZ_CH20_JADES_PHASE_1_E=[JADE left bruh]
 then you win and have a happy ending, again...
 
-DXFINALAREA_CH20_JADES_PHASE_1_F=[JADE left eye_closed]
+DXFINALAREADZ_CH20_JADES_PHASE_1_F=[JADE left eye_closed]
 and again!
 
-DXFINALAREA_CH20_JADES_PHASE_1_G=[JADE left flashing_eyes]
+DXFINALAREADZ_CH20_JADES_PHASE_1_G=[JADE left flashing_eyes]
 AND AGAIN!!!
 
-DXFINALAREA_CH20_JADES_PHASE_1_H=[JADE left heknowsit_A]
+DXFINALAREADZ_CH20_JADES_PHASE_1_H=[JADE left heknowsit_A]
 because you want to spend time with your family.
 
-DXFINALAREA_CH20_JADES_PHASE_1_J=[JADE left heknowsit_B]
+DXFINALAREADZ_CH20_JADES_PHASE_1_J=[JADE left heknowsit_B]
 because you love this game that you play!
 
-DXFINALAREA_CH20_JADES_PHASE_1_I=[JADE left heknowsit_C]
+DXFINALAREADZ_CH20_JADES_PHASE_1_I=[JADE left heknowsit_C]
 because you never back down
 
-DXFINALAREA_CH20_JADES_PHASE_1_K=[JADE left shruggle]
+DXFINALAREADZ_CH20_JADES_PHASE_1_K=[JADE left shruggle]
 isn't this amazing...
 [JADE left eye_closed]
 everything you have, everything ability you got, and every area you conqurered that let you get this far.
 [JADE left eye_flash]
 this will be your Doom!
 
-DXFINALAREA_CH20_JADES_PHASE_1_L=[JADE left frustrated]
+DXFINALAREADZ_CH20_JADES_PHASE_1_L=[JADE left frustrated]
 ugh, this is so annoying!
 it's time you and this world to be purge this discarded once and for all!
 
-DXFINALAREA_CH20_JADES_PHASE_1_M=[JADE left what]
+DXFINALAREADZ_CH20_JADES_PHASE_1_M=[JADE left what]
 even that attack, your still standing in my way.
 [JADE left shruggle]
 wow maybe your something special
@@ -16155,7 +16155,7 @@ up to till now this is only a fraction to my real power.
 [JADE left flash_eyes_alt]
 lets see you can stand up against this!
 
-DXFINALAREA_CH20_JADES_DELTARUNE_PHASE_2=[KIRBY left surprised]
+DXFINALAREADZ_CH20_JADES_DELTARUNE_PHASE_2=[KIRBY left surprised]
 wh- `what the hell is that?
 [JADE left omniA]
 behold, the true form of penumbra phastasm!
@@ -16186,7 +16186,7 @@ this addutiude will server you into the afterlife
 still? oh come on!
 show me your so called starwarrior now!
 
-DXFINALAREA_CH20_THOUGHT=[]
+DXFINALAREADZ_CH20_THOUGHT=[]
 we try to fight, nothing happen.
 we try to run, we can't move.
 we try to call out to help, nothing wouldn't awnser.
@@ -16197,7 +16197,7 @@ this is really is impossible to complete this game...
 maybe a little bit power that I have.
 I could save someone else.
 
-DXFINALAREA_CH20_KIRBY_SAVING_JADES={oversave icon appears on screen}
+DXFINALAREADZ_CH20_KIRBY_SAVING_JADES={oversave icon appears on screen}
 [KIRBY left determined]
 but you may be powerful, I am not going to let you hurt anyone else.
 [KIRBY left distracted]
@@ -16210,7 +16210,7 @@ this must be the the forsaken city.
 [KIRBY left determined]
 well then lets climb this mountain one last time and save you girls.
 
-DXFINALAREA_CH20_KIRBY_SEE_MAD_AND_BAD=[KIRBY left surprised]
+DXFINALAREADZ_CH20_KIRBY_SEE_MAD_AND_BAD=[KIRBY left surprised]
 wait I see them!
 [MADELINE left angry]
 kirby... is that you?
@@ -16224,7 +16224,7 @@ please save us kirby...
 I never break a promise.
 {trigger 0 kirby reaches out and grabs madeline and badeline and pulls them out of summit to ascend back to the final battle}
 
-DXFINALAREA_CH20_JADES_PHASE_2=[roaring_titan left releived]
+DXFINALAREADZ_CH20_JADES_PHASE_2=[roaring_titan left releived]
 thank goodness, you saved them.
 [d'abord_titan left releived]
 but we do not have much time
@@ -16236,7 +16236,7 @@ Jades!
 [JADES left huh]
 wh- what are you doing!?
 
-DXFINALAREA_CH20_JADES_PHASE_FINAL={tigger 0 jades flash back to his homestuck form and the battle continues}
+DXFINALAREADZ_CH20_JADES_PHASE_FINAL={tigger 0 jades flash back to his homestuck form and the battle continues}
 [JADES left omnifeelings]
 what the heck is that?
 [KIRBY left surprised]
@@ -16289,7 +16289,7 @@ I am so afraid right now...
 I...
 i......
 
-DXFINALAREA_CH20_JADES_END={trigger 0 jades crying}
+DXFINALAREADZ_CH20_JADES_END={trigger 0 jades crying}
 []
 I am so sorry...
 [JADE_TEEN right normal]
@@ -16323,13 +16323,13 @@ I pretty sure that you know of how I felt too.
 look I know your still mad at me, and there a chances that you may never forgive me.
 but there no excused or accusing for my actions...
 
-DXFINALAREA_CH20_FORGIVE_JADES_YES=[]
+DXFINALAREADZ_CH20_FORGIVE_JADES_YES=[]
 I forgive you...
 
-DXFINALAREA_CH20_FORGIVE_JADES_NO=[]
+DXFINALAREADZ_CH20_FORGIVE_JADES_NO=[]
 still I do not...
 
-DXFINALAREA_CH20_FORGIVE_JADES_YES_RESPONDED=wh- what your forgiving me?
+DXFINALAREADZ_CH20_FORGIVE_JADES_YES_RESPONDED=wh- what your forgiving me?
 oh come on man, I know your what it is...
 I felt more happy than ever right now...
 I am so sorry for everything I have done to you and everyone else.
@@ -16339,14 +16339,14 @@ I felt that they want to come out.
 but with everyone hopes and dreams, and everyone love and determination.
 it safe to say we can finally restore this reality.
 
-DXFINALAREA_CH20_FORGIVE_JADES_NO_RESPONDED=I understand, I think it best for this way.
+DXFINALAREADZ_CH20_FORGIVE_JADES_NO_RESPONDED=I understand, I think it best for this way.
 but d'abord I must do something very important.
 every gimmick and soul and stars that are inside of me are all in one...
 I felt that they want to come out.
 but with everyone hopes and dreams, and everyone love and determination.
 it safe to say we can finally restore this reality.
 
-DXFINALAREA_CH20_REST_NOW_JADES=[MADELINE left sad]
+DXFINALAREADZ_CH20_REST_NOW_JADES=[MADELINE left sad]
 thank you jades, for everything you have done.
 even though you have done some bad things, you are still a good person at heart.
 [JADES_TEEN left grateful]
@@ -16370,7 +16370,7 @@ tell chara and everyone else that I am sorry for everything I have done to them 
 hope they can also forgive me too...
 {trigger 0 jades fades away into the light}
 
-DXFINALAREA_CH20_WAKE_UP=[]
+DXFINALAREADZ_CH20_WAKE_UP=[]
 Madeline, my little strawberry, your rest is over.
 Wake up...
 [MADELINE left angry]

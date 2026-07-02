@@ -11,7 +11,7 @@ public partial class CharaBossBeam : Entity
     public const float ACTIVE_TIME = 0.12f;
     private const float angle_start_offset = 100f;
     private const float rotation_speed = 200f;
-    private const float collide_check_sep = 2f;
+    private const float collideDZ_CHeck_sep = 2f;
     private const float beam_length = 2000f;
     private const float beam_start_dist = 12f;
     private const int beams_drawn = 15;
@@ -59,7 +59,7 @@ public partial class CharaBossBeam : Entity
         chargeTimer = CHARGE_TIME;
         followTimer = FOLLOW_TIME;
         activeTimer = ACTIVE_TIME;
-        beamSprite.Play("charaboss_charge");
+        beamSprite.Play("charabossDZ_CHarge");
         sideFadeAlpha = 0.0f;
         beamAlpha = 0.0f;
         int num = target.Y > charaboss.Y + 16.0f ? -1 : 1;
@@ -93,7 +93,7 @@ public partial class CharaBossBeam : Entity
             chargeTimer -= Engine.DeltaTime;
             if (followTimer > 0.0 && player.Center != charaboss.BeamOrigin)
                 angle = Calc.Angle(charaboss.BeamOrigin, Calc.Approach(Calc.ClosestPointOnLine(charaboss.BeamOrigin, charaboss.BeamOrigin + Calc.AngleToVector(angle, 2000f), player.Center), player.Center, 200f * Engine.DeltaTime));
-            else if (beamSprite.CurrentAnimationID == "charaboss_charge")
+            else if (beamSprite.CurrentAnimationID == "charabossDZ_CHarge")
                 beamSprite.Play("charaboss_lock");
             if (chargeTimer > 0.0)
                 return;

@@ -371,7 +371,7 @@ namespace Celeste.Entities.Bosses
             switch (currentAttack)
             {
                 case MetaKnightAttack.DashSlash:
-                    sprite?.Play("dash_charge");
+                    sprite?.Play("dashDZ_CHarge");
                     if (stateTimer > 0.3f)
                     {
                         dashTarget = player.Center;

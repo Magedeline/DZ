@@ -54,7 +54,7 @@ namespace Celeste.Cutscenes
             }
             yield return 0.6f;
             player.Facing = Facings.Left;
-            yield return Textbox.Say("DZ_CH5_OSHIRO_START_CHASE", new Func<IEnumerator>[]
+            yield return Textbox.Say("DZ_CH5_OSHIRO_STARTDZ_CHASE", new Func<IEnumerator>[]
             {
                 new Func<IEnumerator>(CharaAppear),
                 new Func<IEnumerator>(BadelineFaceChara),
@@ -187,7 +187,7 @@ namespace Celeste.Cutscenes
         private void SetChaseMusic()
         {
             Level level = base.Scene as Level;
-            level.Session.Audio.Music.Event = "event:/pusheen/music/lvl5/oshiro_chase";
+            level.Session.Audio.Music.Event = "event:/pusheen/music/lvl5/oshiroDZ_CHase";
             level.Session.Audio.Apply(forceSixteenthNoteHack: false);
         }
 

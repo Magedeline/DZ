@@ -3,11 +3,11 @@ using Celeste.Entities;
 namespace Celeste.Cutscenes
 {
     /// <summary>
-    /// CS04_CharaWarning - Warning cutscene before CharaChaser2 begins pursuit.
+    /// CS04DZ_CHaraWarning - Warning cutscene before CharaChaser2 begins pursuit.
     /// Shows Chara appearing briefly to warn/taunt the player before the enhanced chase.
     /// </summary>
     [HotReloadable]
-    public class CS04_CharaWarning : CutsceneEntity
+    public class CS04DZ_CHaraWarning : CutsceneEntity
     {
         /// <summary>
         /// Static flag to track if the warning cutscene has been triggered this session.
@@ -21,7 +21,7 @@ namespace Celeste.Cutscenes
         public static void ResetTriggeredState() => HasTriggered = false;
 
         #region Constants
-        public const string Flag = "evil_chara_warning";
+        public const string Flag = "evilDZ_CHara_warning";
         private const float ANXIETY_FADE_SPEED = 3f;
         private const float ANXIETY_INTERVAL = 0.08f;
         private const float ANXIETY_SINE_RATE = 0.4f;
@@ -49,7 +49,7 @@ namespace Celeste.Cutscenes
         private bool charaWasVisible;
         #endregion
 
-        public CS04_CharaWarning(CharaChaser charaChaser) : base(true, false)
+        public CS04DZ_CHaraWarning(CharaChaser charaChaser) : base(true, false)
         {
             chara = charaChaser ?? throw new ArgumentNullException(nameof(charaChaser));
             charaStartPosition = charaChaser.Position;
@@ -208,7 +208,7 @@ namespace Celeste.Cutscenes
 
             // Signal CharaChaser that intro is complete and it should begin chasing
             chara.BeginChasing();
-            Level.Session.SetFlag("evil_chara_warning");
+            Level.Session.SetFlag("evilDZ_CHara_warning");
         }
 
         public override void OnEnd(Level level)

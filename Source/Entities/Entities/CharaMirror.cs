@@ -153,7 +153,7 @@ namespace Celeste.Entities
             Audio.SetMusic(null);
             while (cs02CharaMirror.hitbox.Collide(player))
                 yield return null;
-            Cutscenes.CS02_CharaMirror cs02CharaMirrorCutscene = new Cutscenes.CS02_CharaMirror((global::Celeste.Player)(object)player, cs02CharaMirror);
+            Cutscenes.CS02DZ_CHaraMirror cs02CharaMirrorCutscene = new Cutscenes.CS02DZ_CHaraMirror((global::Celeste.Player)(object)player, cs02CharaMirror);
             cs02CharaMirror.Scene.Add(cs02CharaMirrorCutscene);
         }
 

@@ -535,7 +535,7 @@ namespace Celeste.Cutscenes
 		private string speedrunTimerFileString;
 
 		// Token: 0x040007FB RID: 2043
-		private string chapterSpeedrunText = Dialog.Get("OPTIONS_SPEEDRUN_CHAPTER", null) + ":";
+		private string chapterSpeedrunText = Dialog.Get("OPTIONS_SPEEDRUNDZ_CHAPTER", null) + ":";
 
 		// Token: 0x040007FC RID: 2044
 		private string version = global::Celeste.Celeste.Instance.Version.ToString();

@@ -18,7 +18,7 @@ namespace Celeste.Entities
         }
 
         private const string PreferredSpriteBank = "DZ_mainchara_vision";
-        private const string FallbackSpriteBank = "DZ_chara";
+        private const string FallbackSpriteBank = "DZ_CHara";
         private const float DefaultMaxMoveSpeed = 90f;
         private const float DefaultAcceleration = 650f;
         private const float DefaultFriction = 800f;

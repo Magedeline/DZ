@@ -65,7 +65,7 @@ namespace Celeste.Entities
             sprite.AddLoop("cold_active", "cold_active", 0.04f);
             sprite.AddLoop("super_idle", "super_idle", 0.05f);
             sprite.AddLoop("super_active", "super_active", 0.02f);
-            sprite.AddLoop("super_charged", "super_charged", 0.01f);
+            sprite.AddLoop("superDZ_CHarged", "superDZ_CHarged", 0.01f);
             sprite.Play("hot_idle");
             Add(sprite);
 
@@ -267,7 +267,7 @@ namespace Celeste.Entities
                         light.Color = coldColor;
                         break;
                     default:
-                        sprite.Play("super_charged");
+                        sprite.Play("superDZ_CHarged");
                         light.Color = superColor;
                         break;
                 }

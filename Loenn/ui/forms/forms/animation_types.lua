@@ -126,7 +126,7 @@ animationTypes.options = {
     "mountain_point",
     "selfie",
     "journal_write",
-    "compass_check",
+    "compassDZ_CHeck",
     "binoculars",
     
     -- Madeline Specific
@@ -146,7 +146,7 @@ animationTypes.options = {
     "tea_sip",
     "wisdom_share",
     "cane_tap",
-    "rocking_chair",
+    "rockingDZ_CHair",
     "cookie_offer",
     "story_tell",
     "memory_recall",

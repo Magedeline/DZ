@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch11
     /// <summary>
     /// SaloonChandelier - Swinging hazard that can be shot down
     /// Swings on a chain and can fall to create a hazard or platform
-    /// Sprite path: objects/DZ/DZ/saloon_chandelier/
+    /// Sprite path: objects/DZ/DZ/saloonDZ_CHandelier/
     /// </summary>
     [CustomEntity("DZ/SaloonChandelier")]
     [Tracked]
@@ -82,7 +82,7 @@ namespace Celeste.Entities.Chapters.Ch11
             Collider = new Hitbox(48f, 32f, -24f, -16f);
             
             // Setup sprite
-            Add(sprite = GFX.SpriteBank.Create("saloon_chandelier"));
+            Add(sprite = GFX.SpriteBank.Create("saloonDZ_CHandelier"));
             sprite.Play("swinging");
             
             // Add candle light

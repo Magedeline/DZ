@@ -381,7 +381,7 @@ namespace Celeste.Entities
             activeEnemies.Remove(boss);
             
             // Audio feedback
-            Audio.Play("event:/ui/game/summit_checkpoint_confetti", Position);
+            Audio.Play("event:/ui/game/summitDZ_CHeckpoint_confetti", Position);
             
             // Check if arena is complete
             if (currentKills >= requiredEnemyKills)

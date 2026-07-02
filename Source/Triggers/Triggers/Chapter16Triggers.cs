@@ -156,7 +156,7 @@ namespace Celeste.Triggers
                 // Set character state flags
                 if (EnableCharacterStates)
                 {
-                    level.Session.SetFlag($"ch16_character_{CharacterState}", true);
+                    level.Session.SetFlag($"ch16DZ_CHaracter_{CharacterState}", true);
                 }
 
                 // Apply effects

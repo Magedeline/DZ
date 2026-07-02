@@ -74,7 +74,7 @@ namespace Celeste.Cutscenes
             else
             {
                 id = "truefinal";
-                endingDialog = "EPMOD_PIE_CHEESECAKE_STRAWBERRY";
+                endingDialog = "EPMOD_PIEDZ_CHEESECAKE_STRAWBERRY";
             }
 
             Add(vignettebg = new Image(GFX.Portraits["finalbg"]));

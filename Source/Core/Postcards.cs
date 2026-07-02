@@ -47,7 +47,7 @@ namespace DZ
     }
 
     public PostcardDZ(string msg, int area)
-        : this(msg, "event:/ui/main/postcard_ch" + area + "_in", "event:/ui/main/postcard_ch" + area + "_out")
+        : this(msg, "event:/ui/main/postcardDZ_CH" + area + "_in", "event:/ui/main/postcardDZ_CH" + area + "_out")
     {
     }
 

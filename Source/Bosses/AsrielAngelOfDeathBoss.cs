@@ -919,7 +919,7 @@ namespace DZ
             // Play charging animation
             if (Sprite != null)
             {
-                Sprite.Play("attack_finalbeam_charge");
+                Sprite.Play("attack_finalbeamDZ_CHarge");
             }
             
             // Screen darkens, energy gathers
@@ -1190,7 +1190,7 @@ namespace DZ
         // Massive horizontal beam that fills the screen, telegraphed with darkening.
         private IEnumerator HyperGonerAttack()
         {
-            Sprite?.Play("attack_finalbeam_charge");
+            Sprite?.Play("attack_finalbeamDZ_CHarge");
             darker = true;
             yield return TelegraphIntent(BossTelegraphType.DangerRed, 1.2f);
 
@@ -1346,7 +1346,7 @@ namespace DZ
                 if (ucon == 1)
                 {
                     // GML: caster_play(psfx, 0.7, 1.2); arf = 30; ucon = 2;
-                    Audio.Play("event:/pusheen/sfx/boss/asriel_ultimate_charge");
+                    Audio.Play("event:/pusheen/sfx/boss/asriel_ultimateDZ_CHarge");
                     arf = 30f;
                     ucon = 2;
                 }

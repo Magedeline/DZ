@@ -366,7 +366,7 @@ namespace Celeste.Entities.Bosses
 
         private IEnumerator ChargeStrikeAttack()
         {
-            Audio.Play("event:/gigantedge_charge", Position);
+            Audio.Play("event:/gigantedgeDZ_CHarge", Position);
             
             // Wind up
             yield return 0.5f;

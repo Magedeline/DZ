@@ -654,7 +654,7 @@ namespace Celeste.Entities.Bosses
 
         private IEnumerator ChainedHeartAttack()
         {
-            Audio.Play("event:/spamton_chains", Position);
+            Audio.Play("event:/spamtonDZ_CHains", Position);
             
             var level = Scene as Level;
             
@@ -868,7 +868,7 @@ namespace Celeste.Entities.Bosses
             foreach (var chain in chainSprites)
             {
                 chain.Play("breaking");
-                Audio.Play("event:/spamton_chain_break", Position);
+                Audio.Play("event:/spamtonDZ_CHain_break", Position);
                 level?.Shake(0.5f);
                 yield return 0.5f;
             }

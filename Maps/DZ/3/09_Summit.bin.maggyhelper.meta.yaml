@@ -1,11 +1,11 @@
-schema: DZ-map-meta-v1
+﻿schema: DZ-map-meta-v1
 sid: DZ/2/09_Summit
 baseKey: 09_Summit
-side: D
-modeIndex: 3
+side: C
+modeIndex: 2
 isMainChapterEntry: false
 mainChapterSid: DZ/0/09_Summit
-showInChapterSelect: true
+showInChapterSelect: false
 
 MusicBySide:
   - event:/music/pusheen/menu/complete_area

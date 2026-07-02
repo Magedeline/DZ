@@ -1,11 +1,11 @@
-﻿schema: DZ-map-meta-v1
-sid: DZ/1/02_Nightmare
-baseKey: 02_Nightmare
-side: B
-modeIndex: 1
-isMainChapterEntry: false
-mainChapterSid: DZ/0/02_Nightmare
-showInChapterSelect: false
+schema: DZ-map-meta-v1
+sid: DZ/0/02_Shadow
+baseKey: 02_Shadow
+side: A
+modeIndex: 0
+isMainChapterEntry: true
+mainChapterSid: DZ/0/02_Shadow
+showInChapterSelect: true
 
 MusicBySide:
   - event:/music/pusheen/menu/complete_area

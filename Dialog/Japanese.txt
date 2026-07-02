@@ -504,7 +504,7 @@ DZ_MEMORIAL_DEFAULT=Dedicated to those who never gave up.
 DZ_MEMORIAL_CITY=The metropolis sleeps, but its
     secrets never do.
 
-DZ_MEMORIAL_NIGHTMARE=Through the veil of shadows,
+DZ_MEMORIAL_Shadow=Through the veil of shadows,
     courage lights the path.
 
 DZ_MEMORIAL_STARS=Among the stars we found
@@ -808,9 +808,9 @@ DZ_WIP=Desolo Zantas - Work in Progress
 
 DZ_0_00_Prologue=Prologue
 
-DZ_0_01_City_A=Forbidden Metropolis
+DZ_0_01_City=Forbidden Metropolis
 
-DZ_0_02_Nightmare_A=Veil of Shadows
+DZ_0_02_Shadow_Shadow=Veil of Shadows
 
 DZ_0_03_Stars_A=Arrival
 
@@ -944,7 +944,7 @@ DZ_0_lastlevel=Desolo Zantas True Finale
 
 DZ_1_01_City_B=Forbidden Metropolis
 
-DZ_1_02_Nightmare_B=Veil of Shadows
+DZ_1_02_Shadow_B=Veil of Shadows
 
 DZ_1_03_Stars_B=Arrival
 
@@ -976,7 +976,7 @@ DZ_1_18_Heart_B=Core of Existence
 
 DZ_2_01_City_C=Forbidden Metropolis
 
-DZ_2_02_Nightmare_C=Veil of Shadows
+DZ_2_02_Shadow_C=Veil of Shadows
 
 DZ_2_03_Stars_C=Arrival
 
@@ -1008,7 +1008,7 @@ DZ_2_18_Heart_C=Core of Existence
 
 DZ_2_01_City_D=Forbidden Metropolis
 
-DZ_2_02_Nightmare_D=Veil of Shadows
+DZ_2_02_Shadow_D=Veil of Shadows
 
 DZ_2_03_Stars_D=Arrival
 
@@ -1040,7 +1040,7 @@ DZ_2_18_Heart_D=Core of Existence
 
 DZ_DXSide_01_City_DX=Forbidden Metropolis DX
 
-DZ_DXSide_02_Nightmare_DX=Veil of Shadows DX
+DZ_DXSide_02_Shadow_DX=Veil of Shadows DX
 
 DZ_DXSide_03_Stars_DX=Arrival DX
 
@@ -1082,13 +1082,13 @@ DZ_WIP_kirbytest=Kirby Test
 
 DZ_WIP_test=Test Map
 
-DZ_0_01_City_A_b_00=Jump Through
+DZ_0_01_City_b_00=Jump Through
 
-DZ_0_01_City_A_c_00=Useless mechanics
+DZ_0_01_City_c_00=Useless mechanics
 
-DZ_0_02_Nightmare_A_b_3=The Greetings
+DZ_0_02_Shadow_Shadow_b_3=The Greetings
 
-DZ_0_02_Nightmare_A_c_end_3=The Grief
+DZ_0_02_Shadow_Shadow_c_end_3=The Grief
 
 DZ_0_03_Stars_A_b_4=The Lesson
 
@@ -1206,11 +1206,11 @@ DZ_1_01_City_B_b_04=Waste Yard
 
 DZ_1_01_City_B_c_08=Another Way Up
 
-DZ_1_02_Nightmare_B_a_00=Start
+DZ_1_02_Shadow_B_a_00=Start
 
-DZ_1_02_Nightmare_B_b_00=Lock The Flip In
+DZ_1_02_Shadow_B_b_00=Lock The Flip In
 
-DZ_1_02_Nightmare_B_c_00=Darkess Nightmare
+DZ_1_02_Shadow_B_c_00=Darkess Nightmare
 
 DZ_1_05_Fractured_B_B_00=Start
 
@@ -1276,11 +1276,11 @@ DZ_2_01_City_C_C_00=Perfect Timing
 
 DZ_2_01_City_C_d_00=Dream Zoom
 
-DZ_2_02_Nightmare_C_A_00=Start
+DZ_2_02_Shadow_C_A_00=Start
 
-DZ_2_02_Nightmare_C_B_00=Proceed to Kill
+DZ_2_02_Shadow_C_B_00=Proceed to Kill
 
-DZ_2_02_Nightmare_C_C_00=But Nobody Came
+DZ_2_02_Shadow_C_C_00=But Nobody Came
 
 DZ_2_05_Fractured_C_A_00=Start
 
@@ -1344,9 +1344,9 @@ DZ_1_01_City_B_remix=First Step Remix
 
 DZ_1_01_City_B_remix_artist=Maxo
 
-DZ_1_02_Nightmare_B_remix=Wingdings
+DZ_1_02_Shadow_B_remix=Wingdings
 
-DZ_1_02_Nightmare_B_remix_artist=DZ
+DZ_1_02_Shadow_B_remix_artist=DZ
 
 DZ_1_05_Fractured_B_remix=Scatter and Lost
 
@@ -1376,9 +1376,9 @@ DZ_2_01_City_C_remix=Sever Skyline Remix
 
 DZ_2_01_City_C_remix_artist=Kyle Gamer
 
-DZ_2_02_Nightmare_C_remix=Ressurection Remix
+DZ_2_02_Shadow_C_remix=Ressurection Remix
 
-DZ_2_02_Nightmare_C_remix_artist=Kyle Gamer
+DZ_2_02_Shadow_C_remix_artist=Kyle Gamer
 
 DZ_2_05_Fractured_C_remix=Tidying things up
 
@@ -1406,9 +1406,9 @@ DZ_2_18_Heart_C_remix_artist=DZ
 
 DZ_Remix=You Got The Special C-Side Remix
 
-DZ_0_01_City_A_postcard=Remember to take break when you get tired of from high difficulty and There always an Assist Mode that you can turn on if you find it harder.
+DZ_0_01_City_postcard=Remember to take break when you get tired of from high difficulty and There always an Assist Mode that you can turn on if you find it harder.
 
-DZ_0_02_Nightmare_A_postcard=if you want to collect strawberry to impress your friend you can try so, but it depend on how many you collect, in which ending.
+DZ_0_02_Shadow_Shadow_postcard=if you want to collect strawberry to impress your friend you can try so, but it depend on how many you collect, in which ending.
 
 DZ_0_03_Stars_A_postcard=It's About Time.
 
@@ -1474,7 +1474,7 @@ AREACOMPLETE_DXSIDE_FULLCLEAR=DX-Side Full Clear
 
 COMPLETE_SUBTITLE_01_CITY=The mountain speaks in tongues forgotten by the waking world
 
-COMPLETE_SUBTITLE_02_NIGHTMARE=In shadow's veil, the まず prophecy whispers its fractured name
+COMPLETE_SUBTITLE_02_Shadow=In shadow's veil, the まず prophecy whispers its fractured name
 
 COMPLETE_SUBTITLE_03_STARS=Through starlit gates, the twin prophecies once sang as one
 
@@ -1532,9 +1532,9 @@ BADELINE={# 76428a}{~}BADELINE{/~}{#}
 
 MYSTERY_MAN={# 00ffff}{~}???{/~}{#}
 
-soul_DZ_0_01_City_A=Useless Garbage Machine
+soul_DZ_0_01_City=Useless Garbage Machine
 
-soul_DZ_0_02_Nightmare_A=Reawaken
+soul_DZ_0_02_Shadow_Shadow=Reawaken
 
 soul_DZ_0_05_Fractured_A=Hopeless and Hopelessly Lost
 
@@ -1556,7 +1556,7 @@ soul_DZ_0_19_Space=KILL YOURSELF NOW
 
 soul_DZ_1_01_City_B=Sever the Skyline
 
-soul_DZ_1_02_Nightmare_B=Black Moon Rise
+soul_DZ_1_02_Shadow_B=Black Moon Rise
 
 soul_DZ_1_05_Fractured_B=Good karma
 
@@ -1572,7 +1572,7 @@ soul_DZ_1_18_Heart_B=Goodbye
 
 soul_DZ_2_01_City_C=Taking Over the Streets
 
-soul_DZ_2_02_Nightmare_C=Under my Control
+soul_DZ_2_02_Shadow_C=Under my Control
 
 soul_DZ_2_05_Fractured_C=Amazing karma
 

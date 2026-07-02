@@ -44,7 +44,7 @@ namespace Celeste.Effects
         public static ParticleType P_Void;
         public static ParticleType P_DarkEnergy;
         public static ParticleType P_Corruption;
-        public static ParticleType P_Nightmare;
+        public static ParticleType P_Shadow;
 
         // Dark audio events
         public const string SFX_DARK_WHISPER = "event:/pusheen/dark/whisper";
@@ -338,7 +338,7 @@ namespace Celeste.Effects
                 SpinMax = 2f
             };
 
-            P_Nightmare = new ParticleType
+            P_Shadow = new ParticleType
             {
                 Size = 2f,
                 Color = Color.Black,

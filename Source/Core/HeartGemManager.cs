@@ -213,7 +213,7 @@ public static class HeartGemManager
             _ => "0"
         };
 
-        // Construct the registry key: soul_DZ_0_01_City_A
+        // Construct the registry key: soul_DZ_0_01_City
         // The suffix pattern matches the English.txt keys
         string suffix = session.Area.Mode switch
         {

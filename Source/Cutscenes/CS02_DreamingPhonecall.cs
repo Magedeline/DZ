@@ -81,7 +81,7 @@ namespace Celeste.Cutscenes
       Tween tween = Tween.Create(Tween.TweenMode.Oneshot, duration: 2f, start: true);
       tween.OnUpdate = t => light.Alpha = t.Eased;
       this.Add(tween);
-      Audio.Play("event:/pusheen/game/02_nightmare/sequence_phone_portal", payphone.Position);
+      Audio.Play("event:/pusheen/game/02_shadow/sequence_phone_portal", payphone.Position);
       yield return payphone.Sprite.PlayRoutine("transform");
       yield return 0.4f;
       yield return payphone.Sprite.PlayRoutine("eat");

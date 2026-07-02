@@ -1,5 +1,5 @@
 Icon: areas/DZ/nightmare
-SID: DZ/0/02_Nightmare
+SID: DZ/0/02_Shadow
 Interlude: false
 TitleBaseColor: 1a0a2e
 TitleAccentColor: 8b0045
@@ -17,36 +17,36 @@ CassetteSong: event:/music/pusheen/Cassette/02_shadow
 Modes:
   - AudioState:
       Music: event:/music/pusheen/lvl02/main
-      Ambience: event:/env/pusheen/02_nightmare
+      Ambience: event:/env/pusheen/02_Shadow
     Inventory: Default
     HeartIsEnd: false
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/1/02_nightmare
-      Ambience: event:/env/pusheen/02_nightmare
+      Music: event:/music/pusheen/1/02_Shadow
+      Ambience: event:/env/pusheen/02_Shadow
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/2/02_nightmare
-      Ambience: event:/env/pusheen/02_nightmare
+      Music: event:/music/pusheen/2/02_Shadow
+      Ambience: event:/env/pusheen/02_Shadow
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/2/02_nightmare
-      Ambience: event:/env/pusheen/02_nightmare
+      Music: event:/music/pusheen/2/02_Shadow
+      Ambience: event:/env/pusheen/02_Shadow
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/2/02_nightmare
+      Music: event:/music/pusheen/2/02_Shadow
       Ambience: event:/env/pusheen/02_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/DXSide/02_nightmare
+      Music: event:/music/pusheen/DXSide/02_Shadow
       Ambience: event:/env/pusheen/02_main
     Inventory: Default
     HeartIsEnd: true

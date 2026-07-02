@@ -33,7 +33,7 @@ internal static class ChapterRegistry
         // Chapter 2: Veil of Shadows
         Register(chapters, new AreaMapData.ChapterDef
         {
-            Number = 2, SID = AreaModeExtender.Build0SID("02_Nightmare"), Name = "Veil of Shadows",
+            Number = 2, SID = AreaModeExtender.Build0SID("02_Shadow"), Name = "Veil of Shadows",
             Icon = "areas/DZ/nightmare", Has1 = true, Has2 = true, HasDSide = true, HasDXSide = false,
         });
 

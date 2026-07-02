@@ -2,7 +2,7 @@ local npc05MagolorEscape = {}
 
 npc05MagolorEscape.name = "DZ/NPC05_MagolorEscape"
 npc05MagolorEscape.depth = 0
-npc05MagolorEscape.texture = "objects/DZ/npc05_magolor_escape"
+npc05MagolorEscape.texture = "objects/DZ/DZ/DZ/npc05_magolor_escape"
 
 npc05MagolorEscape.placements = {
     name = "npc05_magolor_escape",

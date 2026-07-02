@@ -14,7 +14,7 @@ namespace Celeste.Entities.Chapters.Ch15
     /// <summary>
     /// WishAltar - Interactive altar where player makes choices affecting ending
     /// Presents dialogue options that set flags for story outcomes
-    /// Sprite path: objects/wish_altar/
+    /// Sprite path: objects/DZ/DZ/wish_altar/
     /// </summary>
     [CustomEntity("DZ/WishAltar")]
     [Tracked]

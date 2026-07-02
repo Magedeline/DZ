@@ -2,7 +2,7 @@ local bookTrigger = {}
 
 bookTrigger.name = "DZ/BookTrigger"
 bookTrigger.depth = 0
-bookTrigger.texture = "objects/DZ/book_trigger"
+bookTrigger.texture = "objects/DZ/DZ/DZ/book_trigger"
 
 bookTrigger.placements = {
     name = "book_trigger",

@@ -11,10 +11,10 @@ namespace Celeste.Entities.Bosses
     [HotReloadable]
     public class TumbleKevinBoss : BossActor
     {
-        private const string BodyTexturePath = "objects/crushblock/block";
-        private const string FaceTexturePath = "objects/crushblock/idle_face";
-        private const string AngryFaceTexturePath = "objects/crushblock/lit_face";
-        private const string FallbackTexturePath = "characters/kirby/stone/crush";
+        private const string BodyTexturePath = "objects/DZ/DZ/crushblock/block";
+        private const string FaceTexturePath = "objects/DZ/DZ/crushblock/idle_face";
+        private const string AngryFaceTexturePath = "objects/DZ/DZ/crushblock/lit_face";
+        private const string FallbackTexturePath = "characters/DZ/kirby/stone/crush";
 
         private enum BossPhase
         {

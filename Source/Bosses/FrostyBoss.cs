@@ -5,7 +5,7 @@ namespace Celeste.Entities.Bosses
     /// <summary>
     /// Frosty Mid-Boss - An icy snowman menace
     /// Cold-themed mid-boss with freezing attacks
-    /// Sprite path: characters/frosty/
+    /// Sprite path: characters/DZ/frosty/
     /// </summary>
     [CustomEntity(ids: "DZ/FrostyBoss")]
     [Tracked]
@@ -73,7 +73,7 @@ namespace Celeste.Entities.Bosses
         private void SetupVisuals()
         {
             // Body sprite (main snowman)
-            Add(bodySprite = new Sprite(GFX.Game, "characters/frosty/"));
+            Add(bodySprite = new Sprite(GFX.Game, "characters/DZ/frosty/"));
             bodySprite.AddLoop("idle", "body_idle", 0.12f);
             bodySprite.AddLoop("laugh", "body_laugh", 0.08f);
             bodySprite.AddLoop("attack", "body_attack", 0.06f);
@@ -84,14 +84,14 @@ namespace Celeste.Entities.Bosses
             bodySprite.CenterOrigin();
             
             // Hat sprite
-            Add(hatSprite = new Sprite(GFX.Game, "characters/frosty/"));
+            Add(hatSprite = new Sprite(GFX.Game, "characters/DZ/frosty/"));
             hatSprite.AddLoop("idle", "hat_idle", 0.15f);
             hatSprite.AddLoop("wobble", "hat_wobble", 0.08f);
             hatSprite.CenterOrigin();
             hatSprite.Position = new Vector2(0f, -52f);
             
             // Arms (branch arms)
-            Add(armsSprite = new Sprite(GFX.Game, "characters/frosty/"));
+            Add(armsSprite = new Sprite(GFX.Game, "characters/DZ/frosty/"));
             armsSprite.AddLoop("idle", "arms_idle", 0.12f);
             armsSprite.AddLoop("attack", "arms_attack", 0.06f);
             armsSprite.AddLoop("wave", "arms_wave", 0.08f);

@@ -2,7 +2,7 @@ local charaDummyAttacher = {}
 
 charaDummyAttacher.name = "DZ/CharaDummyAttacher"
 charaDummyAttacher.depth = 0
-charaDummyAttacher.texture = "objects/DZ/chara_dummy_attacher"
+charaDummyAttacher.texture = "objects/DZ/DZ/DZ/chara_dummy_attacher"
 
 charaDummyAttacher.placements = {
     name = "chara_dummy_attacher",

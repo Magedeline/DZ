@@ -2,7 +2,7 @@ local blackHole = {}
 
 blackHole.name = "DZ/RainbowBlackholeBG"
 blackHole.depth = 10000
-blackHole.texture = "objects/temple/portal/portal"
+blackHole.texture = "objects/DZ/DZ/temple/portal/portal"
 
 blackHole.fieldInformation = {
     strength = {

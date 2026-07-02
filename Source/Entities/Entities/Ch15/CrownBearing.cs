@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch15
     /// <summary>
     /// CrownBearing - Floating crown that creates gravity wells
     /// Affects player movement with gravitational pull
-    /// Sprite path: objects/crown_bearing/
+    /// Sprite path: objects/DZ/DZ/crown_bearing/
     /// </summary>
     [CustomEntity("DZ/CrownBearing")]
     [Tracked]

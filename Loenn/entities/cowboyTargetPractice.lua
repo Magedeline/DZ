@@ -2,7 +2,7 @@ local cowboyTargetPractice = {}
 
 cowboyTargetPractice.name = "DZ/CowboyTargetPractice"
 cowboyTargetPractice.depth = 0
-cowboyTargetPractice.texture = "objects/DZ/cowboy_target_practice"
+cowboyTargetPractice.texture = "objects/DZ/DZ/DZ/cowboy_target_practice"
 
 cowboyTargetPractice.placements = {
     name = "cowboy_target_practice",

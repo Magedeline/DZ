@@ -2,7 +2,7 @@ local matrixRain = {}
 
 matrixRain.name = "DZ/MatrixRain"
 matrixRain.depth = 0
-matrixRain.texture = "objects/DZ/matrix_rain"
+matrixRain.texture = "objects/DZ/DZ/DZ/matrix_rain"
 
 matrixRain.placements = {
     name = "matrix_rain",

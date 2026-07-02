@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch14
     /// <summary>
     /// PixelEnemy - Low-resolution enemy made of pixels
     /// Moves in grid patterns and fires pixel projectiles
-    /// Sprite path: characters/pixel_enemy/
+    /// Sprite path: characters/DZ/pixel_enemy/
     /// </summary>
     [CustomEntity("DZ/PixelEnemy")]
     [Tracked]

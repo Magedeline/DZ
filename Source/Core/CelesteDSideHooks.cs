@@ -13,7 +13,7 @@ namespace DZ;
 /// Extends the AreaModeExtender with additional layer for Celeste mod-specific D-Side interactions.
 /// Supports both On.hook (delegate-based) and IL.hook (IL manipulation) patches.
 /// </summary>
-public static class CelesteDSideHooks
+public static class Celeste2Hooks
 {
     private static bool _loaded;
     private static Hook _crystalHeartOnCollectHook;
@@ -47,12 +47,12 @@ public static class CelesteDSideHooks
         // ──── IL.hook patches (IL manipulation) ────
 
         InstallCrystalHeartHook();
-        InstallDSideILHooks();
+        Install2ILHooks();
 
         // Save data hooks for D-Side stats persistence (commented out - not needed for core functionality)
         // On.Celeste.SaveData.BeforeInitialize += OnSaveDataBeforeInitialize;
 
-        Logger.Log(LogLevel.Info, "DZ", "CelesteDSideHooks loaded with On.hook and IL.hook support");
+        Logger.Log(LogLevel.Info, "DZ", "Celeste2Hooks loaded with On.hook and IL.hook support");
     }
 
     public static void Unload()
@@ -84,7 +84,7 @@ public static class CelesteDSideHooks
 
         // On.Celeste.SaveData.BeforeInitialize -= OnSaveDataBeforeInitialize;
 
-        Logger.Log(LogLevel.Info, "DZ", "CelesteDSideHooks unloaded (On.hook and IL.hook)");
+        Logger.Log(LogLevel.Info, "DZ", "Celeste2Hooks unloaded (On.hook and IL.hook)");
     }
 
     private static void InstallCrystalHeartHook()
@@ -105,12 +105,12 @@ public static class CelesteDSideHooks
             return;
         }
 
-        _crystalHeartOnCollectHook = new Hook(target, typeof(CelesteDSideHooks).GetMethod(
+        _crystalHeartOnCollectHook = new Hook(target, typeof(Celeste2Hooks).GetMethod(
             nameof(Hook_HeartGem_Collect),
             System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic));
     }
 
-    private static void InstallDSideILHooks()
+    private static void Install2ILHooks()
     {
         try
         {
@@ -236,7 +236,7 @@ public static class CelesteDSideHooks
             return;
 
         int mode = (int)level.Session.Area.Mode;
-        if (mode < AreaModeExtender.MODE_DSIDE)
+        if (mode < AreaModeExtender.MODE_2)
             return;
 
         // Track D-Side crystal heart collection
@@ -260,7 +260,7 @@ public static class CelesteDSideHooks
             if (AreaModeExtender.IsOurMap(area))
             {
                 int mode = (int)level.Session.Area.Mode;
-                if (mode >= AreaModeExtender.MODE_DSIDE)
+                if (mode >= AreaModeExtender.MODE_2)
                 {
                     Logger.Log(LogLevel.Debug, "DZ", $"Collecting heart gem in {AreaModeExtender.GetSideLabel(mode)}-Side: {area.SID}");
                 }
@@ -277,7 +277,7 @@ public static class CelesteDSideHooks
         // Initialize D-Side specific overworld state
         try
         {
-            InitializeDSideOverworldState(self);
+            Initialize2OverworldState(self);
         }
         catch (Exception ex)
         {
@@ -285,7 +285,7 @@ public static class CelesteDSideHooks
         }
     }
 
-    private static void InitializeDSideOverworldState(Overworld overworld)
+    private static void Initialize2OverworldState(Overworld overworld)
     {
         SaveData save = SaveData.Instance;
         if (save == null)
@@ -297,7 +297,7 @@ public static class CelesteDSideHooks
             if (!AreaModeExtender.IsOurMap(area))
                 continue;
 
-            if (area.Mode == null || area.Mode.Length <= AreaModeExtender.MODE_DSIDE)
+            if (area.Mode == null || area.Mode.Length <= AreaModeExtender.MODE_2)
                 continue;
 
             // Verify D-Side save stats exist
@@ -308,7 +308,7 @@ public static class CelesteDSideHooks
             DynamicData dyn = DynamicData.For(stats);
             var modes = dyn.Get("Modes") as System.Array ?? dyn.Get("modes") as System.Array;
 
-            if (modes == null || modes.Length <= AreaModeExtender.MODE_DSIDE)
+            if (modes == null || modes.Length <= AreaModeExtender.MODE_2)
             {
                 Logger.Log(LogLevel.Debug, "DZ", $"D-Side stats missing for {area.SID}, creating placeholder");
             }
@@ -326,7 +326,7 @@ public static class CelesteDSideHooks
         // Initialize D-Side panel visibility based on unlock state
         try
         {
-            InitializeDSidePanelVisibility(self, area);
+            Initialize2PanelVisibility(self, area);
         }
         catch (Exception ex)
         {
@@ -334,21 +334,21 @@ public static class CelesteDSideHooks
         }
     }
 
-    private static void InitializeDSidePanelVisibility(OuiChapterPanel panel, AreaData area)
+    private static void Initialize2PanelVisibility(OuiChapterPanel panel, AreaData area)
     {
-        if (area?.Mode == null || area.Mode.Length <= AreaModeExtender.MODE_DSIDE)
+        if (area?.Mode == null || area.Mode.Length <= AreaModeExtender.MODE_2)
             return;
 
         SaveData save = SaveData.Instance;
         if (save == null)
             return;
 
-        bool dSideUnlocked = AreaModeExtender.IsSideUnlocked(
-            new AreaKey(area.ID, (global::Celeste.AreaMode)AreaModeExtender.MODE_DSIDE),
-            AreaModeExtender.MODE_DSIDE);
+        bool 2Unlocked = AreaModeExtender.IsSideUnlocked(
+            new AreaKey(area.ID, (global::Celeste.AreaMode)AreaModeExtender.MODE_2),
+            AreaModeExtender.MODE_2);
 
         Logger.Log(LogLevel.Debug, "DZ",
-            $"D-Side panel for {area.SID}: {(dSideUnlocked ? "unlocked" : "locked")}");
+            $"D-Side panel for {area.SID}: {(2Unlocked ? "unlocked" : "locked")}");
     }
 
     private static IEnumerator OnChapterPanelLeave(On.Celeste.OuiChapterPanel.orig_Leave orig, OuiChapterPanel self, Oui next)
@@ -359,7 +359,7 @@ public static class CelesteDSideHooks
             // Save D-Side panel state before leaving
             try
             {
-                SaveDSidePanelState(self, area);
+                Save2PanelState(self, area);
             }
             catch (Exception ex)
             {
@@ -370,12 +370,12 @@ public static class CelesteDSideHooks
         yield return orig(self, next);
     }
 
-    private static void SaveDSidePanelState(OuiChapterPanel panel, AreaData area)
+    private static void Save2PanelState(OuiChapterPanel panel, AreaData area)
     {
         DynamicData panelDyn = DynamicData.For(panel);
         int currentMode = (int)(panelDyn.Get("mode") ?? panelDyn.Get("Mode") ?? 0);
 
-        if (currentMode >= AreaModeExtender.MODE_DSIDE)
+        if (currentMode >= AreaModeExtender.MODE_2)
         {
             string stateKey = $"{area.SID}_last_mode";
             Logger.Log(LogLevel.Debug, "DZ", $"Saved D-Side panel mode for {area.SID}: {AreaModeExtender.GetSideLabel(currentMode)}");
@@ -391,13 +391,13 @@ public static class CelesteDSideHooks
             return;
 
         int mode = (int)self.Session.Area.Mode;
-        if (mode < AreaModeExtender.MODE_DSIDE)
+        if (mode < AreaModeExtender.MODE_2)
             return;
 
         // Initialize D-Side specific level state
         try
         {
-            InitializeDSideLevelState(self, area, mode);
+            Initialize2LevelState(self, area, mode);
         }
         catch (Exception ex)
         {
@@ -405,14 +405,14 @@ public static class CelesteDSideHooks
         }
     }
 
-    private static void InitializeDSideLevelState(Level level, AreaData area, int mode)
+    private static void Initialize2LevelState(Level level, AreaData area, int mode)
     {
         // Set up D-Side specific difficulty/mechanics
         string sideLabel = AreaModeExtender.GetSideLabel(mode);
         Logger.Log(LogLevel.Info, "DZ", $"Loaded {sideLabel}-Side level: {area.SID}");
 
         // D-Side specific initializations can be added here
-        if (mode == AreaModeExtender.MODE_DSIDE)
+        if (mode == AreaModeExtender.MODE_2)
         {
             // D-Side specific setup
             Logger.Log(LogLevel.Debug, "DZ", "D-Side level mode initialized");
@@ -430,7 +430,7 @@ public static class CelesteDSideHooks
         if (AreaModeExtender.IsOurMap(area))
         {
             int mode = (int)self.Session.Area.Mode;
-            if (mode >= AreaModeExtender.MODE_DSIDE)
+            if (mode >= AreaModeExtender.MODE_2)
             {
                 // Clean up D-Side specific state
                 Logger.Log(LogLevel.Debug, "DZ", $"D-Side level ended: {AreaModeExtender.GetSideLabel(mode)}-Side");
@@ -447,7 +447,7 @@ public static class CelesteDSideHooks
     //     // Ensure D-Side save data structures exist
     //     try
     //     {
-    //         EnsureDSideSaveStructures(self);
+    //         Ensure2SaveStructures(self);
     //     }
     //     catch (Exception ex)
     //     {
@@ -455,7 +455,7 @@ public static class CelesteDSideHooks
     //     }
     // }
 
-    private static void EnsureDSideSaveStructures(SaveData save)
+    private static void Ensure2SaveStructures(SaveData save)
     {
         if (save?.Areas_Safe == null)
             return;
@@ -476,9 +476,9 @@ public static class CelesteDSideHooks
             DynamicData dyn = DynamicData.For(stats);
             var modes = dyn.Get("Modes") as System.Array ?? dyn.Get("modes") as System.Array;
 
-            if (modes != null && modes.Length > AreaModeExtender.MODE_DSIDE)
+            if (modes != null && modes.Length > AreaModeExtender.MODE_2)
             {
-                if (modes.GetValue(AreaModeExtender.MODE_DSIDE) == null)
+                if (modes.GetValue(AreaModeExtender.MODE_2) == null)
                 {
                     Logger.Log(LogLevel.Debug, "DZ", $"Creating D-Side stats for {area.SID}");
                 }
@@ -489,7 +489,7 @@ public static class CelesteDSideHooks
     /// <summary>
     /// Check if a D-Side heart gem has been collected for a specific chapter.
     /// </summary>
-    public static bool HasDSideHeartGem(AreaData area, int modeIndex = AreaModeExtender.MODE_DSIDE)
+    public static bool Has2HeartGem(AreaData area, int modeIndex = AreaModeExtender.MODE_2)
     {
         if (area == null || !AreaModeExtender.IsOurMap(area))
             return false;
@@ -501,7 +501,7 @@ public static class CelesteDSideHooks
     /// <summary>
     /// Get D-Side completion status for a chapter.
     /// </summary>
-    public static bool IsDSideCompleted(AreaData area, int modeIndex = AreaModeExtender.MODE_DSIDE)
+    public static bool Is2Completed(AreaData area, int modeIndex = AreaModeExtender.MODE_2)
     {
         if (area == null || !AreaModeExtender.IsOurMap(area))
             return false;
@@ -512,7 +512,7 @@ public static class CelesteDSideHooks
     /// <summary>
     /// Manually unlock a D-Side for testing/debug purposes.
     /// </summary>
-    public static void UnlockDSide(AreaData area, int modeIndex = AreaModeExtender.MODE_DSIDE)
+    public static void Unlock2(AreaData area, int modeIndex = AreaModeExtender.MODE_2)
     {
         if (area == null || !AreaModeExtender.IsOurMap(area))
             return;

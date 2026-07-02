@@ -2,7 +2,7 @@ local floweyNPC = {}
 
 floweyNPC.name = "DZ/FloweyNPC"
 floweyNPC.depth = 0
-floweyNPC.texture = "objects/DZ/flowey_npc"
+floweyNPC.texture = "objects/DZ/DZ/DZ/flowey_npc"
 
 floweyNPC.placements = {
     name = "flowey_npc",

@@ -21,13 +21,13 @@ namespace Celeste.Entities
         {
             this.launchSpeed = data.Float("launchSpeed", -300f);
 
-            boardTexture = AtlasPathHelper.TryGetTexture("objects/divingBoard");
-            baseTexture = AtlasPathHelper.TryGetTexture("objects/divingBoardBase");
+            boardTexture = AtlasPathHelper.TryGetTexture("objects/DZ/DZ/divingBoard");
+            baseTexture = AtlasPathHelper.TryGetTexture("objects/DZ/DZ/divingBoardBase");
             
             // Validate that required textures exist before loading them to avoid runtime exceptions.
             if (boardTexture == null || baseTexture == null)
             {
-                throw new InvalidOperationException("Required diving board textures are missing for 'objects/divingBoard'.");
+                throw new InvalidOperationException("Required diving board textures are missing for 'objects/DZ/DZ/divingBoard'.");
             }
             
             Add(wiggler = Wiggler.Create(0.5f, 4f, delegate (float v)

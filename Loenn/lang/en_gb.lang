@@ -250,7 +250,7 @@ entities.DZ/CardShark.placements.name.patrolDistance=Patrol Distance
 entities.DZ/Cassette.placements.name.cassette=Cassette
 entities.DZ/Cassette.placements.name.spritePath=Sprite Path
 entities.DZ/Cassette.placements.name.unlockText=Unlock Text
-entities.DZ/Cassette.placements.name.bSideToUnlock=B Side To Unlock
+entities.DZ/Cassette.placements.name.1ToUnlock=B Side To Unlock
 
 # Cassette Tape
 entities.DZ/CassetteTape.placements.name.cassette_tape=Cassette Tape
@@ -827,7 +827,7 @@ entities.DZ/HeartGem.placements.name.customSfx=Custom Sfx
 entities.DZ/HeartGem.placements.name.fake=Fake
 entities.DZ/HeartGem.placements.name.astral=Astral
 entities.DZ/HeartGem.placements.name.sevenbirdFlyby=Sevenbird Flyby
-entities.DZ/HeartGem.placements.name.unlockDside=Unlock Dside
+entities.DZ/HeartGem.placements.name.unlock2=Unlock 2
 
 # Heart Gem Sattelite
 entities.DZ/HeartGemSattelite.placements.name.heart_gem_sattelite=Heart Gem Sattelite
@@ -1843,7 +1843,7 @@ entities.DZ/Tape.placements.name.tape=Tape
 entities.DZ/Tape.placements.name.spritePath=Sprite Path
 entities.DZ/Tape.placements.name.menuSprite=Menu Sprite
 entities.DZ/Tape.placements.name.particleColor=Particle Color
-entities.DZ/Tape.placements.name.cSideToUnlock=C Side To Unlock
+entities.DZ/Tape.placements.name.2ToUnlock=C Side To Unlock
 entities.DZ/Tape.placements.name.unlockText=Unlock Text
 entities.DZ/Tape.placements.name.glowStrength=Glow Strength
 entities.DZ/Tape.placements.name.bloomStrength=Bloom Strength

@@ -74,7 +74,7 @@ namespace Celeste.Entities {
                 sprite = GFX.SpriteBank.Create(spriteName);
             } else {
                 // Fallback sprite
-                sprite = new Sprite(GFX.Game, "objects/kevins_pc/");
+                sprite = new Sprite(GFX.Game, "objects/DZ/DZ/kevins_pc/");
                 sprite.AddLoop("idle", "pc_idle", 0.1f);
                 sprite.AddLoop("active", "pc_idle", 0.05f);
             }

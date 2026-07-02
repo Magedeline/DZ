@@ -56,7 +56,7 @@ public class TempleCrackedBlock : CelesteSolid
         _entityId   = entityId;
         Collidable  = false;
         Name        = "TempleCrackedBlock";
-        // TODO: load atlas sub-textures "objects/temple/breakBlock"
+        // TODO: load atlas sub-textures "objects/DZ/DZ/temple/breakBlock"
     }
 
     // ── Nez lifecycle ─────────────────────────────────────────────────────────

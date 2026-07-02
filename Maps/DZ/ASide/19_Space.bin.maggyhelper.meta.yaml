@@ -1,14 +1,14 @@
 schema: DZ-map-meta-v1
-sid: DZ/ASide/19_Space
+sid: DZ/0/19_Space
 baseKey: 19_Space
 side: A
 modeIndex: 0
 isMainChapterEntry: true
-mainChapterSid: DZ/ASide/19_Space
+mainChapterSid: DZ/0/19_Space
 showInChapterSelect: true
 
 MusicBySide:
   - event:/music/pusheen/menu/complete_area
 Title:
-  ASide: "Chapter Complete"
+  0: "Chapter Complete"
   FullClear: "Chapter Clear"

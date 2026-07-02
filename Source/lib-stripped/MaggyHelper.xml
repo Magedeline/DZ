@@ -178,7 +178,7 @@ to DZ.dll when this file is copied beside the build output.
       <param name="modeIndex">Zero-based side index.</param>
       <returns>The folder segment used to build a side SID.</returns>
     </member>
-    <member name="M:DZ.AreaModeExtender.BuildSideSID(System.Int32,System.String)">
+    <member name="M:DZ.AreaModeExtender.Buil2SID(System.Int32,System.String)">
       <summary>
         Build a Desolo Zantas map SID from a side index and map basename.
       </summary>
@@ -186,15 +186,15 @@ to DZ.dll when this file is copied beside the build output.
       <param name="mapName">Map basename without the <c>.bin</c> extension.</param>
       <returns>A side-specific SID rooted at the internal <c>DZ</c> prefix.</returns>
     </member>
-    <member name="M:DZ.AreaModeExtender.BuildSideSID(System.String,System.String)">
+    <member name="M:DZ.AreaModeExtender.Buil2SID(System.String,System.String)">
       <summary>
         Build a Desolo Zantas map SID from a side-folder name and map basename.
       </summary>
-      <param name="sideFolder">Folder name such as <c>ASide</c> or <c>DXSide</c>.</param>
+      <param name="sideFolder">Folder name such as <c>0</c> or <c>DXSide</c>.</param>
       <param name="mapName">Map basename without the <c>.bin</c> extension.</param>
       <returns>A side-specific SID.</returns>
     </member>
-    <member name="M:DZ.AreaModeExtender.BuildASideSID(System.String)">
+    <member name="M:DZ.AreaModeExtender.Build0SID(System.String)">
       <summary>
         Convenience helper for building an A-Side SID.
       </summary>

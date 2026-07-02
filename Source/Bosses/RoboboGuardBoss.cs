@@ -5,7 +5,7 @@ namespace Celeste.Entities.Bosses
     /// <summary>
     /// Robobo Guard Mid-Boss - A robotic security unit
     /// Mechanical mid-boss with programmed attack patterns
-    /// Sprite path: characters/roboboguard/
+    /// Sprite path: characters/DZ/roboboguard/
     /// </summary>
     [CustomEntity(ids: "DZ/RoboboGuardBoss")]
     [Tracked]
@@ -76,7 +76,7 @@ namespace Celeste.Entities.Bosses
         private void SetupVisuals()
         {
             // Body sprite
-            Add(bodySprite = new Sprite(GFX.Game, "characters/roboboguard/"));
+            Add(bodySprite = new Sprite(GFX.Game, "characters/DZ/roboboguard/"));
             bodySprite.AddLoop("idle", "body_idle", 0.12f);
             bodySprite.AddLoop("walk", "body_walk", 0.08f);
             bodySprite.AddLoop("alert", "body_alert", 0.1f);
@@ -87,7 +87,7 @@ namespace Celeste.Entities.Bosses
             bodySprite.CenterOrigin();
             
             // Eye/visor sprite
-            Add(eyeSprite = new Sprite(GFX.Game, "characters/roboboguard/"));
+            Add(eyeSprite = new Sprite(GFX.Game, "characters/DZ/roboboguard/"));
             eyeSprite.AddLoop("green", "eye_green", 0.1f);
             eyeSprite.AddLoop("yellow", "eye_yellow", 0.08f);
             eyeSprite.AddLoop("red", "eye_red", 0.05f);
@@ -98,7 +98,7 @@ namespace Celeste.Entities.Bosses
             eyeSprite.Position = new Vector2(0f, -44f);
             
             // Arms sprite
-            Add(armsSprite = new Sprite(GFX.Game, "characters/roboboguard/"));
+            Add(armsSprite = new Sprite(GFX.Game, "characters/DZ/roboboguard/"));
             armsSprite.AddLoop("idle", "arms_idle", 0.12f);
             armsSprite.AddLoop("punch", "arms_punch", 0.04f);
             armsSprite.AddLoop("guard", "arms_guard", 0.1f);
@@ -107,7 +107,7 @@ namespace Celeste.Entities.Bosses
             armsSprite.Position = new Vector2(0f, -30f);
             
             // Energy shield sprite
-            Add(shieldSprite = new Sprite(GFX.Game, "characters/roboboguard/"));
+            Add(shieldSprite = new Sprite(GFX.Game, "characters/DZ/roboboguard/"));
             shieldSprite.AddLoop("active", "shield_active", 0.04f);
             shieldSprite.AddLoop("flicker", "shield_flicker", 0.03f);
             shieldSprite.CenterOrigin();

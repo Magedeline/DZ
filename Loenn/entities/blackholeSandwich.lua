@@ -2,7 +2,7 @@ local blackholeSandwich = {}
 
 blackholeSandwich.name = "DZ/BlackholeSandwich"
 blackholeSandwich.depth = 0
-blackholeSandwich.texture = "objects/DZ/blackhole_sandwich"
+blackholeSandwich.texture = "objects/DZ/DZ/DZ/blackhole_sandwich"
 
 blackholeSandwich.placements = {
     name = "blackhole_sandwich",

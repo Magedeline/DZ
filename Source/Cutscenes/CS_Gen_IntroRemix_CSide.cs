@@ -13,7 +13,7 @@ namespace Celeste.Cutscenes;
 /// 
 /// Plays when entering a C-Side chapter for the first time.
 /// </summary>
-public class CS_Gen_IntroRemix_CSide : Scene
+public class CS_Gen_IntroRemix_2 : Scene
 {
     private readonly Session session;
 
@@ -54,7 +54,7 @@ public class CS_Gen_IntroRemix_CSide : Scene
 
     public bool CanPause { get; private set; } = true;
 
-    public CS_Gen_IntroRemix_CSide(Session session)
+    public CS_Gen_IntroRemix_2(Session session)
     {
         this.session = session;
     }
@@ -86,12 +86,12 @@ public class CS_Gen_IntroRemix_CSide : Scene
         try
         {
             string chapterKey = areaData?.SID?.Split('/').LastOrDefault() ?? "";
-            string bgPath = $"cside_intros/{chapterKey}";
+            string bgPath = $"2_intros/{chapterKey}";
 
             if (GFX.Gui.Has(bgPath))
                 bgTexture = GFX.Gui[bgPath];
-            else if (GFX.Gui.Has("cside_intros/default"))
-                bgTexture = GFX.Gui["cside_intros/default"];
+            else if (GFX.Gui.Has("2_intros/default"))
+                bgTexture = GFX.Gui["2_intros/default"];
 
             if (GFX.Gui.Has("vhs/overlay_damaged"))
                 vhsOverlay = GFX.Gui["vhs/overlay_damaged"];

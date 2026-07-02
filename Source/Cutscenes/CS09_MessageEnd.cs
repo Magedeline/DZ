@@ -55,7 +55,7 @@ namespace Celeste.Cutscenes
             catch
             {
                 // Fallback if phone sprite doesn't exist
-                phoneSprite = new Sprite(GFX.Game, "objects/phone/");
+                phoneSprite = new Sprite(GFX.Game, "objects/DZ/DZ/phone/");
                 phoneSprite.AddLoop("idle", "idle", 0.1f);
                 phoneSprite.Play("idle");
             }

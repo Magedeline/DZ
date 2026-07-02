@@ -10,7 +10,7 @@ internal class DZMapMetadata
     /// <summary>Schema version identifier</summary>
     public string Schema { get; set; } = "DZ-map-meta-v1";
 
-    /// <summary>Full SID of the map (e.g., "DZ/ASide/00_Prologue")</summary>
+    /// <summary>Full SID of the map (e.g., "DZ/0/00_Prologue")</summary>
     public string Sid { get; set; } = string.Empty;
 
     /// <summary>Base map key without side prefix (e.g., "00_Prologue")</summary>
@@ -38,13 +38,13 @@ internal class DZMapMetadata
     public int? ChapterNumber { get; set; }
 
     /// <summary>Whether this map has a B-Side variant</summary>
-    public bool HasBSide { get; set; } = false;
+    public bool Has1 { get; set; } = false;
 
     /// <summary>Whether this map has a C-Side variant</summary>
-    public bool HasCSide { get; set; } = false;
+    public bool Has2 { get; set; } = false;
 
     /// <summary>Whether this map has a D-Side variant</summary>
-    public bool HasDSide { get; set; } = false;
+    public bool Has2 { get; set; } = false;
 
     /// <summary>Music events to play on chapter completion by side</summary>
     public List<string>? MusicBySide { get; set; }

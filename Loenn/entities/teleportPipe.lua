@@ -2,7 +2,7 @@ local teleportPipe = {}
 
 teleportPipe.name = "DZ/TeleportPipe"
 teleportPipe.depth = 0
-teleportPipe.texture = "objects/DZ/teleport_pipe"
+teleportPipe.texture = "objects/DZ/DZ/DZ/teleport_pipe"
 
 teleportPipe.placements = {
     name = "teleport_pipe",

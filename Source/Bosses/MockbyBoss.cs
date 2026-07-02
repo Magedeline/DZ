@@ -5,7 +5,7 @@ namespace Celeste.Entities.Bosses
     /// <summary>
     /// Mockby Mid-Boss - A mischievous prankster enemy
     /// Trickster mid-boss with deceptive attacks and illusions
-    /// Sprite path: characters/mockby/
+    /// Sprite path: characters/DZ/mockby/
     /// </summary>
     [CustomEntity(ids: "DZ/MockbyBoss")]
     [Tracked]
@@ -72,7 +72,7 @@ namespace Celeste.Entities.Bosses
         private void SetupVisuals()
         {
             // Body sprite
-            Add(bodySprite = new Sprite(GFX.Game, "characters/mockby/"));
+            Add(bodySprite = new Sprite(GFX.Game, "characters/DZ/mockby/"));
             bodySprite.AddLoop("idle", "body_idle", 0.1f);
             bodySprite.AddLoop("laugh", "body_laugh", 0.05f);
             bodySprite.AddLoop("sneak", "body_sneak", 0.08f);
@@ -83,7 +83,7 @@ namespace Celeste.Entities.Bosses
             bodySprite.CenterOrigin();
             
             // Expressive face sprite (overlays body)
-            Add(faceSprite = new Sprite(GFX.Game, "characters/mockby/"));
+            Add(faceSprite = new Sprite(GFX.Game, "characters/DZ/mockby/"));
             faceSprite.AddLoop("normal", "face_normal", 0.12f);
             faceSprite.AddLoop("laugh", "face_laugh", 0.04f);
             faceSprite.AddLoop("smirk", "face_smirk", 0.1f);
@@ -92,7 +92,7 @@ namespace Celeste.Entities.Bosses
             faceSprite.Position = new Vector2(0f, -28f);
             
             // Special effects sprite
-            Add(effectSprite = new Sprite(GFX.Game, "characters/mockby/"));
+            Add(effectSprite = new Sprite(GFX.Game, "characters/DZ/mockby/"));
             effectSprite.AddLoop("sparkle", "effect_sparkle", 0.05f);
             effectSprite.AddLoop("smoke", "effect_smoke", 0.06f);
             effectSprite.AddLoop("question", "effect_question", 0.08f);

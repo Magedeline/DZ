@@ -58,7 +58,7 @@ namespace Celeste.Entities
             else
             {
                 // Fallback sprite
-                sprite = new Sprite(GFX.Game, "objects/temple/");
+                sprite = new Sprite(GFX.Game, "objects/DZ/DZ/temple/");
                 sprite.AddLoop("lit", "torch00", 0.1f);
                 sprite.AddLoop("unlit", "torch01", 0.1f);
                 sprite.AddLoop("magical", "torch00", 0.05f); // Faster animation for magical

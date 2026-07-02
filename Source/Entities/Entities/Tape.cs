@@ -14,7 +14,7 @@ public class DesoloZantasTape : Entity
 {
     // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ Inner UI Cutscene â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
-    private sealed class UnlockedCSideCutscene : Entity
+    private sealed class Unlocked2Cutscene : Entity
     {
         private float alpha, textAlpha;
         public readonly string[] text;
@@ -23,7 +23,7 @@ public class DesoloZantasTape : Entity
         private readonly string menuSprite;
         public int textIndex;
 
-        public UnlockedCSideCutscene(string[] unlockText, string menuSprite)
+        public Unlocked2Cutscene(string[] unlockText, string menuSprite)
         {
             text = unlockText;
             this.menuSprite = menuSprite;
@@ -226,7 +226,7 @@ public class DesoloZantasTape : Entity
 
     // â”€â”€â”€â”€â”€ Unlock data â”€â”€â”€â”€â”€
     private readonly string[]  _unlockText;
-    private readonly string    _cSideToUnlock;
+    private readonly string    _2ToUnlock;
 
     // â”€â”€â”€â”€â”€ Visual tuning â”€â”€â”€â”€â”€
     private readonly Color _particleColor;
@@ -267,8 +267,8 @@ public class DesoloZantasTape : Entity
         _previewParamValue= data.Float("previewParamValue",-1f); // -1 = use area ID
 
         // Unlock  (e.g. "map/campaingname/mapname/map.bin")
-        _cSideToUnlock = data.Attr("cSideToUnlock", "");
-        _unlockText    = ResolveUnlockText(data.Attr("unlockText", ""), _cSideToUnlock);
+        _2ToUnlock = data.Attr("2ToUnlock", "");
+        _unlockText    = ResolveUnlockText(data.Attr("unlockText", ""), _2ToUnlock);
     }
 
     // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ Entity Lifecycle â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
@@ -279,8 +279,8 @@ public class DesoloZantasTape : Entity
         base.Added(scene);
         EnsureParticles();
 
-        IsGhost = !string.IsNullOrEmpty(_cSideToUnlock)
-               && IngesteModule.SaveData.UnlockedCSideIDs.Contains(_cSideToUnlock);
+        IsGhost = !string.IsNullOrEmpty(_2ToUnlock)
+               && IngesteModule.SaveData.Unlocked2IDs.Contains(_2ToUnlock);
 
         string animKey = IsGhost ? "ghost" : "idle";
         _sprite = new Sprite(GFX.Game, _spritePath);
@@ -357,16 +357,16 @@ public class DesoloZantasTape : Entity
         level.Session.RespawnPoint = level.GetSpawnPoint(_nodes[1]);
         level.Session.UpdateLevelStartDashes();
 
-        if (!string.IsNullOrEmpty(_cSideToUnlock))
+        if (!string.IsNullOrEmpty(_2ToUnlock))
         {
-            IngesteModule.SaveData.UnlockedCSideIDs.Add(_cSideToUnlock);
-            if (!IngesteModule.SaveData.PendingCSideUnlockIDs.Contains(_cSideToUnlock))
-                IngesteModule.SaveData.PendingCSideUnlockIDs.Add(_cSideToUnlock);
+            IngesteModule.SaveData.Unlocked2IDs.Add(_2ToUnlock);
+            if (!IngesteModule.SaveData.Pending2UnlockIDs.Contains(_2ToUnlock))
+                IngesteModule.SaveData.Pending2UnlockIDs.Add(_2ToUnlock);
         }
 
         DZ.DZProgressionManager.RecordCassette(level);
         if (level.Session.RespawnPoint.HasValue)
-            DZ.DZProgressionManager.RecordCheckpoint(level, level.Session.RespawnPoint.Value, _cSideToUnlock);
+            DZ.DZProgressionManager.RecordCheckpoint(level, level.Session.RespawnPoint.Value, _2ToUnlock);
 
         cbm?.StopBlocks();
         Depth = -1000000;
@@ -410,7 +410,7 @@ public class DesoloZantasTape : Entity
         float paramValue = _previewParamValue >= 0f ? _previewParamValue : (float)level.Session.Area.ID;
         _remixSfx = Audio.Play(DefaultPreviewEvent, DefaultPreviewParamName, paramValue);
 
-        var message = new UnlockedCSideCutscene(_unlockText, _menuSprite);
+        var message = new Unlocked2Cutscene(_unlockText, _menuSprite);
         Scene.Add(message);
         yield return message.EaseIn();
 
@@ -454,17 +454,17 @@ public class DesoloZantasTape : Entity
 
     // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
-    private static string[] ResolveUnlockText(string custom, string cSideToUnlock)
+    private static string[] ResolveUnlockText(string custom, string 2ToUnlock)
     {
         if (!string.IsNullOrEmpty(custom))
             return custom.Split(',');
 
-        string up = cSideToUnlock.ToUpperInvariant();
-        if (up.Contains("BSIDE") || up.Contains("B_SIDE")) return new[] { "DZ_BSide_unlocked" };
-        if (up.Contains("CSIDE") || up.Contains("C_SIDE")) return new[] { "DZ_CSide_unlocked" };
-        if (up.Contains("DSIDE") || up.Contains("D_SIDE")) return new[] { "DZ_DSide_unlocked" };
+        string up = 2ToUnlock.ToUpperInvariant();
+        if (up.Contains("1") || up.Contains("B_SIDE")) return new[] { "DZ_1_unlocked" };
+        if (up.Contains("2") || up.Contains("C_SIDE")) return new[] { "DZ_2_unlocked" };
+        if (up.Contains("2") || up.Contains("D_SIDE")) return new[] { "DZ_2_unlocked" };
         if (up.Contains("REMIX"))                           return new[] { "DZ_RemixExtra_unlocked" };
-        return new[] { "DZ_CSide_unlocked" };
+        return new[] { "DZ_2_unlocked" };
     }
 }
 

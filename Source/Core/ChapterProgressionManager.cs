@@ -14,14 +14,14 @@ using MonoMod.Utils;
 /// </summary>
 public static class ChapterProgressionManager
 {
-    private static readonly string Ch9Sid  = AreaModeExtender.BuildASideSID("09_Summit");
-    private static readonly string Ch10Sid = AreaModeExtender.BuildASideSID("10_Ruins");
-    private static readonly string Ch15Sid = AreaModeExtender.BuildASideSID("15_Castle");
-    private static readonly string Ch16Sid = AreaModeExtender.BuildASideSID("16_Corruption");
-    private static readonly string Ch18Sid = AreaModeExtender.BuildASideSID("18_Heart");
-    private static readonly string Ch19Sid = AreaModeExtender.BuildASideSID("19_Space");
-    private static readonly string Ch20Sid = AreaModeExtender.BuildASideSID("20_TheEnd");
-    private static readonly string Ch21Sid = AreaModeExtender.BuildASideSID("21_LastLevel");
+    private static readonly string Ch9Sid  = AreaModeExtender.Build0SID("09_Summit");
+    private static readonly string Ch10Sid = AreaModeExtender.Build0SID("10_Ruins");
+    private static readonly string Ch15Sid = AreaModeExtender.Build0SID("15_Castle");
+    private static readonly string Ch16Sid = AreaModeExtender.Build0SID("16_Corruption");
+    private static readonly string Ch18Sid = AreaModeExtender.Build0SID("18_Heart");
+    private static readonly string Ch19Sid = AreaModeExtender.Build0SID("19_Space");
+    private static readonly string Ch20Sid = AreaModeExtender.Build0SID("20_TheEnd");
+    private static readonly string Ch21Sid = AreaModeExtender.Build0SID("21_LastLevel");
 
     private static bool _hooked;
     private static bool _processedLaunchPendingUnlocks;
@@ -83,24 +83,24 @@ public static class ChapterProgressionManager
         yield return new SwapImmediately(orig(self, from));
 
         var save = global::Celeste.Mod.DZ.DZModule.SaveData;
-        if (save == null || save.PendingCSideUnlockIDs.Count == 0)
+        if (save == null || save.Pending2UnlockIDs.Count == 0)
             yield break;
 
-        var pending = new List<string>(save.PendingCSideUnlockIDs);
-        save.PendingCSideUnlockIDs.Clear();
+        var pending = new List<string>(save.Pending2UnlockIDs);
+        save.Pending2UnlockIDs.Clear();
 
         DynamicData dd = new DynamicData(self);
         var icons = dd.Get<List<OuiChapterSelectIcon>>("icons");
         if (icons == null)
             yield break;
 
-        foreach (string cSideId in pending)
+        foreach (string 2Id in pending)
         {
-            OuiChapterSelectIcon icon = FindCSideIcon(icons, cSideId);
+            OuiChapterSelectIcon icon = Find2Icon(icons, 2Id);
             if (icon == null)
                 continue;
 
-            Audio.Play("event:/pusheen/ui/postgame/unlock_cside");
+            Audio.Play("event:/pusheen/ui/postgame/unlock_2");
 
             bool ready = false;
             icon.HighlightUnlock(delegate { ready = true; });
@@ -109,11 +109,11 @@ public static class ChapterProgressionManager
 
             yield return 0.2f;
 
-            Logger.Log(LogLevel.Info, "DZ", $"C-Side unlock animation played for: {cSideId}");
+            Logger.Log(LogLevel.Info, "DZ", $"C-Side unlock animation played for: {2Id}");
         }
     }
 
-    private static OuiChapterSelectIcon FindCSideIcon(List<OuiChapterSelectIcon> icons, string cSideId)
+    private static OuiChapterSelectIcon Find2Icon(List<OuiChapterSelectIcon> icons, string 2Id)
     {
         for (int i = 0; i < icons.Count; i++)
         {
@@ -148,8 +148,8 @@ public static class ChapterProgressionManager
                     continue;
 
                 string sid = areaData.SID;
-                if (sid.Equals(cSideId, StringComparison.OrdinalIgnoreCase) ||
-                    sid.Contains(cSideId, StringComparison.OrdinalIgnoreCase))
+                if (sid.Equals(2Id, StringComparison.OrdinalIgnoreCase) ||
+                    sid.Contains(2Id, StringComparison.OrdinalIgnoreCase))
                     return icon;
             }
             catch
@@ -641,8 +641,8 @@ public static class ChapterProgressionManager
             $"pending16={save.PendingUnlockChapter16OnRestart}, pending19={save.PendingUnlockChapter19OnRestart}, pending20={save.PendingUnlockChapter20OnRestart}, pending21={save.PendingUnlockChapter21OnRestart}");
     }
 
-    [Command("DZ_unlock_dside", "Unlock D-Side (or DX-Side) for all DZ chapters. Usage: DZ_unlock_dside [dside|dxside|status]")]
-    private static void CmdUnlockDSide(string mode = "dside")
+    [Command("DZ_unlock_2", "Unlock D-Side (or DX-Side) for all DZ chapters. Usage: DZ_unlock_2 [2|dxside|status]")]
+    private static void CmdUnlock2(string mode = "2")
     {
         var vanillaSave = SaveData.Instance;
         var DZSave = global::Celeste.Mod.DZ.DZModule.SaveData;
@@ -653,7 +653,7 @@ public static class ChapterProgressionManager
             return;
         }
 
-        mode = (mode ?? "dside").Trim().ToLowerInvariant();
+        mode = (mode ?? "2").Trim().ToLowerInvariant();
 
         if (mode == "status")
         {
@@ -661,7 +661,7 @@ public static class ChapterProgressionManager
             foreach (var ad in AreaData.Areas)
             {
                 if (ad?.SID == null || !AreaModeExtender.IsOurMap(ad)) continue;
-                bool dUnlocked = AreaModeExtender.IsSideUnlocked(ad.ToKey(), AreaModeExtender.MODE_DSIDE);
+                bool dUnlocked = AreaModeExtender.IsSideUnlocked(ad.ToKey(), AreaModeExtender.MODE_2);
                 bool dxUnlocked = AreaModeExtender.IsSideUnlocked(ad.ToKey(), AreaModeExtender.MODE_DXSIDE);
                 Engine.Commands?.Log($"  {ad.SID}: D-Side={dUnlocked}, DX-Side={dxUnlocked}");
                 count++;
@@ -688,7 +688,7 @@ public static class ChapterProgressionManager
             if (unlockDX)
             {
                 // Mark D-Side heart in custom save data so DX-Side also unlocks
-                string dHeartId = $"{ad.SID}_{AreaModeExtender.GetModeName(AreaModeExtender.MODE_DSIDE)}";
+                string dHeartId = $"{ad.SID}_{AreaModeExtender.GetModeName(AreaModeExtender.MODE_2)}";
                 DZSave.CollectHeartGem(dHeartId);
             }
 

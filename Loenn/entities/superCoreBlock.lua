@@ -2,7 +2,7 @@ local superCoreBlock = {}
 
 superCoreBlock.name = "DZ/SuperCoreBlock"
 superCoreBlock.depth = 0
-superCoreBlock.texture = "objects/DZ/super_core_block"
+superCoreBlock.texture = "objects/DZ/DZ/DZ/super_core_block"
 
 superCoreBlock.placements = {
     name = "super_core_block",

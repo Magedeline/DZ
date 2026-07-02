@@ -2,7 +2,7 @@ local flameCerberus = {}
 
 flameCerberus.name = "DZ/FlameCerberus"
 flameCerberus.depth = 0
-flameCerberus.texture = "objects/DZ/flame_cerberus"
+flameCerberus.texture = "objects/DZ/DZ/DZ/flame_cerberus"
 
 flameCerberus.placements = {
     name = "flame_cerberus",

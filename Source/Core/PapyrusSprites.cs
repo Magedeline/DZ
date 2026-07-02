@@ -11,7 +11,7 @@ namespace DZ;
 public class PapyrusSprite : Sprite
 {
     public PapyrusSprite()
-        : base(GFX.Game, "characters/papyrus/")
+        : base(GFX.Game, "characters/DZ/papyrus/")
     {
         AddLoop("idle", "idle", 0.1f);
         AddLoop("walk", "walk", 0.08f);

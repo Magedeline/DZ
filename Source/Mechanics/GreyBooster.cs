@@ -69,7 +69,7 @@ namespace Celeste.Entities
         public override void Added(Scene scene)
         {
             base.Added(scene);
-            Image image = new Image(GFX.Game["objects/greybooster/outline"]);
+            Image image = new Image(GFX.Game["objects/DZ/DZ/greybooster/outline"]);
             image.CenterOrigin();
             image.Color = Color.White * 0.75f;
             outline = new Entity(Position);

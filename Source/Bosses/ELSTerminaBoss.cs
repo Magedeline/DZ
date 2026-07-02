@@ -52,7 +52,7 @@ public class ELSTerminaBoss : Actor
 
         // Placeholder sprite - replace with actual sprite path
         // this.Sprite = GFX.SpriteBank.Create("els_termina_boss");
-        this.Sprite = new Sprite(GFX.Game, "objects/ghostbuster/idle");
+        this.Sprite = new Sprite(GFX.Game, "objects/DZ/DZ/ghostbuster/idle");
         this.Sprite.AddLoop("idle", "", 0.1f);
         this.Sprite.Play("idle");
         this.Sprite.CenterOrigin();

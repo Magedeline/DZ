@@ -69,12 +69,12 @@ namespace Celeste.Cutscenes
             badelineSprite.Play("idle");
             Add(badelineSprite);
             
-            kirbySprite = new Sprite(GFX.Game, "characters/kirby/");
+            kirbySprite = new Sprite(GFX.Game, "characters/DZ/kirby/");
             kirbySprite.AddLoop("sit", "idle", 0.1f);
             kirbySprite.Play("sit");
             Add(kirbySprite);
             
-            asrielSprite = new Sprite(GFX.Game, "characters/asriel/");
+            asrielSprite = new Sprite(GFX.Game, "characters/DZ/asriel/");
             asrielSprite.AddLoop("sit", "idle", 0.1f);
             asrielSprite.Play("sit");
             Add(asrielSprite);

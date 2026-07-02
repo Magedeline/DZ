@@ -30,9 +30,9 @@ public static class SideLockDisplaySystem
     }
 
     /// <summary>Lock display configs for extended modes</summary>
-    public static readonly LockDisplayConfig DSideLockConfig = new()
+    public static readonly LockDisplayConfig 2LockConfig = new()
     {
-        ModeIndex = AreaModeExtender.MODE_DSIDE,
+        ModeIndex = AreaModeExtender.MODE_2,
         LockIcon = "ui/common/lock",
         LockedLabel = "D-Side: Locked",
         RequirementText = "Beat C-Side to unlock",
@@ -114,7 +114,7 @@ public static class SideLockDisplaySystem
 
         // Always render a compact legend listing every locked extended side so the
         // player can see lock status even while browsing A/B/C.
-        DrawLockedSidesLegend(self.Area, area, cardPos);
+        DrawLocke2sLegend(self.Area, area, cardPos);
     }
 
     private static void OnChapterPanelUpdate(On.Celeste.OuiChapterPanel.orig_Update orig,
@@ -139,7 +139,7 @@ public static class SideLockDisplaySystem
     // ── Helpers ──────────────────────────────────────────────────────────────
 
     private static bool IsExtendedMode(int modeIndex)
-        => modeIndex == AreaModeExtender.MODE_DSIDE || modeIndex == AreaModeExtender.MODE_DXSIDE;
+        => modeIndex == AreaModeExtender.MODE_2 || modeIndex == AreaModeExtender.MODE_DXSIDE;
 
     /// <summary>
     /// Reads the chapter panel's currently displayed mode index via DynamicData.
@@ -196,7 +196,7 @@ public static class SideLockDisplaySystem
     /// Draws a small legend below the chapter card listing each locked extended
     /// side (D/DX) that exists for this chapter, with its lock reason.
     /// </summary>
-    private static void DrawLockedSidesLegend(AreaKey area, AreaData areaData, Vector2 cardPos)
+    private static void DrawLocke2sLegend(AreaKey area, AreaData areaData, Vector2 cardPos)
     {
         if (areaData?.Mode == null)
             return;
@@ -204,7 +204,7 @@ public static class SideLockDisplaySystem
         float y = cardPos.Y + CardSize.Y / 2f + 16f;
         bool drewAny = false;
 
-        for (int mode = AreaModeExtender.MODE_DSIDE; mode <= AreaModeExtender.MODE_DXSIDE; mode++)
+        for (int mode = AreaModeExtender.MODE_2; mode <= AreaModeExtender.MODE_DXSIDE; mode++)
         {
             if (mode >= areaData.Mode.Length || areaData.Mode[mode] == null)
                 continue;
@@ -240,7 +240,7 @@ public static class SideLockDisplaySystem
 
         return modeIndex switch
         {
-            AreaModeExtender.MODE_DSIDE => DSideLockConfig,
+            AreaModeExtender.MODE_2 => 2LockConfig,
             AreaModeExtender.MODE_DXSIDE => DXSideLockConfig,
             _ => null
         };
@@ -321,9 +321,9 @@ public static class SideLockDisplaySystem
         return modeIndex switch
         {
             AreaModeExtender.MODE_NORMAL => "A-Side",
-            AreaModeExtender.MODE_BSIDE => "B-Side",
-            AreaModeExtender.MODE_CSIDE => "C-Side",
-            AreaModeExtender.MODE_DSIDE => "D-Side",
+            AreaModeExtender.MODE_1 => "B-Side",
+            AreaModeExtender.MODE_2 => "C-Side",
+            AreaModeExtender.MODE_2 => "D-Side",
             AreaModeExtender.MODE_DXSIDE => "DX-Side",
             _ => $"Side {modeIndex}"
         };

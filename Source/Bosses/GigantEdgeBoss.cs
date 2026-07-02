@@ -5,7 +5,7 @@ namespace Celeste.Entities.Bosses
     /// <summary>
     /// Gigant Edge Mid-Boss - A massive armored knight
     /// Heavy hitting mid-boss with sword and shield attacks
-    /// Sprite path: characters/gigantedge/
+    /// Sprite path: characters/DZ/gigantedge/
     /// </summary>
     [CustomEntity(ids: "DZ/GigantEdgeBoss")]
     [Tracked]
@@ -73,7 +73,7 @@ namespace Celeste.Entities.Bosses
         private void SetupVisuals()
         {
             // Main body/armor sprite
-            Add(bodySprite = new Sprite(GFX.Game, "characters/gigantedge/"));
+            Add(bodySprite = new Sprite(GFX.Game, "characters/DZ/gigantedge/"));
             bodySprite.AddLoop("idle", "body_idle", 0.12f);
             bodySprite.AddLoop("walk", "body_walk", 0.08f);
             bodySprite.AddLoop("attack", "body_attack", 0.06f);
@@ -84,7 +84,7 @@ namespace Celeste.Entities.Bosses
             bodySprite.CenterOrigin();
             
             // Sword sprite
-            Add(swordSprite = new Sprite(GFX.Game, "characters/gigantedge/"));
+            Add(swordSprite = new Sprite(GFX.Game, "characters/DZ/gigantedge/"));
             swordSprite.AddLoop("idle", "sword_idle", 0.1f);
             swordSprite.Add("slash", "sword_slash", 0.04f);
             swordSprite.Add("spin", "sword_spin", 0.03f);
@@ -93,7 +93,7 @@ namespace Celeste.Entities.Bosses
             swordSprite.Position = new Vector2(24f, -32f);
             
             // Shield sprite
-            Add(shieldSprite = new Sprite(GFX.Game, "characters/gigantedge/"));
+            Add(shieldSprite = new Sprite(GFX.Game, "characters/DZ/gigantedge/"));
             shieldSprite.AddLoop("idle", "shield_idle", 0.1f);
             shieldSprite.AddLoop("raise", "shield_raise", 0.06f);
             shieldSprite.Add("bash", "shield_bash", 0.05f);
@@ -101,7 +101,7 @@ namespace Celeste.Entities.Bosses
             shieldSprite.Position = new Vector2(-24f, -32f);
             
             // Armor effect (shiny/gleam)
-            Add(armorEffectSprite = new Sprite(GFX.Game, "characters/gigantedge/"));
+            Add(armorEffectSprite = new Sprite(GFX.Game, "characters/DZ/gigantedge/"));
             armorEffectSprite.AddLoop("shine", "armor_shine", 0.15f);
             armorEffectSprite.CenterOrigin();
             armorEffectSprite.Color = Color.White * 0.5f;

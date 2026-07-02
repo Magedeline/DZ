@@ -2,7 +2,7 @@ local smallHeartDoor = {}
 
 smallHeartDoor.name = "DZ/SmallHeartDoor"
 smallHeartDoor.depth = 0
-smallHeartDoor.texture = "objects/DZ/small_heart_door"
+smallHeartDoor.texture = "objects/DZ/DZ/DZ/small_heart_door"
 
 smallHeartDoor.placements = {
     name = "small_heart_door",

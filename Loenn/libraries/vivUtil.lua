@@ -257,7 +257,7 @@ function vivUtil.firstPredicate(predicate, data)
     return nil
 end
 --- returns a given sprite with a number at the end of the string
---- getImageWithNumbers("objects/refill/idle", 00, data) => sprite from the image objects/refill/idle00
+--- getImageWithNumbers("objects/DZ/DZ/refill/idle", 00, data) => sprite from the image objects/DZ/DZ/refill/idle00
 function vivUtil.getImageWithNumbers(string, idx, data, _atlas) 
     local atlas = _atlas or data.atlas or "Gameplay"
     local val = nil

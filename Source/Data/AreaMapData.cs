@@ -60,9 +60,9 @@ public static class AreaMapData
         public string SID { get; set; }
         public string Icon { get; set; }
         public bool IsInterlude { get; set; }
-        public bool HasBSide { get; set; }
-        public bool HasCSide { get; set; }
-        public bool HasDSide { get; set; }
+        public bool Has1 { get; set; }
+        public bool Has2 { get; set; }
+        public bool Has2 { get; set; }
         public bool HasDXSide { get; set; }
 
         /// <summary>Music event per side (A, B, C, D, DX)</summary>
@@ -248,18 +248,18 @@ public static class AreaMapData
             if (string.IsNullOrEmpty(baseKey))
                 continue;
 
-            chapter.HasBSide = HasLoadedSide(baseKey, AreaModeExtender.MODE_BSIDE);
-            chapter.HasCSide = HasLoadedSide(baseKey, AreaModeExtender.MODE_CSIDE);
-            chapter.HasDSide = HasLoadedSide(baseKey, AreaModeExtender.MODE_DSIDE);
-            chapter.HasDXSide = HasLoadedSide(baseKey, AreaModeExtender.MODE_DXSIDE);
+            chapter.Has1 = HasLoade2(baseKey, AreaModeExtender.MODE_1);
+            chapter.Has2 = HasLoade2(baseKey, AreaModeExtender.MODE_2);
+            chapter.Has2 = HasLoade2(baseKey, AreaModeExtender.MODE_2);
+            chapter.HasDXSide = HasLoade2(baseKey, AreaModeExtender.MODE_DXSIDE);
         }
     }
 
-    private static bool HasLoadedSide(string baseKey, int modeIndex)
+    private static bool HasLoade2(string baseKey, int modeIndex)
     {
         try
         {
-            return AreaData.Get(AreaModeExtender.BuildSideSID(modeIndex, baseKey)) != null;
+            return AreaData.Get(AreaModeExtender.Buil2SID(modeIndex, baseKey)) != null;
         }
         catch
         {
@@ -301,20 +301,20 @@ public static class AreaMapData
         area.Mode[0] = BuildOrUpdateMode(area.Mode[0], chapter.SID,
             GetMusic(chapter, 0), GetAmbience(chapter, 0));
 
-        area.Mode[1] = chapter.HasBSide
-            ? BuildOrUpdateMode(area.Mode[1], AreaModeExtender.BuildSideSID(AreaModeExtender.MODE_BSIDE, baseKey), GetMusic(chapter, 1), GetAmbience(chapter, 1))
+        area.Mode[1] = chapter.Has1
+            ? BuildOrUpdateMode(area.Mode[1], AreaModeExtender.Buil2SID(AreaModeExtender.MODE_1, baseKey), GetMusic(chapter, 1), GetAmbience(chapter, 1))
             : null;
 
-        area.Mode[2] = chapter.HasCSide
-            ? BuildOrUpdateMode(area.Mode[2], AreaModeExtender.BuildSideSID(AreaModeExtender.MODE_CSIDE, baseKey), GetMusic(chapter, 2), GetAmbience(chapter, 2))
+        area.Mode[2] = chapter.Has2
+            ? BuildOrUpdateMode(area.Mode[2], AreaModeExtender.Buil2SID(AreaModeExtender.MODE_2, baseKey), GetMusic(chapter, 2), GetAmbience(chapter, 2))
             : null;
 
-        area.Mode[3] = chapter.HasDSide
-            ? BuildOrUpdateMode(area.Mode[3], AreaModeExtender.BuildSideSID(AreaModeExtender.MODE_DSIDE, baseKey), GetMusic(chapter, 3), GetAmbience(chapter, 3))
+        area.Mode[3] = chapter.Has2
+            ? BuildOrUpdateMode(area.Mode[3], AreaModeExtender.Buil2SID(AreaModeExtender.MODE_2, baseKey), GetMusic(chapter, 3), GetAmbience(chapter, 3))
             : null;
 
         area.Mode[4] = chapter.HasDXSide
-            ? BuildOrUpdateMode(area.Mode[4], AreaModeExtender.BuildSideSID(AreaModeExtender.MODE_DXSIDE, baseKey), GetMusic(chapter, 4), GetAmbience(chapter, 4))
+            ? BuildOrUpdateMode(area.Mode[4], AreaModeExtender.Buil2SID(AreaModeExtender.MODE_DXSIDE, baseKey), GetMusic(chapter, 4), GetAmbience(chapter, 4))
             : null;
 
         if (!string.IsNullOrEmpty(chapter.CassetteSong))
@@ -346,7 +346,7 @@ public static class AreaMapData
         }
     }
 
-    private static void EnsureASideMode(AreaData area, ChapterDef chapter)
+    private static void Ensure0Mode(AreaData area, ChapterDef chapter)
     {
         var old = area.Mode ?? Array.Empty<ModeProperties>();
         if (old.Length == 0)
@@ -447,7 +447,7 @@ public static class AreaMapData
     public static int GetAltSideChapterCount()
     {
         EnsureInitialized();
-        return Chapters.Count(c => c.HasBSide);
+        return Chapters.Count(c => c.Has1);
     }
 
     private static string ExtractBaseKey(string sid)
@@ -490,11 +490,11 @@ public static class AreaMapData
         }
         area.MountainState = chapter.MountainState;
 
-        bool hasAltSides = chapter.HasBSide || chapter.HasCSide || chapter.HasDSide || chapter.HasDXSide;
+        bool hasAltSides = chapter.Has1 || chapter.Has2 || chapter.Has2 || chapter.HasDXSide;
         if (hasAltSides)
         {
             Logger.Log(LogLevel.Verbose, "DZ",
-                $"ApplyHardcodedRuntimeData: '{area.SID}' has alt-sides (B={chapter.HasBSide}, C={chapter.HasCSide}, D={chapter.HasDSide}, DX={chapter.HasDXSide})");
+                $"ApplyHardcodedRuntimeData: '{area.SID}' has alt-sides (B={chapter.Has1}, C={chapter.Has2}, D={chapter.Has2}, DX={chapter.HasDXSide})");
             EnsureModeArray(area);
             ApplyModes(area, chapter);
         }
@@ -502,7 +502,7 @@ public static class AreaMapData
         {
             Logger.Log(LogLevel.Verbose, "DZ",
                 $"ApplyHardcodedRuntimeData: '{area.SID}' is A-Side only");
-            EnsureASideMode(area, chapter);
+            Ensure0Mode(area, chapter);
         }
     }
 
@@ -565,7 +565,7 @@ public static class AreaMapData
             Dreaming          = false,
             CassetteSong      = chapter.CassetteSong,
             Mountain          = mountain,
-            OverrideASideMeta = false,
+            Override0Meta = false,
         };
     }
 

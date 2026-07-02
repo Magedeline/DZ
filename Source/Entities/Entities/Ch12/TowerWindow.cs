@@ -15,7 +15,7 @@ namespace Celeste.Entities.Chapters.Ch12
     /// <summary>
     /// TowerWindow - Decorative window with light effects
     /// Can show different scenes and create atmosphere
-    /// Sprite path: objects/tower_window/
+    /// Sprite path: objects/DZ/DZ/tower_window/
     /// </summary>
     [CustomEntity("DZ/TowerWindow")]
     [Tracked]

@@ -2,7 +2,7 @@ local pixelEnemy = {}
 
 pixelEnemy.name = "DZ/PixelEnemy"
 pixelEnemy.depth = 0
-pixelEnemy.texture = "objects/DZ/pixel_enemy"
+pixelEnemy.texture = "objects/DZ/DZ/DZ/pixel_enemy"
 
 pixelEnemy.placements = {
     name = "pixel_enemy",

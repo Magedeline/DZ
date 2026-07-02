@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch13
     /// <summary>
     /// HotPlatform - Platform that heats up over time
     /// Becomes dangerous after being stood on too long
-    /// Sprite path: objects/hot_platform/
+    /// Sprite path: objects/DZ/DZ/hot_platform/
     /// </summary>
     [CustomEntity("DZ/HotPlatform")]
     [Tracked]

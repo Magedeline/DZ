@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch14
     /// <summary>
     /// DigitalPortal - Teleportation portal between digital zones
     /// Creates visual distortion and transports player
-    /// Sprite path: objects/digital_portal/
+    /// Sprite path: objects/DZ/DZ/digital_portal/
     /// </summary>
     [CustomEntity("DZ/DigitalPortal")]
     [Tracked]

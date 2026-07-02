@@ -256,9 +256,9 @@ public class FinalTitanSummitBackgroundManager : Entity
         }
         debrisTextures = GetCombinedAtlasSubtextures(
             PixelLabAssetRoot + "debris",
-            "characters/asrielgodboss/hg_debris",
-            "characters/asrielgodboss/hg_debrisB",
-            "characters/asrielgodboss/hg_debrisC"
+            "characters/DZ/asrielgodboss/hg_debris",
+            "characters/DZ/asrielgodboss/hg_debrisB",
+            "characters/DZ/asrielgodboss/hg_debrisC"
         );
         if (debrisTextures.Count == 0)
         {
@@ -278,7 +278,7 @@ public class FinalTitanSummitBackgroundManager : Entity
         }
         creatureTextures = GetCombinedAtlasSubtextures(
             PixelLabAssetRoot + "creature",
-            "characters/asrielgodboss/hypergoner_mainface"
+            "characters/DZ/asrielgodboss/hypergoner_mainface"
         );
         if (creatureTextures.Count == 0)
         {
@@ -293,13 +293,13 @@ public class FinalTitanSummitBackgroundManager : Entity
         }
         birdGonerAnimations = GetBirdGonerAnimations();
         soulTextures = GetCombinedTextures(
-            "characters/soul/soul/vessel_soulA",
-            "characters/soul/soul/vessel_soulB",
-            "characters/soul/soul/vessel_soulC",
-            "characters/soul/soul/vessel_soulD",
-            "characters/soul/soul/vessel_soulE",
-            "characters/soul/soul/vessel_soulF",
-            "characters/soul/soul/vessel_soulG"
+            "characters/DZ/soul/soul/vessel_soulA",
+            "characters/DZ/soul/soul/vessel_soulB",
+            "characters/DZ/soul/soul/vessel_soulC",
+            "characters/DZ/soul/soul/vessel_soulD",
+            "characters/DZ/soul/soul/vessel_soulE",
+            "characters/DZ/soul/soul/vessel_soulF",
+            "characters/DZ/soul/soul/vessel_soulG"
         );
         blobTexture = GFX.Game["particles/blob"];
 
@@ -1064,7 +1064,7 @@ public class FinalTitanSummitBackgroundManager : Entity
         List<List<MTexture>> animations = new List<List<MTexture>>();
         for (int i = 0; i < BirdGonerNames.Length; i++)
         {
-            List<MTexture> frames = TryGetAtlasSubtextures($"characters/birdgoner/{BirdGonerNames[i]}flyup");
+            List<MTexture> frames = TryGetAtlasSubtextures($"characters/DZ/birdgoner/{BirdGonerNames[i]}flyup");
             if (frames.Count > 0)
                 animations.Add(frames);
         }

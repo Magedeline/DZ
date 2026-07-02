@@ -32,7 +32,7 @@ namespace Celeste.Entities
             
             base.Collider = new Circle(12f);
             
-            Add(sprite = AtlasPathHelper.CreateSprite("objects/eyebomb/"));
+            Add(sprite = AtlasPathHelper.CreateSprite("objects/DZ/DZ/eyebomb/"));
             sprite.AddLoop("idle", "eye", 0.1f);
             sprite.Play("idle");
             sprite.CenterOrigin();

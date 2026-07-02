@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch13
     /// <summary>
     /// AxisMinion - Small fire enemy that patrols and attacks
     /// Basic enemy type for Axis boss chapter
-    /// Sprite path: characters/axis_minion/
+    /// Sprite path: characters/DZ/axis_minion/
     /// </summary>
     [CustomEntity("DZ/AxisMinion")]
     [Tracked]

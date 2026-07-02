@@ -49,7 +49,7 @@
 # ================================
 # Folder structure (Maps/DZ/)
 # ================================
-# Chapter Names - A-Side (Maps/DZ/ASide/)
+# Chapter Names - A-Side (Maps/DZ/0/)
 # ================================
 # Prologue (Chapter 0)
 # Chapter 1 - City
@@ -79,13 +79,13 @@
 # Chapter 20 - The End
 # Final Chapter (Chapter 21)
 # ================================
-# Chapter Names - B-Side (Maps/DZ/BSide/)
+# Chapter Names - B-Side (Maps/DZ/1/)
 # ================================
 # ================================
-# Chapter Names - C-Side (Maps/DZ/CSide/)
+# Chapter Names - C-Side (Maps/DZ/2/)
 # ================================
 # ================================
-# Chapter Names - D-Side (Maps/DZ/DSide/)
+# Chapter Names - D-Side (Maps/DZ/2/)
 # ================================
 # ================================
 # Chapter Names - DX-Side (Maps/DZ/DXSide/)
@@ -106,10 +106,10 @@
 # Room/Checkpoint Names - C-Side
 # ================================
 # ================================
-# B-Side Remix Info (ShowBSideRemixIntro)
+# B-Side Remix Info (Show1RemixIntro)
 # ================================
 # ================================
-# C-Side Remix Info (ShowBSideRemixIntro)
+# C-Side Remix Info (Show1RemixIntro)
 # ================================
 # ================================
 # Chapter Postcards
@@ -121,7 +121,7 @@
 # Crystal Heart Dialog
 # ================================
 # Minimal poem text for crystal hearts
-# D-side unlock from crystal heart in 18_core_cside
+# D-side unlock from crystal heart in 18_core_2
 # ================================
 # Side Completion Titles
 # ================================
@@ -790,13 +790,13 @@ DZ_CREDIT_FINAL_THANK_BY_SUB=My Good Friend Since 2018
 
 DZ=Desolo Zantas
 
-DZ_ASide=Desolo Zantas - A-Sides
+DZ_0=Desolo Zantas - A-Sides
 
-DZ_BSide=Desolo Zantas - B-Sides
+DZ_1=Desolo Zantas - B-Sides
 
-DZ_CSide=Desolo Zantas - C-Sides
+DZ_2=Desolo Zantas - C-Sides
 
-DZ_DSide=Desolo Zantas - D-Sides
+DZ_2=Desolo Zantas - D-Sides
 
 DZ_DXSide=Desolo Zantas - DX-Sides
 
@@ -806,27 +806,27 @@ DZ_PCG=Desolo Zantas - Procedural
 
 DZ_WIP=Desolo Zantas - Work in Progress
 
-DZ_ASide_00_Prologue=Prologue
+DZ_0_00_Prologue=Prologue
 
-DZ_ASide_01_City_A=Forbidden Metropolis
+DZ_0_01_City_A=Forbidden Metropolis
 
-DZ_ASide_02_Nightmare_A=Veil of Shadows
+DZ_0_02_Nightmare_A=Veil of Shadows
 
-DZ_ASide_03_Stars_A=Arrival
+DZ_0_03_Stars_A=Arrival
 
-DZ_ASide_04_Legend_A=Chronicles of Destiny
+DZ_0_04_Legend_A=Chronicles of Destiny
 
-DZ_ASide_05_Fractured_A=Fractured Memories
+DZ_0_05_Fractured_A=Fractured Memories
 
-DZ_ASide_06_Stronghold_A=Fortress of Solitude
+DZ_0_06_Stronghold_A=Fortress of Solitude
 
-DZ_ASide_07_Inferno_A=Infernal Reflections
+DZ_0_07_Inferno_A=Infernal Reflections
 
-DZ_ASide_08_Truth_A=Revelation's Edge
+DZ_0_08_Truth_A=Revelation's Edge
 
-DZ_ASide_09_Summit_A=Apex of Reality
+DZ_0_09_Summit_A=Apex of Reality
 
-DZ_ASide_10_Ruins_A=Echoes of the Past
+DZ_0_10_Ruins_A=Echoes of the Past
 
 DZ_Lobby_10_Ruins_Lobby=Ruins Lobby - Echoes of the Past
 
@@ -846,7 +846,7 @@ DZ_SmallMaps_10_Ruins_EX=Ruins - Reliquia Oculta (EX)
 
 DZ_SmallMaps_10_Ruins_Boss=Ruins - Guardián Antiguo (Boss)
 
-DZ_ASide_11_Snow_A=Santuario Congelado
+DZ_0_11_Snow_A=Santuario Congelado
 
 DZ_Lobby_11_Snowdin_Lobby=Snowdin City Lobby - Santuario Congelado
 
@@ -866,7 +866,7 @@ DZ_SmallMaps_11_Snow_EX=Snowdin - Caché Congelado (EX)
 
 DZ_SmallMaps_11_Snow_Boss=Snowdin - Guardián Glaciar (Boss)
 
-DZ_ASide_12_Water_A=Profundidades en Cascada
+DZ_0_12_Water_A=Profundidades en Cascada
 
 DZ_Lobby_12_Water_Lobby=Wateredgefalls Lobby - Profundidades en Cascada
 
@@ -886,7 +886,7 @@ DZ_SmallMaps_12_Water_EX=Waterfall - Tesoro de Temmie (EX)
 
 DZ_SmallMaps_12_Water_Boss=Waterfall - Titán Coral (Boss)
 
-DZ_ASide_13_Fire_A=Blazing Territories
+DZ_0_13_Fire_A=Blazing Territories
 
 DZ_Lobby_13_Fire_Lobby=Hotcliffland Lobby - Blazing Territories
 
@@ -906,7 +906,7 @@ DZ_SmallMaps_13_Fire_EX=Hotlands - Lava Cache (EX)
 
 DZ_SmallMaps_13_Fire_Boss=Hotlands - Inferno Lord (Boss)
 
-DZ_ASide_14_Digital_A=Cyber Nexus
+DZ_0_14_Digital_A=Cyber Nexus
 
 DZ_Lobby_14_Digital_Lobby=Cyber Nexus Lobby - Digital Frontier
 
@@ -926,117 +926,117 @@ DZ_SmallMaps_14_Digital_EX=Cyber Nexus - Digital Rift (EX)
 
 DZ_SmallMaps_14_Digital_Boss=Cyber Nexus - Queen's Core (Boss)
 
-DZ_ASide_15_Castle_A=Ethereal Citadel
+DZ_0_15_Castle_A=Ethereal Citadel
 
-DZ_ASide_16_Corruption=Organ Garden of Despair
+DZ_0_16_Corruption=Organ Garden of Despair
 
-DZ_ASide_17_Epilogue=Final Resonance
+DZ_0_17_Epilogue=Final Resonance
 
-DZ_ASide_18_Heart_A=Core of Existence
+DZ_0_18_Heart_A=Core of Existence
 
-DZ_ASide_19_Space=Farewell to Stars
+DZ_0_19_Space=Farewell to Stars
 
-DZ_ASide_20_TheEnd=Light Through the Dark
+DZ_0_20_TheEnd=Light Through the Dark
 
-DZ_ASide_21_PostEpilogue=Desolo Zantas True Finale
+DZ_0_21_PostEpilogue=Desolo Zantas True Finale
 
-DZ_ASide_lastlevel=Desolo Zantas True Finale
+DZ_0_lastlevel=Desolo Zantas True Finale
 
-DZ_BSide_01_City_B=Forbidden Metropolis
+DZ_1_01_City_B=Forbidden Metropolis
 
-DZ_BSide_02_Nightmare_B=Veil of Shadows
+DZ_1_02_Nightmare_B=Veil of Shadows
 
-DZ_BSide_03_Stars_B=Arrival
+DZ_1_03_Stars_B=Arrival
 
-DZ_BSide_04_Legend_B=Chronicles of Destiny
+DZ_1_04_Legend_B=Chronicles of Destiny
 
-DZ_BSide_05_Fractured_B=Fractured Memories
+DZ_1_05_Fractured_B=Fractured Memories
 
-DZ_BSide_06_Stronghold_B=Fortress of Solitude
+DZ_1_06_Stronghold_B=Fortress of Solitude
 
-DZ_BSide_07_Inferno_B=Infernal Reflections
+DZ_1_07_Inferno_B=Infernal Reflections
 
-DZ_BSide_08_Truth_B=Revelation's Edge
+DZ_1_08_Truth_B=Revelation's Edge
 
-DZ_BSide_09_Summit_B=Apex of Reality
+DZ_1_09_Summit_B=Apex of Reality
 
-DZ_BSide_10_Ruins_B=Echoes of the Past
+DZ_1_10_Ruins_B=Echoes of the Past
 
-DZ_BSide_11_Snow_B=Santuario Congelado
+DZ_1_11_Snow_B=Santuario Congelado
 
-DZ_BSide_12_Water_B=Profundidades en Cascada
+DZ_1_12_Water_B=Profundidades en Cascada
 
-DZ_BSide_13_Fire_B=Blazing Territories
+DZ_1_13_Fire_B=Blazing Territories
 
-DZ_BSide_14_Digital_B=Cyber Nexus
+DZ_1_14_Digital_B=Cyber Nexus
 
-DZ_BSide_15_Castle_B=Ethereal Citadel
+DZ_1_15_Castle_B=Ethereal Citadel
 
-DZ_BSide_18_Heart_B=Core of Existence
+DZ_1_18_Heart_B=Core of Existence
 
-DZ_CSide_01_City_C=Forbidden Metropolis
+DZ_2_01_City_C=Forbidden Metropolis
 
-DZ_CSide_02_Nightmare_C=Veil of Shadows
+DZ_2_02_Nightmare_C=Veil of Shadows
 
-DZ_CSide_03_Stars_C=Arrival
+DZ_2_03_Stars_C=Arrival
 
-DZ_CSide_04_Legend_C=Chronicles of Destiny
+DZ_2_04_Legend_C=Chronicles of Destiny
 
-DZ_CSide_05_Fractured_C=Fractured Memories
+DZ_2_05_Fractured_C=Fractured Memories
 
-DZ_CSide_06_Stronghold_C=Fortress of Solitude
+DZ_2_06_Stronghold_C=Fortress of Solitude
 
-DZ_CSide_07_Inferno_C=Infernal Reflections
+DZ_2_07_Inferno_C=Infernal Reflections
 
-DZ_CSide_08_Truth_C=Revelation's Edge
+DZ_2_08_Truth_C=Revelation's Edge
 
-DZ_CSide_09_Summit_C=Apex of Reality
+DZ_2_09_Summit_C=Apex of Reality
 
-DZ_CSide_10_Ruins_C=Echoes of the Past
+DZ_2_10_Ruins_C=Echoes of the Past
 
-DZ_CSide_11_Snow_C=Santuario Congelado
+DZ_2_11_Snow_C=Santuario Congelado
 
-DZ_CSide_12_Water_C=Profundidades en Cascada
+DZ_2_12_Water_C=Profundidades en Cascada
 
-DZ_CSide_13_Fire_C=Blazing Territories
+DZ_2_13_Fire_C=Blazing Territories
 
-DZ_CSide_14_Digital_C=Cyber Nexus
+DZ_2_14_Digital_C=Cyber Nexus
 
-DZ_CSide_15_Castle_C=Ethereal Citadel
+DZ_2_15_Castle_C=Ethereal Citadel
 
-DZ_CSide_18_Heart_C=Core of Existence
+DZ_2_18_Heart_C=Core of Existence
 
-DZ_DSide_01_City_D=Forbidden Metropolis
+DZ_2_01_City_D=Forbidden Metropolis
 
-DZ_DSide_02_Nightmare_D=Veil of Shadows
+DZ_2_02_Nightmare_D=Veil of Shadows
 
-DZ_DSide_03_Stars_D=Arrival
+DZ_2_03_Stars_D=Arrival
 
-DZ_DSide_04_Legend_D=Chronicles of Destiny
+DZ_2_04_Legend_D=Chronicles of Destiny
 
-DZ_DSide_05_Fractured_D=Fractured Memories
+DZ_2_05_Fractured_D=Fractured Memories
 
-DZ_DSide_06_Stronghold_D=Fortress of Solitude
+DZ_2_06_Stronghold_D=Fortress of Solitude
 
-DZ_DSide_07_Inferno_D=Infernal Reflections
+DZ_2_07_Inferno_D=Infernal Reflections
 
-DZ_DSide_08_Truth_D=Revelation's Edge
+DZ_2_08_Truth_D=Revelation's Edge
 
-DZ_DSide_09_Summit_D=Apex of Reality
+DZ_2_09_Summit_D=Apex of Reality
 
-DZ_DSide_10_Ruins_D=Echoes of the Past
+DZ_2_10_Ruins_D=Echoes of the Past
 
-DZ_DSide_11_Snow_D=Santuario Congelado
+DZ_2_11_Snow_D=Santuario Congelado
 
-DZ_DSide_12_Water_D=Profundidades en Cascada
+DZ_2_12_Water_D=Profundidades en Cascada
 
-DZ_DSide_13_Fire_D=Blazing Territories
+DZ_2_13_Fire_D=Blazing Territories
 
-DZ_DSide_14_Digital_D=Cyber Nexus
+DZ_2_14_Digital_D=Cyber Nexus
 
-DZ_DSide_15_Castle_D=Ethereal Citadel
+DZ_2_15_Castle_D=Ethereal Citadel
 
-DZ_DSide_18_Heart_D=Core of Existence
+DZ_2_18_Heart_D=Core of Existence
 
 DZ_DXSide_01_City_DX=Forbidden Metropolis DX
 
@@ -1082,363 +1082,363 @@ DZ_WIP_kirbytest=Kirby Test
 
 DZ_WIP_test=Test Map
 
-DZ_ASide_01_City_A_b_00=Jump Through
+DZ_0_01_City_A_b_00=Jump Through
 
-DZ_ASide_01_City_A_c_00=Useless mechanics
+DZ_0_01_City_A_c_00=Useless mechanics
 
-DZ_ASide_02_Nightmare_A_b_3=The Greetings
+DZ_0_02_Nightmare_A_b_3=The Greetings
 
-DZ_ASide_02_Nightmare_A_c_end_3=The Grief
+DZ_0_02_Nightmare_A_c_end_3=The Grief
 
-DZ_ASide_03_Stars_A_b_4=The Lesson
+DZ_0_03_Stars_A_b_4=The Lesson
 
-DZ_ASide_03_Stars_A_b_10d=Jumping the Gap
+DZ_0_03_Stars_A_b_10d=Jumping the Gap
 
-DZ_ASide_03_Stars_A_b_9b=Going up
+DZ_0_03_Stars_A_b_9b=Going up
 
-DZ_ASide_05_Fractured_A_08_a=Huge Cluttering Mess
+DZ_0_05_Fractured_A_08_a=Huge Cluttering Mess
 
-DZ_ASide_05_Fractured_A_09_d=Broken Elevator
+DZ_0_05_Fractured_A_09_d=Broken Elevator
 
-DZ_ASide_05_Fractured_A_00_d=Luxury with Destructions
+DZ_0_05_Fractured_A_00_d=Luxury with Destructions
 
-DZ_ASide_06_Stronghold_A_b_00=Shrine of Winds
+DZ_0_06_Stronghold_A_b_00=Shrine of Winds
 
-DZ_ASide_06_Stronghold_A_c_00=The Lost of Two Children
+DZ_0_06_Stronghold_A_c_00=The Lost of Two Children
 
-DZ_ASide_06_Stronghold_A_d_00=Freedom
+DZ_0_06_Stronghold_A_d_00=Freedom
 
-DZ_ASide_07_Inferno_A_b_00=Depths
+DZ_0_07_Inferno_A_b_00=Depths
 
-DZ_ASide_07_Inferno_A_c_00=Unravelling
+DZ_0_07_Inferno_A_c_00=Unravelling
 
-DZ_ASide_07_Inferno_A_d_00=The Search
+DZ_0_07_Inferno_A_d_00=The Search
 
-DZ_ASide_07_Inferno_A_e_00=Rescuing Madeline
+DZ_0_07_Inferno_A_e_00=Rescuing Madeline
 
-DZ_ASide_08_Truth_A_00=Lake
+DZ_0_08_Truth_A_00=Lake
 
-DZ_ASide_08_Truth_A_04=Learn from the Pain
+DZ_0_08_Truth_A_04=Learn from the Pain
 
-DZ_ASide_08_Truth_A_b_00=Self Control
+DZ_0_08_Truth_A_b_00=Self Control
 
-DZ_ASide_08_Truth_A_boss_00=Confronting His-Self
+DZ_0_08_Truth_A_boss_00=Confronting His-Self
 
-DZ_ASide_08_Truth_A_center_01=Megalo Strike Back
+DZ_0_08_Truth_A_center_01=Megalo Strike Back
 
-DZ_ASide_08_Truth_A_After_00=Realization
+DZ_0_08_Truth_A_After_00=Realization
 
-DZ_ASide_09_Summit_A_b_00=500 M
+DZ_0_09_Summit_A_b_00=500 M
 
-DZ_ASide_09_Summit_A_c_00=1000 M
+DZ_0_09_Summit_A_c_00=1000 M
 
-DZ_ASide_09_Summit_A_d_00=1500 M
+DZ_0_09_Summit_A_d_00=1500 M
 
-DZ_ASide_09_Summit_A_e_00=2000 M
+DZ_0_09_Summit_A_e_00=2000 M
 
-DZ_ASide_09_Summit_A_f_00=2500 M
+DZ_0_09_Summit_A_f_00=2500 M
 
-DZ_ASide_09_Summit_A_g_00=3000 M
+DZ_0_09_Summit_A_g_00=3000 M
 
-DZ_ASide_09_Summit_A_h_00=6000 M
+DZ_0_09_Summit_A_h_00=6000 M
 
-DZ_ASide_18_Heart_A_A_00=Into the Heart
+DZ_0_18_Heart_A_A_00=Into the Heart
 
-DZ_ASide_18_Heart_A_c_00=Hell and Sorrow
+DZ_0_18_Heart_A_c_00=Hell and Sorrow
 
-DZ_ASide_18_Heart_A_d_00=Rising Heat
+DZ_0_18_Heart_A_d_00=Rising Heat
 
-DZ_ASide_18_Heart_A_space_1=Void Of Creation
+DZ_0_18_Heart_A_space_1=Void Of Creation
 
-DZ_ASide_19_Space_A_00=Facing the Unknown
+DZ_0_19_Space_A_00=Facing the Unknown
 
-DZ_ASide_19_Space_c_00=Self Energy
+DZ_0_19_Space_c_00=Self Energy
 
-DZ_ASide_19_Space_e_00z=Hopes and What?
+DZ_0_19_Space_e_00z=Hopes and What?
 
-DZ_ASide_19_Space_f_door=In My Way
+DZ_0_19_Space_f_door=In My Way
 
-DZ_ASide_19_Space_h_00b=HOPES
+DZ_0_19_Space_h_00b=HOPES
 
-DZ_ASide_19_Space_galt_00=DREAMS
+DZ_0_19_Space_galt_00=DREAMS
 
-DZ_ASide_19_Space_i_00=Being Manipulated
+DZ_0_19_Space_i_00=Being Manipulated
 
-DZ_ASide_19_Space_j_00=A Tragic Loss
+DZ_0_19_Space_j_00=A Tragic Loss
 
-DZ_ASide_19_Space_j_mid=Never Give Up
+DZ_0_19_Space_j_mid=Never Give Up
 
-DZ_ASide_19_Space_x_00=Farewell to Stars
+DZ_0_19_Space_x_00=Farewell to Stars
 
-DZ_ASide_20_TheEnd_b_00=Puppet of Gravestone
+DZ_0_20_TheEnd_b_00=Puppet of Gravestone
 
-DZ_ASide_20_TheEnd_c_start=Searching Madeline
+DZ_0_20_TheEnd_c_start=Searching Madeline
 
-DZ_ASide_20_TheEnd_d_00=Hellish Climb
+DZ_0_20_TheEnd_d_00=Hellish Climb
 
-DZ_ASide_20_TheEnd_e_00=Introduction to Els
+DZ_0_20_TheEnd_e_00=Introduction to Els
 
-DZ_ASide_20_TheEnd_f_00=The Inner struggles
+DZ_0_20_TheEnd_f_00=The Inner struggles
 
-DZ_ASide_20_TheEnd_g_00=Your Last wishes
+DZ_0_20_TheEnd_g_00=Your Last wishes
 
-DZ_ASide_20_TheEnd_h_0=No More Running and No More Hiding
+DZ_0_20_TheEnd_h_0=No More Running and No More Hiding
 
-DZ_ASide_20_TheEnd_i_0=Hopes and Dreams
+DZ_0_20_TheEnd_i_0=Hopes and Dreams
 
-DZ_ASide_20_TheEnd_j_0=Angel of Death
+DZ_0_20_TheEnd_j_0=Angel of Death
 
-DZ_ASide_20_TheEnd_k_0=Doppia Elica
+DZ_0_20_TheEnd_k_0=Doppia Elica
 
-DZ_ASide_20_TheEnd_k_5=The Fallen Path (Siamo Zero)
+DZ_0_20_TheEnd_k_5=The Fallen Path (Siamo Zero)
 
-DZ_ASide_20_TheEnd_w_01=Penumbra Phantasm Part 1
+DZ_0_20_TheEnd_w_01=Penumbra Phantasm Part 1
 
-DZ_ASide_20_TheEnd_w_09=Penumbra Phantasm Part 2
+DZ_0_20_TheEnd_w_09=Penumbra Phantasm Part 2
 
-DZ_ASide_20_TheEnd_w_20=Penumbra Phantasm Part 3
+DZ_0_20_TheEnd_w_20=Penumbra Phantasm Part 3
 
-DZ_ASide_20_TheEnd_z_00=The Last Push
+DZ_0_20_TheEnd_z_00=The Last Push
 
-DZ_BSide_01_City_B_a_00=Start
+DZ_1_01_City_B_a_00=Start
 
-DZ_BSide_01_City_B_b_04=Waste Yard
+DZ_1_01_City_B_b_04=Waste Yard
 
-DZ_BSide_01_City_B_c_08=Another Way Up
+DZ_1_01_City_B_c_08=Another Way Up
 
-DZ_BSide_02_Nightmare_B_a_00=Start
+DZ_1_02_Nightmare_B_a_00=Start
 
-DZ_BSide_02_Nightmare_B_b_00=Lock The Flip In
+DZ_1_02_Nightmare_B_b_00=Lock The Flip In
 
-DZ_BSide_02_Nightmare_B_c_00=Darkess Nightmare
+DZ_1_02_Nightmare_B_c_00=Darkess Nightmare
 
-DZ_BSide_05_Fractured_B_B_00=Start
+DZ_1_05_Fractured_B_B_00=Start
 
-DZ_BSide_05_Fractured_B_06=Staff Quarters
+DZ_1_05_Fractured_B_06=Staff Quarters
 
-DZ_BSide_05_Fractured_B_11=Library
+DZ_1_05_Fractured_B_11=Library
 
-DZ_BSide_05_Fractured_B_16=Rooftop
+DZ_1_05_Fractured_B_16=Rooftop
 
-DZ_BSide_06_Stronghold_B_A_00va=Start
+DZ_1_06_Stronghold_B_A_00va=Start
 
-DZ_BSide_06_Stronghold_B_B_00=Stepping Stones
+DZ_1_06_Stronghold_B_B_00=Stepping Stones
 
-DZ_BSide_06_Stronghold_B_c_00=Gusty Canyon
+DZ_1_06_Stronghold_B_c_00=Gusty Canyon
 
-DZ_BSide_06_Stronghold_B_d_00=Eye of the Storm
+DZ_1_06_Stronghold_B_d_00=Eye of the Storm
 
-DZ_BSide_07_Inferno_B_start=Start
+DZ_1_07_Inferno_B_start=Start
 
-DZ_BSide_07_Inferno_B_B_00=Central Chamber
+DZ_1_07_Inferno_B_B_00=Central Chamber
 
-DZ_BSide_07_Inferno_B_c_00=Discovery
+DZ_1_07_Inferno_B_c_00=Discovery
 
-DZ_BSide_07_Inferno_B_d_00=Theo Mix Master
+DZ_1_07_Inferno_B_d_00=Theo Mix Master
 
-DZ_BSide_08_Truth_B_A_00=Start
+DZ_1_08_Truth_B_A_00=Start
 
-DZ_BSide_08_Truth_B_B_00=Reflections
+DZ_1_08_Truth_B_B_00=Reflections
 
-DZ_BSide_08_Truth_B_c_00=Rock Bottom
+DZ_1_08_Truth_B_c_00=Rock Bottom
 
-DZ_BSide_08_Truth_B_d_00=Reprieve
+DZ_1_08_Truth_B_d_00=Reprieve
 
-DZ_BSide_09_Summit_B_A_00_intro=Start
+DZ_1_09_Summit_B_A_00_intro=Start
 
-DZ_BSide_09_Summit_B_B_00=500 M
+DZ_1_09_Summit_B_B_00=500 M
 
-DZ_BSide_09_Summit_B_c_01=1000 M
+DZ_1_09_Summit_B_c_01=1000 M
 
-DZ_BSide_09_Summit_B_d_00=1500 M
+DZ_1_09_Summit_B_d_00=1500 M
 
-DZ_BSide_09_Summit_B_e_00=2000 M
+DZ_1_09_Summit_B_e_00=2000 M
 
-DZ_BSide_09_Summit_B_f_00=2500 M
+DZ_1_09_Summit_B_f_00=2500 M
 
-DZ_BSide_09_Summit_B_g_00=3000 M
+DZ_1_09_Summit_B_g_00=3000 M
 
-DZ_BSide_09_Summit_B_h_00=6000 M
+DZ_1_09_Summit_B_h_00=6000 M
 
-DZ_BSide_18_Heart_B_00=Start
+DZ_1_18_Heart_B_00=Start
 
-DZ_BSide_18_Heart_B_A_00=Into the Stars
+DZ_1_18_Heart_B_A_00=Into the Stars
 
-DZ_BSide_18_Heart_B_B_00=Burning or Freezing
+DZ_1_18_Heart_B_B_00=Burning or Freezing
 
-DZ_BSide_18_Heart_B_c_01=Heartbeat
+DZ_1_18_Heart_B_c_01=Heartbeat
 
-DZ_CSide_01_City_C_A_00=Start
+DZ_2_01_City_C_A_00=Start
 
-DZ_CSide_01_City_C_B_00=Over The Highway
+DZ_2_01_City_C_B_00=Over The Highway
 
-DZ_CSide_01_City_C_C_00=Perfect Timing
+DZ_2_01_City_C_C_00=Perfect Timing
 
-DZ_CSide_01_City_C_d_00=Dream Zoom
+DZ_2_01_City_C_d_00=Dream Zoom
 
-DZ_CSide_02_Nightmare_C_A_00=Start
+DZ_2_02_Nightmare_C_A_00=Start
 
-DZ_CSide_02_Nightmare_C_B_00=Proceed to Kill
+DZ_2_02_Nightmare_C_B_00=Proceed to Kill
 
-DZ_CSide_02_Nightmare_C_C_00=But Nobody Came
+DZ_2_02_Nightmare_C_C_00=But Nobody Came
 
-DZ_CSide_05_Fractured_C_A_00=Start
+DZ_2_05_Fractured_C_A_00=Start
 
-DZ_CSide_05_Fractured_C_B_00=Dust Bunnys
+DZ_2_05_Fractured_C_B_00=Dust Bunnys
 
-DZ_CSide_05_Fractured_C_B_05=Shatter Shelf
+DZ_2_05_Fractured_C_B_05=Shatter Shelf
 
-DZ_CSide_05_Fractured_C_d_00=ANGY OSHIRO NOISE
+DZ_2_05_Fractured_C_d_00=ANGY OSHIRO NOISE
 
-DZ_CSide_06_Stronghold_C_A_00va=Start
+DZ_2_06_Stronghold_C_A_00va=Start
 
-DZ_CSide_06_Stronghold_C_B_00=Gusting of Breeze
+DZ_2_06_Stronghold_C_B_00=Gusting of Breeze
 
-DZ_CSide_06_Stronghold_C_C_00=Fluff The Wind
+DZ_2_06_Stronghold_C_C_00=Fluff The Wind
 
-DZ_CSide_07_Inferno_C_A_00=Start
+DZ_2_07_Inferno_C_A_00=Start
 
-DZ_CSide_07_Inferno_C_B_00=Dancing in the Darkness
+DZ_2_07_Inferno_C_B_00=Dancing in the Darkness
 
-DZ_CSide_07_Inferno_C_C_00=Discovery
+DZ_2_07_Inferno_C_C_00=Discovery
 
-DZ_CSide_07_Inferno_C_d_00=The Finder and Keepers
+DZ_2_07_Inferno_C_d_00=The Finder and Keepers
 
-DZ_CSide_07_Inferno_C_e_00=Madeline Mix Master
+DZ_2_07_Inferno_C_e_00=Madeline Mix Master
 
-DZ_CSide_08_Truth_C_A_00=Start
+DZ_2_08_Truth_C_A_00=Start
 
-DZ_CSide_08_Truth_C_B_00=Never Make A Promise
+DZ_2_08_Truth_C_B_00=Never Make A Promise
 
-DZ_CSide_08_Truth_C_C_00=Gonna Have a Bad Time
+DZ_2_08_Truth_C_C_00=Gonna Have a Bad Time
 
-DZ_CSide_08_Truth_C_d_00=MEGALOVANIA
+DZ_2_08_Truth_C_d_00=MEGALOVANIA
 
-DZ_CSide_09_Summit_C_A_intro=Start
+DZ_2_09_Summit_C_A_intro=Start
 
-DZ_CSide_09_Summit_C_B_00=500 M
+DZ_2_09_Summit_C_B_00=500 M
 
-DZ_CSide_09_Summit_C_C_00=1000 M
+DZ_2_09_Summit_C_C_00=1000 M
 
-DZ_CSide_09_Summit_C_d_00=1500 M
+DZ_2_09_Summit_C_d_00=1500 M
 
-DZ_CSide_09_Summit_C_e_00=2000 M
+DZ_2_09_Summit_C_e_00=2000 M
 
-DZ_CSide_09_Summit_C_f_00=2500 M
+DZ_2_09_Summit_C_f_00=2500 M
 
-DZ_CSide_09_Summit_C_g_00=3000 M
+DZ_2_09_Summit_C_g_00=3000 M
 
-DZ_CSide_09_Summit_C_h_00=6000 M
+DZ_2_09_Summit_C_h_00=6000 M
 
-DZ_CSide_18_Heart_C_00=Start
+DZ_2_18_Heart_C_00=Start
 
-DZ_CSide_18_Heart_C_A_00=Into The Save Point
+DZ_2_18_Heart_C_A_00=Into The Save Point
 
-DZ_CSide_18_Heart_C_B_00=Burn and Frost
+DZ_2_18_Heart_C_B_00=Burn and Frost
 
-DZ_CSide_18_Heart_C_C_00=Do Not Forget
+DZ_2_18_Heart_C_C_00=Do Not Forget
 
-DZ_CSide_18_Heart_C_D_00=Penumbra Phantasm
+DZ_2_18_Heart_C_D_00=Penumbra Phantasm
 
-DZ_BSide_01_City_B_remix=First Step Remix
+DZ_1_01_City_B_remix=First Step Remix
 
-DZ_BSide_01_City_B_remix_artist=Maxo
+DZ_1_01_City_B_remix_artist=Maxo
 
-DZ_BSide_02_Nightmare_B_remix=Wingdings
+DZ_1_02_Nightmare_B_remix=Wingdings
 
-DZ_BSide_02_Nightmare_B_remix_artist=DZ
+DZ_1_02_Nightmare_B_remix_artist=DZ
 
-DZ_BSide_05_Fractured_B_remix=Scatter and Lost
+DZ_1_05_Fractured_B_remix=Scatter and Lost
 
-DZ_BSide_05_Fractured_B_remix_artist=Kyle Gamer
+DZ_1_05_Fractured_B_remix_artist=Kyle Gamer
 
-DZ_BSide_06_Stronghold_B_remix=Golden Feather Remix
+DZ_1_06_Stronghold_B_remix=Golden Feather Remix
 
-DZ_BSide_06_Stronghold_B_remix_artist=Kyle Gamer
+DZ_1_06_Stronghold_B_remix_artist=Kyle Gamer
 
-DZ_BSide_07_Inferno_B_remix=Mirror of magic
+DZ_1_07_Inferno_B_remix=Mirror of magic
 
-DZ_BSide_07_Inferno_B_remix_artist=Mello
+DZ_1_07_Inferno_B_remix_artist=Mello
 
-DZ_BSide_08_Truth_B_remix=Confronting Yourself
+DZ_1_08_Truth_B_remix=Confronting Yourself
 
-DZ_BSide_08_Truth_B_remix_artist=Kyle Gamer
+DZ_1_08_Truth_B_remix_artist=Kyle Gamer
 
-DZ_BSide_09_Summit_B_remix=Reaching for the Summit
+DZ_1_09_Summit_B_remix=Reaching for the Summit
 
-DZ_BSide_09_Summit_B_remix_artist=Kyle Gamer
+DZ_1_09_Summit_B_remix_artist=Kyle Gamer
 
-DZ_BSide_18_Heart_B_remix=Heart of the Mountain
+DZ_1_18_Heart_B_remix=Heart of the Mountain
 
-DZ_BSide_18_Heart_B_remix_artist=Kyle Gamer
+DZ_1_18_Heart_B_remix_artist=Kyle Gamer
 
-DZ_CSide_01_City_C_remix=Sever Skyline Remix
+DZ_2_01_City_C_remix=Sever Skyline Remix
 
-DZ_CSide_01_City_C_remix_artist=Kyle Gamer
+DZ_2_01_City_C_remix_artist=Kyle Gamer
 
-DZ_CSide_02_Nightmare_C_remix=Ressurection Remix
+DZ_2_02_Nightmare_C_remix=Ressurection Remix
 
-DZ_CSide_02_Nightmare_C_remix_artist=Kyle Gamer
+DZ_2_02_Nightmare_C_remix_artist=Kyle Gamer
 
-DZ_CSide_05_Fractured_C_remix=Tidying things up
+DZ_2_05_Fractured_C_remix=Tidying things up
 
-DZ_CSide_05_Fractured_C_remix_artist=Nintendo and Hal Laboratory
+DZ_2_05_Fractured_C_remix_artist=Nintendo and Hal Laboratory
 
-DZ_CSide_06_Stronghold_C_remix=Echo Edges
+DZ_2_06_Stronghold_C_remix=Echo Edges
 
-DZ_CSide_06_Stronghold_C_remix_artist=Nintendo and Hal Laboratory
+DZ_2_06_Stronghold_C_remix_artist=Nintendo and Hal Laboratory
 
-DZ_CSide_07_Inferno_C_remix=In The Mirror Remix
+DZ_2_07_Inferno_C_remix=In The Mirror Remix
 
-DZ_CSide_07_Inferno_C_remix_artist=Kyle Gamer
+DZ_2_07_Inferno_C_remix_artist=Kyle Gamer
 
-DZ_CSide_08_Truth_C_remix=Necrolovania
+DZ_2_08_Truth_C_remix=Necrolovania
 
-DZ_CSide_08_Truth_C_remix_artist=Toby Fox
+DZ_2_08_Truth_C_remix_artist=Toby Fox
 
-DZ_CSide_09_Summit_C_remix=Celeste-2
+DZ_2_09_Summit_C_remix=Celeste-2
 
-DZ_CSide_09_Summit_C_remix_artist=Kyle Gamer
+DZ_2_09_Summit_C_remix_artist=Kyle Gamer
 
-DZ_CSide_18_Heart_C_remix=Say Goodbye Before The World Ends
+DZ_2_18_Heart_C_remix=Say Goodbye Before The World Ends
 
-DZ_CSide_18_Heart_C_remix_artist=DZ
+DZ_2_18_Heart_C_remix_artist=DZ
 
 DZ_Remix=You Got The Special C-Side Remix
 
-DZ_ASide_01_City_A_postcard=Remember to take break when you get tired of from high difficulty and There always an Assist Mode that you can turn on if you find it harder.
+DZ_0_01_City_A_postcard=Remember to take break when you get tired of from high difficulty and There always an Assist Mode that you can turn on if you find it harder.
 
-DZ_ASide_02_Nightmare_A_postcard=if you want to collect strawberry to impress your friend you can try so, but it depend on how many you collect, in which ending.
+DZ_0_02_Nightmare_A_postcard=if you want to collect strawberry to impress your friend you can try so, but it depend on how many you collect, in which ending.
 
-DZ_ASide_03_Stars_A_postcard=It's About Time.
+DZ_0_03_Stars_A_postcard=It's About Time.
 
-DZ_ASide_04_Legend_A_postcard=If your struggling to keep up, don't push yourself and patient is a key to your success
+DZ_0_04_Legend_A_postcard=If your struggling to keep up, don't push yourself and patient is a key to your success
 
-DZ_ASide_05_Fractured_A_postcard=Fun Fact did you know that Kirby use to have no copy ability's since Gameboy classic, that amazing isn't it.
+DZ_0_05_Fractured_A_postcard=Fun Fact did you know that Kirby use to have no copy ability's since Gameboy classic, that amazing isn't it.
 
-DZ_ASide_06_Stronghold_A_postcard=To Understand the lore about it history you must go back and play from past Kirby Games that way you will get a bigger picture of it's own deeper lore origin.
+DZ_0_06_Stronghold_A_postcard=To Understand the lore about it history you must go back and play from past Kirby Games that way you will get a bigger picture of it's own deeper lore origin.
 
-DZ_ASide_07_Inferno_A_postcard=Many bosses can have shape and sized but it's doesn't come without a scary final boss which that what they did from the past.
+DZ_0_07_Inferno_A_postcard=Many bosses can have shape and sized but it's doesn't come without a scary final boss which that what they did from the past.
 
-DZ_ASide_08_Truth_A_postcard=Did you know that Madeline is Hiding Something...?
+DZ_0_08_Truth_A_postcard=Did you know that Madeline is Hiding Something...?
 
-DZ_ASide_10_Ruins_A_postcard=Sorry this map is under construction please wait for a little while an order for us to get it done then we will let you and everyone know.
+DZ_0_10_Ruins_A_postcard=Sorry this map is under construction please wait for a little while an order for us to get it done then we will let you and everyone know.
 
-DZ_ASide_11_Snow_A_postcard=Sorry this map has not started yet, please wait until we get that map started after the primero map is done, Thank you.
+DZ_0_11_Snow_A_postcard=Sorry this map has not started yet, please wait until we get that map started after the primero map is done, Thank you.
 
-DZ_ASide_12_Water_A_postcard=Sorry this map has not started yet, please wait until we get that map started after the primero map is done, Thank you.
+DZ_0_12_Water_A_postcard=Sorry this map has not started yet, please wait until we get that map started after the primero map is done, Thank you.
 
-DZ_ASide_13_Fire_A_postcard=Sorry this map has not started yet, please wait until we get that map started after the primero map is done, Thank you.
+DZ_0_13_Fire_A_postcard=Sorry this map has not started yet, please wait until we get that map started after the primero map is done, Thank you.
 
-DZ_ASide_14_Digital_A_postcard=Sorry this map has not started yet, please wait until we get that map started after the primero map is done, Thank you.
+DZ_0_14_Digital_A_postcard=Sorry this map has not started yet, please wait until we get that map started after the primero map is done, Thank you.
 
-DZ_ASide_15_Castle_A_postcard=Sorry this map has not started yet, please wait until we get that map started after the primero map is done, Thank you.
+DZ_0_15_Castle_A_postcard=Sorry this map has not started yet, please wait until we get that map started after the primero map is done, Thank you.
 
-DZ_ASide_16_Corruption_postcard=The corrupted realm where Els_Flowey has twisted reality with organic horrors. Navigate through chambers of bone and flesh while collecting the six human souls to weaken the beast and restore balance to the world.
+DZ_0_16_Corruption_postcard=The corrupted realm where Els_Flowey has twisted reality with organic horrors. Navigate through chambers of bone and flesh while collecting the six human souls to weaken the beast and restore balance to the world.
 
-POSTCARD_CSIDE_UNLOCK=You've proven yourself on the B-Sides.{n}The {# ffcc00}C-Sides{#} are now unlocked.{n}These remixes push your skills to the limit.{n}Are you ready for the challenge?
+POSTCARD_2_UNLOCK=You've proven yourself on the B-Sides.{n}The {# ffcc00}C-Sides{#} are now unlocked.{n}These remixes push your skills to the limit.{n}Are you ready for the challenge?
 
-POSTCARD_DSIDE_UNLOCK=The C-Sides have been conquered.{n}The {# b031eb}D-Sides{#} are now unlocked.{n}These twisted remixes will test your{n}determination beyond all limits.
+POSTCARD_2_UNLOCK=The C-Sides have been conquered.{n}The {# b031eb}D-Sides{#} are now unlocked.{n}These twisted remixes will test your{n}determination beyond all limits.
 
 POSTCARD_DXSIDE_UNLOCK=Beyond the D-Sides lies the{n}ultimate challenge.{n}The {# 200040}DX-Sides{#} are now unlocked.{n}Only the most determined will survive.
 
@@ -1450,25 +1450,25 @@ crystalheart_pink_poem=Pink Crystal
 
 crystalheart_rainbow_poem=Rainbow Heart
 
-POSTCARD_DSIDE_CRYSTAL_UNLOCK=D-Side Unlocked!{n}The {# ff69b4}Pink Platinum Berry{#} awaits.{n}Test your fighting skills{n}in the DX challenge.
+POSTCARD_2_CRYSTAL_UNLOCK=D-Side Unlocked!{n}The {# ff69b4}Pink Platinum Berry{#} awaits.{n}Test your fighting skills{n}in the DX challenge.
 
 AREACOMPLETE_NORMAL=A-Side Completa
 
-AREACOMPLETE_BSIDE=B-Side Completa
+AREACOMPLETE_1=B-Side Completa
 
-AREACOMPLETE_CSIDE=C-Side Completa
+AREACOMPLETE_2=C-Side Completa
 
-AREACOMPLETE_DSIDE=D-Side Completa
+AREACOMPLETE_2=D-Side Completa
 
 AREACOMPLETE_DXSIDE=DX-Side Completa
 
 AREACOMPLETE_NORMAL_FULLCLEAR=A-Side Full Clear
 
-AREACOMPLETE_BSIDE_FULLCLEAR=B-Side Full Clear
+AREACOMPLETE_1_FULLCLEAR=B-Side Full Clear
 
-AREACOMPLETE_CSIDE_FULLCLEAR=C-Side Full Clear
+AREACOMPLETE_2_FULLCLEAR=C-Side Full Clear
 
-AREACOMPLETE_DSIDE_FULLCLEAR=D-Side Full Clear
+AREACOMPLETE_2_FULLCLEAR=D-Side Full Clear
 
 AREACOMPLETE_DXSIDE_FULLCLEAR=DX-Side Full Clear
 
@@ -1510,15 +1510,15 @@ COMPLETE_SUBTITLE_20_THEEND=The new found reincarnation astral birth void yields
 
 DZ_overworld_remix3=D-SIDE
 
-DZ_areacomplete_dside=D-Side Completa
+DZ_areacomplete_2=D-Side Completa
 
-DZ_areacomplete_fullclear_bside=B-Side Clear
+DZ_areacomplete_fullclear_1=B-Side Clear
 
-DZ_areacomplete_fullclear_cside=C-Side Clear
+DZ_areacomplete_fullclear_2=C-Side Clear
 
-DZ_areacomplete_fullclear_dside=D-Side Clear
+DZ_areacomplete_fullclear_2=D-Side Clear
 
-DZ_dside_unlocked=D-Side Unlocked
+DZ_2_unlocked=D-Side Unlocked
 
 DZ_High_Difficulty=Ready to Determined the Final Challenge Every Chapter in every A B and C Side are now accessible to Pink Platinum Berry and D Side or Desolo Side is Now Available Good luck and Stay Determined.
 
@@ -1532,59 +1532,59 @@ BADELINE={# 76428a}{~}BADELINE{/~}{#}
 
 MYSTERY_MAN={# 00ffff}{~}???{/~}{#}
 
-soul_DZ_ASide_01_City_A=Useless Garbage Machine
+soul_DZ_0_01_City_A=Useless Garbage Machine
 
-soul_DZ_ASide_02_Nightmare_A=Reawaken
+soul_DZ_0_02_Nightmare_A=Reawaken
 
-soul_DZ_ASide_05_Fractured_A=Hopeless and Hopelessly Lost
+soul_DZ_0_05_Fractured_A=Hopeless and Hopelessly Lost
 
-soul_DZ_ASide_06_Stronghold_A=The Legend
+soul_DZ_0_06_Stronghold_A=The Legend
 
-soul_DZ_ASide_07_Inferno_A=Lighter and Darker
+soul_DZ_0_07_Inferno_A=Lighter and Darker
 
-soul_DZ_ASide_08_Truth_A=Out of Reached
+soul_DZ_0_08_Truth_A=Out of Reached
 
-soul_DZ_ASide_09_Summit_A=On The Horizon
+soul_DZ_0_09_Summit_A=On The Horizon
 
-soul_DZ_ASide_10_Ruins_A=PLANK AND BURNED
+soul_DZ_0_10_Ruins_A=PLANK AND BURNED
 
-soul_DZ_ASide_11_Snow_A=WILD WILD FROST WEST
+soul_DZ_0_11_Snow_A=WILD WILD FROST WEST
 
-soul_DZ_ASide_18_Heart_A=Hopes and Dreams
+soul_DZ_0_18_Heart_A=Hopes and Dreams
 
-soul_DZ_ASide_19_Space=KILL YOURSELF NOW
+soul_DZ_0_19_Space=KILL YOURSELF NOW
 
-soul_DZ_BSide_01_City_B=Sever the Skyline
+soul_DZ_1_01_City_B=Sever the Skyline
 
-soul_DZ_BSide_02_Nightmare_B=Black Moon Rise
+soul_DZ_1_02_Nightmare_B=Black Moon Rise
 
-soul_DZ_BSide_05_Fractured_B=Good karma
+soul_DZ_1_05_Fractured_B=Good karma
 
-soul_DZ_BSide_06_Stronghold_B=Golden Feather
+soul_DZ_1_06_Stronghold_B=Golden Feather
 
-soul_DZ_BSide_07_Inferno_B=Mirror of Magic
+soul_DZ_1_07_Inferno_B=Mirror of Magic
 
-soul_DZ_BSide_08_Truth_B=Center of the Mountain
+soul_DZ_1_08_Truth_B=Center of the Mountain
 
-soul_DZ_BSide_09_Summit_B=No More Running
+soul_DZ_1_09_Summit_B=No More Running
 
-soul_DZ_BSide_18_Heart_B=Goodbye
+soul_DZ_1_18_Heart_B=Goodbye
 
-soul_DZ_CSide_01_City_C=Taking Over the Streets
+soul_DZ_2_01_City_C=Taking Over the Streets
 
-soul_DZ_CSide_02_Nightmare_C=Under my Control
+soul_DZ_2_02_Nightmare_C=Under my Control
 
-soul_DZ_CSide_05_Fractured_C=Amazing karma
+soul_DZ_2_05_Fractured_C=Amazing karma
 
-soul_DZ_CSide_06_Stronghold_C=Zantas Feather
+soul_DZ_2_06_Stronghold_C=Zantas Feather
 
-soul_DZ_CSide_07_Inferno_C=Jazzy Move
+soul_DZ_2_07_Inferno_C=Jazzy Move
 
-soul_DZ_CSide_08_Truth_C=Megalovania
+soul_DZ_2_08_Truth_C=Megalovania
 
-soul_DZ_CSide_09_Summit_C=Don't Kill and Don't Be Killed
+soul_DZ_2_09_Summit_C=Don't Kill and Don't Be Killed
 
-soul_DZ_CSide_18_Heart_C=End of the World
+soul_DZ_2_18_Heart_C=End of the World
 
 Tralier_intro=[Madeline left distracted]
 What is this Dreamblock?
@@ -2624,7 +2624,7 @@ You cannot be proven yourself to fight El's.
 Okay.
 We... still do not fucking care about you.
 Were on a mission to rescue Madeline.
-so I would rather step aside and leave us alone.
+so I would rather step 0 and leave us alone.
 [CHARA left disappointed]
 Wow your really are determined are ya.
 This is why I can't stand humans like you.
@@ -2733,7 +2733,7 @@ What do you mean?
 Can you tell me of what's going on my child.
 I would need to know why.
 
-DZ_CH4_CSIDE_BADDY_SUPER_IMPRESSED=[BADELINE right normal]
+DZ_CH4_2_BADDY_SUPER_IMPRESSED=[BADELINE right normal]
 Kirby I am honestly amazed of your skill.
 not only that you outrun chara
 but you also make it through all the way to the top of the castle
@@ -4023,22 +4023,22 @@ Get Dunked ON!!!
 DZ_CH7_MADDY_SAVING_D=[MADELINE left angry]
 Were must be close, I can feel it.
 
-DZ_CH7_CSIDE_MADDY_A=[MADELINE right normal]
+DZ_CH7_2_MADDY_A=[MADELINE right normal]
 It's the Hell Temple Remix, featuring your by Kyle Gamer Remix!
 
-DZ_CH7_CSIDE_MADDY_B=[MADELINE left together]
+DZ_CH7_2_MADDY_B=[MADELINE left together]
 Oh here we go for another Challenger!
 
-DZ_CH7_CSIDE_MADDY_C=[MADELINE left sad]
+DZ_CH7_2_MADDY_C=[MADELINE left sad]
 Uh... {+KIRBY} this isn't good to do so on me.
 
-DZ_CH7_CSIDE_MADDY_D=[MADELINE left upset]
+DZ_CH7_2_MADDY_D=[MADELINE left upset]
 Nevermind.
 
-DZ_CH7_CSIDE_MADDY_FINAL=[MADELINE left together]
+DZ_CH7_2_MADDY_FINAL=[MADELINE left together]
 Now we got a real challenger.
 
-DZ_CH7_CSIDE_MADDY_ASK_TO_THROW=[MADELINE left normal]
+DZ_CH7_2_MADDY_ASK_TO_THROW=[MADELINE left normal]
 Throw me Kirby to the Heart!
 
 DZ_CH9_MADELINE_ENDING_A=[MADELINE right normal]
@@ -5114,7 +5114,7 @@ DZ_CH9_CREDITS_EXTENDEDCAMERADYNAMICS=ExtendedCameraDynamics
 
 DZ_CH9_CREDITS_EXTENDEDVARIANTMODE=ExtendedVariantMode
 
-DZ_CH9_CREDITS_FAREWELLBSIDE=Farewell B-Side
+DZ_CH9_CREDITS_FAREWELL1=Farewell B-Side
 
 DZ_CH9_CREDITS_FEMTOHELPER=FemtoHelper
 
@@ -5336,7 +5336,7 @@ DZ_CH9_SANS_MESSAGE_END=[left left]
 	[left left]
 	*beep* {0.3}*beep* {0.3}*beep*
 
-DZ_CH9_BSIDE_ASCEND=[CHARA right freakA]
+DZ_CH9_1_ASCEND=[CHARA right freakA]
 THAT WAS FUCKING AMAZING FROM BACK THERE!
 [BADELINE left freakA]
 YEAH WE KNOW THAT!
@@ -5350,7 +5350,7 @@ WE ALL DID IT!
 SEROIUSLY!, Just stop it, Okay?
 You really pissing me off!
 
-DZ_CH9_CSIDE_ASCEND=[TORIEL right goawaykingtitan]
+DZ_CH9_2_ASCEND=[TORIEL right goawaykingtitan]
 It's funny of somehow that you Chara and Madeline has a same curiosity as you Kirby.
 Even tho you would have a nudge.
 But either in way {0.4} Promise me this.
@@ -5362,7 +5362,7 @@ and what about you?
 No need to worry I got this for you and you have earn it my young youth.
 Don't tell madeline that you have this okay?
 
-DZ_CH9_DSIDE_MADDY_1=[MADELINE right normal]
+DZ_CH9_2_MADDY_1=[MADELINE right normal]
 It's hard to believe that it's over, isn't it?
 Funny how ran into the struggle.
 {trigger 0 maddy turn right}
@@ -5381,7 +5381,7 @@ So Kirby Promise me that you will take care of yourself.
 [MADELINE right peaceful]
 okay?
 
-DZ_CH9_DSIDE_MADDY_2=[BADELINE right normal]
+DZ_CH9_2_MADDY_2=[BADELINE right normal]
 Well?
 What are you waiting for?
 You Have Truly Earn it {+KIRBY}
@@ -7378,7 +7378,7 @@ heh. it's a little funny.
 DZ_CH11_EXTRA_SANS_BAR_SERIOUS_TALK=[SANS left dudewtfalt]
 hey, can i talk to you for a sec?
 in private.
-{trigger 0 sans leads madeline aside}
+{trigger 0 sans leads madeline 0}
 [SANS left dudewtfalt]
 i know what you're up against.
 the darkness, the void, all that stuff.
@@ -11397,7 +11397,7 @@ yes it is true
 now then prepare for this.
 {trigger 0 glitch effect start and white screen till game closes}
 
-DZ_CH15_DSIDE_MADELINE_AND_BADELINE_A=[MADELINE right normal]
+DZ_CH15_2_MADELINE_AND_BADELINE_A=[MADELINE right normal]
 so we finally reached to the very end.
 [MADELINE right distracted]
 it very strange of how we have overcome with it
@@ -11408,7 +11408,7 @@ I guess it is
 with that out of the way
 I think you have earn it kirby
 
-DZ_CH15_DSIDE_MADELINE_AND_BADELINE_B=[MADELINE right normal]
+DZ_CH15_2_MADELINE_AND_BADELINE_B=[MADELINE right normal]
 Well then kirby
 go knock yourself out my dear friend
 you have deserve it after all the hardwork that you have done

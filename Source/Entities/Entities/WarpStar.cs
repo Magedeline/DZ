@@ -105,7 +105,7 @@ public class WarpStar : Entity
         Add(bloom = new BloomPoint(0.5f, 20f));
         Add(light = new VertexLight(Color.White, 1f, 16, 48));
         Add(sine = new SineWave(0.6f, 0f).Randomize());
-        Add(outline = new Image(GFX.Game["objects/warpstars/outline"]));
+        Add(outline = new Image(GFX.Game["objects/DZ/DZ/warpstars/outline"]));
         outline.CenterOrigin();
         outline.Visible = false;
         shieldRadiusWiggle = Wiggler.Create(0.5f, 4f);

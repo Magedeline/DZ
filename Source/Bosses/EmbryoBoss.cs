@@ -5,7 +5,7 @@ namespace Celeste.Entities.Bosses
     /// <summary>
     /// Embryo Mid-Boss - A mysterious gestating creature
     /// Eldritch mid-boss with psychic and body horror attacks
-    /// Sprite path: characters/embryo/
+    /// Sprite path: characters/DZ/embryo/
     /// </summary>
     [CustomEntity(ids: "DZ/EmbryoBoss")]
     [Tracked]
@@ -81,7 +81,7 @@ namespace Celeste.Entities.Bosses
         private void SetupVisuals()
         {
             // Membrane/sac sprite (outer layer)
-            Add(membraneSprite = new Sprite(GFX.Game, "characters/embryo/"));
+            Add(membraneSprite = new Sprite(GFX.Game, "characters/DZ/embryo/"));
             membraneSprite.AddLoop("intact", "membrane_intact", 0.15f);
             membraneSprite.AddLoop("pulse", "membrane_pulse", 0.08f);
             membraneSprite.AddLoop("cracked", "membrane_cracked", 0.1f);
@@ -91,7 +91,7 @@ namespace Celeste.Entities.Bosses
             membraneSprite.Color = Color.White * 0.7f;
             
             // Body sprite (creature inside)
-            Add(bodySprite = new Sprite(GFX.Game, "characters/embryo/"));
+            Add(bodySprite = new Sprite(GFX.Game, "characters/DZ/embryo/"));
             bodySprite.AddLoop("dormant", "body_dormant", 0.2f);
             bodySprite.AddLoop("stir", "body_stir", 0.1f);
             bodySprite.AddLoop("awake", "body_awake", 0.08f);
@@ -102,7 +102,7 @@ namespace Celeste.Entities.Bosses
             bodySprite.CenterOrigin();
             
             // Eye sprite (single large eye)
-            Add(eyeSprite = new Sprite(GFX.Game, "characters/embryo/"));
+            Add(eyeSprite = new Sprite(GFX.Game, "characters/DZ/embryo/"));
             eyeSprite.AddLoop("closed", "eye_closed", 0.2f);
             eyeSprite.AddLoop("opening", "eye_opening", 0.1f);
             eyeSprite.AddLoop("open", "eye_open", 0.12f);
@@ -113,7 +113,7 @@ namespace Celeste.Entities.Bosses
             eyeSprite.Position = new Vector2(0f, -8f);
             
             // Tendril sprite
-            Add(tendrilSprite = new Sprite(GFX.Game, "characters/embryo/"));
+            Add(tendrilSprite = new Sprite(GFX.Game, "characters/DZ/embryo/"));
             tendrilSprite.AddLoop("hidden", "tendril_hidden", 0.15f);
             tendrilSprite.AddLoop("emerge", "tendril_emerge", 0.06f);
             tendrilSprite.AddLoop("grab", "tendril_grab", 0.04f);

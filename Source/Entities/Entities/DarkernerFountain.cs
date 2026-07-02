@@ -116,10 +116,10 @@ namespace Celeste.Entities
         {
             string spritePath = Type switch
             {
-                FountainType.Chaos => "objects/fountain_chaos",
-                FountainType.Pure => "objects/fountain_pure",
-                FountainType.Void => "objects/fountain_void",
-                _ => "objects/fountain_darkener"
+                FountainType.Chaos => "objects/DZ/DZ/fountain_chaos",
+                FountainType.Pure => "objects/DZ/DZ/fountain_pure",
+                FountainType.Void => "objects/DZ/DZ/fountain_void",
+                _ => "objects/DZ/DZ/fountain_darkener"
             };
 
             if (GFX.Game.Has(spritePath))

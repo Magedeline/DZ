@@ -71,10 +71,10 @@ namespace Celeste.Entities
             // Custom star particles for "Hopes and Dreams" theme
             particleTextures = new MTexture[]
             {
-                GFX.Game["objects/dreamblock/particles"].GetSubtexture(14, 0, 7, 7, null),
-                GFX.Game["objects/dreamblock/particles"].GetSubtexture(7, 0, 7, 7, null),
-                GFX.Game["objects/dreamblock/particles"].GetSubtexture(0, 0, 7, 7, null),
-                GFX.Game["objects/dreamblock/particles"].GetSubtexture(7, 0, 7, 7, null)
+                GFX.Game["objects/DZ/DZ/dreamblock/particles"].GetSubtexture(14, 0, 7, 7, null),
+                GFX.Game["objects/DZ/DZ/dreamblock/particles"].GetSubtexture(7, 0, 7, 7, null),
+                GFX.Game["objects/DZ/DZ/dreamblock/particles"].GetSubtexture(0, 0, 7, 7, null),
+                GFX.Game["objects/DZ/DZ/dreamblock/particles"].GetSubtexture(7, 0, 7, 7, null)
             };
         }
 

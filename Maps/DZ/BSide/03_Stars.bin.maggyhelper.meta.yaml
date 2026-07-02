@@ -1,21 +1,21 @@
 ﻿schema: DZ-map-meta-v1
-sid: DZ/BSide/03_Stars
+sid: DZ/1/03_Stars
 baseKey: 03_Stars
 side: B
 modeIndex: 1
 isMainChapterEntry: false
-mainChapterSid: DZ/ASide/03_Stars
+mainChapterSid: DZ/0/03_Stars
 showInChapterSelect: false
 
 MusicBySide:
   - event:/music/pusheen/menu/complete_area
-  - event:/music/pusheen/menu/complete_bside
-  - event:/music/pusheen/menu/complete_cside
+  - event:/music/pusheen/menu/complete_1
+  - event:/music/pusheen/menu/complete_2
   - event:/music/pusheen/menu/complete_dxside
 Title:
-  ASide: "Chapter Complete"
-  BSide: "B Side Complete"
-  CSide: "C Side Complete"
-  DSide: "D Side Complete"
+  0: "Chapter Complete"
+  1: "B Side Complete"
+  2: "C Side Complete"
+  2: "D Side Complete"
   DXSide: "DX Side Complete"
   FullClear: "Chapter Clear"

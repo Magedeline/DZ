@@ -82,10 +82,10 @@ namespace Celeste.Entities
             level = SceneAs<Level>();
 
             // Load textures safely
-            texture = AtlasPathHelper.TryGetTexture("objects/defeatSwitchGate")
-                ?? GFX.Game["objects/switchgate/icon00"];
+            texture = AtlasPathHelper.TryGetTexture("objects/DZ/DZ/defeatSwitchGate")
+                ?? GFX.Game["objects/DZ/DZ/switchgate/icon00"];
 
-            iconTexture = AtlasPathHelper.TryGetTexture("objects/defeatSwitchGateIcon");
+            iconTexture = AtlasPathHelper.TryGetTexture("objects/DZ/DZ/defeatSwitchGateIcon");
 
             // If persistent and the flag is already set, open immediately
             if (persistent && !string.IsNullOrEmpty(flag) && level.Session.GetFlag(flag))

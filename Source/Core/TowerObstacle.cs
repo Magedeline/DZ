@@ -102,14 +102,14 @@ namespace DZ
         {
             string spritePath = Type switch
             {
-                ObstacleType.Spikes => "objects/tower/obstacles/spikes",
-                ObstacleType.Spinner => "objects/tower/obstacles/spinner",
-                ObstacleType.MovingPlatform => "objects/tower/obstacles/platform",
-                ObstacleType.FallingBlock => "objects/tower/obstacles/falling",
-                ObstacleType.LaserBeam => "objects/tower/obstacles/laser",
-                ObstacleType.WindTunnel => "objects/tower/obstacles/wind",
-                ObstacleType.Portal => "objects/tower/obstacles/portal",
-                _ => "objects/tower/obstacles/default"
+                ObstacleType.Spikes => "objects/DZ/DZ/tower/obstacles/spikes",
+                ObstacleType.Spinner => "objects/DZ/DZ/tower/obstacles/spinner",
+                ObstacleType.MovingPlatform => "objects/DZ/DZ/tower/obstacles/platform",
+                ObstacleType.FallingBlock => "objects/DZ/DZ/tower/obstacles/falling",
+                ObstacleType.LaserBeam => "objects/DZ/DZ/tower/obstacles/laser",
+                ObstacleType.WindTunnel => "objects/DZ/DZ/tower/obstacles/wind",
+                ObstacleType.Portal => "objects/DZ/DZ/tower/obstacles/portal",
+                _ => "objects/DZ/DZ/tower/obstacles/default"
             };
 
             if (GFX.Game.Has(spritePath))

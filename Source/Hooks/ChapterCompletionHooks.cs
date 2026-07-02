@@ -51,9 +51,9 @@ internal static class ChapterCompletionHooks
         int musicIndex = mode switch
         {
             AreaModeExtender.MODE_NORMAL => 0,
-            AreaModeExtender.MODE_BSIDE  => 1,
-            AreaModeExtender.MODE_CSIDE  => 2,
-            AreaModeExtender.MODE_DSIDE  => 3,
+            AreaModeExtender.MODE_1  => 1,
+            AreaModeExtender.MODE_2  => 2,
+            AreaModeExtender.MODE_2  => 3,
             _                            => 0
         };
 

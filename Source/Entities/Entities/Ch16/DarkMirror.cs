@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch16
     /// <summary>
     /// DarkMirror - Mirror that shows corrupted reflection
     /// Can be shattered to reveal secrets or create passages
-    /// Sprite path: objects/dark_mirror/
+    /// Sprite path: objects/DZ/DZ/dark_mirror/
     /// </summary>
     [CustomEntity("DZ/DarkMirror")]
     [Tracked]

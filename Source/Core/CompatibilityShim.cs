@@ -333,7 +333,7 @@ namespace DZ
             }
 
             int mode = (int)session.Area.Mode;
-            if (mode >= AreaModeExtender.MODE_DSIDE)
+            if (mode >= AreaModeExtender.MODE_2)
             {
                 return DZModule.SaveData?.HasCollectedHeartGem(BuildExtendedHeartId(area.SID, mode)) == true;
             }
@@ -353,7 +353,7 @@ namespace DZ
             int modeCount = area.Mode?.Length ?? 0;
             for (int mode = 0; mode < modeCount; mode++)
             {
-                if (mode >= AreaModeExtender.MODE_DSIDE)
+                if (mode >= AreaModeExtender.MODE_2)
                 {
                     if (DZModule.SaveData?.HasCollectedHeartGem(BuildExtendedHeartId(area.SID, mode)) == true)
                     {
@@ -697,7 +697,7 @@ namespace Celeste.Extensions
         {
         }
 
-        public static void RecordCheckpoint(Level level, Vector2 respawnPoint, string cSideToUnlock)
+        public static void RecordCheckpoint(Level level, Vector2 respawnPoint, string 2ToUnlock)
         {
         }
 

@@ -11,13 +11,13 @@ namespace DZ
     /// Plays immediately after the Tesseract Soul boss is defeated.
     /// Kirby thinks he has won and spots what looks like a heartgem â€”
     /// but it is Els's trick. The moment Kirby tries to claim it,
-    /// Els breaks the illusion with "GOT YOU, KIRBY!" (SOUL_DZ_CSide_20_THEEND_A).
+    /// Els breaks the illusion with "GOT YOU, KIRBY!" (SOUL_DZ_2_20_THEEND_A).
     ///
     /// Dialog keys used
     /// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     /// CH20_TESSERACT_SOUL  (end section â€” no embedded triggers here,
     ///                        all effects fire between the two Textbox.Say calls)
-    /// SOUL_DZ_CSide_20_THEEND_A  â€” Els's gotcha line
+    /// SOUL_DZ_2_20_THEEND_A  â€” Els's gotcha line
     /// </summary>
     [Tracked(true)]
     public class CS20_TesseractSoulTrap : CutsceneEntity
@@ -25,7 +25,7 @@ namespace DZ
         #region Constants
 
         private const string DIALOGUE_KEY_KIRBY_DOUBT  = "DZ_CH20_TESSERACT_SOUL";
-        private const string DIALOGUE_KEY_ELS_GOTCHA    = "SOUL_DZ_CSide_20_THEEND_A";
+        private const string DIALOGUE_KEY_ELS_GOTCHA    = "SOUL_DZ_2_20_THEEND_A";
 
         // Session flag written when this cutscene completes
         private const string FLAG_TRAP_DONE = "ch20_tesseract_soul_trap_done";

@@ -2,7 +2,7 @@ local towerObstacleFactory = {}
 
 towerObstacleFactory.name = "DZ/TowerObstacleFactory"
 towerObstacleFactory.depth = 0
-towerObstacleFactory.texture = "objects/DZ/tower_obstacle_factory"
+towerObstacleFactory.texture = "objects/DZ/DZ/DZ/tower_obstacle_factory"
 
 towerObstacleFactory.placements = {
     name = "tower_obstacle_factory",

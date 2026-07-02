@@ -2,7 +2,7 @@ local spiralStaircase = {}
 
 spiralStaircase.name = "DZ/SpiralStaircase"
 spiralStaircase.depth = 0
-spiralStaircase.texture = "objects/DZ/spiral_staircase"
+spiralStaircase.texture = "objects/DZ/DZ/DZ/spiral_staircase"
 
 spiralStaircase.placements = {
     name = "spiral_staircase",

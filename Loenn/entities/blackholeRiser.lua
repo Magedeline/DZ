@@ -2,7 +2,7 @@ local blackholeRiser = {}
 
 blackholeRiser.name = "DZ/BlackholeRiser"
 blackholeRiser.depth = 0
-blackholeRiser.texture = "objects/DZ/blackhole_riser"
+blackholeRiser.texture = "objects/DZ/DZ/DZ/blackhole_riser"
 
 blackholeRiser.placements = {
     name = "blackhole_riser",

@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch11
     /// <summary>
     /// BanditoRoller - Enemy that rolls toward player and bounces off walls
     /// Rolls continuously, changing direction on collision
-    /// Sprite path: characters/bandito_roller/
+    /// Sprite path: characters/DZ/bandito_roller/
     /// </summary>
     [CustomEntity("DZ/BanditoRoller")]
     [Tracked]

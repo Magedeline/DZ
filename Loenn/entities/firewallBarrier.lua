@@ -2,7 +2,7 @@ local firewallBarrier = {}
 
 firewallBarrier.name = "DZ/FirewallBarrier"
 firewallBarrier.depth = 0
-firewallBarrier.texture = "objects/DZ/firewall_barrier"
+firewallBarrier.texture = "objects/DZ/DZ/DZ/firewall_barrier"
 
 firewallBarrier.placements = {
     name = "firewall_barrier",

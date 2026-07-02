@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch16
     /// <summary>
     /// VoidPortal - Portal to the void dimension
     /// Final chapter transportation and boss arena entrance
-    /// Sprite path: objects/void_portal/
+    /// Sprite path: objects/DZ/DZ/void_portal/
     /// </summary>
     [CustomEntity("DZ/VoidPortal")]
     [Tracked]

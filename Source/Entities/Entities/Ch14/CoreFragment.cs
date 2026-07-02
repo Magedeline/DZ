@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch14
     /// <summary>
     /// CoreFragment - Central processing core fragment, boss-related collectible
     /// Key item for progressing through digital dimension
-    /// Sprite path: objects/core_fragment/
+    /// Sprite path: objects/DZ/DZ/core_fragment/
     /// </summary>
     [CustomEntity("DZ/CoreFragment")]
     [Tracked]

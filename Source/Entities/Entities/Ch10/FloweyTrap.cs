@@ -3,8 +3,8 @@ namespace Celeste.Entities.Chapters.Ch10
     /// <summary>
     /// FloweyTrap - Malicious flower that pops up and fires pellets in patterns
     /// Has multiple attack patterns based on proximity and can be defeated
-    /// Sprite path: characters/flowey_trap/
-    /// Pellet sprite path: characters/flowey_pellet/
+    /// Sprite path: characters/DZ/flowey_trap/
+    /// Pellet sprite path: characters/DZ/flowey_pellet/
     /// </summary>
     [CustomEntity("DZ/FloweyTrap")]
     [Tracked]
@@ -376,7 +376,7 @@ namespace Celeste.Entities.Chapters.Ch10
     /// <summary>
     /// FloweyPellet - Projectile fired by FloweyTrap
     /// Small pellet that travels in a straight line
-    /// Sprite path: characters/flowey_pellet/
+    /// Sprite path: characters/DZ/flowey_pellet/
     /// </summary>
     public class FloweyPellet : Actor
     {

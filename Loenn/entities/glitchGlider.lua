@@ -2,7 +2,7 @@ local glitchGlider = {}
 
 glitchGlider.name = "DZ/GlitchGlider"
 glitchGlider.depth = 0
-glitchGlider.texture = "objects/DZ/glitch_glider"
+glitchGlider.texture = "objects/DZ/DZ/DZ/glitch_glider"
 
 glitchGlider.placements = {
     name = "glitch_glider",

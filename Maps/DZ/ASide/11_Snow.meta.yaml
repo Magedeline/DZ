@@ -1,5 +1,5 @@
 ﻿Icon: areas/DZ/snow
-SID: DZ/ASide/11_Snow
+SID: DZ/0/11_Snow
 Interlude: false
 TitleBaseColor: 76c8f9
 TitleAccentColor: 1a5276
@@ -22,25 +22,25 @@ Modes:
     HeartIsEnd: false
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/BSide/11_snowdin
+      Music: event:/music/pusheen/1/11_snowdin
       Ambience: event:/env/pusheen/11_snow_daytime
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/CSide/11_snowdin
+      Music: event:/music/pusheen/2/11_snowdin
       Ambience: event:/env/pusheen/11_snow_daytime
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/CSide/11_snowdin
+      Music: event:/music/pusheen/2/11_snowdin
       Ambience: event:/env/pusheen/11_snow_daytime
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/DSide/11_snow
+      Music: event:/music/pusheen/2/11_snow
       Ambience: event:/env/pusheen/11_main
     Inventory: Default
     HeartIsEnd: true
@@ -51,8 +51,8 @@ Modes:
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
-    MountainModelDirectory: Mountain/DZ/ASide
-    MountainTextureDirectory: DZ/ASide
+    MountainModelDirectory: Mountain/DZ/0
+    MountainTextureDirectory: DZ/0
     Idle:
         Position: [0.300, 7.200, 12.500]
         Target: [0.300, 6.500, 11.000]

@@ -18,7 +18,7 @@ namespace Celeste.Entities
     public TesseractPortalTorch(Vector2 pos)
       : base(pos)
     {
-      this.Add((Component) (this.sprite = new Sprite(GFX.Game, "objects/temple/portal/portaltorch")));
+      this.Add((Component) (this.sprite = new Sprite(GFX.Game, "objects/DZ/DZ/temple/portal/portaltorch")));
       this.sprite.AddLoop("idle", "", 0.0f, new int[1]);
       this.sprite.AddLoop("lit", "", 0.08f, 1, 2, 3, 4, 5, 6);
       this.sprite.Play("idle");

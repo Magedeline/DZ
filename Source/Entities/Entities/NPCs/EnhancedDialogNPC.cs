@@ -57,7 +57,7 @@ namespace Celeste.Entities {
                 sprite = GFX.SpriteBank.Create($"npc_{npcName.ToLower()}");
             } else {
                 // Fallback to default NPC sprite
-                sprite = new Sprite(GFX.Game, "characters/player/");
+                sprite = new Sprite(GFX.Game, "characters/DZ/player/");
                 sprite.AddLoop("idle", "idle", 0.1f);
                 sprite.AddLoop("walk", "walk", 0.1f);
             }

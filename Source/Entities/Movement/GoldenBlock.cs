@@ -52,7 +52,7 @@ public class GoldenBlock : CelesteSolid
         Collidable = false;
         Enabled    = false;
         Name       = "GoldenBlock";
-        // TODO: load nine-slice "objects/goldblock" texture
+        // TODO: load nine-slice "objects/DZ/DZ/goldblock" texture
         // TODO: load berry icon "collectables/goldberry/idle00"
     }
 

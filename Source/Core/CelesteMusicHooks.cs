@@ -66,7 +66,7 @@ public static class CelesteMusicHooks
                 _musicParamValues[param] = value;
             }
 
-            if (param.Contains("dside") || param.Contains("escape") || param.Contains("intensity"))
+            if (param.Contains("2") || param.Contains("escape") || param.Contains("intensity"))
             {
                 Logger.Log(LogLevel.Debug, "DZ/MusicHooks",
                     $"Music param set: {param} = {value}");

@@ -62,7 +62,7 @@ namespace Celeste.Cutscenes
             // Create human sprites
             for (int i = 0; i < 5; i++)
             {
-                var human = new Sprite(GFX.Game, "characters/humans/");
+                var human = new Sprite(GFX.Game, "characters/DZ/humans/");
                 human.AddLoop("work", "working", 0.1f);
                 human.AddLoop("celebrate", "celebrating", 0.1f);
                 human.Play("work");
@@ -73,7 +73,7 @@ namespace Celeste.Cutscenes
             // Create monster sprites
             for (int i = 0; i < 5; i++)
             {
-                var monster = new Sprite(GFX.Game, "characters/monsters/");
+                var monster = new Sprite(GFX.Game, "characters/DZ/monsters/");
                 monster.AddLoop("work", "working", 0.1f);
                 monster.AddLoop("celebrate", "celebrating", 0.1f);
                 monster.Play("work");
@@ -82,7 +82,7 @@ namespace Celeste.Cutscenes
             }
             
             // Planet Popstar
-            Add(planetPopstarSprite = new Sprite(GFX.Game, "objects/"));
+            Add(planetPopstarSprite = new Sprite(GFX.Game, "objects/DZ/DZ/"));
             planetPopstarSprite.AddLoop("approach", "planet_idle", 0.1f);
             planetPopstarSprite.Play("approach");
             planetPopstarSprite.Position = new Vector2(960f, -500f); // Start above screen

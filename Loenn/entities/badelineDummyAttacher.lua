@@ -2,7 +2,7 @@ local badelineDummyAttacher = {}
 
 badelineDummyAttacher.name = "DZ/BadelineDummyAttacher"
 badelineDummyAttacher.depth = 0
-badelineDummyAttacher.texture = "objects/DZ/badeline_dummy_attacher"
+badelineDummyAttacher.texture = "objects/DZ/DZ/DZ/badeline_dummy_attacher"
 
 badelineDummyAttacher.placements = {
     name = "badeline_dummy_attacher",

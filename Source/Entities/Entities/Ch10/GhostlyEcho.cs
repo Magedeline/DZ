@@ -4,7 +4,7 @@ namespace Celeste.Entities.Chapters.Ch10
     /// GhostlyEcho - Semi-transparent spirit that phases through walls
     /// Mirrors player movement with a configurable delay, creating puzzle elements
     /// Can be used for puzzles where player must avoid their own echo
-    /// Sprite path: characters/ghostly_echo/
+    /// Sprite path: characters/DZ/ghostly_echo/
     /// </summary>
     [CustomEntity("DZ/GhostlyEcho")]
     [Tracked]

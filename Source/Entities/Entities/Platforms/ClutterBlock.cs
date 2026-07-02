@@ -21,7 +21,7 @@ public class ClutterBlock : ClutterBlockBase
     public List<ClutterBlock> Above { get; } = new List<ClutterBlock>();
 
     public ClutterBlock(EntityData data, Vector2 offset)
-        : this(data.Position + offset, GFX.Game[data.Attr("texture", "objects/clutter/default")], data.Enum("color", Colors.Red))
+        : this(data.Position + offset, GFX.Game[data.Attr("texture", "objects/DZ/DZ/clutter/default")], data.Enum("color", Colors.Red))
     {
     }
 

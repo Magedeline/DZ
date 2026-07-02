@@ -467,12 +467,12 @@ namespace Celeste.Entities
         {
             return powerType switch
             {
-                PowerType.Fire => "characters/enemy/fire/",
-                PowerType.Ice => "characters/enemy/ice/", 
-                PowerType.Spark => "characters/enemy/spark/",
-                PowerType.Stone => "characters/enemy/stone/",
-                PowerType.Sword => "characters/enemy/sword/",
-                _ => "characters/enemy/basic/"
+                PowerType.Fire => "characters/DZ/enemy/fire/",
+                PowerType.Ice => "characters/DZ/enemy/ice/", 
+                PowerType.Spark => "characters/DZ/enemy/spark/",
+                PowerType.Stone => "characters/DZ/enemy/stone/",
+                PowerType.Sword => "characters/DZ/enemy/sword/",
+                _ => "characters/DZ/enemy/basic/"
             };
         }
 

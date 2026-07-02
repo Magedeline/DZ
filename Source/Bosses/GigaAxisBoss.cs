@@ -6,7 +6,7 @@ namespace Celeste.Entities.Bosses
     /// Giga Axis Boss - The ultimate machine overlord
     /// An evolved form of Axis with devastating technological power
     /// Multi-phase boss with mech transformations and weapon systems
-    /// Sprite path: characters/gigaaxis/
+    /// Sprite path: characters/DZ/gigaaxis/
     /// </summary>
     [CustomEntity(ids: "DZ/GigaAxisBoss")]
     [Tracked]
@@ -97,7 +97,7 @@ namespace Celeste.Entities.Bosses
         private void SetupVisuals()
         {
             // Main body sprite
-            Add(bodySprite = new Sprite(GFX.Game, "characters/gigaaxis/"));
+            Add(bodySprite = new Sprite(GFX.Game, "characters/DZ/gigaaxis/"));
             bodySprite.AddLoop("offline", "body_offline", 0.2f);
             bodySprite.AddLoop("idle", "body_idle", 0.1f);
             bodySprite.AddLoop("assault", "body_assault", 0.08f);
@@ -108,7 +108,7 @@ namespace Celeste.Entities.Bosses
             bodySprite.CenterOrigin();
             
             // Arms/weapons sprite
-            Add(armsSprite = new Sprite(GFX.Game, "characters/gigaaxis/"));
+            Add(armsSprite = new Sprite(GFX.Game, "characters/DZ/gigaaxis/"));
             armsSprite.AddLoop("retracted", "arms_retracted", 0.1f);
             armsSprite.AddLoop("ready", "arms_ready", 0.08f);
             armsSprite.AddLoop("fire", "arms_fire", 0.04f);
@@ -116,7 +116,7 @@ namespace Celeste.Entities.Bosses
             armsSprite.Position = new Vector2(0f, -48f);
             
             // Main cannon sprite
-            Add(cannonSprite = new Sprite(GFX.Game, "characters/gigaaxis/"));
+            Add(cannonSprite = new Sprite(GFX.Game, "characters/DZ/gigaaxis/"));
             cannonSprite.AddLoop("hidden", "cannon_hidden", 0.1f);
             cannonSprite.AddLoop("deploy", "cannon_deploy", 0.08f);
             cannonSprite.AddLoop("charge", "cannon_charge", 0.05f);
@@ -126,7 +126,7 @@ namespace Celeste.Entities.Bosses
             cannonSprite.Visible = false;
             
             // Wings/thrusters sprite
-            Add(wingsSprite = new Sprite(GFX.Game, "characters/gigaaxis/"));
+            Add(wingsSprite = new Sprite(GFX.Game, "characters/DZ/gigaaxis/"));
             wingsSprite.AddLoop("folded", "wings_folded", 0.1f);
             wingsSprite.AddLoop("spread", "wings_spread", 0.08f);
             wingsSprite.AddLoop("boost", "wings_boost", 0.04f);
@@ -134,7 +134,7 @@ namespace Celeste.Entities.Bosses
             wingsSprite.Position = new Vector2(0f, -60f);
             
             // Core sprite (weak point)
-            Add(coreSprite = new Sprite(GFX.Game, "characters/gigaaxis/"));
+            Add(coreSprite = new Sprite(GFX.Game, "characters/DZ/gigaaxis/"));
             coreSprite.AddLoop("protected", "core_protected", 0.1f);
             coreSprite.AddLoop("exposed", "core_exposed", 0.08f);
             coreSprite.AddLoop("critical", "core_critical", 0.04f);
@@ -145,7 +145,7 @@ namespace Celeste.Entities.Bosses
             // Create drones
             for (int i = 0; i < 4; i++)
             {
-                var drone = new Sprite(GFX.Game, "characters/gigaaxis/");
+                var drone = new Sprite(GFX.Game, "characters/DZ/gigaaxis/");
                 drone.AddLoop("idle", "drone_idle", 0.08f);
                 drone.AddLoop("attack", "drone_attack", 0.05f);
                 drone.CenterOrigin();

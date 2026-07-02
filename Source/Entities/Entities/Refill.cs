@@ -50,7 +50,7 @@ namespace Celeste.Entities
 
             sprite = CreateAndAddSprite(GetSpriteNameForDashCount(dashCount), "refill", true);
             flash = CreateAndAddSprite(GetFlashSpriteNameForDashCount(dashCount), "refillFlash", false, false);
-            outline = CreateAndAddOutline(GetOutlineTextureForDashCount(dashCount), "objects/refill/outline", false);
+            outline = CreateAndAddOutline(GetOutlineTextureForDashCount(dashCount), "objects/DZ/DZ/refill/outline", false);
 
             Add(wiggler = Wiggler.Create(1f, 4f, v =>
             {
@@ -139,12 +139,12 @@ namespace Celeste.Entities
         {
             return dashCount switch
             {
-                2 => "objects/refillTwo/outline",
-                3 => "objects/solarrefill/outline",
-                4 => "objects/lunarrefill/outline",
-                5 => "objects/blackholerefill/outline",
-                >= 10 => "objects/savestarrefill/outline",
-                _ => "objects/refill/outline"
+                2 => "objects/DZ/DZ/refillTwo/outline",
+                3 => "objects/DZ/DZ/solarrefill/outline",
+                4 => "objects/DZ/DZ/lunarrefill/outline",
+                5 => "objects/DZ/DZ/blackholerefill/outline",
+                >= 10 => "objects/DZ/DZ/savestarrefill/outline",
+                _ => "objects/DZ/DZ/refill/outline"
             };
         }
 

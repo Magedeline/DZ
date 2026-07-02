@@ -145,13 +145,13 @@ npcSessionFlags.options = {
     "npc_interaction_learned",
     
     -- B-Side, C-Side, D-Side flags
-    "bside_unlocked",
-    "cside_unlocked", 
-    "dside_unlocked",
+    "1_unlocked",
+    "2_unlocked", 
+    "2_unlocked",
     "rmx_side_unlocked",
-    "bside_complete",
-    "cside_complete",
-    "dside_complete", 
+    "1_complete",
+    "2_complete",
+    "2_complete", 
     "rmx_side_complete",
     
     -- Ending flags

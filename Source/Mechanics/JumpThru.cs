@@ -26,7 +26,7 @@ namespace Celeste.Entities
             base.Awake(scene);
             
             // Create the visual representation
-            string texturePath = "objects/jumpthru/" + texture;
+            string texturePath = "objects/DZ/DZ/jumpthru/" + texture;
             
             int tilesWidth = (int)(Width / 8f);
             
@@ -47,7 +47,7 @@ namespace Celeste.Entities
                 }
                 
                 MTexture texture = AtlasPathHelper.TryGetTexture(texturePath + frame.ToString("00"))
-                    ?? AtlasPathHelper.TryGetTexture("objects/jumpthru/wood" + frame.ToString("00"));
+                    ?? AtlasPathHelper.TryGetTexture("objects/DZ/DZ/jumpthru/wood" + frame.ToString("00"));
                 
                 if (texture != null)
                 {

@@ -49,8 +49,8 @@ public class DZModule : EverestModule {
         AreaMapData.Initialize();
         AreaMapData.ApplyHardcodedRuntimeData();
 
-        // Load D-Side hook registry (DSide, Music, TitleScreen hooks)
-        DSideHookRegistry.InitializeAll();
+        // Load D-Side hook registry (2, Music, TitleScreen hooks)
+        2HookRegistry.InitializeAll();
 
         VignetteHooks.Load();
         global::DZ.Entities.Payphone.LoadParticles();
@@ -78,7 +78,7 @@ public class DZModule : EverestModule {
         DllHotReloader.Shutdown();
 
         // Unload D-Side hook registry
-        DSideHookRegistry.UninitializeAll();
+        2HookRegistry.UninitializeAll();
 
         VignetteHooks.Unload();
         KirbyPlayerController.Unload();

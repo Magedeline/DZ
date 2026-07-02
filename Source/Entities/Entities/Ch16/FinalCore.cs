@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch16
     /// <summary>
     /// FinalCore - The final boss core entity
     /// Central entity for final chapter confrontation
-    /// Sprite path: characters/final_core/
+    /// Sprite path: characters/DZ/final_core/
     /// </summary>
     [CustomEntity("DZ/FinalCore")]
     [Tracked]

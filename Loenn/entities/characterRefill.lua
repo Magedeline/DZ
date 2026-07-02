@@ -2,7 +2,7 @@ local characterRefill = {}
 
 characterRefill.name = "DZ/CharacterRefill"
 characterRefill.depth = 0
-characterRefill.texture = "objects/DZ/character_refill"
+characterRefill.texture = "objects/DZ/DZ/DZ/character_refill"
 
 characterRefill.placements = {
     name = "character_refill",

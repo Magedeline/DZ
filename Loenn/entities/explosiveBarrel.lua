@@ -2,7 +2,7 @@ local explosiveBarrel = {}
 
 explosiveBarrel.name = "DZ/ExplosiveBarrel"
 explosiveBarrel.depth = 0
-explosiveBarrel.texture = "objects/DZ/explosive_barrel"
+explosiveBarrel.texture = "objects/DZ/DZ/DZ/explosive_barrel"
 
 explosiveBarrel.placements = {
     name = "explosive_barrel",

@@ -93,7 +93,7 @@ public static class ClutterBlockGenerator
     private static List<TextureSet> createTextureSetForColor(ClutterBlock.Colors color)
     {
         var textureSetList = new List<TextureSet>();
-        string colorPrefix = $"objects/resortclutter/{color}_";
+        string colorPrefix = $"objects/DZ/DZ/resortclutter/{color}_";
         
         foreach (MTexture atlasSubtexture in GFX.Game.GetAtlasSubtextures(colorPrefix))
         {

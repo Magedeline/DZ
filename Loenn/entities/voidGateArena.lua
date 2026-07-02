@@ -2,7 +2,7 @@ local voidGateArena = {}
 
 voidGateArena.name = "DZ/VoidGateArena"
 voidGateArena.depth = 0
-voidGateArena.texture = "objects/DZ/void_gate_arena"
+voidGateArena.texture = "objects/DZ/DZ/DZ/void_gate_arena"
 
 voidGateArena.placements = {
     name = "void_gate_arena",

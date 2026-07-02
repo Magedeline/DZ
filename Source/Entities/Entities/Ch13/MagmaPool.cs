@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch13
     /// <summary>
     /// MagmaPool - Lava pool that kills on contact
     /// Instant death hazard with bubbling effects
-    /// Sprite path: objects/magma_pool/
+    /// Sprite path: objects/DZ/DZ/magma_pool/
     /// </summary>
     [CustomEntity("DZ/MagmaPool")]
     [Tracked]

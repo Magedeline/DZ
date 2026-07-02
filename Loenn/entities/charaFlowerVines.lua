@@ -2,7 +2,7 @@ local charaFlowerVines = {}
 
 charaFlowerVines.name = "DZ/CharaFlowerVines"
 charaFlowerVines.depth = 0
-charaFlowerVines.texture = "objects/DZ/chara_flower_vines"
+charaFlowerVines.texture = "objects/DZ/DZ/DZ/chara_flower_vines"
 
 charaFlowerVines.placements = {
     name = "chara_flower_vines",

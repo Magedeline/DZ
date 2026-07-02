@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch14
     /// <summary>
     /// MemoryFragment - Collectible data fragment that reveals story
     /// Floating crystal containing memories/lore
-    /// Sprite path: objects/memory_fragment/
+    /// Sprite path: objects/DZ/DZ/memory_fragment/
     /// </summary>
     [CustomEntity("DZ/MemoryFragment")]
     [Tracked]

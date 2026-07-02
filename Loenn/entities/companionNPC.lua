@@ -2,7 +2,7 @@ local companionNPC = {}
 
 companionNPC.name = "DZ/CompanionNPC"
 companionNPC.depth = 0
-companionNPC.texture = "objects/DZ/companion_npc"
+companionNPC.texture = "objects/DZ/DZ/DZ/companion_npc"
 
 companionNPC.placements = {
     name = "companion_npc",

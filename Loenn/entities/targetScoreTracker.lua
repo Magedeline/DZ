@@ -2,7 +2,7 @@ local targetScoreTracker = {}
 
 targetScoreTracker.name = "DZ/TargetScoreTracker"
 targetScoreTracker.depth = 0
-targetScoreTracker.texture = "objects/DZ/target_score_tracker"
+targetScoreTracker.texture = "objects/DZ/DZ/DZ/target_score_tracker"
 
 targetScoreTracker.placements = {
     name = "target_score_tracker",

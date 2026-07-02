@@ -1,21 +1,21 @@
 schema: DZ-map-meta-v1
-sid: DZ/DSide/18_Heart
+sid: DZ/2/18_Heart
 baseKey: 18_Heart
 side: D
 modeIndex: 3
 isMainChapterEntry: false
-mainChapterSid: DZ/ASide/18_Heart
+mainChapterSid: DZ/0/18_Heart
 showInChapterSelect: true
 
 MusicBySide:
   - event:/music/pusheen/menu/complete_area
-  - event:/music/pusheen/menu/complete_bside
-  - event:/music/pusheen/menu/complete_cside
+  - event:/music/pusheen/menu/complete_1
+  - event:/music/pusheen/menu/complete_2
   - event:/music/pusheen/menu/complete_dxside
 Title:
-  ASide: "Chapter Complete"
-  BSide: "B Side Complete"
-  CSide: "C Side Complete"
-  DSide: "D Side Complete"
+  0: "Chapter Complete"
+  1: "B Side Complete"
+  2: "C Side Complete"
+  2: "D Side Complete"
   DXSide: "DX Side Complete"
   FullClear: "Chapter Clear"

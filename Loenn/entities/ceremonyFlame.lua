@@ -2,7 +2,7 @@ local ceremonyFlame = {}
 
 ceremonyFlame.name = "DZ/CeremonyFlame"
 ceremonyFlame.depth = 0
-ceremonyFlame.texture = "objects/DZ/ceremony_flame"
+ceremonyFlame.texture = "objects/DZ/DZ/DZ/ceremony_flame"
 
 ceremonyFlame.placements = {
     name = "ceremony_flame",

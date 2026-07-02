@@ -185,13 +185,13 @@ namespace DZ
     }
 
     public PostcardDZ(string msg)
-        : this(msg, "event:/pusheen/ui/main/postcard_csides_in", "event:/pusheen/ui/main/postcard_csides_out")
+        : this(msg, "event:/pusheen/ui/main/postcard_2s_in", "event:/pusheen/ui/main/postcard_2s_out")
     {
     }
 
-    public static PostcardDZ CreateDSides(string msg)
+    public static PostcardDZ Create2s(string msg)
     {
-        return new PostcardDZ(msg, "event:/pusheen/ui/main/postcard_dsides_in", "event:/pusheen/ui/main/postcard_dsides_out");
+        return new PostcardDZ(msg, "event:/pusheen/ui/main/postcard_2s_in", "event:/pusheen/ui/main/postcard_2s_out");
     }
 
     public PostcardDZ(string msg, string soundId)
@@ -213,7 +213,7 @@ namespace DZ
     {
         if (string.IsNullOrEmpty(soundId))
         {
-            soundId = "csides";
+            soundId = "2s";
         }
 
         if (soundId.StartsWith("event:/"))

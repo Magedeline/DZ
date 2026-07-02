@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch15
     /// <summary>
     /// CeremonyFlame - Eternal fire that spreads across platforms
     /// Creates dynamic fire hazards that grow and can be extinguished
-    /// Sprite path: objects/ceremony_flame/
+    /// Sprite path: objects/DZ/DZ/ceremony_flame/
     /// </summary>
     [CustomEntity("DZ/CeremonyFlame")]
     [Tracked]

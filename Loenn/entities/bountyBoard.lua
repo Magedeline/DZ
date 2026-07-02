@@ -2,7 +2,7 @@ local bountyBoard = {}
 
 bountyBoard.name = "DZ/BountyBoard"
 bountyBoard.depth = 0
-bountyBoard.texture = "objects/DZ/bounty_board"
+bountyBoard.texture = "objects/DZ/DZ/DZ/bounty_board"
 
 bountyBoard.placements = {
     name = "bounty_board",

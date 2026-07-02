@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch13
     /// <summary>
     /// LavaBubble - Rising lava bubble that bursts and damages player
     /// Spawns from lava pools and creates hazards
-    /// Sprite path: objects/lava_bubble/
+    /// Sprite path: objects/DZ/DZ/lava_bubble/
     /// </summary>
     [CustomEntity("DZ/LavaBubble")]
     [Tracked]

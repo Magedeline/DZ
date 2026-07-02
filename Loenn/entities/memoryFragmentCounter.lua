@@ -2,7 +2,7 @@ local memoryFragmentCounter = {}
 
 memoryFragmentCounter.name = "DZ/MemoryFragmentCounter"
 memoryFragmentCounter.depth = 0
-memoryFragmentCounter.texture = "objects/DZ/memory_fragment_counter"
+memoryFragmentCounter.texture = "objects/DZ/DZ/DZ/memory_fragment_counter"
 
 memoryFragmentCounter.placements = {
     name = "memory_fragment_counter",

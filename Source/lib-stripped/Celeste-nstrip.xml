@@ -4858,29 +4858,29 @@ How these should be structured is poorly documented, so if having nested members
             Set the custom metadata.
             </summary>
     </member>
-    <member name="M:Celeste.AreaDataExt.GetASideAreaDataBackup(Celeste.AreaData)">
+    <member name="M:Celeste.AreaDataExt.Get0AreaDataBackup(Celeste.AreaData)">
       <summary>
             Get the A-Side's area data backup.
             </summary>
     </member>
-    <member name="M:Celeste.AreaDataExt.SetASideAreaDataBackup(Celeste.AreaData,Celeste.AreaData)">
+    <member name="M:Celeste.AreaDataExt.Set0AreaDataBackup(Celeste.AreaData,Celeste.AreaData)">
       <summary>
             Set the A-Side's area data backup.
             </summary>
     </member>
-    <member name="M:Celeste.AreaDataExt.RestoreASideAreaData(Celeste.AreaData)">
+    <member name="M:Celeste.AreaDataExt.Restore0AreaData(Celeste.AreaData)">
       <summary>
             Restore A-Side's area data from backup.
             </summary>
     </member>
     <member name="M:Celeste.AreaDataExt.GetModeMeta(Celeste.AreaData,Celeste.AreaMode)">
       <summary>
-            Get the custom metadata of the mode if OverrideASideMeta is enabled. 
+            Get the custom metadata of the mode if Override0Meta is enabled. 
             </summary>
     </member>
-    <member name="M:Celeste.AreaDataExt.OverrideASideMeta(Celeste.AreaData,Celeste.AreaMode)">
+    <member name="M:Celeste.AreaDataExt.Override0Meta(Celeste.AreaData,Celeste.AreaMode)">
       <summary>
-            Apply the metadata of the mode to the area if OverrideASideMeta is enabled.
+            Apply the metadata of the mode to the area if Override0Meta is enabled.
             </summary>
     </member>
     <member name="P:Celeste.AreaKey.SID">
@@ -6186,35 +6186,35 @@ How these should be structured is poorly documented, so if having nested members
       <member name="M:DZ.AreaModeExtender.GetSideFolder(System.Int32)">
         <summary>
           Return the folder name used for a side index.
-          Desolo Zantas uses <c>ASide</c>, <c>BSide</c>, <c>CSide</c>, <c>DSide</c>, and <c>DXSide</c>.
+          Desolo Zantas uses <c>0</c>, <c>1</c>, <c>2</c>, <c>2</c>, and <c>DXSide</c>.
           </summary>
         <param name="modeIndex">Zero-based side index.</param>
         <returns>The folder segment used to build a map SID.</returns>
       </member>
-      <member name="M:DZ.AreaModeExtender.BuildSideSID(System.Int32,System.String)">
+      <member name="M:DZ.AreaModeExtender.Buil2SID(System.Int32,System.String)">
         <summary>
           Build a Desolo Zantas SID from a side index and base map name.
-          Example: <c>BuildSideSID(3, &quot;01_City&quot;)</c> produces <c>DZ/DSide/01_City</c>.
+          Example: <c>Buil2SID(3, &quot;01_City&quot;)</c> produces <c>DZ/2/01_City</c>.
           </summary>
         <param name="modeIndex">Zero-based side index.</param>
         <param name="mapName">Map basename without the <c>.bin</c> extension.</param>
         <returns>A SID rooted at the internal <c>DZ</c> map prefix.</returns>
       </member>
-      <member name="M:DZ.AreaModeExtender.BuildSideSID(System.String,System.String)">
+      <member name="M:DZ.AreaModeExtender.Buil2SID(System.String,System.String)">
         <summary>
           Build a Desolo Zantas SID directly from a side folder name and map basename.
           Use this overload when the caller already knows the folder string.
           </summary>
-        <param name="sideFolder">Folder name such as <c>ASide</c> or <c>DXSide</c>.</param>
+        <param name="sideFolder">Folder name such as <c>0</c> or <c>DXSide</c>.</param>
         <param name="mapName">Map basename without the <c>.bin</c> extension.</param>
         <returns>A side-specific map SID.</returns>
       </member>
-      <member name="M:DZ.AreaModeExtender.BuildASideSID(System.String)">
+      <member name="M:DZ.AreaModeExtender.Build0SID(System.String)">
         <summary>
           Convenience helper for building an A-Side SID in the Desolo Zantas campaign.
           </summary>
         <param name="mapName">Map basename without the <c>.bin</c> extension.</param>
-        <returns>An <c>ASide</c> map SID.</returns>
+        <returns>An <c>0</c> map SID.</returns>
       </member>
       <member name="M:DZ.AreaModeExtender.Load">
         <summary>
@@ -6229,7 +6229,7 @@ How these should be structured is poorly documented, so if having nested members
       <member name="M:DZ.AreaModeExtender.GetModeName(System.Int32)">
         <summary>
           Return the internal mode name used by Desolo Zantas save keys and unlock bookkeeping.
-          Values include <c>Normal</c>, <c>BSide</c>, <c>CSide</c>, <c>DSide</c>, and <c>DXSide</c>.
+          Values include <c>Normal</c>, <c>1</c>, <c>2</c>, <c>2</c>, and <c>DXSide</c>.
           </summary>
         <param name="modeIndex">Zero-based side index.</param>
         <returns>The internal label for that mode.</returns>

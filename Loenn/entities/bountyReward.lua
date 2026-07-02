@@ -2,7 +2,7 @@ local bountyReward = {}
 
 bountyReward.name = "DZ/BountyReward"
 bountyReward.depth = 0
-bountyReward.texture = "objects/DZ/bounty_reward"
+bountyReward.texture = "objects/DZ/DZ/DZ/bounty_reward"
 
 bountyReward.placements = {
     name = "bounty_reward",

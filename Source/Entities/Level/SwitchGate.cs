@@ -57,7 +57,7 @@ public class SwitchGate : CelesteSolid
     {
         base.OnAddedToScene();
 
-        // TODO: load 9-slice texture from "objects/switchgate/{_spriteName}"
+        // TODO: load 9-slice texture from "objects/DZ/DZ/switchgate/{_spriteName}"
         // TODO: create icon sprite at center
         // TODO: set up light occlude
 

@@ -2,7 +2,7 @@ local fallenLeafPile = {}
 
 fallenLeafPile.name = "DZ/FallenLeafPile"
 fallenLeafPile.depth = 0
-fallenLeafPile.texture = "objects/DZ/fallen_leaf_pile"
+fallenLeafPile.texture = "objects/DZ/DZ/DZ/fallen_leaf_pile"
 
 fallenLeafPile.placements = {
     name = "fallen_leaf_pile",

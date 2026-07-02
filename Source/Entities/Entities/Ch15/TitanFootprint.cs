@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch15
     /// <summary>
     /// TitanFootprint - Massive crushing hazard with shadow warning
     /// Shows a shadow indicator before the foot comes down
-    /// Sprite path: objects/titan_footprint/
+    /// Sprite path: objects/DZ/DZ/titan_footprint/
     /// </summary>
     [CustomEntity("DZ/TitanFootprint")]
     [Tracked]

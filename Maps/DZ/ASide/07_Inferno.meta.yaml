@@ -1,5 +1,5 @@
 Icon: areas/DZ/hell
-SID: DZ/ASide/07_Inferno
+SID: DZ/0/07_Inferno
 Interlude: false
 TitleBaseColor: 761008
 TitleAccentColor: e0201d
@@ -22,25 +22,25 @@ Modes:
     HeartIsEnd: false
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/BSide/07_hell
+      Music: event:/music/pusheen/1/07_hell
       Ambience: event:/env/pusheen/07_interior_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/CSide/07_hell
+      Music: event:/music/pusheen/2/07_hell
       Ambience: event:/env/pusheen/07_interior_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/CSide/07_hell
+      Music: event:/music/pusheen/2/07_hell
       Ambience: event:/env/pusheen/07_interior_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/DSide/07_hell
+      Music: event:/music/pusheen/2/07_hell
       Ambience: event:/env/pusheen/07_main
     Inventory: Default
     HeartIsEnd: true
@@ -51,8 +51,8 @@ Modes:
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
-    MountainModelDirectory: Mountain/DZ/ASide
-    MountainTextureDirectory: DZ/ASide
+    MountainModelDirectory: Mountain/DZ/0
+    MountainTextureDirectory: DZ/0
     Idle:
         Position: [-3.500, 6.500, 14.000]
         Target: [-2.800, 5.800, 12.500]
@@ -67,13 +67,13 @@ Modes:
 
 MusicBySide:
   - event:/music/pusheen/menu/complete_area
-  - event:/music/pusheen/menu/complete_bside
-  - event:/music/pusheen/menu/complete_cside
+  - event:/music/pusheen/menu/complete_1
+  - event:/music/pusheen/menu/complete_2
   - event:/music/pusheen/menu/complete_dxside
 Title:
-  ASide: "Chapter Complete"
-  BSide: "B Side Complete"
-  CSide: "C Side Complete"
-  DSide: "D Side Complete"
+  0: "Chapter Complete"
+  1: "B Side Complete"
+  2: "C Side Complete"
+  2: "D Side Complete"
   DXSide: "DX Side Complete"
   FullClear: "Chapter Clear"

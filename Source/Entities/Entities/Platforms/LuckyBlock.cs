@@ -23,7 +23,7 @@ namespace Celeste.Entities
             this.rewardType = rewardType;
             originalPosition = position;
             
-            texture = AtlasPathHelper.GetTexture("objects/luckyblock");
+            texture = AtlasPathHelper.GetTexture("objects/DZ/DZ/luckyblock");
             OnDashCollide = (global::Celeste.Player player, Vector2 direction) => OnDashed(player, direction);
             
             Add(wiggler = Wiggler.Create(0.3f, 4f));

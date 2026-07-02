@@ -51,14 +51,14 @@ internal class DestroySpinnerRefill : Entity
     string str;
     if (twoDashes)
     {
-      str = "objects/refillTwo/";
+      str = "objects/DZ/DZ/refillTwo/";
       this.p_shatter = DestroySpinnerRefill.P_ShatterTwo;
       this.p_regen = DestroySpinnerRefill.P_RegenTwo;
       this.p_glow = DestroySpinnerRefill.P_GlowTwo;
     }
     else
     {
-      str = "objects/destroyRefill/";
+      str = "objects/DZ/DZ/destroyRefill/";
       this.p_shatter = DestroySpinnerRefill.P_Shatter;
       this.p_regen = DestroySpinnerRefill.P_Regen;
       this.p_glow = DestroySpinnerRefill.P_Glow;

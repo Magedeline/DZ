@@ -47,7 +47,7 @@ public static class ChapterProgressDisplay
             return (float)collected / total * 100f;
         }
 
-        public int GetCompletedSideCount()
+        public int GetComplete2Count()
         {
             return Sides.Count(s => s.Completed);
         }
@@ -189,7 +189,7 @@ public static class ChapterProgressDisplay
 
         // Sides completed
         textPos.Y += lineHeight;
-        string sidesStatus = $"Sides: {progress.GetCompletedSideCount()}/{progress.Sides.Count}";
+        string sidesStatus = $"Sides: {progress.GetComplete2Count()}/{progress.Sides.Count}";
 
         // Death count (if available)
         if (progress.DeathCount > 0)
@@ -293,7 +293,7 @@ public static class ChapterProgressDisplay
                 };
 
                 // Get all available sides for this chapter
-                BuildSideList(save, area, progress);
+                Buil2List(save, area, progress);
 
                 CountChapterCollectibles(save, modSave, area.SID, area.ID, progress);
                 GetChapterStats(modSave, area.SID, progress);
@@ -308,7 +308,7 @@ public static class ChapterProgressDisplay
         }
     }
 
-    private static void BuildSideList(SaveData save, AreaData area, ProgressData progress)
+    private static void Buil2List(SaveData save, AreaData area, ProgressData progress)
     {
         var sideColors = new Color[]
         {
@@ -344,14 +344,14 @@ public static class ChapterProgressDisplay
             // D-Side
             if (global::Celeste.AreaModeExtender.GetSaveAreaModeCount(area.ID) > 3)
             {
-                bool dSideCompleted = IsModeSideCompleted(save, area.ID, 3);
+                bool 2Completed = IsModeSideCompleted(save, area.ID, 3);
                 if (!progress.Sides.Any(s => s.Mode == 3))
                 {
                     progress.Sides.Add(new SideProgress
                     {
                         Name = "D",
                         Mode = 3,
-                        Completed = dSideCompleted,
+                        Completed = 2Completed,
                         Color = sideColors[3]
                     });
                 }

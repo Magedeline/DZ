@@ -1,5 +1,5 @@
 ﻿Icon: areas/DZ/theend
-SID: DZ/ASide/20_TheEnd
+SID: DZ/0/20_TheEnd
 Interlude: false
 TitleBaseColor: ffd819
 TitleAccentColor: ffffff
@@ -38,7 +38,7 @@ Modes:
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/DSide/20_theend
+      Music: event:/music/pusheen/2/20_theend
       Ambience: event:/env/pusheen/20_main
     Inventory: Default
     HeartIsEnd: true

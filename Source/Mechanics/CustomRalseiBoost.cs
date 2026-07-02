@@ -63,7 +63,7 @@ public class CustomRalseiBoost : Entity
         Add(stretch =
 	        transitionImage is not null
             ? transitionImage
-            : new Image(GFX.Game["objects/ralseiboost/stretch"])
+            : new Image(GFX.Game["objects/DZ/DZ/ralseiboost/stretch"])
         );
         stretch.Visible = false;
         stretch.CenterOrigin();
@@ -126,7 +126,7 @@ public class CustomRalseiBoost : Entity
 		data.HexColor("ambientParticle2", defaultValue: Calc.HexToColor("ffccf7")),
 		data.HexColor("moveColor", defaultValue: Calc.HexToColor("ff6def")),
 		new Image(GFX.Game[
-			data.Attr("moveImage", defaultValue: "objects/ralseiboost/stretch")
+			data.Attr("moveImage", defaultValue: "objects/DZ/DZ/ralseiboost/stretch")
 		]),
 		data.HexColor("moveParticleColor", defaultValue: Calc.HexToColor("e0a8d8"))
 	)

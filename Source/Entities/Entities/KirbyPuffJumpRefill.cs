@@ -55,11 +55,11 @@ namespace Celeste.Entities
             // Create sprites based on variant
             string spriteName = spriteVariant == "multi" ? "puffrefillmulti" : "puffrefill";
             string flashName = spriteVariant == "multi" ? "puffrefillmultiFlash" : "puffrefillFlash";
-            string outlinePath = $"objects/{spriteName}/outline";
+            string outlinePath = $"objects/DZ/DZ/{spriteName}/outline";
 
             sprite = CreateAndAddSprite(spriteName, "refill", true);
             flash = CreateAndAddSprite(flashName, "refillFlash", false, false);
-            outline = CreateAndAddOutline(outlinePath, "objects/refill/outline", false);
+            outline = CreateAndAddOutline(outlinePath, "objects/DZ/DZ/refill/outline", false);
 
             // Add wiggler animation
             Add(wiggler = Wiggler.Create(1f, 4f, v =>

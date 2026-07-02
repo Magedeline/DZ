@@ -3,7 +3,7 @@ namespace DZ
     /// <summary>
     /// MagicFountain - Central fountain with magical water effects
     /// Main setpiece that activates tower climbing sequence
-    /// Sprite path: objects/magic_fountain/
+    /// Sprite path: objects/DZ/DZ/magic_fountain/
     /// </summary>
     [CustomEntity("DZ/MagicFountain")]
     [Tracked]

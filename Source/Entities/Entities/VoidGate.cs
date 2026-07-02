@@ -112,7 +112,7 @@ namespace Celeste.Entities
         private void SetupSprites()
         {
             // Left gate sprite
-            leftGateSprite = AtlasPathHelper.CreateSprite("objects/voidgate/");
+            leftGateSprite = AtlasPathHelper.CreateSprite("objects/DZ/DZ/voidgate/");
             leftGateSprite.AddLoop("idle", "gate_left", 0.1f);
             leftGateSprite.Add("close", "gate_left_close", 0.08f, "idle");
             leftGateSprite.Add("open", "gate_left_open", 0.08f, "idle");
@@ -120,7 +120,7 @@ namespace Celeste.Entities
             leftGateSprite.Position = Vector2.Zero;
             
             // Right gate sprite
-            rightGateSprite = AtlasPathHelper.CreateSprite("objects/voidgate/");
+            rightGateSprite = AtlasPathHelper.CreateSprite("objects/DZ/DZ/voidgate/");
             rightGateSprite.AddLoop("idle", "gate_right", 0.1f);
             rightGateSprite.Add("close", "gate_right_close", 0.08f, "idle");
             rightGateSprite.Add("open", "gate_right_open", 0.08f, "idle");

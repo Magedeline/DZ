@@ -34,11 +34,11 @@ public sealed class AreaCompleteExtData
         int mode = (int)session.Area.Mode;
         string modeSuffix = mode switch
         {
-            AreaModeExtender.MODE_NORMAL => "aside",
-            AreaModeExtender.MODE_BSIDE  => "bside",
-            AreaModeExtender.MODE_CSIDE  => "cside",
-            AreaModeExtender.MODE_DSIDE  => "dside",
-            _                            => "dside", // Default to DSide for unknown modes
+            AreaModeExtender.MODE_NORMAL => "0",
+            AreaModeExtender.MODE_1  => "1",
+            AreaModeExtender.MODE_2  => "2",
+            AreaModeExtender.MODE_2  => "2",
+            _                            => "2", // Default to 2 for unknown modes
         };
 
         string normalised = baseKey.Replace(" ", "_").ToLowerInvariant();
@@ -47,7 +47,7 @@ public sealed class AreaCompleteExtData
 
     /// <summary>
     /// Returns the title string from the map meta (CompleteScreen.Title), including
-    /// DSide support via a "DSide" dialog key convention.
+    /// 2 support via a "2" dialog key convention.
     /// Returns null if no custom meta title is set for this mode.
     /// </summary>
     public static string GetCustomCompleteScreenTitle(Session session)
@@ -60,16 +60,16 @@ public sealed class AreaCompleteExtData
 
         string dialogKey = mode switch
         {
-            AreaModeExtender.MODE_NORMAL => session.FullClear ? titleMeta?.FullClear : titleMeta?.ASide,
-            AreaModeExtender.MODE_BSIDE  => titleMeta?.BSide,
-            AreaModeExtender.MODE_CSIDE  => titleMeta?.CSide,
-            AreaModeExtender.MODE_DSIDE  => null, // D-Side uses default behavior, no custom title
+            AreaModeExtender.MODE_NORMAL => session.FullClear ? titleMeta?.FullClear : titleMeta?.0,
+            AreaModeExtender.MODE_1  => titleMeta?.1,
+            AreaModeExtender.MODE_2  => titleMeta?.2,
+            AreaModeExtender.MODE_2  => null, // D-Side uses default behavior, no custom title
             _                            => null,
         };
 
         if (dialogKey == null) return null;
 
-        if (mode == AreaModeExtender.MODE_DSIDE)
+        if (mode == AreaModeExtender.MODE_2)
             return Dialog.Has(dialogKey) ? Dialog.Clean(dialogKey) : null;
 
         return Dialog.Clean(dialogKey);
@@ -77,7 +77,7 @@ public sealed class AreaCompleteExtData
 
     /// <summary>
     /// Returns the default (vanilla-style) complete screen title for the given session,
-    /// including DSide support.
+    /// including 2 support.
     /// </summary>
     public static string GetDefaultCompleteScreenTitle(Session session)
     {
@@ -88,10 +88,10 @@ public sealed class AreaCompleteExtData
         string key = mode switch
         {
             AreaModeExtender.MODE_NORMAL => $"areacomplete_Normal{(session.FullClear ? "_fullclear" : "")}",
-            AreaModeExtender.MODE_BSIDE  => "areacomplete_BSide",
-            AreaModeExtender.MODE_CSIDE  => "areacomplete_CSide",
-            AreaModeExtender.MODE_DSIDE  => "areacomplete_DSide",
-            _                            => $"areacomplete_DSide",
+            AreaModeExtender.MODE_1  => "areacomplete_1",
+            AreaModeExtender.MODE_2  => "areacomplete_2",
+            AreaModeExtender.MODE_2  => "areacomplete_2",
+            _                            => $"areacomplete_2",
         };
 
         if (!Dialog.Has(key)) return null;
@@ -153,12 +153,12 @@ public sealed class AreaCompleteExtData
 
     // ── Private helpers ───────────────────────────────────────────────────
 
-    private static string GetDSideTitleKey(Session session)
+    private static string Get2TitleKey(Session session)
     {
         if (!AreaModeExtender.TryParseMainSideSID(session.Area.SID, out string baseKey, out _))
             return null;
 
         string normalised = baseKey.Replace(" ", "_").ToLowerInvariant();
-        return $"areacomplete_{normalised}_dside";
+        return $"areacomplete_{normalised}_2";
     }
 }

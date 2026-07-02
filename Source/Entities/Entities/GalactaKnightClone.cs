@@ -20,7 +20,7 @@ namespace Celeste.Entities
             new Color(255, 220, 128),
             new Color(100, 255, 255),
             new Color(255, 248, 220),
-            "characters/els_true_final_boss/siamo_zero_aeon_hero_fake/",
+            "characters/DZ/els_true_final_boss/siamo_zero_aeon_hero_fake/",
             "idle",
             "move",
             "awaken",

@@ -2,7 +2,7 @@ local hotPlatform = {}
 
 hotPlatform.name = "DZ/HotPlatform"
 hotPlatform.depth = 0
-hotPlatform.texture = "objects/DZ/hot_platform"
+hotPlatform.texture = "objects/DZ/DZ/DZ/hot_platform"
 
 hotPlatform.placements = {
     name = "hot_platform",

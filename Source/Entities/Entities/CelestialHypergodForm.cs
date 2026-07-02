@@ -48,21 +48,21 @@ namespace Celeste.Entities
         private void setupSprites()
         {
             // Madeline (light side)
-            Add(madelineSprite = new Sprite(GFX.Game, "characters/player/"));
+            Add(madelineSprite = new Sprite(GFX.Game, "characters/DZ/player/"));
             madelineSprite.AddLoop("idle", "idle", 0.1f);
             madelineSprite.AddLoop("hypergod", "idle", 0.1f); // Placeholder
             madelineSprite.Play("idle");
             madelineSprite.Position = new Vector2(-12f, 0f);
             
             // Badeline (dark side)
-            Add(badelineSprite = new Sprite(GFX.Game, "characters/badeline/"));
+            Add(badelineSprite = new Sprite(GFX.Game, "characters/DZ/badeline/"));
             badelineSprite.AddLoop("idle", "idle", 0.1f);
             badelineSprite.AddLoop("hypergod", "idle", 0.1f); // Placeholder
             badelineSprite.Play("idle");
             badelineSprite.Position = new Vector2(12f, 0f);
             
             // Twin battle axe (center)
-            Add(twinAxeSprite = new Sprite(GFX.Game, "objects/"));
+            Add(twinAxeSprite = new Sprite(GFX.Game, "objects/DZ/DZ/"));
             twinAxeSprite.AddLoop("idle", "idle", 0.1f); // Placeholder
             twinAxeSprite.Play("idle");
             twinAxeSprite.Position = Vector2.Zero;

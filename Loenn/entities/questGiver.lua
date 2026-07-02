@@ -2,7 +2,7 @@ local questGiver = {}
 
 questGiver.name = "DZ/QuestGiver"
 questGiver.depth = 0
-questGiver.texture = "objects/DZ/quest_giver"
+questGiver.texture = "objects/DZ/DZ/DZ/quest_giver"
 
 questGiver.placements = {
     name = "quest_giver",

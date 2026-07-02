@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch12
     /// <summary>
     /// FountainSpirit - Water spirit that heals or creates platforms
     /// Benevolent entity that can help player or grant buffs
-    /// Sprite path: characters/fountain_spirit/
+    /// Sprite path: characters/DZ/fountain_spirit/
     /// </summary>
     [CustomEntity("DZ/FountainSpirit")]
     [Tracked]

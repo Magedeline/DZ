@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch11
     /// <summary>
     /// HorseHitch - Fast-travel point between bar sections
     /// Allows player to quickly travel between connected hitches
-    /// Sprite path: objects/horse_hitch/
+    /// Sprite path: objects/DZ/DZ/horse_hitch/
     /// </summary>
     [CustomEntity("DZ/HorseHitch")]
     [Tracked]

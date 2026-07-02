@@ -15,7 +15,7 @@
   -->
   <!-- DEFAULT TILES -->
   <!-- ~~~~~~~~~~~~~ -->
-  <Tileset id="z" path="template">
+  <Tileset id="z" path="DZ/template">
     <set mask="x0x-111-x1x" tiles="0,0;1,0;2,0;3,0" />
     <set mask="x1x-111-x0x" tiles="0,1;1,1;2,1;3,1" />
     <set mask="x1x-011-x1x" tiles="0,2;1,2;2,2;3,2" />
@@ -49,13 +49,13 @@
     <set mask="padding" tiles="5,0;5,1;5,2;5,3;5,4;5,5;5,6;5,7;5,8;5,9;5,10;5,11" />
     <set mask="center" tiles="5,12" />
   </Tileset>
-  <Tileset id="1" copy="z" path="dirt" ignores="g" />
-  <Tileset id="3" copy="z" path="snow" />
-  <Tileset id="4" copy="z" path="girder" />
-  <Tileset id="5" copy="z" path="tower" />
-  <Tileset id="6" copy="z" path="stone" />
-  <Tileset id="7" copy="z" path="cement" />
-  <Tileset id="8" copy="z" path="rock" />
+  <Tileset id="1" copy="z" path="DZ/dirt" ignores="g" />
+  <Tileset id="3" copy="z" path="DZ/snow" />
+  <Tileset id="4" copy="z" path="DZ/girder" />
+  <Tileset id="5" copy="z" path="DZ/tower" />
+  <Tileset id="6" copy="z" path="DZ/stone" />
+  <Tileset id="7" copy="z" path="DZ/cement" />
+  <Tileset id="8" copy="z" path="DZ/rock" />
   <Tileset id="9" path="wood">
     <set mask="x0x-111-x1x" tiles="0,0;1,0;2,0;3,0" />
     <set mask="x1x-111-x0x" tiles="0,1;1,1;2,1;3,1" />
@@ -90,19 +90,19 @@
     <set mask="padding" tiles="5,0;5,1;5,2;5,3;5,4;5,5;5,6;5,7;5,8;5,9;5,10;5,11;5,12;5,13;5,14" />
     <set mask="center" tiles="5,0;5,1;5,2;5,3;5,4;5,5;5,6;5,7;5,8;5,9;5,10;5,11;5,12;5,13;5,14" />
   </Tileset>
-  <Tileset id="a" copy="9" path="woodStoneEdges" />
-  <Tileset id="b" copy="z" path="cliffside" />
-  <Tileset id="c" copy="9" path="poolEdges" />
-  <Tileset id="d" copy="z" path="templeA" />
-  <Tileset id="e" copy="z" path="templeB" />
-  <Tileset id="f" copy="z" path="cliffsideAlt" />
-  <Tileset id="g" copy="z" path="reflection">
+  <Tileset id="a" copy="9" path="DZ/woodStoneEdges" />
+  <Tileset id="b" copy="z" path="DZ/cliffside" />
+  <Tileset id="c" copy="9" path="DZ/poolEdges" />
+  <Tileset id="d" copy="z" path="DZ/templeA" />
+  <Tileset id="e" copy="z" path="DZ/templeB" />
+  <Tileset id="f" copy="z" path="DZ/cliffsideAlt" />
+  <Tileset id="g" copy="z" path="DZ/reflection">
     <set mask="center" tiles="5,12;5,13;5,14" />
   </Tileset>
-  <Tileset id="G" copy="z" path="reflectionAlt">
+  <Tileset id="G" copy="z" path="DZ/reflectionAlt">
     <set mask="center" tiles="5,12;5,13;5,14" />
   </Tileset>
-  <Tileset id="h" path="grass" ignores="*">
+  <Tileset id="h" path="DZ/grass" ignores="*">
     <set mask="x0x-111-x1x" tiles="0,0;1,0;2,0;3,0" sprites="grass_top_a" />
     <set mask="x1x-111-x0x" tiles="0,1;1,1;2,1;3,1" />
     <set mask="x1x-011-x1x" tiles="0,2;1,2;2,2;3,2" />
@@ -136,20 +136,20 @@
     <set mask="padding" tiles="5,0;5,1;5,2;5,3;5,4;5,5;5,6;5,7;5,8;5,9;5,10;5,11" />
     <set mask="center" tiles="5,12" />
   </Tileset>
-  <Tileset id="i" copy="z" path="summit">
+  <Tileset id="i" copy="z" path="DZ/summit">
     <set mask="padding" tiles="5,0;5,1;5,2;5,3;5,4;5,5" />
     <set mask="center" tiles="5,6;5,7;5,8;5,9;5,10;5,11;5,12;5,13;5,14" />
   </Tileset>
-  <Tileset id="j" copy="z" path="summitNoSnow">
+  <Tileset id="j" copy="z" path="DZ/summitNoSnow">
     <set mask="padding" tiles="5,0;5,1;5,2;5,3;5,4;5,5" />
     <set mask="center" tiles="5,6;5,7;5,8;5,9;5,10;5,11;5,12;5,13;5,14" />
   </Tileset>
-  <Tileset id="m" copy="z" path="lostlevels" ignores="n">
+  <Tileset id="m" copy="z" path="DZ/lostlevels" ignores="n">
     <set mask="padding" tiles="5,0;5,1;5,2;5,3;5,4;5,5" />
     <set mask="center" tiles="5,6;5,6;5,6;5,6;5,6;5,6;5,6;5,6;5,6;5,6;5,6;5,6;5,6;5,6;5,7;5,8;5,9;5,10;5,11;5,13;5,14;5,7;5,8;5,9;5,10;5,11;5,13;5,14;5,12" />
   </Tileset>
-  <Tileset id="k" copy="z" path="core" />
-  <Tileset id="l" path="deadgrass" ignores="*">
+  <Tileset id="k" copy="z" path="DZ/core" />
+  <Tileset id="l" path="DZ/deadgrass" ignores="*">
     <set mask="x0x-111-x1x" tiles="0,0;1,0;2,0;3,0" sprites="dead_top_a" />
     <set mask="x1x-111-x0x" tiles="0,1;1,1;2,1;3,1" />
     <set mask="x1x-011-x1x" tiles="0,2;1,2;2,2;3,2" />
@@ -183,27 +183,27 @@
     <set mask="padding" tiles="5,0;5,1;5,2;5,3;5,4;5,5;5,6;5,7;5,8;5,9;5,10;5,11" />
     <set mask="center" tiles="5,12" />
   </Tileset>
-  <Tileset id="n" copy="z" path="scifi" />
-  <Tileset id="A" copy="z" path="ruins" sound="8" />
-  <Tileset id="B" copy="z" path="castle" sound="8" />
-  <Tileset id="u" copy="z" path="foundlevels" sound="11" />
-  <Tileset id="v" copy="z" path="finallevels" sound="12" />
-  <Tileset id="y" copy="z" path="scificorrupt" sound="20" />
-  <Tileset id="q" copy="z" path="scififullycorrupt" sound="20" />
-  <Tileset id="N" copy="z" path="hopesanddreams" sound="32" />
-  <Tileset id="O" copy="z" path="void" sound="14" />
-  <Tileset id="P" copy="z" path="pinkgrass" sound="14" />
-  <Tileset id="S" copy="z" path="tesseract" sound="14" />
-  <Tileset id="T" copy="z" path="determined" sound="14" />
-  <Tileset id="E" copy="z" path="startpoint" sound="14" />
-  <Tileset id="X" copy="z" path="void_stone" sound="14" />
-  <Tileset id="o" copy="z" path="fglorstarcutter" sound="14" />
-  <Tileset id="p" copy="z" path="Penumbra" sound="24" />
-  <Tileset id="C" copy="z" path="DZ/ch10/stone_brick_crumbled" />
-  <Tileset id="D" copy="z" path="DZ/ch11/iceSnow" />
-  <Tileset id="F" copy="z" path="DZ/ch12/thirdLakeTemple" />
-  <Tileset id="H" copy="z" path="DZ/ch13/magmaRock" />
-  <Tileset id="J" copy="z" path="DZ/ch14/neon_temple" />
-  <Tileset id="K" copy="z" path="DZ/ch15/advCloudPurple" />
-  <Tileset id="!" copy="z" path="DZ/ch21/ad" displayName="ad" />
+  <Tileset id="n" copy="z" path="DZ/scifi" />
+  <Tileset id="A" copy="z" path="DZ/ruins" sound="8" />
+  <Tileset id="B" copy="z" path="DZ/castle" sound="8" />
+  <Tileset id="u" copy="z" path="DZ/foundlevels" sound="11" />
+  <Tileset id="v" copy="z" path="DZ/finallevels" sound="12" />
+  <Tileset id="y" copy="z" path="DZ/scificorrupt" sound="20" />
+  <Tileset id="q" copy="z" path="DZ/scififullycorrupt" sound="20" />
+  <Tileset id="N" copy="z" path="DZ/hopesanddreams" sound="32" />
+  <Tileset id="O" copy="z" path="DZ/void" sound="14" />
+  <Tileset id="P" copy="z" path="DZ/pinkgrass" sound="14" />
+  <Tileset id="S" copy="z" path="DZ/tesseract" sound="14" />
+  <Tileset id="T" copy="z" path="DZ/determined" sound="14" />
+  <Tileset id="E" copy="z" path="DZ/startpoint" sound="14" />
+  <Tileset id="X" copy="z" path="DZ/void_stone" sound="14" />
+  <Tileset id="o" copy="z" path="DZ/fglorstarcutter" sound="14" />
+  <Tileset id="p" copy="z" path="DZ/Penumbra" sound="24" />
+  <Tileset id="C" copy="z" path="DZ/stone_brick_crumbled" />
+  <Tileset id="D" copy="z" path="DZ/iceSnow" />
+  <Tileset id="F" copy="z" path="DZ/thirdLakeTemple" />
+  <Tileset id="H" copy="z" path="DZ/magmaRock" />
+  <Tileset id="J" copy="z" path="DZ/neon_temple" />
+  <Tileset id="K" copy="z" path="DZ/advCloudPurple" />
+  <Tileset id="!" copy="z" path="DZ/ad" displayName="ad" />
 </Data>

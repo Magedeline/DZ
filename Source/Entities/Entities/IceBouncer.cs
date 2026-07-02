@@ -47,7 +47,7 @@ namespace Celeste.Entities
         private void SetupComponents()
         {
             // Sprite setup
-            sprite = new Sprite(GFX.Game, "objects/Ingeste/iceBouncer/");
+            sprite = new Sprite(GFX.Game, "objects/DZ/DZ/Ingeste/iceBouncer/");
             sprite.AddLoop("idle", "idle", 0.1f);
             sprite.AddLoop("activated", "activated", 0.05f);
             sprite.AddLoop("cooldown", "cooldown", 0.08f);

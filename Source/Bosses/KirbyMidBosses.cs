@@ -412,7 +412,7 @@ namespace Celeste.Entities.Enemies
         private bool isJumping;
         private float jumpHeight;
 
-        public PoppyBrosJr(EntityData data, Vector2 offset) : base(data.Position + offset, "characters/poppybrosjr/")
+        public PoppyBrosJr(EntityData data, Vector2 offset) : base(data.Position + offset, "characters/DZ/poppybrosjr/")
         {
         }
 
@@ -506,7 +506,7 @@ namespace Celeste.Entities.Enemies
         private float chargeTimer;
         private bool isCharging;
 
-        public Bonkers(EntityData data, Vector2 offset) : base(data.Position + offset, "characters/bonkers/")
+        public Bonkers(EntityData data, Vector2 offset) : base(data.Position + offset, "characters/DZ/bonkers/")
         {
             moveSpeed = 45f;
         }
@@ -617,7 +617,7 @@ namespace Celeste.Entities.Enemies
         private bool isFlying;
         private float flightHeight;
 
-        public Bugzzy(EntityData data, Vector2 offset) : base(data.Position + offset, "characters/bugzzy/")
+        public Bugzzy(EntityData data, Vector2 offset) : base(data.Position + offset, "characters/DZ/bugzzy/")
         {
             moveSpeed = 70f;
         }

@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch11
     /// <summary>
     /// WantedPoster - Trigger that spawns bounty enemies when read
     /// Shows a poster UI and triggers enemy spawns
-    /// Sprite path: objects/wanted_poster/
+    /// Sprite path: objects/DZ/DZ/wanted_poster/
     /// </summary>
     [CustomEntity("DZ/WantedPoster")]
     [Tracked]

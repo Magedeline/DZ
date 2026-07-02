@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch11
     /// <summary>
     /// BarrelBomber - Enemy that hides in barrels and explodes when player is near
     /// Can be destroyed before exploding by shooting or attacking
-    /// Sprite path: characters/barrel_bomber/
+    /// Sprite path: characters/DZ/barrel_bomber/
     /// </summary>
     [CustomEntity("DZ/BarrelBomber")]
     [Tracked]

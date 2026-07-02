@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch13
     /// <summary>
     /// AshPile - Pile of volcanic ash that can be climbed
     /// Provides climbable surfaces but slows player
-    /// Sprite path: objects/ash_pile/
+    /// Sprite path: objects/DZ/DZ/ash_pile/
     /// </summary>
     [CustomEntity("DZ/AshPile")]
     [Tracked]

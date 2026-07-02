@@ -197,13 +197,13 @@ namespace Celeste.Mod.DZ
         public int CurrentSideIndex { get; set; }
 
         /// <summary>Whether the current chapter has its D-Side unlocked this session.</summary>
-        public bool HasDSideUnlockedThisSession { get; set; }
+        public bool Has2UnlockedThisSession { get; set; }
 
         /// <summary>Whether the current chapter has its DX-Side unlocked this session.</summary>
         public bool HasDXSideUnlockedThisSession { get; set; }
 
         /// <summary>Whether the current chapter has its C-Side unlocked this session (via tape collection).</summary>
-        public bool HasCSideUnlockedThisSession { get; set; }
+        public bool Has2UnlockedThisSession { get; set; }
 
         /// <summary>Session-start timestamp for speedrun tracking.</summary>
         public long SessionStartTimestamp { get; set; }

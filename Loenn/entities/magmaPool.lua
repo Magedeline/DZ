@@ -2,7 +2,7 @@ local magmaPool = {}
 
 magmaPool.name = "DZ/MagmaPool"
 magmaPool.depth = 0
-magmaPool.texture = "objects/DZ/magma_pool"
+magmaPool.texture = "objects/DZ/DZ/DZ/magma_pool"
 
 magmaPool.placements = {
     name = "magma_pool",

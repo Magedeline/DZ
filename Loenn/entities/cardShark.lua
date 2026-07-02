@@ -2,7 +2,7 @@ local cardShark = {}
 
 cardShark.name = "DZ/CardShark"
 cardShark.depth = 0
-cardShark.texture = "objects/DZ/card_shark"
+cardShark.texture = "objects/DZ/DZ/DZ/card_shark"
 
 cardShark.placements = {
     name = "card_shark",

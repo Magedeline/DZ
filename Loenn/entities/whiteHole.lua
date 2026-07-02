@@ -2,7 +2,7 @@ local whiteHole = {}
 
 whiteHole.name = "DZ/WhiteHole"
 whiteHole.depth = 0
-whiteHole.texture = "objects/DZ/white_hole"
+whiteHole.texture = "objects/DZ/DZ/DZ/white_hole"
 
 whiteHole.placements = {
     name = "white_hole",

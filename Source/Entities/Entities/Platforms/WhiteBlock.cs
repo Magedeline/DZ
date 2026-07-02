@@ -15,7 +15,7 @@ namespace Celeste.Entities
         public WhiteBlock(Vector2 position, int width, int height)
             : base(position, width, height, true)
         {
-            texture = AtlasPathHelper.GetTexture("objects/whiteblock");
+            texture = AtlasPathHelper.GetTexture("objects/DZ/DZ/whiteblock");
             base.Depth = -9000;
         }
 

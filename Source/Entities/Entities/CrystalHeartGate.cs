@@ -45,7 +45,7 @@ namespace Celeste.Entities
             }
             else
             {
-                sprite = new Sprite(GFX.Game, "objects/temple/portal/");
+                sprite = new Sprite(GFX.Game, "objects/DZ/DZ/temple/portal/");
                 sprite.AddLoop("closed", "portal", 0.1f);
                 sprite.AddLoop("opening", "portal", 0.05f);
                 sprite.AddLoop("open", "portal", 0.2f);

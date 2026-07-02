@@ -147,7 +147,7 @@ namespace Celeste.Entities.SoulBoosts
             CreateParticles();
 
             // Sprite setup - use custom vessel soul sprite
-            Add(sprite = new Sprite(GFX.Game, "characters/soul/soul/"));
+            Add(sprite = new Sprite(GFX.Game, "characters/DZ/soul/soul/"));
             sprite.AddLoop("madelineboost", "vessel_soulA", 0.08f);
             sprite.Play("madelineboost");
             sprite.CenterOrigin();
@@ -156,7 +156,7 @@ namespace Celeste.Entities.SoulBoosts
             sprite.Color = Color.White;
 
             // Stretch image for travel
-            Add(stretch = new Image(GFX.Game["objects/madelinesevensoulboost/stretch"]));
+            Add(stretch = new Image(GFX.Game["objects/DZ/DZ/madelinesevensoulboost/stretch"]));
             stretch.Visible = false;
             stretch.CenterOrigin();
             stretch.Color = Color.White;
@@ -167,7 +167,7 @@ namespace Celeste.Entities.SoulBoosts
                 try
                 {
                     char soulSuffix = (char)('A' + i);
-                    var soulImage = new Image(GFX.Game[$"characters/soul/soul/vessel_soul{soulSuffix}"]);
+                    var soulImage = new Image(GFX.Game[$"characters/DZ/soul/soul/vessel_soul{soulSuffix}"]);
                     soulImage.CenterOrigin();
                     soulImages.Add(soulImage);
                     Add(soulImage);

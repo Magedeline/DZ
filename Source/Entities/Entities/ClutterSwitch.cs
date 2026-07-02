@@ -134,7 +134,7 @@ public class ClutterSwitch : Solid
         sprite.Play("idle");
 
         // Setup color-coded icon
-        Add(icon = new Image(GFX.Game[$"objects/resortclutter/icon_{color}"]));
+        Add(icon = new Image(GFX.Game[$"objects/DZ/DZ/resortclutter/icon_{color}"]));
         icon.CenterOrigin();
         icon.Position = new Vector2(16f, 8f);
     }
@@ -498,7 +498,7 @@ public class ClutterSwitch : Solid
 
     private IEnumerator CreateClutterFlyingEffect(Level level, Vector2 target, ClutterAbsorbEffect effect)
     {
-        List<MTexture> images = GFX.Game.GetAtlasSubtextures($"objects/resortclutter/{color}_");
+        List<MTexture> images = GFX.Game.GetAtlasSubtextures($"objects/DZ/DZ/resortclutter/{color}_");
 
         // Create dramatic clutter flying effect
         for (int i = 0; i < 25; i++)

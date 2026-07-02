@@ -2,7 +2,7 @@ local kirbyTransformEffect = {}
 
 kirbyTransformEffect.name = "DZ/KirbyTransformEffect"
 kirbyTransformEffect.depth = 10000
-kirbyTransformEffect.texture = "objects/DZ/effects/kirbytransform"
+kirbyTransformEffect.texture = "objects/DZ/DZ/DZ/effects/kirbytransform"
 kirbyTransformEffect.placements = {
     name = "kirby_transform_effect",
     data = {

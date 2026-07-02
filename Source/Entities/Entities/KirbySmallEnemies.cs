@@ -283,7 +283,7 @@ namespace Celeste.Entities.Enemies
         private float walkTimer;
         private bool isWalking;
 
-        public WaddleDee(EntityData data, Vector2 offset) : base(data.Position + offset, "characters/waddledee/")
+        public WaddleDee(EntityData data, Vector2 offset) : base(data.Position + offset, "characters/DZ/waddledee/")
         {
             walkSpeed = 30f;
             patrolDistance = 48f;
@@ -357,7 +357,7 @@ namespace Celeste.Entities.Enemies
         private float beamAttackTimer;
         private bool isChargingBeam;
 
-        public WaddleDoo(EntityData data, Vector2 offset) : base(data.Position + offset, "characters/waddledoo/")
+        public WaddleDoo(EntityData data, Vector2 offset) : base(data.Position + offset, "characters/DZ/waddledoo/")
         {
             walkSpeed = 25f;
             maxHealth = 2;
@@ -490,7 +490,7 @@ namespace Celeste.Entities.Enemies
         private bool isSwooping;
         private Vector2 targetPosition;
 
-        public BrontoBurt(EntityData data, Vector2 offset) : base(data.Position + offset, "characters/brontoburt/")
+        public BrontoBurt(EntityData data, Vector2 offset) : base(data.Position + offset, "characters/DZ/brontoburt/")
         {
             walkSpeed = 60f;
             flyHeight = data.Float("flyHeight", 60f);
@@ -591,7 +591,7 @@ namespace Celeste.Entities.Enemies
         private Vector2 moveDirection;
         private float bounceSpeed;
 
-        public Gordo(EntityData data, Vector2 offset) : base(data.Position + offset, "characters/gordo/")
+        public Gordo(EntityData data, Vector2 offset) : base(data.Position + offset, "characters/DZ/gordo/")
         {
             bounceSpeed = data.Float("speed", 40f);
             moveDirection = new Vector2(data.Float("directionX", 1f), data.Float("directionY", 0f));

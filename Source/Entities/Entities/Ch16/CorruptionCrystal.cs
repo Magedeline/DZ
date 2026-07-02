@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch16
     /// <summary>
     /// CorruptionCrystal - Dark crystal that corrupts nearby entities
     /// Spreads corruption and transforms areas
-    /// Sprite path: objects/corruption_crystal/
+    /// Sprite path: objects/DZ/DZ/corruption_crystal/
     /// </summary>
     [CustomEntity("DZ/CorruptionCrystal")]
     [Tracked]

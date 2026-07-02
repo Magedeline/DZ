@@ -97,16 +97,16 @@ public class GlassBlock : CelesteSolid
         int tilesY = (int)(Height / 8);
 
         // Top edge  (normal = up)
-        AddSide(new Vector2(0, 0),          new Vector2(0, -1), tilesX);
+        Ad2(new Vector2(0, 0),          new Vector2(0, -1), tilesX);
         // Right edge (normal = right)
-        AddSide(new Vector2(tilesX - 1, 0), new Vector2(1,  0), tilesY);
+        Ad2(new Vector2(tilesX - 1, 0), new Vector2(1,  0), tilesY);
         // Bottom edge (normal = down)
-        AddSide(new Vector2(tilesX - 1, tilesY - 1), new Vector2(0, 1), tilesX);
+        Ad2(new Vector2(tilesX - 1, tilesY - 1), new Vector2(0, 1), tilesX);
         // Left edge  (normal = left)
-        AddSide(new Vector2(0, tilesY - 1), new Vector2(-1, 0), tilesY);
+        Ad2(new Vector2(0, tilesY - 1), new Vector2(-1, 0), tilesY);
     }
 
-    private void AddSide(Vector2 start, Vector2 normal, int tiles)
+    private void Ad2(Vector2 start, Vector2 normal, int tiles)
     {
         // Tangent direction along the edge.
         Vector2 tangent = new Vector2(-normal.Y, normal.X);

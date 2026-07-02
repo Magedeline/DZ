@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch14
     /// <summary>
     /// VirusCloud - Corrupted data cloud that damages and slows player
     /// Moves erratically and spreads corruption
-    /// Sprite path: characters/virus_cloud/
+    /// Sprite path: characters/DZ/virus_cloud/
     /// </summary>
     [CustomEntity("DZ/VirusCloud")]
     [Tracked]

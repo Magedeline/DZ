@@ -2,7 +2,7 @@ local barrelBomber = {}
 
 barrelBomber.name = "DZ/BarrelBomber"
 barrelBomber.depth = 0
-barrelBomber.texture = "objects/DZ/barrel_bomber"
+barrelBomber.texture = "objects/DZ/DZ/DZ/barrel_bomber"
 
 barrelBomber.placements = {
     name = "barrel_bomber",

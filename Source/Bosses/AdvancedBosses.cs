@@ -37,7 +37,7 @@ namespace Celeste.Entities
         
         private void setupAdvancedVisuals()
         {
-            Add(robotSprite = new Sprite(GFX.Game, "characters/axis2/"));
+            Add(robotSprite = new Sprite(GFX.Game, "characters/DZ/axis2/"));
             robotSprite.AddLoop("idle", "axis2_idle", 0.1f);
             robotSprite.AddLoop("attack", "axis2_attack", 0.06f);
             robotSprite.AddLoop("phase2", "axis2_phase2", 0.08f);
@@ -47,7 +47,7 @@ namespace Celeste.Entities
             // Create 4 weapon pods
             for (int i = 0; i < 4; i++)
             {
-                var pod = new Sprite(GFX.Game, "characters/axis2/");
+                var pod = new Sprite(GFX.Game, "characters/DZ/axis2/");
                 pod.AddLoop("idle", "pod_idle", 0.1f);
                 pod.CenterOrigin();
                 Add(pod);

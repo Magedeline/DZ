@@ -92,7 +92,7 @@ namespace Celeste.Mod.DZ
 
         public bool EnableCosmicBackgroundEffect { get; set; } = true;
 
-        public bool ShowDSideDXSideInMenu { get; set; } = true;
+        public bool Show2DXSideInMenu { get; set; } = true;
 
         [SettingRange(0, 5)]
         public int ChapterDisplayMode { get; set; } = 0;
@@ -104,9 +104,9 @@ namespace Celeste.Mod.DZ
         [SettingSubHeader("DZ_PROGRESSION_HEADER")]
         public bool EnableLateChapterUnlockFlow { get; set; } = true;
 
-        public bool AutoUnlockBSides { get; set; } = false;
+        public bool AutoUnlock1s { get; set; } = false;
 
-        public bool AutoUnlockCSides { get; set; } = false;
+        public bool AutoUnlock2s { get; set; } = false;
 
         public bool EnableCassetteCollectibles { get; set; } = true;
 
@@ -114,7 +114,7 @@ namespace Celeste.Mod.DZ
         public string LastPlayedChapterSID { get; set; }
 
         [SettingIgnore]
-        public int LastPlayedSideIndex { get; set; }
+        public int LastPlaye2Index { get; set; }
 
         #endregion
 
@@ -194,7 +194,7 @@ namespace Celeste.Mod.DZ
             ShowSideUnlockNotifications = true;
             ShowChapterMasteryOnPanel = true;
             EnableCosmicBackgroundEffect = true;
-            ShowDSideDXSideInMenu = true;
+            Show2DXSideInMenu = true;
             ChapterDisplayMode = 0;
         }
     }

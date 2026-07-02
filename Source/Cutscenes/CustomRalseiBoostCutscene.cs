@@ -249,7 +249,7 @@ internal class CustomRalseiBoostCutscene : CutsceneEntity
 		// Initialize human goner souls
 		for (int i = 0; i < humanGonerNames.Length; i++)
 		{
-			var soul = new Sprite(GFX.Game, $"characters/birdgoner/{humanGonerNames[i]}flyup");
+			var soul = new Sprite(GFX.Game, $"characters/DZ/birdgoner/{humanGonerNames[i]}flyup");
 			soul.AddLoop("flyup", "", 0.1f);
 			soul.Play("flyup");
 			soul.Color = Color.White * 0.8f; // Make them slightly translucent

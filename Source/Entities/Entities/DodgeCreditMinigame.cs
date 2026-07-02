@@ -149,7 +149,7 @@ namespace Celeste.Entities
         private void setupPlayer()
         {
             // Create Madeline sprite
-            Add(madelineSprite = new Sprite(GFX.Game, "characters/player/"));
+            Add(madelineSprite = new Sprite(GFX.Game, "characters/DZ/player/"));
             madelineSprite.AddLoop("idle", "idle", 0.1f);
             madelineSprite.AddLoop("run", "runFast", 0.08f);
             madelineSprite.AddLoop("dash", "dash", 0.08f);

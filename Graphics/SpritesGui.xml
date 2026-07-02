@@ -63,7 +63,7 @@
   <!-- ========================================== -->
   
   <!-- Health Display -->
-  <gui_kirby_health path="DZ/kirby/" start="heart_full">
+  <gui_kirby_health path="healthbar/DZ/" start="heart_full">
     <Origin x="6" y="6" />
     <Justification x="0.5" y="0.5" />
     

@@ -58,7 +58,7 @@ namespace Celeste.Entities
         private void SetupComponents()
         {
             // Sprite setup
-            sprite = new Sprite(GFX.Game, "objects/superCoreBlock/");
+            sprite = new Sprite(GFX.Game, "objects/DZ/DZ/superCoreBlock/");
             sprite.AddLoop("hot_idle", "hot_idle", 0.08f);
             sprite.AddLoop("hot_active", "hot_active", 0.04f);
             sprite.AddLoop("cold_idle", "cold_idle", 0.08f);

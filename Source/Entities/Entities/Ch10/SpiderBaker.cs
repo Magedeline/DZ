@@ -4,8 +4,8 @@ namespace Celeste.Entities.Chapters.Ch10
     /// SpiderBaker - Friendly spider that becomes hostile when attacked
     /// Drops from webs and throws baked goods as projectiles
     /// Can be befriended if player approaches peacefully
-    /// Sprite path: characters/spider_baker/
-    /// Baked good sprite path: characters/baked_good/
+    /// Sprite path: characters/DZ/spider_baker/
+    /// Baked good sprite path: characters/DZ/baked_good/
     /// </summary>
     [CustomEntity("DZ/SpiderBaker")]
     [Tracked]
@@ -395,7 +395,7 @@ namespace Celeste.Entities.Chapters.Ch10
     /// <summary>
     /// BakedGoodProjectile - Thrown by SpiderBaker
     /// A baked treat (donut, cookie, etc.) thrown as a projectile
-    /// Sprite path: characters/baked_good/
+    /// Sprite path: characters/DZ/baked_good/
     /// </summary>
     public class BakedGoodProjectile : Actor
     {

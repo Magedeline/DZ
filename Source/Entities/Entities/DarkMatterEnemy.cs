@@ -9,7 +9,7 @@ namespace Celeste.Entities
     /// <summary>
     /// Dark Matter Enemy - A void-based enemy that deals variable damage (2-7 hits)
     /// Floats menacingly and attacks players with dark energy
-    /// Sprite path: characters/darkmatter/
+    /// Sprite path: characters/DZ/darkmatter/
     /// </summary>
     [CustomEntity(ids: "DZ/DarkMatterEnemy")]
     [Tracked]
@@ -101,7 +101,7 @@ namespace Celeste.Entities
         
         private void SetupSprite()
         {
-            sprite = new Sprite(GFX.Game, "characters/darkmatter/");
+            sprite = new Sprite(GFX.Game, "characters/DZ/darkmatter/");
             sprite.AddLoop("idle", "idle", 0.1f);
             sprite.AddLoop("chase", "chase", 0.08f);
             sprite.Add("attack", "attack", 0.05f, "idle");
@@ -432,7 +432,7 @@ namespace Celeste.Entities
             
             Collider = new Hitbox(8f, 8f, -4f, -4f);
             
-            sprite = new Sprite(GFX.Game, "characters/darkmatter/");
+            sprite = new Sprite(GFX.Game, "characters/DZ/darkmatter/");
             sprite.AddLoop("projectile", "projectile", 0.05f);
             sprite.Play("projectile");
             sprite.CenterOrigin();

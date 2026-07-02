@@ -11,7 +11,7 @@ namespace DZ;
 public class SansSprite : Sprite
 {
     public SansSprite()
-        : base(GFX.Game, "characters/sans/")
+        : base(GFX.Game, "characters/DZ/sans/")
     {
         AddLoop("idle", "idle", 0.1f);
         AddLoop("walk", "walk", 0.08f);

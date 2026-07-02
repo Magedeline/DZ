@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch14
     /// <summary>
     /// DataStream - Flowing data particles that carry player
     /// Streams of binary data that push player in a direction
-    /// Sprite path: objects/data_stream/
+    /// Sprite path: objects/DZ/DZ/data_stream/
     /// </summary>
     [CustomEntity("DZ/DataStream")]
     [Tracked]

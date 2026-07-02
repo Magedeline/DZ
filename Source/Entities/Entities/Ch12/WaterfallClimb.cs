@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch12
     /// <summary>
     /// WaterfallClimb - Vertical climb section with water currents
     /// Player must climb against flowing water with hazards
-    /// Sprite path: objects/waterfall_climb/
+    /// Sprite path: objects/DZ/DZ/waterfall_climb/
     /// </summary>
     [CustomEntity("DZ/WaterfallClimb")]
     [Tracked]

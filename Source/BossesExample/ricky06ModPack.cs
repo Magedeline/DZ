@@ -300,7 +300,7 @@ public static class BossesExampleModule
                 Logger.Log(LogLevel.Warn, "DZ", $"[BossesExample] Missing sprite '{spriteId}', using a placeholder sprite.");
             }
 
-            Sprite sprite = new Sprite(GFX.Game, "characters/player/");
+            Sprite sprite = new Sprite(GFX.Game, "characters/DZ/player/");
             foreach (string animation in PlaceholderAnimations)
             {
                 sprite.AddLoop(animation, "idle", 0.1f);

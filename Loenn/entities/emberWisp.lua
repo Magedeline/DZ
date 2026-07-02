@@ -2,7 +2,7 @@ local emberWisp = {}
 
 emberWisp.name = "DZ/EmberWisp"
 emberWisp.depth = 0
-emberWisp.texture = "objects/DZ/ember_wisp"
+emberWisp.texture = "objects/DZ/DZ/DZ/ember_wisp"
 
 emberWisp.placements = {
     name = "ember_wisp",

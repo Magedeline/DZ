@@ -85,12 +85,12 @@ namespace Celeste.Entities {
             var textureList = new List<MTexture>();
 
             // Try to load custom tower background tiles
-            if (GFX.Game.Has("objects/temple/bg_a"))
-                textureList.Add(GFX.Game["objects/temple/bg_a"]);
-            if (GFX.Game.Has("objects/temple/bg_b"))
-                textureList.Add(GFX.Game["objects/temple/bg_b"]);
-            if (GFX.Game.Has("objects/temple/bg_c"))
-                textureList.Add(GFX.Game["objects/temple/bg_c"]);
+            if (GFX.Game.Has("objects/DZ/DZ/temple/bg_a"))
+                textureList.Add(GFX.Game["objects/DZ/DZ/temple/bg_a"]);
+            if (GFX.Game.Has("objects/DZ/DZ/temple/bg_b"))
+                textureList.Add(GFX.Game["objects/DZ/DZ/temple/bg_b"]);
+            if (GFX.Game.Has("objects/DZ/DZ/temple/bg_c"))
+                textureList.Add(GFX.Game["objects/DZ/DZ/temple/bg_c"]);
 
             // Add some basic geometric patterns
             if (GFX.Game.Has("particles/rect"))

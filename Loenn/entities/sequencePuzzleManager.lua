@@ -2,7 +2,7 @@ local sequencePuzzleManager = {}
 
 sequencePuzzleManager.name = "DZ/SequencePuzzleManager"
 sequencePuzzleManager.depth = 0
-sequencePuzzleManager.texture = "objects/DZ/sequence_puzzle_manager"
+sequencePuzzleManager.texture = "objects/DZ/DZ/DZ/sequence_puzzle_manager"
 
 sequencePuzzleManager.placements = {
     name = "sequence_puzzle_manager",

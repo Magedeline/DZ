@@ -388,7 +388,7 @@ public class JumpThruPlatform : CelesteJumpThru
     /// for (int col = 0; col &lt; Columns; col++)
     /// {
     ///     string variant = col == 0 ? "left" : (col == Columns - 1 ? "right" : "middle");
-    ///     var sprite = GFX.Game[$"objects/jumpthru/{TextureName}"][variant];
+    ///     var sprite = GFX.Game[$"objects/DZ/DZ/jumpthru/{TextureName}"][variant];
     ///     var renderer = AddComponent(new SpriteRenderer(sprite));
     ///     renderer.LocalOffset = new Vector2(col * TileSize + TileSize / 2f, Height / 2f);
     /// }
@@ -401,7 +401,7 @@ public class JumpThruPlatform : CelesteJumpThru
         //   for (int col = 0; col < Columns; col++)
         //   {
         //       string variant = col == 0 ? "l" : (col == Columns - 1 ? "r" : "m");
-        //       var tex  = /* load from atlas: objects/jumpthru/{TextureName}/{variant} */;
+        //       var tex  = /* load from atlas: objects/DZ/DZ/jumpthru/{TextureName}/{variant} */;
         //       var sr   = AddComponent(new SpriteRenderer(tex));
         //       sr.LocalOffset = new Vector2(col * TileSize + TileSize / 2f, Height / 2f);
         //   }

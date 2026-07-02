@@ -5,7 +5,7 @@ namespace Celeste.Entities.Bosses
     /// <summary>
     /// Dragoneer Jr Mid-Boss - A young dragon rider in training
     /// Aerial mid-boss with fire and lance attacks
-    /// Sprite path: characters/dragoneerjr/
+    /// Sprite path: characters/DZ/dragoneerjr/
     /// </summary>
     [CustomEntity(ids: "DZ/DragoneerJrBoss")]
     [Tracked]
@@ -73,7 +73,7 @@ namespace Celeste.Entities.Bosses
         private void SetupVisuals()
         {
             // Dragon body sprite
-            Add(dragonSprite = new Sprite(GFX.Game, "characters/dragoneerjr/"));
+            Add(dragonSprite = new Sprite(GFX.Game, "characters/DZ/dragoneerjr/"));
             dragonSprite.AddLoop("idle", "dragon_idle", 0.1f);
             dragonSprite.AddLoop("fly", "dragon_fly", 0.06f);
             dragonSprite.AddLoop("dive", "dragon_dive", 0.04f);
@@ -84,7 +84,7 @@ namespace Celeste.Entities.Bosses
             dragonSprite.CenterOrigin();
             
             // Dragon wings sprite (separate for flapping animation)
-            Add(wingsSprite = new Sprite(GFX.Game, "characters/dragoneerjr/"));
+            Add(wingsSprite = new Sprite(GFX.Game, "characters/DZ/dragoneerjr/"));
             wingsSprite.AddLoop("folded", "wings_folded", 0.12f);
             wingsSprite.AddLoop("flap", "wings_flap", 0.04f);
             wingsSprite.AddLoop("glide", "wings_glide", 0.1f);
@@ -92,7 +92,7 @@ namespace Celeste.Entities.Bosses
             wingsSprite.Position = new Vector2(0f, -10f);
             
             // Rider sprite
-            Add(riderSprite = new Sprite(GFX.Game, "characters/dragoneerjr/"));
+            Add(riderSprite = new Sprite(GFX.Game, "characters/DZ/dragoneerjr/"));
             riderSprite.AddLoop("idle", "rider_idle", 0.12f);
             riderSprite.AddLoop("attack", "rider_attack", 0.05f);
             riderSprite.AddLoop("charging", "rider_charging", 0.08f);
@@ -101,7 +101,7 @@ namespace Celeste.Entities.Bosses
             riderSprite.Position = new Vector2(0f, -30f);
             
             // Lance sprite
-            Add(lanceSprite = new Sprite(GFX.Game, "characters/dragoneerjr/"));
+            Add(lanceSprite = new Sprite(GFX.Game, "characters/DZ/dragoneerjr/"));
             lanceSprite.AddLoop("idle", "lance_idle", 0.12f);
             lanceSprite.AddLoop("thrust", "lance_thrust", 0.04f);
             lanceSprite.AddLoop("ready", "lance_ready", 0.08f);
@@ -109,7 +109,7 @@ namespace Celeste.Entities.Bosses
             lanceSprite.Position = new Vector2(20f, -28f);
             
             // Fire/flame sprite
-            Add(flameSprite = new Sprite(GFX.Game, "characters/dragoneerjr/"));
+            Add(flameSprite = new Sprite(GFX.Game, "characters/DZ/dragoneerjr/"));
             flameSprite.AddLoop("idle", "flame_idle", 0.06f);
             flameSprite.AddLoop("breath", "flame_breath", 0.03f);
             flameSprite.AddLoop("fireball", "flame_fireball", 0.04f);

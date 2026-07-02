@@ -69,7 +69,7 @@ namespace Celeste.Entities
         private void setupVisuals()
         {
             // Robot sprite
-            Add(robotSprite = new Sprite(GFX.Game, "characters/axis/"));
+            Add(robotSprite = new Sprite(GFX.Game, "characters/DZ/axis/"));
             robotSprite.AddLoop("idle", "terminator_idle", 0.1f);
             robotSprite.AddLoop("walk", "terminator_walk", 0.08f);
             robotSprite.AddLoop("attack", "terminator_attack", 0.06f);
@@ -79,7 +79,7 @@ namespace Celeste.Entities
             robotSprite.CenterOrigin();
             
             // Weapon sprite
-            Add(weaponSprite = new Sprite(GFX.Game, "characters/axis/"));
+            Add(weaponSprite = new Sprite(GFX.Game, "characters/DZ/axis/"));
             weaponSprite.AddLoop("machine_gun", "weapon_mg", 0.08f);
             weaponSprite.AddLoop("rocket_launcher", "weapon_rl", 0.1f);
             weaponSprite.AddLoop("laser", "weapon_laser", 0.05f);

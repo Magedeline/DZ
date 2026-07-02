@@ -1,5 +1,5 @@
 Icon: areas/DZ/stronghold
-SID: DZ/ASide/06_Stronghold
+SID: DZ/0/06_Stronghold
 Interlude: false
 TitleBaseColor: ff7f83
 TitleAccentColor: 6d54b7
@@ -22,25 +22,25 @@ Modes:
     HeartIsEnd: false
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/BSide/06_stronghold
+      Music: event:/music/pusheen/1/06_stronghold
       Ambience: event:/env/pusheen/06_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/CSide/06_stronghold
+      Music: event:/music/pusheen/2/06_stronghold
       Ambience: event:/env/pusheen/06_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/CSide/06_stronghold
+      Music: event:/music/pusheen/2/06_stronghold
       Ambience: event:/env/pusheen/06_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/DSide/06_stronghold
+      Music: event:/music/pusheen/2/06_stronghold
       Ambience: event:/env/pusheen/06_main
     Inventory: Default
     HeartIsEnd: true
@@ -51,8 +51,8 @@ Modes:
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
-    MountainModelDirectory: Mountain/DZ/ASide
-    MountainTextureDirectory: DZ/ASide
+    MountainModelDirectory: Mountain/DZ/0
+    MountainTextureDirectory: DZ/0
     Idle:
         Position: [6.500, 9.500, 17.000]
         Target: [5.800, 8.800, 15.500]
@@ -67,13 +67,13 @@ Modes:
 
 MusicBySide:
   - event:/music/pusheen/menu/complete_area
-  - event:/music/pusheen/menu/complete_bside
-  - event:/music/pusheen/menu/complete_cside
+  - event:/music/pusheen/menu/complete_1
+  - event:/music/pusheen/menu/complete_2
   - event:/music/pusheen/menu/complete_dxside
 Title:
-  ASide: "Chapter Complete"
-  BSide: "B Side Complete"
-  CSide: "C Side Complete"
-  DSide: "D Side Complete"
+  0: "Chapter Complete"
+  1: "B Side Complete"
+  2: "C Side Complete"
+  2: "D Side Complete"
   DXSide: "DX Side Complete"
   FullClear: "Chapter Clear"

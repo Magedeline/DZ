@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch15
     /// <summary>
     /// FlameCerberus - Three-headed fire beast with different attacks per head
     /// Each head has unique attack patterns and can be damaged separately
-    /// Sprite path: characters/flame_cerberus/
+    /// Sprite path: characters/DZ/flame_cerberus/
     /// </summary>
     [CustomEntity("DZ/FlameCerberus")]
     [Tracked]

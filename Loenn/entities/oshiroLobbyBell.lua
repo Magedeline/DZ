@@ -2,7 +2,7 @@ local oshiroLobbyBell = {}
 
 oshiroLobbyBell.name = "DZ/OshiroLobbyBell"
 oshiroLobbyBell.depth = 0
-oshiroLobbyBell.texture = "objects/DZ/oshiro_lobby_bell"
+oshiroLobbyBell.texture = "objects/DZ/DZ/DZ/oshiro_lobby_bell"
 
 oshiroLobbyBell.placements = {
     name = "oshiro_lobby_bell",

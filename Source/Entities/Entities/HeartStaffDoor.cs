@@ -75,11 +75,11 @@ namespace Celeste.Entities
             Add(new CustomBloom(RenderBloom));
 
             // Load staff icon textures
-            staffIcons = GFX.Game.GetAtlasSubtextures("objects/heart_staff_door/icon");
+            staffIcons = GFX.Game.GetAtlasSubtextures("objects/DZ/DZ/heart_staff_door/icon");
             if (staffIcons.Count == 0)
             {
                 // Fallback to heart gem icons
-                staffIcons = GFX.Game.GetAtlasSubtextures("objects/heart_spear_door_mod/icon");
+                staffIcons = GFX.Game.GetAtlasSubtextures("objects/DZ/DZ/heart_spear_door_mod/icon");
             }
 
             // Initialize particles

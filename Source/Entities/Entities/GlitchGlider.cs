@@ -80,7 +80,7 @@ namespace Celeste.Entities
         private void SetupComponents()
         {
             // Sprite setup
-            sprite = new Sprite(GFX.Game, "objects/Ingeste/glitchGlider/");
+            sprite = new Sprite(GFX.Game, "objects/DZ/DZ/Ingeste/glitchGlider/");
             sprite.AddLoop("available", "available", 0.1f);
             sprite.AddLoop("carried", "carried", 0.08f);
             sprite.AddLoop("thrown", "thrown", 0.05f);

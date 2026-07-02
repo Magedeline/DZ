@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch16
     /// <summary>
     /// SoulFragment - Collectible soul piece for final boss
     /// Required to access final confrontation
-    /// Sprite path: objects/soul_fragment/
+    /// Sprite path: objects/DZ/DZ/soul_fragment/
     /// </summary>
     [CustomEntity("DZ/SoulFragment")]
     [Tracked]

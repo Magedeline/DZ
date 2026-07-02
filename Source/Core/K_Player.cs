@@ -1057,7 +1057,7 @@ namespace Celeste.Entities
                 if (Sprite.CurrentAnimationID == PlayerSprite.StartStarFly)
                 {
                     var p = (Sprite.CurrentAnimationFrame / (float)Sprite.CurrentAnimationTotalFrames);
-                    var white = GFX.Game.GetAtlasSubtexturesAt("characters/player/startStarFlyWhite", Sprite.CurrentAnimationFrame);
+                    var white = GFX.Game.GetAtlasSubtexturesAt("characters/DZ/player/startStarFlyWhite", Sprite.CurrentAnimationFrame);
                     white.Draw(Sprite.RenderPosition, Sprite.Origin, starFlyColor * p, Sprite.Scale, Sprite.Rotation, 0);
                 }
 

@@ -2,7 +2,7 @@ local ghostlyEcho = {}
 
 ghostlyEcho.name = "DZ/GhostlyEcho"
 ghostlyEcho.depth = 0
-ghostlyEcho.texture = "objects/DZ/ghostly_echo"
+ghostlyEcho.texture = "objects/DZ/DZ/DZ/ghostly_echo"
 
 ghostlyEcho.placements = {
     name = "ghostly_echo",

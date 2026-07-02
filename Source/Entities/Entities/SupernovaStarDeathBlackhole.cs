@@ -33,7 +33,7 @@ namespace Celeste.Entities.Projectiles
             Collider = new Circle(damageRadius);
             
             // Setup sprite
-            Add(sprite = new Sprite(GFX.Game, "objects/DZ/blackhole/"));
+            Add(sprite = new Sprite(GFX.Game, "objects/DZ/DZ/DZ/blackhole/"));
             sprite.AddLoop("idle", "blackhole", 0.08f);
             sprite.CenterOrigin();
             sprite.Play("idle");

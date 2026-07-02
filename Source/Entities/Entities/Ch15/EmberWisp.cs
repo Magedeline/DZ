@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch15
     /// <summary>
     /// EmberWisp - Small flame spirit that ignites platforms temporarily
     /// Floats around and creates fire hazards on contact with surfaces
-    /// Sprite path: characters/ember_wisp/
+    /// Sprite path: characters/DZ/ember_wisp/
     /// </summary>
     [CustomEntity("DZ/EmberWisp")]
     [Tracked]

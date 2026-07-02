@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch16
     /// <summary>
     /// NightmareFragment - Collectible nightmare memory fragment
     /// Reveals story and unlocks final boss
-    /// Sprite path: objects/nightmare_fragment/
+    /// Sprite path: objects/DZ/DZ/nightmare_fragment/
     /// </summary>
     [CustomEntity("DZ/NightmareFragment")]
     [Tracked]

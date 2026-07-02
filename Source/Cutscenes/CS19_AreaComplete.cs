@@ -13,7 +13,7 @@ namespace Celeste.Cutscenes;
 /// </summary>
 public class CS19_AreaComplete : CutsceneEntity
 {
-    private static readonly string Chapter19Sid = DZ.AreaModeExtender.BuildASideSID("19_Space");
+    private static readonly string Chapter19Sid = DZ.AreaModeExtender.Build0SID("19_Space");
 
     private readonly bool hasGolden;
     private readonly bool hasPinkPlatinum;

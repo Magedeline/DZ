@@ -2,7 +2,7 @@ local ruinsSentinel = {}
 
 ruinsSentinel.name = "DZ/RuinsSentinel"
 ruinsSentinel.depth = 0
-ruinsSentinel.texture = "objects/DZ/ruins_sentinel"
+ruinsSentinel.texture = "objects/DZ/DZ/DZ/ruins_sentinel"
 
 ruinsSentinel.placements = {
     name = "ruins_sentinel",

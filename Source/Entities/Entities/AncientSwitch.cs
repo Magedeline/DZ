@@ -65,7 +65,7 @@ namespace Celeste.Entities
             else
             {
                 // Fallback sprite
-                sprite = new Sprite(GFX.Game, "objects/temple/");
+                sprite = new Sprite(GFX.Game, "objects/DZ/DZ/temple/");
                 sprite.AddLoop("off", "switch00", 0.1f);
                 sprite.AddLoop("on", "switch01", 0.1f);
                 sprite.AddLoop("pressing", "switch00", 0.05f);

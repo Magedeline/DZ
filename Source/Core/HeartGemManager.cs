@@ -93,7 +93,7 @@ public static class HeartGemManager
         int mode = (int)level.Session.Area.Mode;
 
         // For extended modes, update the heart gem sprite
-        if (mode >= AreaModeExtender.MODE_DSIDE)
+        if (mode >= AreaModeExtender.MODE_2)
         {
             SetHeartGemVisuals(self, mode);
         }
@@ -102,7 +102,7 @@ public static class HeartGemManager
         if (IsHeartGemCollected(level.Session))
         {
             // If collected, the heart gem shouldn't appear (vanilla handles 0-2)
-            if (mode >= AreaModeExtender.MODE_DSIDE)
+            if (mode >= AreaModeExtender.MODE_2)
             {
                 self.RemoveSelf();
             }
@@ -129,7 +129,7 @@ public static class HeartGemManager
                 string spriteId = mode < HeartSpriteIds.Length ? HeartSpriteIds[mode] : HeartSpriteIds[0];
 
                 // For custom modes beyond gold (index 2), use the gold sprite with color tinting
-                if (mode >= AreaModeExtender.MODE_DSIDE)
+                if (mode >= AreaModeExtender.MODE_2)
                 {
                     sprite.Color = HeartColors[mode];
                 }
@@ -175,7 +175,7 @@ public static class HeartGemManager
         int mode = (int)level.Session.Area.Mode;
 
         // For extended modes on our maps, play custom sounds
-        if (AreaModeExtender.IsOurMap(area) && mode >= AreaModeExtender.MODE_DSIDE)
+        if (AreaModeExtender.IsOurMap(area) && mode >= AreaModeExtender.MODE_2)
         {
             // Play the appropriate heart gem collection sound
             string getSound = mode < AreaModeExtender.HeartGemGetSounds.Length
@@ -206,20 +206,20 @@ public static class HeartGemManager
 
         string sideName = session.Area.Mode switch
         {
-            AreaMode.BSide => "BSide",
-            AreaMode.CSide => "CSide",
-            _ when (int)session.Area.Mode == AreaModeExtender.MODE_DSIDE => "DSide",
+            AreaMode.1 => "1",
+            AreaMode.2 => "2",
+            _ when (int)session.Area.Mode == AreaModeExtender.MODE_2 => "2",
             _ when (int)session.Area.Mode == AreaModeExtender.MODE_DXSIDE => "DXSide",
-            _ => "ASide"
+            _ => "0"
         };
 
-        // Construct the registry key: soul_DZ_ASide_01_City_A
+        // Construct the registry key: soul_DZ_0_01_City_A
         // The suffix pattern matches the English.txt keys
         string suffix = session.Area.Mode switch
         {
-            AreaMode.BSide => "_B",
-            AreaMode.CSide => "_C",
-            _ when (int)session.Area.Mode == AreaModeExtender.MODE_DSIDE => "_D",
+            AreaMode.1 => "_B",
+            AreaMode.2 => "_C",
+            _ when (int)session.Area.Mode == AreaModeExtender.MODE_2 => "_D",
             _ when (int)session.Area.Mode == AreaModeExtender.MODE_DXSIDE => "_DX",
             _ => "_A"
         };
@@ -283,7 +283,7 @@ public static class HeartGemManager
         int mode = (int)level.Session.Area.Mode;
 
         // For extended modes, additionally track in our save system
-        if (mode >= AreaModeExtender.MODE_DSIDE)
+        if (mode >= AreaModeExtender.MODE_2)
         {
             DZSaveFacade.TryRecordExtendedHeartGem(level.Session);
 
@@ -295,7 +295,7 @@ public static class HeartGemManager
         }
 
         // Set area mode completion
-        if ((int)level.Session.Area.Mode >= AreaModeExtender.MODE_DSIDE)
+        if ((int)level.Session.Area.Mode >= AreaModeExtender.MODE_2)
         {
             // Mark this side as completed via our custom tracking
             string completionKey = $"{area.SID}_{AreaModeExtender.GetModeName(mode)}_completed";

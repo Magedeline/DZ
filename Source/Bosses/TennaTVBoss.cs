@@ -64,7 +64,7 @@ namespace Celeste.Entities
         private void setupVisuals()
         {
             // TV sprite
-            Add(tvSprite = new Sprite(GFX.Game, "characters/tenna/"));
+            Add(tvSprite = new Sprite(GFX.Game, "characters/DZ/tenna/"));
             tvSprite.AddLoop("idle", "tv_idle", 0.1f);
             tvSprite.AddLoop("attack", "tv_attack", 0.08f);
             tvSprite.AddLoop("damaged", "tv_damaged", 0.12f);
@@ -73,7 +73,7 @@ namespace Celeste.Entities
             tvSprite.CenterOrigin();
             
             // Screen sprite (separate layer)
-            Add(screenSprite = new Sprite(GFX.Game, "characters/tenna/"));
+            Add(screenSprite = new Sprite(GFX.Game, "characters/DZ/tenna/"));
             screenSprite.AddLoop("static", "screen_static", 0.05f);
             screenSprite.AddLoop("channel_1", "screen_ch1", 0.1f);
             screenSprite.AddLoop("channel_2", "screen_ch2", 0.1f);

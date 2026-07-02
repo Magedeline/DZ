@@ -4,7 +4,7 @@ asrielGodBoss.name = "DZ/AsrielGodBoss"
 asrielGodBoss.depth = 0
 asrielGodBoss.nodeLineRenderType = "line"
 asrielGodBoss.nodeLimits = {0, -1}
-asrielGodBoss.texture = "characters/asrielgodboss/idle00"
+asrielGodBoss.texture = "characters/DZ/asrielgodboss/idle00"
 
 asrielGodBoss.placements = {
     name = "asriel_god_boss",

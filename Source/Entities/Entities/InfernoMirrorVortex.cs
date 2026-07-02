@@ -69,7 +69,7 @@ namespace Celeste.Entities
                 buffer = VirtualContent.CreateRenderTarget("inferno-vortex", w, h);
 
             Vector2 center = new Vector2(w, h) / 2f;
-            MTexture portalTex = GFX.Game["objects/temple/portal/portal"];
+            MTexture portalTex = GFX.Game["objects/DZ/DZ/temple/portal/portal"];
 
             Engine.Graphics.GraphicsDevice.SetRenderTarget((RenderTarget2D)buffer);
             Engine.Graphics.GraphicsDevice.Clear(Color.Black);

@@ -7,7 +7,7 @@ namespace Celeste.Entities.Bosses
     /// A divine warrior that has absorbed the power of fallen heroes
     /// Uses elegant sword techniques combined with butterfly-based magic
     /// Multi-phase boss with escalating divine power
-    /// Sprite path: characters/morphoknightdelta/
+    /// Sprite path: characters/DZ/morphoknightdelta/
     /// </summary>
     [CustomEntity(ids: "DZ/MorphoKnightDeltaBoss")]
     [Tracked]
@@ -96,7 +96,7 @@ namespace Celeste.Entities.Bosses
         private void SetupVisuals()
         {
             // Main body sprite
-            Add(knightSprite = new Sprite(GFX.Game, "characters/morphoknightdelta/"));
+            Add(knightSprite = new Sprite(GFX.Game, "characters/DZ/morphoknightdelta/"));
             knightSprite.AddLoop("emerge", "morpho_emerge", 0.1f);
             knightSprite.AddLoop("idle", "morpho_idle", 0.08f);
             knightSprite.AddLoop("attack", "morpho_attack", 0.04f);
@@ -107,7 +107,7 @@ namespace Celeste.Entities.Bosses
             knightSprite.CenterOrigin();
             
             // Wings sprite
-            Add(wingsSprite = new Sprite(GFX.Game, "characters/morphoknightdelta/"));
+            Add(wingsSprite = new Sprite(GFX.Game, "characters/DZ/morphoknightdelta/"));
             wingsSprite.AddLoop("folded", "wings_folded", 0.1f);
             wingsSprite.AddLoop("spread", "wings_spread", 0.08f);
             wingsSprite.AddLoop("flap", "wings_flap", 0.05f);
@@ -117,7 +117,7 @@ namespace Celeste.Entities.Bosses
             wingsSprite.Position = new Vector2(0f, -24f);
             
             // Sword sprite
-            Add(swordSprite = new Sprite(GFX.Game, "characters/morphoknightdelta/"));
+            Add(swordSprite = new Sprite(GFX.Game, "characters/DZ/morphoknightdelta/"));
             swordSprite.AddLoop("idle", "sword_idle", 0.1f);
             swordSprite.AddLoop("slash", "sword_slash", 0.03f);
             swordSprite.AddLoop("thrust", "sword_thrust", 0.04f);
@@ -126,7 +126,7 @@ namespace Celeste.Entities.Bosses
             swordSprite.Position = new Vector2(20f, -24f);
             
             // Aura effect sprite
-            Add(auraSprite = new Sprite(GFX.Game, "characters/morphoknightdelta/"));
+            Add(auraSprite = new Sprite(GFX.Game, "characters/DZ/morphoknightdelta/"));
             auraSprite.AddLoop("none", "aura_none", 0.1f);
             auraSprite.AddLoop("active", "aura_active", 0.06f);
             auraSprite.AddLoop("transcendent", "aura_transcendent", 0.04f);

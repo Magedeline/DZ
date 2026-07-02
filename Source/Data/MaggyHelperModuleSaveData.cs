@@ -110,16 +110,16 @@ namespace Celeste.Mod.DZ
         public HashSet<string> CollectedPopstarBerries { get; set; } = new HashSet<string>();
 
         // Unlock tracking
-        public HashSet<string> UnlockedBSideIDs { get; set; } = new HashSet<string>();
-        public HashSet<string> UnlockedCSideIDs { get; set; } = new HashSet<string>();
-        public List<string> PendingCSideUnlockIDs { get; set; } = new List<string>();
+        public HashSet<string> Unlocked1IDs { get; set; } = new HashSet<string>();
+        public HashSet<string> Unlocked2IDs { get; set; } = new HashSet<string>();
+        public List<string> Pending2UnlockIDs { get; set; } = new List<string>();
         public HashSet<string> UnlockedRemixExtraIDs { get; set; } = new HashSet<string>();
         public HashSet<string> UnlockedModes { get; set; } = new HashSet<string>();
 
         // Postcard dialog tracking (which chapters have shown their postcard)
         public HashSet<int> PostcardsShown { get; set; } = new HashSet<int>();
         public bool Chapter18OutroPostcardShown { get; set; }
-        public bool DSideUnlockPostcardShown { get; set; }
+        public bool 2UnlockPostcardShown { get; set; }
         public bool UltraCompletionPostcardShown { get; set; }
 
         // Achievement tracking
@@ -293,10 +293,10 @@ namespace Celeste.Mod.DZ
     public class ChapterSideAvailability
     {
         public string ChapterSID { get; set; }
-        public bool HasASide { get; set; } = true;
-        public bool HasBSide { get; set; }
-        public bool HasCSide { get; set; }
-        public bool HasDSide { get; set; }
+        public bool Has0 { get; set; } = true;
+        public bool Has1 { get; set; }
+        public bool Has2 { get; set; }
+        public bool Has2 { get; set; }
         public bool HasDXSide { get; set; }
         public DateTime LastUpdated { get; set; }
     }

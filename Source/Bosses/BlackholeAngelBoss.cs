@@ -225,7 +225,7 @@ namespace Celeste.Entities
         {
             // Create a dimension rift entity that shoots projectiles
             var rift = new Entity(position);
-            rift.Add(new Sprite(GFX.Game, "objects/dimension_rift/"));
+            rift.Add(new Sprite(GFX.Game, "objects/DZ/DZ/dimension_rift/"));
             
             // Add rift behavior
             rift.Add(new Coroutine(riftBehavior(rift)));

@@ -1,5 +1,5 @@
 ﻿Icon: areas/DZ/postepilogue
-SID: DZ/ASide/17_Epilogue
+SID: DZ/0/17_Epilogue
 Interlude: true
 TitleBaseColor: 383838
 TitleAccentColor: 50afae
@@ -38,7 +38,7 @@ Modes:
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/DSide/17_epilogue
+      Music: event:/music/pusheen/2/17_epilogue
       Ambience: event:/env/pusheen/17_main
     Inventory: Default
     HeartIsEnd: true

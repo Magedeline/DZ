@@ -84,10 +84,10 @@ public class ZoomMover : Solid
         string themePath = GetThemePath();
         
         // Load block edge textures
-        MTexture blockTexture = AtlasPathHelper.TryGetTexture($"objects/zoommover/{themePath}block");
+        MTexture blockTexture = AtlasPathHelper.TryGetTexture($"objects/DZ/DZ/zoommover/{themePath}block");
         if (blockTexture == null)
         {
-            blockTexture = GFX.Game["objects/zipmover/block"];
+            blockTexture = GFX.Game["objects/DZ/DZ/zipmover/block"];
         }
         
         for (int i = 0; i < 3; i++)
@@ -99,14 +99,14 @@ public class ZoomMover : Solid
         }
         
         // Load inner cog animation
-        innerCogs = AtlasPathHelper.GetAtlasSubtextures($"objects/zoommover/{themePath}innercog");
+        innerCogs = AtlasPathHelper.GetAtlasSubtextures($"objects/DZ/DZ/zoommover/{themePath}innercog");
         if (innerCogs == null || innerCogs.Count == 0)
         {
-            innerCogs = GFX.Game.GetAtlasSubtextures("objects/zipmover/innercog");
+            innerCogs = GFX.Game.GetAtlasSubtextures("objects/DZ/DZ/zipmover/innercog");
         }
         
         // Setup streetlight indicator
-        string lightPath = AtlasPathHelper.ResolveAtlasPath($"objects/zoommover/{themePath}light");
+        string lightPath = AtlasPathHelper.ResolveAtlasPath($"objects/DZ/DZ/zoommover/{themePath}light");
         if (GFX.Game.Has(lightPath + "00"))
         {
             streetlight = new Sprite(GFX.Game, lightPath);
@@ -409,10 +409,10 @@ public class ZoomMover : Solid
             this.mover = mover;
             
             string themePath = mover.GetThemePath();
-            cog = AtlasPathHelper.TryGetTexture($"objects/zoommover/{themePath}cog");
+            cog = AtlasPathHelper.TryGetTexture($"objects/DZ/DZ/zoommover/{themePath}cog");
             if (cog == null)
             {
-                cog = GFX.Game["objects/zipmover/cog"];
+                cog = GFX.Game["objects/DZ/DZ/zipmover/cog"];
             }
         }
 

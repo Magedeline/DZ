@@ -15,9 +15,9 @@ public static class AreaModeExtender
     private static readonly HashSet<string> EarlyMapMetaSkipLog = new(StringComparer.OrdinalIgnoreCase);
 
     public const int MODE_NORMAL = 0;
-    public const int MODE_BSIDE = 1;
-    public const int MODE_CSIDE = 2;
-    public const int MODE_DSIDE = 3;
+    public const int MODE_1 = 1;
+    public const int MODE_2 = 2;
+    public const int MODE_2 = 3;
     public const int MODE_DXSIDE = 4;
     public const int TOTAL_MODES = 5;
 
@@ -27,10 +27,10 @@ public static class AreaModeExtender
     /// <summary>Folder names for each side (A, B, C, D, DX)</summary>
     public static readonly string[] SideFolders =
     {
-        "ASide",   // MODE_NORMAL (0)
-        "BSide",   // MODE_BSIDE (1)
-        "CSide",   // MODE_CSIDE (2)
-        "DSide",   // MODE_DSIDE (3)
+        "0",   // MODE_NORMAL (0)
+        "1",   // MODE_1 (1)
+        "2",   // MODE_2 (2)
+        "2",   // MODE_2 (3)
         "DXSide"   // MODE_DXSIDE (4)
     };
 
@@ -38,7 +38,7 @@ public static class AreaModeExtender
     private static readonly HashSet<string> SideFolderSet =
         new(SideFolders, StringComparer.OrdinalIgnoreCase);
 
-    /// <summary>Pre-built SID prefixes ("DZ/ASide/", etc.) used by <see cref="IsOurMap"/>.</summary>
+    /// <summary>Pre-built SID prefixes ("DZ/0/", etc.) used by <see cref="IsOurMap"/>.</summary>
     private static readonly string[] SidePrefixes = Array.ConvertAll(
         SideFolders, f => MapPrefixSlash + f + "/");
 
@@ -69,13 +69,13 @@ public static class AreaModeExtender
 
     /// <summary>
     /// Queues the chapter panel to reopen on the D-Side tab the next time
-    /// <paramref name="aSideAreaId"/>'s chapter panel resets.
+    /// <paramref name="0AreaId"/>'s chapter panel resets.
     /// Called by AltSidesHelperBridge for ASH-routed D-Side completions.
     /// </summary>
-    public static void SetPendingDSideReturn(int aSideAreaId)
+    public static void SetPending2Return(int 0AreaId)
     {
-        _pendingReturnAreaId = aSideAreaId;
-        _pendingReturnMode = MODE_DSIDE;
+        _pendingReturnAreaId = 0AreaId;
+        _pendingReturnMode = MODE_2;
     }
 
     /// <summary>
@@ -84,7 +84,7 @@ public static class AreaModeExtender
     /// </summary>
     public static void SetPendingSideReturn(int areaId, int modeIndex)
     {
-        if (modeIndex < MODE_DSIDE)
+        if (modeIndex < MODE_2)
             return;
         _pendingReturnAreaId = areaId;
         _pendingReturnMode = modeIndex;
@@ -100,12 +100,12 @@ public static class AreaModeExtender
         return SideFolders[modeIndex];
     }
 
-    public static string BuildSideSID(int modeIndex, string mapName)
+    public static string Buil2SID(int modeIndex, string mapName)
     {
-        return BuildSideSID(GetSideFolder(modeIndex), mapName);
+        return Buil2SID(GetSideFolder(modeIndex), mapName);
     }
 
-    public static string BuildSideSID(string sideFolder, string mapName)
+    public static string Buil2SID(string sideFolder, string mapName)
     {
         if (string.IsNullOrWhiteSpace(mapName))
             return MAP_PREFIX;
@@ -114,9 +114,9 @@ public static class AreaModeExtender
         return $"{MapPrefixSlash}{sideFolder}/{mapName}";
     }
 
-    public static string BuildASideSID(string mapName)
+    public static string Build0SID(string mapName)
     {
-        return BuildSideSID(MODE_NORMAL, mapName);
+        return Buil2SID(MODE_NORMAL, mapName);
     }
 
     public static void Load()
@@ -282,15 +282,15 @@ public static class AreaModeExtender
         if (!TryParseMainSideSID(area.SID, out string baseKey, out string sideFolder))
             return false;
 
-        // Extend only chapter-parent A side entries (ASide folder).
-        if (!sideFolder.Equals("ASide", StringComparison.OrdinalIgnoreCase))
+        // Extend only chapter-parent A side entries (0 folder).
+        if (!sideFolder.Equals("0", StringComparison.OrdinalIgnoreCase))
             return false;
 
         AreaMapData.ChapterDef chapterDef = AreaMapData.FindByAnySID(area.SID);
         if (chapterDef == null)
             return false;
 
-        bool hasD = chapterDef.HasDSide;
+        bool hasD = chapterDef.Has2;
         bool hasDX = chapterDef.HasDXSide;
         if (!hasD && !hasDX)
             return false;
@@ -307,7 +307,7 @@ public static class AreaModeExtender
         int oldLength = area.Mode.Length;
         int required = oldLength;
         if (hasD)
-            required = Math.Max(required, MODE_DSIDE + 1);
+            required = Math.Max(required, MODE_2 + 1);
         if (hasDX)
             required = Math.Max(required, MODE_DXSIDE + 1);
 
@@ -318,7 +318,7 @@ public static class AreaModeExtender
         Array.Copy(area.Mode, newModes, oldLength);
 
         if (hasD)
-            newModes[MODE_DSIDE] = BuildExtendedMode(area, baseKey, MODE_DSIDE);
+            newModes[MODE_2] = BuildExtendedMode(area, baseKey, MODE_2);
 
         if (hasDX)
             newModes[MODE_DXSIDE] = BuildExtendedMode(area, baseKey, MODE_DXSIDE);
@@ -374,11 +374,11 @@ public static class AreaModeExtender
 
     private static ModeProperties BuildExtendedMode(AreaData area, string baseKey, int modeIndex)
     {
-        ModeProperties baseMode = area.Mode.Length > MODE_CSIDE && area.Mode[MODE_CSIDE] != null
-            ? area.Mode[MODE_CSIDE]
+        ModeProperties baseMode = area.Mode.Length > MODE_2 && area.Mode[MODE_2] != null
+            ? area.Mode[MODE_2]
             : area.Mode[MODE_NORMAL];
 
-        string sid = BuildSideSID(modeIndex, baseKey);
+        string sid = Buil2SID(modeIndex, baseKey);
 
         return new ModeProperties
         {
@@ -417,7 +417,7 @@ public static class AreaModeExtender
                 continue;
 
             // Only A-side entries can be parents
-            if (sideFolder.Equals("ASide", StringComparison.OrdinalIgnoreCase))
+            if (sideFolder.Equals("0", StringComparison.OrdinalIgnoreCase))
                 parentByBase[baseKey] = (i, area.SID);
         }
 
@@ -428,7 +428,7 @@ public static class AreaModeExtender
                 continue;
 
             // Skip A-side entries (they are parents, not children)
-            if (sideFolder.Equals("ASide", StringComparison.OrdinalIgnoreCase))
+            if (sideFolder.Equals("0", StringComparison.OrdinalIgnoreCase))
                 continue;
 
             if (!parentByBase.TryGetValue(baseKey, out (int id, string sid) parent) || parent.id == i)
@@ -503,7 +503,7 @@ public static class AreaModeExtender
     }
 
     /// <summary>
-    /// Maps a logical mode index (e.g. <see cref="MODE_DSIDE"/>) to the index
+    /// Maps a logical mode index (e.g. <see cref="MODE_2"/>) to the index
     /// inside <see cref="OuiChapterPanel"/>'s <c>modes</c> list.  Vanilla builds
     /// the list by iterating <c>area.Mode</c> and adding one <c>Option</c> per
     /// non-null entry, so the option index equals the count of non-null modes
@@ -553,8 +553,8 @@ public static class AreaModeExtender
             return;
 
         int required = 3;
-        if (area.Mode.Length > MODE_DSIDE && area.Mode[MODE_DSIDE] != null && IsSideUnlocked(key, MODE_DSIDE))
-            required = MODE_DSIDE + 1;
+        if (area.Mode.Length > MODE_2 && area.Mode[MODE_2] != null && IsSideUnlocked(key, MODE_2))
+            required = MODE_2 + 1;
         if (area.Mode.Length > MODE_DXSIDE && area.Mode[MODE_DXSIDE] != null && IsSideUnlocked(key, MODE_DXSIDE))
             required = MODE_DXSIDE + 1;
 
@@ -582,7 +582,7 @@ public static class AreaModeExtender
             return;
 
         int mode = (int) level.Session.Area.Mode;
-        if (mode < MODE_DSIDE)
+        if (mode < MODE_2)
             return;
 
         string heartId = $"{area.SID}_{GetModeName(mode)}";
@@ -606,12 +606,12 @@ public static class AreaModeExtender
             return;
 
         int completedMode = (int) session.Area.Mode;
-        if (completedMode is not MODE_BSIDE and not MODE_CSIDE and not MODE_DSIDE and not MODE_DXSIDE)
+        if (completedMode is not MODE_1 and not MODE_2 and not MODE_2 and not MODE_DXSIDE)
             return;
 
         // When returning to the overworld after an extended side, make sure the
         // chapter panel reopens on that side's tab rather than defaulting to A-Side.
-        if (completedMode >= MODE_DSIDE)
+        if (completedMode >= MODE_2)
             SetPendingSideReturn(area.ID, completedMode);
 
         int unlockedMode = completedMode + 1;
@@ -1052,10 +1052,10 @@ public static class AreaModeExtender
         sanitized = key;
 
         int mode = (int) key.Mode;
-        if (mode >= MODE_NORMAL && mode <= MODE_CSIDE)
+        if (mode >= MODE_NORMAL && mode <= MODE_2)
             return false;
 
-        sanitized = new AreaKey(key.ID, (global::Celeste.AreaMode) Math.Clamp(mode, MODE_NORMAL, MODE_CSIDE));
+        sanitized = new AreaKey(key.ID, (global::Celeste.AreaMode) Math.Clamp(mode, MODE_NORMAL, MODE_2));
         return true;
     }
 
@@ -1146,12 +1146,12 @@ public static class AreaModeExtender
         if (modeIndex < MODE_NORMAL || modeIndex >= TOTAL_MODES)
             return false;
 
-        if (modeIndex == MODE_DSIDE)
+        if (modeIndex == MODE_2)
         {
             AreaData areaData = AreaData.Get(area);
             if (areaData != null && AltSidesHelperBridge.IsAshOwned(areaData))
             {
-                string ashHeartId = $"{areaData.SID}_{GetModeName(MODE_DSIDE)}";
+                string ashHeartId = $"{areaData.SID}_{GetModeName(MODE_2)}";
                 return DZModule.SaveData?.HasCollectedHeartGem(ashHeartId) == true;
             }
         }
@@ -1168,12 +1168,12 @@ public static class AreaModeExtender
         if (modeIndex < MODE_NORMAL || modeIndex >= TOTAL_MODES)
             return false;
 
-        if (modeIndex == MODE_DSIDE)
+        if (modeIndex == MODE_2)
         {
             AreaData areaData = AreaData.Get(area);
             if (areaData != null && AltSidesHelperBridge.IsAshOwned(areaData))
             {
-                string ashHeartId = $"{areaData.SID}_{GetModeName(MODE_DSIDE)}";
+                string ashHeartId = $"{areaData.SID}_{GetModeName(MODE_2)}";
                 return DZModule.SaveData?.HasCollectedHeartGem(ashHeartId) == true
                     || GetSaveAreaModeCompleted(area.ID, modeIndex);
             }
@@ -1234,9 +1234,9 @@ public static class AreaModeExtender
         return modeIndex switch
         {
             MODE_NORMAL => "Normal",
-            MODE_BSIDE => "BSide",
-            MODE_CSIDE => "CSide",
-            MODE_DSIDE => "DSide",
+            MODE_1 => "1",
+            MODE_2 => "2",
+            MODE_2 => "2",
             MODE_DXSIDE => "DXSide",
             _ => $"Mode{modeIndex}"
         };
@@ -1247,15 +1247,15 @@ public static class AreaModeExtender
         return modeIndex switch
         {
             MODE_NORMAL => "A",
-            MODE_BSIDE => "B",
-            MODE_CSIDE => "C",
-            MODE_DSIDE => "D",
+            MODE_1 => "B",
+            MODE_2 => "C",
+            MODE_2 => "D",
             MODE_DXSIDE => "DX",
             _ => "?"
         };
     }
 
-    private static bool HasDebugOrCheatExtendedSideAccess(SaveData saveData)
+    private static bool HasDebugOrCheatExtende2Access(SaveData saveData)
     {
         if (saveData?.CheatMode == true)
             return true;
@@ -1275,20 +1275,20 @@ public static class AreaModeExtender
         if (saveData == null)
             return false;
 
-        if (saveData.CheatMode || HasDebugOrCheatExtendedSideAccess(saveData))
+        if (saveData.CheatMode || HasDebugOrCheatExtende2Access(saveData))
             return true;
 
         // For ASH-owned D-Sides, check DZ's extended save data which the
         // bridge populates on completion, rather than vanilla AreaModeStats slots.
-        if (modeIndex == MODE_DSIDE)
+        if (modeIndex == MODE_2)
         {
             AreaData areaData = AreaData.Get(area);
             if (areaData != null && AltSidesHelperBridge.IsAshOwned(areaData))
             {
-                string ashHeartId = $"{areaData.SID}_{GetModeName(MODE_DSIDE)}";
+                string ashHeartId = $"{areaData.SID}_{GetModeName(MODE_2)}";
                 return DZModule.SaveData?.HasCollectedHeartGem(ashHeartId) == true
-                    || GetSaveAreaModeHeartGem(area.ID, MODE_CSIDE)
-                    || GetSaveAreaModeCompleted(area.ID, MODE_CSIDE);
+                    || GetSaveAreaModeHeartGem(area.ID, MODE_2)
+                    || GetSaveAreaModeCompleted(area.ID, MODE_2);
             }
         }
 
@@ -1416,10 +1416,10 @@ public static class AreaModeExtender
     }
 
     /// <summary>
-    /// Parses a map SID in the new folder structure (DZ/ASide/01_City, etc.)
+    /// Parses a map SID in the new folder structure (DZ/0/01_City, etc.)
     /// Returns the base map name and which side folder it's in.
     /// baseKey: The map name (e.g., "01_City")
-    /// sideFolder: The side folder name (e.g., "ASide", "BSide", "DSide")
+    /// sideFolder: The side folder name (e.g., "0", "1", "2")
     /// </summary>
     internal static bool TryParseMainSideSID(string sid, out string baseKey, out string sideFolder)
     {

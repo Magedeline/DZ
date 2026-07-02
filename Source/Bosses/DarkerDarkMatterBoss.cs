@@ -6,7 +6,7 @@ namespace Celeste.Entities.Bosses
     /// Darker Dark Matter Boss - The true form of Dark Matter
     /// An enhanced version of Dark Matter with stronger void powers
     /// Multi-phase boss with reality-warping abilities
-    /// Sprite path: characters/darkerdarkmatter/
+    /// Sprite path: characters/DZ/darkerdarkmatter/
     /// </summary>
     [CustomEntity(ids: "DZ/DarkerDarkMatterBoss")]
     [Tracked]
@@ -107,7 +107,7 @@ namespace Celeste.Entities.Bosses
         #region Setup
         private void InitializeVisualConfig(EntityData data)
         {
-            eyeFormSpriteRoot = NormalizeSpriteRoot(data?.Attr("eyeFormSpriteRoot", "characters/darkmatter_boss_runtime") ?? "characters/darkmatter_boss_runtime");
+            eyeFormSpriteRoot = NormalizeSpriteRoot(data?.Attr("eyeFormSpriteRoot", "characters/DZ/darkmatter_boss_runtime") ?? "characters/DZ/darkmatter_boss_runtime");
             eyeDormantAnimationPath = data?.Attr("eyeDormantAnimationPath", "dormant") ?? "dormant";
             eyeIdleAnimationPath = data?.Attr("eyeIdleAnimationPath", "idle") ?? "idle";
             eyeAttackAnimationPath = data?.Attr("eyeAttackAnimationPath", "attack") ?? "attack";
@@ -115,7 +115,7 @@ namespace Celeste.Entities.Bosses
             eyeEnragedAnimationPath = data?.Attr("eyeEnragedAnimationPath", "enraged") ?? "enraged";
             eyeDefeatAnimationPath = data?.Attr("eyeDefeatAnimationPath", "defeat") ?? "defeat";
 
-            swordsmanFormSpriteRoot = NormalizeSpriteRoot(data?.Attr("swordsmanFormSpriteRoot", "characters/darkerdark_swordsman_runtime") ?? "characters/darkerdark_swordsman_runtime");
+            swordsmanFormSpriteRoot = NormalizeSpriteRoot(data?.Attr("swordsmanFormSpriteRoot", "characters/DZ/darkerdark_swordsman_runtime") ?? "characters/DZ/darkerdark_swordsman_runtime");
             swordsmanIdleAnimationPath = data?.Attr("swordsmanIdleAnimationPath", "idle") ?? "idle";
             swordsmanReadyAnimationPath = data?.Attr("swordsmanReadyAnimationPath", swordsmanIdleAnimationPath) ?? swordsmanIdleAnimationPath;
             swordsmanSlashAnimationPath = data?.Attr("swordsmanSlashAnimationPath", "slash") ?? "slash";
@@ -310,7 +310,7 @@ namespace Celeste.Entities.Bosses
         private void SetupVisuals()
         {
             // Core/body sprite
-            Add(coreSprite = new Sprite(GFX.Game, "characters/darkerdarkmatter/"));
+            Add(coreSprite = new Sprite(GFX.Game, "characters/DZ/darkerdarkmatter/"));
             coreSprite.AddLoop("dormant", "core_dormant", 0.15f);
             coreSprite.AddLoop("idle", "core_idle", 0.1f);
             coreSprite.AddLoop("pulse", "core_pulse", 0.06f);
@@ -320,7 +320,7 @@ namespace Celeste.Entities.Bosses
             coreSprite.CenterOrigin();
             
             // Eye sprite (central eye)
-            Add(eyeSprite = new Sprite(GFX.Game, "characters/darkerdarkmatter/"));
+            Add(eyeSprite = new Sprite(GFX.Game, "characters/DZ/darkerdarkmatter/"));
             eyeSprite.AddLoop("closed", "eye_closed", 0.1f);
             eyeSprite.AddLoop("open", "eye_open", 0.08f);
             eyeSprite.AddLoop("attack", "eye_attack", 0.05f);
@@ -329,7 +329,7 @@ namespace Celeste.Entities.Bosses
             eyeSprite.Position = Vector2.Zero;
             
             // Sword sprite (for swordsman phase)
-            Add(swordSprite = new Sprite(GFX.Game, "characters/darkerdarkmatter/"));
+            Add(swordSprite = new Sprite(GFX.Game, "characters/DZ/darkerdarkmatter/"));
             swordSprite.AddLoop("hidden", "sword_hidden", 0.1f);
             swordSprite.AddLoop("ready", "sword_ready", 0.08f);
             swordSprite.AddLoop("slash", "sword_slash", 0.03f);
@@ -339,7 +339,7 @@ namespace Celeste.Entities.Bosses
             swordSprite.Visible = false;
             
             // Aura sprite
-            Add(auraSprite = new Sprite(GFX.Game, "characters/darkerdarkmatter/"));
+            Add(auraSprite = new Sprite(GFX.Game, "characters/DZ/darkerdarkmatter/"));
             auraSprite.AddLoop("none", "aura_none", 0.1f);
             auraSprite.AddLoop("dark", "aura_dark", 0.08f);
             auraSprite.AddLoop("void", "aura_void", 0.05f);

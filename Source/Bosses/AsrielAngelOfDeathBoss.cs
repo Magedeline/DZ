@@ -12,7 +12,7 @@ namespace DZ
     /// Asriel Angel of Death Boss - Chapter 20: The End
     /// Multi-phase boss fight with emotional story beats, barrier mechanics,
     /// lost soul salvation, and FMOD audio integration.
-    /// Sprite path: characters/asrielangelofdeathboss
+    /// Sprite path: characters/DZ/asrielangelofdeathboss
     /// </summary>
     [CustomEntity("DZ/AsrielAngelOfDeathBoss")]
     [Tracked]
@@ -267,7 +267,7 @@ namespace DZ
 
         private void CreateSpriteLayer(ref Sprite sprite, string folder, string defaultFrame)
         {
-            string path = $"characters/asrielangelofdeathboss/{folder}/";
+            string path = $"characters/DZ/asrielangelofdeathboss/{folder}/";
             
             try
             {

@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch10
     /// <summary>
     /// RuinsSentinel - Stone guardian that awakens when player approaches
     /// Patrols ruins corridors and activates when player enters detection range
-    /// Sprite path: characters/ruins_sentinel/
+    /// Sprite path: characters/DZ/ruins_sentinel/
     /// </summary>
     [CustomEntity("DZ/RuinsSentinel")]
     [Tracked]

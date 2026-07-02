@@ -38,7 +38,7 @@ Modes:
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/DSide/00_prologue
+      Music: event:/music/pusheen/2/00_prologue
       Ambience: event:/env/pusheen/00_main
     Inventory: Default
     HeartIsEnd: true
@@ -49,8 +49,8 @@ Modes:
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
-    MountainModelDirectory: Mountain/DZ/ASide
-    MountainTextureDirectory: DZ/ASide
+    MountainModelDirectory: Mountain/DZ/0
+    MountainTextureDirectory: DZ/0
     Idle:
         Position: [-0.658, 2.872, 7.876]
         Target: [-0.658, 2.572, 6.876]

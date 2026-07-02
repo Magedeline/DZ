@@ -1,5 +1,5 @@
 ﻿Icon: areas/DZ/fire
-SID: DZ/ASide/13_Fire
+SID: DZ/0/13_Fire
 Interlude: false
 TitleBaseColor: b93c27
 TitleAccentColor: ff6a00
@@ -22,25 +22,25 @@ Modes:
     HeartIsEnd: false
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/BSide/13_fire
+      Music: event:/music/pusheen/1/13_fire
       Ambience: event:/env/pusheen/13_factory
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/CSide/13_fire
+      Music: event:/music/pusheen/2/13_fire
       Ambience: event:/env/pusheen/13_factory
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/CSide/13_fire
+      Music: event:/music/pusheen/2/13_fire
       Ambience: event:/env/pusheen/13_factory
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/DSide/13_fire
+      Music: event:/music/pusheen/2/13_fire
       Ambience: event:/env/pusheen/13_main
     Inventory: Default
     HeartIsEnd: true
@@ -51,8 +51,8 @@ Modes:
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
-    MountainModelDirectory: Mountain/DZ/ASide
-    MountainTextureDirectory: DZ/ASide
+    MountainModelDirectory: Mountain/DZ/0
+    MountainTextureDirectory: DZ/0
     Idle:
         Position: [0.500, 9.200, 13.500]
         Target: [0.500, 8.500, 12.000]

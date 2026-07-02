@@ -8,8 +8,8 @@ namespace Celeste.Entities.Bosses
     [HotReloadable]
     public class AlphaApexPredatorBoss : BossActor
     {
-        private const string PredatorTexturePath = "characters/monsters/predator";
-        private const string FallbackPredatorTexturePath = "characters/Enemies/monsters/predator";
+        private const string PredatorTexturePath = "characters/DZ/monsters/predator";
+        private const string FallbackPredatorTexturePath = "characters/DZ/Enemies/monsters/predator";
 
         private enum BossPhase
         {

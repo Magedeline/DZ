@@ -265,9 +265,9 @@ public class TapeBlock : Solid
 
     private void SetImage(float x, float y, int tx, int ty)
     {
-        List<MTexture> atlasSubtextures = GFX.Game.GetAtlasSubtextures("objects/cassetteblock/pressed");
+        List<MTexture> atlasSubtextures = GFX.Game.GetAtlasSubtextures("objects/DZ/DZ/cassetteblock/pressed");
         pressed.Add(CreateImage(x, y, tx, ty, atlasSubtextures[Index % atlasSubtextures.Count]));
-        solid.Add(CreateImage(x, y, tx, ty, GFX.Game["objects/cassetteblock/solid"]));
+        solid.Add(CreateImage(x, y, tx, ty, GFX.Game["objects/DZ/DZ/cassetteblock/solid"]));
     }
 
     private Image CreateImage(float x, float y, int tx, int ty, MTexture tex)

@@ -4,7 +4,7 @@ namespace Celeste.Entities.Chapters.Ch10
     /// TorielStoveEntity - Interactive cooking station with dialogue
     /// Toriel's stove where she bakes butterscotch-cinnamon pie
     /// Can heal the player and trigger dialogue
-    /// Sprite path: objects/toriel_stove/
+    /// Sprite path: objects/DZ/DZ/toriel_stove/
     /// </summary>
     [CustomEntity("DZ/TorielStoveEntity")]
     [Tracked]
@@ -376,7 +376,7 @@ namespace Celeste.Entities.Chapters.Ch10
 
     /// <summary>
     /// TorielOven - Additional interactive oven for cooking minigames
-    /// Sprite path: objects/toriel_oven/
+    /// Sprite path: objects/DZ/DZ/toriel_oven/
     /// </summary>
     [CustomEntity("DZ/TorielOven")]
     public class TorielOven : Actor

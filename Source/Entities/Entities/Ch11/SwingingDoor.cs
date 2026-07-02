@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch11
     /// <summary>
     /// SwingingDoor - Double doors that swing based on player momentum
     /// Can knock player back if hit with enough force
-    /// Sprite path: objects/swinging_door/
+    /// Sprite path: objects/DZ/DZ/swinging_door/
     /// </summary>
     [CustomEntity("DZ/SwingingDoor")]
     [Tracked]

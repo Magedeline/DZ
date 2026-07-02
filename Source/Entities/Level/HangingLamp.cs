@@ -70,7 +70,7 @@ public class HangingLamp : DZ.Nez.Component, IUpdatable
         _bloom = Entity.AddComponent(new BloomPoint(tipOffset, 1f, 48f));
 
         // TODO: add BoxCollider width 8, height Length, offset (-4,0)
-        // TODO: load "objects/hanginglamp" sub-textures and add image renderers
+        // TODO: load "objects/DZ/DZ/hanginglamp" sub-textures and add image renderers
         //   - top cap:    sub-texture row 0
         //   - chain tiles: sub-texture row 1, tiled from 0 to Length-8, step 8
         //   - lamp head:  sub-texture row 2 at origin-y = -(Length-8)

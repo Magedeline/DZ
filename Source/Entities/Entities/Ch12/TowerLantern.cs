@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch12
     /// <summary>
     /// TowerLantern - Light source that can be lit or extinguished
     /// Provides illumination and can activate connected mechanisms
-    /// Sprite path: objects/tower_lantern/
+    /// Sprite path: objects/DZ/DZ/tower_lantern/
     /// </summary>
     [CustomEntity("DZ/TowerLantern")]
     [Tracked]

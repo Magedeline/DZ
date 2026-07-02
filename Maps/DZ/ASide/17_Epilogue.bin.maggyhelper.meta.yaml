@@ -1,8 +1,8 @@
 schema: DZ-map-meta-v1
-sid: DZ/ASide/17_Epilogue
+sid: DZ/0/17_Epilogue
 baseKey: 17_Epilogue
 side: A
 modeIndex: 0
 isMainChapterEntry: true
-mainChapterSid: DZ/ASide/17_Epilogue
+mainChapterSid: DZ/0/17_Epilogue
 showInChapterSelect: true

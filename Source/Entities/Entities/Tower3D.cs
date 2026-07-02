@@ -73,8 +73,8 @@ namespace Celeste.Entities
                 segments.Add(new TowerSegment
                 {
                     Height = i * segment_height,
-                    Texture = towerTexture ?? (GFX.Game.HasAtlasSubtextures("objects/tower/segment") ?
-                             GFX.Game["objects/tower/segment"] :
+                    Texture = towerTexture ?? (GFX.Game.HasAtlasSubtextures("objects/DZ/DZ/tower/segment") ?
+                             GFX.Game["objects/DZ/DZ/tower/segment"] :
                              GFX.Game["particles/rect"]), // Use loaded texture or fallback
                     Rotation = 0f,
                     ObstacleSlots = new List<Vector2>()

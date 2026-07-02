@@ -2,7 +2,7 @@ local crownBearing = {}
 
 crownBearing.name = "DZ/CrownBearing"
 crownBearing.depth = 0
-crownBearing.texture = "objects/DZ/crown_bearing"
+crownBearing.texture = "objects/DZ/DZ/DZ/crown_bearing"
 
 crownBearing.placements = {
     name = "crown_bearing",

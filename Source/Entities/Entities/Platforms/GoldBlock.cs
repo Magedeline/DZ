@@ -16,7 +16,7 @@ namespace Celeste.Entities
         public GoldBlock(Vector2 position, int width, int height)
             : base(position, width, height, true)
         {
-            texture = AtlasPathHelper.GetTexture("objects/goldblock");
+            texture = AtlasPathHelper.GetTexture("objects/DZ/DZ/goldblock");
             OnDashCollide = (global::Celeste.Player player, Vector2 direction) => OnDashed(player, direction);
             base.Depth = -9000;
         }

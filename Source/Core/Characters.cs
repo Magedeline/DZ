@@ -150,7 +150,7 @@ namespace DZ
             attackInterval = data.Float("attackInterval", 3f);
             attackTimer = attackInterval;
             
-            Add(sprite = new Sprite(GFX.Game, "characters/bosses/midboss/"));
+            Add(sprite = new Sprite(GFX.Game, "characters/DZ/bosses/midboss/"));
             sprite.AddLoop("idle", "idle", 0.1f);
             sprite.AddLoop("attack", "attack", 0.08f);
             sprite.Play("idle");
@@ -295,7 +295,7 @@ namespace DZ
         {
             attackTimer = phase1AttackInterval;
             
-            Add(sprite = new Sprite(GFX.Game, "characters/bosses/fullboss/"));
+            Add(sprite = new Sprite(GFX.Game, "characters/DZ/bosses/fullboss/"));
             sprite.AddLoop("idle", "idle", 0.1f);
             sprite.AddLoop("phase1", "phase1", 0.08f);
             sprite.AddLoop("phase2", "phase2", 0.06f);
@@ -471,7 +471,7 @@ namespace DZ
             patrolStart = Position;
             patrolEnd = Position + new Vector2(data.Float("patrolDistance", 80f), 0f);
             
-            Add(sprite = new Sprite(GFX.Game, "characters/bosses/miniboss/"));
+            Add(sprite = new Sprite(GFX.Game, "characters/DZ/bosses/miniboss/"));
             sprite.AddLoop("idle", "idle", 0.1f);
             sprite.AddLoop("walk", "walk", 0.08f);
             sprite.Play("walk");

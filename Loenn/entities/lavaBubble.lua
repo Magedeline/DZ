@@ -2,7 +2,7 @@ local lavaBubble = {}
 
 lavaBubble.name = "DZ/LavaBubble"
 lavaBubble.depth = 0
-lavaBubble.texture = "objects/DZ/lava_bubble"
+lavaBubble.texture = "objects/DZ/DZ/DZ/lava_bubble"
 
 lavaBubble.placements = {
     name = "lava_bubble",

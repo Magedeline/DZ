@@ -20,7 +20,7 @@ namespace Celeste.Entities
             new Color(180, 60, 220),
             new Color(255, 50, 150),
             new Color(255, 208, 144),
-            "characters/els_true_final_boss/siamo_zero_morpho_knight_fake/",
+            "characters/DZ/els_true_final_boss/siamo_zero_morpho_knight_fake/",
             "swords",
             "swords",
             "vortex_summon",

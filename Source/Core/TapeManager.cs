@@ -114,7 +114,7 @@ namespace DZ
         /// <summary>
         /// Validates if a side is within the allowed range (A/B/C/D only)
         /// </summary>
-        private static bool IsValidSide(char side)
+        private static bool IsVali2(char side)
         {
             return side >= 'A' && side <= 'D';
         }
@@ -124,7 +124,7 @@ namespace DZ
         /// </summary>
         private static char ValidateSide(char side)
         {
-            if (!IsValidSide(side))
+            if (!IsVali2(side))
             {
                 Logger.Log(LogLevel.Warn, nameof(TapeManager), $"Invalid side '{side}' requested. Only A/B/C/D sides are supported. Defaulting to A.");
                 return 'A';
@@ -222,11 +222,11 @@ namespace DZ
         /// <summary>
         /// Gets the highest unlocked side for an area
         /// </summary>
-        public static char GetHighestUnlockedSide(AreaKey areaKey)
+        public static char GetHighestUnlocke2(AreaKey areaKey)
         {
             if (sideProgressions.TryGetValue(areaKey, out var progression))
             {
-                return progression.GetHighestUnlockedSide();
+                return progression.GetHighestUnlocke2();
             }
             return 'A';
         }
@@ -277,8 +277,8 @@ namespace DZ
             switch (areaKey.Mode)
             {
                 case AreaMode.Normal: return 'A';
-                case AreaMode.BSide: return 'B';
-                case AreaMode.CSide: return 'C';
+                case AreaMode.1: return 'B';
+                case AreaMode.2: return 'C';
                 default: return 'A';
             }
         }
@@ -454,12 +454,12 @@ namespace DZ
     public class SideProgression
     {
         private readonly AreaKey areaKey;
-        private readonly HashSet<char> unlockedSides;
+        private readonly HashSet<char> unlocke2s;
 
         public SideProgression(AreaKey areaKey)
         {
             this.areaKey = areaKey;
-            unlockedSides = new HashSet<char> { 'A' }; // A-Side always unlocked
+            unlocke2s = new HashSet<char> { 'A' }; // A-Side always unlocked
         }
 
         public bool UnlockSide(char side)
@@ -468,7 +468,7 @@ namespace DZ
             if (side < 'A' || side > 'D')
                 return false;
 
-            return unlockedSides.Add(side);
+            return unlocke2s.Add(side);
         }
 
         public bool IsSideUnlocked(char side)
@@ -477,16 +477,16 @@ namespace DZ
             if (side < 'A' || side > 'D')
                 return false;
 
-            return unlockedSides.Contains(side);
+            return unlocke2s.Contains(side);
         }
 
-        public char GetHighestUnlockedSide()
+        public char GetHighestUnlocke2()
         {
             char highest = 'A';
             // Check only A/B/C/D sides
             for (char side = 'A'; side <= 'D'; side++)
             {
-                if (unlockedSides.Contains(side))
+                if (unlocke2s.Contains(side))
                     highest = side;
             }
             return highest;

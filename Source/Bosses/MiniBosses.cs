@@ -34,7 +34,7 @@ namespace Celeste.Entities
         
         private void setupVisuals()
         {
-            Add(knightSprite = new Sprite(GFX.Game, "characters/metaknight/"));
+            Add(knightSprite = new Sprite(GFX.Game, "characters/DZ/metaknight/"));
             knightSprite.AddLoop("idle", "mk_idle", 0.1f);
             knightSprite.AddLoop("slash", "mk_slash", 0.05f);
             knightSprite.AddLoop("dash", "mk_dash", 0.06f);
@@ -226,7 +226,7 @@ namespace Celeste.Entities
         public DigitalKingDDDBoss(EntityData data, Vector2 offset) 
             : base(data.Position + offset, "digital_ddd_boss", Vector2.One, 200f, true, true, 1f, new Hitbox(40f, 56f, -20f, -56f))
         {
-            Add(dddSprite = new Sprite(GFX.Game, "characters/digitalddd/"));
+            Add(dddSprite = new Sprite(GFX.Game, "characters/DZ/digitalddd/"));
             dddSprite.AddLoop("idle", "ddd_idle", 0.1f);
             dddSprite.CenterOrigin();
         }
@@ -278,7 +278,7 @@ namespace Celeste.Entities
         public MartletBirdPossessBoss(EntityData data, Vector2 offset) 
             : base(data.Position + offset, "martlet_boss", Vector2.One, 160f, true, false, 0.5f, new Hitbox(20f, 24f, -10f, -24f))
         {
-            Add(birdSprite = new Sprite(GFX.Game, "characters/martlet/"));
+            Add(birdSprite = new Sprite(GFX.Game, "characters/DZ/martlet/"));
             birdSprite.AddLoop("fly", "martlet_fly", 0.1f);
             birdSprite.Play("fly");
             birdSprite.CenterOrigin();
@@ -334,7 +334,7 @@ namespace Celeste.Entities
         public BlackDarkMatterBoss(EntityData data, Vector2 offset) 
             : base(data.Position + offset, "dark_matter_boss", Vector2.One, 0f, true, false, 0f, new Hitbox(32f, 32f, -16f, -16f))
         {
-            Add(darkMatterSprite = new Sprite(GFX.Game, "characters/darkmatter/"));
+            Add(darkMatterSprite = new Sprite(GFX.Game, "characters/DZ/darkmatter/"));
             darkMatterSprite.AddLoop("idle", "dm_idle", 0.1f);
             darkMatterSprite.Play("idle");
             darkMatterSprite.CenterOrigin();
@@ -390,12 +390,12 @@ namespace Celeste.Entities
         public DarkMatterKnifeBoss(EntityData data, Vector2 offset) 
             : base(data.Position + offset, "dark_matter_knife_boss", Vector2.One, 0f, true, false, 0f, new Hitbox(32f, 32f, -16f, -16f))
         {
-            Add(darkMatterSprite = new Sprite(GFX.Game, "characters/darkmatter/"));
+            Add(darkMatterSprite = new Sprite(GFX.Game, "characters/DZ/darkmatter/"));
             darkMatterSprite.AddLoop("idle", "dmk_idle", 0.1f);
             darkMatterSprite.Play("idle");
             darkMatterSprite.CenterOrigin();
             
-            Add(knifeSprite = new Sprite(GFX.Game, "characters/darkmatter/"));
+            Add(knifeSprite = new Sprite(GFX.Game, "characters/DZ/darkmatter/"));
             knifeSprite.AddLoop("spin", "knife_spin", 0.08f);
             knifeSprite.Play("spin");
             knifeSprite.Position = new Vector2(24f, 0f);

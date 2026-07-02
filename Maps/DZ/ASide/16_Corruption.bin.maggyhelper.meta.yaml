@@ -1,21 +1,21 @@
 schema: DZ-map-meta-v1
-sid: DZ/ASide/16_Corruption
+sid: DZ/0/16_Corruption
 baseKey: 16_Corruption
 side: A
 modeIndex: 0
 isMainChapterEntry: true
-mainChapterSid: DZ/ASide/16_Corruption
+mainChapterSid: DZ/0/16_Corruption
 showInChapterSelect: true
 
 MusicBySide:
   - event:/music/pusheen/menu/complete_summit
-  - event:/music/pusheen/menu/complete_bside_summit
-  - event:/music/pusheen/menu/complete_cside_summit
-  - event:/music/pusheen/menu/complete_cside_summit
+  - event:/music/pusheen/menu/complete_1_summit
+  - event:/music/pusheen/menu/complete_2_summit
+  - event:/music/pusheen/menu/complete_2_summit
 Title:
-  ASide: "Chapter Complete"
-  BSide: "B Side Complete"
-  CSide: "C Side Complete"
-  DSide: "D Side Complete"
+  0: "Chapter Complete"
+  1: "B Side Complete"
+  2: "C Side Complete"
+  2: "D Side Complete"
   DXSide: "DX Side Complete"
   FullClear: "Chapter Clear"

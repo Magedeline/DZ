@@ -284,7 +284,7 @@ namespace Celeste.Cutscenes
                     Entity entity3 = new Entity(oshiro.Position);
                     entity3.Depth = oshiro.Depth + 1;
                     this.Scene.Add(entity3);
-                    entity3.Add(new Monocle.Image(GFX.Game["characters/oshiro/broom"]) { Origin = oshiro.Sprite.Origin });
+                    entity3.Add(new Monocle.Image(GFX.Game["characters/DZ/oshiro/broom"]) { Origin = oshiro.Sprite.Origin });
                     oshiro.Sprite.OnFrameChange = null;
                 }
             };
@@ -605,14 +605,14 @@ namespace Celeste.Cutscenes
             // Waddle Dee and Magolor use atlas sprites
             Entity waddleDee = new Entity(basePos + new Vector2(104f, 0f));
             waddleDee.Depth = -50;
-            Monocle.Image waddleDeeImg = new Monocle.Image(GFX.Game["characters/Enemies/ememy/waddledee/idle00"]);
+            Monocle.Image waddleDeeImg = new Monocle.Image(GFX.Game["characters/DZ/Enemies/ememy/waddledee/idle00"]);
             waddleDeeImg.CenterOrigin();
             waddleDee.Add(waddleDeeImg);
             this.Scene.Add(waddleDee);
 
             Entity magolor = new Entity(basePos + new Vector2(-80f, 0f));
             magolor.Depth = -50;
-            Monocle.Image magolorImg = new Monocle.Image(GFX.Game["characters/magolor/idle00"]);
+            Monocle.Image magolorImg = new Monocle.Image(GFX.Game["characters/DZ/magolor/idle00"]);
             magolorImg.CenterOrigin();
             magolor.Add(magolorImg);
             this.Scene.Add(magolor);

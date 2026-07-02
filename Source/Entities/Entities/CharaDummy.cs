@@ -145,7 +145,7 @@ namespace Celeste.Entities
         {
             try
             {
-                MTexture hairTexture = GFX.Game["characters/chara/hair00"];
+                MTexture hairTexture = GFX.Game["characters/DZ/chara/hair00"];
                 HairImage = new Image(hairTexture);
                 HairImage.CenterOrigin();
                 HairImage.Position = new Vector2(0f, -8f);

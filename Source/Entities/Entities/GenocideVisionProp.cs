@@ -24,7 +24,7 @@ namespace Celeste.Entities
             Depth = 12;
             Collider = new Hitbox(10f, 10f, -5f, -10f);
             fallbackColor = kind == PropKind.RealKnife ? Color.Silver : Calc.HexToColor("B71C3C");
-            texture = TryLoadTexture(kind == PropKind.RealKnife ? "objects/ch7genocide/realknife" : "objects/ch7genocide/heartlocket");
+            texture = TryLoadTexture(kind == PropKind.RealKnife ? "objects/DZ/DZ/ch7genocide/realknife" : "objects/DZ/DZ/ch7genocide/heartlocket");
         }
 
         public void Collect()

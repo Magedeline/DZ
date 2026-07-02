@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch16
     /// <summary>
     /// ShadowFigure - Mysterious shadow entity that follows and haunts
     /// Appears and disappears, creates atmosphere
-    /// Sprite path: characters/shadow_figure/
+    /// Sprite path: characters/DZ/shadow_figure/
     /// </summary>
     [CustomEntity("DZ/ShadowFigure")]
     [Tracked]

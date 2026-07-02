@@ -2,7 +2,7 @@ local saloonDoorController = {}
 
 saloonDoorController.name = "DZ/SaloonDoorController"
 saloonDoorController.depth = 0
-saloonDoorController.texture = "objects/DZ/saloon_door_controller"
+saloonDoorController.texture = "objects/DZ/DZ/DZ/saloon_door_controller"
 
 saloonDoorController.placements = {
     name = "saloon_door_controller",

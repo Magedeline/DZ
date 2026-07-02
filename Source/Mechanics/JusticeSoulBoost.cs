@@ -229,7 +229,7 @@ namespace Celeste.Entities.SoulBoosts
             Add(new PlayerCollider(player => OnPlayerCollide(player)));
             
             // Create simple sprite/image
-            Add(sprite = AtlasPathHelper.CreateSprite("objects/sevensoulboost/"));
+            Add(sprite = AtlasPathHelper.CreateSprite("objects/DZ/DZ/sevensoulboost/"));
             sprite.AddLoop("vessel_soul05", "justice_projectile", 0.08f);
             sprite.Play("vessel_soul05");
             sprite.CenterOrigin();

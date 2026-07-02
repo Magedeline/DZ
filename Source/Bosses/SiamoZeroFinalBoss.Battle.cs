@@ -73,7 +73,7 @@ namespace Celeste.Entities
         private const float MOVE_SPEED = 600f;
         private const float HIT_INVULNERABILITY_TIME = 1.5f;
 
-        private const string BossSpriteAtlasRoot = "characters/els_true_final_boss/";
+        private const string BossSpriteAtlasRoot = "characters/DZ/els_true_final_boss/";
         private const string LegacyBossAnimationPath = "boss";
         private const string Phase1AnimationPath = "boss";
         private const string Phase2AnimationPath = "boss";

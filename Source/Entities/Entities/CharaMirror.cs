@@ -14,8 +14,8 @@ namespace Celeste.Entities
     public class CharaMirror : Entity
     {
         private Image frame;
-        private MTexture glassbg = GFX.Game["objects/mirror/glassbg"];
-        private MTexture glassfg = GFX.Game["objects/mirror/glassfg"];
+        private MTexture glassbg = GFX.Game["objects/DZ/DZ/mirror/glassbg"];
+        private MTexture glassfg = GFX.Game["objects/DZ/DZ/mirror/glassfg"];
         private Sprite breakingGlass;
         private Hitbox hitbox;
         private VirtualRenderTarget mirror;
@@ -46,7 +46,7 @@ namespace Celeste.Entities
             Add(breakingGlass = GFX.SpriteBank.Create("glass"));
             breakingGlass.Play("idle");
             Add(new BeforeRenderHook(BeforeRender));
-            foreach (MTexture atlasSubtexture in GFX.Game.GetAtlasSubtextures("objects/mirror/mirrormask"))
+            foreach (MTexture atlasSubtexture in GFX.Game.GetAtlasSubtextures("objects/DZ/DZ/mirror/mirrormask"))
             {
                 MTexture shard = atlasSubtexture;
                 MirrorSurface surface = new MirrorSurface();
@@ -90,7 +90,7 @@ namespace Celeste.Entities
             {
                 Depth = 9000
             };
-            entity.Add(frame = new Image(GFX.Game["objects/mirror/frame"]));
+            entity.Add(frame = new Image(GFX.Game["objects/DZ/DZ/mirror/frame"]));
             frame.JustifyOrigin(0.5f, 1f);
             Scene.Add(entity);
             Collider = hitbox = new Hitbox((int) frame.Width - 16, (int) frame.Height + 32, -(int) frame.Width / 2 + 8, -(int) frame.Height - 32);

@@ -2,7 +2,7 @@ local digitalPortal = {}
 
 digitalPortal.name = "DZ/DigitalPortal"
 digitalPortal.depth = 0
-digitalPortal.texture = "objects/DZ/digital_portal"
+digitalPortal.texture = "objects/DZ/DZ/DZ/digital_portal"
 
 digitalPortal.placements = {
     name = "digital_portal",

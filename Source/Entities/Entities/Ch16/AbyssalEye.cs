@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch16
     /// <summary>
     /// AbyssalEye - Floating eye that tracks player
     /// Creates gaze beam that damages if looked at
-    /// Sprite path: characters/abyssal_eye/
+    /// Sprite path: characters/DZ/abyssal_eye/
     /// </summary>
     [CustomEntity("DZ/AbyssalEye")]
     [Tracked]

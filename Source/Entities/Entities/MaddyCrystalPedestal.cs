@@ -4,7 +4,7 @@ namespace Celeste.Entities
     [Tracked]
     public class MaddyCrystalPedestal : Solid
     {
-        private const string PedestalTexturePath = "characters/theoCrystal/pedestal";
+        private const string PedestalTexturePath = "characters/DZ/theoCrystal/pedestal";
         public Image sprite;
         public bool DroppedMaddy;
 

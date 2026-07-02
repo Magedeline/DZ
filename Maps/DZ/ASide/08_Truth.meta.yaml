@@ -1,5 +1,5 @@
 Icon: areas/DZ/truth
-SID: DZ/ASide/08_Truth
+SID: DZ/0/08_Truth
 Interlude: false
 TitleBaseColor: 359fe0
 TitleAccentColor: 3c5cbc
@@ -22,25 +22,25 @@ Modes:
     HeartIsEnd: false
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/BSide/08_truth
+      Music: event:/music/pusheen/1/08_truth
       Ambience: event:/env/pusheen/08_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/CSide/08_truth
+      Music: event:/music/pusheen/2/08_truth
       Ambience: event:/env/pusheen/08_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/CSide/08_truth
+      Music: event:/music/pusheen/2/08_truth
       Ambience: event:/env/pusheen/08_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/DSide/08_truth
+      Music: event:/music/pusheen/2/08_truth
       Ambience: event:/env/pusheen/08_main
     Inventory: Default
     HeartIsEnd: true
@@ -51,8 +51,8 @@ Modes:
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
-    MountainModelDirectory: Mountain/DZ/ASide
-    MountainTextureDirectory: DZ/ASide
+    MountainModelDirectory: Mountain/DZ/0
+    MountainTextureDirectory: DZ/0
     Idle:
         Position: [7.500, 10.500, 18.000]
         Target: [6.800, 9.800, 16.500]
@@ -67,13 +67,13 @@ Modes:
 
 MusicBySide:
   - event:/music/pusheen/menu/complete_area
-  - event:/music/pusheen/menu/complete_bside
-  - event:/music/pusheen/menu/complete_cside
+  - event:/music/pusheen/menu/complete_1
+  - event:/music/pusheen/menu/complete_2
   - event:/music/pusheen/menu/complete_dxside
 Title:
-  ASide: "Chapter Complete"
-  BSide: "B Side Complete"
-  CSide: "C Side Complete"
-  DSide: "D Side Complete"
+  0: "Chapter Complete"
+  1: "B Side Complete"
+  2: "C Side Complete"
+  2: "D Side Complete"
   DXSide: "DX Side Complete"
   FullClear: "Chapter Clear"

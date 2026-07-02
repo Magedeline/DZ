@@ -99,7 +99,7 @@ namespace Celeste.Entities.SoulBoosts
             CreateParticles();
 
             // Sprite setup - use custom vessel soul sprite
-            Add(sprite = new Sprite(GFX.Game, "characters/soul/soul/"));
+            Add(sprite = new Sprite(GFX.Game, "characters/DZ/soul/soul/"));
             char soulSuffix = (char)('A' + (int)Soul);
             string soulAnim = $"vessel_soul{soulSuffix}";
             sprite.AddLoop(soulAnim, soulAnim, 0.08f);
@@ -110,7 +110,7 @@ namespace Celeste.Entities.SoulBoosts
             sprite.Color = Color.White;
 
             // Stretch image for travel
-            Add(stretch = new Image(GFX.Game["objects/sevensoulboost/stretch"]));
+            Add(stretch = new Image(GFX.Game["objects/DZ/DZ/sevensoulboost/stretch"]));
             stretch.Visible = false;
             stretch.CenterOrigin();
             stretch.Color = SoulColor;
@@ -186,7 +186,7 @@ namespace Celeste.Entities.SoulBoosts
             try
             {
                 char soulSuffix = (char)('A' + (int)Soul);
-                soulImage = new Image(GFX.Game[$"characters/soul/soul/vessel_soul{soulSuffix}"]);
+                soulImage = new Image(GFX.Game[$"characters/DZ/soul/soul/vessel_soul{soulSuffix}"]);
                 soulImage.CenterOrigin();
                 Add(soulImage);
             }

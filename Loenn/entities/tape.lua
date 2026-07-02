@@ -2,7 +2,7 @@ local tape = {}
 
 tape.name = "DZ/Tape"
 tape.depth = 0
-tape.texture = "objects/DZ/tape"
+tape.texture = "objects/DZ/DZ/DZ/tape"
 
 tape.placements = {
     name = "tape",
@@ -10,7 +10,7 @@ tape.placements = {
         spritePath = "collectables/cassette/",
         menuSprite = "collectables/tape",
         particleColor = "FF9CCF",
-        cSideToUnlock = "",
+        2ToUnlock = "",
         unlockText = "",
         glowStrength = 1.0,
         bloomStrength = 0.8,

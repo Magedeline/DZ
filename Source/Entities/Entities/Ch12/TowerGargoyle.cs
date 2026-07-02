@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch12
     /// <summary>
     /// TowerGargoyle - Stone guardian that awakens and swoops at player
     /// Perches on tower walls, activates when player approaches
-    /// Sprite path: characters/tower_gargoyle/
+    /// Sprite path: characters/DZ/tower_gargoyle/
     /// </summary>
     [CustomEntity("DZ/TowerGargoyle")]
     [Tracked]

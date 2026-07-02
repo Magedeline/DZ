@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch14
     /// <summary>
     /// GlitchBlock - Unstable digital block that flickers in and out
     /// Appears and disappears randomly, creating dynamic platforming challenges
-    /// Sprite path: objects/glitch_block/
+    /// Sprite path: objects/DZ/DZ/glitch_block/
     /// </summary>
     [CustomEntity("DZ/GlitchBlock")]
     [Tracked]

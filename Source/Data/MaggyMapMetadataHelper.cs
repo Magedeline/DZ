@@ -71,30 +71,30 @@ internal static class DZMapMetadataHelper
     }
 
     /// <summary>Get the B-Side SID for a given base key</summary>
-    public static string? GetBSideSid(string baseKey)
+    public static string? Get1Sid(string baseKey)
     {
         var metadata = GetByBaseKey(baseKey);
-        if (metadata == null || !metadata.HasBSide)
+        if (metadata == null || !metadata.Has1)
             return null;
 
         return metadata.GetSideVariantSid("B");
     }
 
     /// <summary>Get the C-Side SID for a given base key</summary>
-    public static string? GetCSideSid(string baseKey)
+    public static string? Get2Sid(string baseKey)
     {
         var metadata = GetByBaseKey(baseKey);
-        if (metadata == null || !metadata.HasCSide)
+        if (metadata == null || !metadata.Has2)
             return null;
 
         return metadata.GetSideVariantSid("C");
     }
 
     /// <summary>Get the D-Side SID for a given base key</summary>
-    public static string? GetDSideSid(string baseKey)
+    public static string? Get2Sid(string baseKey)
     {
         var metadata = GetByBaseKey(baseKey);
-        if (metadata == null || !metadata.HasDSide)
+        if (metadata == null || !metadata.Has2)
             return null;
 
         return metadata.GetSideVariantSid("D");
@@ -108,9 +108,9 @@ internal static class DZMapMetadataHelper
             return new List<string>();
 
         var sides = new List<string> { "A" };
-        if (metadata.HasBSide) sides.Add("B");
-        if (metadata.HasCSide) sides.Add("C");
-        if (metadata.HasDSide) sides.Add("D");
+        if (metadata.Has1) sides.Add("B");
+        if (metadata.Has2) sides.Add("C");
+        if (metadata.Has2) sides.Add("D");
 
         return sides;
     }

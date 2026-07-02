@@ -8,7 +8,7 @@ namespace Celeste.Triggers
       : base(position)
     {
       this.Add((Component) (this.light = new VertexLight(Color.LightSkyBlue, 1f, 8, 16)));
-      this.Add((Component) new Monocle.Image(GFX.Game["characters/madeline/phone"]).JustifyOrigin(0.5f, 1f));
+      this.Add((Component) new Monocle.Image(GFX.Game["characters/DZ/madeline/phone"]).JustifyOrigin(0.5f, 1f));
     }
 
     public override void Update()

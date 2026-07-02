@@ -2,7 +2,7 @@ local wishOrb = {}
 
 wishOrb.name = "DZ/WishOrb"
 wishOrb.depth = 0
-wishOrb.texture = "objects/DZ/wish_orb"
+wishOrb.texture = "objects/DZ/DZ/DZ/wish_orb"
 
 wishOrb.placements = {
     name = "wish_orb",

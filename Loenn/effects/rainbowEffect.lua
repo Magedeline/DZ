@@ -2,7 +2,7 @@ local rainbowEffect = {}
 
 rainbowEffect.name = "DZ/RainbowEffect"
 rainbowEffect.depth = 10000
-rainbowEffect.texture = "objects/DZ/effects/rainbow"
+rainbowEffect.texture = "objects/DZ/DZ/DZ/effects/rainbow"
 rainbowEffect.placements = {
     name = "rainbow_effect",
     data = {

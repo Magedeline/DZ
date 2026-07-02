@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch15
     /// <summary>
     /// TitanThrone - Boss arena activator with cinematic trigger
     /// Starts the Roaring Titan King boss battle when activated
-    /// Sprite path: objects/titan_throne/
+    /// Sprite path: objects/DZ/DZ/titan_throne/
     /// </summary>
     [CustomEntity("DZ/TitanThrone")]
     [Tracked]

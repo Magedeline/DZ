@@ -19,7 +19,7 @@ namespace Celeste.Entities
             this.requiredKeys = requiredKeys;
             this.flagToSet = flagToSet;
             
-            texture = AtlasPathHelper.GetTexture("objects/mrbonesdoor");
+            texture = AtlasPathHelper.GetTexture("objects/DZ/DZ/mrbonesdoor");
             
             Add(new PlayerCollider(player => OnPlayer((global::Celeste.Player)player)));
             base.Depth = -9000;

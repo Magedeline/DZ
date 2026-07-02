@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch11
     /// <summary>
     /// RevolverTarget - Breakable target for gun training
     /// Tracks accuracy and can be used for shooting galleries
-    /// Sprite path: objects/revolver_target/
+    /// Sprite path: objects/DZ/DZ/revolver_target/
     /// </summary>
     [CustomEntity("DZ/RevolverTarget")]
     [Tracked]

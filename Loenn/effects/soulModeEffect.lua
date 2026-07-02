@@ -2,7 +2,7 @@ local soulModeEffect = {}
 
 soulModeEffect.name = "DZ/SoulModeEffect"
 soulModeEffect.depth = 10000
-soulModeEffect.texture = "objects/DZ/effects/soulmode"
+soulModeEffect.texture = "objects/DZ/DZ/DZ/effects/soulmode"
 soulModeEffect.placements = {
     name = "soul_mode_effect",
     data = {

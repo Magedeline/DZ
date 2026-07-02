@@ -2,7 +2,7 @@ local cassetteTape = {}
 
 cassetteTape.name = "DZ/CassetteTape"
 cassetteTape.depth = 0
-cassetteTape.texture = "objects/DZ/cassette_tape"
+cassetteTape.texture = "objects/DZ/DZ/DZ/cassette_tape"
 
 cassetteTape.placements = {
     name = "cassette_tape",

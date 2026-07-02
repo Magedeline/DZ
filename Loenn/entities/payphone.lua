@@ -2,7 +2,7 @@ local payphone = {}
 
 payphone.name = "DZ/Payphone"
 payphone.depth = 0
-payphone.texture = "objects/payphone"
+payphone.texture = "objects/DZ/DZ/payphone"
 
 payphone.placements = {
     name = "payphone",

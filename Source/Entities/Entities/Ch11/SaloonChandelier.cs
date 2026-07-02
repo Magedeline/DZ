@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch11
     /// <summary>
     /// SaloonChandelier - Swinging hazard that can be shot down
     /// Swings on a chain and can fall to create a hazard or platform
-    /// Sprite path: objects/saloon_chandelier/
+    /// Sprite path: objects/DZ/DZ/saloon_chandelier/
     /// </summary>
     [CustomEntity("DZ/SaloonChandelier")]
     [Tracked]

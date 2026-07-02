@@ -2,7 +2,7 @@ local targetSpawner = {}
 
 targetSpawner.name = "DZ/TargetSpawner"
 targetSpawner.depth = 0
-targetSpawner.texture = "objects/DZ/target_spawner"
+targetSpawner.texture = "objects/DZ/DZ/DZ/target_spawner"
 
 targetSpawner.placements = {
     name = "target_spawner",

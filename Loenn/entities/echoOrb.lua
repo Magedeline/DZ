@@ -2,7 +2,7 @@ local echoOrb = {}
 
 echoOrb.name = "DZ/EchoOrb"
 echoOrb.depth = 0
-echoOrb.texture = "objects/DZ/echo_orb"
+echoOrb.texture = "objects/DZ/DZ/DZ/echo_orb"
 
 echoOrb.placements = {
     name = "echo_orb",

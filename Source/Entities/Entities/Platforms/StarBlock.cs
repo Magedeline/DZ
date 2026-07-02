@@ -137,10 +137,10 @@ namespace Celeste.Entities
         {
             int area = width * height;
             string path = area >= 256
-                ? "objects/starblock/oversized"
+                ? "objects/DZ/DZ/starblock/oversized"
                 : area >= 128
-                    ? "objects/starblock/large"
-                    : "objects/starblock/normal";
+                    ? "objects/DZ/DZ/starblock/large"
+                    : "objects/DZ/DZ/starblock/normal";
 
             return GFX.Game.Has(path) ? GFX.Game[path] : null;
         }

@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch13
     /// <summary>
     /// ObsidianShard - Sharp volcanic crystal hazard
     /// Can be destroyed to create path or collectible
-    /// Sprite path: objects/obsidian_shard/
+    /// Sprite path: objects/DZ/DZ/obsidian_shard/
     /// </summary>
     [CustomEntity("DZ/ObsidianShard")]
     [Tracked]

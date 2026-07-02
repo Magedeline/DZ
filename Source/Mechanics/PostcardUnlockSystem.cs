@@ -30,25 +30,25 @@ public static class PostcardUnlockSystem
     }
 
     /// <summary>Postcard config for C-Side unlock (shown after completing B-Side)</summary>
-    public static readonly PostcardConfig CSideConfig = new()
+    public static readonly PostcardConfig 2Config = new()
     {
-        DialogKey = "POSTCARD_CSIDE_UNLOCK",
-        TexturePath = "postcards/cside_unlock",
-        SfxIn = "event:/pusheen/ui/main/postcard_csides_in",
-        SfxOut = "event:/pusheen/ui/main/postcard_csides_out",
+        DialogKey = "POSTCARD_2_UNLOCK",
+        TexturePath = "postcards/2_unlock",
+        SfxIn = "event:/pusheen/ui/main/postcard_2s_in",
+        SfxOut = "event:/pusheen/ui/main/postcard_2s_out",
         TintColor = new Color(255, 215, 0),  // Gold tint
-        UnlockMusic = "event:/pusheen/music/menu/complete_cside"
+        UnlockMusic = "event:/pusheen/music/menu/complete_2"
     };
 
     /// <summary>Postcard config for D-Side unlock (shown after completing C-Side)</summary>
-    public static readonly PostcardConfig DSideConfig = new()
+    public static readonly PostcardConfig 2Config = new()
     {
-        DialogKey = "POSTCARD_DSIDE_UNLOCK",
-        TexturePath = "postcards/dside_unlock",
-        SfxIn = "event:/pusheen/ui/main/postcard_dsides_in",
-        SfxOut = "event:/pusheen/ui/main/postcard_dsides_out",
+        DialogKey = "POSTCARD_2_UNLOCK",
+        TexturePath = "postcards/2_unlock",
+        SfxIn = "event:/pusheen/ui/main/postcard_2s_in",
+        SfxOut = "event:/pusheen/ui/main/postcard_2s_out",
         TintColor = new Color(180, 100, 255),  // Rainbow/purple tint
-        UnlockMusic = "event:/pusheen/music/menu/complete_cside_summit"
+        UnlockMusic = "event:/pusheen/music/menu/complete_2_summit"
     };
 
     /// <summary>Postcard config for DX-Side unlock (shown after completing D-Side)</summary>
@@ -56,10 +56,10 @@ public static class PostcardUnlockSystem
     {
         DialogKey = "POSTCARD_DXSIDE_UNLOCK",
         TexturePath = "postcards/dxside_unlock",
-        SfxIn = "event:/pusheen/ui/main/postcard_dsides_in",
-        SfxOut = "event:/pusheen/ui/main/postcard_dsides_out",
+        SfxIn = "event:/pusheen/ui/main/postcard_2s_in",
+        SfxOut = "event:/pusheen/ui/main/postcard_2s_out",
         TintColor = new Color(50, 0, 80),  // Dark void tint
-        UnlockMusic = "event:/pusheen/music/menu/complete_cside_summit"
+        UnlockMusic = "event:/pusheen/music/menu/complete_2_summit"
     };
 
     /// <summary>Postcard config for the 100% ultra completion postcard.</summary>
@@ -70,7 +70,7 @@ public static class PostcardUnlockSystem
         SfxIn = "event:/pusheen/new_content/ui/postcard_variants_in",
         SfxOut = "event:/pusheen/new_content/ui/postcard_variants_out",
         TintColor = new Color(255, 160, 220),
-        UnlockMusic = "event:/pusheen/music/menu/complete_cside_summit"
+        UnlockMusic = "event:/pusheen/music/menu/complete_2_summit"
     };
 
     // Ã¢â€â‚¬Ã¢â€â‚¬ Postcard Display Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
@@ -82,9 +82,9 @@ public static class PostcardUnlockSystem
     {
         return completedMode switch
         {
-            AreaModeExtender.MODE_BSIDE => CSideConfig,   // Completing B unlocks C
-            AreaModeExtender.MODE_CSIDE => DSideConfig,   // Completing C unlocks D
-            AreaModeExtender.MODE_DSIDE => DXSideConfig,  // Completing D unlocks DX
+            AreaModeExtender.MODE_1 => 2Config,   // Completing B unlocks C
+            AreaModeExtender.MODE_2 => 2Config,   // Completing C unlocks D
+            AreaModeExtender.MODE_2 => DXSideConfig,  // Completing D unlocks DX
             _ => null
         };
     }
@@ -106,9 +106,9 @@ public static class PostcardUnlockSystem
             // Fallback text
             string sideName = completedMode switch
             {
-                AreaModeExtender.MODE_BSIDE => "C-Side",
-                AreaModeExtender.MODE_CSIDE => "D-Side",
-                AreaModeExtender.MODE_DSIDE => "DX-Side",
+                AreaModeExtender.MODE_1 => "C-Side",
+                AreaModeExtender.MODE_2 => "D-Side",
+                AreaModeExtender.MODE_2 => "DX-Side",
                 _ => "New Side"
             };
             dialogText = $"{sideName} Unlocked!\nComplete the challenge to earn a new heart gem.";

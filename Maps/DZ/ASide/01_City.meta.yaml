@@ -1,5 +1,5 @@
 Icon: areas/DZ/city
-SID: DZ/ASide/01_City
+SID: DZ/0/01_City
 Interlude: false
 TitleBaseColor: 6c7c81
 TitleAccentColor: 2f344b
@@ -22,25 +22,25 @@ Modes:
     HeartIsEnd: false
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/BSide/01_city
+      Music: event:/music/pusheen/1/01_city
       Ambience: event:/env/pusheen/01_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/CSide/01_city
+      Music: event:/music/pusheen/2/01_city
       Ambience: event:/env/pusheen/01_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/CSide/01_city
+      Music: event:/music/pusheen/2/01_city
       Ambience: event:/env/pusheen/01_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/DSide/01_city
+      Music: event:/music/pusheen/2/01_city
       Ambience: event:/env/pusheen/01_main
     Inventory: Default
     HeartIsEnd: true
@@ -53,8 +53,8 @@ Modes:
     SeekerSlowdown: false
 
 Mountain:
-    MountainModelDirectory: Mountain/DZ/ASide
-    MountainTextureDirectory: DZ/ASide
+    MountainModelDirectory: Mountain/DZ/0
+    MountainTextureDirectory: DZ/0
     Idle:
         Position: [2.450, 6.120, 14.250]
         Target: [1.680, 5.390, 12.800]

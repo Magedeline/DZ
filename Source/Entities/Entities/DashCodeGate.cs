@@ -244,9 +244,9 @@ public class DashCodeGate : Solid
 				text += "right";
 			}
 			// TODO: Port DoonvHelper graphics to your mod
-			// After porting, change path from "objects/DoonvHelper/" to "objects/"
+			// After porting, change path from "objects/DZ/DZ/DoonvHelper/" to "objects/DZ/DZ/"
 			// Graphics to copy: dashcodegate/arrows/inactive-*.png and active-*.png
-			string spritePathPrefix = "objects/DoonvHelper"; // Change to "objects" after porting
+			string spritePathPrefix = "objects/DZ/DZ/DoonvHelper"; // Change to "objects" after porting
 			this.inactiveIcons[i] = GFX.Game[String.Format(
 				"{0}/dashcodegate/arrows/inactive-{1}",
 			spritePathPrefix, text.Trim('-'))];
@@ -264,7 +264,7 @@ public class DashCodeGate : Solid
 		{
 			iconScale = Vector2.One * (1f + f);
 		}));
-		MTexture mTexture = GFX.Game["objects/switchgate/" + spriteName];
+		MTexture mTexture = GFX.Game["objects/DZ/DZ/switchgate/" + spriteName];
 		nineSlice = new MTexture[3, 3];
 		for (int i = 0; i < 3; i++)
 		{

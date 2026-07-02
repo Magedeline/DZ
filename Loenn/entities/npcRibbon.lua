@@ -2,7 +2,7 @@ local npcRibbon = {}
 
 npcRibbon.name = "DZ/NPC_Ribbon"
 npcRibbon.depth = 0
-npcRibbon.texture = "objects/DZ/npc_ribbon"
+npcRibbon.texture = "objects/DZ/DZ/DZ/npc_ribbon"
 
 npcRibbon.placements = {
     name = "npc_ribbon",

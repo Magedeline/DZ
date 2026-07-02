@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch13
     /// <summary>
     /// VolcanicRock - Falling rock hazard from ceiling
     /// Falls when player is below and creates impact crater
-    /// Sprite path: objects/volcanic_rock/
+    /// Sprite path: objects/DZ/DZ/volcanic_rock/
     /// </summary>
     [CustomEntity("DZ/VolcanicRock")]
     [Tracked]

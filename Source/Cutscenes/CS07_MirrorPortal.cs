@@ -34,8 +34,8 @@ namespace Celeste.Cutscenes
       if (level.Session.Area.Mode == AreaMode.Normal)
         Audio.SetMusic((string) null);
       else
-        cs04MirrorPortal.Add((Component) new Coroutine(MusicFadeOutBSide()));
-      cs04MirrorPortal.Add((Component)new Coroutine(MusicFadeOutCSide()));
+        cs04MirrorPortal.Add((Component) new Coroutine(MusicFadeOut1()));
+      cs04MirrorPortal.Add((Component)new Coroutine(MusicFadeOut2()));
       cs04MirrorPortal.Add((Component) (cs04MirrorPortal.sfx = new SoundSource()));
       cs04MirrorPortal.sfx.Position = cs04MirrorPortal.portal.Center;
       cs04MirrorPortal.sfx.Play("event:/pusheen/music/lvl7/mirror_cutscene");
@@ -117,7 +117,7 @@ namespace Celeste.Cutscenes
       }
     }
 
-    private static IEnumerator MusicFadeOutBSide()
+    private static IEnumerator MusicFadeOut1()
     {
       for (float p = 1f; (double) p > 0.0; p -= Engine.DeltaTime)
       {
@@ -127,7 +127,7 @@ namespace Celeste.Cutscenes
       Audio.SetMusicParam("fade", 0.0f);
     }
 
-    private static IEnumerator MusicFadeOutCSide()
+    private static IEnumerator MusicFadeOut2()
     {
       for (float p = 1f; (double)p > 0.0; p -= Engine.DeltaTime)
       {

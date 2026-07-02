@@ -13,7 +13,7 @@ public class ResortMirror : Entity
     private bool smashed;
     private Image bg;
     private Image frame;
-    private MTexture glassfg = GFX.Game["objects/mirror/glassfg"];
+    private MTexture glassfg = GFX.Game["objects/DZ/DZ/mirror/glassfg"];
     private Sprite breakingGlass;
     private VirtualRenderTarget mirror;
     private float shineAlpha = 0.7f;
@@ -36,19 +36,19 @@ public class ResortMirror : Entity
         {
             Depth = 9000
         };
-        entity.Add(frame = new Image(GFX.Game["objects/mirror/resortframe"]));
+        entity.Add(frame = new Image(GFX.Game["objects/DZ/DZ/mirror/resortframe"]));
         frame.JustifyOrigin(0.5f, 1f);
         Scene.Add(entity);
-        MTexture glassbg = GFX.Game["objects/mirror/glassbg"];
+        MTexture glassbg = GFX.Game["objects/DZ/DZ/mirror/glassbg"];
         int w = (int)frame.Width - 2;
         int h = (int)frame.Height - 12;
         if (!smashed)
             mirror = VirtualContent.CreateRenderTarget("resort-mirror", w, h);
         else
-            glassbg = GFX.Game["objects/mirror/glassbreak09"];
+            glassbg = GFX.Game["objects/DZ/DZ/mirror/glassbreak09"];
         Add(bg = new Image(glassbg.GetSubtexture((glassbg.Width - w) / 2, glassbg.Height - h, w, h)));
         bg.JustifyOrigin(0.5f, 1f);
-        List<MTexture> atlasSubtextures = GFX.Game.GetAtlasSubtextures("objects/mirror/mirrormask");
+        List<MTexture> atlasSubtextures = GFX.Game.GetAtlasSubtextures("objects/DZ/DZ/mirror/mirrormask");
         MTexture temp = new MTexture();
         foreach (MTexture mtexture in atlasSubtextures)
         {
@@ -118,7 +118,7 @@ public class ResortMirror : Entity
         evil = null;
         smashed = true;
         shardReflection = true;
-        MTexture mtexture = GFX.Game["objects/mirror/glassbreak09"];
+        MTexture mtexture = GFX.Game["objects/DZ/DZ/mirror/glassbreak09"];
         bg.Texture = mtexture.GetSubtexture((int)(mtexture.Width - (double)bg.Width) / 2, mtexture.Height - (int)bg.Height, (int)bg.Width, (int)bg.Height);
     }
 

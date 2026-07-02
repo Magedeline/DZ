@@ -49,7 +49,7 @@ public class WhiteBlock : CelesteJumpThru
         : base(position, BlockWidth)
     {
         Name = "WhiteBlock";
-        // TODO: load "objects/whiteblock" sprite
+        // TODO: load "objects/DZ/DZ/whiteblock" sprite
     }
 
     // ── Nez lifecycle ─────────────────────────────────────────────────────────

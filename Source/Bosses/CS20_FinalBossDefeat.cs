@@ -61,7 +61,7 @@ namespace Celeste.Cutscenes
             badelineSprite.Play("sleep");
             Add(badelineSprite);
             
-            asrielSprite = new Sprite(GFX.Game, "characters/asriel/");
+            asrielSprite = new Sprite(GFX.Game, "characters/DZ/asriel/");
             asrielSprite.AddLoop("idle", "idle", 0.1f);
             asrielSprite.AddLoop("kneeling", "kneel", 0.1f);
             asrielSprite.Play("kneeling");

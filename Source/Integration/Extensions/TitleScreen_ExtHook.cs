@@ -24,7 +24,7 @@ public static class TitleScreen_ExtHook
     private const string VANILLA_TITLE_FIRSTINPUT = "event:/ui/main/title_firstinput";
     private const string CUSTOM_TITLE_FIRSTINPUT = "event:/pusheen/ui/game/title_firstinput";
 
-    private static int _dSideUnlockCount = 0;
+    private static int _2UnlockCount = 0;
 
     public static void Load()
     {
@@ -154,16 +154,16 @@ public static class TitleScreen_ExtHook
 
     // ──── Title screen utilities ────
 
-    public static void SetDSideUnlockCount(int count)
+    public static void Set2UnlockCount(int count)
     {
-        _dSideUnlockCount = count;
+        _2UnlockCount = count;
         Logger.Log(LogLevel.Debug, "DZ/TitleScreen",
             $"D-Side unlock count updated: {count}");
     }
 
-    public static int GetDSideUnlockCount()
+    public static int Get2UnlockCount()
     {
-        return _dSideUnlockCount;
+        return _2UnlockCount;
     }
 }
 

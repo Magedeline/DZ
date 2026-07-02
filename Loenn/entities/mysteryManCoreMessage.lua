@@ -2,7 +2,7 @@ local mysteryManCoreMessage = {}
 
 mysteryManCoreMessage.name = "DZ/MysteryManCoreMessage"
 mysteryManCoreMessage.depth = 0
-mysteryManCoreMessage.texture = "objects/DZ/mystery_man_core_message"
+mysteryManCoreMessage.texture = "objects/DZ/DZ/DZ/mystery_man_core_message"
 
 mysteryManCoreMessage.placements = {
     name = "mystery_man_core_message",

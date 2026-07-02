@@ -23,7 +23,7 @@ namespace Celeste.Entities
             closedPosition = position;
             moveDistance = height + 8;
             
-            texture = AtlasPathHelper.GetTexture("objects/ridgeGate");
+            texture = AtlasPathHelper.GetTexture("objects/DZ/DZ/ridgeGate");
             base.Depth = -9000;
         }
 

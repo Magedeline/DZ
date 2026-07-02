@@ -9,7 +9,7 @@ namespace Celeste.Entities {
 		public static ParticleType P_Shine;
 
 		// Note: Removed [CustomEntity] - this class is created programmatically, not placed in maps
-		private class UnlockedBSideCutscene : Entity {
+		private class Unlocked1Cutscene : Entity {
 			private float alpha, textAlpha;
 			public string[] text;
 			private bool waitForKeyPress;
@@ -17,7 +17,7 @@ namespace Celeste.Entities {
 			public int textIndex = 0;
 			string menuSprite;
 
-			public UnlockedBSideCutscene(string[] unlockText, string menuSprite) {
+			public Unlocked1Cutscene(string[] unlockText, string menuSprite) {
 				text = unlockText;
 				this.menuSprite = menuSprite;
 			}
@@ -96,7 +96,7 @@ namespace Celeste.Entities {
 	private string spritePath;
 	private string menuSprite;
 	private string[] unlockText;
-	private string bSideToUnlock;
+	private string 1ToUnlock;
 	
 	// Enhanced collectible properties (matching Lua definitions)
 	private string onCollect;
@@ -122,14 +122,14 @@ namespace Celeste.Entities {
 		// Determine unlock text based on side to unlock or use custom text
 		string customUnlockText = data.Attr("unlockText", "");
 		if (string.IsNullOrEmpty(customUnlockText)) {
-			string sideToUnlock = data.Attr("bSideToUnlock", "");
+			string sideToUnlock = data.Attr("1ToUnlock", "");
 			unlockText = DetermineUnlockText(sideToUnlock);
 		} else {
 			unlockText = customUnlockText.Split(',');
 		}
 		
 		menuSprite = data.Attr("menuSprite", "collectables/cassette");
-		bSideToUnlock = data.Attr("bSideToUnlock");
+		1ToUnlock = data.Attr("1ToUnlock");
 		
 		// Load enhanced properties
 		onCollect = data.Attr("onCollect", "");
@@ -145,7 +145,7 @@ namespace Celeste.Entities {
 	}		public override void Added(Scene scene) {
 			base.Added(scene);
 
-			IsGhost = IngesteModule.SaveData.UnlockedBSideIDs.Contains(bSideToUnlock);
+			IsGhost = IngesteModule.SaveData.Unlocked1IDs.Contains(1ToUnlock);
 			string path = IsGhost ? "ghost" : "idle";
 			sprite = new Sprite(GFX.Game, spritePath);
 			sprite.Add("idle", path, 0.07f, "pulse", new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 });
@@ -213,8 +213,8 @@ namespace Celeste.Entities {
 			level.Session.Cassette = true;
 			level.Session.RespawnPoint = level.GetSpawnPoint(nodes[1]);
 			level.Session.UpdateLevelStartDashes();
-			if(!string.IsNullOrEmpty(bSideToUnlock))
-				IngesteModule.SaveData.UnlockedBSideIDs.Add(bSideToUnlock);
+			if(!string.IsNullOrEmpty(1ToUnlock))
+				IngesteModule.SaveData.Unlocked1IDs.Add(1ToUnlock);
 			cbm?.StopBlocks();
 			Depth = -1000000;
 			level.Shake();
@@ -247,7 +247,7 @@ namespace Celeste.Entities {
 
 			Visible = false;
 			remixSfx = Audio.Play("event:/pusheen/game/general/cassette_preview", "remix", level.Session.Area.ID);
-			UnlockedBSideCutscene message = new UnlockedBSideCutscene(unlockText, menuSprite);
+			Unlocked1Cutscene message = new Unlocked1Cutscene(unlockText, menuSprite);
 			Scene.Add(message);
 			yield return message.EaseIn();
 			while(message.textIndex < message.text.Length) {
@@ -356,22 +356,22 @@ namespace Celeste.Entities {
 		// Determine unlock text based on side being unlocked
 		private string[] DetermineUnlockText(string sideToUnlock) {
 			if (string.IsNullOrEmpty(sideToUnlock)) {
-				return new string[] { "DZ_BSide_unlocked" };
+				return new string[] { "DZ_1_unlocked" };
 			}
 
 			// Check if it's a specific side unlock
-			if (sideToUnlock.ToUpper().Contains("BSIDE") || sideToUnlock.ToUpper().Contains("B_SIDE")) {
-				return new string[] { "DZ_BSide_unlocked" };
-			} else if (sideToUnlock.ToUpper().Contains("CSIDE") || sideToUnlock.ToUpper().Contains("C_SIDE")) {
-				return new string[] { "DZ_CSide_unlocked" };
-			} else if (sideToUnlock.ToUpper().Contains("DSIDE") || sideToUnlock.ToUpper().Contains("D_SIDE")) {
-				return new string[] { "DZ_DSide_unlocked" };
+			if (sideToUnlock.ToUpper().Contains("1") || sideToUnlock.ToUpper().Contains("B_SIDE")) {
+				return new string[] { "DZ_1_unlocked" };
+			} else if (sideToUnlock.ToUpper().Contains("2") || sideToUnlock.ToUpper().Contains("C_SIDE")) {
+				return new string[] { "DZ_2_unlocked" };
+			} else if (sideToUnlock.ToUpper().Contains("2") || sideToUnlock.ToUpper().Contains("D_SIDE")) {
+				return new string[] { "DZ_2_unlocked" };
 			} else if (sideToUnlock.ToUpper().Contains("REMIX")) {
 				return new string[] { "DZ_RemixExtra_unlocked" };
 			}
 
 			// Default to B-Side
-			return new string[] { "DZ_BSide_unlocked" };
+			return new string[] { "DZ_1_unlocked" };
 		}
 	}
 }

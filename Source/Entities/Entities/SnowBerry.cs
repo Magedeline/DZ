@@ -33,7 +33,7 @@ namespace Celeste.Entities
             Add(new PlayerCollider(p => OnPlayer(p)));
             Add(new MirrorReflection());
             
-            Add(sprite = AtlasPathHelper.CreateSprite("objects/snowberry"));
+            Add(sprite = AtlasPathHelper.CreateSprite("objects/DZ/DZ/snowberry"));
             sprite.AddLoop("idle", "", 0.1f);
             sprite.Play("idle");
             sprite.CenterOrigin();

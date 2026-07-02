@@ -2,7 +2,7 @@ local ridgeGate = {}
 
 ridgeGate.name = "DZ/RidgeGate"
 ridgeGate.depth = 0
-ridgeGate.texture = "objects/DZ/ridge_gate"
+ridgeGate.texture = "objects/DZ/DZ/DZ/ridge_gate"
 
 ridgeGate.placements = {
     name = "ridge_gate",

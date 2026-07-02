@@ -6,7 +6,7 @@ namespace Celeste.Entities.Bosses
     /// Titantis Boss - Colossal titan of destruction
     /// A massive entity that commands earth and stone
     /// Multi-phase boss with devastating area attacks
-    /// Sprite path: characters/titantis/
+    /// Sprite path: characters/DZ/titantis/
     /// </summary>
     [CustomEntity(ids: "DZ/TitantisBoss")]
     [Tracked]
@@ -85,7 +85,7 @@ namespace Celeste.Entities.Bosses
         private void SetupVisuals()
         {
             // Main body sprite
-            Add(titanSprite = new Sprite(GFX.Game, "characters/titantis/"));
+            Add(titanSprite = new Sprite(GFX.Game, "characters/DZ/titantis/"));
             titanSprite.AddLoop("dormant", "titan_dormant", 0.15f);
             titanSprite.AddLoop("idle", "titan_idle", 0.1f);
             titanSprite.AddLoop("attack", "titan_attack", 0.06f);
@@ -96,14 +96,14 @@ namespace Celeste.Entities.Bosses
             titanSprite.CenterOrigin();
             
             // Left arm sprite
-            Add(armLeftSprite = new Sprite(GFX.Game, "characters/titantis/"));
+            Add(armLeftSprite = new Sprite(GFX.Game, "characters/DZ/titantis/"));
             armLeftSprite.AddLoop("idle", "arm_left_idle", 0.1f);
             armLeftSprite.AddLoop("slam", "arm_left_slam", 0.05f);
             armLeftSprite.CenterOrigin();
             armLeftSprite.Position = new Vector2(-60f, -80f);
             
             // Right arm sprite
-            Add(armRightSprite = new Sprite(GFX.Game, "characters/titantis/"));
+            Add(armRightSprite = new Sprite(GFX.Game, "characters/DZ/titantis/"));
             armRightSprite.AddLoop("idle", "arm_right_idle", 0.1f);
             armRightSprite.AddLoop("slam", "arm_right_slam", 0.05f);
             armRightSprite.CenterOrigin();

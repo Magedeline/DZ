@@ -1,5 +1,5 @@
 Icon: areas/DZ/nightmare
-SID: DZ/ASide/02_Nightmare
+SID: DZ/0/02_Nightmare
 Interlude: false
 TitleBaseColor: 1a0a2e
 TitleAccentColor: 8b0045
@@ -22,25 +22,25 @@ Modes:
     HeartIsEnd: false
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/BSide/02_nightmare
+      Music: event:/music/pusheen/1/02_nightmare
       Ambience: event:/env/pusheen/02_nightmare
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/CSide/02_nightmare
+      Music: event:/music/pusheen/2/02_nightmare
       Ambience: event:/env/pusheen/02_nightmare
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/CSide/02_nightmare
+      Music: event:/music/pusheen/2/02_nightmare
       Ambience: event:/env/pusheen/02_nightmare
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/DSide/02_nightmare
+      Music: event:/music/pusheen/2/02_nightmare
       Ambience: event:/env/pusheen/02_main
     Inventory: Default
     HeartIsEnd: true
@@ -51,8 +51,8 @@ Modes:
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
-    MountainModelDirectory: Mountain/DZ/ASide
-    MountainTextureDirectory: DZ/ASide
+    MountainModelDirectory: Mountain/DZ/0
+    MountainTextureDirectory: DZ/0
     Idle:
         Position: [-1.200, 4.800, 12.500]
         Target: [-0.500, 4.200, 11.000]

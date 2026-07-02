@@ -60,7 +60,7 @@ namespace Celeste.Entities
             else
             {
                 // Fallback sprite
-                sprite = new Sprite(GFX.Game, "objects/temple/portal/");
+                sprite = new Sprite(GFX.Game, "objects/DZ/DZ/temple/portal/");
                 sprite.AddLoop("idle", "portal", 0.1f);
                 sprite.AddLoop("glow", "portal", 0.05f);
             }

@@ -42,10 +42,10 @@ namespace Celeste.Entities;
     {
       base.Awake(scene);
       this.level = this.SceneAs<Level>();
-      List<MTexture> atlasSubtextures1 = GFX.Game.GetAtlasSubtextures("objects/starjumpBlock/leftrailing");
-      List<MTexture> atlasSubtextures2 = GFX.Game.GetAtlasSubtextures("objects/starjumpBlock/railing");
-      List<MTexture> atlasSubtextures3 = GFX.Game.GetAtlasSubtextures("objects/starjumpBlock/rightrailing");
-      List<MTexture> atlasSubtextures4 = GFX.Game.GetAtlasSubtextures("objects/starjumpBlock/edgeH");
+      List<MTexture> atlasSubtextures1 = GFX.Game.GetAtlasSubtextures("objects/DZ/DZ/starjumpBlock/leftrailing");
+      List<MTexture> atlasSubtextures2 = GFX.Game.GetAtlasSubtextures("objects/DZ/DZ/starjumpBlock/railing");
+      List<MTexture> atlasSubtextures3 = GFX.Game.GetAtlasSubtextures("objects/DZ/DZ/starjumpBlock/rightrailing");
+      List<MTexture> atlasSubtextures4 = GFX.Game.GetAtlasSubtextures("objects/DZ/DZ/starjumpBlock/edgeH");
       for (int x = 8; (double) x < (double) this.Width - 8.0; x += 8)
       {
         if (this.open((float) x, -8f))
@@ -67,7 +67,7 @@ namespace Celeste.Entities;
           this.Add((Component) image);
         }
       }
-      List<MTexture> atlasSubtextures5 = GFX.Game.GetAtlasSubtextures("objects/starjumpBlock/edgeV");
+      List<MTexture> atlasSubtextures5 = GFX.Game.GetAtlasSubtextures("objects/DZ/DZ/starjumpBlock/edgeV");
       for (int y = 8; (double) y < (double) this.Height - 8.0; y += 8)
       {
         if (this.open(-8f, (float) y))
@@ -86,7 +86,7 @@ namespace Celeste.Entities;
           this.Add((Component) image);
         }
       }
-      List<MTexture> atlasSubtextures6 = GFX.Game.GetAtlasSubtextures("objects/starjumpBlock/corner");
+      List<MTexture> atlasSubtextures6 = GFX.Game.GetAtlasSubtextures("objects/DZ/DZ/starjumpBlock/corner");
       Monocle.Image image3 = (Monocle.Image) null;
       if (this.open(-8f, 0.0f) && this.open(0.0f, -8f))
       {

@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch10
     /// <summary>
     /// EchoFlowerEntity - Flower that repeats player's last dash as a delayed projectile
     /// Creates a "echo" of the player's dash direction after a delay
-    /// Sprite path: objects/echo_flower/
+    /// Sprite path: objects/DZ/DZ/echo_flower/
     /// </summary>
     [CustomEntity("DZ/EchoFlowerEntity")]
     [Tracked]

@@ -27,7 +27,7 @@ namespace DZ;
 /// │  1. VANILLA CELESTE — AreaData.Mode + ModeProperties.Checkpoints    │
 /// │     • Each chapter has up to 3 modes (A/B/C), each with an array    │
 /// │       of CheckpointData defining spawn rooms within that side.      │
-/// │     • Vanilla caps at 3 modes (AreaMode enum: Normal/BSide/CSide). │
+/// │     • Vanilla caps at 3 modes (AreaMode enum: Normal/1/2). │
 /// │     • Checkpoints are just named rooms — the engine handles respawn │
 /// │       and session state per checkpoint automatically.               │
 /// │                                                                      │
@@ -108,7 +108,7 @@ public static class SubChapterManager
     /// </summary>
     public class SubChapterDef
     {
-        /// <summary>Unique identifier (e.g. "DZ/ASide/01_City_Sub01")</summary>
+        /// <summary>Unique identifier (e.g. "DZ/0/01_City_Sub01")</summary>
         public string SID { get; set; }
 
         /// <summary>Display name shown in the sub-chapter selection panel</summary>
@@ -568,7 +568,7 @@ public static class SubChapterManager
         {
             GroupKey = "TestCollabPack",
             DisplayName = "Test Collab Pack",
-            ParentSID = AreaModeExtender.BuildASideSID("01_City"),
+            ParentSID = AreaModeExtender.Build0SID("01_City"),
             ParentModeIndex = AreaModeExtender.MODE_NORMAL,
             LobbyRoom = "a-00",
             RequiredCompletions = 3, // Only need 3 of 5 to clear
@@ -580,7 +580,7 @@ public static class SubChapterManager
         {
             group.SubChapters.Add(new SubChapterDef
             {
-                SID = $"DZ/ASide/01_City_SubTest{i:D2}",
+                SID = $"DZ/0/01_City_SubTest{i:D2}",
                 DisplayName = $"Test Sub-Chapter {i}",
                 Author = "DZ Test",
                 Difficulty = Math.Clamp(i, 1, 5),
@@ -661,7 +661,7 @@ public static class SubChapterManager
             return;
         }
 
-        string sid = $"DZ/ASide/01_City_SubTest{index:D2}";
+        string sid = $"DZ/0/01_City_SubTest{index:D2}";
         MarkSubChapterCompleted(sid);
         Engine.Commands?.Log($"Marked sub-chapter {index} ({sid}) as completed.");
 

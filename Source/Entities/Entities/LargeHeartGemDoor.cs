@@ -49,7 +49,7 @@ internal class LargeHeartGemDoor : Entity
         Vector2? nullable = data.FirstNodeNullable(new Vector2?(offset));
         if (nullable.HasValue)
             this.openDistance = Math.Abs(nullable.Value.Y - this.Y);
-        this.icon = GFX.Game.GetAtlasSubtextures("objects/heart_spear_door_mod/icon");
+        this.icon = GFX.Game.GetAtlasSubtextures("objects/DZ/DZ/heart_spear_door_mod/icon");
         if (this.startHidden)
         {
             this.Visible = false;
@@ -329,7 +329,7 @@ internal class LargeHeartGemDoor : Entity
     private void drawMist(Rectangle bounds, Vector2 mist)
     {
         Color color = GetRainbowColor(this.mist.X * 0.01f) * 0.6f;
-        MTexture mtexture = GFX.Game["objects/heart_spear_door_mod/iso"];
+        MTexture mtexture = GFX.Game["objects/DZ/DZ/heart_spear_door_mod/iso"];
         int val11 = mtexture.Width / 2;
         int val12 = mtexture.Height / 2;
         for (int index1 = 0; index1 < bounds.Width; index1 += val11)
@@ -372,8 +372,8 @@ internal class LargeHeartGemDoor : Entity
 
     private void drawEdges(Rectangle bounds, Color color)
     {
-        MTexture mtexture1 = GFX.Game["objects/heartdoor/edge"];
-        MTexture mtexture2 = GFX.Game["objects/heartdoor/top"];
+        MTexture mtexture1 = GFX.Game["objects/DZ/DZ/heartdoor/edge"];
+        MTexture mtexture2 = GFX.Game["objects/DZ/DZ/heartdoor/top"];
         int height = (int)((double)this.offset % 8.0);
         
         // Rainbow color for edges

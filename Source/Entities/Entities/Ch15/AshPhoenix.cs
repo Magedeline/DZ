@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch15
     /// <summary>
     /// AshPhoenix - Fire bird enemy that revives from its ashes once
     /// Has two phases: first defeat turns to ash, second defeat is permanent
-    /// Sprite path: characters/ash_phoenix/
+    /// Sprite path: characters/DZ/ash_phoenix/
     /// </summary>
     [CustomEntity("DZ/AshPhoenix")]
     [Tracked]

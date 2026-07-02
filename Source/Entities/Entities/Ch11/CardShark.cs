@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch11
     /// <summary>
     /// CardShark - Enemy that throws playing cards in curved arcs
     /// Throws cards that follow bezier curves toward the player
-    /// Sprite path: characters/card_shark/
+    /// Sprite path: characters/DZ/card_shark/
     /// </summary>
     [CustomEntity("DZ/CardShark")]
     [Tracked]

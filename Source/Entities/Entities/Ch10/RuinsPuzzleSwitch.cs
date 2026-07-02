@@ -4,7 +4,7 @@ namespace Celeste.Entities.Chapters.Ch10
     /// RuinsPuzzleSwitch - Pressure plate that requires specific movement patterns
     /// Can be configured for different puzzle types (step, hold, sequence)
     /// Controls connected BlockGates when activated
-    /// Sprite path: objects/ruins_puzzle_switch/
+    /// Sprite path: objects/DZ/DZ/ruins_puzzle_switch/
     /// </summary>
     [CustomEntity("DZ/RuinsPuzzleSwitch")]
     [Tracked]
@@ -290,7 +290,7 @@ namespace Celeste.Entities.Chapters.Ch10
     /// <summary>
     /// BlockGate - Gate controlled by RuinsPuzzleSwitch
     /// Can open/close based on switch activation
-    /// Sprite path: objects/block_gate/
+    /// Sprite path: objects/DZ/DZ/block_gate/
     /// </summary>
     [CustomEntity("DZ/BlockGate")]
     [Tracked]

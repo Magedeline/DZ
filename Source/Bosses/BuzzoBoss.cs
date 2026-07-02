@@ -5,7 +5,7 @@ namespace Celeste.Entities.Bosses
     /// <summary>
     /// Buzzo Mid-Boss - A chainsaw-wielding maniac
     /// Aggressive mid-boss with relentless pursuit attacks
-    /// Sprite path: characters/buzzo/
+    /// Sprite path: characters/DZ/buzzo/
     /// </summary>
     [CustomEntity(ids: "DZ/BuzzoBoss")]
     [Tracked]
@@ -71,7 +71,7 @@ namespace Celeste.Entities.Bosses
         private void SetupVisuals()
         {
             // Body sprite
-            Add(bodySprite = new Sprite(GFX.Game, "characters/buzzo/"));
+            Add(bodySprite = new Sprite(GFX.Game, "characters/DZ/buzzo/"));
             bodySprite.AddLoop("idle", "body_idle", 0.1f);
             bodySprite.AddLoop("walk", "body_walk", 0.06f);
             bodySprite.AddLoop("run", "body_run", 0.04f);
@@ -83,7 +83,7 @@ namespace Celeste.Entities.Bosses
             bodySprite.CenterOrigin();
             
             // Chainsaw sprite
-            Add(chainsawSprite = new Sprite(GFX.Game, "characters/buzzo/"));
+            Add(chainsawSprite = new Sprite(GFX.Game, "characters/DZ/buzzo/"));
             chainsawSprite.AddLoop("off", "chainsaw_off", 0.15f);
             chainsawSprite.AddLoop("idle", "chainsaw_idle", 0.03f);
             chainsawSprite.AddLoop("rev", "chainsaw_rev", 0.02f);

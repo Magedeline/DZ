@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch12
     /// <summary>
     /// TitanStatue - Large decorative statue that can animate
     /// May become active during boss fight or events
-    /// Sprite path: objects/titan_statue/
+    /// Sprite path: objects/DZ/DZ/titan_statue/
     /// </summary>
     [CustomEntity("DZ/TitanStatue")]
     [Tracked]

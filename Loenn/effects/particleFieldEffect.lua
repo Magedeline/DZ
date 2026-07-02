@@ -2,7 +2,7 @@ local particleFieldEffect = {}
 
 particleFieldEffect.name = "DZ/ParticleFieldEffect"
 particleFieldEffect.depth = 10000
-particleFieldEffect.texture = "objects/DZ/effects/particlefield"
+particleFieldEffect.texture = "objects/DZ/DZ/DZ/effects/particlefield"
 particleFieldEffect.placements = {
     name = "particle_field_effect",
     data = {

@@ -2,7 +2,7 @@ local darkMirror = {}
 
 darkMirror.name = "DZ/DarkMirror"
 darkMirror.depth = 0
-darkMirror.texture = "objects/DZ/dark_mirror"
+darkMirror.texture = "objects/DZ/DZ/DZ/dark_mirror"
 
 darkMirror.placements = {
     name = "dark_mirror",

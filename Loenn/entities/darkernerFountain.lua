@@ -2,7 +2,7 @@ local darkernerFountain = {}
 
 darkernerFountain.name = "DZ/DarkernerFountain"
 darkernerFountain.depth = 0
-darkernerFountain.texture = "objects/DZ/darkerner_fountain"
+darkernerFountain.texture = "objects/DZ/DZ/DZ/darkerner_fountain"
 
 darkernerFountain.placements = {
     name = "darkerner_fountain",

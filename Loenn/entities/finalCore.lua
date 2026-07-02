@@ -2,7 +2,7 @@ local finalCore = {}
 
 finalCore.name = "DZ/FinalCore"
 finalCore.depth = 0
-finalCore.texture = "objects/DZ/final_core"
+finalCore.texture = "objects/DZ/DZ/DZ/final_core"
 
 finalCore.placements = {
     name = "final_core",

@@ -150,10 +150,10 @@ public class DZReflectionHeartStatue : Entity
         code = codeStr.Split(',');
 
         flagPrefix       = data.Attr("flagPrefix", "heartTorch_");
-        statueSpritePath  = data.Attr("statueSprite", "objects/reflectionHeart/statue");
-        torchSpritePath   = data.Attr("torchSprite", "objects/reflectionHeart/torch");
-        hintSpritePath    = data.Attr("hintSprite", "objects/reflectionHeart/hint");
-        gemSpritePath     = data.Attr("gemSprite", "objects/reflectionHeart/gem");
+        statueSpritePath  = data.Attr("statueSprite", "objects/DZ/DZ/reflectionHeart/statue");
+        torchSpritePath   = data.Attr("torchSprite", "objects/DZ/DZ/reflectionHeart/torch");
+        hintSpritePath    = data.Attr("hintSprite", "objects/DZ/DZ/reflectionHeart/hint");
+        gemSpritePath     = data.Attr("gemSprite", "objects/DZ/DZ/reflectionHeart/gem");
         heartSpritePath   = data.Attr("heartSprite", "collectables/heartgem/white00");
 
         dashSoundEvent        = data.Attr("dashSound", "event:/game/06_reflection/supersecret_dashflavour");

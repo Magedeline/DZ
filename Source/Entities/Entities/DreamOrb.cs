@@ -29,7 +29,7 @@ namespace Celeste.Entities
             base.Collider = new Hitbox(16f, 16f, -8f, -8f);
             Add(new PlayerCollider(player => OnPlayer(player)));
             
-            Add(sprite = AtlasPathHelper.CreateSprite("objects/dreamorb/"));
+            Add(sprite = AtlasPathHelper.CreateSprite("objects/DZ/DZ/dreamorb/"));
             sprite.AddLoop("idle", "", 0.1f);
             sprite.Play("idle");
             sprite.CenterOrigin();

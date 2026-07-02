@@ -2,7 +2,7 @@ local titanFootprint = {}
 
 titanFootprint.name = "DZ/TitanFootprint"
 titanFootprint.depth = 0
-titanFootprint.texture = "objects/DZ/titan_footprint"
+titanFootprint.texture = "objects/DZ/DZ/DZ/titan_footprint"
 
 titanFootprint.placements = {
     name = "titan_footprint",

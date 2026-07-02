@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch12
     /// <summary>
     /// SpiralStaircase - Rotating staircase with moving platforms
     /// Platforms rotate around central pillar
-    /// Sprite path: objects/spiral_staircase/
+    /// Sprite path: objects/DZ/DZ/spiral_staircase/
     /// </summary>
     [CustomEntity("DZ/SpiralStaircase")]
     [Tracked]

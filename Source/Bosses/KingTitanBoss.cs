@@ -44,7 +44,7 @@ namespace Celeste.Entities
 
         private void setupTitanVisuals()
         {
-            Add(titanSprite = new Sprite(GFX.Game, "characters/kingtitan/"));
+            Add(titanSprite = new Sprite(GFX.Game, "characters/DZ/kingtitan/"));
             titanSprite.AddLoop("idle", "titan_idle", 0.08f);
             titanSprite.AddLoop("attack", "titan_attack", 0.06f);
             titanSprite.AddLoop("phase2", "titan_phase2", 0.07f);

@@ -64,7 +64,7 @@ namespace Celeste.Entities.Bosses
 
         private void SetupVisuals()
         {
-            Add(sansSprite = new Sprite(GFX.Game, "characters/sans/"));
+            Add(sansSprite = new Sprite(GFX.Game, "characters/DZ/sans/"));
             sansSprite.AddLoop("idle", "idle", 0.1f);
             sansSprite.AddLoop("walk", "walk", 0.08f);
             sansSprite.AddLoop("run", "walk", 0.06f);

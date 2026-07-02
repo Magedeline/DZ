@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch13
     /// <summary>
     /// FlameGeyser - Erupts flames in timed intervals
     /// Creates vertical fire hazards with warning periods
-    /// Sprite path: objects/flame_geyser/
+    /// Sprite path: objects/DZ/DZ/flame_geyser/
     /// </summary>
     [CustomEntity("DZ/FlameGeyser")]
     [Tracked]

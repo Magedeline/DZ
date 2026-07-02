@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch12
     /// <summary>
     /// TowerElevator - Vertical platform that moves between floors
     /// Can be called by player and moves between defined points
-    /// Sprite path: objects/tower_elevator/
+    /// Sprite path: objects/DZ/DZ/tower_elevator/
     /// </summary>
     [CustomEntity("DZ/TowerElevator")]
     [Tracked]

@@ -2,7 +2,7 @@ local kirbyPuffRefill = {}
 
 kirbyPuffRefill.name = "DZ/KirbyPuffRefill"
 kirbyPuffRefill.depth = 0
-kirbyPuffRefill.texture = "objects/DZ/kirby_puff_refill"
+kirbyPuffRefill.texture = "objects/DZ/DZ/DZ/kirby_puff_refill"
 
 kirbyPuffRefill.placements = {
     name = "kirby_puff_refill",

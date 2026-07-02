@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch10
     /// <summary>
     /// FallenLeafPile - Decorative leaf pile that hides hazards or enemies
     /// Rustles when player approaches, can contain hidden spikes or enemies
-    /// Sprite path: objects/fallen_leaf_pile/
+    /// Sprite path: objects/DZ/DZ/fallen_leaf_pile/
     /// </summary>
     [CustomEntity("DZ/FallenLeafPile")]
     [Tracked]

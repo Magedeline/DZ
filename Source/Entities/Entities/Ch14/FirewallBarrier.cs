@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch14
     /// <summary>
     /// FirewallBarrier - Protective barrier that blocks enemies and damage
     /// Can be toggled on/off and provides safe zones
-    /// Sprite path: objects/firewall_barrier/
+    /// Sprite path: objects/DZ/DZ/firewall_barrier/
     /// </summary>
     [CustomEntity("DZ/FirewallBarrier")]
     [Tracked]

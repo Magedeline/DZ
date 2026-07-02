@@ -1,5 +1,5 @@
 ﻿Icon: areas/DZ/heart
-SID: DZ/ASide/18_Heart
+SID: DZ/0/18_Heart
 Interlude: false
 TitleBaseColor: 8b0045
 TitleAccentColor: ff4488
@@ -22,25 +22,25 @@ Modes:
     HeartIsEnd: false
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/BSide/18_heart
+      Music: event:/music/pusheen/1/18_heart
       Ambience: event:/env/pusheen/18_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/CSide/18_heart
+      Music: event:/music/pusheen/2/18_heart
       Ambience: event:/env/pusheen/18_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/CSide/18_heart
+      Music: event:/music/pusheen/2/18_heart
       Ambience: event:/env/pusheen/18_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/DSide/18_heart
+      Music: event:/music/pusheen/2/18_heart
       Ambience: event:/env/pusheen/18_main
     Inventory: Default
     HeartIsEnd: true

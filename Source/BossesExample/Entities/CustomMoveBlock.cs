@@ -105,8 +105,8 @@ public class CustomMoveBlock : Solid
     }
     int num1 = width / 8;
     int num2 = height / 8;
-    MTexture mtexture1 = GFX.Game["objects/moveBlock/base"];
-    MTexture mtexture2 = GFX.Game["objects/moveBlock/button"];
+    MTexture mtexture1 = GFX.Game["objects/DZ/DZ/moveBlock/base"];
+    MTexture mtexture2 = GFX.Game["objects/DZ/DZ/moveBlock/button"];
     if (canSteer && (direction == CustomMoveBlock.Directions.Left || direction == CustomMoveBlock.Directions.Right))
     {
       for (int index = 0; index < num1; ++index)
@@ -114,7 +114,7 @@ public class CustomMoveBlock : Solid
         int num3 = index != 0 ? (index < num1 - 1 ? 1 : 2) : 0;
         this.AddImage(mtexture2.GetSubtexture(num3 * 8, 0, 8, 8, (MTexture) null), new Vector2((float) (index * 8), -4f), 0.0f, new Vector2(1f, 1f), this.topButton);
       }
-      mtexture1 = GFX.Game["objects/moveBlock/base_h"];
+      mtexture1 = GFX.Game["objects/DZ/DZ/moveBlock/base_h"];
     }
     else if (canSteer && (direction == CustomMoveBlock.Directions.Up || direction == CustomMoveBlock.Directions.Down))
     {
@@ -124,7 +124,7 @@ public class CustomMoveBlock : Solid
         this.AddImage(mtexture2.GetSubtexture(num4 * 8, 0, 8, 8, (MTexture) null), new Vector2(-4f, (float) (index * 8)), 1.57079637f, new Vector2(1f, -1f), this.leftButton);
         this.AddImage(mtexture2.GetSubtexture(num4 * 8, 0, 8, 8, (MTexture) null), new Vector2((float) ((num1 - 1) * 8 + 4), (float) (index * 8)), 1.57079637f, new Vector2(1f, 1f), this.rightButton);
       }
-      mtexture1 = GFX.Game["objects/moveBlock/base_v"];
+      mtexture1 = GFX.Game["objects/DZ/DZ/moveBlock/base_v"];
     }
     for (int index1 = 0; index1 < num1; ++index1)
     {
@@ -135,7 +135,7 @@ public class CustomMoveBlock : Solid
         this.AddImage(mtexture1.GetSubtexture(num5 * 8, num6 * 8, 8, 8, (MTexture) null), ((new Vector2((float) index1, (float) index2)) * (8f)), 0.0f, new Vector2(1f, 1f), this.body);
       }
     }
-    this.arrows = GFX.Game.GetAtlasSubtextures("objects/moveBlock/arrow");
+    this.arrows = GFX.Game.GetAtlasSubtextures("objects/DZ/DZ/moveBlock/arrow");
     ((Entity) this).Add((Component) (this.moveSfx = new SoundSource()));
     ((Entity) this).Add((Component) new Coroutine(this.Controller(), true));
     this.UpdateColors();
@@ -519,7 +519,7 @@ label_43:
     if (this.state != CustomMoveBlock.MovementState.Breaking)
       this.arrows[Calc.Clamp((int) Math.Floor((0.0 - (double) this.angle + 6.2831854820251465) % 6.2831854820251465 / 6.2831854820251465 * 8.0 + 0.5), 0, 7)].DrawCentered(((Entity) this).Center);
     else
-      GFX.Game["objects/moveBlock/x"].DrawCentered(((Entity) this).Center);
+      GFX.Game["objects/DZ/DZ/moveBlock/x"].DrawCentered(((Entity) this).Center);
     float num = this.flash * 4f;
     Draw.Rect(((Entity) this).X - num, ((Entity) this).Y - num, ((Entity) this).Width + num * 2f, ((Entity) this).Height + num * 2f, ((Color.White) * (this.flash)));
     ((Entity) this).Position = position;
@@ -683,7 +683,7 @@ label_43:
     {
       ((Entity) this).Tag = ((int) (Tags.TransitionUpdate));
       ((Entity) this).Collider = (Collider) new Hitbox(4f, 4f, -2f, -2f);
-      ((Entity) this).Add((Component) (this.sprite = new Image(Calc.Choose<MTexture>(Calc.Random, GFX.Game.GetAtlasSubtextures("objects/moveblock/debris")))));
+      ((Entity) this).Add((Component) (this.sprite = new Image(Calc.Choose<MTexture>(Calc.Random, GFX.Game.GetAtlasSubtextures("objects/DZ/DZ/moveblock/debris")))));
       this.sprite.CenterOrigin();
       ((GraphicsComponent) this.sprite).FlipX = Calc.Chance(Calc.Random, 0.5f);
       // ISSUE: method pointer

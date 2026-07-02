@@ -6,7 +6,7 @@ namespace Celeste.Entities.Bosses
     /// Apex Predator Boss - The ultimate hunter
     /// A savage beast that stalks and ambushes with deadly precision
     /// Uses stealth, speed, and brutal close-combat attacks
-    /// Sprite path: characters/apexpredator/
+    /// Sprite path: characters/DZ/apexpredator/
     /// </summary>
     [CustomEntity(ids: "DZ/ApexPredatorBoss")]
     [Tracked]
@@ -86,7 +86,7 @@ namespace Celeste.Entities.Bosses
         private void SetupVisuals()
         {
             // Main body sprite
-            Add(predatorSprite = new Sprite(GFX.Game, "characters/apexpredator/"));
+            Add(predatorSprite = new Sprite(GFX.Game, "characters/DZ/apexpredator/"));
             predatorSprite.AddLoop("stalk", "predator_stalk", 0.12f);
             predatorSprite.AddLoop("idle", "predator_idle", 0.1f);
             predatorSprite.AddLoop("run", "predator_run", 0.06f);
@@ -98,14 +98,14 @@ namespace Celeste.Entities.Bosses
             predatorSprite.CenterOrigin();
             
             // Claws sprite overlay
-            Add(clawsSprite = new Sprite(GFX.Game, "characters/apexpredator/"));
+            Add(clawsSprite = new Sprite(GFX.Game, "characters/DZ/apexpredator/"));
             clawsSprite.AddLoop("idle", "claws_idle", 0.1f);
             clawsSprite.AddLoop("slash", "claws_slash", 0.03f);
             clawsSprite.CenterOrigin();
             clawsSprite.Position = new Vector2(20f, -16f);
             
             // Tail sprite
-            Add(tailSprite = new Sprite(GFX.Game, "characters/apexpredator/"));
+            Add(tailSprite = new Sprite(GFX.Game, "characters/DZ/apexpredator/"));
             tailSprite.AddLoop("idle", "tail_idle", 0.1f);
             tailSprite.AddLoop("swipe", "tail_swipe", 0.04f);
             tailSprite.CenterOrigin();

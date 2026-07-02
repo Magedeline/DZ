@@ -272,21 +272,21 @@ namespace Celeste.Entities
 
             return Character switch
             {
-                CharacterType.Kirby => "objects/characterRefill/kirby/",
-                CharacterType.Madeline => "objects/characterRefill/madeline/",
-                CharacterType.Badeline => "objects/characterRefill/badeline/",
-                CharacterType.Theo => "objects/characterRefill/theo/",
-                CharacterType.Granny => "objects/characterRefill/granny/",
-                CharacterType.Oshiro => "objects/characterRefill/oshiro/",
-                CharacterType.Chara => "objects/characterRefill/chara/",
-                CharacterType.Frisk => "objects/characterRefill/frisk/",
-                CharacterType.Ralsei => "objects/characterRefill/ralsei/",
-                CharacterType.Asriel => "objects/characterRefill/asriel/",
-                CharacterType.MetaKnight => "objects/characterRefill/metaknight/",
-                CharacterType.KingDedede => "objects/characterRefill/dedede/",
-                CharacterType.Magolor => "objects/characterRefill/magolor/",
-                CharacterType.MageKirby => "objects/characterRefill/magekirby/",
-                _ => "objects/refill/"
+                CharacterType.Kirby => "objects/DZ/DZ/characterRefill/kirby/",
+                CharacterType.Madeline => "objects/DZ/DZ/characterRefill/madeline/",
+                CharacterType.Badeline => "objects/DZ/DZ/characterRefill/badeline/",
+                CharacterType.Theo => "objects/DZ/DZ/characterRefill/theo/",
+                CharacterType.Granny => "objects/DZ/DZ/characterRefill/granny/",
+                CharacterType.Oshiro => "objects/DZ/DZ/characterRefill/oshiro/",
+                CharacterType.Chara => "objects/DZ/DZ/characterRefill/chara/",
+                CharacterType.Frisk => "objects/DZ/DZ/characterRefill/frisk/",
+                CharacterType.Ralsei => "objects/DZ/DZ/characterRefill/ralsei/",
+                CharacterType.Asriel => "objects/DZ/DZ/characterRefill/asriel/",
+                CharacterType.MetaKnight => "objects/DZ/DZ/characterRefill/metaknight/",
+                CharacterType.KingDedede => "objects/DZ/DZ/characterRefill/dedede/",
+                CharacterType.Magolor => "objects/DZ/DZ/characterRefill/magolor/",
+                CharacterType.MageKirby => "objects/DZ/DZ/characterRefill/magekirby/",
+                _ => "objects/DZ/DZ/refill/"
             };
         }
 

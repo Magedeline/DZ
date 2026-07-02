@@ -2,7 +2,7 @@ local ashPhoenix = {}
 
 ashPhoenix.name = "DZ/AshPhoenix"
 ashPhoenix.depth = 0
-ashPhoenix.texture = "objects/DZ/ash_phoenix"
+ashPhoenix.texture = "objects/DZ/DZ/DZ/ash_phoenix"
 
 ashPhoenix.placements = {
     name = "ash_phoenix",

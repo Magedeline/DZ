@@ -2,7 +2,7 @@ local rainbowBlackholeBg = {}
 
 rainbowBlackholeBg.name = "DZ/RainbowBlackholeBg"
 rainbowBlackholeBg.depth = 0
-rainbowBlackholeBg.texture = "objects/DZ/rainbow_blackhole_bg"
+rainbowBlackholeBg.texture = "objects/DZ/DZ/DZ/rainbow_blackhole_bg"
 
 rainbowBlackholeBg.placements = {
     name = "rainbow_blackhole_bg",

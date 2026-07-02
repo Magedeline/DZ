@@ -150,12 +150,12 @@ namespace Celeste.Entities
         public HeartGemSattelite(EntityData data, Vector2 offset)
             : base(data.Position + offset)
         {
-            Add(sprite = new Image(GFX.Game["objects/citysatellite/dish"]));
-            Add(pulse = new Image(GFX.Game["objects/citysatellite/light"]));
-            Add(computer = new Image(GFX.Game["objects/citysatellite/computer"]));
-            Add(computerScreen = new Image(GFX.Game["objects/citysatellite/computerscreen"]));
-            Add(computerScreenNoise = new Sprite(GFX.Game, "objects/citysatellite/computerScreenNoise"));
-            Add(computerScreenShine = new Image(GFX.Game["objects/citysatellite/computerscreenShine"]));
+            Add(sprite = new Image(GFX.Game["objects/DZ/DZ/citysatellite/dish"]));
+            Add(pulse = new Image(GFX.Game["objects/DZ/DZ/citysatellite/light"]));
+            Add(computer = new Image(GFX.Game["objects/DZ/DZ/citysatellite/computer"]));
+            Add(computerScreen = new Image(GFX.Game["objects/DZ/DZ/citysatellite/computerscreen"]));
+            Add(computerScreenNoise = new Sprite(GFX.Game, "objects/DZ/DZ/citysatellite/computerScreenNoise"));
+            Add(computerScreenShine = new Image(GFX.Game["objects/DZ/DZ/citysatellite/computerscreenShine"]));
             sprite.JustifyOrigin(0.5f, 1f);
             pulse.JustifyOrigin(0.5f, 1f);
             Add(new Coroutine(PulseRoutine()));

@@ -2,7 +2,7 @@ local transportPlatform = {}
 
 transportPlatform.name = "DZ/TransportPlatform"
 transportPlatform.depth = 0
-transportPlatform.texture = "objects/DZ/transport_platform"
+transportPlatform.texture = "objects/DZ/DZ/DZ/transport_platform"
 
 transportPlatform.placements = {
     name = "transport_platform",

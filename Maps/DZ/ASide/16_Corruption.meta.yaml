@@ -1,5 +1,5 @@
 Icon: areas/DZ/corruption
-SID: DZ/ASide/16_Corruption
+SID: DZ/0/16_Corruption
 Interlude: false
 TitleBaseColor: 383838
 TitleAccentColor: 50afae
@@ -21,8 +21,8 @@ Modes:
     SeekerSlowdown: false
 
 Mountain:
-    MountainModelDirectory: Mountain/DZ/ASide
-    MountainTextureDirectory: DZ/ASide
+    MountainModelDirectory: Mountain/DZ/0
+    MountainTextureDirectory: DZ/0
     Idle:
         Position: [-1.916, 33.050, 11.185]
         Target: [-1.479, 32.938, 9.236]
@@ -37,13 +37,13 @@ Mountain:
 
 MusicBySide:
   - event:/music/pusheen/menu/complete_area
-  - event:/music/pusheen/menu/complete_bside
-  - event:/music/pusheen/menu/complete_cside
+  - event:/music/pusheen/menu/complete_1
+  - event:/music/pusheen/menu/complete_2
   - event:/music/pusheen/menu/complete_dxside
 Title:
-  ASide: "Chapter Complete"
-  BSide: "B Side Complete"
-  CSide: "C Side Complete"
-  DSide: "D Side Complete"
+  0: "Chapter Complete"
+  1: "B Side Complete"
+  2: "C Side Complete"
+  2: "D Side Complete"
   DXSide: "DX Side Complete"
   FullClear: "Chapter Clear"

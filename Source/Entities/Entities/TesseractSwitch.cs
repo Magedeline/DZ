@@ -3,8 +3,8 @@ namespace Celeste.Entities
     [CustomEntity(ids: "DZ/TesseractSwitch")]
     public class TesseractSwitch : Solid
     {
-        private const string DefaultSpritePath = "objects/tesseract_temple/dashButton";
-        private const string ActivatedSpritePath = "objects/tesseract_temple/dashButtonMirror";
+        private const string DefaultSpritePath = "objects/DZ/DZ/tesseract_temple/dashButton";
+        private const string ActivatedSpritePath = "objects/DZ/DZ/tesseract_temple/dashButtonMirror";
 
         private readonly bool allGates;
         private readonly bool ceiling;

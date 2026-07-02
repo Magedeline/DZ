@@ -62,8 +62,8 @@ public class ResortLantern : DZ.Nez.Component, IUpdatable
         _bloom = Entity.AddComponent(new BloomPoint(0.8f, 8f));
 
         // TODO: add BoxCollider 8x8, offset (-4,-4), trigger
-        // TODO: load "objects/resortLantern/holder" image, center-origin
-        // TODO: load "objects/resortLantern/" sprite sheet for lantern anim
+        // TODO: load "objects/DZ/DZ/resortLantern/holder" image, center-origin
+        // TODO: load "objects/DZ/DZ/resortLantern/" sprite sheet for lantern anim
         //   add loop "light" → frames 0,0,1,2,1 at 0.3s delay
         // TODO: if solid to the right of entity → flip holder/lantern X scale
     }

@@ -2,7 +2,7 @@ local lavaBubbleSpawner = {}
 
 lavaBubbleSpawner.name = "DZ/LavaBubbleSpawner"
 lavaBubbleSpawner.depth = 0
-lavaBubbleSpawner.texture = "objects/DZ/lava_bubble_spawner"
+lavaBubbleSpawner.texture = "objects/DZ/DZ/DZ/lava_bubble_spawner"
 
 lavaBubbleSpawner.placements = {
     name = "lava_bubble_spawner",

@@ -93,7 +93,7 @@ public class CharaBoost : Entity
         base.Collider = new Circle(16f);
         Add(new PlayerCollider(OnPlayer));
         Add(sprite = GFX.SpriteBank.Create("charaBoost"));
-        Add(stretch = new Image(GFX.Game["objects/charaboost/stretch"]));
+        Add(stretch = new Image(GFX.Game["objects/DZ/DZ/charaboost/stretch"]));
         stretch.Visible = false;
         stretch.CenterOrigin();
         Add(light = new VertexLight(Color.White, 0.7f, 12, 20));

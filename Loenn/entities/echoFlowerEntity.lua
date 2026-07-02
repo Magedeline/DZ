@@ -2,7 +2,7 @@ local echoFlowerEntity = {}
 
 echoFlowerEntity.name = "DZ/EchoFlowerEntity"
 echoFlowerEntity.depth = 0
-echoFlowerEntity.texture = "objects/DZ/echo_flower_entity"
+echoFlowerEntity.texture = "objects/DZ/DZ/DZ/echo_flower_entity"
 
 echoFlowerEntity.placements = {
     name = "echo_flower_entity",

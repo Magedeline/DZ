@@ -79,7 +79,7 @@ public static class AudioReplacer
         ["event:/ui/main/assist_button_info"]             = "event:/pusheen/ui/main/assist_button_info",
         ["event:/ui/main/assist_button_no"]               = "event:/pusheen/ui/main/assist_button_no",
         ["event:/ui/main/assist_button_yes"]              = "event:/pusheen/ui/main/assist_button_yes",
-        ["event:/ui/main/bside_intro_text"]               = "event:/pusheen/ui/main/bside_intro_text",
+        ["event:/ui/main/1_intro_text"]               = "event:/pusheen/ui/main/1_intro_text",
         ["event:/ui/main/button_back"]                    = "event:/pusheen/ui/main/button_back",
         ["event:/ui/main/button_climb"]                   = "event:/pusheen/ui/main/button_climb",
         ["event:/ui/main/button_invalid"]                 = "event:/pusheen/ui/main/button_invalid",
@@ -130,7 +130,7 @@ public static class AudioReplacer
         ["event:/ui/postgame/strawberry_count"]           = "event:/pusheen/ui/postgame/strawberry_count",
         ["event:/ui/postgame/strawberry_total"]           = "event:/pusheen/ui/postgame/strawberry_total",
         ["event:/ui/postgame/strawberry_total_all"]       = "event:/pusheen/ui/postgame/strawberry_total_all",
-        ["event:/ui/postgame/unlock_bside"]               = "event:/pusheen/ui/postgame/unlock_bside",
+        ["event:/ui/postgame/unlock_1"]               = "event:/pusheen/ui/postgame/unlock_1",
         ["event:/ui/postgame/unlock_newchapter"]          = "event:/pusheen/ui/postgame/unlock_newchapter",
         ["event:/ui/postgame/unlock_newchapter_icon"]     = "event:/pusheen/ui/postgame/unlock_newchapter_icon",
 

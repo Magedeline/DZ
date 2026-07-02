@@ -11,16 +11,16 @@ namespace DZ;
 /// Complete D-Side Hook System Implementation
 /// Handles all D-Side specific hooks with full On.hook and IL.hook support
 /// </summary>
-public static class DSideHookImplementation
+public static class 2HookImplementation
 {
     private static bool _initialized = false;
     private static List<Hook> _activeHooks = new();
     private static List<ILHook> _activilHooks = new();
 
     // Track D-Side state
-    private static Dictionary<string, DSideLevelState> _levelStates = new();
+    private static Dictionary<string, 2LevelState> _levelStates = new();
 
-    public class DSideLevelState
+    public class 2LevelState
     {
         public string ChapterSID { get; set; }
         public int Mode { get; set; }
@@ -41,7 +41,7 @@ public static class DSideHookImplementation
 
         _initialized = true;
 
-        Logger.Log(LogLevel.Info, "DZ/DSideHooks",
+        Logger.Log(LogLevel.Info, "DZ/2Hooks",
             "Initializing comprehensive D-Side hook system...");
 
         try
@@ -55,13 +55,13 @@ public static class DSideHookImplementation
             // IL.hook implementations
             InstallILHooks();
 
-            Logger.Log(LogLevel.Info, "DZ/DSideHooks",
+            Logger.Log(LogLevel.Info, "DZ/2Hooks",
                 "✓ D-Side hook system initialized successfully");
             PrintHookStatus();
         }
         catch (Exception ex)
         {
-            Logger.Log(LogLevel.Error, "DZ/DSideHooks",
+            Logger.Log(LogLevel.Error, "DZ/2Hooks",
                 $"Failed to initialize D-Side hooks: {ex.Message}\n{ex.StackTrace}");
         }
     }
@@ -76,7 +76,7 @@ public static class DSideHookImplementation
 
         _initialized = false;
 
-        Logger.Log(LogLevel.Info, "DZ/DSideHooks", "Shutting down D-Side hooks...");
+        Logger.Log(LogLevel.Info, "DZ/2Hooks", "Shutting down D-Side hooks...");
 
         // Remove On.hooks
         On.Celeste.HeartGem.Collect -= OnHeartGemCollect;
@@ -102,7 +102,7 @@ public static class DSideHookImplementation
 
         _levelStates.Clear();
 
-        Logger.Log(LogLevel.Info, "DZ/DSideHooks",
+        Logger.Log(LogLevel.Info, "DZ/2Hooks",
             "✓ D-Side hooks shutdown complete");
     }
 
@@ -113,7 +113,7 @@ public static class DSideHookImplementation
     private static void InstallHeartGemHooks()
     {
         On.Celeste.HeartGem.Collect += OnHeartGemCollect;
-        Logger.Log(LogLevel.Debug, "DZ/DSideHooks", "Crystal heart collection hooks installed");
+        Logger.Log(LogLevel.Debug, "DZ/2Hooks", "Crystal heart collection hooks installed");
     }
 
     private static void OnHeartGemCollect(On.Celeste.HeartGem.orig_Collect orig, HeartGem self, Player player)
@@ -125,10 +125,10 @@ public static class DSideHookImplementation
             AreaData area = AreaData.Get(level.Session.Area);
             int mode = (int)level.Session.Area.Mode;
 
-            if (AreaModeExtender.IsOurMap(area) && mode >= AreaModeExtender.MODE_DSIDE)
+            if (AreaModeExtender.IsOurMap(area) && mode >= AreaModeExtender.MODE_2)
             {
                 string sideLabel = AreaModeExtender.GetSideLabel(mode);
-                Logger.Log(LogLevel.Debug, "DZ/DSideHooks",
+                Logger.Log(LogLevel.Debug, "DZ/2Hooks",
                     $"[{sideLabel}-Side] Crystal heart collected in {area.SID}");
 
                 // Update state
@@ -154,7 +154,7 @@ public static class DSideHookImplementation
     {
         On.Celeste.Level.LoadLevel += OnLevelLoadLevel;
         On.Celeste.Level.End += OnLevelEnd;
-        Logger.Log(LogLevel.Debug, "DZ/DSideHooks", "Level lifecycle hooks installed");
+        Logger.Log(LogLevel.Debug, "DZ/2Hooks", "Level lifecycle hooks installed");
     }
 
     private static void OnLevelLoadLevel(On.Celeste.Level.orig_LoadLevel orig, Level self, Player.IntroTypes introType, bool isFromLoader)
@@ -163,7 +163,7 @@ public static class DSideHookImplementation
         AreaData area = AreaData.Get(self.Session.Area);
         int mode = (int)self.Session.Area.Mode;
 
-        if (AreaModeExtender.IsOurMap(area) && mode >= AreaModeExtender.MODE_DSIDE)
+        if (AreaModeExtender.IsOurMap(area) && mode >= AreaModeExtender.MODE_2)
         {
             string stateKey = $"{area.SID}_mode_{mode}";
             string sideLabel = AreaModeExtender.GetSideLabel(mode);
@@ -171,7 +171,7 @@ public static class DSideHookImplementation
             // Create or retrieve level state
             if (!_levelStates.ContainsKey(stateKey))
             {
-                _levelStates[stateKey] = new DSideLevelState
+                _levelStates[stateKey] = new 2LevelState
                 {
                     ChapterSID = area.SID,
                     Mode = mode,
@@ -184,29 +184,29 @@ public static class DSideHookImplementation
                 _levelStates[stateKey].IsCurrentlyPlaying = true;
             }
 
-            Logger.Log(LogLevel.Info, "DZ/DSideHooks",
+            Logger.Log(LogLevel.Info, "DZ/2Hooks",
                 $"Loading {sideLabel}-Side level: {area.SID}");
 
             // Set up D-Side specific properties
-            SetupDSideLevelProperties(self, area, mode);
+            Setup2LevelProperties(self, area, mode);
         }
 
         // Load level normally
         orig(self, introType, isFromLoader);
     }
 
-    private static void SetupDSideLevelProperties(Level level, AreaData area, int mode)
+    private static void Setup2LevelProperties(Level level, AreaData area, int mode)
     {
         // Configure difficulty properties based on mode
         switch (mode)
         {
             case 3:  // D-Side
                 // D-Side specific setup
-                Logger.Log(LogLevel.Debug, "DZ/DSideHooks", "D-Side properties configured");
+                Logger.Log(LogLevel.Debug, "DZ/2Hooks", "D-Side properties configured");
                 break;
 
             case 4:  // DX-Side (if implemented)
-                Logger.Log(LogLevel.Debug, "DZ/DSideHooks", "DX-Side properties configured");
+                Logger.Log(LogLevel.Debug, "DZ/2Hooks", "DX-Side properties configured");
                 break;
         }
     }
@@ -230,7 +230,7 @@ public static class DSideHookImplementation
                 if (self.Session.LevelFlags.Contains("completed"))  // Completed flag
                 {
                     state.IsCompleted = true;
-                    Logger.Log(LogLevel.Info, "DZ/DSideHooks",
+                    Logger.Log(LogLevel.Info, "DZ/2Hooks",
                         $"Completed: {area.SID} Mode {mode}");
                 }
             }
@@ -243,12 +243,12 @@ public static class DSideHookImplementation
     private static void InstallOverworldHooks()
     {
         On.Celeste.Overworld.Begin += OnOverworldBegin;
-        Logger.Log(LogLevel.Debug, "DZ/DSideHooks", "Overworld hooks installed");
+        Logger.Log(LogLevel.Debug, "DZ/2Hooks", "Overworld hooks installed");
     }
 
     private static void OnOverworldBegin(On.Celeste.Overworld.orig_Begin orig, Overworld self)
     {
-        Logger.Log(LogLevel.Debug, "DZ/DSideHooks", "Overworld session started");
+        Logger.Log(LogLevel.Debug, "DZ/2Hooks", "Overworld session started");
 
         // Play level select music
         Audio.SetMusic("event:/pusheen/music/menu/level_select");
@@ -267,22 +267,22 @@ public static class DSideHookImplementation
             return;
 
         // Count completed D-Sides
-        int completedDSides = 0;
+        int completed2s = 0;
         foreach (var levelState in _levelStates.Values)
         {
-            if (levelState.IsCompleted && levelState.Mode >= AreaModeExtender.MODE_DSIDE)
-                completedDSides++;
+            if (levelState.IsCompleted && levelState.Mode >= AreaModeExtender.MODE_2)
+                completed2s++;
         }
 
-        Logger.Log(LogLevel.Debug, "DZ/DSideHooks",
-            $"Overworld initialized - D-Sides completed: {completedDSides}");
+        Logger.Log(LogLevel.Debug, "DZ/2Hooks",
+            $"Overworld initialized - D-Sides completed: {completed2s}");
     }
 
     private static void InstallChapterPanelHooks()
     {
         On.Celeste.OuiChapterPanel.Enter += OnChapterPanelEnter;
         On.Celeste.OuiChapterPanel.Leave += OnChapterPanelLeave;
-        Logger.Log(LogLevel.Debug, "DZ/DSideHooks", "Chapter panel hooks installed");
+        Logger.Log(LogLevel.Debug, "DZ/2Hooks", "Chapter panel hooks installed");
     }
 
     private static IEnumerator OnChapterPanelEnter(On.Celeste.OuiChapterPanel.orig_Enter orig, OuiChapterPanel self, Oui from)
@@ -290,7 +290,7 @@ public static class DSideHookImplementation
         AreaData area = AreaData.Get(self.Area);
         if (AreaModeExtender.IsOurMap(area))
         {
-            Logger.Log(LogLevel.Debug, "DZ/DSideHooks",
+            Logger.Log(LogLevel.Debug, "DZ/2Hooks",
                 $"Chapter panel entered: {area.SID}");
         }
 
@@ -302,7 +302,7 @@ public static class DSideHookImplementation
         AreaData area = AreaData.Get(self.Area);
         if (AreaModeExtender.IsOurMap(area))
         {
-            Logger.Log(LogLevel.Debug, "DZ/DSideHooks",
+            Logger.Log(LogLevel.Debug, "DZ/2Hooks",
                 $"Chapter panel left: {area.SID}");
         }
 
@@ -321,11 +321,11 @@ public static class DSideHookImplementation
             InstallHeartGemCollectILHook();
             InstallLevelLoadILHook();
 
-            Logger.Log(LogLevel.Debug, "DZ/DSideHooks", "IL hooks installed successfully");
+            Logger.Log(LogLevel.Debug, "DZ/2Hooks", "IL hooks installed successfully");
         }
         catch (Exception ex)
         {
-            Logger.Log(LogLevel.Warn, "DZ/DSideHooks",
+            Logger.Log(LogLevel.Warn, "DZ/2Hooks",
                 $"Error installing IL hooks: {ex.Message}");
         }
     }
@@ -347,12 +347,12 @@ public static class DSideHookImplementation
             var ilHook = new ILHook(target, IL_HeartGem_Collect);
             _activilHooks.Add(ilHook);
 
-            Logger.Log(LogLevel.Debug, "DZ/DSideHooks",
+            Logger.Log(LogLevel.Debug, "DZ/2Hooks",
                 "HeartGem.Collect IL hook installed");
         }
         catch (Exception ex)
         {
-            Logger.Log(LogLevel.Warn, "DZ/DSideHooks",
+            Logger.Log(LogLevel.Warn, "DZ/2Hooks",
                 $"Failed to install HeartGem IL hook: {ex.Message}");
         }
     }
@@ -370,13 +370,13 @@ public static class DSideHookImplementation
             // You can insert custom logic here at the IL level
             if (patches == 0)
             {
-                Logger.Log(LogLevel.Debug, "DZ/DSideHooks",
+                Logger.Log(LogLevel.Debug, "DZ/2Hooks",
                     "IL_HeartGem_Collect: No specific patches needed");
             }
         }
         catch (Exception ex)
         {
-            Logger.Log(LogLevel.Warn, "DZ/DSideHooks",
+            Logger.Log(LogLevel.Warn, "DZ/2Hooks",
                 $"Error in IL_HeartGem_Collect: {ex.Message}");
         }
     }
@@ -398,12 +398,12 @@ public static class DSideHookImplementation
             var ilHook = new ILHook(target, IL_Level_LoadLevel);
             _activilHooks.Add(ilHook);
 
-            Logger.Log(LogLevel.Debug, "DZ/DSideHooks",
+            Logger.Log(LogLevel.Debug, "DZ/2Hooks",
                 "Level.LoadLevel IL hook installed");
         }
         catch (Exception ex)
         {
-            Logger.Log(LogLevel.Warn, "DZ/DSideHooks",
+            Logger.Log(LogLevel.Warn, "DZ/2Hooks",
                 $"Failed to install Level IL hook: {ex.Message}");
         }
     }
@@ -415,12 +415,12 @@ public static class DSideHookImplementation
         try
         {
             // Low-level level loading patches can go here
-            Logger.Log(LogLevel.Debug, "DZ/DSideHooks",
+            Logger.Log(LogLevel.Debug, "DZ/2Hooks",
                 "IL_Level_LoadLevel: Patch execution");
         }
         catch (Exception ex)
         {
-            Logger.Log(LogLevel.Warn, "DZ/DSideHooks",
+            Logger.Log(LogLevel.Warn, "DZ/2Hooks",
                 $"Error in IL_Level_LoadLevel: {ex.Message}");
         }
     }
@@ -432,7 +432,7 @@ public static class DSideHookImplementation
     /// <summary>
     /// Get current level state
     /// </summary>
-    public static DSideLevelState GetLevelState(AreaData area, int mode)
+    public static 2LevelState GetLevelState(AreaData area, int mode)
     {
         if (area == null)
             return null;
@@ -444,9 +444,9 @@ public static class DSideHookImplementation
     /// <summary>
     /// Get all tracked level states
     /// </summary>
-    public static Dictionary<string, DSideLevelState> GetAllLevelStates()
+    public static Dictionary<string, 2LevelState> GetAllLevelStates()
     {
-        return new Dictionary<string, DSideLevelState>(_levelStates);
+        return new Dictionary<string, 2LevelState>(_levelStates);
     }
 
     /// <summary>
@@ -458,7 +458,7 @@ public static class DSideHookImplementation
         if (_levelStates.ContainsKey(stateKey))
         {
             _levelStates.Remove(stateKey);
-            Logger.Log(LogLevel.Debug, "DZ/DSideHooks",
+            Logger.Log(LogLevel.Debug, "DZ/2Hooks",
                 $"Cleared state: {stateKey}");
         }
     }
@@ -468,11 +468,11 @@ public static class DSideHookImplementation
     /// </summary>
     public static void PrintProgressionStats()
     {
-        Logger.Log(LogLevel.Info, "DZ/DSideHooks",
+        Logger.Log(LogLevel.Info, "DZ/2Hooks",
             "═══════════════════════════════════════");
-        Logger.Log(LogLevel.Info, "DZ/DSideHooks",
+        Logger.Log(LogLevel.Info, "DZ/2Hooks",
             "D-SIDE PROGRESSION STATISTICS");
-        Logger.Log(LogLevel.Info, "DZ/DSideHooks",
+        Logger.Log(LogLevel.Info, "DZ/2Hooks",
             "═══════════════════════════════════════");
 
         int totalCompleted = 0;
@@ -486,27 +486,27 @@ public static class DSideHookImplementation
                 totalCompleted++;
                 totalHearts += state.CrystalHeartsCollected;
 
-                Logger.Log(LogLevel.Info, "DZ/DSideHooks",
+                Logger.Log(LogLevel.Info, "DZ/2Hooks",
                     $"✓ {state.ChapterSID} Mode {state.Mode}: {state.ElapsedTime:F1}s");
             }
         }
 
-        Logger.Log(LogLevel.Info, "DZ/DSideHooks",
+        Logger.Log(LogLevel.Info, "DZ/2Hooks",
             $"Total Completed: {totalCompleted}");
-        Logger.Log(LogLevel.Info, "DZ/DSideHooks",
+        Logger.Log(LogLevel.Info, "DZ/2Hooks",
             $"Total Hearts Collected: {totalHearts}");
-        Logger.Log(LogLevel.Info, "DZ/DSideHooks",
+        Logger.Log(LogLevel.Info, "DZ/2Hooks",
             "═══════════════════════════════════════");
     }
 
     private static void PrintHookStatus()
     {
-        Logger.Log(LogLevel.Info, "DZ/DSideHooks", "Hook Status Report:");
-        Logger.Log(LogLevel.Info, "DZ/DSideHooks", "  ✓ HeartGem.Collect (On.hook + IL.hook)");
-        Logger.Log(LogLevel.Info, "DZ/DSideHooks", "  ✓ Level.LoadLevel (On.hook + IL.hook)");
-        Logger.Log(LogLevel.Info, "DZ/DSideHooks", "  ✓ Level.End (On.hook)");
-        Logger.Log(LogLevel.Info, "DZ/DSideHooks", "  ✓ Overworld.Begin (On.hook)");
-        Logger.Log(LogLevel.Info, "DZ/DSideHooks", "  ✓ OuiChapterPanel.Enter/Leave (On.hook)");
+        Logger.Log(LogLevel.Info, "DZ/2Hooks", "Hook Status Report:");
+        Logger.Log(LogLevel.Info, "DZ/2Hooks", "  ✓ HeartGem.Collect (On.hook + IL.hook)");
+        Logger.Log(LogLevel.Info, "DZ/2Hooks", "  ✓ Level.LoadLevel (On.hook + IL.hook)");
+        Logger.Log(LogLevel.Info, "DZ/2Hooks", "  ✓ Level.End (On.hook)");
+        Logger.Log(LogLevel.Info, "DZ/2Hooks", "  ✓ Overworld.Begin (On.hook)");
+        Logger.Log(LogLevel.Info, "DZ/2Hooks", "  ✓ OuiChapterPanel.Enter/Leave (On.hook)");
     }
 
     /// <summary>

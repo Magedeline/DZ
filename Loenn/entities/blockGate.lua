@@ -2,7 +2,7 @@ local blockGate = {}
 
 blockGate.name = "DZ/BlockGate"
 blockGate.depth = 0
-blockGate.texture = "objects/DZ/block_gate"
+blockGate.texture = "objects/DZ/DZ/DZ/block_gate"
 
 blockGate.placements = {
     name = "block_gate",

@@ -7,7 +7,7 @@ namespace Celeste.Entities.Bosses
     /// A corrupted digital entity seeking ultimate power
     /// Combines Deltarune's Spamton with enhanced NEO form abilities
     /// Multi-phase boss with projectile hell and transformation mechanics
-    /// Sprite path: characters/spamtonneo/
+    /// Sprite path: characters/DZ/spamtonneo/
     /// </summary>
     [CustomEntity(ids: "DZ/SpamtonNeoDeluxeBoss")]
     [Tracked]
@@ -112,7 +112,7 @@ namespace Celeste.Entities.Bosses
         private void SetupVisuals()
         {
             // Main body sprite
-            Add(spamtonSprite = new Sprite(GFX.Game, "characters/spamtonneo/"));
+            Add(spamtonSprite = new Sprite(GFX.Game, "characters/DZ/spamtonneo/"));
             spamtonSprite.AddLoop("idle", "spamton_idle", 0.08f);
             spamtonSprite.AddLoop("attack", "spamton_attack", 0.05f);
             spamtonSprite.AddLoop("laugh", "spamton_laugh", 0.06f);
@@ -123,14 +123,14 @@ namespace Celeste.Entities.Bosses
             spamtonSprite.CenterOrigin();
             
             // Wings sprite
-            Add(wingsSprite = new Sprite(GFX.Game, "characters/spamtonneo/"));
+            Add(wingsSprite = new Sprite(GFX.Game, "characters/DZ/spamtonneo/"));
             wingsSprite.AddLoop("idle", "wings_idle", 0.1f);
             wingsSprite.AddLoop("spread", "wings_spread", 0.06f);
             wingsSprite.CenterOrigin();
             wingsSprite.Position = new Vector2(0f, -50f);
             
             // Detachable head
-            Add(headSprite = new Sprite(GFX.Game, "characters/spamtonneo/"));
+            Add(headSprite = new Sprite(GFX.Game, "characters/DZ/spamtonneo/"));
             headSprite.AddLoop("attached", "head_attached", 0.1f);
             headSprite.AddLoop("detached", "head_detached", 0.08f);
             headSprite.AddLoop("cannon", "head_cannon", 0.05f);
@@ -139,7 +139,7 @@ namespace Celeste.Entities.Bosses
             headSprite.Visible = false; // Only visible when detached
             
             // Heart on chain
-            Add(heartSprite = new Sprite(GFX.Game, "characters/spamtonneo/"));
+            Add(heartSprite = new Sprite(GFX.Game, "characters/DZ/spamtonneo/"));
             heartSprite.AddLoop("hidden", "heart_hidden", 0.1f);
             heartSprite.AddLoop("exposed", "heart_exposed", 0.12f);
             heartSprite.AddLoop("breaking", "heart_breaking", 0.06f);
@@ -150,7 +150,7 @@ namespace Celeste.Entities.Bosses
             // Chain sprites (connecting to heart)
             for (int i = 0; i < 4; i++)
             {
-                var chain = new Sprite(GFX.Game, "characters/spamtonneo/");
+                var chain = new Sprite(GFX.Game, "characters/DZ/spamtonneo/");
                 chain.AddLoop("taut", "chain_taut", 0.1f);
                 chain.AddLoop("loose", "chain_loose", 0.15f);
                 chain.AddLoop("breaking", "chain_breaking", 0.04f);

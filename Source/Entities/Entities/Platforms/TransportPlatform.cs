@@ -64,7 +64,7 @@ namespace Celeste.Entities
             else
             {
                 // Fallback sprite
-                sprite = new Sprite(GFX.Game, "objects/moveBlock/");
+                sprite = new Sprite(GFX.Game, "objects/DZ/DZ/moveBlock/");
                 sprite.AddLoop("idle", "base", 0.1f);
                 sprite.AddLoop("moving", "base", 0.05f);
             }

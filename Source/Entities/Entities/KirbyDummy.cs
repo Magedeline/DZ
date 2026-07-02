@@ -39,7 +39,7 @@ public sealed class KirbyDummy : PassiveFollowerDummy
     {
         try
         {
-            MTexture scarfTexture = GFX.Game["characters/kirby/scarf00"];
+            MTexture scarfTexture = GFX.Game["characters/DZ/kirby/scarf00"];
             ScarfImage = new Image(scarfTexture);
             ScarfImage.CenterOrigin();
             ScarfImage.Position = new Vector2(0f, -6f);

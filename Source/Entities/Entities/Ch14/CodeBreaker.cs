@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch14
     /// <summary>
     /// CodeBreaker - Puzzle entity requiring correct code input
     /// Player must input correct sequence to unlock
-    /// Sprite path: objects/code_breaker/
+    /// Sprite path: objects/DZ/DZ/code_breaker/
     /// </summary>
     [CustomEntity("DZ/CodeBreaker")]
     [Tracked]

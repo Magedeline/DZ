@@ -82,7 +82,7 @@ namespace Celeste.Entities
         private void setupUI()
         {
             // Create gunsight sprite
-            gunsightSprite = new Sprite(GFX.Game, "objects/");
+            gunsightSprite = new Sprite(GFX.Game, "objects/DZ/DZ/");
             gunsightSprite.Add("aim", "gunsight", 0.1f);
             gunsightSprite.Play("aim");
             gunsightSprite.CenterOrigin();
@@ -350,7 +350,7 @@ namespace Celeste.Entities
                 Collider = new Hitbox(32, 32, -16, -16);
                 
                 // Setup sprite
-                sprite = new Sprite(GFX.Game, "objects/");
+                sprite = new Sprite(GFX.Game, "objects/DZ/DZ/");
                 sprite.Add("idle", "target_idle", 0.1f);
                 sprite.Add("hit", "target_hit", 0.1f, "destroyed");
                 sprite.Add("destroyed", "target_destroyed", 0.1f);

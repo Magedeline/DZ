@@ -2,7 +2,7 @@ local dataStream = {}
 
 dataStream.name = "DZ/DataStream"
 dataStream.depth = 0
-dataStream.texture = "objects/DZ/data_stream"
+dataStream.texture = "objects/DZ/DZ/DZ/data_stream"
 
 dataStream.placements = {
     name = "data_stream",

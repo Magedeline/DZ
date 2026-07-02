@@ -25,7 +25,7 @@ namespace Celeste.Entities
             base.Collider = new Circle(12f);
             Add(new PlayerCollider(player => OnPlayer(player)));
             
-            Add(sprite = AtlasPathHelper.CreateSprite("objects/uwumper/"));
+            Add(sprite = AtlasPathHelper.CreateSprite("objects/DZ/DZ/uwumper/"));
             sprite.AddLoop("idle", "Idle", 0.1f);
             sprite.Play("idle");
             sprite.CenterOrigin();

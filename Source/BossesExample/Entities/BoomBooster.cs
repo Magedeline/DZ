@@ -57,7 +57,7 @@ internal class BoomBooster : Entity
   public override void Added(Scene scene)
   {
     base.Added(scene);
-    Image image = new Image(GFX.Game["objects/booster/outline"]);
+    Image image = new Image(GFX.Game["objects/DZ/DZ/booster/outline"]);
     image.CenterOrigin();
     ((GraphicsComponent) image).Color = ((Color.White) * (0.75f));
     this.outline = new Entity(this.Position);

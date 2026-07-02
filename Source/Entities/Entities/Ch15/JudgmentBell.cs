@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch15
     /// <summary>
     /// JudgmentBell - Massive bell that creates shockwaves when rung
     /// Can be triggered by player or events, creates expanding wave hazards
-    /// Sprite path: objects/judgment_bell/
+    /// Sprite path: objects/DZ/DZ/judgment_bell/
     /// </summary>
     [CustomEntity("DZ/JudgmentBell")]
     [Tracked]

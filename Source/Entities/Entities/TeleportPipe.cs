@@ -96,7 +96,7 @@ namespace Celeste.Entities
         private void SetupComponents()
         {
             // Sprite setup
-            sprite = new Sprite(GFX.Game, "objects/Ingeste/teleportPipe/");
+            sprite = new Sprite(GFX.Game, "objects/DZ/DZ/Ingeste/teleportPipe/");
             string animPrefix = direction.ToString().ToLower();
             sprite.AddLoop("idle", $"{animPrefix}_idle", 0.1f);
             sprite.AddLoop("active", $"{animPrefix}_active", 0.05f);

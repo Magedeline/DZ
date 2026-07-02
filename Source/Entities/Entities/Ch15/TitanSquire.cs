@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch15
     /// <summary>
     /// TitanSquire - Armored warrior serving the Titan King
     /// Uses flame sword attacks and can call for reinforcements
-    /// Sprite path: characters/titan_squire/
+    /// Sprite path: characters/DZ/titan_squire/
     /// </summary>
     [CustomEntity("DZ/TitanSquire")]
     [Tracked]

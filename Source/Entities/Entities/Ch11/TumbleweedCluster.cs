@@ -3,7 +3,7 @@ namespace Celeste.Entities.Chapters.Ch11
     /// <summary>
     /// TumbleweedCluster - Fast-moving tumbleweeds that push player randomly
     /// Bounces off walls and creates wind effects
-    /// Sprite path: objects/tumbleweed/
+    /// Sprite path: objects/DZ/DZ/tumbleweed/
     /// </summary>
     [CustomEntity("DZ/TumbleweedCluster")]
     [Tracked]

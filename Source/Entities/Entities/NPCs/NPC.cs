@@ -13,7 +13,7 @@ namespace Celeste.Entities
     [Tracked(true)]
     public partial class NPC : Entity
     {
-        private const string DefaultSpriteDirectory = "characters/theo/";
+        private const string DefaultSpriteDirectory = "characters/DZ/theo/";
 
         public const string MET_THEO = "MetMagolor";
         public const string THEO_KNOWS_NAME = "MagolorKnowsName";

@@ -12,7 +12,7 @@ namespace Celeste.Entities.Bosses
     [HotReloadable]
     public class GigaBoltUltra86000Boss : BossActor
     {
-        private const string SpriteRoot = "characters/gigaboltultra86000/";
+        private const string SpriteRoot = "characters/DZ/gigaboltultra86000/";
 
         private enum BossPhase
         {

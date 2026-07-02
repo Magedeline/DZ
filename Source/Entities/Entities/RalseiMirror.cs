@@ -8,8 +8,8 @@ namespace Celeste.Entities
     {
         public static ParticleType PShatter;
         private Monocle.Image frame;
-        private MTexture glassbg = GFX.Game["objects/mirror/glassbg"];
-        private MTexture glassfg = GFX.Game["objects/mirror/glassfg"];
+        private MTexture glassbg = GFX.Game["objects/DZ/DZ/mirror/glassbg"];
+        private MTexture glassfg = GFX.Game["objects/DZ/DZ/mirror/glassfg"];
         private Sprite breakingGlass;
         private Hitbox hitbox;
         private VirtualRenderTarget mirror;
@@ -53,13 +53,13 @@ namespace Celeste.Entities
             this.Collider = this.hitbox;
 
             // Add a frame image if you want a visible border/frame (optional)
-            this.frame = new Monocle.Image(GFX.Game["objects/mirror/frame"]);
+            this.frame = new Monocle.Image(GFX.Game["objects/DZ/DZ/mirror/frame"]);
             this.frame.Origin = new Vector2(this.glassbg.Width / 2f, this.glassbg.Height);
             // Fix: Set the frame's position so it matches the mirror's position and aligns visually
             this.frame.Position = Vector2.Zero; // Frame will be drawn at the entity's position
             this.Add(this.frame);
 
-            foreach (MTexture atlasSubtexture in GFX.Game.GetAtlasSubtextures("objects/mirror/mirrormask"))
+            foreach (MTexture atlasSubtexture in GFX.Game.GetAtlasSubtextures("objects/DZ/DZ/mirror/mirrormask"))
             {
                 MTexture shard = atlasSubtexture;
                 MirrorSurface surface = new MirrorSurface();

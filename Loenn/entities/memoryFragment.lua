@@ -2,7 +2,7 @@ local memoryFragment = {}
 
 memoryFragment.name = "DZ/MemoryFragment"
 memoryFragment.depth = 0
-memoryFragment.texture = "objects/DZ/memory_fragment"
+memoryFragment.texture = "objects/DZ/DZ/DZ/memory_fragment"
 
 memoryFragment.placements = {
     name = "memory_fragment",

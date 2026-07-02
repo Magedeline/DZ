@@ -30,7 +30,7 @@ public class NPC19_Gravestone : NPC
             Remove(Talker);
             Talker = null;
         }
-        Image image = new Image(GFX.Game["characters/gravestones/maddydead00"]);
+        Image image = new Image(GFX.Game["characters/DZ/gravestones/maddydead00"]);
         image.CenterOrigin();
         Add(image);
         Add(talk = new TalkComponent(new Rectangle(-24, -8, 32, 8), new Vector2(-0.5f, -20f), Interact));

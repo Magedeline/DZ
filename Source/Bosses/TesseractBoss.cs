@@ -8,9 +8,9 @@ namespace Celeste.Entities.Bosses
     [HotReloadable]
     public class TesseractBoss : BossActor
     {
-        private const string TesseractTexturePath = "objects/tesseract_temple/dashButton";
-        private const string TesseractMirrorTexturePath = "objects/tesseract_temple/dashButtonMirror";
-        private const string PortalSurfaceTexturePath = "objects/temple/portal/surface";
+        private const string TesseractTexturePath = "objects/DZ/DZ/tesseract_temple/dashButton";
+        private const string TesseractMirrorTexturePath = "objects/DZ/DZ/tesseract_temple/dashButtonMirror";
+        private const string PortalSurfaceTexturePath = "objects/DZ/DZ/temple/portal/surface";
 
         private enum BossPhase
         {

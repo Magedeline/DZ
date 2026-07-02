@@ -283,7 +283,7 @@ namespace Celeste.Cutscenes
             // Transition directly into Chapter 19 instead of closing the game.
             // The save data flags set above ensure Ch19 is unlocked on subsequent
             // launches; here we load it immediately so the player continues play.
-            string ch19Sid = DZ.AreaModeExtender.BuildASideSID("19_Space");
+            string ch19Sid = DZ.AreaModeExtender.Build0SID("19_Space");
             AreaData ch19Area = AreaData.Get(ch19Sid);
             if (ch19Area != null)
             {

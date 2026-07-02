@@ -602,14 +602,17 @@
   
   <lockdoor_temple_a path="objects/DZ/door/lockdoorTempleA" start="idle">
     <Justify x="0.5" y="0.5" />
+    <Loop id="idle" path="lockdoorTempleA" delay="0.1" frames="0"/>
   </lockdoor_temple_a>
-  
+
   <lockdoor_temple_b path="objects/DZ/door/lockdoorTempleB" start="idle">
     <Justify x="0.5" y="0.5" />
+    <Loop id="idle" path="lockdoorTempleB" delay="0.1" frames="0"/>
   </lockdoor_temple_b>
   
   <lockdoor_moon path="objects/DZ/door/moonDoor" start="idle">
     <Justify x="0.5" y="0.5" />
+    <Loop id="idle" path="moonDoor" delay="0.1" frames="0"/>
   </lockdoor_moon>
   
   <door path="objects/DZ/door/" start="idle">

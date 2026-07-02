@@ -1,13 +1,13 @@
-local maggyPC = {}
+local DZPC = {}
 
-maggyPC.name = "DZ/MaggyPC"
-maggyPC.depth = 0
-maggyPC.texture = "objects/DZ/maggy_pc"
+DZPC.name = "DZ/DZPC"
+DZPC.depth = 0
+DZPC.texture = "objects/DZ/DZ_pc"
 
-maggyPC.placements = {
-    name = "maggy_pc",
+DZPC.placements = {
+    name = "DZ_pc",
     data = {
     }
 }
 
-return maggyPC
+return DZPC

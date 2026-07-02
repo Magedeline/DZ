@@ -1,10 +1,10 @@
 namespace Celeste.NPCs
 {
     [Tracked(true)]
-    [CustomEntity(ids: "DZ/NPC01_Maggy")]
-    public class Npc01Maggy : Entity
+    [CustomEntity(ids: "DZ/NPC01_DZ")]
+    public class Npc01DZ : Entity
     {
-        private const string donetalking = "maggy01DoneTalking";
+        private const string donetalking = "DZ01DoneTalking";
         
         private Sprite sprite;
         private TalkComponent talker;
@@ -13,11 +13,11 @@ namespace Celeste.NPCs
 
         private int currentConversation
         {
-            get => (Scene as Level)?.Session.GetCounter("maggy01") ?? 0;
-            set => (Scene as Level)?.Session.SetCounter("maggy01", value);
+            get => (Scene as Level)?.Session.GetCounter("DZ01") ?? 0;
+            set => (Scene as Level)?.Session.SetCounter("DZ01", value);
         }
 
-        public Npc01Maggy(EntityData data, Vector2 offset) : base(data.Position + offset)
+        public Npc01DZ(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
             setupSprite();
             setupCollision();
@@ -74,16 +74,16 @@ namespace Celeste.NPCs
             switch (currentConversation)
             {
                 case 0:
-                    yield return Textbox.Say("DZ_CH1_MAGGY_INTRO");
+                    yield return Textbox.Say("DZ_CH1_DZ_INTRO");
                     break;
                 case 1:
-                    yield return Textbox.Say("DZ_CH1_MAGGY_A");
+                    yield return Textbox.Say("DZ_CH1_DZ_A");
                     break;
                 case 2:
-                    yield return Textbox.Say("DZ_CH1_MAGGY_B");
+                    yield return Textbox.Say("DZ_CH1_DZ_B");
                     break;
                 default:
-                    yield return Textbox.Say("DZ_CH1_MAGGY_DEFAULT");
+                    yield return Textbox.Say("DZ_CH1_DZ_DEFAULT");
                     break;
             }
 

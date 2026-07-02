@@ -5,10 +5,10 @@ namespace Celeste.UI
     /// <summary>
     /// Custom main-menu credits scene for the Desolo Zantas mod.
     /// Uses vanilla-style credit nodes while keeping all credit copy in
-    /// MAGGY_CREDIT_* dialog keys.
+    /// DZ_CREDIT_* dialog keys.
     /// </summary>
     [HotReloadable]
-    public class CreditsMaggy : Scene
+    public class CreditsDZ : Scene
     {
         #region Constants
 
@@ -210,7 +210,7 @@ namespace Celeste.UI
 
         #region Constructor
 
-        public CreditsMaggy()
+        public CreditsDZ()
         {
             BuildCredits();
             RecalculateHeight();
@@ -249,32 +249,32 @@ namespace Celeste.UI
         {
             credits.Clear();
 
-            credits.Add(new Ending(CreditText("MAGGY_CREDIT_TITLE"), spacing: false));
+            credits.Add(new Ending(CreditText("DZ_CREDIT_TITLE"), spacing: false));
             credits.Add(new Break(192f));
 
-            credits.Add(new Role(CreditText("MAGGY_CREDIT_DIRECTION_1"), CreditText("MAGGY_CREDIT_DIRECTION")));
-            credits.Add(new Role(CreditText("MAGGY_CREDIT_PROGRAMMING_1"), CreditText("MAGGY_CREDIT_PROGRAMMING")));
-            credits.Add(new Role(CreditText("MAGGY_CREDIT_ART_1"), CreditText("MAGGY_CREDIT_ART")));
-            credits.Add(new Thanks(CreditText("MAGGY_CREDIT_MUSIC"), CreditRange("MAGGY_CREDIT_MUSIC_", 1, 26)));
-            credits.Add(new Role(CreditText("MAGGY_CREDIT_LEVEL_DESIGN_1"), CreditText("MAGGY_CREDIT_LEVEL_DESIGN")));
-            credits.Add(new Role(CreditText("MAGGY_CREDIT_WRITING_1"), CreditText("MAGGY_CREDIT_WRITING")));
-            credits.Add(new Role(CreditText("MAGGY_CREDIT_TESTING_1"), CreditText("MAGGY_CREDIT_TESTING")));
+            credits.Add(new Role(CreditText("DZ_CREDIT_DIRECTION_1"), CreditText("DZ_CREDIT_DIRECTION")));
+            credits.Add(new Role(CreditText("DZ_CREDIT_PROGRAMMING_1"), CreditText("DZ_CREDIT_PROGRAMMING")));
+            credits.Add(new Role(CreditText("DZ_CREDIT_ART_1"), CreditText("DZ_CREDIT_ART")));
+            credits.Add(new Thanks(CreditText("DZ_CREDIT_MUSIC"), CreditRange("DZ_CREDIT_MUSIC_", 1, 26)));
+            credits.Add(new Role(CreditText("DZ_CREDIT_LEVEL_DESIGN_1"), CreditText("DZ_CREDIT_LEVEL_DESIGN")));
+            credits.Add(new Role(CreditText("DZ_CREDIT_WRITING_1"), CreditText("DZ_CREDIT_WRITING")));
+            credits.Add(new Role(CreditText("DZ_CREDIT_TESTING_1"), CreditText("DZ_CREDIT_TESTING")));
 
-            credits.Add(new Thanks(CreditText("MAGGY_CREDIT_HELPERS"), CreditRange("MAGGY_CREDIT_HELPER_", 1, 34, padWidth: 2)));
-            credits.Add(new Thanks(CreditText("MAGGY_CREDIT_CONTRIBUTORS"), CreditRange("MAGGY_CREDIT_CONTRIB_", 1, 12, padWidth: 2)));
+            credits.Add(new Thanks(CreditText("DZ_CREDIT_HELPERS"), CreditRange("DZ_CREDIT_HELPER_", 1, 34, padWidth: 2)));
+            credits.Add(new Thanks(CreditText("DZ_CREDIT_CONTRIBUTORS"), CreditRange("DZ_CREDIT_CONTRIB_", 1, 12, padWidth: 2)));
 
-            credits.Add(new Thanks(CreditText("MAGGY_CREDIT_CELESTE_CREATED"), CreditRange("MAGGY_CREDIT_CELESTE_", 1, 2)));
-            credits.Add(new Role(CreditText("MAGGY_CREDIT_CELESTE_MUSIC_1"), CreditText("MAGGY_CREDIT_CELESTE_MUSIC_HEAD")));
-            credits.Add(new Role(CreditText("MAGGY_CREDIT_CELESTE_AUDIO_1"), CreditText("MAGGY_CREDIT_CELESTE_AUDIO")));
-            credits.Add(new Role(CreditText("MAGGY_CREDIT_CELESTE_ART_1"), CreditText("MAGGY_CREDIT_CELESTE_ART")));
+            credits.Add(new Thanks(CreditText("DZ_CREDIT_CELESTE_CREATED"), CreditRange("DZ_CREDIT_CELESTE_", 1, 2)));
+            credits.Add(new Role(CreditText("DZ_CREDIT_CELESTE_MUSIC_1"), CreditText("DZ_CREDIT_CELESTE_MUSIC_HEAD")));
+            credits.Add(new Role(CreditText("DZ_CREDIT_CELESTE_AUDIO_1"), CreditText("DZ_CREDIT_CELESTE_AUDIO")));
+            credits.Add(new Role(CreditText("DZ_CREDIT_CELESTE_ART_1"), CreditText("DZ_CREDIT_CELESTE_ART")));
 
-            credits.Add(new Thanks(CreditText("MAGGY_CREDIT_EVEREST"), CreditRange("MAGGY_CREDIT_EVEREST_", 1, 4)));
-            credits.Add(new Thanks(CreditText("MAGGY_CREDIT_EDITOR"), CreditRange("MAGGY_CREDIT_EDITOR_", 1, 2)));
-            credits.Add(new Thanks(CreditText("MAGGY_CREDIT_SPECIAL_THANKS"), CreditRange("MAGGY_CREDIT_SPECIAL_THANKS_", 1, 4)));
-            credits.Add(new Thanks(CreditText("MAGGY_CREDIT_NO_SPECIAL_THANKS"), CreditRange("MAGGY_CREDIT_NO_SPECIAL_THANKS_", 1, 4)));
-            credits.Add(new Thanks(CreditText("MAGGY_CREDIT_COMPANY_RIGHT_BY"), CreditRange("MAGGY_CREDIT_COMPANY_RIGHT_BY_", 1, 5)));
-            credits.Add(new Thanks(CreditText("MAGGY_CREDIT_POWERED_BY"), CreditRange("MAGGY_CREDIT_POWERED_BY_", 1, 2)));
-            credits.Add(new Thanks(CreditText("MAGGY_CREDIT_FINAL_THANK_BY"), CreditText("MAGGY_CREDIT_FINAL_THANK_BY_1"), CreditText("MAGGY_CREDIT_FINAL_THANK_BY_SUB")));
+            credits.Add(new Thanks(CreditText("DZ_CREDIT_EVEREST"), CreditRange("DZ_CREDIT_EVEREST_", 1, 4)));
+            credits.Add(new Thanks(CreditText("DZ_CREDIT_EDITOR"), CreditRange("DZ_CREDIT_EDITOR_", 1, 2)));
+            credits.Add(new Thanks(CreditText("DZ_CREDIT_SPECIAL_THANKS"), CreditRange("DZ_CREDIT_SPECIAL_THANKS_", 1, 4)));
+            credits.Add(new Thanks(CreditText("DZ_CREDIT_NO_SPECIAL_THANKS"), CreditRange("DZ_CREDIT_NO_SPECIAL_THANKS_", 1, 4)));
+            credits.Add(new Thanks(CreditText("DZ_CREDIT_COMPANY_RIGHT_BY"), CreditRange("DZ_CREDIT_COMPANY_RIGHT_BY_", 1, 5)));
+            credits.Add(new Thanks(CreditText("DZ_CREDIT_POWERED_BY"), CreditRange("DZ_CREDIT_POWERED_BY_", 1, 2)));
+            credits.Add(new Thanks(CreditText("DZ_CREDIT_FINAL_THANK_BY"), CreditText("DZ_CREDIT_FINAL_THANK_BY_1"), CreditText("DZ_CREDIT_FINAL_THANK_BY_SUB")));
         }
 
         private void RecalculateHeight()
@@ -505,7 +505,7 @@ namespace Celeste.UI
             if (drawHint && AllowInput && scrollY > 100f && !exiting)
             {
                 ActiveFont.Draw(
-                    CreditText("MAGGY_CREDIT_BACK_HINT"),
+                    CreditText("DZ_CREDIT_BACK_HINT"),
                     new Vector2(960f, 1040f),
                     new Vector2(0.5f, 0.5f),
                     Vector2.One * 0.5f,

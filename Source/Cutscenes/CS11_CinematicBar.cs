@@ -9,7 +9,7 @@ namespace Celeste.Cutscenes
 {
     /// <summary>
     /// Cutscene for Chapter 11 - Cinematic Bar Scene
-    /// Maggy explains the situation to Madeline's mother (Mom) and Theo's sister (Alex)
+    /// DZ explains the situation to Madeline's mother (Mom) and Theo's sister (Alex)
     /// Includes dramatic triggers: power blackout, ground shaking, and Mt. Celeste eruption with Dark Fountain spawn
     /// </summary>
     [CustomEntity("DesoloZantas/CS11_CinematicBar")]
@@ -33,7 +33,7 @@ namespace Celeste.Cutscenes
 
         #region Fields
         private Player player;
-        private NPC maggy;
+        private NPC DZ;
         private NPC mom;
         private NPC alex;
         private float screenFade = 0f;
@@ -80,7 +80,7 @@ namespace Celeste.Cutscenes
         {
             // FindFirst API not available - NPCs would need different lookup
             /*
-            maggy = level.Entities.FindFirst<NPC>(npc => npc.GetType().Name.Contains("Maggy") || npc.GetType().Name.Contains("Magolor"));
+            DZ = level.Entities.FindFirst<NPC>(npc => npc.GetType().Name.Contains("DZ") || npc.GetType().Name.Contains("Magolor"));
             mom = level.Entities.FindFirst<NPC>(npc => npc.GetType().Name.Contains("Mom") || npc.GetType().Name.Contains("MadelineMother"));
             alex = level.Entities.FindFirst<NPC>(npc => npc.GetType().Name.Contains("Alex") || npc.GetType().Name.Contains("TheoSister"));
             */
@@ -88,28 +88,28 @@ namespace Celeste.Cutscenes
 
         private IEnumerator CutsceneSequence(Level level)
         {
-            // Maggy finishes explaining
-            yield return Textbox.Say(DIALOG_KEY, MaggyFinishesExplaining);
+            // DZ finishes explaining
+            yield return Textbox.Say(DIALOG_KEY, DZFinishesExplaining);
             
             // Mom reassures
             yield return Textbox.Say(DIALOG_KEY, MomReassures);
             
-            // Maggy questions her optimism
-            yield return Textbox.Say(DIALOG_KEY, MaggyQuestions);
+            // DZ questions her optimism
+            yield return Textbox.Say(DIALOG_KEY, DZQuestions);
             
             // Alex expresses concern
             yield return Textbox.Say(DIALOG_KEY, AlexConcerned);
             
-            // Maggy explains about Chara
-            yield return Textbox.Say(DIALOG_KEY, MaggyExplainsChara);
+            // DZ explains about Chara
+            yield return Textbox.Say(DIALOG_KEY, DZExplainsChara);
             
             // TRIGGER 0: Power blackout
             yield return Textbox.Say(DIALOG_KEY, Trigger0PowerBlackout);
             
             yield return 0.5f;
             
-            // Maggy reacts to blackout
-            yield return Textbox.Say(DIALOG_KEY, MaggyReactsBlackout);
+            // DZ reacts to blackout
+            yield return Textbox.Say(DIALOG_KEY, DZReactsBlackout);
             
             // Alex thinks power went out
             yield return Textbox.Say(DIALOG_KEY, AlexPowerOut);
@@ -130,8 +130,8 @@ namespace Celeste.Cutscenes
             
             yield return 0.5f;
             
-            // Maggy realizes it's bad
-            yield return Textbox.Say(DIALOG_KEY, MaggyRealizesItsBad);
+            // DZ realizes it's bad
+            yield return Textbox.Say(DIALOG_KEY, DZRealizesItsBad);
             
             // TRIGGER 3: Mt Celeste erupts and Dark Fountain spawns
             yield return Textbox.Say(DIALOG_KEY, Trigger3MountainEruption);
@@ -148,13 +148,13 @@ namespace Celeste.Cutscenes
 
         #region Dialog Handlers
         
-        private IEnumerator MaggyFinishesExplaining()
+        private IEnumerator DZFinishesExplaining()
         {
-            // [Maggy left normal]
-            if (maggy != null && maggy.Sprite != null)
+            // [DZ left normal]
+            if (DZ != null && DZ.Sprite != null)
             {
-                maggy.Sprite.Play("idle");
-                maggy.Sprite.Scale.X = -1;
+                DZ.Sprite.Play("idle");
+                DZ.Sprite.Scale.X = -1;
             }
             yield break;
         }
@@ -170,12 +170,12 @@ namespace Celeste.Cutscenes
             yield break;
         }
 
-        private IEnumerator MaggyQuestions()
+        private IEnumerator DZQuestions()
         {
-            // [Maggy left annoyed]
-            if (maggy != null && maggy.Sprite != null)
+            // [DZ left annoyed]
+            if (DZ != null && DZ.Sprite != null)
             {
-                maggy.Sprite.Play("annoyed");
+                DZ.Sprite.Play("annoyed");
             }
             yield break;
         }
@@ -191,12 +191,12 @@ namespace Celeste.Cutscenes
             yield break;
         }
 
-        private IEnumerator MaggyExplainsChara()
+        private IEnumerator DZExplainsChara()
         {
-            // [Maggy left normal]
-            if (maggy != null && maggy.Sprite != null)
+            // [DZ left normal]
+            if (DZ != null && DZ.Sprite != null)
             {
-                maggy.Sprite.Play("idle");
+                DZ.Sprite.Play("idle");
             }
             yield break;
         }
@@ -236,12 +236,12 @@ namespace Celeste.Cutscenes
             screenFade = 0.6f;
         }
 
-        private IEnumerator MaggyReactsBlackout()
+        private IEnumerator DZReactsBlackout()
         {
-            // [Maggy left annoyed]
-            if (maggy != null && maggy.Sprite != null)
+            // [DZ left annoyed]
+            if (DZ != null && DZ.Sprite != null)
             {
-                maggy.Sprite.Play("annoyed");
+                DZ.Sprite.Play("annoyed");
             }
             yield break;
         }
@@ -319,12 +319,12 @@ namespace Celeste.Cutscenes
             yield return 1f;
         }
 
-        private IEnumerator MaggyRealizesItsBad()
+        private IEnumerator DZRealizesItsBad()
         {
-            // [Maggy left annoyed]
-            if (maggy != null && maggy.Sprite != null)
+            // [DZ left annoyed]
+            if (DZ != null && DZ.Sprite != null)
             {
-                maggy.Sprite.Play("annoyed");
+                DZ.Sprite.Play("annoyed");
             }
             yield break;
         }

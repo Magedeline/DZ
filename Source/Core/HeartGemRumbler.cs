@@ -1,4 +1,4 @@
-using MaggyBreathingGame = Celeste.Entities.TestBreathingGame;
+using DZBreathingGame = Celeste.Entities.TestBreathingGame;
 using System;
 using Monocle;
 
@@ -15,7 +15,7 @@ namespace DZ
 
 		public float Strength = 0.2f;
 		private float currentRumble;
-		private MaggyBreathingGame breathingGame;
+		private DZBreathingGame breathingGame;
 
 		public HeartGemRumbler()
 		{
@@ -26,7 +26,7 @@ namespace DZ
 		/// Links this rumbler to a TestBreathingGame so rumble intensity
 		/// is driven by the game's panic level.
 		/// </summary>
-		public void TrackBreathingGame(MaggyBreathingGame game)
+		public void TrackBreathingGame(DZBreathingGame game)
 		{
 			breathingGame = game;
 		}

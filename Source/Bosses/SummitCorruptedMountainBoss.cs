@@ -8,7 +8,7 @@ namespace Celeste.Entities.Bosses
     [HotReloadable]
     public class SummitCorruptedMountainBoss : BossActor
     {
-        private const string CrestTexturePath = "decals/maggy/9_beyond_summit/SummitFlag";
+        private const string CrestTexturePath = "decals/DZ/9_beyond_summit/SummitFlag";
         private const string FallbackCrestTexturePath = "decals/7-summit/SummitFlag";
         private const string CoreTexturePath = "collectables/summitgems/0/gem";
         private const string FallbackCoreTexturePath = "collectables/heartGem/0/00";

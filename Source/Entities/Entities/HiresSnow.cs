@@ -10,7 +10,7 @@ namespace DZ;
 /// High-resolution snow particle effect entity.
 /// Displays animated snow particles with parallax scrolling.
 /// </summary>
-public class MaggyHiresSnow : Entity
+public class DZHiresSnow : Entity
 {
     private Particle[] particles;
     private readonly int particleCount;
@@ -18,7 +18,7 @@ public class MaggyHiresSnow : Entity
     private float timer;
     public float Alpha { get; set; } = 1f;
 
-    public MaggyHiresSnow(int particleCount = 100, float speed = 20f, float opacity = 1f)
+    public DZHiresSnow(int particleCount = 100, float speed = 20f, float opacity = 1f)
         : base(Vector2.Zero)
     {
         this.particleCount = particleCount;

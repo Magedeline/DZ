@@ -1,13 +1,13 @@
-local npc05MaggyOshiroLobby = {}
+local npc05DZOshiroLobby = {}
 
-npc05MaggyOshiroLobby.name = "DZ/NPC05_Maggy_Oshiro_Lobby"
-npc05MaggyOshiroLobby.depth = 0
-npc05MaggyOshiroLobby.texture = "objects/DZ/npc05_maggy_oshiro_lobby"
+npc05DZOshiroLobby.name = "DZ/NPC05_DZ_Oshiro_Lobby"
+npc05DZOshiroLobby.depth = 0
+npc05DZOshiroLobby.texture = "objects/DZ/npc05_DZ_oshiro_lobby"
 
-npc05MaggyOshiroLobby.placements = {
-    name = "npc05_maggy_oshiro_lobby",
+npc05DZOshiroLobby.placements = {
+    name = "npc05_DZ_oshiro_lobby",
     data = {
     }
 }
 
-return npc05MaggyOshiroLobby
+return npc05DZOshiroLobby

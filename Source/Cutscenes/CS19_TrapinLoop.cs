@@ -19,7 +19,7 @@ namespace Celeste.Cutscenes
         // Additional entities for the cutscene
         private CharaDummy charaEntity;
         private CharaBoost charabooster;
-        private Npc19MaggyLoop magolorEntity;
+        private Npc19DZLoop magolorEntity;
         private TimeRateModifier timeRateModifier;
 
         // Constructor implementation
@@ -197,7 +197,7 @@ namespace Celeste.Cutscenes
             // Create Magolor NPC with EntityData
             var entityData = new EntityData();
             entityData.Position = MagolorStartPos;
-            magolorEntity = new Npc19MaggyLoop(entityData, Vector2.Zero);
+            magolorEntity = new Npc19DZLoop(entityData, Vector2.Zero);
             Level.Add(magolorEntity);
             
             // Animate Magolor walking to end position
@@ -275,7 +275,7 @@ namespace Celeste.Cutscenes
             snapshot = null;
             if (WasSkipped)
             {
-                var eventTrigger = Scene.Entities.FindFirst<MaggyEventTrigger>();
+                var eventTrigger = Scene.Entities.FindFirst<DZEventTrigger>();
                 if (eventTrigger != null)
                 {
                     // use pattern matching instead of 'as' + null check

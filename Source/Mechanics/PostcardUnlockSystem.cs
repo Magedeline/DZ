@@ -115,7 +115,7 @@ public static class PostcardUnlockSystem
         }
 
         // Create and display the postcard
-        var postcard = new PostcardMaggy(dialogText, config.SfxIn, config.SfxOut);
+        var postcard = new PostcardDZ(dialogText, config.SfxIn, config.SfxOut);
 
         // Try to load custom postcard texture
         TryApplyPostcardTexture(postcard, config.TexturePath, DefaultPostcardTexture);
@@ -150,7 +150,7 @@ public static class PostcardUnlockSystem
             dialogText = "Ultra variant unlocked! 100% completion reached.";
         }
 
-        var postcard = new PostcardMaggy(dialogText, config.SfxIn, config.SfxOut);
+        var postcard = new PostcardDZ(dialogText, config.SfxIn, config.SfxOut);
 
         TryApplyPostcardTexture(postcard, config.TexturePath, DefaultPostcardTexture);
 
@@ -162,7 +162,7 @@ public static class PostcardUnlockSystem
         yield return postcard.DisplayRoutine();
     }
 
-    private static void TryApplyPostcardTexture(PostcardMaggy postcard, params string[] texturePaths)
+    private static void TryApplyPostcardTexture(PostcardDZ postcard, params string[] texturePaths)
     {
         try
         {
@@ -201,7 +201,7 @@ public class SideUnlockVignette : Scene
 {
     private readonly Session session;
     private readonly int completedMode;
-    private MaggyHiresSnow snow;
+    private DZHiresSnow snow;
     private bool started;
 
     public SideUnlockVignette(Session session, int completedMode)
@@ -213,7 +213,7 @@ public class SideUnlockVignette : Scene
     public override void Begin()
     {
         base.Begin();
-        snow = new MaggyHiresSnow();
+        snow = new DZHiresSnow();
         Add(snow);
     }
 

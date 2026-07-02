@@ -1,8 +1,8 @@
 namespace Celeste.NPCs
 {
     [Tracked(true)]
-    [CustomEntity(ids: "DZ/NPC08_Maggy_Ending")]
-    public class Npc08MaggyEnding : Entity
+    [CustomEntity(ids: "DZ/NPC08_DZ_Ending")]
+    public class Npc08DZEnding : Entity
     {
         private const string donetalking = "ch8_ending";
         
@@ -14,7 +14,7 @@ namespace Celeste.NPCs
         // Public properties for cutscene access
         public Sprite Sprite => sprite;
 
-        public Npc08MaggyEnding(EntityData data, Vector2 offset) : base(data.Position + offset)
+        public Npc08DZEnding(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
             setupSprite();
             setupCollision();

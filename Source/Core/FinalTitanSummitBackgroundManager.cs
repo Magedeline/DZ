@@ -13,7 +13,7 @@ public class FinalTitanSummitBackgroundManager : Entity
 {
     private const string BeginSwapFlag = "finaltitansummit_beginswap_";
     private const string BgSwapFlag = "finaltitansummit_bgswap_";
-    private const string PixelLabAssetRoot = "bgs/maggy/21/finaltitansummit/";
+    private const string PixelLabAssetRoot = "bgs/DZ/21/finaltitansummit/";
     private const float ScreenWidth = 320f;
     private const float ScreenHeight = 180f;
     private const string ThunderSfx = "event:/pusheen/new_content/game/21_desolo_zantas/multiple_lightning_strike";
@@ -240,7 +240,7 @@ public class FinalTitanSummitBackgroundManager : Entity
         );
         giygasTextures = GetAtlasSubtexturesWithFallback(
             PixelLabAssetRoot + "giygas",
-            "bgs/maggy/21/finaltitansummit/giygasbg"
+            "bgs/DZ/21/finaltitansummit/giygasbg"
         );
         if (giygasTextures.Count == 0)
         {

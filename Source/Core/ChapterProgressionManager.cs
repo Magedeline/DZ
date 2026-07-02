@@ -271,10 +271,10 @@ public static class ChapterProgressionManager
                 yield return null;
         }
 
-        // Flipped ending: Maggy appears on the DZ mountain instead of Maddy hiding
+        // Flipped ending: DZ appears on the DZ mountain instead of Maddy hiding
         self.Overworld.Maddy.Running();
         var connector = self.Overworld.Entities.FindFirst<PortalOverworldConnector>();
-        connector?.EnableMaggyMarker();
+        connector?.EnableDZMarker();
 
         var save = global::Celeste.Mod.DZ.DZModule.SaveData;
         if (save != null)
@@ -361,7 +361,7 @@ public static class ChapterProgressionManager
 
     private static void ProcessPendingUnlocks()
     {
-        global::Celeste.Helpers.MaggySaveDataMigration.Run();
+        global::Celeste.Helpers.DZSaveDataMigration.Run();
 
         var save = global::Celeste.Mod.DZ.DZModule.SaveData;
         if (save == null)
@@ -556,7 +556,7 @@ public static class ChapterProgressionManager
         return slash > 0 ? sid[..slash] : sid;
     }
 
-    [Command("maggy_chapter_test", "Test late chapter unlock flow. Usage: maggy_chapter_test [status|queue16|queue19|queue20|queue21|unlock16|unlock19|unlock20|unlock21|apply]")]
+    [Command("DZ_chapter_test", "Test late chapter unlock flow. Usage: DZ_chapter_test [status|queue16|queue19|queue20|queue21|unlock16|unlock19|unlock20|unlock21|apply]")]
     private static void CmdChapterTest(string action = "status")
     {
         var save = global::Celeste.Mod.DZ.DZModule.SaveData;
@@ -641,13 +641,13 @@ public static class ChapterProgressionManager
             $"pending16={save.PendingUnlockChapter16OnRestart}, pending19={save.PendingUnlockChapter19OnRestart}, pending20={save.PendingUnlockChapter20OnRestart}, pending21={save.PendingUnlockChapter21OnRestart}");
     }
 
-    [Command("maggy_unlock_dside", "Unlock D-Side (or DX-Side) for all Maggy chapters. Usage: maggy_unlock_dside [dside|dxside|status]")]
+    [Command("DZ_unlock_dside", "Unlock D-Side (or DX-Side) for all DZ chapters. Usage: DZ_unlock_dside [dside|dxside|status]")]
     private static void CmdUnlockDSide(string mode = "dside")
     {
         var vanillaSave = SaveData.Instance;
-        var maggySave = global::Celeste.Mod.DZ.DZModule.SaveData;
+        var DZSave = global::Celeste.Mod.DZ.DZModule.SaveData;
 
-        if (vanillaSave == null || maggySave == null)
+        if (vanillaSave == null || DZSave == null)
         {
             Engine.Commands?.Log("[DZ] SaveData is null â€” load a save file first.");
             return;
@@ -689,7 +689,7 @@ public static class ChapterProgressionManager
             {
                 // Mark D-Side heart in custom save data so DX-Side also unlocks
                 string dHeartId = $"{ad.SID}_{AreaModeExtender.GetModeName(AreaModeExtender.MODE_DSIDE)}";
-                maggySave.CollectHeartGem(dHeartId);
+                DZSave.CollectHeartGem(dHeartId);
             }
 
             unlocked++;
@@ -701,7 +701,7 @@ public static class ChapterProgressionManager
             ". Reopen the chapter select to see changes.");
     }
 
-    [Command("maggy_unlock_all", "Unlock all late chapters (18-21) at once.")]
+    [Command("DZ_unlock_all", "Unlock all late chapters (18-21) at once.")]
     private static void CmdUnlockAll()
     {
         var save = global::Celeste.Mod.DZ.DZModule.SaveData;
@@ -739,7 +739,7 @@ public static class ChapterProgressionManager
         Engine.Commands?.Log("Reopen chapter select to see changes.");
     }
 
-    [Command("maggy_reset_chapters", "Reset all chapter unlocks (18-21) for testing. Usage: maggy_reset_chapters [confirm]")]
+    [Command("DZ_reset_chapters", "Reset all chapter unlocks (18-21) for testing. Usage: DZ_reset_chapters [confirm]")]
     private static void CmdResetChapters(string confirm = "")
     {
         var save = global::Celeste.Mod.DZ.DZModule.SaveData;
@@ -753,7 +753,7 @@ public static class ChapterProgressionManager
         if (confirm.ToLowerInvariant() != "confirm")
         {
             Engine.Commands?.Log("[DZ] WARNING: This will reset chapter 18-21 unlocks!");
-            Engine.Commands?.Log("Run 'maggy_reset_chapters confirm' to proceed.");
+            Engine.Commands?.Log("Run 'DZ_reset_chapters confirm' to proceed.");
             return;
         }
 
@@ -789,7 +789,7 @@ public static class ChapterProgressionManager
         Engine.Commands?.Log("Reopen chapter select to see changes.");
     }
 
-    [Command("maggy_mountain_warp", "Warp to the Desolo Zantas mountain (A-Side).")]
+    [Command("DZ_mountain_warp", "Warp to the Desolo Zantas mountain (A-Side).")]
     private static void CmdMountainWarp()
     {
         var save = global::Celeste.Mod.DZ.DZModule.SaveData;
@@ -800,7 +800,7 @@ public static class ChapterProgressionManager
             return;
         }
 
-        // Find first Maggy chapter to warp to
+        // Find first DZ chapter to warp to
         AreaData targetArea = null;
         foreach (var area in AreaData.Areas)
         {
@@ -834,7 +834,7 @@ public static class ChapterProgressionManager
         }
     }
 
-    [Command("maggy_unlock_dz", "Unlock the Desolo Zantas campaign/mountain access.")]
+    [Command("DZ_unlock_dz", "Unlock the Desolo Zantas campaign/mountain access.")]
     private static void CmdUnlockDZ()
     {
         var save = global::Celeste.Mod.DZ.DZModule.SaveData;
@@ -850,7 +850,7 @@ public static class ChapterProgressionManager
         save.PendingUnlockChapter10OnRestart = false;
         UnlockChapter(Ch10Sid);
 
-        // Also unlock early Maggy chapters by finding them
+        // Also unlock early DZ chapters by finding them
         int unlocked = 0;
         foreach (var area in AreaData.Areas)
         {

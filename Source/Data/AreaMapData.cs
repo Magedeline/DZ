@@ -21,7 +21,7 @@ namespace DZ;
 /// </summary>
 public static class AreaMapData
 {
-    private const string GuiAreaIconRoot = "areas/Maggy";
+    private const string GuiAreaIconRoot = "areas/DZ";
     private const string LockedGuiAreaIcon = GuiAreaIconRoot + "/lock";
 
     private static readonly IReadOnlyDictionary<int, string> GuiIconNameByChapter = new Dictionary<int, string>
@@ -83,7 +83,7 @@ public static class AreaMapData
         /// <summary>
         /// Optional override for the mountain model/texture directory used by
         /// MountainOverworldManager when registering this chapter's MountainResources.
-        /// Null means use the shared default (Mountain/Maggy/Desolo_Zantas).
+        /// Null means use the shared default (Mountain/DZ/Desolo_Zantas).
         /// </summary>
         public string MountainModelDir { get; set; }
 
@@ -94,7 +94,7 @@ public static class AreaMapData
         public Func<Session, Scene> TrueFinaleVignette { get; set; }
 
         /// <summary>Optional postcard vignette factory for chapter completion</summary>
-        public Func<Session, Scene> PostcardMaggy { get; set; }
+        public Func<Session, Scene> PostcardDZ { get; set; }
     }
 
     /// <summary>Camera positions for the 3D mountain overworld per chapter.</summary>
@@ -223,7 +223,7 @@ public static class AreaMapData
     public static string ResolveChapterIconPath(ChapterDef chapter)
     {
         if (chapter == null)
-            return "areas/Maggy/lock";
+            return "areas/DZ/lock";
 
         if (ChapterProgressionManager.IsChapterLockedForUI(chapter.SID) && HasGuiTexture(LockedGuiAreaIcon))
             return LockedGuiAreaIcon;
@@ -235,7 +235,7 @@ public static class AreaMapData
                 return guiIcon;
         }
 
-        return !string.IsNullOrWhiteSpace(chapter.Icon) ? chapter.Icon : "areas/Maggy/lock";
+        return !string.IsNullOrWhiteSpace(chapter.Icon) ? chapter.Icon : "areas/DZ/lock";
     }
 
 

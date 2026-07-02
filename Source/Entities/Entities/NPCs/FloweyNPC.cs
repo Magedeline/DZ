@@ -84,18 +84,18 @@ namespace Celeste.Entities
             // Setup sprite from Sprites.xml bank
             try
             {
-                Sprite = GFX.SpriteBank.Create("maggy_flowey");
+                Sprite = GFX.SpriteBank.Create("DZ_flowey");
                 Add(Sprite);
                 if (Sprite.Has("idle"))
                     Sprite.Play("idle");
                 else if (Sprite.CurrentAnimationID != null)
                 { /* Keep current animation */ }
                 else
-                    Logger.Log(LogLevel.Warn, "FloweyNPC", "Sprite bank 'maggy_flowey' loaded but 'idle' animation not found");
+                    Logger.Log(LogLevel.Warn, "FloweyNPC", "Sprite bank 'DZ_flowey' loaded but 'idle' animation not found");
             }
             catch (Exception ex)
             {
-                Logger.Log(LogLevel.Warn, "FloweyNPC", $"Failed to load sprite bank 'maggy_flowey': {ex.Message}");
+                Logger.Log(LogLevel.Warn, "FloweyNPC", $"Failed to load sprite bank 'DZ_flowey': {ex.Message}");
                 Sprite = null;
             }
 

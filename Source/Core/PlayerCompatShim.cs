@@ -30,7 +30,7 @@ public static class PlayerCompatShim
     /// <summary>
     /// Always returns true when Kirby mode is active on the vanilla player.
     /// </summary>
-    public static bool IsMaggyPlayerActive(Level level)
+    public static bool IsDZPlayerActive(Level level)
     {
         if (level == null)
             return false;

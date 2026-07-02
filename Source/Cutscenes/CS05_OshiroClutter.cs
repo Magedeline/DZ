@@ -100,7 +100,7 @@ public class CS05_OshiroClutter : CutsceneEntity
         player.StateMachine.State = Player.StNormal;
         if (oshiro.Sprite.CurrentAnimationID == "side")
         {
-            (oshiro.Sprite as MaggyOshiroSprite).Pop("idle", flip: true);
+            (oshiro.Sprite as DZOshiroSprite).Pop("idle", flip: true);
         }
         if (index < 3)
         {

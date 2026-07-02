@@ -11,9 +11,9 @@ namespace Celeste.Cutscenes
         private CharaDummy chara;
         private Npc08MadelineEndingBandage madelineBandage;
         private Npc08TheoEnding theo;
-        private Npc08MaggyEnding magolor;
+        private Npc08DZEnding magolor;
 
-        public Cs08End(global::Celeste.Player player, Npc08MadelineEndingBandage madelineBandage, Npc08TheoEnding theo, Npc08MaggyEnding magolor)
+        public Cs08End(global::Celeste.Player player, Npc08MadelineEndingBandage madelineBandage, Npc08TheoEnding theo, Npc08DZEnding magolor)
             : base(false, true)
         {
             this.player = player;
@@ -61,7 +61,7 @@ namespace Celeste.Cutscenes
                 this.WaitAbit,
                 this.CharaTurnsRight,
                 this.TurnToLeft,
-                this.MaggyStopTired
+                this.DZStopTired
             });
             Audio.Play("event:/pusheen/char/kirby/backpack_drop", this.player.Position);
             this.player.DummyAutoAnimate = false;
@@ -95,7 +95,7 @@ namespace Celeste.Cutscenes
             if (this.magolor != null) this.magolor.Sprite.Play("idle");
         }
 
-        private IEnumerator MaggyStopTired()
+        private IEnumerator DZStopTired()
         {
             if (this.magolor != null) this.magolor.Sprite.Play("idle");
             yield return null;

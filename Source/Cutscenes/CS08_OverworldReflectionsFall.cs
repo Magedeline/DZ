@@ -8,7 +8,7 @@ namespace Celeste.Cutscenes
     /// Custom Overworld Reflections Fall scene that returns to 08truthAlt1.bin room lvl_a-00
     /// Based on vanilla OverworldReflectionsFall but with custom return destination
     /// </summary>
-    public class MaggyOverworldReflectionFall : Scene
+    public class DZOverworldReflectionFall : Scene
     {
         private Level returnTo;
         private Action returnCallback;
@@ -17,7 +17,7 @@ namespace Celeste.Cutscenes
         private MountainCamera startCamera = new MountainCamera(new Vector3(-8f, 12f, -0.4f), new Vector3(-2f, 9f, -0.5f));
         private MountainCamera fallCamera = new MountainCamera(new Vector3(-10f, 6f, -0.4f), new Vector3(-4.25f, 1.5f, -1.25f));
 
-        public MaggyOverworldReflectionFall(Level returnTo, Action returnCallback)
+        public DZOverworldReflectionFall(Level returnTo, Action returnCallback)
         {
             this.returnTo = returnTo;
             this.returnCallback = returnCallback;
@@ -78,15 +78,15 @@ namespace Celeste.Cutscenes
         }
 
         /// <summary>
-        /// Creates a MaggyOverworldReflectionFall scene that transitions to 08truth_A.bin room a-00
+        /// Creates a DZOverworldReflectionFall scene that transitions to 08truth_A.bin room a-00
         /// </summary>
-        public static MaggyOverworldReflectionFall CreateFor08TruthAlt1(Level level)
+        public static DZOverworldReflectionFall CreateFor08TruthAlt1(Level level)
         {
             // Store session info before creating the scene
             Session session = level.Session;
             
             // Don't pass the level - we'll create a fresh one to avoid mod tracker issues
-            return new MaggyOverworldReflectionFall(null, delegate
+            return new DZOverworldReflectionFall(null, delegate
             {
                 Audio.SetAmbience(null, true);
                 session.Level = "a-04";
@@ -151,7 +151,7 @@ namespace Celeste.Cutscenes
             Level level = Engine.Scene as Level;
             if (level == null)
             {
-                Logger.Log(LogLevel.Error, "DZ/MaggyOverworldReflectionFall", 
+                Logger.Log(LogLevel.Error, "DZ/DZOverworldReflectionFall", 
                     "PostLoadSetup: Engine.Scene is not a Level after LevelLoader completed!");
                 yield break;
             }

@@ -1,8 +1,8 @@
 namespace Celeste.NPCs
 {
     [Tracked(true)]
-    [CustomEntity(ids: "DZ/NPC03_Maggy")]
-    public class Npc03Maggy : Entity
+    [CustomEntity(ids: "DZ/NPC03_DZ")]
+    public class Npc03DZ : Entity
     {
         private const string donetalking = "magolorDoneTalking";
         private const string hadntmet = "WassupMagolor";
@@ -18,7 +18,7 @@ namespace Celeste.NPCs
             set => (Scene as Level)?.Session.SetCounter("magolor", value);
         }
 
-        public Npc03Maggy(EntityData data, Vector2 offset) : base(data.Position + offset)
+        public Npc03DZ(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
             setupSprite();
             setupCollision();
@@ -87,27 +87,27 @@ namespace Celeste.NPCs
             else if (currentConversation == 1)
             {
                 yield return playerapproach(player, 48f);
-                yield return Textbox.Say("DZ_CH3_MAGGY_A");
+                yield return Textbox.Say("DZ_CH3_DZ_A");
             }
             else if (currentConversation == 2)
             {
                 yield return playerapproach(player, 48f);
-                yield return Textbox.Say("DZ_CH3_MAGGY_B");
+                yield return Textbox.Say("DZ_CH3_DZ_B");
             }
             else if (currentConversation == 3)
             {
                 yield return playerapproach(player, 48f);
-                yield return Textbox.Say("DZ_CH3_MAGGY_C");
+                yield return Textbox.Say("DZ_CH3_DZ_C");
             }
             else if (currentConversation == 4)
             {
                 yield return playerapproach(player, 48f);
-                yield return Textbox.Say("DZ_CH3_MAGGY_D");
+                yield return Textbox.Say("DZ_CH3_DZ_D");
             }
             else
             {
                 yield return playerapproach(player, 48f);
-                yield return Textbox.Say("DZ_CH3_MAGGY_DEFAULT");
+                yield return Textbox.Say("DZ_CH3_DZ_DEFAULT");
             }
 
             currentConversation++;

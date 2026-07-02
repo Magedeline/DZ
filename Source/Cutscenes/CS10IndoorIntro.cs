@@ -122,7 +122,7 @@ public class CS10IndoorIntro : CutsceneEntity
         {
             badelineNpc = new Npc10Badeline(new EntityData(), player.Position + new Vector2(32f, 0f));
             badelineNpc.IdleAnim = "idle";
-            badelineNpc.Add(badelineNpc.Sprite = GFX.SpriteBank.Create("maggy_badeline"));
+            badelineNpc.Add(badelineNpc.Sprite = GFX.SpriteBank.Create("DZ_badeline"));
             Scene.Add(badelineNpc);
         }
 
@@ -133,7 +133,7 @@ public class CS10IndoorIntro : CutsceneEntity
         {
             charaNpc = new Npc10Chara(new EntityData(), player.Position + new Vector2(-32f, -20f));
             charaNpc.IdleAnim = "idle";
-            charaNpc.Add(charaNpc.Sprite = GFX.SpriteBank.Create("maggy_chara"));
+            charaNpc.Add(charaNpc.Sprite = GFX.SpriteBank.Create("DZ_chara"));
             charaNpc.Sprite.Color = Color.White * 0.7f; // Semi-transparent for ghost effect
             Scene.Add(charaNpc);
         }

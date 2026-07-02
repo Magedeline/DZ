@@ -8,7 +8,7 @@ using CelesteJumpThru = Celeste.JumpThru;
 namespace Celeste.Entities
 {
 	// Token: 0x02000275 RID: 629
-	public class GondolaMaggy : Solid
+	public class GondolaDZ : Solid
 	{
 		// Token: 0x17000156 RID: 342
 		// (get) Token: 0x06001383 RID: 4995 RVA: 0x0006A191 File Offset: 0x00068391
@@ -26,7 +26,7 @@ namespace Celeste.Entities
 		public Vector2 Halfway { get; private set; }
 
 		// Token: 0x06001389 RID: 5001 RVA: 0x0006A1C4 File Offset: 0x000683C4
-		public GondolaMaggy(EntityData data, Vector2 offset) : base(data.Position + offset, 64f, 8f, true)
+		public GondolaDZ(EntityData data, Vector2 offset) : base(data.Position + offset, 64f, 8f, true)
 		{
 			this.EnableAssistModeChecks = false;
 			base.Add(this.front = GFX.SpriteBank.Create("gondola"));
@@ -76,7 +76,7 @@ namespace Celeste.Entities
 			image2.Scale.X = -1f;
 			this.RightCliffside.Add(image2);
 			this.RightCliffside.Depth = 8998;
-			scene.Add(new GondolaMaggy.Rope
+			scene.Add(new GondolaDZ.Rope
 			{
 				Gondola = this
 			});
@@ -230,7 +230,7 @@ namespace Celeste.Entities
 			}
 
 			// Token: 0x040027BB RID: 10171
-			public GondolaMaggy Gondola;
+			public GondolaDZ Gondola;
 		}
 	}
 }

@@ -356,22 +356,22 @@ namespace Celeste.Entities {
 		// Determine unlock text based on side being unlocked
 		private string[] DetermineUnlockText(string sideToUnlock) {
 			if (string.IsNullOrEmpty(sideToUnlock)) {
-				return new string[] { "Maggy_BSide_unlocked" };
+				return new string[] { "DZ_BSide_unlocked" };
 			}
 
 			// Check if it's a specific side unlock
 			if (sideToUnlock.ToUpper().Contains("BSIDE") || sideToUnlock.ToUpper().Contains("B_SIDE")) {
-				return new string[] { "Maggy_BSide_unlocked" };
+				return new string[] { "DZ_BSide_unlocked" };
 			} else if (sideToUnlock.ToUpper().Contains("CSIDE") || sideToUnlock.ToUpper().Contains("C_SIDE")) {
-				return new string[] { "Maggy_CSide_unlocked" };
+				return new string[] { "DZ_CSide_unlocked" };
 			} else if (sideToUnlock.ToUpper().Contains("DSIDE") || sideToUnlock.ToUpper().Contains("D_SIDE")) {
-				return new string[] { "Maggy_DSide_unlocked" };
+				return new string[] { "DZ_DSide_unlocked" };
 			} else if (sideToUnlock.ToUpper().Contains("REMIX")) {
-				return new string[] { "Maggy_RemixExtra_unlocked" };
+				return new string[] { "DZ_RemixExtra_unlocked" };
 			}
 
 			// Default to B-Side
-			return new string[] { "Maggy_BSide_unlocked" };
+			return new string[] { "DZ_BSide_unlocked" };
 		}
 	}
 }

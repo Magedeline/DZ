@@ -1,4 +1,4 @@
-using MaggyBreathingGame = Celeste.Entities.TestBreathingGame;
+using DZBreathingGame = Celeste.Entities.TestBreathingGame;
 using System;
 using System.Collections;
 using Microsoft.Xna.Framework;
@@ -127,13 +127,13 @@ namespace DZ
 		// Token: 0x04000D62 RID: 3426
 		private WindSnowFG windSnowFG;
 
-		private MaggyBreathingGame breathingGame;
+		private DZBreathingGame breathingGame;
 
 		/// <summary>
 		/// Links this darkness entity to a TestBreathingGame so that anxiety
 		/// is driven by the game's panic level.
 		/// </summary>
-		public void TrackBreathingGame(MaggyBreathingGame game)
+		public void TrackBreathingGame(DZBreathingGame game)
 		{
 			breathingGame = game;
 		}

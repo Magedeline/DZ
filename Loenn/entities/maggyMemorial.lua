@@ -1,13 +1,13 @@
-local maggyMemorial = {}
+local DZMemorial = {}
 
-maggyMemorial.name = "DZ/MaggyMemorial"
-maggyMemorial.depth = 0
-maggyMemorial.texture = "objects/DZ/maggy_memorial"
+DZMemorial.name = "DZ/DZMemorial"
+DZMemorial.depth = 0
+DZMemorial.texture = "objects/DZ/DZ_memorial"
 
-maggyMemorial.placements = {
-    name = "maggy_memorial",
+DZMemorial.placements = {
+    name = "DZ_memorial",
     data = {
     }
 }
 
-return maggyMemorial
+return DZMemorial

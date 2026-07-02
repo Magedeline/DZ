@@ -61,7 +61,7 @@ namespace Celeste.Entities
             Collider = new Hitbox(16f, 16f, -8f, -8f);
 
             // Add visual components
-            Add(sprite = new Sprite(GFX.Game, "collectibles/maggy/tape/"));
+            Add(sprite = new Sprite(GFX.Game, "collectibles/DZ/tape/"));
             sprite.AddLoop("idle", "idle", 0.1f);
             sprite.AddLoop("shimmer", "shimmer", 0.08f);
             sprite.Play("idle");

@@ -199,11 +199,11 @@
   <Tileset id="X" copy="z" path="void_stone" sound="14" />
   <Tileset id="o" copy="z" path="fglorstarcutter" sound="14" />
   <Tileset id="p" copy="z" path="Penumbra" sound="24" />
-  <Tileset id="C" copy="z" path="maggy/ch10/stone_brick_crumbled" />
-  <Tileset id="D" copy="z" path="maggy/ch11/iceSnow" />
-  <Tileset id="F" copy="z" path="maggy/ch12/thirdLakeTemple" />
-  <Tileset id="H" copy="z" path="maggy/ch13/magmaRock" />
-  <Tileset id="J" copy="z" path="maggy/ch14/neon_temple" />
-  <Tileset id="K" copy="z" path="maggy/ch15/advCloudPurple" />
-  <Tileset id="!" copy="z" path="maggy/ch21/ad" displayName="ad" />
+  <Tileset id="C" copy="z" path="DZ/ch10/stone_brick_crumbled" />
+  <Tileset id="D" copy="z" path="DZ/ch11/iceSnow" />
+  <Tileset id="F" copy="z" path="DZ/ch12/thirdLakeTemple" />
+  <Tileset id="H" copy="z" path="DZ/ch13/magmaRock" />
+  <Tileset id="J" copy="z" path="DZ/ch14/neon_temple" />
+  <Tileset id="K" copy="z" path="DZ/ch15/advCloudPurple" />
+  <Tileset id="!" copy="z" path="DZ/ch21/ad" displayName="ad" />
 </Data>

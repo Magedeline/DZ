@@ -55,7 +55,7 @@ namespace Celeste.Entities
 
         private void SetupSprite()
         {
-            Add(sprite = GFX.SpriteBank.Create("maggy_heartgem0"));
+            Add(sprite = GFX.SpriteBank.Create("DZ_heartgem0"));
             sprite.Play("spin");
             sprite.OnFrameChange = OnSpinFrameChange;
 

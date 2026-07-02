@@ -1,13 +1,13 @@
-local maggyOshiroDoor = {}
+local DZOshiroDoor = {}
 
-maggyOshiroDoor.name = "DZ/MaggyOshiroDoor"
-maggyOshiroDoor.depth = 0
-maggyOshiroDoor.texture = "objects/DZ/maggy_oshiro_door"
+DZOshiroDoor.name = "DZ/DZOshiroDoor"
+DZOshiroDoor.depth = 0
+DZOshiroDoor.texture = "objects/DZ/DZ_oshiro_door"
 
-maggyOshiroDoor.placements = {
-    name = "maggy_oshiro_door",
+DZOshiroDoor.placements = {
+    name = "DZ_oshiro_door",
     data = {
     }
 }
 
-return maggyOshiroDoor
+return DZOshiroDoor

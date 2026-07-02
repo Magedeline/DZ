@@ -12,7 +12,7 @@ namespace Celeste.Effects
         private const float ScreenWidth = 320f;
         private const float ScreenHeight = 180f;
         private const float BurstDuration = 0.75f;
-        private const string TextureRoot = "bgs/maggy/20/els_parallax/";
+        private const string TextureRoot = "bgs/DZ/20/els_parallax/";
 
         private static readonly Color PinkBaseColor = Calc.HexToColor("09030b");
         private static readonly Color PinkOverlayColor = Calc.HexToColor("4d1638");

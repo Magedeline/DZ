@@ -18,7 +18,7 @@ namespace Celeste.Cutscenes
         private const float INITIAL_DELAY = 0.5f;
 
         private readonly HudRenderer hud;
-        private readonly MaggyHiresSnow snow;
+        private readonly DZHiresSnow snow;
 
         private float bgFade;
         private float textFade;
@@ -55,7 +55,7 @@ namespace Celeste.Cutscenes
         public IntroWarning()
         {
             Add(hud = new HudRenderer());
-            snow = new MaggyHiresSnow();
+            snow = new DZHiresSnow();
             Add(snow);
             RendererList.UpdateLists();
             sequence = new Coroutine(WarningSequence());

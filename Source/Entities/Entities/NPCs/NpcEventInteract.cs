@@ -41,7 +41,7 @@ namespace Celeste.Entities
             SpriteId = data.Attr("spriteId", "theo");
             NpcName = data.Attr("npcName", "NPC");
             EnableSpriteSwap = data.Bool("enableSpriteSwap", false);
-            AlternateSprite = data.Attr("alternateSprite", "maggy_chara");
+            AlternateSprite = data.Attr("alternateSprite", "DZ_chara");
             CsFlag = data.Attr("csFlag", "");
             DialogKey = data.Attr("dialogKey", "");
             TriggerFlag = data.Attr("triggerFlag", "");
@@ -154,9 +154,9 @@ namespace Celeste.Entities
                 "NPC_Axis" => Npc_AxisInteraction,
                 "NPC_TitanCouncilMember" => Npc_TitanCouncilMemberInteraction,
                 "NPC00_Theo" => Npc00_TheoInteraction,
-                "NPC01_Maggy" => Npc01_MaggyInteraction,
-                "NPC02_Maggy" => Npc02_MaggyInteraction,
-                "NPC03_Maggy" => Npc03_MaggyInteraction,
+                "NPC01_DZ" => Npc01_DZInteraction,
+                "NPC02_DZ" => Npc02_DZInteraction,
+                "NPC03_DZ" => Npc03_DZInteraction,
                 "NPC03_Theo" => Npc03_TheoInteraction,
                 "NPC05_Magolor_Vents" => Npc05_Magolor_VentsInteraction,
                 "NPC05_MagolorEscape" => Npc05_Magolor_EscapeInteraction,
@@ -174,7 +174,7 @@ namespace Celeste.Entities
                 "NPC08_Chara_Crying" => Npc08_Chara_CryingInteraction,
                 "NPC08_Maddy_and_Theo_Ending" => Npc08_Maddy_and_Theo_EndingInteraction,
                 "NPC08_Madeline_Plateau" => Npc08_Madeline_PlateauInteraction,
-                "NPC08_Maggy_Ending" => Npc08_Maggy_EndingInteraction,
+                "NPC08_DZ_Ending" => Npc08_DZ_EndingInteraction,
                 "NPC17_Kirby" => Npc17_KirbyInteraction,
                 "NPC17_Oshiro" => Npc17_OshiroInteraction,
                 "NPC17_Ralsei" => Npc17_RalseiInteraction,
@@ -183,7 +183,7 @@ namespace Celeste.Entities
                 "NPC18_Toriel_Inside" => Npc18_Toriel_InsideInteraction,
                 "NPC18_Toriel_Outside" => Npc18_Toriel_OutsideInteraction,
                 "NPC19_Gravestone" => Npc19_GravestoneInteraction,
-                "NPC19_Maggy_Loop" => Npc19_Maggy_LoopInteraction,
+                "NPC19_DZ_Loop" => Npc19_DZ_LoopInteraction,
                 "NPC20_Asriel" => Npc20_AsrielInteraction,
                 "NPC20_Granny" => Npc20_GrannyInteraction,
                 "NPC20_Madeline" => Npc20_MadelineInteraction,
@@ -351,13 +351,13 @@ namespace Celeste.Entities
         private void Npc00_TheoInteraction(Level level, global::Celeste.Player player, NpcEventInteract npc) => GenericDialogInteraction(level, player, DialogKey);
 
         // Chapter 1 NPCs
-        private void Npc01_MaggyInteraction(Level level, global::Celeste.Player player, NpcEventInteract npc) => GenericDialogInteraction(level, player, DialogKey);
+        private void Npc01_DZInteraction(Level level, global::Celeste.Player player, NpcEventInteract npc) => GenericDialogInteraction(level, player, DialogKey);
 
         // Chapter 2 NPCs
-        private void Npc02_MaggyInteraction(Level level, global::Celeste.Player player, NpcEventInteract npc) => GenericDialogInteraction(level, player, DialogKey);
+        private void Npc02_DZInteraction(Level level, global::Celeste.Player player, NpcEventInteract npc) => GenericDialogInteraction(level, player, DialogKey);
 
         // Chapter 3 NPCs
-        private void Npc03_MaggyInteraction(Level level, global::Celeste.Player player, NpcEventInteract npc) => GenericDialogInteraction(level, player, DialogKey);
+        private void Npc03_DZInteraction(Level level, global::Celeste.Player player, NpcEventInteract npc) => GenericDialogInteraction(level, player, DialogKey);
         private void Npc03_TheoInteraction(Level level, global::Celeste.Player player, NpcEventInteract npc) => GenericDialogInteraction(level, player, DialogKey);
 
         // Chapter 5 NPCs (Oshiro and Magolor)
@@ -383,7 +383,7 @@ namespace Celeste.Entities
         private void Npc08_Chara_CryingInteraction(Level level, global::Celeste.Player player, NpcEventInteract npc) => GenericDialogInteraction(level, player, DialogKey);
         private void Npc08_Maddy_and_Theo_EndingInteraction(Level level, global::Celeste.Player player, NpcEventInteract npc) => GenericDialogInteraction(level, player, DialogKey);
         private void Npc08_Madeline_PlateauInteraction(Level level, global::Celeste.Player player, NpcEventInteract npc) => GenericDialogInteraction(level, player, DialogKey);
-        private void Npc08_Maggy_EndingInteraction(Level level, global::Celeste.Player player, NpcEventInteract npc) => GenericDialogInteraction(level, player, DialogKey);
+        private void Npc08_DZ_EndingInteraction(Level level, global::Celeste.Player player, NpcEventInteract npc) => GenericDialogInteraction(level, player, DialogKey);
 
         // Chapter 17 NPCs
         private void Npc17_KirbyInteraction(Level level, global::Celeste.Player player, NpcEventInteract npc) => GenericDialogInteraction(level, player, DialogKey);
@@ -398,7 +398,7 @@ namespace Celeste.Entities
 
         // Chapter 19 NPCs
         private void Npc19_GravestoneInteraction(Level level, global::Celeste.Player player, NpcEventInteract npc) => GenericDialogInteraction(level, player, DialogKey);
-        private void Npc19_Maggy_LoopInteraction(Level level, global::Celeste.Player player, NpcEventInteract npc) => GenericDialogInteraction(level, player, DialogKey);
+        private void Npc19_DZ_LoopInteraction(Level level, global::Celeste.Player player, NpcEventInteract npc) => GenericDialogInteraction(level, player, DialogKey);
 
         // Chapter 20 NPCs
         private void Npc20_AsrielInteraction(Level level, global::Celeste.Player player, NpcEventInteract npc) => GenericDialogInteraction(level, player, DialogKey);

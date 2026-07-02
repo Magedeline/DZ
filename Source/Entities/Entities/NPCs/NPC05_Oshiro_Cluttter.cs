@@ -1,5 +1,5 @@
 using Celeste.Cutscenes;
-using ModOshiroSprite = DZ.MaggyOshiroSprite;
+using ModOshiroSprite = DZ.DZOshiroSprite;
 
 namespace Celeste.NPCs
 {

@@ -4,10 +4,10 @@ using global::Celeste.Mod.Meta;
 namespace Celeste.Entities
 {
     /// <summary>
-    /// Maggy3D - Custom mountain marker character similar to Maddy3D
+    /// DZ3D - Custom mountain marker character similar to Maddy3D
     /// Used to display a custom character marker on the mountain overworld map
     /// </summary>
-    public class Maggy3D : Entity
+    public class DZ3D : Entity
     {
         public MountainRenderer Renderer;
 
@@ -38,9 +38,9 @@ namespace Celeste.Entities
         /// <summary>
         /// Custom marker texture path - can be set to change the character appearance
         /// </summary>
-        public string CustomMarkerPath { get; set; } = "marker/maggy";
+        public string CustomMarkerPath { get; set; } = "marker/DZ";
 
-        public Maggy3D(MountainRenderer renderer)
+        public DZ3D(MountainRenderer renderer)
         {
             Renderer = renderer;
             Add(Image = new Billboard(null, Vector3.Zero));
@@ -128,7 +128,7 @@ namespace Celeste.Entities
             {
                 frames = MTN.Mountain.GetAtlasSubtextures(markerTexture);
             }
-            // Try custom Maggy markers
+            // Try custom DZ markers
             else if (MTN.Mountain.Has($"{CustomMarkerPath}/runNoBackpack") && 
                      AreaData.Get(Renderer.Area).Mode[0].Inventory.Dashes > 1)
             {
@@ -174,7 +174,7 @@ namespace Celeste.Entities
 
         private void SetDefaultRunAnim()
         {
-            // Try custom Maggy markers first
+            // Try custom DZ markers first
             if (Renderer.Area < 7)
             {
                 if (MTN.Mountain.Has($"{CustomMarkerPath}/runBackpack"))

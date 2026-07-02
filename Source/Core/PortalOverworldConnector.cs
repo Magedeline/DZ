@@ -15,7 +15,7 @@ using MonoMod.Utils;
 ///   always see the chapter select icons and the rest of the UI.
 /// - Kept intentionally simple: no cameras, no coroutines, no state machines.
 ///   It just draws a pulsing portal ring at the Space chapter's icon position
-///   and, when enabled, a small Maggy marker indicating Maggy appears on the
+///   and, when enabled, a small DZ marker indicating DZ appears on the
 ///   DZ mountain after the Chapter 10 (Ruins) unlock animation.
 /// </summary>
 public class PortalOverworldConnector : Entity
@@ -26,12 +26,12 @@ public class PortalOverworldConnector : Entity
     /// <summary>Radius of the portal ring drawn in overworld space.</summary>
     private const float PortalRadius = 22f;
 
-    /// <summary>Offset of the Maggy marker relative to the portal center.</summary>
-    private static readonly Vector2 MaggyOffset = new(0f, -46f);
+    /// <summary>Offset of the DZ marker relative to the portal center.</summary>
+    private static readonly Vector2 DZOffset = new(0f, -46f);
 
     private float _pulse;
-    private float _maggyAlpha;
-    private bool _maggyEnabled;
+    private float _DZAlpha;
+    private bool _DZEnabled;
 
     public PortalOverworldConnector()
     {
@@ -46,8 +46,8 @@ public class PortalOverworldConnector : Entity
 
         _pulse += Engine.DeltaTime * 2f;
 
-        if (_maggyEnabled)
-            _maggyAlpha = Math.Min(_maggyAlpha + Engine.DeltaTime * 3f, 1f);
+        if (_DZEnabled)
+            _DZAlpha = Math.Min(_DZAlpha + Engine.DeltaTime * 3f, 1f);
     }
 
     public override void Render()
@@ -63,24 +63,24 @@ public class PortalOverworldConnector : Entity
         Draw.Circle(center, PortalRadius, Color.Cyan * 0.55f, 32);
         Draw.Circle(center, PortalRadius * pulseScale, Color.White * 0.35f, 32);
 
-        if (_maggyAlpha > 0f)
+        if (_DZAlpha > 0f)
         {
-            // Maggy marker: a small gold dot above the portal indicating
-            // Maggy appears on the DZ mountain.
-            Draw.Circle(center + MaggyOffset, 6f, Color.Gold * _maggyAlpha, 16);
+            // DZ marker: a small gold dot above the portal indicating
+            // DZ appears on the DZ mountain.
+            Draw.Circle(center + DZOffset, 6f, Color.Gold * _DZAlpha, 16);
         }
     }
 
     /// <summary>
-    /// Shows the Maggy marker on the DZ mountain. Called by ChapterProgressionManager
+    /// Shows the DZ marker on the DZ mountain. Called by ChapterProgressionManager
     /// after the Chapter 10 (Ruins) unlock animation completes.
     /// This does NOT hide the overworld UI - the Oui remains fully visible.
     /// </summary>
-    public void EnableMaggyMarker()
+    public void EnableDZMarker()
     {
-        _maggyEnabled = true;
+        _DZEnabled = true;
         Logger.Log(LogLevel.Info, "DZ",
-            "[PortalOverworldConnector] Maggy marker enabled on the DZ mountain.");
+            "[PortalOverworldConnector] DZ marker enabled on the DZ mountain.");
     }
 
     /// <summary>

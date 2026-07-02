@@ -172,7 +172,7 @@ namespace Celeste.NPCs
             player.Sprite.Play("lookUp");
             yield return CutsceneEntity.CameraTo(new Vector2(Level.Bounds.Right - 320, Level.Bounds.Top), 0.5f);
             yield return Level.ZoomTo(new Vector2(240f, 70f), 2f, 0.5f);
-            yield return Textbox.Say("DZ_CH5_MAGGY_VENTS");
+            yield return Textbox.Say("DZ_CH5_DZ_VENTS");
             yield return Disappear();
             yield return 0.25f;
             yield return Level.ZoomBack(0.5f);

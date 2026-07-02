@@ -51,15 +51,15 @@ to DZ.dll when this file is copied beside the build output.
         Launch the Chapter 17 epilogue area directly from module-controlled state.
       </summary>
     </member>
-    <member name="M:Celeste.Mod.DZ.DZModule.IsMaggyPlayerAvailable">
+    <member name="M:Celeste.Mod.DZ.DZModule.IsDZPlayerAvailable">
       <summary>
-        Probe whether the optional Maggy player type is available for reflection-based integrations.
+        Probe whether the optional DZ player type is available for reflection-based integrations.
       </summary>
       <returns><see langword="true" /> when the player type can be resolved.</returns>
     </member>
-    <member name="M:Celeste.Mod.DZ.DZModule.GetMaggyPlayerType">
+    <member name="M:Celeste.Mod.DZ.DZModule.GetDZPlayerType">
       <summary>
-        Resolve the runtime type for the optional Maggy player implementation.
+        Resolve the runtime type for the optional DZ player implementation.
       </summary>
       <returns>The player type when available; otherwise, <see langword="null" />.</returns>
     </member>
@@ -184,7 +184,7 @@ to DZ.dll when this file is copied beside the build output.
       </summary>
       <param name="modeIndex">Zero-based side index.</param>
       <param name="mapName">Map basename without the <c>.bin</c> extension.</param>
-      <returns>A side-specific SID rooted at the internal <c>Maggy</c> prefix.</returns>
+      <returns>A side-specific SID rooted at the internal <c>DZ</c> prefix.</returns>
     </member>
     <member name="M:DZ.AreaModeExtender.BuildSideSID(System.String,System.String)">
       <summary>

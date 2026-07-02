@@ -460,11 +460,11 @@ public class DesoloZantasTape : Entity
             return custom.Split(',');
 
         string up = cSideToUnlock.ToUpperInvariant();
-        if (up.Contains("BSIDE") || up.Contains("B_SIDE")) return new[] { "Maggy_BSide_unlocked" };
-        if (up.Contains("CSIDE") || up.Contains("C_SIDE")) return new[] { "Maggy_CSide_unlocked" };
-        if (up.Contains("DSIDE") || up.Contains("D_SIDE")) return new[] { "Maggy_DSide_unlocked" };
-        if (up.Contains("REMIX"))                           return new[] { "Maggy_RemixExtra_unlocked" };
-        return new[] { "Maggy_CSide_unlocked" };
+        if (up.Contains("BSIDE") || up.Contains("B_SIDE")) return new[] { "DZ_BSide_unlocked" };
+        if (up.Contains("CSIDE") || up.Contains("C_SIDE")) return new[] { "DZ_CSide_unlocked" };
+        if (up.Contains("DSIDE") || up.Contains("D_SIDE")) return new[] { "DZ_DSide_unlocked" };
+        if (up.Contains("REMIX"))                           return new[] { "DZ_RemixExtra_unlocked" };
+        return new[] { "DZ_CSide_unlocked" };
     }
 }
 

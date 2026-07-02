@@ -33,13 +33,13 @@ public static class PlayerSpriteModeExtensions
     {
         return mode switch
         {
-            PlayerSpriteMode.Madeline => "maggy_player",
+            PlayerSpriteMode.Madeline => "DZ_player",
             PlayerSpriteMode.MadelineNoBackpack => "player_no_backpack",
-            PlayerSpriteMode.Badeline => "maggy_badeline",
+            PlayerSpriteMode.Badeline => "DZ_badeline",
             PlayerSpriteMode.MadelineAsBadeline => "player_badeline",
-            PlayerSpriteMode.Playback => "maggy_player_playback",
+            PlayerSpriteMode.Playback => "DZ_player_playback",
             (PlayerSpriteMode)100 => "kirby_player",
-            _ => "maggy_player"
+            _ => "DZ_player"
         };
     }
 }

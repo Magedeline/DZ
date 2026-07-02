@@ -5,13 +5,13 @@ using Monocle;
 namespace DZ;
 
 /// <summary>
-/// Helper methods for working with MaggyMapMetadata.
+/// Helper methods for working with DZMapMetadata.
 /// Provides integration with Celeste's Session, AreaKey, and other systems.
 /// </summary>
-internal static class MaggyMapMetadataHelper
+internal static class DZMapMetadataHelper
 {
     /// <summary>Get metadata for the current session's area</summary>
-    public static MaggyMapMetadata? GetCurrentSessionMetadata()
+    public static DZMapMetadata? GetCurrentSessionMetadata()
     {
         if (Engine.Scene is not Level level)
             return null;
@@ -20,54 +20,54 @@ internal static class MaggyMapMetadataHelper
     }
 
     /// <summary>Get metadata by AreaKey</summary>
-    public static MaggyMapMetadata? GetByAreaKey(AreaKey area)
+    public static DZMapMetadata? GetByAreaKey(AreaKey area)
     {
         return GetBySid(area.GetSID());
     }
 
     /// <summary>Get metadata by SID</summary>
-    public static MaggyMapMetadata? GetBySid(string sid)
+    public static DZMapMetadata? GetBySid(string sid)
     {
-        return MaggyMapMetadataRegistry.GetBySid(sid);
+        return DZMapMetadataRegistry.GetBySid(sid);
     }
 
     /// <summary>Get metadata by base key (e.g., "00_Prologue")</summary>
-    public static MaggyMapMetadata? GetByBaseKey(string baseKey)
+    public static DZMapMetadata? GetByBaseKey(string baseKey)
     {
-        return MaggyMapMetadataRegistry.GetByBaseKey(baseKey);
+        return DZMapMetadataRegistry.GetByBaseKey(baseKey);
     }
 
     /// <summary>Get all metadata for a specific side (A, B, C, D)</summary>
-    public static List<MaggyMapMetadata> GetBySide(string side)
+    public static List<DZMapMetadata> GetBySide(string side)
     {
-        return MaggyMapMetadataRegistry.GetBySide(side);
+        return DZMapMetadataRegistry.GetBySide(side);
     }
 
     /// <summary>Get all main chapter entries</summary>
-    public static List<MaggyMapMetadata> GetMainChapterEntries()
+    public static List<DZMapMetadata> GetMainChapterEntries()
     {
-        return MaggyMapMetadataRegistry.GetMainChapterEntries();
+        return DZMapMetadataRegistry.GetMainChapterEntries();
     }
 
     /// <summary>Get all maps that should show in chapter select</summary>
-    public static List<MaggyMapMetadata> GetChapterSelectMaps()
+    public static List<DZMapMetadata> GetChapterSelectMaps()
     {
-        return MaggyMapMetadataRegistry.GetChapterSelectMaps();
+        return DZMapMetadataRegistry.GetChapterSelectMaps();
     }
 
     /// <summary>Check if a SID exists in the registry</summary>
     public static bool HasSid(string sid)
     {
-        return MaggyMapMetadataRegistry.HasSid(sid);
+        return DZMapMetadataRegistry.HasSid(sid);
     }
 
     /// <summary>Get the total count of registered metadata entries</summary>
-    public static int Count => MaggyMapMetadataRegistry.Count;
+    public static int Count => DZMapMetadataRegistry.Count;
 
     /// <summary>Get all registered SIDs</summary>
     public static IEnumerable<string> GetAllSids()
     {
-        return MaggyMapMetadataRegistry.GetAllSids();
+        return DZMapMetadataRegistry.GetAllSids();
     }
 
     /// <summary>Get the B-Side SID for a given base key</summary>
@@ -132,7 +132,7 @@ internal static class MaggyMapMetadataHelper
     /// <summary>Reload all metadata from disk</summary>
     public static void Reload()
     {
-        MaggyMapMetadataRegistry.Reload();
-        Logger.Log(LogLevel.Info, "DZ", "MaggyMapMetadata reloaded from disk");
+        DZMapMetadataRegistry.Reload();
+        Logger.Log(LogLevel.Info, "DZ", "DZMapMetadata reloaded from disk");
     }
 }

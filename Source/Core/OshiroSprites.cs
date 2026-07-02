@@ -4,7 +4,7 @@ using Monocle;
 
 namespace DZ;
 
-public class MaggyOshiroSprite : Sprite
+public class DZOshiroSprite : Sprite
 {
     public bool AllowSpriteChanges = true;
 
@@ -13,7 +13,7 @@ public class MaggyOshiroSprite : Sprite
     private Wiggler wiggler;
 
     [MethodImpl(MethodImplOptions.NoInlining)]
-    public MaggyOshiroSprite(int facing)
+    public DZOshiroSprite(int facing)
     {
         Scale.X = facing;
         GFX.SpriteBank.CreateOn(this, "oshiro");

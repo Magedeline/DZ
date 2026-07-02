@@ -4,7 +4,7 @@ namespace Celeste.Cutscenes;
 
 [HotReloadable]
 public class Cs03Meetup(
-    Npc03Maggy magolor,
+    Npc03DZ magolor,
     global::Celeste.Player player,
     Coroutine zoomCoroutine,
     int currentConversation = 0)
@@ -72,7 +72,7 @@ public class Cs03Meetup(
 
             // Trigger 2: Magolor turns left and encourages Badeline for Kirby to help find Madeline
             // Use reflection to access the private sprite field and flip it
-            var spriteField = typeof(Npc03Maggy).GetField("sprite", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            var spriteField = typeof(Npc03DZ).GetField("sprite", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
             if (spriteField != null)
             {
                 var sprite = spriteField.GetValue(magolor) as Sprite;
@@ -81,7 +81,7 @@ public class Cs03Meetup(
                     sprite.Scale.X = -1f;
                 }
             }
-            yield return Textbox.Say("DZ_CH3_MAGGY_A");
+            yield return Textbox.Say("DZ_CH3_DZ_A");
 
             yield return 0.5f;
 
@@ -131,7 +131,7 @@ public class Cs03Meetup(
     // Add this method to the CS03_Meetup class to resolve CS0103
     private IEnumerator playerApproachRightSideForConversation()
     {
-        // Move the player to the right side of Maggy for the conversation
+        // Move the player to the right side of DZ for the conversation
         // This is a placeholder implementation; adjust as needed for your game logic
         if (player != null)
         {
@@ -145,7 +145,7 @@ public class Cs03Meetup(
     }
     public override void OnEnd(Level level)
     {
-        // Simplified: Remove problematic MaggySprite reference
+        // Simplified: Remove problematic DZSprite reference
         player.Position.X = endPlayerPosition.X;
         player.Facing = Facings.Left;
         player.StateMachine.State = Player.StNormal;

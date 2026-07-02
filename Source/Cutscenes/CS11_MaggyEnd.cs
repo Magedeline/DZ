@@ -1,4 +1,4 @@
-// File 3: CS11_MaggyEnd.cs
+// File 3: CS11_DZEnd.cs
 using System;
 using System.Collections;
 using Celeste.Entities;
@@ -8,17 +8,17 @@ using Monocle;
 namespace Celeste.Cutscenes
 {
     /// <summary>
-    /// Cutscene for Chapter 11 - Maggy End
-    /// After the mountain eruption, Maggy and Kirby discuss the disaster and plan to collect mini heart gems
+    /// Cutscene for Chapter 11 - DZ End
+    /// After the mountain eruption, DZ and Kirby discuss the disaster and plan to collect mini heart gems
     /// Includes the collecting mini heart check dialog
     /// </summary>
-    [CustomEntity("DesoloZantas/CS11_MaggyEnd")]
-    public class CS11_MaggyEnd : CutsceneEntity
+    [CustomEntity("DesoloZantas/CS11_DZEnd")]
+    public class CS11_DZEnd : CutsceneEntity
     {
         #region Constants
-        private const string FLAG_CUTSCENE_COMPLETE = "ch11_maggy_end_complete";
+        private const string FLAG_CUTSCENE_COMPLETE = "ch11_DZ_end_complete";
         private const string FLAG_MINI_HEARTS_QUEST_STARTED = "ch11_mini_hearts_quest_started";
-        private const string FLAG_MAGGY_ALLY = "ch11_maggy_ally";
+        private const string FLAG_DZ_ALLY = "ch11_DZ_ally";
         
         // Dialog key matches the entry in Dialog/English.txt (and all other locales)
         private const string DIALOG_KEY_END = "DZ_CH11_DZ_END";
@@ -32,12 +32,12 @@ namespace Celeste.Cutscenes
         private Player player;
         #endregion
 
-        public CS11_MaggyEnd(EntityData data, Vector2 offset)
+        public CS11_DZEnd(EntityData data, Vector2 offset)
             : base(true, false)
         {
         }
 
-        public CS11_MaggyEnd(Player player)
+        public CS11_DZEnd(Player player)
             : base(true, false)
         {
             this.player = player ?? throw new ArgumentNullException(nameof(player));
@@ -84,7 +84,7 @@ namespace Celeste.Cutscenes
             // Set completion flags
             level.Session.SetFlag(FLAG_CUTSCENE_COMPLETE, true);
             level.Session.SetFlag(FLAG_MINI_HEARTS_QUEST_STARTED, true);
-            level.Session.SetFlag(FLAG_MAGGY_ALLY, true);
+            level.Session.SetFlag(FLAG_DZ_ALLY, true);
 
             EndCutscene(level);
         }
@@ -164,7 +164,7 @@ namespace Celeste.Cutscenes
             if (player == null || !CollideCheck(player)) return;
 
             Level level = Scene as Level;
-            if (CS11_MaggyEnd.GetMiniHeartCount(level.Session) < REQUIRED_MINI_HEARTS)
+            if (CS11_DZEnd.GetMiniHeartCount(level.Session) < REQUIRED_MINI_HEARTS)
             {
                 dialogRunning = true;
                 Add(new Coroutine(ShowDialog()));
@@ -173,7 +173,7 @@ namespace Celeste.Cutscenes
 
         private IEnumerator ShowDialog()
         {
-            yield return CS11_MaggyEnd.ShowNotEnoughMiniHeartsDialog();
+            yield return CS11_DZEnd.ShowNotEnoughMiniHeartsDialog();
             dialogRunning = false;
         }
     }

@@ -1105,19 +1105,19 @@ entities.DZ/MadelineNPCDummy.placements.name.madeline_npc_dummy=Madeline NPC Dum
 # Madeline Player
 entities.DZ/MadelinePlayer.placements.name.madeline_player=Madeline Player
 
-# Maggy Memorial
-entities.DZ/MaggyMemorial.placements.name.maggy_memorial=Maggy Memorial
+# DZ Memorial
+entities.DZ/DZMemorial.placements.name.DZ_memorial=DZ Memorial
 
-# Maggy Oshiro Door
-entities.DZ/MaggyOshiroDoor.placements.name.maggy_oshiro_door=Maggy Oshiro Door
+# DZ Oshiro Door
+entities.DZ/DZOshiroDoor.placements.name.DZ_oshiro_door=DZ Oshiro Door
 
-# Maggy Oshiro Lobby Bell
-entities.DZ/MaggyOshiroLobbyBell.placements.name.maggy_oshiro_lobby_bell=Maggy Oshiro Lobby Bell
-entities.DZ/MaggyOshiroLobbyBell.placements.name.soundEffect=Sound Effect
-entities.DZ/MaggyOshiroLobbyBell.placements.name.isActive=Is Active
+# DZ Oshiro Lobby Bell
+entities.DZ/DZOshiroLobbyBell.placements.name.DZ_oshiro_lobby_bell=DZ Oshiro Lobby Bell
+entities.DZ/DZOshiroLobbyBell.placements.name.soundEffect=Sound Effect
+entities.DZ/DZOshiroLobbyBell.placements.name.isActive=Is Active
 
-# Maggy PC
-entities.DZ/MaggyPC.placements.name.maggy_pc=Maggy PC
+# DZ PC
+entities.DZ/DZPC.placements.name.DZ_pc=DZ PC
 
 # Magic Fountain
 entities.DZ/MagicFountain.placements.name.magic_fountain=Magic Fountain
@@ -1306,17 +1306,17 @@ entities.DZ/NPC_Undyne.placements.name.npc_undyne=NPC Undyne
 # NPC00 Theo
 entities.DZ/NPC00_Theo.placements.name.npc00_theo=NPC00 Theo
 
-# NPC01 Maggy
-entities.DZ/NPC01_Maggy.placements.name.npc01_maggy=NPC01 Maggy
+# NPC01 DZ
+entities.DZ/NPC01_DZ.placements.name.npc01_DZ=NPC01 DZ
 
-# NPC02 Maggy
-entities.DZ/NPC02_Maggy.placements.name.npc02_maggy=NPC02 Maggy
+# NPC02 DZ
+entities.DZ/NPC02_DZ.placements.name.npc02_DZ=NPC02 DZ
 
 # NPC02 Magolor
 entities.DZ/NPC02_Magolor.placements.name.npc02_magolor=NPC02 Magolor
 
-# NPC03 Maggy
-entities.DZ/NPC03_Maggy.placements.name.npc03_maggy=NPC03 Maggy
+# NPC03 DZ
+entities.DZ/NPC03_DZ.placements.name.npc03_DZ=NPC03 DZ
 
 # NPC03 Theo
 entities.DZ/NPC03_Theo.placements.name.npc03_theo=NPC03 Theo
@@ -1327,8 +1327,8 @@ entities.DZ/NPC04_Magolor.placements.name.npc04_magolor=NPC04 Magolor
 # NPC04 Theo
 entities.DZ/NPC04_Theo.placements.name.npc04_theo=NPC04 Theo
 
-# NPC05 Maggy Oshiro Lobby
-entities.DZ/NPC05_Maggy_Oshiro_Lobby.placements.name.npc05_maggy_oshiro_lobby=NPC05 Maggy Oshiro Lobby
+# NPC05 DZ Oshiro Lobby
+entities.DZ/NPC05_DZ_Oshiro_Lobby.placements.name.npc05_DZ_oshiro_lobby=NPC05 DZ Oshiro Lobby
 
 # NPC05 Magolor Escaping
 entities.DZ/NPC05_Magolor_Escaping.placements.name.npc05_magolor_escaping=NPC05 Magolor Escaping
@@ -1384,8 +1384,8 @@ entities.DZ/NPC08_Madeline_Ending_Bandage.placements.name.npc08_madeline_ending_
 # NPC08 Madeline Plateau
 entities.DZ/NPC08_Madeline_Plateau.placements.name.npc08_madeline_plateau=NPC08 Madeline Plateau
 
-# NPC08 Maggy Ending
-entities.DZ/NPC08_Maggy_Ending.placements.name.npc08_maggy_ending=NPC08 Maggy Ending
+# NPC08 DZ Ending
+entities.DZ/NPC08_DZ_Ending.placements.name.npc08_DZ_ending=NPC08 DZ Ending
 
 # NPC08 Theo Ending
 entities.DZ/NPC08_Theo_Ending.placements.name.npc08_theo_ending=NPC08 Theo Ending
@@ -1444,8 +1444,8 @@ entities.DZ/NPC18_Toriel_Outside.placements.name.npc18_toriel_outside=NPC18 Tori
 # NPC19 Gravestone
 entities.DZ/NPC19_Gravestone.placements.name.npc19_gravestone=NPC19 Gravestone
 
-# NPC19 Maggy Loop
-entities.DZ/NPC19_Maggy_Loop.placements.name.npc19_maggy_loop=NPC19 Maggy Loop
+# NPC19 DZ Loop
+entities.DZ/NPC19_DZ_Loop.placements.name.npc19_DZ_loop=NPC19 DZ Loop
 
 # NPC20 Asriel
 entities.DZ/NPC20_Asriel.placements.name.npc20_asriel=NPC20 Asriel

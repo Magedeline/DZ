@@ -7,7 +7,7 @@ using Monocle;
 namespace DZ;
 
 /// <summary>
-/// Two visual effects applied to Maggy chapter panel icons in the overworld:
+/// Two visual effects applied to DZ chapter panel icons in the overworld:
 ///
 /// 1. <b>Cosmic Kirby tint</b> — crystal heart and mini-heart UI textures drawn
 ///    inside the chapter panel receive a slowly cycling purple/cyan/pink hue to

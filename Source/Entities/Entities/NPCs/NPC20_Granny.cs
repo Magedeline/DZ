@@ -20,7 +20,7 @@ namespace Celeste.NPCs
 
         private void setupSprite()
         {
-            Add(sprite = GFX.SpriteBank.Create("maggy_granny"));
+            Add(sprite = GFX.SpriteBank.Create("DZ_granny"));
             sprite.Play("idle");
         }
 

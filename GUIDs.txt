@@ -1653,7 +1653,7 @@
 {84334ee4-4842-43a0-bd03-4da05cfc0a9c} event:/pusheen/music/piano_lobby/Gourmet_Race
 {1959700a-cb91-4e82-9141-ee992fce2814} event:/pusheen/music/piano_lobby/Green_Greens
 {53faf0eb-e95b-4a2a-92e5-56bf0657cad0} event:/pusheen/music/piano_lobby/Jambastion_and_Deltarune
-{81734289-0d63-40a0-b2c4-72efe136eb10} event:/pusheen/music/piano_lobby/Maggy_Far_Flung_Traveler
+{81734289-0d63-40a0-b2c4-72efe136eb10} event:/pusheen/music/piano_lobby/DZ_Far_Flung_Traveler
 {4206811d-bcfd-4e8f-9908-7f495907e025} event:/pusheen/music/piano_lobby/Noble_Susie_Haltmann
 {15aa8760-d2d7-4d1b-a186-ab9f702c1fef} event:/pusheen/music/piano_lobby/Star_Allies
 {45bcfe03-151a-4561-abfa-781397498816} event:/pusheen/music/piano_lobby/Yearning_the_Yellow

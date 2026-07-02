@@ -111,7 +111,7 @@ namespace DZ
             return characterId.Trim().ToLowerInvariant() switch
             {
                 "default" => PlayerCharacterIds.Default,
-                "maggy" => PlayerCharacterIds.Madeline,
+                "DZ" => PlayerCharacterIds.Madeline,
                 _ => characterId.Trim().ToLowerInvariant()
             };
         }

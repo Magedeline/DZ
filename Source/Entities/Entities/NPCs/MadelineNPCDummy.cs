@@ -27,7 +27,7 @@ namespace Celeste.Entities
         private const int DEFAULT_LIGHT_END_RADIUS = 60;
 
         public Sprite Sprite { get; private set; }
-        public MaggyBadelineAutoAnimator AutoAnimator { get; private set; }
+        public DZBadelineAutoAnimator AutoAnimator { get; private set; }
         public SineWave Wave { get; private set; }
         public VertexLight Light { get; private set; }
 
@@ -91,7 +91,7 @@ namespace Celeste.Entities
         {
             try
             {
-                AutoAnimator = new MaggyBadelineAutoAnimator();
+                AutoAnimator = new DZBadelineAutoAnimator();
                 Add(AutoAnimator);
             }
             catch (Exception ex)

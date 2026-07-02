@@ -6,7 +6,7 @@ using Monocle;
 
 namespace DZ;
 
-public class MaggyBridgeTile : JumpThru
+public class DZBridgeTile : JumpThru
 {
     private List<Image> images;
 
@@ -21,7 +21,7 @@ public class MaggyBridgeTile : JumpThru
     public bool Fallen { get; private set; }
 
     [MethodImpl(MethodImplOptions.NoInlining)]
-    public MaggyBridgeTile(Vector2 position, Rectangle tileSize)
+    public DZBridgeTile(Vector2 position, Rectangle tileSize)
         : base(position, tileSize.Width, safe: false)
     {
         images = new List<Image>();

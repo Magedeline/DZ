@@ -1,13 +1,13 @@
-local npc02Maggy = {}
+local npc02DZ = {}
 
-npc02Maggy.name = "DZ/NPC02_Maggy"
-npc02Maggy.depth = 0
-npc02Maggy.texture = "objects/DZ/npc02_maggy"
+npc02DZ.name = "DZ/NPC02_DZ"
+npc02DZ.depth = 0
+npc02DZ.texture = "objects/DZ/npc02_DZ"
 
-npc02Maggy.placements = {
-    name = "npc02_maggy",
+npc02DZ.placements = {
+    name = "npc02_DZ",
     data = {
     }
 }
 
-return npc02Maggy
+return npc02DZ

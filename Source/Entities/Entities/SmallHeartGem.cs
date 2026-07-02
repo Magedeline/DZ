@@ -63,7 +63,7 @@ namespace Celeste.Entities
         private void createVisuals()
         {
             // Create sprite
-            sprite = GFX.SpriteBank.Create("maggy_heartgem0");
+            sprite = GFX.SpriteBank.Create("DZ_heartgem0");
             sprite.Color = gemColor;
             sprite.Play("spin");
             sprite.CenterOrigin();
@@ -153,7 +153,7 @@ namespace Celeste.Entities
 
             // Increment the chapter-specific mini heart session counter used by SmallHeartDoor
             // and the per-chapter unlock cutscenes to gate the door progression.
-            // Chapter 11 continues to use the same counter key that CS11_MaggyEnd expects.
+            // Chapter 11 continues to use the same counter key that CS11_DZEnd expects.
             if (chapterNumber >= 10 && chapterNumber <= 15 && level?.Session != null)
                 SmallHeartDoor.CollectMiniHeart(level.Session, chapterNumber);
             

@@ -43,7 +43,7 @@ namespace Celeste.Cutscenes
 
         public CS16_ElsOutro(Session session1) : this(session1, null)
         {
-            Add(new MaggyHiresSnow());
+            Add(new DZHiresSnow());
             Add(new FadeWipe(this, true));
         }
 

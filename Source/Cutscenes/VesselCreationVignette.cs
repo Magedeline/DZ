@@ -25,7 +25,7 @@ namespace Celeste.Cutscenes
         private const float TEXT_INPUT_BOX_HEIGHT = 78f;
         
         // Graphics paths
-        private const string VESSEL_GRAPHICS_PATH = "bgs/maggy/00/anotherhuman/";
+        private const string VESSEL_GRAPHICS_PATH = "bgs/DZ/00/anotherhuman/";
         private const string GONERBODY_BASE  = "IMAGE_GONERBODY";   // 6 variants: 00-05
         private const string GONERHEAD_BASE  = "IMAGE_GONERHEAD";   // 8 variants: 00-07
         private const string GONERLEGS_BASE  = "IMAGE_GONERLEGS";   // 5 variants: 00-04

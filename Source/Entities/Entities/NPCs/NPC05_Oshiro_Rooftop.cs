@@ -2,7 +2,7 @@ using System.Runtime.CompilerServices;
 using Microsoft.Xna.Framework;
 using Monocle;
 using Celeste.Cutscenes;
-using ModOshiroSprite = DZ.MaggyOshiroSprite;
+using ModOshiroSprite = DZ.DZOshiroSprite;
 
 namespace Celeste.NPCs;
 

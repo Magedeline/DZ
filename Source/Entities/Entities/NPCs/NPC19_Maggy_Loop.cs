@@ -1,17 +1,17 @@
 namespace Celeste.NPCs
 {
     [Tracked(true)]
-    [CustomEntity(ids: "DZ/NPC19_Maggy_Loop")]
-    public class Npc19MaggyLoop : Entity
+    [CustomEntity(ids: "DZ/NPC19_DZ_Loop")]
+    public class Npc19DZLoop : Entity
     {
-        private const string donetalking = "maggy_loopDoneTalking";
+        private const string donetalking = "DZ_loopDoneTalking";
         
         private Sprite sprite;
         private TalkComponent talker;
         private Coroutine talkRoutine;
         private bool isInteracting = false;
 
-        public Npc19MaggyLoop(EntityData data, Vector2 offset) : base(data.Position + offset)
+        public Npc19DZLoop(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
             setupSprite();
             setupCollision();
@@ -65,7 +65,7 @@ namespace Celeste.NPCs
         {
             player.StateMachine.State = global::Celeste.Player.StDummy;
 
-            yield return Textbox.Say("MAGGY_19_LOOP");
+            yield return Textbox.Say("DZ_19_LOOP");
             
             endcutscene();
         }

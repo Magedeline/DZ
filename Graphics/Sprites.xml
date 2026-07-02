@@ -180,7 +180,7 @@
     <Anim id="rollGetUp" path="roll" frames="12-15" delay=".1" goto="downed"/>
     <Loop id="downed" path="sitDown" delay="0.8" frames="15"/>
   </player_badeline>
-  <player_playback copy="player" path="characters/maggy_player_playback/"/>
+  <player_playback copy="player" path="characters/DZ_player_playback/"/>
   
   <!-- NPCs -->
 
@@ -1314,7 +1314,7 @@
       <Loop id="hug" path="hug" delay="0.08"/>
     </chara>
   
-    <maggy_mainchara_vision path="characters/mainchara_vision/" start="idle_down">
+    <DZ_mainchara_vision path="characters/mainchara_vision/" start="idle_down">
       <Justify x=".5" y="1" />
   
       <Loop id="idle" path="down" delay="0" frames="0" />
@@ -1358,7 +1358,7 @@
       <Anim id="slash_left" path="left" delay="0.08" frames="1-3" goto="idle_left" />
   
       <Loop id="lookUp" path="up" delay="0" frames="0" />
-    </maggy_mainchara_vision>
+    </DZ_mainchara_vision>
   
     <KirbySkin path="characters/kirby/" start="idle">
       <Justify x=".5" y="1" />
@@ -1582,7 +1582,7 @@
       <Anim id="kirby_death" path="combat/death_" delay="0.08" />
   </kirby_player_ext>
 
-  <maggy_badeline path="characters/badeline/">
+  <DZ_badeline path="characters/badeline/">
       <Justify x=".5" y="1" />
       
       <Loop id="idle" path="idle" delay="0.1" />
@@ -1654,7 +1654,7 @@
         <Frames path="boost" hair="0,-2|0,-2|0,-2|0,-2|0,0|0,-6|0,-3|0,-1|0,-1|0,-2"/>
         <Frames path="hug" hair="0,2"/>
       </Metadata>
-    </maggy_badeline>
+    </DZ_badeline>
 
   <chara path="characters/chara/">
       <Justify x=".5" y="1" />
@@ -1875,39 +1875,39 @@
       <Anim id="throw" path="throw" delay="0.06" frames="0-3" goto="idle" />
     </ralseisil>
 
-  <maggy_heartgem0 path="collectables/maggy/heartgem/0/">
+  <DZ_heartgem0 path="collectables/DZ/heartgem/0/">
   		<Center />
   
   		<Loop id="idle" path="" frames="0" />
   		<Loop id="spin" path="" frames="0*10,1-13" delay="0.1"/>
   		<Loop id="fastspin" path="" delay="0.1"/>
-  	</maggy_heartgem0>
+  	</DZ_heartgem0>
 
-  <maggy_heartgem1 path="collectables/maggy/heartgem/1/">
+  <DZ_heartgem1 path="collectables/DZ/heartgem/1/">
   		<Center />
   
   		<Loop id="idle" path="" frames="0" />
   		<Loop id="spin" path="" frames="0*10,1-13" delay="0.1"/>
   		<Loop id="fastspin" path="" delay="0.1"/>
-  	</maggy_heartgem1>
+  	</DZ_heartgem1>
 
-  <maggy_heartgem2 path="collectables/maggy/heartgem/2/">
+  <DZ_heartgem2 path="collectables/DZ/heartgem/2/">
   		<Center />
   
   		<Loop id="idle" path="" frames="0" />
   		<Loop id="spin" path="" frames="0*10,1-13" delay="0.1"/>
   		<Loop id="fastspin" path="" delay="0.1"/>
-  	</maggy_heartgem2>
+  	</DZ_heartgem2>
 
-  <maggy_heartgem3 path="collectables/maggy/heartgem/3/">
+  <DZ_heartgem3 path="collectables/DZ/heartgem/3/">
   		<Center />
   
   		<Loop id="idle" path="" frames="0" />
   		<Loop id="spin" path="" frames="0*10,1-13" delay="0.1"/>
   		<Loop id="fastspin" path="" delay="0.1"/>
-  	</maggy_heartgem3>
+  	</DZ_heartgem3>
 
-  <heartgem4 path="collectables/maggy/heartGem/4/">
+  <heartgem4 path="collectables/DZ/heartGem/4/">
   		<Center />
   
   		<Loop id="idle" path="white" frames="0" />
@@ -1915,7 +1915,7 @@
   		<Loop id="fastspin" path="white" delay="0.1"/>
   	</heartgem4>
 
-  <heartgem5 path="collectables/maggy/heartGem/">
+  <heartgem5 path="collectables/DZ/heartGem/">
   		<Center />
   
   		<Loop id="idle" path="ghost" frames="0" />
@@ -1978,28 +1978,28 @@
   		<Loop id="spin" path="ghost" frames="0-11" delay="0.1"/>
   	</heartstaff_ghost>
 
-  <madeline_crystal path="objects/maggy/MadelineCrystal/" start="idle">
+  <madeline_crystal path="objects/DZ/MadelineCrystal/" start="idle">
       <Justify x="0.5" y="0.5" />
       <Loop id="idle" path="idle" delay="0.08"/>
       <Anim id="shatter" path="shatter" delay="0.08" goto="shattered"/>
       <Loop id="shattered" path="shatter" frames="16" delay="0.08"/>
     </madeline_crystal>
 
-  <pinkplatinumberry path="collectables/maggy/pinkplatberry/" start="idle">
+  <pinkplatinumberry path="collectables/DZ/pinkplatberry/" start="idle">
       <Center />
       <Loop id="idle" path="idle" delay="0.1" frames="0-9"/>
       <Loop id="ghost" path="ghost" delay="0.1" frames="0-9"/>
       <Anim id="collect" path="collect" delay="0.1" frames="0-3"/>
     </pinkplatinumberry>
 
-  <ghostpinkplatinumberry path="collectables/maggy/ghostpinkplatinumberry/" start="idle">
+  <ghostpinkplatinumberry path="collectables/DZ/ghostpinkplatinumberry/" start="idle">
       <Center />
   
       <Loop id="idle" path="ghost" delay=".08" frames="0-6,0-6,0-6,0-6,0-7" />
       <Anim id="collect" path="ghost" delay=".07" frames="7-11"/>
     </ghostpinkplatinumberry>
 
-  <pinkplatinumberry path="collectables/maggy/pinkplatinumberry/" start="idle">
+  <pinkplatinumberry path="collectables/DZ/pinkplatinumberry/" start="idle">
   		<Center />
 
   		<Loop id="idle" path="idle" delay=".08" frames="0-6,0-6,0-6,0-6,0-7" />
@@ -2007,21 +2007,21 @@
   		<Loop id="flap" path="idle" delay=".08" frames="0-6,0-6,0-6,0-6,0-7" />
   	</pinkplatinumberry>
 
-  <popstarberry path="collectables/maggy/popstarberry/spin/" start="idle">
+  <popstarberry path="collectables/DZ/popstarberry/spin/" start="idle">
       <Center />
 
       <Loop id="idle" path="" delay=".1" frames="0-11" />
       <Anim id="collect" path="" delay=".07" frames="0-11"/>
     </popstarberry>
 
-  <popstarberryghost path="collectables/maggy/popstarberry/spin/ghost/" start="idle">
+  <popstarberryghost path="collectables/DZ/popstarberry/spin/ghost/" start="idle">
       <Center />
 
       <Loop id="idle" path="" delay=".1" frames="0-11" />
       <Anim id="collect" path="" delay=".07" frames="0-11"/>
     </popstarberryghost>
 
-  <maggy_payphone path="cutscenes/maggy/Kirby/payphone/" start="idle">
+  <DZ_payphone path="cutscenes/DZ/Kirby/payphone/" start="idle">
       <Justify x=".5" y="1" />
       
       <Loop id="idle" path="phone" delay="0.1" frames="0"/>
@@ -2032,9 +2032,9 @@
       <Anim id="transform" path="phone" delay="0.08" frames="22-45" />
       <Anim id="eat" path="phone" delay="0.08" frames="46-73,83*2,84*2,85*2,86*2,87*2,74-82"/>
       <Loop id="monsterIdle" path="phone" delay="0.2" frames="83-87"/>
-    </maggy_payphone>
+    </DZ_payphone>
 
-  <maggy_lookout path="objects/kirby/lookout/" start="idle">
+  <DZ_lookout path="objects/kirby/lookout/" start="idle">
       <Justify x=".5" y="1" />
       
       <Loop id="idle" path="lookout" delay="0.1" frames="5*9,6"/>
@@ -2075,7 +2075,7 @@
       <Loop id="nobackpack_lookingDownLeft" path="nobackpack" frames="12"/>
       <Loop id="nobackpack_lookingLeft" path="nobackpack" frames="13"/>
       <Loop id="nobackpack_lookingUpLeft" path="nobackpack" frames="14"/>
-    </maggy_lookout>
+    </DZ_lookout>
 
   <warpstars path="objects/warpstars/" start="idle">
       <Justify x="0.5" y="0.5"/>
@@ -2475,13 +2475,13 @@
       <Anim id="spawn" path="fragileRemix" delay="0.06" frames="6-12"/>
     </DZ_cloudFragileRemix>
 
-  <maggy_crushblock_face path="objects/crushblock/" start="idle">
+  <DZ_crushblock_face path="objects/crushblock/" start="idle">
         <Center/>
         <Loop id="idle" path="giant_block" frames="0" delay="0.08"/>
         <Anim id="hurt"  path="giant_block" frames="8-12" delay="0.08" goto="idle"/>
         <Anim id="hit" path="giant_block" frames="0-5" delay="0.08" goto="off"/>
         <Loop id="right" path="giant_block" frames="6,7"  delay="0.08"/>
-    </maggy_crushblock_face>
+    </DZ_crushblock_face>
 
   <charaboost path="objects/charaboost/" start="idle">
       <Justify x="0.5" y="0.5"/>
@@ -2705,7 +2705,7 @@
       </Metadata>
     </madeline_bandage>
 
-  <maggy_flowey path="flowey/" start="idle">
+  <DZ_flowey path="flowey/" start="idle">
       <Center />
       
       <Loop id="idle" path="normal" delay="0.1" frames="0" />
@@ -2718,7 +2718,7 @@
       <Loop id="pissed" path="pissed" delay="0.1" frames="0-1" />
       <Loop id="shout" path="shout" delay="0.1" frames="0-1" />
       <Loop id="evil" path="evil" delay="0.1" frames="0-1" />
-    </maggy_flowey>
+    </DZ_flowey>
 
   <kirby path="characters/kirby/" start="idle">
       <Center />
@@ -3173,14 +3173,14 @@
       
     </asriel_angelofdeath>
 
-  <maggy_chara path="characters/charaBoss/" start="pretendDead">
+  <DZ_chara path="characters/charaBoss/" start="pretendDead">
       <Justify x="0.5" y="0.64" />
       <Loop id="idle" path="idle" delay="0.06" frames="0-8"/>
       <Loop id="angry" path="angry" delay="0.06" frames="0-4"/>
       <Loop id="pretendDead" path="pretendDead" delay="0.06" frames="0-1"/>
       <Loop id="laugh" path="laugh" delay="0.06" frames="0-4"/>
       <Anim id="fallSlow" path="fallSlow" delay="0.08" frames="0-10"/>
-  </maggy_chara>
+  </DZ_chara>
 
   <chara_boss path="characters/charaBoss/" start="charaboss_idle">
       <Justify x="0.5" y=".64" />

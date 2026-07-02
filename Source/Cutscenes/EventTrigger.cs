@@ -17,7 +17,7 @@ namespace DZ
 {
     [CustomEntity("DZ/EventTrigger")]
     [Tracked]
-    public class MaggyEventTrigger : Trigger
+    public class DZEventTrigger : Trigger
     {
         public string Event;
 
@@ -39,7 +39,7 @@ namespace DZ
         public float Time { get; private set; }
 
         [MethodImpl(MethodImplOptions.NoInlining)]
-        public MaggyEventTrigger(EntityData data, Vector2 offset)
+        public DZEventTrigger(EntityData data, Vector2 offset)
             : base(data, offset)
         {
             Event = data.Attr("event");
@@ -289,27 +289,27 @@ namespace DZ
                 }
                 case "cs03_meetup":
                 {
-                    var maggy = level.Entities.FindFirst<global::Celeste.NPCs.Npc03Maggy>();
-                    if (maggy != null)
+                    var DZ = level.Entities.FindFirst<global::Celeste.NPCs.Npc03DZ>();
+                    if (DZ != null)
                     {
-                        var zoomCoroutine = new Coroutine(level.ZoomTo(maggy.Position + new Vector2(0f, -16f), 1.5f, 2f));
+                        var zoomCoroutine = new Coroutine(level.ZoomTo(DZ.Position + new Vector2(0f, -16f), 1.5f, 2f));
                         int conv = 0;
                         if (global::Celeste.SaveData.Instance?.HasFlag("WassupMagolor") == true &&
                             global::Celeste.SaveData.Instance?.HasFlag("BadelineJoinKirby") == true)
                         {
-                            if (!level.Session.GetFlag("maggy_03_Meetup_conv1")) conv = 1;
-                            else if (!level.Session.GetFlag("maggy_03_Meetup_conv2")) conv = 2;
-                            else if (!level.Session.GetFlag("maggy_03_Meetup_conv3")) conv = 3;
-                            else if (!level.Session.GetFlag("maggy_03_Meetup_conv4")) conv = 4;
+                            if (!level.Session.GetFlag("DZ_03_Meetup_conv1")) conv = 1;
+                            else if (!level.Session.GetFlag("DZ_03_Meetup_conv2")) conv = 2;
+                            else if (!level.Session.GetFlag("DZ_03_Meetup_conv3")) conv = 3;
+                            else if (!level.Session.GetFlag("DZ_03_Meetup_conv4")) conv = 4;
                         }
                         var kPlayer = GetKPlayer(level);
                         var actualPlayer = kPlayer != null ? Unsafe.As<global::Celeste.Entities.K_Player, global::Celeste.Player>(ref kPlayer) : player2;
-                        base.Scene.Add(new global::Celeste.Cutscenes.Cs03Meetup(maggy, actualPlayer, zoomCoroutine, conv));
+                        base.Scene.Add(new global::Celeste.Cutscenes.Cs03Meetup(DZ, actualPlayer, zoomCoroutine, conv));
                         
                         // Mark the conversation as completed
                         if (conv >= 1 && conv <= 4)
                         {
-                            level.Session.SetFlag($"maggy_03_Meetup_conv{conv}");
+                            level.Session.SetFlag($"DZ_03_Meetup_conv{conv}");
                         }
                     }
                     break;

@@ -41,9 +41,9 @@ namespace DZ
         
         private static readonly Dictionary<string, CharacterData> characters = new Dictionary<string, CharacterData>(StringComparer.OrdinalIgnoreCase)
         {
-            { PlayerCharacterIds.Default, new CharacterData("maggy_player", "Madeline") },
-            { PlayerCharacterIds.Madeline, new CharacterData("maggy_player", "Madeline") },
-            { "badeline", new CharacterData("maggy_badeline", "Badeline") },
+            { PlayerCharacterIds.Default, new CharacterData("DZ_player", "Madeline") },
+            { PlayerCharacterIds.Madeline, new CharacterData("DZ_player", "Madeline") },
+            { "badeline", new CharacterData("DZ_badeline", "Badeline") },
             { PlayerCharacterIds.Kirby, new CharacterData("kirby", "Kirby", true) },
             { "kirby_classic", new CharacterData("kirby_classic", "Kirby (Classic)", true) },
             { "meta_knight", new CharacterData("meta_knight", "Meta Knight", true) },
@@ -57,7 +57,7 @@ namespace DZ
             { "susie", new CharacterData("susie_haltmann", "Susie", true) },
             { "dark_meta_knight", new CharacterData("dark_meta_knight", "Dark Meta Knight", true) },
             { "frisk", new CharacterData("frisk", "Frisk") },
-            { "chara", new CharacterData("maggy_chara", "Chara") },
+            { "chara", new CharacterData("DZ_chara", "Chara") },
             { "asriel", new CharacterData("asriel", "Asriel") },
             { "ralsei", new CharacterData("ralsei", "Ralsei") },
             { "ness", new CharacterData("ness", "Ness") },

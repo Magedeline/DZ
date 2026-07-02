@@ -8,7 +8,7 @@ namespace Celeste.Entities
     /// <see cref="AstralBirthVoidOverlay"/> which draws the void halo on top.
     /// 
     /// Assets expected:
-    ///   Mountain/Maggy/Celeste/moon.obj   – OBJ mesh
+    ///   Mountain/DZ/Celeste/moon.obj   – OBJ mesh
     ///   Graphics/Atlases/Mountain/moon_alt – texture (packed by Everest)
     ///   Graphics/Atlases/Mountain/void     – void halo texture
     /// </summary>
@@ -108,7 +108,7 @@ namespace Celeste.Entities
             try
             {
                 // ── Try loading the OBJ model ───────────────────
-                string objPath = "Mountain/Maggy/Celeste/moon";
+                string objPath = "Mountain/DZ/Celeste/moon";
                 if (Everest.Content.TryGet(objPath, out var objAsset))
                 {
                     moonModel = ObjModel.Create(objPath);

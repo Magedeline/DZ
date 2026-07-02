@@ -12,7 +12,7 @@ namespace Celeste.Entities.Bosses
     public class AnotherVesselCorruptedBoss : BossActor
     {
         private const string SpriteRoot = "characters/anothervesselcorrupted/";
-        private const string FallbackTexturePath = "bgs/maggy/00/anotherhuman/VESSEL";
+        private const string FallbackTexturePath = "bgs/DZ/00/anotherhuman/VESSEL";
 
         private enum BossPhase
         {

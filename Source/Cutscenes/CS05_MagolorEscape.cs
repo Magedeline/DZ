@@ -7,7 +7,7 @@ namespace Celeste.Cutscenes
     [HotReloadable]
     public class CS05_MagolorEscape : CutsceneEntity
     {
-        public const string Flag = "resort_maggy";
+        public const string Flag = "resort_DZ";
 
         private NPC05_Magolor_Escaping magolor;
         private global::Celeste.Player player;
@@ -33,14 +33,14 @@ namespace Celeste.Cutscenes
             player.Facing = Facings.Right;
             yield return Level.ZoomTo(new Vector2(240f, 135f), 2f, 0.5f);
             Func<IEnumerator>[] events = [StopRemovingVent, StartRemoveVent, RemoveVent, GivePhone];
-            string dialog = "DZ_CH5_MAGGY_INTRO";
-            if (!SaveData.Instance.HasFlag("MetMaggy"))
+            string dialog = "DZ_CH5_DZ_INTRO";
+            if (!SaveData.Instance.HasFlag("MetDZ"))
             {
-                dialog = "DZ_CH5_MAGGY_NEVER_MET";
+                dialog = "DZ_CH5_DZ_NEVER_MET";
             }
-            else if (!SaveData.Instance.HasFlag("MaggyKnowsName"))
+            else if (!SaveData.Instance.HasFlag("DZKnowsName"))
             {
-                dialog = "DZ_CH5_MAGGY_NEVER_INTRODUCED";
+                dialog = "DZ_CH5_DZ_NEVER_INTRODUCED";
             }
             yield return Textbox.Say(dialog, events);
             magolor.Sprite.Scale.X = 1f;
@@ -57,7 +57,7 @@ namespace Celeste.Cutscenes
             magolor.Sprite.Play("duck");
             yield return 0.5f;
             // Talker component not used in this NPC
-            level.Session.SetFlag("resort_maggy_escaped");
+            level.Session.SetFlag("resort_DZ_escaped");
             player.StateMachine.Locked = false;
             player.StateMachine.State = Player.StNormal;
             magolor.CrawlUntilOut();
@@ -114,9 +114,9 @@ namespace Celeste.Cutscenes
         {
             player.StateMachine.Locked = false;
             player.StateMachine.State = Player.StNormal;
-            level.Session.SetFlag("resort_maggy_escaped");
-            SaveData.Instance.SetFlag("MetMaggy");
-            SaveData.Instance.SetFlag("MaggyKnowsName");
+            level.Session.SetFlag("resort_DZ_escaped");
+            SaveData.Instance.SetFlag("MetDZ");
+            SaveData.Instance.SetFlag("DZKnowsName");
             if (magolor != null && WasSkipped)
             {
                 magolor.Position = magolorStart;

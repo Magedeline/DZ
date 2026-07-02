@@ -43,7 +43,7 @@ namespace Celeste.Cutscenes
 
         public Cs10IntroVignetteAlt(Session session1) : this(session1, null, false, null)
         {
-            Add(new MaggyHiresSnow());
+            Add(new DZHiresSnow());
             Add(new FadeWipe(this, true));
         }
 

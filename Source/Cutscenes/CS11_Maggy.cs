@@ -1,4 +1,4 @@
-// File 1: CS11_Maggy.cs
+// File 1: CS11_DZ.cs
 using System;
 using System.Collections;
 using Celeste.Entities;
@@ -8,36 +8,36 @@ using Monocle;
 namespace Celeste.Cutscenes
 {
     /// <summary>
-    /// Cutscene for Chapter 11 - Maggy Encounter
-    /// Handles the conversation between Kirby and Maggy (Magolor)
-    /// where Maggy explains why he brought Madeline's mother, Theo's sister, and Oshiro to the vortex
+    /// Cutscene for Chapter 11 - DZ Encounter
+    /// Handles the conversation between Kirby and DZ (Magolor)
+    /// where DZ explains why he brought Madeline's mother, Theo's sister, and Oshiro to the vortex
     /// </summary>
-    [CustomEntity("DesoloZantas/CS11_Maggy")]
-    public class CS11_Maggy : CutsceneEntity
+    [CustomEntity("DesoloZantas/CS11_DZ")]
+    public class CS11_DZ : CutsceneEntity
     {
         #region Constants
-        private const string FLAG_CUTSCENE_COMPLETE = "ch11_maggy_complete";
-        private const string FLAG_MAGGY_ARRIVED = "ch11_maggy_arrived";
+        private const string FLAG_CUTSCENE_COMPLETE = "ch11_DZ_complete";
+        private const string FLAG_DZ_ARRIVED = "ch11_DZ_arrived";
         private const string FLAG_EARTH_CRISIS_REVEALED = "ch11_earth_crisis_revealed";
         
-        private const string DIALOG_KEY = "DZ_CH11_MAGGY";
+        private const string DIALOG_KEY = "DZ_CH11_DZ";
         #endregion
 
         #region Fields
         private Player player;
         private NPC kirby;
-        private NPC maggy;
+        private NPC DZ;
         private NPC madeline;
         private NPC theo;
         private NPC badeline;
         #endregion
 
-        public CS11_Maggy(EntityData data, Vector2 offset)
+        public CS11_DZ(EntityData data, Vector2 offset)
             : base(true, false)
         {
         }
 
-        public CS11_Maggy(Player player)
+        public CS11_DZ(Player player)
             : base(true, false)
         {
             this.player = player ?? throw new ArgumentNullException(nameof(player));
@@ -73,7 +73,7 @@ namespace Celeste.Cutscenes
         {
             // Try to find NPCs in the scene
             kirby = level.Entities.OfType<NPC>().FirstOrDefault(npc => npc.GetType().Name.Contains("Kirby"));
-            maggy = level.Entities.OfType<NPC>().FirstOrDefault(npc => npc.GetType().Name.Contains("Maggy") || npc.GetType().Name.Contains("Magolor"));
+            DZ = level.Entities.OfType<NPC>().FirstOrDefault(npc => npc.GetType().Name.Contains("DZ") || npc.GetType().Name.Contains("Magolor"));
             madeline = level.Entities.OfType<NPC>().FirstOrDefault(npc => npc.GetType().Name.Contains("Madeline"));
             theo = level.Entities.OfType<NPC>().FirstOrDefault(npc => npc.GetType().Name.Contains("Theo"));
             badeline = level.Entities.OfType<NPC>().FirstOrDefault(npc => npc.GetType().Name.Contains("Badeline"));
@@ -87,34 +87,34 @@ namespace Celeste.Cutscenes
             // Wait a moment for dramatic effect
             yield return 0.5f;
             
-            // Maggy explains casually
-            yield return Textbox.Say(DIALOG_KEY, MaggyExplainsCasual);
+            // DZ explains casually
+            yield return Textbox.Say(DIALOG_KEY, DZExplainsCasual);
             
-            // Maggy mentions bringing people
-            yield return Textbox.Say(DIALOG_KEY, MaggyBroughtPeople);
+            // DZ mentions bringing people
+            yield return Textbox.Say(DIALOG_KEY, DZBroughtPeople);
             
-            // Maggy mentions creepy vibe
-            yield return Textbox.Say(DIALOG_KEY, MaggyCreepyVibe);
+            // DZ mentions creepy vibe
+            yield return Textbox.Say(DIALOG_KEY, DZCreepyVibe);
             
             // Kirby gets angry
             yield return Textbox.Say(DIALOG_KEY, KirbyAngry);
             
             yield return 0.3f;
             
-            // Maggy reveals something bad is happening
-            yield return Textbox.Say(DIALOG_KEY, MaggyRevealsEarthCrisis);
+            // DZ reveals something bad is happening
+            yield return Textbox.Say(DIALOG_KEY, DZRevealsEarthCrisis);
             
             // Kirby asks what's happening
             yield return Textbox.Say(DIALOG_KEY, KirbyAsksWhatHappening);
             
             yield return 0.3f;
             
-            // Maggy says he'll explain
-            yield return Textbox.Say(DIALOG_KEY, MaggyWillExplain);
+            // DZ says he'll explain
+            yield return Textbox.Say(DIALOG_KEY, DZWillExplain);
 
             // Set completion flags
             level.Session.SetFlag(FLAG_CUTSCENE_COMPLETE, true);
-            level.Session.SetFlag(FLAG_MAGGY_ARRIVED, true);
+            level.Session.SetFlag(FLAG_DZ_ARRIVED, true);
             level.Session.SetFlag(FLAG_EARTH_CRISIS_REVEALED, true);
 
             EndCutscene(level);
@@ -133,29 +133,29 @@ namespace Celeste.Cutscenes
             yield break;
         }
 
-        private IEnumerator MaggyExplainsCasual()
+        private IEnumerator DZExplainsCasual()
         {
-            // [Maggy left normal]
-            if (maggy != null && maggy.Sprite != null)
+            // [DZ left normal]
+            if (DZ != null && DZ.Sprite != null)
             {
-                maggy.Sprite.Play("idle");
-                maggy.Sprite.Scale.X = -1; // Face left
+                DZ.Sprite.Play("idle");
+                DZ.Sprite.Scale.X = -1; // Face left
             }
             yield break;
         }
 
-        private IEnumerator MaggyBroughtPeople()
+        private IEnumerator DZBroughtPeople()
         {
-            // Continue Maggy normal pose
+            // Continue DZ normal pose
             yield break;
         }
 
-        private IEnumerator MaggyCreepyVibe()
+        private IEnumerator DZCreepyVibe()
         {
-            // [Maggy left annoyed]
-            if (maggy != null && maggy.Sprite != null)
+            // [DZ left annoyed]
+            if (DZ != null && DZ.Sprite != null)
             {
-                maggy.Sprite.Play("annoyed");
+                DZ.Sprite.Play("annoyed");
             }
             yield break;
         }
@@ -170,12 +170,12 @@ namespace Celeste.Cutscenes
             yield break;
         }
 
-        private IEnumerator MaggyRevealsEarthCrisis()
+        private IEnumerator DZRevealsEarthCrisis()
         {
-            // [Maggy left normal]
-            if (maggy != null && maggy.Sprite != null)
+            // [DZ left normal]
+            if (DZ != null && DZ.Sprite != null)
             {
-                maggy.Sprite.Play("idle");
+                DZ.Sprite.Play("idle");
             }
             yield break;
         }
@@ -190,12 +190,12 @@ namespace Celeste.Cutscenes
             yield break;
         }
 
-        private IEnumerator MaggyWillExplain()
+        private IEnumerator DZWillExplain()
         {
-            // [Maggy left normal] - ready to transition to next cutscene
-            if (maggy != null && maggy.Sprite != null)
+            // [DZ left normal] - ready to transition to next cutscene
+            if (DZ != null && DZ.Sprite != null)
             {
-                maggy.Sprite.Play("idle");
+                DZ.Sprite.Play("idle");
             }
             yield break;
         }

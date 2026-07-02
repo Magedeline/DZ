@@ -178,11 +178,11 @@ namespace Celeste.Entities
         }
 
         /// <summary>
-        /// Gets the max allowed puff jumps for the player (configurable via Maggy settings).
+        /// Gets the max allowed puff jumps for the player (configurable via DZ settings).
         /// </summary>
         private int GetMaxPuffJumps(K_Player kPlayer)
         {
-            // Try to get from Maggy settings first
+            // Try to get from DZ settings first
             try
             {
                 var settings = DZModule.Settings;

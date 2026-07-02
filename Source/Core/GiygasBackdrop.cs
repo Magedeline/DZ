@@ -82,7 +82,7 @@ namespace DZ
 
             // Load the Giygas background image. Render code null-checks this, so a
             // missing atlas entry just skips the background layer instead of crashing.
-            backgroundTexture = GFX.Game["bgs/maggy/18/giygas/bg00"];
+            backgroundTexture = GFX.Game["bgs/DZ/18/giygas/bg00"];
         }
 
         public GiygasBackdrop(BinaryPacker.Element data) : this()

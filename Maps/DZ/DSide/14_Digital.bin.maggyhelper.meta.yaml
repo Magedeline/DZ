@@ -1,0 +1,21 @@
+schema: DZ-map-meta-v1
+sid: DZ/DSide/14_Digital
+baseKey: 14_Digital
+side: D
+modeIndex: 3
+isMainChapterEntry: false
+mainChapterSid: DZ/ASide/14_Digital
+showInChapterSelect: true
+
+MusicBySide:
+  - event:/music/pusheen/menu/complete_area
+  - event:/music/pusheen/menu/complete_bside
+  - event:/music/pusheen/menu/complete_cside
+  - event:/music/pusheen/menu/complete_dxside
+Title:
+  ASide: "Chapter Complete"
+  BSide: "B Side Complete"
+  CSide: "C Side Complete"
+  DSide: "D Side Complete"
+  DXSide: "DX Side Complete"
+  FullClear: "Chapter Clear"

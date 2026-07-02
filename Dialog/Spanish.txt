@@ -47,9 +47,9 @@
 # ================================
 # DesoloZantas Map Names
 # ================================
-# Folder structure (Maps/Maggy/)
+# Folder structure (Maps/DZ/)
 # ================================
-# Chapter Names - A-Side (Maps/Maggy/ASide/)
+# Chapter Names - A-Side (Maps/DZ/ASide/)
 # ================================
 # Prologue (Chapter 0)
 # Chapter 1 - City
@@ -79,22 +79,22 @@
 # Chapter 20 - The End
 # Final Chapter (Chapter 21)
 # ================================
-# Chapter Names - B-Side (Maps/Maggy/BSide/)
+# Chapter Names - B-Side (Maps/DZ/BSide/)
 # ================================
 # ================================
-# Chapter Names - C-Side (Maps/Maggy/CSide/)
+# Chapter Names - C-Side (Maps/DZ/CSide/)
 # ================================
 # ================================
-# Chapter Names - D-Side (Maps/Maggy/DSide/)
+# Chapter Names - D-Side (Maps/DZ/DSide/)
 # ================================
 # ================================
-# Chapter Names - DX-Side (Maps/Maggy/DXSide/)
+# Chapter Names - DX-Side (Maps/DZ/DXSide/)
 # ================================
 # ================================
 # DX-Side Boss Names
 # ================================
 # ================================
-# WIP Maps (Maps/Maggy/WIP/)
+# WIP Maps (Maps/DZ/WIP/)
 # ================================
 # ================================
 # Room/Checkpoint Names - A-Side
@@ -493,584 +493,584 @@ DIGITAL_EX_COMPLETE=The Digital Rift has been explored!
 
 DIGITAL_BOSS_COMPLETE=The Queen's Core has been decompiled!
 
-SkinModHelper_Player__Maggy_KirbySkin=Kirby
+SkinModHelper_Player__DZ_KirbySkin=Kirby
 
-SkinModHelper_Player__Maggy_KirbySkin__Description=Creator: Kirby
+SkinModHelper_Player__DZ_KirbySkin__Description=Creator: Kirby
 
 SkinModHelper_Grouping__Kirby=Kirby
 
-MAGGY_MEMORIAL_DEFAULT=Dedicated to those who never gave up.
+DZ_MEMORIAL_DEFAULT=Dedicated to those who never gave up.
 
-MAGGY_MEMORIAL_CITY=The metropolis sleeps, but its
+DZ_MEMORIAL_CITY=The metropolis sleeps, but its
     secrets never do.
 
-MAGGY_MEMORIAL_NIGHTMARE=Through the veil of shadows,
+DZ_MEMORIAL_NIGHTMARE=Through the veil of shadows,
     courage lights the path.
 
-MAGGY_MEMORIAL_STARS=Among the stars we found
+DZ_MEMORIAL_STARS=Among the stars we found
     the courage to arrive.
 
-MAGGY_MEMORIAL_LEGEND=Every legend begins with a
+DZ_MEMORIAL_LEGEND=Every legend begins with a
     single step into the unknown.
 
-MAGGY_MEMORIAL_DREAMY=this place remembers you...
+DZ_MEMORIAL_DREAMY=this place remembers you...
     even if you have forgotten.
 
-MAGGY_MOD_SELECT_TITLE=Choose Your Journey
+DZ_MOD_SELECT_TITLE=Choose Your Journey
 
-MAGGY_MOD_SELECT_SUBTITLE=Select which experience you would like to play
+DZ_MOD_SELECT_SUBTITLE=Select which experience you would like to play
 
-MAGGY_MOD_SELECT_NOTICE=This is a one-time choice. Once you decide, this screen will not appear again.
+DZ_MOD_SELECT_NOTICE=This is a one-time choice. Once you decide, this screen will not appear again.
 
-MAGGY_MOD_SELECT_NOTICE2=You can change this later in Mod Options > DZ > Skip Mod Intro.
+DZ_MOD_SELECT_NOTICE2=You can change this later in Mod Options > DZ > Skip Mod Intro.
 
-MAGGY_MOD_SELECT_DESOLOZANTAS=Desolo Zantas
+DZ_MOD_SELECT_DESOLOZANTAS=Desolo Zantas
 
-MAGGY_MOD_SELECT_DESOLOZANTAS_DESC=Play the full Desolo Zantas story mod with the intro cutscene
+DZ_MOD_SELECT_DESOLOZANTAS_DESC=Play the full Desolo Zantas story mod with the intro cutscene
 
-MAGGY_MOD_SELECT_CELESTE=Celeste
+DZ_MOD_SELECT_CELESTE=Celeste
 
-MAGGY_MOD_SELECT_CELESTE_DESC=Skip the mod intro and go straight to the vanilla Celeste main menu
+DZ_MOD_SELECT_CELESTE_DESC=Skip the mod intro and go straight to the vanilla Celeste main menu
 
-MAGGY_CREDIT_TITLE=Desolo Zantas
+DZ_CREDIT_TITLE=Desolo Zantas
 
-MAGGY_CREDIT_DIRECTION=Direction
+DZ_CREDIT_DIRECTION=Direction
 
-MAGGY_CREDIT_DIRECTION_1=Maggy
+DZ_CREDIT_DIRECTION_1=DZ
 
-MAGGY_CREDIT_PROGRAMMING=Programming
+DZ_CREDIT_PROGRAMMING=Programming
 
-MAGGY_CREDIT_PROGRAMMING_1=Maggy
+DZ_CREDIT_PROGRAMMING_1=DZ
 
-MAGGY_CREDIT_ART=Art & Sprites
+DZ_CREDIT_ART=Art & Sprites
 
-MAGGY_CREDIT_ART_1=Maggy
+DZ_CREDIT_ART_1=DZ
 
-MAGGY_CREDIT_MUSIC=Music & Sound
+DZ_CREDIT_MUSIC=Music & Sound
 
-MAGGY_CREDIT_MUSIC_1=Nintendo
+DZ_CREDIT_MUSIC_1=Nintendo
 
-MAGGY_CREDIT_MUSIC_2=Risty
+DZ_CREDIT_MUSIC_2=Risty
 
-MAGGY_CREDIT_MUSIC_3=Kyle gamer
+DZ_CREDIT_MUSIC_3=Kyle gamer
 
-MAGGY_CREDIT_MUSIC_4=Gametal
+DZ_CREDIT_MUSIC_4=Gametal
 
-MAGGY_CREDIT_MUSIC_5=Maxo
+DZ_CREDIT_MUSIC_5=Maxo
 
-MAGGY_CREDIT_MUSIC_6=CloudJumper
+DZ_CREDIT_MUSIC_6=CloudJumper
 
-MAGGY_CREDIT_MUSIC_7=Prunty
+DZ_CREDIT_MUSIC_7=Prunty
 
-MAGGY_CREDIT_MUSIC_8=No Credit Sadly Sowwy
+DZ_CREDIT_MUSIC_8=No Credit Sadly Sowwy
 
-MAGGY_CREDIT_MUSIC_9=Karu
+DZ_CREDIT_MUSIC_9=Karu
 
-MAGGY_CREDIT_MUSIC_10=Oshiro Music
+DZ_CREDIT_MUSIC_10=Oshiro Music
 
-MAGGY_CREDIT_MUSIC_11=Ryno.gg
+DZ_CREDIT_MUSIC_11=Ryno.gg
 
-MAGGY_CREDIT_MUSIC_12=Acid-Notation
+DZ_CREDIT_MUSIC_12=Acid-Notation
 
-MAGGY_CREDIT_MUSIC_13=Toby Fox
+DZ_CREDIT_MUSIC_13=Toby Fox
 
-MAGGY_CREDIT_MUSIC_14=2 Mello
+DZ_CREDIT_MUSIC_14=2 Mello
 
-MAGGY_CREDIT_MUSIC_15=Touhou Team
+DZ_CREDIT_MUSIC_15=Touhou Team
 
-MAGGY_CREDIT_MUSIC_16=Lani Trek
+DZ_CREDIT_MUSIC_16=Lani Trek
 
-MAGGY_CREDIT_MUSIC_17=Team BNP
+DZ_CREDIT_MUSIC_17=Team BNP
 
-MAGGY_CREDIT_MUSIC_18=DJ Cutman
+DZ_CREDIT_MUSIC_18=DJ Cutman
 
-MAGGY_CREDIT_MUSIC_19=Zami
+DZ_CREDIT_MUSIC_19=Zami
 
-MAGGY_CREDIT_MUSIC_20=Tonica
+DZ_CREDIT_MUSIC_20=Tonica
 
-MAGGY_CREDIT_MUSIC_21=AYDUmusic and CloudJumper
+DZ_CREDIT_MUSIC_21=AYDUmusic and CloudJumper
 
-MAGGY_CREDIT_MUSIC_22=Desolo Zantas
+DZ_CREDIT_MUSIC_22=Desolo Zantas
 
-MAGGY_CREDIT_MUSIC_23=The Noble Demon
+DZ_CREDIT_MUSIC_23=The Noble Demon
 
-MAGGY_CREDIT_MUSIC_24=Anthony Lo Re
+DZ_CREDIT_MUSIC_24=Anthony Lo Re
 
-MAGGY_CREDIT_MUSIC_25=NyxTheShield
+DZ_CREDIT_MUSIC_25=NyxTheShield
 
-MAGGY_CREDIT_MUSIC_26=Maggy
+DZ_CREDIT_MUSIC_26=DZ
 
-MAGGY_CREDIT_LEVEL_DESIGN=Level Design
+DZ_CREDIT_LEVEL_DESIGN=Level Design
 
-MAGGY_CREDIT_LEVEL_DESIGN_1=Maggy
+DZ_CREDIT_LEVEL_DESIGN_1=DZ
 
-MAGGY_CREDIT_WRITING=Writing
+DZ_CREDIT_WRITING=Writing
 
-MAGGY_CREDIT_WRITING_1=Maggy
+DZ_CREDIT_WRITING_1=DZ
 
-MAGGY_CREDIT_TESTING=Testing
+DZ_CREDIT_TESTING=Testing
 
-MAGGY_CREDIT_TESTING_1=Maggy
+DZ_CREDIT_TESTING_1=DZ
 
-MAGGY_CREDIT_HELPERS=Code Libraries & Helpers
+DZ_CREDIT_HELPERS=Code Libraries & Helpers
 
-MAGGY_CREDIT_HELPER_01=AdventureHelper — KaydenFox
+DZ_CREDIT_HELPER_01=AdventureHelper — KaydenFox
 
-MAGGY_CREDIT_HELPER_02=Anonhelper — Anon
+DZ_CREDIT_HELPER_02=Anonhelper — Anon
 
-MAGGY_CREDIT_HELPER_03=AxoHelper — Axo
+DZ_CREDIT_HELPER_03=AxoHelper — Axo
 
-MAGGY_CREDIT_HELPER_04=BounceHelper — catapillie
+DZ_CREDIT_HELPER_04=BounceHelper — catapillie
 
-MAGGY_CREDIT_HELPER_05=BrokemiaHelper — Brokemia
+DZ_CREDIT_HELPER_05=BrokemiaHelper — Brokemia
 
-MAGGY_CREDIT_HELPER_06=CherryHelper — aridai
+DZ_CREDIT_HELPER_06=CherryHelper — aridai
 
-MAGGY_CREDIT_HELPER_07=ChroniaHelper — Chronia
+DZ_CREDIT_HELPER_07=ChroniaHelper — Chronia
 
-MAGGY_CREDIT_HELPER_08=CommunalHelper — catapillie & Team
+DZ_CREDIT_HELPER_08=CommunalHelper — catapillie & Team
 
-MAGGY_CREDIT_HELPER_09=ContortHelper — Contort
+DZ_CREDIT_HELPER_09=ContortHelper — Contort
 
-MAGGY_CREDIT_HELPER_10=CrystallineHelper — catapillie
+DZ_CREDIT_HELPER_10=CrystallineHelper — catapillie
 
-MAGGY_CREDIT_HELPER_11=DJMapHelper — DJOshawott
+DZ_CREDIT_HELPER_11=DJMapHelper — DJOshawott
 
-MAGGY_CREDIT_HELPER_12=DoonvHelper — doonv
+DZ_CREDIT_HELPER_12=DoonvHelper — doonv
 
-MAGGY_CREDIT_HELPER_13=EeveeHelper — lilybeevee
+DZ_CREDIT_HELPER_13=EeveeHelper — lilybeevee
 
-MAGGY_CREDIT_HELPER_14=Extended Variant Mode — maddie480
+DZ_CREDIT_HELPER_14=Extended Variant Mode — maddie480
 
-MAGGY_CREDIT_HELPER_15=FemtoHelper — vitellaryjk
+DZ_CREDIT_HELPER_15=FemtoHelper — vitellaryjk
 
-MAGGY_CREDIT_HELPER_16=FlaglinesAndSuch — Flagpole1up
+DZ_CREDIT_HELPER_16=FlaglinesAndSuch — Flagpole1up
 
-MAGGY_CREDIT_HELPER_17=FrostHelper — JaThePlayer
+DZ_CREDIT_HELPER_17=FrostHelper — JaThePlayer
 
-MAGGY_CREDIT_HELPER_18=HonlyHelper — Honly
+DZ_CREDIT_HELPER_18=HonlyHelper — Honly
 
-MAGGY_CREDIT_HELPER_19=JackalHelper — Jackal
+DZ_CREDIT_HELPER_19=JackalHelper — Jackal
 
-MAGGY_CREDIT_HELPER_20=JungleHelper — maddie480
+DZ_CREDIT_HELPER_20=JungleHelper — maddie480
 
-MAGGY_CREDIT_HELPER_21=LoennScripts — Loenn Team
+DZ_CREDIT_HELPER_21=LoennScripts — Loenn Team
 
-MAGGY_CREDIT_HELPER_22=LuaCutscenes — Cruor
+DZ_CREDIT_HELPER_22=LuaCutscenes — Cruor
 
-MAGGY_CREDIT_HELPER_23=LunaticHelper — Lunatic
+DZ_CREDIT_HELPER_23=LunaticHelper — Lunatic
 
-MAGGY_CREDIT_HELPER_24=Max Helping Hand — maddie480
+DZ_CREDIT_HELPER_24=Max Helping Hand — maddie480
 
-MAGGY_CREDIT_HELPER_25=ModderToolkit — Modding Community
+DZ_CREDIT_HELPER_25=ModderToolkit — Modding Community
 
-MAGGY_CREDIT_HELPER_26=MoreDasheline — catapillie
+DZ_CREDIT_HELPER_26=MoreDasheline — catapillie
 
-MAGGY_CREDIT_HELPER_27=NerdHelper — Nerd
+DZ_CREDIT_HELPER_27=NerdHelper — Nerd
 
-MAGGY_CREDIT_HELPER_28=OutbackHelper — WoofWoofDoggo
+DZ_CREDIT_HELPER_28=OutbackHelper — WoofWoofDoggo
 
-MAGGY_CREDIT_HELPER_29=ReverseHelper — Reverse
+DZ_CREDIT_HELPER_29=ReverseHelper — Reverse
 
-MAGGY_CREDIT_HELPER_30=SkinModHelper — AAA1459
+DZ_CREDIT_HELPER_30=SkinModHelper — AAA1459
 
-MAGGY_CREDIT_HELPER_31=SkinModHelperPlus — bigkahuna443
+DZ_CREDIT_HELPER_31=SkinModHelperPlus — bigkahuna443
 
-MAGGY_CREDIT_HELPER_32=SorbetHelper — earthwise
+DZ_CREDIT_HELPER_32=SorbetHelper — earthwise
 
-MAGGY_CREDIT_HELPER_33=VidPlayer — vitellaryjk
+DZ_CREDIT_HELPER_33=VidPlayer — vitellaryjk
 
-MAGGY_CREDIT_HELPER_34=VivHelper — Viv
+DZ_CREDIT_HELPER_34=VivHelper — Viv
 
-MAGGY_CREDIT_CONTRIBUTORS=Key Community Contributors
+DZ_CREDIT_CONTRIBUTORS=Key Community Contributors
 
-MAGGY_CREDIT_CONTRIB_01=catapillie
+DZ_CREDIT_CONTRIB_01=catapillie
 
-MAGGY_CREDIT_CONTRIB_02=maddie480
+DZ_CREDIT_CONTRIB_02=maddie480
 
-MAGGY_CREDIT_CONTRIB_03=JaThePlayer
+DZ_CREDIT_CONTRIB_03=JaThePlayer
 
-MAGGY_CREDIT_CONTRIB_04=Cruor
+DZ_CREDIT_CONTRIB_04=Cruor
 
-MAGGY_CREDIT_CONTRIB_05=lilybeevee
+DZ_CREDIT_CONTRIB_05=lilybeevee
 
-MAGGY_CREDIT_CONTRIB_06=bigkahuna443
+DZ_CREDIT_CONTRIB_06=bigkahuna443
 
-MAGGY_CREDIT_CONTRIB_07=coloursofnoise
+DZ_CREDIT_CONTRIB_07=coloursofnoise
 
-MAGGY_CREDIT_CONTRIB_08=aonkeeper4
+DZ_CREDIT_CONTRIB_08=aonkeeper4
 
-MAGGY_CREDIT_CONTRIB_09=earthwise
+DZ_CREDIT_CONTRIB_09=earthwise
 
-MAGGY_CREDIT_CONTRIB_10=AAA1459
+DZ_CREDIT_CONTRIB_10=AAA1459
 
-MAGGY_CREDIT_CONTRIB_11=Viv
+DZ_CREDIT_CONTRIB_11=Viv
 
-MAGGY_CREDIT_CONTRIB_12=DemoJameson
+DZ_CREDIT_CONTRIB_12=DemoJameson
 
-MAGGY_CREDIT_CELESTE_CREATED=Created By
+DZ_CREDIT_CELESTE_CREATED=Created By
 
-MAGGY_CREDIT_CELESTE_1=Matt Thorson
+DZ_CREDIT_CELESTE_1=Matt Thorson
 
-MAGGY_CREDIT_CELESTE_2=Noel Berry
+DZ_CREDIT_CELESTE_2=Noel Berry
 
-MAGGY_CREDIT_CELESTE_MUSIC_HEAD=Music
+DZ_CREDIT_CELESTE_MUSIC_HEAD=Music
 
-MAGGY_CREDIT_CELESTE_MUSIC_1=Lena Raine
+DZ_CREDIT_CELESTE_MUSIC_1=Lena Raine
 
-MAGGY_CREDIT_CELESTE_AUDIO=Sound Design
+DZ_CREDIT_CELESTE_AUDIO=Sound Design
 
-MAGGY_CREDIT_CELESTE_AUDIO_1=Kevin Regamey / Power Up Audio
+DZ_CREDIT_CELESTE_AUDIO_1=Kevin Regamey / Power Up Audio
 
-MAGGY_CREDIT_CELESTE_ART=Pixel Art
+DZ_CREDIT_CELESTE_ART=Pixel Art
 
-MAGGY_CREDIT_CELESTE_ART_1=Pedro Medeiros
+DZ_CREDIT_CELESTE_ART_1=Pedro Medeiros
 
-MAGGY_CREDIT_EVEREST=Everest Mod Loader
+DZ_CREDIT_EVEREST=Everest Mod Loader
 
-MAGGY_CREDIT_EVEREST_1=0x0ade
+DZ_CREDIT_EVEREST_1=0x0ade
 
-MAGGY_CREDIT_EVEREST_2=coloursofnoise
+DZ_CREDIT_EVEREST_2=coloursofnoise
 
-MAGGY_CREDIT_EVEREST_3=Popax21
+DZ_CREDIT_EVEREST_3=Popax21
 
-MAGGY_CREDIT_EVEREST_4=& the Everest Team
+DZ_CREDIT_EVEREST_4=& the Everest Team
 
-MAGGY_CREDIT_EDITOR=Map Editors
+DZ_CREDIT_EDITOR=Map Editors
 
-MAGGY_CREDIT_EDITOR_1=Lonn — Cruor & Team
+DZ_CREDIT_EDITOR_1=Lonn — Cruor & Team
 
-MAGGY_CREDIT_EDITOR_2=Ahorn — Cruor & 0x0ade
+DZ_CREDIT_EDITOR_2=Ahorn — Cruor & 0x0ade
 
-MAGGY_CREDIT_SPECIAL_THANKS=Special Thanks
+DZ_CREDIT_SPECIAL_THANKS=Special Thanks
 
-MAGGY_CREDIT_SPECIAL_THANKS_1=The Celeste Community
+DZ_CREDIT_SPECIAL_THANKS_1=The Celeste Community
 
-MAGGY_CREDIT_SPECIAL_THANKS_2=Mt. Celeste Climbing Association
+DZ_CREDIT_SPECIAL_THANKS_2=Mt. Celeste Climbing Association
 
-MAGGY_CREDIT_SPECIAL_THANKS_3=Matt Thorson & Noel Berry
+DZ_CREDIT_SPECIAL_THANKS_3=Matt Thorson & Noel Berry
 
-MAGGY_CREDIT_SPECIAL_THANKS_4=All Playtesters
+DZ_CREDIT_SPECIAL_THANKS_4=All Playtesters
 
-MAGGY_CREDIT_NO_SPECIAL_THANKS=No Special Thanks
+DZ_CREDIT_NO_SPECIAL_THANKS=No Special Thanks
 
-MAGGY_CREDIT_NO_SPECIAL_THANKS_1=CustomerOn & Cudtok
+DZ_CREDIT_NO_SPECIAL_THANKS_1=CustomerOn & Cudtok
 
-MAGGY_CREDIT_NO_SPECIAL_THANKS_2=Fytos
+DZ_CREDIT_NO_SPECIAL_THANKS_2=Fytos
 
-MAGGY_CREDIT_NO_SPECIAL_THANKS_3=Daxaroodle & Daxcr
+DZ_CREDIT_NO_SPECIAL_THANKS_3=Daxaroodle & Daxcr
 
-MAGGY_CREDIT_NO_SPECIAL_THANKS_4=and Other People who weren't involved
+DZ_CREDIT_NO_SPECIAL_THANKS_4=and Other People who weren't involved
 
-MAGGY_CREDIT_POWERED_BY=Powered By
+DZ_CREDIT_POWERED_BY=Powered By
 
-MAGGY_CREDIT_POWERED_BY_1=Celeste & Everest
+DZ_CREDIT_POWERED_BY_1=Celeste & Everest
 
-MAGGY_CREDIT_POWERED_BY_2=Thank you for playing!
+DZ_CREDIT_POWERED_BY_2=Thank you for playing!
 
-MAGGY_CREDIT_BACK_HINT=Press BACK to return
+DZ_CREDIT_BACK_HINT=Press BACK to return
 
-MAGGY_CREDIT_COMPANY_RIGHT_BY=Company By
+DZ_CREDIT_COMPANY_RIGHT_BY=Company By
 
-MAGGY_CREDIT_COMPANY_RIGHT_BY_1=Nintendo
+DZ_CREDIT_COMPANY_RIGHT_BY_1=Nintendo
 
-MAGGY_CREDIT_COMPANY_RIGHT_BY_2=Hal Laboratory
+DZ_CREDIT_COMPANY_RIGHT_BY_2=Hal Laboratory
 
-MAGGY_CREDIT_COMPANY_RIGHT_BY_3=EXOK
+DZ_CREDIT_COMPANY_RIGHT_BY_3=EXOK
 
-MAGGY_CREDIT_COMPANY_RIGHT_BY_4=Toby Fox & Temie Chang
+DZ_CREDIT_COMPANY_RIGHT_BY_4=Toby Fox & Temie Chang
 
-MAGGY_CREDIT_COMPANY_RIGHT_BY_5=WarpStar.inc
+DZ_CREDIT_COMPANY_RIGHT_BY_5=WarpStar.inc
 
-MAGGY_CREDIT_FINAL_THANK_BY=Final Thanks By
+DZ_CREDIT_FINAL_THANK_BY=Final Thanks By
 
-MAGGY_CREDIT_FINAL_THANK_BY_1=Desolo Zantas aka Gabbia
+DZ_CREDIT_FINAL_THANK_BY_1=Desolo Zantas aka Gabbia
 
-MAGGY_CREDIT_FINAL_THANK_BY_SUB=My Good Friend Since 2018
+DZ_CREDIT_FINAL_THANK_BY_SUB=My Good Friend Since 2018
 
-Maggy=Desolo Zantas
+DZ=Desolo Zantas
 
-Maggy_ASide=Desolo Zantas - A-Sides
+DZ_ASide=Desolo Zantas - A-Sides
 
-Maggy_BSide=Desolo Zantas - B-Sides
+DZ_BSide=Desolo Zantas - B-Sides
 
-Maggy_CSide=Desolo Zantas - C-Sides
+DZ_CSide=Desolo Zantas - C-Sides
 
-Maggy_DSide=Desolo Zantas - D-Sides
+DZ_DSide=Desolo Zantas - D-Sides
 
-Maggy_DXSide=Desolo Zantas - DX-Sides
+DZ_DXSide=Desolo Zantas - DX-Sides
 
-Maggy_Main=Desolo Zantas
+DZ_Main=Desolo Zantas
 
-Maggy_PCG=Desolo Zantas - Procedural
+DZ_PCG=Desolo Zantas - Procedural
 
-Maggy_WIP=Desolo Zantas - Work in Progress
+DZ_WIP=Desolo Zantas - Work in Progress
 
-Maggy_ASide_00_Prologue=Prologue
+DZ_ASide_00_Prologue=Prologue
 
-Maggy_ASide_01_City_A=Forbidden Metropolis
+DZ_ASide_01_City_A=Forbidden Metropolis
 
-Maggy_ASide_02_Nightmare_A=Veil of Shadows
+DZ_ASide_02_Nightmare_A=Veil of Shadows
 
-Maggy_ASide_03_Stars_A=Arrival
+DZ_ASide_03_Stars_A=Arrival
 
-Maggy_ASide_04_Legend_A=Chronicles of Destiny
+DZ_ASide_04_Legend_A=Chronicles of Destiny
 
-Maggy_ASide_05_Fractured_A=Fractured Memories
+DZ_ASide_05_Fractured_A=Fractured Memories
 
-Maggy_ASide_06_Stronghold_A=Fortress of Solitude
+DZ_ASide_06_Stronghold_A=Fortress of Solitude
 
-Maggy_ASide_07_Inferno_A=Infernal Reflections
+DZ_ASide_07_Inferno_A=Infernal Reflections
 
-Maggy_ASide_08_Truth_A=Revelation's Edge
+DZ_ASide_08_Truth_A=Revelation's Edge
 
-Maggy_ASide_09_Summit_A=Apex of Reality
+DZ_ASide_09_Summit_A=Apex of Reality
 
-Maggy_ASide_10_Ruins_A=Echoes of the Past
+DZ_ASide_10_Ruins_A=Echoes of the Past
 
-Maggy_Lobby_10_Ruins_Lobby=Ruins Lobby - Echoes of the Past
+DZ_Lobby_10_Ruins_Lobby=Ruins Lobby - Echoes of the Past
 
-Maggy_SmallMaps_10_Ruins_SM1=Ruins Fragmento I
+DZ_SmallMaps_10_Ruins_SM1=Ruins Fragmento I
 
-Maggy_SmallMaps_10_Ruins_SM2=Ruins Fragmento II
+DZ_SmallMaps_10_Ruins_SM2=Ruins Fragmento II
 
-Maggy_SmallMaps_10_Ruins_SM3=Ruins Fragmento III
+DZ_SmallMaps_10_Ruins_SM3=Ruins Fragmento III
 
-Maggy_SmallMaps_10_Ruins_SM4=Ruins Fragmento IV
+DZ_SmallMaps_10_Ruins_SM4=Ruins Fragmento IV
 
-Maggy_SmallMaps_10_Ruins_SM5=Ruins Fragmento V
+DZ_SmallMaps_10_Ruins_SM5=Ruins Fragmento V
 
-Maggy_SmallMaps_10_Ruins_SM6=Ruins Fragmento VI
+DZ_SmallMaps_10_Ruins_SM6=Ruins Fragmento VI
 
-Maggy_SmallMaps_10_Ruins_EX=Ruins - Reliquia Oculta (EX)
+DZ_SmallMaps_10_Ruins_EX=Ruins - Reliquia Oculta (EX)
 
-Maggy_SmallMaps_10_Ruins_Boss=Ruins - Guardián Antiguo (Boss)
+DZ_SmallMaps_10_Ruins_Boss=Ruins - Guardián Antiguo (Boss)
 
-Maggy_ASide_11_Snow_A=Santuario Congelado
+DZ_ASide_11_Snow_A=Santuario Congelado
 
-Maggy_Lobby_11_Snowdin_Lobby=Snowdin City Lobby - Santuario Congelado
+DZ_Lobby_11_Snowdin_Lobby=Snowdin City Lobby - Santuario Congelado
 
-Maggy_SmallMaps_11_Snow_SM1=Snowdin Fragmento I
+DZ_SmallMaps_11_Snow_SM1=Snowdin Fragmento I
 
-Maggy_SmallMaps_11_Snow_SM2=Snowdin Fragmento II
+DZ_SmallMaps_11_Snow_SM2=Snowdin Fragmento II
 
-Maggy_SmallMaps_11_Snow_SM3=Snowdin Fragmento III
+DZ_SmallMaps_11_Snow_SM3=Snowdin Fragmento III
 
-Maggy_SmallMaps_11_Snow_SM4=Snowdin Fragmento IV
+DZ_SmallMaps_11_Snow_SM4=Snowdin Fragmento IV
 
-Maggy_SmallMaps_11_Snow_SM5=Snowdin Fragmento V
+DZ_SmallMaps_11_Snow_SM5=Snowdin Fragmento V
 
-Maggy_SmallMaps_11_Snow_SM6=Snowdin Fragmento VI
+DZ_SmallMaps_11_Snow_SM6=Snowdin Fragmento VI
 
-Maggy_SmallMaps_11_Snow_EX=Snowdin - Caché Congelado (EX)
+DZ_SmallMaps_11_Snow_EX=Snowdin - Caché Congelado (EX)
 
-Maggy_SmallMaps_11_Snow_Boss=Snowdin - Guardián Glaciar (Boss)
+DZ_SmallMaps_11_Snow_Boss=Snowdin - Guardián Glaciar (Boss)
 
-Maggy_ASide_12_Water_A=Profundidades en Cascada
+DZ_ASide_12_Water_A=Profundidades en Cascada
 
-Maggy_Lobby_12_Water_Lobby=Wateredgefalls Lobby - Profundidades en Cascada
+DZ_Lobby_12_Water_Lobby=Wateredgefalls Lobby - Profundidades en Cascada
 
-Maggy_SmallMaps_12_Water_SM1=Cascade Fragmento I
+DZ_SmallMaps_12_Water_SM1=Cascade Fragmento I
 
-Maggy_SmallMaps_12_Water_SM2=Cascade Fragmento II
+DZ_SmallMaps_12_Water_SM2=Cascade Fragmento II
 
-Maggy_SmallMaps_12_Water_SM3=Cascade Fragmento III
+DZ_SmallMaps_12_Water_SM3=Cascade Fragmento III
 
-Maggy_SmallMaps_12_Water_SM4=Cascade Fragmento IV
+DZ_SmallMaps_12_Water_SM4=Cascade Fragmento IV
 
-Maggy_SmallMaps_12_Water_SM5=Cascade Fragmento V
+DZ_SmallMaps_12_Water_SM5=Cascade Fragmento V
 
-Maggy_SmallMaps_12_Water_SM6=Cascade Fragmento VI
+DZ_SmallMaps_12_Water_SM6=Cascade Fragmento VI
 
-Maggy_SmallMaps_12_Water_EX=Waterfall - Tesoro de Temmie (EX)
+DZ_SmallMaps_12_Water_EX=Waterfall - Tesoro de Temmie (EX)
 
-Maggy_SmallMaps_12_Water_Boss=Waterfall - Titán Coral (Boss)
+DZ_SmallMaps_12_Water_Boss=Waterfall - Titán Coral (Boss)
 
-Maggy_ASide_13_Fire_A=Blazing Territories
+DZ_ASide_13_Fire_A=Blazing Territories
 
-Maggy_Lobby_13_Fire_Lobby=Hotcliffland Lobby - Blazing Territories
+DZ_Lobby_13_Fire_Lobby=Hotcliffland Lobby - Blazing Territories
 
-Maggy_SmallMaps_13_Fire_SM1=Ember Fragmento I
+DZ_SmallMaps_13_Fire_SM1=Ember Fragmento I
 
-Maggy_SmallMaps_13_Fire_SM2=Ember Fragmento II
+DZ_SmallMaps_13_Fire_SM2=Ember Fragmento II
 
-Maggy_SmallMaps_13_Fire_SM3=Ember Fragmento III
+DZ_SmallMaps_13_Fire_SM3=Ember Fragmento III
 
-Maggy_SmallMaps_13_Fire_SM4=Ember Fragmento IV
+DZ_SmallMaps_13_Fire_SM4=Ember Fragmento IV
 
-Maggy_SmallMaps_13_Fire_SM5=Ember Fragmento V
+DZ_SmallMaps_13_Fire_SM5=Ember Fragmento V
 
-Maggy_SmallMaps_13_Fire_SM6=Ember Fragmento VI
+DZ_SmallMaps_13_Fire_SM6=Ember Fragmento VI
 
-Maggy_SmallMaps_13_Fire_EX=Hotlands - Lava Cache (EX)
+DZ_SmallMaps_13_Fire_EX=Hotlands - Lava Cache (EX)
 
-Maggy_SmallMaps_13_Fire_Boss=Hotlands - Inferno Lord (Boss)
+DZ_SmallMaps_13_Fire_Boss=Hotlands - Inferno Lord (Boss)
 
-Maggy_ASide_14_Digital_A=Cyber Nexus
+DZ_ASide_14_Digital_A=Cyber Nexus
 
-Maggy_Lobby_14_Digital_Lobby=Cyber Nexus Lobby - Digital Frontier
+DZ_Lobby_14_Digital_Lobby=Cyber Nexus Lobby - Digital Frontier
 
-Maggy_SmallMaps_14_Digital_SM1=Byte Fragmento I
+DZ_SmallMaps_14_Digital_SM1=Byte Fragmento I
 
-Maggy_SmallMaps_14_Digital_SM2=Byte Fragmento II
+DZ_SmallMaps_14_Digital_SM2=Byte Fragmento II
 
-Maggy_SmallMaps_14_Digital_SM3=Byte Fragmento III
+DZ_SmallMaps_14_Digital_SM3=Byte Fragmento III
 
-Maggy_SmallMaps_14_Digital_SM4=Byte Fragmento IV
+DZ_SmallMaps_14_Digital_SM4=Byte Fragmento IV
 
-Maggy_SmallMaps_14_Digital_SM5=Byte Fragmento V
+DZ_SmallMaps_14_Digital_SM5=Byte Fragmento V
 
-Maggy_SmallMaps_14_Digital_SM6=Byte Fragmento VI
+DZ_SmallMaps_14_Digital_SM6=Byte Fragmento VI
 
-Maggy_SmallMaps_14_Digital_EX=Cyber Nexus - Digital Rift (EX)
+DZ_SmallMaps_14_Digital_EX=Cyber Nexus - Digital Rift (EX)
 
-Maggy_SmallMaps_14_Digital_Boss=Cyber Nexus - Queen's Core (Boss)
+DZ_SmallMaps_14_Digital_Boss=Cyber Nexus - Queen's Core (Boss)
 
-Maggy_ASide_15_Castle_A=Ethereal Citadel
+DZ_ASide_15_Castle_A=Ethereal Citadel
 
-Maggy_ASide_16_Corruption=Organ Garden of Despair
+DZ_ASide_16_Corruption=Organ Garden of Despair
 
-Maggy_ASide_17_Epilogue=Final Resonance
+DZ_ASide_17_Epilogue=Final Resonance
 
-Maggy_ASide_18_Heart_A=Core of Existence
+DZ_ASide_18_Heart_A=Core of Existence
 
-Maggy_ASide_19_Space=Farewell to Stars
+DZ_ASide_19_Space=Farewell to Stars
 
-Maggy_ASide_20_TheEnd=Light Through the Dark
+DZ_ASide_20_TheEnd=Light Through the Dark
 
-Maggy_ASide_21_PostEpilogue=Desolo Zantas True Finale
+DZ_ASide_21_PostEpilogue=Desolo Zantas True Finale
 
-Maggy_ASide_lastlevel=Desolo Zantas True Finale
+DZ_ASide_lastlevel=Desolo Zantas True Finale
 
-Maggy_BSide_01_City_B=Forbidden Metropolis
+DZ_BSide_01_City_B=Forbidden Metropolis
 
-Maggy_BSide_02_Nightmare_B=Veil of Shadows
+DZ_BSide_02_Nightmare_B=Veil of Shadows
 
-Maggy_BSide_03_Stars_B=Arrival
+DZ_BSide_03_Stars_B=Arrival
 
-Maggy_BSide_04_Legend_B=Chronicles of Destiny
+DZ_BSide_04_Legend_B=Chronicles of Destiny
 
-Maggy_BSide_05_Fractured_B=Fractured Memories
+DZ_BSide_05_Fractured_B=Fractured Memories
 
-Maggy_BSide_06_Stronghold_B=Fortress of Solitude
+DZ_BSide_06_Stronghold_B=Fortress of Solitude
 
-Maggy_BSide_07_Inferno_B=Infernal Reflections
+DZ_BSide_07_Inferno_B=Infernal Reflections
 
-Maggy_BSide_08_Truth_B=Revelation's Edge
+DZ_BSide_08_Truth_B=Revelation's Edge
 
-Maggy_BSide_09_Summit_B=Apex of Reality
+DZ_BSide_09_Summit_B=Apex of Reality
 
-Maggy_BSide_10_Ruins_B=Echoes of the Past
+DZ_BSide_10_Ruins_B=Echoes of the Past
 
-Maggy_BSide_11_Snow_B=Santuario Congelado
+DZ_BSide_11_Snow_B=Santuario Congelado
 
-Maggy_BSide_12_Water_B=Profundidades en Cascada
+DZ_BSide_12_Water_B=Profundidades en Cascada
 
-Maggy_BSide_13_Fire_B=Blazing Territories
+DZ_BSide_13_Fire_B=Blazing Territories
 
-Maggy_BSide_14_Digital_B=Cyber Nexus
+DZ_BSide_14_Digital_B=Cyber Nexus
 
-Maggy_BSide_15_Castle_B=Ethereal Citadel
+DZ_BSide_15_Castle_B=Ethereal Citadel
 
-Maggy_BSide_18_Heart_B=Core of Existence
+DZ_BSide_18_Heart_B=Core of Existence
 
-Maggy_CSide_01_City_C=Forbidden Metropolis
+DZ_CSide_01_City_C=Forbidden Metropolis
 
-Maggy_CSide_02_Nightmare_C=Veil of Shadows
+DZ_CSide_02_Nightmare_C=Veil of Shadows
 
-Maggy_CSide_03_Stars_C=Arrival
+DZ_CSide_03_Stars_C=Arrival
 
-Maggy_CSide_04_Legend_C=Chronicles of Destiny
+DZ_CSide_04_Legend_C=Chronicles of Destiny
 
-Maggy_CSide_05_Fractured_C=Fractured Memories
+DZ_CSide_05_Fractured_C=Fractured Memories
 
-Maggy_CSide_06_Stronghold_C=Fortress of Solitude
+DZ_CSide_06_Stronghold_C=Fortress of Solitude
 
-Maggy_CSide_07_Inferno_C=Infernal Reflections
+DZ_CSide_07_Inferno_C=Infernal Reflections
 
-Maggy_CSide_08_Truth_C=Revelation's Edge
+DZ_CSide_08_Truth_C=Revelation's Edge
 
-Maggy_CSide_09_Summit_C=Apex of Reality
+DZ_CSide_09_Summit_C=Apex of Reality
 
-Maggy_CSide_10_Ruins_C=Echoes of the Past
+DZ_CSide_10_Ruins_C=Echoes of the Past
 
-Maggy_CSide_11_Snow_C=Santuario Congelado
+DZ_CSide_11_Snow_C=Santuario Congelado
 
-Maggy_CSide_12_Water_C=Profundidades en Cascada
+DZ_CSide_12_Water_C=Profundidades en Cascada
 
-Maggy_CSide_13_Fire_C=Blazing Territories
+DZ_CSide_13_Fire_C=Blazing Territories
 
-Maggy_CSide_14_Digital_C=Cyber Nexus
+DZ_CSide_14_Digital_C=Cyber Nexus
 
-Maggy_CSide_15_Castle_C=Ethereal Citadel
+DZ_CSide_15_Castle_C=Ethereal Citadel
 
-Maggy_CSide_18_Heart_C=Core of Existence
+DZ_CSide_18_Heart_C=Core of Existence
 
-Maggy_DSide_01_City_D=Forbidden Metropolis
+DZ_DSide_01_City_D=Forbidden Metropolis
 
-Maggy_DSide_02_Nightmare_D=Veil of Shadows
+DZ_DSide_02_Nightmare_D=Veil of Shadows
 
-Maggy_DSide_03_Stars_D=Arrival
+DZ_DSide_03_Stars_D=Arrival
 
-Maggy_DSide_04_Legend_D=Chronicles of Destiny
+DZ_DSide_04_Legend_D=Chronicles of Destiny
 
-Maggy_DSide_05_Fractured_D=Fractured Memories
+DZ_DSide_05_Fractured_D=Fractured Memories
 
-Maggy_DSide_06_Stronghold_D=Fortress of Solitude
+DZ_DSide_06_Stronghold_D=Fortress of Solitude
 
-Maggy_DSide_07_Inferno_D=Infernal Reflections
+DZ_DSide_07_Inferno_D=Infernal Reflections
 
-Maggy_DSide_08_Truth_D=Revelation's Edge
+DZ_DSide_08_Truth_D=Revelation's Edge
 
-Maggy_DSide_09_Summit_D=Apex of Reality
+DZ_DSide_09_Summit_D=Apex of Reality
 
-Maggy_DSide_10_Ruins_D=Echoes of the Past
+DZ_DSide_10_Ruins_D=Echoes of the Past
 
-Maggy_DSide_11_Snow_D=Santuario Congelado
+DZ_DSide_11_Snow_D=Santuario Congelado
 
-Maggy_DSide_12_Water_D=Profundidades en Cascada
+DZ_DSide_12_Water_D=Profundidades en Cascada
 
-Maggy_DSide_13_Fire_D=Blazing Territories
+DZ_DSide_13_Fire_D=Blazing Territories
 
-Maggy_DSide_14_Digital_D=Cyber Nexus
+DZ_DSide_14_Digital_D=Cyber Nexus
 
-Maggy_DSide_15_Castle_D=Ethereal Citadel
+DZ_DSide_15_Castle_D=Ethereal Citadel
 
-Maggy_DSide_18_Heart_D=Core of Existence
+DZ_DSide_18_Heart_D=Core of Existence
 
-Maggy_DXSide_01_City_DX=Forbidden Metropolis DX
+DZ_DXSide_01_City_DX=Forbidden Metropolis DX
 
-Maggy_DXSide_02_Nightmare_DX=Veil of Shadows DX
+DZ_DXSide_02_Nightmare_DX=Veil of Shadows DX
 
-Maggy_DXSide_03_Stars_DX=Arrival DX
+DZ_DXSide_03_Stars_DX=Arrival DX
 
-Maggy_DXSide_04_Legend_DX=Chronicles of Destiny DX
+DZ_DXSide_04_Legend_DX=Chronicles of Destiny DX
 
-Maggy_DXSide_05_Fractured_DX=Fractured Memories DX
+DZ_DXSide_05_Fractured_DX=Fractured Memories DX
 
-Maggy_DXSide_06_Stronghold_DX=Fortress of Solitude DX
+DZ_DXSide_06_Stronghold_DX=Fortress of Solitude DX
 
-Maggy_DXSide_07_Inferno_DX=Infernal Reflections DX
+DZ_DXSide_07_Inferno_DX=Infernal Reflections DX
 
-Maggy_DXSide_08_Truth_DX=Revelation's Edge DX
+DZ_DXSide_08_Truth_DX=Revelation's Edge DX
 
-Maggy_DXSide_09_Summit_DX=Apex of Reality DX
+DZ_DXSide_09_Summit_DX=Apex of Reality DX
 
-Maggy_DXSide_10_Ruins_DX=Echoes of the Past DX
+DZ_DXSide_10_Ruins_DX=Echoes of the Past DX
 
-Maggy_DXSide_11_Snow_DX=Santuario Congelado DX
+DZ_DXSide_11_Snow_DX=Santuario Congelado DX
 
-Maggy_DXSide_12_Water_DX=Profundidades en Cascada DX
+DZ_DXSide_12_Water_DX=Profundidades en Cascada DX
 
-Maggy_DXSide_13_Fire_DX=Blazing Territories DX
+DZ_DXSide_13_Fire_DX=Blazing Territories DX
 
-Maggy_DXSide_14_Digital_DX=Cyber Nexus DX
+DZ_DXSide_14_Digital_DX=Cyber Nexus DX
 
-Maggy_DXSide_15_Castle_DX=Ethereal Citadel DX
+DZ_DXSide_15_Castle_DX=Ethereal Citadel DX
 
-Maggy_DXSide_16_Corruption_DX=Organ Garden of Despair DX
+DZ_DXSide_16_Corruption_DX=Organ Garden of Despair DX
 
-Maggy_DXSide_18_Heart_DX=Core of Existence DX
+DZ_DXSide_18_Heart_DX=Core of Existence DX
 
 DXSIDE_BOSS_FLOWEY_OMEGA=Flowey Omega
 
@@ -1078,363 +1078,363 @@ DXSIDE_BOSS_ASRIEL_TRANSCENDENCE=Asriel Transcendence
 
 DXSIDE_BOSS_DARK_MATTER=Dark Matter
 
-Maggy_WIP_kirbytest=Kirby Test
+DZ_WIP_kirbytest=Kirby Test
 
-Maggy_WIP_test=Test Map
+DZ_WIP_test=Test Map
 
-Maggy_ASide_01_City_A_b_00=Jump Through
+DZ_ASide_01_City_A_b_00=Jump Through
 
-Maggy_ASide_01_City_A_c_00=Useless mechanics
+DZ_ASide_01_City_A_c_00=Useless mechanics
 
-Maggy_ASide_02_Nightmare_A_b_3=The Greetings
+DZ_ASide_02_Nightmare_A_b_3=The Greetings
 
-Maggy_ASide_02_Nightmare_A_c_end_3=The Grief
+DZ_ASide_02_Nightmare_A_c_end_3=The Grief
 
-Maggy_ASide_03_Stars_A_b_4=The Lesson
+DZ_ASide_03_Stars_A_b_4=The Lesson
 
-Maggy_ASide_03_Stars_A_b_10d=Jumping the Gap
+DZ_ASide_03_Stars_A_b_10d=Jumping the Gap
 
-Maggy_ASide_03_Stars_A_b_9b=Going up
+DZ_ASide_03_Stars_A_b_9b=Going up
 
-Maggy_ASide_05_Fractured_A_08_a=Huge Cluttering Mess
+DZ_ASide_05_Fractured_A_08_a=Huge Cluttering Mess
 
-Maggy_ASide_05_Fractured_A_09_d=Broken Elevator
+DZ_ASide_05_Fractured_A_09_d=Broken Elevator
 
-Maggy_ASide_05_Fractured_A_00_d=Luxury with Destructions
+DZ_ASide_05_Fractured_A_00_d=Luxury with Destructions
 
-Maggy_ASide_06_Stronghold_A_b_00=Shrine of Winds
+DZ_ASide_06_Stronghold_A_b_00=Shrine of Winds
 
-Maggy_ASide_06_Stronghold_A_c_00=The Lost of Two Children
+DZ_ASide_06_Stronghold_A_c_00=The Lost of Two Children
 
-Maggy_ASide_06_Stronghold_A_d_00=Freedom
+DZ_ASide_06_Stronghold_A_d_00=Freedom
 
-Maggy_ASide_07_Inferno_A_b_00=Depths
+DZ_ASide_07_Inferno_A_b_00=Depths
 
-Maggy_ASide_07_Inferno_A_c_00=Unravelling
+DZ_ASide_07_Inferno_A_c_00=Unravelling
 
-Maggy_ASide_07_Inferno_A_d_00=The Search
+DZ_ASide_07_Inferno_A_d_00=The Search
 
-Maggy_ASide_07_Inferno_A_e_00=Rescuing Madeline
+DZ_ASide_07_Inferno_A_e_00=Rescuing Madeline
 
-Maggy_ASide_08_Truth_A_00=Lake
+DZ_ASide_08_Truth_A_00=Lake
 
-Maggy_ASide_08_Truth_A_04=Learn from the Pain
+DZ_ASide_08_Truth_A_04=Learn from the Pain
 
-Maggy_ASide_08_Truth_A_b_00=Self Control
+DZ_ASide_08_Truth_A_b_00=Self Control
 
-Maggy_ASide_08_Truth_A_boss_00=Confronting His-Self
+DZ_ASide_08_Truth_A_boss_00=Confronting His-Self
 
-Maggy_ASide_08_Truth_A_center_01=Megalo Strike Back
+DZ_ASide_08_Truth_A_center_01=Megalo Strike Back
 
-Maggy_ASide_08_Truth_A_After_00=Realization
+DZ_ASide_08_Truth_A_After_00=Realization
 
-Maggy_ASide_09_Summit_A_b_00=500 M
+DZ_ASide_09_Summit_A_b_00=500 M
 
-Maggy_ASide_09_Summit_A_c_00=1000 M
+DZ_ASide_09_Summit_A_c_00=1000 M
 
-Maggy_ASide_09_Summit_A_d_00=1500 M
+DZ_ASide_09_Summit_A_d_00=1500 M
 
-Maggy_ASide_09_Summit_A_e_00=2000 M
+DZ_ASide_09_Summit_A_e_00=2000 M
 
-Maggy_ASide_09_Summit_A_f_00=2500 M
+DZ_ASide_09_Summit_A_f_00=2500 M
 
-Maggy_ASide_09_Summit_A_g_00=3000 M
+DZ_ASide_09_Summit_A_g_00=3000 M
 
-Maggy_ASide_09_Summit_A_h_00=6000 M
+DZ_ASide_09_Summit_A_h_00=6000 M
 
-Maggy_ASide_18_Heart_A_A_00=Into the Heart
+DZ_ASide_18_Heart_A_A_00=Into the Heart
 
-Maggy_ASide_18_Heart_A_c_00=Hell and Sorrow
+DZ_ASide_18_Heart_A_c_00=Hell and Sorrow
 
-Maggy_ASide_18_Heart_A_d_00=Rising Heat
+DZ_ASide_18_Heart_A_d_00=Rising Heat
 
-Maggy_ASide_18_Heart_A_space_1=Void Of Creation
+DZ_ASide_18_Heart_A_space_1=Void Of Creation
 
-Maggy_ASide_19_Space_A_00=Facing the Unknown
+DZ_ASide_19_Space_A_00=Facing the Unknown
 
-Maggy_ASide_19_Space_c_00=Self Energy
+DZ_ASide_19_Space_c_00=Self Energy
 
-Maggy_ASide_19_Space_e_00z=Hopes and What?
+DZ_ASide_19_Space_e_00z=Hopes and What?
 
-Maggy_ASide_19_Space_f_door=In My Way
+DZ_ASide_19_Space_f_door=In My Way
 
-Maggy_ASide_19_Space_h_00b=HOPES
+DZ_ASide_19_Space_h_00b=HOPES
 
-Maggy_ASide_19_Space_galt_00=DREAMS
+DZ_ASide_19_Space_galt_00=DREAMS
 
-Maggy_ASide_19_Space_i_00=Being Manipulated
+DZ_ASide_19_Space_i_00=Being Manipulated
 
-Maggy_ASide_19_Space_j_00=A Tragic Loss
+DZ_ASide_19_Space_j_00=A Tragic Loss
 
-Maggy_ASide_19_Space_j_mid=Never Give Up
+DZ_ASide_19_Space_j_mid=Never Give Up
 
-Maggy_ASide_19_Space_x_00=Farewell to Stars
+DZ_ASide_19_Space_x_00=Farewell to Stars
 
-Maggy_ASide_20_TheEnd_b_00=Puppet of Gravestone
+DZ_ASide_20_TheEnd_b_00=Puppet of Gravestone
 
-Maggy_ASide_20_TheEnd_c_start=Searching Madeline
+DZ_ASide_20_TheEnd_c_start=Searching Madeline
 
-Maggy_ASide_20_TheEnd_d_00=Hellish Climb
+DZ_ASide_20_TheEnd_d_00=Hellish Climb
 
-Maggy_ASide_20_TheEnd_e_00=Introduction to Els
+DZ_ASide_20_TheEnd_e_00=Introduction to Els
 
-Maggy_ASide_20_TheEnd_f_00=The Inner struggles
+DZ_ASide_20_TheEnd_f_00=The Inner struggles
 
-Maggy_ASide_20_TheEnd_g_00=Your Last wishes
+DZ_ASide_20_TheEnd_g_00=Your Last wishes
 
-Maggy_ASide_20_TheEnd_h_0=No More Running and No More Hiding
+DZ_ASide_20_TheEnd_h_0=No More Running and No More Hiding
 
-Maggy_ASide_20_TheEnd_i_0=Hopes and Dreams
+DZ_ASide_20_TheEnd_i_0=Hopes and Dreams
 
-Maggy_ASide_20_TheEnd_j_0=Angel of Death
+DZ_ASide_20_TheEnd_j_0=Angel of Death
 
-Maggy_ASide_20_TheEnd_k_0=Doppia Elica
+DZ_ASide_20_TheEnd_k_0=Doppia Elica
 
-Maggy_ASide_20_TheEnd_k_5=The Fallen Path (Siamo Zero)
+DZ_ASide_20_TheEnd_k_5=The Fallen Path (Siamo Zero)
 
-Maggy_ASide_20_TheEnd_w_01=Penumbra Phantasm Part 1
+DZ_ASide_20_TheEnd_w_01=Penumbra Phantasm Part 1
 
-Maggy_ASide_20_TheEnd_w_09=Penumbra Phantasm Part 2
+DZ_ASide_20_TheEnd_w_09=Penumbra Phantasm Part 2
 
-Maggy_ASide_20_TheEnd_w_20=Penumbra Phantasm Part 3
+DZ_ASide_20_TheEnd_w_20=Penumbra Phantasm Part 3
 
-Maggy_ASide_20_TheEnd_z_00=The Last Push
+DZ_ASide_20_TheEnd_z_00=The Last Push
 
-Maggy_BSide_01_City_B_a_00=Start
+DZ_BSide_01_City_B_a_00=Start
 
-Maggy_BSide_01_City_B_b_04=Waste Yard
+DZ_BSide_01_City_B_b_04=Waste Yard
 
-Maggy_BSide_01_City_B_c_08=Another Way Up
+DZ_BSide_01_City_B_c_08=Another Way Up
 
-Maggy_BSide_02_Nightmare_B_a_00=Start
+DZ_BSide_02_Nightmare_B_a_00=Start
 
-Maggy_BSide_02_Nightmare_B_b_00=Lock The Flip In
+DZ_BSide_02_Nightmare_B_b_00=Lock The Flip In
 
-Maggy_BSide_02_Nightmare_B_c_00=Darkess Nightmare
+DZ_BSide_02_Nightmare_B_c_00=Darkess Nightmare
 
-Maggy_BSide_05_Fractured_B_B_00=Start
+DZ_BSide_05_Fractured_B_B_00=Start
 
-Maggy_BSide_05_Fractured_B_06=Staff Quarters
+DZ_BSide_05_Fractured_B_06=Staff Quarters
 
-Maggy_BSide_05_Fractured_B_11=Library
+DZ_BSide_05_Fractured_B_11=Library
 
-Maggy_BSide_05_Fractured_B_16=Rooftop
+DZ_BSide_05_Fractured_B_16=Rooftop
 
-Maggy_BSide_06_Stronghold_B_A_00va=Start
+DZ_BSide_06_Stronghold_B_A_00va=Start
 
-Maggy_BSide_06_Stronghold_B_B_00=Stepping Stones
+DZ_BSide_06_Stronghold_B_B_00=Stepping Stones
 
-Maggy_BSide_06_Stronghold_B_c_00=Gusty Canyon
+DZ_BSide_06_Stronghold_B_c_00=Gusty Canyon
 
-Maggy_BSide_06_Stronghold_B_d_00=Eye of the Storm
+DZ_BSide_06_Stronghold_B_d_00=Eye of the Storm
 
-Maggy_BSide_07_Inferno_B_start=Start
+DZ_BSide_07_Inferno_B_start=Start
 
-Maggy_BSide_07_Inferno_B_B_00=Central Chamber
+DZ_BSide_07_Inferno_B_B_00=Central Chamber
 
-Maggy_BSide_07_Inferno_B_c_00=Discovery
+DZ_BSide_07_Inferno_B_c_00=Discovery
 
-Maggy_BSide_07_Inferno_B_d_00=Theo Mix Master
+DZ_BSide_07_Inferno_B_d_00=Theo Mix Master
 
-Maggy_BSide_08_Truth_B_A_00=Start
+DZ_BSide_08_Truth_B_A_00=Start
 
-Maggy_BSide_08_Truth_B_B_00=Reflections
+DZ_BSide_08_Truth_B_B_00=Reflections
 
-Maggy_BSide_08_Truth_B_c_00=Rock Bottom
+DZ_BSide_08_Truth_B_c_00=Rock Bottom
 
-Maggy_BSide_08_Truth_B_d_00=Reprieve
+DZ_BSide_08_Truth_B_d_00=Reprieve
 
-Maggy_BSide_09_Summit_B_A_00_intro=Start
+DZ_BSide_09_Summit_B_A_00_intro=Start
 
-Maggy_BSide_09_Summit_B_B_00=500 M
+DZ_BSide_09_Summit_B_B_00=500 M
 
-Maggy_BSide_09_Summit_B_c_01=1000 M
+DZ_BSide_09_Summit_B_c_01=1000 M
 
-Maggy_BSide_09_Summit_B_d_00=1500 M
+DZ_BSide_09_Summit_B_d_00=1500 M
 
-Maggy_BSide_09_Summit_B_e_00=2000 M
+DZ_BSide_09_Summit_B_e_00=2000 M
 
-Maggy_BSide_09_Summit_B_f_00=2500 M
+DZ_BSide_09_Summit_B_f_00=2500 M
 
-Maggy_BSide_09_Summit_B_g_00=3000 M
+DZ_BSide_09_Summit_B_g_00=3000 M
 
-Maggy_BSide_09_Summit_B_h_00=6000 M
+DZ_BSide_09_Summit_B_h_00=6000 M
 
-Maggy_BSide_18_Heart_B_00=Start
+DZ_BSide_18_Heart_B_00=Start
 
-Maggy_BSide_18_Heart_B_A_00=Into the Stars
+DZ_BSide_18_Heart_B_A_00=Into the Stars
 
-Maggy_BSide_18_Heart_B_B_00=Burning or Freezing
+DZ_BSide_18_Heart_B_B_00=Burning or Freezing
 
-Maggy_BSide_18_Heart_B_c_01=Heartbeat
+DZ_BSide_18_Heart_B_c_01=Heartbeat
 
-Maggy_CSide_01_City_C_A_00=Start
+DZ_CSide_01_City_C_A_00=Start
 
-Maggy_CSide_01_City_C_B_00=Over The Highway
+DZ_CSide_01_City_C_B_00=Over The Highway
 
-Maggy_CSide_01_City_C_C_00=Perfect Timing
+DZ_CSide_01_City_C_C_00=Perfect Timing
 
-Maggy_CSide_01_City_C_d_00=Dream Zoom
+DZ_CSide_01_City_C_d_00=Dream Zoom
 
-Maggy_CSide_02_Nightmare_C_A_00=Start
+DZ_CSide_02_Nightmare_C_A_00=Start
 
-Maggy_CSide_02_Nightmare_C_B_00=Proceed to Kill
+DZ_CSide_02_Nightmare_C_B_00=Proceed to Kill
 
-Maggy_CSide_02_Nightmare_C_C_00=But Nobody Came
+DZ_CSide_02_Nightmare_C_C_00=But Nobody Came
 
-Maggy_CSide_05_Fractured_C_A_00=Start
+DZ_CSide_05_Fractured_C_A_00=Start
 
-Maggy_CSide_05_Fractured_C_B_00=Dust Bunnys
+DZ_CSide_05_Fractured_C_B_00=Dust Bunnys
 
-Maggy_CSide_05_Fractured_C_B_05=Shatter Shelf
+DZ_CSide_05_Fractured_C_B_05=Shatter Shelf
 
-Maggy_CSide_05_Fractured_C_d_00=ANGY OSHIRO NOISE
+DZ_CSide_05_Fractured_C_d_00=ANGY OSHIRO NOISE
 
-Maggy_CSide_06_Stronghold_C_A_00va=Start
+DZ_CSide_06_Stronghold_C_A_00va=Start
 
-Maggy_CSide_06_Stronghold_C_B_00=Gusting of Breeze
+DZ_CSide_06_Stronghold_C_B_00=Gusting of Breeze
 
-Maggy_CSide_06_Stronghold_C_C_00=Fluff The Wind
+DZ_CSide_06_Stronghold_C_C_00=Fluff The Wind
 
-Maggy_CSide_07_Inferno_C_A_00=Start
+DZ_CSide_07_Inferno_C_A_00=Start
 
-Maggy_CSide_07_Inferno_C_B_00=Dancing in the Darkness
+DZ_CSide_07_Inferno_C_B_00=Dancing in the Darkness
 
-Maggy_CSide_07_Inferno_C_C_00=Discovery
+DZ_CSide_07_Inferno_C_C_00=Discovery
 
-Maggy_CSide_07_Inferno_C_d_00=The Finder and Keepers
+DZ_CSide_07_Inferno_C_d_00=The Finder and Keepers
 
-Maggy_CSide_07_Inferno_C_e_00=Madeline Mix Master
+DZ_CSide_07_Inferno_C_e_00=Madeline Mix Master
 
-Maggy_CSide_08_Truth_C_A_00=Start
+DZ_CSide_08_Truth_C_A_00=Start
 
-Maggy_CSide_08_Truth_C_B_00=Never Make A Promise
+DZ_CSide_08_Truth_C_B_00=Never Make A Promise
 
-Maggy_CSide_08_Truth_C_C_00=Gonna Have a Bad Time
+DZ_CSide_08_Truth_C_C_00=Gonna Have a Bad Time
 
-Maggy_CSide_08_Truth_C_d_00=MEGALOVANIA
+DZ_CSide_08_Truth_C_d_00=MEGALOVANIA
 
-Maggy_CSide_09_Summit_C_A_intro=Start
+DZ_CSide_09_Summit_C_A_intro=Start
 
-Maggy_CSide_09_Summit_C_B_00=500 M
+DZ_CSide_09_Summit_C_B_00=500 M
 
-Maggy_CSide_09_Summit_C_C_00=1000 M
+DZ_CSide_09_Summit_C_C_00=1000 M
 
-Maggy_CSide_09_Summit_C_d_00=1500 M
+DZ_CSide_09_Summit_C_d_00=1500 M
 
-Maggy_CSide_09_Summit_C_e_00=2000 M
+DZ_CSide_09_Summit_C_e_00=2000 M
 
-Maggy_CSide_09_Summit_C_f_00=2500 M
+DZ_CSide_09_Summit_C_f_00=2500 M
 
-Maggy_CSide_09_Summit_C_g_00=3000 M
+DZ_CSide_09_Summit_C_g_00=3000 M
 
-Maggy_CSide_09_Summit_C_h_00=6000 M
+DZ_CSide_09_Summit_C_h_00=6000 M
 
-Maggy_CSide_18_Heart_C_00=Start
+DZ_CSide_18_Heart_C_00=Start
 
-Maggy_CSide_18_Heart_C_A_00=Into The Save Point
+DZ_CSide_18_Heart_C_A_00=Into The Save Point
 
-Maggy_CSide_18_Heart_C_B_00=Burn and Frost
+DZ_CSide_18_Heart_C_B_00=Burn and Frost
 
-Maggy_CSide_18_Heart_C_C_00=Do Not Forget
+DZ_CSide_18_Heart_C_C_00=Do Not Forget
 
-Maggy_CSide_18_Heart_C_D_00=Penumbra Phantasm
+DZ_CSide_18_Heart_C_D_00=Penumbra Phantasm
 
-Maggy_BSide_01_City_B_remix=First Step Remix
+DZ_BSide_01_City_B_remix=First Step Remix
 
-Maggy_BSide_01_City_B_remix_artist=Maxo
+DZ_BSide_01_City_B_remix_artist=Maxo
 
-Maggy_BSide_02_Nightmare_B_remix=Wingdings
+DZ_BSide_02_Nightmare_B_remix=Wingdings
 
-Maggy_BSide_02_Nightmare_B_remix_artist=Maggy
+DZ_BSide_02_Nightmare_B_remix_artist=DZ
 
-Maggy_BSide_05_Fractured_B_remix=Scatter and Lost
+DZ_BSide_05_Fractured_B_remix=Scatter and Lost
 
-Maggy_BSide_05_Fractured_B_remix_artist=Kyle Gamer
+DZ_BSide_05_Fractured_B_remix_artist=Kyle Gamer
 
-Maggy_BSide_06_Stronghold_B_remix=Golden Feather Remix
+DZ_BSide_06_Stronghold_B_remix=Golden Feather Remix
 
-Maggy_BSide_06_Stronghold_B_remix_artist=Kyle Gamer
+DZ_BSide_06_Stronghold_B_remix_artist=Kyle Gamer
 
-Maggy_BSide_07_Inferno_B_remix=Mirror of magic
+DZ_BSide_07_Inferno_B_remix=Mirror of magic
 
-Maggy_BSide_07_Inferno_B_remix_artist=Mello
+DZ_BSide_07_Inferno_B_remix_artist=Mello
 
-Maggy_BSide_08_Truth_B_remix=Confronting Yourself
+DZ_BSide_08_Truth_B_remix=Confronting Yourself
 
-Maggy_BSide_08_Truth_B_remix_artist=Kyle Gamer
+DZ_BSide_08_Truth_B_remix_artist=Kyle Gamer
 
-Maggy_BSide_09_Summit_B_remix=Reaching for the Summit
+DZ_BSide_09_Summit_B_remix=Reaching for the Summit
 
-Maggy_BSide_09_Summit_B_remix_artist=Kyle Gamer
+DZ_BSide_09_Summit_B_remix_artist=Kyle Gamer
 
-Maggy_BSide_18_Heart_B_remix=Heart of the Mountain
+DZ_BSide_18_Heart_B_remix=Heart of the Mountain
 
-Maggy_BSide_18_Heart_B_remix_artist=Kyle Gamer
+DZ_BSide_18_Heart_B_remix_artist=Kyle Gamer
 
-Maggy_CSide_01_City_C_remix=Sever Skyline Remix
+DZ_CSide_01_City_C_remix=Sever Skyline Remix
 
-Maggy_CSide_01_City_C_remix_artist=Kyle Gamer
+DZ_CSide_01_City_C_remix_artist=Kyle Gamer
 
-Maggy_CSide_02_Nightmare_C_remix=Ressurection Remix
+DZ_CSide_02_Nightmare_C_remix=Ressurection Remix
 
-Maggy_CSide_02_Nightmare_C_remix_artist=Kyle Gamer
+DZ_CSide_02_Nightmare_C_remix_artist=Kyle Gamer
 
-Maggy_CSide_05_Fractured_C_remix=Tidying things up
+DZ_CSide_05_Fractured_C_remix=Tidying things up
 
-Maggy_CSide_05_Fractured_C_remix_artist=Nintendo and Hal Laboratory
+DZ_CSide_05_Fractured_C_remix_artist=Nintendo and Hal Laboratory
 
-Maggy_CSide_06_Stronghold_C_remix=Echo Edges
+DZ_CSide_06_Stronghold_C_remix=Echo Edges
 
-Maggy_CSide_06_Stronghold_C_remix_artist=Nintendo and Hal Laboratory
+DZ_CSide_06_Stronghold_C_remix_artist=Nintendo and Hal Laboratory
 
-Maggy_CSide_07_Inferno_C_remix=In The Mirror Remix
+DZ_CSide_07_Inferno_C_remix=In The Mirror Remix
 
-Maggy_CSide_07_Inferno_C_remix_artist=Kyle Gamer
+DZ_CSide_07_Inferno_C_remix_artist=Kyle Gamer
 
-Maggy_CSide_08_Truth_C_remix=Necrolovania
+DZ_CSide_08_Truth_C_remix=Necrolovania
 
-Maggy_CSide_08_Truth_C_remix_artist=Toby Fox
+DZ_CSide_08_Truth_C_remix_artist=Toby Fox
 
-Maggy_CSide_09_Summit_C_remix=Celeste-2
+DZ_CSide_09_Summit_C_remix=Celeste-2
 
-Maggy_CSide_09_Summit_C_remix_artist=Kyle Gamer
+DZ_CSide_09_Summit_C_remix_artist=Kyle Gamer
 
-Maggy_CSide_18_Heart_C_remix=Say Goodbye Before The World Ends
+DZ_CSide_18_Heart_C_remix=Say Goodbye Before The World Ends
 
-Maggy_CSide_18_Heart_C_remix_artist=Maggy
+DZ_CSide_18_Heart_C_remix_artist=DZ
 
-Maggy_Remix=You Got The Special C-Side Remix
+DZ_Remix=You Got The Special C-Side Remix
 
-Maggy_ASide_01_City_A_postcard=Remember to take break when you get tired of from high difficulty and There always an Assist Mode that you can turn on if you find it harder.
+DZ_ASide_01_City_A_postcard=Remember to take break when you get tired of from high difficulty and There always an Assist Mode that you can turn on if you find it harder.
 
-Maggy_ASide_02_Nightmare_A_postcard=if you want to collect strawberry to impress your friend you can try so, but it depend on how many you collect, in which ending.
+DZ_ASide_02_Nightmare_A_postcard=if you want to collect strawberry to impress your friend you can try so, but it depend on how many you collect, in which ending.
 
-Maggy_ASide_03_Stars_A_postcard=It's About Time.
+DZ_ASide_03_Stars_A_postcard=It's About Time.
 
-Maggy_ASide_04_Legend_A_postcard=If your struggling to keep up, don't push yourself and patient is a key to your success
+DZ_ASide_04_Legend_A_postcard=If your struggling to keep up, don't push yourself and patient is a key to your success
 
-Maggy_ASide_05_Fractured_A_postcard=Fun Fact did you know that Kirby use to have no copy ability's since Gameboy classic, that amazing isn't it.
+DZ_ASide_05_Fractured_A_postcard=Fun Fact did you know that Kirby use to have no copy ability's since Gameboy classic, that amazing isn't it.
 
-Maggy_ASide_06_Stronghold_A_postcard=To Understand the lore about it history you must go back and play from past Kirby Games that way you will get a bigger picture of it's own deeper lore origin.
+DZ_ASide_06_Stronghold_A_postcard=To Understand the lore about it history you must go back and play from past Kirby Games that way you will get a bigger picture of it's own deeper lore origin.
 
-Maggy_ASide_07_Inferno_A_postcard=Many bosses can have shape and sized but it's doesn't come without a scary final boss which that what they did from the past.
+DZ_ASide_07_Inferno_A_postcard=Many bosses can have shape and sized but it's doesn't come without a scary final boss which that what they did from the past.
 
-Maggy_ASide_08_Truth_A_postcard=Did you know that Madeline is Hiding Something...?
+DZ_ASide_08_Truth_A_postcard=Did you know that Madeline is Hiding Something...?
 
-Maggy_ASide_10_Ruins_A_postcard=Sorry this map is under construction please wait for a little while an order for us to get it done then we will let you and everyone know.
+DZ_ASide_10_Ruins_A_postcard=Sorry this map is under construction please wait for a little while an order for us to get it done then we will let you and everyone know.
 
-Maggy_ASide_11_Snow_A_postcard=Sorry this map has not started yet, please wait until we get that map started after the primero map is done, Thank you.
+DZ_ASide_11_Snow_A_postcard=Sorry this map has not started yet, please wait until we get that map started after the primero map is done, Thank you.
 
-Maggy_ASide_12_Water_A_postcard=Sorry this map has not started yet, please wait until we get that map started after the primero map is done, Thank you.
+DZ_ASide_12_Water_A_postcard=Sorry this map has not started yet, please wait until we get that map started after the primero map is done, Thank you.
 
-Maggy_ASide_13_Fire_A_postcard=Sorry this map has not started yet, please wait until we get that map started after the primero map is done, Thank you.
+DZ_ASide_13_Fire_A_postcard=Sorry this map has not started yet, please wait until we get that map started after the primero map is done, Thank you.
 
-Maggy_ASide_14_Digital_A_postcard=Sorry this map has not started yet, please wait until we get that map started after the primero map is done, Thank you.
+DZ_ASide_14_Digital_A_postcard=Sorry this map has not started yet, please wait until we get that map started after the primero map is done, Thank you.
 
-Maggy_ASide_15_Castle_A_postcard=Sorry this map has not started yet, please wait until we get that map started after the primero map is done, Thank you.
+DZ_ASide_15_Castle_A_postcard=Sorry this map has not started yet, please wait until we get that map started after the primero map is done, Thank you.
 
-Maggy_ASide_16_Corruption_postcard=The corrupted realm where Els_Flowey has twisted reality with organic horrors. Navigate through chambers of bone and flesh while collecting the six human souls to weaken the beast and restore balance to the world.
+DZ_ASide_16_Corruption_postcard=The corrupted realm where Els_Flowey has twisted reality with organic horrors. Navigate through chambers of bone and flesh while collecting the six human souls to weaken the beast and restore balance to the world.
 
 POSTCARD_CSIDE_UNLOCK=You've proven yourself on the B-Sides.{n}The {# ffcc00}C-Sides{#} are now unlocked.{n}These remixes push your skills to the limit.{n}Are you ready for the challenge?
 
@@ -1508,19 +1508,19 @@ COMPLETE_SUBTITLE_19_SPACE=The stars remember the day Jambuhbastion split into t
 
 COMPLETE_SUBTITLE_20_THEEND=The new found reincarnation astral birth void yields its final truth
 
-Maggy_overworld_remix3=D-SIDE
+DZ_overworld_remix3=D-SIDE
 
-Maggy_areacomplete_dside=D-Side Completa
+DZ_areacomplete_dside=D-Side Completa
 
-Maggy_areacomplete_fullclear_bside=B-Side Clear
+DZ_areacomplete_fullclear_bside=B-Side Clear
 
-Maggy_areacomplete_fullclear_cside=C-Side Clear
+DZ_areacomplete_fullclear_cside=C-Side Clear
 
-Maggy_areacomplete_fullclear_dside=D-Side Clear
+DZ_areacomplete_fullclear_dside=D-Side Clear
 
-Maggy_dside_unlocked=D-Side Unlocked
+DZ_dside_unlocked=D-Side Unlocked
 
-Maggy_High_Difficulty=Ready to Determined the Final Challenge Every Chapter in every A B and C Side are now accessible to Pink Platinum Berry and D Side or Desolo Side is Now Available Good luck and Stay Determined.
+DZ_High_Difficulty=Ready to Determined the Final Challenge Every Chapter in every A B and C Side are now accessible to Pink Platinum Berry and D Side or Desolo Side is Now Available Good luck and Stay Determined.
 
 CHARA={# ff0000}Chara{#}
 
@@ -1532,59 +1532,59 @@ BADELINE={# 76428a}{~}BADELINE{/~}{#}
 
 MYSTERY_MAN={# 00ffff}{~}???{/~}{#}
 
-soul_Maggy_ASide_01_City_A=Useless Garbage Machine
+soul_DZ_ASide_01_City_A=Useless Garbage Machine
 
-soul_Maggy_ASide_02_Nightmare_A=Reawaken
+soul_DZ_ASide_02_Nightmare_A=Reawaken
 
-soul_Maggy_ASide_05_Fractured_A=Hopeless and Hopelessly Lost
+soul_DZ_ASide_05_Fractured_A=Hopeless and Hopelessly Lost
 
-soul_Maggy_ASide_06_Stronghold_A=The Legend
+soul_DZ_ASide_06_Stronghold_A=The Legend
 
-soul_Maggy_ASide_07_Inferno_A=Lighter and Darker
+soul_DZ_ASide_07_Inferno_A=Lighter and Darker
 
-soul_Maggy_ASide_08_Truth_A=Out of Reached
+soul_DZ_ASide_08_Truth_A=Out of Reached
 
-soul_Maggy_ASide_09_Summit_A=On The Horizon
+soul_DZ_ASide_09_Summit_A=On The Horizon
 
-soul_Maggy_ASide_10_Ruins_A=PLANK AND BURNED
+soul_DZ_ASide_10_Ruins_A=PLANK AND BURNED
 
-soul_Maggy_ASide_11_Snow_A=WILD WILD FROST WEST
+soul_DZ_ASide_11_Snow_A=WILD WILD FROST WEST
 
-soul_Maggy_ASide_18_Heart_A=Hopes and Dreams
+soul_DZ_ASide_18_Heart_A=Hopes and Dreams
 
-soul_Maggy_ASide_19_Space=KILL YOURSELF NOW
+soul_DZ_ASide_19_Space=KILL YOURSELF NOW
 
-soul_Maggy_BSide_01_City_B=Sever the Skyline
+soul_DZ_BSide_01_City_B=Sever the Skyline
 
-soul_Maggy_BSide_02_Nightmare_B=Black Moon Rise
+soul_DZ_BSide_02_Nightmare_B=Black Moon Rise
 
-soul_Maggy_BSide_05_Fractured_B=Good karma
+soul_DZ_BSide_05_Fractured_B=Good karma
 
-soul_Maggy_BSide_06_Stronghold_B=Golden Feather
+soul_DZ_BSide_06_Stronghold_B=Golden Feather
 
-soul_Maggy_BSide_07_Inferno_B=Mirror of Magic
+soul_DZ_BSide_07_Inferno_B=Mirror of Magic
 
-soul_Maggy_BSide_08_Truth_B=Center of the Mountain
+soul_DZ_BSide_08_Truth_B=Center of the Mountain
 
-soul_Maggy_BSide_09_Summit_B=No More Running
+soul_DZ_BSide_09_Summit_B=No More Running
 
-soul_Maggy_BSide_18_Heart_B=Goodbye
+soul_DZ_BSide_18_Heart_B=Goodbye
 
-soul_Maggy_CSide_01_City_C=Taking Over the Streets
+soul_DZ_CSide_01_City_C=Taking Over the Streets
 
-soul_Maggy_CSide_02_Nightmare_C=Under my Control
+soul_DZ_CSide_02_Nightmare_C=Under my Control
 
-soul_Maggy_CSide_05_Fractured_C=Amazing karma
+soul_DZ_CSide_05_Fractured_C=Amazing karma
 
-soul_Maggy_CSide_06_Stronghold_C=Zantas Feather
+soul_DZ_CSide_06_Stronghold_C=Zantas Feather
 
-soul_Maggy_CSide_07_Inferno_C=Jazzy Move
+soul_DZ_CSide_07_Inferno_C=Jazzy Move
 
-soul_Maggy_CSide_08_Truth_C=Megalovania
+soul_DZ_CSide_08_Truth_C=Megalovania
 
-soul_Maggy_CSide_09_Summit_C=Don't Kill and Don't Be Killed
+soul_DZ_CSide_09_Summit_C=Don't Kill and Don't Be Killed
 
-soul_Maggy_CSide_18_Heart_C=End of the World
+soul_DZ_CSide_18_Heart_C=End of the World
 
 Tralier_intro=[Madeline left distracted]
 What is this Dreamblock?
@@ -1601,7 +1601,7 @@ Poyo?
 Introduction=All rights belongs to:
 Hal Laboratory, Warpstar.Inc, and Nintendo
 Indie game own by: Toby Fox, and EXOK.
-Modded Celeste by: Maggy
+Modded Celeste by: DZ
 
 VESSEL_CREATION_INTRO=Are You... There?
 Are We Connected?
@@ -1802,10 +1802,10 @@ Thanks for a heads up.
 DZ_CH0_END_YOUR_CHOICE_MATTERS=[none left]
 Remember {3.0} {~}Choices Matters.{/~}
 
-DZ_CH1_MAGGY_A=[Magolor left normal]
+DZ_CH1_DZ_A=[Magolor left normal]
 Well look who is here!
 [BADELINE right normal]
-Oh Hey maggy!
+Oh Hey DZ!
 {trigger 0 Madeline walks forward}
 [MADELINE right distracted]
 Yeah it's been long time you know that {>> 0.3}right?
@@ -1824,7 +1824,7 @@ Of Why came here too you know if you would expect
 [MADELINE right deadpan]
 ...
 [BADELINE right upset]
-I think were better off leaving Maggy.
+I think were better off leaving DZ.
 [Magolor left normal]
 Well I'll see you at the Mountain I guess.
 [MADELINE right sad]
@@ -1851,7 +1851,7 @@ but there a chances that they're good people that the legend said.
 [MADELINE right normal]
 Well then Take care and best of luck.
 
-DZ_CH1_MAGGY_B=[MADELINE right distracted]
+DZ_CH1_DZ_B=[MADELINE right distracted]
 So... is anyone okay over there?
 [Magolor left normal]
 Well everyone and King De De Dee is fine.
@@ -1865,7 +1865,7 @@ It's not in his diet but were trying to change it.
 [MADELINE right distracted]
 alright then.
 
-DZ_CH1_MAGGY_C=[BADELINE right angryalt]
+DZ_CH1_DZ_C=[BADELINE right angryalt]
 Theo also told us that you came here just because {n} your a {~}Interdimensional Traveller{/~}, {1.0} Right?
 [Magolor left annoyed]
 Well yes I came here to know what exactly is causing this mountain that {n} it not only changing.
@@ -1883,7 +1883,7 @@ say does it weather is connected to the same Mountain of Celeste?
 [MADELINE right sad]
 Maybe...
 
-DZ_CH1_MAGGY_D=[MADELINE right distracted]
+DZ_CH1_DZ_D=[MADELINE right distracted]
 You know {0.2} I've had a dream that is something weird.
 [Magolor left normal]
 Well of course everyone had a dream.
@@ -2173,7 +2173,7 @@ I have talk to Magolor.
 DZ_CH2_WITH_MAGOLOR_HELP=[Magolor left happy]
 Yoooo look who is back!
 [BADELINE right normal]
-Hey there Maggy uhh...
+Hey there DZ uhh...
 [BADELINE right concerned]
 I need your help.
 {+MADELINE} and I got into some trouble.
@@ -2210,7 +2210,7 @@ Well to be clear I wouldn't think this world is more darker than that.
 however you cannot do this alone.
 I got someone who might be actually help you.
 [BADELINE right worried]
-Maggy... I don't know if I can do this.
+DZ... I don't know if I can do this.
 What if something happens to her before I can reach her?
 [Magolor left normal]
 Listen, Baddy. I know you're scared.
@@ -2252,7 +2252,7 @@ DZ_CH3_KIRBY_INTRO=Okay Remember what Susie said to me.
 Don't panic and Just Breath...
 Man it's very freezing out here.
 
-DZ_CH3_MAGGY_A={trigger 0 init panzoom}
+DZ_CH3_DZ_A={trigger 0 init panzoom}
 [Magolor right happy]
 {~}Yooooo!{/~} Wassup {+KIRBY} how you been!
 
@@ -2288,7 +2288,7 @@ Sorry I didn't mean to say that.
 
 {trigger 5 badeline merge}
 
-DZ_CH3_MAGGY_B=[Magolor right normal]
+DZ_CH3_DZ_B=[Magolor right normal]
 So.. uhh..
 you came here and might be asking this.
 Why your here?
@@ -2312,7 +2312,7 @@ a {# ff0000}{*}Knife{/*}{#}
 ...
 Yeah anyways
 
-DZ_CH3_MAGGY_C=[Magolor right normal]
+DZ_CH3_DZ_C=[Magolor right normal]
 You know what's interesting though?
 Despite everything that's happened...
 [Magolor right annoyed]
@@ -2323,7 +2323,7 @@ This whole situation is getting more complicated by the minute.
 [Magolor right normal]
 At least you're not dealing with this alone, right?
 
-DZ_CH3_MAGGY_D=[BADELINE right worriedalt]
+DZ_CH3_DZ_D=[BADELINE right worriedalt]
 I've been thinking...
 Maybe there's a reason we all ended up here together.
 [Magolor right annoyed]
@@ -2335,7 +2335,7 @@ What if this wasn't just random?
 I suppose stranger things have happened.
 We'll figure it out eventually.
 
-DZ_CH3_MAGGY_DEFAULT=
+DZ_CH3_DZ_DEFAULT=
 [Magolor right normal]
 Hey, we've already talked about this, haven't we?
 Just focus on finding {+MADELINE}.
@@ -2988,9 +2988,9 @@ Sounds wonderful.
 [OSHIRO left normal]
 Now then follow me.
 
-DZ_CH5_MAGGY_INTRODUCED=[BADELINE left normal]
+DZ_CH5_DZ_INTRODUCED=[BADELINE left normal]
 Oh Hi there Magolor are you getting out of here too?
-{trigger 0 Maggy stops trying to pull off the vent cover}
+{trigger 0 DZ stops trying to pull off the vent cover}
 [Magolor right normal]
 Yeah I'm trying to get out because this hotel is abit very creepy.
 [BADELINE left worriedalt]
@@ -3021,10 +3021,10 @@ Please Stay Safe with {+KIRBY}... Okay?
 We will Stay Safe as long he is with me.
 [Magolor right normal]
 Yeah yeah I know that but you know what else I know.
-{+CH5_MAGGY_ESCAPING}
+{+CH5_DZ_ESCAPING}
 [BADELINE left normal]
 Oh Hi there Magolor are you getting out of here too?
-{trigger 0 Maggy stops trying to pull off the vent cover}
+{trigger 0 DZ stops trying to pull off the vent cover}
 [Magolor right normal]
 Yeah I'm trying to get out because this hotel is abit very creepy.
 [BADELINE left worriedalt]
@@ -3055,9 +3055,9 @@ Please Stay Safe with {+KIRBY}... Okay?
 We will Stay Safe as long he is with me.
 [Magolor right normal]
 Yeah yeah I know that but you know what else I know.
-{+CH5_MAGGY_ESCAPING}
+{+CH5_DZ_ESCAPING}
 
-DZ_CH5_MAGGY_ESCAPING={trigger 0 Theo stops trying to pull off the vent cover}
+DZ_CH5_DZ_ESCAPING={trigger 0 Theo stops trying to pull off the vent cover}
 [Magolor right normal]
 I glad that you came to the conclusion.
 Hopefully once it's all over.
@@ -3068,7 +3068,7 @@ He will do his best to get many as we can.
 [Magolor right normal]
 All right then take care.
 
-DZ_CH5_MAGGY_VENTS=[Magolor right annoyed]
+DZ_CH5_DZ_VENTS=[Magolor right annoyed]
 Man this place is really is a maze...
 [Magolor right normal]
 Also how long he have been running this hotel for...?
@@ -7032,33 +7032,33 @@ so... us try to collect 5 heart gem at least
 you can count on me starlo
 I won't let you down
 
-DZ_CH11_MAGGY=[KIRBY left normal]
+DZ_CH11_DZ=[KIRBY left normal]
 MAGOLOR!?
 what are you doing here?
-[Maggy left normal]
+[DZ left normal]
 oh hey there
 I fell to the vortex you know
 and brought madeline mother
 and theo sister
 and that orshiro ghost guy
-[Maggy left annoyed]
+[DZ left annoyed]
 which it give me a creepy vibe
 [KIRBY left angry]
 you what!?
 why would you do such thing?
-[Maggy left normal]
+[DZ left normal]
 because something back to earth is happening
 and it very very bad
 [KIRBY left upset]
 then what is it that is happening?
-[Maggy left normal]
+[DZ left normal]
 let me explain to you
 
-DZ_CH11_CINEMATIC_BAR=[Maggy left normal]
+DZ_CH11_CINEMATIC_BAR=[DZ left normal]
 so uh yeah that kind of everything I have to say missis madeline mother and alex
 [MOM left concerned]
 Well I am very sure that everything will be okay!
-[Maggy left annoyed]
+[DZ left annoyed]
 You really think so?
 because from what I heard
 your daughter is up there climbing another space mountain
@@ -7066,7 +7066,7 @@ your daughter is up there climbing another space mountain
 yeah and I am very worried about theo too
 because he is climbing with them too
 also how do you know about chara exactly?
-[Maggy left normal]
+[DZ left normal]
 well I kind of know of what chara is
 because I have read alot of books about them
 and I also know that they are very powerful
@@ -7077,7 +7077,7 @@ and not to kill any people
 and they are very good friends with madeline and theo
 and ofcouse to ralsei, badeline, and kirby too
 {trigger 0 power black out}
-[Maggy left annoyed]
+[DZ left annoyed]
 huh?
 thats werid
 what just happened?
@@ -7094,32 +7094,32 @@ wait
 that mountian is shaking!
 is it going to erupt!?
 {trigger 2 riser sfx}
-[Maggy left annoyed]
+[DZ left annoyed]
 ah shit thats can't be good
 {trigger 3 mt celeste erupted and dark fountian spawned in destructively}
 
-DZ_CH11_MAGGY_END=[MAGGY left normal]
+DZ_CH11_DZ_END=[DZ left normal]
 And that was a disaster end of the story...
 [Kirby left sadder]
 Yeah... it was pretty bad.
 [Kirby left panic]
 What do we do now!?
-[MAGGY left normal]
+[DZ left normal]
 We need to find a way to stop that thing!
 becuase my power is not enough compare to el's
 [KIRBY left determined]
 Then we need to find a way to power up!
 [KIRBY left together]
 now then help me get these mini heart gem
-[MAGGY left normal]
+[DZ left normal]
 All right, let's do this!
 
 DZ_CH11_COLLECTING_MINIHEART_NOT_ENOUGH=[none left]
 you need to collect more mini hearts to open the door
-[MAGGY left normal]
+[DZ left normal]
 Don't worry, we can find more!
 
-DZ_CH11_COLLECTING_MINIHEART_ENOUGH=[MAGGY left normal]
+DZ_CH11_COLLECTING_MINIHEART_ENOUGH=[DZ left normal]
 AMAZING! You collected enough mini hearts to open the door.
 [STARLO left normal]
 I am very proud of ya kid
@@ -13233,7 +13233,7 @@ another heart crystal?
 wait... no... this isn't right...
 but what if I just need to use it more?
 
-SOUL_Maggy_20_THEEND_A=GOT YOU, KIRBY!
+SOUL_DZ_20_THEEND_A=GOT YOU, KIRBY!
 
 DZ_CH20_ELS_LAST_WISH=[kirby left surprised]
 you tricked me again! you used them to lure me in here, and now you're going to kill me!
@@ -16476,17 +16476,17 @@ DZ_CH21_REAL_END_NORMAL=THE END
 # Pantalla de Selección de Mods
 # ================================
 
-MAGGY_MOD_SELECT_TITLE=Elige Tu Aventura
-MAGGY_MOD_SELECT_SUBTITLE=Selecciona la historia que deseas experimentar
+DZ_MOD_SELECT_TITLE=Elige Tu Aventura
+DZ_MOD_SELECT_SUBTITLE=Selecciona la historia que deseas experimentar
 
-MAGGY_MOD_SELECT_NOTICE=Esta opción no se puede cambiar después de la selección.
-MAGGY_MOD_SELECT_NOTICE2=¡Elige sabiamente!
+DZ_MOD_SELECT_NOTICE=Esta opción no se puede cambiar después de la selección.
+DZ_MOD_SELECT_NOTICE2=¡Elige sabiamente!
 
-MAGGY_MOD_SELECT_DESOLOZANTAS=Desolo Zantas
-MAGGY_MOD_SELECT_DESOLOZANTAS_DESC=Juega la historia completa de Desolo Zantas con niveles personalizados, jefes y personajes
+DZ_MOD_SELECT_DESOLOZANTAS=Desolo Zantas
+DZ_MOD_SELECT_DESOLOZANTAS_DESC=Juega la historia completa de Desolo Zantas con niveles personalizados, jefes y personajes
 
-MAGGY_MOD_SELECT_CELESTE=Celeste
-MAGGY_MOD_SELECT_CELESTE_DESC=Continúa con la experiencia original de Celeste
+DZ_MOD_SELECT_CELESTE=Celeste
+DZ_MOD_SELECT_CELESTE_DESC=Continúa con la experiencia original de Celeste
 
 # ================================
 # Localización de Configuración de DZ

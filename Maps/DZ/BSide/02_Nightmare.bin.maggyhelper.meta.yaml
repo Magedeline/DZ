@@ -1,0 +1,21 @@
+﻿schema: DZ-map-meta-v1
+sid: DZ/BSide/02_Nightmare
+baseKey: 02_Nightmare
+side: B
+modeIndex: 1
+isMainChapterEntry: false
+mainChapterSid: DZ/ASide/02_Nightmare
+showInChapterSelect: false
+
+MusicBySide:
+  - event:/music/pusheen/menu/complete_area
+  - event:/music/pusheen/menu/complete_bside
+  - event:/music/pusheen/menu/complete_cside
+  - event:/music/pusheen/menu/complete_dxside
+Title:
+  ASide: "Chapter Complete"
+  BSide: "B Side Complete"
+  CSide: "C Side Complete"
+  DSide: "D Side Complete"
+  DXSide: "DX Side Complete"
+  FullClear: "Chapter Clear"

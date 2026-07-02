@@ -5,10 +5,10 @@ namespace DZ;
 /// Registry for DZ map metadata files (.DZ.meta.yaml)
 /// Loads and provides access to map configuration data stored alongside .bin files.
 /// </summary>
-internal class MaggyMapMetadataRegistry : BaseMetadataRegistry<MaggyMapMetadata, MaggyMapMetadataRegistry>
+internal class DZMapMetadataRegistry : BaseMetadataRegistry<DZMapMetadata, DZMapMetadataRegistry>
 {
     /// <summary>Human-readable name for logging</summary>
-    protected override string RegistryName => "MaggyMapMetadata";
+    protected override string RegistryName => "DZMapMetadata";
 
     /// <summary>Get the directory path for map metadata files</summary>
     protected override string GetRegistryDirectory(string modRoot)
@@ -17,7 +17,7 @@ internal class MaggyMapMetadataRegistry : BaseMetadataRegistry<MaggyMapMetadata,
     }
 
     /// <summary>Called after each metadata item is deserialized</summary>
-    protected override void OnItemLoaded(MaggyMapMetadata item)
+    protected override void OnItemLoaded(DZMapMetadata item)
     {
         if (string.IsNullOrEmpty(item.Sid))
         {
@@ -40,19 +40,19 @@ internal class MaggyMapMetadataRegistry : BaseMetadataRegistry<MaggyMapMetadata,
     }
 
     /// <summary>Get metadata by SID</summary>
-    public static MaggyMapMetadata? GetBySid(string sid)
+    public static DZMapMetadata? GetBySid(string sid)
     {
         return Items.TryGetValue(sid, out var metadata) ? metadata : null;
     }
 
     /// <summary>Get metadata by base key (e.g., "00_Prologue")</summary>
-    public static MaggyMapMetadata? GetByBaseKey(string baseKey)
+    public static DZMapMetadata? GetByBaseKey(string baseKey)
     {
         return Items.TryGetValue(baseKey, out var metadata) ? metadata : null;
     }
 
     /// <summary>Get all metadata for a specific side (A, B, C, D)</summary>
-    public static List<MaggyMapMetadata> GetBySide(string side)
+    public static List<DZMapMetadata> GetBySide(string side)
     {
         return Items.Values
             .Where(m => m.Side.Equals(side, StringComparison.OrdinalIgnoreCase))
@@ -60,7 +60,7 @@ internal class MaggyMapMetadataRegistry : BaseMetadataRegistry<MaggyMapMetadata,
     }
 
     /// <summary>Get all main chapter entries</summary>
-    public static List<MaggyMapMetadata> GetMainChapterEntries()
+    public static List<DZMapMetadata> GetMainChapterEntries()
     {
         return Items.Values
             .Where(m => m.IsMainChapterEntry)
@@ -68,7 +68,7 @@ internal class MaggyMapMetadataRegistry : BaseMetadataRegistry<MaggyMapMetadata,
     }
 
     /// <summary>Get all maps that should show in chapter select</summary>
-    public static List<MaggyMapMetadata> GetChapterSelectMaps()
+    public static List<DZMapMetadata> GetChapterSelectMaps()
     {
         return Items.Values
             .Where(m => m.ShowInChapterSelect)

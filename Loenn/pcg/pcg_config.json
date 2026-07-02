@@ -9,7 +9,7 @@
     "mod_name": "DZ",
     "mod_version": "4.0.0",
     "mod_prefix": "DZ/",
-    "map_directory": "Maps/Maggy",
+    "map_directory": "Maps/DZ",
     "entity_catalog": "Loenn/pcg/entity_catalog.json",
     "output_directory": "Loenn/pcg/output"
   },

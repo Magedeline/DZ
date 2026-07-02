@@ -30,7 +30,7 @@ namespace Celeste.NPCs
             try
             {
                 // Use Badeline sprite for dark, evil appearance
-                Add(sprite = GFX.SpriteBank.Create("maggy_badeline"));
+                Add(sprite = GFX.SpriteBank.Create("DZ_badeline"));
                 sprite.Play("idle");
                 
                 switch (elsForm)

@@ -120,11 +120,11 @@
   <Tileset id="I" copy="z" path="void" />
   <Tileset id="p" copy="z" path="bgPenumbra" />
   <Tileset id="C" copy="z" path="bgCrystal" />
-  <Tileset id="D" copy="z" path="maggy/ch10/yellowBrickRuinedBG" />
-  <Tileset id="P" copy="z" path="maggy/ch11/frozenGrassBG" />
-  <Tileset id="Q" copy="z" path="maggy/ch12/FallWater" />
-  <Tileset id="R" copy="z" path="maggy/ch13/lavaTempleBG" />
-  <Tileset id="S" copy="z" path="maggy/ch14/ABuffZucchini_bgDigital" />
-  <Tileset id="T" copy="z" path="maggy/ch15/castleBG" />
-  <Tileset id="!" copy="z" path="maggy/ch21/bgad" displayName="bgad" />
+  <Tileset id="D" copy="z" path="DZ/ch10/yellowBrickRuinedBG" />
+  <Tileset id="P" copy="z" path="DZ/ch11/frozenGrassBG" />
+  <Tileset id="Q" copy="z" path="DZ/ch12/FallWater" />
+  <Tileset id="R" copy="z" path="DZ/ch13/lavaTempleBG" />
+  <Tileset id="S" copy="z" path="DZ/ch14/ABuffZucchini_bgDigital" />
+  <Tileset id="T" copy="z" path="DZ/ch15/castleBG" />
+  <Tileset id="!" copy="z" path="DZ/ch21/bgad" displayName="bgad" />
 </Data>

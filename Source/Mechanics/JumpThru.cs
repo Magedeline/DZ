@@ -4,7 +4,7 @@ using DZ;
 
 namespace Celeste.Entities
 {
-    [CustomEntity(ids: "DZ/MaggyJumpThru")]
+    [CustomEntity(ids: "DZ/DZJumpThru")]
     [Monocle.Tracked]
     [HotReloadable]
     public class JumpThru : JumpthruPlatform

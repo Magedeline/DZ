@@ -40,10 +40,10 @@ public static class HeartGemManager
     // Heart gem sprite IDs
     public static readonly string[] HeartSpriteIds =
     {
-        "maggy_heartgem0",   // Blue
-        "maggy_heartgem1",   // Red
-        "maggy_heartgem2",   // Gold
-        "maggy_heartgem3",   // Rainbow (custom)
+        "DZ_heartgem0",   // Blue
+        "DZ_heartgem1",   // Red
+        "DZ_heartgem2",   // Gold
+        "DZ_heartgem3",   // Rainbow (custom)
         "heartgem4",   // Void (custom)
     };
 
@@ -193,7 +193,7 @@ public static class HeartGemManager
 
     /// <summary>
     /// Builds the localized poetry string key for a heart gem collection.
-    /// Maps to soul_Maggy_{Side}_{Chapter}_{Suffix} entries in English.txt.
+    /// Maps to soul_DZ_{Side}_{Chapter}_{Suffix} entries in English.txt.
     /// </summary>
     public static string BuildPoemId(Session session)
     {
@@ -213,7 +213,7 @@ public static class HeartGemManager
             _ => "ASide"
         };
 
-        // Construct the registry key: soul_Maggy_ASide_01_City_A
+        // Construct the registry key: soul_DZ_ASide_01_City_A
         // The suffix pattern matches the English.txt keys
         string suffix = session.Area.Mode switch
         {
@@ -224,7 +224,7 @@ public static class HeartGemManager
             _ => "_A"
         };
 
-        return $"soul_Maggy_{sideName}_{chapterName}{suffix}";
+        return $"soul_DZ_{sideName}_{chapterName}{suffix}";
     }
 
     /// <summary>

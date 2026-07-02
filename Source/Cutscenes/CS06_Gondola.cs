@@ -7,8 +7,8 @@ using Celeste.Entities;
 using Celeste.NPCs;
 using BadelineDummy = Celeste.Entities.BadelineDummy;
 using NPC = Celeste.NPCs.NPC;
-using GondolaMaggy = Celeste.Entities.GondolaMaggy;
-using MaggyBreathingGame = Celeste.Entities.TestBreathingGame;
+using GondolaDZ = Celeste.Entities.GondolaDZ;
+using DZBreathingGame = Celeste.Entities.TestBreathingGame;
 using DZ;
 
 namespace Celeste.Cutscenes
@@ -17,48 +17,48 @@ namespace Celeste.Cutscenes
 	public class CS06_Gondola : CutsceneEntity
 	{
 		/// <summary>
-		/// Wraps either GondolaMaggy or GondolaMod so the cutscene works with both gondola types.
+		/// Wraps either GondolaDZ or GondolaMod so the cutscene works with both gondola types.
 		/// </summary>
 		private class GondolaWrapper
 		{
-			private readonly GondolaMaggy _maggy;
+			private readonly GondolaDZ _DZ;
 			private readonly GondolaMod _mod;
 
-			public GondolaWrapper(GondolaMaggy g) { _maggy = g; }
+			public GondolaWrapper(GondolaDZ g) { _DZ = g; }
 			public GondolaWrapper(GondolaMod g) { _mod = g; }
 
-			private Entity AsEntity => (Entity)_maggy ?? _mod;
+			private Entity AsEntity => (Entity)_DZ ?? _mod;
 
 			public float X { get => AsEntity.X; set => AsEntity.X = value; }
 			public float Left => AsEntity.Left;
 			public Vector2 Position { get => AsEntity.Position; set => AsEntity.Position = value; }
 
-			public Sprite Lever => _maggy != null ? _maggy.Lever : _mod.Lever;
-			public Entity LeftCliffside => _maggy != null ? _maggy.LeftCliffside : _mod.LeftCliffside;
-			public Vector2 Start => _maggy != null ? _maggy.Start : _mod.Start;
-			public Vector2 Destination => _maggy != null ? _maggy.Destination : _mod.Destination;
+			public Sprite Lever => _DZ != null ? _DZ.Lever : _mod.Lever;
+			public Entity LeftCliffside => _DZ != null ? _DZ.LeftCliffside : _mod.LeftCliffside;
+			public Vector2 Start => _DZ != null ? _DZ.Start : _mod.Start;
+			public Vector2 Destination => _DZ != null ? _DZ.Destination : _mod.Destination;
 
 			public float Rotation
 			{
-				get => _maggy != null ? _maggy.Rotation : _mod.Rotation;
-				set { if (_maggy != null) _maggy.Rotation = value; else _mod.Rotation = value; }
+				get => _DZ != null ? _DZ.Rotation : _mod.Rotation;
+				set { if (_DZ != null) _DZ.Rotation = value; else _mod.Rotation = value; }
 			}
 
 			public float RotationSpeed
 			{
-				get => _maggy != null ? _maggy.RotationSpeed : _mod.RotationSpeed;
-				set { if (_maggy != null) _maggy.RotationSpeed = value; else _mod.RotationSpeed = value; }
+				get => _DZ != null ? _DZ.RotationSpeed : _mod.RotationSpeed;
+				set { if (_DZ != null) _DZ.RotationSpeed = value; else _mod.RotationSpeed = value; }
 			}
 
-			public void BreakLever() { if (_maggy != null) _maggy.BreakLever(); else _mod.BreakLever(); }
-			public void PullSides() { if (_maggy != null) _maggy.PullSides(); else _mod.PullSides(); }
-			public void CancelPullSides() { if (_maggy != null) _maggy.CancelPullSides(); else _mod.CancelPullSides(); }
+			public void BreakLever() { if (_DZ != null) _DZ.BreakLever(); else _mod.BreakLever(); }
+			public void PullSides() { if (_DZ != null) _DZ.PullSides(); else _mod.PullSides(); }
+			public void CancelPullSides() { if (_DZ != null) _DZ.CancelPullSides(); else _mod.CancelPullSides(); }
 			public Vector2 GetRotatedFloorPositionAt(float x, float y = 52f) =>
-				_maggy != null ? _maggy.GetRotatedFloorPositionAt(x, y) : _mod.GetRotatedFloorPositionAt(x, y);
+				_DZ != null ? _DZ.GetRotatedFloorPositionAt(x, y) : _mod.GetRotatedFloorPositionAt(x, y);
 		}
 
 		// Token: 0x0600130C RID: 4876 RVA: 0x00067790 File Offset: 0x00065990
-		public CS06_Gondola(NPC theo, GondolaMaggy gondola, Player player) : base(false, true)
+		public CS06_Gondola(NPC theo, GondolaDZ gondola, Player player) : base(false, true)
 		{
 			this.theo = theo;
 			this.gondola = new GondolaWrapper(gondola);
@@ -431,7 +431,7 @@ namespace Celeste.Cutscenes
 		// Token: 0x0600131D RID: 4893 RVA: 0x00067991 File Offset: 0x00065B91
 		private IEnumerator StartBreathing()
 		{
-			var breathing = new MaggyBreathingGame(freezePlayer: false);
+			var breathing = new DZBreathingGame(freezePlayer: false);
 			base.Scene.Add(breathing);
 			if (this.rumbler != null)
 				this.rumbler.TrackBreathingGame(breathing);

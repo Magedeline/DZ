@@ -154,18 +154,18 @@ namespace Celeste.Mod.DZ
                 {
                     var registerMethod = cmdType.GetMethod("Register", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static);
 
-                    registerMethod?.Invoke(null, new object[] { "maggy_perf_enable", (Action)(() =>
+                    registerMethod?.Invoke(null, new object[] { "DZ_perf_enable", (Action)(() =>
                     {
                         Enabled = true;
                         Logger.Log(LogLevel.Info, "DZ/Perf", "Performance profiling enabled");
                     })});
 
-                    registerMethod?.Invoke(null, new object[] { "maggy_perf_summary", (Action)(() =>
+                    registerMethod?.Invoke(null, new object[] { "DZ_perf_summary", (Action)(() =>
                     {
                         LogSummary();
                     })});
 
-                    registerMethod?.Invoke(null, new object[] { "maggy_perf_reset", (Action)(() =>
+                    registerMethod?.Invoke(null, new object[] { "DZ_perf_reset", (Action)(() =>
                     {
                         Reset();
                         Logger.Log(LogLevel.Info, "DZ/Perf", "Performance data reset");

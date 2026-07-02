@@ -1,7 +1,7 @@
 namespace DZ;
 
 [HotReloadable]
-public class MaggyBadelineAutoAnimator() : Component(true, false)
+public class DZBadelineAutoAnimator() : Component(true, false)
 {
     private bool _enabled = true;
     private string lastAnimation = "fallSlow";

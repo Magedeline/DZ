@@ -6,8 +6,8 @@ using DZ;
 namespace Celeste.NPCs;
 
 [Tracked(true)]
-[CustomEntity(ids: "DZ/NPC05_Maggy_Oshiro_Lobby")]
-public class NPC05_Maggy_Oshiro_Lobby : NPC
+[CustomEntity(ids: "DZ/NPC05_DZ_Oshiro_Lobby")]
+public class NPC05_DZ_Oshiro_Lobby : NPC
 {
     public static ParticleType P_AppearSpark;
 
@@ -16,10 +16,10 @@ public class NPC05_Maggy_Oshiro_Lobby : NPC
     private bool isInteracting;
 
     [MethodImpl(MethodImplOptions.NoInlining)]
-    public NPC05_Maggy_Oshiro_Lobby(Vector2 position)
+    public NPC05_DZ_Oshiro_Lobby(Vector2 position)
         : base(position)
     {
-        Add(Sprite = new DZ.MaggyOshiroSprite(-1));
+        Add(Sprite = new DZ.DZOshiroSprite(-1));
         Sprite.Visible = false;
         MTexture texture = GFX.Gui["hover/resort"];
         if (GFX.Gui.Has("hover/resort_" + global::Celeste.Settings.Instance.Language))
@@ -43,7 +43,7 @@ public class NPC05_Maggy_Oshiro_Lobby : NPC
     public override void Added(Scene scene)
     {
         base.Added(scene);
-        if (base.Session.GetFlag("maggy_oshiro_resort_talked_1"))
+        if (base.Session.GetFlag("DZ_oshiro_resort_talked_1"))
         {
             base.Session.Audio.Music.Event = "event:/pusheen/music/lvl5/explore";
             base.Session.Audio.Music.Progress = 1;
@@ -55,7 +55,7 @@ public class NPC05_Maggy_Oshiro_Lobby : NPC
             base.Session.Audio.Music.Event = null;
             base.Session.Audio.Apply(forceSixteenthNoteHack: false);
         }
-        scene.Add(new MaggyOshiroLobbyBell(new Vector2(base.X - 14f, base.Y)));
+        scene.Add(new DZOshiroLobbyBell(new Vector2(base.X - 14f, base.Y)));
         startX = Position.X;
     }
 
@@ -64,7 +64,7 @@ public class NPC05_Maggy_Oshiro_Lobby : NPC
     {
         if (isInteracting) return;
         isInteracting = true;
-        base.Scene.Add(new CS05_Maggy_OshiroLobby(player, this));
+        base.Scene.Add(new CS05_DZ_OshiroLobby(player, this));
         Talker.Enabled = false;
     }
 

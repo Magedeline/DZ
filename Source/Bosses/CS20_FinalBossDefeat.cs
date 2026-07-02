@@ -57,7 +57,7 @@ namespace Celeste.Cutscenes
             madelineSprite.Play("sleep");
             Add(madelineSprite);
             
-            badelineSprite = GFX.SpriteBank.Create("maggy_badeline");
+            badelineSprite = GFX.SpriteBank.Create("DZ_badeline");
             badelineSprite.Play("sleep");
             Add(badelineSprite);
             

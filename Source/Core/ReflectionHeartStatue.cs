@@ -20,7 +20,7 @@ namespace DZ;
 /// </summary>
 [CustomEntity("DZ/ReflectionHeartStatue")]
 [Tracked]
-public class MaggyReflectionHeartStatue : Entity
+public class DZReflectionHeartStatue : Entity
 {
     // â”€â”€ Inner: Torch â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     public class Torch : Entity
@@ -138,7 +138,7 @@ public class MaggyReflectionHeartStatue : Entity
     private bool enabled;
 
     // â”€â”€ Constructor â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-    public MaggyReflectionHeartStatue(EntityData data, Vector2 offset)
+    public DZReflectionHeartStatue(EntityData data, Vector2 offset)
         : base(data.Position + offset)
     {
         this.offset = offset;

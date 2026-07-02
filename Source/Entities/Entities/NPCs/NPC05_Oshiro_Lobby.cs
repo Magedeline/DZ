@@ -1,7 +1,7 @@
 using System.Runtime.CompilerServices;
 using Celeste.Cutscenes;
 using DZ;
-using ModOshiroSprite = DZ.MaggyOshiroSprite;
+using ModOshiroSprite = DZ.DZOshiroSprite;
 
 namespace Celeste.NPCs;
 

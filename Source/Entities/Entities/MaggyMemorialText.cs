@@ -1,11 +1,11 @@
 namespace Celeste.Entities
 {
     /// <summary>
-    /// Custom MemorialText that renders dialog text above a MaggyMemorial entity.
+    /// Custom MemorialText that renders dialog text above a DZMemorial entity.
     /// Supports both normal and dreamy text modes with typewriter reveal.
     /// Based on vanilla Celeste's MemorialText behaviour.
     /// </summary>
-    public class MaggyMemorialText : Entity
+    public class DZMemorialText : Entity
     {
         /// <summary>Whether the text is currently visible (set by the parent memorial).</summary>
         public bool Show;
@@ -14,7 +14,7 @@ namespace Celeste.Entities
         public bool Dreamy;
 
         /// <summary>Reference back to the owning memorial entity.</summary>
-        public MaggyMemorial Memorial;
+        public DZMemorial Memorial;
 
         // How far through the message the typewriter has revealed
         private float index;
@@ -38,7 +38,7 @@ namespace Celeste.Entities
         private SoundSource textSfx;
         private bool textSfxPlaying;
 
-        public MaggyMemorialText(MaggyMemorial memorial, bool dreamy, string dialogKey)
+        public DZMemorialText(DZMemorial memorial, bool dreamy, string dialogKey)
         {
             // Render in screen-space (HUD) and keep updating while paused
             Tag = Tags.HUD | Tags.PauseUpdate;

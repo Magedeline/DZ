@@ -68,22 +68,22 @@ namespace Celeste.Cutscenes
 
         private IEnumerator WalkLeft()
         {
-            (oshiro.Sprite as MaggyOshiroSprite).AllowSpriteChanges = false;
+            (oshiro.Sprite as DZOshiroSprite).AllowSpriteChanges = false;
             yield return oshiro.MoveTo(origin + new Vector2(-24f, 0f));
-            (oshiro.Sprite as MaggyOshiroSprite).AllowSpriteChanges = true;
+            (oshiro.Sprite as DZOshiroSprite).AllowSpriteChanges = true;
         }
 
         private IEnumerator WalkRight()
         {
-            (oshiro.Sprite as MaggyOshiroSprite).AllowSpriteChanges = false;
+            (oshiro.Sprite as DZOshiroSprite).AllowSpriteChanges = false;
             yield return oshiro.MoveTo(origin + new Vector2(0f, 0f));
-            (oshiro.Sprite as MaggyOshiroSprite).AllowSpriteChanges = true;
+            (oshiro.Sprite as DZOshiroSprite).AllowSpriteChanges = true;
         }
 
         private IEnumerator CreateDustA()
         {
             Add(new SoundSource(oshiro.Position, "event:/game/03_resort/sequence_oshirofluff_pt1"));
-            (oshiro.Sprite as MaggyOshiroSprite).AllowSpriteChanges = false;
+            (oshiro.Sprite as DZOshiroSprite).AllowSpriteChanges = false;
             oshiro.Sprite.Play("fall");
             Audio.Play("event:/char/oshiro/chat_collapse", oshiro.Position);
             Distort.AnxietyOrigin = new Vector2(0.5f, 0.5f);

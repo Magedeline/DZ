@@ -33,7 +33,7 @@ namespace Celeste.Entities
 				}
 			}
 			
-			this.bg = new Image(GFX.Gui["maggy/collectables/heartgem/0/spin00"]);
+			this.bg = new Image(GFX.Gui["DZ/collectables/heartgem/0/spin00"]);
 			this.bg.Color = Color.Black;
 			this.bg.CenterOrigin();
 			this.rotateWiggler = Wiggler.Create(0.4f, 6f, null, false, false);

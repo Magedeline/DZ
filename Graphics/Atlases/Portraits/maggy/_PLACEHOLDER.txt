@@ -1,4 +1,4 @@
-PLACEHOLDER: Portrait assets for character 'MAGGY'
+PLACEHOLDER: Portrait assets for character 'DZ'
 Required expressions: annoyed, normal
 
 Add PNG files in format: {expression}{frame}.png

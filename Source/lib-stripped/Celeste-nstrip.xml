@@ -6180,7 +6180,7 @@ How these should be structured is poorly documented, so if having nested members
     <members name="DZ">
       <member name="T:DZ.AreaModeExtender">
         <summary>
-          Core Desolo Zantas area extension layer. Resolves map SIDs from side folders under <c>Maps/Maggy</c>, extends chapter mode arrays beyond vanilla A/B/C, and keeps custom progression data synchronized with save state.
+          Core Desolo Zantas area extension layer. Resolves map SIDs from side folders under <c>Maps/DZ</c>, extends chapter mode arrays beyond vanilla A/B/C, and keeps custom progression data synchronized with save state.
           </summary>
       </member>
       <member name="M:DZ.AreaModeExtender.GetSideFolder(System.Int32)">
@@ -6194,11 +6194,11 @@ How these should be structured is poorly documented, so if having nested members
       <member name="M:DZ.AreaModeExtender.BuildSideSID(System.Int32,System.String)">
         <summary>
           Build a Desolo Zantas SID from a side index and base map name.
-          Example: <c>BuildSideSID(3, &quot;01_City&quot;)</c> produces <c>Maggy/DSide/01_City</c>.
+          Example: <c>BuildSideSID(3, &quot;01_City&quot;)</c> produces <c>DZ/DSide/01_City</c>.
           </summary>
         <param name="modeIndex">Zero-based side index.</param>
         <param name="mapName">Map basename without the <c>.bin</c> extension.</param>
-        <returns>A SID rooted at the internal <c>Maggy</c> map prefix.</returns>
+        <returns>A SID rooted at the internal <c>DZ</c> map prefix.</returns>
       </member>
       <member name="M:DZ.AreaModeExtender.BuildSideSID(System.String,System.String)">
         <summary>
@@ -6421,15 +6421,15 @@ How these should be structured is poorly documented, so if having nested members
           Launch the Chapter 17 epilogue area from module-controlled state rather than from the normal map flow.
           </summary>
       </member>
-      <member name="M:Celeste.Mod.DZ.DZModule.IsMaggyPlayerAvailable">
+      <member name="M:Celeste.Mod.DZ.DZModule.IsDZPlayerAvailable">
         <summary>
-          Check whether the optional Maggy player implementation is loaded and available for reflection-based integration.
+          Check whether the optional DZ player implementation is loaded and available for reflection-based integration.
           </summary>
         <returns><see langword="true" /> when the player type can be resolved.</returns>
       </member>
-      <member name="M:Celeste.Mod.DZ.DZModule.GetMaggyPlayerType">
+      <member name="M:Celeste.Mod.DZ.DZModule.GetDZPlayerType">
         <summary>
-          Resolve the runtime <see cref="T:System.Type" /> for the optional Maggy player implementation.
+          Resolve the runtime <see cref="T:System.Type" /> for the optional DZ player implementation.
           </summary>
         <returns>The player type when available; otherwise, <see langword="null" />.</returns>
       </member>

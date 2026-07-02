@@ -5,7 +5,7 @@ namespace DZ;
 
 /// <summary>
 /// Hooks for integrating chapter completion metadata from .DZ.meta.yaml files.
-/// Applies custom music events and title text from MaggyMapMetadata to the AreaComplete screen.
+/// Applies custom music events and title text from DZMapMetadata to the AreaComplete screen.
 /// </summary>
 internal static class ChapterCompletionHooks
 {
@@ -43,7 +43,7 @@ internal static class ChapterCompletionHooks
         if (session == null) return;
 
         // Get metadata for the current area
-        var metadata = MaggyMapMetadataRegistry.GetBySid(session.Area.SID);
+        var metadata = DZMapMetadataRegistry.GetBySid(session.Area.SID);
         if (metadata == null || metadata.MusicBySide == null || metadata.MusicBySide.Count == 0) return;
 
         // Determine which music event to use based on mode

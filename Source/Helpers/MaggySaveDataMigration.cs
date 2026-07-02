@@ -3,7 +3,7 @@ namespace Celeste.Helpers;
 /// <summary>
 /// Handles migration of save data between mod versions.
 /// </summary>
-public static class MaggySaveDataMigration
+public static class DZSaveDataMigration
 {
     public static void Run()
     {

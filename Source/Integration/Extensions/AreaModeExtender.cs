@@ -7,7 +7,7 @@ using MonoMod.Utils;
 namespace DZ;
 
 /// <summary>
-/// Extends Maggy chapters with D/DX sides while keeping vanilla save boundaries stable.
+/// Extends DZ chapters with D/DX sides while keeping vanilla save boundaries stable.
 /// </summary>
 public static class AreaModeExtender
 {
@@ -21,7 +21,7 @@ public static class AreaModeExtender
     public const int MODE_DXSIDE = 4;
     public const int TOTAL_MODES = 5;
 
-    public const string MAP_PREFIX = "Maggy";
+    public const string MAP_PREFIX = "DZ";
     private const string MapPrefixSlash = MAP_PREFIX + "/";
 
     /// <summary>Folder names for each side (A, B, C, D, DX)</summary>
@@ -38,7 +38,7 @@ public static class AreaModeExtender
     private static readonly HashSet<string> SideFolderSet =
         new(SideFolders, StringComparer.OrdinalIgnoreCase);
 
-    /// <summary>Pre-built SID prefixes ("Maggy/ASide/", etc.) used by <see cref="IsOurMap"/>.</summary>
+    /// <summary>Pre-built SID prefixes ("DZ/ASide/", etc.) used by <see cref="IsOurMap"/>.</summary>
     private static readonly string[] SidePrefixes = Array.ConvertAll(
         SideFolders, f => MapPrefixSlash + f + "/");
 
@@ -1219,7 +1219,7 @@ public static class AreaModeExtender
         if (sid == null)
             return false;
 
-        // Check if SID starts with "Maggy/" followed by one of our side folder names
+        // Check if SID starts with "DZ/" followed by one of our side folder names
         foreach (string prefix in SidePrefixes)
         {
             if (sid.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
@@ -1416,7 +1416,7 @@ public static class AreaModeExtender
     }
 
     /// <summary>
-    /// Parses a map SID in the new folder structure (Maggy/ASide/01_City, etc.)
+    /// Parses a map SID in the new folder structure (DZ/ASide/01_City, etc.)
     /// Returns the base map name and which side folder it's in.
     /// baseKey: The map name (e.g., "01_City")
     /// sideFolder: The side folder name (e.g., "ASide", "BSide", "DSide")
@@ -1429,11 +1429,11 @@ public static class AreaModeExtender
         if (string.IsNullOrWhiteSpace(sid))
             return false;
 
-        // Check if this is one of our chapters (format: Maggy/SideFolder/MapName)
+        // Check if this is one of our chapters (format: DZ/SideFolder/MapName)
         if (!sid.StartsWith(MapPrefixSlash, StringComparison.OrdinalIgnoreCase))
             return false;
 
-        // Extract everything after "Maggy/"
+        // Extract everything after "DZ/"
         string remainder = sid[MapPrefixSlash.Length..];
         var parts = remainder.Split('/');
 

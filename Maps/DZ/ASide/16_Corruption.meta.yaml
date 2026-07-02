@@ -1,0 +1,49 @@
+Icon: areas/DZ/corruption
+SID: DZ/ASide/16_Corruption
+Interlude: false
+TitleBaseColor: 383838
+TitleAccentColor: 50afae
+TitleTextColor: ffffff
+IntroType: Jump
+Dreaming: false
+ColorGrade: none
+Wipe: Celeste.AngledWipe
+DarknessAlpha: 0.05
+BloomBase: 0.0
+BloomStrength: 1.0
+
+Modes:
+  - AudioState:
+      Music: event:/music/pusheen/lvl16/cinematic/intro01
+      Ambience: event:/env/pusheen/16_myworld
+    Inventory: Default
+    HeartIsEnd: false
+    SeekerSlowdown: false
+
+Mountain:
+    MountainModelDirectory: Mountain/DZ/ASide
+    MountainTextureDirectory: DZ/ASide
+    Idle:
+        Position: [-1.916, 33.050, 11.185]
+        Target: [-1.479, 32.938, 9.236]
+    Select:
+        Position: [-1.916, 33.050, 9.585]
+        Target: [-1.479, 32.938, 7.636]
+    Zoom:
+        Position: [-1.549, 32.688, 8.579]
+        Target: [-1.112, 32.576, 6.630]
+    Cursor: [-1.479, 32.938, 7.636]
+    State: 1
+
+MusicBySide:
+  - event:/music/pusheen/menu/complete_area
+  - event:/music/pusheen/menu/complete_bside
+  - event:/music/pusheen/menu/complete_cside
+  - event:/music/pusheen/menu/complete_dxside
+Title:
+  ASide: "Chapter Complete"
+  BSide: "B Side Complete"
+  CSide: "C Side Complete"
+  DSide: "D Side Complete"
+  DXSide: "DX Side Complete"
+  FullClear: "Chapter Clear"

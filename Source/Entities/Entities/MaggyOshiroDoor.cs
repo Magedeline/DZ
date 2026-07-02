@@ -3,13 +3,13 @@ using Monocle;
 
 namespace Celeste.Entities
 {
-    [CustomEntity("DZ/MaggyOshiroDoor")]
-    public class MaggyOshiroDoor : Solid
+    [CustomEntity("DZ/DZOshiroDoor")]
+    public class DZOshiroDoor : Solid
     {
         private Sprite sprite;
         private Wiggler wiggler;
 
-        public MaggyOshiroDoor(EntityData data, Vector2 offset)
+        public DZOshiroDoor(EntityData data, Vector2 offset)
             : base(data.Position + offset, 32f, 32f, false)
         {
             Add(sprite = GFX.SpriteBank.Create("ghost_door"));
@@ -23,7 +23,7 @@ namespace Celeste.Entities
         public override void Added(Scene scene)
         {
             base.Added(scene);
-            Visible = Collidable = !SceneAs<Level>().Session.GetFlag("maggy_oshiro_resort_talked_1");
+            Visible = Collidable = !SceneAs<Level>().Session.GetFlag("DZ_oshiro_resort_talked_1");
         }
 
         public void Open()

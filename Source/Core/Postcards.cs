@@ -10,7 +10,7 @@ namespace DZ
     /// A postcard entity that displays a postcard with custom text and plays custom sounds when appearing and disappearing.
     /// Used for the postcards shown after beating each chapter in DesoloZantas.
     /// </summary>
-    public class PostcardMaggy : Entity
+    public class PostcardDZ : Entity
     {
     private const float TextScale = 0.7f;
 
@@ -46,12 +46,12 @@ namespace DZ
         }
     }
 
-    public PostcardMaggy(string msg, int area)
+    public PostcardDZ(string msg, int area)
         : this(msg, "event:/ui/main/postcard_ch" + area + "_in", "event:/ui/main/postcard_ch" + area + "_out")
     {
     }
 
-    public PostcardMaggy(string msg, string sfxEventIn, string sfxEventOut)
+    public PostcardDZ(string msg, string sfxEventIn, string sfxEventOut)
     {
         alpha = 1f;
         scale = 1f;
@@ -184,17 +184,17 @@ namespace DZ
         target = null;
     }
 
-    public PostcardMaggy(string msg)
+    public PostcardDZ(string msg)
         : this(msg, "event:/pusheen/ui/main/postcard_csides_in", "event:/pusheen/ui/main/postcard_csides_out")
     {
     }
 
-    public static PostcardMaggy CreateDSides(string msg)
+    public static PostcardDZ CreateDSides(string msg)
     {
-        return new PostcardMaggy(msg, "event:/pusheen/ui/main/postcard_dsides_in", "event:/pusheen/ui/main/postcard_dsides_out");
+        return new PostcardDZ(msg, "event:/pusheen/ui/main/postcard_dsides_in", "event:/pusheen/ui/main/postcard_dsides_out");
     }
 
-    public PostcardMaggy(string msg, string soundId)
+    public PostcardDZ(string msg, string soundId)
         : this(msg, GetSoundEventIn(soundId), GetSoundEventOut(soundId))
     {
     }
@@ -244,7 +244,7 @@ namespace DZ
     {
         private Session session;
         private int chapterNumber;
-        private PostcardMaggy postcard;
+        private PostcardDZ postcard;
         private bool completed;
 
         public PostcardDialogVignette(Session session, int chapterNumber)
@@ -267,7 +267,7 @@ namespace DZ
             yield return 0.5f;
 
             string postcardMsg = GetPostcardMessage(chapterNumber);
-            postcard = new PostcardMaggy(postcardMsg, chapterNumber);
+            postcard = new PostcardDZ(postcardMsg, chapterNumber);
             Add(postcard);
 
             yield return postcard.DisplayRoutine();
@@ -316,7 +316,7 @@ namespace DZ
     {
         private Session session;
         private int chapterNumber;
-        private PostcardMaggy postcard;
+        private PostcardDZ postcard;
 
         public PostcardOutroVignette(Session session, int chapterNumber)
         {
@@ -337,7 +337,7 @@ namespace DZ
             yield return 0.5f;
 
             string postcardMsg = GetOutroPostcardMessage(chapterNumber);
-            postcard = new PostcardMaggy(postcardMsg, chapterNumber);
+            postcard = new PostcardDZ(postcardMsg, chapterNumber);
             Add(postcard);
 
             yield return postcard.DisplayRoutine();

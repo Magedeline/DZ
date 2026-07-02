@@ -32,7 +32,7 @@ namespace Celeste.NPCs
             try
             {
                 // Use Badeline sprite for dark Meta Knight look
-                Add(sprite = GFX.SpriteBank.Create("maggy_badeline"));
+                Add(sprite = GFX.SpriteBank.Create("DZ_badeline"));
                 sprite.Play("idle");
 
                 if (isCorrupted)

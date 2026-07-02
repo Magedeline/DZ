@@ -58,7 +58,7 @@ public class DZUnlockEverything : CheatListener
         if (save == null || save.HasSeenModIntro)
             return;
 
-        // Check we're in a DZ map (SID prefix "Maggy/") in the trigger room
+        // Check we're in a DZ map (SID prefix "DZ/") in the trigger room
         var area = AreaData.Get(level.Session.Area);
         bool isOurMap = area?.SID?.StartsWith(
             AreaModeExtender.MAP_PREFIX + "/", StringComparison.OrdinalIgnoreCase) == true;

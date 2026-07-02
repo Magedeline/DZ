@@ -31,7 +31,7 @@ namespace Celeste.NPCs
             try
             {
                 // Use Oshiro sprite as placeholder for robotic look
-                Add(sprite = GFX.SpriteBank.Create("maggy_oshiro"));
+                Add(sprite = GFX.SpriteBank.Create("DZ_oshiro"));
                 sprite.Play("idle");
                 
                 switch (axisForm)

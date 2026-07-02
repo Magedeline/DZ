@@ -144,7 +144,7 @@ namespace Celeste.Triggers
     [HotReloadable]
     public class RuinsLobbyEnterTrigger : Trigger
     {
-        private static readonly string LobbySid  = "Maggy/Lobby/10_Ruins_Lobby";
+        private static readonly string LobbySid  = "DZ/Lobby/10_Ruins_Lobby";
         private static readonly string LobbyRoom = "lvl_lobby_hub";
         private static readonly string RequiredFlag = "ch10_main_completed";
 

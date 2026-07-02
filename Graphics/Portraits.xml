@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Sprites>
 
-  <maggy_portrait_madeline path="madeline/" sfx="madeline" textbox="madeline">
+  <DZ_portrait_madeline path="madeline/" sfx="madeline" textbox="madeline">
     <Center />
 
 	<sfxs>
@@ -86,7 +86,7 @@
 
     <!--<Anim id="idle_cry" path="cry" delay="0.1" frames="0" goto="idle_cry"/>
     <Loop id="talk_cry" path="cry" delay="0.2" frames="0" />-->
-  </maggy_portrait_madeline>
+  </DZ_portrait_madeline>
 
   <portrait_ralsei path="ralsei/" sfx="pusheen/ralsei" textbox="default">
     <Center />

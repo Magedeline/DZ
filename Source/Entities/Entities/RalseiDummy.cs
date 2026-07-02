@@ -47,7 +47,7 @@ namespace Celeste.Entities
         // Public properties with proper backing fields
         public Sprite Sprite { get; private set; }
         public Image HairImage { get; private set; }
-        public MaggyBadelineAutoAnimator AutoAnimator { get; private set; }
+        public DZBadelineAutoAnimator AutoAnimator { get; private set; }
         public SineWave Wave { get; private set; }
         public VertexLight Light { get; private set; }
 
@@ -150,7 +150,7 @@ namespace Celeste.Entities
         {
             try
             {
-                AutoAnimator = new MaggyBadelineAutoAnimator();
+                AutoAnimator = new DZBadelineAutoAnimator();
                 Add(AutoAnimator);
             }
             catch (Exception ex)

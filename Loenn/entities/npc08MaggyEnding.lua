@@ -1,13 +1,13 @@
-local npc08MaggyEnding = {}
+local npc08DZEnding = {}
 
-npc08MaggyEnding.name = "DZ/NPC08_Maggy_Ending"
-npc08MaggyEnding.depth = 0
-npc08MaggyEnding.texture = "objects/DZ/npc08_maggy_ending"
+npc08DZEnding.name = "DZ/NPC08_DZ_Ending"
+npc08DZEnding.depth = 0
+npc08DZEnding.texture = "objects/DZ/npc08_DZ_ending"
 
-npc08MaggyEnding.placements = {
-    name = "npc08_maggy_ending",
+npc08DZEnding.placements = {
+    name = "npc08_DZ_ending",
     data = {
     }
 }
 
-return npc08MaggyEnding
+return npc08DZEnding

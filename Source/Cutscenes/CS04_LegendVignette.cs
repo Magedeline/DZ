@@ -41,7 +41,7 @@ namespace Celeste.Cutscenes {
         }
 
         public Cs04LegendVignette(Session session1) : this(session1, null) {
-            Add(new MaggyHiresSnow());
+            Add(new DZHiresSnow());
             Add(new FadeWipe(this, true));
         }
 

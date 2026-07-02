@@ -103,7 +103,7 @@ public static class AltSidesHelperBridge
     {
         if (area == null) return false;
 
-        // A-Side entry: direct lookup (SID is path-based, e.g. Maggy/ASide/01_City).
+        // A-Side entry: direct lookup (SID is path-based, e.g. DZ/ASide/01_City).
         if (AshOwnedASideSIDs.Contains(area.SID))
             return true;
 

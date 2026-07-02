@@ -4,12 +4,12 @@ using System.Runtime.CompilerServices;
 namespace Celeste.Entities
 {
     /// <summary>
-    /// Maggy's PC - A sci-fi themed computer terminal inspired by the Star Cutter Lor from Kirby.
+    /// DZ's PC - A sci-fi themed computer terminal inspired by the Star Cutter Lor from Kirby.
     /// Features a holographic display with animated visuals and ambient sounds.
-    /// Based on KevinsPC structure but with Maggy-specific theming.
+    /// Based on KevinsPC structure but with DZ-specific theming.
     /// </summary>
-    [CustomEntity(ids: "DZ/MaggyPC")]
-    public class MaggyPC : Actor
+    [CustomEntity(ids: "DZ/DZPC")]
+    public class DZPC : Actor
     {
         private Image image;
         private MTexture spectogram;
@@ -23,18 +23,18 @@ namespace Celeste.Entities
         private const float ANIMATION_CYCLE_DURATION = 22f; // Duration of one full spectogram cycle in seconds
 
         [MethodImpl(MethodImplOptions.NoInlining)]
-        public MaggyPC(Vector2 position)
+        public DZPC(Vector2 position)
             : base(position)
         {
             // Main PC image - Star Cutter themed computer terminal
-            Add(image = new Image(AtlasPathHelper.GetTexture("objects/maggypc/pc0")));
+            Add(image = new Image(AtlasPathHelper.GetTexture("objects/DZpc/pc0")));
             image.JustifyOrigin(0.5f, 1f);
             
             // Depth between foreground and background elements
             base.Depth = 8999;
             
             // Holographic display spectogram
-            spectogram = AtlasPathHelper.GetTexture("objects/maggypc/spectogram");
+            spectogram = AtlasPathHelper.GetTexture("objects/DZpc/spectogram");
             subtex = spectogram.GetSubtexture(0, 0, SPECTOGRAM_WIDTH, SPECTOGRAM_HEIGHT, subtex);
 
             // Ambient sci-fi computer sound
@@ -45,7 +45,7 @@ namespace Celeste.Entities
             timer = 0f;
         }
 
-        public MaggyPC(EntityData data, Vector2 offset)
+        public DZPC(EntityData data, Vector2 offset)
             : this(data.Position + offset)
         {
         }

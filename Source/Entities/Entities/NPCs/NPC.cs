@@ -221,7 +221,7 @@ namespace Celeste.Entities
                 "ralsei" => "ralsei",
                 "madeline" => "madeline",
                 "badeline" => "badeline",
-                "maggy" => "magolor",
+                "DZ" => "magolor",
                 "magolor" => "magolor",
                 "magalor" => "magolor",
                 "toriel" => "toriel",
@@ -626,26 +626,26 @@ namespace Celeste.Entities
         }
     }
 
-    [CustomEntity("DZ/NPC01_Maggy")]
+    [CustomEntity("DZ/NPC01_DZ")]
     [Tracked(true)]
-    public partial class Npc01_Maggy : NPC
+    public partial class Npc01_DZ : NPC
     {
-        public Npc01_Maggy(EntityData data, Vector2 offset) : base(data.Position + offset)
+        public Npc01_DZ(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
             if (Sprite != null)
             {
                 Remove(Sprite);
             }
-            Add(Sprite = GFX.SpriteBank.Create("maggy"));
+            Add(Sprite = GFX.SpriteBank.Create("DZ"));
             Sprite.CenterOrigin();
         }
     }
 
-    [CustomEntity("DZ/NPC02_Maggy")]
+    [CustomEntity("DZ/NPC02_DZ")]
     [Tracked(true)]
-    public partial class Npc02_Maggy : NPC
+    public partial class Npc02_DZ : NPC
     {
-        public Npc02_Maggy(EntityData data, Vector2 offset) : base(data.Position + offset)
+        public Npc02_DZ(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
             if (Sprite != null)
             {
@@ -881,7 +881,7 @@ namespace Celeste.Entities
         protected override void OnTalk(global::Celeste.Player player)
         {
             var magolor = Scene.Tracker.GetEntity<NPC06_Magolor>();
-            var gondola = Scene.Tracker.GetEntity<GondolaMaggy>();
+            var gondola = Scene.Tracker.GetEntity<GondolaDZ>();
             if (magolor != null && gondola != null)
             {
                 TryAddCutscene(new CS06_Gondola(magolor, gondola, player));
@@ -1012,11 +1012,11 @@ namespace Celeste.Entities
         }
     }
 
-    [CustomEntity("DZ/NPC08_Maggy_Ending")]
+    [CustomEntity("DZ/NPC08_DZ_Ending")]
     [Tracked(true)]
-    public partial class Npc08_Maggy_Ending : NPC
+    public partial class Npc08_DZ_Ending : NPC
     {
-        public Npc08_Maggy_Ending(EntityData data, Vector2 offset) : base(data.Position + offset)
+        public Npc08_DZ_Ending(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
             if (Sprite != null)
             {
@@ -1027,7 +1027,7 @@ namespace Celeste.Entities
         }
         protected override void OnTalk(global::Celeste.Player player)
         {
-            var magolor = Scene.Tracker.GetEntity<Npc08MaggyEnding>();
+            var magolor = Scene.Tracker.GetEntity<Npc08DZEnding>();
             if (magolor != null)
             {
                 TryAddCutscene(new Cs08End(player));
@@ -1202,17 +1202,17 @@ namespace Celeste.Entities
         }
     }
 
-    [CustomEntity("DZ/NPC19_Maggy_Loop")]
+    [CustomEntity("DZ/NPC19_DZ_Loop")]
     [Tracked(true)]
-    public partial class Npc19_Maggy_Loop : NPC
+    public partial class Npc19_DZ_Loop : NPC
     {
-        public Npc19_Maggy_Loop(EntityData data, Vector2 offset) : base(data.Position + offset)
+        public Npc19_DZ_Loop(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
             if (Sprite != null)
             {
                 Remove(Sprite);
             }
-            Add(Sprite = GFX.SpriteBank.Create("maggy"));
+            Add(Sprite = GFX.SpriteBank.Create("DZ"));
             Sprite.CenterOrigin();
         }
         protected override void OnTalk(global::Celeste.Player player)

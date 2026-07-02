@@ -1,13 +1,13 @@
-local npc19MaggyLoop = {}
+local npc19DZLoop = {}
 
-npc19MaggyLoop.name = "DZ/NPC19_Maggy_Loop"
-npc19MaggyLoop.depth = 0
-npc19MaggyLoop.texture = "objects/DZ/npc19_maggy_loop"
+npc19DZLoop.name = "DZ/NPC19_DZ_Loop"
+npc19DZLoop.depth = 0
+npc19DZLoop.texture = "objects/DZ/npc19_DZ_loop"
 
-npc19MaggyLoop.placements = {
-    name = "npc19_maggy_loop",
+npc19DZLoop.placements = {
+    name = "npc19_DZ_loop",
     data = {
     }
 }
 
-return npc19MaggyLoop
+return npc19DZLoop

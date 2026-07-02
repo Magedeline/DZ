@@ -4,18 +4,18 @@ namespace Celeste.Entities
     /// A custom Memorial entity for Desolo Zantas that displays configurable dialog
     /// text when the player walks into its hitbox.
     /// Supports normal and dreamy text styles, custom sprites, and audio.
-    /// Place via LÃ¶nn as "DZ/MaggyMemorial".
+    /// Place via LÃ¶nn as "DZ/DZMemorial".
     /// </summary>
-    [CustomEntity(ids: "DZ/MaggyMemorial")]
+    [CustomEntity(ids: "DZ/DZMemorial")]
     [Tracked]
-    public class MaggyMemorial : Entity
+    public class DZMemorial : Entity
     {
         // Visual
         private Image sprite;
         private Sprite dreamyText;    // animated floaty sparkle above the memorial (dreamy only)
 
         // The companion HUD text entity
-        private MaggyMemorialText text;
+        private DZMemorialText text;
 
         // Whether we were showing text last frame (for SFX transitions)
         private bool wasShowing;
@@ -31,10 +31,10 @@ namespace Celeste.Entities
         /// <summary>
         /// LÃ¶nn / map-loader constructor.
         /// </summary>
-        public MaggyMemorial(EntityData data, Vector2 offset)
+        public DZMemorial(EntityData data, Vector2 offset)
             : this(
                 data.Position + offset,
-                data.Attr("dialogKey", "MAGGY_MEMORIAL_DEFAULT"),
+                data.Attr("dialogKey", "DZ_MEMORIAL_DEFAULT"),
                 data.Attr("spritePath", "scenery/memorial/memorial"),
                 data.Bool("dreamy", false))
         {
@@ -43,7 +43,7 @@ namespace Celeste.Entities
         /// <summary>
         /// Core constructor.
         /// </summary>
-        public MaggyMemorial(Vector2 position, string dialogKey, string spritePath, bool dreamy)
+        public DZMemorial(Vector2 position, string dialogKey, string spritePath, bool dreamy)
             : base(position)
         {
             this.dialogKey = dialogKey;
@@ -74,7 +74,7 @@ namespace Celeste.Entities
             bool isDreaming = dreamy || level.Session.Dreaming;
 
             // Spawn the companion HUD-text entity
-            text = new MaggyMemorialText(this, isDreaming, dialogKey);
+            text = new DZMemorialText(this, isDreaming, dialogKey);
             level.Add(text);
 
             // If dreamy, add the animated "floatytext" sparkle above the memorial

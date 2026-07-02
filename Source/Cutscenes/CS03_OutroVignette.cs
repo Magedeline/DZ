@@ -40,9 +40,9 @@ namespace Celeste.Cutscenes
 
             // Load outro postcard image
             Entity postcardHolder = new Entity();
-            if (GFX.Gui.Has("Maggy/postcard"))
+            if (GFX.Gui.Has("DZ/postcard"))
             {
-                postcard = new Image(GFX.Gui["Maggy/postcard"]);
+                postcard = new Image(GFX.Gui["DZ/postcard"]);
                 postcard.CenterOrigin();
                 postcard.Position = CelesteGame.TargetCenter;
                 postcardHolder.Add(postcard);
@@ -58,7 +58,7 @@ namespace Celeste.Cutscenes
 
         public Cs03OutroVignette(Session session1) : this(session1, null)
         {
-            Add(new MaggyHiresSnow());
+            Add(new DZHiresSnow());
             Add(new FadeWipe(this, true));
         }
 

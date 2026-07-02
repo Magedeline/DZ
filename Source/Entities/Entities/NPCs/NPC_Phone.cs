@@ -25,7 +25,7 @@ namespace Celeste.NPCs
 
         private void setupSprite()
         {
-            Add(sprite = GFX.SpriteBank.Create("maggy_payphone"));
+            Add(sprite = GFX.SpriteBank.Create("DZ_payphone"));
             sprite.Play("idle");
             sprite.Color = Color.White;
         }

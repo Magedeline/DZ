@@ -108,7 +108,7 @@ public static class SubChapterManager
     /// </summary>
     public class SubChapterDef
     {
-        /// <summary>Unique identifier (e.g. "Maggy/ASide/01_City_Sub01")</summary>
+        /// <summary>Unique identifier (e.g. "DZ/ASide/01_City_Sub01")</summary>
         public string SID { get; set; }
 
         /// <summary>Display name shown in the sub-chapter selection panel</summary>
@@ -560,7 +560,7 @@ public static class SubChapterManager
 
     /// <summary>
     /// Creates and registers a test group for development purposes.
-    /// Call via console command: maggy_test_subchapters
+    /// Call via console command: DZ_test_subchapters
     /// </summary>
     public static void RegisterTestGroup()
     {
@@ -580,7 +580,7 @@ public static class SubChapterManager
         {
             group.SubChapters.Add(new SubChapterDef
             {
-                SID = $"Maggy/ASide/01_City_SubTest{i:D2}",
+                SID = $"DZ/ASide/01_City_SubTest{i:D2}",
                 DisplayName = $"Test Sub-Chapter {i}",
                 Author = "DZ Test",
                 Difficulty = Math.Clamp(i, 1, 5),
@@ -594,13 +594,13 @@ public static class SubChapterManager
         {
             Logger.Log(LogLevel.Info, LogTag,
                 "Test sub-chapter group registered. " +
-                "Use 'maggy_test_subchapter_status' to check progress.");
+                "Use 'DZ_test_subchapter_status' to check progress.");
         }
     }
 
     /// <summary>
     /// Logs the status of all registered sub-chapter groups.
-    /// Console command: maggy_test_subchapter_status
+    /// Console command: DZ_test_subchapter_status
     /// </summary>
     public static void LogStatus()
     {
@@ -638,21 +638,21 @@ public static class SubChapterManager
 
     // ── Console Commands ────────────────────────────────────────────────
 
-    [Command("maggy_test_subchapters", "Register a test sub-chapter group (5 embedded sub-chapters)")]
+    [Command("DZ_test_subchapters", "Register a test sub-chapter group (5 embedded sub-chapters)")]
     private static void Cmd_RegisterTestGroup()
     {
         RegisterTestGroup();
         Engine.Commands?.Log("Test sub-chapter group 'TestCollabPack' registered.");
-        Engine.Commands?.Log("Use 'maggy_test_subchapter_status' to view progress.");
+        Engine.Commands?.Log("Use 'DZ_test_subchapter_status' to view progress.");
     }
 
-    [Command("maggy_test_subchapter_status", "Show status of all sub-chapter groups")]
+    [Command("DZ_test_subchapter_status", "Show status of all sub-chapter groups")]
     private static void Cmd_Status()
     {
         LogStatus();
     }
 
-    [Command("maggy_test_subchapter_complete", "Mark a test sub-chapter as completed. Usage: maggy_test_subchapter_complete <1-5>")]
+    [Command("DZ_test_subchapter_complete", "Mark a test sub-chapter as completed. Usage: DZ_test_subchapter_complete <1-5>")]
     private static void Cmd_Complete(int index = 1)
     {
         if (index < 1 || index > 20)
@@ -661,7 +661,7 @@ public static class SubChapterManager
             return;
         }
 
-        string sid = $"Maggy/ASide/01_City_SubTest{index:D2}";
+        string sid = $"DZ/ASide/01_City_SubTest{index:D2}";
         MarkSubChapterCompleted(sid);
         Engine.Commands?.Log($"Marked sub-chapter {index} ({sid}) as completed.");
 
@@ -674,19 +674,19 @@ public static class SubChapterManager
         }
     }
 
-    [Command("maggy_test_subchapter_reset", "Reset all test sub-chapter completion flags")]
+    [Command("DZ_test_subchapter_reset", "Reset all test sub-chapter completion flags")]
     private static void Cmd_Reset()
     {
         var group = GetGroup("TestCollabPack");
         if (group == null)
         {
-            Engine.Commands?.Log("No test group registered. Run 'maggy_test_subchapters' first.");
+            Engine.Commands?.Log("No test group registered. Run 'DZ_test_subchapters' first.");
             return;
         }
 
         // Note: We can't directly delete achievements, so we log a warning.
         // In production this would clear the save flags.
         Engine.Commands?.Log("Sub-chapter completion flags are stored in save data.");
-        Engine.Commands?.Log("To fully reset, use 'maggy_save_repair' or start a new save file.");
+        Engine.Commands?.Log("To fully reset, use 'DZ_save_repair' or start a new save file.");
     }
 }

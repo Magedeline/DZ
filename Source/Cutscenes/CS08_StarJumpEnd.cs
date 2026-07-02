@@ -1,7 +1,7 @@
 using System.Reflection.Metadata;
 using Celeste.Entities;
 using BadelineDummy = Celeste.Entities.BadelineDummy;
-using MaggyBreathingGame = Celeste.Entities.TestBreathingGame;
+using DZBreathingGame = Celeste.Entities.TestBreathingGame;
 using CelesteJumpThru = Celeste.JumpThru;
 using DZ;
 
@@ -9,7 +9,7 @@ namespace Celeste.Cutscenes
 {
     public class CS08_StarJumpEnd : CutsceneEntity
     {
-        public const string Flag = "plateaumaggy_2";
+        public const string Flag = "plateauDZ_2";
 
         private bool waiting = true;
         private bool shaking;
@@ -18,7 +18,7 @@ namespace Celeste.Cutscenes
         private Bonfire bonfire;
         private CharaDummy chara;
         private Plateau plateau;
-        private MaggyBreathingGame breathing;
+        private DZBreathingGame breathing;
         private List<ReflectionTentacles> tentacles = new List<ReflectionTentacles>();
         private Vector2 playerStart;
         private Vector2 cameraStart;
@@ -451,7 +451,7 @@ namespace Celeste.Cutscenes
         private IEnumerator HeartgemMinigame()
         {
             // Start the breathing/heartgem minigame (cutscene manages player, so freezePlayer=false)
-            this.breathing = new MaggyBreathingGame(freezePlayer: false);
+            this.breathing = new DZBreathingGame(freezePlayer: false);
             this.rumbler.TrackBreathingGame(this.breathing);
             this.Level.Add(this.breathing);
             while (!this.breathing.Completed)
@@ -588,7 +588,7 @@ namespace Celeste.Cutscenes
             level.Remove(this.player);
             level.UnloadLevel();
             level.EndCutscene();
-            level.Session.SetFlag("plateaumaggy_2", true);
+            level.Session.SetFlag("plateauDZ_2", true);
             level.SnapColorGrade(AreaData.Get(level).ColorGrade);
             level.Session.Dreaming = false;
             level.Session.FirstLevel = false;
@@ -607,7 +607,7 @@ namespace Celeste.Cutscenes
             }
             // Use the factory method which handles level loading properly
             // This avoids stale level reference issues and mod render crashes
-            Engine.Scene = MaggyOverworldReflectionFall.CreateFor08TruthAlt1(level);
+            Engine.Scene = DZOverworldReflectionFall.CreateFor08TruthAlt1(level);
         }
 
         private void SetBloom(float add)

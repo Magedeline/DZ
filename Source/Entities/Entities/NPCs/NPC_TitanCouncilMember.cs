@@ -33,7 +33,7 @@ namespace Celeste.NPCs
        try
       {
          // Use Badeline sprite for imposing titan look
- Add(sprite = GFX.SpriteBank.Create("maggy_badeline"));
+ Add(sprite = GFX.SpriteBank.Create("DZ_badeline"));
                 sprite.Play("idle");
   
          switch (titanRole)

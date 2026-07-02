@@ -288,7 +288,7 @@ public class TapeBlockManager : Entity
         {
             beatIndexOffset = 0;
             leadBeats = 16;
-            snapshot = Audio.CreateSnapshot("snapshot:/maggy_music_mains_mute");
+            snapshot = Audio.CreateSnapshot("snapshot:/DZ_music_mains_mute");
         }
         maxBeat = SceneAs<Level>().CassetteBlockBeats;
         tempoMult = SceneAs<Level>().CassetteBlockTempo;

@@ -16,7 +16,7 @@ public class TrueFinaleVignette : DesoloZantasVignette
     private const string VignetteMusicEvent = "event:/pusheen/new_content/music/lvl21/climb";
 
     private Session session;
-    private MaggyHiresSnow snow;
+    private DZHiresSnow snow;
     private float fade = 1f;
     private float timer;
     private bool ready;
@@ -45,7 +45,7 @@ public class TrueFinaleVignette : DesoloZantasVignette
     public TrueFinaleVignette(Session session, HiresSnow snow = null)
     {
         this.session = session;
-        this.snow = new MaggyHiresSnow();
+        this.snow = new DZHiresSnow();
         Add(this.snow);
 
         titleText = Dialog.Has("DZ_TRUEFINALE_TITLE")
@@ -60,7 +60,7 @@ public class TrueFinaleVignette : DesoloZantasVignette
         emblemTexture = GFX.Game.Has(emblemPath) ? GFX.Game[emblemPath] : null;
 
         // Load mountain background
-        string bgPath = "bgs/maggy/truefinale/vignette_bg";
+        string bgPath = "bgs/DZ/truefinale/vignette_bg";
         mountainBg = GFX.Game.Has(bgPath) ? GFX.Game[bgPath] : null;
 
         // Load layered TrueFinaleIntro images if present.

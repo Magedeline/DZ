@@ -43,7 +43,7 @@ public class NPC15X_Madeline_and_Badeline_Ending : NPC
         Maxspeed = 64f;
         
         // Badeline sprite - separate from Madeline
-        badelineSprite = GFX.SpriteBank.Create("maggy_badeline");
+        badelineSprite = GFX.SpriteBank.Create("DZ_badeline");
         badelineSprite.Play("fall");
         badelineSprite.Scale.X = -1f;
         Add(badelineSprite);

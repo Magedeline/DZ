@@ -6,13 +6,13 @@ namespace Celeste.Entities
     /// Auto-animator for Badeline dummy entities.
     /// Handles sprite animation timing and transitions.
     /// </summary>
-    public class MaggyBadelineAutoAnimator : Component
+    public class DZBadelineAutoAnimator : Component
     {
         private Sprite sprite;
         private float idleTimer;
         private const float IDLE_INTERVAL = 2f;
 
-        public MaggyBadelineAutoAnimator()
+        public DZBadelineAutoAnimator()
             : base(false, false)
         {
         }

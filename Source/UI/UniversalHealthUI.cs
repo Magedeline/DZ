@@ -219,14 +219,14 @@ namespace Celeste.Entities
             // Kirby-specific hearts from the GUI atlas.
             kirbyHeartFull = TryGetTexture(
                 "kirby/heart_full",
-                "maggy/kirby/heart_full",
-                "Maggy/kirby/heart_full",
+                "DZ/kirby/heart_full",
+                "DZ/kirby/heart_full",
                 "gui/kirby/heart_full"
             );
             kirbyHeartEmpty = TryGetTexture(
                 "kirby/heart_empty",
-                "maggy/kirby/heart_empty",
-                "Maggy/kirby/heart_empty",
+                "DZ/kirby/heart_empty",
+                "DZ/kirby/heart_empty",
                 "gui/kirby/heart_empty"
             );
 

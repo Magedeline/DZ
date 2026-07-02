@@ -16,10 +16,10 @@ npcDialogKeys.options = {
     "DZ_CH0_END",
     
     -- Chapter 1 - Forbidden City
-    "DZ_CH1_MAGGY_A",
-    "DZ_CH1_MAGGY_B",
-    "DZ_CH1_MAGGY_C",
-    "DZ_CH1_MAGGY_D",
+    "DZ_CH1_DZ_A",
+    "DZ_CH1_DZ_B",
+    "DZ_CH1_DZ_C",
+    "DZ_CH1_DZ_D",
     "DZ_CH1_ENDMADELINE",
     "DZ_CH1_KIRBY_INTRO",
     "DZ_CH1_KIRBY_FIRST_STEP_INTRO",
@@ -377,11 +377,11 @@ npcDialogKeys.options = {
     "CHARACATER_TEST_AGAIN",
     
     -- Chapter and location names
-    "Maggy_Main",
-    "Maggy_B_Side",
-    "Maggy_C_Side", 
-    "Maggy_D_Side",
-    "Maggy_RMX_Side",
+    "DZ_Main",
+    "DZ_B_Side",
+    "DZ_C_Side", 
+    "DZ_D_Side",
+    "DZ_RMX_Side",
     
     -- Generic/Common dialogs
     "HELLO_PLAYER",

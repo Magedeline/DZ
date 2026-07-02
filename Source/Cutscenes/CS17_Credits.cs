@@ -20,7 +20,7 @@ namespace Celeste.Cutscenes
         public static CS17_Credits Instance;
         public string Event;
         private MTexture gradient = GFX.Gui["creditsgradient"].GetSubtexture(0, 1, 1920, 1);
-        private CreditsMaggy credits;
+        private CreditsDZ credits;
         private global::Celeste.Player player;
         private bool autoWalk = true;
         private bool autoUpdateCamera = true;
@@ -35,7 +35,7 @@ namespace Celeste.Cutscenes
         private bool wasDashAssistOn;
         private CS17_Credits.Fill fillbg;
         private float fade = 1f;
-        private MaggyHiresSnow snow;
+        private DZHiresSnow snow;
         private bool gotoEpilogue;
         private CharaDummy chara;
         private Entity kirbyFollower;
@@ -85,7 +85,7 @@ namespace Celeste.Cutscenes
             yield return null;
             this.Level.Wipe.Cancel();
             yield return 0.5f;
-            this.credits = new CreditsMaggy();
+            this.credits = new CreditsDZ();
             this.credits.AllowInput = false;
             yield return 3f;
             this.SetBgFade(0f);
@@ -237,7 +237,7 @@ namespace Celeste.Cutscenes
             this.badeline.Floatness = 0f;
             Vector2 value = this.GetCreditsTriggerPosition("Oshiro", Vector2.Zero);
             NPC oshiro = new NPC(value + new Vector2(0f, 4f));
-            oshiro.Add(oshiro.Sprite = new MaggyOshiroSprite(1));
+            oshiro.Add(oshiro.Sprite = new DZOshiroSprite(1));
             oshiro.MoveAnim = "sweeping";
             oshiro.IdleAnim = "sweeping";
             oshiro.Sprite.Play("sweeping", false, false);
@@ -431,7 +431,7 @@ namespace Celeste.Cutscenes
                 yield return null;
             if (!this.gotoEpilogue)
             {
-                this.snow = new MaggyHiresSnow();
+                this.snow = new DZHiresSnow();
                 this.snow.Alpha = 0f;
                 this.Level.Add(this.Level.HiresSnow);
             }
@@ -819,7 +819,7 @@ namespace Celeste.Cutscenes
 
         private Entity SpawnCreditsChara(Vector2 position)
         {
-            Sprite sprite = GFX.SpriteBank.Create("maggy_chara");
+            Sprite sprite = GFX.SpriteBank.Create("DZ_chara");
             if (sprite.Has("idle"))
                 sprite.Play("idle", false, false);
             sprite.CenterOrigin();

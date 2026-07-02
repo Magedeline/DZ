@@ -165,21 +165,21 @@ PFakeShine = new ParticleType
             this.IsGhost = (!this.IsFake && !this.IsAstral && SaveData.Instance.Areas[area.ID].Modes[(int)area.Mode].HeartGem);
             string id;
             if (this.IsAstral) {
-                id = "maggy_heartgem4"; // Astral/Final Remix - Rainbow heartgem
+                id = "DZ_heartgem4"; // Astral/Final Remix - Rainbow heartgem
             } else if (this.IsFake) {
                 id = "heartgem4"; // Grey heartgem for fake/wrong heart
             } else if (this.IsGhost) {
                 id = "heartgem5";
             } else if (area.Mode == AreaMode.Normal) {
-                id = "maggy_heartgem0"; // A-Side - Blue heartgem
+                id = "DZ_heartgem0"; // A-Side - Blue heartgem
             } else if (area.Mode == AreaMode.BSide) {
-                id = "maggy_heartgem1"; // B-Side - Red heartgem
+                id = "DZ_heartgem1"; // B-Side - Red heartgem
             } else if (area.Mode == AreaMode.CSide) {
-                id = "maggy_heartgem2"; // C-Side - Golden heartgem
+                id = "DZ_heartgem2"; // C-Side - Golden heartgem
             } else if (area.Mode == (AreaMode)3) {
-                id = "maggy_heartgem3"; // D-Side - Pink heartgem
+                id = "DZ_heartgem3"; // D-Side - Pink heartgem
             } else {
-                id = "maggy_heartgem0"; // Default to blue
+                id = "DZ_heartgem0"; // Default to blue
             }
             Add(this.sprite = GFX.SpriteBank.Create(id));
           this.sprite.Play("spin", false, false);
@@ -915,7 +915,7 @@ Level level = Scene as Level;
         private IEnumerator ShowDsidePostcard(Level level)
         {
             var scene = new Scene();
-            var snow = new MaggyHiresSnow();
+            var snow = new DZHiresSnow();
             scene.Add(snow);
 
             var entity = new Entity();
@@ -934,7 +934,7 @@ Level level = Scene as Level;
             if (string.IsNullOrEmpty(dialogText))
                 dialogText = "D-Side Unlocked!\nPink Platinum Berries now available.";
 
-            var postcard = new PostcardMaggy(dialogText,
+            var postcard = new PostcardDZ(dialogText,
                 "event:/pusheen/ui/main/postcard_dsides_in",
                 "event:/pusheen/ui/main/postcard_dsides_out");
 
@@ -953,7 +953,7 @@ Level level = Scene as Level;
         private IEnumerator ShowUltraPostcard(Level level)
         {
             var scene = new Scene();
-            var snow = new MaggyHiresSnow();
+            var snow = new DZHiresSnow();
             scene.Add(snow);
 
             var entity = new Entity();
@@ -972,14 +972,14 @@ Level level = Scene as Level;
             if (string.IsNullOrEmpty(dialogText))
                 dialogText = "All Crystal Hearts Collected!\nThe ultimate challenge awaits.";
 
-            var postcard = new PostcardMaggy(dialogText,
+            var postcard = new PostcardDZ(dialogText,
                 "event:/pusheen/new_content/ui/postcard_variants_in",
                 "event:/pusheen/new_content/ui/postcard_variants_out");
 
             if (GFX.Gui.Has("postcards/ultra_variant_unlock"))
                 postcard.Postcard = GFX.Gui["postcards/ultra_variant_unlock"];
-            else if (GFX.Gui.Has("Maggy/postcard"))
-                postcard.Postcard = GFX.Gui["Maggy/postcard"];
+            else if (GFX.Gui.Has("DZ/postcard"))
+                postcard.Postcard = GFX.Gui["DZ/postcard"];
 
             scene.Add(postcard);
 

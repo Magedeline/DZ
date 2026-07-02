@@ -2,14 +2,14 @@ using Celeste.NPCs;
 
 namespace Celeste.Entities
 {
-    [CustomEntity("DZ/MaggyOshiroLobbyBell")]
-    public class MaggyOshiroLobbyBell : Entity
+    [CustomEntity("DZ/DZOshiroLobbyBell")]
+    public class DZOshiroLobbyBell : Entity
     {
         private TalkComponent talker;
         private string soundEffect;
         private bool startsActive;
 
-        public MaggyOshiroLobbyBell(EntityData data, Vector2 offset)
+        public DZOshiroLobbyBell(EntityData data, Vector2 offset)
             : base(data.Position + offset)
         {
             soundEffect = data.Attr("soundEffect", "event:/game/05_restore/deskbell_again");
@@ -18,7 +18,7 @@ namespace Celeste.Entities
             talker.Enabled = startsActive;
         }
 
-        public MaggyOshiroLobbyBell(Vector2 position)
+        public DZOshiroLobbyBell(Vector2 position)
             : base(position)
         {
             soundEffect = "event:/game/05_restore/deskbell_again";
@@ -32,7 +32,7 @@ namespace Celeste.Entities
 
         public override void Update()
         {
-            if (!talker.Enabled && Scene.Entities.FindFirst<NPC05_Maggy_Oshiro_Lobby>() == null)
+            if (!talker.Enabled && Scene.Entities.FindFirst<NPC05_DZ_Oshiro_Lobby>() == null)
                 talker.Enabled = true;
             base.Update();
         }

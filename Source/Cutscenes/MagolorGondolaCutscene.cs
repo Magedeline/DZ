@@ -25,7 +25,7 @@ namespace Celeste.NPCs
 			base.Update();
 			if (!this.started)
 			{
-				GondolaMaggy gondola = base.Scene.Entities.FindFirst<GondolaMaggy>();
+				GondolaDZ gondola = base.Scene.Entities.FindFirst<GondolaDZ>();
 				Player entity = base.Scene.Tracker.GetEntity<Player>();
 				if (gondola != null && entity != null && entity.X > gondola.Left - 16f)
 				{

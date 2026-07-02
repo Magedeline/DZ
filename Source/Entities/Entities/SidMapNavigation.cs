@@ -53,7 +53,7 @@ namespace Celeste.Entities
             if (string.IsNullOrEmpty(_lobbySid))
             {
                 // Fallback: return to the chapter-10 lobby
-                _lobbySid  = "Maggy/Lobby/10_Ruins_Lobby";
+                _lobbySid  = "DZ/Lobby/10_Ruins_Lobby";
                 _lobbyRoom = "lvl_lobby_hub";
             }
 

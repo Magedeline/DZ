@@ -6,9 +6,9 @@ using NPC = Celeste.NPCs.NPC;
 
 namespace Celeste.Cutscenes;
 
-public class CS05_Maggy_OshiroLobby : CutsceneEntity
+public class CS05_DZ_OshiroLobby : CutsceneEntity
 {
-    public const string Flag = "maggy_oshiro_resort_talked_1";
+    public const string Flag = "DZ_oshiro_resort_talked_1";
 
     private CelestePlayer player;
 
@@ -23,7 +23,7 @@ public class CS05_Maggy_OshiroLobby : CutsceneEntity
     private NPC ralsei;
 
     [MethodImpl(MethodImplOptions.NoInlining)]
-    public CS05_Maggy_OshiroLobby(CelestePlayer player, NPC oshiro)
+    public CS05_DZ_OshiroLobby(CelestePlayer player, NPC oshiro)
     {
         this.player = player;
         this.oshiro = oshiro;
@@ -37,7 +37,7 @@ public class CS05_Maggy_OshiroLobby : CutsceneEntity
         if (createSparks && Level.OnInterval(0.025f))
         {
             Vector2 vector = oshiro.Position + new Vector2(0f, -12f) + new Vector2(Calc.Random.Range(4, 12) * Calc.Random.Choose(1, -1), Calc.Random.Range(4, 12) * Calc.Random.Choose(1, -1));
-            Level.Particles.Emit(NPC05_Maggy_Oshiro_Lobby.P_AppearSpark, vector, (vector - oshiro.Position).Angle());
+            Level.Particles.Emit(NPC05_DZ_Oshiro_Lobby.P_AppearSpark, vector, (vector - oshiro.Position).Angle());
         }
     }
 
@@ -119,7 +119,7 @@ public class CS05_Maggy_OshiroLobby : CutsceneEntity
         Audio.SetMusic("event:/pusheen/music/lvl5/oshiro_theme");
         player.DummyAutoAnimate = true;
         yield return Textbox.Say("DZ_CH5_OSHIRO_FRONT_DESK", new Func<IEnumerator>(ZoomOut), new Func<IEnumerator>(SpawnRalsei), new Func<IEnumerator>(OpenOshiroDoor));
-        foreach (MaggyOshiroDoor item in Scene.Entities.FindAll<MaggyOshiroDoor>())
+        foreach (DZOshiroDoor item in Scene.Entities.FindAll<DZOshiroDoor>())
         {
             item.Open();
         }
@@ -157,7 +157,7 @@ public class CS05_Maggy_OshiroLobby : CutsceneEntity
     private IEnumerator OpenOshiroDoor()
     {
         // Open the Oshiro door at trigger 2
-        foreach (MaggyOshiroDoor door in Scene.Entities.FindAll<MaggyOshiroDoor>())
+        foreach (DZOshiroDoor door in Scene.Entities.FindAll<DZOshiroDoor>())
         {
             door.Open();
         }
@@ -171,14 +171,14 @@ public class CS05_Maggy_OshiroLobby : CutsceneEntity
         player.StateMachine.State = Player.StNormal;
         if (WasSkipped)
         {
-            foreach (MaggyOshiroDoor item in base.Scene.Entities.FindAll<MaggyOshiroDoor>())
+            foreach (DZOshiroDoor item in base.Scene.Entities.FindAll<DZOshiroDoor>())
             {
                 item.InstantOpen();
             }
         }
         level.Lighting.Alpha = startLightAlpha;
         level.Lighting.UnsetSpotlight();
-        level.Session.SetFlag("maggy_oshiro_resort_talked_1");
+        level.Session.SetFlag("DZ_oshiro_resort_talked_1");
         level.Session.Audio.Music.Event = "event:/pusheen/music/lvl5/explore";
         level.Session.Audio.Music.Progress = 1;
         level.Session.Audio.Apply(forceSixteenthNoteHack: false);

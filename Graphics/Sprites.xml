@@ -884,7 +884,7 @@
     <Anim id="spawn" path="fragileRemix" delay="0.06" frames="6-12"/>
   </cloudFragileRemix>
 
-  <tentacles path="danger/tentacles" start="0">
+  <tentacles path="danger/tentacles" start="idle">
     <Justify x="0.5" y="0.5"/>
     <Loop id="idle" path="" delay="0.1" frames="0"/>
   </tentacles>
@@ -894,10 +894,10 @@
     <Loop id="idle" path="" delay="0.1" frames="0"/>
   </templeBlade>
 
-  <moonBlade path="danger/starfish" start="idle0">
+  <moonBlade path="danger/starfish" start="idle">
     <Justify x="0.5" y="0.5"/>
-    
-    
+
+
     <Loop id="idle" path="" delay="0.1" frames="0"/>
   </moonBlade>
 

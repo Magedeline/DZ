@@ -767,6 +767,7 @@
 
   <dashSwitch_default path="objects/DZ/temple/dashButton" start="idle">
     <Justify x="0.5" y="0.5"/>
+    <Loop id="idle" path="" delay="0.1" frames="0"/>
   </dashSwitch_default>
 
   <dashSwitch_mirror path="objects/DZ/temple/dashButtonMirror" start="idle">
@@ -884,20 +885,24 @@
 
   <tentacles path="danger/tentacles" start="0">
     <Justify x="0.5" y="0.5"/>
+    <Loop id="idle" path="" delay="0.1" frames="0"/>
   </tentacles>
 
   <templeBlade path="danger/blade" start="idle">
     <Justify x="0.5" y="0.5"/>
+    <Loop id="idle" path="" delay="0.1" frames="0"/>
   </templeBlade>
 
   <moonBlade path="danger/starfish" start="idle0">
     <Justify x="0.5" y="0.5"/>
     
     
+    <Loop id="idle" path="" delay="0.1" frames="0"/>
   </moonBlade>
 
   <temple_portal_curtain path="objects/DZ/temple/portal/portalcurtain" start="idle">
     <Center/>
+    <Loop id="idle" path="" delay="0.1" frames="0"/>
   </temple_portal_curtain>
 
   <snowball path="danger/" start="spin">
@@ -1937,12 +1942,12 @@
 
   <popstarberry path="collectables/DZ/popstarberry/spin/" start="idle">
       <Center />
-
+      <Loop id="idle" path="spin" delay="0.1" frames="0"/>
     </popstarberry>
 
   <popstarberryghost path="collectables/DZ/popstarberry/spin/ghost/" start="idle">
       <Center />
-
+      <Loop id="idle" path="spin" delay="0.1" frames="0"/>
     </popstarberryghost>
 
   <DZ_payphone path="cutscenes/DZ/Kirby/payphone/" start="idle">
@@ -2015,18 +2020,22 @@
 
   <DZ_lockdoor_wood path="objects/DZ/door/lockdoor" start="idle">
       <Justify x="0.5" y="0.5" />
+      <Loop id="idle" path="lockdoor" delay="0.1" frames="0"/>
     </DZ_lockdoor_wood>
 
   <DZ_lockdoor_temple_a path="objects/DZ/door/lockdoorTempleA" start="idle">
       <Justify x="0.5" y="0.5" />
+      <Loop id="idle" path="lockdoorTempleA" delay="0.1" frames="0"/>
     </DZ_lockdoor_temple_a>
 
   <DZ_lockdoor_temple_b path="objects/DZ/door/lockdoorTempleB" start="idle">
       <Justify x="0.5" y="0.5" />
+      <Loop id="idle" path="lockdoorTempleB" delay="0.1" frames="0"/>
     </DZ_lockdoor_temple_b>
 
   <DZ_lockdoor_moon path="objects/DZ/door/moonDoor" start="idle">
       <Justify x="0.5" y="0.5" />
+      <Loop id="idle" path="moonDoor" delay="0.1" frames="0"/>
     </DZ_lockdoor_moon>
 
   <DZ_door path="objects/DZ/door/" start="idle">
@@ -2183,10 +2192,12 @@
 
   <DZ_dashSwitch_default path="objects/DZ/temple/dashButton" start="idle">
       <Justify x="0.5" y="0.5"/>
+      <Loop id="idle" path="dashButton" delay="0.1" frames="0"/>
     </DZ_dashSwitch_default>
 
   <DZ_dashSwitch_mirror path="objects/DZ/temple/dashButtonMirror" start="idle">
       <Justify x="0.5" y="0.5"/>
+      <Loop id="idle" path="dashButtonMirror" delay="0.1" frames="0"/>
     </DZ_dashSwitch_mirror>
 
   <DZ_gondola path="objects/DZ/gondola/" start="idle">

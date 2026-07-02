@@ -1,7 +1,7 @@
 namespace Celeste.NPCs
 {
     [Tracked(true)]
-    [CustomEntity(ids: "DZ/NPC08_DZ_Ending")]
+    [CustomEntity(ids: "DZ/NPC08_MAGOLOR_Ending")]
     public class Npc08DZEnding : Entity
     {
         private const string donetalking = "ch8_ending";

@@ -1,6 +1,6 @@
 local npc08DZEnding = {}
 
-npc08DZEnding.name = "DZ/NPC08_DZ_Ending"
+npc08DZEnding.name = "DZ/NPC08_MAGOLOR_Ending"
 npc08DZEnding.depth = 0
 npc08DZEnding.texture = "objects/DZ/DZ/DZ/npc08_DZ_ending"
 

@@ -1,7 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <Sprites>
 
-  <player path="characters/DZ/player_playback/" start="idle">
+  <player path="characters/DZ/player/" start="idle">
     <Origin x="16" y="32" />
 
     <Loop id="idle_carry" path="idle_carry" delay="0.1" />
@@ -222,7 +222,7 @@
     <Anim id="spawn" path="spawn" delay="0.08" frames="0*3,0-9" goto="fallSlow"/>
     <Loop id="laugh" path="laugh" delay="0.04" />
     <Loop id="angry" path="angry" delay="0.04" />
-    <Anim id="boost" path="boost" delay="0.05"/>
+    <Anim id="boost" path="boost" frames="0-9" delay="0.05"/>
 
     <Loop id="pretendDead" path="sleep" delay="0" frames="23" />
     <Loop id="spin" path="spin" delay="0.1" />
@@ -1281,7 +1281,7 @@
       <Loop id="hug" path="hug" delay="0.08"/>
     </chara>
   
-    <DZ_mainchara_vision path="characters/DZ/mainchara_vision/" start="idle_down">
+    <mainchara_vision path="characters/DZ/mainchara_vision/" start="idle_down">
       <Justify x=".5" y="1" />
   
       <Loop id="idle" path="down" delay="0" frames="0" />
@@ -1325,7 +1325,7 @@
       <Anim id="slash_left" path="left" delay="0.08" frames="1-3" goto="idle_left" />
   
       <Loop id="lookUp" path="up" delay="0" frames="0" />
-    </DZ_mainchara_vision>
+    </mainchara_vision>
   
     <KirbySkin path="characters/DZ/kirby/" start="idle">
       <Justify x=".5" y="1" />
@@ -1549,7 +1549,7 @@
       <Anim id="kirby_death" path="combat/death_" delay="0.08" />
   </kirby_player_ext>
 
-  <DZ_badeline path="characters/DZ/badeline/">
+  <badeline path="characters/DZ/badeline/">
       <Justify x=".5" y="1" />
       
       <Loop id="idle" path="idle" delay="0.1" />
@@ -1587,7 +1587,7 @@
       <Anim id="spawn" path="spawn" delay="0.08" frames="0*3,0-9" goto="fallSlow"/>
       <Loop id="laugh" path="laugh" delay="0.04" />
       <Loop id="angry" path="angry" delay="0.04" />
-      <Anim id="boost" path="boost" delay="0.05"/>
+      <Anim id="boost" path="boost" frames="0-9" delay="0.05"/>
   
       <Loop id="pretendDead" path="sleep" delay="0" frames="23" />
       <Loop id="spin" path="spin" delay="0.1" />
@@ -1621,7 +1621,7 @@
         <Frames path="boost" hair="0,-2|0,-2|0,-2|0,-2|0,0|0,-6|0,-3|0,-1|0,-1|0,-2"/>
         <Frames path="hug" hair="0,2"/>
       </Metadata>
-    </DZ_badeline>
+    </badeline>
 
   <chara path="characters/DZ/chara/">
       <Justify x=".5" y="1" />
@@ -1661,7 +1661,7 @@
       <Anim id="spawn" path="spawn" delay="0.08" frames="0*3,0-9" goto="fallSlow"/>
       <Loop id="laugh" path="laugh" delay="0.04" />
       <Loop id="angry" path="angry" delay="0.04" />
-      <Anim id="boost" path="boost" delay="0.05"/>
+      <Anim id="boost" path="boost" frames="0-9" delay="0.05"/>
   
       <Loop id="pretendDead" path="sleep" delay="0" frames="00" />
       <Loop id="spin" path="spin" delay="0.1" />
@@ -1842,25 +1842,25 @@
       <Anim id="throw" path="throw" delay="0.06" frames="0-3" goto="idle" />
     </ralseisil>
 
-  <DZ_heartgem0 path="collectables/DZ/heartgem/0/">
+  <heartgem0 path="collectables/DZ/heartgem/0/">
   		<Center />
   
-  	</DZ_heartgem0>
+  	</heartgem0>
 
-  <DZ_heartgem1 path="collectables/DZ/heartgem/1/">
+  <heartgem1 path="collectables/DZ/heartgem/1/">
   		<Center />
   
-  	</DZ_heartgem1>
+  	</heartgem1>
 
-  <DZ_heartgem2 path="collectables/DZ/heartgem/2/">
+  <heartgem2 path="collectables/DZ/heartgem/2/">
   		<Center />
   
-  	</DZ_heartgem2>
+  	</heartgem2>
 
-  <DZ_heartgem3 path="collectables/DZ/heartgem/3/">
+  <heartgem3 path="collectables/DZ/heartgem/3/">
   		<Center />
   
-  	</DZ_heartgem3>
+  	</heartgem3>
 
   <heartgem4 path="collectables/DZ/heartGem/4/">
   		<Center />
@@ -1951,7 +1951,7 @@
       <Loop id="idle" path="spin" delay="0.1" frames="0"/>
     </popstarberryghost>
 
-  <DZ_payphone path="cutscenes/DZ/Kirby/payphone/" start="idle">
+  <payphone path="cutscenes/DZ/Kirby/payphone/" start="idle">
       <Justify x=".5" y="1" />
       
       <Loop id="idle" path="phone" delay="0.1" frames="0"/>
@@ -1962,9 +1962,9 @@
       <Anim id="transform" path="phone" delay="0.08" frames="22-45" />
       <Anim id="eat" path="phone" delay="0.08" frames="46-73,83*2,84*2,85*2,86*2,87*2,74-82"/>
       <Loop id="monsterIdle" path="phone" delay="0.2" frames="83-87"/>
-    </DZ_payphone>
+    </payphone>
 
-  <DZ_lookout path="objects/DZ/kirby/lookout/" start="idle">
+  <lookout path="objects/DZ/kirby/lookout/" start="idle">
       <Justify x=".5" y="1" />
       
       <Loop id="idle" path="lookout" delay="0.1" frames="5*9,6"/>
@@ -2005,7 +2005,7 @@
       <Loop id="nobackpack_lookingDownLeft" path="nobackpack" frames="12"/>
       <Loop id="nobackpack_lookingLeft" path="nobackpack" frames="13"/>
       <Loop id="nobackpack_lookingUpLeft" path="nobackpack" frames="14"/>
-    </DZ_lookout>
+    </lookout>
 
   <warpstars path="objects/DZ/warpstars/" start="idle">
       <Justify x="0.5" y="0.5"/>
@@ -2019,83 +2019,83 @@
       <Loop id="spin" path="save" delay="2.0" />
     </FakeSavePoint>
 
-  <DZ_lockdoor_wood path="objects/DZ/door/lockdoor" start="idle">
+  <lockdoor_wood path="objects/DZ/door/lockdoor" start="idle">
       <Justify x="0.5" y="0.5" />
       <Loop id="idle" path="lockdoor" delay="0.1" frames="0"/>
-    </DZ_lockdoor_wood>
+    </lockdoor_wood>
 
-  <DZ_lockdoor_temple_a path="objects/DZ/door/lockdoorTempleA" start="idle">
+  <lockdoor_temple_a path="objects/DZ/door/lockdoorTempleA" start="idle">
       <Justify x="0.5" y="0.5" />
       <Loop id="idle" path="lockdoorTempleA" delay="0.1" frames="0"/>
-    </DZ_lockdoor_temple_a>
+    </lockdoor_temple_a>
 
-  <DZ_lockdoor_temple_b path="objects/DZ/door/lockdoorTempleB" start="idle">
+  <lockdoor_temple_b path="objects/DZ/door/lockdoorTempleB" start="idle">
       <Justify x="0.5" y="0.5" />
       <Loop id="idle" path="lockdoorTempleB" delay="0.1" frames="0"/>
-    </DZ_lockdoor_temple_b>
+    </lockdoor_temple_b>
 
-  <DZ_lockdoor_moon path="objects/DZ/door/moonDoor" start="idle">
+  <lockdoor_moon path="objects/DZ/door/moonDoor" start="idle">
       <Justify x="0.5" y="0.5" />
       <Loop id="idle" path="moonDoor" delay="0.1" frames="0"/>
-    </DZ_lockdoor_moon>
+    </lockdoor_moon>
 
-  <DZ_door path="objects/DZ/door/" start="idle">
+  <door path="objects/DZ/door/" start="idle">
       <Justify x=".5" y="1" />
   
       <Loop id="idle" path="door" delay="0.1" frames="0"/>
       <Anim id="open" path="door" delay="0.05" frames="4,2,1" goto="close"/>
       <Anim id="close" path="door" delay="0.05" frames="1,1,1,1,1-4" goto="idle"/>
-    </DZ_door>
+    </door>
 
-  <DZ_metaldoor path="objects/DZ/door/" start="idle">
+  <metaldoor path="objects/DZ/door/" start="idle">
       <Justify x=".5" y="1" />
   
       <Loop id="idle" path="metaldoor" delay="0.1" frames="0"/>
       <Anim id="open" path="metaldoor" delay="0.05" frames="4,2,1" goto="close"/>
       <Anim id="close" path="metaldoor" delay="0.05" frames="1,1,1,1,1-4" goto="idle"/>
-    </DZ_metaldoor>
+    </metaldoor>
 
-  <DZ_ghost_door path="objects/DZ/door/" start="idle">
+  <ghost_door path="objects/DZ/door/" start="idle">
       <Justify x=".5" y=".5" />
   
       <Loop id="idle" path="ghost_door" delay="0.06" frames="0-19"/>
       <Anim id="open" path="ghost_door" delay="0.06" frames="20-28"/>
-    </DZ_ghost_door>
+    </ghost_door>
 
-  <DZ_trapdoor path="objects/DZ/door/" start="idle">
+  <trapdoor path="objects/DZ/door/" start="idle">
       <Justify x="0.5" y="0.5" />
   
       <Loop id="idle" path="trap" delay="0.1" frames="0"/>
       <Anim id="open" path="trap" delay="0.05" frames="0,1,2,3,3,4,5,6,7"/>
       <Anim id="open_partial" path="trap" delay="0.05" frames="0,1,2,3,4"/>
-    </DZ_trapdoor>
+    </trapdoor>
 
-  <DZ_glass path="objects/DZ/mirror/" start="idle">
+  <glass path="objects/DZ/mirror/" start="idle">
       <Justify x=".5" y="1" />
       
       <Loop id="idle" path="glassbg" delay="0.08" frames="0"/>
       <Anim id="break" path="glassbreak" delay="0.08" frames="0-8" goto="broken"/>
       <Loop id="broken" path="glassbreak" delay="0.08" frames="9"/>
-    </DZ_glass>
+    </glass>
 
-  <DZ_clutterCabinet path="objects/DZ/resortclutter/" start="idle">
+  <clutterCabinet path="objects/DZ/resortclutter/" start="idle">
       <Justify x=".5" y="0.5" />
       
       <Loop id="idle" path="cabinet" delay="0.09" frames="0"/>
       <Anim id="open" path="cabinet" delay="0.08" frames="0-2" goto="opened"/>
       <Loop id="opened" path="cabinet" delay="0.09" frames="2-7"/>
       <Anim id="close" path="cabinet" delay="0.08" frames="8-15" goto="idle"/>
-    </DZ_clutterCabinet>
+    </clutterCabinet>
 
-  <DZ_clutterSwitch path="objects/DZ/resortclutter/" start="idle">
+  <clutterSwitch path="objects/DZ/resortclutter/" start="idle">
       <Justify x=".5" y="1" />
   
       <Loop id="idle" path="clutter_button" delay="0.09" frames="0-7" />
       <Loop id="active" path="clutter_button" delay="0.09" frames="19-27" />
       <Anim id="break" path="clutter_button" delay="0.08" frames="8-18" goto="active"/>
-    </DZ_clutterSwitch>
+    </clutterSwitch>
 
-  <DZ_lookout path="objects/DZ/lookout/" start="idle">
+  <lookout path="objects/DZ/lookout/" start="idle">
       <Justify x=".5" y="1" />
       
       <Loop id="idle" path="lookout" delay="0.1" frames="5*9,6"/>
@@ -2136,86 +2136,86 @@
       <Loop id="nobackpack_lookingDownLeft" path="nobackpack" frames="12"/>
       <Loop id="nobackpack_lookingLeft" path="nobackpack" frames="13"/>
       <Loop id="nobackpack_lookingUpLeft" path="nobackpack" frames="14"/>
-    </DZ_lookout>
+    </lookout>
 
-  <DZ_flutterBird path="scenery/flutterbird/" start="idle">
+  <flutterBird path="scenery/flutterbird/" start="idle">
       <Justify x="0.5" y="1"/>
       <Loop id="idle" path="idle" delay="0.1" frames="0"/>
       <Loop id="fly" path="flap" delay="0.1" frames="0,1"/>
-    </DZ_flutterBird>
+    </flutterBird>
 
-  <DZ_swapBlockLight path="objects/DZ/swapblock/" start="idle">
+  <swapBlockLight path="objects/DZ/swapblock/" start="idle">
       <Justify x="0.5" y="0.5"/>
       <Loop id="idle" path="midBlock" delay="0.08" frames="0-3"/>
-    </DZ_swapBlockLight>
+    </swapBlockLight>
 
-  <DZ_swapBlockLightRed path="objects/DZ/swapblock/" start="idle">
+  <swapBlockLightRed path="objects/DZ/swapblock/" start="idle">
       <Justify x="0.5" y="0.5"/>
       <Loop id="idle" path="midBlockRed" delay="0.08" frames="0-3"/>
-    </DZ_swapBlockLightRed>
+    </swapBlockLightRed>
 
-  <DZ_swapBlockLightMoon path="objects/DZ/swapblock/moon/" start="idle">
+  <swapBlockLightMoon path="objects/DZ/swapblock/moon/" start="idle">
       <Justify x="0.5" y="0.5"/>
       <Loop id="idle" path="midBlock" delay="0.08" frames="0-3"/>
-    </DZ_swapBlockLightMoon>
+    </swapBlockLightMoon>
 
-  <DZ_swapBlockLightRedMoon path="objects/DZ/swapblock/moon/" start="idle">
+  <swapBlockLightRedMoon path="objects/DZ/swapblock/moon/" start="idle">
       <Justify x="0.5" y="0.5"/>
       <Loop id="idle" path="midBlockRed" delay="0.08" frames="0-3"/>
-    </DZ_swapBlockLightRedMoon>
+    </swapBlockLightRedMoon>
 
-  <DZ_swapBlockPathLight path="objects/DZ/swapblock/" start="idle">
+  <swapBlockPathLight path="objects/DZ/swapblock/" start="idle">
       <Justify x="0.5" y="0.5"/>
       <Loop id="idle" path="pathLights" delay="0.06" frames="0"/>
       <Anim id="flash" path="pathLights" delay="0.06" frames="0-4" goto="idle"/>
-    </DZ_swapBlockPathLight>
+    </swapBlockPathLight>
 
-  <DZ_templegate_default path="objects/DZ/door/" start="idle">
+  <templegate_default path="objects/DZ/door/" start="idle">
       <Justify x="0.5" y="0.5"/>
       <Loop id="idle" path="templeDoor" delay="0.1" frames="0"/>
       <Anim id="open" path="templeDoor" delay="0.1" frames="6-14" goto="idle"/>
       <Anim id="hit" path="templeDoor" delay="0.08" frames="0-4" goto="idle"/>
-    </DZ_templegate_default>
+    </templegate_default>
 
-  <DZ_templegate_mirror path="objects/DZ/door/" start="idle">
+  <templegate_mirror path="objects/DZ/door/" start="idle">
       <Justify x="0.5" y="0.5"/>
       <Loop id="idle" path="templeDoorB" delay="0.1" frames="0"/>
       <Anim id="open" path="templeDoorB" delay="0.1" frames="6-14" goto="idle"/>
       <Anim id="hit" path="templeDoorB" delay="0.08" frames="0-4" goto="idle"/>
-    </DZ_templegate_mirror>
+    </templegate_mirror>
 
-  <DZ_templegate_theo path="objects/DZ/door/" start="idle">
+  <templegate_theo path="objects/DZ/door/" start="idle">
       <Justify x="0.5" y="0.5"/>
       <Loop id="idle" path="templeDoorC" delay="0.1" frames="0"/>
       <Anim id="open" path="templeDoorC" delay="0.1" frames="6-14" goto="idle"/>
       <Anim id="hit" path="templeDoorC" delay="0.08" frames="0-4" goto="idle"/>
-    </DZ_templegate_theo>
+    </templegate_theo>
 
-  <DZ_dashSwitch_default path="objects/DZ/temple/dashButton" start="idle">
+  <dashSwitch_default path="objects/DZ/temple/dashButton" start="idle">
       <Justify x="0.5" y="0.5"/>
       <Loop id="idle" path="dashButton" delay="0.1" frames="0"/>
-    </DZ_dashSwitch_default>
+    </dashSwitch_default>
 
-  <DZ_dashSwitch_mirror path="objects/DZ/temple/dashButtonMirror" start="idle">
+  <dashSwitch_mirror path="objects/DZ/temple/dashButtonMirror" start="idle">
       <Justify x="0.5" y="0.5"/>
       <Loop id="idle" path="dashButtonMirror" delay="0.1" frames="0"/>
-    </DZ_dashSwitch_mirror>
+    </dashSwitch_mirror>
 
-  <DZ_gondola path="objects/DZ/gondola/" start="idle">
+  <gondola path="objects/DZ/gondola/" start="idle">
       <Loop id="idle" path="front" delay="0.1"/>
       <Loop id="pull" path="pull" delay="0.08" frames="6-0,1,2"/>
-    </DZ_gondola>
+    </gondola>
 
-  <DZ_booster path="objects/DZ/booster/" start="loop">
+  <booster path="objects/DZ/booster/" start="loop">
       <Justify x="0.5" y="0.5"/>
       <Loop id="loop" path="booster" delay="0.1" frames="0-4"/>
       <Loop id="inside" path="booster" delay="0.1" frames="5-8"/>
       <Loop id="spin" path="booster" delay="0.06" frames="18-25"/>
       <Anim id="pop" path="booster" delay="0.08" frames="9-17"/>
       <Loop id="oneuse_idle" path="booster" delay="0.1" frames="0-4"/>
-    </DZ_booster>
+    </booster>
 
-  <DZ_boosterRed path="objects/DZ/booster/" start="loop">
+  <boosterRed path="objects/DZ/booster/" start="loop">
       <Justify x="0.5" y="0.5"/>
       <Anim id="appear" path="boosterRed" delay="0.08" frames="26-34" goto="loop"/>
       <Loop id="loop" path="boosterRed" delay="0.1" frames="0-4"/>
@@ -2223,9 +2223,9 @@
       <Loop id="spin" path="boosterRed" delay="0.06" frames="18-25"/>
       <Anim id="pop" path="boosterRed" delay="0.08" frames="9-17"/>
       <Loop id="oneuse_idle" path="boosterRed" delay="0.1" frames="0-4"/>
-    </DZ_boosterRed>
+    </boosterRed>
 
-  <DZ_greyBooster path="objects/DZ/greybooster/" start="loop">
+  <greyBooster path="objects/DZ/greybooster/" start="loop">
   		<Justify x="0.5" y="0.5"/>
   		<Anim id="appear" path="greyBooster" delay="0.08" frames="26-34" goto="loop"/>
   		<Loop id="loop" path="greyBooster" delay="0.1" frames="0-4"/>
@@ -2233,13 +2233,13 @@
   		<Loop id="spin" path="greyBooster" delay="0.06" frames="18-25"/>
   		<Anim id="pop" path="greyBooster" delay="0.08" frames="9-17"/>
   		<Loop id="oneuse_idle" path="greyBooster" delay="0.1" frames="0-4"/>
-  	</DZ_greyBooster>
+  	</greyBooster>
 
-  <DZ_flyFeather path="objects/DZ/flyFeather/" start="loop">
+  <flyFeather path="objects/DZ/flyFeather/" start="loop">
       <Justify x="0.5" y="0.5"/>
       <Anim id="loop" path="idle" delay="0.06" frames="0-20" goto="flash"/>
       <Anim id="flash" path="flash" delay="0.06"  frames="0-20" goto="loop"/>
-    </DZ_flyFeather>
+    </flyFeather>
 
   <refill path="objects/DZ/refill/" start="idle">
       <Justify x="0.5" y="0.5"/>
@@ -2337,28 +2337,28 @@
       <Anim id="flash" path="flash" delay="0.05" frames="0-5"/>
     </puffrefillmultiFlash>
 
-  <DZ_glider path="objects/DZ/glider/" start="idle">
+  <glider path="objects/DZ/glider/" start="idle">
       <Justify x="0.5" y="0.5"/>
       <Loop id="idle" path="idle" delay="0.1"/>
       <Loop id="held" path="held" delay="0.1"/>
       <Anim id="fall" path="fall" delay="0.06" goto="fallLoop"/>
       <Loop id="fallLoop" path="fallLoop" delay="0.06"/>
       <Anim id="death" path="death" delay="0.06"/>
-    </DZ_glider>
+    </glider>
 
-  <DZ_torch path="objects/DZ/temple/" start="off">
+  <torch path="objects/DZ/temple/" start="off">
       <Justify x="0.5" y="0.5"/>
       <Loop id="off" path="torch" delay="0.1" frames="0"/>
       <Anim id="turnOn" path="torch" delay="0.08" frames="1-3" goto="on"/>
       <Loop id="on" path="torch" delay="0.08" frames="3-8"/>
-    </DZ_torch>
+    </torch>
 
-  <DZ_litTorch path="objects/DZ/temple/" start="off">
+  <litTorch path="objects/DZ/temple/" start="off">
       <Justify x="0.5" y="0.5"/>
       <Loop id="off" path="litTorch" delay="0.1" frames="0"/>
       <Anim id="turnOn" path="litTorch" delay="0.08" frames="1-3" goto="on"/>
       <Loop id="on" path="litTorch" delay="0.08" frames="3-8"/>
-    </DZ_litTorch>
+    </litTorch>
 
   <powergen path="objects/DZ/powergen/" start="idle">
       <Justify x="0.5" y="0.5"/>
@@ -2368,37 +2368,37 @@
       <Anim id="break" path="break" delay="0.06"/>
     </powergen>
 
-  <DZ_cloud path="objects/DZ/clouds/" start="idle">
+  <cloud path="objects/DZ/clouds/" start="idle">
       <Justify x="0.5" y="0.5"/>
       <Loop id="idle" path="cloud" delay="0.08" frames="0"/>
-    </DZ_cloud>
+    </cloud>
 
-  <DZ_cloudRemix path="objects/DZ/clouds/" start="idle">
+  <cloudRemix path="objects/DZ/clouds/" start="idle">
       <Justify x="0.5" y="0.5"/>
       <Loop id="idle" path="cloudRemix" delay="0.08" frames="0"/>
-    </DZ_cloudRemix>
+    </cloudRemix>
 
-  <DZ_cloudFragile path="objects/DZ/clouds/" start="idle">
+  <cloudFragile path="objects/DZ/clouds/" start="idle">
       <Justify x="0.5" y="0.5"/>
       <Loop id="idle" path="fragile" delay="0.08" frames="0"/>
       <Anim id="fade" path="fragile" delay="0.08" frames="0-5"/>
       <Anim id="spawn" path="fragile" delay="0.06" frames="6-12"/>
-    </DZ_cloudFragile>
+    </cloudFragile>
 
-  <DZ_cloudFragileRemix path="objects/DZ/clouds/" start="idle">
+  <cloudFragileRemix path="objects/DZ/clouds/" start="idle">
       <Justify x="0.5" y="0.5"/>
       <Loop id="idle" path="fragileRemix" delay="0.08" frames="0"/>
       <Anim id="fade" path="fragileRemix" delay="0.08" frames="0-5"/>
       <Anim id="spawn" path="fragileRemix" delay="0.06" frames="6-12"/>
-    </DZ_cloudFragileRemix>
+    </cloudFragileRemix>
 
-  <DZ_crushblock_face path="objects/DZ/crushblock/" start="idle">
+  <crushblock_face path="objects/DZ/crushblock/" start="idle">
         <Center/>
         <Loop id="idle" path="giant_block" frames="0" delay="0.08"/>
         <Anim id="hurt"  path="giant_block" frames="8-12" delay="0.08" goto="idle"/>
         <Anim id="hit" path="giant_block" frames="0-5" delay="0.08" goto="off"/>
         <Loop id="right" path="giant_block" frames="6,7"  delay="0.08"/>
-    </DZ_crushblock_face>
+    </crushblock_face>
 
   <charaboost path="objects/DZ/charaboost/" start="idle">
       <Justify x="0.5" y="0.5"/>
@@ -2441,7 +2441,7 @@
       <Anim id="sleep" path="sleep" delay="0.1" frames="5-0"/>
       
       <Anim id="alert" path="alert" delay="0.08"/>
-      <Anim id="boost" path="boost" delay="0.05"/>
+      <Anim id="boost" path="boost" frames="0-9" delay="0.05"/>
       <Metadata>
         <Frames path="idle" hair="0,-2|0,-2|0,-2|0,-2|0,-1|0,-1|0,-1|0,-1|0,-1"/>
         <Frames path="walk" hair="0,-2|0,-1|0,-1|0,-1|0,-3|0,-2|0,-1|0,-1|0,-1|0,-1|0,-3|0,-2"/>
@@ -2462,7 +2462,7 @@
       <Anim id="sleep" path="sleep" delay="0.1" frames="5-0"/>
       
       <Anim id="alert" path="alert" delay="0.08"/>
-      <Anim id="boost" path="boost" delay="0.05"/>
+      <Anim id="boost" path="boost" frames="0-9" delay="0.05"/>
       <Metadata>
         <Frames path="idle" hair="0,-2|0,-2|0,-2|0,-2|0,-1|0,-1|0,-1|0,-1|0,-1"/>
         <Frames path="walk" hair="0,-2|0,-1|0,-1|0,-1|0,-3|0,-2|0,-1|0,-1|0,-1|0,-1|0,-3|0,-2"/>
@@ -2622,7 +2622,7 @@
       </Metadata>
     </madeline_bandage>
 
-  <DZ_flowey path="flowey/" start="idle">
+  <flowey path="flowey/" start="idle">
       <Center />
       
       <Loop id="idle" path="normal" delay="0.1" frames="0" />
@@ -2635,7 +2635,7 @@
       <Loop id="pissed" path="pissed" delay="0.1" frames="0-1" />
       <Loop id="shout" path="shout" delay="0.1" frames="0-1" />
       <Loop id="evil" path="evil" delay="0.1" frames="0-1" />
-    </DZ_flowey>
+    </flowey>
 
   <kirby path="characters/DZ/kirby/" start="idle">
       <Center />
@@ -2922,7 +2922,7 @@
       <Loop id="enemiessprites" path="enemiessprites" delay="0.1" />
     </npcs>
 
-  <DZ_seeker path="characters/DZ/monsters/" start="idle">
+  <seeker path="characters/DZ/monsters/" start="idle">
       <Justify x="0.5" y="0.5"/>
       <Loop id="idle" path="predator" delay="0.08" frames="0-19"/>
       <Loop id="search" path="predator" delay="0.08" frames="0-19,20-39"/>
@@ -2942,12 +2942,12 @@
   
       <Anim id="flipMouth" path="predator" delay="0.05" frames="61-63" goto="spotted"/>
       <Anim id="flipEyes" path="predator" delay="0.05" frames="68-74" goto="search"/>
-    </DZ_seeker>
+    </seeker>
 
-  <DZ_seekerShockWave path="characters/DZ/monsters/" start="shockwave">
+  <seekerShockWave path="characters/DZ/monsters/" start="shockwave">
       <Center/>
       <Anim id="shockwave" path="Shockwave" delay="0.05"/>
-    </DZ_seekerShockWave>
+    </seekerShockWave>
 
   <asriel_angelofdeath path="characters/DZ/asriel_angelofdeath/" start="idle">
       <Justify x="0.5" y="0.5" />
@@ -3884,3 +3884,4 @@
     </reality_anchor>
 
 </Sprites>
+

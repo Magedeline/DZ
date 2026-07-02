@@ -6,7 +6,7 @@ using DZ;
 namespace Celeste.NPCs;
 
 [Tracked(true)]
-[CustomEntity(ids: "DZ/NPC05_DZ_Oshiro_Lobby")]
+[CustomEntity(ids: "DZ/NPC05_MAGOLOR_Oshiro_Lobby")]
 public class NPC05_DZ_Oshiro_Lobby : NPC
 {
     public static ParticleType P_AppearSpark;

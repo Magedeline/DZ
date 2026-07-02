@@ -1,7 +1,7 @@
 namespace Celeste.NPCs
 {
     [Tracked(true)]
-    [CustomEntity(ids: "DZ/NPC03_DZ")]
+    [CustomEntity(ids: "DZ/NPC03_MAGOLOR")]
     public class Npc03DZ : Entity
     {
         private const string donetalking = "magolorDoneTalking";

@@ -1,7 +1,7 @@
 namespace Celeste.NPCs
 {
     [Tracked(true)]
-    [CustomEntity(ids: "DZ/NPC19_DZ_Loop")]
+    [CustomEntity(ids: "DZ/NPC19_MAGOLOR_Loop")]
     public class Npc19DZLoop : Entity
     {
         private const string donetalking = "DZ_loopDoneTalking";

@@ -1,7 +1,7 @@
 namespace Celeste.NPCs
 {
     [Tracked(true)]
-    [CustomEntity(ids: "DZ/NPC01_DZ")]
+    [CustomEntity(ids: "DZ/NPC01_MAGOLOR")]
     public class Npc01DZ : Entity
     {
         private const string donetalking = "DZ01DoneTalking";
@@ -74,16 +74,16 @@ namespace Celeste.NPCs
             switch (currentConversation)
             {
                 case 0:
-                    yield return Textbox.Say("DZ_CH1_DZ_INTRO");
+                    yield return Textbox.Say("DZ_CH1_MAGOLOR_INTRO");
                     break;
                 case 1:
-                    yield return Textbox.Say("DZ_CH1_DZ_A");
+                    yield return Textbox.Say("DZ_CH1_MAGOLOR_A");
                     break;
                 case 2:
-                    yield return Textbox.Say("DZ_CH1_DZ_B");
+                    yield return Textbox.Say("DZ_CH1_MAGOLOR_B");
                     break;
                 default:
-                    yield return Textbox.Say("DZ_CH1_DZ_DEFAULT");
+                    yield return Textbox.Say("DZ_CH1_MAGOLOR_DEFAULT");
                     break;
             }
 

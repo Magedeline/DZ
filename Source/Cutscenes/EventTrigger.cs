@@ -259,6 +259,7 @@ namespace DZ
                 case "cs01_mod_ending":
                     base.Scene.Add(new global::Celeste.Cutscenes.Cs01ModEnding(player2));
                     break;
+                case "cs02_chara_intro":
                 case "cs02DZ_CHara_intro":
                 {
                     var chara = level.Entities.FindFirst<global::Celeste.Entities.CharaChaser>();

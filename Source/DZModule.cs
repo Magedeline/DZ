@@ -93,6 +93,17 @@ public class DZModule : EverestModule {
         // Kirby health system
         global::DZ.KirbyHealthSystemHooks.Load();
 
+        // Entity-level hooks (IL patches, renderer hooks, etc.)
+        global::Celeste.Entities.DesoloZantasTape.Load();
+        global::Celeste.Entities.PowerGenerator.Load();
+        global::Celeste.Entities.MaddyCrystal.Load();
+        global::Celeste.Mod.DZ.BossesExample.Entities.DarkLightningRenderer.Load();
+        global::Celeste.Mod.DZ.BossesExample.Entities.ResetZoneRenderer.Load();
+        global::Celeste.Mod.DZ.BossesExample.BossesExampleModule.Load();
+
+        // Sub-chapter system (experimental)
+        global::DZ.SubChapterManager.Load();
+
         // Initialize metadata registries (loads .bin.DZ.meta.yaml etc.)
         MetadataRegistries.Initialize();
 
@@ -148,6 +159,17 @@ public class DZModule : EverestModule {
 
         // Kirby health system
         global::DZ.KirbyHealthSystemHooks.Unload();
+
+        // Entity-level hooks
+        global::Celeste.Entities.DesoloZantasTape.Unload();
+        global::Celeste.Entities.PowerGenerator.Unload();
+        // MaddyCrystal.Load() only sets up particles (no hooks), no Unload needed
+        global::Celeste.Mod.DZ.BossesExample.Entities.DarkLightningRenderer.Unload();
+        global::Celeste.Mod.DZ.BossesExample.Entities.ResetZoneRenderer.Unload();
+        global::Celeste.Mod.DZ.BossesExample.BossesExampleModule.Unload();
+
+        // Sub-chapter system
+        global::DZ.SubChapterManager.Unload();
 
         On.Monocle.Engine.Update -= OnEngineUpdate;
         _spriteBank = null;

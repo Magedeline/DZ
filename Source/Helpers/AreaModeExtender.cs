@@ -1,52 +1,35 @@
+// This file is intentionally a thin forwarder to the real DZ.AreaModeExtender.
+// It exists only for namespace Celeste compatibility with older callers.
+// All logic lives in Integration/Extensions/AreaModeExtender.cs (namespace DZ).
 namespace Celeste
 {
     /// <summary>
-    /// Extender for area modes.
-    /// Provides additional area modes beyond the vanilla ones.
+    /// Forwards to <see cref="global::DZ.AreaModeExtender"/> for callers in the
+    /// Celeste namespace. Do not add new logic here.
     /// </summary>
     public static class AreaModeExtender
     {
-        public const int MODE_NORMAL = 0;
-        public const int MODE_HARD = 1;
-        public const int MODE_LUNAR = 2;
-        public const int MODE_SOLAR = 3;
-        public const int MODE_1 = 4;
-        public const int MODE_2 = 5;
-        public const int MODE_DSIDE = 6;
+        public const int MODE_NORMAL = global::DZ.AreaModeExtender.MODE_NORMAL;
+        public const int MODE_HARD   = global::DZ.AreaModeExtender.MODE_1;
+        public const int MODE_LUNAR  = global::DZ.AreaModeExtender.MODE_2;
+        public const int MODE_SOLAR  = global::DZ.AreaModeExtender.MODE_DSIDE;
+        public const int MODE_1      = global::DZ.AreaModeExtender.MODE_1;
+        public const int MODE_2      = global::DZ.AreaModeExtender.MODE_2;
+        public const int MODE_DSIDE  = global::DZ.AreaModeExtender.MODE_DSIDE;
 
-        /// <summary>
-        /// Check if an area mode is a custom DZ mode.
-        /// </summary>
-        public static bool IsCustomMode(int mode)
-        {
-            return mode >= MODE_LUNAR;
-        }
+        public static bool IsCustomMode(int mode) =>
+            mode >= global::DZ.AreaModeExtender.MODE_2;
 
-        /// <summary>
-        /// Check if an area is a DZ map.
-        /// </summary>
-        public static bool IsOurMap(AreaData area)
-        {
-            // Stub implementation - returns false by default
-            return false;
-        }
+        public static bool IsOurMap(AreaData area) =>
+            global::DZ.AreaModeExtender.IsOurMap(area);
 
-        /// <summary>
-        /// Get the save area mode count.
-        /// </summary>
-        public static int GetSaveAreaModeCount(int areaId)
-        {
-            // Stub implementation - returns 4 modes
-            return 4;
-        }
+        public static int GetSaveAreaModeCount(int areaId) =>
+            global::DZ.AreaModeExtender.GetSaveAreaModeCount(areaId);
 
-        /// <summary>
-        /// Try to parse a main side SID.
-        /// </summary>
         public static bool TryParseMainSideSID(string sid, out string result, out int mode)
         {
             result = sid;
-            mode = MODE_NORMAL;
+            mode   = MODE_NORMAL;
             return true;
         }
     }

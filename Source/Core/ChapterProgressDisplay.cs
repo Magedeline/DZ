@@ -342,7 +342,7 @@ public static class ChapterProgressDisplay
         try
         {
             // D-Side
-            if (global::Celeste.AreaModeExtender.GetSaveAreaModeCount(area.ID) > 3)
+            if (global::DZ.AreaModeExtender.GetSaveAreaModeCount(area.ID) > 3)
             {
                 bool dCompleted = IsModeSideCompleted(save, area.ID, 3);
                 if (!progress.Sides.Any(s => s.Mode == 3))
@@ -358,7 +358,7 @@ public static class ChapterProgressDisplay
             }
 
             // DX-Side
-            if (global::Celeste.AreaModeExtender.GetSaveAreaModeCount(area.ID) > 4)
+            if (global::DZ.AreaModeExtender.GetSaveAreaModeCount(area.ID) > 4)
             {
                 bool dxSideCompleted = IsModeSideCompleted(save, area.ID, 4);
                 if (!progress.Sides.Any(s => s.Mode == 4))

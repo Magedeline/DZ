@@ -61,6 +61,37 @@ public class DZModule : EverestModule {
         ChapterCompletionHooks.Load();
         OverworldConnectorHooks.Load();
         OuiModeSelectHooks.Load();
+        global::DZ.AreaModeExtender.Load();
+
+        // OUI and chapter-select systems
+        // Note: OuiChapterSelectCustom is a superset of OuiChapterSelectHooks;
+        // only one is registered to avoid double-wrapping vanilla Enter/Update.
+        OuiChapterSelectCustom.Load();
+        ChapterProgressDisplay.Load();
+        ChapterProgressionManager.Load();
+        CosmicChapterPanelHook.Load();
+        ChapterMasteryTracker.Load();
+
+        // Heart gem, player, and room-transition systems
+        global::DZ.HeartGemManager.Load();
+        global::DZ.AltSidesHelperBridge.Load();
+        global::DZ.K_PlayerHooks.Load();
+        global::DZ.RoomTransitionHandler.Load();
+        global::DZ.PlayerCompatShim.Load();
+        PayphoneCutsceneTriggers.Load();
+
+        // Map-list / chapter navigation fixes
+        global::DZ.MapListExt.Load();
+
+        // Intro sequence hooks
+        global::DZ.IntroRemixHooks.Load();
+        global::Celeste.Cutscenes.IntroWarning.Load();
+
+        // Advanced MonoMod hooks (manual Hook + IL hooks)
+        global::DZ.MonoModHooks.Load();
+
+        // Kirby health system
+        global::DZ.KirbyHealthSystemHooks.Load();
 
         // Initialize metadata registries (loads .bin.DZ.meta.yaml etc.)
         MetadataRegistries.Initialize();
@@ -88,6 +119,36 @@ public class DZModule : EverestModule {
         ChapterCompletionHooks.Unload();
         OverworldConnectorHooks.Unload();
         OuiModeSelectHooks.Unload();
+        global::DZ.AreaModeExtender.Unload();
+
+        // OUI and chapter-select systems
+        OuiChapterSelectCustom.Unload();
+        ChapterProgressDisplay.Unload();
+        ChapterProgressionManager.Unload();
+        CosmicChapterPanelHook.Unload();
+        ChapterMasteryTracker.Unload();
+
+        // Heart gem, player, and room-transition systems
+        global::DZ.HeartGemManager.Unload();
+        global::DZ.AltSidesHelperBridge.Unload();
+        global::DZ.K_PlayerHooks.Unload();
+        global::DZ.RoomTransitionHandler.Unload();
+        global::DZ.PlayerCompatShim.Unload();
+        PayphoneCutsceneTriggers.Unload();
+
+        // Map-list / chapter navigation fixes
+        global::DZ.MapListExt.Unload();
+
+        // Intro sequence hooks
+        global::DZ.IntroRemixHooks.Unload();
+        global::Celeste.Cutscenes.IntroWarning.Unload();
+
+        // Advanced MonoMod hooks
+        global::DZ.MonoModHooks.Unload();
+
+        // Kirby health system
+        global::DZ.KirbyHealthSystemHooks.Unload();
+
         On.Monocle.Engine.Update -= OnEngineUpdate;
         _spriteBank = null;
 

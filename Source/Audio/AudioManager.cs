@@ -61,12 +61,20 @@ public class AudioManager
             // Get the core system from studio
             _studioSystem.getCoreSystem(out _coreSystem);
 
-            // Get master bus
-            _studioSystem.getBus("bus:/", out _masterBus);
+            // Get master bus — always present once a bank with a master bus is loaded
+            var masterResult = _studioSystem.getBus("bus:/", out _masterBus);
+            if (masterResult != FMOD.RESULT.OK)
+                Console.WriteLine($"[AudioManager] Warning: could not obtain master bus (result={masterResult}). Audio volume control may be unavailable.");
 
-            // Create/retrieve custom buses (matching your existing bus structure)
-            _studioSystem.getBus("bus:/music", out _musicBus);
-            _studioSystem.getBus("bus:/sfx", out _sfxBus);
+            // Retrieve optional buses — these only exist if the FMOD project defines them.
+            // Failures here are non-fatal; volume methods guard against invalid handles.
+            var musicResult = _studioSystem.getBus("bus:/music", out _musicBus);
+            if (musicResult != FMOD.RESULT.OK)
+                Console.WriteLine($"[AudioManager] Warning: 'bus:/music' not found in loaded banks (result={musicResult}). Music bus volume control unavailable.");
+
+            var sfxResult = _studioSystem.getBus("bus:/sfx", out _sfxBus);
+            if (sfxResult != FMOD.RESULT.OK)
+                Console.WriteLine($"[AudioManager] Warning: 'bus:/sfx' not found in loaded banks (result={sfxResult}). SFX bus volume control unavailable.");
 
             IsInitialized = true;
             Console.WriteLine("[AudioManager] FMOD Studio initialized successfully");
@@ -306,7 +314,8 @@ public class AudioManager
     public void SetMasterVolume(float volume)
     {
         MasterVolume = Math.Clamp(volume, 0.0f, 1.0f);
-        _masterBus.setVolume(MasterVolume);
+        if (_masterBus.isValid())
+            _masterBus.setVolume(MasterVolume);
     }
 
     /// <summary>
@@ -315,7 +324,8 @@ public class AudioManager
     public void SetMusicVolume(float volume)
     {
         MusicVolume = Math.Clamp(volume, 0.0f, 1.0f);
-        _musicBus.setVolume(MusicVolume);
+        if (_musicBus.isValid())
+            _musicBus.setVolume(MusicVolume);
     }
 
     /// <summary>
@@ -324,7 +334,8 @@ public class AudioManager
     public void SetSfxVolume(float volume)
     {
         SfxVolume = Math.Clamp(volume, 0.0f, 1.0f);
-        _sfxBus.setVolume(SfxVolume);
+        if (_sfxBus.isValid())
+            _sfxBus.setVolume(SfxVolume);
     }
 
     /// <summary>
@@ -332,7 +343,8 @@ public class AudioManager
     /// </summary>
     public void SetMuted(bool muted)
     {
-        _masterBus.setMute(muted);
+        if (_masterBus.isValid())
+            _masterBus.setMute(muted);
     }
 
     /// <summary>

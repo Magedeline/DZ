@@ -30,8 +30,8 @@ public static class AreaModeExtender
         "0",   // MODE_NORMAL (0)
         "1",   // MODE_1 (1)
         "2",   // MODE_2 (2)
-        "2",   // MODE_2 (3)
-        "DXSide"   // MODE_DXSIDE (4)
+        "3",   // MODE_DSIDE (3)
+        "4"   // MODE_DXSIDE (4)
     };
 
     /// <summary>Case-insensitive set of valid side folder names for O(1) membership tests.</summary>
@@ -1113,7 +1113,7 @@ public static class AreaModeExtender
         return true;
     }
 
-    internal static int GetSaveAreaModeCount(int areaId)
+    public static int GetSaveAreaModeCount(int areaId)
     {
         Array modes = GetModesArray(TryGetSaveAreaStats(areaId));
         return modes?.Length ?? 0;

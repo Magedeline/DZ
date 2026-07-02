@@ -772,6 +772,7 @@
 
   <dashSwitch_mirror path="objects/DZ/temple/dashButtonMirror" start="idle">
     <Justify x="0.5" y="0.5"/>
+    <Loop id="idle" path="" delay="0.1" frames="0"/>
   </dashSwitch_mirror>
 
   <gondola path="objects/DZ/gondola/" start="idle">

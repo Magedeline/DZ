@@ -1,11 +1,11 @@
-schema: DZ-map-meta-v1
+﻿schema: DZ-map-meta-v1
 sid: DZ/2/03_Stars
 baseKey: 03_Stars
-side: D
-modeIndex: 3
+side: C
+modeIndex: 2
 isMainChapterEntry: false
 mainChapterSid: DZ/0/03_Stars
-showInChapterSelect: true
+showInChapterSelect: false
 
 MusicBySide:
   - event:/music/pusheen/menu/complete_area

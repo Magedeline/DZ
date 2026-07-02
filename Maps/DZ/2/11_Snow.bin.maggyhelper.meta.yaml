@@ -1,11 +1,11 @@
-schema: DZ-map-meta-v1
+﻿schema: DZ-map-meta-v1
 sid: DZ/2/11_Snow
 baseKey: 11_Snow
-side: D
-modeIndex: 3
+side: C
+modeIndex: 2
 isMainChapterEntry: false
 mainChapterSid: DZ/0/11_Snow
-showInChapterSelect: true
+showInChapterSelect: false
 
 MusicBySide:
   - event:/music/pusheen/menu/complete_area

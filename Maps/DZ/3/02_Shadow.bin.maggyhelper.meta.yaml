@@ -1,11 +1,11 @@
-﻿schema: DZ-map-meta-v1
+schema: DZ-map-meta-v1
 sid: DZ/2/02_Shadow
 baseKey: 02_Shadow
-side: C
-modeIndex: 2
+side: D
+modeIndex: 3
 isMainChapterEntry: false
 mainChapterSid: DZ/0/02_Shadow
-showInChapterSelect: false
+showInChapterSelect: true
 
 MusicBySide:
   - event:/music/pusheen/menu/complete_area

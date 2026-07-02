@@ -97,6 +97,10 @@ public class DZModule : EverestModule {
         global::Celeste.Entities.DesoloZantasTape.Load();
         global::Celeste.Entities.PowerGenerator.Load();
         global::Celeste.Entities.MaddyCrystal.Load();
+        global::Celeste.Entities.FlingBirdMod.Load();
+        global::Celeste.Entities.StarJumpBlock.Load();
+        global::Celeste.Entities.WhiteHole.Load();
+        global::Celeste.Entities.PlateauMod.Load();
         global::Celeste.Mod.DZ.BossesExample.Entities.DarkLightningRenderer.Load();
         global::Celeste.Mod.DZ.BossesExample.Entities.ResetZoneRenderer.Load();
         global::Celeste.Mod.DZ.BossesExample.BossesExampleModule.Load();
@@ -164,6 +168,10 @@ public class DZModule : EverestModule {
         global::Celeste.Entities.DesoloZantasTape.Unload();
         global::Celeste.Entities.PowerGenerator.Unload();
         // MaddyCrystal.Load() only sets up particles (no hooks), no Unload needed
+        global::Celeste.Entities.FlingBirdMod.Unload();
+        global::Celeste.Entities.StarJumpBlock.Unload();
+        global::Celeste.Entities.WhiteHole.Unload();
+        global::Celeste.Entities.PlateauMod.Unload();
         global::Celeste.Mod.DZ.BossesExample.Entities.DarkLightningRenderer.Unload();
         global::Celeste.Mod.DZ.BossesExample.Entities.ResetZoneRenderer.Unload();
         global::Celeste.Mod.DZ.BossesExample.BossesExampleModule.Unload();

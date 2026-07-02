@@ -19,8 +19,20 @@ namespace Celeste.Entities;
 
   public static void Load()
   {
-    // Fix recursive call
-    // StarJumpBlock.Load();
+      On.Celeste.Player.OnCollideV += OnPlayerCollideV;
+  }
+
+  public static void Unload()
+  {
+      On.Celeste.Player.OnCollideV -= OnPlayerCollideV;
+  }
+
+  // Play a subtle bounce sound when the player lands on a sinking StarJumpBlock.
+  private static void OnPlayerCollideV(On.Celeste.Player.orig_OnCollideV orig, global::Celeste.Player self, CollisionData data)
+  {
+      orig(self, data);
+      if (data.Hit is StarJumpBlock block && block.sinks && self.Speed.Y > 0f)
+          Audio.Play("event:/game/general/spring", self.Position);
   }
 
   public StarJumpBlock(Vector2 position, float width, float height, bool sinks)

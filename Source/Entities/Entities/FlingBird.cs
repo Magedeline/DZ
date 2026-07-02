@@ -28,12 +28,24 @@ internal class FlingBirdMod : Entity
 
     public static void Load()
     {
-        // Redundant Player.Update hook removed for performance.
-        // FlingBirdMod already uses PlayerCollider for collision detection.
+        On.Celeste.Player.FinishFlingBird += OnFinishFlingBird;
     }
 
     public static void Unload()
     {
+        On.Celeste.Player.FinishFlingBird -= OnFinishFlingBird;
+    }
+
+    // Give the player a small upward boost and feather particles on fling completion,
+    // matching vanilla FlingBird behaviour.
+    private static void OnFinishFlingBird(On.Celeste.Player.orig_FinishFlingBird orig, global::Celeste.Player self)
+    {
+        orig(self);
+        // Emit feather particles so the custom bird looks as polished as vanilla.
+        if (P_Feather != null)
+        {
+            self.SceneAs<Level>()?.ParticlesFG.Emit(P_Feather, 6, self.Center, Vector2.One * 6f);
+        }
     }
 
     public FlingBirdMod(Vector2[] nodes, bool skippable, bool lightningRemoved)
@@ -261,20 +273,27 @@ internal class FlingBirdMod : Entity
     private IEnumerator MoveOnCurve(Vector2 from, Vector2 anchor, Vector2 to)
     {
         var flingBird = this;
-            var curve = new SimpleCurve(from, to, anchor);
+        var curve = new SimpleCurve(from, to, anchor);
         var duration = curve.GetLengthParametric(32) / 500f;
         var was = from;
         flingBirdPosition = flingBird.Position;
         for (var t = 0.016f; t <= 1.0f; t += Engine.DeltaTime / duration)
         {
             flingBirdPosition = curve.GetPoint(t).Floor();
-            flingBird.sprite.Rotation = Calc.Angle(curve.GetPoint(Math.Max(0.0f, t - 0.05f)), 
-                curve.GetPoint(Math.Min(1f, t + 0.05f)));
+            // Actually move the entity so collision/tracking stays correct.
+            flingBird.Position = flingBirdPosition;
+            flingBird.sprite.Rotation = Calc.Angle(
+                curve.GetPoint(Math.Max(0.0f, t - 0.05f)),
+                curve.GetPoint(Math.Min(1f,  t + 0.05f)));
             flingBird.sprite.Scale.X = 1.25f;
             flingBird.sprite.Scale.Y = 0.7f;
             if ((was - flingBirdPosition).Length() > 32.0f)
             {
                 TrailManager.Add(this, flingBird.trailColor, 1f);
+                // Emit feather particles along the path.
+                if (P_Feather != null)
+                    flingBird.SceneAs<Level>()?.ParticlesFG.Emit(
+                        P_Feather, 2, flingBird.Position, Vector2.One * 4f);
                 was = flingBirdPosition;
             }
 
@@ -282,6 +301,7 @@ internal class FlingBirdMod : Entity
         }
 
         flingBirdPosition = to;
+        flingBird.Position = to;
     }
 
     public override void Render()

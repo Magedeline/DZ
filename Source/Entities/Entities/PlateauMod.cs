@@ -12,7 +12,27 @@ public class PlateauMod : Solid
 
     public static void Load()
     {
-        // no-op: reserved for future hooks
+        On.Celeste.Player.OnTransition += OnPlayerTransition;
+    }
+
+    public static void Unload()
+    {
+        On.Celeste.Player.OnTransition -= OnPlayerTransition;
+    }
+
+    // When the player transitions to a new room while riding a PlateauMod,
+    // remove the plateau so it doesn't carry through to the next room
+    // (matching vanilla FallPlateau behaviour).
+    private static void OnPlayerTransition(On.Celeste.Player.orig_OnTransition orig, global::Celeste.Player self)
+    {
+        orig(self);
+        // If the player was standing on a PlateauMod, remove it — it belongs to
+        // the room being left, not the one being entered.
+        if (self.Scene?.Tracker.GetEntity<PlateauMod>() is PlateauMod plateau
+            && plateau.HasPlayerRider())
+        {
+            plateau.RemoveSelf();
+        }
     }
 
     public PlateauMod(EntityData data, Vector2 offset) 

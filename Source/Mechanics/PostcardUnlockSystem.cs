@@ -30,7 +30,7 @@ public static class PostcardUnlockSystem
     }
 
     /// <summary>Postcard config for C-Side unlock (shown after completing B-Side)</summary>
-    public static readonly PostcardConfig 2Config = new()
+    public static readonly PostcardConfig cConfig = new()
     {
         DialogKey = "POSTCARD_2_UNLOCK",
         TexturePath = "postcards/2_unlock",
@@ -41,7 +41,7 @@ public static class PostcardUnlockSystem
     };
 
     /// <summary>Postcard config for D-Side unlock (shown after completing C-Side)</summary>
-    public static readonly PostcardConfig 2Config = new()
+    public static readonly PostcardConfig dConfig = new()
     {
         DialogKey = "POSTCARD_2_UNLOCK",
         TexturePath = "postcards/2_unlock",
@@ -82,9 +82,9 @@ public static class PostcardUnlockSystem
     {
         return completedMode switch
         {
-            AreaModeExtender.MODE_1 => 2Config,   // Completing B unlocks C
-            AreaModeExtender.MODE_2 => 2Config,   // Completing C unlocks D
-            AreaModeExtender.MODE_2 => DXSideConfig,  // Completing D unlocks DX
+            AreaModeExtender.MODE_1 => cConfig,   // Completing B unlocks C
+            AreaModeExtender.MODE_2 => dConfig,   // Completing C unlocks D
+            AreaModeExtender.MODE_DXSIDE => DXSideConfig,  // Completing D unlocks DX
             _ => null
         };
     }
@@ -108,7 +108,7 @@ public static class PostcardUnlockSystem
             {
                 AreaModeExtender.MODE_1 => "C-Side",
                 AreaModeExtender.MODE_2 => "D-Side",
-                AreaModeExtender.MODE_2 => "DX-Side",
+                AreaModeExtender.MODE_DXSIDE => "DX-Side",
                 _ => "New Side"
             };
             dialogText = $"{sideName} Unlocked!\nComplete the challenge to earn a new heart gem.";

@@ -206,8 +206,8 @@ public static class HeartGemManager
 
         string sideName = session.Area.Mode switch
         {
-            AreaMode.1 => "1",
-            AreaMode.2 => "2",
+            AreaMode.BSide => "1",
+            AreaMode.CSide => "2",
             _ when (int)session.Area.Mode == AreaModeExtender.MODE_2 => "2",
             _ when (int)session.Area.Mode == AreaModeExtender.MODE_DXSIDE => "DXSide",
             _ => "0"
@@ -217,8 +217,8 @@ public static class HeartGemManager
         // The suffix pattern matches the English.txt keys
         string suffix = session.Area.Mode switch
         {
-            AreaMode.1 => "_B",
-            AreaMode.2 => "_C",
+            AreaMode.BSide => "_B",
+            AreaMode.CSide => "_C",
             _ when (int)session.Area.Mode == AreaModeExtender.MODE_2 => "_D",
             _ when (int)session.Area.Mode == AreaModeExtender.MODE_DXSIDE => "_DX",
             _ => "_A"

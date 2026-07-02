@@ -39,7 +39,7 @@ public static class AltSidesHelperBridge
     private static bool? _ashPresent;
 
     /// <summary>Set of A-Side SIDs whose D-Side is owned by AltSidesHelper.</summary>
-    private static readonly HashSet<string> AshOwned0SIDs =
+    private static readonly HashSet<string> AshOwnedaSIDs =
         new(StringComparer.OrdinalIgnoreCase);
 
     // ── Lifecycle ────────────────────────────────────────────────────────────
@@ -61,7 +61,7 @@ public static class AltSidesHelperBridge
 
         On.Celeste.LevelExit.ctor -= OnLevelExitCtor;
 
-        AshOwned0SIDs.Clear();
+        AshOwnedaSIDs.Clear();
         _ashPresent = null;
 
         Logger.Log(LogLevel.Info, "DZ", "AltSidesHelperBridge unloaded");
@@ -77,13 +77,13 @@ public static class AltSidesHelperBridge
         if (!IsAshPresent())
             return;
 
-        AshOwned0SIDs.Clear();
+        AshOwnedaSIDs.Clear();
         ScanAndBuildOwnershipMap();
         SuppressDoubleInjection();
 
         Logger.Log(LogLevel.Info, "DZ",
-            $"AltSidesHelperBridge: ASH owns {AshOwned0SIDs.Count} chapter(s): " +
-            string.Join(", ", AshOwned0SIDs));
+            $"AltSidesHelperBridge: ASH owns {AshOwnedaSIDs.Count} chapter(s): " +
+            string.Join(", ", AshOwnedaSIDs));
     }
 
     // ── Public helpers ───────────────────────────────────────────────────────
@@ -92,8 +92,8 @@ public static class AltSidesHelperBridge
     /// Returns true when AltSidesHelper is installed and has registered a D-Side
     /// for the given A-Side SID.  Safe to call at any time after AreaData.Load.
     /// </summary>
-    public static bool IsAshOwned(string 0SID)
-        => AshOwned0SIDs.Contains(0SID);
+    public static bool IsAshOwned(string aSID)
+        => AshOwnedaSIDs.Contains(aSID);
 
     /// <summary>
     /// Returns true when AltSidesHelper is installed and has registered a D-Side
@@ -104,12 +104,12 @@ public static class AltSidesHelperBridge
         if (area == null) return false;
 
         // A-Side entry: direct lookup (SID is path-based, e.g. DZ/0/01_City).
-        if (AshOwned0SIDs.Contains(area.SID))
+        if (AshOwnedaSIDs.Contains(area.SID))
             return true;
 
         // D-Side standalone entry: look up the A-Side from ASH metadata.
         if (TryGetAshParentSID(area, out string parentSID))
-            return AshOwned0SIDs.Contains(parentSID);
+            return AshOwnedaSIDs.Contains(parentSID);
 
         return false;
     }
@@ -129,7 +129,7 @@ public static class AltSidesHelperBridge
     /// <summary>
     /// Walk every loaded AreaData and find D-Side (2 folder) entries that
     /// carry AltSidesHelper's IsAltSide=true metadata.  Their declared parent
-    /// A-Side SID is added to <see cref="AshOwned0SIDs"/>.
+    /// A-Side SID is added to <see cref="AshOwnedaSIDs"/>.
     /// </summary>
     private static void ScanAndBuildOwnershipMap()
     {
@@ -149,7 +149,7 @@ public static class AltSidesHelperBridge
                 continue;
 
             if (!string.IsNullOrWhiteSpace(parentSID))
-                AshOwned0SIDs.Add(parentSID);
+                AshOwnedaSIDs.Add(parentSID);
         }
     }
 
@@ -160,7 +160,7 @@ public static class AltSidesHelperBridge
     /// </summary>
     private static void SuppressDoubleInjection()
     {
-        if (AshOwned0SIDs.Count == 0)
+        if (AshOwnedaSIDs.Count == 0)
             return;
 
         foreach (AreaData area in AreaData.Areas)
@@ -174,7 +174,7 @@ public static class AltSidesHelperBridge
             if (!sideFolder.Equals("0", StringComparison.OrdinalIgnoreCase))
                 continue;
 
-            if (!AshOwned0SIDs.Contains(area.SID))
+            if (!AshOwnedaSIDs.Contains(area.SID))
                 continue;
 
             if (area.Mode == null || area.Mode.Length <= AreaModeExtender.MODE_2)
@@ -216,7 +216,7 @@ public static class AltSidesHelperBridge
             return;
 
         if (!TryGetAshParentSID(area, out string parentSID) ||
-            !AshOwned0SIDs.Contains(parentSID))
+            !AshOwnedaSIDs.Contains(parentSID))
             return;
 
         // Record the D-Side heart-gem in DZ's extended save so that
@@ -228,7 +228,7 @@ public static class AltSidesHelperBridge
         // loads, so the player isn't dropped back on the A-Side tab.
         AreaData parentArea = AreaData.Get(parentSID);
         if (parentArea != null)
-            AreaModeExtender.SetPending2Return(parentArea.ID);
+            AreaModeExtender.SetPendingDSideReturn(parentArea.ID);
 
         Logger.Log(LogLevel.Info, "DZ",
             $"AltSidesHelperBridge: Recorded ASH D-Side completion for '{area.SID}' " +

@@ -15,13 +15,13 @@ public static class IntroRemixHooks
     /// Subscribe to this to customize D-Side intro behavior.
     /// Return true to skip default entry (handled by subscriber).
     /// </summary>
-    public delegate bool 2EnterHandler(Session session);
+    public delegate bool DSideEnterHandler(Session session);
 
     /// <summary>
     /// Event invoked when entering a D-Side chapter.
     /// Hook this from anywhere in AreaMapData or other classes to customize entry.
     /// </summary>
-    public static event 2EnterHandler On2Enter;
+    public static event DSideEnterHandler OnDSideEnter;
 
     private static bool _hooked;
 
@@ -98,11 +98,11 @@ public static class IntroRemixHooks
                 }
                 break;
 
-            case AreaModeExtender.MODE_2:
-                if (On2Enter != null)
+            case AreaModeExtender.MODE_DSIDE:
+                if (OnDSideEnter != null)
                 {
                     bool handled = false;
-                    foreach (2EnterHandler handler in On2Enter.GetInvocationList())
+                    foreach (DSideEnterHandler handler in OnDSideEnter.GetInvocationList())
                     {
                         if (handler(session))
                         {

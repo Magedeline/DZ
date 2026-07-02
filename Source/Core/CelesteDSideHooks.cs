@@ -343,12 +343,12 @@ public static class Celeste2Hooks
         if (save == null)
             return;
 
-        bool 2Unlocked = AreaModeExtender.IsSideUnlocked(
+        bool dUnlocked = AreaModeExtender.IsSideUnlocked(
             new AreaKey(area.ID, (global::Celeste.AreaMode)AreaModeExtender.MODE_2),
             AreaModeExtender.MODE_2);
 
         Logger.Log(LogLevel.Debug, "DZ",
-            $"D-Side panel for {area.SID}: {(2Unlocked ? "unlocked" : "locked")}");
+            $"D-Side panel for {area.SID}: {(dUnlocked ? "unlocked" : "locked")}");
     }
 
     private static IEnumerator OnChapterPanelLeave(On.Celeste.OuiChapterPanel.orig_Leave orig, OuiChapterPanel self, Oui next)
@@ -397,7 +397,7 @@ public static class Celeste2Hooks
         // Initialize D-Side specific level state
         try
         {
-            Initialize2LevelState(self, area, mode);
+            InitializeDSideLevelState(self, area, mode);
         }
         catch (Exception ex)
         {
@@ -405,7 +405,7 @@ public static class Celeste2Hooks
         }
     }
 
-    private static void Initialize2LevelState(Level level, AreaData area, int mode)
+    private static void InitializeDSideLevelState(Level level, AreaData area, int mode)
     {
         // Set up D-Side specific difficulty/mechanics
         string sideLabel = AreaModeExtender.GetSideLabel(mode);
@@ -489,7 +489,7 @@ public static class Celeste2Hooks
     /// <summary>
     /// Check if a D-Side heart gem has been collected for a specific chapter.
     /// </summary>
-    public static bool Has2HeartGem(AreaData area, int modeIndex = AreaModeExtender.MODE_2)
+    public static bool HasDSideHeartGem(AreaData area, int modeIndex = AreaModeExtender.MODE_2)
     {
         if (area == null || !AreaModeExtender.IsOurMap(area))
             return false;
@@ -501,7 +501,7 @@ public static class Celeste2Hooks
     /// <summary>
     /// Get D-Side completion status for a chapter.
     /// </summary>
-    public static bool Is2Completed(AreaData area, int modeIndex = AreaModeExtender.MODE_2)
+    public static bool IsDSideCompleted(AreaData area, int modeIndex = AreaModeExtender.MODE_2)
     {
         if (area == null || !AreaModeExtender.IsOurMap(area))
             return false;
@@ -512,7 +512,7 @@ public static class Celeste2Hooks
     /// <summary>
     /// Manually unlock a D-Side for testing/debug purposes.
     /// </summary>
-    public static void Unlock2(AreaData area, int modeIndex = AreaModeExtender.MODE_2)
+    public static void UnlockDSide(AreaData area, int modeIndex = AreaModeExtender.MODE_2)
     {
         if (area == null || !AreaModeExtender.IsOurMap(area))
             return;

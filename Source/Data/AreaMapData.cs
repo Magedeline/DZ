@@ -62,7 +62,7 @@ public static class AreaMapData
         public bool IsInterlude { get; set; }
         public bool Has1 { get; set; }
         public bool Has2 { get; set; }
-        public bool Has2 { get; set; }
+        public bool HasDSide { get; set; }
         public bool HasDXSide { get; set; }
 
         /// <summary>Music event per side (A, B, C, D, DX)</summary>
@@ -259,7 +259,7 @@ public static class AreaMapData
     {
         try
         {
-            return AreaData.Get(AreaModeExtender.Buil2SID(modeIndex, baseKey)) != null;
+            return AreaData.Get(AreaModeExtender.BuildDSideSID(modeIndex, baseKey)) != null;
         }
         catch
         {
@@ -302,19 +302,19 @@ public static class AreaMapData
             GetMusic(chapter, 0), GetAmbience(chapter, 0));
 
         area.Mode[1] = chapter.Has1
-            ? BuildOrUpdateMode(area.Mode[1], AreaModeExtender.Buil2SID(AreaModeExtender.MODE_1, baseKey), GetMusic(chapter, 1), GetAmbience(chapter, 1))
+            ? BuildOrUpdateMode(area.Mode[1], AreaModeExtender.BuildDSideSID(AreaModeExtender.MODE_1, baseKey), GetMusic(chapter, 1), GetAmbience(chapter, 1))
             : null;
 
         area.Mode[2] = chapter.Has2
-            ? BuildOrUpdateMode(area.Mode[2], AreaModeExtender.Buil2SID(AreaModeExtender.MODE_2, baseKey), GetMusic(chapter, 2), GetAmbience(chapter, 2))
+            ? BuildOrUpdateMode(area.Mode[2], AreaModeExtender.BuildDSideSID(AreaModeExtender.MODE_2, baseKey), GetMusic(chapter, 2), GetAmbience(chapter, 2))
             : null;
 
         area.Mode[3] = chapter.Has2
-            ? BuildOrUpdateMode(area.Mode[3], AreaModeExtender.Buil2SID(AreaModeExtender.MODE_2, baseKey), GetMusic(chapter, 3), GetAmbience(chapter, 3))
+            ? BuildOrUpdateMode(area.Mode[3], AreaModeExtender.BuildDSideSID(AreaModeExtender.MODE_2, baseKey), GetMusic(chapter, 3), GetAmbience(chapter, 3))
             : null;
 
         area.Mode[4] = chapter.HasDXSide
-            ? BuildOrUpdateMode(area.Mode[4], AreaModeExtender.Buil2SID(AreaModeExtender.MODE_DXSIDE, baseKey), GetMusic(chapter, 4), GetAmbience(chapter, 4))
+            ? BuildOrUpdateMode(area.Mode[4], AreaModeExtender.BuildDSideSID(AreaModeExtender.MODE_DXSIDE, baseKey), GetMusic(chapter, 4), GetAmbience(chapter, 4))
             : null;
 
         if (!string.IsNullOrEmpty(chapter.CassetteSong))
@@ -565,7 +565,7 @@ public static class AreaMapData
             Dreaming          = false,
             CassetteSong      = chapter.CassetteSong,
             Mountain          = mountain,
-            Override0Meta = false,
+            // Override0Meta = false,  // Property not found in MapMeta
         };
     }
 

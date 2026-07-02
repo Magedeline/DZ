@@ -83,20 +83,20 @@ public static class ChapterProgressionManager
         yield return new SwapImmediately(orig(self, from));
 
         var save = global::Celeste.Mod.DZ.DZModule.SaveData;
-        if (save == null || save.Pending2UnlockIDs.Count == 0)
+        if (save == null || save.PendingDSideUnlockIDs.Count == 0)
             yield break;
 
-        var pending = new List<string>(save.Pending2UnlockIDs);
-        save.Pending2UnlockIDs.Clear();
+        var pending = new List<string>(save.PendingDSideUnlockIDs);
+        save.PendingDSideUnlockIDs.Clear();
 
         DynamicData dd = new DynamicData(self);
         var icons = dd.Get<List<OuiChapterSelectIcon>>("icons");
         if (icons == null)
             yield break;
 
-        foreach (string 2Id in pending)
+        foreach (string dId in pending)
         {
-            OuiChapterSelectIcon icon = Find2Icon(icons, 2Id);
+            OuiChapterSelectIcon icon = FindDSideIcon(icons, dId);
             if (icon == null)
                 continue;
 
@@ -109,11 +109,11 @@ public static class ChapterProgressionManager
 
             yield return 0.2f;
 
-            Logger.Log(LogLevel.Info, "DZ", $"C-Side unlock animation played for: {2Id}");
+            Logger.Log(LogLevel.Info, "DZ", $"C-Side unlock animation played for: {dId}");
         }
     }
 
-    private static OuiChapterSelectIcon Find2Icon(List<OuiChapterSelectIcon> icons, string 2Id)
+    private static OuiChapterSelectIcon FindDSideIcon(List<OuiChapterSelectIcon> icons, string dId)
     {
         for (int i = 0; i < icons.Count; i++)
         {
@@ -148,8 +148,8 @@ public static class ChapterProgressionManager
                     continue;
 
                 string sid = areaData.SID;
-                if (sid.Equals(2Id, StringComparison.OrdinalIgnoreCase) ||
-                    sid.Contains(2Id, StringComparison.OrdinalIgnoreCase))
+                if (sid.Equals(dId, StringComparison.OrdinalIgnoreCase) ||
+                    sid.Contains(dId, StringComparison.OrdinalIgnoreCase))
                     return icon;
             }
             catch

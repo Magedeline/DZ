@@ -277,8 +277,8 @@ namespace DZ
             switch (areaKey.Mode)
             {
                 case AreaMode.Normal: return 'A';
-                case AreaMode.1: return 'B';
-                case AreaMode.2: return 'C';
+                case AreaMode.BSide: return 'B';
+                case AreaMode.CSide: return 'C';
                 default: return 'A';
             }
         }

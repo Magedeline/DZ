@@ -12,7 +12,7 @@ namespace Celeste
         public const int MODE_SOLAR = 3;
         public const int MODE_1 = 4;
         public const int MODE_2 = 5;
-        public const int MODE_2 = 6;
+        public const int MODE_DSIDE = 6;
 
         /// <summary>
         /// Check if an area mode is a custom DZ mode.

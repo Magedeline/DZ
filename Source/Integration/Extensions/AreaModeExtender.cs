@@ -17,7 +17,7 @@ public static class AreaModeExtender
     public const int MODE_NORMAL = 0;
     public const int MODE_1 = 1;
     public const int MODE_2 = 2;
-    public const int MODE_2 = 3;
+    public const int MODE_DSIDE = 3;
     public const int MODE_DXSIDE = 4;
     public const int TOTAL_MODES = 5;
 
@@ -72,9 +72,9 @@ public static class AreaModeExtender
     /// <paramref name="0AreaId"/>'s chapter panel resets.
     /// Called by AltSidesHelperBridge for ASH-routed D-Side completions.
     /// </summary>
-    public static void SetPending2Return(int 0AreaId)
+    public static void SetPendingDSideReturn(int areaId)
     {
-        _pendingReturnAreaId = 0AreaId;
+        _pendingReturnAreaId = areaId;
         _pendingReturnMode = MODE_2;
     }
 
@@ -100,12 +100,12 @@ public static class AreaModeExtender
         return SideFolders[modeIndex];
     }
 
-    public static string Buil2SID(int modeIndex, string mapName)
+    public static string BuildDSideSID(int modeIndex, string mapName)
     {
-        return Buil2SID(GetSideFolder(modeIndex), mapName);
+        return BuildDSideSID(GetSideFolder(modeIndex), mapName);
     }
 
-    public static string Buil2SID(string sideFolder, string mapName)
+    public static string BuildDSideSID(string sideFolder, string mapName)
     {
         if (string.IsNullOrWhiteSpace(mapName))
             return MAP_PREFIX;
@@ -116,7 +116,7 @@ public static class AreaModeExtender
 
     public static string Build0SID(string mapName)
     {
-        return Buil2SID(MODE_NORMAL, mapName);
+        return BuildDSideSID(MODE_NORMAL, mapName);
     }
 
     public static void Load()
@@ -378,7 +378,7 @@ public static class AreaModeExtender
             ? area.Mode[MODE_2]
             : area.Mode[MODE_NORMAL];
 
-        string sid = Buil2SID(modeIndex, baseKey);
+        string sid = BuildDSideSID(modeIndex, baseKey);
 
         return new ModeProperties
         {
@@ -1236,7 +1236,7 @@ public static class AreaModeExtender
             MODE_NORMAL => "Normal",
             MODE_1 => "1",
             MODE_2 => "2",
-            MODE_2 => "2",
+            MODE_DSIDE => "3",
             MODE_DXSIDE => "DXSide",
             _ => $"Mode{modeIndex}"
         };
@@ -1249,7 +1249,7 @@ public static class AreaModeExtender
             MODE_NORMAL => "A",
             MODE_1 => "B",
             MODE_2 => "C",
-            MODE_2 => "D",
+            MODE_DSIDE => "D",
             MODE_DXSIDE => "DX",
             _ => "?"
         };

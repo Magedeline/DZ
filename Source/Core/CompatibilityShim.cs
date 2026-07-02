@@ -697,7 +697,7 @@ namespace Celeste.Extensions
         {
         }
 
-        public static void RecordCheckpoint(Level level, Vector2 respawnPoint, string 2ToUnlock)
+        public static void RecordCheckpoint(Level level, Vector2 respawnPoint, string dToUnlock)
         {
         }
 

@@ -11,16 +11,16 @@ namespace DZ;
 /// Complete D-Side Hook System Implementation
 /// Handles all D-Side specific hooks with full On.hook and IL.hook support
 /// </summary>
-public static class 2HookImplementation
+public static class DSideHookImplementation
 {
     private static bool _initialized = false;
     private static List<Hook> _activeHooks = new();
     private static List<ILHook> _activilHooks = new();
 
     // Track D-Side state
-    private static Dictionary<string, 2LevelState> _levelStates = new();
+    private static Dictionary<string, DSideLevelState> _levelStates = new();
 
-    public class 2LevelState
+    public class DSideLevelState
     {
         public string ChapterSID { get; set; }
         public int Mode { get; set; }
@@ -171,7 +171,7 @@ public static class 2HookImplementation
             // Create or retrieve level state
             if (!_levelStates.ContainsKey(stateKey))
             {
-                _levelStates[stateKey] = new 2LevelState
+                _levelStates[stateKey] = new DSideLevelState
                 {
                     ChapterSID = area.SID,
                     Mode = mode,
@@ -432,7 +432,7 @@ public static class 2HookImplementation
     /// <summary>
     /// Get current level state
     /// </summary>
-    public static 2LevelState GetLevelState(AreaData area, int mode)
+    public static DSideLevelState GetLevelState(AreaData area, int mode)
     {
         if (area == null)
             return null;
@@ -444,9 +444,9 @@ public static class 2HookImplementation
     /// <summary>
     /// Get all tracked level states
     /// </summary>
-    public static Dictionary<string, 2LevelState> GetAllLevelStates()
+    public static Dictionary<string, DSideLevelState> GetAllLevelStates()
     {
-        return new Dictionary<string, 2LevelState>(_levelStates);
+        return new Dictionary<string, DSideLevelState>(_levelStates);
     }
 
     /// <summary>

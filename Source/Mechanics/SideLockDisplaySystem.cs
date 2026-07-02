@@ -30,9 +30,9 @@ public static class SideLockDisplaySystem
     }
 
     /// <summary>Lock display configs for extended modes</summary>
-    public static readonly LockDisplayConfig 2LockConfig = new()
+    public static readonly LockDisplayConfig dSideLockConfig = new()
     {
-        ModeIndex = AreaModeExtender.MODE_2,
+        ModeIndex = AreaModeExtender.MODE_DSIDE,
         LockIcon = "ui/common/lock",
         LockedLabel = "D-Side: Locked",
         RequirementText = "Beat C-Side to unlock",
@@ -240,7 +240,7 @@ public static class SideLockDisplaySystem
 
         return modeIndex switch
         {
-            AreaModeExtender.MODE_2 => 2LockConfig,
+            AreaModeExtender.MODE_2 => dSideLockConfig,
             AreaModeExtender.MODE_DXSIDE => DXSideLockConfig,
             _ => null
         };
@@ -323,7 +323,7 @@ public static class SideLockDisplaySystem
             AreaModeExtender.MODE_NORMAL => "A-Side",
             AreaModeExtender.MODE_1 => "B-Side",
             AreaModeExtender.MODE_2 => "C-Side",
-            AreaModeExtender.MODE_2 => "D-Side",
+            AreaModeExtender.MODE_DSIDE => "D-Side",
             AreaModeExtender.MODE_DXSIDE => "DX-Side",
             _ => $"Side {modeIndex}"
         };

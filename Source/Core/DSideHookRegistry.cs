@@ -11,14 +11,14 @@ namespace DZ;
 /// This provides a single point of control for the entire hook system
 /// and makes it easy to enable/disable hooks globally or individually.
 /// </summary>
-public static class 2HookRegistry
+public static class DSideHookRegistry
 {
     private static bool _initialized = false;
     private static Dictionary<string, bool> _hookStates = new();
 
     public enum HookModule
     {
-        2,
+        DSide,
         Music,
         TitleScreen,
         All
@@ -34,7 +34,7 @@ public static class 2HookRegistry
         Logger.Log(LogLevel.Info, "DZ/HookRegistry",
             "Initializing D-Side Hook Registry");
 
-        LoadHookModule(HookModule.2);
+        LoadHookModule(HookModule.DSide);
         LoadHookModule(HookModule.Music);
         LoadHookModule(HookModule.TitleScreen);
 
@@ -51,7 +51,7 @@ public static class 2HookRegistry
         Logger.Log(LogLevel.Info, "DZ/HookRegistry",
             "Uninitializing D-Side Hook Registry");
 
-        UnloadHookModule(HookModule.2);
+        UnloadHookModule(HookModule.DSide);
         UnloadHookModule(HookModule.Music);
         UnloadHookModule(HookModule.TitleScreen);
 
@@ -76,7 +76,7 @@ public static class 2HookRegistry
         {
             switch (module)
             {
-                case HookModule.2:
+                case HookModule.DSide:
                     Celeste2Hooks.Load();
                     _hookStates[moduleName] = true;
                     Logger.Log(LogLevel.Info, "DZ/HookRegistry",
@@ -98,7 +98,7 @@ public static class 2HookRegistry
                     break;
 
                 case HookModule.All:
-                    LoadHookModule(HookModule.2);
+                    LoadHookModule(HookModule.DSide);
                     LoadHookModule(HookModule.Music);
                     LoadHookModule(HookModule.TitleScreen);
                     break;
@@ -127,7 +127,7 @@ public static class 2HookRegistry
         {
             switch (module)
             {
-                case HookModule.2:
+                case HookModule.DSide:
                     Celeste2Hooks.Unload();
                     _hookStates[moduleName] = false;
                     Logger.Log(LogLevel.Info, "DZ/HookRegistry",
@@ -149,7 +149,7 @@ public static class 2HookRegistry
                     break;
 
                 case HookModule.All:
-                    UnloadHookModule(HookModule.2);
+                    UnloadHookModule(HookModule.DSide);
                     UnloadHookModule(HookModule.Music);
                     UnloadHookModule(HookModule.TitleScreen);
                     break;
@@ -175,7 +175,7 @@ public static class 2HookRegistry
         Logger.Log(LogLevel.Info, "DZ/HookRegistry",
             "D-Side Hook Registry Status:");
         Logger.Log(LogLevel.Info, "DZ/HookRegistry",
-            $"  2 hooks:       {(IsHookModuleLoaded(HookModule.2) ? "✓ LOADED" : "✗ UNLOADED")}");
+            $"  2 hooks:       {(IsHookModuleLoaded(HookModule.DSide) ? "✓ LOADED" : "✗ UNLOADED")}");
         Logger.Log(LogLevel.Info, "DZ/HookRegistry",
             $"  Music hooks:       {(IsHookModuleLoaded(HookModule.Music) ? "✓ LOADED" : "✗ UNLOADED")}");
         Logger.Log(LogLevel.Info, "DZ/HookRegistry",

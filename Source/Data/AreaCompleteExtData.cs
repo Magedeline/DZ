@@ -37,7 +37,7 @@ public sealed class AreaCompleteExtData
             AreaModeExtender.MODE_NORMAL => "0",
             AreaModeExtender.MODE_1  => "1",
             AreaModeExtender.MODE_2  => "2",
-            AreaModeExtender.MODE_2  => "2",
+            AreaModeExtender.MODE_DSIDE  => "3",
             _                            => "2", // Default to 2 for unknown modes
         };
 
@@ -60,10 +60,10 @@ public sealed class AreaCompleteExtData
 
         string dialogKey = mode switch
         {
-            AreaModeExtender.MODE_NORMAL => session.FullClear ? titleMeta?.FullClear : titleMeta?.0,
-            AreaModeExtender.MODE_1  => titleMeta?.1,
-            AreaModeExtender.MODE_2  => titleMeta?.2,
-            AreaModeExtender.MODE_2  => null, // D-Side uses default behavior, no custom title
+            // 0 => session.FullClear ? titleMeta?.FullClear : titleMeta.Normal,  // Properties not found
+            // AreaModeExtender.MODE_1  => titleMeta.One,  // Properties not found
+            // AreaModeExtender.MODE_2  => titleMeta.Two,  // Properties not found
+            AreaModeExtender.MODE_DSIDE  => null, // D-Side uses default behavior, no custom title
             _                            => null,
         };
 
@@ -90,7 +90,7 @@ public sealed class AreaCompleteExtData
             AreaModeExtender.MODE_NORMAL => $"areacomplete_Normal{(session.FullClear ? "_fullclear" : "")}",
             AreaModeExtender.MODE_1  => "areacomplete_1",
             AreaModeExtender.MODE_2  => "areacomplete_2",
-            AreaModeExtender.MODE_2  => "areacomplete_2",
+            AreaModeExtender.MODE_DSIDE  => "areacomplete_dside",
             _                            => $"areacomplete_2",
         };
 

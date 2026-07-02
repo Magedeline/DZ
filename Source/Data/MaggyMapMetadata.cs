@@ -44,7 +44,7 @@ internal class DZMapMetadata
     public bool Has2 { get; set; } = false;
 
     /// <summary>Whether this map has a D-Side variant</summary>
-    public bool Has2 { get; set; } = false;
+    public bool HasDSide { get; set; } = false;
 
     /// <summary>Music events to play on chapter completion by side</summary>
     public List<string>? MusicBySide { get; set; }

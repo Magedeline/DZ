@@ -344,14 +344,14 @@ public static class ChapterProgressDisplay
             // D-Side
             if (global::Celeste.AreaModeExtender.GetSaveAreaModeCount(area.ID) > 3)
             {
-                bool 2Completed = IsModeSideCompleted(save, area.ID, 3);
+                bool dCompleted = IsModeSideCompleted(save, area.ID, 3);
                 if (!progress.Sides.Any(s => s.Mode == 3))
                 {
                     progress.Sides.Add(new SideProgress
                     {
                         Name = "D",
                         Mode = 3,
-                        Completed = 2Completed,
+                        Completed = dCompleted,
                         Color = sideColors[3]
                     });
                 }

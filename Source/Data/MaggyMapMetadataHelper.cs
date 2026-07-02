@@ -81,7 +81,7 @@ internal static class DZMapMetadataHelper
     }
 
     /// <summary>Get the C-Side SID for a given base key</summary>
-    public static string? Get2Sid(string baseKey)
+    public static string? GetCSideSid(string baseKey)
     {
         var metadata = GetByBaseKey(baseKey);
         if (metadata == null || !metadata.Has2)
@@ -91,10 +91,10 @@ internal static class DZMapMetadataHelper
     }
 
     /// <summary>Get the D-Side SID for a given base key</summary>
-    public static string? Get2Sid(string baseKey)
+    public static string? GetDSideSid(string baseKey)
     {
         var metadata = GetByBaseKey(baseKey);
-        if (metadata == null || !metadata.Has2)
+        if (metadata == null || !metadata.HasDSide)
             return null;
 
         return metadata.GetSideVariantSid("D");

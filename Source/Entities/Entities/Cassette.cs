@@ -96,7 +96,7 @@ namespace Celeste.Entities {
 	private string spritePath;
 	private string menuSprite;
 	private string[] unlockText;
-	private string 1ToUnlock;
+	private string bToUnlock;
 	
 	// Enhanced collectible properties (matching Lua definitions)
 	private string onCollect;
@@ -122,14 +122,14 @@ namespace Celeste.Entities {
 		// Determine unlock text based on side to unlock or use custom text
 		string customUnlockText = data.Attr("unlockText", "");
 		if (string.IsNullOrEmpty(customUnlockText)) {
-			string sideToUnlock = data.Attr("1ToUnlock", "");
+			string sideToUnlock = data.Attr("bToUnlock", "");
 			unlockText = DetermineUnlockText(sideToUnlock);
 		} else {
 			unlockText = customUnlockText.Split(',');
 		}
-		
+
 		menuSprite = data.Attr("menuSprite", "collectables/cassette");
-		1ToUnlock = data.Attr("1ToUnlock");
+		bToUnlock = data.Attr("bToUnlock");
 		
 		// Load enhanced properties
 		onCollect = data.Attr("onCollect", "");
@@ -145,7 +145,7 @@ namespace Celeste.Entities {
 	}		public override void Added(Scene scene) {
 			base.Added(scene);
 
-			IsGhost = IngesteModule.SaveData.Unlocked1IDs.Contains(1ToUnlock);
+			IsGhost = IngesteModule.SaveData.Unlocked1IDs.Contains(bToUnlock);
 			string path = IsGhost ? "ghost" : "idle";
 			sprite = new Sprite(GFX.Game, spritePath);
 			sprite.Add("idle", path, 0.07f, "pulse", new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 });
@@ -213,8 +213,8 @@ namespace Celeste.Entities {
 			level.Session.Cassette = true;
 			level.Session.RespawnPoint = level.GetSpawnPoint(nodes[1]);
 			level.Session.UpdateLevelStartDashes();
-			if(!string.IsNullOrEmpty(1ToUnlock))
-				IngesteModule.SaveData.Unlocked1IDs.Add(1ToUnlock);
+			if(!string.IsNullOrEmpty(bToUnlock))
+				IngesteModule.SaveData.Unlocked1IDs.Add(bToUnlock);
 			cbm?.StopBlocks();
 			Depth = -1000000;
 			level.Shake();

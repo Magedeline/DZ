@@ -155,7 +155,7 @@ PFakeShine = new ParticleType
             this.endLevelOnCollect = data.Bool(nameof(endLevelOnCollect), false);
             this.entityId = new EntityID(data.Level.Name, data.ID);
             this.sevenbirdFlyby = data.Bool("sevenbirdFlyby", false);
-            this.unlock2 = data.Bool("unlock2", false);
+            this.unlockDSide = data.Bool("unlockDSide", false);
             this.customSfx = data.Attr("customSfx", "");
         }
 
@@ -172,9 +172,9 @@ PFakeShine = new ParticleType
                 id = "heartgem5";
             } else if (area.Mode == AreaMode.Normal) {
                 id = "DZ_heartgem0"; // A-Side - Blue heartgem
-            } else if (area.Mode == AreaMode.1) {
+            } else if (area.Mode == AreaMode.BSide) {
                 id = "DZ_heartgem1"; // B-Side - Red heartgem
-            } else if (area.Mode == AreaMode.2) {
+            } else if (area.Mode == AreaMode.CSide) {
                 id = "DZ_heartgem2"; // C-Side - Golden heartgem
             } else if (area.Mode == (AreaMode)3) {
                 id = "DZ_heartgem3"; // D-Side - Pink heartgem
@@ -216,10 +216,10 @@ PFakeShine = new ParticleType
             } else if (area.Mode == AreaMode.Normal) {
                 color = Color.Aqua;
                 this.shineParticle = HeartGem.PBlueShine;
-            } else if (area.Mode == AreaMode.1) {
+            } else if (area.Mode == AreaMode.BSide) {
                 color = Color.Red;
                 this.shineParticle = HeartGem.PRedShine;
-            } else if (area.Mode == AreaMode.2) {
+            } else if (area.Mode == AreaMode.CSide) {
                 color = Color.Gold;
                 this.shineParticle = HeartGem.PGoldShine;
             } else if (area.Mode == (AreaMode)3) {
@@ -349,7 +349,7 @@ this.endCutscene();
             AreaKey area = level.Session.Area;
           string poemId = AreaData.Get(level).Mode[(int)area.Mode].PoemID;
             bool completeArea = !this.IsFake && (this.endLevelOnCollect || area.Mode != AreaMode.Normal || area.ID == 19);
-            bool isCrystalHeartVariant = this.sevenbirdFlyby || !string.IsNullOrEmpty(this.customSfx) || this.unlock2;
+            bool isCrystalHeartVariant = this.sevenbirdFlyby || !string.IsNullOrEmpty(this.customSfx) || this.unlockDSide;
             if (this.IsFake) {
            level.StartCutscene(this.SkipFakeHeartCutscene, true, false, true);
            foreach (BirdNPC existingBird in level.Entities.FindAll<BirdNPC>()) {
@@ -380,9 +380,9 @@ foreach (Follower follower in player.Leader.Followers) {
                 text = "event:/pusheen/game/general/crystalheart_astral_get";
             } else if (this.IsFake) {
                 text = "event:/pusheen/new_content/game/19_spaces/fakeheart_get";
-            } else if (area.Mode == AreaMode.1) {
+            } else if (area.Mode == AreaMode.BSide) {
                 text = "event:/game/general/crystalheart_red_get";
-            } else if (area.Mode == AreaMode.2) {
+            } else if (area.Mode == AreaMode.CSide) {
                 text = "event:/game/general/crystalheart_gold_get";
             } else if (area.Mode == (AreaMode)3) {
                 text = "event:/pusheen/game/general/crystalheart_rainbow_get";
@@ -444,7 +444,7 @@ foreach (Follower follower in player.Leader.Followers) {
             if (!string.IsNullOrEmpty(poemId)) {
              text2 = Dialog.Clean("soul_" + poemId, null);
      }
-     this.poem = new Poem(text2, (int)(this.IsAstral ? ((AreaMode)4) : (this.IsFake ? ((AreaMode)3) : area.Mode)), (area.Mode == AreaMode.2 || area.Mode == (AreaMode)3 || this.IsAstral || this.IsFake || isCrystalHeartVariant) ? 1f : 0.6f);
+     this.poem = new Poem(text2, (int)(this.IsAstral ? ((AreaMode)4) : (this.IsFake ? ((AreaMode)3) : area.Mode)), (area.Mode == AreaMode.CSide || area.Mode == (AreaMode)3 || this.IsAstral || this.IsFake || isCrystalHeartVariant) ? 1f : 0.6f);
       this.poem.Alpha = 0f;
          Scene.Add(this.poem);
  for (float t = 0f; t < 1f; t += Engine.RawDeltaTime) {
@@ -464,7 +464,7 @@ foreach (Follower follower in player.Leader.Followers) {
    this.sfx.Source.Param("end", 1f);
 
             // Check for D-side unlock condition (18_core_2) for crystal heart variants
-            bool shouldUnlock2 = this.unlock2 && area.ID == 18 && area.Mode == AreaMode.2;
+            bool shouldUnlockDSide = this.unlockDSide && area.ID == 18 && area.Mode == AreaMode.CSide;
             // Check for all crystal hearts collected
             bool allCrystalHeartsCollected = this.CheckAllCrystalHeartsCollected();
 
@@ -478,7 +478,7 @@ foreach (Follower follower in player.Leader.Followers) {
                 player.Depth = 0;
                 this.endCutscene();
                 yield return ShowUltraPostcard(level);
-            } else if (shouldUnlock2) {
+            } else if (shouldUnlockDSide) {
                 // Show D-side unlock postcard
                 level.FormationBackdrop.Display = false;
                 for (float t = 0f; t < 1f; t += Engine.RawDeltaTime * 2f) {
@@ -487,7 +487,7 @@ foreach (Follower follower in player.Leader.Followers) {
                 }
                 player.Depth = 0;
                 this.endCutscene();
-                yield return Show2Postcard(level);
+                yield return ShowDSidePostcard(level);
             } else if (!completeArea && !isCrystalHeartVariant) {
      level.FormationBackdrop.Display = false;
   for (float t = 0f; t < 1f; t += Engine.RawDeltaTime * 2f) {
@@ -772,11 +772,11 @@ Level level = Scene as Level;
      if (!string.IsNullOrEmpty(poemId)) {
         SaveData.Instance.RegisterPoemEntry(poemId);
             }
-            if (unlockedModes < 3 && SaveData.Instance.UnlockedModes >= 3) {
-   level.Session.Unlocked2 = true;
-  }
+            // if (unlockedModes < 3 && SaveData.Instance.UnlockedModes >= 3) {
+   // level.Session.UnlockedDSide = true;  // Property not found on Session
+  // }
        if (SaveData.Instance.TotalHeartGems >= 24) {
-  Achievements.Register(Achievement.2S);
+  // Achievements.Register(Achievement.DSideMastery);  // Achievement enum value not found
   }
         }
 
@@ -844,7 +844,7 @@ Level level = Scene as Level;
 
         // Crystal Heart variant fields
         private bool sevenbirdFlyby;
-        private bool unlock2;
+        private bool unlockDSide;
         private string customSfx;
 
         // Sevenbird flyby routine for crystal heart variants
@@ -912,21 +912,21 @@ Level level = Scene as Level;
             return collectedCount >= 18;
         }
 
-        private IEnumerator Show2Postcard(Level level)
+        private IEnumerator ShowDSidePostcard(Level level)
         {
             var scene = new Scene();
             var snow = new DZHiresSnow();
             scene.Add(snow);
 
             var entity = new Entity();
-            entity.Add(new Coroutine(2PostcardRoutine(scene)));
+            entity.Add(new Coroutine(DSidePostcardRoutine(scene)));
             scene.Add(entity);
 
             Engine.Scene = scene;
             yield return null;
         }
 
-        private IEnumerator 2PostcardRoutine(Scene scene)
+        private IEnumerator DSidePostcardRoutine(Scene scene)
         {
             yield return 0.5f;
 

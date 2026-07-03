@@ -271,11 +271,11 @@ namespace Celeste.Entities {
             if (dialog)
             {
                 if (nodeIndex == 1)
-                    Scene.Add(new MiniTextbox("ch8DZ_CHaraboss_tired_a"));
+                    Scene.Add(new MiniTextbox("dz_ch8_charaboss_tired_a"));
                 else if (nodeIndex == 2)
-                    Scene.Add(new MiniTextbox("ch8DZ_CHaraboss_tired_b"));
+                    Scene.Add(new MiniTextbox("dz_ch8_charaboss_tired_b"));
                 else if (nodeIndex == 3)
-                    Scene.Add(new MiniTextbox("ch8DZ_CHaraboss_tired_c"));
+                    Scene.Add(new MiniTextbox("dz_ch8_charaboss_tired_c"));
             }
 
             foreach (var entity in level.Tracker.GetEntities<CharaBossShot>())
@@ -286,6 +286,12 @@ namespace Celeste.Entities {
 
             // Keep BiggerBeam cleanup
             foreach (var entity in level.Tracker.GetEntities<CharaBossBiggerBeam>())
+                entity.RemoveSelf();
+
+            foreach (var entity in level.Tracker.GetEntities<CharaBossShotHoming>())
+                entity.RemoveSelf();
+
+            foreach (var entity in level.Tracker.GetEntities<CharaBossFloorSlam>())
                 entity.RemoveSelf();
 
             TriggerFallingBlocks(X);
@@ -650,6 +656,13 @@ namespace Celeste.Entities {
 
         private void StartAttacking()
         {
+            // In center-10, always use BiggerBeam as the final attack phase
+            if (level.Session.Level == "center-10" && nodeIndex == nodes.Length - 2)
+            {
+                attackCoroutine.Replace(Attack21Sequence());
+                return;
+            }
+
             // If attackSequence is provided, use custom attack sequence
             if (!string.IsNullOrWhiteSpace(attackSequence))
             {
@@ -1029,7 +1042,76 @@ namespace Celeste.Entities {
                                 yield return delay;
                                 break;
                             }
-                        
+
+                        // spread [spreadAngle] [delay]
+                        // Fires 3 bullets in a fan at the player.
+                        // spreadAngle defaults to 0.35 rad (~20 deg); delay defaults to 0.5 s.
+                        // Example: "spread 0.4 0.6"
+                        case "spread":
+                            {
+                                float spreadAngle = 0.35f;
+                                float delay = 0.5f;
+                                if (parts.Length > 1 && float.TryParse(parts[1], System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out float pA))
+                                    spreadAngle = pA;
+                                if (parts.Length > 2 && float.TryParse(parts[2], System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out float pD))
+                                    delay = pD;
+
+                                StartShootCharge();
+                                yield return 0.3f;
+                                SpreadShot(spreadAngle);
+                                yield return delay;
+                                break;
+                            }
+
+                        // spiral [count] [delay]
+                        // Fires [count] bullets evenly in a full ring (default 8).
+                        // Example: "spiral 12 1.0"
+                        case "spiral":
+                            {
+                                int count = 8;
+                                float delay = 0.8f;
+                                if (parts.Length > 1 && int.TryParse(parts[1], out int pC))
+                                    count = Math.Max(2, pC);
+                                if (parts.Length > 2 && float.TryParse(parts[2], System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out float pD))
+                                    delay = pD;
+
+                                StartShootCharge();
+                                yield return 0.4f;
+                                SpiralBurst(count);
+                                yield return delay;
+                                break;
+                            }
+
+                        // homing [delay]
+                        // Fires a slow homing missile that curves toward the player.
+                        // Example: "homing 1.5"
+                        case "homing":
+                            {
+                                float delay = 1.0f;
+                                if (parts.Length > 1 && float.TryParse(parts[1], System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out float pD))
+                                    delay = pD;
+
+                                StartShootCharge();
+                                yield return 0.3f;
+                                ShootHoming();
+                                yield return delay;
+                                break;
+                            }
+
+                        // floorslam [delay]
+                        // Fires a ball downward; on impact it spawns left+right shockwaves.
+                        // Example: "floorslam 1.2"
+                        case "floorslam":
+                            {
+                                float delay = 1.0f;
+                                if (parts.Length > 1 && float.TryParse(parts[1], System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out float pD))
+                                    delay = pD;
+
+                                FloorSlam();
+                                yield return delay;
+                                break;
+                            }
+
                         default:
                             // Unknown command, skip
                             yield return 0.1f;
@@ -1038,6 +1120,71 @@ namespace Celeste.Entities {
                 }
             }
         }
+
+        // ── New attacks ──────────────────────────────────────────────────────────
+
+        // Fire 3 bullets in a fan centered on the player.
+        private void SpreadShot(float spreadAngle = 0.35f)
+        {
+            if (!chargeSfx.Playing)
+                chargeSfx.Play("event:/char/badeline/boss_bullet", "end", 1f);
+            else
+                chargeSfx.Param("end", 1f);
+
+            Sprite.Play("charaboss_attack1Recoil", restart: true);
+            global::Celeste.Player entity = level.Tracker.GetEntity<global::Celeste.Player>();
+            if (entity != null)
+            {
+                level.Add(new CharaBossShot().Init(this, entity, -spreadAngle));
+                level.Add(new CharaBossShot().Init(this, entity, 0f));
+                level.Add(new CharaBossShot().Init(this, entity,  spreadAngle));
+            }
+        }
+
+        // Fire bullets in a full ring (spiral burst).
+        private void SpiralBurst(int count = 8)
+        {
+            if (!chargeSfx.Playing)
+                chargeSfx.Play("event:/char/badeline/boss_bullet", "end", 1f);
+            else
+                chargeSfx.Param("end", 1f);
+
+            Sprite.Play("charaboss_attack1Recoil", restart: true);
+            float step = (float)(Math.PI * 2.0 / count);
+            // Use a fixed base angle so every shot goes in a clean ring
+            float baseAngle = Calc.Random.NextFloat() * step; // slight random rotation each burst
+            for (int i = 0; i < count; i++)
+            {
+                float angle = baseAngle + step * i;
+                var shot = new CharaBossShot();
+                // Init with a fixed target point in the desired direction
+                Vector2 target = ShotOrigin + Calc.AngleToVector(angle, 200f);
+                level.Add(shot.Init(this, target));
+            }
+        }
+
+        // Fire a single slow homing missile at the player.
+        private void ShootHoming()
+        {
+            if (!chargeSfx.Playing)
+                chargeSfx.Play("event:/char/badeline/boss_bullet", "end", 1f);
+            else
+                chargeSfx.Param("end", 1f);
+
+            Sprite.Play("charaboss_attack1Recoil", restart: true);
+            global::Celeste.Player entity = level.Tracker.GetEntity<global::Celeste.Player>();
+            level.Add(new CharaBossShotHoming().Init(this, entity));
+        }
+
+        // Fire a ball straight down that spawns floor shockwaves on impact.
+        private void FloorSlam()
+        {
+            Audio.Play("event:/char/badeline/boss_bullet", Position);
+            Sprite.Play("charaboss_attack1Recoil", restart: true);
+            level.Add(new CharaBossFloorSlam().Init(this));
+        }
+
+        // ─────────────────────────────────────────────────────────────────────────
 
         private void Shoot(float angleOffset = 0f)
         {

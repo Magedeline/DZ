@@ -78,7 +78,7 @@ namespace Celeste.Entities.Chapters.Ch12
             waterParticles = new List<WaterParticle>();
             
             Collider = new Hitbox(24f, 32f, -12f, -32f);
-            Add(sprite = GFX.SpriteBank.Create("fountain_spirit"));
+            Add(sprite = DZModule.SpriteBank.Create("fountain_spirit"));
             sprite.Play("dormant");
             
             Color lightColor = type == SpiritType.Healing ? Color.Cyan :

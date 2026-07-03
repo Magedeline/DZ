@@ -467,7 +467,7 @@ namespace Celeste.Cutscenes
             // Spawn Kirby follower
             if (this.kirbyFollower != null && this.kirbyFollower.Scene != null)
                 this.kirbyFollower.RemoveSelf();
-            var kirbySprite = GFX.SpriteBank.Create("kirby");
+            var kirbySprite = DZModule.SpriteBank.Create("kirby");
             kirbySprite.Play("idle", false, false);
             this.kirbyFollower = new Entity(this.GetCreditsTriggerPosition("KirbyOffset", this.player.Position + new Vector2(28f, -6f)));
             this.kirbyFollower.Depth = -50;
@@ -478,7 +478,7 @@ namespace Celeste.Cutscenes
             // Spawn Ralsei follower
             if (this.ralseiFollower != null && this.ralseiFollower.Scene != null)
                 this.ralseiFollower.RemoveSelf();
-            var ralseiSprite = GFX.SpriteBank.Create("ralsei");
+            var ralseiSprite = DZModule.SpriteBank.Create("ralsei");
             ralseiSprite.Play("idle", false, false);
             this.ralseiFollower = new Entity(this.GetCreditsTriggerPosition("RalseiOffset", this.player.Position + new Vector2(44f, 0f)));
             this.ralseiFollower.Depth = -50;
@@ -809,7 +809,7 @@ namespace Celeste.Cutscenes
 
         private Entity SpawnCreditsKirby(Vector2 position)
         {
-            Sprite sprite = GFX.SpriteBank.Create("kirby");
+            Sprite sprite = DZModule.SpriteBank.Create("kirby");
             if (sprite.Has("idle"))
                 sprite.Play("idle", false, false);
             sprite.CenterOrigin();
@@ -829,7 +829,7 @@ namespace Celeste.Cutscenes
 
         private Entity SpawnCreditsRalsei(Vector2 position)
         {
-            Sprite sprite = GFX.SpriteBank.Create("ralsei");
+            Sprite sprite = DZModule.SpriteBank.Create("ralsei");
             if (sprite.Has("idle"))
                 sprite.Play("idle", false, false);
             sprite.CenterOrigin();

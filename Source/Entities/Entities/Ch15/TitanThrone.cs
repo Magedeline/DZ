@@ -79,7 +79,7 @@ namespace Celeste.Entities.Chapters.Ch15
             Collider = new Hitbox(80f, 120f, -40f, -120f);
             
             // Setup sprites
-            Add(sprite = GFX.SpriteBank.Create("titan_throne"));
+            Add(sprite = DZModule.SpriteBank.Create("titan_throne"));
             sprite.Play("inactive");
             
             Add(crownSprite = GFX.SpriteBank.Create("titan_crown"));

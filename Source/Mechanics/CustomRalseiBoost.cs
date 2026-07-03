@@ -59,7 +59,7 @@ public class CustomRalseiBoost : Entity
 		this.transitionColor = transitionColor ?? Calc.HexToColor("ff6def");
 		base.Collider = new Circle(16f);
 		Add(new PlayerCollider(OnPlayer));
-        Add(sprite = GFX.SpriteBank.Create("ralseiboost"));
+        Add(sprite = DZModule.SpriteBank.Create("ralseiBoost"));
         Add(stretch =
 	        transitionImage is not null
             ? transitionImage

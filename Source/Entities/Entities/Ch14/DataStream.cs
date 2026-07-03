@@ -93,7 +93,7 @@ namespace Celeste.Entities.Chapters.Ch14
             
             Collider = new Hitbox(streamArea.Width, streamArea.Height);
             
-            Add(sprite = GFX.SpriteBank.Create("data_stream"));
+            Add(sprite = DZModule.SpriteBank.Create("data_stream"));
             sprite.Play("flowing");
         }
         #endregion

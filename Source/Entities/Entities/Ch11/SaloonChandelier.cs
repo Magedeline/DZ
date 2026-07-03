@@ -82,7 +82,7 @@ namespace Celeste.Entities.Chapters.Ch11
             Collider = new Hitbox(48f, 32f, -24f, -16f);
             
             // Setup sprite
-            Add(sprite = GFX.SpriteBank.Create("saloonDZ_CHandelier"));
+            Add(sprite = DZModule.SpriteBank.Create("saloonDZ_CHandelier"));
             sprite.Play("swinging");
             
             // Add candle light

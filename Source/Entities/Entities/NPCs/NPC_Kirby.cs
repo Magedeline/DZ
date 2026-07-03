@@ -35,7 +35,7 @@ namespace Celeste.NPCs
 
         private void setupSprite()
         {
-            Add(sprite = GFX.SpriteBank.Create("kirby"));
+            Add(sprite = DZModule.SpriteBank.Create("kirby"));
             sprite.Play("idle");
             sprite.Color = Color.White;
         }

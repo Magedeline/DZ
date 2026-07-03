@@ -74,7 +74,7 @@ namespace Celeste.Entities.Chapters.Ch11
             Collider = new Hitbox(16f, 24f, -8f, -24f);
             
             // Setup sprite
-            Add(sprite = GFX.SpriteBank.Create("wanted_poster"));
+            Add(sprite = DZModule.SpriteBank.Create("wanted_poster"));
             sprite.Play("unread");
             
             // Add talk component

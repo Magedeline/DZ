@@ -82,7 +82,7 @@ namespace Celeste.Entities.Chapters.Ch15
             Collider = new Hitbox(40f, 80f, -20f, -80f);
             
             // Setup sprite
-            Add(sprite = GFX.SpriteBank.Create("judgment_bell"));
+            Add(sprite = DZModule.SpriteBank.Create("judgment_bell"));
             sprite.Play("idle");
             
             // Add golden glow

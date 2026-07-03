@@ -93,7 +93,7 @@ namespace Celeste.Entities.Chapters.Ch10
             Collider = new Hitbox(20f, 20f, -10f, -20f);
             
             // Setup sprite
-            Add(sprite = GFX.SpriteBank.Create("spider_baker"));
+            Add(sprite = DZModule.SpriteBank.Create("spider_baker"));
             
             // Create web strand visual
             CreateWebVisual();

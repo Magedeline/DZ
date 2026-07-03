@@ -67,7 +67,7 @@ namespace Celeste.Entities.Chapters.Ch13
             bubbles = new List<MagmaBubble>();
             magmaParticles = new List<MagmaParticle>();
             
-            Add(sprite = GFX.SpriteBank.Create("magma_pool"));
+            Add(sprite = DZModule.SpriteBank.Create("magma_pool"));
             sprite.Play("idle");
             
             Add(magmaLight = new VertexLight(Color.OrangeRed, 0.5f, 16, 40));

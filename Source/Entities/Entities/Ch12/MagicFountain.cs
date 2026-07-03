@@ -74,7 +74,7 @@ namespace DZ
             
             Collider = new Hitbox(80f, 40f, -40f, -40f);
             
-            Add(sprite = GFX.SpriteBank.Create("magic_fountain"));
+            Add(sprite = DZModule.SpriteBank.Create("magic_fountain"));
             sprite.Play("dormant");
             
             Add(fountainLight = new VertexLight(Color.Cyan, 0.2f, 24, 64));

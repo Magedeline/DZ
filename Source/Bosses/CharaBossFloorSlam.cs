@@ -98,8 +98,8 @@ public class CharaBossFloorSlam : Entity
 
     private static Sprite CreateSprite()
     {
-        try   { return GFX.SpriteBank.Create("chara_projectile"); }
-        catch { return GFX.SpriteBank.Create("badelineBoss"); }
+        try   { return DZModule.SpriteBank.Create("chara_projectile"); }
+        catch { return DZModule.SpriteBank.Create("badelineBoss"); }
     }
 
     public CharaBossFloorSlam Init(CharaBoss boss)

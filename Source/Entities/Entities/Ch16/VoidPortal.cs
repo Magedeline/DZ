@@ -58,7 +58,7 @@ namespace Celeste.Entities.Chapters.Ch16
             
             Collider = new Hitbox(48f, 64f, -24f, -64f);
             
-            Add(sprite = GFX.SpriteBank.Create("void_portal"));
+            Add(sprite = DZModule.SpriteBank.Create("void_portal"));
             sprite.Play("inactive");
             
             Add(portalLight = new VertexLight(voidColor, 0.3f, 16, 48));

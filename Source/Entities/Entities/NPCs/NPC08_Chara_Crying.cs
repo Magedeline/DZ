@@ -23,7 +23,7 @@ namespace Celeste.NPCs
 
         private void setupSprite()
         {
-            Add(Sprite = GFX.SpriteBank.Create("chara_boss"));
+            Add(Sprite = DZModule.SpriteBank.Create("chara_boss"));
             Sprite.Play(Sprite.Has("scaredIdle") ? "scaredIdle" : "idle");
         }
 

@@ -171,7 +171,7 @@ public class CS10ArrivalDreemurrHouse : CutsceneEntity
             torielNpc = new Npc10Toriel(new EntityData(), player.Position + new Vector2(-80f, 0f));
             torielNpc.IdleAnim = "idle";
             torielNpc.MoveAnim = "walk";
-            torielNpc.Add(torielNpc.Sprite = GFX.SpriteBank.Create("toriel"));
+            torielNpc.Add(torielNpc.Sprite = DZModule.SpriteBank.Create("toriel"));
             Scene.Add(torielNpc);
         }
 

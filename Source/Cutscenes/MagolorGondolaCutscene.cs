@@ -11,7 +11,7 @@ namespace Celeste.NPCs
 		// Token: 0x06001381 RID: 4993 RVA: 0x0006A0C0 File Offset: 0x000682C0
 		public NPC06_Magolor(Vector2 position) : base(position)
 		{
-			base.Add(this.Sprite = GFX.SpriteBank.Create("magolor"));
+			base.Add(this.Sprite = DZModule.SpriteBank.Create("magolor"));
 			this.IdleAnim = "idle";
 			this.MoveAnim = "walk";
 			this.Visible = false;

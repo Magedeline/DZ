@@ -68,7 +68,7 @@ namespace Celeste.Entities.Chapters.Ch11
             Collider = new Hitbox(24f, 40f, -12f, -40f);
             
             // Setup sprites
-            Add(sprite = GFX.SpriteBank.Create("horse_hitch"));
+            Add(sprite = DZModule.SpriteBank.Create("horse_hitch"));
             sprite.Play(isUnlocked ? "active" : "inactive");
             
             Add(horseSprite = GFX.SpriteBank.Create("travel_horse"));

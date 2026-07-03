@@ -92,7 +92,7 @@ namespace Celeste.Entities.Chapters.Ch15
             Collider = new Hitbox(32f, 28f, -16f, -14f);
             
             // Setup sprite
-            Add(sprite = GFX.SpriteBank.Create("ash_phoenix"));
+            Add(sprite = DZModule.SpriteBank.Create("ash_phoenix"));
             sprite.Play("fly");
             
             // Add flame glow

@@ -65,7 +65,7 @@ namespace Celeste.Entities.Chapters.Ch13
             
             Collider = new Hitbox(20f, 20f, -10f, -10f);
             
-            Add(sprite = GFX.SpriteBank.Create("lava_bubble"));
+            Add(sprite = DZModule.SpriteBank.Create("lava_bubble"));
             sprite.Play("forming");
             
             Add(bubbleLight = new VertexLight(Color.Orange, 0.5f, 8, 24));

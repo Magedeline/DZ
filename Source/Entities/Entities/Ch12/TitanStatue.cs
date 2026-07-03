@@ -69,7 +69,7 @@ namespace Celeste.Entities.Chapters.Ch12
             
             Collider = new Hitbox(48f, 80f, -24f, -80f);
             
-            Add(sprite = GFX.SpriteBank.Create("titan_statue"));
+            Add(sprite = DZModule.SpriteBank.Create("titan_statue"));
             sprite.Play(isAnimated ? "active" : "inactive");
             
             Add(eyeLight = new VertexLight(Color.Red, isAnimated ? 0.6f : 0f, 8, 24));

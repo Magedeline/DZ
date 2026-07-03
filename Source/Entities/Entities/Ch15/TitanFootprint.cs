@@ -85,7 +85,7 @@ namespace Celeste.Entities.Chapters.Ch15
             Collider = new Hitbox(CrushWidth, 16f, -CrushWidth / 2f, -8f);
             
             // Setup sprite (the actual foot)
-            Add(sprite = GFX.SpriteBank.Create("titan_footprint"));
+            Add(sprite = DZModule.SpriteBank.Create("titan_footprint"));
             sprite.Position = new Vector2(0f, crushY);
             sprite.Play("idle");
         }

@@ -54,7 +54,7 @@ namespace Celeste.Entities.Chapters.Ch13
             
             Collider = new Hitbox(24f, 32f, -12f, -32f);
             
-            Add(sprite = GFX.SpriteBank.Create("obsidian_shard"));
+            Add(sprite = DZModule.SpriteBank.Create("obsidian_shard"));
             sprite.Play("intact");
             
             Add(shardLight = new VertexLight(Color.Purple, 0.4f, 8, 24));

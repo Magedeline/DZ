@@ -79,7 +79,7 @@ namespace Celeste.Entities.Chapters.Ch15
             Collider = new Hitbox(24f, 48f, -12f, -48f);
             
             // Setup sprite
-            Add(sprite = GFX.SpriteBank.Create("ceremony_flame"));
+            Add(sprite = DZModule.SpriteBank.Create("ceremony_flame"));
             sprite.Play(isSource ? "burn" : "dormant");
             
             // Add flame light

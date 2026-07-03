@@ -34,7 +34,7 @@ namespace Celeste.NPCs
 
         private void setupSprite()
         {
-            Add(sprite = GFX.SpriteBank.Create("ralsei"));
+            Add(sprite = DZModule.SpriteBank.Create("ralsei"));
             sprite.Play("idle");
             sprite.Color = isFreed ? Color.White : Color.Gray * 0.5f;
         }

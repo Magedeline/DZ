@@ -69,7 +69,7 @@ namespace Celeste.Entities.Chapters.Ch13
             
             Collider = new Hitbox(8f, 8f, -4f, -4f);
             
-            Add(sprite = GFX.SpriteBank.Create("heat_wave"));
+            Add(sprite = DZModule.SpriteBank.Create("heat_wave"));
             sprite.Play("dormant");
             
             Add(waveLight = new VertexLight(Color.Red, 0.3f, 12, 32));

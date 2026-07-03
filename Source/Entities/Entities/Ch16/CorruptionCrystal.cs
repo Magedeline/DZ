@@ -60,7 +60,7 @@ namespace Celeste.Entities.Chapters.Ch16
             
             Collider = new Hitbox(32f, 48f, -16f, -48f);
             
-            Add(sprite = GFX.SpriteBank.Create("corruption_crystal"));
+            Add(sprite = DZModule.SpriteBank.Create("corruption_crystal"));
             sprite.Play("dormant");
             
             Add(crystalLight = new VertexLight(corruptionColor, 0.4f, 12, 32));

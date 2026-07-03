@@ -55,7 +55,7 @@ namespace Celeste.Entities.Chapters.Ch16
             
             Collider = new Hitbox(48f, 64f, -24f, -64f);
             
-            Add(sprite = GFX.SpriteBank.Create("dark_mirror"));
+            Add(sprite = DZModule.SpriteBank.Create("dark_mirror"));
             sprite.Play("intact");
             
             Add(mirrorLight = new VertexLight(mirrorColor, 0.4f, 12, 32));

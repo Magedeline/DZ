@@ -160,7 +160,7 @@ namespace Celeste.Entities {
 
         private void CreateBossSprite()
         {
-            this.Add((Component)(this.Sprite = GFX.SpriteBank.Create("chara_boss")));
+            this.Add((Component)(this.Sprite = DZModule.SpriteBank.Create("chara_boss")));
             this.Sprite.OnFrameChange = (anim =>
             {
                 if (anim == "charaboss_idle" && this.Sprite.CurrentAnimationFrame == 18)

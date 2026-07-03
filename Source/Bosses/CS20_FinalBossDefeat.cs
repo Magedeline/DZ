@@ -53,7 +53,7 @@ namespace Celeste.Cutscenes
         private void setupSprites()
         {
             // Create sprites for the characters
-            madelineSprite = GFX.SpriteBank.Create("madeline");
+            madelineSprite = DZModule.SpriteBank.Create("madeline");
             madelineSprite.Play("sleep");
             Add(madelineSprite);
             

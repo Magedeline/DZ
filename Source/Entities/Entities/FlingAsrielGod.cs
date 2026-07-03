@@ -31,7 +31,7 @@ public class FlingAsrielGod : Entity
         : base(nodes[0])
     {
         Depth = -1;
-        Add(sprite = GFX.SpriteBank.Create("asrielgodboss"));
+        Add(sprite = DZModule.SpriteBank.Create("asrielgodboss"));
         sprite.Play("idle");
         sprite.Scale.X = -1f;
         sprite.Position = spriteOffset;

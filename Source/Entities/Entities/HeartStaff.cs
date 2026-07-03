@@ -135,7 +135,7 @@ namespace Celeste.Entities
             else
             {
                 // Fallback to generic staff sprite
-                sprite = GFX.SpriteBank.Create("heartstaff_red");
+                sprite = DZModule.SpriteBank.Create("heartstaff_red");
             }
 
             sprite.Play("idle");

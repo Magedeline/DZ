@@ -75,7 +75,7 @@ namespace Celeste.Entities.Chapters.Ch13
             
             Collider = new Hitbox(32f, 16f, -16f, -16f);
             
-            Add(sprite = GFX.SpriteBank.Create("flame_geyser"));
+            Add(sprite = DZModule.SpriteBank.Create("flame_geyser"));
             sprite.Play("idle");
             
             Add(geyserLight = new VertexLight(Color.Orange, 0.2f, 12, 32));

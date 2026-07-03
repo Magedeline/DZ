@@ -92,7 +92,7 @@ public class CharaBoost : Entity
         this.finalCh9Dialog = finalCh9Dialog;
         base.Collider = new Circle(16f);
         Add(new PlayerCollider(OnPlayer));
-        Add(sprite = GFX.SpriteBank.Create("charaBoost"));
+        Add(sprite = DZModule.SpriteBank.Create("charaboost"));
         Add(stretch = new Image(GFX.Game["objects/DZ/DZ/charaboost/stretch"]));
         stretch.Visible = false;
         stretch.CenterOrigin();

@@ -25,7 +25,7 @@ namespace Celeste.NPCs
 
         private void setupSprite()
         {
-            Add(sprite = GFX.SpriteBank.Create("toriel"));
+            Add(sprite = DZModule.SpriteBank.Create("toriel"));
             sprite.Play("idle");
         }
 

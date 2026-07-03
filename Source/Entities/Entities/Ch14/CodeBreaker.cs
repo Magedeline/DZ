@@ -77,7 +77,7 @@ namespace Celeste.Entities.Chapters.Ch14
             
             Collider = new Hitbox(48f, 40f, -24f, -40f);
             
-            Add(sprite = GFX.SpriteBank.Create("code_breaker"));
+            Add(sprite = DZModule.SpriteBank.Create("code_breaker"));
             sprite.Play("locked");
             
             Add(codeLight = new VertexLight(Color.Red, 0.4f, 8, 24));

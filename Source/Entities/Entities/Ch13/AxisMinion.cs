@@ -75,7 +75,7 @@ namespace Celeste.Entities.Chapters.Ch13
             
             Collider = new Hitbox(20f, 24f, -10f, -24f);
             
-            Add(sprite = GFX.SpriteBank.Create("axis_minion"));
+            Add(sprite = DZModule.SpriteBank.Create("axis_minion"));
             sprite.Play("idle");
             
             Add(stateMachine = new StateMachine());

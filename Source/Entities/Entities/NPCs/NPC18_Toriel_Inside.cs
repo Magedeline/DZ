@@ -25,7 +25,7 @@ namespace Celeste.NPCs
         public Npc18TorielInside(EntityData data, Vector2 offset)
             : base(data.Position + offset)
         {
-            Add(Sprite = GFX.SpriteBank.Create("toriel"));
+            Add(Sprite = DZModule.SpriteBank.Create("toriel"));
             Sprite.Play("idle");
             MoveAnim = "walk";
             Maxspeed = TorielMaxSpeed;

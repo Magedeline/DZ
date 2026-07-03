@@ -71,7 +71,7 @@ namespace Celeste.Entities.Chapters.Ch14
             pulses = new List<BarrierPulse>();
             barrierColor = Color.Orange;
             
-            Add(sprite = GFX.SpriteBank.Create("firewall_barrier"));
+            Add(sprite = DZModule.SpriteBank.Create("firewall_barrier"));
             sprite.Play(startActive ? "active" : "inactive");
             
             Add(barrierLight = new VertexLight(barrierColor, startActive ? 0.6f : 0f, 8, 24));

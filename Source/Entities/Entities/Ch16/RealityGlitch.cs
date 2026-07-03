@@ -61,7 +61,7 @@ namespace Celeste.Entities.Chapters.Ch16
             
             Collider = new Hitbox(width, height);
             
-            Add(sprite = GFX.SpriteBank.Create("reality_glitch"));
+            Add(sprite = DZModule.SpriteBank.Create("reality_glitch"));
             sprite.Play("minor");
         }
         #endregion

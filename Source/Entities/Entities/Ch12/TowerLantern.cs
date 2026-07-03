@@ -71,7 +71,7 @@ namespace Celeste.Entities.Chapters.Ch12
             
             Collider = new Hitbox(12f, 20f, -6f, -20f);
             
-            Add(sprite = GFX.SpriteBank.Create("tower_lantern"));
+            Add(sprite = DZModule.SpriteBank.Create("tower_lantern"));
             sprite.Play(startLit ? "lit" : "unlit");
             
             Add(lanternLight = new VertexLight(lightColor, startLit ? 0.8f : 0f, 8, (int)lightRadius));

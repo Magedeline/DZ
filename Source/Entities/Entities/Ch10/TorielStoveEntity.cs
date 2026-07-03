@@ -78,7 +78,7 @@ namespace Celeste.Entities.Chapters.Ch10
             Collider = new Hitbox(32f, 40f, -16f, -40f);
             
             // Setup sprite
-            Add(sprite = GFX.SpriteBank.Create("toriel_stove"));
+            Add(sprite = DZModule.SpriteBank.Create("toriel_stove"));
             sprite.Play("idle");
             
             // Pie sprite (shown when pie is ready)

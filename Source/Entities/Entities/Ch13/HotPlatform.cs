@@ -68,7 +68,7 @@ namespace Celeste.Entities.Chapters.Ch13
             baseColor = Color.Gray;
             hotColor = Color.Orange;
             
-            Add(sprite = GFX.SpriteBank.Create("hot_platform"));
+            Add(sprite = DZModule.SpriteBank.Create("hot_platform"));
             sprite.Play("cool");
             
             Add(platformLight = new VertexLight(baseColor, 0.2f, 8, 24));

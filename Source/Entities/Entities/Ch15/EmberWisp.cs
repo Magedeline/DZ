@@ -77,7 +77,7 @@ namespace Celeste.Entities.Chapters.Ch15
             Collider = new Hitbox(12f, 12f, -6f, -6f);
             
             // Setup sprite
-            Add(sprite = GFX.SpriteBank.Create("ember_wisp"));
+            Add(sprite = DZModule.SpriteBank.Create("ember_wisp"));
             sprite.Play("idle");
             
             // Add fire glow

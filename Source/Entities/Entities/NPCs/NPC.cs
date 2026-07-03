@@ -450,7 +450,7 @@ namespace Celeste.Entities
             {
                 Remove(Sprite);
             }
-            Add(Sprite = GFX.SpriteBank.Create("chara"));
+            Add(Sprite = DZModule.SpriteBank.Create("chara"));
             Sprite.CenterOrigin();
         }
     }
@@ -465,7 +465,7 @@ namespace Celeste.Entities
             {
                 Remove(Sprite);
             }
-            Add(Sprite = GFX.SpriteBank.Create("kirby"));
+            Add(Sprite = DZModule.SpriteBank.Create("kirby"));
             Sprite.CenterOrigin();
         }
     }
@@ -480,7 +480,7 @@ namespace Celeste.Entities
             {
                 Remove(Sprite);
             }
-            Add(Sprite = GFX.SpriteBank.Create("ralsei"));
+            Add(Sprite = DZModule.SpriteBank.Create("ralsei"));
             Sprite.CenterOrigin();
         }
     }
@@ -570,7 +570,7 @@ namespace Celeste.Entities
             {
                 Remove(Sprite);
             }
-            Add(Sprite = GFX.SpriteBank.Create("axis"));
+            Add(Sprite = DZModule.SpriteBank.Create("axis"));
             Sprite.CenterOrigin();
         }
     }
@@ -651,7 +651,7 @@ namespace Celeste.Entities
             {
                 Remove(Sprite);
             }
-            Add(Sprite = GFX.SpriteBank.Create("magolor"));
+            Add(Sprite = DZModule.SpriteBank.Create("magolor"));
             Sprite.CenterOrigin();
         }
     }
@@ -682,7 +682,7 @@ namespace Celeste.Entities
             {
                 Remove(Sprite);
             }
-            Add(Sprite = GFX.SpriteBank.Create("magolor"));
+            Add(Sprite = DZModule.SpriteBank.Create("magolor"));
             Sprite.CenterOrigin();
         }
     }
@@ -697,7 +697,7 @@ namespace Celeste.Entities
             {
                 Remove(Sprite);
             }
-            Add(Sprite = GFX.SpriteBank.Create("magolor"));
+            Add(Sprite = DZModule.SpriteBank.Create("magolor"));
             Sprite.CenterOrigin();
         }
         protected override void OnTalk(global::Celeste.Player player)
@@ -875,7 +875,7 @@ namespace Celeste.Entities
             {
                 Remove(Sprite);
             }
-            Add(Sprite = GFX.SpriteBank.Create("magolor"));
+            Add(Sprite = DZModule.SpriteBank.Create("magolor"));
             Sprite.CenterOrigin();
         }
         protected override void OnTalk(global::Celeste.Player player)
@@ -914,7 +914,7 @@ namespace Celeste.Entities
             {
                 Remove(Sprite);
             }
-            Add(Sprite = GFX.SpriteBank.Create("chara"));
+            Add(Sprite = DZModule.SpriteBank.Create("chara"));
             Sprite.CenterOrigin();
         }
         protected override void OnTalk(global::Celeste.Player player)
@@ -952,7 +952,7 @@ namespace Celeste.Entities
             {
                 Remove(Sprite);
             }
-            Add(Sprite = GFX.SpriteBank.Create("chara"));
+            Add(Sprite = DZModule.SpriteBank.Create("chara"));
             Sprite.CenterOrigin();
         }
         protected override void OnTalk(global::Celeste.Player player)
@@ -1022,7 +1022,7 @@ namespace Celeste.Entities
             {
                 Remove(Sprite);
             }
-            Add(Sprite = GFX.SpriteBank.Create("magolor"));
+            Add(Sprite = DZModule.SpriteBank.Create("magolor"));
             Sprite.CenterOrigin();
         }
         protected override void OnTalk(global::Celeste.Player player)
@@ -1066,7 +1066,7 @@ namespace Celeste.Entities
             {
                 Remove(Sprite);
             }
-            Add(Sprite = GFX.SpriteBank.Create("kirby"));
+            Add(Sprite = DZModule.SpriteBank.Create("kirby"));
             Sprite.CenterOrigin();
         }
         protected override void OnTalk(global::Celeste.Player player)
@@ -1104,7 +1104,7 @@ namespace Celeste.Entities
             {
                 Remove(Sprite);
             }
-            Add(Sprite = GFX.SpriteBank.Create("ralsei"));
+            Add(Sprite = DZModule.SpriteBank.Create("ralsei"));
             Sprite.CenterOrigin();
         }
         protected override void OnTalk(global::Celeste.Player player)
@@ -1142,7 +1142,7 @@ namespace Celeste.Entities
             {
                 Remove(Sprite);
             }
-            Add(Sprite = GFX.SpriteBank.Create("toriel"));
+            Add(Sprite = DZModule.SpriteBank.Create("toriel"));
             Sprite.CenterOrigin();
         }
         protected override void OnTalk(global::Celeste.Player player)
@@ -1161,7 +1161,7 @@ namespace Celeste.Entities
             {
                 Remove(Sprite);
             }
-            Add(Sprite = GFX.SpriteBank.Create("toriel"));
+            Add(Sprite = DZModule.SpriteBank.Create("toriel"));
             Sprite.CenterOrigin();
         }
         
@@ -1177,7 +1177,7 @@ namespace Celeste.Entities
             {
                 Remove(Sprite);
             }
-            Add(Sprite = GFX.SpriteBank.Create("toriel"));
+            Add(Sprite = DZModule.SpriteBank.Create("toriel"));
             Sprite.CenterOrigin();
         }
     }
@@ -1192,7 +1192,7 @@ namespace Celeste.Entities
             {
                 Remove(Sprite);
             }
-            Add(Sprite = GFX.SpriteBank.Create("gravestone"));
+            Add(Sprite = DZModule.SpriteBank.Create("gravestone"));
             Sprite.CenterOrigin();
         }
         protected override void OnTalk(global::Celeste.Player player)
@@ -1231,7 +1231,7 @@ namespace Celeste.Entities
             {
                 Remove(Sprite);
             }
-            Add(Sprite = GFX.SpriteBank.Create("asriel"));
+            Add(Sprite = DZModule.SpriteBank.Create("asriel"));
             Sprite.CenterOrigin();
         }
 

@@ -87,7 +87,7 @@ namespace Celeste.Entities.Chapters.Ch10
             Collider = new Hitbox(32f, 8f, -16f, -8f);
             
             // Setup sprite
-            Add(sprite = GFX.SpriteBank.Create("ruins_puzzle_switch"));
+            Add(sprite = DZModule.SpriteBank.Create("ruins_puzzle_switch"));
             sprite.Play("inactive");
             
             // Add subtle glow

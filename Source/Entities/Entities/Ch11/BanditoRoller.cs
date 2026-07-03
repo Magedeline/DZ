@@ -81,7 +81,7 @@ namespace Celeste.Entities.Chapters.Ch11
             Collider = new Hitbox(24f, 24f, -12f, -12f);
             
             // Setup sprite
-            Add(sprite = GFX.SpriteBank.Create("bandito_roller"));
+            Add(sprite = DZModule.SpriteBank.Create("bandito_roller"));
             sprite.Play("idle");
             
             // Setup state machine

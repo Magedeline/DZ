@@ -258,7 +258,7 @@ public class CS10IndoorIntro : CutsceneEntity
             torielNpc.IdleAnim = "idle";
             torielNpc.MoveAnim = "walk";
             torielNpc.Maxspeed = 25f;
-            torielNpc.Add(torielNpc.Sprite = GFX.SpriteBank.Create("toriel"));
+            torielNpc.Add(torielNpc.Sprite = DZModule.SpriteBank.Create("toriel"));
             Scene.Add(torielNpc);
         }
 

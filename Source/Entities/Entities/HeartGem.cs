@@ -397,7 +397,7 @@ foreach (Follower follower in player.Leader.Followers) {
    foreach (InvisibleBarrier entity in this.walls) {
                 Scene.Add(entity);
  }
-      Add(this.white = GFX.SpriteBank.Create("heartgem4")); // Use grey heartgem for the white flash effect
+      Add(this.white = DZModule.SpriteBank.Create("heartgem4")); // Use grey heartgem for the white flash effect
             Depth = -2000000;
             yield return null;
             CelesteGame.Freeze(0.2f);

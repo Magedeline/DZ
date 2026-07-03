@@ -66,7 +66,7 @@ namespace Celeste.Entities.Chapters.Ch13
             
             Collider = new Hitbox(32f, 32f, -16f, -16f);
             
-            Add(sprite = GFX.SpriteBank.Create("volcanic_rock"));
+            Add(sprite = DZModule.SpriteBank.Create("volcanic_rock"));
             sprite.Play("waiting");
             
             Add(rockLight = new VertexLight(Color.Brown, 0.2f, 8, 24));

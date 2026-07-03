@@ -97,7 +97,7 @@ public class WarpStar : Entity
         this.singleUse = singleUse;
         base.Collider = new Hitbox(20f, 20f, -10f, -10f);
         Add(new PlayerCollider(OnPlayer));
-        Add(sprite = GFX.SpriteBank.Create("warpstars"));
+        Add(sprite = DZModule.SpriteBank.Create("warpstars"));
         Add(wiggler = Wiggler.Create(1f, 4f, (float v) =>
         {
             sprite.Scale = Vector2.One * (1f + v * 0.2f);

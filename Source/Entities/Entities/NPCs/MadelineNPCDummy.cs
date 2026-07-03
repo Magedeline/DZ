@@ -76,7 +76,7 @@ namespace Celeste.Entities
         {
             try
             {
-                Sprite = GFX.SpriteBank.Create("madeline");
+                Sprite = DZModule.SpriteBank.Create("madeline");
                 Sprite.Play("idle");
                 Sprite.Scale.X = -1f;
                 Add(Sprite);
@@ -168,7 +168,7 @@ namespace Celeste.Entities
             {
                 try
                 {
-                    Sprite = GFX.SpriteBank.Create("madeline");
+                    Sprite = DZModule.SpriteBank.Create("madeline");
                     Sprite.Play("idle");
                     Add(Sprite);
                     isInitialized = true;

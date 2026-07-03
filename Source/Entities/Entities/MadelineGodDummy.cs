@@ -119,13 +119,13 @@ namespace Celeste.Entities
         {
             try
             {
-                Sprite = GFX.SpriteBank.Create("madelinegod");
+                Sprite = DZModule.SpriteBank.Create("madelinegod");
             }
             catch
             {
                 try
                 {
-                    Sprite = GFX.SpriteBank.Create("madelinegod");
+                    Sprite = DZModule.SpriteBank.Create("madelinegod");
                 }
                 catch
                 {
@@ -254,7 +254,7 @@ namespace Celeste.Entities
             {
                 try
                 {
-                    Sprite = GFX.SpriteBank.Create("madeline");
+                    Sprite = DZModule.SpriteBank.Create("madeline");
                     Sprite.Play("idle");
                     Add(Sprite);
                     isInitialized = true;

@@ -541,7 +541,7 @@ namespace Celeste.Entities
             {
                 try
                 {
-                    this.Sprite = GFX.SpriteBank.Create("asrielgodboss");
+                    this.Sprite = DZModule.SpriteBank.Create("asrielgodboss");
                     if (this.Sprite != null)
                     {
                         this.Sprite.Visible = true;
@@ -3649,7 +3649,7 @@ namespace Celeste.Entities
             // Use spr_firebullet sprite from asrielgodboss sprite bank
             try
             {
-                sprite = GFX.SpriteBank.Create("asrielgodboss");
+                sprite = DZModule.SpriteBank.Create("asrielgodboss");
                 sprite.Play("firebullet");
                 sprite.Scale = Vector2.One * 1.2f;
                 Add(sprite);

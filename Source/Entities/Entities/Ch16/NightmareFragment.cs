@@ -59,7 +59,7 @@ namespace Celeste.Entities.Chapters.Ch16
             
             Collider = new Hitbox(20f, 20f, -10f, -10f);
             
-            Add(sprite = GFX.SpriteBank.Create("nightmare_fragment"));
+            Add(sprite = DZModule.SpriteBank.Create("nightmare_fragment"));
             sprite.Play("hidden");
             sprite.Visible = false;
             

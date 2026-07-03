@@ -78,7 +78,7 @@ namespace Celeste.Entities.Chapters.Ch12
             stoneParticles = new List<StoneParticle>();
             
             Collider = new Hitbox(28f, 24f, -14f, -12f);
-            Add(sprite = GFX.SpriteBank.Create("tower_gargoyle"));
+            Add(sprite = DZModule.SpriteBank.Create("tower_gargoyle"));
             sprite.Play("dormant");
             
             Add(eyeGlow = new VertexLight(Color.Red, 0f, 4, 12));

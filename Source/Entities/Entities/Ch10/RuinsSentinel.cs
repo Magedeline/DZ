@@ -82,7 +82,7 @@ namespace Celeste.Entities.Chapters.Ch10
             Collider = new Hitbox(24f, 32f, -12f, -32f);
             
             // Setup sprite
-            Add(sprite = GFX.SpriteBank.Create("ruins_sentinel"));
+            Add(sprite = DZModule.SpriteBank.Create("ruins_sentinel"));
             
             // Setup state machine
             Add(stateMachine = new StateMachine());

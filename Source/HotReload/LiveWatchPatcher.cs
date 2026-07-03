@@ -5,8 +5,6 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Monocle;
-using MonoMod.RuntimeDetour;
-using System.Reflection;
 
 namespace Celeste.Mod.DZ.HotReload
 {
@@ -20,33 +18,22 @@ namespace Celeste.Mod.DZ.HotReload
         private static string _lastError = null;
         private static DateTime _errorTimestamp;
         private static List<string> _errorHistory = new List<string>();
-        private static Hook _engineUpdateHook;
-        private static Hook _levelUpdateHook;
         private static bool _wasF9Pressed = false;
         private static bool _wasF7Pressed = false;
+
+        // Cached overlay/scene so we don't scan the entity list every frame while frozen.
+        private static Scene _overlayScene;
+        private static LiveWatchOverlay _cachedOverlay;
         
         public static readonly string LogPath = Path.Combine(
             Everest.PathGame, "LiveWatch_CrashLog.txt");
 
         public static void Load()
         {
-            // Hook Engine.Update - the root of all updates
-            var engineUpdate = typeof(Engine).GetMethod("Update", 
-                BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-            if (engineUpdate != null)
-            {
-                _engineUpdateHook = new Hook(engineUpdate, OnEngineUpdate);
-            }
-
-            // Hook Level.Update - gameplay updates
-            var levelUpdate = typeof(Level).GetMethod("Update", 
-                BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-            if (levelUpdate != null)
-            {
-                _levelUpdateHook = new Hook(levelUpdate, OnLevelUpdate);
-            }
-
-            // Hook Scene.Update for additional coverage
+            // Hook core update loops. On.* hooks are cheaper than reflection-based Hook
+            // and still wrap the original method so exceptions propagate into our try/catch.
+            On.Monocle.Engine.Update += OnEngineUpdate;
+            On.Celeste.Level.Update += OnLevelUpdate;
             On.Monocle.Scene.Update += OnSceneUpdate;
 
             Logger.Log(LogLevel.Info, "DZ", "[LiveWatch] Patcher installed");
@@ -54,12 +41,12 @@ namespace Celeste.Mod.DZ.HotReload
 
         public static void Unload()
         {
-            _engineUpdateHook?.Dispose();
-            _levelUpdateHook?.Dispose();
+            On.Monocle.Engine.Update -= OnEngineUpdate;
+            On.Celeste.Level.Update -= OnLevelUpdate;
             On.Monocle.Scene.Update -= OnSceneUpdate;
         }
 
-        private static void OnEngineUpdate(Action<Engine, GameTime> orig, Engine self, GameTime gameTime)
+        private static void OnEngineUpdate(On.Monocle.Engine.orig_Update orig, Engine self, GameTime gameTime)
         {
             // Check for freeze/resume input at the start
             CheckInput();
@@ -81,7 +68,7 @@ namespace Celeste.Mod.DZ.HotReload
             }
         }
 
-        private static void OnLevelUpdate(Action<Level> orig, Level self)
+        private static void OnLevelUpdate(On.Celeste.Level.orig_Update orig, Level self)
         {
             if (_isFrozen)
             {
@@ -155,17 +142,26 @@ namespace Celeste.Mod.DZ.HotReload
 
         private static void UpdateWhileFrozen()
         {
-            // Keep the game rendering but frozen
-            // Input is already checked in CheckInput()
-            
-            // Draw error overlay will be handled by the scene's render
-            if (Engine.Scene != null)
+            // Keep the game rendering but frozen.
+            // Input is already checked in CheckInput(). The overlay is only looked up
+            // when the scene changes or the cached overlay has been removed, avoiding
+            // a full entity-list scan every single frame while the game is paused.
+            var scene = Engine.Scene;
+            if (scene == null)
             {
-                // Ensure we have a frozen overlay
-                var existing = Engine.Scene.Entities.FindFirst<LiveWatchOverlay>();
-                if (existing == null)
+                _overlayScene = null;
+                _cachedOverlay = null;
+                return;
+            }
+
+            if (scene != _overlayScene || _cachedOverlay?.Scene != scene)
+            {
+                _overlayScene = scene;
+                _cachedOverlay = scene.Entities.FindFirst<LiveWatchOverlay>();
+                if (_cachedOverlay == null)
                 {
-                    Engine.Scene.Add(new LiveWatchOverlay(_lastError, _errorTimestamp));
+                    _cachedOverlay = new LiveWatchOverlay(_lastError, _errorTimestamp);
+                    scene.Add(_cachedOverlay);
                 }
             }
         }
@@ -194,14 +190,14 @@ namespace Celeste.Mod.DZ.HotReload
             Logger.Log(LogLevel.Error, "DZ", "Press F9 to resume");
             Logger.Log(LogLevel.Error, "DZ", $"Full report: {LogPath}");
 
-            // Add overlay to current scene
-            if (Engine.Scene != null)
+            // Add overlay to current scene (reusing the cached overlay slot).
+            var scene = Engine.Scene;
+            if (scene != null)
             {
-                // Remove old overlays
-                var old = Engine.Scene.Entities.FindFirst<LiveWatchOverlay>();
-                old?.RemoveSelf();
-                
-                Engine.Scene.Add(new LiveWatchOverlay(_lastError, _errorTimestamp));
+                _overlayScene = scene;
+                _cachedOverlay?.RemoveSelf();
+                _cachedOverlay = new LiveWatchOverlay(_lastError, _errorTimestamp);
+                scene.Add(_cachedOverlay);
             }
 
             // Play error sound if audio is working
@@ -217,10 +213,11 @@ namespace Celeste.Mod.DZ.HotReload
             if (!_isFrozen) return;
 
             _isFrozen = false;
-            
-            // Remove overlay
-            var overlay = Engine.Scene?.Entities.FindFirst<LiveWatchOverlay>();
-            overlay?.RemoveSelf();
+
+            // Remove overlay using the cached reference instead of scanning the scene.
+            _cachedOverlay?.RemoveSelf();
+            _cachedOverlay = null;
+            _overlayScene = null;
 
             Logger.Log(LogLevel.Info, "DZ", "[LiveWatch] Game resumed");
             

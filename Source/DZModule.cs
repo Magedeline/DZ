@@ -16,6 +16,10 @@ public class DZModule : EverestModule {
     private static SpriteBank _spriteBank;
     public static SpriteBank SpriteBank => _spriteBank ??= new SpriteBank(GFX.Game, "DZ/Sprites");
 
+    // Tracks the last scene that had the global controller entities added.
+    // Avoids repeating the (potentially expensive) FindFirst scan every frame.
+    private static Scene _controllersScene;
+
     public static ParticleType P_StarExplosion => new ParticleType();
 
     public override Type SessionType => typeof(DZModuleSession);
@@ -181,6 +185,7 @@ public class DZModule : EverestModule {
 
         On.Monocle.Engine.Update -= OnEngineUpdate;
         _spriteBank = null;
+        _controllersScene = null;
 
         Logger.Log(LogLevel.Info, nameof(DZModule), "DZ mod unloaded");
     }
@@ -189,10 +194,12 @@ public class DZModule : EverestModule {
     {
         orig(self, gameTime);
 
-        // Ensure HotReloadController exists in the current scene
         var scene = Monocle.Engine.Scene;
-        if (scene != null)
+        if (scene != null && scene != _controllersScene)
         {
+            _controllersScene = scene;
+
+            // Only scan the entity list once per scene transition for the global controllers.
             if (scene.Entities.FindFirst<HotReloadController>() == null)
             {
                 scene.Add(new HotReloadController());
@@ -213,10 +220,12 @@ public class DZModule : EverestModule {
             }
         }
 
-        // Ensure LiveWatchOverlay exists if frozen
-        if (Monocle.Engine.Scene != null && LiveWatchPatcher.IsFrozen && Monocle.Engine.Scene.Entities.FindFirst<LiveWatchOverlay>() == null)
+        // Ensure LiveWatchOverlay exists if frozen. This is a cheap fallback that only
+        // runs while the game is already paused by LiveWatchPatcher, so the extra
+        // FindFirst is negligible compared to the constant per-frame scan it replaces.
+        if (scene != null && LiveWatchPatcher.IsFrozen && scene.Entities.FindFirst<LiveWatchOverlay>() == null)
         {
-            Monocle.Engine.Scene.Add(new LiveWatchOverlay(LiveWatchPatcher.LastError, DateTime.Now));
+            scene.Add(new LiveWatchOverlay(LiveWatchPatcher.LastError, DateTime.Now));
         }
     }
 

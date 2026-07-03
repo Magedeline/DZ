@@ -543,6 +543,22 @@
     <Loop id="spin" path="" frames="0*10,1-13" delay="0.1"/>
     <Loop id="fastspin" path="" delay="0.1"/>
   </heartgem3>
+
+  <heartgem4 path="collectables/DZ/heartGem/4/">
+    <Center />
+
+    <Loop id="idle" path="white" frames="0" />
+    <Loop id="spin" path="white" frames="0*10,1-13" delay="0.1"/>
+    <Loop id="fastspin" path="white" delay="0.1"/>
+  </heartgem4>
+
+  <heartgem5 path="collectables/DZ/heartGem/">
+    <Center />
+
+    <Loop id="idle" path="ghost" frames="0" />
+    <Loop id="spin" path="ghost" frames="0*10,1-13" delay="0.1"/>
+    <Loop id="fastspin" path="ghost" delay="0.1"/>
+  </heartgem5>
 	
 	<heartGemWhite path="collectables/heartGem/">
 		<Center />

@@ -3090,14 +3090,14 @@
       
     </asriel_angelofdeath>
 
-  <DZDZ_CHara path="characters/DZ/charaBoss/" start="pretendDead">
+  <chara path="characters/DZ/charaBoss/" start="pretendDead">
       <Justify x="0.5" y="0.64" />
       <Loop id="idle" path="idle" delay="0.06" frames="0-8"/>
       <Loop id="angry" path="angry" delay="0.06" frames="0-4"/>
       <Loop id="pretendDead" path="pretendDead" delay="0.06" frames="0-1"/>
       <Loop id="laugh" path="laugh" delay="0.06" frames="0-4"/>
       <Anim id="fallSlow" path="fallSlow" delay="0.08" frames="0-10"/>
-  </DZDZ_CHara>
+  </chara>
 
   <chara_boss path="characters/DZ/charaBoss/" start="charaboss_idle">
       <Justify x="0.5" y=".64" />

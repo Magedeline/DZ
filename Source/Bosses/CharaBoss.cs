@@ -117,7 +117,7 @@ namespace Celeste.Entities {
             this.level = this.SceneAs<Level>();
             if (this.patternIndex == 0)
             {
-                this.NormalSprite = GFX.SpriteBank.Create("DZ_CHara");
+                this.NormalSprite = DZModule.SpriteBank.Create("chara_boss");
                 this.NormalSprite.Scale.X = -1f;
                 if (this.NormalSprite.Has("angry"))
                     this.NormalSprite.Play("angry");

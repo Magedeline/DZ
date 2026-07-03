@@ -819,7 +819,7 @@ namespace Celeste.Cutscenes
 
         private Entity SpawnCreditsChara(Vector2 position)
         {
-            Sprite sprite = GFX.SpriteBank.Create("DZ_CHara");
+            Sprite sprite = DZModule.SpriteBank.Create("chara");
             if (sprite.Has("idle"))
                 sprite.Play("idle", false, false);
             sprite.CenterOrigin();

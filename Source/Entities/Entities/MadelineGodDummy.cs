@@ -261,7 +261,17 @@ namespace Celeste.Entities
                 }
                 catch
                 {
-                    Logger.Log(LogLevel.Error, "MadelineGodDummy", "Critical failure: Unable to create minimal sprite");
+                    try
+                    {
+                        Sprite = GFX.SpriteBank.Create("player");
+                        Sprite.Play("idle");
+                        Add(Sprite);
+                        isInitialized = true;
+                    }
+                    catch
+                    {
+                        Logger.Log(LogLevel.Error, "MadelineGodDummy", "Critical failure: Unable to create minimal sprite");
+                    }
                 }
             }
         }

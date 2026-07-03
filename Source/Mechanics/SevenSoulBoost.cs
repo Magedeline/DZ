@@ -408,7 +408,10 @@ namespace Celeste.Entities.SoulBoosts
             MadelineGodDummy madelinegod = new MadelineGodDummy(Position);
             Scene.Add(madelinegod);
             player.Facing = (Facings)(-num);
-            madelinegod.Sprite.Scale.X = num;
+            if (madelinegod.Sprite != null)
+            {
+                madelinegod.Sprite.Scale.X = num;
+            }
             Vector2 playerFrom = player.Position;
             Vector2 playerTo = Position + new Vector2(num * 4, -3f);
             Vector2 madelinegodFrom = madelinegod.Position;
@@ -437,7 +440,7 @@ namespace Celeste.Entities.SoulBoosts
             {
                 Audio.Play("event:/char/badeline/booster_throw", Position);
             }
-            if (madelinegod.Sprite.Has("boost"))
+            if (madelinegod.Sprite != null && madelinegod.Sprite.Has("boost"))
             {
                 madelinegod.Sprite.Play("boost");
             }

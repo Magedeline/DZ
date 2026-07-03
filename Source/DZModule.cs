@@ -71,6 +71,7 @@ public class DZModule : EverestModule {
         // Note: OuiChapterSelectCustom is a superset of OuiChapterSelectHooks;
         // only one is registered to avoid double-wrapping vanilla Enter/Update.
         OuiChapterSelectCustom.Load();
+        LevelSelectOuiHook.Load();
         ChapterProgressDisplay.Load();
         ChapterProgressionManager.Load();
         CosmicChapterPanelHook.Load();
@@ -143,6 +144,7 @@ public class DZModule : EverestModule {
 
         // OUI and chapter-select systems
         OuiChapterSelectCustom.Unload();
+        LevelSelectOuiHook.Unload();
         ChapterProgressDisplay.Unload();
         ChapterProgressionManager.Unload();
         CosmicChapterPanelHook.Unload();

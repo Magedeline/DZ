@@ -33,7 +33,7 @@ namespace Celeste.NPCs
 
         private void setupSprite()
         {
-            Add(sprite = GFX.SpriteBank.Create("DZ_CHara"));
+            Add(sprite = DZModule.SpriteBank.Create("chara"));
             sprite.Play("idle");
             sprite.Color = Color.White;
         }

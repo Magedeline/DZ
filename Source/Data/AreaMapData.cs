@@ -171,7 +171,7 @@ public static class AreaMapData
             catch (Exception ex)
             {
                 Logger.Log(LogLevel.Warn, "DZ",
-                    $"Skipped hardcoded chapter data for '{chapter?.SID ?? "<null>"}' due to {ex.GetType().Name}: {ex.Message}");
+                    $"Skipped hardcoded chapter data for '{chapter?.SID ?? "<null>"}' due to {ex.GetType().Name}: {ex.Message}\n{ex.StackTrace}");
             }
         }
     }
@@ -460,24 +460,24 @@ public static class AreaMapData
 
     private static void ApplyHardcodedRuntimeData(AreaData area, ChapterDef chapter)
     {
-        Logger.Log(LogLevel.Debug, "DZ",
+        Logger.Log(LogLevel.Info, "DZ",
             $"ApplyHardcodedRuntimeData: Chapter {chapter.Number} ({chapter.Name}), SID: {area.SID}");
 
         area.Name = chapter.Name;
+        Logger.Log(LogLevel.Info, "DZ", "  -> past Name");
         area.Icon = ResolveChapterIconPath(chapter);
+        Logger.Log(LogLevel.Info, "DZ", "  -> past Icon");
         area.Interlude_Safe = chapter.IsInterlude;
+        Logger.Log(LogLevel.Info, "DZ", "  -> past Interlude_Safe");
 
         // Build and apply a vanilla MapMeta so the Everest meta pipeline is
         // exercised for overworld cameras, fog, audio state, and mode properties.
         // This makes DZ chapters behave identically to vanilla/Everest-modded chapters.
         MapMeta meta = BuildMapMeta(chapter, area);
-
-        Logger.Log(LogLevel.Debug, "DZ",
-            $"  Music Events: {(chapter.MusicEvents?.Length > 0 ? string.Join(", ", chapter.MusicEvents) : "none")}");
-        Logger.Log(LogLevel.Debug, "DZ",
-            $"  Ambience Events: {(chapter.AmbienceEvents?.Length > 0 ? string.Join(", ", chapter.AmbienceEvents) : "none")}");
+        Logger.Log(LogLevel.Info, "DZ", "  -> past BuildMapMeta");
 
         meta.ApplyTo(area);
+        Logger.Log(LogLevel.Info, "DZ", "  -> past meta.ApplyTo");
 
         // Hard-override mountain cameras and state after ApplyTo so our code-defined
         // positions always win over anything already stored in area.Meta at load time.

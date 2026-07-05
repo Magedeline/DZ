@@ -1389,6 +1389,7 @@
 {41190772-80f6-483f-83ab-f6d369270e7d} event:/pusheen/music/arena/battle_7
 {84efc353-0d25-41b7-93fa-412ad6cb5631} event:/pusheen/music/arena/battle_8
 {d2dc61a8-f7f1-45db-b3e3-bae0fff90ee5} event:/pusheen/music/arena/battle_9
+{1a6adad8-9c08-4b08-bdd0-661720800a04} event:/pusheen/music/arena/battle_of_cuteness
 {7481cff6-31f5-4f9c-9851-d156f374ca59} event:/pusheen/music/bside/01_metro
 {9dfba1af-5662-4044-9a2e-73873c04e709} event:/pusheen/music/bside/02_shadow
 {fd3e3a17-0aee-4e29-8694-a91c7ec6ddb9} event:/pusheen/music/bside/03_arrival
@@ -1674,11 +1675,14 @@
 {69c5180c-2261-49c0-a3af-141782f51783} event:/pusheen/music/sub/ParadeDay
 {0df8db99-2cf6-4420-ad78-6d8ec07c1caf} event:/pusheen/music/sub/RaiseUp
 {9c262320-6291-47e3-9adb-9d6bb12e2c5e} event:/pusheen/music/sub/Ripple_Field
+{cfaca675-d699-40dc-b876-fc7c955f1186} event:/pusheen/music/sub/RunningSky
 {a24ef8c4-19c2-4130-9fae-2034e4db34cf} event:/pusheen/music/sub/Sand_Canyon
 {59ff9943-41fa-4548-ad51-1ee4369b53cc} event:/pusheen/music/sub/ShinyCrystal
 {6a46e816-eeac-40ed-843e-92037327260f} event:/pusheen/music/sub/SteelBeat
+{439026a7-f640-4346-a7b6-cc7b40dc8a35} event:/pusheen/music/sub/SunsetofSevenSuns
 {30dca044-6e01-43e3-89b7-a9083de50317} event:/pusheen/music/sub/TidyThingsUp
 {929f1d24-af19-4418-8718-49fe49fe8d95} event:/pusheen/music/sub/WhiteOfficeMarch
+{56fa11e9-307c-414d-81e8-da50f475183c} event:/pusheen/music/sub/SunsetofSevenSuns_BC
 {3fa335ef-57f4-4d35-bf6a-5abc777d7450} event:/pusheen/new_content/char/bosses/asriel/big_bullet_fire
 {f29d3f1b-3e5f-4c48-9bae-f4d5dde61453} event:/pusheen/new_content/char/bosses/asriel/big_laser
 {da62bd78-2db0-4eae-811f-81da4f3874b3} event:/pusheen/new_content/char/bosses/asriel/big_star

@@ -18,7 +18,7 @@ namespace DZ
         {
             base.Added(presentation);
             List<MTexture> textures = Presentation.Gfx.GetAtlasSubtextures("playback/platforms");
-            tutorial = new WaveFazePlaybackTutorial("wavefazingppt", new Vector2(-189f, 0.0f), new Vector2(-189f, 0.0f), new Vector2(126f, 0.0f), new Vector2(1f, 1f), new Vector2(1f, 1f));
+            tutorial = new WaveFazePlaybackTutorial("DZ/wavefazingppt", new Vector2(-189f, 0.0f), new Vector2(-189f, 0.0f), new Vector2(126f, 0.0f), new Vector2(1f, 1f), new Vector2(1f, 1f));
             tutorial.OnRender = () => {
                 if (textures.Count > 0)
                     textures[(int)(time % textures.Count)].DrawCentered(Vector2.Zero);

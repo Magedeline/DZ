@@ -23,7 +23,7 @@ namespace Celeste.NPCs
 
         private void setupSprite()
         {
-            Add(sprite = DZModule.SpriteBank.Create("magolor"));
+            Add(sprite = GFX.SpriteBank.Create("magolor"));
             sprite.Play("run");
             sprite.Play("idle");
         }

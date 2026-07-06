@@ -90,7 +90,7 @@ namespace Celeste.Entities.Chapters.Ch11
             Collider = new Hitbox(32f, 32f, -16f, -16f);
             
             // Setup sprite
-            Add(sprite = DZModule.SpriteBank.Create("revolver_target"));
+            Add(sprite = GFX.SpriteBank.Create("revolver_target"));
             sprite.Play("ready");
             
             // Add glow

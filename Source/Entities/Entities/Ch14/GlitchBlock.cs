@@ -78,7 +78,7 @@ namespace Celeste.Entities.Chapters.Ch14
             patternTimes = new List<float>();
             glitchColor = Color.Cyan;
             
-            Add(sprite = DZModule.SpriteBank.Create("glitch_block"));
+            Add(sprite = GFX.SpriteBank.Create("glitch_block"));
             sprite.Play("stable");
         }
         #endregion

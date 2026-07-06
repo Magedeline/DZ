@@ -34,7 +34,7 @@ namespace DZ
             base.Hitbox.Position = new Vector2(-41f, -59f);
             
             // Try to load back sprite with fallback
-            string backPath = "objects/DZ/DZ/wavedashtutorial/building_back";
+            string backPath = "objects/DZ/wavedashtutorial/building_back";
             if (GFX.Game.Has(backPath))
             {
                 Add(backSprite = new Image(GFX.Game[backPath]));
@@ -47,7 +47,7 @@ namespace DZ
             }
             
             // Try to load noise sprite with fallback
-            string noisePath = "objects/DZ/DZ/wavedashtutorial/noise";
+            string noisePath = "objects/DZ/wavedashtutorial/noise";
             if (GFX.Game.Has(noisePath + "00"))
             {
                 Add(noise = new Sprite(GFX.Game, noisePath));
@@ -64,7 +64,7 @@ namespace DZ
             }
             
             // Try to load front left sprite with fallback
-            string frontLeftPath = "objects/DZ/DZ/wavedashtutorial/building_front_left";
+            string frontLeftPath = "objects/DZ/wavedashtutorial/building_front_left";
             if (GFX.Game.Has(frontLeftPath))
             {
                 Add(frontLeftSprite = new Image(GFX.Game[frontLeftPath]));
@@ -95,7 +95,7 @@ namespace DZ
             frontEntity.Visible = true;
             
             // Try to load front right sprite with fallback
-            string frontRightPath = "objects/DZ/DZ/wavedashtutorial/building_front_right";
+            string frontRightPath = "objects/DZ/wavedashtutorial/building_front_right";
             if (GFX.Game.Has(frontRightPath))
             {
                 frontEntity.Add(frontRightSprite = new Image(GFX.Game[frontRightPath]));
@@ -108,7 +108,7 @@ namespace DZ
             }
             
             // Try to load neon sprite with fallback
-            string neonPath = "objects/DZ/DZ/wavedashtutorial/neon_";
+            string neonPath = "objects/DZ/wavedashtutorial/neon_";
             if (GFX.Game.Has(neonPath + "00"))
             {
                 frontEntity.Add(neon = new Sprite(GFX.Game, neonPath));

@@ -80,7 +80,7 @@ namespace Celeste.Entities.Chapters.Ch11
             Add(barrelSprite = GFX.SpriteBank.Create("barrel"));
             barrelSprite.Play("closed");
             
-            enemySprite = DZModule.SpriteBank.Create("barrel_bomber");
+            enemySprite = GFX.SpriteBank.Create("barrel_bomber");
             enemySprite.Position = new Vector2(0f, -20f);
             enemySprite.Visible = false;
             Add(enemySprite);

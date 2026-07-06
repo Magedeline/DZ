@@ -28,7 +28,7 @@ namespace DZ
             
             // Tutorial showing correct execution
             correctTutorial = new WaveFazeSlammerPlaybackTutorial(
-                "wavefazeslammer",
+                "DZ/wavefazeslammer",
                 new Vector2(-150f, 0f),
                 new Vector2(1f, -0.4f),
                 new Vector2(1f, 0f),
@@ -44,7 +44,7 @@ namespace DZ
             
             // Tutorial showing wrong execution (for comparison)
             wrongTutorial = new WaveFazeSlammerPlaybackTutorial(
-                "wavefazeslammer",
+                "DZ/wavefazeslammer",
                 new Vector2(-150f, 0f),
                 new Vector2(1f, -0.4f),
                 new Vector2(1f, 0f),

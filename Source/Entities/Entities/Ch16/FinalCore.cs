@@ -68,7 +68,7 @@ namespace Celeste.Entities.Chapters.Ch16
             
             Collider = new Hitbox(48f, 48f, -24f, -24f);
             
-            Add(sprite = DZModule.SpriteBank.Create("final_core"));
+            Add(sprite = GFX.SpriteBank.Create("final_core"));
             sprite.Play("dormant");
             
             Add(coreLight = new VertexLight(coreColor, 0.4f, 16, 48));

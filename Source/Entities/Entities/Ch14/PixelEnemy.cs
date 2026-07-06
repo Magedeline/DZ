@@ -92,7 +92,7 @@ namespace Celeste.Entities.Chapters.Ch14
             
             Collider = new Hitbox(16f, 16f, -8f, -16f);
             
-            Add(sprite = DZModule.SpriteBank.Create("pixel_enemy"));
+            Add(sprite = GFX.SpriteBank.Create("pixel_enemy"));
             sprite.Play("idle");
             
             Add(stateMachine = new StateMachine());

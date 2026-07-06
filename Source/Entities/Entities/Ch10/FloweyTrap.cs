@@ -98,7 +98,7 @@ namespace Celeste.Entities.Chapters.Ch10
             Collider = new Hitbox(16f, 24f, -8f, -24f);
             
             // Setup sprite (starts hidden)
-            Add(sprite = DZModule.SpriteBank.Create("flowey_trap"));
+            Add(sprite = GFX.SpriteBank.Create("flowey_trap"));
             sprite.Visible = false;
             
             // Setup state machine

@@ -78,7 +78,7 @@ namespace Celeste.Entities.Chapters.Ch14
             
             Collider = new Hitbox(24f, 24f, -12f, -12f);
             
-            Add(sprite = DZModule.SpriteBank.Create("core_fragment"));
+            Add(sprite = GFX.SpriteBank.Create("core_fragment"));
             sprite.Play(requiresProtection ? "protected" : "active");
             
             Add(coreLight = new VertexLight(coreColor, requiresProtection ? 0.3f : 0.8f, 12, 32));

@@ -26,7 +26,7 @@ namespace Celeste.NPCs
 
         private void setupSprites()
         {
-            Add(asrielSprite = DZModule.SpriteBank.Create("asriel"));
+            Add(asrielSprite = GFX.SpriteBank.Create("asriel"));
             asrielSprite.Play("idle");
 
             Add(grannySprite = GFX.SpriteBank.Create("granny"));

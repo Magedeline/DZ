@@ -78,7 +78,7 @@ namespace Celeste.Entities.Chapters.Ch14
             
             Collider = new Hitbox(40f, 40f, -20f, -20f);
             
-            Add(sprite = DZModule.SpriteBank.Create("virus_cloud"));
+            Add(sprite = GFX.SpriteBank.Create("virus_cloud"));
             sprite.Play("dormant");
             
             Add(virusLight = new VertexLight(Color.Red, 0.3f, 12, 32));

@@ -230,7 +230,7 @@ namespace Celeste.Entities
             catch
             {
                 // Fallback to default refill
-                sprite = DZModule.SpriteBank.Create("refill");
+                sprite = GFX.SpriteBank.Create("refill");
             }
             sprite.Play("idle");
             Add(sprite);

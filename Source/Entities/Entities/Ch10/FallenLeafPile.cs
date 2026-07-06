@@ -82,7 +82,7 @@ namespace Celeste.Entities.Chapters.Ch10
             Collider = new Hitbox(48f, 16f, -24f, -16f);
             
             // Setup sprite
-            Add(sprite = DZModule.SpriteBank.Create("fallen_leaf_pile"));
+            Add(sprite = GFX.SpriteBank.Create("fallen_leaf_pile"));
             sprite.Play("idle");
         }
         #endregion

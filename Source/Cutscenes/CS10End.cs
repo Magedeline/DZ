@@ -64,7 +64,7 @@ public class CS10End : CutsceneEntity
         if (madelineNpc == null)
         {
             madelineNpc = new Npc10Madeline(new EntityData(), player.Position + new Vector2(48f, 0f));
-            madelineNpc.Add(madelineNpc.Sprite = DZModule.SpriteBank.Create("madeline"));
+            madelineNpc.Add(madelineNpc.Sprite = GFX.SpriteBank.Create("madeline"));
             Scene.Add(madelineNpc);
         }
 

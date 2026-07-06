@@ -86,7 +86,7 @@ namespace Celeste.Entities.Chapters.Ch15
             Collider = new Hitbox(48f, 40f, -24f, -40f);
             
             // Setup sprites
-            Add(sprite = DZModule.SpriteBank.Create("wish_altar"));
+            Add(sprite = GFX.SpriteBank.Create("wish_altar"));
             sprite.Play("inactive");
             
             Add(flameSprite = GFX.SpriteBank.Create("altar_flame"));

@@ -30,14 +30,14 @@ public partial class CharaBossBeam : Entity
 
     public CharaBossBeam() : base(Vector2.Zero)
     {
-        Add(beamSprite = DZModule.SpriteBank.Create("chara_beam"));
+        Add(beamSprite = GFX.SpriteBank.Create("chara_beam"));
         beamSprite.OnLastFrame = anim =>
         {
             if (anim != "charaboss_shoot")
                 return;
             destroy();
         };
-        Add(beamStartSprite = DZModule.SpriteBank.Create("chara_beam_start"));
+        Add(beamStartSprite = GFX.SpriteBank.Create("chara_beam_start"));
         beamSprite.Visible = false;
         Depth = -1000000;
     }

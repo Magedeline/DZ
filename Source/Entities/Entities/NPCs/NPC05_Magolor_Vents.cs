@@ -89,7 +89,7 @@ namespace Celeste.NPCs
             : base(position)
         {
             base.Tag = Tags.TransitionUpdate;
-            Add(Sprite = DZModule.SpriteBank.Create("magolor"));
+            Add(Sprite = GFX.SpriteBank.Create("magolor"));
             Sprite.Scale.Y = -1f;
             Sprite.Scale.X = -1f;
             Visible = false;

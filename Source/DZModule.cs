@@ -13,9 +13,6 @@ public class DZModule : EverestModule {
     public override Type SettingsType => typeof(DZModuleSettings);
     public static DZModuleSettings Settings => (DZModuleSettings) Instance._Settings;
 
-    private static SpriteBank _spriteBank;
-    public static SpriteBank SpriteBank => _spriteBank ??= new SpriteBank(GFX.Game, "DZ/Sprites");
-
     // Tracks the last scene that had the global controller entities added.
     // Avoids repeating the (potentially expensive) FindFirst scan every frame.
     private static Scene _controllersScene;
@@ -186,7 +183,6 @@ public class DZModule : EverestModule {
         global::DZ.SubChapterManager.Unload();
 
         On.Monocle.Engine.Update -= OnEngineUpdate;
-        _spriteBank = null;
         _controllersScene = null;
 
         Logger.Log(LogLevel.Info, nameof(DZModule), "DZ mod unloaded");

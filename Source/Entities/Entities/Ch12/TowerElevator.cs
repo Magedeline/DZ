@@ -73,7 +73,7 @@ namespace Celeste.Entities.Chapters.Ch12
             
             State = ElevatorState.Idle;
             
-            Add(sprite = DZModule.SpriteBank.Create("tower_elevator"));
+            Add(sprite = GFX.SpriteBank.Create("tower_elevator"));
             sprite.Play("idle");
             
             Add(motorSound = new SoundSource());

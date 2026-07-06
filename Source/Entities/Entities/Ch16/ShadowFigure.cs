@@ -62,7 +62,7 @@ namespace Celeste.Entities.Chapters.Ch16
             
             Collider = new Hitbox(24f, 48f, -12f, -48f);
             
-            Add(sprite = DZModule.SpriteBank.Create("shadow_figure"));
+            Add(sprite = GFX.SpriteBank.Create("shadow_figure"));
             sprite.Play("hidden");
             sprite.Visible = false;
             

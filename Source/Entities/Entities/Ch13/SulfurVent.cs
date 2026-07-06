@@ -36,7 +36,7 @@ namespace Celeste.Entities.Chapters.Ch13
             gasClouds = new List<GasCloud>();
             gasColor = Color.YellowGreen;
             Collider = new Hitbox(32f, 16f, -16f, -16f);
-            Add(sprite = DZModule.SpriteBank.Create("sulfur_vent"));
+            Add(sprite = GFX.SpriteBank.Create("sulfur_vent"));
             sprite.Play("idle");
             Add(ventLight = new VertexLight(gasColor, 0.3f, 8, 24));
         }

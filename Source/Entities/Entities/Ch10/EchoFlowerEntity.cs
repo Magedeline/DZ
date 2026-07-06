@@ -77,7 +77,7 @@ namespace Celeste.Entities.Chapters.Ch10
             Collider = new Hitbox(16f, 24f, -8f, -24f);
             
             // Setup sprite
-            Add(sprite = DZModule.SpriteBank.Create("echo_flower"));
+            Add(sprite = GFX.SpriteBank.Create("echo_flower"));
             sprite.Play("idle");
             
             // Add glow

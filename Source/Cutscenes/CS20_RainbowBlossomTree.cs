@@ -61,7 +61,7 @@ namespace Celeste.Cutscenes
             rainbowTreeBackground.CenterOrigin();
             
             // Character sprites
-            madelineSprite = DZModule.SpriteBank.Create("madeline");
+            madelineSprite = GFX.SpriteBank.Create("madeline");
             madelineSprite.Play("idle");
             Add(madelineSprite);
             

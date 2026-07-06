@@ -92,7 +92,7 @@ namespace Celeste.Entities.Chapters.Ch11
             Collider = new Hitbox(20f, 32f, -10f, -32f);
             
             // Setup sprite
-            Add(sprite = DZModule.SpriteBank.Create("card_shark"));
+            Add(sprite = GFX.SpriteBank.Create("card_shark"));
             sprite.Play("idle");
             
             // Setup state machine

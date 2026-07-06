@@ -60,12 +60,12 @@ public partial class CharaBossShot : Entity
     {
         try
         {
-            return DZModule.SpriteBank.Create("chara_projectile");
+            return GFX.SpriteBank.Create("chara_projectile");
         }
         catch (global::System.Exception)
         {
             // Fallback to vanilla-like boss sprite entry when custom key is missing.
-            return DZModule.SpriteBank.Create("badelineBoss");
+            return GFX.SpriteBank.Create("badelineBoss");
         }
     }
 

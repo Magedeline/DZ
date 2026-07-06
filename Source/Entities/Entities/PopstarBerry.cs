@@ -44,7 +44,7 @@ namespace Celeste.Entities
             Collider = new Monocle.Hitbox(14f, 14f, -7f, -10f);
             start = Position;
 
-            Add(sprite = DZModule.SpriteBank.Create("popstarberry"));
+            Add(sprite = GFX.SpriteBank.Create("popstarberry"));
             Add(wiggler = Wiggler.Create(0.4f, 4f, delegate(float v)
             {
                 sprite.Scale = Vector2.One * (1f + v * 0.35f);

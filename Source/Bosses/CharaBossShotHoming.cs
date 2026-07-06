@@ -53,8 +53,8 @@ public class CharaBossShotHoming : Entity
 
     private static Sprite CreateSprite()
     {
-        try   { return DZModule.SpriteBank.Create("chara_projectile"); }
-        catch { return DZModule.SpriteBank.Create("badelineBoss"); }
+        try   { return GFX.SpriteBank.Create("chara_projectile"); }
+        catch { return GFX.SpriteBank.Create("badelineBoss"); }
     }
 
     public CharaBossShotHoming Init(CharaBoss boss, global::Celeste.Player target)

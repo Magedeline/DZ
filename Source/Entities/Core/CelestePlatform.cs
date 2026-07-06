@@ -86,7 +86,7 @@ public abstract class CelestePlatform : DZ.Nez.Entity
     public BoxCollider Collider => GetComponent<BoxCollider>();
 
     /// <summary>Whether this platform is visible (Monocle API parity).</summary>
-    public virtual bool Visible { get; set; } = true;
+    public new virtual bool Visible { get; set; } = true;
 
     // -------------------------------------------------------------------------
     // Physics state

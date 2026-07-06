@@ -196,7 +196,7 @@ public class CS_FinalRemixBerryCutscene : CutsceneEntity
         asriel = new NPC(asrielPos);
         if (GFX.SpriteBank.Has("asriel"))
         {
-            asriel.Add(asriel.Sprite = DZModule.SpriteBank.Create("asriel"));
+            asriel.Add(asriel.Sprite = GFX.SpriteBank.Create("asriel"));
             asriel.Sprite.Play("idle");
             asriel.Sprite.Color = Color.Transparent;
         }

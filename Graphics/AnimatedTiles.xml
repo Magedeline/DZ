@@ -1,8 +1,8 @@
 ﻿<Data>
 
-	<sprite name="grass_top_a" path="DZ/animatedTiles/grass/top_a" delay="0.2" posX="0" posY="-8" origX="4" origY="4"/>
-	<sprite name="dead_top_a" path="DZ/animatedTiles/dead/top_a" delay="0.2" posX="0" posY="-8" origX="4" origY="4"/>
-	<sprite name="found_top_a" path="DZ/animatedTiles/found/top_a" delay="0.2" posX="0" posY="-8" origX="4" origY="4"/>
-	<sprite name="final_top_a" path="DZ/animatedTiles/final/top_a" delay="0.2" posX="0" posY="-8" origX="4" origY="4"/>
+	<sprite name="grass_top_a" path="animatedTiles/grass/top_a" delay="0.2" posX="0" posY="-8" origX="4" origY="4"/>
+	<sprite name="dead_top_a" path="animatedTiles/dead/top_a" delay="0.2" posX="0" posY="-8" origX="4" origY="4"/>
+	<sprite name="found_top_a" path="animatedTiles/found/top_a" delay="0.2" posX="0" posY="-8" origX="4" origY="4"/>
+	<sprite name="final_top_a" path="animatedTiles/final/top_a" delay="0.2" posX="0" posY="-8" origX="4" origY="4"/>
 
 </Data>

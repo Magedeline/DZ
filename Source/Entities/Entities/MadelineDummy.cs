@@ -101,14 +101,14 @@ namespace Celeste.Entities
         {
             try
             {
-                Sprite = DZModule.SpriteBank.Create("madeline");
+                Sprite = GFX.SpriteBank.Create("madeline");
             }
             catch
             {
                 // Fallback to madeline if no_backpack sprite bank fails
                 try
                 {
-                    Sprite = DZModule.SpriteBank.Create("madeline");
+                    Sprite = GFX.SpriteBank.Create("madeline");
                 }
                 catch
                 {
@@ -237,7 +237,7 @@ namespace Celeste.Entities
             {
                 try
                 {
-                    Sprite = DZModule.SpriteBank.Create("madeline");
+                    Sprite = GFX.SpriteBank.Create("madeline");
                     // Safely play animation that exists
                     if (Sprite.Has("idle"))
                         Sprite.Play("idle");

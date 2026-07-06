@@ -13,7 +13,7 @@ namespace DZ
         public PinkPlatberryPoints(Vector2 position, bool ghostberry, DisplacementRenderer.Burst burst)
           : base(position)
         {
-            Add((Component)(this.sprite = DZModule.SpriteBank.Create("pinkplatinumberry")));
+            Add((Component)(this.sprite = GFX.SpriteBank.Create("pinkplatinumberry")));
             Add((Component)(this.light = new VertexLight(Color.White, 1f, 16, 24)));
             Add((Component)(this.bloom = new BloomPoint(1f, 12f)));
             Depth = -2000100;
@@ -24,7 +24,7 @@ namespace DZ
 
         public PinkPlatberryPoints(Vector2 position, bool ghostberry) : base(position)
         {
-            Add((Component)(sprite = DZModule.SpriteBank.Create("pinkplatinumberry")));
+            Add((Component)(sprite = GFX.SpriteBank.Create("pinkplatinumberry")));
             Add((Component)(light = new VertexLight(Color.White, 1f, 16, 24)));
             Add((Component)(bloom = new BloomPoint(1f, 12f)));
             Depth = -2000100;

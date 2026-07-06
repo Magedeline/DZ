@@ -58,7 +58,7 @@ namespace Celeste.Entities.Chapters.Ch16
             
             Collider = new Hitbox(16f, 16f, -8f, -8f);
             
-            Add(sprite = DZModule.SpriteBank.Create("soul_fragment"));
+            Add(sprite = GFX.SpriteBank.Create("soul_fragment"));
             sprite.Play("hidden");
             sprite.Visible = false;
             

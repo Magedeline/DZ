@@ -688,7 +688,7 @@ namespace Celeste.Entities
             Add(HatScarf = new KirbyHatScarf(this));
 
             // Kirby player sprite ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â loaded from kirby_player_ext sprite bank entry
-            kirbySprite = DZModule.SpriteBank.Create("kirby_player_ext");
+            kirbySprite = GFX.SpriteBank.Create("kirby_player_ext");
             kirbySprite.Visible = false;
             Add(kirbySprite);
 

@@ -45,7 +45,7 @@ namespace Celeste.Entities
             Collider = new Circle(10f, 0f, 2f);
 
             Add(new PlayerCollider(OnPlayer));
-            Add(sprite = DZModule.SpriteBank.Create("greyBooster"));
+            Add(sprite = GFX.SpriteBank.Create("greyBooster"));
             Add(new MirrorReflection());
             Add(dashListener = new DashListener());
             dashListener.OnDash = OnPlayerDashed;

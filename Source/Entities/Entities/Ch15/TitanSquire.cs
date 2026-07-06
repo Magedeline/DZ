@@ -98,7 +98,7 @@ namespace Celeste.Entities.Chapters.Ch15
             Collider = new Hitbox(20f, 40f, -10f, -40f);
             
             // Setup sprites
-            Add(sprite = DZModule.SpriteBank.Create("titan_squire"));
+            Add(sprite = GFX.SpriteBank.Create("titan_squire"));
             Add(swordSprite = GFX.SpriteBank.Create("titan_sword"));
             swordSprite.Position = new Vector2(12f, -20f);
             Add(shieldSprite = GFX.SpriteBank.Create("titan_shield"));

@@ -17,7 +17,7 @@ namespace DZ
         {
             base.Added(presentation);
             tutorial = new WaveFazeSlammerPlaybackTutorial(
-                "wavefazeslammer",
+                "DZ/wavefazeslammer",
                 new Vector2(-150f, 0f),
                 new Vector2(1f, -0.4f),
                 new Vector2(1f, 0f),

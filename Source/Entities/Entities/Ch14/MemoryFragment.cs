@@ -73,7 +73,7 @@ namespace Celeste.Entities.Chapters.Ch14
             
             Collider = new Hitbox(16f, 16f, -8f, -8f);
             
-            Add(sprite = DZModule.SpriteBank.Create("memory_fragment"));
+            Add(sprite = GFX.SpriteBank.Create("memory_fragment"));
             sprite.Play("floating");
             
             Add(fragmentLight = new VertexLight(fragmentColor, 0.7f, 8, 24));

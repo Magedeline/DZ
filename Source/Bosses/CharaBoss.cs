@@ -117,7 +117,7 @@ namespace Celeste.Entities {
             this.level = this.SceneAs<Level>();
             if (this.patternIndex == 0)
             {
-                this.NormalSprite = DZModule.SpriteBank.Create("chara_boss");
+                this.NormalSprite = GFX.SpriteBank.Create("chara");
                 this.NormalSprite.Scale.X = -1f;
                 if (this.NormalSprite.Has("angry"))
                     this.NormalSprite.Play("angry");
@@ -160,7 +160,7 @@ namespace Celeste.Entities {
 
         private void CreateBossSprite()
         {
-            this.Add((Component)(this.Sprite = DZModule.SpriteBank.Create("chara_boss")));
+            this.Add((Component)(this.Sprite = GFX.SpriteBank.Create("chara_boss")));
             this.Sprite.OnFrameChange = (anim =>
             {
                 if (anim == "charaboss_idle" && this.Sprite.CurrentAnimationFrame == 18)
@@ -1237,11 +1237,12 @@ namespace Celeste.Entities {
             if (entity != null)
                 level.Add(new CharaBossBiggerBeam().Init(this, entity));
             
-            yield return 1.4f; // Wait for the bigger beam charge time
+            yield return CharaBossBiggerBeam.CHARGE_TIME; // Wait for the bigger beam charge time
             Sprite.Play("charaboss_attack2Lock", restart: true);
-            yield return 0.6f; // Wait for lock
+            yield return 0.6f; // Wait for lock animation
             laserSfx.Stop();
             Audio.Play("event:/char/badeline/boss_laser_fire", Position);
+            yield return CharaBossBiggerBeam.ACTIVE_TIME; // Wait for 5s beam to finish
             Sprite.Play("charaboss_attack2Recoil");
         }
 

@@ -142,7 +142,7 @@ public class CS05_DZ_OshiroLobby : CutsceneEntity
         if (ralsei == null)
         {
             ralsei = new NPC(player.Position + new Vector2(32f, 0f));
-            Sprite ralseiSprite = DZModule.SpriteBank.Create("ralsei");
+            Sprite ralseiSprite = GFX.SpriteBank.Create("ralsei");
             ralseiSprite.Play("idle");
             ralsei.Add(ralseiSprite);
             Scene.Add(ralsei);

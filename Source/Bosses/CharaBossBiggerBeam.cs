@@ -8,15 +8,14 @@ public partial class CharaBossBiggerBeam : Entity
     public static ParticleType PDissipate;
     public const float CHARGE_TIME = 2.0f; // Longer charge time for bigger beam
     public const float FOLLOW_TIME = 0.5f; // Shorter follow time since it's horizontal
-    public const float ACTIVE_TIME = 0.3f; // Longer active time for bigger beam
+    public const float ACTIVE_TIME = 5.0f; // 5-second active time for the final beam
     private const float collideDZ_CHeck_sep = 4f; // Bigger collision separation
-    private const float beam_length = 2000f;
+    private const float beam_length = 8000f;
     private const float beam_start_dist = 12f;
-    private const int beams_drawn = 25; // More beams drawn for bigger beam
+    // beams_drawn is computed at render time from beam_length / sprite width
     private const float side_darkness_alpha = 0.5f; // Darker alpha for bigger beam
     
     private CharaBoss charaboss;
-    private global::Celeste.Player player;
     private Sprite beamSprite;
     private Sprite beamStartSprite;
     private float chargeTimer;
@@ -26,18 +25,76 @@ public partial class CharaBossBiggerBeam : Entity
     private float beamAlpha;
     private float sideFadeAlpha;
     private bool isLocked;
+    private BeamKillZone killZone;
     private VertexPositionColor[] fade = new VertexPositionColor[24];
+
+    // ------------------------------------------------------------------
+    // Kill zone: a persistent hazard entity that tracks the beam's angle
+    // and kills the player on contact every frame they're vulnerable.
+    // Spawned when the beam fires; removed when the beam ends.
+    // ------------------------------------------------------------------
+    private class BeamKillZone : Entity
+    {
+        // How many circles to chain along the beam, and their spacing
+        // 250 circles × 32px = 8000px — matches beam_length exactly
+        private const int CircleCount = 250;
+        private const float CircleSpacing = 32f; // pixels between circle centres
+        private const float CircleRadius = 40f;  // matches the scaled visual beam half-height
+
+        private CharaBossBiggerBeam beam;
+        private Circle[] circles;
+
+        public BeamKillZone(CharaBossBiggerBeam beam) : base(Vector2.Zero)
+        {
+            this.beam = beam;
+            Depth = beam.Depth; // same depth so it's always active
+
+            // Build a chain of circles — we'll reposition them every Update
+            circles = new Circle[CircleCount];
+            var colliders = new Collider[CircleCount];
+            for (int i = 0; i < CircleCount; i++)
+            {
+                circles[i] = new Circle(CircleRadius, i * CircleSpacing, 0f);
+                colliders[i] = circles[i];
+            }
+            Collider = new ColliderList(colliders);
+            Add(new PlayerCollider(OnPlayer));
+        }
+
+        private void OnPlayer(global::Celeste.Player p)
+        {
+            p.Die((p.Center - beam.charaboss.BeamOrigin).SafeNormalize());
+        }
+
+        public override void Update()
+        {
+            base.Update();
+            // Anchor our origin to the beam start, then rotate all circles along the beam angle
+            Vector2 origin = beam.charaboss.BeamOrigin + Calc.AngleToVector(beam.angle, beam_start_dist);
+            Position = origin;
+
+            Vector2 dir = Calc.AngleToVector(beam.angle, 1f);
+
+            for (int i = 0; i < CircleCount; i++)
+            {
+                // Offset each circle along the beam direction
+                Vector2 worldPos = origin + dir * (i * CircleSpacing);
+                // Store as local offset (ColliderList circles are relative to entity Position)
+                circles[i].Position = worldPos - Position;
+            }
+        }
+    }
 
     public CharaBossBiggerBeam() : base(Vector2.Zero)
     {
-        Add(beamSprite = DZModule.SpriteBank.Create("chara_beam"));
+        Add(beamSprite = GFX.SpriteBank.Create("chara_final_beam"));
         beamSprite.OnLastFrame = anim =>
         {
-            if (anim != "charaboss_shoot")
+            if (anim != "charaboss_end")
                 return;
             destroy();
         };
-        Add(beamStartSprite = DZModule.SpriteBank.Create("chara_beam_start"));
+        Add(beamStartSprite = GFX.SpriteBank.Create("chara_beam_start"));
         beamSprite.Visible = false;
         Depth = -1000000;
     }
@@ -59,7 +116,7 @@ public partial class CharaBossBiggerBeam : Entity
         chargeTimer = CHARGE_TIME;
         followTimer = FOLLOW_TIME;
         activeTimer = ACTIVE_TIME;
-        beamSprite.Play("charabossDZ_CHarge");
+        beamSprite.Play("charaboss_charge");
         sideFadeAlpha = 0.0f;
         beamAlpha = 0.0f;
         isLocked = false;
@@ -84,7 +141,7 @@ public partial class CharaBossBiggerBeam : Entity
     public override void Update()
     {
         base.Update();
-        player = Scene.Tracker.GetEntity<global::Celeste.Player>();
+        var player = Scene.Tracker.GetEntity<global::Celeste.Player>();
         beamAlpha = Calc.Approach(beamAlpha, 1f, 2f * Engine.DeltaTime);
         
         if (chargeTimer > 0.0)
@@ -117,7 +174,7 @@ public partial class CharaBossBiggerBeam : Entity
                 
                 angle = Calc.Approach(angle, targetAngle, 2f * Engine.DeltaTime);
             }
-            else if (beamSprite.CurrentAnimationID == "charabossDZ_CHarge" && followTimer <= 0.0)
+            else if (beamSprite.CurrentAnimationID == "charaboss_charge" && followTimer <= 0.0)
             {
                 beamSprite.Play("charaboss_lock");
                 isLocked = true;
@@ -132,19 +189,29 @@ public partial class CharaBossBiggerBeam : Entity
         }
         else
         {
-            if (activeTimer <= 0.0)
+            if (activeTimer < 0.0)
                 return;
                 
             sideFadeAlpha = Calc.Approach(sideFadeAlpha, 0.0f, Engine.DeltaTime * 6f);
-            if (beamSprite.CurrentAnimationID != "charaboss_shoot")
+            if (beamSprite.CurrentAnimationID == "charaboss_lock" || beamSprite.CurrentAnimationID == "charaboss_charge")
             {
                 beamSprite.Play("charaboss_shoot");
                 beamStartSprite.Play("charaboss_shoot", true);
+                // Spawn the persistent kill zone when the beam first fires
+                killZone = new BeamKillZone(this);
+                Scene.Add(killZone);
             }
             
             activeTimer -= Engine.DeltaTime;
-            if (activeTimer > 0.0)
-                playerCollideCheck();
+            if (activeTimer <= 0.0)
+            {
+                // Beam duration over — remove kill zone, play end/dissipate animation
+                killZone?.RemoveSelf();
+                killZone = null;
+                beamSprite.Play("charaboss_end");
+                beamStartSprite.Stop();
+                return;
+            }
         }
     }
 
@@ -153,7 +220,7 @@ public partial class CharaBossBiggerBeam : Entity
         Level level = SceneAs<Level>();
         Vector2 closestTo = level.Camera.Position + new Vector2(160f, 90f);
         Vector2 lineA = charaboss.BeamOrigin + Calc.AngleToVector(angle, 12f);
-        Vector2 lineB = charaboss.BeamOrigin + Calc.AngleToVector(angle, 2000f);
+        Vector2 lineB = charaboss.BeamOrigin + Calc.AngleToVector(angle, beam_length);
         Vector2 vector = (lineB - lineA).Perpendicular().SafeNormalize();
         Vector2 vector21 = (lineB - lineA).SafeNormalize();
         Vector2 min = -vector * 2f; // Bigger particle spread
@@ -179,43 +246,34 @@ public partial class CharaBossBiggerBeam : Entity
         }
     }
 
-    private void playerCollideCheck()
-    {
-        Vector2 from = charaboss.BeamOrigin + Calc.AngleToVector(angle, 12f);
-        Vector2 to = charaboss.BeamOrigin + Calc.AngleToVector(angle, 2000f);
-        Vector2 vector2 = (to - from).Perpendicular().SafeNormalize(4f); // Bigger collision area
-        
-        // Check multiple collision lines for bigger beam
-        global::Celeste.Player player = Scene.CollideFirst<global::Celeste.Player>(from + vector2 * 2f, to + vector2 * 2f) 
-            ?? Scene.CollideFirst<global::Celeste.Player>(from + vector2, to + vector2)
-            ?? Scene.CollideFirst<global::Celeste.Player>(from, to)
-            ?? Scene.CollideFirst<global::Celeste.Player>(from - vector2, to - vector2)
-            ?? Scene.CollideFirst<global::Celeste.Player>(from - vector2 * 2f, to - vector2 * 2f);
-            
-        player?.Die((player.Center - charaboss.BeamOrigin).SafeNormalize());
-    }
+    // Scale factor applied to the beam sprite height to make it visually wide
+    private const float beam_scale = 3.5f;
 
     public override void Render()
     {
         Vector2 beamOrigin = charaboss.BeamOrigin;
         Vector2 vector1 = Calc.AngleToVector(angle, beamSprite.Width);
         beamSprite.Rotation = angle;
+        beamSprite.Scale = new Vector2(1f, beam_scale); // widen perpendicular to firing direction
         beamSprite.Color = Color.White * beamAlpha;
         beamStartSprite.Rotation = angle;
+        beamStartSprite.Scale = new Vector2(beam_scale, beam_scale); // scale start cap uniformly
         beamStartSprite.Color = Color.White * beamAlpha;
         
-        if (beamSprite.CurrentAnimationID == "shoot")
+        bool isFiring = beamSprite.CurrentAnimationID == "charaboss_shoot" || beamSprite.CurrentAnimationID == "charaboss_end";
+        if (isFiring)
             beamOrigin += Calc.AngleToVector(angle, 8f);
             
-        // Render more beam sprites for bigger beam
-        for (int index = 0; index < beams_drawn; ++index)
+        // Render enough tiles to cover the full beam length
+        int tilesNeeded = beamSprite.Width > 0 ? (int)Math.Ceiling(beam_length / beamSprite.Width) + 1 : 1;
+        for (int index = 0; index < tilesNeeded; ++index)
         {
             beamSprite.RenderPosition = beamOrigin;
             beamSprite.Render();
             beamOrigin += vector1;
         }
         
-        if (beamSprite.CurrentAnimationID == "shoot")
+        if (isFiring)
         {
             beamStartSprite.RenderPosition = charaboss.BeamOrigin;
             beamStartSprite.Render();
@@ -227,7 +285,8 @@ public partial class CharaBossBiggerBeam : Entity
         Color color = Color.Black * sideFadeAlpha * side_darkness_alpha;
         Color transparent = Color.Transparent;
         Vector2 vector22 = vector2 * 4000f;
-        Vector2 vector23 = vector21 * 180f; // Bigger side fade
+        // Side fade width scaled to match the visual beam thickness
+        Vector2 vector23 = vector21 * (180f * beam_scale);
         int v = 0;
         
         quad(ref v, beamOrigin, -vector22 + vector23 * 2f, vector22 + vector23 * 2f, vector22 + vector23, -vector22 + vector23, color, color);
@@ -269,7 +328,19 @@ public partial class CharaBossBiggerBeam : Entity
         fade[v++].Color = cd;
     }
 
-    private void destroy() => RemoveSelf();
+    private void destroy()
+    {
+        killZone?.RemoveSelf();
+        killZone = null;
+        RemoveSelf();
+    }
+
+    public override void Removed(Scene scene)
+    {
+        killZone?.RemoveSelf();
+        killZone = null;
+        base.Removed(scene);
+    }
 }
 
 

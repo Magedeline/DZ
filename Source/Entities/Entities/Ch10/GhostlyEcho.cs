@@ -122,7 +122,7 @@ namespace Celeste.Entities.Chapters.Ch10
             }
             
             // Setup sprite
-            Add(sprite = DZModule.SpriteBank.Create("ghostly_echo"));
+            Add(sprite = GFX.SpriteBank.Create("ghostly_echo"));
             sprite.Color = new Color(0.6f, 0.8f, 1f) * Alpha;
             
             // Ghostly glow

@@ -21,7 +21,7 @@ namespace Celeste.Entities.Projectiles
             Add(new PlayerCollider(OnPlayerCollide));
 
             // Add visual components
-            var spriteBank = IngesteModule.SpriteBank as SpriteBank;
+            var spriteBank = GFX.SpriteBank as SpriteBank;
             if (spriteBank != null)
             {
                 sprite = spriteBank.Create("fallingStar");

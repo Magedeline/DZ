@@ -65,7 +65,7 @@ namespace Celeste.Entities.Chapters.Ch13
             collapseTimer = 0f;
             ashParticles = new List<AshParticle>();
             
-            Add(sprite = DZModule.SpriteBank.Create("ash_pile"));
+            Add(sprite = GFX.SpriteBank.Create("ash_pile"));
             sprite.Play("stable");
         }
         #endregion

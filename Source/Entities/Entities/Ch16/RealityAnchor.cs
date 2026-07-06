@@ -25,7 +25,7 @@ namespace Celeste.Entities.Chapters.Ch16
             State = AnchorState.Inactive;
             anchorColor = Color.White;
             Collider = new Hitbox(32f, 40f, -16f, -40f);
-            Add(sprite = DZModule.SpriteBank.Create("reality_anchor"));
+            Add(sprite = GFX.SpriteBank.Create("reality_anchor"));
             sprite.Play("inactive");
             Add(anchorLight = new VertexLight(anchorColor, 0.2f, 12, 32));
         }

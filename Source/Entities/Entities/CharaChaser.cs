@@ -89,7 +89,7 @@ public class CharaChaser : Entity
         base.Depth = -1;
         base.Collider = new Hitbox(6f, 6f, -3f, -7f);
         Collidable = false;
-        Sprite = DZModule.SpriteBank.Create("chara");
+        Sprite = GFX.SpriteBank.Create("chara");
         Sprite.Play("fallSlow", restart: true);
         // Chara doesn't use PlayerHair - skip hair initialization to avoid NullReferenceException
         Hair = null;

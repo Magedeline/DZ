@@ -74,7 +74,7 @@ namespace DZ
                     if (GFX.SpriteBank.Has(spriteName))
                         spriteField.SetValue(self, GFX.SpriteBank.Create(spriteName));
                     else
-                        spriteField.SetValue(self, DZModule.SpriteBank.Create("popstarberry"));
+                        spriteField.SetValue(self, GFX.SpriteBank.Create("popstarberry"));
                 }
             }
         }

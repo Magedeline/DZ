@@ -81,7 +81,7 @@ namespace Celeste.Entities.Chapters.Ch15
             Collider = new Hitbox(24f, 24f, -12f, -12f);
             
             // Setup sprite
-            Add(sprite = DZModule.SpriteBank.Create("crown_bearing"));
+            Add(sprite = GFX.SpriteBank.Create("crown_bearing"));
             sprite.Play(isActive ? "active" : "idle");
             
             // Add golden glow

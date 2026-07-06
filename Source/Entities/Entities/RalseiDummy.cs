@@ -101,7 +101,7 @@ namespace Celeste.Entities
         {
             try
             {
-                Sprite = DZModule.SpriteBank.Create("ralsei");
+                Sprite = GFX.SpriteBank.Create("ralsei");
             }
             catch
             {
@@ -198,7 +198,7 @@ namespace Celeste.Entities
             {
                 try
                 {
-                    Sprite = DZModule.SpriteBank.Create("ralsei");
+                    Sprite = GFX.SpriteBank.Create("ralsei");
                     Sprite.Play("fallSlow");
                     Add(Sprite);
                     isInitialized = true;

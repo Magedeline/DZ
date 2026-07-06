@@ -1,3 +1,4 @@
+using Celeste.Entities;
 using Celeste.Extensions;
 using MonoMod.Utils;
 
@@ -48,12 +49,8 @@ namespace DZ
             CurrentInventory = RefillInventoryType.Standard;
             StoreInventoryInSession(level, RefillInventoryType.Standard);
 
-            var player = level.Tracker.GetEntity<global::Celeste.Player>();
-            if (player != null)
-            {
-                player.DisableKirbyMode();
-                SetPlayerDashesWithLessDasheline(player, 1);
-            }
+            DisableKirbyModeOnPlayer(level);
+            SetDashesOnPlayer(level, 1);
 
             IngesteLogger.Info("Standard inventory (1 dash) enabled");
         }
@@ -68,11 +65,7 @@ namespace DZ
             CurrentInventory = RefillInventoryType.TwoDash;
             StoreInventoryInSession(level, RefillInventoryType.TwoDash);
 
-            var player = level.Tracker.GetEntity<global::Celeste.Player>();
-            if (player != null)
-            {
-                SetPlayerDashesWithLessDasheline(player, 2);
-            }
+            SetDashesOnPlayer(level, 2);
 
             IngesteLogger.Info("Two-Dash inventory (Heart power) enabled");
         }
@@ -87,11 +80,7 @@ namespace DZ
             CurrentInventory = RefillInventoryType.Solar;
             StoreInventoryInSession(level, RefillInventoryType.Solar);
 
-            var player = level.Tracker.GetEntity<global::Celeste.Player>();
-            if (player != null)
-            {
-                SetPlayerDashesWithLessDasheline(player, 3);
-            }
+            SetDashesOnPlayer(level, 3);
 
             IngesteLogger.Info("Solar inventory (Titan Tower - 3 dashes) enabled");
         }
@@ -106,11 +95,7 @@ namespace DZ
             CurrentInventory = RefillInventoryType.Lunar;
             StoreInventoryInSession(level, RefillInventoryType.Lunar);
 
-            var player = level.Tracker.GetEntity<global::Celeste.Player>();
-            if (player != null)
-            {
-                SetPlayerDashesWithLessDasheline(player, 4);
-            }
+            SetDashesOnPlayer(level, 4);
 
             IngesteLogger.Info("Lunar inventory (TheEnd - 4 dashes) enabled");
         }
@@ -125,11 +110,7 @@ namespace DZ
             CurrentInventory = RefillInventoryType.BlackHole;
             StoreInventoryInSession(level, RefillInventoryType.BlackHole);
 
-            var player = level.Tracker.GetEntity<global::Celeste.Player>();
-            if (player != null)
-            {
-                SetPlayerDashesWithLessDasheline(player, 5);
-            }
+            SetDashesOnPlayer(level, 5);
 
             IngesteLogger.Info("Black Hole inventory (Corruption - 5 dashes) enabled");
         }
@@ -145,12 +126,8 @@ namespace DZ
             StoreInventoryInSession(level, RefillInventoryType.SaveStar);
             level.Session.SetFlag(FLAG_KIRBY_MODE, true);
 
-            var player = level.Tracker.GetEntity<global::Celeste.Player>();
-            if (player != null)
-            {
-                player.EnableKirbyMode();
-                SetPlayerDashesWithLessDasheline(player, 10);
-            }
+            EnableKirbyModeOnPlayer(level, maxDashes: 10);
+            SetDashesOnPlayer(level, 10);
 
             IngesteLogger.Info("Save Star inventory (Kirby mode - 10 dashes) enabled");
         }
@@ -162,8 +139,17 @@ namespace DZ
         {
             EnableSaveStarInventory(level);
 
-            var player = level.Tracker.GetEntity<global::Celeste.Player>();
-            player?.SetKirbyPowerState(powerState);
+            var kPlayer = level.Tracker.GetEntity<K_Player>();
+            if (kPlayer != null)
+            {
+                kPlayer.SetKirbyPowerState(powerState);
+            }
+            else
+            {
+                var player = level.Tracker.GetEntity<global::Celeste.Player>();
+                if (player != null && !K_PlayerHooks.ShadowPlayers.Contains(player))
+                    player.SetKirbyPowerState(powerState);
+            }
 
             IngesteLogger.Info($"Save Star inventory enabled with Kirby power: {powerState}");
         }
@@ -218,8 +204,9 @@ namespace DZ
             level.Session.SetFlag(FLAG_KIRBY_MODE, false);
             EnableStandardInventory(level);
 
-            var player = level.Tracker.GetEntity<global::Celeste.Player>();
-            player?.DisableKirbyMode();
+            // EnableStandardInventory already calls DisableKirbyModeOnPlayer; this is a belt-and-
+            // suspenders call in case the session flag was set without going through that path.
+            DisableKirbyModeOnPlayer(level);
 
             IngesteLogger.Info("Reset to default (standard) inventory");
         }
@@ -357,6 +344,71 @@ namespace DZ
         private static void StoreInventoryInSession(Level level, RefillInventoryType inventoryType)
         {
             level.Session.SetCounter(FLAG_CURRENT_DASH_INVENTORY, (int)inventoryType);
+        }
+
+        /// <summary>
+        /// Set the dash count on whichever player is authoritative in the scene.
+        /// Routes to K_Player.Dashes when K_Player is present; otherwise falls through to the
+        /// vanilla Player via <see cref="SetPlayerDashesWithLessDasheline"/>, skipping shadow players.
+        /// </summary>
+        private static void SetDashesOnPlayer(Level level, int dashes)
+        {
+            var kPlayer = level.Tracker.GetEntity<K_Player>();
+            if (kPlayer != null)
+            {
+                kPlayer.Dashes = dashes;
+                return;
+            }
+
+            var player = level.Tracker.GetEntity<global::Celeste.Player>();
+            if (player != null && !K_PlayerHooks.ShadowPlayers.Contains(player))
+            {
+                SetPlayerDashesWithLessDasheline(player, dashes);
+            }
+        }
+
+        /// <summary>
+        /// Enable Kirby mode on whichever player is authoritative in the scene.
+        /// Prefers K_Player (the actual player entity) over the vanilla shadow Player
+        /// so that sprite swaps are never applied to the shadow, preventing missing-
+        /// animation crashes (e.g. 'wakeUp' not found in kirby_player sprite bank).
+        /// </summary>
+        private static void EnableKirbyModeOnPlayer(Level level, int maxDashes = 1)
+        {
+            // Prefer K_Player — it manages its own Kirby state without sprite swaps
+            var kPlayer = level.Tracker.GetEntity<K_Player>();
+            if (kPlayer != null)
+            {
+                kPlayer.EnableKirbyMode(maxDashes);
+                return;
+            }
+
+            // Fallback: vanilla Player that is NOT a shadow player
+            var player = level.Tracker.GetEntity<global::Celeste.Player>();
+            if (player != null && !K_PlayerHooks.ShadowPlayers.Contains(player))
+            {
+                player.EnableKirbyMode(maxDashes);
+            }
+        }
+
+        /// <summary>
+        /// Disable Kirby mode on whichever player is authoritative in the scene.
+        /// Mirrors <see cref="EnableKirbyModeOnPlayer"/> — avoids touching shadow players.
+        /// </summary>
+        private static void DisableKirbyModeOnPlayer(Level level)
+        {
+            var kPlayer = level.Tracker.GetEntity<K_Player>();
+            if (kPlayer != null)
+            {
+                kPlayer.DisableKirbyMode();
+                return;
+            }
+
+            var player = level.Tracker.GetEntity<global::Celeste.Player>();
+            if (player != null && !K_PlayerHooks.ShadowPlayers.Contains(player))
+            {
+                player.DisableKirbyMode();
+            }
         }
 
         #region Legacy Compatibility Methods

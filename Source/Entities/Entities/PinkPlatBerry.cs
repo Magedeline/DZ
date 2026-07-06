@@ -50,7 +50,7 @@ namespace Celeste.Entities
             this.Add(new MirrorReflection());
             this.Add(this.Follower = new Follower(this.Id, onLoseLeader: new Action(this.OnLoseLeader)));
             this.Follower.FollowDelay = 0.3f;
-            this.sprite = DZModule.SpriteBank.Create("pinkplatinumberry");
+            this.sprite = GFX.SpriteBank.Create("pinkplatinumberry");
             this.wiggler = Wiggler.Create(0.4f, 4f, v => this.sprite.Scale = Vector2.One * (1.0f + v * 0.35f));
             this.bloom = new BloomPoint(0.15f, 12f);
             this.light = new VertexLight(Color.White, 1f, 16, 24);

@@ -20,7 +20,7 @@ namespace Celeste.NPCs
 
         private void setupSprite()
         {
-            Add(sprite = DZModule.SpriteBank.Create("chara"));
+            Add(sprite = GFX.SpriteBank.Create("chara"));
             sprite.Play("idle");
         }
 

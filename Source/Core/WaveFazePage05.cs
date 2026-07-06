@@ -14,8 +14,8 @@ namespace DZ
         public override void Added(WaveFazePresentation presentation)
         {
             base.Added(presentation);
-            displays.Add(new Display(new Vector2(Width * 0.28f, Height - 600), Dialog.Get("WAVEFAZE_PAGE5_INFO1"), "too_fast", new Vector2(-50f, 20f)));
-            displays.Add(new Display(new Vector2(Width * 0.72f, Height - 600), Dialog.Get("WAVEFAZE_PAGE5_INFO2"), "too_late", new Vector2(-50f, 20f)));
+            displays.Add(new Display(new Vector2(Width * 0.28f, Height - 600), Dialog.Get("WAVEFAZE_PAGE5_INFO1"), "DZ/too_fast", new Vector2(-50f, 20f)));
+            displays.Add(new Display(new Vector2(Width * 0.72f, Height - 600), Dialog.Get("WAVEFAZE_PAGE5_INFO2"), "DZ/too_late", new Vector2(-50f, 20f)));
         }
 
         public override IEnumerator Routine()

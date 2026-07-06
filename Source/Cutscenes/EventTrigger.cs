@@ -334,7 +334,7 @@ namespace DZ
                 case "cs07_genocide_wakeup":
                     base.Scene.Add(new global::Celeste.Cutscenes.CS07_GenocideWakeup(player2));
                     break;
-                case "cs08DZ_CHaraboss_intro":
+                case "cs08_charaboss_intro":
                     base.Scene.Add(new global::Celeste.Cutscenes.Cs08CharaBossIntro(player2));
                     break;
                 case "cs09_area_complete":
@@ -484,8 +484,9 @@ namespace DZ
                 case "cs21_ending":
                     base.Scene.Add(new global::Celeste.Cutscenes.CS21_Ending(player2));
                     break;
+                case "ch8_chara_boss_center":
                 case "ch8DZ_CHara_boss_center":
-                    base.Scene.Add(new global::Celeste.Cutscenes.Cs08CharaBossIntro(player2));
+                    base.Scene.Add(new global::Celeste.Cutscenes.CS08_BossCenter());
                     break;
                 case "ch8_end":
                     base.Scene.Add(new global::Celeste.Cutscenes.Cs08End(player2));

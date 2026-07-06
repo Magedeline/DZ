@@ -1123,7 +1123,7 @@ namespace Celeste.Entities
             {
                 try
                 {
-                    this.Sprite = DZModule.SpriteBank.Create("els_true_final_boss");
+                    this.Sprite = GFX.SpriteBank.Create("els_true_final_boss");
                     if (this.Sprite != null)
                     {
                         this.Sprite.Visible = false;

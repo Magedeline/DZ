@@ -65,7 +65,7 @@ namespace Celeste.Entities.Chapters.Ch16
             
             Collider = new Hitbox(32f, 32f, -16f, -16f);
             
-            Add(sprite = DZModule.SpriteBank.Create("abyssal_eye"));
+            Add(sprite = GFX.SpriteBank.Create("abyssal_eye"));
             sprite.Play("dormant");
             
             Add(eyeLight = new VertexLight(eyeColor, 0.4f, 12, 32));

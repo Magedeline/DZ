@@ -201,6 +201,13 @@ namespace Celeste.Extensions
                 return;
             }
 
+            // Never swap sprites on shadow players managed by K_PlayerHooks — they run intro
+            // coroutines and expect standard Madeline animations (e.g. 'wakeUp') to be present.
+            if (DZ.K_PlayerHooks.ShadowPlayers.Contains(player))
+            {
+                return;
+            }
+
             if (GFX.SpriteBank == null || !GFX.SpriteBank.Has(spriteId))
             {
                 return;
@@ -211,6 +218,9 @@ namespace Celeste.Extensions
 
             GFX.SpriteBank.CreateOn(player.Sprite, spriteId);
 
+            // Re-apply the current animation only if the new sprite bank has it.
+            // This prevents KeyNotFoundException when the target sprite lacks animations
+            // that the vanilla player relies on (e.g. 'wakeUp' missing from kirby_player).
             if (!string.IsNullOrEmpty(currentAnim) && player.Sprite.Has(currentAnim))
             {
                 player.Sprite.Play(currentAnim, restart: true, randomizeFrame: false);

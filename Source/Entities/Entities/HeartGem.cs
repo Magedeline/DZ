@@ -165,21 +165,21 @@ PFakeShine = new ParticleType
             this.IsGhost = (!this.IsFake && !this.IsAstral && SaveData.Instance.Areas[area.ID].Modes[(int)area.Mode].HeartGem);
             string id;
             if (this.IsAstral) {
-                id = "DZ_heartgem4"; // Astral/Final Remix - Rainbow heartgem
+                id = "heartgem4"; // Astral/Final Remix - Rainbow heartgem
             } else if (this.IsFake) {
                 id = "heartgem4"; // Grey heartgem for fake/wrong heart
             } else if (this.IsGhost) {
                 id = "heartgem5";
             } else if (area.Mode == AreaMode.Normal) {
-                id = "DZ_heartgem0"; // A-Side - Blue heartgem
+                id = "heartgem0"; // A-Side - Blue heartgem
             } else if (area.Mode == AreaMode.BSide) {
-                id = "DZ_heartgem1"; // B-Side - Red heartgem
+                id = "heartgem1"; // B-Side - Red heartgem
             } else if (area.Mode == AreaMode.CSide) {
-                id = "DZ_heartgem2"; // C-Side - Golden heartgem
+                id = "heartgem2"; // C-Side - Golden heartgem
             } else if (area.Mode == (AreaMode)3) {
-                id = "DZ_heartgem3"; // D-Side - Pink heartgem
+                id = "heartgem3"; // D-Side - Pink heartgem
             } else {
-                id = "DZ_heartgem0"; // Default to blue
+                id = "heartgem0"; // Default to blue
             }
             Add(this.sprite = GFX.SpriteBank.Create(id));
           this.sprite.Play("spin", false, false);

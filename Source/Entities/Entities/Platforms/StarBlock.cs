@@ -1,3 +1,5 @@
+using DZ;
+
 namespace Celeste.Entities
 {
     [CustomEntity(ids: "DZ/StarBlock")]
@@ -37,7 +39,18 @@ namespace Celeste.Entities
                 return;
             }
 
-            // Kirby can inhale-break this block; everyone can dash-break it.
+            // K_Player passes its shadow player to PlayerCollider. Resolve to the real K_Player.
+            if (K_PlayerHooks.ShadowPlayers.Contains(player))
+            {
+                K_Player kPlayer = Scene?.Tracker.GetEntity<K_Player>();
+                if (kPlayer != null)
+                {
+                    HandleKPlayerCollision(kPlayer);
+                    return;
+                }
+            }
+
+            // Vanilla player path: Kirby can inhale-break this block; everyone can dash-break it.
             if (player.IsKirbyMode() && IsKirbyInhaling(player))
             {
                 Audio.Play("event:/pusheen/char/kirby/inhale_start", Position);
@@ -55,8 +68,28 @@ namespace Celeste.Entities
         public override void Update()
         {
             base.Update();
-            var player = Scene.Tracker.GetEntity<global::Celeste.Player>();
-            if (player != null && !isBroken && Collider.Collide(player.Collider))
+            if (isBroken)
+            {
+                return;
+            }
+
+            var level = Scene as Level;
+            if (level == null)
+            {
+                return;
+            }
+
+            // K_Player takes precedence so we use its actual dash/inhale state instead of the shadow player.
+            K_Player kPlayer = level.Tracker.GetEntity<K_Player>();
+            if (kPlayer != null && Collider.Collide(kPlayer.Collider))
+            {
+                HandleKPlayerCollision(kPlayer);
+                return;
+            }
+
+            // Fallback: real vanilla player.
+            global::Celeste.Player player = level.Tracker.GetEntity<global::Celeste.Player>();
+            if (player != null && !K_PlayerHooks.ShadowPlayers.Contains(player) && Collider.Collide(player.Collider))
             {
                 if (player.IsKirbyMode() && IsKirbyInhaling(player))
                 {
@@ -133,14 +166,30 @@ namespace Celeste.Entities
             return false;
         }
 
+        private void HandleKPlayerCollision(K_Player kPlayer)
+        {
+            if (DZModule.Session?.IsKirbyModeActive == true && kPlayer.kirbyController?.IsInhaling == true)
+            {
+                Audio.Play("event:/pusheen/char/kirby/inhale_start", Position);
+                Break();
+                return;
+            }
+
+            if (kPlayer.DashAttacking)
+            {
+                Audio.Play("event:/game/general/diamond_touch", Position);
+                Break();
+            }
+        }
+
         private static MTexture ResolveTexture(int width, int height)
         {
             int area = width * height;
             string path = area >= 256
-                ? "objects/DZ/DZ/starblock/oversized"
+                ? "objects/DZ/starblock/oversized"
                 : area >= 128
-                    ? "objects/DZ/DZ/starblock/large"
-                    : "objects/DZ/DZ/starblock/normal";
+                    ? "objects/DZ/starblock/large"
+                    : "objects/DZ/starblock/normal";
 
             return GFX.Game.Has(path) ? GFX.Game[path] : null;
         }

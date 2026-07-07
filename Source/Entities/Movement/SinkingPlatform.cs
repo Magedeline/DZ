@@ -111,7 +111,7 @@ public class SinkingPlatform : CelesteJumpThru
     }
 
     /// <summary>Returns the <see cref="MadelinePlayer"/> riding this platform, or null.</summary>
-    private MadelinePlayer GetPlayerRider()
+    private new MadelinePlayer GetPlayerRider()
     {
         if (Scene == null) return null;
         for (int _spi = 0; _spi < Scene.Entities.Count; _spi++)

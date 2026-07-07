@@ -36,7 +36,6 @@ namespace Celeste.Entities.Chapters.Ch14
         private List<GlitchParticle> glitchParticles;
         private bool isPattern;
         private List<float> patternTimes;
-        private int patternIndex;
         private Random random;
         private Color glitchColor;
         #endregion

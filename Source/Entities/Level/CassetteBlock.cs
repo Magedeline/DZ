@@ -275,7 +275,7 @@ public class CassetteBlockManager : Component, IUpdatable
     // ── IUpdatable ───────────────────────────────────────────────────────────
 
     /// <inheritdoc/>
-    public void Update()
+    public override void Update()
     {
         BeatTimer += Time.DeltaTime;
 

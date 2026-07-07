@@ -264,7 +264,7 @@ namespace Celeste.Cutscenes
             base.Update();
 
             // Allow player to hold confirm to fast-scroll
-            if (scrollActive && Input.MenuConfirm.Check)
+            if (scrollActive && !fadingOut && Input.MenuConfirm.Check)
             {
                 scrollY += ScrollSpeed * (FastScrollMult - 1f);
             }

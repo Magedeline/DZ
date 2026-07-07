@@ -24,7 +24,6 @@ namespace DZ
         public float Health { get; private set; }
         public const float MaxHealth = 100f;
 
-        private Vector2 targetPosition;
         private float attackTimer;
         private float hurtTimer;
 

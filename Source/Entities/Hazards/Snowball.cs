@@ -157,7 +157,7 @@ public class Snowball : DZ.Nez.Entity
         Destroy();
     }
 
-    private void Destroy()
+    private new void Destroy()
     {
         broken     = false;
         collidable = false;

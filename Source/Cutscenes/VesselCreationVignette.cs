@@ -62,7 +62,6 @@ namespace Celeste.Cutscenes
         private string? areaMusic;
         private float backgroundFade = 1f;
         private float textAlpha = 0f;
-        private float choiceEase = 0f;
         private bool exiting = false;
         private float pauseFade = 0f;
         private float fade = 0f;
@@ -74,7 +73,6 @@ namespace Celeste.Cutscenes
         
         // Current state
         private CreationPhase currentPhase = CreationPhase.Introduction;
-        private int currentChoiceIndex = 0;
         private List<string> currentChoices = new List<string>();
         private bool textInputActive = false;
         private bool textInputPaletteActive = false;

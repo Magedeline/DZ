@@ -33,7 +33,6 @@ public class CS_Gen_IntroRemix_1 : Scene
 
     // Chapter info
     private string chapterName;
-    private string remixArtist;
     private MTexture bgTexture;
     private MTexture vhsOverlay;
     private MTexture tapeTexture;
@@ -61,7 +60,6 @@ public class CS_Gen_IntroRemix_1 : Scene
         // Get chapter name from area data
         var areaData = AreaData.Get(session.Area);
         chapterName = areaData?.Name != null ? Dialog.Clean(areaData.Name) : "Unknown Chapter";
-        remixArtist = "B-Side Remix";
 
         // Determine background music event for this B-Side
         bgMusicEvent = areaData?.Mode?.Length > 1

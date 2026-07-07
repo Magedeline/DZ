@@ -28,7 +28,6 @@ namespace Celeste.Entities
         public static ParticleType? PGhostGlow;
         private bool collected;
         private float wobble = 0.0f;
-        private float collectTimer = 0.0f;
         private bool isGhostBerry;
         private string customCollectSound;
         private Vector2 start;

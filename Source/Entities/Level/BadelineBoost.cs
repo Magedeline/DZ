@@ -99,7 +99,7 @@ public class BadelineBoost : Component, IUpdatable
     // Update
     // -------------------------------------------------------------------------
 
-    public void Update()
+    public override void Update()
     {
         // Emit ambience particles
         // TODO: if (Scene.OnInterval(0.1f)) emit particles

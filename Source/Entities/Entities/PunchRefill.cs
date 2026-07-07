@@ -30,7 +30,6 @@ namespace Celeste.Entities
         private int punchCount;
         private float respawnTime;
         private bool breakEvenWhenFull;
-        private float respawnTimer;
         private string spriteVariant; // "single" or "multi"
 
         public PunchRefill(EntityData data, Vector2 offset)

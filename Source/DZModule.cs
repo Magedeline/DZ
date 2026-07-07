@@ -115,6 +115,9 @@ public class DZModule : EverestModule {
         // Initialize metadata registries (loads .bin.DZ.meta.yaml etc.)
         MetadataRegistries.Initialize();
 
+        // Initialize OverworldHelper functionality
+        OverworldHelperModule.Load();
+
         // Hook into scene changes to add the HotReloadController
         On.Monocle.Engine.Update += OnEngineUpdate;
 
@@ -183,6 +186,9 @@ public class DZModule : EverestModule {
 
         // Sub-chapter system
         global::DZ.SubChapterManager.Unload();
+
+        // Unload OverworldHelper functionality
+        OverworldHelperModule.Unload();
 
         On.Monocle.Engine.Update -= OnEngineUpdate;
         _controllersScene = null;

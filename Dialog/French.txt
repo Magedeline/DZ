@@ -15887,3 +15887,456 @@ DZ_ENABLE_CELESTENET=Activer l'Intégration CelesteNet
 DZ_ENABLE_BOUNCEHELPER=Activer l'Intégration BounceHelper
 DZ_ENABLE_FLAGLINES=Activer l'Intégration FlaglinesAndSuch
 DZ_DEATHLINK_DAMAGE=Multiplicateur de Dégâts DeathLink
+
+
+# ================================
+# Translation completeness pass: keys carried forward from renamed
+# source IDs (content unchanged, key name updated to match current English.txt)
+# ================================
+
+DZ_0_02_Shadow=Veil of Shadows
+
+DZ_0_03_Stars=Arrival
+
+DZ_0_04_Legend=Chronicles of Destiny
+
+DZ_0_05_Fractured=Fractured Memories
+
+DZ_0_06_Stronghold=Fortress of Solitude
+
+DZ_0_07_Inferno=Infernal Reflections
+
+DZ_0_08_Truth=Revelation's Edge
+
+DZ_0_09_Summit=Apex of Reality
+
+DZ_0_10_Ruins=Echoes of the Past
+
+DZ_0_11_Snow=Sanctuaire Congelé
+
+DZ_0_12_Water=Profondeurs en Cascade
+
+DZ_0_13_Fire=Blazing Territories
+
+DZ_0_14_Digital=Cyber Nexus
+
+DZ_0_15_Castle=Ethereal Citadel
+
+DZ_0_18_Heart=Core of Existence
+
+DZ_0_21_LastLevel=Desolo Zantas True Finale
+
+DZ_1_01_City=Forbidden Metropolis
+
+DZ_1_02_Shadow=Veil of Shadows
+
+DZ_1_03_Stars=Arrival
+
+DZ_1_04_Legend=Chronicles of Destiny
+
+DZ_1_05_Fractured=Fractured Memories
+
+DZ_1_06_Stronghold=Fortress of Solitude
+
+DZ_1_07_Inferno=Infernal Reflections
+
+DZ_1_08_Truth=Revelation's Edge
+
+DZ_1_09_Summit=Apex of Reality
+
+DZ_1_10_Ruins=Echoes of the Past
+
+DZ_1_11_Snow=Sanctuaire Congelé
+
+DZ_1_12_Water=Profondeurs en Cascade
+
+DZ_1_13_Fire=Blazing Territories
+
+DZ_1_14_Digital=Cyber Nexus
+
+DZ_1_15_Castle=Ethereal Citadel
+
+DZ_1_18_Heart=Core of Existence
+
+DZ_2_01_City=Forbidden Metropolis
+
+DZ_2_02_Shadow=Veil of Shadows
+
+DZ_2_03_Stars=Arrival
+
+DZ_2_04_Legend=Chronicles of Destiny
+
+DZ_2_05_Fractured=Fractured Memories
+
+DZ_2_06_Stronghold=Fortress of Solitude
+
+DZ_2_07_Inferno=Infernal Reflections
+
+DZ_2_08_Truth=Revelation's Edge
+
+DZ_2_09_Summit=Apex of Reality
+
+DZ_2_10_Ruins=Echoes of the Past
+
+DZ_2_11_Snow=Sanctuaire Congelé
+
+DZ_2_12_Water=Profondeurs en Cascade
+
+DZ_2_13_Fire=Blazing Territories
+
+DZ_2_14_Digital=Cyber Nexus
+
+DZ_2_15_Castle=Ethereal Citadel
+
+DZ_2_18_Heart=Core of Existence
+
+DZ_H8DZ_CHARA_BOSS_TIRED_C=[CHARA right angry]
+UGH!!!
+
+_ACCESSIBILITY_HEADER=Accessibility
+
+_BINDINGS_HEADER=Key Bindings
+
+_BIND_ATTACK=Attack
+
+_BIND_COMBAT_TOGGLE=Toggle Combat Mode
+
+_BIND_CYCLE_POWER=Cycle Power
+
+_BIND_DROP_POWER=Drop Power
+
+_BIND_HOTRELOAD_RELOAD=Manual Reload (F6)
+
+_BIND_HOTRELOAD_RELOAD_ALL=Reload All (F7)
+
+_BIND_HOTRELOAD_TOGGLE=Toggle Hot Reload (F5)
+
+_BIND_HOTRELOAD_UI=Toggle UI (F8)
+
+_BIND_HOVER=Hover
+
+_BIND_INHALE=Inhale
+
+_BIND_KNIGHT=Knight Mode
+
+_BIND_MADDZ_CHARGE=Madeline Charge Attack
+
+_BIND_MAD_MELEE=Madeline Melee
+
+_BIND_MAD_WEAPON_CYCLE=Cycle Madeline Weapon
+
+_BIND_PARRY=Parry
+
+_BIND_PUNCH=Punch
+
+_BIND_SLIDE=Slide
+
+_BIND_SPIT=Spit
+
+_DEATHLINK_DAMAGE=Multiplicateur de Dégâts DeathLink
+
+_DEATHLINK_DAMAGE_DESC=When enabled, Kirby takes damage instead of dying from deathlink. Disable if Madeline deaths are annoying you.
+
+_DEBUG_MODE=Debug Mode
+
+_DEBUG_MODE_DESC=Enable additional logging and debug features
+
+_FLASH_EFFECTS=Flash Effects
+
+_HOTRELOAD_ALL_METHODS=Reload All Methods
+
+_HOTRELOAD_ALL_METHODS_DESC=Warning: May cause issues with some code
+
+_HOTRELOAD_AUTO=Rechargement Automatique à l'Enregistrement
+
+_HOTRELOAD_AUTO_DESC=Automatically reload when source files change
+
+_HOTRELOAD_ENABLED=Activer le Rechargement Actif
+
+_HOTRELOAD_ENABLED_DESC=Change code without restarting the game
+
+_HOTRELOAD_HEADER=Paramètres de Rechargement Actif
+
+_HOTRELOAD_SHOW_UI=Show Status Overlay
+
+_HOTRELOAD_SOUND=Jouer le Son de Rechargement Actif
+
+_HOTRELOAD_SOURCE_PATH=Custom Source Path
+
+_HOTRELOAD_VERBOSE=Journalisation Détaillée
+
+# Overworld 3D Settings
+
+_INTEGRATIONS_HEADER=Paramètres d'Intégration des Mods
+
+_KIRBY_COMBAT_MODE_DEFAULT=Combat Mode Enabled By Default
+
+_KIRBY_ENABLED=Enable Kirby Mode
+
+_KIRBY_ENABLED_DESC=Allow Kirby player mode globally
+
+_KIRBY_HEADER=Kirby Player Settings
+
+_KIRBY_HOVER_ENABLED=Enable Hover
+
+_KIRBY_HOVER_FALL_SPEED=Hover Fall Speed
+
+_KIRBY_HOVER_HOLD=Hold To Hover
+
+_KIRBY_INHALE_RANGE=Inhale Range
+
+_KIRBY_MAX_FLOAT_JUMPS=Max Float Jumps
+
+_KIRBY_MAX_HEALTH=Max Health
+
+_KIRBY_MAX_STAMINA=Max Stamina
+
+_KIRBY_PRECISION_COMBAT=Enable Precision Combat
+
+_KIRBY_USE_PLAYER_RENDER=Use Vanilla Player Render
+
+_MAD_COMBAT_ENABLED=Enable Madeline Combat
+
+_MAD_COMBAT_HUD=Show Combat HUD
+
+_MAD_COMBAT_MAX_HEALTH=Madeline Max Health
+
+_RUMBLE=Controller Rumble
+
+_SCREEN_SHAKE=Screen Shake
+
+_SETTINGS=DZ
+
+_VISUAL_EFFECTS=Visual Effects
+
+_VISUAL_EFFECTS_DESC=Enable particles, shaders, and visual effects
+
+
+# ================================
+# Translation completeness pass: newly authored translations
+# (no prior localized text existed for these keys)
+# ================================
+
+DZ_FILE_GENTLEBREEZE_OFF=Brise Douce : Désactivée
+
+DZ_FILE_GENTLEBREEZE_ON=Brise Douce : Activée
+
+DZ_FILE_LASTENDEMY_OFF=Last Endemy : Désactivé
+
+DZ_FILE_LASTENDEMY_ON=Last Endemy : Activé
+
+DZ_GENTLEBREEZE_ASK=Activer le {#8fd9ff}Mode Brise Douce{/} pour le joueur Kirby ?
+
+DZ_GENTLEBREEZE_MODE=Mode Brise Douce (Kirby)
+
+DZ_GENTLEBREEZE_MODE_0=
+    {#8fd9ff}MODE BRISE DOUCE{/}
+    Un ensemble d'aides pensé pour les débutants avec Kirby.
+    Il ralentit le monde quand vous visez un dash, et permet
+    à Kirby de continuer peu importe le nombre de faux pas.
+
+DZ_GENTLEBREEZE_MODE_1=
+    {big}VISÉE DE DASH AU RALENTI{/}
+    Quand vous maintenez le bouton de dash, le temps se fige et
+    une flèche indique votre direction de dash. Inclinez le stick
+    pour viser, puis relâchez pour dasher exactement là où vous
+    visiez. Parfait pour les sauts délicats sans la pression.
+
+DZ_GENTLEBREEZE_MODE_2=
+    {big}ENDURANCE ET DASHS INFINIS{/}
+    Kirby n'est jamais à court d'endurance en escaladant, et
+    chaque dash se recharge instantanément. Vous pouvez vous
+    entraîner et explorer librement sans rester bloqué sur un
+    seul écran.
+
+DZ_GENTLEBREEZE_MODE_3=
+    {big}DÉSACTIVABLE À TOUT MOMENT{/}
+    La Brise Douce est un coup de pouce, pas un changement
+    permanent. Rouvrez cette option depuis le fichier de
+    sauvegarde pour la désactiver et affronter le défi complet
+    quand vous vous sentirez prêt.
+
+DZ_GENTLEBREEZE_NO=Non, laisser désactivé
+
+DZ_GENTLEBREEZE_YES=Oui, activer la Brise Douce
+
+DZ_LASTENDEMY_ASK=
+    Acceptez-vous les règles et souhaitez-vous activer le
+    {#c77dff}Mode En Ligne Last Endemy{/} ?
+
+DZ_LASTENDEMY_MODE=Mode Last Endemy (En ligne)
+
+DZ_LASTENDEMY_MODE_0=
+    {#c77dff}MODE LAST ENDEMY{/}
+    Jouez à DZ en ligne avec d'autres joueurs via CelesteNet.
+    Ce guide explique le fonctionnement, les règles que vous
+    acceptez, et où trouver de l'aide. Merci de le lire avant
+    de jouer.
+
+DZ_LASTENDEMY_MODE_1=
+    {big}COMMENT JOUER EN LIGNE{/}
+    1. Assurez-vous que CelesteNet.Client est installé et actif.
+    2. Activez le Mode Last Endemy ici pour rejoindre le
+       multijoueur DZ.
+    3. Connectez-vous à un serveur compatible DZ depuis le menu
+       CelesteNet.
+    4. Votre vie de Kirby et votre progression se synchronisent
+       avec les autres joueurs de la session. Jouez ensemble et
+       partagez l'aventure.
+
+DZ_LASTENDEMY_MODE_2=
+    {big}RÈGLES ET CODE DE CONDUITE{/}
+    - Soyez aimable et respectueux envers chaque joueur.
+    - Aucune triche, exploit ou harcèlement d'autres joueurs.
+    - Ne partagez pas les informations personnelles d'autrui.
+    - Respectez toujours les règles propres au serveur hôte.
+    - Signalez les bugs et problèmes au lieu d'en abuser.
+    Enfreindre ces règles peut entraîner votre exclusion des
+    sessions.
+
+DZ_LASTENDEMY_MODE_3=
+    {big}VOTRE ACCORD{/}
+    En activant le Mode Last Endemy, vous acceptez les règles
+    ci-dessus et vous engagez à jouer loyalement. Votre nom en
+    jeu et vos données de synchronisation sont partagés avec les
+    autres joueurs de la session. Vous pouvez désactiver le mode
+    en ligne à tout moment depuis ce même menu.
+
+DZ_LASTENDEMY_MODE_4=
+    {big}À NOTER{/}
+    - Ce projet n'est pas une simple maquette de CelesteNet ;
+    - il s'agit plutôt d'une intégration de CelesteNet pour le
+      jeu en ligne de ce projet.
+    - Vous devez aussi respecter le propriétaire et son équipe.
+    - Un manque de respect, comme indiqué dans le premier
+      avertissement,
+    - entraînera des conséquences supplémentaires, en jeu comme
+      dans la vie réelle.
+
+DZ_LASTENDEMY_MODE_5=
+    {big}ASSISTANCE ET AIDE{/}
+    - Bloqué ou un bug trouvé ? Rendez-vous sur le canal
+      d'assistance du mod.
+    - Pour les problèmes de connexion CelesteNet, consultez la
+      documentation de CelesteNet et l'adresse de votre serveur.
+    - Soyez patient : le jeu en ligne est une expérience partagée
+      et peut différer du jeu solo.
+    Amusez-vous bien, et bienvenue dans la communauté DZ !
+
+DZ_LASTENDEMY_MODE_6=
+    {big}DÉPANNAGE{/}
+    - Impossible de se connecter ? Vérifiez l'adresse du serveur
+      et que CelesteNet.Client est à jour.
+    - Lag ou désynchronisation ? Essayez un serveur plus proche
+      de votre région, ou fermez les applications gourmandes en
+      bande passante.
+    - La vie ne se synchronise pas ? Vérifiez que chaque joueur a
+      activé le Mode Last Endemy dans son propre fichier de
+      sauvegarde.
+    - Toujours bloqué ? Récupérez votre fichier journal
+      (log.txt) et demandez de l'aide sur le canal de support
+      avec une description claire.
+    - VPN : selon le pays où vous vous trouvez légalement, cela
+      peut être autorisé, mais pas totalement en cas de
+      compétition.
+
+DZ_LASTENDEMY_MODE_7=
+    {big}CONFIDENTIALITÉ ET PARTAGE DE DONNÉES{/}
+    - Votre nom en jeu, la vie de Kirby et la progression de la
+      session sont partagés avec les autres joueurs de la même
+      session.
+    - Aucune information de compte personnelle, mot de passe ou
+      donnée système n'est jamais envoyée. CelesteNet ne transmet
+      que l'état du jeu.
+    - Les hôtes de serveur peuvent voir les noms des joueurs et
+      les informations de connexion à des fins de modération,
+      comme pour tout service en ligne.
+    - Si partager votre nom vous met mal à l'aise, renommez votre
+      fichier de sauvegarde avant de vous connecter.
+
+DZ_LASTENDEMY_MODE_8=
+    {big}ÉTIQUETTE ET FAIR-PLAY{/}
+    - Attendez les autres joueurs aux points de contrôle et aux
+      sorties de salle quand c'est possible. DZ en ligne est une
+      aventure partagée.
+    - Ne foncez pas en avant pour déclencher des cinématiques ou
+      événements qui feraient sauter du contenu que d'autres
+      n'ont pas encore vu.
+    - Communiquez ! Un petit message aide beaucoup pour coordonner
+      les passages délicats ou les combats de boss.
+    - Si un joueur peine, proposez de l'aide plutôt que de le
+      presser. La gentillesse garde la communauté saine.
+
+DZ_LASTENDEMY_MODE_9=
+    {big}DERNIER RAPPEL{/}
+    En appuyant sur {big}OUI{/} à l'écran suivant, vous confirmez
+    que :
+    - Vous avez lu et acceptez les règles et le code de conduite.
+    - Vous comprenez que vos données de jeu sont partagées durant
+      la session.
+    - Vous acceptez de respecter le propriétaire, l'équipe, et
+      chaque joueur que vous rencontrez en ligne.
+    Vous pouvez désactiver le mode en ligne à tout moment depuis
+    ce menu.
+    Respirez un bon coup, et profitez de l'ascension ensemble !
+
+DZ_LASTENDEMY_NO=Non, rester hors ligne
+
+DZ_LASTENDEMY_YES=J'accepte - Activer le mode en ligne
+
+DZ_OVERWORLDHELPER_ENABLED=Activer OverworldHelper
+
+DZ_PLAYERSELECT_AUTO=Sélection automatique du personnage recommandé
+
+DZ_PLAYERSELECT_CONFIRM=[Dash] Démarrer  /  [Retour] Annuler
+
+DZ_PLAYERSELECT_KIRBY=Kirby
+
+DZ_PLAYERSELECT_MADELINE=Madeline
+
+DZ_PLAYERSELECT_OFF=DÉSACTIVÉ
+
+DZ_PLAYERSELECT_ON=ACTIVÉ
+
+DZ_PLAYERSELECT_RECOMMEND=Recommandé pour cette carte : {0}
+
+DZ_PLAYERSELECT_STAR=Recommandé
+
+DZ_PLAYERSELECT_TITLE=Choisissez votre personnage
+
+DZ_PLAYER_AUTOSELECT=Sélection automatique du personnage
+
+DZ_CH20_KIRBY_THEEND_ASRIEL_A=
+    tu sais quoi ?
+    je ne tiens même plus à détruire cette réalité.
+
+DZ_CH20_KIRBY_THEEND_ASRIEL_B=
+    après t'avoir vaincu et obtenu l'accès au néant,
+    je créerai simplement une nouvelle réalité, et je ferai en sorte que tu n'y sois pas.
+
+DZ_CH20_KIRBY_THEEND_ASRIEL_C=
+    tous tes progrès, tous tes efforts, tous tes sacrifices...
+    je vais tout ramener à zéro !
+
+DZ_CH20_KIRBY_THEEND_ASRIEL_D=et on pourra recommencer tout ça depuis le début !
+
+DZ_CH20_KIRBY_THEEND_ASRIEL_E=
+    en fait, tu sais quelle est la meilleure partie dans tout ça ?
+    tu vas le faire...
+
+DZ_CH20_KIRBY_THEEND_ASRIEL_F=et ensuite tu perdras encore contre moi...
+
+DZ_CH20_KIRBY_THEEND_ASRIEL_G=et encore !
+
+DZ_CH20_KIRBY_THEEND_ASRIEL_H=ET ENCORE !!!
+
+DZ_CH20_KIRBY_THEEND_ASRIEL_I=parce que tu veux une fin définitive
+
+DZ_CH20_KIRBY_THEEND_ASRIEL_J=parce que tu aimes tes amis.
+
+DZ_CH20_KIRBY_THEEND_ASRIEL_K=parce que tu n'abandonnes jamais, au grand jamais !
+
+DZ_CH20_KIRBY_THEEND_ASRIEL_L=
+    c'est pas merveilleux, ça ?
+    ta détermination, ce pouvoir qui t'a mené jusqu'ici...
+    ce sera ta perte !

@@ -28,7 +28,6 @@ namespace Celeste.Entities
         // Aim arrow state.
         private float direction;
         private float scale;
-        private Vector2 offset;
         private int lastIndex;
 
         // Freeze / audio state.
@@ -140,7 +139,7 @@ namespace Celeste.Entities
                 rotation = 0f;
 
             tex.DrawOutlineCentered(
-                (kPlayer.Center + offset + Calc.AngleToVector(direction, 20f)).Round(),
+                (kPlayer.Center + Calc.AngleToVector(direction, 20f)).Round(),
                 Color.White,
                 Ease.BounceOut(scale),
                 rotation);

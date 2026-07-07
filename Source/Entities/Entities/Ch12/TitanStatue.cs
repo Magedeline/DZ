@@ -32,7 +32,6 @@ namespace Celeste.Entities.Chapters.Ch12
         private VertexLight eyeLight;
         private Vector2 startPosition;
         private float stateTimer;
-        private Player targetPlayer;
         private Level level;
         private List<StoneParticle> stoneParticles;
         private bool hasAwakened;

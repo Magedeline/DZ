@@ -615,7 +615,6 @@ namespace Celeste.Entities.Enemies
 
         private float flightTimer;
         private bool isFlying;
-        private float flightHeight;
 
         public Bugzzy(EntityData data, Vector2 offset) : base(data.Position + offset, "characters/DZ/bugzzy/")
         {

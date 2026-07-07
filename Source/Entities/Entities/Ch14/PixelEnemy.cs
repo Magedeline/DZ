@@ -49,7 +49,6 @@ namespace Celeste.Entities.Chapters.Ch14
         private Level level;
         private List<PixelProjectile> projectiles;
         private List<PixelParticle> particles;
-        private float glitchTimer;
         #endregion
 
         #region Constructor

@@ -243,7 +243,7 @@ public class DustGraphic : DZ.Nez.Component, IUpdatable
     /// <summary>
     /// Called by the dust-edge renderer each frame.
     /// </summary>
-    public void Render()
+    public override void Render()
     {
         Vector2 rp = RenderPosition;
 

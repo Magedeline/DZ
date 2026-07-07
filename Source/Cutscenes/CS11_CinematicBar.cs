@@ -78,12 +78,9 @@ namespace Celeste.Cutscenes
 
         private void FindOrSpawnNPCs(Level level)
         {
-            // FindFirst API not available - NPCs would need different lookup
-            /*
-            DZ = level.Entities.FindFirst<NPC>(npc => npc.GetType().Name.Contains("DZ") || npc.GetType().Name.Contains("Magolor"));
-            mom = level.Entities.FindFirst<NPC>(npc => npc.GetType().Name.Contains("Mom") || npc.GetType().Name.Contains("MadelineMother"));
-            alex = level.Entities.FindFirst<NPC>(npc => npc.GetType().Name.Contains("Alex") || npc.GetType().Name.Contains("TheoSister"));
-            */
+            DZ = level.Entities.OfType<NPC>().FirstOrDefault(npc => npc.GetType().Name.Contains("DZ") || npc.GetType().Name.Contains("Magolor"));
+            mom = level.Entities.OfType<NPC>().FirstOrDefault(npc => npc.GetType().Name.Contains("Mom") || npc.GetType().Name.Contains("MadelineMother"));
+            alex = level.Entities.OfType<NPC>().FirstOrDefault(npc => npc.GetType().Name.Contains("Alex") || npc.GetType().Name.Contains("TheoSister"));
         }
 
         private IEnumerator CutsceneSequence(Level level)

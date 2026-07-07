@@ -44,9 +44,7 @@ namespace Celeste.Entities.Chapters.Ch10
         
         private Sprite sprite;
         private StateMachine stateMachine;
-        private float stateTimer;
         private float attackCooldown;
-        private int attackCount;
         private Player targetPlayer;
         private Level level;
         private List<FloweyPellet> activePellets;

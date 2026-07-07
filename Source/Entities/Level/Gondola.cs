@@ -38,7 +38,7 @@ public class Gondola : CelesteSolid
 
     // ── Rotation spring ───────────────────────────────────────────────────────
 
-    public virtual float Rotation      { get; set; }
+    public new virtual float Rotation      { get; set; }
     public float RotationSpeed { get; set; }
 
     // ── State ─────────────────────────────────────────────────────────────────

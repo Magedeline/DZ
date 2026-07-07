@@ -23,7 +23,7 @@ public class MadelinePlayer : CelesteActor
     {
     }
 
-    public bool OnGround()
+    public new bool OnGround()
     {
         return false;
     }

@@ -25,7 +25,6 @@ namespace Celeste.Cutscenes
         private float pauseFade = 0f;
         private bool exiting;
         private Coroutine? textCoroutine;
-        private Player? player;
 
         public override bool CanPause => menu == null;
 

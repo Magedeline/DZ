@@ -41,7 +41,6 @@ namespace Celeste.Effects
         public bool UseWind = true;
         public bool IsForeground = false;
 
-        private Vector2 windOffset;
         private float visibleFade = 1f;
 
         public RainbowSpaceDust()

@@ -31,7 +31,6 @@ namespace Celeste.Entities.Chapters.Ch10
         private Sprite pieSprite;
         private float cookTimer;
         private float cookDuration;
-        private Player nearbyPlayer;
         private Level level;
         private VertexLight stoveLight;
         private float steamTimer;
@@ -384,7 +383,6 @@ namespace Celeste.Entities.Chapters.Ch10
         #region Properties
         private Sprite sprite;
         private bool isOpen;
-        private float openAmount;
         private Level level;
         #endregion
 

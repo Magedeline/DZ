@@ -31,7 +31,6 @@ namespace Celeste.Entities.Chapters.Ch15
         public float TriggerDistance { get; private set; }
         
         private Sprite sprite;
-        private Image shadowImage;
         private float stateTimer;
         private float shadowAlpha;
         private float crushY;

@@ -69,14 +69,16 @@ public class MoonGlitchBackgroundTrigger : Trigger {
     }
 
     private static void Toggle(bool on) {
-        foreach (var backdrop in Engine.Scene.Entities.OfType<Backdrop>()) {
+        if (Engine.Scene is not Level level) return;
+        foreach (var backdrop in level.Background.Backdrops.Concat(level.Foreground.Backdrops)) {
             if (backdrop.Name == "blackhole")
                 backdrop.ForceVisible = on;
         }
     }
 
     private static void Fade(float alpha, bool max = false) {
-        foreach (var backdrop in Engine.Scene.Entities.OfType<Backdrop>()) {
+        if (Engine.Scene is not Level level) return;
+        foreach (var backdrop in level.Background.Backdrops.Concat(level.Foreground.Backdrops)) {
             if (backdrop.Name == "blackhole")
                 backdrop.FadeAlphaMultiplier = max ? Math.Max(backdrop.FadeAlphaMultiplier, alpha) : alpha;
         }

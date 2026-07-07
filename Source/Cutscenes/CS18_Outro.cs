@@ -32,7 +32,6 @@ namespace Celeste.Cutscenes
 #pragma warning restore CS0414
         private bool gameClosing = false;
         private EventInstance? phoneRumbleSfx;
-        private Player? player;
 
         public override bool CanPause => menu == null;
 

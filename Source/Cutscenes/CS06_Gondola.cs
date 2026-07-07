@@ -388,6 +388,7 @@ namespace Celeste.Cutscenes
 				yield return null;
 				this.Level.Background.Fade = p;
 				this.anxiety = p;
+				this.anxietyRumble = p;
 				if (this.windSnowFg != null)
 				{
 					this.windSnowFg.Alpha = 1f - p;
@@ -444,6 +445,7 @@ namespace Celeste.Cutscenes
 				reflectionTentacles.RemoveSelf();
 			}
 			this.anxiety = 0f;
+			this.anxietyRumble = 0f;
 			this.Level.Background.Fade = 0f;
 			this.Level.SnapColorGrade(null);
 			if (this.gondolaDarkness != null)

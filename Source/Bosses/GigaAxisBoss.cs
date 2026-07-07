@@ -71,7 +71,6 @@ namespace Celeste.Entities.Bosses
         
         private bool isOverdriveActive = false;
         private float weaponCharge = 0f;
-        private float shieldIntegrity = 100f;
         private List<Vector2> targetLocks = new List<Vector2>();
         #endregion
 

@@ -50,7 +50,7 @@ public abstract class BossBase : Component, IUpdatable
 
     // References
     protected PlayerController Player { get; private set; }
-    protected Scene Scene => Entity.Scene;
+    protected new Scene Scene => Entity.Scene;
 
     // Events
     public event Action OnBossSpawned;

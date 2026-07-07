@@ -127,7 +127,7 @@ public class GoldenBlock : CelesteSolid
 
     // ── Helpers ───────────────────────────────────────────────────────────────
 
-    private bool HasPlayerRider()
+    private new bool HasPlayerRider()
     {
         if (Scene == null) return false;
         for (int _gi2 = 0; _gi2 < Scene.Entities.Count; _gi2++)

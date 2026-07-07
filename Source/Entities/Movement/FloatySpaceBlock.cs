@@ -219,7 +219,7 @@ public class FloatySpaceBlock : CelesteSolid
 
     // ── Rider helpers ─────────────────────────────────────────────────────────
 
-    private bool HasPlayerRider()
+    private new bool HasPlayerRider()
     {
         if (Scene == null) return false;
         for (int _fsj = 0; _fsj < Scene.Entities.Count; _fsj++)

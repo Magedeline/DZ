@@ -103,8 +103,9 @@ namespace Celeste.Entities
         {
             
             base.Added(scene);
-            
+
             level = SceneAs<Level>();
+            playerHasDreamDash = level.Session.Inventory.DreamDash;
 
             // Setup movement if has node
             if (node != null)

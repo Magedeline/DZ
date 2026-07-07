@@ -112,8 +112,6 @@ public class EnhancedBirdNPC : Actor
 
     private float tutorialTimer = 0f;
 
-    private bool playerHasTriggeredTutorial = false;
-
     [MethodImpl(MethodImplOptions.NoInlining)]
     public EnhancedBirdNPC(Vector2 position, Modes mode)
         : base(position)

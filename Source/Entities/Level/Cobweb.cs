@@ -94,7 +94,7 @@ public class Cobweb : DZ.Nez.Component, IUpdatable
     /// <summary>
     /// Renders the cobweb.  Call from your scene's render pass.
     /// </summary>
-    public void Render()
+    public override void Render()
     {
         DrawCobweb(_anchorA, _anchorB, steps: 12, drawOffshoots: true);
     }

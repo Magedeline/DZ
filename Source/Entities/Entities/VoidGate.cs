@@ -49,8 +49,7 @@ namespace Celeste.Entities
         private Sprite rightGateSprite;
         private VertexLight leftLight;
         private VertexLight rightLight;
-        private ParticleSystem particles;
-        
+
         // Audio
         private SoundSource gateSound;
         

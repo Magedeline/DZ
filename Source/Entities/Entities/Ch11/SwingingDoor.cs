@@ -36,7 +36,6 @@ namespace Celeste.Entities.Chapters.Ch11
         private float targetRightAngle;
         private float closeTimer;
         private float autoCloseTime;
-        private Player lastPlayer;
         private Level level;
         private SoundSource doorSound;
         private bool isOpening;

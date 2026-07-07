@@ -26,7 +26,7 @@ public class BeyondSummitGem : Entity
     private Sprite sprite;
     private Wiggler scaleWiggler;
     private Wiggler moveWiggler;
-    private Vector2 moveWiggleDir;
+    private Vector2 moveWiggleDir = Vector2.UnitY;
     private BloomPoint bloom;
     private VertexLight light;
     private float bounceSfxDelay;

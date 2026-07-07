@@ -5,7 +5,6 @@ namespace Celeste.Cutscenes
     public class CS19_SoulsDiscarded : CutsceneEntity
     {
         private readonly global::Celeste.Player player;
-        private CharaDummy chara;
 
         public CS19_SoulsDiscarded(global::Celeste.Player player) : base()
         {
@@ -59,8 +58,6 @@ namespace Celeste.Cutscenes
             player.Depth = 0;
             player.Speed = Vector2.Zero;
             player.StateMachine.State = Player.StNormal;
-            if (chara != null)
-                chara.RemoveSelf();
             level.ResetZoom();
             level.Session.SetFlag("souls_discarded");
         }

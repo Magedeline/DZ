@@ -17,7 +17,6 @@ public static class Celeste2Hooks
 {
     private static bool _loaded;
     private static Hook _crystalHeartOnCollectHook;
-    private static Hook _overworldOnEnterHook;
 
     // IL hooks for low-level patching
     private static ILHook _crystalHeartCollectILHook;

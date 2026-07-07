@@ -60,7 +60,6 @@ public class ConquerorBoss : Actor
   private Sprite chargeWave;
   private int playerHealth;
   private int beamOffsetIndex = 0;
-  private int randomSeed;
   private List<float> beamOffset;
   private List<int> phase4Moves;
   private SoundSource laserSfx1;

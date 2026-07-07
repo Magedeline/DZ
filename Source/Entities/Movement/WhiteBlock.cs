@@ -116,7 +116,7 @@ public class WhiteBlock : CelesteJumpThru
 
     // ── Rider helpers ─────────────────────────────────────────────────────────
 
-    private DZ.Entities.Player.MadelinePlayer GetPlayerRider()
+    private new DZ.Entities.Player.MadelinePlayer GetPlayerRider()
     {
         if (Scene == null) return null;
         for (int _wi = 0; _wi < Scene.Entities.Count; _wi++)

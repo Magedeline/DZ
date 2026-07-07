@@ -33,6 +33,8 @@ namespace Celeste.Cutscenes
             this.session = session ?? throw new ArgumentNullException(nameof(session));
             this.menu = menu;
             this.ringtoneActive = playRingtone;
+            if (playRingtone)
+                ringtone = Audio.Play("event:/game/02_old_site/sequence_phone_ring_loop");
             areaMusic = Audio.CurrentMusic;
             Audio.CurrentMusic = null;
             Add(hud = new HudRenderer());

@@ -442,7 +442,6 @@ namespace Celeste.Entities
         public int jumpCount = 0;                            // Current jump count (0 = no jump used, 1 = first jump, 2 = second/double jump, etc.)
         public int maxJumpCount = 2;                         // Maximum number of jumps (2 = double jump, 3 = triple jump, etc.)
         public bool isInArena = false;                       // Whether player is currently in an arena; gates special abilities
-        private float arenaDetectionRadius = 200f;           // Radius around boss arena triggers
         public float multiJumpInputTimeout = 0.15f;          // Time window to input another jump after landing
         public float multiJumpInputTimer = 0f;               // Timer for multi-jump input window
         public bool canPerformAlternateDash = false;         // Whether alternate dash is available (in arena)

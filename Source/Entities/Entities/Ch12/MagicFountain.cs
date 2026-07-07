@@ -38,7 +38,6 @@ namespace DZ
         private bool hasActivated;
         private float currentHeight;
         private float targetHeight;
-        private TalkComponent talkComponent;
         #endregion
 
         #region Constructor

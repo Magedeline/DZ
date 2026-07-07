@@ -41,7 +41,6 @@ public class AudioManager
 
     // Current music instance for crossfading
     private FMOD.Studio.EventInstance _currentMusic;
-    private FMOD.Studio.EventInstance _nextMusic;
 
     public bool IsInitialized { get; private set; }
 

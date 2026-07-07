@@ -32,7 +32,6 @@ namespace Celeste.Entities.Chapters.Ch15
         private Sprite crownSprite;
         private TalkComponent talkComponent;
         private Player activatingPlayer;
-        private Entity bossEntity;
         private Level level;
         private VertexLight throneLight;
         private List<ThroneParticle> particles;

@@ -33,7 +33,6 @@ namespace Celeste.Entities.Chapters.Ch11
         private Player readingPlayer;
         private Level level;
         private List<Entity> spawnedEnemies;
-        private float spawnTimer;
         private int spawnedCount;
         private bool bountyComplete;
         #endregion

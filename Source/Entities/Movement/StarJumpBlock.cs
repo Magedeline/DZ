@@ -77,7 +77,7 @@ public class StarJumpBlock : CelesteSolid
 
     // ── Helpers ───────────────────────────────────────────────────────────────
 
-    private bool HasPlayerRider()
+    private new bool HasPlayerRider()
     {
         if (Scene == null) return false;
         for (int _sji = 0; _sji < Scene.Entities.Count; _sji++)

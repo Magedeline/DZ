@@ -67,7 +67,7 @@ public class StaticMover : DZ.Nez.Component
     // ── API ───────────────────────────────────────────────────────────────────
 
     /// <summary>Destroys this entity (or calls <see cref="OnDestroy"/> if set).</summary>
-    public void Destroy()
+    public new void Destroy()
     {
         if (OnDestroy != null)
             OnDestroy();

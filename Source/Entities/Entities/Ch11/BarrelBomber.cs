@@ -31,7 +31,6 @@ namespace Celeste.Entities.Chapters.Ch11
         
         private Sprite barrelSprite;
         private Sprite enemySprite;
-        private StateMachine stateMachine;
         private float fuseTimer;
         private Player targetPlayer;
         private Level level;

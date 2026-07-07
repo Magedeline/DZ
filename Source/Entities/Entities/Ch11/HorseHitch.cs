@@ -32,7 +32,6 @@ namespace Celeste.Entities.Chapters.Ch11
         private Player travelingPlayer;
         private Level level;
         private HorseHitch destination;
-        private float travelTimer;
         private List<DustParticle> dustParticles;
         private VertexLight hitchLight;
         #endregion

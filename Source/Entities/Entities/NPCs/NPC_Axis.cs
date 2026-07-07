@@ -14,7 +14,6 @@ namespace Celeste.NPCs
         private bool isInteracting;
         private string axisForm; // "normal", "giant", "defeated"
         private bool isActive;
-        private string cutsceneId;
 
         public NPC_Axis(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
@@ -39,12 +38,10 @@ namespace Celeste.NPCs
                     case "normal":
                         sprite.Color = Color.Gray;
                         sprite.Scale = Vector2.One * 1.2f; // Larger for robot
-                        cutsceneId = "DZ_CH13_AXIS_APPROACH";
                         break;
                     case "giant":
                         sprite.Color = Color.DarkGray;
                         sprite.Scale = Vector2.One * 2.0f; // Much larger
-                        cutsceneId = "DZ_CH14_GIANT_AXIS_APPROACH";
                         break;
                     case "defeated":
                         sprite.Color = Color.LightGray;

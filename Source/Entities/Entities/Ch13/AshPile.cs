@@ -30,7 +30,6 @@ namespace Celeste.Entities.Chapters.Ch13
         private Level level;
         private List<AshParticle> ashParticles;
         private Player climbingPlayer;
-        private float collapseTimer;
         #endregion
 
         #region Constructor

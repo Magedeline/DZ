@@ -93,24 +93,27 @@ namespace Celeste.Mod.DZ
             string checkpoint)
         {
             bool confirmed = false;
+            bool callbackFired = false;
 
-            var selectScreen = new OuiPlayerSelect();
-            selectScreen.OnConfirm = () => { confirmed = true; };
-            selectScreen.OnCancel  = () => { confirmed = false; };
+            // Properly transition to the player select screen using Overworld.Goto
+            var selectScreen = self.Overworld.Goto<OuiPlayerSelect>();
+            selectScreen.OnConfirm = () => { confirmed = true; callbackFired = true; };
+            selectScreen.OnCancel  = () => { confirmed = false; callbackFired = true; };
 
-            self.Overworld.Add(selectScreen);
-            self.Overworld.Current = selectScreen;
-
-            // Wait until the screen fires its callback
-            while (selectScreen.Focused || selectScreen.Visible)
+            // Wait until the player makes a choice (callback fires)
+            while (!callbackFired)
                 yield return null;
 
             if (!confirmed)
             {
                 // User cancelled — navigate back to the chapter panel
+                // The Overworld will call Leave() on the player select screen
                 self.Overworld.Goto<OuiChapterPanel>();
                 yield break;
             }
+
+            // Wait a frame to allow the Overworld to process the transition
+            yield return null;
 
             // Start the level now that the player has confirmed their choice
             _intercepting = true;

@@ -31,7 +31,6 @@ namespace Celeste.Entities.Chapters.Ch11
         private float rotation;
         private Level level;
         private List<DustParticle> dustParticles;
-        private float spawnTimer;
         private bool isActive;
         #endregion
 

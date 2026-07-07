@@ -95,6 +95,8 @@ namespace Celeste.Cutscenes
                 return;
             }
 
+            els = level.Tracker.GetEntity<SiamoZeroFinalBoss>();
+
             Audio.SetMusic(null);
             ScreenWipe.WipeColor = Color.White;
             foreach (var _ in player.Leader.Followers.Where(follower => follower.Entity is Strawberry { Golden: not false }).Select(follower => new { }))

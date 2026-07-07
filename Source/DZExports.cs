@@ -2,6 +2,8 @@
 // Note: ModInterop attributes are resolved at compile-time by MonoMod.
 // Other mods should use DZInterop helper class for safe access.
 
+using Celeste.Mod.Meta;
+
 namespace Celeste.Mod.DZ;
 
 /// <summary>
@@ -45,4 +47,27 @@ public static class DZExports
 
     /// <summary>Get the current DZ module save data.</summary>
     public static DZModuleSaveData GetSaveData() => DZModule.SaveData;
+
+    // ── OverworldHelper Integration ────────────────────────────────────────────
+    
+    /// <summary>Subscribe to area change events.</summary>
+    public static void SubscribeToAreaChanged(Action<AreaKey> callback) => OverworldHelperExports.SubscribeToAreaChanged(callback);
+
+    /// <summary>Unsubscribe from area change events.</summary>
+    public static void UnsubscribeFromAreaChanged(Action<AreaKey> callback) => OverworldHelperExports.UnsubscribeFromAreaChanged(callback);
+
+    /// <summary>Subscribe to overworld creation events.</summary>
+    public static void SubscribeToOverworldCreated(Action<Overworld> callback) => OverworldHelperExports.SubscribeToOverworldCreated(callback);
+
+    /// <summary>Unsubscribe from overworld creation events.</summary>
+    public static void UnsubscribeFromOverworldCreated(Action<Overworld> callback) => OverworldHelperExports.UnsubscribeFromOverworldCreated(callback);
+
+    /// <summary>Get the current overworld instance.</summary>
+    public static Overworld GetCurrentOverworld() => OverworldHelperExports.GetOverworld();
+
+    /// <summary>Get custom configuration for a specific area.</summary>
+    public static MapMeta GetConfigFromArea(AreaKey area, Type type) => OverworldHelperExports.GetConfigFromArea(area, type);
+
+    /// <summary>Get custom configuration for a specific area (string-based).</summary>
+    public static MapMeta GetConfigFromString(string area, Type type) => OverworldHelperExports.GetConfigFromString(area, type);
 }

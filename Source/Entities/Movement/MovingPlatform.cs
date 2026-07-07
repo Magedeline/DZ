@@ -128,7 +128,7 @@ public class MovingPlatform : CelesteJumpThru
     // ── Rider helpers ─────────────────────────────────────────────────────────
 
     /// <summary>Returns the <see cref="MadelinePlayer"/> currently standing on this platform, or null.</summary>
-    private MadelinePlayer GetPlayerRider()
+    private new MadelinePlayer GetPlayerRider()
     {
         if (Scene == null) return null;
         for (int _mpi = 0; _mpi < Scene.Entities.Count; _mpi++)

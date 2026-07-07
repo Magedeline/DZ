@@ -69,14 +69,12 @@ namespace Celeste.Entities
         private float siamoTimeborderTimer = 0f;
         private float siamoTimeborderAlpha = 0f;
         private bool siamoTimeborderActive = false;
-        private int siamoTimeborderFrame = 0;
         private Sprite timeborderSprite;
         private Sprite aeonHeroSprite;
         private Sprite morphoKnightSprite;
         private bool hasTimeborderSprite = false;
         private bool hasAeonHeroSprite = false;
         private bool hasMorphoKnightSprite = false;
-        private float siamoTransformProgress = 0f;
 
         private int GetSiamoCount(int pink, int soulBlack, int stellarruss)
         {

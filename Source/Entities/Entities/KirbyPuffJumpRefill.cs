@@ -30,7 +30,6 @@ namespace Celeste.Entities
         private int puffCount;
         private float respawnTime;
         private bool breakEvenWhenFull;
-        private float respawnTimer;
         private string spriteVariant; // "single" or "multi"
 
         public KirbyPuffJumpRefill(EntityData data, Vector2 offset)

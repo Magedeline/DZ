@@ -11,7 +11,6 @@ namespace Celeste.Cutscenes
     {
         // Existing fields
         private readonly global::Celeste.Player player;
-        private CharaDummy chara;
         private BirdNPC bird;
         private EventInstance snapshot;
         private Vector2 playerSpeed;
@@ -290,10 +289,6 @@ namespace Celeste.Cutscenes
                 level.Session.Audio.Ambience.Event = "event:/pusheen/new_content/env/19_rushingvoid";
                 level.Session.Audio.Apply();
             }
-            if (chara != null)
-            {
-                chara.Vanish();
-            }
             yield return 0.5f;
             if (charabooster != null)
             {
@@ -314,7 +309,6 @@ namespace Celeste.Cutscenes
             var first = Scene.Entities.FindFirst<CharaBoost>();
             if (first != null)
                 first.Active = first.Visible = first.Collidable = true;
-            chara?.RemoveSelf();
             Vector2 birdWaitPosition = default;
             if (WasSkipped)
             {

@@ -12,7 +12,6 @@ namespace Celeste.Entities
     {
         // Boss properties
         private int health = 300;
-        private int maxHealth = 300;
         private bool isDefeated = false;
         
         // Attack patterns

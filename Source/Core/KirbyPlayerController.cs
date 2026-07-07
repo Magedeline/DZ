@@ -110,10 +110,8 @@ namespace Celeste.Entities
 
         // Input state
         private bool pJump;
-        private bool pDash;
         private bool pFly;
         private bool wasFlying;
-        private bool lskip;
 
         // Timers
         private float graceTimer;
@@ -830,8 +828,6 @@ namespace Celeste.Entities
         private struct Particle
         {
             public Vector2 Position;
-            public Vector2 Velocity;
-            public float Distance;
         }
 
         public InhaleParticleSystem(Entity player)

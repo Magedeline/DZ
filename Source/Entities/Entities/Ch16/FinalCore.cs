@@ -31,7 +31,6 @@ namespace Celeste.Entities.Chapters.Ch16
         private Sprite sprite;
         private StateMachine stateMachine;
         private float attackTimer;
-        private Player targetPlayer;
         private Level level;
         private List<CoreAttack> attacks;
         private List<CoreParticle> particles;

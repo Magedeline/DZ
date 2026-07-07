@@ -80,15 +80,12 @@ namespace Celeste.Cutscenes
 
         private void FindOrSpawnNPCs(Level level)
         {
-            // FindFirst API not available - NPCs would need different lookup
-            /*
-            marlet = level.Entities.FindFirst<NPC>(npc => npc.GetType().Name.Contains("Marlet"));
-            starlo = level.Entities.FindFirst<NPC>(npc => npc.GetType().Name.Contains("Starlo"));
-            badeline = level.Entities.FindFirst<NPC>(npc => npc.GetType().Name.Contains("Badeline"));
-            chara = level.Entities.FindFirst<NPC>(npc => npc.GetType().Name.Contains("Chara"));
-            madeline = level.Entities.FindFirst<NPC>(npc => npc.GetType().Name.Contains("Madeline"));
-            kirby = level.Entities.FindFirst<NPC>(npc => npc.GetType().Name.Contains("Kirby"));
-            */
+            marlet = level.Entities.OfType<NPC>().FirstOrDefault(npc => npc.GetType().Name.Contains("Marlet"));
+            starlo = level.Entities.OfType<NPC>().FirstOrDefault(npc => npc.GetType().Name.Contains("Starlo"));
+            badeline = level.Entities.OfType<NPC>().FirstOrDefault(npc => npc.GetType().Name.Contains("Badeline"));
+            chara = level.Entities.OfType<NPC>().FirstOrDefault(npc => npc.GetType().Name.Contains("Chara"));
+            madeline = level.Entities.OfType<NPC>().FirstOrDefault(npc => npc.GetType().Name.Contains("Madeline"));
+            kirby = level.Entities.OfType<NPC>().FirstOrDefault(npc => npc.GetType().Name.Contains("Kirby"));
         }
 
         private IEnumerator CutsceneSequence(Level level)

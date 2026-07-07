@@ -56,6 +56,7 @@ public class DZModule : EverestModule {
         VignetteHooks.Load();
         global::DZ.Entities.Payphone.LoadParticles();
         KirbyPlayerController.Load();
+        PlayerSelectHooks.Load();
         SoulPlayerController.Load();
         BattlePlayerController.Load();
         SideLockDisplaySystem.Load();
@@ -131,6 +132,7 @@ public class DZModule : EverestModule {
 
         VignetteHooks.Unload();
         KirbyPlayerController.Unload();
+        PlayerSelectHooks.Unload();
         SoulPlayerController.Unload();
         BattlePlayerController.Unload();
         SideLockDisplaySystem.Unload();

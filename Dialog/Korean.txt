@@ -14309,7 +14309,7 @@ DZ_CH20_ASCEND_VS_ELS_11=[ELS left normal]
 {# AAAAFF}Of course, Madeline! You have a wonderful support system!{#}
 {# AAAAFF}And remember, no matter what happens, I will always love you!{#}
 {# AAAAFF}Now were here to climb this mountain!{#}
-{# AAAAFF}It's time to finish this once and for all!{#}
+{# AAAAFF}It's time to finish this once and for all!{trigger 0}{trigger 1}{#}
 
 DZ_CH21_ASCEND_VS_ELS_FINAL=[ELS left normal]
 {# 000000}HOW DISAPPOINTING...{#}
@@ -14381,6 +14381,232 @@ then come at us and fight...!
 alright then
 lets see if your soul can fight against THIS!
 
+DZ_CH21_FINAL_BATTLE_ALLIES_ARRIVE=
+[KIRBY left determined]
+Everyone! This is our last stand.
+Every dream friend, every ally — we're all here together.
+
+[MADELINE left determined]
+We didn't come this far to fall now.
+All of us, side by side. Let's finish this.
+
+[BADELINE right worriedalt]
+Okay, inspiring speech noted.
+Now can we actually deal with the enormous army of darkness heading toward us?
+
+[MAGOLOR right annoyed]
+For what it's worth, I brought reinforcements.
+You did not think I would miss the final battle, did you?
+
+[BANDANA_DEE left determined]
+Meta Knight and King Dedede are right behind me!
+We stand with you, Kirby!
+
+DZ_CH21_FINAL_BATTLE_DREAM_FRIENDS=
+[KIRBY left happy]
+Dream friends...
+I knew you'd come.
+
+[RICK_KOO_CHUCHU left together]
+We go everywhere together.
+That hasn't changed.
+
+[GOOEY left happy]
+Goo!
+(We're ready!)
+
+[MARX left normal]
+Don't get all sentimental.
+Let's just win.
+
+[SUSIE right normal]
+Systems nominal. Allies assembled.
+Efficiency: maximum.
+
+DZ_CH21_FINAL_BATTLE_ZEROS_INTRO=
+[none left]
+Then they arrived.
+The collected darkness from across every world and every timeline.
+
+[SIAMO_ZERO right dark]
+You cannot erase what we are.
+We are zero. We are void. We are inevitable.
+
+[MADELINE left surprised]
+That's— there are so many of them.
+Siamo Zero, Zero 3, Contra Void, Tesseract Soul...
+
+[KIRBY left determined]
+Hyper Meta Morpho Knight and Nollus Nova too.
+Together they formed the complete darkness.
+
+[BADELINE right angry]
+Six forms of nothing trying to take everything.
+Not today.
+
+DZ_CH21_FINAL_BATTLE_GONERS_HOLD=
+[SEVEN_GONER left together]
+VESSEL FORMATION ACTIVE.
+WE HOLD THE LINE. ALL SEVEN.
+
+[SEVEN_GONER left together]
+THEY WILL NOT PASS WHILE WE STAND.
+DETERMINATION HOLDS.
+
+[KIRBY left determined]
+The Goner Souls are buying us time.
+We have to defeat every last one of them. Together!
+
+DZ_CH21_FINAL_BATTLE_ZEROS_FALLEN=
+[none left]
+One by one, the forms of darkness were shattered.
+Siamo Zero. Zero 3. Contra Void. Tesseract Soul.
+Hyper Meta Morpho Knight. Nollus Nova.
+
+[KIRBY left surprised]
+They're... all gone.
+
+[MADELINE left determined]
+The zeros are gone. But Els Termina is still out there.
+We have to keep going.
+
+[BADELINE right normal]
+This isn't over.
+Not yet.
+
+[SEVEN_GONER left together]
+ALL ZEROS NEUTRALISED.
+PATH TO ELS TERMINA: OPEN.
+
+DZ_CH21_FINAL_BATTLE_WARPSTAR_RIDE=
+[KIRBY left determined]
+There it is. The Warp Star.
+It'll take us straight to Els Termina.
+
+[MADELINE left distracted]
+It's... really small.
+
+[KIRBY left happy]
+Don't worry! It fits everyone who needs it.
+Trust me, I've done this before.
+
+[BADELINE right normal]
+Riding a golden star into the void.
+Perfectly normal day.
+
+[KIRBY left determined]
+Hold on tight. Here we go!
+
+DZ_CH21_FINAL_BATTLE_INTO_ABYSS=
+[none left]
+They flew into the Abyss.
+Not darkness — something beyond darkness.
+The Abyssment stretched in every direction, filled with echoes of every world.
+Every world they had ever saved. Every life they had ever touched.
+Past. Present. Future. All of it, alive here, in this moment.
+
+[MADELINE left surprised]
+This place...
+I can see Celeste Mountain. And the Underground. And Dream Land.
+All of it at once.
+
+[KIRBY left sad]
+I've been here before.
+Not like this though. Not with so many people beside me.
+
+[BADELINE right worriedalt]
+There's no ground.
+There is no ground anywhere.
+
+[KIRBY left happy]
+It's fine! I can fly.
+And we have something even better than ground.
+
+DZ_CH21_FINAL_BATTLE_ASRIEL_JOINS=
+[none left]
+Then, beside them, a familiar gentle light.
+
+[ASRIEL left sad]
+I don't have much power left.
+After everything I took from everyone... this is all I have.
+
+[ASRIEL left sad]
+But I can give it to you.
+If my last act is keeping you all from falling, then it's worth it.
+
+[MADELINE left surprised]
+Asriel...
+You don't have to do this.
+
+[ASRIEL left normal]
+I know I don't have to.
+That's why it means something.
+
+[KIRBY left determined]
+We are not leaving you behind, Asriel.
+Whatever comes next, we face it together.
+
+[ASRIEL left sad]
+...thank you, Kirby.
+Then together, let's see this through.
+
+DZ_CH21_FINAL_BATTLE_DETERMINATION_SOUL=
+[none left]
+The first of the seven soul lights blazed into full brilliance.
+Red. Pure red.
+Determination.
+
+[DETERMINATION_SOUL left together]
+YOU DIDN'T GIVE UP WHEN EVERYTHING SAID TO.
+NEITHER WILL WE.
+
+[MADELINE left determined]
+That's—
+That's everyone who ever fell and got back up.
+
+[KIRBY left determined]
+Then let's give them something worth standing up for.
+Let's go finish this.
+
+DZ_CH21_FINAL_BATTLE_ELS_LOOMS=
+[none left]
+Far ahead, through the cascading reflections of every world—
+a silhouette.
+Immense. Elemental. Waiting.
+
+[BADELINE right angry]
+There.
+That's it. That's Els Termina.
+
+[KIRBY left determined]
+I see it.
+Ready, Madeline?
+
+[MADELINE left determined]
+Ready.
+Let's end this.
+
+DZ_CH21_FINAL_BATTLE_PHASE2_ARRIVAL=
+[none left]
+The void gave way.
+Ground rose from nowhere — solid, real, burning with colour.
+The final arena.
+
+[KIRBY left determined]
+This is it.
+The air feels different here. Like the whole universe is holding its breath.
+
+[MADELINE left determined]
+Then let's give it something to breathe out about.
+
+[ASRIEL left sad]
+My power is almost spent.
+I'll hold the sky together as long as I can.
+Don't waste the time I'm buying you.
+
+[BADELINE right angry]
+We won't.
+Now let's fight.
 DZ_CH21_ELS_TERMINA_BOSS_INTRO=[els right normal]
 I am no longer the dark matter you have seen, no longer zero.
 I am els termina

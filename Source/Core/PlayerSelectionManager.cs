@@ -33,6 +33,25 @@ public class PlayerSelectionManager : Entity
     /// <summary>Per-level override (null = use default).</summary>
     private PlayerType? levelOverride;
 
+    /// <summary>
+    /// Map-supplied recommended player for the next level.
+    /// Set via <see cref="SetRecommendedPlayer"/> before entering a map;
+    /// automatically cleared after it is read once.
+    /// </summary>
+    private PlayerType? recommendedPlayer;
+
+    /// <summary>
+    /// When true the manager will automatically apply
+    /// <see cref="recommendedPlayer"/> as the active selection before entering
+    /// a level (instead of showing the manual picker).
+    /// Persisted through <see cref="DZModule.Settings.PlayerAutoSelect"/>.
+    /// </summary>
+    public static bool AutoSelectEnabled
+    {
+        get => DZModule.Settings?.PlayerAutoSelect ?? false;
+        set { if (DZModule.Settings != null) DZModule.Settings.PlayerAutoSelect = value; }
+    }
+
     /// <summary>Event fired when player selection changes.</summary>
     public static event Action<PlayerType> OnPlayerSelectionChanged;
 
@@ -120,6 +139,39 @@ public class PlayerSelectionManager : Entity
     public static bool IsPlayerSelected(PlayerType playerType)
     {
         return GetSelectedPlayer() == playerType;
+    }
+
+    /// <summary>
+    /// Set the recommended player for the upcoming map (supplied by map metadata
+    /// or a Lönn trigger).  Pass <c>null</c> to clear the recommendation.
+    /// </summary>
+    public static void SetRecommendedPlayer(PlayerType? playerType)
+    {
+        if (Instance == null)
+            return;
+        Instance.recommendedPlayer = playerType;
+    }
+
+    /// <summary>
+    /// Get the recommended player for the current map, if any.
+    /// Returns <c>null</c> when no recommendation has been set.
+    /// </summary>
+    public static PlayerType? GetRecommendedPlayer() =>
+        Instance?.recommendedPlayer;
+
+    /// <summary>
+    /// Apply <see cref="GetRecommendedPlayer()"/> as the active selection and
+    /// clear the stored recommendation.  Does nothing when no recommendation
+    /// has been set.  Call this just before entering a level.
+    /// </summary>
+    public static void ApplyRecommendedPlayerIfAuto()
+    {
+        if (Instance == null) return;
+        if (!AutoSelectEnabled) return;
+        if (Instance.recommendedPlayer == null) return;
+
+        SetDefaultPlayer(Instance.recommendedPlayer.Value);
+        Instance.recommendedPlayer = null;
     }
 
     /// <summary>

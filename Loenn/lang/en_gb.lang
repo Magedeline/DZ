@@ -150,6 +150,7 @@ entities.DZ/BlackholeFlareSideway.placements.name.height=Height
 
 # Blackhole Riser
 entities.DZ/BlackholeRiser.placements.name.blackhole_riser=Blackhole Riser
+entities.DZ/BlackholeRiser.placements.name.mode=Mode
 entities.DZ/BlackholeRiser.placements.name.glitchy=Glitchy
 entities.DZ/BlackholeRiser.placements.name.looping=Looping
 entities.DZ/BlackholeRiser.placements.name.speed=Speed

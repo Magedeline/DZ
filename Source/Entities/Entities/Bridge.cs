@@ -6,7 +6,7 @@ using DZ;
 
 namespace Celeste.Entities;
 
-    [CustomEntity("DZ/Bridge")]
+    [CustomEntity("DZ/Bridge", "MaggyHelper/Bridge")]
     [Monocle.Tracked]
     [HotReloadable]
 

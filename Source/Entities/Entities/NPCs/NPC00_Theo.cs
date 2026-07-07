@@ -2,7 +2,7 @@ using Celeste.Cutscenes;
 
 namespace Celeste.NPCs
 {
-    [CustomEntity(ids: "DZ/NPC00_Theo")]
+    [CustomEntity(ids: "DZ/NPC00_Theo, MaggyHelper/NPC00_Theo")]
     [Tracked(true)]
     public class Npc00Theo : Entity
     {

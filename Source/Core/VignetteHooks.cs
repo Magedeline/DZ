@@ -110,6 +110,21 @@ public static class VignetteHooks
         switch (chapter.Number)
         {
             case 0:
+                // On the very first launch the player has not seen the mod intro yet.
+                // Show the interactive vessel-creation sequence; it chains to
+                // Cs00IntroVignette on its own so we do NOT mark the flag here — the
+                // intro vignette will see itself as unseen and play normally afterward.
+                var saveData = global::Celeste.Mod.DZ.DZModule.SaveData;
+                if (saveData != null && !saveData.HasSeenModIntro)
+                {
+                    // Mark HasSeenModIntro now so the vessel creation scene isn't
+                    // re-shown if the player dies or quits mid-sequence.
+                    // VesselCreationVignette also sets this flag, but setting it here
+                    // prevents a second instance from showing on scene re-enter.
+                    saveData.HasSeenModIntro = true;
+                    return new VesselCreationVignette(session);
+                }
+                // Second (or later) fresh start: show the brief intro vignette once.
                 if (!HasSeenVignette(flagKey))
                 {
                     MarkVignetteSeen(flagKey);

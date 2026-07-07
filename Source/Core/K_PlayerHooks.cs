@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Monocle;
 using Celeste.Entities;
 using Celeste.Mod;
+using Celeste.Mod.DZ;
 using static Celeste.Entities.PlayerSelectionManager;
 
 namespace DZ
@@ -152,6 +153,21 @@ namespace DZ
 
                         Logger.Log(LogLevel.Info, "DZ",
                             $"[K_PlayerHooks] Replaced vanilla Player with K_Player at {kirbyPlayer.Position}");
+                    }
+                }
+                else
+                {
+                    // Madeline (vanilla Player) selected — attach KirbyPlayerController if session
+                    // has Kirby mode active, so vanilla Player also benefits from Kirby mechanics.
+                    var session = Celeste.Mod.DZ.DZModule.Session;
+                    if (session != null && session.IsKirbyModeActive)
+                    {
+                        if (vanillaPlayer.Get<KirbyPlayerController>() == null)
+                        {
+                            vanillaPlayer.Add(new KirbyPlayerController());
+                            Logger.Log(LogLevel.Info, "DZ",
+                                "[K_PlayerHooks] Attached KirbyPlayerController to vanilla Player (Kirby session active)");
+                        }
                     }
                 }
             }

@@ -472,9 +472,6 @@ namespace DZ
                 case "cs21_special_thanks_dodge_credits":
                     base.Scene.Add(new global::Celeste.Cutscenes.CS21_SpecialThanksDodgeCredits(player2));
                     break;
-                case "cs21_two_worlds_unite":
-                    base.Scene.Add(new global::Celeste.Cutscenes.CS21_TwoWorldsUnite(player2));
-                    break;
                 case "cs21_saved":
                     base.Scene.Add(new global::Celeste.Cutscenes.CS21_Saved(player2));
                     break;
@@ -485,7 +482,6 @@ namespace DZ
                     base.Scene.Add(new global::Celeste.Cutscenes.CS21_Ending(player2));
                     break;
                 case "ch8_chara_boss_center":
-                case "ch8DZ_CHara_boss_center":
                     base.Scene.Add(new global::Celeste.Cutscenes.CS08_BossCenter());
                     break;
                 case "ch8_end":
@@ -505,6 +501,13 @@ namespace DZ
                     break;
                 case "ch20_end_cinematic":
                     base.Scene.Add(new global::Celeste.Cutscenes.CS21_Ending(player2));
+                    break;
+                // ── Chapter 21 – Kirby Flying Final Battle ────────────────────
+                case "ch21_final_battle_start":
+                    global::Celeste.Bosses.KirbyFinalBattleScene.Get(level)?.StartBattle();
+                    break;
+                case "ch21_warpstar_return":
+                    global::Celeste.Entities.WarpStarReturnController.Get(level)?.TriggerReturn();
                     break;
                 default:
                     throw new Exception("Event '" + Event + "' does not exist!");

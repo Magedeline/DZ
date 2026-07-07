@@ -8,7 +8,7 @@ namespace Celeste.Entities;
 /// <summary>
 /// Spawn point for Kirby player mode. Ensures a Player exists and optionally enables Kirby mode.
 /// </summary>
-[CustomEntity("DZ/KirbySpawnPoint")]
+[CustomEntity("DZ/KirbySpawnPoint", "MaggyHelper/KirbySpawnPoint")]
 [Tracked(false)]
 public class KirbySpawnPoint : Entity
 {

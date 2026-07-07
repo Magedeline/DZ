@@ -29,6 +29,13 @@ namespace Celeste.Mod.DZ
         public int KirbyMaxFloatJumps { get; set; } = 5;
 
         /// <summary>
+        /// When enabled, the recommended player for a map is applied automatically
+        /// before entering the level instead of showing the manual player picker.
+        /// </summary>
+        [SettingName("DZ_PLAYER_AUTOSELECT")]
+        public bool PlayerAutoSelect { get; set; } = false;
+
+        /// <summary>
         /// Gentle Breeze mode: a full assist bundle for the Kirby player.
         /// Enables dash-assist freeze (slow-mo aim arrow), infinite stamina,
         /// infinite dashes, and invincibility. Plays the gentlebreeze audio
@@ -171,6 +178,7 @@ namespace Celeste.Mod.DZ
             EnableBossMusic = true;
             KirbyPlayerEnabled = true;
             KirbyMaxFloatJumps = 5;
+            PlayerAutoSelect = false;
             GentleBreezeMode = false;
             LastEndemyMode = false;
             LastEndemyAgreed = false;

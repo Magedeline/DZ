@@ -158,11 +158,16 @@ public static class AreaMapData
         EnsureInitialized();
         RefreshAvailableSides();
 
+        if (AreaData.Areas == null || AreaData.Areas.Count == 0)
+            return;
+
         foreach (var chapter in Chapters.OrderBy(ch => ch.Number))
         {
             try
             {
-                var area = AreaData.Get(chapter.SID);
+                AreaData area;
+                try { area = AreaData.Get(chapter.SID); }
+                catch { continue; }
                 if (area == null)
                     continue;
 

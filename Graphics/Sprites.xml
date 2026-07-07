@@ -374,22 +374,30 @@
 
 	<heartgem0 path="collectables/DZ/heartGem/0/">
 		<Center />
-
+		<Loop id="idle" path="" frames="0" />
+		<Loop id="spin" path="" frames="0*10,1-13" delay="0.1"/>
+		<Loop id="fastspin" path="" delay="0.1"/>
 	</heartgem0>
 
 	<heartgem1 path="collectables/DZ/heartGem/1/">
 		<Center />
-
+		<Loop id="idle" path="" frames="0" />
+		<Loop id="spin" path="" frames="0*10,1-13" delay="0.1"/>
+		<Loop id="fastspin" path="" delay="0.1"/>
 	</heartgem1>
 
 	<heartgem2 path="collectables/DZ/heartgem/2/">
 		<Center />
-
+		<Loop id="idle" path="" frames="0" />
+		<Loop id="spin" path="" frames="0*10,1-13" delay="0.1"/>
+		<Loop id="fastspin" path="" delay="0.1"/>
 	</heartgem2>
 
   <heartgem3 path="collectables/DZ/heartgem/3/">
     <Center />
-
+    <Loop id="idle" path="" frames="0" />
+    <Loop id="spin" path="" frames="0*10,1-13" delay="0.1"/>
+    <Loop id="fastspin" path="" delay="0.1"/>
   </heartgem3>
 	
 	<heartGemWhite path="collectables/DZ/heartGem/">
@@ -1696,30 +1704,37 @@
 
   <heartgem0 path="collectables/DZ/heartgem/0/">
   		<Center />
-  
+  		<Loop id="idle" path="" frames="0" />
+  		<Loop id="spin" path="" frames="0*10,1-13" delay="0.1"/>
+  		<Loop id="fastspin" path="" delay="0.1"/>
   	</heartgem0>
 
   <heartgem1 path="collectables/DZ/heartgem/1/">
   		<Center />
-  
+  		<Loop id="idle" path="" frames="0" />
+  		<Loop id="spin" path="" frames="0*10,1-13" delay="0.1"/>
+  		<Loop id="fastspin" path="" delay="0.1"/>
   	</heartgem1>
 
   <heartgem2 path="collectables/DZ/heartgem/2/">
   		<Center />
-  
+  		<Loop id="idle" path="" frames="0" />
+  		<Loop id="spin" path="" frames="0*10,1-13" delay="0.1"/>
+  		<Loop id="fastspin" path="" delay="0.1"/>
   	</heartgem2>
 
   <heartgem3 path="collectables/DZ/heartgem/3/">
   		<Center />
-  
+  		<Loop id="idle" path="" frames="0" />
+  		<Loop id="spin" path="" frames="0*10,1-13" delay="0.1"/>
+  		<Loop id="fastspin" path="" delay="0.1"/>
   	</heartgem3>
 
   <heartgem4 path="collectables/DZ/heartGem/4/">
   		<Center />
-  
-  		<Loop id="idle" path="white" frames="0" />
-  		<Loop id="spin" path="white" frames="0*10,1-13" delay="0.1"/>
-  		<Loop id="fastspin" path="white" delay="0.1"/>
+  		<Loop id="idle" path="" frames="0" />
+  		<Loop id="spin" path="" frames="0*10,1-13" delay="0.1"/>
+  		<Loop id="fastspin" path="" delay="0.1"/>
   	</heartgem4>
 
   <heartgem5 path="collectables/DZ/heartGem/">

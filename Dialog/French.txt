@@ -29,9 +29,6 @@
 # Example memorial for Legend chapter
 # Example dreamy memorial
 # ================================
-# Mod Selection Screen
-# ================================
-# ================================
 # Main Menu Credits
 # ================================
 # Code Libraries & Helpers
@@ -320,30 +317,19 @@
 # ================================
 
 Kirbyskin=KirbySkin
-
 RUINS_LOBBY_PORTAL_SM1=Fragment I
-
 RUINS_LOBBY_PORTAL_SM2=Fragment II
-
 RUINS_LOBBY_PORTAL_SM3=Fragment III
-
 RUINS_LOBBY_PORTAL_SM4=Fragment IV
-
 RUINS_LOBBY_PORTAL_SM5=Fragment V
-
 RUINS_LOBBY_PORTAL_SM6=Fragment VI
-
 RUINS_LOBBY_PORTAL_EX=Relique Cachée
-
 RUINS_LOBBY_PORTAL_BOSS=Gardien Ancien
-
 RUINS_LOBBY_LOCKED=Complétez {#f9a62a}Echoes of the Past{/} d'abord
     pour entrer the Ruins Lobby.
 
 SUBMAP_LOCKED_DEFAULT=Ce chemin est encore scellé...
-
 RUINS_SM_LOCKED=Vous devez débloquer this fragment d'abord.
-
 RUINS_EX_LOCKED=Complétez all six Ruins Fragments
     to reveal the Relique Cachée.
 
@@ -354,30 +340,19 @@ RUINS_SM_COMPLETE=Fragment complet!
     Retournez au the Ruins Lobby.
 
 RUINS_EX_COMPLETE=The Relique Cachée a été réclamée!
-
 RUINS_BOSS_COMPLETE=The Gardien Ancien a été vaincu!
-
 SNOWDIN_LOBBY_PORTAL_SM1=Fragment I
-
 SNOWDIN_LOBBY_PORTAL_SM2=Fragment II
-
 SNOWDIN_LOBBY_PORTAL_SM3=Fragment III
-
 SNOWDIN_LOBBY_PORTAL_SM4=Fragment IV
-
 SNOWDIN_LOBBY_PORTAL_SM5=Fragment V
-
 SNOWDIN_LOBBY_PORTAL_SM6=Fragment VI
-
 SNOWDIN_LOBBY_PORTAL_EX=Cache Congelée
-
 SNOWDIN_LOBBY_PORTAL_BOSS=Gardien Glacier
-
 SNOWDIN_LOBBY_LOCKED=Complétez {#76c8f9}Sanctuaire Congelé{/} d'abord
     pour entrer Snowdin City Lobby.
 
 SNOWDIN_SM_LOCKED=Vous devez débloquer this shard d'abord.
-
 SNOWDIN_EX_LOCKED=Collect all six Snowdin Fragments
     to uncover the Cache Congelée.
 
@@ -388,30 +363,19 @@ SNOWDIN_SM_COMPLETE=Fragment sécurisé!
     Retournez au Snowdin City Lobby.
 
 SNOWDIN_EX_COMPLETE=The Cache Congelée a été réclamée!
-
 SNOWDIN_BOSS_COMPLETE=The Gardien Glacier is defeated!
-
 WATER_LOBBY_PORTAL_SM1=Fragment I
-
 WATER_LOBBY_PORTAL_SM2=Fragment II
-
 WATER_LOBBY_PORTAL_SM3=Fragment III
-
 WATER_LOBBY_PORTAL_SM4=Fragment IV
-
 WATER_LOBBY_PORTAL_SM5=Fragment V
-
 WATER_LOBBY_PORTAL_SM6=Fragment VI
-
 WATER_LOBBY_PORTAL_EX=Trésor de Temmie
-
 WATER_LOBBY_PORTAL_BOSS=Titan Corail
-
 WATER_LOBBY_LOCKED=Complétez {#6ae8f0}Profondeurs en Cascade{/} d'abord
     pour entrer Wateredgefalls Lobby.
 
 WATER_SM_LOCKED=Vous devez débloquer this shard d'abord.
-
 WATER_EX_LOCKED=Collect all six Cascade Fragments
     to discover Trésor de Temmie.
 
@@ -422,30 +386,19 @@ WATER_SM_COMPLETE=Fragment sécurisé!
     Retournez au Wateredgefalls Lobby.
 
 WATER_EX_COMPLETE=Trésor de Temmie a été réclamée!
-
 WATER_BOSS_COMPLETE=The Titan Corail a été vaincu!
-
 FIRE_LOBBY_PORTAL_SM1=Fragment I
-
 FIRE_LOBBY_PORTAL_SM2=Fragment II
-
 FIRE_LOBBY_PORTAL_SM3=Fragment III
-
 FIRE_LOBBY_PORTAL_SM4=Fragment IV
-
 FIRE_LOBBY_PORTAL_SM5=Fragment V
-
 FIRE_LOBBY_PORTAL_SM6=Fragment VI
-
 FIRE_LOBBY_PORTAL_EX=Lava Cache
-
 FIRE_LOBBY_PORTAL_BOSS=Inferno Lord
-
 FIRE_LOBBY_LOCKED=Complétez {#f97a2a}Blazing Territories{/} d'abord
     pour entrer Hotcliffland Lobby.
 
 FIRE_SM_LOCKED=Vous devez débloquer this shard d'abord.
-
 FIRE_EX_LOCKED=Collect all six Ember Fragments
     to breach the Lava Cache.
 
@@ -456,30 +409,19 @@ FIRE_SM_COMPLETE=Fragment sécurisé!
     Retournez au Hotcliffland Lobby.
 
 FIRE_EX_COMPLETE=The Lava Cache a été réclamée!
-
 FIRE_BOSS_COMPLETE=The Inferno Lord a été vaincu!
-
 DIGITAL_LOBBY_PORTAL_SM1=Fragment I
-
 DIGITAL_LOBBY_PORTAL_SM2=Fragment II
-
 DIGITAL_LOBBY_PORTAL_SM3=Fragment III
-
 DIGITAL_LOBBY_PORTAL_SM4=Fragment IV
-
 DIGITAL_LOBBY_PORTAL_SM5=Fragment V
-
 DIGITAL_LOBBY_PORTAL_SM6=Fragment VI
-
 DIGITAL_LOBBY_PORTAL_EX=Digital Rift
-
 DIGITAL_LOBBY_PORTAL_BOSS=Queen's Core
-
 DIGITAL_LOBBY_LOCKED=Complétez {#b06aff}Cyber Nexus{/} d'abord
     pour entrer the Cyber Nexus Lobby.
 
 DIGITAL_SM_LOCKED=Vous devez débloquer this shard d'abord.
-
 DIGITAL_EX_LOCKED=Collect all six Byte Fragments
     to open the Digital Rift.
 
@@ -490,17 +432,11 @@ DIGITAL_SM_COMPLETE=Fragment sécurisé!
     Retournez au Cyber Nexus Lobby.
 
 DIGITAL_EX_COMPLETE=The Digital Rift has been explored!
-
 DIGITAL_BOSS_COMPLETE=The Queen's Core has been decompiled!
-
 SkinModHelper_Player__DZ_KirbySkin=Kirby
-
 SkinModHelper_Player__DZ_KirbySkin__Description=Creator: Kirby
-
 SkinModHelper_Grouping__Kirby=Kirby
-
 DZ_MEMORIAL_DEFAULT=Dedicated to those who never gave up.
-
 DZ_MEMORIAL_CITY=The metropolis sleeps, but its
     secrets never do.
 
@@ -516,1076 +452,533 @@ DZ_MEMORIAL_LEGEND=Every legend begins with a
 DZ_MEMORIAL_DREAMY=this place remembers you...
     even if you have forgotten.
 
-DZ_MOD_SELECT_TITLE=Choose Your Journey
-
-DZ_MOD_SELECT_SUBTITLE=Select which experience you would like to play
-
-DZ_MOD_SELECT_NOTICE=This is a one-time choice. Once you decide, this screen will not appear again.
-
-DZ_MOD_SELECT_NOTICE2=You can change this later in Mod Options > DZ > Skip Mod Intro.
-
-DZ_MOD_SELECT_DESOLOZANTAS=Desolo Zantas
-
-DZ_MOD_SELECT_DESOLOZANTAS_DESC=Play the full Desolo Zantas story mod with the intro cutscene
-
-DZ_MOD_SELECT_CELESTE=Celeste
-
-DZ_MOD_SELECT_CELESTE_DESC=Skip the mod intro and go straight to the vanilla Celeste main menu
-
 DZ_CREDIT_TITLE=Desolo Zantas
-
 DZ_CREDIT_DIRECTION=Direction
-
 DZ_CREDIT_DIRECTION_1=DZ
-
 DZ_CREDIT_PROGRAMMING=Programming
-
 DZ_CREDIT_PROGRAMMING_1=DZ
-
 DZ_CREDIT_ART=Art & Sprites
-
 DZ_CREDIT_ART_1=DZ
-
 DZ_CREDIT_MUSIC=Music & Sound
-
 DZ_CREDIT_MUSIC_1=Nintendo
-
 DZ_CREDIT_MUSIC_2=Risty
-
 DZ_CREDIT_MUSIC_3=Kyle gamer
-
 DZ_CREDIT_MUSIC_4=Gametal
-
 DZ_CREDIT_MUSIC_5=Maxo
-
 DZ_CREDIT_MUSIC_6=CloudJumper
-
 DZ_CREDIT_MUSIC_7=Prunty
-
 DZ_CREDIT_MUSIC_8=No Credit Sadly Sowwy
-
 DZ_CREDIT_MUSIC_9=Karu
-
 DZ_CREDIT_MUSIC_10=Oshiro Music
-
 DZ_CREDIT_MUSIC_11=Ryno.gg
-
 DZ_CREDIT_MUSIC_12=Acid-Notation
-
 DZ_CREDIT_MUSIC_13=Toby Fox
-
 DZ_CREDIT_MUSIC_14=2 Mello
-
 DZ_CREDIT_MUSIC_15=Touhou Team
-
 DZ_CREDIT_MUSIC_16=Lani Trek
-
 DZ_CREDIT_MUSIC_17=Team BNP
-
 DZ_CREDIT_MUSIC_18=DJ Cutman
-
 DZ_CREDIT_MUSIC_19=Zami
-
 DZ_CREDIT_MUSIC_20=Tonica
-
 DZ_CREDIT_MUSIC_21=AYDUmusic and CloudJumper
-
 DZ_CREDIT_MUSIC_22=Desolo Zantas
-
 DZ_CREDIT_MUSIC_23=The Noble Demon
-
 DZ_CREDIT_MUSIC_24=Anthony Lo Re
-
 DZ_CREDIT_MUSIC_25=NyxTheShield
-
 DZ_CREDIT_MUSIC_26=DZ
-
 DZ_CREDIT_LEVEL_DESIGN=Level Design
-
 DZ_CREDIT_LEVEL_DESIGN_1=DZ
-
 DZ_CREDIT_WRITING=Writing
-
 DZ_CREDIT_WRITING_1=DZ
-
 DZ_CREDIT_TESTING=Testing
-
 DZ_CREDIT_TESTING_1=DZ
-
 DZ_CREDIT_HELPERS=Code Libraries & Helpers
-
 DZ_CREDIT_HELPER_01=AdventureHelper — KaydenFox
-
 DZ_CREDIT_HELPER_02=Anonhelper — Anon
-
 DZ_CREDIT_HELPER_03=AxoHelper — Axo
-
 DZ_CREDIT_HELPER_04=BounceHelper — catapillie
-
 DZ_CREDIT_HELPER_05=BrokemiaHelper — Brokemia
-
 DZ_CREDIT_HELPER_06=CherryHelper — aridai
-
 DZ_CREDIT_HELPER_07=ChroniaHelper — Chronia
-
 DZ_CREDIT_HELPER_08=CommunalHelper — catapillie & Team
-
 DZ_CREDIT_HELPER_09=ContortHelper — Contort
-
 DZ_CREDIT_HELPER_10=CrystallineHelper — catapillie
-
 DZ_CREDIT_HELPER_11=DJMapHelper — DJOshawott
-
 DZ_CREDIT_HELPER_12=DoonvHelper — doonv
-
 DZ_CREDIT_HELPER_13=EeveeHelper — lilybeevee
-
 DZ_CREDIT_HELPER_14=Extended Variant Mode — maddie480
-
 DZ_CREDIT_HELPER_15=FemtoHelper — vitellaryjk
-
 DZ_CREDIT_HELPER_16=FlaglinesAndSuch — Flagpole1up
-
 DZ_CREDIT_HELPER_17=FrostHelper — JaThePlayer
-
 DZ_CREDIT_HELPER_18=HonlyHelper — Honly
-
 DZ_CREDIT_HELPER_19=JackalHelper — Jackal
-
 DZ_CREDIT_HELPER_20=JungleHelper — maddie480
-
 DZ_CREDIT_HELPER_21=LoennScripts — Loenn Team
-
 DZ_CREDIT_HELPER_22=LuaCutscenes — Cruor
-
 DZ_CREDIT_HELPER_23=LunaticHelper — Lunatic
-
 DZ_CREDIT_HELPER_24=Max Helping Hand — maddie480
-
 DZ_CREDIT_HELPER_25=ModderToolkit — Modding Community
-
 DZ_CREDIT_HELPER_26=MoreDasheline — catapillie
-
 DZ_CREDIT_HELPER_27=NerdHelper — Nerd
-
 DZ_CREDIT_HELPER_28=OutbackHelper — WoofWoofDoggo
-
 DZ_CREDIT_HELPER_29=ReverseHelper — Reverse
-
 DZ_CREDIT_HELPER_30=SkinModHelper — AAA1459
-
 DZ_CREDIT_HELPER_31=SkinModHelperPlus — bigkahuna443
-
 DZ_CREDIT_HELPER_32=SorbetHelper — earthwise
-
 DZ_CREDIT_HELPER_33=VidPlayer — vitellaryjk
-
 DZ_CREDIT_HELPER_34=VivHelper — Viv
-
 DZ_CREDIT_CONTRIBUTORS=Key Community Contributors
-
 DZ_CREDIT_CONTRIB_01=catapillie
-
 DZ_CREDIT_CONTRIB_02=maddie480
-
 DZ_CREDIT_CONTRIB_03=JaThePlayer
-
 DZ_CREDIT_CONTRIB_04=Cruor
-
 DZ_CREDIT_CONTRIB_05=lilybeevee
-
 DZ_CREDIT_CONTRIB_06=bigkahuna443
-
 DZ_CREDIT_CONTRIB_07=coloursofnoise
-
 DZ_CREDIT_CONTRIB_08=aonkeeper4
-
 DZ_CREDIT_CONTRIB_09=earthwise
-
 DZ_CREDIT_CONTRIB_10=AAA1459
-
 DZ_CREDIT_CONTRIB_11=Viv
-
 DZ_CREDIT_CONTRIB_12=DemoJameson
-
 DZ_CREDIT_CELESTE_CREATED=Created By
-
 DZ_CREDIT_CELESTE_1=Matt Thorson
-
 DZ_CREDIT_CELESTE_2=Noel Berry
-
 DZ_CREDIT_CELESTE_MUSIC_HEAD=Music
-
 DZ_CREDIT_CELESTE_MUSIC_1=Lena Raine
-
 DZ_CREDIT_CELESTE_AUDIO=Sound Design
-
 DZ_CREDIT_CELESTE_AUDIO_1=Kevin Regamey / Power Up Audio
-
 DZ_CREDIT_CELESTE_ART=Pixel Art
-
 DZ_CREDIT_CELESTE_ART_1=Pedro Medeiros
-
 DZ_CREDIT_EVEREST=Everest Mod Loader
-
 DZ_CREDIT_EVEREST_1=0x0ade
-
 DZ_CREDIT_EVEREST_2=coloursofnoise
-
 DZ_CREDIT_EVEREST_3=Popax21
-
 DZ_CREDIT_EVEREST_4=& the Everest Team
-
 DZ_CREDIT_EDITOR=Map Editors
-
 DZ_CREDIT_EDITOR_1=Lonn — Cruor & Team
-
 DZ_CREDIT_EDITOR_2=Ahorn — Cruor & 0x0ade
-
 DZ_CREDIT_SPECIAL_THANKS=Special Thanks
-
 DZ_CREDIT_SPECIAL_THANKS_1=The Celeste Community
-
 DZ_CREDIT_SPECIAL_THANKS_2=Mt. Celeste Climbing Association
-
 DZ_CREDIT_SPECIAL_THANKS_3=Matt Thorson & Noel Berry
-
 DZ_CREDIT_SPECIAL_THANKS_4=All Playtesters
-
 DZ_CREDIT_NO_SPECIAL_THANKS=No Special Thanks
-
 DZ_CREDIT_NO_SPECIAL_THANKS_1=CustomerOn & Cudtok
-
 DZ_CREDIT_NO_SPECIAL_THANKS_2=Fytos
-
 DZ_CREDIT_NO_SPECIAL_THANKS_3=Daxaroodle & Daxcr
-
 DZ_CREDIT_NO_SPECIAL_THANKS_4=and Other People who weren't involved
-
 DZ_CREDIT_POWERED_BY=Powered By
-
 DZ_CREDIT_POWERED_BY_1=Celeste & Everest
-
 DZ_CREDIT_POWERED_BY_2=Thank you for playing!
-
 DZ_CREDIT_BACK_HINT=Press BACK to return
-
 DZ_CREDIT_COMPANY_RIGHT_BY=Company By
-
 DZ_CREDIT_COMPANY_RIGHT_BY_1=Nintendo
-
 DZ_CREDIT_COMPANY_RIGHT_BY_2=Hal Laboratory
-
 DZ_CREDIT_COMPANY_RIGHT_BY_3=EXOK
-
 DZ_CREDIT_COMPANY_RIGHT_BY_4=Toby Fox & Temie Chang
-
 DZ_CREDIT_COMPANY_RIGHT_BY_5=WarpStar.inc
-
 DZ_CREDIT_FINAL_THANK_BY=Final Thanks By
-
 DZ_CREDIT_FINAL_THANK_BY_1=Desolo Zantas aka Gabbia
-
 DZ_CREDIT_FINAL_THANK_BY_SUB=My Good Friend Since 2018
-
 DZ=Desolo Zantas
-
 DZ_0=Desolo Zantas - A-Sides
-
 DZ_1=Desolo Zantas - B-Sides
-
 DZ_2=Desolo Zantas - C-Sides
-
-DZ_2=Desolo Zantas - D-Sides
-
+DZ_3=Desolo Zantas - D-Sides
 DZ_DXSide=Desolo Zantas - DX-Sides
-
 DZ_Main=Desolo Zantas
-
 DZ_PCG=Desolo Zantas - Procedural
-
 DZ_WIP=Desolo Zantas - Work in Progress
-
 DZ_0_00_Prologue=Prologue
-
 DZ_0_01_City=Forbidden Metropolis
-
 DZ_0_02_Shadow_Shadow=Veil of Shadows
-
 DZ_0_03_Stars_A=Arrival
-
 DZ_0_04_Legend_A=Chronicles of Destiny
-
 DZ_0_05_Fractured_A=Fractured Memories
-
 DZ_0_06_Stronghold_A=Fortress of Solitude
-
 DZ_0_07_Inferno_A=Infernal Reflections
-
 DZ_0_08_Truth_A=Revelation's Edge
-
 DZ_0_09_Summit_A=Apex of Reality
-
 DZ_0_10_Ruins_A=Echoes of the Past
-
 DZ_Lobby_10_Ruins_Lobby=Ruins Lobby - Echoes of the Past
-
 DZ_SmallMaps_10_Ruins_SM1=Ruins Fragment I
-
 DZ_SmallMaps_10_Ruins_SM2=Ruins Fragment II
-
 DZ_SmallMaps_10_Ruins_SM3=Ruins Fragment III
-
 DZ_SmallMaps_10_Ruins_SM4=Ruins Fragment IV
-
 DZ_SmallMaps_10_Ruins_SM5=Ruins Fragment V
-
 DZ_SmallMaps_10_Ruins_SM6=Ruins Fragment VI
-
 DZ_SmallMaps_10_Ruins_EX=Ruins - Relique Cachée (EX)
-
 DZ_SmallMaps_10_Ruins_Boss=Ruins - Gardien Ancien (Boss)
-
 DZ_0_11_Snow_A=Sanctuaire Congelé
-
 DZ_Lobby_11_Snowdin_Lobby=Snowdin City Lobby - Sanctuaire Congelé
-
 DZ_SmallMaps_11_Snow_SM1=Snowdin Fragment I
-
 DZ_SmallMaps_11_Snow_SM2=Snowdin Fragment II
-
 DZ_SmallMaps_11_Snow_SM3=Snowdin Fragment III
-
 DZ_SmallMaps_11_Snow_SM4=Snowdin Fragment IV
-
 DZ_SmallMaps_11_Snow_SM5=Snowdin Fragment V
-
 DZ_SmallMaps_11_Snow_SM6=Snowdin Fragment VI
-
 DZ_SmallMaps_11_Snow_EX=Snowdin - Cache Congelée (EX)
-
 DZ_SmallMaps_11_Snow_Boss=Snowdin - Gardien Glacier (Boss)
-
 DZ_0_12_Water_A=Profondeurs en Cascade
-
 DZ_Lobby_12_Water_Lobby=Wateredgefalls Lobby - Profondeurs en Cascade
-
 DZ_SmallMaps_12_Water_SM1=Cascade Fragment I
-
 DZ_SmallMaps_12_Water_SM2=Cascade Fragment II
-
 DZ_SmallMaps_12_Water_SM3=Cascade Fragment III
-
 DZ_SmallMaps_12_Water_SM4=Cascade Fragment IV
-
 DZ_SmallMaps_12_Water_SM5=Cascade Fragment V
-
 DZ_SmallMaps_12_Water_SM6=Cascade Fragment VI
-
 DZ_SmallMaps_12_Water_EX=Waterfall - Trésor de Temmie (EX)
-
 DZ_SmallMaps_12_Water_Boss=Waterfall - Titan Corail (Boss)
-
 DZ_0_13_Fire_A=Blazing Territories
-
 DZ_Lobby_13_Fire_Lobby=Hotcliffland Lobby - Blazing Territories
-
 DZ_SmallMaps_13_Fire_SM1=Ember Fragment I
-
 DZ_SmallMaps_13_Fire_SM2=Ember Fragment II
-
 DZ_SmallMaps_13_Fire_SM3=Ember Fragment III
-
 DZ_SmallMaps_13_Fire_SM4=Ember Fragment IV
-
 DZ_SmallMaps_13_Fire_SM5=Ember Fragment V
-
 DZ_SmallMaps_13_Fire_SM6=Ember Fragment VI
-
 DZ_SmallMaps_13_Fire_EX=Hotlands - Lava Cache (EX)
-
 DZ_SmallMaps_13_Fire_Boss=Hotlands - Inferno Lord (Boss)
-
 DZ_0_14_Digital_A=Cyber Nexus
-
 DZ_Lobby_14_Digital_Lobby=Cyber Nexus Lobby - Digital Frontier
-
 DZ_SmallMaps_14_Digital_SM1=Byte Fragment I
-
 DZ_SmallMaps_14_Digital_SM2=Byte Fragment II
-
 DZ_SmallMaps_14_Digital_SM3=Byte Fragment III
-
 DZ_SmallMaps_14_Digital_SM4=Byte Fragment IV
-
 DZ_SmallMaps_14_Digital_SM5=Byte Fragment V
-
 DZ_SmallMaps_14_Digital_SM6=Byte Fragment VI
-
 DZ_SmallMaps_14_Digital_EX=Cyber Nexus - Digital Rift (EX)
-
 DZ_SmallMaps_14_Digital_Boss=Cyber Nexus - Queen's Core (Boss)
-
 DZ_0_15_Castle_A=Ethereal Citadel
-
 DZ_0_16_Corruption=Organ Garden of Despair
-
 DZ_0_17_Epilogue=Final Resonance
-
 DZ_0_18_Heart_A=Core of Existence
-
 DZ_0_19_Space=Farewell to Stars
-
 DZ_0_20_TheEnd=Light Through the Dark
-
 DZ_0_21_PostEpilogue=Desolo Zantas True Finale
-
 DZ_0_lastlevel=Desolo Zantas True Finale
-
 DZ_1_01_City_B=Forbidden Metropolis
-
 DZ_1_02_Shadow_B=Veil of Shadows
-
 DZ_1_03_Stars_B=Arrival
-
 DZ_1_04_Legend_B=Chronicles of Destiny
-
 DZ_1_05_Fractured_B=Fractured Memories
-
 DZ_1_06_Stronghold_B=Fortress of Solitude
-
 DZ_1_07_Inferno_B=Infernal Reflections
-
 DZ_1_08_Truth_B=Revelation's Edge
-
 DZ_1_09_Summit_B=Apex of Reality
-
 DZ_1_10_Ruins_B=Echoes of the Past
-
 DZ_1_11_Snow_B=Sanctuaire Congelé
-
 DZ_1_12_Water_B=Profondeurs en Cascade
-
 DZ_1_13_Fire_B=Blazing Territories
-
 DZ_1_14_Digital_B=Cyber Nexus
-
 DZ_1_15_Castle_B=Ethereal Citadel
-
 DZ_1_18_Heart_B=Core of Existence
-
 DZ_2_01_City_C=Forbidden Metropolis
-
 DZ_2_02_Shadow_C=Veil of Shadows
-
 DZ_2_03_Stars_C=Arrival
-
 DZ_2_04_Legend_C=Chronicles of Destiny
-
 DZ_2_05_Fractured_C=Fractured Memories
-
 DZ_2_06_Stronghold_C=Fortress of Solitude
-
 DZ_2_07_Inferno_C=Infernal Reflections
-
 DZ_2_08_Truth_C=Revelation's Edge
-
 DZ_2_09_Summit_C=Apex of Reality
-
 DZ_2_10_Ruins_C=Echoes of the Past
-
 DZ_2_11_Snow_C=Sanctuaire Congelé
-
 DZ_2_12_Water_C=Profondeurs en Cascade
-
 DZ_2_13_Fire_C=Blazing Territories
-
 DZ_2_14_Digital_C=Cyber Nexus
-
 DZ_2_15_Castle_C=Ethereal Citadel
-
 DZ_2_18_Heart_C=Core of Existence
-
 DZ_2_01_City_D=Forbidden Metropolis
-
 DZ_2_02_Shadow_D=Veil of Shadows
-
 DZ_2_03_Stars_D=Arrival
-
 DZ_2_04_Legend_D=Chronicles of Destiny
-
 DZ_2_05_Fractured_D=Fractured Memories
-
 DZ_2_06_Stronghold_D=Fortress of Solitude
-
 DZ_2_07_Inferno_D=Infernal Reflections
-
 DZ_2_08_Truth_D=Revelation's Edge
-
 DZ_2_09_Summit_D=Apex of Reality
-
 DZ_2_10_Ruins_D=Echoes of the Past
-
 DZ_2_11_Snow_D=Sanctuaire Congelé
-
 DZ_2_12_Water_D=Profondeurs en Cascade
-
 DZ_2_13_Fire_D=Blazing Territories
-
 DZ_2_14_Digital_D=Cyber Nexus
-
 DZ_2_15_Castle_D=Ethereal Citadel
-
 DZ_2_18_Heart_D=Core of Existence
-
 DZ_DXSide_01_City_DX=Forbidden Metropolis DX
-
 DZ_DXSide_02_Shadow_DX=Veil of Shadows DX
-
 DZ_DXSide_03_Stars_DX=Arrival DX
-
 DZ_DXSide_04_Legend_DX=Chronicles of Destiny DX
-
 DZ_DXSide_05_Fractured_DX=Fractured Memories DX
-
 DZ_DXSide_06_Stronghold_DX=Fortress of Solitude DX
-
 DZ_DXSide_07_Inferno_DX=Infernal Reflections DX
-
 DZ_DXSide_08_Truth_DX=Revelation's Edge DX
-
 DZ_DXSide_09_Summit_DX=Apex of Reality DX
-
 DZ_DXSide_10_Ruins_DX=Echoes of the Past DX
-
 DZ_DXSide_11_Snow_DX=Sanctuaire Congelé DX
-
 DZ_DXSide_12_Water_DX=Profondeurs en Cascade DX
-
 DZ_DXSide_13_Fire_DX=Blazing Territories DX
-
 DZ_DXSide_14_Digital_DX=Cyber Nexus DX
-
 DZ_DXSide_15_Castle_DX=Ethereal Citadel DX
-
 DZ_DXSide_16_Corruption_DX=Organ Garden of Despair DX
-
 DZ_DXSide_18_Heart_DX=Core of Existence DX
-
 DXSIDE_BOSS_FLOWEY_OMEGA=Flowey Omega
-
 DXSIDE_BOSS_ASRIEL_TRANSCENDENCE=Asriel Transcendence
-
 DXSIDE_BOSS_DARK_MATTER=Dark Matter
-
 DZ_WIP_kirbytest=Kirby Test
-
 DZ_WIP_test=Test Map
-
 DZ_0_01_City_b_00=Jump Through
-
 DZ_0_01_City_c_00=Useless mechanics
-
 DZ_0_02_Shadow_Shadow_b_3=The Greetings
-
 DZ_0_02_Shadow_Shadow_c_end_3=The Grief
-
 DZ_0_03_Stars_A_b_4=The Lesson
-
 DZ_0_03_Stars_A_b_10d=Jumping the Gap
-
 DZ_0_03_Stars_A_b_9b=Going up
-
 DZ_0_05_Fractured_A_08_a=Huge Cluttering Mess
-
 DZ_0_05_Fractured_A_09_d=Broken Elevator
-
 DZ_0_05_Fractured_A_00_d=Luxury with Destructions
-
 DZ_0_06_Stronghold_A_b_00=Shrine of Winds
-
 DZ_0_06_Stronghold_A_c_00=The Lost of Two Children
-
 DZ_0_06_Stronghold_A_d_00=Freedom
-
 DZ_0_07_Inferno_A_b_00=Depths
-
 DZ_0_07_Inferno_A_c_00=Unravelling
-
 DZ_0_07_Inferno_A_d_00=The Search
-
 DZ_0_07_Inferno_A_e_00=Rescuing Madeline
-
 DZ_0_08_Truth_A_00=Lake
-
 DZ_0_08_Truth_A_04=Learn from the Pain
-
 DZ_0_08_Truth_A_b_00=Self Control
-
 DZ_0_08_Truth_A_boss_00=Confronting His-Self
-
 DZ_0_08_Truth_A_center_01=Megalo Strike Back
-
 DZ_0_08_Truth_A_After_00=Realization
-
 DZ_0_09_Summit_A_b_00=500 M
-
 DZ_0_09_Summit_A_c_00=1000 M
-
 DZ_0_09_Summit_A_d_00=1500 M
-
 DZ_0_09_Summit_A_e_00=2000 M
-
 DZ_0_09_Summit_A_f_00=2500 M
-
 DZ_0_09_Summit_A_g_00=3000 M
-
 DZ_0_09_Summit_A_h_00=6000 M
-
 DZ_0_18_Heart_A_A_00=Into the Heart
-
 DZ_0_18_Heart_A_c_00=Hell and Sorrow
-
 DZ_0_18_Heart_A_d_00=Rising Heat
-
 DZ_0_18_Heart_A_space_1=Void Of Creation
-
 DZ_0_19_Space_A_00=Facing the Unknown
-
 DZ_0_19_Space_c_00=Self Energy
-
 DZ_0_19_Space_e_00z=Hopes and What?
-
 DZ_0_19_Space_f_door=In My Way
-
 DZ_0_19_Space_h_00b=HOPES
-
 DZ_0_19_Space_galt_00=DREAMS
-
 DZ_0_19_Space_i_00=Being Manipulated
-
 DZ_0_19_Space_j_00=A Tragic Loss
-
 DZ_0_19_Space_j_mid=Never Give Up
-
 DZ_0_19_Space_x_00=Farewell to Stars
-
 DZ_0_20_TheEnd_b_00=Puppet of Gravestone
-
 DZ_0_20_TheEnd_c_start=Searching Madeline
-
 DZ_0_20_TheEnd_d_00=Hellish Climb
-
 DZ_0_20_TheEnd_e_00=Introduction to Els
-
 DZ_0_20_TheEnd_f_00=The Inner struggles
-
 DZ_0_20_TheEnd_g_00=Your Last wishes
-
 DZ_0_20_TheEnd_h_0=No More Running and No More Hiding
-
 DZ_0_20_TheEnd_i_0=Hopes and Dreams
-
 DZ_0_20_TheEnd_j_0=Angel of Death
-
 DZ_0_20_TheEnd_k_0=Doppia Elica
-
 DZ_0_20_TheEnd_k_5=The Fallen Path (Siamo Zero)
-
 DZ_0_20_TheEnd_w_01=Penumbra Phantasm Part 1
-
 DZ_0_20_TheEnd_w_09=Penumbra Phantasm Part 2
-
 DZ_0_20_TheEnd_w_20=Penumbra Phantasm Part 3
-
 DZ_0_20_TheEnd_z_00=The Last Push
-
 DZ_1_01_City_B_a_00=Start
-
 DZ_1_01_City_B_b_04=Waste Yard
-
 DZ_1_01_City_B_c_08=Another Way Up
-
 DZ_1_02_Shadow_B_a_00=Start
-
 DZ_1_02_Shadow_B_b_00=Lock The Flip In
-
 DZ_1_02_Shadow_B_c_00=Darkess Nightmare
-
 DZ_1_05_Fractured_B_B_00=Start
-
 DZ_1_05_Fractured_B_06=Staff Quarters
-
 DZ_1_05_Fractured_B_11=Library
-
 DZ_1_05_Fractured_B_16=Rooftop
-
 DZ_1_06_Stronghold_B_A_00va=Start
-
 DZ_1_06_Stronghold_B_B_00=Stepping Stones
-
 DZ_1_06_Stronghold_B_c_00=Gusty Canyon
-
 DZ_1_06_Stronghold_B_d_00=Eye of the Storm
-
 DZ_1_07_Inferno_B_start=Start
-
 DZ_1_07_Inferno_B_B_00=Central Chamber
-
 DZ_1_07_Inferno_B_c_00=Discovery
-
 DZ_1_07_Inferno_B_d_00=Theo Mix Master
-
 DZ_1_08_Truth_B_A_00=Start
-
 DZ_1_08_Truth_B_B_00=Reflections
-
 DZ_1_08_Truth_B_c_00=Rock Bottom
-
 DZ_1_08_Truth_B_d_00=Reprieve
-
 DZ_1_09_Summit_B_A_00_intro=Start
-
 DZ_1_09_Summit_B_B_00=500 M
-
 DZ_1_09_Summit_B_c_01=1000 M
-
 DZ_1_09_Summit_B_d_00=1500 M
-
 DZ_1_09_Summit_B_e_00=2000 M
-
 DZ_1_09_Summit_B_f_00=2500 M
-
 DZ_1_09_Summit_B_g_00=3000 M
-
 DZ_1_09_Summit_B_h_00=6000 M
-
 DZ_1_18_Heart_B_00=Start
-
 DZ_1_18_Heart_B_A_00=Into the Stars
-
 DZ_1_18_Heart_B_B_00=Burning or Freezing
-
 DZ_1_18_Heart_B_c_01=Heartbeat
-
 DZ_2_01_City_C_A_00=Start
-
 DZ_2_01_City_C_B_00=Over The Highway
-
 DZ_2_01_City_C_C_00=Perfect Timing
-
 DZ_2_01_City_C_d_00=Dream Zoom
-
 DZ_2_02_Shadow_C_A_00=Start
-
 DZ_2_02_Shadow_C_B_00=Proceed to Kill
-
 DZ_2_02_Shadow_C_C_00=But Nobody Came
-
 DZ_2_05_Fractured_C_A_00=Start
-
 DZ_2_05_Fractured_C_B_00=Dust Bunnys
-
 DZ_2_05_Fractured_C_B_05=Shatter Shelf
-
 DZ_2_05_Fractured_C_d_00=ANGY OSHIRO NOISE
-
 DZ_2_06_Stronghold_C_A_00va=Start
-
 DZ_2_06_Stronghold_C_B_00=Gusting of Breeze
-
 DZ_2_06_Stronghold_C_C_00=Fluff The Wind
-
 DZ_2_07_Inferno_C_A_00=Start
-
 DZ_2_07_Inferno_C_B_00=Dancing in the Darkness
-
 DZ_2_07_Inferno_C_C_00=Discovery
-
 DZ_2_07_Inferno_C_d_00=The Finder and Keepers
-
 DZ_2_07_Inferno_C_e_00=Madeline Mix Master
-
 DZ_2_08_Truth_C_A_00=Start
-
 DZ_2_08_Truth_C_B_00=Never Make A Promise
-
 DZ_2_08_Truth_C_C_00=Gonna Have a Bad Time
-
 DZ_2_08_Truth_C_d_00=MEGALOVANIA
-
 DZ_2_09_Summit_C_A_intro=Start
-
 DZ_2_09_Summit_C_B_00=500 M
-
 DZ_2_09_Summit_C_C_00=1000 M
-
 DZ_2_09_Summit_C_d_00=1500 M
-
 DZ_2_09_Summit_C_e_00=2000 M
-
 DZ_2_09_Summit_C_f_00=2500 M
-
 DZ_2_09_Summit_C_g_00=3000 M
-
 DZ_2_09_Summit_C_h_00=6000 M
-
 DZ_2_18_Heart_C_00=Start
-
 DZ_2_18_Heart_C_A_00=Into The Save Point
-
 DZ_2_18_Heart_C_B_00=Burn and Frost
-
 DZ_2_18_Heart_C_C_00=Do Not Forget
-
 DZ_2_18_Heart_C_D_00=Penumbra Phantasm
-
 DZ_1_01_City_B_remix=First Step Remix
-
 DZ_1_01_City_B_remix_artist=Maxo
-
 DZ_1_02_Shadow_B_remix=Wingdings
-
 DZ_1_02_Shadow_B_remix_artist=DZ
-
 DZ_1_05_Fractured_B_remix=Scatter and Lost
-
 DZ_1_05_Fractured_B_remix_artist=Kyle Gamer
-
 DZ_1_06_Stronghold_B_remix=Golden Feather Remix
-
 DZ_1_06_Stronghold_B_remix_artist=Kyle Gamer
-
 DZ_1_07_Inferno_B_remix=Mirror of magic
-
 DZ_1_07_Inferno_B_remix_artist=Mello
-
 DZ_1_08_Truth_B_remix=Confronting Yourself
-
 DZ_1_08_Truth_B_remix_artist=Kyle Gamer
-
 DZ_1_09_Summit_B_remix=Reaching for the Summit
-
 DZ_1_09_Summit_B_remix_artist=Kyle Gamer
-
 DZ_1_18_Heart_B_remix=Heart of the Mountain
-
 DZ_1_18_Heart_B_remix_artist=Kyle Gamer
-
 DZ_2_01_City_C_remix=Sever Skyline Remix
-
 DZ_2_01_City_C_remix_artist=Kyle Gamer
-
 DZ_2_02_Shadow_C_remix=Ressurection Remix
-
 DZ_2_02_Shadow_C_remix_artist=Kyle Gamer
-
 DZ_2_05_Fractured_C_remix=Tidying things up
-
 DZ_2_05_Fractured_C_remix_artist=Nintendo and Hal Laboratory
-
 DZ_2_06_Stronghold_C_remix=Echo Edges
-
 DZ_2_06_Stronghold_C_remix_artist=Nintendo and Hal Laboratory
-
 DZ_2_07_Inferno_C_remix=In The Mirror Remix
-
 DZ_2_07_Inferno_C_remix_artist=Kyle Gamer
-
 DZ_2_08_Truth_C_remix=Necrolovania
-
 DZ_2_08_Truth_C_remix_artist=Toby Fox
-
 DZ_2_09_Summit_C_remix=Celeste-2
-
 DZ_2_09_Summit_C_remix_artist=Kyle Gamer
-
 DZ_2_18_Heart_C_remix=Say Goodbye Before The World Ends
-
 DZ_2_18_Heart_C_remix_artist=DZ
-
 DZ_Remix=You Got The Special C-Side Remix
-
 DZ_0_01_City_postcard=Remember to take break when you get tired of from high difficulty and There always an Assist Mode that you can turn on if you find it harder.
-
 DZ_0_02_Shadow_Shadow_postcard=if you want to collect strawberry to impress your friend you can try so, but it depend on how many you collect, in which ending.
-
 DZ_0_03_Stars_A_postcard=It's About Time.
-
 DZ_0_04_Legend_A_postcard=If your struggling to keep up, don't push yourself and patient is a key to your success
-
 DZ_0_05_Fractured_A_postcard=Fun Fact did you know that Kirby use to have no copy ability's since Gameboy classic, that amazing isn't it.
-
 DZ_0_06_Stronghold_A_postcard=To Understand the lore about it history you must go back and play from past Kirby Games that way you will get a bigger picture of it's own deeper lore origin.
-
 DZ_0_07_Inferno_A_postcard=Many bosses can have shape and sized but it's doesn't come without a scary final boss which that what they did from the past.
-
 DZ_0_08_Truth_A_postcard=Did you know that Madeline is Hiding Something...?
-
 DZ_0_10_Ruins_A_postcard=Sorry this map is under construction please wait for a little while an order for us to get it done then we will let you and everyone know.
-
 DZ_0_11_Snow_A_postcard=Sorry this map has not started yet, please wait until we get that map started after the d'abord map is done, Thank you.
-
 DZ_0_12_Water_A_postcard=Sorry this map has not started yet, please wait until we get that map started after the d'abord map is done, Thank you.
-
 DZ_0_13_Fire_A_postcard=Sorry this map has not started yet, please wait until we get that map started after the d'abord map is done, Thank you.
-
 DZ_0_14_Digital_A_postcard=Sorry this map has not started yet, please wait until we get that map started after the d'abord map is done, Thank you.
-
 DZ_0_15_Castle_A_postcard=Sorry this map has not started yet, please wait until we get that map started after the d'abord map is done, Thank you.
-
 DZ_0_16_Corruption_postcard=The corrupted realm where Els_Flowey has twisted reality with organic horrors. Navigate through chambers of bone and flesh while collecting the six human souls to weaken the beast and restore balance to the world.
-
 POSTCARD_2_UNLOCK=You've proven yourself on the B-Sides.{n}The {# ffcc00}C-Sides{#} are now unlocked.{n}These remixes push your skills to the limit.{n}Are you ready for the challenge?
-
-POSTCARD_2_UNLOCK=The C-Sides have been conquered.{n}The {# b031eb}D-Sides{#} are now unlocked.{n}These twisted remixes will test your{n}determination beyond all limits.
-
+POSTCARD_3_UNLOCK=The C-Sides have been conquered.{n}The {# b031eb}D-Sides{#} are now unlocked.{n}These twisted remixes will test your{n}determination beyond all limits.
 POSTCARD_DXSIDE_UNLOCK=Beyond the D-Sides lies the{n}ultimate challenge.{n}The {# 200040}DX-Sides{#} are now unlocked.{n}Only the most determined will survive.
-
 POSTCARD_ULTRA_VARIANT_UNLOCK=Every heart, berry, cassette, and secret stands accounted for.{n}The {# ff88d0}Ultra Variant{#} is now unlocked.{n}A final distortion waits beyond the mountain's edge.{n}Only a complete file can reach it.
-
 crystalheart_blue_poem=Crystal Heart
-
 crystalheart_pink_poem=Pink Crystal
-
 crystalheart_rainbow_poem=Rainbow Heart
-
 POSTCARD_2_CRYSTAL_UNLOCK=D-Side Unlocked!{n}The {# ff69b4}Pink Platinum Berry{#} awaits.{n}Test your fighting skills{n}in the DX challenge.
-
 AREACOMPLETE_NORMAL=A-Side Complétez
-
 AREACOMPLETE_1=B-Side Complétez
-
 AREACOMPLETE_2=C-Side Complétez
-
-AREACOMPLETE_2=D-Side Complétez
-
+AREACOMPLETE_3=D-Side Complétez
 AREACOMPLETE_DXSIDE=DX-Side Complétez
-
 AREACOMPLETE_NORMAL_FULLCLEAR=A-Side Full Clear
-
 AREACOMPLETE_1_FULLCLEAR=B-Side Full Clear
-
 AREACOMPLETE_2_FULLCLEAR=C-Side Full Clear
-
-AREACOMPLETE_2_FULLCLEAR=D-Side Full Clear
-
+AREACOMPLETE_3_FULLCLEAR=D-Side Full Clear
 AREACOMPLETE_DXSIDE_FULLCLEAR=DX-Side Full Clear
-
 COMPLETE_SUBTITLE_01_CITY=The mountain speaks in tongues forgotten by the waking world
-
 COMPLETE_SUBTITLE_02_Shadow=In shadow's veil, the d'abord prophecy whispers its fractured name
-
 COMPLETE_SUBTITLE_03_STARS=Through starlit gates, the twin prophecies once sang as one
-
 COMPLETE_SUBTITLE_04_LEGEND=The chronicles remember when Jambuhbastion held both truths together
-
 COMPLETE_SUBTITLE_05_RESTORE=What was shattered may yet be restored, piece by shining piece
-
 COMPLETE_SUBTITLE_06_STRONGHOLD=Within these walls, the old prophecy still guards its silent vigil
-
 COMPLETE_SUBTITLE_07_HELL=The void remembers what the flame forgets
-
 COMPLETE_SUBTITLE_09_SUMMIT=At the apex, two paths diverge into the astral birth void
-
 COMPLETE_SUBTITLE_10_RUINS=Two prophecies that were once one echo through the ancient stone
-
 COMPLETE_SUBTITLE_11_SNOW=Frozen between realities, the path of reincarnation endures
-
 COMPLETE_SUBTITLE_12_WATER=The depths conceal where the twin prophecies d'abord broke apart
-
 COMPLETE_SUBTITLE_13_FIRE=Ash carries the memory of what once burned as a single prophecy
-
 COMPLETE_SUBTITLE_14_DIGITAL=Every signal is a fragment of the original Jambuhbastion code
-
 COMPLETE_SUBTITLE_15_CASTLE=The citadel stands where the astral birth void d'abord opened
-
 COMPLETE_SUBTITLE_16_CORRUPTION=From despair, the garden of the final prophecy blooms anew
-
 COMPLETE_SUBTITLE_18_HEART=At the core, two halves of prophecy beat as one reborn heart
-
 COMPLETE_SUBTITLE_19_SPACE=The stars remember the day Jambuhbastion split into two
-
 COMPLETE_SUBTITLE_20_THEEND=The new found reincarnation astral birth void yields its final truth
-
 DZ_overworld_remix3=D-SIDE
-
 DZ_areacomplete_2=D-Side Complétez
-
 DZ_areacomplete_fullclear_1=B-Side Clear
-
 DZ_areacomplete_fullclear_2=C-Side Clear
-
-DZ_areacomplete_fullclear_2=D-Side Clear
-
+DZ_areacomplete_fullclear_3=D-Side Clear
 DZ_2_unlocked=D-Side Unlocked
-
 DZ_High_Difficulty=Ready to Determined the Final Challenge Every Chapter in every A B and C Side are now accessible to Pink Platinum Berry and D Side or Desolo Side is Now Available Good luck and Stay Determined.
-
 CHARA={# ff0000}Chara{#}
-
 KIRBY={# ffaeed}Kirby{#}
-
 MAGOLOR={# d678db}{~}Magolor{/~}{#}
-
 BADELINE={# 76428a}{~}BADELINE{/~}{#}
-
 MYSTERY_MAN={# 00ffff}{~}???{/~}{#}
-
 soul_DZ_0_01_City=Useless Garbage Machine
-
 soul_DZ_0_02_Shadow_Shadow=Reawaken
-
 soul_DZ_0_05_Fractured_A=Hopeless and Hopelessly Lost
-
 soul_DZ_0_06_Stronghold_A=The Legend
-
 soul_DZ_0_07_Inferno_A=Lighter and Darker
-
 soul_DZ_0_08_Truth_A=Out of Reached
-
 soul_DZ_0_09_Summit_A=On The Horizon
-
 soul_DZ_0_10_Ruins_A=PLANK AND BURNED
-
 soul_DZ_0_11_Snow_A=WILD WILD FROST WEST
-
 soul_DZ_0_18_Heart_A=Hopes and Dreams
-
 soul_DZ_0_19_Space=KILL YOURSELF NOW
-
 soul_DZ_1_01_City_B=Sever the Skyline
-
 soul_DZ_1_02_Shadow_B=Black Moon Rise
-
 soul_DZ_1_05_Fractured_B=Good karma
-
 soul_DZ_1_06_Stronghold_B=Golden Feather
-
 soul_DZ_1_07_Inferno_B=Mirror of Magic
-
 soul_DZ_1_08_Truth_B=Center of the Mountain
-
 soul_DZ_1_09_Summit_B=No More Running
-
 soul_DZ_1_18_Heart_B=Goodbye
-
 soul_DZ_2_01_City_C=Taking Over the Streets
-
 soul_DZ_2_02_Shadow_C=Under my Control
-
 soul_DZ_2_05_Fractured_C=Amazing karma
-
 soul_DZ_2_06_Stronghold_C=Zantas Feather
-
 soul_DZ_2_07_Inferno_C=Jazzy Move
-
 soul_DZ_2_08_Truth_C=Megalovania
-
 soul_DZ_2_09_Summit_C=Don't Kill and Don't Be Killed
-
 soul_DZ_2_18_Heart_C=End of the World
-
 Tralier_intro=[Madeline left distracted]
 What is this Dreamblock?
 [Madeline left determined]
@@ -1671,43 +1064,26 @@ VESSEL_CREATION_FATE_QUESTION=Yes, question everything. Why must it be this way?
 Some answers come only through experience, through loss, through understanding.
 
 VESSEL_CREATION_FATE_DEFAULT=Your choice is noted. Even in the face of the inevitable, choice matters.
-
 VESSEL_CREATION_TRANSITION=The vessel fades into memory, but its impact remains.
 What was created can never truly be destroyed.
 Now, your true journey begins...
 
 INTRO_PRESENTS_CREATOR=MAGEDELINE
-
 INTRO_PRESENTS_WORD=PRESENTS
-
 INTRO_PRESENTS_TITLE=DESOLO ZANTAS
-
 INTROPRESENTS_SKIP=Press any button to skip
-
 INTRO_VIGNETTE_RESUME=Resume
-
 INTRO_VIGNETTE_SKIP=Skip Cutscene
-
 INTRO_DISCLAIMER_HEADER=FALSE ALLEGATION WARNING
-
 INTRO_DISCLAIMER_LINE1=This is a fan-made mod and is not affiliated with the original creators of Celeste or any other media referenced within.
-
 INTRO_DISCLAIMER_LINE2=and It put alot of protection for the original creators and the mod creator.
-
 INTRO_DISCLAIMER_LINE3=so if you have any question about this mod please ask the mod creator or the original creators of Celeste.
-
 INTRO_DISCLAIMER_LINE4=and you agree on not sharing this mod without permission and not allowed to make false evidences.
-
 INTRO_DISCLAIMER_LINE5=remind you that if you did, you will be held accountable for your actions and you will be responsible for any consequences that may arise from it.
-
 INTRO_DISCLAIMER_LINE6=so please be respectful and responsible when sharing this mod and any content related to it.
-
 INTRO_DISCLAIMER_YOUHAVEBEENWARNED=You have been warned.
-
 INTRO_DISCLAIMER_CONTINUE=Press any button to continue...
-
 DISCLAIMER_CONTINUE=Press CONFIRM to continue
-
 INTRO_FIRST_TIME={0.5}...
 {0.3}Where am I?
 {0.5}This place... it feels familiar.
@@ -2822,7 +2198,6 @@ Oh that kid? his name is {+KIRBY}
 Well then you little angel Please, feel free to explore at your leisure.
 
 DZ_CH5_MEMO_OPENING=An old paper sticks out from amid the clutter...
-
 DZ_CH5_MEMO={big}Attention hotel staff:{/big}
 It is my sad duty to inform you that recently that seven children has gone missing.
 I was in shocked that I wasn't expecting that those poor angels goes on top never came back.
@@ -3715,15 +3090,10 @@ Say Strawberry!!!
 {trigger 17 FaceTheo}
 
 DZ_CH6_GONDOLA_FEATHER_1=Picture a Heart Badeline beating inside of right in front of you.
-
 DZ_CH6_GONDOLA_FEATHER_2=See it?
-
 DZ_CH6_GONDOLA_FEATHER_3=Okay.
-
 DZ_CH6_GONDOLA_FEATHER_4=Your breathing keeps that heart beating.
-
 DZ_CH6_GONDOLA_FEATHER_5=Just breathe slow and steady, in and out.
-
 DZ_CH7_ENTER=[none left]
 {trigger 0 Kirby turns right}
 [BADELINE left concerned]
@@ -4704,49 +4074,27 @@ Oh right, good idea.
 {>> 0.2}This won't take long.{>>}
 
 DZ_CH9_HEIGHT_START=Ground Level
-
 DZ_CH9_HEIGHT_0={X} M
-
 DZ_CH9_HEIGHT_1={X} M
-
 DZ_CH9_HEIGHT_2={X} M
-
 DZ_CH9_HEIGHT_3={X} M
-
 DZ_CH9_HEIGHT_4={X} M
-
 DZ_CH9_HEIGHT_5={X} M
-
 DZ_CH9_HEIGHT_6={X} M
-
 DZ_CH9_HEIGHT_7={X} M
-
 DZ_CH20_HEIGHT_0=STAGE {X} / 12
-
 DZ_CH20_HEIGHT_1=STAGE {X} / 12
-
 DZ_CH20_HEIGHT_2=STAGE {X} / 12
-
 DZ_CH20_HEIGHT_3=STAGE {X} / 12
-
 DZ_CH20_HEIGHT_4=STAGE {X} / 12
-
 DZ_CH20_HEIGHT_5=STAGE {X} / 12
-
 DZ_CH20_HEIGHT_6=STAGE {X} / 12
-
 DZ_CH20_HEIGHT_7=STAGE {X} / 12
-
 DZ_CH20_HEIGHT_8=STAGE {X} / 12
-
 DZ_CH20_HEIGHT_9=STAGE {X} / 12
-
 DZ_CH20_HEIGHT_10=STAGE {X} / 12
-
 DZ_CH20_HEIGHT_11=STAGE {X} / 12
-
 DZ_CH20_HEIGHT_12=STAGE {X} / 12
-
 DZ_CH9_ASCEND_0=[THEO left normal]
 I think We're all getting the hang of this.
 [BADELINE right normal]
@@ -5065,145 +4413,75 @@ DZ_CH9_CREDITS_INTRO=[left left]
 	Now, let us honor those who made it possible...
 
 DZ_CH9_CREDITS_TITLE=DESOLO ZANTAS
-
 DZ_CH9_CREDITS_SUBTITLE=Chapter 9 - Apex of Reality
-
 DZ_CH9_CREDITS_CREATED_BY=Created By
-
 DZ_CH9_CREDITS_CREATOR_NAME=Magedeline / Ingeste
-
 DZ_CH9_CREDITS_SPECIAL_THANKS=Special Thanks
-
 DZ_CH9_CREDITS_MODDING_COMMUNITY=The Celeste Modding Community
-
 DZ_CH9_CREDITS_MATT_NOEL=Matt Thorson & Noel Berry
-
 DZ_CH9_CREDITS_EXOK=Extremely OK Games
-
 DZ_CH9_CREDITS_HELPER_MODS=Helper Mods & Dependencies
-
 DZ_CH9_CREDITS_ADVENTUREHELPER=AdventureHelper
-
 DZ_CH9_CREDITS_ALTSIDESHELPER=AltSidesHelper
-
 DZ_CH9_CREDITS_ANONHELPER=Anonhelper
-
 DZ_CH9_CREDITS_ARPHIMIGONSTOYBOX=ArphimigonsToyBox
-
 DZ_CH9_CREDITS_BOUNCEHELPER=BounceHelper
-
 DZ_CH9_CREDITS_BROKEMIAHELPER=BrokemiaHelper
-
 DZ_CH9_CREDITSDZ_CHERRYHELPER=CherryHelper
-
 DZ_CH9_CREDITSDZ_CHRONIAHELPER=ChroniaHelper
-
 DZ_CH9_CREDITSDZ_CHRONOHELPER=ChronoHelper
-
 DZ_CH9_CREDITS_COMMUNALHELPER=CommunalHelper
-
 DZ_CH9_CREDITS_CONTORTHELPER=ContortHelper
-
 DZ_CH9_CREDITS_CRYSTALLINEHELPER=CrystallineHelper
-
 DZ_CH9_CREDITS_DJMAPHELPER=DJMapHelper
-
 DZ_CH9_CREDITS_EEVEEHELPER=EeveeHelper
-
 DZ_CH9_CREDITS_EXTENDEDCAMERADYNAMICS=ExtendedCameraDynamics
-
 DZ_CH9_CREDITS_EXTENDEDVARIANTMODE=ExtendedVariantMode
-
 DZ_CH9_CREDITS_FAREWELL1=Farewell B-Side
-
 DZ_CH9_CREDITS_FEMTOHELPER=FemtoHelper
-
 DZ_CH9_CREDITS_FLAGLINESANDSUCH=FlaglinesAndSuch
-
 DZ_CH9_CREDITS_FROSTHELPER=FrostHelper
-
 DZ_CH9_CREDITS_HONLYHELPER=HonlyHelper
-
 DZ_CH9_CREDITS_ISAGRABBAG=IsaGrabBag
-
 DZ_CH9_CREDITS_JACKALHELPER=JackalHelper
-
 DZ_CH9_CREDITS_JUNGLEHELPER=JungleHelper
-
 DZ_CH9_CREDITS_LUACUTSCENES=LuaCutscenes
-
 DZ_CH9_CREDITS_LUNATICHELPER=LunaticHelper
-
 DZ_CH9_CREDITS_MAXHELPINGHAND=MaxHelpingHand
-
 DZ_CH9_CREDITS_MOREDASHELINE=MoreDasheline
-
 DZ_CH9_CREDITS_NERDHELPER=NerdHelper
-
 DZ_CH9_CREDITS_OZMASODDITIES=OzmasOddities
-
 DZ_CH9_CREDITS_PLATINUMSTRAWBERRY=PlatinumStrawberry
-
 DZ_CH9_CREDITS_PRISMATICHELPER=PrismaticHelper
-
 DZ_CH9_CREDITS_REVERSEHELPER=ReverseHelper
-
 DZ_CH9_CREDITS_SKINMODHELPER=SkinModHelper
-
 DZ_CH9_CREDITS_SKINMODHELPERPLUS=SkinModHelperPlus
-
 DZ_CH9_CREDITS_SORBETHELPER=SorbetHelper
-
 DZ_CH9_CREDITS_VIVHELPER=VivHelper
-
 DZ_CH9_CREDITS_HELPER_CREATORS=Helper Mod Creators
-
 DZ_CH9_CREDITS_VIV=Viv
-
 DZ_CH9_CREDITS_MAX480=max480
-
 DZ_CH9_CREDITS_JATHEPLAYER=JaThePlayer
-
 DZ_CH9_CREDITS_CRUOR=Cruor
-
 DZ_CH9_CREDITS_CATAPILLIE=catapillie
-
 DZ_CH9_CREDITS_BROKEMIA=Brokemia
-
 DZ_CH9_CREDITS_COLOURSOFNOISE=coloursofnoise
-
 DZ_CH9_CREDITS_DEMOJAMESON=DemoJameson
-
 DZ_CH9_CREDITS_AHORN_TEAM=Ahorn Team
-
 DZ_CH9_CREDITS_LOENN_TEAM=Loenn Team
-
 DZ_CH9_CREDITS_MUSIC_AUDIO=Music & Audio
-
 DZ_CH9_CREDITS_LENA_RAINE=Lena Raine - Original Celeste OST
-
 DZ_CH9_CREDITS_TOBY_FOX=Toby Fox - Undertale/Deltarune OST
-
 DZ_CH9_CREDITS_JUN_ISHIKAWA=Jun Ishikawa - Kirby OST
-
 DZ_CH9_CREDITSDZ_CHARACTER_INSPIRATIONS=Character Inspirations
-
 DZ_CH9_CREDITS_MADELINE_BADELINE=Madeline & Badeline - Celeste
-
 DZ_CH9_CREDITS_UNDERTALEDZ_CHARS=Chara, Sans, Papyrus, Toriel - Undertale
-
 DZ_CH9_CREDITS_RALSEI=Ralsei - Deltarune
-
 DZ_CH9_CREDITS_KIRBYDZ_CHARS=Kirby, Meta Knight, King Dedede - Kirby Series
-
 DZ_CH9_CREDITS_MAGOLOR=Magolor - Kirby's Retournez au Dream Land
-
 DZ_CH9_CREDITS_AND_THANK_YOU=And Thank You
-
 DZ_CH9_CREDITS_FOR_PLAYING=For Playing!
-
 DZ_CH9_CREDITS_UNTIL_NEXT_TIME=Until Next Time...
-
 DZ_CH9_SANS_MESSAGE_END=[left left]
 	*ring* {0.3}*ring* {0.3}*ring*...
 	[left left]
@@ -8437,7 +7715,6 @@ DZ_CH12_JUMP_YES=YES
 {trigger 1 everyone jump to the next platform}
 
 DZ_CH12_JUMP_NO=NO
-
 DZ_CH12_TITAN_TOWER_SUMMIT_APPROACH=[MADELINE left surprised]
 We made it... The top of the titan tower.
 [CHARA left laughing]
@@ -8572,14 +7849,11 @@ Well I will tell you this one human child from the last reality
 was able to harness the power of determination
 
 DZ_CH12_VINGTEENAIREE_EXPLANATION_PART1=YOU SEE THE SOUL THAT YOU HAVE BELONG TO A CHILD WHO WAS ABLE TO HARNESSED THE POWER OF DETERMINATION
-
 DZ_CH12_VINGTEENAIREE_EXPLANATION_PART2=AND THAT CHILD WAS ABLE TO SAVE THE WORLD FROM DESTRUCTION
 OR DO THE OPPISITE
 
 DZ_CH12_VINGTEENAIREE_EXPLANATION_PART3=HOWEVER THAT CHILD WAS ABLE TO TRANSFER HIS SOUL INTO ANOTHER REALITY
-
 DZ_CH12_VINGTEENAIREE_EXPLANATION_PART4=BUT THE CHILD HOWEVER HE WAS NOT SO UNLUCKY AFTER A STRANGE EVENT HAPPENED
-
 DZ_CH12_VINGTEENAIREE_EXPLANATION_PART5=THAT HE WAS FORCE TO JOIN ONE OF THE SUITED MEN
 AND THAT CHILD WAS FORCED TO FIGHT AGAINST HIS WILL
 UNTIL HE WAS ABLE TO ESCAPE FROM THE ARMY
@@ -8588,16 +7862,12 @@ DZ_CH12_VINGTEENAIREE_EXPLANATION_PART6=NO MATTER WHAT HE CHOOSE FOR GOOD OR EVI
 YOU HAVE NO IDEA THAT SUITED MEN HAS ALREADY TRIED TO HARNESSED THE POWER OF DETERMINATION BEFORE
 
 DZ_CH12_VINGTEENAIREE_EXPLANATION_PART7=AND HE NOT GIVING ANYONE A CHOICES
-
 DZ_CH12_VINGTEENAIREE_EXPLANATION_PART8=ULTIMATELY FORCING TO KILL OR BE KILLED
-
 DZ_CH12_VINGTEENAIREE_EXPLANATION_PART9=AND LEFT THAT CHILD SUFFER FOR ENTERNITY
-
 DZ_CH12_VINGTEENAIREE_EXPLANATION_PART10=WHICH THAT WAS THE LAST TIME WE SAW HIM AND NEVER SEEN HIM AGAIN
 WHICH I FELT BAD FOR HIM
 
 DZ_CH12_VINGTEENAIREE_EXPLANATION_PART11=AND BLAME ON THAT SUITED MEN.
-
 DZ_CH12_VINGTEENAIREE_EXPLANATION_END=[CHARA left PANIC]
 so you're telling me that kid was the one who caused all this mess!?
 [SANS left normal]
@@ -9250,7 +8520,6 @@ DZ_CH13_AREA1_FIRSTBATTLE_FIGHT=[none left]
 you won your love has increased
 
 DZ_CH13_AREA1_FIRSTBATTLE_SPARE=you spared the froggit. its love has increased nothing
-
 DZ_CH13_AREA1_FIRSTBATTLE_FIGHT_END=[CHARA left yell]
 I told you to use the attack button not to kill it!
 [BADELINE left worried]
@@ -9721,7 +8990,6 @@ I will help you this time
 lets go save princess madeline together
 
 DZ_CH13_SUZY_JOIN_PARTY=SUZY HAS OFFICIALLY JOIN THE PARTY
-
 ch13_arrival_pre_pre_intro=[SUZY left normal]
 this is it...
 the staff room where tenna is keeping all the stuff
@@ -9877,7 +9145,6 @@ also here is the heart gem that I have it for you
 {trigger 0 give madeline heart gem}
 
 DZ_CH13_HEARTGEM_POEM=LIGHTS!... CAMERA!!... ACTION!!!
-
 DZ_CH13_END_CINEMATIC=[MADELINE left sad]
 Thank you, Tenna. We'll make sure to use this axe wisely.
 [TENNA left none]
@@ -10285,7 +9552,6 @@ It's looking right at us.
 Back away from the terminal. Now.
 
 DZ_CH13_ALPHYS_LAB_TRUTH={+CH13_ALPHY_TRUTH_LABS_00}
-
 DZ_CH13_ALPHY_TRUTH_LABS_00=[ALPHYS left nervous]
 You read the logs, didn't you?
 Then you already know the part I was trying not to say.
@@ -11544,7 +10810,6 @@ with that being said
 good luck madeline
 
 DZ_CH15_HEARTGEM_POEM=YOUR CHOICED MATTERS
-
 DZ_CH15_EXTRA_KING_TITAN_DEFEAT_EMOTIONAL=[ROARING_TITAN_KING left crying]
 {big}YOU HAVE BESTED ME... FAIRLY AND WITH HONOR...{/big}
 {big}BUT KNOW THIS... MY DEFEAT BRINGS ME NO SHAME...{/big}
@@ -11581,11 +10846,8 @@ It fused with dark matter and discarded possibilities.
 From that will, Els was born.
 
 DZ_CH16_ELS_INTRO_MY_WORLD_NAME=ELS		My World
-
 DZ_CH16_ELS_INTRO_MY_WORLD_STATUS=TIME: 9999:99:99	LEVEL: 99	HP: 9999/9999	ATK: 9999	DEF: 9999	GOLD: 99999999	EXP: 99999999
-
 DZ_CH16_MADDY_FILE_ERASED_FATAL=File Corruptted... Fatal Error Detected
-
 DZ_CH16_ELS_BOSS_INTRO_00=[zeroreal left normal]
 You want to know what I am, Madeline?
 Then listen carefully.
@@ -11634,25 +10896,15 @@ Now show me whether those endless possibilities of yours
 can stop what Zero has become.
 
 DZ_CH16_CALL_FOR_HELP_00=YOU CALL EMILY FOR HELP
-
 DZ_CH16_CALL_FOR_HELP_01=YOU CALL ODIN FOR HELP
-
 DZ_CH16_CALL_FOR_HELP_02=YOU CALLED ROBIN FOR HELP
-
 DZ_CH16_CALL_FOR_HELP_03=YOU CALLED SABEL FOR HELP
-
 DZ_CH16_CALL_FOR_HELP_04=YOU CALLED CODY FOR Help
-
 DZ_CH16_CALL_FOR_HELP_05=YOU CALLED CLOVER FOR HELP
-
 DZ_CH16_CALL_FOR_HELP_06=YOU CALLED CHARA FOR HELP
-
 DZ_CH16_CALL_FOR_HELP_07=YOU CALLED KIRBY FOR HELP
-
 DZ_CH16_CALL_FOR_HELP_08=YOU CALLED BADELINE FOR HELP
-
 DZ_CH16_CALL_FOR_HELP_LAST=YOU CALLED FRISK FOR HELP
-
 DZ_CH16_ELS_DEFENE_WEAKENED=ELS IS WEAKENED
 NOW IS YOUR CHANCE TO STRIKE BACK
 
@@ -11765,7 +11017,6 @@ DZ_CH16_YOURDZ_CHOICES_SPARE_LAST=[FLOWEYELS left wtf]
 I don't Actaully do not Fucking Understand.
 
 DZ_CH16_FLOWEY_ELS_RAN_AWAY=FLOWEY RAN AWAY....
-
 DZ_CH16_OUTRO_WAKEUP=[none left none]
 ... Madeline... MADELINE!
 wake up...
@@ -12343,7 +11594,6 @@ This mountain is very unpredictable and unstable.
 Now with that out of the way Good luck all of you in there.
 
 DZ_CH18_INTRO=1 Month Later...
-
 DZ_CH18_TORIEL_OUTSIDE=[TORIEL right normal]
 Good You Two just in time.
 This is the entrance to the core of the fallen angle of this mountain.
@@ -13234,7 +12484,6 @@ wait... no... this isn't right...
 but what if I just need to use it more?
 
 SOUL_DZ_20_THEEND_A=GOT YOU, KIRBY!
-
 DZ_CH20_ELS_LAST_WISH=[kirby left surprised]
 you tricked me again! you used them to lure me in here, and now you're going to kill me!
 [els left normal]
@@ -13532,22 +12781,15 @@ azzyboss_06=All your progress, all your efforts, all your sacrifices...
 I will make everyting fall to zero!
 
 azzyboss_08=then we can do this all over again!
-
 azzyboss_10=infact did you know what the best part about all of this is?
 you'll do it...
 
 azzyboss_12=and then you lose to me again...
-
 azzyboss_14=and again!
-
 azzyboss_16=AND AGAIN!!!
-
 azzyboss_18=because you want a final ending
-
 azzyboss_20=because you love your friends.
-
 azzyboss_22=because you never ever give up!
-
 azzyboss_24=is this wonderful or what?
 your determination, that power let you get this far.
 this will be your doom!
@@ -14309,7 +13551,7 @@ DZ_CH20_ASCEND_VS_ELS_11=[ELS left normal]
 {# AAAAFF}Of course, Madeline! You have a wonderful support system!{#}
 {# AAAAFF}And remember, no matter what happens, I will always love you!{#}
 {# AAAAFF}Now were here to climb this mountain!{#}
-{# AAAAFF}It's time to finish this once and for all!{#}
+{# AAAAFF}It's time to finish this once and for all!{trigger 0}{trigger 1}{#}
 
 DZ_CH21_ASCEND_VS_ELS_FINAL=[ELS left normal]
 {# 000000}HOW DISAPPOINTING...{#}
@@ -14381,6 +13623,232 @@ then come at us and fight...!
 alright then
 lets see if your soul can fight against THIS!
 
+DZ_CH21_FINAL_BATTLE_ALLIES_ARRIVE=
+[KIRBY left determined]
+Everyone! This is our last stand.
+Every dream friend, every ally — we're all here together.
+
+[MADELINE left determined]
+We didn't come this far to fall now.
+All of us, side by side. Let's finish this.
+
+[BADELINE right worriedalt]
+Okay, inspiring speech noted.
+Now can we actually deal with the enormous army of darkness heading toward us?
+
+[MAGOLOR right annoyed]
+For what it's worth, I brought reinforcements.
+You did not think I would miss the final battle, did you?
+
+[BANDANA_DEE left determined]
+Meta Knight and King Dedede are right behind me!
+We stand with you, Kirby!
+
+DZ_CH21_FINAL_BATTLE_DREAM_FRIENDS=
+[KIRBY left happy]
+Dream friends...
+I knew you'd come.
+
+[RICK_KOO_CHUCHU left together]
+We go everywhere together.
+That hasn't changed.
+
+[GOOEY left happy]
+Goo!
+(We're ready!)
+
+[MARX left normal]
+Don't get all sentimental.
+Let's just win.
+
+[SUSIE right normal]
+Systems nominal. Allies assembled.
+Efficiency: maximum.
+
+DZ_CH21_FINAL_BATTLE_ZEROS_INTRO=
+[none left]
+Then they arrived.
+The collected darkness from across every world and every timeline.
+
+[SIAMO_ZERO right dark]
+You cannot erase what we are.
+We are zero. We are void. We are inevitable.
+
+[MADELINE left surprised]
+That's— there are so many of them.
+Siamo Zero, Zero 3, Contra Void, Tesseract Soul...
+
+[KIRBY left determined]
+Hyper Meta Morpho Knight and Nollus Nova too.
+Together they formed the complete darkness.
+
+[BADELINE right angry]
+Six forms of nothing trying to take everything.
+Not today.
+
+DZ_CH21_FINAL_BATTLE_GONERS_HOLD=
+[SEVEN_GONER left together]
+VESSEL FORMATION ACTIVE.
+WE HOLD THE LINE. ALL SEVEN.
+
+[SEVEN_GONER left together]
+THEY WILL NOT PASS WHILE WE STAND.
+DETERMINATION HOLDS.
+
+[KIRBY left determined]
+The Goner Souls are buying us time.
+We have to defeat every last one of them. Together!
+
+DZ_CH21_FINAL_BATTLE_ZEROS_FALLEN=
+[none left]
+One by one, the forms of darkness were shattered.
+Siamo Zero. Zero 3. Contra Void. Tesseract Soul.
+Hyper Meta Morpho Knight. Nollus Nova.
+
+[KIRBY left surprised]
+They're... all gone.
+
+[MADELINE left determined]
+The zeros are gone. But Els Termina is still out there.
+We have to keep going.
+
+[BADELINE right normal]
+This isn't over.
+Not yet.
+
+[SEVEN_GONER left together]
+ALL ZEROS NEUTRALISED.
+PATH TO ELS TERMINA: OPEN.
+
+DZ_CH21_FINAL_BATTLE_WARPSTAR_RIDE=
+[KIRBY left determined]
+There it is. The Warp Star.
+It'll take us straight to Els Termina.
+
+[MADELINE left distracted]
+It's... really small.
+
+[KIRBY left happy]
+Don't worry! It fits everyone who needs it.
+Trust me, I've done this before.
+
+[BADELINE right normal]
+Riding a golden star into the void.
+Perfectly normal day.
+
+[KIRBY left determined]
+Hold on tight. Here we go!
+
+DZ_CH21_FINAL_BATTLE_INTO_ABYSS=
+[none left]
+They flew into the Abyss.
+Not darkness — something beyond darkness.
+The Abyssment stretched in every direction, filled with echoes of every world.
+Every world they had ever saved. Every life they had ever touched.
+Past. Present. Future. All of it, alive here, in this moment.
+
+[MADELINE left surprised]
+This place...
+I can see Celeste Mountain. And the Underground. And Dream Land.
+All of it at once.
+
+[KIRBY left sad]
+I've been here before.
+Not like this though. Not with so many people beside me.
+
+[BADELINE right worriedalt]
+There's no ground.
+There is no ground anywhere.
+
+[KIRBY left happy]
+It's fine! I can fly.
+And we have something even better than ground.
+
+DZ_CH21_FINAL_BATTLE_ASRIEL_JOINS=
+[none left]
+Then, beside them, a familiar gentle light.
+
+[ASRIEL left sad]
+I don't have much power left.
+After everything I took from everyone... this is all I have.
+
+[ASRIEL left sad]
+But I can give it to you.
+If my last act is keeping you all from falling, then it's worth it.
+
+[MADELINE left surprised]
+Asriel...
+You don't have to do this.
+
+[ASRIEL left normal]
+I know I don't have to.
+That's why it means something.
+
+[KIRBY left determined]
+We are not leaving you behind, Asriel.
+Whatever comes next, we face it together.
+
+[ASRIEL left sad]
+...thank you, Kirby.
+Then together, let's see this through.
+
+DZ_CH21_FINAL_BATTLE_DETERMINATION_SOUL=
+[none left]
+The first of the seven soul lights blazed into full brilliance.
+Red. Pure red.
+Determination.
+
+[DETERMINATION_SOUL left together]
+YOU DIDN'T GIVE UP WHEN EVERYTHING SAID TO.
+NEITHER WILL WE.
+
+[MADELINE left determined]
+That's—
+That's everyone who ever fell and got back up.
+
+[KIRBY left determined]
+Then let's give them something worth standing up for.
+Let's go finish this.
+
+DZ_CH21_FINAL_BATTLE_ELS_LOOMS=
+[none left]
+Far ahead, through the cascading reflections of every world—
+a silhouette.
+Immense. Elemental. Waiting.
+
+[BADELINE right angry]
+There.
+That's it. That's Els Termina.
+
+[KIRBY left determined]
+I see it.
+Ready, Madeline?
+
+[MADELINE left determined]
+Ready.
+Let's end this.
+
+DZ_CH21_FINAL_BATTLE_PHASE2_ARRIVAL=
+[none left]
+The void gave way.
+Ground rose from nowhere — solid, real, burning with colour.
+The final arena.
+
+[KIRBY left determined]
+This is it.
+The air feels different here. Like the whole universe is holding its breath.
+
+[MADELINE left determined]
+Then let's give it something to breathe out about.
+
+[ASRIEL left sad]
+My power is almost spent.
+I'll hold the sky together as long as I can.
+Don't waste the time I'm buying you.
+
+[BADELINE right angry]
+We won't.
+Now let's fight.
 DZ_CH21_ELS_TERMINA_BOSS_INTRO=[els right normal]
 I am no longer the dark matter you have seen, no longer zero.
 I am els termina
@@ -14559,7 +14027,6 @@ can finally go free!
 {trigger 13 asriel released the souls and the 4th wall opens up destroying giygas and the barrer of the void}
 
 DZ_CH20_GIYGAS_IS_DESTROYED=The barrier of the void shatters, and with it, Giygas's influence is finally broken. The world is safe once again, but at a great cost.
-
 DZ_CH20_GOODBYE={anchor bottom}
 {trigger 0 asriel powerdown and say goodbye to everyone}
 [ASRIEL left normal]
@@ -15215,27 +14682,16 @@ DZ_CH19_21_HEARTGEM_SOUL={~}Don't kill and don't be killed.{/~}
 {~}The final remix ends here.{/~}
 
 WAVEFAZE_PAGE_TITLE=Wave Faze Presentation
-
 WAVEFAZE_DESKTOP_MYPC=My New Mountain
-
 WAVEFAZE_DESKTOP_POWERPOINT=wavefaze.ppt
-
 WAVEFAZE_DESKTOP_RECYCLEBIN=Recycle Bin
-
 WAVEFAZE_DESKTOP_UNDERNET=Under Net
-
 WAVEFAZE_DESKTOP_GAMEMAKER=Game Maker Studio 2
-
 WAVEFAZE_DESKTOP_KIRBY=Kirby	     Enmulator
-
 WAVEFAZE_DESKTOP_STARTBUTTON=TobyOS
-
 WAVEFAZE_PAGE1_TITLE=Wavefazing and You
-
 WAVEFAZE_PAGE1_SUBTITLE=A practical and complex solution for catching a fastest bird in deep space
-
 WAVEFAZE_PAGE2_TITLE=Can't|Catch|That|God|Damn|Bird?!
-
 WAVEFAZE_PAGE2_LIST=-Fact: Birds are hard to catch
 -Wow. It's fast!
 -Also, it can fly
@@ -15244,18 +14700,14 @@ WAVEFAZE_PAGE2_LIST=-Fact: Birds are hard to catch
 -(he is the worst)
 
 WAVEFAZE_PAGE2_IMPOSSIBLE=AM I Stupid???!
-
 WAVEFAZE_PAGE3_TITLE=Introducing... Wavefazing!!!:3
-
 WAVEFAZE_PAGE3_INFO=With Wavefazing, you can jump very far
 regain your dash
 and phase through with non dream block{~} back all in One!{/~}
 -How?
 
 WAVEFAZE_PAGE3_EASY=How? It's "easy!"
-
 WAVEFAZE_PAGE4_TITLE=Here How It's Done
-
 WAVEFAZE_PAGE4_LIST=-Jump
 -Dash diagonally down to the ground
 -Immediately jump again and hold forward
@@ -15264,7 +14716,6 @@ WAVEFAZE_PAGE4_LIST=-Jump
 -(go you)
 
 WAVEFAZE_PAGE5_TITLE=Having Issue?
-
 WAVEFAZE_PAGE5_INFO1={#ff0000}If you dash too late{#}
 you would {~}fall{/~} before you can dash again.
 
@@ -15272,13 +14723,9 @@ WAVEFAZE_PAGE5_INFO2={#ff0000}If you faze dash right front of those sharp object
 you would get {~}eliminated{/~}!
 
 WAVEFAZE_PAGE6_TITLE=Happy Toby Fox Day!
-
 WAVEFAZESLAMMER_PAGE0_TITLE=The WaveFazeSlammer
-
 WAVEFAZESLAMMER_PAGE0_SUBTITLE=Master the ultimate advanced technique: Wavedash + DreamDash + WallJump + GroundPound
-
 WAVEFAZESLAMMER_PAGE1_TITLE=What is WaveFazeSlammer?
-
 WAVEFAZESLAMMER_PAGE1_INFO=The WaveFazeSlammer is an {#ffaa00}extremely advanced technique{#}
 that combines {~}FOUR{/~} different movement abilities:
 -{#00ff00}Wavedash{#} to gain horizontal momentum
@@ -15290,7 +14737,6 @@ understanding of all the basic movement mechanics.
 Master this, and {~}no obstacle{/~} can stop you!
 
 WAVEFAZESLAMMER_PAGE2_TITLE=Step-by-Step Execution
-
 WAVEFAZESLAMMER_PAGE2_STEPS={#00ff00}Step 1:{#} Perform a wavedash by dashing
 diagonally down and jumping immediately
 {#00ffff}Step 2:{#} While airborne, use dream dash
@@ -15302,9 +14748,7 @@ a ground pound slam for maximum impact
 Perfect execution requires {~}rhythm and flow{/~}!
 
 WAVEFAZESLAMMER_PAGE3_TITLE=Common Mistakes vs Correct Execution
-
 WAVEFAZESLAMMER_PAGE3_MISTAKE_TITLE={#ff0000}Common Mistakes:{#}
-
 WAVEFAZESLAMMER_PAGE3_MISTAKE_INFO={#ff0000}X{#} Dashing {~}too late{/~} after the initial jump
    {#666666}? You'll lose momentum and fall{#}
 {#ff0000}X{#} Missing the {~}dream block timing{/~}
@@ -15315,7 +14759,6 @@ WAVEFAZESLAMMER_PAGE3_MISTAKE_INFO={#ff0000}X{#} Dashing {~}too late{/~} after t
    {#666666}? You'll miss your target{#}
 
 WAVEFAZESLAMMER_PAGE3_SUCCESS_TITLE={#00ff00}Correct Execution:{#}
-
 WAVEFAZESLAMMER_PAGE3_SUCCESS_INFO={#00ff00}?{#} Wavedash with {~}perfect jump timing{/~}
    {#666666}? Maintain full horizontal speed{#}
 {#00ff00}?{#} Dream dash {~}immediately{/~} when airborne
@@ -15327,7 +14770,6 @@ WAVEFAZESLAMMER_PAGE3_SUCCESS_INFO={#00ff00}?{#} Wavedash with {~}perfect jump t
 Practice makes perfect! {~}Keep trying!{/~}
 
 WAVEFAZESLAMMER_PAGE4_TITLE=Why WaveFazeSlammer Matters
-
 WAVEFAZESLAMMER_PAGE4_INTRO=You might be wondering...
 {~}"Why go through all this trouble?"{/~}
 Here's the truth:
@@ -15378,7 +14820,6 @@ The WaveFazeSlammer is your {~}foundation{/~},
 Copy Abilities are your {~}amplifier{/~}!
 
 WAVEFAZESLAMMER_PAGE5_TITLE=Happy Toby Fox Day!
-
 WAVEFAZESLAMMER_PAGE5_MESSAGE=Congratulations!
 You've learned the {#ffaa00}WaveFazeSlammer{#}!
 This advanced technique will serve you well
@@ -15388,139 +14829,65 @@ Remember:
 Now go forth and {#00ff00}slam{#} those bosses!
 
 DZ_SETTINGS=DZ
-
 DZ_DEBUG_MODE=Debug Mode
-
 DZ_DEBUG_MODE_DESC=Enable additional logging and debug features
-
 DZ_VISUAL_EFFECTS=Visual Effects
-
 DZ_VISUAL_EFFECTS_DESC=Enable particles, shaders, and visual effects
-
 DZ_KIRBY_HEADER=Kirby Player Settings
-
 DZ_KIRBY_ENABLED=Enable Kirby Mode
-
 DZ_KIRBY_ENABLED_DESC=Allow Kirby player mode globally
-
 DZ_KIRBY_MAX_HEALTH=Max Health
-
 DZ_KIRBY_MAX_STAMINA=Max Stamina
-
 DZ_KIRBY_MAX_FLOAT_JUMPS=Max Float Jumps
-
 DZ_KIRBY_INHALE_RANGE=Inhale Range
-
 DZ_KIRBY_HOVER_FALL_SPEED=Hover Fall Speed
-
 DZ_KIRBY_HOVER_HOLD=Hold To Hover
-
 DZ_KIRBY_HOVER_ENABLED=Enable Hover
-
 DZ_KIRBY_USE_PLAYER_RENDER=Use Vanilla Player Render
-
 DZ_KIRBY_PRECISION_COMBAT=Enable Precision Combat
-
 DZ_KIRBY_COMBAT_MODE_DEFAULT=Combat Mode Enabled By Default
-
 DZ_MAD_COMBAT_ENABLED=Enable Madeline Combat
-
 DZ_MAD_COMBAT_HUD=Show Combat HUD
-
 DZ_MAD_COMBAT_MAX_HEALTH=Madeline Max Health
-
 DZ_BINDINGS_HEADER=Key Bindings
-
 DZ_BIND_INHALE=Inhale
-
 DZ_BIND_ATTACK=Attack
-
 DZ_BIND_HOVER=Hover
-
 DZ_BIND_SPIT=Spit
-
 DZ_BIND_CYCLE_POWER=Cycle Power
-
 DZ_BIND_DROP_POWER=Drop Power
-
 DZ_BIND_SLIDE=Slide
-
 DZ_BIND_KNIGHT=Knight Mode
-
 DZ_BIND_PUNCH=Punch
-
 DZ_BIND_PARRY=Parry
-
 DZ_BIND_COMBAT_TOGGLE=Toggle Combat Mode
-
 DZ_BIND_MAD_MELEE=Madeline Melee
-
 DZ_BIND_MADDZ_CHARGE=Madeline Charge Attack
-
 DZ_BIND_MAD_WEAPON_CYCLE=Cycle Madeline Weapon
-
 DZ_ACCESSIBILITY_HEADER=Accessibility
-
 DZ_SCREEN_SHAKE=Screen Shake
-
 DZ_FLASH_EFFECTS=Flash Effects
-
 DZ_RUMBLE=Controller Rumble
-
-DZ_HOTRELOAD_HEADER=Hot Code Reload (Development)
-
-DZ_HOTRELOAD_ENABLED=Enable Hot Reload
-
 DZ_HOTRELOAD_ENABLED_DESC=Change code without restarting the game
-
-DZ_HOTRELOAD_AUTO=Auto-Reload on Save
-
 DZ_HOTRELOAD_AUTO_DESC=Automatically reload when source files change
-
 DZ_HOTRELOAD_SHOW_UI=Show Status Overlay
-
-DZ_HOTRELOAD_SOUND=Play Sound Effects
-
 DZ_HOTRELOAD_ALL_METHODS=Reload All Methods
-
 DZ_HOTRELOAD_ALL_METHODS_DESC=Warning: May cause issues with some code
-
-DZ_HOTRELOAD_VERBOSE=Verbose Logging
-
 DZ_HOTRELOAD_SOURCE_PATH=Custom Source Path
-
 DZ_BIND_HOTRELOAD_TOGGLE=Toggle Hot Reload (F5)
-
 DZ_BIND_HOTRELOAD_RELOAD=Manual Reload (F6)
-
 DZ_BIND_HOTRELOAD_RELOAD_ALL=Reload All (F7)
-
 DZ_BIND_HOTRELOAD_UI=Toggle UI (F8)
-
-DZ_INTEGRATIONS_HEADER=Mod Integration Settings
-
-DZ_DEATHLINK_DAMAGE=Deathlink Damage Mode (Kirby)
-
 DZ_DEATHLINK_DAMAGE_DESC=When enabled, Kirby takes damage instead of dying from deathlink. Disable if Madeline deaths are annoying you.
-
 tutorial_climb=Climb
-
 tutorial_hold=Hold
-
 tutorial_dash=Dash
-
 tutorial_any_direction=Any Direction
-
 tutorial_kirby_inhale=Inhale
-
 tutorial_kirby_power=Use Power
-
 CHAPTER_19_AND_20_SAVE_FILE_WARNING_1=WARNING: THIS SAVE FILE IS OPTIONALLY FOR CHAPTER 19 AND 20 CONTENT. IF YOU LOAD THIS SAVE FILE, YOU WILL BE UNABLE TO ACCESS CHAPTERS 1-18 WITHOUT RELOADING A PREVIOUS SAVE OR STARTING A NEW GAME. PROCEED WITH CAUTION!
-
 CHAPTER_19_AND_20_SAVE_FILE_WARNING_2=IT MAY ALSO BE DIFFICULT FOR PREVIOUS BOSS FIGHTS TO BE REPLAYED PROPERLY DUE TO THE NEW CONTENT AND CHANGES IN THIS SAVE FILE.
-
 CHAPTER_19_AND_20_SAVE_FILE_WARNING_3=IF YOU WANT TO EXPERIENCE CHAPTERS 1-18 AGAIN, PLEASE LOAD A PREVIOUS SAVE FILE OR START A NEW GAME. THANK YOU FOR UNDERSTANDING!
-
 DXCH19_INTRO={trigger 0 chara appear}
 [chara right yell]
 Kirby Must I have Something to tell you and I want you to hear about this.
@@ -15647,9 +15014,7 @@ SET...
 ENGAGED!
 
 DXAREAGEN_REMIX_TITAN_TRIAL_END=FINISH!
-
 DXAREAGEN_REMIX_TITAN_TRIAL_FAIL=OOPS...
-
 DXAREA1_REMIX_FIRST_TITAN_END=[KIRBY left surprised]
 Holy Caterpillar!
 my body is flowing through me, thank you.
@@ -16087,9 +15452,7 @@ his goal is to consume all realities and become the ultimate being in the multiv
 and he won't stop until he achieves his goal to become penumbra phastasm.
 
 DXFINALAREADZ_CH20_KIRBY_REFUSED_TO_DIED=but you refused...!
-
 DXFINALAREADZ_CH20_KIRBY_1_A=it's penumbra phastasm.
-
 DXFINALAREADZ_CH20_JADES_PHASE_1_A=[JADE left bruh]
 you know what, I don't even care about you or your goals.
 I just want to have fun and fight you.
@@ -16469,7 +15832,6 @@ DZ_CH21_ENDING_NORMAL=[MADELINE left peaceful]
 Sweet Dream Chara...
 
 DZ_CH21_REAL_END_GOOD=THE END
-
 DZ_CH21_REAL_END_NORMAL=THE END
 
 # ================================
@@ -16478,13 +15840,10 @@ DZ_CH21_REAL_END_NORMAL=THE END
 
 DZ_MOD_SELECT_TITLE=Choisissez Votre Aventure
 DZ_MOD_SELECT_SUBTITLE=Sélectionnez l'histoire à vivre
-
 DZ_MOD_SELECT_NOTICE=Ce choix ne peut pas être modifié après la sélection.
 DZ_MOD_SELECT_NOTICE2=Choisissez avec sagesse !
-
 DZ_MOD_SELECT_DESOLOZANTAS=Desolo Zantas
 DZ_MOD_SELECT_DESOLOZANTAS_DESC=Jouez l'histoire complète de Desolo Zantas avec des niveaux personnalisés, des boss et des personnages
-
 DZ_MOD_SELECT_CELESTE=Celeste
 DZ_MOD_SELECT_CELESTE_DESC=Continuez avec l'expérience Celeste originale
 
@@ -16528,4 +15887,3 @@ DZ_ENABLE_CELESTENET=Activer l'Intégration CelesteNet
 DZ_ENABLE_BOUNCEHELPER=Activer l'Intégration BounceHelper
 DZ_ENABLE_FLAGLINES=Activer l'Intégration FlaglinesAndSuch
 DZ_DEATHLINK_DAMAGE=Multiplicateur de Dégâts DeathLink
-

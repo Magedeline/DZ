@@ -2,7 +2,7 @@ namespace Celeste.Entities {
     /// <summary>
     /// Enhanced power generator with fuel management and different types
     /// </summary>
-    [CustomEntity("DZ/PowerGenerator", "DZ/EnhancedPowerGenerator")]
+    [CustomEntity("DZ/PowerGenerator", "DZ/EnhancedPowerGenerator", "MaggyHelper/EnhancedPowerGenerator")]
     public class EnhancedPowerGenerator : Entity {
         public enum GeneratorType {
             Basic,

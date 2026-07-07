@@ -51,7 +51,11 @@ namespace Celeste.Cutscenes
             spinning = true;
             Add(new Coroutine(SpinCharacters(), true));
 
-            yield return Textbox.Say(dialogId, new Func<IEnumerator>[0]);
+            yield return Textbox.Say(dialogId, new Func<IEnumerator>[]
+            {
+                GrannyGetSerious,   // trigger 0  - granny gets serious on the last dialog line
+                KirbyFlyFinal       // trigger 1 - kirby fly final
+            });
 
             Audio.Play("event:/char/badeline/maddy_join", player.Position);
             spinning = false;
@@ -144,6 +148,22 @@ namespace Celeste.Cutscenes
 
             if (!dark)
                 level.Add(new FinalTitanHeightDisplayMod(index));
+        }
+
+        // trigger 0 - placeholder flash until granny sprites are ready
+        private IEnumerator GrannyGetSerious()
+        {
+            Audio.SetMusicParam("progress", 12f);
+            Audio.Play("event:/pusheen/new_content/char/granny/serious");
+            Level.Flash(Color.White, false);
+            yield break;
+        }
+
+        // trigger 1 - alt sfx replacing flynext
+        private IEnumerator KirbyFlyFinal()
+        {
+            Audio.Play("event:/pusheen/new_content/char/kirby/flyfinal");
+            yield break;
         }
 
         private void CleanupDummies()

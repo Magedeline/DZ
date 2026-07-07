@@ -7,15 +7,63 @@ using Celeste.Mod;
 namespace Celeste.Entities
 {
     /// <summary>
-    /// Controller component that handles Kirby-specific mechanics for K_Player.
+    /// Controller component that handles Kirby-specific mechanics for K_Player or vanilla Player.
     /// Implements flying (multi-flap hover), inhaling, and glomping mechanics
     /// based on the Lua player code.
     /// </summary>
     public class KirbyPlayerController : Component
     {
-        // Reference to the parent player
-        private K_Player player;
+        // Reference to the parent player (either K_Player or vanilla Player)
+        private Entity player;
         private Level level;
+
+        #region Player abstraction helpers
+
+        /// <summary>Is the host player dead / in a death state?</summary>
+        private bool PlayerDead =>
+            player is K_Player kp ? kp.Dead :
+            player is global::Celeste.Player vp ? vp.Dead :
+            false;
+
+        /// <summary>Horizontal speed of the host player.</summary>
+        private float PlayerSpeedX
+        {
+            get => player is K_Player kp2 ? kp2.Speed.X :
+                   player is global::Celeste.Player vp2 ? vp2.Speed.X : 0f;
+            set {
+                if (player is K_Player kp3) kp3.Speed.X = value;
+                else if (player is global::Celeste.Player vp3) vp3.Speed.X = value;
+            }
+        }
+
+        /// <summary>Vertical speed of the host player.</summary>
+        private float PlayerSpeedY
+        {
+            get => player is K_Player kp4 ? kp4.Speed.Y :
+                   player is global::Celeste.Player vp4 ? vp4.Speed.Y : 0f;
+            set {
+                if (player is K_Player kp5) kp5.Speed.Y = value;
+                else if (player is global::Celeste.Player vp5) vp5.Speed.Y = value;
+            }
+        }
+
+        /// <summary>Facing direction of the host player.</summary>
+        private Facings PlayerFacing
+        {
+            get => player is K_Player kp6 ? kp6.Facing :
+                   player is global::Celeste.Player vp6 ? vp6.Facing :
+                   Facings.Right;
+            set {
+                if (player is K_Player kp7) kp7.Facing = value;
+                else if (player is global::Celeste.Player vp7) vp7.Facing = value;
+            }
+        }
+
+        /// <summary>Whether the host player is currently on the ground.</summary>
+        private bool PlayerOnGround() =>
+            player is Actor actor ? actor.OnGround() : false;
+
+        #endregion
 
         #region Constants (matching Lua values converted to Celeste units)
 
@@ -148,10 +196,13 @@ namespace Celeste.Entities
         public override void Added(Entity entity)
         {
             base.Added(entity);
-            player = entity as K_Player;
-            if (player == null)
+            if (entity is K_Player || entity is global::Celeste.Player)
             {
-                throw new InvalidOperationException("KirbyPlayerController must be added to a K_Player entity");
+                player = entity;
+            }
+            else
+            {
+                throw new InvalidOperationException("KirbyPlayerController must be added to a K_Player or Player entity");
             }
 
             // Set up hitbox to match Lua player
@@ -172,6 +223,7 @@ namespace Celeste.Entities
             // Create inhale effect components
             inhaleParticles = new InhaleParticleSystem(player);
             player.Add(inhaleParticles);
+
         }
 
         private void SyncFromSettings()
@@ -226,7 +278,7 @@ namespace Celeste.Entities
         {
             base.Update();
 
-            if (player == null || player.Dead) return;
+            if (player == null || PlayerDead) return;
 
             // Respect the KirbyPlayerEnabled setting
             var settings = DZModule.Settings;
@@ -254,7 +306,7 @@ namespace Celeste.Entities
             }
 
             // Check ground and ice state
-            bool onGround = player.OnGround();
+            bool onGround = PlayerOnGround();
             onIce = CheckOnIce();
 
             // Landing effects
@@ -428,7 +480,7 @@ namespace Celeste.Entities
             // Update inhale particles
             if (IsInhaling)
             {
-                inhaleParticles?.UpdateInhale(player.Facing == Facings.Right ? 1 : -1);
+                inhaleParticles?.UpdateInhale(PlayerFacing == Facings.Right ? 1 : -1);
                 UpdateMouthVoid();
             }
 
@@ -484,19 +536,19 @@ namespace Celeste.Entities
             }
 
             // Apply acceleration/deceleration
-            if (Math.Abs(player.Speed.X) > maxRun)
+            if (Math.Abs(PlayerSpeedX) > maxRun)
             {
-                player.Speed.X = Calc.Approach(player.Speed.X, Math.Sign(player.Speed.X) * maxRun, deccel);
+                PlayerSpeedX = Calc.Approach(PlayerSpeedX, Math.Sign(PlayerSpeedX) * maxRun, deccel);
             }
             else
             {
-                player.Speed.X = Calc.Approach(player.Speed.X, inputX * maxRun, accel);
+                PlayerSpeedX = Calc.Approach(PlayerSpeedX, inputX * maxRun, accel);
             }
 
             // Update facing
-            if (player.Speed.X != 0)
+            if (PlayerSpeedX != 0)
             {
-                player.Facing = (Facings)Math.Sign(player.Speed.X);
+                PlayerFacing = (Facings)Math.Sign(PlayerSpeedX);
             }
 
             // Apply gravity based on state
@@ -509,9 +561,9 @@ namespace Celeste.Entities
                 maxFall = FlyMaxFall;
 
                 // Reduced gravity at low vertical speeds for better control
-                if (Math.Abs(player.Speed.Y) <= 30f)
+                if (Math.Abs(PlayerSpeedY) <= 30f)
                 {
-                    if (Math.Abs(player.Speed.Y) <= 15f)
+                    if (Math.Abs(PlayerSpeedY) <= 15f)
                     {
                         gravity = FlyGravityLow;
                     }
@@ -532,7 +584,7 @@ namespace Celeste.Entities
                 maxFall = NormalMaxFall;
 
                 // Half gravity at very low speeds (Celeste-style)
-                if (Math.Abs(player.Speed.Y) < HalfGravThreshold)
+                if (Math.Abs(PlayerSpeedY) < HalfGravThreshold)
                 {
                     gravity *= 0.35f;
                 }
@@ -540,7 +592,7 @@ namespace Celeste.Entities
 
             if (!onGround)
             {
-                player.Speed.Y = Calc.Approach(player.Speed.Y, maxFall, gravity * Engine.DeltaTime);
+                PlayerSpeedY = Calc.Approach(PlayerSpeedY, maxFall, gravity * Engine.DeltaTime);
             }
         }
 
@@ -555,7 +607,7 @@ namespace Celeste.Entities
                     jumpBuffer = 0;
                     graceTimer = 0;
                     CreateJumpCloud();
-                    player.Speed.Y = -105f; // Standard Celeste jump speed
+                    PlayerSpeedY = -105f; // Standard Celeste jump speed
                 }
                 else if (pFly && flapRepeatTimer <= 0)
                 {
@@ -563,7 +615,7 @@ namespace Celeste.Entities
                     Audio.Play("event:/char/madeline/jump", player.Position);
                     CreateSmallSmoke();
                     float flapStrength = BaseFlapSpeed - (0.8f * flapMult);
-                    player.Speed.Y = flapStrength;
+                    PlayerSpeedY = flapStrength;
                     flapAnimTimer = 6;
                     // Schedule the next auto-flap
                     flapRepeatTimer = FlapRepeatFrameTime;
@@ -573,9 +625,9 @@ namespace Celeste.Entities
 
         private void UpdateAnimation(bool onGround, int inputX)
         {
-            // Animation is handled by the main player sprite system
-            // This controller just provides state for the animator
-            // The K_Player will use these states to select animations
+            // Animation is handled by the main player sprite system.
+            // This controller just provides state for the animator.
+            // Both K_Player and vanilla Player will use these states to select animations.
         }
 
         private bool CheckOnIce()
@@ -586,8 +638,9 @@ namespace Celeste.Entities
             var platform = player.CollideFirst<Solid>(player.Position + Vector2.UnitY);
             if (platform != null)
             {
-                // Check surface index for ice (index 7 is ice in Celeste)
-                return platform.GetStepSoundIndex(player) == 7;
+                // GetStepSoundIndex requires a vanilla Player; only call it when supported
+                if (player is global::Celeste.Player vanillaPlayer)
+                    return platform.GetStepSoundIndex(vanillaPlayer) == 7;
             }
             return false;
         }
@@ -611,7 +664,7 @@ namespace Celeste.Entities
             {
                 mouthVoid.RemoveSelf();
             }
-            mouthVoid = new MouthVoidCollider(player, player.Facing == Facings.Right ? 1 : -1);
+            mouthVoid = new MouthVoidCollider(player, PlayerFacing == Facings.Right ? 1 : -1);
             player.Scene.Add(mouthVoid);
         }
 
@@ -685,17 +738,24 @@ namespace Celeste.Entities
     #region Helper Classes
 
     /// <summary>
-    /// Mouth void collider for inhaling - acts as a vacuum zone in front of Kirby
+    /// Mouth void collider for inhaling - acts as a vacuum zone in front of Kirby.
+    /// Accepts either a K_Player or a vanilla Player entity as the owner.
     /// </summary>
     public class MouthVoidCollider : Entity
     {
-        private K_Player player;
+        private Entity player;
         private int facingDir;
         private Vector2 offset;
         private Hitbox hitbox;
         private readonly System.Collections.Generic.HashSet<Entity> consumed = new System.Collections.Generic.HashSet<Entity>();
 
-        public MouthVoidCollider(K_Player player, int facingDir)
+        // Resolve facing from whichever player type we have
+        private Facings PlayerFacing =>
+            player is K_Player kp ? kp.Facing :
+            player is global::Celeste.Player vp ? vp.Facing :
+            Facings.Right;
+
+        public MouthVoidCollider(Entity player, int facingDir)
             : base(player.Position)
         {
             this.player = player;
@@ -741,11 +801,11 @@ namespace Celeste.Entities
             if (player != null)
             {
                 Position = player.Position + offset;
-                facingDir = player.Facing == Facings.Right ? 1 : -1;
+                facingDir = PlayerFacing == Facings.Right ? 1 : -1;
                 offset.X = 10 * facingDir;
 
                 // Adjust for facing
-                if (player.Facing == Facings.Left)
+                if (PlayerFacing == Facings.Left)
                 {
                     hitbox.Position = new Vector2(-10, -2);
                 }
@@ -758,11 +818,12 @@ namespace Celeste.Entities
     }
 
     /// <summary>
-    /// Particle system for inhale effect
+    /// Particle system for inhale effect.
+    /// Accepts either a K_Player or a vanilla Player entity as the owner.
     /// </summary>
     public class InhaleParticleSystem : Component
     {
-        private K_Player player;
+        private Entity player;
         private Particle[] particles;
         private bool isInhaling;
 
@@ -773,7 +834,7 @@ namespace Celeste.Entities
             public float Distance;
         }
 
-        public InhaleParticleSystem(K_Player player)
+        public InhaleParticleSystem(Entity player)
             : base(active: true, visible: true)
         {
             this.player = player;
@@ -856,9 +917,11 @@ namespace Celeste.Entities
 
         /// <summary>
         /// Called when Kirby inhales this entity.
+        /// The <paramref name="player"/> argument is either a <see cref="K_Player"/> or a
+        /// vanilla <see cref="global::Celeste.Player"/>.
         /// Override to implement custom behavior (e.g., being swallowed, dropping loot, etc.)
         /// </summary>
-        public virtual void OnInhaled(K_Player player)
+        public virtual void OnInhaled(Entity player)
         {
             // Default behavior: remove the entity
             Entity?.RemoveSelf();

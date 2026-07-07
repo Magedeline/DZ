@@ -1680,9 +1680,9 @@
 {59ff9943-41fa-4548-ad51-1ee4369b53cc} event:/pusheen/music/sub/ShinyCrystal
 {6a46e816-eeac-40ed-843e-92037327260f} event:/pusheen/music/sub/SteelBeat
 {439026a7-f640-4346-a7b6-cc7b40dc8a35} event:/pusheen/music/sub/SunsetofSevenSuns
+{56fa11e9-307c-414d-81e8-da50f475183c} event:/pusheen/music/sub/SunsetofSevenSuns_BC
 {30dca044-6e01-43e3-89b7-a9083de50317} event:/pusheen/music/sub/TidyThingsUp
 {929f1d24-af19-4418-8718-49fe49fe8d95} event:/pusheen/music/sub/WhiteOfficeMarch
-{56fa11e9-307c-414d-81e8-da50f475183c} event:/pusheen/music/sub/SunsetofSevenSuns_BC
 {3fa335ef-57f4-4d35-bf6a-5abc777d7450} event:/pusheen/new_content/char/bosses/asriel/big_bullet_fire
 {f29d3f1b-3e5f-4c48-9bae-f4d5dde61453} event:/pusheen/new_content/char/bosses/asriel/big_laser
 {da62bd78-2db0-4eae-811f-81da4f3874b3} event:/pusheen/new_content/char/bosses/asriel/big_star
@@ -1880,6 +1880,7 @@
 {90790a22-63e3-46a7-bfe1-a19a782371e8} event:/pusheen/new_content/music/lvl19/lost
 {9e9d6f58-b98e-4ac0-bbdf-c0f28bf996c5} event:/pusheen/new_content/music/lvl19/part01
 {fbedbe88-d275-4e09-90f2-288ed653ee38} event:/pusheen/new_content/music/lvl19/part02
+{682b3b7c-064f-4429-8755-cb257ce78d22} event:/pusheen/new_content/music/lvl19/greengreens_room
 {c2768eaa-6449-4dd0-852f-f1035bca151c} event:/pusheen/new_content/music/lvl19/part03
 {a8e6cf54-74ee-4fec-9e86-d7946c0f546e} event:/pusheen/new_content/music/lvl19/tape_rooms
 {8dd6c0a4-5e25-4a86-a56a-7409e827bb45} event:/pusheen/new_content/music/lvl20/cutscenes/donotgiveup
@@ -1903,7 +1904,6 @@
 {cca5cd0e-61fe-4390-8deb-a8d6883018ae} event:/pusheen/new_content/music/lvl21/final_ascent
 {386f5d17-0a64-4027-a984-4dfa41f6aaeb} event:/pusheen/new_content/music/lvl21/finale
 {19b36b15-5b2a-4d4d-84af-07c40330c4d1} event:/pusheen/new_content/music/lvl21/granny_and_asriel_goodbye
-{682b3b7c-064f-4429-8755-cb257ce78d22} event:/pusheen/new_content/music/lvl21/greengreens_room
 {1c58fcb4-e6f7-4acb-8d2f-d3c6f79366cf} event:/pusheen/new_content/music/lvl21/main
 {b7afe04e-ec7b-4898-bf50-be5e25a725d3} event:/pusheen/new_content/music/sub/BlackRift
 {46b0ea8d-a506-40a9-93db-840a3d95027a} event:/pusheen/new_content/music/sub/FreshGreen
@@ -2045,6 +2045,13 @@
 {67a04151-b3ac-4d34-af30-59d8ebc6ab90} event:/pusheen/ui/world_map/chapter/pane_expand
 {627ed0c2-3a00-4015-ad7f-e3281195407b} event:/pusheen/ui/world_map/chapter/tab_roll_left
 {09009d36-cc79-4a1d-85ac-8bfc56f353d9} event:/pusheen/ui/world_map/chapter/tab_roll_right
+{f304e13e-8c8b-495d-a483-b4ec91233ebd} event:/pusheen/ui/world_map/chapter/playerselect_open
+{c1a6ae71-478a-4451-906b-9d1fb48648c8} event:/pusheen/ui/world_map/chapter/playerselect_madeline
+{3e90497c-4c6b-4c19-baba-54f4d17ef12e} event:/pusheen/ui/world_map/chapter/playerselect_kirby
+{a49b4a80-da3a-4653-a1dc-cfc630bc3d7f} event:/pusheen/ui/world_map/chapter/playerselect_back
+{d9e38490-e235-40d0-9dec-d26d0b72687f} event:/pusheen/ui/world_map/chapter/playerselect_confirm
+{7d0a8183-8354-49f6-952e-45c4b8d1cf0c} event:/pusheen/ui/world_map/chapter/playerselect_auto_on
+{f6bd34fb-d78d-4d17-bf8b-b680eb2b018d} event:/pusheen/ui/world_map/chapter/playerselect_auto_off
 {a2ae5d82-76d1-424a-8e88-e8c7416728f2} event:/pusheen/ui/world_map/icon/assist_skip
 {e8adf74a-6f7f-4575-abe8-7058ce02605f} event:/pusheen/ui/world_map/icon/flip_left
 {b31272bd-154b-4289-88f0-5fd420c19e04} event:/pusheen/ui/world_map/icon/flip_right

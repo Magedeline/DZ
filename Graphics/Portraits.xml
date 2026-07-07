@@ -572,7 +572,7 @@
 	  
   </portrait_badeline>
 
-  <portrait_els path="DZ/els/" sfx="els" textbox="none">
+  <portrait_els path="DZ/els/" sfx="els" textbox="default">
     <Center />
 
     <sfxs>
@@ -1545,5 +1545,15 @@
     <Loop id="talk_togetherZoom" path="togetherZoom" delay="0.2" frames="11,13,12,10" />
 
   </portrait_webcam_kirby>
+
+  <!-- Alias portraits used in ch21 dialog that don't yet have dedicated art -->
+  <portrait_madeline_spirit copy="DZ_portrait_madeline" path="DZ/madeline/" sfx="madeline" textbox="madeline">
+  </portrait_madeline_spirit>
+
+  <portrait_badeline_spirit copy="portrait_badeline" path="DZ/ghost/" sfx="badeline" textbox="badeline">
+  </portrait_badeline_spirit>
+
+  <portrait_seven_goner copy="portrait_kirby" path="DZ/kirby/" sfx="kirby" textbox="kirby">
+  </portrait_seven_goner>
 
 </Sprites>

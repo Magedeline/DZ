@@ -5,9 +5,18 @@ namespace Celeste.Entities
     [HotReloadable]
     public class BlackholeRiser : Entity
     {
+        public enum RiserMode
+        {
+            Pure,
+            Black,
+            Rainbow,
+            Distortion
+        }
+
         public static ParticleType P_Flare;
         public static ParticleType P_Rainbow;
 
+        private RiserMode mode;
         private float speed;
         private float width;
         private float maxHeight;
@@ -23,25 +32,41 @@ namespace Celeste.Entities
         private float riseDelay;
         private float riseTimer;
         private bool looping;
+        private Sprite lavaSprite;
 
         public BlackholeRiser(EntityData data, Vector2 offset)
             : base(data.Position + offset)
         {
-            speed = data.Float("speed", 120f);
+            speed = data.Float("speed", 80f);
             width = data.Width;
             maxHeight = data.Float("maxHeight", 200f);
             riseDelay = data.Float("riseDelay", 1f);
             glitchy = data.Bool("glitchy", true);
             looping = data.Bool("looping", true);
 
+            // New mode option. If omitted, preserve the legacy glitchy appearance.
+            string modeStr = data.Attr("mode", "");
+            if (Enum.TryParse<RiserMode>(modeStr, true, out RiserMode parsedMode))
+            {
+                mode = parsedMode;
+            }
+            else
+            {
+                mode = glitchy ? RiserMode.Rainbow : RiserMode.Pure;
+            }
+
             currentHeight = 0f;
             rising = false;
             riseTimer = riseDelay;
 
             Depth = -50;
-            
+
+            Collider = new Hitbox(width, 0f, 0f, 0f);
+            Add(new PlayerCollider(OnPlayer));
+
             InitializeRainbowColors();
             InitializeParticles();
+            InitializeLavaSprite();
         }
 
         private void InitializeRainbowColors()
@@ -56,6 +81,20 @@ namespace Celeste.Entities
                 Calc.HexToColor("4B0082"), // Indigo
                 Calc.HexToColor("9400D3")  // Violet
             };
+        }
+
+        private void InitializeLavaSprite()
+        {
+            lavaSprite = GFX.SpriteBank.Create("lava_bubble");
+            string anim = lavaSprite.Has("idle") ? "idle"
+                : lavaSprite.Has("rising") ? "rising"
+                : lavaSprite.Has("forming") ? "forming" : null;
+            if (anim != null)
+                lavaSprite.Play(anim);
+
+            lavaSprite.Position = new Vector2(width / 2f - lavaSprite.Width / 2f, -lavaSprite.Height);
+            lavaSprite.Visible = false;
+            Add(lavaSprite);
         }
 
         private static void InitializeParticles()
@@ -107,8 +146,6 @@ namespace Celeste.Entities
 
         public override void Update()
         {
-            base.Update();
-
             // Handle rise delay
             if (!rising && riseTimer > 0f)
             {
@@ -124,7 +161,7 @@ namespace Celeste.Entities
             if (rising)
             {
                 currentHeight = Calc.Approach(currentHeight, maxHeight, speed * Engine.DeltaTime);
-                
+
                 if (currentHeight >= maxHeight)
                 {
                     if (looping)
@@ -137,24 +174,25 @@ namespace Celeste.Entities
                 }
             }
 
-            // Update collider
+            // Update collider before components are updated so the PlayerCollider uses the current hitbox
             Collider = new Hitbox(width, currentHeight, 0f, -currentHeight);
-            if (currentHeight > 0f)
-            {
-                Add(new PlayerCollider(OnPlayer));
-            }
 
             // Glitchy offset
-            if (glitchy)
+            float glitchAmp = GetGlitchAmplitude();
+            if (glitchAmp > 0f)
             {
                 glitchTimer += Engine.DeltaTime;
                 if (Scene.OnInterval(0.05f))
                 {
                     glitchOffset = new Vector2(
-                        Calc.Random.Range(-3f, 3f),
-                        Calc.Random.Range(-3f, 3f)
+                        Calc.Random.Range(-glitchAmp, glitchAmp),
+                        Calc.Random.Range(-glitchAmp, glitchAmp)
                     );
                 }
+            }
+            else
+            {
+                glitchOffset = Vector2.Zero;
             }
 
             // Rainbow color cycling
@@ -164,6 +202,21 @@ namespace Celeste.Entities
                 rainbowTimer = 0f;
                 colorIndex = (colorIndex + 1) % rainbowColors.Length;
             }
+
+            // Position the lava bubble sprite at the top of the rising column
+            if (lavaSprite != null)
+            {
+                lavaSprite.Visible = currentHeight > 0f;
+                if (lavaSprite.Visible)
+                {
+                    lavaSprite.Position = new Vector2(
+                        width / 2f - lavaSprite.Width / 2f,
+                        -currentHeight - lavaSprite.Height / 2f
+                    ) + glitchOffset;
+                }
+            }
+
+            base.Update();
 
             // Emit particles
             if (currentHeight > 0f)
@@ -177,17 +230,43 @@ namespace Celeste.Entities
             }
         }
 
+        private float GetGlitchAmplitude()
+        {
+            switch (mode)
+            {
+                case RiserMode.Pure:
+                    return 0f;
+                case RiserMode.Distortion:
+                    return 6f;
+                case RiserMode.Black:
+                case RiserMode.Rainbow:
+                default:
+                    return glitchy ? 3f : 0f;
+            }
+        }
+
         private void EmitParticles()
         {
             Level level = Scene as Level;
             if (level == null) return;
 
+            if (mode == RiserMode.Pure)
+                return;
+
             Vector2 topPos = new Vector2(X + width / 2f, Y - currentHeight);
-            
-            Color currentColor = rainbowColors[colorIndex];
-            Color nextColor = rainbowColors[(colorIndex + 1) % rainbowColors.Length];
-            Color particleColor = Color.Lerp(currentColor, nextColor, rainbowTimer);
-            
+
+            Color particleColor;
+            if (mode == RiserMode.Rainbow || mode == RiserMode.Distortion)
+            {
+                Color currentColor = rainbowColors[colorIndex];
+                Color nextColor = rainbowColors[(colorIndex + 1) % rainbowColors.Length];
+                particleColor = Color.Lerp(currentColor, nextColor, rainbowTimer);
+            }
+            else
+            {
+                particleColor = Color.Purple;
+            }
+
             ParticleType rainbow = new ParticleType(P_Rainbow)
             {
                 Color = particleColor,
@@ -195,7 +274,7 @@ namespace Celeste.Entities
             };
 
             level.ParticlesFG.Emit(rainbow, 1, topPos, Vector2.One * 8f);
-            
+
             if (glitchy && Calc.Random.Chance(0.3f))
             {
                 level.ParticlesFG.Emit(P_Flare, 1, topPos + glitchOffset, Vector2.One * 4f);
@@ -206,15 +285,28 @@ namespace Celeste.Entities
         {
             Vector2 direction = (player.Center - Center).SafeNormalize();
             player.Die(direction * 100f);
-            
+
             Level level = Scene as Level;
             if (level != null)
             {
                 level.Shake(0.3f);
                 Audio.Play("event:/game/general/thing_booped", Position);
-                
-                // Rainbow explosion
-                Color explosionColor = rainbowColors[colorIndex];
+
+                // Explosion effect matching the current mode
+                Color explosionColor;
+                if (mode == RiserMode.Rainbow || mode == RiserMode.Distortion)
+                {
+                    explosionColor = rainbowColors[colorIndex];
+                }
+                else if (mode == RiserMode.Black)
+                {
+                    explosionColor = Color.Purple;
+                }
+                else
+                {
+                    explosionColor = Color.Black;
+                }
+
                 for (int i = 0; i < 15; i++)
                 {
                     ParticleType explosion = new ParticleType(P_Rainbow)
@@ -232,49 +324,78 @@ namespace Celeste.Entities
             if (currentHeight <= 0f) return;
 
             Vector2 renderPos = Position + glitchOffset;
-            
-            // Draw black hole core (rising column)
-            Draw.Rect(renderPos.X, renderPos.Y - currentHeight, width, currentHeight, Color.Black * 0.8f);
-            
-            // Draw rainbow border effect
+
             Color currentColor = rainbowColors[colorIndex];
             Color nextColor = rainbowColors[(colorIndex + 1) % rainbowColors.Length];
-            Color borderColor = Color.Lerp(currentColor, nextColor, rainbowTimer);
-            
-            // Pulsing effect
+            Color rainbowBorder = Color.Lerp(currentColor, nextColor, rainbowTimer);
+
             float pulse = (float)Math.Sin(glitchTimer * 8f) * 0.3f + 0.7f;
-            borderColor *= pulse;
-            
-            // Draw glitchy borders
+
+            Color coreColor;
+            Color borderColor;
+            switch (mode)
+            {
+                case RiserMode.Pure:
+                    coreColor = Color.Black * 0.95f;
+                    borderColor = Color.DarkGray * 0.5f;
+                    break;
+                case RiserMode.Black:
+                    coreColor = Color.Black * 0.85f;
+                    borderColor = Color.Purple * pulse;
+                    break;
+                case RiserMode.Rainbow:
+                case RiserMode.Distortion:
+                default:
+                    coreColor = Color.Black * 0.8f;
+                    borderColor = rainbowBorder * pulse;
+                    break;
+            }
+
+            // Draw core (rising column)
+            Draw.Rect(renderPos.X, renderPos.Y - currentHeight, width, currentHeight, coreColor);
+
+            // Draw border effect
             float borderWidth = 2f;
-            
+
             // Top
             Draw.Rect(renderPos.X, renderPos.Y - currentHeight, width, borderWidth, borderColor);
             // Left
             Draw.Rect(renderPos.X, renderPos.Y - currentHeight, borderWidth, currentHeight, borderColor);
             // Right
             Draw.Rect(renderPos.X + width - borderWidth, renderPos.Y - currentHeight, borderWidth, currentHeight, borderColor);
-            
-            // Inner glow (vertical stripes)
-            for (int i = 1; i <= 3; i++)
+
+            // Inner glow
+            if (mode == RiserMode.Rainbow || mode == RiserMode.Distortion)
             {
-                float glowAlpha = (1f - (i / 3f)) * 0.3f * pulse;
-                float inset = i * 2f;
-                Draw.Rect(renderPos.X + inset, renderPos.Y - currentHeight + inset, 
-                    width - inset * 2f, currentHeight - inset, borderColor * glowAlpha);
+                for (int i = 1; i <= 3; i++)
+                {
+                    float glowAlpha = (1f - (i / 3f)) * 0.3f * pulse;
+                    float inset = i * 2f;
+                    Draw.Rect(renderPos.X + inset, renderPos.Y - currentHeight + inset,
+                        width - inset * 2f, currentHeight - inset, borderColor * glowAlpha);
+                }
+            }
+            else if (mode == RiserMode.Black)
+            {
+                for (int i = 1; i <= 2; i++)
+                {
+                    float glowAlpha = (1f - (i / 2f)) * 0.15f * pulse;
+                    float inset = i * 2f;
+                    Draw.Rect(renderPos.X + inset, renderPos.Y - currentHeight + inset,
+                        width - inset * 2f, currentHeight - inset, borderColor * glowAlpha);
+                }
             }
 
             // Warning indicator at base when about to rise
             if (!rising && riseTimer < 0.5f)
             {
                 float warningAlpha = (0.5f - riseTimer) * 2f;
-                Draw.Rect(renderPos.X, renderPos.Y - 4f, width, 4f, borderColor * warningAlpha);
+                Color warningColor = mode == RiserMode.Pure ? Color.DarkGray : borderColor;
+                Draw.Rect(renderPos.X, renderPos.Y - 4f, width, 4f, warningColor * warningAlpha);
             }
+
+            // Draw lava bubble sprite on top of the column
+            base.Render();
         }
     }
 }
-
-
-
-
-

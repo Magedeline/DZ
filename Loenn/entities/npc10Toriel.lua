@@ -1,0 +1,13 @@
+local npc10Toriel = {}
+
+npc10Toriel.name = "DZ/NPC10_Toriel"
+npc10Toriel.depth = 0
+npc10Toriel.texture = "Character/DZ/toriel"
+
+npc10Toriel.placements = {
+    name = "npc10_toriel",
+    data = {
+    }
+}
+
+return npc10Toriel

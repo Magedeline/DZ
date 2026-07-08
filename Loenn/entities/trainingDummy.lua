@@ -1,15 +1,18 @@
 local trainingDummy = {}
-trainingDummy.name = "MaggyHelper/TrainingDummy"
-trainingDummy.depth = -100
-trainingDummy.justification = {0.5, 1.0}
-trainingDummy.texture = "characters/Kglobal::Player/idle00"
+
+trainingDummy.name = "DZ/TrainingDummy"
+trainingDummy.depth = 0
+trainingDummy.texture = "objects/DZ/DZ/DZ/training_dummy"
+
 trainingDummy.placements = {
-    { name = "TrainingDummy", data = { maxHealth = 10, showDamage = true, resetTime = 3.0 } }
+    name = "training_dummy",
+    data = {
+        companionType = "waddle_dee",
+        sprite = "",
+        canPressSwitch = true,
+        followSpeed = 100,
+        followDistance = 30
+    }
 }
-trainingDummy.fieldInformation = {
-    maxHealth = { fieldType = "integer", minimumValue = 1 },
-    showDamage = { fieldType = "boolean" },
-    resetTime = { fieldType = "number", minimumValue = 0.5 }
-}
-trainingDummy.fieldOrder = { "x", "y", "maxHealth", "showDamage", "resetTime" }
+
 return trainingDummy

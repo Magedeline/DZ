@@ -1,63 +1,44 @@
-# KIRBY_CELESTE
+# DZ (Desolo Zantas)
 
-A full-length Celeste mod that takes Madeline on a brand new journey across strange and perilous worlds — from neon cities and frozen tundras to blazing cliffs and digital frontiers. Featuring an original story told through cutscenes, a cast of familiar and new faces, and a massive amount of hand-crafted levels to explore.
+A large-scale crossover mod for [Celeste](https://www.celestegame.com/), built on [Everest](https://everestapi.github.io/). DZ blends Celeste's movement and level design with Undertale/Deltarune and Kirby, adding a second playable character, new bosses, custom mechanics, and a full campaign spanning A/B/C/D-Sides plus a DX-Side finale.
 
----
+## Features
 
-## Story
+- **Two playable characters.** Play as Madeline (with an optional combat mode) or Kirby (inhale, hover, float jumps, and a combat mode of his own). A player-select screen lets you choose per map, with a recommended-character hint and an auto-select option.
+- **Full campaign.** 19 main chapters (A-Sides) running from *Forbidden Metropolis* through *Core of Existence* and *Farewell to Stars*, each with B-Side and C-Side remixes, plus a DX-Side finale chapter and a True Finale.
+- **Original bosses.** Multiple fully scripted boss fights (including a multi-attack final boss sequence) with telegraphed attacks, enrage phases, and dedicated cutscenes.
+- **Gentle Breeze Mode.** An optional, fully reversible assist bundle for the Kirby player: slow-motion dash aiming and infinite stamina/dashes for players who want a gentler introduction to the movement.
+- **Last Endemy Mode.** Optional online play through [CelesteNet](https://github.com/CelesteNet/CelesteNet), syncing Kirby health and progress between players in the same session, with an in-game rules/consent flow before enabling it.
+- **Hot Reload tooling.** A developer-focused hot-reload system (F5–F8 by default) for iterating on mod code without restarting the game.
+- **Deep Everest integration.** Custom entities, triggers, cutscenes, and UI built on top of CommunalHelper, VivHelper, MaxHelpingHand, FrostHelper, and Extended Variant Mode, with optional support for VidPlayer, BounceHelper, FlaglinesAndSuch, and Deathlink.
+- **Localization.** Dialog is available in English, French, German, Japanese, Korean, Simplified Chinese, and Spanish.
 
-Something is wrong with the mountain.
+## Installation
 
-After a mysterious event shakes the world Madeline knows, she finds herself drawn into an unfamiliar adventure spanning many different lands — each hiding its own secrets, dangers, and a piece of a much larger truth. The further she goes, the more she'll have to confront not just the obstacles in her way, but herself.
+1. Install [Everest](https://everestapi.github.io/) for Celeste.
+2. Copy this mod folder (or its packaged zip) into your Celeste `Mods` directory.
+3. Launch the game through Everest and enable **DZ** from the mod list.
 
-*No major spoilers here — the story is best experienced firsthand.*
+### Dependencies
 
----
+Required: EverestCore, CommunalHelper, VivHelper, MaxHelpingHand, FrostHelper, Extended Variant Mode (see `everest.yaml` for exact versions).
 
-## Gameplay
+Optional (unlock additional features if installed): VidPlayer, CelesteNet.Client (for Last Endemy online mode), BounceHelper, FlaglinesAndSuch, Deathlink.
 
-- **20+ chapters** across A, B, C, and D-Sides, plus a Prologue and Epilogue
-- **Hub worlds** — explore lobby areas to unlock fragments, shards, and hidden relics before facing each zone's guardian boss
-- **Boss fights** — multi-phase encounters with unique attack patterns, health systems, and defeat sequences
-- **Kirby Mode** — an optional alternate play style with extended float jumps and a special ability set
-- **Multiple inventory types** — dash count and abilities evolve as you progress through the story
-- **Full side content** — cassette tapes, crystal hearts, strawberries, and more hidden throughout every chapter
-- **CelesteNet support** — optional multiplayer compatibility
-- **Deathlink support** — for those who like to suffer together
+## Project Layout
 
----
+- `Source/` — mod code: `Bosses/`, `Cutscenes/`, `Entities/`, `Mechanics/`, `Triggers/`, `UI/`, `HotReload/`, `Integration(s)/`, and a standalone-engine reference port under `Source/Nez/`.
+- `Maps/DZ/` — chapter maps, organized by side (`0` = A-Side, `1` = B-Side, `2` = C-Side, `3` = D-Side, `21` = DX-Side/finale).
+- `Dialog/` — localized dialog files, one per language.
+- `Graphics/`, `Audio/`, `Tutorials/` — art, FMOD audio banks, and tutorial assets.
+- `Loenn/` — custom entity/trigger plugins for the Lönn map editor.
 
-## Requirements
+## Contributing / Notes for Developers
 
-This mod requires [Everest](https://everestapi.github.io/) and the following dependencies (installed automatically via Olympus):
-
-| Mod | Version |
-|-----|---------|
-| Everest | 1.4465.0+ |
-| CommunalHelper | 1.25.3+ |
-| VivHelper | 1.14.7+ |
-| MaxHelpingHand | 1.40.2+ |
-| FrostHelper | 1.79.0+ |
-| ExtendedVariantMode | 0.50.1+ |
-
-### Optional
-- VidPlayer, BounceHelper, FlaglinesAndSuch, CelesteNet.Client, Deathlink
-
----
-
-## Settings
-
-Found in **Mod Options → KIRBY_CELESTE**:
-
-- **Audio Theme** — switch between Pusheen and Kirby music tracks
-- **Kirby Mode** — toggle Kirby player with configurable float jumps
-- **Boss Difficulty Multiplier** — scale boss health and aggression
-- **Custom Mountain Models** — enable/disable the 3D overworld visuals
-- **Chapter Progression** — control when B/C/D-Sides unlock
-- **Deathlink Damage** — take damage instead of dying on link events
-
----
+- The Hot Reload settings (under the mod's Mod Options menu) let you iterate on `Source/` changes live; see `_HOTRELOAD_*` settings and the F5–F8 bindings.
+- `Source/Nez/` contains a standalone-engine (non-Celeste) port of several entities for reference/portability experiments — it is not compiled into the shipping mod.
+- See `CHANGELOG.md` for a history of notable fixes and additions.
 
 ## Credits
 
-Created by the KIRBY_CELESTE team. Built on the [Everest](https://everestapi.github.io/) modding framework for Celeste.
+_Add mod authors, artists, composers, and playtesters here._

@@ -1,12 +1,11 @@
 local dashRefreshTrigger = {}
-dashRefreshTrigger.name = "MaggyHelper/DashRefreshTrigger"
+
+dashRefreshTrigger.name = "DZ/DashRefreshTrigger"
+dashRefreshTrigger.depth = 0
 dashRefreshTrigger.placements = {
-    { name = "DashRefreshTrigger", data = { width = 16, height = 16, dashCount = 2, onlyOnce = false } },
-    { name = "triple", data = { width = 16, height = 16, dashCount = 3, onlyOnce = false } }
+    name = "dash_refresh_trigger",
+    data = {
+    }
 }
-dashRefreshTrigger.fieldInformation = {
-    dashCount = { fieldType = "integer", minimumValue = 1 },
-    onlyOnce = { fieldType = "boolean" }
-}
-dashRefreshTrigger.fieldOrder = { "x", "y", "width", "height", "dashCount", "onlyOnce" }
+
 return dashRefreshTrigger

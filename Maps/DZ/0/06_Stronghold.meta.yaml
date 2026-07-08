@@ -1,0 +1,79 @@
+Icon: areas/DZ/stronghold
+SID: DZ/0/06_Stronghold
+Interlude: false
+TitleBaseColor: ff7f83
+TitleAccentColor: 6d54b7
+TitleTextColor: ffffff
+IntroType: Jump
+Dreaming: false
+ColorGrade: none
+Wipe: Celeste.WindWipe
+DarknessAlpha: 0.05
+BloomBase: 0.0
+BloomStrength: 1.0
+CassetteNoteColor: ff7f83
+CassetteSong: event:/music/pusheen/Cassette/06_fortress
+
+Modes:
+  - AudioState:
+      Music: event:/music/pusheen/lvl06/main
+      Ambience: event:/env/pusheen/06_main
+    Inventory: Default
+    HeartIsEnd: false
+    SeekerSlowdown: false
+  - AudioState:
+      Music: event:/music/pusheen/1/06_stronghold
+      Ambience: event:/env/pusheen/06_main
+    Inventory: Default
+    HeartIsEnd: true
+    SeekerSlowdown: false
+  - AudioState:
+      Music: event:/music/pusheen/2/06_stronghold
+      Ambience: event:/env/pusheen/06_main
+    Inventory: Default
+    HeartIsEnd: true
+    SeekerSlowdown: false
+  - AudioState:
+      Music: event:/music/pusheen/2/06_stronghold
+      Ambience: event:/env/pusheen/06_main
+    Inventory: Default
+    HeartIsEnd: true
+    SeekerSlowdown: false
+  - AudioState:
+      Music: event:/music/pusheen/2/06_stronghold
+      Ambience: event:/env/pusheen/06_main
+    Inventory: Default
+    HeartIsEnd: true
+    SeekerSlowdown: false
+  - AudioState:
+      Music: event:/music/pusheen/DXSide/06_stronghold
+      Ambience: event:/env/pusheen/06_main
+    Inventory: Default
+    HeartIsEnd: true
+    SeekerSlowdown: false
+    MountainModelDirectory: Mountain/DZ/0
+    MountainTextureDirectory: DZ/0
+    Idle:
+        Position: [6.500, 9.500, 17.000]
+        Target: [5.800, 8.800, 15.500]
+    Select:
+        Position: [5.800, 7.000, 17.300]
+        Target: [6.800, 6.900, 15.800]
+    Zoom:
+        Position: [7.200, 7.400, 14.400]
+        Target: [7.100, 6.300, 12.700]
+    Cursor: [7.000, 7.000, 12.500]
+    State: 0
+
+MusicBySide:
+  - event:/music/pusheen/menu/complete_area
+  - event:/music/pusheen/menu/complete_1
+  - event:/music/pusheen/menu/complete_2
+  - event:/music/pusheen/menu/complete_dxside
+Title:
+  0: "Chapter Complete"
+  1: "B Side Complete"
+  2: "C Side Complete"
+  2: "D Side Complete"
+  DXSide: "DX Side Complete"
+  FullClear: "Chapter Clear"

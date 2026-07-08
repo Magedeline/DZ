@@ -1,11 +1,13 @@
 local sizeChangeTrigger = {}
-sizeChangeTrigger.name = "MaggyHelper/SizeChangeTrigger"
+
+sizeChangeTrigger.name = "DZ/SizeChangeTrigger"
+sizeChangeTrigger.depth = 0
 sizeChangeTrigger.placements = {
-    { name = "shrink", data = { width = 16, height = 16, scaleFactor = 0.5 } },
-    { name = "grow", data = { width = 16, height = 16, scaleFactor = 2.0 } }
+    name = "sizeDZ_CHange_trigger",
+    data = {
+        sizeMode = "small",
+        persistOnExit = false
+    }
 }
-sizeChangeTrigger.fieldInformation = {
-    scaleFactor = { fieldType = "number", minimumValue = 0.1, maximumValue = 4.0 }
-}
-sizeChangeTrigger.fieldOrder = { "x", "y", "width", "height", "scaleFactor" }
+
 return sizeChangeTrigger

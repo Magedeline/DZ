@@ -1,16 +1,18 @@
 local questGiver = {}
-questGiver.name = "MaggyHelper/QuestGiver"
-questGiver.depth = -100
-questGiver.justification = {0.5, 1.0}
-questGiver.texture = "characters/oldlady/idle00"
+
+questGiver.name = "DZ/QuestGiver"
+questGiver.depth = 0
+questGiver.texture = "objects/DZ/DZ/DZ/quest_giver"
+
 questGiver.placements = {
-    { name = "QuestGiver", data = { questId = "quest_1", dialogId = "", completionFlag = "quest_1_done", rewardType = "ability" } }
+    name = "quest_giver",
+    data = {
+        companionType = "waddle_dee",
+        sprite = "",
+        canPressSwitch = true,
+        followSpeed = 100,
+        followDistance = 30
+    }
 }
-questGiver.fieldInformation = {
-    questId = { fieldType = "string" },
-    dialogId = { fieldType = "string" },
-    completionFlag = { fieldType = "string" },
-    rewardType = { fieldType = "string", options = { "ability", "item", "cosmetic", "health" }, editable = true }
-}
-questGiver.fieldOrder = { "x", "y", "questId", "dialogId", "completionFlag", "rewardType" }
+
 return questGiver

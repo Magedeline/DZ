@@ -1,44 +1,13 @@
--- Loenn plugin for MaggyHelper - Waddle Doo Enemy Entity
-local drawableSprite = require("structs.drawable_sprite")
-
 local waddleDoo = {}
 
-waddleDoo.name = "MaggyHelper/WaddleDoo"
+waddleDoo.name = "DZ/WaddleDoo"
 waddleDoo.depth = 0
+waddleDoo.texture = "objects/DZ/DZ/DZ/waddle_doo"
+
 waddleDoo.placements = {
-    name = "WaddleDoo",
+    name = "waddle_doo",
     data = {
-        health = 2,
-        moveSpeed = 25.0,
-        attackCooldown = 3.0,
-        canBeInhaled = true
     }
 }
-
-waddleDoo.fieldInformation = {
-    health = {
-        fieldType = "integer",
-        minimumValue = 1
-    },
-    moveSpeed = {
-        minimumValue = 0
-    },
-    attackCooldown = {
-        minimumValue = 0.5
-    }
-}
-
-waddleDoo.fieldOrder = {
-    "x", "y",
-    "health",
-    "moveSpeed",
-    "attackCooldown",
-    "canBeInhaled"
-}
-
-function waddleDoo.sprite(room, entity)
-    local texture = "objects/enemies/waddleDoo/idle00"
-    return drawableSprite.fromTexture(texture, entity)
-end
 
 return waddleDoo

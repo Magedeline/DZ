@@ -1,14 +1,18 @@
 local shopKeeper = {}
-shopKeeper.name = "MaggyHelper/ShopKeeper"
-shopKeeper.depth = -100
-shopKeeper.justification = {0.5, 1.0}
-shopKeeper.texture = "characters/magolor/idle00"
+
+shopKeeper.name = "DZ/ShopKeeper"
+shopKeeper.depth = 0
+shopKeeper.texture = "objects/DZ/DZ/DZ/shop_keeper"
+
 shopKeeper.placements = {
-    { name = "ShopKeeper", data = { shopId = "shop_1", dialogId = "" } }
+    name = "shop_keeper",
+    data = {
+        companionType = "waddle_dee",
+        sprite = "",
+        canPressSwitch = true,
+        followSpeed = 100,
+        followDistance = 30
+    }
 }
-shopKeeper.fieldInformation = {
-    shopId = { fieldType = "string" },
-    dialogId = { fieldType = "string" }
-}
-shopKeeper.fieldOrder = { "x", "y", "shopId", "dialogId" }
+
 return shopKeeper

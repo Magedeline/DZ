@@ -1,13 +1,13 @@
 local mirrorModeTrigger = {}
-mirrorModeTrigger.name = "MaggyHelper/MirrorModeTrigger"
+
+mirrorModeTrigger.name = "DZ/MirrorModeTrigger"
+mirrorModeTrigger.depth = 0
 mirrorModeTrigger.placements = {
-    { name = "horizontal", data = { width = 16, height = 16, mirrorX = true, mirrorY = false } },
-    { name = "vertical", data = { width = 16, height = 16, mirrorX = false, mirrorY = true } },
-    { name = "both", data = { width = 16, height = 16, mirrorX = true, mirrorY = true } }
+    name = "mirror_mode_trigger",
+    data = {
+        flipHorizontal = true,
+        flipVertical = false
+    }
 }
-mirrorModeTrigger.fieldInformation = {
-    mirrorX = { fieldType = "boolean" },
-    mirrorY = { fieldType = "boolean" }
-}
-mirrorModeTrigger.fieldOrder = { "x", "y", "width", "height", "mirrorX", "mirrorY" }
+
 return mirrorModeTrigger

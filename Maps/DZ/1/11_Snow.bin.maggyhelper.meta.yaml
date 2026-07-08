@@ -1,0 +1,21 @@
+﻿schema: DZ-map-meta-v1
+sid: DZ/1/11_Snow
+baseKey: 11_Snow
+side: B
+modeIndex: 1
+isMainChapterEntry: false
+mainChapterSid: DZ/0/11_Snow
+showInChapterSelect: false
+
+MusicBySide:
+  - event:/music/pusheen/menu/complete_area
+  - event:/music/pusheen/menu/complete_1
+  - event:/music/pusheen/menu/complete_2
+  - event:/music/pusheen/menu/complete_dxside
+Title:
+  0: "Chapter Complete"
+  1: "B Side Complete"
+  2: "C Side Complete"
+  2: "D Side Complete"
+  DXSide: "DX Side Complete"
+  FullClear: "Chapter Clear"

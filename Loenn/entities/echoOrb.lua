@@ -1,12 +1,17 @@
 local echoOrb = {}
-echoOrb.name = "MaggyHelper/EchoOrb"
-echoOrb.depth = -100
+
+echoOrb.name = "DZ/EchoOrb"
+echoOrb.depth = 0
+echoOrb.texture = "objects/DZ/DZ/DZ/echo_orb"
+
 echoOrb.placements = {
-    { name = "normal", data = { revealRadius = 80.0, revealDuration = 3.0 } }
+    name = "echo_orb",
+    data = {
+        isDangerous = true,
+        isSolid = false,
+        mirrorDelay = 0.5,
+        fadeTime = 5
+    }
 }
-echoOrb.fieldInformation = {
-    revealRadius = { fieldType = "number", minimumValue = 20.0 },
-    revealDuration = { fieldType = "number", minimumValue = 0.5 }
-}
-echoOrb.fieldOrder = { "x", "y", "revealRadius", "revealDuration" }
+
 return echoOrb

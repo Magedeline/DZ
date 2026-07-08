@@ -1,12 +1,13 @@
 local parallaxShiftTrigger = {}
-parallaxShiftTrigger.name = "MaggyHelper/ParallaxShiftTrigger"
+
+parallaxShiftTrigger.name = "DZ/ParallaxShiftTrigger"
+parallaxShiftTrigger.depth = 0
 parallaxShiftTrigger.placements = {
-    { name = "ParallaxShiftTrigger", data = { width = 16, height = 16, parallaxX = 0.5, parallaxY = 0.5, duration = 1.0 } }
+    name = "parallax_shift_trigger",
+    data = {
+        scrollSpeedX = 1,
+        scrollSpeedY = 0
+    }
 }
-parallaxShiftTrigger.fieldInformation = {
-    parallaxX = { fieldType = "number" },
-    parallaxY = { fieldType = "number" },
-    duration = { fieldType = "number", minimumValue = 0.0 }
-}
-parallaxShiftTrigger.fieldOrder = { "x", "y", "width", "height", "parallaxX", "parallaxY", "duration" }
+
 return parallaxShiftTrigger

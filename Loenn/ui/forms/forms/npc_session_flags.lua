@@ -15,7 +15,7 @@ npcSessionFlags.options = {
     "met_badeline",
     "met_magalor",
     "met_kirby",
-    "met_chara",
+    "metDZ_CHara",
     "met_ralsei",
     "met_sans",
     "met_papyrus",
@@ -34,7 +34,7 @@ npcSessionFlags.options = {
     "talked_to_badeline",
     "talked_to_magalor",
     "talked_to_kirby",
-    "talked_to_chara",
+    "talked_toDZ_CHara",
     "talked_to_ralsei",
     "talked_to_sans",
     "talked_to_papyrus",
@@ -129,7 +129,7 @@ npcSessionFlags.options = {
     
     -- Special event flags
     "flowey_encountered",
-    "seeker_chase_survived",
+    "seekerDZ_CHase_survived",
     "hotel_breakdown_survived",
     "gondola_panic_overcome",
     "chara_boss_defeated",
@@ -145,13 +145,13 @@ npcSessionFlags.options = {
     "npc_interaction_learned",
     
     -- B-Side, C-Side, D-Side flags
-    "bside_unlocked",
-    "cside_unlocked", 
-    "dside_unlocked",
+    "1_unlocked",
+    "2_unlocked", 
+    "2_unlocked",
     "rmx_side_unlocked",
-    "bside_complete",
-    "cside_complete",
-    "dside_complete", 
+    "1_complete",
+    "2_complete",
+    "2_complete", 
     "rmx_side_complete",
     
     -- Ending flags
@@ -216,7 +216,7 @@ npcSessionFlags.options = {
     "interaction_available",
     "one_time_event_used",
     "conditional_met",
-    "flag_check_passed",
+    "flagDZ_CHeck_passed",
     "event_triggered",
     "cutscene_played",
     "dialog_seen",

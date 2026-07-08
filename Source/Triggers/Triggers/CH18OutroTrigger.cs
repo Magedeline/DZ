@@ -1,0 +1,42 @@
+using Celeste.Cutscenes;
+
+namespace DZ
+{
+    /// <summary>
+    /// Trigger that starts the Chapter 18 outro cutscene with game closing effect
+    /// </summary>
+    [CustomEntity("DZ/CH18OutroTrigger")]
+    public class CH18OutroTrigger : Trigger
+    {
+        private bool hasTriggered;
+        private bool triggerOnce;
+
+        public CH18OutroTrigger(EntityData data, Vector2 offset) : base(data, offset)
+        {
+            triggerOnce = data.Bool("triggerOnce", true);
+            hasTriggered = false;
+        }
+
+        public override void OnEnter(global::Celeste.Player player)
+        {
+            base.OnEnter(player);
+
+            if (!hasTriggered || !triggerOnce)
+            {
+                startOutroCutscene(player);
+            }
+        }
+
+        private void startOutroCutscene(global::Celeste.Player player)
+        {
+            if (Scene is Level level && player != null)
+            {
+                hasTriggered = true;
+
+                // Start the vignette using the correct signature (Session instead of Player)
+                var cutscene = new CS18_Outro(level.Session);
+                level.Add(cutscene);
+            }
+        }
+    }
+}

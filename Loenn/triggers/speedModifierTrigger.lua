@@ -1,13 +1,12 @@
 local speedModifierTrigger = {}
-speedModifierTrigger.name = "MaggyHelper/SpeedModifierTrigger"
+
+speedModifierTrigger.name = "DZ/SpeedModifierTrigger"
+speedModifierTrigger.depth = 0
 speedModifierTrigger.placements = {
-    { name = "slow", data = { width = 32, height = 32, speedMultiplier = 0.5, affectsX = true, affectsY = true } },
-    { name = "fast", data = { width = 32, height = 32, speedMultiplier = 2.0, affectsX = true, affectsY = true } }
+    name = "speed_modifier_trigger",
+    data = {
+        speedMultiplier = 0.5
+    }
 }
-speedModifierTrigger.fieldInformation = {
-    speedMultiplier = { fieldType = "number", minimumValue = 0.1 },
-    affectsX = { fieldType = "boolean" },
-    affectsY = { fieldType = "boolean" }
-}
-speedModifierTrigger.fieldOrder = { "x", "y", "width", "height", "speedMultiplier", "affectsX", "affectsY" }
+
 return speedModifierTrigger

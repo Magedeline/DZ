@@ -1,4 +1,4 @@
--- Tower Obstacle Types Form Field for Lönn
+-- Tower Obstacle Types Form Field for Lï¿½nn
 -- Provides autocomplete for 3D tower obstacle types and configurations
 
 local towerObstacleTypes = {}
@@ -109,7 +109,7 @@ towerObstacleTypes.options = {
     "boss_attack_zone",
     "boss_projectile",
     "boss_slam_area",
-    "boss_charge_path",
+    "bossDZ_CHarge_path",
     "boss_aoe_attack",
     "boss_shield",
     "boss_minion_spawn",
@@ -181,7 +181,7 @@ towerObstacleTypes.visualEffects = {
     glow = {"energy_wall", "crystal_block", "laser_beam", "power_conduit"},
     animation = {"grinding_gears", "spinning_blade", "pendulum_blade"},
     transparency = {"phase_platform", "illusion_wall", "ghost_block"},
-    color_change = {"color_coded_door", "pattern_match", "mood_lighting"}
+    colorDZ_CHange = {"color_coded_door", "pattern_match", "mood_lighting"}
 }
 
 -- Audio cues

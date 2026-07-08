@@ -1,0 +1,21 @@
+schema: DZ-map-meta-v1
+sid: DZ/0/10_Ruins
+baseKey: 10_Ruins
+side: A
+modeIndex: 0
+isMainChapterEntry: true
+mainChapterSid: DZ/0/10_Ruins
+showInChapterSelect: true
+
+MusicBySide:
+  - event:/music/pusheen/menu/complete_area
+  - event:/music/pusheen/menu/complete_1
+  - event:/music/pusheen/menu/complete_2
+  - event:/music/pusheen/menu/complete_dxside
+Title:
+  0: "Chapter Complete"
+  1: "B Side Complete"
+  2: "C Side Complete"
+  2: "D Side Complete"
+  DXSide: "DX Side Complete"
+  FullClear: "Chapter Clear"

@@ -1,27 +1,15 @@
-local utils = require("utils")
-local drawableSprite = require("structs.drawable_sprite")
-
 local obsidianShard = {}
 
-obsidianShard.name = "MaggyHelper/ObsidianShard"
-obsidianShard.depth = -50
+obsidianShard.name = "DZ/ObsidianShard"
+obsidianShard.depth = 0
+obsidianShard.texture = "objects/DZ/DZ/DZ/obsidian_shard"
+
 obsidianShard.placements = {
-    {
-        name = "normal",
-        data = {}
+    name = "obsidian_shard",
+    data = {
+        isCollectible = false,
+        health = 1
     }
 }
-
-function obsidianShard.sprite(room, entity)
-    local sprite = drawableSprite.fromTexture("objects/obsidian_shard/default", entity)
-    sprite:setPosition(entity.x, entity.y)
-    sprite:setJustification(0.5, 1.0)
-    sprite.color = {0.2, 0.0, 0.3, 1.0}
-    return sprite
-end
-
-function obsidianShard.selection(room, entity)
-    return utils.rectangle(entity.x - 8, entity.y - 16, 16, 16)
-end
 
 return obsidianShard

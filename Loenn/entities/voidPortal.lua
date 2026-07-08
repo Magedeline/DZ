@@ -1,37 +1,15 @@
-local utils = require("utils")
-local drawableSprite = require("structs.drawable_sprite")
-
 local voidPortal = {}
 
-voidPortal.name = "MaggyHelper/VoidPortal"
-voidPortal.depth = -100
+voidPortal.name = "DZ/VoidPortal"
+voidPortal.depth = 0
+voidPortal.texture = "objects/DZ/DZ/DZ/void_portal"
+
 voidPortal.placements = {
-    {
-        name = "normal",
-        data = {
-            destinationId = "",
-            isFinalPortal = false
-        }
-    },
-    {
-        name = "final",
-        data = {
-            destinationId = "",
-            isFinalPortal = true
-        }
+    name = "void_portal",
+    data = {
+        destinationId = "",
+        isFinalPortal = false
     }
 }
-
-function voidPortal.sprite(room, entity)
-    local sprite = drawableSprite.fromTexture("objects/void_portal/inactive", entity)
-    sprite:setPosition(entity.x, entity.y)
-    sprite:setJustification(0.5, 1.0)
-    sprite.color = {0.5, 0.0, 0.5, 0.8}
-    return sprite
-end
-
-function voidPortal.selection(room, entity)
-    return utils.rectangle(entity.x - 24, entity.y - 64, 48, 64)
-end
 
 return voidPortal

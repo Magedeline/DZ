@@ -1,4 +1,4 @@
--- Node Actions Form Field for Lönn
+-- Node Actions Form Field for Lï¿½nn
 -- Provides autocomplete for NPC node-based actions and behaviors
 
 local nodeActions = {}
@@ -41,7 +41,7 @@ nodeActions.options = {
     "play_animation",
     "loop_animation",
     "random_animation",
-    "emotion_change",
+    "emotionDZ_CHange",
     "gesture_at_node",
     "point_to_next",
     "beckon_player",

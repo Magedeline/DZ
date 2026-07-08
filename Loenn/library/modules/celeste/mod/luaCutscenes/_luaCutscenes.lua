@@ -5,7 +5,7 @@ local luaCutscenes = {}
 
 --#region ChoicePrompt
 
----@class c__ChoicePrompt
+---@class c_DZ_CHoicePrompt
 ---@field Choice int
 luaCutscenes.ChoicePrompt = {}
 

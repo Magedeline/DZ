@@ -1,13 +1,14 @@
 local cameraShakeTrigger = {}
-cameraShakeTrigger.name = "MaggyHelper/CameraShakeTrigger"
+
+cameraShakeTrigger.name = "DZ/CameraShakeTrigger"
+cameraShakeTrigger.depth = 0
 cameraShakeTrigger.placements = {
-    { name = "light", data = { width = 16, height = 16, intensity = 0.3, duration = 0.5, direction = "Both" } },
-    { name = "heavy", data = { width = 16, height = 16, intensity = 1.0, duration = 1.0, direction = "Both" } }
+    name = "camera_shake_trigger",
+    data = {
+        onlyOnce = true,
+        intensity = 0.5,
+        duration = 0.5
+    }
 }
-cameraShakeTrigger.fieldInformation = {
-    intensity = { fieldType = "number", minimumValue = 0.1 },
-    duration = { fieldType = "number", minimumValue = 0.1 },
-    direction = { fieldType = "string", options = { "Horizontal", "Vertical", "Both" }, editable = false }
-}
-cameraShakeTrigger.fieldOrder = { "x", "y", "width", "height", "intensity", "duration", "direction" }
+
 return cameraShakeTrigger

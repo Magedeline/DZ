@@ -1,12 +1,13 @@
 local invincibilityTrigger = {}
-invincibilityTrigger.name = "MaggyHelper/InvincibilityTrigger"
+
+invincibilityTrigger.name = "DZ/InvincibilityTrigger"
+invincibilityTrigger.depth = 0
 invincibilityTrigger.placements = {
-    { name = "InvincibilityTrigger", data = { width = 16, height = 16, duration = 5.0, flashColor = "ffff00" } },
-    { name = "star_power", data = { width = 16, height = 16, duration = 10.0, flashColor = "ff8800" } }
+    name = "invincibility_trigger",
+    data = {
+        duration = 5,
+        onlyOnce = true
+    }
 }
-invincibilityTrigger.fieldInformation = {
-    duration = { fieldType = "number", minimumValue = 0.5 },
-    flashColor = { fieldType = "color" }
-}
-invincibilityTrigger.fieldOrder = { "x", "y", "width", "height", "duration", "flashColor" }
+
 return invincibilityTrigger

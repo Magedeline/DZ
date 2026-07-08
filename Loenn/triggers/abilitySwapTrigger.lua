@@ -1,11 +1,14 @@
 local abilitySwapTrigger = {}
-abilitySwapTrigger.name = "MaggyHelper/AbilitySwapTrigger"
+
+abilitySwapTrigger.name = "DZ/AbilitySwapTrigger"
+abilitySwapTrigger.depth = 0
 abilitySwapTrigger.placements = {
-    { name = "AbilitySwapTrigger", data = { width = 16, height = 16, abilityName = "Sword", onlyOnce = false } }
+    name = "ability_swap_trigger",
+    data = {
+        ability = "Fire",
+        action = "give",
+        onlyOnce = true
+    }
 }
-abilitySwapTrigger.fieldInformation = {
-    abilityName = { fieldType = "string" },
-    onlyOnce = { fieldType = "boolean" }
-}
-abilitySwapTrigger.fieldOrder = { "x", "y", "width", "height", "abilityName", "onlyOnce" }
+
 return abilitySwapTrigger

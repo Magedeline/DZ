@@ -1,27 +1,17 @@
-local utils = require("utils")
-local drawableSprite = require("structs.drawable_sprite")
-
 local sulfurVent = {}
 
-sulfurVent.name = "MaggyHelper/SulfurVent"
-sulfurVent.depth = -50
+sulfurVent.name = "DZ/SulfurVent"
+sulfurVent.depth = 0
+sulfurVent.texture = "objects/DZ/DZ/DZ/sulfur_vent"
+
 sulfurVent.placements = {
-    {
-        name = "normal",
-        data = {}
+    name = "sulfur_vent",
+    data = {
+        ventDuration = 2,
+        cooldownTime = 4,
+        gasSpeed = 80,
+        gasRadius = 40
     }
 }
-
-function sulfurVent.sprite(room, entity)
-    local sprite = drawableSprite.fromTexture("objects/sulfur_vent/default", entity)
-    sprite:setPosition(entity.x, entity.y)
-    sprite:setJustification(0.5, 1.0)
-    sprite.color = {0.8, 0.8, 0.4, 1.0}
-    return sprite
-end
-
-function sulfurVent.selection(room, entity)
-    return utils.rectangle(entity.x - 8, entity.y - 12, 16, 12)
-end
 
 return sulfurVent

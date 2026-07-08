@@ -5,6 +5,6 @@
 local c_BadelineOldsite = {}
 
 ---@class BadelineOldsite : Entity
-local badelineOldside = {}
+local badelineOl2 = {}
 
 return c_BadelineOldsite

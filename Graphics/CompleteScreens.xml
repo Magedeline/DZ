@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Screens>
-  <City atlas="City" scale="2">
+  <Metro atlas="Metro" scale="2">
     <start x="-10" y="2000" />
     <center x="-10" y="1200" />
     <layers>
@@ -20,7 +20,7 @@
       <layer img="snow-front" x="-920" y="-720" scroll="0.12" scale="2" />
       <layer img="11" x="-800" y="-520" scroll="0.14" scale="2" />
     </layers>
-  </City>
+  </Metro>
   <Shadow atlas="Shadow">
     <start x="0" y="1050" />
     <center x="0" y="250" />
@@ -133,7 +133,7 @@
       <ui scrollX="0.2" />
     </layers>
   </Truth>
-  <BeyondSummitIntro atlas="BeyondSummitIntro">
+  <BeyondSummitIntro atlas="VortexIntro">
     <start x="0" y="1500" />
     <center x="0" y="-4000" />
     <offset x="-108" y="-80" />
@@ -159,7 +159,7 @@
       <layer img="13" x="0" y="0" scroll="0.14" scale="2" />
     </layers>
   </BeyondSummitIntro>
-  <BeyondSummitEnd atlas="BeyondSummitEnd">
+  <VortexEnd atlas="VortexEnd">
     <start x="0" y="0" />
     <center x="0" y="-800" />
     <offset x="-108" y="0" />
@@ -179,8 +179,8 @@
       <layer img="11b,11b,11b,11b,11b,11b,11b,11b,11b,11b,11b,11b,11c,11b,11c,11b,11a" x="40" y="-70" scroll="0.14" />
       <layer img="12" x="0" y="-200" speedx="-50" alpha="0.70" scroll="0.18" scale="2" />
     </layers>
-  </BeyondSummitEnd>
-  <Heart atlas="Heart">
+  </VortexEnd>
+  <Core atlas="Core">
     <start x="0" y="200" />
     <center x="0" y="0" />
     <offset x="-108" y="-110" />
@@ -195,8 +195,8 @@
       <layer img="07b" x="0" y="0" scroll="0.16" scale="2" />
       <layer img="07c" x="0" y="0" scroll="0.16" scale="2" />
     </layers>
-  </Heart>
-  <Hell atlas="Hell">
+  </Core>
+  <Inferno atlas="Inferno">
     <start x="0" y="1500" />
     <center x="0" y="-4000" />
     <offset x="-108" y="-80" />
@@ -214,7 +214,7 @@
       <layer img="10" x="0" y="0" scroll="0.14" scale="2" />
       <ui scrollX="0.2" />
     </layers>
-  </Hell>
+  </Inferno>
   <Ruins atlas="Ruins">
     <start x="0" y="1050" />
     <center x="0" y="250" />
@@ -231,7 +231,7 @@
       <layer img="07" x="0" y="0" scroll="0.14" scale="2" />
     </layers>
   </Ruins>
-  <Snow atlas="Snow">
+  <SnowdinCity atlas="SnowdinCity">
     <start x="0" y="1050" />
     <center x="0" y="250" />
     <offset x="-108" y="0" />
@@ -246,8 +246,8 @@
       <layer img="06" x="0" y="0" scroll="0.12" scale="2" />
       <layer img="07" x="0" y="0" scroll="0.14" scale="2" />
     </layers>
-  </Snow>
-  <Water atlas="Water">
+  </SnowdinCity>
+  <WaterEdgeFall atlas="WaterEdgeFall">
     <start x="0" y="1050" />
     <center x="0" y="250" />
     <offset x="-108" y="0" />
@@ -262,8 +262,8 @@
       <layer img="06" x="0" y="0" scroll="0.12" scale="2" />
       <layer img="07" x="0" y="0" scroll="0.14" scale="2" />
     </layers>
-  </Water>
-  <Fire atlas="Fire">
+  </WaterEdgeFall>
+  <HotCliff atlas="HotCliff">
     <start x="0" y="1050" />
     <center x="0" y="250" />
     <offset x="-108" y="0" />
@@ -278,8 +278,8 @@
       <layer img="06" x="0" y="0" scroll="0.12" scale="2" />
       <layer img="07" x="0" y="0" scroll="0.14" scale="2" />
     </layers>
-  </Fire>
-  <Digital atlas="Digital">
+  </HotCliff>
+  <CyberNexus atlas="CyberNexus">
     <start x="0" y="1050" />
     <center x="0" y="250" />
     <offset x="-108" y="0" />
@@ -294,8 +294,8 @@
       <layer img="06" x="0" y="0" scroll="0.12" scale="2" />
       <layer img="07" x="0" y="0" scroll="0.14" scale="2" />
     </layers>
-  </Digital>
-  <Castle atlas="Castle">
+  </CyberNexus>
+  <Citadel atlas="Citadel">
     <start x="0" y="1050" />
     <center x="0" y="250" />
     <offset x="-108" y="0" />
@@ -310,8 +310,8 @@
       <layer img="06" x="0" y="0" scroll="0.12" scale="2" />
       <layer img="07" x="0" y="0" scroll="0.14" scale="2" />
     </layers>
-  </Castle>
-  <Corruption atlas="Corruption">
+  </Citadel>
+  <MyWolrd atlas="MyWolrd">
     <start x="0" y="1050" />
     <center x="0" y="250" />
     <offset x="-108" y="0" />
@@ -326,8 +326,8 @@
       <layer img="06" x="0" y="0" scroll="0.12" scale="2" />
       <layer img="07" x="0" y="0" scroll="0.14" scale="2" />
     </layers>
-  </Corruption>
-  <DesoloZantasTrueFinale atlas="DesoloZantasTrueFinale">
+  </MyWolrd>
+  <TrueFinale atlas="TrueFinale">
     <start x="0" y="1500" />
     <center x="0" y="-4000" />
     <offset x="-108" y="-80" />
@@ -352,6 +352,6 @@
       <layer img="12b" x="0" y="0" scroll="0.13" scale="2" />
       <layer img="13" x="0" y="0" scroll="0.14" scale="2" />
     </layers>
-  </DesoloZantasTrueFinale>
+  </TrueFinale>
 </Screens>
 

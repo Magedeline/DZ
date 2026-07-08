@@ -1,12 +1,12 @@
 local splitScreenTrigger = {}
-splitScreenTrigger.name = "MaggyHelper/SplitScreenTrigger"
+
+splitScreenTrigger.name = "DZ/SplitScreenTrigger"
+splitScreenTrigger.depth = 0
 splitScreenTrigger.placements = {
-    { name = "horizontal", data = { width = 16, height = 16, splitDirection = "Horizontal", splitRatio = 0.5 } },
-    { name = "vertical", data = { width = 16, height = 16, splitDirection = "Vertical", splitRatio = 0.5 } }
+    name = "split_screen_trigger",
+    data = {
+        splitDirection = "horizontal"
+    }
 }
-splitScreenTrigger.fieldInformation = {
-    splitDirection = { fieldType = "string", options = { "Horizontal", "Vertical" }, editable = false },
-    splitRatio = { fieldType = "number", minimumValue = 0.1, maximumValue = 0.9 }
-}
-splitScreenTrigger.fieldOrder = { "x", "y", "width", "height", "splitDirection", "splitRatio" }
+
 return splitScreenTrigger

@@ -1,0 +1,577 @@
+using System;
+using Celeste.Entities;
+using Microsoft.Xna.Framework;
+using Monocle;
+
+namespace Celeste.Projectiles
+{
+    /// <summary>
+    /// Beam whip projectile fired by Waddle Doo
+    /// </summary>
+    [Tracked]
+    public class BeamWhip : Entity
+    {
+        private float lifetime;
+        private float maxLifetime = 0.5f;
+        private int damage = 1;
+        private float direction;
+        private Sprite sprite;
+        private Level level;
+
+        public BeamWhip(Vector2 position, float dir) : base(position)
+        {
+            direction = dir;
+            Depth = -50;
+            Collider = new Hitbox(32f, 8f, direction > 0 ? 0 : -32f, -4f);
+
+            Add(sprite = new Sprite(GFX.Game, "projectiles/kirby/beam/"));
+            sprite.AddLoop("whip", "idle", 0.05f);
+            sprite.Play("whip");
+            sprite.Scale.X = direction;
+
+            Add(new PlayerCollider(OnPlayerHit));
+        }
+
+        public override void Added(Scene scene)
+        {
+            base.Added(scene);
+            level = scene as Level;
+        }
+
+        public override void Update()
+        {
+            base.Update();
+
+            lifetime += Engine.DeltaTime;
+            if (lifetime > maxLifetime)
+            {
+                RemoveSelf();
+            }
+        }
+
+        private void OnPlayerHit(global::Celeste.Player player)
+        {
+            if (player.IsKirbyMode())
+            {
+                var healthManager = PlayerHealthManager.Instance;
+                if (healthManager != null)
+                {
+                    healthManager.Damage(damage);
+                }
+                else
+                {
+                    PlayerHealthManager.TryDamagePlayer(damage, Position);
+                }
+            }
+            else
+            {
+                player.Die((player.Position - Position).SafeNormalize());
+            }
+
+            // Don't remove - beam passes through
+        }
+    }
+
+    /// <summary>
+    /// Bomb projectile thrown by Poppy Bros Jr
+    /// </summary>
+    [Tracked]
+    public class BombProjectile : Entity
+    {
+        private Vector2 velocity;
+        private int damage;
+        private float gravity = 400f;
+        private float lifetime;
+        private float maxLifetime = 3f;
+        private Sprite sprite;
+        private Level level;
+        private bool exploded;
+
+        public BombProjectile(Vector2 position, Vector2 vel, int dmg) : base(position)
+        {
+            velocity = vel;
+            damage = dmg;
+            Depth = -50;
+            Collider = new Circle(8f, 0f, -8f);
+
+            Add(sprite = new Sprite(GFX.Game, "projectiles/kirby/bomb/"));
+            sprite.AddLoop("spin", "idle", 0.1f);
+            sprite.Play("spin");
+
+            Add(new PlayerCollider(OnPlayerHit));
+        }
+
+        public override void Added(Scene scene)
+        {
+            base.Added(scene);
+            level = scene as Level;
+        }
+
+        public override void Update()
+        {
+            base.Update();
+
+            if (exploded) return;
+
+            // Apply gravity
+            velocity.Y += gravity * Engine.DeltaTime;
+
+            // Move
+            Position += velocity * Engine.DeltaTime;
+
+            // Rotate based on horizontal speed
+            sprite.Rotation += velocity.X * 0.01f * Engine.DeltaTime;
+
+            // Bounce off solids
+            if (CollideCheck<Solid>())
+            {
+                velocity.Y *= -0.6f;
+                velocity.X *= 0.8f;
+                Position.Y -= 4f;
+            }
+
+            // Explode after lifetime or when hitting floor with low velocity
+            lifetime += Engine.DeltaTime;
+            if (lifetime > maxLifetime || (velocity.Y > 0 && CollideCheck<Solid>(Position + Vector2.UnitY * 4f)))
+            {
+                Explode();
+            }
+        }
+
+        private void OnPlayerHit(global::Celeste.Player player)
+        {
+            Explode();
+        }
+
+        private void Explode()
+        {
+            if (exploded) return;
+            exploded = true;
+
+            Audio.Play("event:/char/badeline/boss_bullet_impact", Position);
+
+            // Explosion particles
+            for (int i = 0; i < 15; i++)
+            {
+                float angle = (i / 15f) * (float)Math.PI * 2f;
+                Vector2 dir = Calc.AngleToVector(angle, 1f);
+                level?.ParticlesFG.Emit(ParticleTypes.Dust, Position + dir * 8f);
+            }
+
+            // Screen shake
+            level?.Shake(0.2f);
+
+            // Damage nearby player
+            var player = Scene.Tracker.GetEntity<global::Celeste.Player>();
+            if (player != null && Vector2.Distance(Position, player.Position) < 40f)
+            {
+                if (player.IsKirbyMode())
+                {
+                    var healthManager = PlayerHealthManager.Instance;
+                    if (healthManager != null)
+                    {
+                        healthManager.Damage(damage);
+                    }
+                    else
+                    {
+                        PlayerHealthManager.TryDamagePlayer(damage, Position);
+                    }
+                }
+                else
+                {
+                    player.Die((player.Position - Position).SafeNormalize());
+                }
+            }
+
+            if (sprite.Has("explode"))
+            {
+                sprite.Play("explode");
+            }
+            else
+            {
+                sprite.Visible = false;
+            }
+            Add(new Coroutine(RemoveAfterExplosion()));
+        }
+
+        private IEnumerator RemoveAfterExplosion()
+        {
+            yield return 0.3f;
+            RemoveSelf();
+        }
+    }
+
+    /// <summary>
+    /// Boss star projectile fired by Kirby Boss
+    /// </summary>
+    [Tracked]
+    public class BossStarProjectile : Entity
+    {
+        private Vector2 velocity;
+        private float lifetime;
+        private float maxLifetime = 5f;
+        private Sprite sprite;
+        private Level level;
+
+        public BossStarProjectile(Vector2 position, Vector2 vel) : base(position)
+        {
+            velocity = vel;
+            Depth = -50;
+            Collider = new Hitbox(12f, 12f, -6f, -6f);
+
+            Add(sprite = new Sprite(GFX.Game, "projectiles/kirby/star/"));
+            sprite.AddLoop("star", "idle", 0.05f);
+            sprite.Play("star");
+
+            Add(new PlayerCollider(OnPlayerHit));
+        }
+
+        public override void Added(Scene scene)
+        {
+            base.Added(scene);
+            level = scene as Level;
+        }
+
+        public override void Update()
+        {
+            base.Update();
+
+            Position += velocity * Engine.DeltaTime;
+            lifetime += Engine.DeltaTime;
+
+            sprite.Rotation += Engine.DeltaTime * 5f;
+
+            // Trail particles
+            if (Scene.OnInterval(0.05f))
+            {
+                level?.ParticlesFG.Emit(ParticleTypes.SparkyDust, Position);
+            }
+
+            if (lifetime > maxLifetime || CollideCheck<Solid>())
+            {
+                RemoveSelf();
+            }
+        }
+
+        private void OnPlayerHit(global::Celeste.Player player)
+        {
+            if (player.IsKirbyMode())
+            {
+                var healthManager = PlayerHealthManager.Instance;
+                if (healthManager != null)
+                {
+                    healthManager.Damage(1);
+                }
+                else
+                {
+                    PlayerHealthManager.TryDamagePlayer(1, Position);
+                }
+            }
+            else
+            {
+                player.Die((player.Position - Position).SafeNormalize());
+            }
+
+            RemoveSelf();
+        }
+    }
+
+    /// <summary>
+    /// Fire projectile
+    /// </summary>
+    [Tracked]
+    public class FireProjectile : Entity
+    {
+        private int direction;
+        private float lifetime;
+        private float maxLifetime = 2f;
+        private Sprite sprite;
+        private Level level;
+
+        public FireProjectile(Vector2 position, int dir) : base(position)
+        {
+            direction = dir;
+            Depth = -50;
+            Collider = new Hitbox(16f, 8f, direction > 0 ? 0 : -16f, -4f);
+
+            Add(sprite = new Sprite(GFX.Game, "projectiles/kirby/fire/"));
+            sprite.AddLoop("fire", "idle", 0.08f);
+            sprite.Play("fire");
+            sprite.Scale.X = dir;
+
+            Add(new PlayerCollider(OnPlayerHit));
+        }
+
+        public override void Added(Scene scene)
+        {
+            base.Added(scene);
+            level = scene as Level;
+        }
+
+        public override void Update()
+        {
+            base.Update();
+
+            Position.X += direction * 120f * Engine.DeltaTime;
+            lifetime += Engine.DeltaTime;
+
+            if (Scene.OnInterval(0.1f))
+            {
+                level?.ParticlesFG.Emit(ParticleTypes.SparkyDust, Position);
+            }
+
+            if (lifetime > maxLifetime || CollideCheck<Solid>())
+            {
+                RemoveSelf();
+            }
+        }
+
+        private void OnPlayerHit(global::Celeste.Player player)
+        {
+            if (player.IsKirbyMode())
+            {
+                var healthManager = PlayerHealthManager.Instance;
+                if (healthManager != null)
+                {
+                    healthManager.Damage(1);
+                }
+                else
+                {
+                    PlayerHealthManager.TryDamagePlayer(1, Position);
+                }
+            }
+            else
+            {
+                player.Die((player.Position - Position).SafeNormalize());
+            }
+
+            RemoveSelf();
+        }
+    }
+
+    /// <summary>
+    /// Ice projectile
+    /// </summary>
+    [Tracked]
+    public class IceProjectile : Entity
+    {
+        private int direction;
+        private float lifetime;
+        private float maxLifetime = 2f;
+        private Sprite sprite;
+        private Level level;
+
+        public IceProjectile(Vector2 position, int dir) : base(position)
+        {
+            direction = dir;
+            Depth = -50;
+            Collider = new Hitbox(12f, 8f, direction > 0 ? 0 : -12f, -4f);
+
+            Add(sprite = new Sprite(GFX.Game, "projectiles/kirby/ice/"));
+            sprite.AddLoop("ice", "idle", 0.08f);
+            sprite.Play("ice");
+            sprite.Scale.X = dir;
+
+            Add(new PlayerCollider(OnPlayerHit));
+        }
+
+        public override void Added(Scene scene)
+        {
+            base.Added(scene);
+            level = scene as Level;
+        }
+
+        public override void Update()
+        {
+            base.Update();
+
+            Position.X += direction * 100f * Engine.DeltaTime;
+            lifetime += Engine.DeltaTime;
+
+            if (Scene.OnInterval(0.1f))
+            {
+                level?.ParticlesFG.Emit(ParticleTypes.Dust, Position);
+            }
+
+            if (lifetime > maxLifetime || CollideCheck<Solid>())
+            {
+                // Freeze effect on impact
+                Audio.Play("event:/game/general/thing_booped", Position);
+                RemoveSelf();
+            }
+        }
+
+        private void OnPlayerHit(global::Celeste.Player player)
+        {
+            if (player.IsKirbyMode())
+            {
+                var healthManager = PlayerHealthManager.Instance;
+                if (healthManager != null)
+                {
+                    healthManager.Damage(1);
+                }
+                else
+                {
+                    PlayerHealthManager.TryDamagePlayer(1, Position);
+                }
+            }
+            else
+            {
+                player.Die((player.Position - Position).SafeNormalize());
+            }
+
+            RemoveSelf();
+        }
+    }
+
+    /// <summary>
+    /// Beam projectile (wider than beam whip, for boss use)
+    /// </summary>
+    [Tracked]
+    public class BeamProjectile : Entity
+    {
+        private int direction;
+        private float lifetime;
+        private float maxLifetime = 1.5f;
+        private Sprite sprite;
+        private Level level;
+
+        public BeamProjectile(Vector2 position, int dir) : base(position)
+        {
+            direction = dir;
+            Depth = -50;
+            Collider = new Hitbox(40f, 8f, direction > 0 ? 0 : -40f, -4f);
+
+            Add(sprite = new Sprite(GFX.Game, "projectiles/kirby/beam/"));
+            sprite.AddLoop("beam", "idle", 0.05f);
+            sprite.Play("beam");
+            sprite.Scale.X = dir;
+
+            Add(new PlayerCollider(OnPlayerHit));
+        }
+
+        public override void Added(Scene scene)
+        {
+            base.Added(scene);
+            level = scene as Level;
+        }
+
+        public override void Update()
+        {
+            base.Update();
+
+            Position.X += direction * 150f * Engine.DeltaTime;
+            lifetime += Engine.DeltaTime;
+
+            if (Scene.OnInterval(0.05f))
+            {
+                level?.ParticlesFG.Emit(ParticleTypes.SparkyDust, Position);
+            }
+
+            if (lifetime > maxLifetime || CollideCheck<Solid>())
+            {
+                RemoveSelf();
+            }
+        }
+
+        private void OnPlayerHit(global::Celeste.Player player)
+        {
+            if (player.IsKirbyMode())
+            {
+                var healthManager = PlayerHealthManager.Instance;
+                if (healthManager != null)
+                {
+                    healthManager.Damage(1);
+                }
+                else
+                {
+                    PlayerHealthManager.TryDamagePlayer(1, Position);
+                }
+            }
+            else
+            {
+                player.Die((player.Position - Position).SafeNormalize());
+            }
+
+            RemoveSelf();
+        }
+    }
+
+    /// <summary>
+    /// Star projectile fired by the player when spitting out an inhaled enemy.
+    /// Travels in a fixed direction, damages the first enemy it hits, then disappears.
+    /// </summary>
+    [Tracked]
+    public class PlayerStarBullet : Entity
+    {
+        private readonly Vector2 velocity;
+        private readonly K_Player owner;
+        private readonly int damage;
+        private float lifetime;
+        private float rotation;
+        private const float MaxLifetime = 3f;
+
+        public PlayerStarBullet(Vector2 position, Vector2 velocity, K_Player owner, int damage)
+            : base(position)
+        {
+            this.velocity = velocity;
+            this.owner = owner;
+            this.damage = damage;
+            Depth = -50;
+            Collider = new Circle(6f);
+        }
+
+        public override void Update()
+        {
+            base.Update();
+
+            Position += velocity * Engine.DeltaTime;
+            lifetime += Engine.DeltaTime;
+            rotation += Engine.DeltaTime * 8f;
+
+            // Trail
+            if (Scene.OnInterval(0.04f))
+                (Scene as Level)?.ParticlesFG.Emit(ParticleTypes.SparkyDust, Position);
+
+            // Wall or timeout
+            if (lifetime > MaxLifetime || CollideCheck<Solid>())
+            {
+                Burst();
+                RemoveSelf();
+                return;
+            }
+
+            // Enemy hit — first valid target wins, projectile dies on contact
+            foreach (Entity entity in Scene.Entities)
+            {
+                if (!owner.IsValidTarget(entity))
+                    continue;
+                if (!CollideCheck(entity))
+                    continue;
+
+                owner.DealProjectileDamage(entity, damage, velocity.SafeNormalize());
+                Burst();
+                RemoveSelf();
+                return;
+            }
+        }
+
+        public override void Render()
+        {
+            base.Render();
+            // Draw a yellow spinning star using the same particle sprite as BossStarProjectile.
+            // Falls back gracefully if no atlas texture is set — the trail particles still show.
+            GFX.Game.GetAtlasSubtexturesAt("projectiles/kirby/star/idle", 0)
+                ?.DrawCentered(Position, Color.White, 1f, rotation);
+        }
+
+        private void Burst()
+        {
+            var level = Scene as Level;
+            level?.ParticlesFG.Emit(ParticleTypes.SparkyDust, 6, Position, Vector2.One * 5f);
+            level?.Displacement.AddBurst(Position, 0.2f, 4f, 20f, 0.3f, Ease.QuadOut, Ease.QuadOut);
+            Audio.Play("event:/char/badeline/boss_bullet_impact", Position);
+        }
+    }
+}
+

@@ -4,16 +4,4 @@
 # to the ZippedFiles tag in the .csproj file, or the artifact paths in the
 # Github workflow file if you're using GitHub actions for publishing.
 Source/
-VoidDreamAscent.zip
-.git/
-Code/
-memory/
-tools/
-framework/
-Documentation/
-Patches/
-Libs/
-.github/
-.idea/
-.vscode/
-.claude/
+DZ.zip

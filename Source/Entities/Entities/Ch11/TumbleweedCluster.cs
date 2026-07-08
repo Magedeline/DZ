@@ -29,6 +29,7 @@ namespace Celeste.Entities.Chapters.Ch11
         private List<Tumbleweed> tumbleweeds;
         public Vector2 clusterVelocity;
         private float rotation;
+        private float spawnTimer;
         private Level level;
         private List<DustParticle> dustParticles;
         private bool isActive;

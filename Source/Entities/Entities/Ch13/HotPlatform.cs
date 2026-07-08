@@ -29,6 +29,7 @@ namespace Celeste.Entities.Chapters.Ch13
         
         private Sprite sprite;
         private VertexLight platformLight;
+        private float stateTimer;
         private Level level;
         private List<SteamParticle> steamParticles;
         private Player standingPlayer;

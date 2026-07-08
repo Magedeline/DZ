@@ -32,6 +32,7 @@ namespace Celeste.Entities.Chapters.Ch14
         private Sprite sprite;
         private float stateTimer;
         private float glitchTimer;
+        private int patternIndex;
         private Level level;
         private List<GlitchParticle> glitchParticles;
         private bool isPattern;

@@ -46,6 +46,7 @@ namespace Celeste.Entities.Chapters.Ch10
         private float swingAngle;
         private float swingSpeed;
         private int throwCount;
+        private float stateTimer;
         private Player targetPlayer;
         private Level level;
         private List<BakedGoodProjectile> activeProjectiles;

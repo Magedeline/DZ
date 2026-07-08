@@ -45,6 +45,7 @@ namespace Celeste.Entities.Chapters.Ch14
         private Vector2 targetGridPosition;
         private Facings facing;
         private float shootCooldown;
+        private float glitchTimer;
         private Player targetPlayer;
         private Level level;
         private List<PixelProjectile> projectiles;

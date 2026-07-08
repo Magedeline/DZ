@@ -43,6 +43,7 @@ namespace Celeste.Entities.Chapters.Ch11
         private Vector2 startPosition;
         private float patrolDistance;
         private Facings facing;
+        private float throwCooldown;
         private Player targetPlayer;
         private Level level;
         private List<PlayingCardProjectile> activeCards;

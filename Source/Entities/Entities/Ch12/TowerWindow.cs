@@ -254,6 +254,7 @@ namespace Celeste.Entities.Chapters.Ch12
         private List<TowerWindow> windows;
         private List<WindowView> viewSequence;
         private float transitionInterval;
+        private int currentIndex;
 
         public WindowSequence(EntityData data, Vector2 offset)
             : base(data.Position + offset)

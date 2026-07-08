@@ -30,6 +30,7 @@ namespace Celeste.Entities.Chapters.Ch14
         
         private Sprite sprite;
         private VertexLight barrierLight;
+        private float stateTimer;
         private Level level;
         private List<BarrierParticle> particles;
         private List<BarrierPulse> pulses;

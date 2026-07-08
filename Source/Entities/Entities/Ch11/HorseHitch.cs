@@ -30,6 +30,7 @@ namespace Celeste.Entities.Chapters.Ch11
         private Sprite horseSprite;
         private TalkComponent talkComponent;
         private Player travelingPlayer;
+        private float travelTimer;
         private Level level;
         private HorseHitch destination;
         private List<DustParticle> dustParticles;

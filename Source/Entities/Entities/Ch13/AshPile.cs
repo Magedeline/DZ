@@ -27,6 +27,7 @@ namespace Celeste.Entities.Chapters.Ch13
         private Sprite sprite;
         private Rectangle climbArea;
         private float shiftTimer;
+        private float collapseTimer;
         private Level level;
         private List<AshParticle> ashParticles;
         private Player climbingPlayer;

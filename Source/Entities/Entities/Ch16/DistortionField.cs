@@ -22,6 +22,8 @@ namespace Celeste.Entities.Chapters.Ch16
         #region Properties
         public DistortionType Type { get; private set; }
         public float Intensity { get; private set; }
+        
+        private float effectTimer;
         #endregion
 
         #region Constructor

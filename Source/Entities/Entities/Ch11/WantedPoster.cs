@@ -31,6 +31,7 @@ namespace Celeste.Entities.Chapters.Ch11
         private Sprite sprite;
         private TalkComponent talkComponent;
         private Player readingPlayer;
+        private float spawnTimer;
         private Level level;
         private List<Entity> spawnedEnemies;
         private int spawnedCount;

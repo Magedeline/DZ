@@ -18,7 +18,7 @@ public class CS19_MissTheBird : CutsceneEntity
 
     private FlingBirdIntro flingBird;
 
-    private EnhancedBirdNPC bird;
+    private BirdNPC bird;
 
 
     private Coroutine zoomRoutine;
@@ -54,7 +54,7 @@ public class CS19_MissTheBird : CutsceneEntity
         {
             yield break;
         }
-        bird = new EnhancedBirdNPC(flingBird.Position, EnhancedBirdNPC.Modes.HoverNGrab);
+        bird = new BirdNPC(flingBird.Position, BirdNPC.Modes.None);
         bird.Sprite.Play("idle");
         level.Add(bird);
         flingBird.RemoveSelf();

@@ -1166,7 +1166,7 @@ But with that.
 [MADELINE right sad]
 Thanks for a heads up.
 
-DZ_CH0_END_YOURDZ_CHOICE_MATTERS=
+DZ_CH0_END_YOUR_CHOICE_MATTERS=
 [none left]
 Remember {3.0} {~}Choices Matters.{/~}
 

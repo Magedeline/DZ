@@ -8,9 +8,9 @@ using Celeste.Cutscenes;
 using FMOD.Studio;
 
 namespace Celeste.Mod.DZ.Cutscenes {
-    public class CS00_Logo : CutsceneEntity {
+    public class CS00_LogoDZ : CutsceneEntity {
 
-        public class TitleLogo : Entity {
+        public class TitleLogoDZ : Entity {
 
             private class Particle {
                 public readonly MTexture texture = GFX.Gui["logo/sparkle"];
@@ -83,7 +83,7 @@ namespace Celeste.Mod.DZ.Cutscenes {
 
             private static Random rand;
 
-            public TitleLogo() {
+            public TitleLogoDZ() {
                 rand = new Random();
                 sprite = new Sprite(GFX.Gui, "logo/logo");
                 renderPhase = 1;
@@ -184,13 +184,13 @@ namespace Celeste.Mod.DZ.Cutscenes {
         }
 
         private Player player;
-        private CS00_EndingMod basket;
-        private TitleLogo logo;
+        private CS00_EndingDZ basket;
+        private TitleLogoDZ logo;
         private Vector2 buttonTarget = new Vector2(1728, 972);
         private Vector2 buttonOffScreen = new Vector2(1728, 1188);
         private Vector2 buttonPos;
 
-        public CS00_Logo(Player player, CS00_EndingMod basket) {
+        public CS00_LogoDZ(Player player, CS00_EndingDZ basket) {
             this.player = player;
             this.basket = basket;
             Tag = Tags.HUD;
@@ -221,7 +221,7 @@ namespace Celeste.Mod.DZ.Cutscenes {
             yield return 2f;
             Add(new Coroutine(PanCamera(level)));
             yield return 3f;
-            logo = new TitleLogo();
+            logo = new TitleLogoDZ();
             Scene.Add(logo);
             yield return logo.EaseIn();
             // Celeste 64 boot title hit â€” play when logo lands

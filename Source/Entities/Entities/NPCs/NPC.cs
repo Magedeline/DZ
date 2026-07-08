@@ -620,10 +620,6 @@ namespace Celeste.Entities
             Add(Sprite = GFX.SpriteBank.Create("theo"));
             Sprite.CenterOrigin();
         }
-        protected override void OnTalk(global::Celeste.Player player)
-        {
-            TryAddCutscene(new Cs00Theo(player));
-        }
     }
 
     [CustomEntity("DZ/NPC01_DZ")]

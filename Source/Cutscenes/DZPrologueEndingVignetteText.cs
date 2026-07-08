@@ -3,17 +3,17 @@ using System.Runtime.CompilerServices;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace Celeste.Cutscenes;
+namespace Celeste.Mod.DZ.Cutscenes;
 
-public class PrologueEndingVignetteText : Entity
+public class DZPrologueEndingVignetteText : Entity
 {
     private FancyText.Text text;
 
     [MethodImpl(MethodImplOptions.NoInlining)]
-    public PrologueEndingVignetteText(bool instant)
+    public DZPrologueEndingVignetteText(bool instant)
     {
         base.Tag = Tags.HUD;
-        text = FancyText.Parse(Dialog.Clean("DZ_CH0_END_YOURDZ_CHOICE_MATTERS"), 960, 4, 0f);
+        text = FancyText.Parse(Dialog.Clean("DZ_CH0_END_YOUR_CHOICE_MATTERS"), 960, 4, 0f);
         Add(new Coroutine(Routine(instant)));
     }
 

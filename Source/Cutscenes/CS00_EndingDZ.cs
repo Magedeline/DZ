@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Runtime.CompilerServices;
+using Celeste.Mod.DZ.UI;
 using global::Celeste.Mod.DZ.Cutscenes;
 using FMOD.Studio;
 using Microsoft.Xna.Framework;
@@ -9,13 +10,16 @@ using Monocle;
 namespace Celeste.Cutscenes;
 
 [Tracked(false)]
-public class CS00_EndingMod : CutsceneEntity
+public class CS00_EndingDZ : CutsceneEntity
 {
     private class EndingCutsceneDelay : Entity
     {
+        private readonly CS00_EndingDZ basket;
+
         [MethodImpl(MethodImplOptions.NoInlining)]
-        public EndingCutsceneDelay()
+        public EndingCutsceneDelay(CS00_EndingDZ basket)
         {
+            this.basket = basket;
             Add(new Coroutine(Routine()));
         }
 
@@ -24,7 +28,7 @@ public class CS00_EndingMod : CutsceneEntity
             yield return 3f;
             Level level = Scene as Level;
             Player player = level.Tracker.GetEntity<Player>();
-            level.Add(new CS00_Logo(player, level.Tracker.GetEntity<CS00_EndingMod>()));
+            level.Add(new CS00_LogoDZ(player, basket));
         }
     }
 
@@ -36,12 +40,12 @@ public class CS00_EndingMod : CutsceneEntity
 
     private bool keyOffed;
 
-    private PrologueEndingVignetteText endingText;
+    private DZPrologueEndingVignetteText endingText;
 
     private TimeRateModifier timeRateModifier;
 
     [MethodImpl(MethodImplOptions.NoInlining)]
-    public CS00_EndingMod(Player player, Entities.BirdNPC bird, Entities.Bridge bridge)
+    public CS00_EndingDZ(Player player, Entities.BirdNPC bird, Entities.Bridge bridge)
         : base(fadeInOnSkip: false, endingChapterAfter: false)
     {
         this.player = player;
@@ -50,7 +54,7 @@ public class CS00_EndingMod : CutsceneEntity
         Add(timeRateModifier = new TimeRateModifier(1f, false));
     }
 
-    public CS00_EndingMod(Player player)
+    public CS00_EndingDZ(Player player)
         : base(fadeInOnSkip: false, endingChapterAfter: false)
     {
         this.player = player;
@@ -82,39 +86,42 @@ public class CS00_EndingMod : CutsceneEntity
         player.StateMachine.State = Player.StDummy;
         player.Facing = Facings.Right;
         yield return WaitFor(1f);
-        EventInstance instance = Audio.Play("event:/game/general/bird_in", bird.Position);
-        bird.Facing = Facings.Left;
-        bird.Sprite.Play("fall");
-        float percent = 0f;
-        Vector2 from = bird.Position;
-        Vector2 to = bird.StartPosition;
-        while (percent < 1f)
+        if (bird != null)
         {
-            bird.Position = from + (to - from) * Ease.QuadOut(percent);
-            Audio.Position(instance, bird.Position);
-            if (percent > 0.5f)
+            EventInstance instance = Audio.Play("event:/game/general/bird_in", bird.Position);
+            bird.Facing = Facings.Left;
+            bird.Sprite.Play("fall");
+            float percent = 0f;
+            Vector2 from = bird.Position;
+            Vector2 to = bird.StartPosition;
+            while (percent < 1f)
             {
-                bird.Sprite.Play("fly");
+                bird.Position = from + (to - from) * Ease.QuadOut(percent);
+                Audio.Position(instance, bird.Position);
+                if (percent > 0.5f)
+                {
+                    bird.Sprite.Play("fly");
+                }
+                percent += Engine.RawDeltaTime * 0.5f;
+                yield return null;
             }
-            percent += Engine.RawDeltaTime * 0.5f;
-            yield return null;
-        }
-        bird.Position = to;
-        Audio.Play("event:/game/general/bird_land_dirt", bird.Position);
-        Dust.Burst(bird.Position, -MathF.PI / 2f, 12, null);
-        bird.Sprite.Play("idle");
-        yield return WaitFor(0.5f);
-        bird.Sprite.Play("peck");
-        yield return WaitFor(1.1f);
-        yield return bird.ShowTutorial(new BirdTutorialGui(bird, new Vector2(0f, -16f), Dialog.Clean("tutorial_dash"), new Vector2(1f, -1f), "+", BirdTutorialGui.ButtonPrompt.Dash), caw: true);
-        while (true)
-        {
-            Vector2 aimVector = Input.GetAimVector();
-            if (aimVector.X > 0f && aimVector.Y < 0f && Input.Dash.Pressed)
+            bird.Position = to;
+            Audio.Play("event:/game/general/bird_land_dirt", bird.Position);
+            Dust.Burst(bird.Position, -MathF.PI / 2f, 12, null);
+            bird.Sprite.Play("idle");
+            yield return WaitFor(0.5f);
+            bird.Sprite.Play("peck");
+            yield return WaitFor(1.1f);
+            yield return bird.ShowTutorial(new BirdGonerTutorialGui(bird, new Vector2(0f, -16f), Dialog.Clean("tutorial_dash"), new Vector2(1f, -1f), "+", BirdGonerTutorialGui.ButtonPrompt.Dash), caw: true);
+            while (true)
             {
-                break;
+                Vector2 aimVector = Input.GetAimVector();
+                if (aimVector.X > 0f && aimVector.Y < 0f && Input.Dash.Pressed)
+                {
+                    break;
+                }
+                yield return null;
             }
-            yield return null;
         }
         player.StateMachine.State = Player.StBirdDashTutorial;
         player.Dashes = 0;
@@ -122,9 +129,15 @@ public class CS00_EndingMod : CutsceneEntity
         timeRateModifier.ResetTimeRateMultiplier();
         keyOffed = true;
         Audio.CurrentMusicEventInstance.triggerCue();
-        bird.Add(new Coroutine(bird.HideTutorial()));
+        if (bird != null)
+        {
+            bird.Add(new Coroutine(bird.HideTutorial()));
+        }
         yield return 0.25f;
-        bird.Add(new Coroutine(bird.StartleAndFlyAway()));
+        if (bird != null)
+        {
+            bird.Add(new Coroutine(bird.StartleAndFlyAway()));
+        }
         while (!player.Dead && !player.OnGround())
         {
             yield return null;
@@ -132,7 +145,7 @@ public class CS00_EndingMod : CutsceneEntity
         yield return 2f;
         Audio.SetMusic("event:/pusheen/music/lvl0/title_ping", true, true);
         yield return 2f;
-        endingText = new PrologueEndingVignetteText(instant: false);
+        endingText = new DZPrologueEndingVignetteText(instant: true);
         Scene.Add(endingText);
         Snow bgSnow = level.Background.Get<Snow>();
         Snow fgSnow = level.Foreground.Get<Snow>();
@@ -207,13 +220,13 @@ public class CS00_EndingMod : CutsceneEntity
             {
                 level.Remove(endingText);
             }
-            level.Add(endingText = new PrologueEndingVignetteText(instant: true));
+            level.Add(endingText = new DZPrologueEndingVignetteText(instant: true));
             endingText.Position = new Vector2(960f, 540f);
             level.Camera.Y = level.Bounds.Top - 3900;
         }
         level.PauseLock = true;
         level.Entities.FindFirst<SpeedrunTimerDisplay>().CompleteTimer = 10f;
-        level.Add(new EndingCutsceneDelay());
+        level.Add(new EndingCutsceneDelay(this));
     }
 }
 

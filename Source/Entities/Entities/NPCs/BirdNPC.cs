@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Runtime.CompilerServices;
 using Celeste.Cutscenes;
+using Celeste.Mod.DZ.UI;
 using Microsoft.Xna.Framework;
 using Monocle;
 
@@ -76,7 +77,7 @@ public class BirdNPC : Actor
 
     private Modes mode;
 
-    private BirdTutorialGui gui;
+    private Entity gui;
 
     private Level level;
 
@@ -227,16 +228,17 @@ public class BirdNPC : Actor
     }
 
     [MethodImpl(MethodImplOptions.NoInlining)]
-    public IEnumerator ShowTutorial(BirdTutorialGui gui, bool caw = false)
+    public IEnumerator ShowTutorial(Entity gui, bool caw = false)
     {
         if (caw)
         {
             yield return Caw();
         }
         this.gui = gui;
-        gui.Open = true;
+        dynamic g = gui;
+        g.Open = true;
         Scene.Add(gui);
-        while (gui.Scale < 1f)
+        while (g.Scale < 1f)
         {
             yield return null;
         }
@@ -246,8 +248,9 @@ public class BirdNPC : Actor
     {
         if (gui != null)
         {
-            gui.Open = false;
-            while (gui.Scale > 0f)
+            dynamic g = gui;
+            g.Open = false;
+            while (g.Scale > 0f)
             {
                 yield return null;
             }
@@ -336,12 +339,12 @@ public class BirdNPC : Actor
         {
             yield return null;
         }
-        Scene.Add(new CS00_EndingMod(player, this, bridge));
+        Scene.Add(new CS00_EndingDZ(player, this, bridge));
     }
 
     private IEnumerator DreamJumpTutorial()
     {
-        yield return ShowTutorial(new BirdTutorialGui(this, new Vector2(0f, -16f), Dialog.Clean("tutorial_dreamjump"), new Vector2(1f, 0f), "+", BirdTutorialGui.ButtonPrompt.Jump), caw: true);
+        yield return ShowTutorial(new BirdGonerTutorialGui(this, new Vector2(0f, -16f), Dialog.Clean("tutorial_dreamjump"), new Vector2(1f, 0f), "+", BirdTutorialGui.ButtonPrompt.Jump), caw: true);
         while (true)
         {
             Player entity = Scene.Tracker.GetEntity<Player>();
@@ -369,8 +372,8 @@ public class BirdNPC : Actor
         Facing = Facings.Right;
         yield return 0.25f;
         bool caw = true;
-        BirdTutorialGui tut1 = new BirdTutorialGui(this, new Vector2(0f, -16f), GFX.Gui["hyperjump/tutorial00"], Dialog.Clean("TUTORIAL_DASH"), new Vector2(0f, -1f));
-        BirdTutorialGui tut2 = new BirdTutorialGui(this, new Vector2(0f, -16f), GFX.Gui["hyperjump/tutorial01"], Dialog.Clean("TUTORIAL_DREAMJUMP"));
+        BirdGonerTutorialGui tut1 = new BirdGonerTutorialGui(this, new Vector2(0f, -16f), GFX.Gui["hyperjump/tutorial00"], Dialog.Clean("TUTORIAL_DASH"), new Vector2(0f, -1f));
+        BirdGonerTutorialGui tut2 = new BirdGonerTutorialGui(this, new Vector2(0f, -16f), GFX.Gui["hyperjump/tutorial01"], Dialog.Clean("TUTORIAL_DREAMJUMP"));
         Player entity;
         do
         {
@@ -378,9 +381,9 @@ public class BirdNPC : Actor
             Sprite.Play("idleRarePeck");
             yield return 2f;
             gui = tut2;
-            gui.Open = true;
-            gui.Scale = 1f;
-            Scene.Add(gui);
+            tut2.Open = true;
+            tut2.Scale = 1f;
+            Scene.Add(tut2);
             yield return null;
             tut1.Open = false;
             tut1.Scale = 0f;

@@ -465,24 +465,24 @@ public static class AreaMapData
 
     private static void ApplyHardcodedRuntimeData(AreaData area, ChapterDef chapter)
     {
-        Logger.Log(LogLevel.Info, "DZ",
+        Logger.Log(LogLevel.Verbose, "DZ",
             $"ApplyHardcodedRuntimeData: Chapter {chapter.Number} ({chapter.Name}), SID: {area.SID}");
 
         area.Name = chapter.Name;
-        Logger.Log(LogLevel.Info, "DZ", "  -> past Name");
+        Logger.Log(LogLevel.Verbose, "DZ", "  -> past Name");
         area.Icon = ResolveChapterIconPath(chapter);
-        Logger.Log(LogLevel.Info, "DZ", "  -> past Icon");
+        Logger.Log(LogLevel.Verbose, "DZ", "  -> past Icon");
         area.Interlude_Safe = chapter.IsInterlude;
-        Logger.Log(LogLevel.Info, "DZ", "  -> past Interlude_Safe");
+        Logger.Log(LogLevel.Verbose, "DZ", "  -> past Interlude_Safe");
 
         // Build and apply a vanilla MapMeta so the Everest meta pipeline is
         // exercised for overworld cameras, fog, audio state, and mode properties.
         // This makes DZ chapters behave identically to vanilla/Everest-modded chapters.
         MapMeta meta = BuildMapMeta(chapter, area);
-        Logger.Log(LogLevel.Info, "DZ", "  -> past BuildMapMeta");
+        Logger.Log(LogLevel.Verbose, "DZ", "  -> past BuildMapMeta");
 
         meta.ApplyTo(area);
-        Logger.Log(LogLevel.Info, "DZ", "  -> past meta.ApplyTo");
+        Logger.Log(LogLevel.Verbose, "DZ", "  -> past meta.ApplyTo");
 
         // Hard-override mountain cameras and state after ApplyTo so our code-defined
         // positions always win over anything already stored in area.Meta at load time.

@@ -17,7 +17,7 @@ public class CS19_KillTheBird : CutsceneEntity
 
     private CharaDummy chara;
 
-    private EnhancedBirdNPC bird;
+    private BirdNPC bird;
 
     private Vector2 birdWaitPosition;
 
@@ -141,7 +141,7 @@ public class CS19_KillTheBird : CutsceneEntity
         yield return 0.8f;
         Audio.Play("event:/new_content/game/10_farewell/bird_crashscene_recover", flingBird.Position);
         flingBird.RemoveSelf();
-        Scene.Add(bird = new EnhancedBirdNPC(flingBird.Position, EnhancedBirdNPC.Modes.HoverNGrab));
+        Scene.Add(bird = new BirdNPC(flingBird.Position, BirdNPC.Modes.None));
         bird.Facing = Facings.Right;
         bird.Sprite.Play("recover");
         yield return 0.6f;
@@ -172,7 +172,7 @@ public class CS19_KillTheBird : CutsceneEntity
         snapshot = Audio.CreateSnapshot("snapshot:/game_10_bird_wings_silenced");
         yield return 0.8f;
         bird.RemoveSelf();
-        Scene.Add(bird = new EnhancedBirdNPC(birdWaitPosition, EnhancedBirdNPC.Modes.WaitForLightningOff));
+        Scene.Add(bird = new BirdNPC(birdWaitPosition, BirdNPC.Modes.WaitForLightningOff));
         bird.Facing = Facings.Right;
         bird.FlyAwayUp = false;
         bird.WaitForLightningPostDelay = 1f;
@@ -294,7 +294,7 @@ public class CS19_KillTheBird : CutsceneEntity
             {
                 bird.RemoveSelf();
             }
-            base.Scene.Add(bird = new EnhancedBirdNPC(birdWaitPosition, EnhancedBirdNPC.Modes.WaitForLightningOff));
+            base.Scene.Add(bird = new BirdNPC(birdWaitPosition, BirdNPC.Modes.WaitForLightningOff));
             bird.Facing = Facings.Right;
             bird.FlyAwayUp = false;
             bird.WaitForLightningPostDelay = 1f;

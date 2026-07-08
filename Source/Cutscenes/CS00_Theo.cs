@@ -1,260 +1,98 @@
-namespace Celeste.Cutscenes
+using System;
+using System.Collections;
+using System.Runtime.CompilerServices;
+using Microsoft.Xna.Framework;
+using Monocle;
+
+namespace Celeste;
+
+public class CS00_Theo : CutsceneEntity
 {
-    /// <summary>
-    /// Chapter 0 cutscene featuring Theo
-    /// Initial interaction cutscene with Theo character
-    /// </summary>
-    [HotReloadable]
-    [Tracked]
-    public class Cs00Theo : CutsceneEntity
+    public const string Flag = "theo";
+
+    private NPC00_Theo theo;
+
+    private Player player;
+
+    private Vector2 endPlayerPosition;
+
+    private Coroutine zoomCoroutine;
+
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    public CS00_Theo(NPC00_Theo theo, Player player)
     {
-        #region Constants
-        public const string FLAG = "theo_00_house";
-        private const float player_walk_distance = 48f;
-        private const float initial_walk_distance = 20f;
-        private const float zoom_level = 2f;
-        private const float camera_transition_time = 0.5f;
-        #endregion
+        this.theo = theo;
+        this.player = player;
+        endPlayerPosition = theo.Position + new Vector2(48f, 0f);
+    }
 
-        #region Fields
-        private Vector2 playerEndPosition = Vector2.Zero;
-        private Coroutine cameraRoutine;
-        private Vector2 initialFocusPoint = new Vector2(210f, 90f);
-        private Vector2 distanceFocusPoint = new Vector2(210f, 100f);
-        private readonly global::Celeste.Player player;
-        #endregion
+    public override void OnBegin(Level level)
+    {
+        Add(new Coroutine(Cutscene()));
+    }
 
-        #region Constructor
-        public Cs00Theo(global::Celeste.Player player) : base(false, true)
+    private IEnumerator Cutscene()
+    {
+        player.StateMachine.State = 11;
+        if (Math.Abs(player.X - theo.X) < 20f)
         {
-            this.player = player ?? throw new ArgumentNullException(nameof(player));
+            yield return player.DummyWalkTo(theo.X - 48f);
         }
-        #endregion
+        player.Facing = Facings.Right;
+        yield return 0.5f;
+        yield return Textbox.Say("DZ_CH0_THEO_A", Meet, RunAlong, OminousZoom, PanToMaddy);
+        yield return Level.ZoomBack(0.5f);
+        EndCutscene(Level);
+    }
 
-        #region Overrides
-        public override void Awake(Scene scene)
+    private IEnumerator Meet()
+    {
+        yield return 0.25f;
+        theo.Sprite.Scale.X = Math.Sign(player.X - theo.X);
+        yield return player.DummyWalkTo(theo.X - 20f);
+        theo.Sprite.Scale.X = 1f;
+        yield return 0.8f;
+    }
+
+    private IEnumerator RunAlong()
+    {
+        yield return player.DummyWalkToExact((int)endPlayerPosition.X);
+        yield return 0.8f;
+        player.Facing = Facings.Left;
+        yield return 0.4f;
+        theo.Sprite.Scale.X = 1f;
+        yield return Level.ZoomTo(new Vector2(210f, 90f), 2f, 0.5f);
+        yield return 0.2f;
+    }
+
+    private IEnumerator OminousZoom()
+    {
+        Vector2 screenSpaceFocusPoint = new Vector2(210f, 100f);
+        zoomCoroutine = new Coroutine(Level.ZoomAcross(screenSpaceFocusPoint, 4f, 3f));
+        Add(zoomCoroutine);
+        theo.Sprite.Play("idle");
+        yield return 0.2f;
+    }
+
+    private IEnumerator PanToMaddy()
+    {
+        while (zoomCoroutine != null && zoomCoroutine.Active)
         {
-            try
-            {
-                base.Awake(scene);
-
-                if (player != null)
-                {
-                    playerEndPosition = player.Position + new Vector2(player_walk_distance, 0f);
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.Log(LogLevel.Error, "DZ", $"Error in CS00_Theo.Awake: {ex}");
-            }
-        }
-
-        public override void OnBegin(Level level)
-        {
-            Add(new Coroutine(cutscene(level)));
-        }
-
-        public override void OnEnd(Level level)
-        {
-            try
-            {
-                CutsceneManager.ResetPlayerState(player);
-                restorePlayerState();
-                resetCamera();
-                // no base.OnEnd call because CutsceneEntity.OnEnd is abstract
-            }
-            catch (Exception ex)
-            {
-                Logger.Log(LogLevel.Error, "DZ", $"Error in CS00_Theo.OnEnd: {ex}");
-            }
-        }
-
-        public override void Removed(Scene scene)
-        {
-            try
-            {
-                cleanupCameraRoutine();
-                base.Removed(scene);
-            }
-            catch (Exception ex)
-            {
-                Logger.Log(LogLevel.Error, "DZ", $"Error in CS00_Theo.Removed: {ex}");
-                base.Removed(scene);
-            }
-        }
-        #endregion
-
-        #region Cutscene Sequence Methods
-        private IEnumerator cutscene(Level level)
-        {
-            yield return initialSetup();
-            yield return firstDialogue();
-            yield return secondDialogue();
-            yield return concludeScene(level);
-        }
-
-        private IEnumerator initialSetup()
-        {
-            SetupPlayer();
-            yield return 0.3f;
-
-            // Initial movement and greeting
-            if (player != null)
-            {
-                yield return player.DummyWalkTo(player.X + initial_walk_distance);
-                player.Facing = Facings.Right;
-            }
-            yield return 0.5f;
-        }
-
-        private IEnumerator firstDialogue()
-        {
-            // First dialogue with interactive functions
-            yield return Textbox.Say("DZ_CH0_THEO_A",
-                walkCloser,
-                walkTogether,
-                zoomToDistance,
-                panToPlayer);
-        }
-
-        private IEnumerator secondDialogue()
-        {
-            // Second part of conversation
-            yield return Textbox.Say("DZ_CH0_THEO_B", finalInteraction);
-            yield return 0.3f;
-        }
-
-        private IEnumerator concludeScene(Level level)
-        {
-            // Set completion flag
-            level.Session.SetFlag(FLAG);
-
-            // End the cutscene
-            EndCutscene(level);
             yield return null;
         }
-        #endregion
+        yield return 0.2f;
+        yield return Level.ZoomAcross(new Vector2(210f, 90f), 2f, 0.5f);
+        yield return 0.2f;
+    }
 
-        #region Textbox Interaction Methods
-        private IEnumerator walkCloser()
-        {
-            yield return 0.25f;
-            if (player != null)
-            {
-                yield return player.DummyWalkTo(player.X - initial_walk_distance);
-                player.Facing = Facings.Right;
-            }
-            yield return 0.8f;
-        }
-
-        private IEnumerator walkTogether()
-        {
-            if (player != null)
-            {
-                yield return player.DummyWalkToExact((int)playerEndPosition.X);
-                yield return 0.8f;
-                player.Facing = Facings.Left;
-            }
-            yield return 0.4f;
-
-            // Camera work
-            if (Level != null)
-            {
-                yield return Level.ZoomTo(initialFocusPoint, zoom_level, camera_transition_time);
-            }
-            yield return 0.2f;
-        }
-
-        private IEnumerator zoomToDistance()
-        {
-            if (Level != null)
-            {
-                cameraRoutine = new Coroutine(Level.ZoomAcross(distanceFocusPoint, 4f, 3f));
-                Add(cameraRoutine);
-            }
-            yield return 0.2f;
-        }
-
-        private IEnumerator panToPlayer()
-        {
-            // Wait for camera routine to finish
-            while (cameraRoutine != null && cameraRoutine.Active)
-            {
-                yield return null;
-            }
-
-            yield return 0.2f;
-            if (Level != null)
-            {
-                yield return Level.ZoomAcross(initialFocusPoint, zoom_level, camera_transition_time);
-            }
-            yield return 0.2f;
-        }
-
-        private IEnumerator finalInteraction()
-        {
-            yield return 0.25f;
-            if (player != null)
-            {
-                player.Facing = Facings.Right;
-            }
-            yield return 0.5f;
-        }
-        #endregion
-
-        #region Helper Methods
-        private void SetupPlayer()
-        {
-            if (player == null) return;
-
-            try
-            {
-                player.StateMachine.State = Player.StDummy; // dummy state used across cutscenes
-                player.StateMachine.Locked = true;
-            }
-            catch
-            {
-            }
-
-            player.ForceCameraUpdate = true;
-            player.DummyAutoAnimate = true;
-            player.DummyGravity = true;
-        }
-
-        private void restorePlayerState()
-        {
-            if (player == null) return;
-
-            player.StateMachine.Locked = false;
-            player.StateMachine.State = Player.StNormal; // StNormal
-            player.ForceCameraUpdate = false;
-            player.DummyAutoAnimate = true;
-            player.DummyGravity = true;
-            player.Speed = Vector2.Zero;
-            player.Position = new Vector2(playerEndPosition.X, player.Position.Y);
-            player.Facing = Facings.Left;
-        }
-
-        private void resetCamera()
-        {
-            if (Level != null)
-            {
-                Level.ResetZoom();
-            }
-        }
-
-        private void cleanupCameraRoutine()
-        {
-            if (cameraRoutine != null && cameraRoutine.Active)
-            {
-                cameraRoutine.RemoveSelf();
-                cameraRoutine = null;
-            }
-        }
-        #endregion
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    public override void OnEnd(Level level)
+    {
+        theo.Sprite.Scale.X = 1f;
+        player.Position.X = endPlayerPosition.X;
+        player.Facing = Facings.Left;
+        player.StateMachine.State = 0;
+        level.Session.SetFlag("theo");
+        level.ResetZoom();
     }
 }
-
-
-
-

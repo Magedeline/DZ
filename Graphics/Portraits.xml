@@ -88,7 +88,7 @@
     <Loop id="talk_cry" path="cry" delay="0.2" frames="0" />-->
   </DZ_portrait_madeline>
 
-  <portrait_ralsei path="DZ/ralsei/" sfx="ralsy" textbox="DZ/default">
+  <portrait_ralsei path="DZ/ralsei/" sfx="DZ/ralsei" textbox="DZ/default">
     <Center />
 
 	<sfxs>
@@ -167,7 +167,7 @@
     <Loop id="talk_cry" path="cry" delay="0.2" frames="0" />-->
   </portrait_ralsei>
 
-  <portrait_kirby path="DZ/kirby/" sfx="kirby" textbox="DZ/kirby">
+  <portrait_kirby path="DZ/kirby/" sfx="DZ/kirby" textbox="DZ/kirby">
     <Center />
 
       <sfxs>
@@ -308,7 +308,7 @@
 		<Loop id="talk_distracted" path="distracted" delay="0.2" frames="4,6,5,0" />
 	</portrait_madeline_phone>
 
-	<portrait_madeline_mirror path="DZ/madelinemirror/" sfx="madeline_mirror" textbox="madeline">
+	<portrait_madeline_mirror path="madelinemirror/" sfx="madeline_mirror" textbox="madeline">
 		<Center />
 
 		<sfxs>
@@ -406,7 +406,7 @@
     <Loop id="talk_laugh" path="laugh" delay="0.1" frames="0-3" />
   </portrait_granny>
 
-  <portrait_theo path="DZ/theo/" sfx="theo" textbox="theo">
+  <portrait_theo path="theo/" sfx="theo" textbox="theo">
     <Center />
 
     <sfxs>
@@ -596,7 +596,7 @@
 
   </portrait_susiehaltmann>
 
-  <portrait_gaster path="DZ/gaster/" sfx="secretDZ_CHaracter" textbox="DZ/default">
+  <portrait_gaster path="DZ/gaster/" sfx="DZ/secret_CHaracter" textbox="DZ/default">
     <Center />
 
     <sfxs>
@@ -654,7 +654,7 @@
     <Loop id="talk_concerned" path="concerned" delay="0.2" frames="4,6,5,0" />
   </portrait_mom>
 		
-  <portrait_asgore path="DZ/asgore/" sfx="asgore" textbox="DZ/default">
+  <portrait_asgore path="DZ/asgore/" sfx="DZ/asgore" textbox="DZ/default">
     <Center />
 
     <sfxs>
@@ -686,7 +686,7 @@
 
   </portrait_asgore>
 
-  <portrait_starsie path="DZ/starsie/" sfx="starsie" textbox="DZ/default">
+  <portrait_starsie path="DZ/starsie/" sfx="DZ/starsie" textbox="DZ/default">
     <Center />
 
     <sfxs>
@@ -722,7 +722,7 @@
 
   </portrait_starsie>
 
-  <portrait_asriel path="DZ/asriel/" sfx="asriel" textbox="DZ/default">
+  <portrait_asriel path="DZ/asriel/" sfx="DZ/asriel" textbox="DZ/default">
     <Center />
 
     <sfxs>
@@ -805,7 +805,7 @@
 
   </portrait_Magolor>
 
-  <portraitDZ_CHara path="DZ/chara/" sfx="chara" textbox="DZ/default">
+  <portraitDZ_CHara path="DZ/chara/" sfx="DZ/chara" textbox="DZ/default">
     <Center />
 
     <sfxs>
@@ -1074,7 +1074,7 @@
 
   </portraitDZ_CHara>
 
-<portrait_sans path="DZ/sans/" sfx="sans" textbox="default">
+<portrait_sans path="DZ/sans/" sfx="DZ/sans" textbox="default">
     <Center />
 
     <sfxs>
@@ -1116,7 +1116,7 @@
 
   </portrait_sans>
 
-<portrait_papyrus path="DZ/papyrus/" sfx="papyrus" textbox="default">
+<portrait_papyrus path="DZ/papyrus/" sfx="DZ/papyrus" textbox="default">
     <Center />
 
     <sfxs>
@@ -1170,7 +1170,7 @@
 
   </portrait_papyrus>
 
-<portrait_toriel path="DZ/toriel/" sfx="toriel" textbox="default">
+<portrait_toriel path="DZ/toriel/" sfx="DZ/toriel" textbox="default">
     <Center />
 
     <sfxs>
@@ -1206,7 +1206,7 @@
 
   </portrait_toriel>
 
-<portrait_alphy path="DZ/alphy/" sfx="alphy" textbox="default">
+<portrait_alphy path="DZ/alphy/" sfx="DZ/alphy" textbox="default">
     <Center />
 
     <sfxs>
@@ -1353,7 +1353,7 @@
     <Loop id="talk_sidesuspicious" path="sidesuspicious" delay="0.2" frames="5,7,6,0" />
   </portrait_oshiro>
   
-  <portrait_flowey path="DZ/flowey/" sfx="flowey" textbox="default">
+  <portrait_flowey path="DZ/flowey/" sfx="DZ/flowey" textbox="default">
     <Center />
 
         <sfxs>
@@ -1449,7 +1449,7 @@
     <Loop id="peaceful" path="peaceful" delay="0.1" frames="0-1" />
   </portrait_webcam_flowey>
   
-<portrait_webcam_kirby path="DZ/kirby/" sfx="kirby_webcam" textbox="kirby" glitchy="true">
+<portrait_webcam_kirby path="DZ/kirby/" sfx="DZ/kirby_webcam" textbox="kirby" glitchy="true">
     <Center />
 
       <sfxs>
@@ -1547,13 +1547,13 @@
   </portrait_webcam_kirby>
 
   <!-- Alias portraits used in ch21 dialog that don't yet have dedicated art -->
-  <portrait_madeline_spirit copy="DZ_portrait_madeline" path="DZ/madeline/" sfx="madeline" textbox="madeline">
+  <portrait_madeline_spirit copy="portrait_madeline" path="madeline/" sfx="madeline" textbox="madeline">
   </portrait_madeline_spirit>
 
-  <portrait_badeline_spirit copy="portrait_badeline" path="DZ/ghost/" sfx="badeline" textbox="badeline">
+  <portrait_badeline_spirit copy="portrait_badeline" path="ghost/" sfx="badeline" textbox="badeline">
   </portrait_badeline_spirit>
 
-  <portrait_seven_goner copy="portrait_kirby" path="DZ/kirby/" sfx="kirby" textbox="DZ/kirby">
+  <portrait_seven_goner copy="portrait_kirby" path="DZ/kirby/" sfx="DZ/kirby" textbox="DZ/kirby">
   </portrait_seven_goner>
 
 </Sprites>

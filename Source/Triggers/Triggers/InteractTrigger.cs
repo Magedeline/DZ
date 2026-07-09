@@ -12,6 +12,7 @@ public abstract class IngesteInteractTrigger : Entity
   private int eventIndex;
   private float timeout;
   private bool used;
+  private bool pendingRemove;
 
   protected IngesteInteractTrigger() : base(Vector2.Zero)
   {
@@ -88,7 +89,7 @@ public abstract class IngesteInteractTrigger : Entity
 
     if (this.eventIndex >= this.Events.Count)
     {
-      this.RemoveSelf();
+      pendingRemove = true;
     }
     else
     {
@@ -100,11 +101,17 @@ public abstract class IngesteInteractTrigger : Entity
 
   public override void Update()
   {
+    if (pendingRemove)
+    {
+      RemoveSelf();
+      return;
+    }
+
     if (this.used)
     {
       this.timeout -= Engine.DeltaTime;
       if ((double)this.timeout <= 0.0)
-        this.RemoveSelf();
+        pendingRemove = true;
     }
     else
     {
@@ -112,7 +119,7 @@ public abstract class IngesteInteractTrigger : Entity
              (this.Scene as Level).Session.GetFlag("it_" + this.Events[this.eventIndex]))
         ++this.eventIndex;
       if (this.eventIndex >= this.Events.Count)
-        this.RemoveSelf();
+        pendingRemove = true;
     }
 
     base.Update();

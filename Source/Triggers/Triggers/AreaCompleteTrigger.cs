@@ -15,12 +15,19 @@ namespace Celeste.Triggers
         private readonly bool skipCredits = data.Bool("skipCredits", false);
         private readonly bool triggerOnce = data.Bool("triggerOnce", true);
         private bool hasTriggered = false;
+        private bool pendingRemove;
         private Level level;
 
         public override void Added(Scene scene)
         {
             base.Added(scene);
             level = scene as Level;
+        }
+
+        public override void Update()
+        {
+            base.Update();
+            if (pendingRemove) RemoveSelf();
         }
 
         public override void OnEnter(global::Celeste.Player player)
@@ -55,7 +62,7 @@ namespace Celeste.Triggers
             // Remove this trigger to prevent re-triggering
             if (triggerOnce)
             {
-                RemoveSelf();
+                pendingRemove = true;
             }
         }
     }

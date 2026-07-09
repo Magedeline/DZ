@@ -119,6 +119,7 @@ namespace Celeste.Entities
         private bool startEncounter;
         private bool triggerOnce;
         private bool triggered;
+        private bool pendingRemove;
         
         #endregion
         
@@ -192,7 +193,13 @@ namespace Celeste.Entities
                 triggered = true;
 
             if (matchedBoss && triggerOnce)
-                RemoveSelf();
+                pendingRemove = true;
+        }
+
+        public override void Update()
+        {
+            base.Update();
+            if (pendingRemove) RemoveSelf();
         }
         
         #endregion
@@ -210,6 +217,7 @@ namespace Celeste.Entities
         private int damage;
         private float cooldown;
         private bool removeAfterHit;
+        private bool pendingRemoveDmg;
         
         private float cooldownTimer = 0f;
         
@@ -231,6 +239,7 @@ namespace Celeste.Entities
         public override void Update()
         {
             base.Update();
+            if (pendingRemoveDmg) { RemoveSelf(); return; }
             
             if (cooldownTimer > 0f)
             {
@@ -254,7 +263,7 @@ namespace Celeste.Entities
                 
                 if (removeAfterHit)
                 {
-                    RemoveSelf();
+                    pendingRemoveDmg = true;
                 }
             }
         }
@@ -276,6 +285,7 @@ namespace Celeste.Entities
         private bool onlyOnce;
         
         private bool used = false;
+        private bool pendingRemoveHeal;
         
         #endregion
         
@@ -324,8 +334,14 @@ namespace Celeste.Entities
             
             if (removeAfterUse)
             {
-                RemoveSelf();
+                pendingRemoveHeal = true;
             }
+        }
+
+        public override void Update()
+        {
+            base.Update();
+            if (pendingRemoveHeal) RemoveSelf();
         }
         
         #endregion

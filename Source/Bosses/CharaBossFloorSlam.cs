@@ -18,6 +18,7 @@ public class CharaBossFloorSlam : Entity
     private Level level;
     private bool dead;
     private bool hasLanded;
+    private bool pendingRemoveSelf;
     private readonly Sprite sprite;
 
     // Sub-entity: the horizontal shockwave shard
@@ -26,6 +27,7 @@ public class CharaBossFloorSlam : Entity
         private float life;
         private readonly float dir; // +1 or -1
         private float cantKillTimer;
+        private bool pendingRemove;
         private CharaBoss boss;
 
         public Shockwave(Vector2 origin, float direction, CharaBoss boss)
@@ -43,6 +45,7 @@ public class CharaBossFloorSlam : Entity
         public override void Update()
         {
             base.Update();
+            if (pendingRemove) { RemoveSelf(); return; }
             if (cantKillTimer > 0f) cantKillTimer -= Engine.DeltaTime;
             life -= Engine.DeltaTime;
             if (life <= 0f) { RemoveSelf(); return; }
@@ -62,7 +65,7 @@ public class CharaBossFloorSlam : Entity
             if (cantKillTimer <= 0f)
                 player.Die((player.Center - Position).SafeNormalize());
             else
-                RemoveSelf();
+                pendingRemove = true;
         }
     }
 
@@ -122,7 +125,7 @@ public class CharaBossFloorSlam : Entity
         base.Added(scene);
         level = SceneAs<Level>();
         if (boss != null && boss.Moving)
-            RemoveSelf();
+            pendingRemoveSelf = true;
     }
 
     public override void Removed(Scene scene)
@@ -134,6 +137,7 @@ public class CharaBossFloorSlam : Entity
     public override void Update()
     {
         base.Update();
+        if (pendingRemoveSelf) { RemoveSelf(); return; }
         if (dead || hasLanded) return;
 
         Y += FallSpeed * Engine.DeltaTime;

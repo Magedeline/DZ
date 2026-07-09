@@ -26,7 +26,13 @@ namespace DZ
     {
         // ── Manual Hook references (must be stored so they aren't GC'd) ──────────
         private static Hook dashBeginHook;
-        private static Hook wallJumpHook;
+
+        // ── IL Hook reference for WallJump (worked example: On/Hook → IL) ──────
+        // Stored in a static field so the ILHook isn't GC'd mid-game.
+        // ILHook is the IL equivalent of Hook — used when IL.* delegate events
+        // don't exist (e.g. for private methods like Player.WallJump).
+        private static ILHook wallJumpILHook;
+
         private static On.Celeste.Level.hook_LoadLevel levelLoadLevelHook;
         private static Hook levelTemplateCctorHook;
         private static On.Celeste.Level.hook_Update levelUpdateHook;
@@ -72,8 +78,16 @@ namespace DZ
                     $"[MonoModHooks] Failed to hook Player.DashBegin: {ex.Message}");
             }
 
-            // ─── 3. Manual Hook on WallJump (another private method) ─────
-            // Modifies wall-jump behavior when Kirby has a copy ability active.
+            // ─── 3. IL Hook on WallJump (private method — worked example) ─────
+            // Previously this used a manual Hook (On-style wrapper). Now we use
+            // an ILHook to surgically inject the speed multiplier right before
+            // each 'ret' instruction inside Player.WallJump, without having to
+            // call/replace the entire method.
+            //
+            // ILHook is the IL equivalent of Hook: because Player.WallJump is
+            // private, the generated IL.Celeste.Player.WallJump event doesn't
+            // exist, so we must use ILHook + reflection, just like we do with
+            // Hook for On.* hooks on private methods.
             try
             {
                 MethodInfo wallJump = typeof(Player).GetMethod(
@@ -82,25 +96,21 @@ namespace DZ
 
                 if (wallJump != null)
                 {
-                    wallJumpHook = new Hook(
-                        wallJump,
-                        typeof(MonoModHooks).GetMethod(
-                            nameof(Hook_Player_WallJump),
-                            BindingFlags.Static | BindingFlags.NonPublic));
+                    wallJumpILHook = new ILHook(wallJump, IL_Player_WallJump);
 
                     Logger.Log(LogLevel.Info, "DZ",
-                        "[MonoModHooks] Manual Hook on Player.WallJump registered");
+                        "[MonoModHooks] IL Hook on Player.WallJump registered");
                 }
                 else
                 {
                     Logger.Log(LogLevel.Warn, "DZ",
-                        "[MonoModHooks] Player.WallJump not found — skipping manual hook");
+                        "[MonoModHooks] Player.WallJump not found — skipping IL hook");
                 }
             }
             catch (Exception ex)
             {
                 Logger.Log(LogLevel.Warn, "DZ",
-                    $"[MonoModHooks] Failed to hook Player.WallJump: {ex.Message}");
+                    $"[MonoModHooks] Failed to IL-hook Player.WallJump: {ex.Message}");
             }
 
             // ─── 3. OuiMapList null-MapData guard ───────────────────────────
@@ -226,8 +236,9 @@ namespace DZ
             dashBeginHook?.Dispose();
             dashBeginHook = null;
 
-            wallJumpHook?.Dispose();
-            wallJumpHook = null;
+            // Dispose the IL hook for WallJump (un-detours the method)
+            wallJumpILHook?.Dispose();
+            wallJumpILHook = null;
 
             // Remove entity name remapping hook
             if (levelLoadLevelHook != null)
@@ -351,26 +362,113 @@ namespace DZ
 
 
         // =====================================================================
-        //  3.  MANUAL HOOK — Player.WallJump (private method)
+        //  3.  IL HOOK — Player.WallJump (private method)  [Worked Example]
         // =====================================================================
         //
-        //  Adjusts wall-jump force when Kirby has certain copy abilities.
-        //  For example, Wing gives extra horizontal boost; Stone reduces it.
+        //  This is the IL-hook version of the previous manual Hook.  Instead of
+        //  wrapping the entire method and calling orig(), we surgically inject
+        //  the speed multiplier right before each 'ret' instruction inside the
+        //  compiled body of Player.WallJump.
+        //
+        //  WHY IL HERE?
+        //  The old Hook worked fine, but it had to call orig() and THEN modify
+        //  Speed — meaning the original WallJump code ran fully, then we
+        //  patched the result.  The IL hook lets us modify Speed *in-place*
+        //  as the method is about to return, with zero extra method calls on
+        //  the hot path and no delegate indirection for the normal (non-Kirby)
+        //  case.
+        //
+        //  HOW IT WORKS — step by step:
+        //
+        //  1.  We receive an ILContext `il` — the compiled instruction stream
+        //      of Player.WallJump, already disassembled for us by MonoMod.
+        //
+        //  2.  We create an ILCursor to walk through instructions.
+        //
+        //  3.  Player.WallJump returns void, so at every `ret` instruction the
+        //      evaluation stack is empty.  To access `this` (the Player) we
+        //      must explicitly load it with `ldarg.0` before calling our
+        //      delegate.  This is the key stack-balancing rule from the guide:
+        //      every code path must leave the stack as the JIT expects.
+        //
+        //  4.  Before each `ret`, we emit:
+        //        ldarg.0                          // push 'this' (Player)
+        //        call Action<Player> delegate     // pop Player, run modifier
+        //     The delegate pops Player (consuming ldarg.0) and returns void,
+        //     so the stack is empty again — safe to `ret`.
+        //
+        //  5.  We wrap everything in try/catch because a bad IL edit will
+        //      throw InvalidProgramException on every frame and crash the game.
         //
         // =====================================================================
 
+        /* ── Previous manual Hook version (kept for reference) ──────────────
         private delegate void orig_WallJump(Player self, int dir);
 
         private static void Hook_Player_WallJump(orig_WallJump orig, Player self, int dir)
         {
-            // Call the original wall jump
             orig(self, dir);
+            // ... then multiply self.Speed.X / .Y based on copy ability
+        }
+        ──────────────────────────────────────────────────────────────────── */
 
+        private static void IL_Player_WallJump(ILContext il)
+        {
+            // ── Step 1: wrap in try/catch — a malformed IL edit crashes hard ──
+            try
+            {
+                // ── Step 2: create a cursor to navigate the instruction stream ──
+                ILCursor c = new ILCursor(il);
+
+                // ── Step 3: walk to every `ret` and inject our modifier ────────
+                // TryGotoNext returns false when there are no more matches,
+                // so this naturally handles methods with 1 or many return points.
+                while (c.TryGotoNext(MoveType.Before, instr => instr.MatchRet()))
+                {
+                    // ── Step 4: load `this` (Player self) onto the stack ────────
+                    // WallJump is an instance method, so argument 0 is `this`.
+                    // At a `ret` in a void method the stack is empty, so we must
+                    // push something for our delegate to consume.
+                    c.Emit(OpCodes.Ldarg_0);
+
+                    // ── Step 5: emit a delegate call that pops Player, returns void
+                    // EmitDelegate generates a static call to a compiler-generated
+                    // stub, so there's no reflection overhead at runtime.
+                    c.EmitDelegate<Action<Player>>(ApplyWallJumpSpeedModifier);
+
+                    // ── Step 6: advance past this `ret` to find the next one ────
+                    // TryGotoNext stops *before* the ret; without advancing we'd
+                    // loop forever on the same instruction.
+                    c.Index++;
+                }
+
+                Logger.Log(LogLevel.Info, "DZ",
+                    "[MonoModHooks] IL_Player_WallJump: injected speed modifier before each ret");
+            }
+            catch (Exception ex)
+            {
+                // If IL editing fails, log loudly — the method will run unmodified.
+                Logger.Log(LogLevel.Error, "DZ",
+                    $"[MonoModHooks] IL_Player_WallJump FAILED — method left unhooked: {ex}");
+            }
+        }
+
+        /// <summary>
+        /// The delegate injected by <see cref="IL_Player_WallJump"/>.
+        /// Receives the Player instance (`this` from the original method)
+        /// and applies the copy-ability speed multiplier in-place.
+        ///
+        /// This is the exact same logic that used to live in the body of the
+        /// old Hook_Player_WallJump, just factored out so EmitDelegate can call it.
+        /// </summary>
+        private static void ApplyWallJumpSpeedModifier(Player self)
+        {
             try
             {
                 var settings = global::Celeste.Mod.DZ.DZModule.Settings;
                 var session  = global::Celeste.Mod.DZ.DZModule.Session;
 
+                // Non-Kirby or no ability → no modification, zero overhead path
                 if (settings?.KirbyPlayerEnabled != true ||
                     session == null ||
                     session.CurrentCopyAbility == CopyAbilityType.None)
@@ -383,7 +481,7 @@ namespace DZ
                         self.Speed.X *= 1.25f;
                         if (settings.DebugMode)
                             Logger.Log(LogLevel.Verbose, "DZ",
-                                "[Hook] Wing wall-jump boost applied");
+                                "[IL] Wing wall-jump boost applied");
                         break;
 
                     case CopyAbilityType.Stone:
@@ -392,7 +490,7 @@ namespace DZ
                         self.Speed.Y *= 0.85f;
                         if (settings.DebugMode)
                             Logger.Log(LogLevel.Verbose, "DZ",
-                                "[Hook] Stone wall-jump weight applied");
+                                "[IL] Stone wall-jump weight applied");
                         break;
 
                     case CopyAbilityType.Wheel:
@@ -400,14 +498,14 @@ namespace DZ
                         self.Speed.X *= 1.5f;
                         if (settings.DebugMode)
                             Logger.Log(LogLevel.Verbose, "DZ",
-                                "[Hook] Wheel wall-jump speed boost applied");
+                                "[IL] Wheel wall-jump speed boost applied");
                         break;
                 }
             }
             catch (Exception ex)
             {
                 Logger.Log(LogLevel.Warn, "DZ",
-                    $"[Hook] Error in WallJump hook: {ex.Message}");
+                    $"[IL] Error in WallJump speed modifier: {ex.Message}");
             }
         }
 

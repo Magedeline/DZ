@@ -17617,6 +17617,54 @@ DETERMINATION HOLDS.
 The Goner Souls are buying us time.
 We have to defeat every last one of them. Together!
 
+DZ_CH21_ZERO_WAVE_SIAMO_ZERO=
+[SIAMO_ZERO right dark]
+Siamo Zero. The first void. The original fall.
+None of you belong here.
+
+[KIRBY left determined]
+We're not leaving. Not without you.
+
+DZ_CH21_ZERO_WAVE_ZERO_3=
+[ZERO_3 right dark]
+Zero 3. The recursive nothing.
+Every hero has failed before. You will too.
+
+[MADELINE left determined]
+Not a chance. We've come too far.
+
+DZ_CH21_ZERO_WAVE_CONTRA_VOID=
+[CONTRA_VOID right dark]
+Contra Void. The inverse of all that breathes.
+Your light only makes the dark stronger.
+
+[BADELINE right angry]
+Madeline— don't listen to it. Focus.
+
+DZ_CH21_ZERO_WAVE_TESSERACT_SOUL=
+[TESSERACT_SOUL right dark]
+Tesseract Soul. Beyond dimension. Beyond time.
+You cannot strike what exists everywhere at once.
+
+[ASRIEL left determined]
+We don't have to understand it. We just have to outlast it.
+
+DZ_CH21_ZERO_WAVE_HYPER_META_MORPHO=
+[MORPHO_KNIGHT right dark]
+Hyper Meta Morpho Knight. The blade that ends all battles.
+Every war has always ended here.
+
+[KIRBY left determined]
+Then we end it differently. Together.
+
+DZ_CH21_ZERO_WAVE_NOLLUS_NOVA=
+[NOLLUS_NOVA right dark]
+Nollus Nova. The last void. The final collapse.
+There is nothing beyond me.
+
+[KIRBY left determined]
+There's us.
+
 DZ_CH21_FINAL_BATTLE_ZEROS_FALLEN=
 [none left]
 One by one, the forms of darkness were shattered.

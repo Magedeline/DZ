@@ -10,6 +10,7 @@ namespace Celeste.Entities
     {
         private Vector2 speed;
         private float lifeTimer;
+        private bool pendingRemove;
         private readonly Color color;
         private const float Gravity = 500f;
         private const float MaxLifetime = 4f;
@@ -25,6 +26,7 @@ namespace Celeste.Entities
         public override void Update()
         {
             base.Update();
+            if (pendingRemove) { RemoveSelf(); return; }
 
             speed.Y += Gravity * Engine.DeltaTime;
             Position += speed * Engine.DeltaTime;
@@ -48,7 +50,7 @@ namespace Celeste.Entities
         private void OnPlayer(global::Celeste.Player player)
         {
             player.Die((player.Center - Position).SafeNormalize());
-            RemoveSelf();
+            pendingRemove = true;
         }
     }
 
@@ -155,6 +157,7 @@ namespace Celeste.Entities
         private readonly Vector2 velocity;
         private float rotation;
         private float lifeTimer;
+        private bool pendingRemove;
         private const float RotationSpeed = 12f;
         private const float MaxLifetime = 3f;
 
@@ -169,6 +172,7 @@ namespace Celeste.Entities
         public override void Update()
         {
             base.Update();
+            if (pendingRemove) { RemoveSelf(); return; }
             Position += velocity * Engine.DeltaTime;
             rotation += RotationSpeed * Engine.DeltaTime;
 
@@ -186,7 +190,7 @@ namespace Celeste.Entities
         private void OnPlayer(global::Celeste.Player player)
         {
             player.Die((player.Center - Position).SafeNormalize());
-            RemoveSelf();
+            pendingRemove = true;
         }
     }
 }

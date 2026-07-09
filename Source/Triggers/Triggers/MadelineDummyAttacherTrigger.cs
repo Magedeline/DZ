@@ -21,6 +21,7 @@ namespace Celeste.Triggers
         private bool once = true;
         private bool removeOnExit = false;
         private bool triggered = false;
+        private bool pendingRemove;
 
         public MadelineDummyAttacherTrigger(EntityData data, Vector2 offset) : base(data, offset)
         {
@@ -60,8 +61,14 @@ namespace Celeste.Triggers
 
             if (once)
             {
-                RemoveSelf();
+                pendingRemove = true;
             }
+        }
+
+        public override void Update()
+        {
+            base.Update();
+            if (pendingRemove) RemoveSelf();
         }
 
         public override void OnLeave(Player player)

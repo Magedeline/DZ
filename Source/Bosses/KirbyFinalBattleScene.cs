@@ -151,6 +151,7 @@ namespace Celeste.Bosses
         private int   activeZeroIndex = -1;
         private float[] zeroHealth = Array.Empty<float>();
         private float   zeroMaxHealth;
+        private SiamoZeroFinalBoss? activeZeroBoss;
 
         // Warp star bob
         private float warpStarSineTimer;
@@ -186,6 +187,50 @@ namespace Celeste.Bosses
         // Backdrop references (found at Awake time)
         private AbyssmentBackdrop?          abyssment;
         private FlyingBattleScrollBackdrop? scrollBd;
+
+        // ── Zero wave definition ──────────────────────────────────────────────
+        private struct ZeroWaveConfig
+        {
+            public string Variant;
+            public string Tier;
+            public string AttackSequence;
+            public string DialogKey;
+        }
+
+        // One entry per form, in defeat order (matches ZeroFormNames / ZeroAuraColors)
+        private static readonly ZeroWaveConfig[] DefaultZeroWaves = new ZeroWaveConfig[]
+        {
+            new ZeroWaveConfig {
+                Variant         = "zero",
+                Tier            = "soulBlack",
+                AttackSequence  = "CrescentBeamShot,EnergySwordCombo,TornadoSlash,RevolutionSword,RisingSpine",
+                DialogKey       = "DZ_CH21_ZERO_WAVE_SIAMO_ZERO" },
+            new ZeroWaveConfig {
+                Variant         = "delta",
+                Tier            = "soulBlack",
+                AttackSequence  = "CrescentBeamShot,ConqueredPeakCascade,TornadoSlash,EnergyShower",
+                DialogKey       = "DZ_CH21_ZERO_WAVE_ZERO_3" },
+            new ZeroWaveConfig {
+                Variant         = "zero",
+                Tier            = "soulBlack",
+                AttackSequence  = "EnergySwordCombo,VortexStrike,DoubleSideSlash,EnergyShower",
+                DialogKey       = "DZ_CH21_ZERO_WAVE_CONTRA_VOID" },
+            new ZeroWaveConfig {
+                Variant         = "celestial",
+                Tier            = "stellarruss",
+                AttackSequence  = "RevolutionSword,ConqueredPeakCascade,EnergyShower,TimeborderCollapse",
+                DialogKey       = "DZ_CH21_ZERO_WAVE_TESSERACT_SOUL" },
+            new ZeroWaveConfig {
+                Variant         = "delta",
+                Tier            = "soulBlack",
+                AttackSequence  = "MorphoEmerge,DoubleSideSlash,TornadoSlash,RevolutionSword",
+                DialogKey       = "DZ_CH21_ZERO_WAVE_HYPER_META_MORPHO" },
+            new ZeroWaveConfig {
+                Variant         = "celestial",
+                Tier            = "stellarruss",
+                AttackSequence  = "TimeborderCollapse,MorphoEmerge,ConqueredPeakCascade,CrescentBeamShot,VortexStrike",
+                DialogKey       = "DZ_CH21_ZERO_WAVE_NOLLUS_NOVA" },
+        };
 
         // ── Ally slot ─────────────────────────────────────────────────────────
         private struct AllySlot
@@ -778,14 +823,61 @@ namespace Celeste.Bosses
             yield return Textbox.Say("DZ_CH21_FINAL_BATTLE_ZEROS_INTRO");
             yield return Textbox.Say("DZ_CH21_FINAL_BATTLE_GONERS_HOLD");
 
-            // Activate the first form
-            activeZeroIndex = 0;
+            for (int i = 0; i < totalZeroForms; i++)
+            {
+                activeZeroIndex = i;
 
-            // Wait until all forms are defeated (DamageActiveZero drives this)
-            while (zeroFormsDefeated < totalZeroForms)
-                yield return null;
+                // Spawn the boss for this wave
+                yield return SpawnZeroWave(i);
+
+                // Wait until DamageActiveZero advances zeroFormsDefeated past this index
+                while (zeroFormsDefeated <= i)
+                    yield return null;
+
+                // Brief breather between waves
+                if (i + 1 < totalZeroForms)
+                    yield return 0.8f;
+            }
 
             activeZeroIndex = -1;
+        }
+
+        private IEnumerator SpawnZeroWave(int index)
+        {
+            ZeroWaveConfig cfg = index < DefaultZeroWaves.Length
+                ? DefaultZeroWaves[index]
+                : DefaultZeroWaves[0];
+
+            // Pre-spawn flash in the Zero's aura colour
+            Color aura = index < ZeroAuraColors.Length ? ZeroAuraColors[index] : Color.White;
+            level.Flash(aura * 0.4f, true);
+            level.Shake(0.5f);
+            Audio.Play("event:/pusheen/new_content/char/els/spawn", Position);
+            yield return 0.3f;
+
+            // Optional per-wave intro dialogue
+            if (!string.IsNullOrEmpty(cfg.DialogKey))
+                yield return Textbox.Say(cfg.DialogKey);
+
+            // Compute spawn position: top-right quadrant of camera view
+            player ??= Scene.Tracker.GetEntity<Player>();
+            float spawnX = level.Camera.Right  - 60f;
+            float spawnY = (player?.Center.Y ?? (level.Camera.Top + 80f)) - 40f;
+            Vector2 spawnPos = new Vector2(spawnX, spawnY);
+
+            // Build a minimal EntityData-equivalent via the direct constructor overload
+            var boss = new SiamoZeroFinalBoss(
+                position:        spawnPos,
+                nodes:           new Vector2[] { new Vector2(spawnX - 120f, spawnY) },
+                patternIndex:    0,
+                dialog:          false,
+                startHit:        true,
+                attackSequence:  cfg.AttackSequence,
+                siamoTier:       cfg.Tier,
+                siamoVariant:    cfg.Variant);
+
+            activeZeroBoss = boss;
+            Scene.Add(boss);
         }
 
         private IEnumerator ZeroDefeatedRoutine(int formIndex)
@@ -806,6 +898,13 @@ namespace Celeste.Bosses
             yield return 0.15f;
             Glitch.Value = 0f;
 
+            // Remove the defeated boss entity (deferred to next frame to avoid mid-Update list mutation)
+            if (activeZeroBoss != null)
+            {
+                activeZeroBoss.RemoveSelf();
+                activeZeroBoss = null;
+            }
+
             zeroFormsDefeated++;
 
             // Progress stays at 0.00 throughout Phase 1 — only pitch rises per kill
@@ -815,13 +914,6 @@ namespace Celeste.Bosses
             foreach (var light in soulLights) light.Alpha = 2f;
             yield return 0.1f;
             foreach (var light in soulLights) light.Alpha = 1f;
-
-            // Activate next form if more remain
-            if (formIndex + 1 < totalZeroForms)
-            {
-                yield return 1.2f;
-                activeZeroIndex = formIndex + 1;
-            }
         }
 
         // ─────────────────────────────────────────────────────────────────────
@@ -1091,6 +1183,15 @@ namespace Celeste.Bosses
                 new Vector2(screenW * 0.5f - sz.X * 0.5f, barY - sz.Y - 3f),
                 Color.White, 0f, Vector2.Zero, 0.5f,
                 Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 0f);
+        }
+
+        // ── Hook registration ─────────────────────────────────────────────────
+        public static void Load()
+        {
+        }
+
+        public static void Unload()
+        {
         }
 
         // ── Helpers ───────────────────────────────────────────────────────────

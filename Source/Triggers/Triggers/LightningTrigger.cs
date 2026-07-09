@@ -11,6 +11,7 @@ namespace Celeste.Entities;
 internal class LightningTrigger(EntityData data, Vector2 offset) : Trigger(data, offset)
 {
     private bool triggered;
+    private bool pendingRemove;
     private Level level;
 
     public override void Added(Scene scene)
@@ -19,8 +20,14 @@ internal class LightningTrigger(EntityData data, Vector2 offset) : Trigger(data,
         level = SceneAs<Level>();
         if (level.Session.GetFlag("ch20_lightning_trigger_1"))
         {
-            RemoveSelf();
+            pendingRemove = true;
         }
+    }
+
+    public override void Update()
+    {
+        base.Update();
+        if (pendingRemove) { RemoveSelf(); return; }
     }
 
     public override void OnEnter(global::Celeste.Player player)

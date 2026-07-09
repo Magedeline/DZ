@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using Monocle;
 using Microsoft.Xna.Framework;
@@ -6892,7 +6893,9 @@ namespace Celeste.Entities
 
         private void PullAndInhaleEnemies(Vector2 origin, Vector2 direction)
         {
-            foreach (Entity entity in Scene.Entities)
+            // Snapshot: RemoveSelf() below mutates Scene.Entities, which would
+            // crash a live foreach over the same collection mid-enumeration.
+            foreach (Entity entity in Scene.Entities.ToArray())
             {
                 // only pull things that can actually be fought — never Theo,
                 // holdables, or other neutral actors

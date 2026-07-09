@@ -220,8 +220,10 @@ namespace Celeste.Entities
 
             // Create inhale effect components
             inhaleParticles = new InhaleParticleSystem(player);
-            player.Add(inhaleParticles);
-
+            // Deferred: adding a component here would mutate the Components
+            // list while Entity.Added is still enumerating it (crashes with
+            // "Collection was modified; enumeration operation may not execute").
+            scene.OnEndOfFrame += () => player.Add(inhaleParticles);
         }
 
         private void SyncFromSettings()

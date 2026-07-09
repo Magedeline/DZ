@@ -295,6 +295,7 @@ namespace Celeste.Entities.Enemies
         private float bounceTimer;
         private float bounceOffset;
         private ParticleType abilityParticle;
+        private bool pendingCollect;
 
         public CopyAbilityDrop(Vector2 position, KirbyMode.KirbyPowerState ability) : base(position)
         {
@@ -324,6 +325,7 @@ namespace Celeste.Entities.Enemies
         public override void Update()
         {
             base.Update();
+            if (pendingCollect) { CompleteCollect(); return; }
 
             // Bounce animation
             bounceTimer += Engine.DeltaTime * 3f;
@@ -341,7 +343,11 @@ namespace Celeste.Entities.Enemies
         {
             // Grant ability
             player.SetKirbyPowerState(ability);
+            pendingCollect = true;
+        }
 
+        private void CompleteCollect()
+        {
             // Visual feedback
             var level = Scene as Level;
             if (level != null)

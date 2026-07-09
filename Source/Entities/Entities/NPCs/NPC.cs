@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using Celeste.Entities;
 using Celeste.Cutscenes;
@@ -36,12 +38,21 @@ namespace Celeste.Entities
 
         private bool configuredInteractionRunning;
 
+        private string cutsceneClass;
+        private bool onlyOnce;
+        private bool unskippable;
+        private bool shouldDisable;
+
         [MethodImpl(MethodImplOptions.NoInlining)]
         public NPC(EntityData data, Vector2 offset) : base(data.Position + offset)
         {
             DialogKey = data.Attr("dialogKey", string.Empty);
             FlagName = data.Attr("flagName", string.Empty);
             EventId = data.Attr("eventId", string.Empty);
+            cutsceneClass = data.Attr("cutsceneClass", string.Empty);
+            onlyOnce = data.Bool("onlyOnce", false);
+            unskippable = data.Bool("unskippable", false);
+            shouldDisable = false;
 
             InitializeBaseComponents();
             string spriteId = ResolveSpriteId(data.Attr("spriteId", string.Empty));
@@ -143,6 +154,18 @@ namespace Celeste.Entities
                 return;
             }
 
+            if (!string.IsNullOrWhiteSpace(cutsceneClass))
+            {
+                if (TryInstantiateAndAddCutscene(level, player))
+                {
+                    if (onlyOnce)
+                    {
+                        shouldDisable = true;
+                    }
+                }
+                return;
+            }
+
             if (!string.IsNullOrWhiteSpace(EventId))
             {
                 player.StateMachine.State = Player.StDummy;
@@ -206,6 +229,79 @@ namespace Celeste.Entities
             }
         }
 
+        private bool TryInstantiateAndAddCutscene(Level level, global::Celeste.Player player)
+        {
+            if (string.IsNullOrWhiteSpace(cutsceneClass))
+            {
+                return false;
+            }
+
+            Type cutsceneType = FindType(cutsceneClass);
+            if (cutsceneType == null)
+            {
+                Logger.Log(LogLevel.Warn, nameof(NPC), $"Cutscene class not found: '{cutsceneClass}'");
+                return false;
+            }
+
+            if (!typeof(CutsceneEntity).IsAssignableFrom(cutsceneType))
+            {
+                Logger.Log(LogLevel.Warn, nameof(NPC), $"Type '{cutsceneClass}' is not a CutsceneEntity.");
+                return false;
+            }
+
+            CutsceneEntity cutscene = null;
+            try
+            {
+                var ctor = cutsceneType.GetConstructor(new[] { typeof(NPC), typeof(global::Celeste.Player) });
+                if (ctor != null)
+                {
+                    cutscene = (CutsceneEntity)ctor.Invoke(new object[] { this, player });
+                }
+                else
+                {
+                    ctor = cutsceneType.GetConstructor(new[] { typeof(global::Celeste.Player) });
+                    if (ctor != null)
+                    {
+                        cutscene = (CutsceneEntity)ctor.Invoke(new object[] { player });
+                    }
+                    else
+                    {
+                        ctor = cutsceneType.GetConstructor(Type.EmptyTypes);
+                        if (ctor != null)
+                        {
+                            cutscene = (CutsceneEntity)ctor.Invoke(null);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(LogLevel.Error, nameof(NPC), $"Failed to instantiate cutscene '{cutsceneClass}': {ex}");
+                return false;
+            }
+
+            if (cutscene == null)
+            {
+                Logger.Log(LogLevel.Warn, nameof(NPC), $"No suitable constructor found for cutscene '{cutsceneClass}'. Expected (NPC, Player), (Player), or ().");
+                return false;
+            }
+
+            return TryAddCutscene(cutscene);
+        }
+
+        private static Type FindType(string name)
+        {
+            foreach (var asm in AppDomain.CurrentDomain.GetAssemblies())
+            {
+                Type type = asm.GetType(name);
+                if (type != null)
+                {
+                    return type;
+                }
+            }
+            return null;
+        }
+
         private static string ResolveSpriteId(string spriteId)
         {
             if (string.IsNullOrWhiteSpace(spriteId))
@@ -252,6 +348,11 @@ namespace Celeste.Entities
         [MethodImpl(MethodImplOptions.NoInlining)]
         public override void Update()
         {
+            if (shouldDisable && Talker != null && Talker.Enabled)
+            {
+                Talker.Enabled = false;
+            }
+
             base.Update();
             if (this.UpdateLight && this.Light != null)
             {

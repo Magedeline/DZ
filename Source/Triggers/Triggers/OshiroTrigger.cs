@@ -4,6 +4,7 @@ namespace Celeste.Triggers
     public class OshiroTrigger : Trigger
     {
         public bool State;
+        private bool pendingRemove;
 
         public OshiroTrigger(EntityData data, Vector2 offset)
             : base(data, offset)
@@ -28,7 +29,13 @@ namespace Celeste.Triggers
                 Scene.Tracker.GetEntity<AngryOshiro>()?.Leave();
             }
 
-            RemoveSelf();
+            pendingRemove = true;
+        }
+
+        public override void Update()
+        {
+            base.Update();
+            if (pendingRemove) RemoveSelf();
         }
     }
 }

@@ -41,6 +41,7 @@ namespace Celeste.Bosses
         private readonly float  scrollSpeedBoost;
 
         private bool fired;
+        private bool pendingRemove;
 
         public FinalBattlePhaseShiftTrigger(EntityData data, Vector2 offset)
             : base(data, offset)
@@ -88,6 +89,13 @@ namespace Celeste.Bosses
                 level.Session.SetFlag(setFlag);
 
             if (triggerOnce)
+                pendingRemove = true;
+        }
+
+        public override void Update()
+        {
+            base.Update();
+            if (pendingRemove)
                 RemoveSelf();
         }
     }

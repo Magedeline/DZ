@@ -101,6 +101,7 @@ namespace Celeste.Bosses
         private float    lifeTimer;
         private float    homeTimer;
         private float    spinAngle;
+        private bool     pendingExplode;
         private Level    level = null!;
         private Player?  vanillaTarget;
         private K_Player? kirbyTarget;
@@ -134,6 +135,7 @@ namespace Celeste.Bosses
         public override void Update()
         {
             base.Update();
+            if (pendingExplode) { Explode(); return; }
 
             spinAngle += Engine.DeltaTime * 5f;
 
@@ -173,7 +175,7 @@ namespace Celeste.Bosses
         private void OnPlayer(Player p)
         {
             p.Die(velocity.SafeNormalize());
-            Explode();
+            pendingExplode = true;
         }
 
         private Vector2 GetTargetCenter()
@@ -235,6 +237,7 @@ namespace Celeste.Bosses
         private float    homeTimer;
         private float    spinAngle;
         private float    pulseTimer;
+        private bool     pendingExplode;
         private Level    level = null!;
         private Player?  vanillaTarget;
         private K_Player? kirbyTarget;
@@ -267,6 +270,7 @@ namespace Celeste.Bosses
         public override void Update()
         {
             base.Update();
+            if (pendingExplode) { Explode(); return; }
 
             spinAngle  += Engine.DeltaTime * 2.5f;
             pulseTimer += Engine.DeltaTime * PULSE_SPEED;
@@ -303,7 +307,7 @@ namespace Celeste.Bosses
         private void OnPlayer(Player p)
         {
             p.Die(velocity.SafeNormalize());
-            Explode();
+            pendingExplode = true;
         }
 
         private Vector2 GetTargetCenter()
@@ -882,6 +886,7 @@ namespace Celeste.Bosses
         private readonly Color   colGlow;
         private float lifeTimer;
         private float pulseTimer;
+        private bool  pendingExplode;
         private Level level = null!;
 
         public NightmareOrb(Vector2 position, Identity identity = Identity.Default)
@@ -909,6 +914,8 @@ namespace Celeste.Bosses
         public override void Update()
         {
             base.Update();
+            if (pendingExplode) { Explode(); return; }
+
             pulseTimer += Engine.DeltaTime * 4f;
             Position   += velocity * Engine.DeltaTime;
 
@@ -930,7 +937,7 @@ namespace Celeste.Bosses
         private void OnPlayer(Player p)
         {
             p.Die(velocity.SafeNormalize());
-            Explode();
+            pendingExplode = true;
         }
 
         private void Explode()

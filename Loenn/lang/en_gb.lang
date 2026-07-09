@@ -4,6 +4,17 @@
 # Color Block
 entities.DoonvHelper/ColorBlock.placements.name.color_block=Color Block
 
+# NPC
+entities.DZ/NPC.placements.name.npc=NPC
+entities.DZ/NPC.attributes.description.dialogKey=Dialog key to display when the player talks to the NPC.
+entities.DZ/NPC.attributes.description.flagName=Session flag to set after the player talks to the NPC.
+entities.DZ/NPC.attributes.description.eventId=Session flag to set and dummy the player (legacy event trigger).
+entities.DZ/NPC.attributes.description.spriteId=Sprite ID to use for this NPC (e.g. theo, magolor, chara).
+entities.DZ/NPC.attributes.description.cutsceneClass=Fully-qualified C# CutsceneEntity class to instantiate on talk (e.g. Celeste.CS00_Theo).
+entities.DZ/NPC.attributes.description.onlyOnce=If the npc should be deactivated after activation. Entering the room again or dying reactivates the npc.
+entities.DZ/NPC.attributes.description.unskippable=Whether the npc cutscene should be unskippable (only applies to coroutine-based cutscenes).
+
+
 # Ability Swap Trigger
 triggers.DZ/AbilitySwapTrigger.placements.name.ability_swap_trigger=Ability Swap Trigger
 triggers.DZ/AbilitySwapTrigger.placements.name.ability=Ability
@@ -45,6 +56,14 @@ entities.DZ/AsrielDummy.placements.name.asriel_dummy=Asriel Dummy
 
 # Asriel Start Hit Trigger
 triggers.DZ/AsrielStartHitTrigger.placements.name.asriel_start_hit_trigger=Asriel Start Hit Trigger
+
+# Asriel Angel Boss Intro Trigger
+triggers.DZ/AsrielAngelBossIntroTrigger.placements.name.asriel_angel_boss_intro_trigger=Asriel Angel Boss Intro Trigger
+triggers.DZ/AsrielAngelBossIntroTrigger.attributes.description.requireFlag=Session flag that must be set before the cutscene can trigger.
+triggers.DZ/AsrielAngelBossIntroTrigger.attributes.description.requireNotFlag=Session flag that must NOT be set for the cutscene to trigger.
+triggers.DZ/AsrielAngelBossIntroTrigger.attributes.description.dialogKey=Dialog key used during the intro cutscene.
+triggers.DZ/AsrielAngelBossIntroTrigger.attributes.description.shakeIntensity=Camera shake strength when the cutscene starts.
+triggers.DZ/AsrielAngelBossIntroTrigger.attributes.description.zoomDuration=Camera zoom duration when the cutscene starts.
 
 # Axis Minion
 entities.DZ/AxisMinion.placements.name.axis_minion=Axis Minion
@@ -561,6 +580,23 @@ entities.DZ/EchoOrb.placements.name.isSolid=Is Solid
 entities.DZ/EchoOrb.placements.name.mirrorDelay=Mirror Delay
 entities.DZ/EchoOrb.placements.name.fadeTime=Fade Time
 
+# ELS Termina Boss
+entities.DZ/ELSTerminaBoss.placements.name.els_termina_boss=ELS Termina Boss
+entities.DZ/ELSTerminaBoss.attributes.description.phase=Boss phase (1-4) that determines max HP.
+entities.DZ/ELSTerminaBoss.attributes.description.fromCutscene=If true, the boss was spawned from a cutscene and should skip intro behaviour.
+entities.DZ/ELSTerminaBoss.attributes.description.hardMode=If true, applies the hard-mode multiplier to HP.
+
+# ELS Termina Final Boss
+entities.DZ/ELSTerminaFinalBoss.placements.name.els_termina_final_boss=ELS Termina Final Boss
+entities.DZ/ELSTerminaFinalBoss.attributes.description.difficultyMode=Difficulty mode (0 = Normal, 1 = Morpho, 2 = Celestial Morpho).
+entities.DZ/ELSTerminaFinalBoss.attributes.description.fromCutscene=If true, the boss was spawned from a cutscene and should skip intro behaviour.
+entities.DZ/ELSTerminaFinalBoss.attributes.description.hasFiveHeartGems=If true, enables the five-heart-gems variant behaviour.
+
+# ELS Termina Health
+entities.DZ/ELSTerminaHealth.placements.name.els_termina_health=ELS Termina Health
+entities.DZ/ELSTerminaHealth.attributes.description.maxHealth=Maximum health value displayed by the bar.
+entities.DZ/ELSTerminaHealth.attributes.description.hardMode=If true, uses the hard-mode slice count and width.
+
 # Effect Trigger
 triggers.DZ/EffectTrigger.placements.name.effect_trigger=Effect Trigger
 
@@ -639,6 +675,19 @@ entities.DZ/FallenLeafPile.placements.name.fallen_leaf_pile=Fallen Leaf Pile
 entities.DZ/FallenLeafPile.placements.name.enemyType=Enemy Type
 entities.DZ/FallenLeafPile.placements.name.collectibleType=Collectible Type
 entities.DZ/FallenLeafPile.placements.name.detectionRange=Detection Range
+
+# Final Battle Phase Shift Trigger
+triggers.DZ/FinalBattlePhaseShiftTrigger.placements.name.final_battle_phase_shift_trigger=Final Battle Phase Shift Trigger
+triggers.DZ/FinalBattlePhaseShiftTrigger.attributes.description.phaseIndex=Phase colour index (0-4) used from the final battle scene.
+triggers.DZ/FinalBattlePhaseShiftTrigger.attributes.description.colorGrade=Celeste colour-grade key to snap to on trigger (blank = no change).
+triggers.DZ/FinalBattlePhaseShiftTrigger.attributes.description.triggerOnce=If true, the trigger removes itself after firing.
+triggers.DZ/FinalBattlePhaseShiftTrigger.attributes.description.requiredFlag=Session flag that must be set before the trigger fires.
+triggers.DZ/FinalBattlePhaseShiftTrigger.attributes.description.setFlag=Session flag set when the trigger fires.
+triggers.DZ/FinalBattlePhaseShiftTrigger.attributes.description.shakeScreen=If true, shakes the camera on trigger.
+triggers.DZ/FinalBattlePhaseShiftTrigger.attributes.description.shakeIntensity=Camera shake strength.
+triggers.DZ/FinalBattlePhaseShiftTrigger.attributes.description.flashScreen=If true, flashes the screen with the phase colour.
+triggers.DZ/FinalBattlePhaseShiftTrigger.attributes.description.flashAlpha=Flash opacity (0-1).
+triggers.DZ/FinalBattlePhaseShiftTrigger.attributes.description.scrollSpeedBoost=Added scroll speed for the flying battle backdrop.
 
 # Falling Block Trigger
 entities.DZ/FallingBlockTrigger.placements.name.falling_block_trigger=Falling Block Trigger
@@ -967,6 +1016,22 @@ triggers.DZ/KirbyDamageTrigger.placements.name.cooldown=Cooldown
 
 # Kirby Dream Block
 entities.DZ/KirbyDreamBlock.placements.name.kirby_dream_block=Kirby Dream Block
+
+# Kirby Final Battle Scene
+entities.DZ/KirbyFinalBattleScene.placements.name.kirby_final_battle_scene=Kirby Final Battle Scene
+entities.DZ/KirbyFinalBattleScene.attributes.description.totalZeroForms=Number of Zero forms to defeat before the Warp Star ride (1-6).
+entities.DZ/KirbyFinalBattleScene.attributes.description.healthPerZeroForm=HP each Zero form has.
+entities.DZ/KirbyFinalBattleScene.attributes.description.hardMode=If true, applies a 1.5x HP multiplier to all forms.
+entities.DZ/KirbyFinalBattleScene.attributes.description.warpStarBobAmplitude=Vertical sine-bob amplitude on the player during the Warp Star ride.
+entities.DZ/KirbyFinalBattleScene.attributes.description.warpStarBobSpeed=Bob frequency in radians per second.
+entities.DZ/KirbyFinalBattleScene.attributes.description.warpStarRideDuration=Seconds the Warp Star ride lasts.
+entities.DZ/KirbyFinalBattleScene.attributes.description.phase2ScrollSpeed=Flying battle backdrop scroll speed in pixels per second.
+entities.DZ/KirbyFinalBattleScene.attributes.description.allyFormationOffsetX=Ally cluster X offset from the player.
+entities.DZ/KirbyFinalBattleScene.attributes.description.allyFormationOffsetY=Ally cluster Y offset from the player.
+entities.DZ/KirbyFinalBattleScene.attributes.description.allySpacing=Horizontal pixels between each ally.
+entities.DZ/KirbyFinalBattleScene.attributes.description.activeAllies=Comma-separated list of active ally names.
+entities.DZ/KirbyFinalBattleScene.attributes.description.victoryMusicEvent=FMOD event path played on victory.
+entities.DZ/KirbyFinalBattleScene.attributes.description.completionFlag=Session flag set when the final battle is complete.
 
 # Kirby Dummy
 entities.DZ/KirbyDummy.placements.name.kirby_dummy=Kirby Dummy
@@ -2175,3 +2240,91 @@ entities.DZ/CreditsTriggerPart1.placements.name.credits_trigger_part1=Credits Tr
 
 # Credits Trigger Part2
 entities.DZ/CreditsTriggerPart2.placements.name.credits_trigger_part2=Credits Trigger Part2
+
+# Bravery Soul Boost
+entities.DZ/BraverySoulBoost.placements.name.bravery_soul_boost=Bravery Soul Boost
+entities.DZ/BraverySoulBoost.attributes.description.canSkip=If the soul boost can be skipped when the player passes by.
+entities.DZ/BraverySoulBoost.attributes.description.oneUse=If the soul boost disappears after being used once.
+entities.DZ/BraverySoulBoost.attributes.description.boostSpeed=Speed at which the soul boost travels between nodes.
+
+# Determination Soul Boost
+entities.DZ/DeterminationSoulBoost.placements.name.determination_soul_boost=Determination Soul Boost
+entities.DZ/DeterminationSoulBoost.attributes.description.canSkip=If the soul boost can be skipped when the player passes by.
+entities.DZ/DeterminationSoulBoost.attributes.description.oneUse=If the soul boost disappears after being used once.
+entities.DZ/DeterminationSoulBoost.attributes.description.boostSpeed=Speed at which the soul boost travels between nodes.
+entities.DZ/DeterminationSoulBoost.attributes.description.extraDashes=Number of extra dashes granted to the player on launch.
+
+# Integrity Soul Boost
+entities.DZ/IntegritySoulBoost.placements.name.integrity_soul_boost=Integrity Soul Boost
+entities.DZ/IntegritySoulBoost.attributes.description.canSkip=If the soul boost can be skipped when the player passes by.
+entities.DZ/IntegritySoulBoost.attributes.description.oneUse=If the soul boost disappears after being used once.
+entities.DZ/IntegritySoulBoost.attributes.description.boostSpeed=Speed at which the soul boost travels between nodes.
+entities.DZ/IntegritySoulBoost.attributes.description.speedMultiplier=Multiplier applied to the player's horizontal speed during the buff.
+
+# Justice Soul Boost
+entities.DZ/JusticeSoulBoost.placements.name.justice_soul_boost=Justice Soul Boost
+entities.DZ/JusticeSoulBoost.attributes.description.canSkip=If the soul boost can be skipped when the player passes by.
+entities.DZ/JusticeSoulBoost.attributes.description.oneUse=If the soul boost disappears after being used once.
+entities.DZ/JusticeSoulBoost.attributes.description.boostSpeed=Speed at which the soul boost travels between nodes.
+entities.DZ/JusticeSoulBoost.attributes.description.projectileCount=Number of projectiles fired on launch.
+entities.DZ/JusticeSoulBoost.attributes.description.projectileSpeed=Speed of the fired projectiles.
+entities.DZ/JusticeSoulBoost.attributes.description.spreadShot=If true, projectiles are fired in a fan spread pattern; otherwise they are fired in a straight line.
+
+# Kindness Soul Boost
+entities.DZ/KindnessSoulBoost.placements.name.kindness_soul_boost=Kindness Soul Boost
+entities.DZ/KindnessSoulBoost.attributes.description.canSkip=If the soul boost can be skipped when the player passes by.
+entities.DZ/KindnessSoulBoost.attributes.description.oneUse=If the soul boost disappears after being used once.
+entities.DZ/KindnessSoulBoost.attributes.description.boostSpeed=Speed at which the soul boost travels between nodes.
+entities.DZ/KindnessSoulBoost.attributes.description.shieldHits=Number of hazard hits the shield can absorb before breaking.
+
+# Patience Soul Boost
+entities.DZ/PatienceSoulBoost.placements.name.patience_soul_boost=Patience Soul Boost
+entities.DZ/PatienceSoulBoost.attributes.description.canSkip=If the soul boost can be skipped when the player passes by.
+entities.DZ/PatienceSoulBoost.attributes.description.oneUse=If the soul boost disappears after being used once.
+entities.DZ/PatienceSoulBoost.attributes.description.boostSpeed=Speed at which the soul boost travels between nodes.
+entities.DZ/PatienceSoulBoost.attributes.description.slowMotionFactor=Time rate multiplier applied during the slow-motion buff (0.1 = very slow, 1.0 = normal speed).
+
+# Perseverance Soul Boost
+entities.DZ/PerseveranceSoulBoost.placements.name.perseverance_soul_boost=Perseverance Soul Boost
+entities.DZ/PerseveranceSoulBoost.attributes.description.canSkip=If the soul boost can be skipped when the player passes by.
+entities.DZ/PerseveranceSoulBoost.attributes.description.oneUse=If the soul boost disappears after being used once.
+entities.DZ/PerseveranceSoulBoost.attributes.description.boostSpeed=Speed at which the soul boost travels between nodes.
+
+# Seven Soul Boost
+entities.DZ/SevenSoulBoost.placements.name.seven_soul_boost=Seven Soul Boost
+entities.DZ/SevenSoulBoost.attributes.description.lockCamera=If the camera should be locked during the boost sequence.
+entities.DZ/SevenSoulBoost.attributes.description.canSkip=If the soul boost can be skipped when the player passes by.
+entities.DZ/SevenSoulBoost.attributes.description.oneUse=If the soul boost disappears after being used once.
+entities.DZ/SevenSoulBoost.attributes.description.boostSpeed=Speed at which the soul boost travels between nodes.
+entities.DZ/SevenSoulBoost.attributes.description.refillDashes=If the player's dashes should be refilled on pickup.
+entities.DZ/SevenSoulBoost.attributes.description.refillStamina=If the player's stamina should be refilled on pickup.
+entities.DZ/SevenSoulBoost.attributes.description.dashCount=Number of dashes granted to the player during the final boost.
+entities.DZ/SevenSoulBoost.attributes.description.finalCh21Boost=If this is the final Chapter 21 boost that triggers the ending cutscene.
+entities.DZ/SevenSoulBoost.attributes.description.finalCh21GoldenBoost=If this final boost triggers the golden ending variant.
+entities.DZ/SevenSoulBoost.attributes.description.finalCh21Dialog=Dialog key for the cutscene triggered by the final Chapter 21 boost.
+
+# Warp Star Launch Pad
+entities.DZ/WarpStarLaunchPad.placements.name.warp_star_launch_pad=Warp Star Launch Pad
+entities.DZ/WarpStarLaunchPad.attributes.description.finalBattleRoom=Session level name of the room containing the final battle scene.
+entities.DZ/WarpStarLaunchPad.attributes.description.returnRoom=Session level to return to after the battle; empty stays in the battle room.
+entities.DZ/WarpStarLaunchPad.attributes.description.returnSpawnX=Pixel X position of the spawn point in the return room.
+entities.DZ/WarpStarLaunchPad.attributes.description.returnSpawnY=Pixel Y position of the spawn point in the return room.
+entities.DZ/WarpStarLaunchPad.attributes.description.kirbyReadyFlag=Session flag that indicates Kirby is ready to board.
+entities.DZ/WarpStarLaunchPad.attributes.description.madelineReadyFlag=Session flag that indicates Madeline is ready to board.
+entities.DZ/WarpStarLaunchPad.attributes.description.autoReady=If true, both indicators are lit without checking flags.
+entities.DZ/WarpStarLaunchPad.attributes.description.requireBothReady=If false, boarding is allowed even if readiness flags are not set.
+entities.DZ/WarpStarLaunchPad.attributes.description.onlyOnce=If true, the launch pad is removed after first use.
+entities.DZ/WarpStarLaunchPad.attributes.description.launchSfx=FMOD event path played when launching.
+entities.DZ/WarpStarLaunchPad.attributes.description.rideSfx=FMOD event path played as the ride music after teleport.
+entities.DZ/WarpStarLaunchPad.attributes.description.bobAmplitude=Vertical bob range during the launch animation.
+entities.DZ/WarpStarLaunchPad.attributes.description.bobSpeed=Bob speed during the launch animation.
+entities.DZ/WarpStarLaunchPad.attributes.description.preLaunchDelay=Seconds of bob animation before the teleport fires.
+entities.DZ/WarpStarLaunchPad.attributes.description.interactRadius=Pixel radius within which the player can interact.
+
+# Warp Star Return Controller
+entities.DZ/WarpStarReturnController.placements.name.warp_star_return_controller=Warp Star Return Controller
+entities.DZ/WarpStarReturnController.attributes.description.returnRoom=Session level name of the ground arena to return to.
+entities.DZ/WarpStarReturnController.attributes.description.returnSpawnX=Pixel X position of the spawn point in the return room.
+entities.DZ/WarpStarReturnController.attributes.description.returnSpawnY=Pixel Y position of the spawn point in the return room.
+entities.DZ/WarpStarReturnController.attributes.description.phase2ActivateFlag=Session flag set before loading the return room so Phase 2 triggers activate.
+entities.DZ/WarpStarReturnController.attributes.description.autoListen=If true, automatically listens to the final battle phase changes.

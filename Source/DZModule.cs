@@ -93,6 +93,9 @@ public class DZModule : EverestModule {
         // Advanced MonoMod hooks (manual Hook + IL hooks)
         global::DZ.MonoModHooks.Load();
 
+        // Extended portrait glitch support for dialog.txt expressions
+        global::DZ.GlitchPortraitHooks.Load();
+
         // Kirby health system
         global::DZ.KirbyHealthSystemHooks.Load();
 
@@ -108,6 +111,7 @@ public class DZModule : EverestModule {
         // and ResetZoneRenderer.Load() internally — do NOT call them separately
         // or Everest will throw a double-hook crime on LevelLoader.LoadingThread.
         global::Celeste.Mod.DZ.BossesExample.BossesExampleModule.Load();
+        global::Celeste.Bosses.KirbyFinalBattleScene.Load();
 
         // Sub-chapter system (experimental)
         global::DZ.SubChapterManager.Load();
@@ -170,6 +174,9 @@ public class DZModule : EverestModule {
         // Advanced MonoMod hooks
         global::DZ.MonoModHooks.Unload();
 
+        // Extended portrait glitch support
+        global::DZ.GlitchPortraitHooks.Unload();
+
         // Kirby health system
         global::DZ.KirbyHealthSystemHooks.Unload();
 
@@ -183,6 +190,7 @@ public class DZModule : EverestModule {
         global::Celeste.Entities.PlateauMod.Unload();
         // BossesExampleModule.Unload() already calls DarkLightningRenderer/ResetZoneRenderer
         global::Celeste.Mod.DZ.BossesExample.BossesExampleModule.Unload();
+        global::Celeste.Bosses.KirbyFinalBattleScene.Unload();
 
         // Sub-chapter system
         global::DZ.SubChapterManager.Unload();

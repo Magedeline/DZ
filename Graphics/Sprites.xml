@@ -607,33 +607,33 @@
     <Anim id="flash" path="pathLights" delay="0.06" frames="0-4" goto="idle"/>
   </swapBlockPathLight>
 
-  <templegate_default path="objects/DZ/door/" start="idle">
+  <templegate_default path="objects/door/" start="idle">
     <Justify x="0.5" y="0"/>
     <Loop id="idle" path="templeDoor" delay="0.1" frames="0"/>
     <Anim id="open" path="templeDoor" delay="0.1" frames="6-14" goto="idle"/>
     <Anim id="hit" path="templeDoor" delay="0.08" frames="0-4" goto="idle"/>
   </templegate_default>
 
-  <templegate_mirror path="objects/DZ/door/" start="idle">
+  <templegate_mirror path="objects/door/" start="idle">
     <Justify x="0.5" y="0"/>
     <Loop id="idle" path="templeDoorB" delay="0.1" frames="0"/>
     <Anim id="open" path="templeDoorB" delay="0.1" frames="6-14" goto="idle"/>
     <Anim id="hit" path="templeDoorB" delay="0.08" frames="0-4" goto="idle"/>
   </templegate_mirror>
 
-  <templegate_theo path="objects/DZ/door/" start="idle">
+  <templegate_theo path="objects/door/" start="idle">
     <Justify x="0.5" y="0"/>
     <Loop id="idle" path="templeDoorC" delay="0.1" frames="0"/>
     <Anim id="open" path="templeDoorC" delay="0.1" frames="6-14" goto="idle"/>
     <Anim id="hit" path="templeDoorC" delay="0.08" frames="0-4" goto="idle"/>
   </templegate_theo>
 
-  <dashSwitch_default path="objects/DZ/temple/dashButton" start="idle">
+  <dashSwitch_default path="objects/temple/dashButton" start="idle">
     <Justify x="0.5" y="0.5"/>
     <Loop id="idle" path="" delay="0.1" frames="0"/>
   </dashSwitch_default>
 
-  <dashSwitch_mirror path="objects/DZ/temple/dashButtonMirror" start="idle">
+  <dashSwitch_mirror path="objects/temple/dashButtonMirror" start="idle">
     <Justify x="0.5" y="0.5"/>
     <Loop id="idle" path="" delay="0.1" frames="0"/>
   </dashSwitch_mirror>

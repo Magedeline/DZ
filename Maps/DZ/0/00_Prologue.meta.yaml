@@ -14,38 +14,38 @@ BloomStrength: 1.0
 
 Modes:
   - AudioState:
-      Music: event:/music/pusheen/lvl0/intro
-      Ambience: event:/env/pusheen/00_prologue
+      Music: event:/music/DZ/lvl0/intro
+      Ambience: event:/env/DZ/00_prologue
     Inventory: Default
     HeartIsEnd: false
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/lvl0/intro
-      Ambience: event:/env/pusheen/00_prologue
+      Music: event:/music/DZ/lvl0/intro
+      Ambience: event:/env/DZ/00_prologue
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/lvl0/intro
-      Ambience: event:/env/pusheen/00_prologue
+      Music: event:/music/DZ/lvl0/intro
+      Ambience: event:/env/DZ/00_prologue
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/lvl0/intro
-      Ambience: event:/env/pusheen/00_prologue
+      Music: event:/music/DZ/lvl0/intro
+      Ambience: event:/env/DZ/00_prologue
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/2/00_prologue
-      Ambience: event:/env/pusheen/00_main
+      Music: event:/music/DZ/2/00_prologue
+      Ambience: event:/env/DZ/00_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/DXSide/00_prologue
-      Ambience: event:/env/pusheen/00_main
+      Music: event:/music/DZ/DXSide/00_prologue
+      Ambience: event:/env/DZ/00_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false

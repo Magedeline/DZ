@@ -18,7 +18,7 @@ kirbyFinalBattleScene.placements = {
         allyFormationOffsetY = -20.0,
         allySpacing = 26.0,
         activeAllies = "Kirby,Madeline,Badeline,Asriel,Magolor,BandanaDee,Marx,Gooey,Susie",
-        victoryMusicEvent = "event:/pusheen/new_content/music/lvl21/victory",
+        victoryMusicEvent = "event:/DZ/new_content/music/lvl21/victory",
         completionFlag = "ch21_els_termina_final_battle_done"
     }
 }

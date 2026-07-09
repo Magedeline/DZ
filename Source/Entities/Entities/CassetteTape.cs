@@ -134,7 +134,7 @@ namespace Celeste.Entities
                 // Play preview sound when player gets close, stop when they leave
                 if (canInteract && !previewPlayed)
                 {
-                    previewEventInstance = Audio.Play("event:/pusheen/game/general/tape_preview", Position);
+                    previewEventInstance = Audio.Play("event:/DZ/game/general/tape_preview", Position);
                     Audio.SetParameter(previewEventInstance, "remix", remixIndex);
                     previewPlayed = true;
                 }
@@ -188,7 +188,7 @@ namespace Celeste.Entities
             }
 
             // Visual/audio feedback
-            Audio.Play("event:/pusheen/game/general/tape_get", Position);
+            Audio.Play("event:/DZ/game/general/tape_get", Position);
             wiggler.Start();
             
             // Particle burst

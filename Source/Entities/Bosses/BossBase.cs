@@ -171,7 +171,7 @@ public abstract class BossBase : Component, IUpdatable
         PlayDeathEffect();
 
         // Play defeat music/SFX
-        DZGame.Audio.PlayMusic("event:/pusheen/music/boss_defeat");
+        DZGame.Audio.PlayMusic("event:/DZ/music/boss_defeat");
 
         // Cleanup after delay
         DZ.Nez.Core.Schedule(3f, _ =>
@@ -378,25 +378,25 @@ public abstract class BossBase : Component, IUpdatable
     protected virtual void PlaySpawnEffect()
     {
         // Play spawn sound
-        DZGame.Audio.PlaySfx("event:/pusheen/game/boss/spawn");
+        DZGame.Audio.PlaySfx("event:/DZ/game/boss/spawn");
     }
 
     protected virtual void PlayHitEffect()
     {
         // Flash white, play hit sound
-        DZGame.Audio.PlaySfx("event:/pusheen/game/boss/hit");
+        DZGame.Audio.PlaySfx("event:/DZ/game/boss/hit");
     }
 
     protected virtual void PlayDeathEffect()
     {
         // Explosion particles, screen shake
-        DZGame.Audio.PlaySfx("event:/pusheen/game/boss/death");
+        DZGame.Audio.PlaySfx("event:/DZ/game/boss/death");
     }
 
     protected virtual void PlayPhaseEffect()
     {
         // Phase transition visual/sound
-        DZGame.Audio.PlaySfx("event:/pusheen/game/boss/phaseDZ_CHange");
+        DZGame.Audio.PlaySfx("event:/DZ/game/boss/phaseDZ_CHange");
     }
 
     protected virtual void UpdateAnimation()

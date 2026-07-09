@@ -15,7 +15,7 @@ namespace Celeste.Cutscenes
         private const float transition_speed = 4f;
         private const float vignette_alpha_speed = 1f;
         private const float credits_timeout = 3f;
-        private const string music_event = "event:/pusheen/music/lvl9/epilouge/outro";
+        private const string music_event = "event:/DZ/music/lvl9/epilouge/outro";
         #endregion
 
         #region Fields

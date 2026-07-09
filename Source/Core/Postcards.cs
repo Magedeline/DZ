@@ -185,13 +185,13 @@ namespace DZ
     }
 
     public PostcardDZ(string msg)
-        : this(msg, "event:/pusheen/ui/main/postcard_2s_in", "event:/pusheen/ui/main/postcard_2s_out")
+        : this(msg, "event:/DZ/ui/main/postcard_2s_in", "event:/DZ/ui/main/postcard_2s_out")
     {
     }
 
     public static PostcardDZ Create2s(string msg)
     {
-        return new PostcardDZ(msg, "event:/pusheen/ui/main/postcard_2s_in", "event:/pusheen/ui/main/postcard_2s_out");
+        return new PostcardDZ(msg, "event:/DZ/ui/main/postcard_2s_in", "event:/DZ/ui/main/postcard_2s_out");
     }
 
     public PostcardDZ(string msg, string soundId)
@@ -222,7 +222,7 @@ namespace DZ
         }
         else if (soundId == "variants")
         {
-            return "event:/pusheen/new_content/ui/postcard_variants";
+            return "event:/DZ/new_content/ui/postcard_variants";
         }
         else
         {

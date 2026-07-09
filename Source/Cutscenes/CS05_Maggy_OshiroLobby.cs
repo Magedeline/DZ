@@ -116,7 +116,7 @@ public class CS05_DZ_OshiroLobby : CutsceneEntity
             yield return null;
         }
         yield return tween2.Wait();
-        Audio.SetMusic("event:/pusheen/music/lvl5/oshiro_theme");
+        Audio.SetMusic("event:/DZ/music/lvl5/oshiro_theme");
         player.DummyAutoAnimate = true;
         yield return Textbox.Say("DZ_CH5_OSHIRO_FRONT_DESK", new Func<IEnumerator>(ZoomOut), new Func<IEnumerator>(SpawnRalsei), new Func<IEnumerator>(OpenOshiroDoor));
         foreach (DZOshiroDoor item in Scene.Entities.FindAll<DZOshiroDoor>())
@@ -179,7 +179,7 @@ public class CS05_DZ_OshiroLobby : CutsceneEntity
         level.Lighting.Alpha = startLightAlpha;
         level.Lighting.UnsetSpotlight();
         level.Session.SetFlag("DZ_oshiro_resort_talked_1");
-        level.Session.Audio.Music.Event = "event:/pusheen/music/lvl5/explore";
+        level.Session.Audio.Music.Event = "event:/DZ/music/lvl5/explore";
         level.Session.Audio.Music.Progress = 1;
         level.Session.Audio.Apply(forceSixteenthNoteHack: false);
         if (WasSkipped)

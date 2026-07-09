@@ -324,7 +324,7 @@ namespace Celeste.Bosses
             l.Shake(0.5f);
             l.Flash(Calc.HexToColor("ff8800") * 0.3f, false);
             l.Displacement.AddBurst(Position, 2f, 32f, 128f, 1f);
-            Audio.Play("event:/pusheen/new_content/game/21_desolo_zantas/warpstar_launch", Position);
+            Audio.Play("event:/DZ/new_content/game/21_desolo_zantas/warpstar_launch", Position);
             RemoveSelf();
         }
 

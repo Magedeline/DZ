@@ -17,11 +17,11 @@ namespace Celeste.Effects
         public static ParticleType P_MistyCold;
 
         // Audio events
-        public const string SFX_ICE_FREEZE = "event:/pusheen/ice/freeze";
-        public const string SFX_ICE_SHATTER = "event:/pusheen/ice/shatter";
-        public const string SFX_ICE_CRYSTALLIZE = "event:/pusheen/ice/crystallize";
-        public const string SFX_ICE_BLIZZARD = "event:/pusheen/ice/blizzard";
-        public const string SFX_ICE_CRACK = "event:/pusheen/ice/crack";
+        public const string SFX_ICE_FREEZE = "event:/DZ/ice/freeze";
+        public const string SFX_ICE_SHATTER = "event:/DZ/ice/shatter";
+        public const string SFX_ICE_CRYSTALLIZE = "event:/DZ/ice/crystallize";
+        public const string SFX_ICE_BLIZZARD = "event:/DZ/ice/blizzard";
+        public const string SFX_ICE_CRACK = "event:/DZ/ice/crack";
 
         private static readonly Dictionary<Entity, FreezeEffect> frozenEntities = new Dictionary<Entity, FreezeEffect>();
 

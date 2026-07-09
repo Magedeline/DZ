@@ -61,15 +61,15 @@ namespace Celeste.Mod.DZ
         private static readonly Color ColorRecommend= Calc.HexToColor("ffdd55"); // gold
 
         // Sound effects (from GUIDs.txt)
-        private const string Sfx_Open         = "event:/pusheen/ui/world_map/chapter/playerselect_open";
-        private const string Sfx_Kirby        = "event:/pusheen/ui/world_map/chapter/playerselect_kirby";
-        private const string Sfx_Madeline     = "event:/pusheen/ui/world_map/chapter/playerselect_madeline";
-        private const string Sfx_Back         = "event:/pusheen/ui/world_map/chapter/playerselect_back";
-        private const string Sfx_Confirm      = "event:/pusheen/ui/world_map/chapter/playerselect_confirm";
-        private const string Sfx_AutoOn       = "event:/pusheen/ui/world_map/chapter/playerselect_auto_on";
-        private const string Sfx_AutoOff      = "event:/pusheen/ui/world_map/chapter/playerselect_auto_off";
-        private const string Sfx_RolloverUp   = "event:/pusheen/ui/main/rollover_up";
-        private const string Sfx_RolloverDown = "event:/pusheen/ui/main/rollover_down";
+        private const string Sfx_Open         = "event:/DZ/ui/world_map/chapter/playerselect_open";
+        private const string Sfx_Kirby        = "event:/DZ/ui/world_map/chapter/playerselect_kirby";
+        private const string Sfx_Madeline     = "event:/DZ/ui/world_map/chapter/playerselect_madeline";
+        private const string Sfx_Back         = "event:/DZ/ui/world_map/chapter/playerselect_back";
+        private const string Sfx_Confirm      = "event:/DZ/ui/world_map/chapter/playerselect_confirm";
+        private const string Sfx_AutoOn       = "event:/DZ/ui/world_map/chapter/playerselect_auto_on";
+        private const string Sfx_AutoOff      = "event:/DZ/ui/world_map/chapter/playerselect_auto_off";
+        private const string Sfx_RolloverUp   = "event:/DZ/ui/main/rollover_up";
+        private const string Sfx_RolloverDown = "event:/DZ/ui/main/rollover_down";
 
         // ── Constructor ──────────────────────────────────────────────────────
 

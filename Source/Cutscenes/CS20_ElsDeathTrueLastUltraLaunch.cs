@@ -222,7 +222,7 @@ namespace Celeste.Cutscenes
 
             if (!hasGolden)
             {
-                Audio.SetMusic("event:/pusheen/new_content/music/lvl20/saved", startPlaying: true, allowFadeOut: true);
+                Audio.SetMusic("event:/DZ/new_content/music/lvl20/saved", startPlaying: true, allowFadeOut: true);
             }
 
             p = cameraOffset.Y;

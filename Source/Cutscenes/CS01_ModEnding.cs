@@ -88,7 +88,7 @@ namespace Celeste.Cutscenes
             player.DummyAutoAnimate = false;
             player.Facing = Facings.Right;
             player.Sprite.Play("sleep");
-            Audio.Play("event:/pusheen/char/kirby/campfire_sit", player.Position);
+            Audio.Play("event:/DZ/char/kirby/campfire_sit", player.Position);
             yield return 4f;
 
             // Add bird scene

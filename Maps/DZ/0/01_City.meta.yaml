@@ -12,42 +12,42 @@ DarknessAlpha: 0.05
 BloomBase: 0.0
 BloomStrength: 1.0
 CassetteNoteColor: 33a9ee
-CassetteSong: event:/music/pusheen/Cassette/01_metro
+CassetteSong: event:/music/DZ/Cassette/01_metro
 
 Modes:
   - AudioState:
-      Music: event:/music/pusheen/lvl01/main
-      Ambience: event:/env/pusheen/01_main
+      Music: event:/music/DZ/lvl01/main
+      Ambience: event:/env/DZ/01_main
     Inventory: Default
     HeartIsEnd: false
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/1/01_city
-      Ambience: event:/env/pusheen/01_main
+      Music: event:/music/DZ/1/01_city
+      Ambience: event:/env/DZ/01_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/2/01_city
-      Ambience: event:/env/pusheen/01_main
+      Music: event:/music/DZ/2/01_city
+      Ambience: event:/env/DZ/01_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/2/01_city
-      Ambience: event:/env/pusheen/01_main
+      Music: event:/music/DZ/2/01_city
+      Ambience: event:/env/DZ/01_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/2/01_city
-      Ambience: event:/env/pusheen/01_main
+      Music: event:/music/DZ/2/01_city
+      Ambience: event:/env/DZ/01_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/DXSide/01_city
-      Ambience: event:/env/pusheen/01_main
+      Music: event:/music/DZ/DXSide/01_city
+      Ambience: event:/env/DZ/01_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false

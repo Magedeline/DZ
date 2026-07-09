@@ -9,7 +9,7 @@ namespace Celeste.Cutscenes
     [HotReloadable]
     public class CS07_GenocideVisionFinale : CutsceneEntity
     {
-        private const string MainCharaRevealMusicEvent = "event:/pusheen/music/lvl7/him";
+        private const string MainCharaRevealMusicEvent = "event:/DZ/music/lvl7/him";
         private const string MainCharaRevealParam = "him";
 
         private readonly global::Celeste.Player player;
@@ -78,7 +78,7 @@ namespace Celeste.Cutscenes
             level.Camera.Position = player.CameraTarget;
             player.ForceCameraUpdate = true;
             mainChara.PlayAttack();
-            Audio.Play("event:/pusheen/game/08_edge/chara_heartgem_slice", kirbyTarget);
+            Audio.Play("event:/DZ/game/08_edge/chara_heartgem_slice", kirbyTarget);
 
             fader.Target = 1f;
             Glitch.Value = 0.15f;

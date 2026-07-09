@@ -30,7 +30,7 @@ namespace Celeste.Cutscenes
             CS02DZ_CHaraMirror cs02CharaMirror = this;
             cs02CharaMirror.Add(cs02CharaMirror.sfx = new SoundSource());
             cs02CharaMirror.sfx.Position = cs02CharaMirror.charaMirror.Center;
-            cs02CharaMirror.sfx.Play("event:/pusheen/music/lvl2/dreamblock_sting_pt1");
+            cs02CharaMirror.sfx.Play("event:/DZ/music/lvl2/dreamblock_sting_pt1");
             cs02CharaMirror.direction = Math.Sign(cs02CharaMirror.player.X - cs02CharaMirror.charaMirror.X);
             cs02CharaMirror.player.StateMachine.State = Player.StDummy;
             cs02CharaMirror.playerEndX = 8 * cs02CharaMirror.direction;
@@ -84,7 +84,7 @@ namespace Celeste.Cutscenes
             player.Facing = (Facings) dashDirection;
             player.DummyAutoAnimate = false;
             player.Sprite.Play("dash");
-            Audio.Play("event:/pusheen/char/kirby/dash_pink_right", player.Position);
+            Audio.Play("event:/DZ/char/kirby/dash_pink_right", player.Position);
             
             player.Hair.Color = Player.UsedHairColor;
             
@@ -119,7 +119,7 @@ namespace Celeste.Cutscenes
                 entity2.ActivateNoRoutine();
             level.ResetZoom();
             level.Session.Inventory.DreamDash = true;
-            level.Session.Audio.Music.Event = "event:/pusheen/music/lvl2/mirror";
+            level.Session.Audio.Music.Event = "event:/DZ/music/lvl2/mirror";
             level.Session.Audio.Apply();
         }
     }

@@ -307,10 +307,10 @@ namespace DZ
             return inventoryType switch
             {
                 RefillInventoryType.TwoDash => "event:/game/general/refill_two_get",
-                RefillInventoryType.Solar => "event:/pusheen/game/general/diamond_touch",
-                RefillInventoryType.Lunar => "event:/pusheen/game/general/diamond_touch",
-                RefillInventoryType.BlackHole => "event:/pusheen/new_content/game/19_spaces/gigadiamond_touch",
-                RefillInventoryType.SaveStar => "event:/pusheen/new_content/game/20_last_push/savediamond_touch",
+                RefillInventoryType.Solar => "event:/DZ/game/general/diamond_touch",
+                RefillInventoryType.Lunar => "event:/DZ/game/general/diamond_touch",
+                RefillInventoryType.BlackHole => "event:/DZ/new_content/game/19_spaces/gigadiamond_touch",
+                RefillInventoryType.SaveStar => "event:/DZ/new_content/game/20_last_push/savediamond_touch",
                 _ => "event:/game/general/refill_get"
             };
         }

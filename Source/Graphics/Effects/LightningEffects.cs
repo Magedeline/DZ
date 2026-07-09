@@ -17,11 +17,11 @@ namespace Celeste.Effects
         public static ParticleType P_Electromagnetic;
 
         // Audio events
-        public const string SFX_LIGHTNING_ZAP = "event:/pusheen/lightning/zap";
-        public const string SFX_LIGHTNING_THUNDER = "event:/pusheen/lightning/thunder";
-        public const string SFX_LIGHTNING_CRACKLE = "event:/pusheen/lightning/crackle";
-        public const string SFX_LIGHTNING_DISCHARGE = "event:/pusheen/lightning/discharge";
-        public const string SFX_LIGHTNING_STATIC = "event:/pusheen/lightning/static";
+        public const string SFX_LIGHTNING_ZAP = "event:/DZ/lightning/zap";
+        public const string SFX_LIGHTNING_THUNDER = "event:/DZ/lightning/thunder";
+        public const string SFX_LIGHTNING_CRACKLE = "event:/DZ/lightning/crackle";
+        public const string SFX_LIGHTNING_DISCHARGE = "event:/DZ/lightning/discharge";
+        public const string SFX_LIGHTNING_STATIC = "event:/DZ/lightning/static";
 
         private static readonly Dictionary<Entity, ElectricalEffect> chargedEntities = new Dictionary<Entity, ElectricalEffect>();
 

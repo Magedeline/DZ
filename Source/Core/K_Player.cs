@@ -583,44 +583,44 @@ namespace Celeste.Entities
         private static class Sfxs
         {
             // Character - Madeline (Kirby skin) — using GUIDs from GUIDs.txt
-            public const string char_mad_footstep             = "event:/pusheen/char/kirby/footstep";
-            public const string char_mad_handhold             = "event:/pusheen/char/kirby/handhold";
-            public const string char_mad_campfire_stand       = "event:/pusheen/char/kirby/campfire_stand";
-            public const string char_mad_summit_sit           = "event:/pusheen/char/kirby/summit_sit";
-            public const string char_mad_idle_scratch         = "event:/pusheen/char/kirby/idle_scratch";
-            public const string char_mad_idle_sneeze          = "event:/pusheen/char/kirby/idle_sneeze";
-            public const string char_mad_idle_crackknuckles   = "event:/pusheen/char/kirby/idle_crackknuckles";
-            public const string char_mad_jump                 = "event:/pusheen/char/kirby/jump";
-            public const string char_mad_jump_assisted        = "event:/pusheen/char/kirby/jump_assisted";
-            public const string char_mad_jump_dreamblock      = "event:/pusheen/char/kirby/jump_dreamblock";
-            public const string char_mad_jump_super           = "event:/pusheen/char/kirby/jump_super";
-            public const string char_mad_jump_superslide      = "event:/pusheen/char/kirby/jump_superslide";
-            public const string char_mad_jump_superwall       = "event:/pusheen/char/kirby/jump_superwall";
-            public const string char_mad_jump_wall_left       = "event:/pusheen/char/kirby/jump_wall_left";
-            public const string char_mad_jump_wall_right      = "event:/pusheen/char/kirby/jump_wall_right";
-            public const string char_mad_jump_climb_left      = "event:/pusheen/char/kirby/jump_climb_left";
-            public const string char_mad_jump_climb_right     = "event:/pusheen/char/kirby/jump_climb_right";
-            public const string char_mad_land                 = "event:/pusheen/char/kirby/landing";
-            public const string char_mad_grab                 = "event:/pusheen/char/kirby/grab";
-            public const string char_mad_grab_letgo           = "event:/pusheen/char/kirby/grab_letgo";
-            public const string char_mad_climb_ledge          = "event:/pusheen/char/kirby/climb_ledge";
-            public const string char_mad_wallslide            = "event:/pusheen/char/kirby/wallslide";
-            public const string char_mad_dash_red_right       = "event:/pusheen/char/kirby/dash_red_right";
-            public const string char_mad_dash_red_left        = "event:/pusheen/char/kirby/dash_red_left";
-            public const string char_mad_dash_pink_right      = "event:/pusheen/char/kirby/dash_pink_right";
-            public const string char_mad_dash_pink_left       = "event:/pusheen/char/kirby/dash_pink_left";
-            public const string char_mad_duck                 = "event:/pusheen/char/kirby/duck";
-            public const string char_mad_stand                = "event:/pusheen/char/kirby/stand";
-            public const string char_mad_water_dash_gen       = "event:/pusheen/char/kirby/water_dash_gen";
-            public const string char_mad_water_move_shallow   = "event:/pusheen/char/kirby/water_move_shallow";
-            public const string char_mad_dreamblock_enter     = "event:/pusheen/char/kirby/dreamblock_enter";
-            public const string char_mad_dreamblock_exit      = "event:/pusheen/char/kirby/dreamblock_exit";
-            public const string char_mad_dreamblock_travel    = "event:/pusheen/char/kirby/dreamblock_travel";
-            public const string char_mad_revive               = "event:/pusheen/char/kirby/revive";
-            public const string char_mad_mirrortemple_landing = "event:/pusheen/char/kirby/mirrortemple_big_landing";
-            public const string char_mad_summit_areastart     = "event:/pusheen/char/kirby/summit_areastart";
-            public const string char_mad_crystaltheo_lift     = "event:/pusheen/char/kirby/crystaltheo_lift";
-            public const string char_mad_crystaltheo_throw    = "event:/pusheen/char/kirby/crystaltheo_throw";
+            public const string char_mad_footstep             = "event:/DZ/char/kirby/footstep";
+            public const string char_mad_handhold             = "event:/DZ/char/kirby/handhold";
+            public const string char_mad_campfire_stand       = "event:/DZ/char/kirby/campfire_stand";
+            public const string char_mad_summit_sit           = "event:/DZ/char/kirby/summit_sit";
+            public const string char_mad_idle_scratch         = "event:/DZ/char/kirby/idle_scratch";
+            public const string char_mad_idle_sneeze          = "event:/DZ/char/kirby/idle_sneeze";
+            public const string char_mad_idle_crackknuckles   = "event:/DZ/char/kirby/idle_crackknuckles";
+            public const string char_mad_jump                 = "event:/DZ/char/kirby/jump";
+            public const string char_mad_jump_assisted        = "event:/DZ/char/kirby/jump_assisted";
+            public const string char_mad_jump_dreamblock      = "event:/DZ/char/kirby/jump_dreamblock";
+            public const string char_mad_jump_super           = "event:/DZ/char/kirby/jump_super";
+            public const string char_mad_jump_superslide      = "event:/DZ/char/kirby/jump_superslide";
+            public const string char_mad_jump_superwall       = "event:/DZ/char/kirby/jump_superwall";
+            public const string char_mad_jump_wall_left       = "event:/DZ/char/kirby/jump_wall_left";
+            public const string char_mad_jump_wall_right      = "event:/DZ/char/kirby/jump_wall_right";
+            public const string char_mad_jump_climb_left      = "event:/DZ/char/kirby/jump_climb_left";
+            public const string char_mad_jump_climb_right     = "event:/DZ/char/kirby/jump_climb_right";
+            public const string char_mad_land                 = "event:/DZ/char/kirby/landing";
+            public const string char_mad_grab                 = "event:/DZ/char/kirby/grab";
+            public const string char_mad_grab_letgo           = "event:/DZ/char/kirby/grab_letgo";
+            public const string char_mad_climb_ledge          = "event:/DZ/char/kirby/climb_ledge";
+            public const string char_mad_wallslide            = "event:/DZ/char/kirby/wallslide";
+            public const string char_mad_dash_red_right       = "event:/DZ/char/kirby/dash_red_right";
+            public const string char_mad_dash_red_left        = "event:/DZ/char/kirby/dash_red_left";
+            public const string char_mad_dash_pink_right      = "event:/DZ/char/kirby/dash_pink_right";
+            public const string char_mad_dash_pink_left       = "event:/DZ/char/kirby/dash_pink_left";
+            public const string char_mad_duck                 = "event:/DZ/char/kirby/duck";
+            public const string char_mad_stand                = "event:/DZ/char/kirby/stand";
+            public const string char_mad_water_dash_gen       = "event:/DZ/char/kirby/water_dash_gen";
+            public const string char_mad_water_move_shallow   = "event:/DZ/char/kirby/water_move_shallow";
+            public const string char_mad_dreamblock_enter     = "event:/DZ/char/kirby/dreamblock_enter";
+            public const string char_mad_dreamblock_exit      = "event:/DZ/char/kirby/dreamblock_exit";
+            public const string char_mad_dreamblock_travel    = "event:/DZ/char/kirby/dreamblock_travel";
+            public const string char_mad_revive               = "event:/DZ/char/kirby/revive";
+            public const string char_mad_mirrortemple_landing = "event:/DZ/char/kirby/mirrortemple_big_landing";
+            public const string char_mad_summit_areastart     = "event:/DZ/char/kirby/summit_areastart";
+            public const string char_mad_crystaltheo_lift     = "event:/DZ/char/kirby/crystaltheo_lift";
+            public const string char_mad_crystaltheo_throw    = "event:/DZ/char/kirby/crystaltheo_throw";
 
             // Game
             public const string game_06_feather_state_bump    = "event:/game/06_reflection/feather_state_bump";
@@ -7231,7 +7231,7 @@ namespace Celeste.Entities
             if (level != null)
             {
                 level.Particles.Emit(ParticleTypes.SparkyDust, 6, Center, Vector2.One * 12f);
-                Audio.Play("event:/pusheen/char/kirby/dashDZ_CHarge", Position); // TODO: add to FMOD bank
+                Audio.Play("event:/DZ/char/kirby/dashDZ_CHarge", Position); // TODO: add to FMOD bank
             }
         }
 
@@ -7294,7 +7294,7 @@ namespace Celeste.Entities
             {
                 level.Particles.Emit(ParticleTypes.SparkyDust, 12, Center, Vector2.One * 20f);
                 level.Shake(0.15f);
-                Audio.Play("event:/pusheen/char/kirby/kirby_knight/spin", Position); // TODO: add kirby_knight/* sub-bank to FMOD
+                Audio.Play("event:/DZ/char/kirby/kirby_knight/spin", Position); // TODO: add kirby_knight/* sub-bank to FMOD
             }
 
             StartSwing();
@@ -7365,7 +7365,7 @@ namespace Celeste.Entities
             }
 
             if (level != null)
-                Audio.Play("event:/pusheen/char/kirby/inhale_start", Position); // TODO: add to FMOD bank
+                Audio.Play("event:/DZ/char/kirby/inhale_start", Position); // TODO: add to FMOD bank
         }
 
         private void StarShotEnd()
@@ -7431,7 +7431,7 @@ namespace Celeste.Entities
                 level.Particles.Emit(ParticleTypes.SparkyDust, 2, trailPos, Vector2.One * 8f);
             }
 
-            Audio.Play("event:/pusheen/char/kirby/spit", Position); // TODO: add to FMOD bank
+            Audio.Play("event:/DZ/char/kirby/spit", Position); // TODO: add to FMOD bank
             Speed = -direction * 80f * charge;
 
             // Deal damage along path — one swing, so each enemy is hit once
@@ -7473,7 +7473,7 @@ namespace Celeste.Entities
             {
                 level.Particles.Emit(ParticleTypes.SparkyDust, 8, Center, Vector2.One * 16f);
                 level.Shake(0.1f);
-                Audio.Play("event:/pusheen/char/kirby/kirby_knight/punch_A", Position); // TODO: add kirby_knight/* sub-bank to FMOD
+                Audio.Play("event:/DZ/char/kirby/kirby_knight/punch_A", Position); // TODO: add kirby_knight/* sub-bank to FMOD
             }
         }
 
@@ -7557,7 +7557,7 @@ namespace Celeste.Entities
                     );
                     level.Particles.Emit(ParticleTypes.SparkyDust, 2, shieldPos, Vector2.One * 8f);
                 }
-                Audio.Play("event:/pusheen/char/kirby/core_hairDZ_CHarged", Position);
+                Audio.Play("event:/DZ/char/kirby/core_hairDZ_CHarged", Position);
             }
         }
 
@@ -7656,7 +7656,7 @@ namespace Celeste.Entities
             level.Particles.Emit(ParticleTypes.SparkyDust, 16, Center, Vector2.One * 24f);
             level.Flash(Color.Gold * 0.4f, true);
             level.Shake(0.3f);
-            Audio.Play("event:/pusheen/char/kirby/transform_in", Position); // TODO: add to FMOD bank
+            Audio.Play("event:/DZ/char/kirby/transform_in", Position); // TODO: add to FMOD bank
         }
 
         // Dive Kick State
@@ -7684,7 +7684,7 @@ namespace Celeste.Entities
             {
                 level.Particles.Emit(ParticleTypes.SparkyDust, 10, Center, Vector2.One * 20f);
                 level.Shake(0.2f);
-                Audio.Play("event:/pusheen/char/kirby/kirby_knight/punch_Final", Position); // TODO: add kirby_knight/* sub-bank to FMOD
+                Audio.Play("event:/DZ/char/kirby/kirby_knight/punch_Final", Position); // TODO: add kirby_knight/* sub-bank to FMOD
             }
         }
 
@@ -7699,7 +7699,7 @@ namespace Celeste.Entities
             {
                 level.Particles.Emit(ParticleTypes.SparkyDust, 12, BottomCenter, Vector2.One * 24f);
                 level.Shake(0.3f);
-                Audio.Play("event:/pusheen/char/kirby/kirby_knight/punch_Final", Position); // TODO: add kirby_knight/* sub-bank to FMOD
+                Audio.Play("event:/DZ/char/kirby/kirby_knight/punch_Final", Position); // TODO: add kirby_knight/* sub-bank to FMOD
                 // landing shockwave is its own swing so kicked enemies get hit too
                 StartSwing();
                 DealCombatDamageInRadius(BottomCenter, 40f, 2);
@@ -7776,7 +7776,7 @@ namespace Celeste.Entities
                 level.Particles.Emit(ParticleTypes.SparkyDust, 10, Center, Vector2.One * 16f);
                 level.Particles.Emit(ParticleTypes.SparkyDust, 8, skillGrappleTarget, Vector2.One * 12f);
                 level.Shake(0.1f);
-                Audio.Play("event:/pusheen/char/kirby/kirby_knight/punch_A", Position); // TODO: add kirby_knight/* sub-bank to FMOD
+                Audio.Play("event:/DZ/char/kirby/kirby_knight/punch_A", Position); // TODO: add kirby_knight/* sub-bank to FMOD
             }
         }
 
@@ -7796,7 +7796,7 @@ namespace Celeste.Entities
             if (level != null)
             {
                 level.Particles.Emit(ParticleTypes.SparkyDust, 12, Center, Vector2.One * 20f);
-                Audio.Play("event:/pusheen/char/kirby/spit", Position); // TODO: add to FMOD bank
+                Audio.Play("event:/DZ/char/kirby/spit", Position); // TODO: add to FMOD bank
             }
         }
 
@@ -7930,7 +7930,7 @@ namespace Celeste.Entities
             {
                 level.Particles.Emit(ParticleTypes.SparkyDust, 20, Center, Vector2.One * 24f);
                 level.Flash(Color.Cyan * 0.3f, true);
-                Audio.Play("event:/pusheen/char/kirby/transform_in", Position); // TODO: add to FMOD bank
+                Audio.Play("event:/DZ/char/kirby/transform_in", Position); // TODO: add to FMOD bank
             }
         }
 

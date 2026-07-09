@@ -34,7 +34,7 @@ public class DZUnlockEverything : CheatListener
         level.PauseLock = true;
         level.Frozen = true;
         level.Flash(Color.White);
-        Audio.Play("event:/pusheen/new_content/game/general/cheat_activate", level.Camera.Position + new Vector2(160f, 90f));
+        Audio.Play("event:/DZ/new_content/game/general/cheat_activate", level.Camera.Position + new Vector2(160f, 90f));
         new FadeWipe(level, wipeIn: false, delegate
         {
             UnlockEverything(level);

@@ -17,11 +17,11 @@ namespace Celeste.Effects
         public static ParticleType P_WhiteFire;
 
         // Audio events
-        public const string SFX_FIRE_IGNITE = "event:/pusheen/fire/ignite";
-        public const string SFX_FIRE_BURN = "event:/pusheen/fire/burn";
-        public const string SFX_FIRE_EXTINGUISH = "event:/pusheen/fire/extinguish";
-        public const string SFX_FIRE_EXPLOSION = "event:/pusheen/fire/explosion";
-        public const string SFX_FIRE_WHOOSH = "event:/pusheen/fire/whoosh";
+        public const string SFX_FIRE_IGNITE = "event:/DZ/fire/ignite";
+        public const string SFX_FIRE_BURN = "event:/DZ/fire/burn";
+        public const string SFX_FIRE_EXTINGUISH = "event:/DZ/fire/extinguish";
+        public const string SFX_FIRE_EXPLOSION = "event:/DZ/fire/explosion";
+        public const string SFX_FIRE_WHOOSH = "event:/DZ/fire/whoosh";
 
         static FireEffects()
         {

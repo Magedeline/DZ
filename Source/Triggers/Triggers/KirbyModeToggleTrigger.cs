@@ -71,7 +71,7 @@ namespace Celeste.Triggers
         private float particleTimer;
         
         // SFX paths
-        private const string SFX_DEFAULT_TRANSFORM = "event:/pusheen/char/kirby/transform_in";
+        private const string SFX_DEFAULT_TRANSFORM = "event:/DZ/char/kirby/transform_in";
         
         // Particle types
         private static ParticleType P_KirbySparkle;

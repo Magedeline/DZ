@@ -217,13 +217,13 @@ namespace Celeste.Entities
                 // Only add the firstHitSfx if it doesn't already exist
                 if (this.firstHitSfx == null)
                 {
-                    this.firstHitSfx = new SoundSource("event:/pusheen/new_content/game/19_spaces/powergenerator_hit_first");
+                    this.firstHitSfx = new SoundSource("event:/DZ/new_content/game/19_spaces/powergenerator_hit_first");
                     this.Add((Component)this.firstHitSfx);
                 }
                 else
                 {
                     // Play multiple hits sound for subsequent hits
-                    Audio.Play("event:/pusheen/new_content/game/19_spaces/powergenerator_hit", this.Position);
+                    Audio.Play("event:/DZ/new_content/game/19_spaces/powergenerator_hit", this.Position);
                 }
                 CelesteGame.Freeze(0.1f);
                 this.shakeCounter = 0.2f;
@@ -238,7 +238,7 @@ namespace Celeste.Entities
             {
                 if (this.firstHitSfx != null)
                     this.firstHitSfx.Stop();
-                Audio.Play("event:/pusheen/new_content/game/19_spaces/powergenerator_hit", this.Position);
+                Audio.Play("event:/DZ/new_content/game/19_spaces/powergenerator_hit", this.Position);
                 CelesteGame.Freeze(0.2f);
                 player.RefillDash();
                 Input.Rumble(RumbleStrength.Strong, RumbleLength.Long);
@@ -429,7 +429,7 @@ namespace Celeste.Entities
 
             // --- PITCH PARAMETER ---
             // Example: Play destruction sound with pitch parameter
-            var sfx = Audio.Play("event:/pusheen/new_content/game/19_spaces/powergenerator_hit_scream", this.Position);
+            var sfx = Audio.Play("event:/DZ/new_content/game/19_spaces/powergenerator_hit_scream", this.Position);
             Audio.SetParameter(sfx, "pitch", 1.2f); // Set pitch as needed
 
             if (this.flag)

@@ -62,7 +62,7 @@ namespace Celeste.Cutscenes
             yield return 1f;
 
             // Play intro music
-            introMusic = Audio.Play("event:/pusheen/music/lvl0/intro", Vector2.Zero);
+            introMusic = Audio.Play("event:/DZ/music/lvl0/intro", Vector2.Zero);
             yield return 2f;
 
             // Display intro dialog

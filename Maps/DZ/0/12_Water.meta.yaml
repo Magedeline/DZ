@@ -12,42 +12,42 @@ DarknessAlpha: 0.1
 BloomBase: 0.2
 BloomStrength: 1.0
 CassetteNoteColor: 1a8b9e
-CassetteSong: event:/music/pusheen/Cassette/12_depth
+CassetteSong: event:/music/DZ/Cassette/12_depth
 
 Modes:
   - AudioState:
-      Music: event:/music/pusheen/lvl12/main
-      Ambience: event:/env/pusheen/12_waterfall
+      Music: event:/music/DZ/lvl12/main
+      Ambience: event:/env/DZ/12_waterfall
     Inventory: Default
     HeartIsEnd: false
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/1/12_water
-      Ambience: event:/env/pusheen/12_waterfall
+      Music: event:/music/DZ/1/12_water
+      Ambience: event:/env/DZ/12_waterfall
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/2/12_water
-      Ambience: event:/env/pusheen/12_waterfall
+      Music: event:/music/DZ/2/12_water
+      Ambience: event:/env/DZ/12_waterfall
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/2/12_water
-      Ambience: event:/env/pusheen/12_waterfall
+      Music: event:/music/DZ/2/12_water
+      Ambience: event:/env/DZ/12_waterfall
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/2/12_water
-      Ambience: event:/env/pusheen/12_main
+      Music: event:/music/DZ/2/12_water
+      Ambience: event:/env/DZ/12_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/DXSide/12_water
-      Ambience: event:/env/pusheen/12_main
+      Music: event:/music/DZ/DXSide/12_water
+      Ambience: event:/env/DZ/12_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false

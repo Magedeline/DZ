@@ -17,35 +17,35 @@ namespace Celeste.Entities
     {
         #region Constants and Audio Events
         
-        // Audio Events - SFX (event:/pusheen/new_content/char/bosses/asriel/)
-        private const string SFX_BIG_BULLET_FIRE       = "event:/pusheen/new_content/char/bosses/asriel/big_bullet_fire";
-        private const string SFX_BIG_LASER             = "event:/pusheen/new_content/char/bosses/asriel/big_laser";
-        private const string SFX_BIG_STAR              = "event:/pusheen/new_content/char/bosses/asriel/big_star";
-        private const string SFX_BIGGER_GUN_MECHANIZED = "event:/pusheen/new_content/char/bosses/asriel/biggergunmechanized";
-        private const string SFXDZ_CHARGE_INTRO          = "event:/pusheen/new_content/char/bosses/asriel/charge_intro";
-        private const string SFX_CINEMATIC_CUT         = "event:/pusheen/new_content/char/bosses/asriel/cinematiccut";
-        private const string SFX_CINEMATIC_CUT_2D      = "event:/pusheen/new_content/char/bosses/asriel/cinematiccut_2d";
-        private const string SFX_CINEMATIC_CUT_3D      = "event:/pusheen/new_content/char/bosses/asriel/cinematiccut_3d";
-        private const string SFX_CINEMATIC_CUT_FLAME   = "event:/pusheen/new_content/char/bosses/asriel/cinematiccut_flame_2d";
-        private const string SFX_CRASH_BUBBLE_BURST    = "event:/pusheen/new_content/char/bosses/asriel/crashbubbleburst";
-        private const string SFX_CRASH_BUBBLEDZ_CHARGE   = "event:/pusheen/new_content/char/bosses/asriel/crashbubblecharge";
-        private const string SFX_CREATE                = "event:/pusheen/new_content/char/bosses/asriel/create";
-        private const string SFX_FINAL_BEAM            = "event:/pusheen/new_content/char/bosses/asriel/finalbeam";
-        private const string SFX_GET_HIT               = "event:/pusheen/new_content/char/bosses/asriel/get_hit";
-        private const string SFX_GRAB                  = "event:/pusheen/new_content/char/bosses/asriel/grab";
-        private const string SFX_GUNSHOT               = "event:/pusheen/new_content/char/bosses/asriel/gunshot";
-        private const string SFX_HYPERGONERDZ_CHARGE     = "event:/pusheen/new_content/char/bosses/asriel/hypergonerDZ_CHarge";
-        private const string SFX_LASER                 = "event:/pusheen/new_content/char/bosses/asriel/laser";
-        private const string SFX_LASER_BEAM_STRIKE     = "event:/pusheen/new_content/char/bosses/asriel/laser_Beam_strike_impact";
-        private const string SFX_LASER_INTRO           = "event:/pusheen/new_content/char/bosses/asriel/laser_intro";
-        private const string SFX_LIGHTNING_HIT1        = "event:/pusheen/new_content/char/bosses/asriel/lightning_hit1";
-        private const string SFX_LIGHTNING_HIT2        = "event:/pusheen/new_content/char/bosses/asriel/lightning_hit2";
-        private const string SFX_PHASER_BLAST          = "event:/pusheen/new_content/char/bosses/asriel/phaser_blast";
-        private const string SFX_ROAR                  = "event:/pusheen/new_content/char/bosses/asriel/roar";
-        private const string SFX_SPARKLES              = "event:/pusheen/new_content/char/bosses/asriel/sparkles";
-        private const string SFX_SPELLCAST             = "event:/pusheen/new_content/char/bosses/asriel/spellcast";
-        private const string SFX_SPELLCAST_GLITCH      = "event:/pusheen/new_content/char/bosses/asriel/spellcast_glitch";
-        private const string SFX_STAR                  = "event:/pusheen/new_content/char/bosses/asriel/star";
+        // Audio Events - SFX (event:/DZ/new_content/char/bosses/asriel/)
+        private const string SFX_BIG_BULLET_FIRE       = "event:/DZ/new_content/char/bosses/asriel/big_bullet_fire";
+        private const string SFX_BIG_LASER             = "event:/DZ/new_content/char/bosses/asriel/big_laser";
+        private const string SFX_BIG_STAR              = "event:/DZ/new_content/char/bosses/asriel/big_star";
+        private const string SFX_BIGGER_GUN_MECHANIZED = "event:/DZ/new_content/char/bosses/asriel/biggergunmechanized";
+        private const string SFXDZ_CHARGE_INTRO          = "event:/DZ/new_content/char/bosses/asriel/charge_intro";
+        private const string SFX_CINEMATIC_CUT         = "event:/DZ/new_content/char/bosses/asriel/cinematiccut";
+        private const string SFX_CINEMATIC_CUT_2D      = "event:/DZ/new_content/char/bosses/asriel/cinematiccut_2d";
+        private const string SFX_CINEMATIC_CUT_3D      = "event:/DZ/new_content/char/bosses/asriel/cinematiccut_3d";
+        private const string SFX_CINEMATIC_CUT_FLAME   = "event:/DZ/new_content/char/bosses/asriel/cinematiccut_flame_2d";
+        private const string SFX_CRASH_BUBBLE_BURST    = "event:/DZ/new_content/char/bosses/asriel/crashbubbleburst";
+        private const string SFX_CRASH_BUBBLEDZ_CHARGE   = "event:/DZ/new_content/char/bosses/asriel/crashbubblecharge";
+        private const string SFX_CREATE                = "event:/DZ/new_content/char/bosses/asriel/create";
+        private const string SFX_FINAL_BEAM            = "event:/DZ/new_content/char/bosses/asriel/finalbeam";
+        private const string SFX_GET_HIT               = "event:/DZ/new_content/char/bosses/asriel/get_hit";
+        private const string SFX_GRAB                  = "event:/DZ/new_content/char/bosses/asriel/grab";
+        private const string SFX_GUNSHOT               = "event:/DZ/new_content/char/bosses/asriel/gunshot";
+        private const string SFX_HYPERGONERDZ_CHARGE     = "event:/DZ/new_content/char/bosses/asriel/hypergonerDZ_CHarge";
+        private const string SFX_LASER                 = "event:/DZ/new_content/char/bosses/asriel/laser";
+        private const string SFX_LASER_BEAM_STRIKE     = "event:/DZ/new_content/char/bosses/asriel/laser_Beam_strike_impact";
+        private const string SFX_LASER_INTRO           = "event:/DZ/new_content/char/bosses/asriel/laser_intro";
+        private const string SFX_LIGHTNING_HIT1        = "event:/DZ/new_content/char/bosses/asriel/lightning_hit1";
+        private const string SFX_LIGHTNING_HIT2        = "event:/DZ/new_content/char/bosses/asriel/lightning_hit2";
+        private const string SFX_PHASER_BLAST          = "event:/DZ/new_content/char/bosses/asriel/phaser_blast";
+        private const string SFX_ROAR                  = "event:/DZ/new_content/char/bosses/asriel/roar";
+        private const string SFX_SPARKLES              = "event:/DZ/new_content/char/bosses/asriel/sparkles";
+        private const string SFX_SPELLCAST             = "event:/DZ/new_content/char/bosses/asriel/spellcast";
+        private const string SFX_SPELLCAST_GLITCH      = "event:/DZ/new_content/char/bosses/asriel/spellcast_glitch";
+        private const string SFX_STAR                  = "event:/DZ/new_content/char/bosses/asriel/star";
         // Remapped: BarrierShatter -> crashbubbleburst, BiggerGunFire -> phaser_blast, SegaPower01 -> charge_intro
         private const string SFX_BARRIER_SHATTER       = SFX_CRASH_BUBBLE_BURST;
         private const string SFX_BIGGER_GUN_FIRE       = SFX_PHASER_BLAST;
@@ -59,7 +59,7 @@ namespace Celeste.Entities
         private const string SFX_BOSS_BULLET = "event:/char/badeline/boss_bullet";
         
         // Ambient Events
-        private const string AMBIENT_ANGEL = "event:/pusheen/new_content/env/20_angel";
+        private const string AMBIENT_ANGEL = "event:/DZ/new_content/env/20_angel";
         
         // Dialogue Events
         private const string DIALOGUE_ASRIEL = "event:/char/dialogue/asriel";
@@ -421,10 +421,10 @@ namespace Celeste.Entities
 
         // Music progression
         private string[] musicTracks = {
-            "event:/pusheen/new_content/music/lvl20/kirby_vs_asriel_fight_1",
+            "event:/DZ/new_content/music/lvl20/kirby_vs_asriel_fight_1",
         };
         
-        private const string ASRIEL_REMEMBER_PART_2 = "event:/pusheen/new_content/music/lvl20/asriel";
+        private const string ASRIEL_REMEMBER_PART_2 = "event:/DZ/new_content/music/lvl20/asriel";
         private bool asrielRememberTriggered = false;
         private bool hyperGonerPhaseTransitionTriggered = false;
         
@@ -2858,7 +2858,7 @@ namespace Celeste.Entities
         {
             var asrielboss = this;
             currentAttackPhase = AttackPhase.Charging;
-            Audio.Play("event:/pusheen/new_content/char/els/Els_StarDeath", asrielboss.Position);
+            Audio.Play("event:/DZ/new_content/char/els/Els_StarDeath", asrielboss.Position);
             yield return 0.5f;
             var entity = asrielboss.level.Tracker.GetEntity<global::Celeste.Player>();
             if (entity != null)
@@ -3446,7 +3446,7 @@ namespace Celeste.Entities
             yield return 0.5f;
 
             // Start boss music now that the god boss has appeared
-            level.Session.Audio.Music.Event = "event:/pusheen/new_content/music/lvl20/asriel";
+            level.Session.Audio.Music.Event = "event:/DZ/new_content/music/lvl20/asriel";
             level.Session.Audio.Apply();
 
             // Restore player control

@@ -12,42 +12,42 @@ DarknessAlpha: 0.05
 BloomBase: 0.0
 BloomStrength: 1.0
 CassetteNoteColor: f0a030
-CassetteSong: event:/music/pusheen/Cassette/04_destiny
+CassetteSong: event:/music/DZ/Cassette/04_destiny
 
 Modes:
   - AudioState:
-      Music: event:/music/pusheen/lvl04/main
-      Ambience: event:/env/pusheen/04_awake
+      Music: event:/music/DZ/lvl04/main
+      Ambience: event:/env/DZ/04_awake
     Inventory: Default
     HeartIsEnd: false
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/1/04_legend
-      Ambience: event:/env/pusheen/04_awake
+      Music: event:/music/DZ/1/04_legend
+      Ambience: event:/env/DZ/04_awake
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/2/04_legend
-      Ambience: event:/env/pusheen/04_awake
+      Music: event:/music/DZ/2/04_legend
+      Ambience: event:/env/DZ/04_awake
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/2/04_legend
-      Ambience: event:/env/pusheen/04_awake
+      Music: event:/music/DZ/2/04_legend
+      Ambience: event:/env/DZ/04_awake
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/2/04_legend
-      Ambience: event:/env/pusheen/04_main
+      Music: event:/music/DZ/2/04_legend
+      Ambience: event:/env/DZ/04_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/DXSide/04_legend
-      Ambience: event:/env/pusheen/04_main
+      Music: event:/music/DZ/DXSide/04_legend
+      Ambience: event:/env/DZ/04_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false

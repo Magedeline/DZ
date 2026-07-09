@@ -56,13 +56,13 @@ namespace Celeste.Cutscenes
         private const string DLG_PHASE2_ARRIVAL       = "DZ_CH21_FINAL_BATTLE_PHASE2_ARRIVAL";
 
         // ── Audio ─────────────────────────────────────────────────────────
-        private const string MUS_VOID_APPROACH  = "event:/pusheen/new_content/music/lvl21/void_approach";
-        private const string MUS_WARPSTAR_RIDE  = "event:/pusheen/new_content/music/lvl21/warpstar_ride";
-        private const string MUS_ELS_TERMINA    = "event:/pusheen/new_content/music/lvl21/els_termina_final";
-        private const string SFX_ZERO_SHATTER   = "event:/pusheen/new_content/game/21_desolo_zantas/zero_shatter";
-        private const string SFX_WARPSTAR_LAUNCH = "event:/pusheen/new_content/game/21_desolo_zantas/warpstar_launch";
-        private const string SFX_ABYSS_RUMBLE   = "event:/pusheen/new_content/game/21_desolo_zantas/falling_into_the_void";
-        private const string SFX_SOUL_SURGE     = "event:/new_content/char/pusheen/asriel/Asriel_Create";
+        private const string MUS_VOID_APPROACH  = "event:/DZ/new_content/music/lvl21/void_approach";
+        private const string MUS_WARPSTAR_RIDE  = "event:/DZ/new_content/music/lvl21/warpstar_ride";
+        private const string MUS_ELS_TERMINA    = "event:/DZ/new_content/music/lvl21/els_termina_final";
+        private const string SFX_ZERO_SHATTER   = "event:/DZ/new_content/game/21_desolo_zantas/zero_shatter";
+        private const string SFX_WARPSTAR_LAUNCH = "event:/DZ/new_content/game/21_desolo_zantas/warpstar_launch";
+        private const string SFX_ABYSS_RUMBLE   = "event:/DZ/new_content/game/21_desolo_zantas/falling_into_the_void";
+        private const string SFX_SOUL_SURGE     = "event:/new_content/char/DZ/asriel/Asriel_Create";
 
         // ── Colour palette (HP phase shifts for Phase 2) ──────────────────
         private static readonly Color[] PhaseColors = new[]

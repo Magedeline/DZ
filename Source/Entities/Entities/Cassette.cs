@@ -246,7 +246,7 @@ namespace Celeste.Entities {
 			}
 
 			Visible = false;
-			remixSfx = Audio.Play("event:/pusheen/game/general/cassette_preview", "remix", level.Session.Area.ID);
+			remixSfx = Audio.Play("event:/DZ/game/general/cassette_preview", "remix", level.Session.Area.ID);
 			Unlocked1Cutscene message = new Unlocked1Cutscene(unlockText, menuSprite);
 			Scene.Add(message);
 			yield return message.EaseIn();

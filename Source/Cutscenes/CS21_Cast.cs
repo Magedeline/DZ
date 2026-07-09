@@ -117,7 +117,7 @@ namespace Celeste.Cutscenes
                 player.StateMachine.State = Player.StDummy;
 
             Audio.SetAmbience(null, true);
-            Audio.SetMusic("event:/pusheen/music/menu/true_cast");
+            Audio.SetMusic("event:/DZ/music/menu/true_cast");
 
             Add(new Coroutine(RunCastMember(level)));
         }

@@ -53,7 +53,7 @@ namespace Celeste.Entities
             // Vanilla player path: Kirby can inhale-break this block; everyone can dash-break it.
             if (player.IsKirbyMode() && IsKirbyInhaling(player))
             {
-                Audio.Play("event:/pusheen/char/kirby/inhale_start", Position);
+                Audio.Play("event:/DZ/char/kirby/inhale_start", Position);
                 Break();
                 return;
             }
@@ -93,7 +93,7 @@ namespace Celeste.Entities
             {
                 if (player.IsKirbyMode() && IsKirbyInhaling(player))
                 {
-                    Audio.Play("event:/pusheen/char/kirby/inhale_start", Position);
+                    Audio.Play("event:/DZ/char/kirby/inhale_start", Position);
                     Break();
                     return;
                 }
@@ -170,7 +170,7 @@ namespace Celeste.Entities
         {
             if (DZModule.Session?.IsKirbyModeActive == true && kPlayer.kirbyController?.IsInhaling == true)
             {
-                Audio.Play("event:/pusheen/char/kirby/inhale_start", Position);
+                Audio.Play("event:/DZ/char/kirby/inhale_start", Position);
                 Break();
                 return;
             }

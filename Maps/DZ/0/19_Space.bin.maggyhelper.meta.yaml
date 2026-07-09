@@ -8,7 +8,7 @@ mainChapterSid: DZ/0/19_Space
 showInChapterSelect: true
 
 MusicBySide:
-  - event:/music/pusheen/menu/complete_area
+  - event:/music/DZ/menu/complete_area
 Title:
   0: "Chapter Complete"
   FullClear: "Chapter Clear"

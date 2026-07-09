@@ -226,7 +226,7 @@ namespace Celeste.Cutscenes
             }
 
             Audio.SetAmbience(null);
-            Audio.SetMusic("event:/pusheen/music/menu/cast");
+            Audio.SetMusic("event:/DZ/music/menu/cast");
             
             Add(new Coroutine(creditsSequence(level)));
         }

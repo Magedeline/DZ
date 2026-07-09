@@ -12,7 +12,7 @@ namespace DZ;
 public static class LevelSelectOuiHook
 {
     private const string VanillaLevelSelectMusic = "event:/music/menu/level_select";
-    private const string PusheenLevelSelectMusic = "event:/pusheen/music/menu/level_select";
+    private const string PusheenLevelSelectMusic = "event:/DZ/music/menu/level_select";
     private const string DarkStarParam = "darkstar";
 
     /// <summary>

@@ -127,7 +127,7 @@ namespace Celeste.Cutscenes
             phoneRinging = true;
 
             // Play phone rumble sound with EventInstance
-            phoneRumbleSfx = Audio.Play("event:/pusheen/game/04_legend/sequence_phone_ring_loop", Vector2.Zero);
+            phoneRumbleSfx = Audio.Play("event:/DZ/game/04_legend/sequence_phone_ring_loop", Vector2.Zero);
 
             // Add screen shake for phone vibration
             for (int i = 0; i < 20; i++)
@@ -152,7 +152,7 @@ namespace Celeste.Cutscenes
             yield return 0.5f;
 
             // Play locking sound
-            Audio.Play("event:/pusheen/new_content/game/19_spaces/locked_door_appear_1", Vector2.Zero);
+            Audio.Play("event:/DZ/new_content/game/19_spaces/locked_door_appear_1", Vector2.Zero);
 
             // Screen shake for emphasis
             glitchIntensity = 0.3f;

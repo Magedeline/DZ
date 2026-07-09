@@ -34,10 +34,10 @@ public static class PostcardUnlockSystem
     {
         DialogKey = "POSTCARD_2_UNLOCK",
         TexturePath = "postcards/2_unlock",
-        SfxIn = "event:/pusheen/ui/main/postcard_2s_in",
-        SfxOut = "event:/pusheen/ui/main/postcard_2s_out",
+        SfxIn = "event:/DZ/ui/main/postcard_2s_in",
+        SfxOut = "event:/DZ/ui/main/postcard_2s_out",
         TintColor = new Color(255, 215, 0),  // Gold tint
-        UnlockMusic = "event:/pusheen/music/menu/complete_2"
+        UnlockMusic = "event:/DZ/music/menu/complete_2"
     };
 
     /// <summary>Postcard config for D-Side unlock (shown after completing C-Side)</summary>
@@ -45,10 +45,10 @@ public static class PostcardUnlockSystem
     {
         DialogKey = "POSTCARD_2_UNLOCK",
         TexturePath = "postcards/2_unlock",
-        SfxIn = "event:/pusheen/ui/main/postcard_2s_in",
-        SfxOut = "event:/pusheen/ui/main/postcard_2s_out",
+        SfxIn = "event:/DZ/ui/main/postcard_2s_in",
+        SfxOut = "event:/DZ/ui/main/postcard_2s_out",
         TintColor = new Color(180, 100, 255),  // Rainbow/purple tint
-        UnlockMusic = "event:/pusheen/music/menu/complete_2_summit"
+        UnlockMusic = "event:/DZ/music/menu/complete_2_summit"
     };
 
     /// <summary>Postcard config for DX-Side unlock (shown after completing D-Side)</summary>
@@ -56,10 +56,10 @@ public static class PostcardUnlockSystem
     {
         DialogKey = "POSTCARD_DXSIDE_UNLOCK",
         TexturePath = "postcards/dxside_unlock",
-        SfxIn = "event:/pusheen/ui/main/postcard_2s_in",
-        SfxOut = "event:/pusheen/ui/main/postcard_2s_out",
+        SfxIn = "event:/DZ/ui/main/postcard_2s_in",
+        SfxOut = "event:/DZ/ui/main/postcard_2s_out",
         TintColor = new Color(50, 0, 80),  // Dark void tint
-        UnlockMusic = "event:/pusheen/music/menu/complete_2_summit"
+        UnlockMusic = "event:/DZ/music/menu/complete_2_summit"
     };
 
     /// <summary>Postcard config for the 100% ultra completion postcard.</summary>
@@ -67,10 +67,10 @@ public static class PostcardUnlockSystem
     {
         DialogKey = "POSTCARD_ULTRA_VARIANT_UNLOCK",
         TexturePath = "postcards/ultra_variant_unlock",
-        SfxIn = "event:/pusheen/new_content/ui/postcard_variants_in",
-        SfxOut = "event:/pusheen/new_content/ui/postcard_variants_out",
+        SfxIn = "event:/DZ/new_content/ui/postcard_variants_in",
+        SfxOut = "event:/DZ/new_content/ui/postcard_variants_out",
         TintColor = new Color(255, 160, 220),
-        UnlockMusic = "event:/pusheen/music/menu/complete_2_summit"
+        UnlockMusic = "event:/DZ/music/menu/complete_2_summit"
     };
 
     // Ã¢â€â‚¬Ã¢â€â‚¬ Postcard Display Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬

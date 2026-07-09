@@ -18,7 +18,7 @@ kirbyModeToggleTrigger.placements = {
         particleCount = 30,
         screenShake = true,
         shakeIntensity = 0.3,
-        transformSound = "event:/pusheen/char/kirby/transform_in",
+        transformSound = "event:/DZ/char/kirby/transform_in",
         playSound = true,
         initialPower = "None"
     }

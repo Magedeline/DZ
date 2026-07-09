@@ -12,42 +12,42 @@ DarknessAlpha: 0.15
 BloomBase: 0.5
 BloomStrength: 1.0
 CassetteNoteColor: 33eea2
-CassetteSong: event:/music/pusheen/Cassette/05_facrtured
+CassetteSong: event:/music/DZ/Cassette/05_facrtured
 
 Modes:
   - AudioState:
-      Music: event:/music/pusheen/lvl05/main
-      Ambience: event:/env/pusheen/05_exterior
+      Music: event:/music/DZ/lvl05/main
+      Ambience: event:/env/DZ/05_exterior
     Inventory: Default
     HeartIsEnd: false
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/1/05_restore
-      Ambience: event:/env/pusheen/05_exterior
+      Music: event:/music/DZ/1/05_restore
+      Ambience: event:/env/DZ/05_exterior
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/2/05_restore
-      Ambience: event:/env/pusheen/05_exterior
+      Music: event:/music/DZ/2/05_restore
+      Ambience: event:/env/DZ/05_exterior
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/2/05_restore
-      Ambience: event:/env/pusheen/05_exterior
+      Music: event:/music/DZ/2/05_restore
+      Ambience: event:/env/DZ/05_exterior
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/2/05_restore
-      Ambience: event:/env/pusheen/05_main
+      Music: event:/music/DZ/2/05_restore
+      Ambience: event:/env/DZ/05_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/DXSide/05_restore
-      Ambience: event:/env/pusheen/05_main
+      Music: event:/music/DZ/DXSide/05_restore
+      Ambience: event:/env/DZ/05_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
@@ -66,10 +66,10 @@ Modes:
     State: 0
 
 MusicBySide:
-  - event:/music/pusheen/menu/complete_area
-  - event:/music/pusheen/menu/complete_1
-  - event:/music/pusheen/menu/complete_2
-  - event:/music/pusheen/menu/complete_dxside
+  - event:/music/DZ/menu/complete_area
+  - event:/music/DZ/menu/complete_1
+  - event:/music/DZ/menu/complete_2
+  - event:/music/DZ/menu/complete_dxside
 Title:
   0: "Chapter Complete"
   1: "B Side Complete"

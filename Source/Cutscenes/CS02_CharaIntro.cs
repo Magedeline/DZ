@@ -75,7 +75,7 @@ public class CS02DZ_CHaraIntro : CutsceneEntity
         yield return 1f;
         if (level.Session.Area.Mode == AreaMode.Normal)
         {
-            Audio.SetMusic("event:/pusheen/music/lvl2/evil_madeline");
+            Audio.SetMusic("event:/DZ/music/lvl2/evil_madeline");
         }
         yield return Textbox.Say("DZ_CH2_CHARA_INTRO", TurnAround, RevealChara, StartLaughing, StopLaughing);
         anxietyFadeTarget = 0f;
@@ -94,7 +94,7 @@ public class CS02DZ_CHaraIntro : CutsceneEntity
 
     private IEnumerator RevealChara()
     {
-        Audio.Play("event:/pusheen/game/02_old_site/sequenceDZ_CHara_intro", chara.Position);
+        Audio.Play("event:/DZ/game/02_old_site/sequenceDZ_CHara_intro", chara.Position);
         yield return 0.1f;
         Level.Displacement.AddBurst(chara.Position + new Vector2(0f, -4f), 0.8f, 8f, 48f, 0.5f);
         Input.Rumble(RumbleStrength.Light, RumbleLength.Medium);

@@ -31,9 +31,9 @@ namespace DZ
         private const string FLAG_TRAP_DONE = "ch20_tesseract_soul_trap_done";
 
         // SFX
-        private const string SFX_FAKE_HEARTGEM_PULSE   = "event:/pusheen/new_content/game/20_last_push/fake_heartgem_pulse";
-        private const string SFX_FAKE_HEARTGEM_SHATTER = "event:/pusheen/new_content/game/20_last_push/fake_heartgem_shatter";
-        private const string SFX_ELS_LAUGH              = "event:/pusheen/new_content/game/20_last_push/els_reveal_laugh";
+        private const string SFX_FAKE_HEARTGEM_PULSE   = "event:/DZ/new_content/game/20_last_push/fake_heartgem_pulse";
+        private const string SFX_FAKE_HEARTGEM_SHATTER = "event:/DZ/new_content/game/20_last_push/fake_heartgem_shatter";
+        private const string SFX_ELS_LAUGH              = "event:/DZ/new_content/game/20_last_push/els_reveal_laugh";
 
         #endregion
 

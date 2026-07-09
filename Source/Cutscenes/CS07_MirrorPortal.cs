@@ -38,7 +38,7 @@ namespace Celeste.Cutscenes
       cs04MirrorPortal.Add((Component)new Coroutine(MusicFadeOut2()));
       cs04MirrorPortal.Add((Component) (cs04MirrorPortal.sfx = new SoundSource()));
       cs04MirrorPortal.sfx.Position = cs04MirrorPortal.portal.Center;
-      cs04MirrorPortal.sfx.Play("event:/pusheen/music/lvl7/mirror_cutscene");
+      cs04MirrorPortal.sfx.Play("event:/DZ/music/lvl7/mirror_cutscene");
       cs04MirrorPortal.Add((Component) new Coroutine(cs04MirrorPortal.CenterCamera()));
       yield return (object) cs04MirrorPortal.player.DummyWalkToExact((int) cs04MirrorPortal.portal.X);
       yield return (object) 0.25f;

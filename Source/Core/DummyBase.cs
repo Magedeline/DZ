@@ -39,7 +39,7 @@ namespace DZ
                     (anim == "runSlow" && (currentAnimationFrame == 0 || currentAnimationFrame == 6)) ||
                     (anim == "runFast" && (currentAnimationFrame == 0 || currentAnimationFrame == 6)))
                 {
-                    Audio.Play("event:/pusheen/char/kirby/footstep", Position);
+                    Audio.Play("event:/DZ/char/kirby/footstep", Position);
                 }
             };
 

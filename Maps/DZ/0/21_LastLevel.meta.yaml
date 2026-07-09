@@ -110,15 +110,15 @@ LoadingVignetteScreen:
 
 Modes:
   - AudioState:
-      Music: event:/new_content/music/pusheen/lvl21/main
+      Music: event:/new_content/music/DZ/lvl21/main
       Ambience: event:/
     Inventory: Summit
     HeartIsEnd: false
     SeekerSlowdown: false
 
 Mountain:
-    BackgroundMusic: event:/music/pusheen/menu/level_select
-    BackgroundAmbience: bus:/gameplay_sfx/ambience/pusheen/new_worldmap
+    BackgroundMusic: event:/music/DZ/menu/level_select
+    BackgroundAmbience: bus:/gameplay_sfx/ambience/DZ/new_worldmap
     BackgroundMusicParams:
         moon_and_blackhole: 2
     MarkerTexture: marker/runNoBackpack

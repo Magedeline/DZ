@@ -20,7 +20,7 @@ namespace Celeste.Entities
     /// </summary>
     public class GentleBreezeAssist : Entity
     {
-        private const string Sfx_GentleBreezeName = "event:/pusheen/ui/main/gentlebreeze_name";
+        private const string Sfx_GentleBreezeName = "event:/DZ/ui/main/gentlebreeze_name";
 
         // Dash arrow textures (same atlas as vanilla PlayerDashAssist).
         private readonly List<MTexture> images;

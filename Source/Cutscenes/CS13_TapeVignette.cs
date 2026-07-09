@@ -102,7 +102,7 @@ namespace Celeste.Cutscenes
             fade = 0f;
 
             // Start tape hiss/static ambience
-            tapeSfx = Audio.Play("event:/pusheen/game/13_tenna/video_static", Vector2.Zero);
+            tapeSfx = Audio.Play("event:/DZ/game/13_tenna/video_static", Vector2.Zero);
 
             yield return 0.5f;
 

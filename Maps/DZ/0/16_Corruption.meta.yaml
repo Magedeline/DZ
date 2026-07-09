@@ -14,8 +14,8 @@ BloomStrength: 1.0
 
 Modes:
   - AudioState:
-      Music: event:/music/pusheen/lvl16/cinematic/intro01
-      Ambience: event:/env/pusheen/16_myworld
+      Music: event:/music/DZ/lvl16/cinematic/intro01
+      Ambience: event:/env/DZ/16_myworld
     Inventory: Default
     HeartIsEnd: false
     SeekerSlowdown: false
@@ -36,10 +36,10 @@ Mountain:
     State: 1
 
 MusicBySide:
-  - event:/music/pusheen/menu/complete_area
-  - event:/music/pusheen/menu/complete_1
-  - event:/music/pusheen/menu/complete_2
-  - event:/music/pusheen/menu/complete_dxside
+  - event:/music/DZ/menu/complete_area
+  - event:/music/DZ/menu/complete_1
+  - event:/music/DZ/menu/complete_2
+  - event:/music/DZ/menu/complete_dxside
 Title:
   0: "Chapter Complete"
   1: "B Side Complete"

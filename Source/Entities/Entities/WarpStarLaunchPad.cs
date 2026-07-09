@@ -53,8 +53,8 @@ namespace Celeste.Entities
     ///                         — if false, boarding is allowed even if readiness flags aren't set
     ///   onlyOnce            bool    true
     ///                         — remove self after first use
-    ///   launchSfx           string  "event:/pusheen/new_content/game/21_desolo_zantas/warpstar_launch"
-    ///   rideSfx             string  "event:/pusheen/new_content/music/lvl21/warpstar_ride"
+    ///   launchSfx           string  "event:/DZ/new_content/game/21_desolo_zantas/warpstar_launch"
+    ///   rideSfx             string  "event:/DZ/new_content/music/lvl21/warpstar_ride"
     ///   bobAmplitude        float   3.0
     ///   bobSpeed            float   2.5
     ///   preLaunchDelay      float   1.2   — seconds of bob before the teleport fires
@@ -132,9 +132,9 @@ namespace Celeste.Entities
             requireBothReady  = data.Bool("requireBothReady",  true);
             onlyOnce          = data.Bool("onlyOnce",          true);
             launchSfx         = data.Attr("launchSfx",
-                "event:/pusheen/new_content/game/21_desolo_zantas/warpstar_launch");
+                "event:/DZ/new_content/game/21_desolo_zantas/warpstar_launch");
             rideSfx           = data.Attr("rideSfx",
-                "event:/pusheen/new_content/music/lvl21/warpstar_ride");
+                "event:/DZ/new_content/music/lvl21/warpstar_ride");
             bobAmplitude      = data.Float("bobAmplitude",     3f);
             bobSpeed          = data.Float("bobSpeed",         2.5f);
             preLaunchDelay    = data.Float("preLaunchDelay",   1.2f);

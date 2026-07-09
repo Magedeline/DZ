@@ -8,10 +8,10 @@ mainChapterSid: DZ/0/16_Corruption
 showInChapterSelect: true
 
 MusicBySide:
-  - event:/music/pusheen/menu/complete_summit
-  - event:/music/pusheen/menu/complete_1_summit
-  - event:/music/pusheen/menu/complete_2_summit
-  - event:/music/pusheen/menu/complete_2_summit
+  - event:/music/DZ/menu/complete_summit
+  - event:/music/DZ/menu/complete_1_summit
+  - event:/music/DZ/menu/complete_2_summit
+  - event:/music/DZ/menu/complete_2_summit
 Title:
   0: "Chapter Complete"
   1: "B Side Complete"

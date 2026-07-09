@@ -154,7 +154,7 @@ namespace Celeste.Cutscenes
         private IEnumerator GrannyGetSerious()
         {
             Audio.SetMusicParam("progress", 12f);
-            Audio.Play("event:/pusheen/new_content/char/granny/serious");
+            Audio.Play("event:/DZ/new_content/char/granny/serious");
             Level.Flash(Color.White, false);
             yield break;
         }
@@ -162,7 +162,7 @@ namespace Celeste.Cutscenes
         // trigger 1 - alt sfx replacing flynext
         private IEnumerator KirbyFlyFinal()
         {
-            Audio.Play("event:/pusheen/new_content/char/kirby/flyfinal");
+            Audio.Play("event:/DZ/new_content/char/kirby/flyfinal");
             yield break;
         }
 

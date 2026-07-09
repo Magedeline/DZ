@@ -40,10 +40,10 @@ namespace Celeste.Mod.DZ
         private EventInstance mainSfx;
 
         // Audio events (provided by the DZ audio bank).
-        private const string Sfx_InfoWhistle = "event:/pusheen/ui/main/gentlebreeze_info_whistle";
-        private const string Sfx_ButtonYes = "event:/pusheen/ui/main/gentlebreeze_button_yes";
-        private const string Sfx_ButtonNo = "event:/pusheen/ui/main/gentlebreeze_button_no";
-        private const string Sfx_ButtonInfo = "event:/pusheen/ui/main/gentlebreeze_button_info";
+        private const string Sfx_InfoWhistle = "event:/DZ/ui/main/gentlebreeze_info_whistle";
+        private const string Sfx_ButtonYes = "event:/DZ/ui/main/gentlebreeze_button_yes";
+        private const string Sfx_ButtonNo = "event:/DZ/ui/main/gentlebreeze_button_no";
+        private const string Sfx_ButtonInfo = "event:/DZ/ui/main/gentlebreeze_button_info";
 
         public OuiGentleBreezeMode()
         {

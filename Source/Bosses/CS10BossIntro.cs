@@ -51,7 +51,7 @@ public class CS10BossIntro : CutsceneEntity
         player.Sprite.Play("idle");
 
         // Set boss battle music
-        Audio.SetMusic("event:/pusheen/ch10/music/boss_wispy_woods");
+        Audio.SetMusic("event:/DZ/ch10/music/boss_wispy_woods");
 
         // Fade in
         FadeWipe fadeWipe = new FadeWipe(level, wipeIn: true);

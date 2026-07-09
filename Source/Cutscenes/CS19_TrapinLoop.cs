@@ -286,7 +286,7 @@ namespace Celeste.Cutscenes
                 foreach (var lightning in Scene.Entities.FindAll<Lightning>())
                     lightning.ToggleCheck();
                 Scene.Tracker.GetEntity<LightningRenderer>()?.ToggleEdges(true);
-                level.Session.Audio.Ambience.Event = "event:/pusheen/new_content/env/19_rushingvoid";
+                level.Session.Audio.Ambience.Event = "event:/DZ/new_content/env/19_rushingvoid";
                 level.Session.Audio.Apply();
             }
             yield return 0.5f;

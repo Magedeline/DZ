@@ -451,7 +451,7 @@ namespace Celeste.Entities
                 }
                 else if (anim == "walk" && currentAnimationFrame == 2)
                 {
-                    Audio.Play("event:/pusheen/char/kirby/footstep", this.Position);
+                    Audio.Play("event:/DZ/char/kirby/footstep", this.Position);
                 }
             };
         }
@@ -473,7 +473,7 @@ namespace Celeste.Entities
                 }
                 else if (anim == "walk" && currentAnimationFrame == 2)
                 {
-                    Audio.Play("event:/pusheen/char/kirby/footstep", this.Position);
+                    Audio.Play("event:/DZ/char/kirby/footstep", this.Position);
                 }
             };
         }
@@ -495,7 +495,7 @@ namespace Celeste.Entities
                 }
                 else if (anim == "walk" && currentAnimationFrame == 2)
                 {
-                    Audio.Play("event:/pusheen/char/kirby/footstep", this.Position);
+                    Audio.Play("event:/DZ/char/kirby/footstep", this.Position);
                 }
             };
         }
@@ -517,7 +517,7 @@ namespace Celeste.Entities
                 }
                 else if (anim == "walk" && currentAnimationFrame == 2)
                 {
-                    Audio.Play("event:/pusheen/char/kirby/footstep", this.Position);
+                    Audio.Play("event:/DZ/char/kirby/footstep", this.Position);
                 }
             };
         }

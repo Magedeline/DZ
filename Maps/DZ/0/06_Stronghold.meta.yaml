@@ -12,42 +12,42 @@ DarknessAlpha: 0.05
 BloomBase: 0.0
 BloomStrength: 1.0
 CassetteNoteColor: ff7f83
-CassetteSong: event:/music/pusheen/Cassette/06_fortress
+CassetteSong: event:/music/DZ/Cassette/06_fortress
 
 Modes:
   - AudioState:
-      Music: event:/music/pusheen/lvl06/main
-      Ambience: event:/env/pusheen/06_main
+      Music: event:/music/DZ/lvl06/main
+      Ambience: event:/env/DZ/06_main
     Inventory: Default
     HeartIsEnd: false
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/1/06_stronghold
-      Ambience: event:/env/pusheen/06_main
+      Music: event:/music/DZ/1/06_stronghold
+      Ambience: event:/env/DZ/06_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/2/06_stronghold
-      Ambience: event:/env/pusheen/06_main
+      Music: event:/music/DZ/2/06_stronghold
+      Ambience: event:/env/DZ/06_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/2/06_stronghold
-      Ambience: event:/env/pusheen/06_main
+      Music: event:/music/DZ/2/06_stronghold
+      Ambience: event:/env/DZ/06_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/2/06_stronghold
-      Ambience: event:/env/pusheen/06_main
+      Music: event:/music/DZ/2/06_stronghold
+      Ambience: event:/env/DZ/06_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
   - AudioState:
-      Music: event:/music/pusheen/DXSide/06_stronghold
-      Ambience: event:/env/pusheen/06_main
+      Music: event:/music/DZ/DXSide/06_stronghold
+      Ambience: event:/env/DZ/06_main
     Inventory: Default
     HeartIsEnd: true
     SeekerSlowdown: false
@@ -66,10 +66,10 @@ Modes:
     State: 0
 
 MusicBySide:
-  - event:/music/pusheen/menu/complete_area
-  - event:/music/pusheen/menu/complete_1
-  - event:/music/pusheen/menu/complete_2
-  - event:/music/pusheen/menu/complete_dxside
+  - event:/music/DZ/menu/complete_area
+  - event:/music/DZ/menu/complete_1
+  - event:/music/DZ/menu/complete_2
+  - event:/music/DZ/menu/complete_dxside
 Title:
   0: "Chapter Complete"
   1: "B Side Complete"

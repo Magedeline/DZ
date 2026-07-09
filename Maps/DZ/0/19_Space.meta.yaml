@@ -21,8 +21,8 @@ Modes:
     SeekerSlowdown: false
 
 Mountain:
-    BackgroundMusic: event:/music/pusheen/menu/level_select
-    BackgroundAmbience: bus:/gameplay_sfx/ambience/pusheen/new_worldmap
+    BackgroundMusic: event:/music/DZ/menu/level_select
+    BackgroundAmbience: bus:/gameplay_sfx/ambience/DZ/new_worldmap
     BackgroundMusicParams:
         moon_and_blackhole: 1
     MarkerTexture: marker/runNoBackpack

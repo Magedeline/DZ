@@ -103,7 +103,7 @@ public class CharaBoss : BossBase
         if (_patternIndex == 0)
         {
             _sitting = true;
-            DZGame.Audio.PlayMusic("event:/pusheen/music/lvl2/phone_loop");
+            DZGame.Audio.PlayMusic("event:/DZ/music/lvl2/phone_loop");
         }
         else
         {
@@ -214,7 +214,7 @@ public class CharaBoss : BossBase
             PhaseIndex = 2;
             ChangeState(BossState.PhaseTransition);
             StateTimer = 3f;
-            DZGame.Audio.PlayMusic("event:/pusheen/music/lvl8/chara_glitch");
+            DZGame.Audio.PlayMusic("event:/DZ/music/lvl8/chara_glitch");
             TriggerGlitch(0.6f);
         }
         else if (healthPercent <= 0.33f && PhaseIndex == 2)
@@ -222,7 +222,7 @@ public class CharaBoss : BossBase
             PhaseIndex = 3;
             ChangeState(BossState.PhaseTransition);
             StateTimer = 4f;
-            DZGame.Audio.PlayMusic("event:/pusheen/music/lvl8/chara_core");
+            DZGame.Audio.PlayMusic("event:/DZ/music/lvl8/chara_core");
             TriggerGlitch(0.8f);
         }
     }
@@ -248,7 +248,7 @@ public class CharaBoss : BossBase
         TriggerGlitch(0.4f);
 
         // Play hit sound
-        DZGame.Audio.PlaySfx("event:/pusheen/game/boss/chara_hit");
+        DZGame.Audio.PlaySfx("event:/DZ/game/boss/chara_hit");
 
         // Start recovery sequence
         ChangeState(BossState.Vulnerable);
@@ -478,7 +478,7 @@ public class CharaBoss : BossBase
             FireShot(dir, speed: 140f);
         }
 
-        DZGame.Audio.PlaySfx("event:/pusheen/game/boss/chara_circle_burst");
+        DZGame.Audio.PlaySfx("event:/DZ/game/boss/chara_circle_burst");
 
         yield return 1f;
 
@@ -521,7 +521,7 @@ public class CharaBoss : BossBase
 
         // Long charge
         StartCharge();
-        DZGame.Audio.PlaySfx("event:/pusheen/game/boss/charaDZ_CHarge");
+        DZGame.Audio.PlaySfx("event:/DZ/game/boss/charaDZ_CHarge");
 
         yield return 1.5f;
 
@@ -594,7 +594,7 @@ public class CharaBoss : BossBase
         Scene.AddEntity(shot.Entity);
         _activeProjectiles.Add(shot);
 
-        DZGame.Audio.PlaySfx("event:/pusheen/game/boss/chara_shot");
+        DZGame.Audio.PlaySfx("event:/DZ/game/boss/chara_shot");
     }
 
     private void FireBouncingShot(Vector2 direction, float speed, int bounces)
@@ -621,7 +621,7 @@ public class CharaBoss : BossBase
         Scene.AddEntity(beam.Entity);
         _activeBeams.Add(beam);
 
-        DZGame.Audio.PlaySfx("event:/pusheen/game/boss/chara_beam");
+        DZGame.Audio.PlaySfx("event:/DZ/game/boss/chara_beam");
     }
 
     private void FireSweepingBeam(float duration, float sweepAngle)

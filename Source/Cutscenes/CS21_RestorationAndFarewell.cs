@@ -94,7 +94,7 @@ public class CS21_RestorationAndFarewell : CutsceneEntity
         player.Sprite.Play("idle");
         
         // Set the music for this emotional finale
-        Audio.SetMusic("event:/new_content/music/pusheen/lvl21/saved");
+        Audio.SetMusic("event:/new_content/music/DZ/lvl21/saved");
         
         // Fade in from white (after defeating Els)
         FadeWipe fadeWipe = new FadeWipe(Level, wipeIn: true);
@@ -319,7 +319,7 @@ public class CS21_RestorationAndFarewell : CutsceneEntity
         
         // Emotional moment - screen shake
         Level.Shake(0.2f);
-        Audio.Play("event:/new_content/char/pusheen/asriel/emotional_reunion");
+        Audio.Play("event:/new_content/char/DZ/asriel/emotional_reunion");
         
         yield return 0.5f;
     }
@@ -367,7 +367,7 @@ public class CS21_RestorationAndFarewell : CutsceneEntity
         
         // Emotional hug moment
         Level.Shake(0.1f);
-        Audio.Play("event:/new_content/char/pusheen/kirby/emotional_reunion");
+        Audio.Play("event:/new_content/char/DZ/kirby/emotional_reunion");
         
         // Particle effects for the reunion
         for (int i = 0; i < 20; i++)
@@ -435,7 +435,7 @@ public class CS21_RestorationAndFarewell : CutsceneEntity
     private IEnumerator ReleaseSouls()
     {
         // Dramatic buildup
-        Audio.SetMusic("event:/new_content/music/pusheen/lvl20/back");
+        Audio.SetMusic("event:/new_content/music/DZ/lvl20/back");
 
         yield return 0.5f;
 
@@ -498,7 +498,7 @@ public class CS21_RestorationAndFarewell : CutsceneEntity
     // {trigger 1 asriel slowly fades away into the flower form}
     private IEnumerator AsrielFadesAway()
     {
-        Audio.Play("event:/new_content/char/pusheen/asriel/fade_to_flower");
+        Audio.Play("event:/new_content/char/DZ/asriel/fade_to_flower");
         
         // Slowly fade Asriel
         for (float p = 1f; p > 0f; p -= Engine.DeltaTime / 3f)
@@ -539,7 +539,7 @@ public class CS21_RestorationAndFarewell : CutsceneEntity
     // {trigger 4 asriel granny titan king and kirby parent begin to fade away}
     private IEnumerator SpiritsFadeAway()
     {
-        Audio.Play("event:/new_content/char/pusheen/spirits/fade_away");
+        Audio.Play("event:/new_content/char/DZ/spirits/fade_away");
         
         // Fade out all spirit characters
         for (float p = 1f; p > 0f; p -= Engine.DeltaTime / 4f)

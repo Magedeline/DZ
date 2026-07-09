@@ -15,9 +15,9 @@ namespace Celeste.Effects
         public static ParticleType P_Earthquake;
 
         // Earth audio events
-        public const string SFX_EARTH_RUMBLE = "event:/pusheen/earth/rumble";
-        public const string SFX_EARTH_STONE_BREAK = "event:/pusheen/earth/stone_break";
-        public const string SFX_EARTH_BOULDER = "event:/pusheen/earth/boulder";
+        public const string SFX_EARTH_RUMBLE = "event:/DZ/earth/rumble";
+        public const string SFX_EARTH_STONE_BREAK = "event:/DZ/earth/stone_break";
+        public const string SFX_EARTH_BOULDER = "event:/DZ/earth/boulder";
 
         #endregion
 
@@ -31,9 +31,9 @@ namespace Celeste.Effects
         public static ParticleType P_Gust;
 
         // Wind audio events
-        public const string SFX_WIND_GUST = "event:/pusheen/wind/gust";
-        public const string SFX_WIND_TORNADO = "event:/pusheen/wind/tornado";
-        public const string SFX_WIND_WHOOSH = "event:/pusheen/wind/whoosh";
+        public const string SFX_WIND_GUST = "event:/DZ/wind/gust";
+        public const string SFX_WIND_TORNADO = "event:/DZ/wind/tornado";
+        public const string SFX_WIND_WHOOSH = "event:/DZ/wind/whoosh";
 
         #endregion
 
@@ -46,9 +46,9 @@ namespace Celeste.Effects
         public static ParticleType P_Corruption;
 
         // Dark audio events
-        public const string SFX_DARK_WHISPER = "event:/pusheen/dark/whisper";
-        public const string SFX_DARK_VOID = "event:/pusheen/dark/void";
-        public const string SFX_DARK_CORRUPTION = "event:/pusheen/dark/corruption";
+        public const string SFX_DARK_WHISPER = "event:/DZ/dark/whisper";
+        public const string SFX_DARK_VOID = "event:/DZ/dark/void";
+        public const string SFX_DARK_CORRUPTION = "event:/DZ/dark/corruption";
 
         #endregion
 
@@ -62,9 +62,9 @@ namespace Celeste.Effects
         public static ParticleType P_Healing;
 
         // Light audio events
-        public const string SFX_LIGHT_BEAM = "event:/pusheen/light/beam";
-        public const string SFX_LIGHT_HEAL = "event:/pusheen/light/heal";
-        public const string SFX_LIGHT_PURIFY = "event:/pusheen/light/purify";
+        public const string SFX_LIGHT_BEAM = "event:/DZ/light/beam";
+        public const string SFX_LIGHT_HEAL = "event:/DZ/light/heal";
+        public const string SFX_LIGHT_PURIFY = "event:/DZ/light/purify";
 
         #endregion
 

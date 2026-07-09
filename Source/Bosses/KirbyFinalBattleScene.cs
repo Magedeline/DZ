@@ -58,9 +58,9 @@ namespace Celeste.Bosses
     ///   allyFormationOffsetY   float  -20     Ally cluster Y offset from player
     ///   allySpacing            float  26      Horizontal pixels between each ally
     ///   activeAllies           string "Kirby,Madeline,Badeline,Asriel,Magolor,BandanaDee,Marx,Gooey,Susie"
-    ///   phase1MusicEvent       string event:/pusheen/new_content/music/lvl21/void_approach
-    ///   battleMusicEvent       string event:/pusheen/new_content/music/lvl21/els_termina_final
-    ///   victoryMusicEvent      string event:/pusheen/new_content/music/lvl21/victory
+    ///   phase1MusicEvent       string event:/DZ/new_content/music/lvl21/void_approach
+    ///   battleMusicEvent       string event:/DZ/new_content/music/lvl21/els_termina_final
+    ///   victoryMusicEvent      string event:/DZ/new_content/music/lvl21/victory
     ///   completionFlag         string ch21_els_termina_final_battle_done
     /// </summary>
     [CustomEntity("DZ/KirbyFinalBattleScene")]
@@ -133,7 +133,7 @@ namespace Celeste.Bosses
         // Both phases share one FMOD event driven by two parameters:
         //   "progress"     – 0..1 continuous progression through the track
         //   "finale_pitch" – 0..2 intensity/pitch modifier
-        private const  string  FINALE_EVENT = "event:/pusheen/new_content/music/lvl21/finale";
+        private const  string  FINALE_EVENT = "event:/DZ/new_content/music/lvl21/finale";
         private readonly string victoryMusicEvent;
         private readonly string completionFlag;
 
@@ -301,7 +301,7 @@ namespace Celeste.Bosses
             activeAlliesRaw       = data.Attr("activeAllies",
                 "Kirby,Madeline,Badeline,Asriel,Magolor,BandanaDee,Marx,Gooey,Susie");
             victoryMusicEvent     = data.Attr("victoryMusicEvent",
-                "event:/pusheen/new_content/music/lvl21/victory");
+                "event:/DZ/new_content/music/lvl21/victory");
             completionFlag        = data.Attr("completionFlag",
                 "ch21_els_termina_final_battle_done");
 
@@ -803,7 +803,7 @@ namespace Celeste.Bosses
                 };
                 Add(light);
                 soulLights.Add(light);
-                Audio.Play("event:/new_content/char/pusheen/asriel/Asriel_Create", light.Position);
+                Audio.Play("event:/new_content/char/DZ/asriel/Asriel_Create", light.Position);
                 level.Flash(SoulColors[i] * 0.2f, false);
                 yield return 0.1f;
             }
@@ -852,7 +852,7 @@ namespace Celeste.Bosses
             Color aura = index < ZeroAuraColors.Length ? ZeroAuraColors[index] : Color.White;
             level.Flash(aura * 0.4f, true);
             level.Shake(0.5f);
-            Audio.Play("event:/pusheen/new_content/char/els/spawn", Position);
+            Audio.Play("event:/DZ/new_content/char/els/spawn", Position);
             yield return 0.3f;
 
             // Optional per-wave intro dialogue
@@ -888,7 +888,7 @@ namespace Celeste.Bosses
             // Visual burst
             level.Shake(0.8f);
             level.Flash(aura * 0.55f, true);
-            Audio.Play("event:/pusheen/new_content/game/21_desolo_zantas/zero_shatter");
+            Audio.Play("event:/DZ/new_content/game/21_desolo_zantas/zero_shatter");
             level.ParticlesFG.Emit(global::Celeste.Player.P_DashB, 32,
                 level.Camera.Position + new Vector2(192f, 122f), Vector2.One * 40f);
             level.Displacement.AddBurst(
@@ -945,7 +945,7 @@ namespace Celeste.Bosses
             musicPitchTarget = 1.6f;
 
             level.Shake(1.0f);
-            Audio.Play("event:/pusheen/new_content/game/21_desolo_zantas/warpstar_launch");
+            Audio.Play("event:/DZ/new_content/game/21_desolo_zantas/warpstar_launch");
             level.Flash(Calc.HexToColor("FFD700") * 0.8f, true);
             yield return Textbox.Say("DZ_CH21_FINAL_BATTLE_WARPSTAR_RIDE");
 
@@ -991,13 +991,13 @@ namespace Celeste.Bosses
             // Abyssment colour cycle — 5 seconds, progress still 0.00
             yield return 5f;
 
-            Audio.Play("event:/pusheen/new_content/game/21_desolo_zantas/falling_into_the_void");
+            Audio.Play("event:/DZ/new_content/game/21_desolo_zantas/falling_into_the_void");
             level.Shake(0.4f);
             yield return 0.5f;
 
             // Asriel joins
             level.Flash(Calc.HexToColor("ff6699") * 0.45f, false);
-            Audio.Play("event:/new_content/char/pusheen/asriel/Asriel_Create");
+            Audio.Play("event:/new_content/char/DZ/asriel/Asriel_Create");
             yield return 0.25f;
             yield return Textbox.Say("DZ_CH21_FINAL_BATTLE_ASRIEL_JOINS");
 

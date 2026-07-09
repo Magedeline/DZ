@@ -188,7 +188,7 @@ PFakeShine = new ParticleType
                     if (this.IsAstral) {
                         Audio.Play("event:/game/general/crystalheart_pulse", this.Position);
                     } else if (this.IsFake) {
-                        Audio.Play("event:/pusheen/new_content/game/19_spaces/fakeheart_pulse", this.Position);
+                        Audio.Play("event:/DZ/new_content/game/19_spaces/fakeheart_pulse", this.Position);
                     } else {
                         Audio.Play("event:/game/general/crystalheart_pulse", this.Position);
                     }
@@ -271,7 +271,7 @@ scene.Add(this.fakeRightWall = new InvisibleBarrier(new Vector2(X + 160f, Y - 20
            if (this.IsAstral) {
       Audio.Play("event:/game/general/crystalheart_bounce", this.Position);
           } else if (this.IsFake) {
-      Audio.Play("event:/pusheen/new_content/game/19_spaces/fakeheart_bounce", this.Position);
+      Audio.Play("event:/DZ/new_content/game/19_spaces/fakeheart_bounce", this.Position);
           } else {
         Audio.Play("event:/game/general/crystalheart_bounce", this.Position);
          }
@@ -377,15 +377,15 @@ foreach (Follower follower in player.Leader.Followers) {
           if (!string.IsNullOrEmpty(this.customSfx)) {
                 text = this.customSfx;
             } else if (this.IsAstral) {
-                text = "event:/pusheen/game/general/crystalheart_astral_get";
+                text = "event:/DZ/game/general/crystalheart_astral_get";
             } else if (this.IsFake) {
-                text = "event:/pusheen/new_content/game/19_spaces/fakeheart_get";
+                text = "event:/DZ/new_content/game/19_spaces/fakeheart_get";
             } else if (area.Mode == AreaMode.BSide) {
                 text = "event:/game/general/crystalheart_red_get";
             } else if (area.Mode == AreaMode.CSide) {
                 text = "event:/game/general/crystalheart_gold_get";
             } else if (area.Mode == (AreaMode)3) {
-                text = "event:/pusheen/game/general/crystalheart_rainbow_get";
+                text = "event:/DZ/game/general/crystalheart_rainbow_get";
             }
      this.sfx = SoundEmitter.Play(text, this, null);
             Add(new LevelEndingHook(delegate () {
@@ -607,7 +607,7 @@ Glitch.Value = 0.75f;
      yield return null;
      }
             yield return 0.25f;
-            level.Session.Audio.Music.Event = "event:/pusheen/new_content/music/lvl19/inmyway";
+            level.Session.Audio.Music.Event = "event:/DZ/new_content/music/lvl19/inmyway";
    level.Session.Audio.Apply(false);
             player.Active = true;
     player.Depth = 0;
@@ -688,7 +688,7 @@ Glitch.Value = 0.75f;
        level.Session.SetFlag("wrong_heart");
 level.Frozen = false;
          level.FormationBackdrop.Display = false;
-      level.Session.Audio.Music.Event = "event:/pusheen/new_content/music/lvl19/inmyway";
+      level.Session.Audio.Music.Event = "event:/DZ/new_content/music/lvl19/inmyway";
             level.Session.Audio.Apply();
 
             global::Celeste.Player entity1 = this.Scene.Tracker.GetEntity<global::Celeste.Player>();
@@ -935,8 +935,8 @@ Level level = Scene as Level;
                 dialogText = "D-Side Unlocked!\nPink Platinum Berries now available.";
 
             var postcard = new PostcardDZ(dialogText,
-                "event:/pusheen/ui/main/postcard_2s_in",
-                "event:/pusheen/ui/main/postcard_2s_out");
+                "event:/DZ/ui/main/postcard_2s_in",
+                "event:/DZ/ui/main/postcard_2s_out");
 
             if (GFX.Gui.Has("postcards/2_crystal_unlock"))
                 postcard.Postcard = GFX.Gui["postcards/2_crystal_unlock"];
@@ -973,8 +973,8 @@ Level level = Scene as Level;
                 dialogText = "All Crystal Hearts Collected!\nThe ultimate challenge awaits.";
 
             var postcard = new PostcardDZ(dialogText,
-                "event:/pusheen/new_content/ui/postcard_variants_in",
-                "event:/pusheen/new_content/ui/postcard_variants_out");
+                "event:/DZ/new_content/ui/postcard_variants_in",
+                "event:/DZ/new_content/ui/postcard_variants_out");
 
             if (GFX.Gui.Has("postcards/ultra_variant_unlock"))
                 postcard.Postcard = GFX.Gui["postcards/ultra_variant_unlock"];

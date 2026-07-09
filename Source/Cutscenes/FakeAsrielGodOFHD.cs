@@ -82,7 +82,7 @@ namespace Celeste.Cutscenes
             yield return 1f;
 
             // "Ascension" flash â€” screen goes pure white again, then blacks out
-            Audio.Play("event:/pusheen/new_content/char/bosses/asriel/Asriel_Segapower02");
+            Audio.Play("event:/DZ/new_content/char/bosses/asriel/Asriel_Segapower02");
 
             for (float t = 0f; t < 1f; t += Engine.DeltaTime)
             {

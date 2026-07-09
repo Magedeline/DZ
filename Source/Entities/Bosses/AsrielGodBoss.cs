@@ -77,7 +77,7 @@ public class AsrielGodBoss : BossBase
         base.OnSpawn();
 
         // Play dramatic music
-        DZGame.Audio.PlayMusic("event:/pusheen/music/boss/asriel_phase1", fadeIn: true);
+        DZGame.Audio.PlayMusic("event:/DZ/music/boss/asriel_phase1", fadeIn: true);
 
         // Create wing effect
         CreateWingEntity();
@@ -199,7 +199,7 @@ public class AsrielGodBoss : BossBase
             StateTimer = 4f;
 
             // Change music
-            DZGame.Audio.PlayMusic("event:/pusheen/music/boss/asriel_phase2");
+            DZGame.Audio.PlayMusic("event:/DZ/music/boss/asriel_phase2");
         }
         // Phase 3 at 33% health
         else if (healthPercent <= 0.33f && !_hasTransformedToPhase3)
@@ -209,7 +209,7 @@ public class AsrielGodBoss : BossBase
             StateTimer = 5f;
 
             // Change to final music
-            DZGame.Audio.PlayMusic("event:/pusheen/music/boss/asriel_phase3_final");
+            DZGame.Audio.PlayMusic("event:/DZ/music/boss/asriel_phase3_final");
         }
     }
 
@@ -373,7 +373,7 @@ public class AsrielGodBoss : BossBase
             var asriel = (AsrielGodBoss)boss;
 
             // Play attack sound
-            DZGame.Audio.PlaySfx("event:/pusheen/game/boss/asriel/star_shower");
+            DZGame.Audio.PlaySfx("event:/DZ/game/boss/asriel/star_shower");
 
             // Spawn falling stars
             int starCount = asriel.PhaseIndex >= 3 ? 8 : 5;
@@ -409,7 +409,7 @@ public class AsrielGodBoss : BossBase
             var asriel = (AsrielGodBoss)boss;
 
             // Play sound
-            DZGame.Audio.PlaySfx("event:/pusheen/game/boss/asriel/chaos_saber");
+            DZGame.Audio.PlaySfx("event:/DZ/game/boss/asriel/chaos_saber");
 
             // Spawn saber projectiles that sweep across
             // Left to right then right to left
@@ -442,7 +442,7 @@ public class AsrielGodBoss : BossBase
         public override void Execute(BossBase boss)
         {
             // Ultimate attack - only in phase 3
-            DZGame.Audio.PlaySfx("event:/pusheen/game/boss/asriel/hyper_goner");
+            DZGame.Audio.PlaySfx("event:/DZ/game/boss/asriel/hyper_goner");
 
             // Large energy beam that fills the arena
             var goner = boss.Entity.Scene.CreateEntity("hyper_goner_beam");
@@ -465,7 +465,7 @@ public class AsrielGodBoss : BossBase
         public override void Execute(BossBase boss)
         {
             // Quick fireballs at player
-            DZGame.Audio.PlaySfx("event:/pusheen/game/boss/asriel/fire_magic");
+            DZGame.Audio.PlaySfx("event:/DZ/game/boss/asriel/fire_magic");
 
             for (int i = 0; i < 3; i++)
             {

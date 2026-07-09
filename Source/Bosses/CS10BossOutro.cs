@@ -38,7 +38,7 @@ public class CS10BossOutro : CutsceneEntity
         obj.SaveQuitDisabled = true;
         
         // Change music to victory theme
-        Audio.SetMusic("event:/pusheen/ch10/music/boss_wispy_victory");
+        Audio.SetMusic("event:/DZ/ch10/music/boss_wispy_victory");
     }
 
     [MethodImpl(MethodImplOptions.NoInlining)]

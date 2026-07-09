@@ -100,7 +100,7 @@ public class CharaBeam
         Entity.AddComponent(new BeamUpdateComponent(this));
 
         // Play beam sound
-        DZGame.Audio.PlaySfx("event:/pusheen/game/boss/chara_beam_fire");
+        DZGame.Audio.PlaySfx("event:/DZ/game/boss/chara_beam_fire");
     }
 
     public void Update()
@@ -205,7 +205,7 @@ public class CharaBeam
         if (Entity != null)
         {
             // Stop beam sound
-            DZGame.Audio.PlaySfx("event:/pusheen/game/boss/chara_beam_stop");
+            DZGame.Audio.PlaySfx("event:/DZ/game/boss/chara_beam_stop");
 
             Entity.Destroy();
             Entity = null;

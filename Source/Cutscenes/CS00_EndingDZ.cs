@@ -143,7 +143,7 @@ public class CS00_EndingDZ : CutsceneEntity
             yield return null;
         }
         yield return 2f;
-        Audio.SetMusic("event:/pusheen/music/lvl0/title_ping", true, true);
+        Audio.SetMusic("event:/DZ/music/lvl0/title_ping", true, true);
         yield return 2f;
         endingText = new DZPrologueEndingVignetteText(instant: true);
         Scene.Add(endingText);

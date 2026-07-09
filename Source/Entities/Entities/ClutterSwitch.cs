@@ -86,7 +86,7 @@ public class ClutterSwitch : Solid
     /// Creates a new ClutterSwitch at the specified position with the given color
     /// </summary>
     public ClutterSwitch(Vector2 position, ClutterBlock.Colors color,
-        string musicEvent = "event:/pusheen/music/lvl5/clean",
+        string musicEvent = "event:/DZ/music/lvl5/clean",
         string absorbCutsceneSound = "event:/game/03_resort/clutterswitch_books",
         bool progressMusic = true,
         float configLightingAlphaAdd = LightingAlphaAdd,
@@ -116,7 +116,7 @@ public class ClutterSwitch : Solid
         : this(
             data.Position + offset,
             data.Enum("type", ClutterBlock.Colors.Green),
-            data.Attr("musicEvent", "event:/pusheen/music/lvl5/clean"),
+            data.Attr("musicEvent", "event:/DZ/music/lvl5/clean"),
             data.Attr("absorbCutsceneSound", "event:/game/03_resort/clutterswitch_books"),
             data.Bool("progressMusic", true),
             data.Float("lightingAlphaAdd", LightingAlphaAdd),

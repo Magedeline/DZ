@@ -34,10 +34,10 @@ namespace Celeste.Cutscenes
         private const string PINK_SOUL_BLUR_SPRITE = "IMAGE_PINK_SOUL_BLUR";
         
         // Audio events
-        private const string CREATION_MUSIC_EVENT = "event:/pusheen/music/lvl0/creation/create";
-        private const string DRONE_MUSIC_EVENT = "event:/pusheen/music/lvl0/creation/drone";
-        private const string HEART_APPEAR_EVENT = "event:/pusheen/music/lvl0/creation/heart_appear";
-        private const string HEARTDZ_CHANGE_EVENT = "event:/pusheen/music/lvl0/creation/heartDZ_CHange";
+        private const string CREATION_MUSIC_EVENT = "event:/DZ/music/lvl0/creation/create";
+        private const string DRONE_MUSIC_EVENT = "event:/DZ/music/lvl0/creation/drone";
+        private const string HEART_APPEAR_EVENT = "event:/DZ/music/lvl0/creation/heart_appear";
+        private const string HEARTDZ_CHANGE_EVENT = "event:/DZ/music/lvl0/creation/heartDZ_CHange";
         private const string CHOICE_APPEAR_EVENT = "event:/ui/game/chatoptions_appear";
         private const string CHOICE_SELECT_EVENT = "event:/ui/game/chatoptions_select";
         private const string CHOICE_MOVE_EVENT = "event:/ui/game/chatoptions_roll_down";

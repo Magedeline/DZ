@@ -100,7 +100,7 @@ namespace Celeste.Entities
             isTransforming = true;
             
             // Play transformation sound
-            Audio.Play("event:/pusheen/char/kirby/celestial_transform", Position);
+            Audio.Play("event:/DZ/char/kirby/celestial_transform", Position);
             
             // Fade in and grow
             for (float t = 0f; t < 1f; t += Engine.DeltaTime * 0.5f)
@@ -122,7 +122,7 @@ namespace Celeste.Entities
             var level = Scene as Level;
             level?.Displacement.AddBurst(Position, 0.8f, 64f, 128f, 1f);
             
-            Audio.Play("event:/pusheen/char/kirby/celestial_power_up", Position);
+            Audio.Play("event:/DZ/char/kirby/celestial_power_up", Position);
             
             yield return 0.5f;
             
@@ -191,7 +191,7 @@ namespace Celeste.Entities
         
         private void executeLightDarkFusion()
         {
-            Audio.Play("event:/pusheen/char/kirby/celestial_fusion", Position);
+            Audio.Play("event:/DZ/char/kirby/celestial_fusion", Position);
             
             // Combine light and dark energies
             var level = Scene as Level;
@@ -201,7 +201,7 @@ namespace Celeste.Entities
         
         private void executeCelestialStorm()
         {
-            Audio.Play("event:/pusheen/char/kirby/celestial_storm", Position);
+            Audio.Play("event:/DZ/char/kirby/celestial_storm", Position);
             
             // Create storm of projectiles
             for (int i = 0; i < 8; i++)
@@ -214,7 +214,7 @@ namespace Celeste.Entities
         
         private void executeDualityBeam()
         {
-            Audio.Play("event:/pusheen/char/kirby/celestial_beam", Position);
+            Audio.Play("event:/DZ/char/kirby/celestial_beam", Position);
             
             // Fire dual beams
             lightAura.StartRadius = 256f;
@@ -223,7 +223,7 @@ namespace Celeste.Entities
         
         private void executeHeavenlyJudgment()
         {
-            Audio.Play("event:/pusheen/char/kirby/celestial_judgment", Position);
+            Audio.Play("event:/DZ/char/kirby/celestial_judgment", Position);
             
             // Ultimate attack
             var level = Scene as Level;

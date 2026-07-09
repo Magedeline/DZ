@@ -131,7 +131,7 @@ public class TapeBlockManager : Entity
         {
             string CassetteSong = AreaData.Areas[SceneAs<Level>().Session.Area.ID].CassetteSong;
             sfx = Audio.CreateInstance(CassetteSong);
-            sfxPerc = Audio.CreateInstance("event:/pusheen/music/Cassette/tape/tape_perc");
+            sfxPerc = Audio.CreateInstance("event:/DZ/music/Cassette/tape/tape_perc");
             if (leadBeats == 0)
             {
                 beatIndex = 0;
@@ -162,7 +162,7 @@ public class TapeBlockManager : Entity
             SetActiveIndex(currentIndex);
             if (!isLevelMusic)
             {
-                Audio.Play("event:/pusheen/music/Cassette/tape/tape_perc");
+                Audio.Play("event:/DZ/music/Cassette/tape/tape_perc");
             }
             Input.Rumble(RumbleStrength.Medium, RumbleLength.Short);
         }
@@ -174,7 +174,7 @@ public class TapeBlockManager : Entity
             }
             if (beatIndex % beatsPerTick == 0 && !isLevelMusic)
             {
-                Audio.Play("event:/pusheen/music/Cassette/tape/tape_perc");
+                Audio.Play("event:/DZ/music/Cassette/tape/tape_perc");
             }
         }
         if (leadBeats > 0)

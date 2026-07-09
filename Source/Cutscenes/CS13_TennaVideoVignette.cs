@@ -120,7 +120,7 @@ namespace Celeste.Cutscenes
             playing = true;
 
             // Optional screen hum / static sound
-            videoSfx = Audio.Play("event:/pusheen/game/13_tenna/video_static", Vector2.Zero);
+            videoSfx = Audio.Play("event:/DZ/game/13_tenna/video_static", Vector2.Zero);
 
             yield return 0.5f;
 

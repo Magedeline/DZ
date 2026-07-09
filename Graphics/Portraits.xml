@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Sprites>
 
-  <DZ_portrait_madeline path="DZ/madeline/" sfx="madeline" textbox="madeline">
+  <DZ_portrait_madeline path="madeline/" sfx="madeline" textbox="madeline">
     <Center />
 
 	<sfxs>
@@ -88,7 +88,7 @@
     <Loop id="talk_cry" path="cry" delay="0.2" frames="0" />-->
   </DZ_portrait_madeline>
 
-  <portrait_ralsei path="DZ/ralsei/" sfx="ralsy" textbox="default">
+  <portrait_ralsei path="DZ/ralsei/" sfx="ralsy" textbox="DZ/default">
     <Center />
 
 	<sfxs>
@@ -167,7 +167,7 @@
     <Loop id="talk_cry" path="cry" delay="0.2" frames="0" />-->
   </portrait_ralsei>
 
-  <portrait_kirby path="DZ/kirby/" sfx="kirby" textbox="kirby">
+  <portrait_kirby path="DZ/kirby/" sfx="kirby" textbox="DZ/kirby">
     <Center />
 
       <sfxs>
@@ -264,7 +264,7 @@
 
   </portrait_kirby>
 
-	<portrait_madeline_phone path="DZ/madelineph/" sfx="madeline" textbox="madeline">
+	<portrait_madeline_phone path="madelineph/" sfx="madeline" textbox="madeline">
 		<Center />
 
 		<sfxs>
@@ -378,7 +378,7 @@
 		<Loop id="talk_panic" path="panic" delay="0.2" frames="1,3,2,0" />
 	</portrait_madeline_mirror>
 
-  <portrait_granny path="DZ/granny/" sfx="granny" textbox="granny">
+  <portrait_granny path="granny/" sfx="granny" textbox="granny">
     <Center />
 
     <sfxs>
@@ -456,7 +456,7 @@
   <portrait_webcam_theo copy="portrait_theo" path="theo/" sfx="theo_webcam" textbox="theo" glitchy="true">
   </portrait_webcam_theo>
 
-  <portrait_theo_mirror path="DZ/theomirror/" sfx="theo_mirror" textbox="theo">
+  <portrait_theo_mirror path="theomirror/" sfx="theo_mirror" textbox="theo">
     <Center />
 
     <sfxs>
@@ -503,7 +503,7 @@
 
   </portrait_theo_mirror>
 
-  <portrait_badeline path="DZ/ghost/" sfx="badeline" textbox="badeline">
+  <portrait_badeline path="ghost/" sfx="badeline" textbox="badeline">
     <Center />
 
     <sfxs>
@@ -572,7 +572,7 @@
 	  
   </portrait_badeline>
 
-  <portrait_els path="DZ/els/" sfx="els" textbox="default">
+  <portrait_els path="DZ/els/" sfx="els" textbox="DZ/default">
     <Center />
 
     <sfxs>
@@ -584,7 +584,7 @@
 
   </portrait_els>
 
-  <portrait_susiehaltmann path="DZ/susiehaltmann/" sfx="none" textbox="default">
+  <portrait_susiehaltmann path="DZ/susiehaltmann/" sfx="none" textbox="DZ/default">
     <Center />
 
     <sfxs>
@@ -596,7 +596,7 @@
 
   </portrait_susiehaltmann>
 
-  <portrait_gaster path="DZ/gaster/" sfx="secretDZ_CHaracter" textbox="default">
+  <portrait_gaster path="DZ/gaster/" sfx="secretDZ_CHaracter" textbox="DZ/default">
     <Center />
 
     <sfxs>
@@ -608,7 +608,7 @@
 
   </portrait_gaster>
 
-  <portrait_ex_phone path="DZ/exph/" sfx="ex" phonestatic="ex" glitchy="true">
+  <portrait_ex_phone path="exph/" sfx="ex" phonestatic="ex" glitchy="true">
     <Center />
 
     <sfxs>
@@ -620,7 +620,7 @@
 
   </portrait_ex_phone>
 
-  <portrait_mom_phone path="DZ/momph/" sfx="mom" phonestatic="mom" glitchy="true">
+  <portrait_mom_phone path="momph/" sfx="mom" phonestatic="mom" glitchy="true">
     <Center />
 
     <sfxs>
@@ -637,7 +637,7 @@
     <Loop id="talk_concerned" path="concerned" delay="0.2" frames="4,6,5,0" />
   </portrait_mom_phone>
 		
-  <portrait_mom path="DZ/mom/" sfx="mom" textbox="madeline">
+  <portrait_mom path="mom/" sfx="mom" textbox="madeline">
     <Center />
 
     <sfxs>
@@ -654,7 +654,7 @@
     <Loop id="talk_concerned" path="concerned" delay="0.2" frames="4,6,5,0" />
   </portrait_mom>
 		
-  <portrait_asgore path="DZ/asgore/" sfx="asgore" textbox="default">
+  <portrait_asgore path="DZ/asgore/" sfx="asgore" textbox="DZ/default">
     <Center />
 
     <sfxs>
@@ -686,7 +686,7 @@
 
   </portrait_asgore>
 
-  <portrait_starsie path="DZ/starsie/" sfx="starsie" textbox="default">
+  <portrait_starsie path="DZ/starsie/" sfx="starsie" textbox="DZ/default">
     <Center />
 
     <sfxs>
@@ -722,7 +722,7 @@
 
   </portrait_starsie>
 
-  <portrait_asriel path="DZ/asriel/" sfx="asriel" textbox="default">
+  <portrait_asriel path="DZ/asriel/" sfx="asriel" textbox="DZ/default">
     <Center />
 
     <sfxs>
@@ -746,7 +746,7 @@
 
   </portrait_asriel>
 
-  <portrait_undyne path="DZ/undyne/" sfx="undyne" textbox="default">
+  <portrait_undyne path="DZ/undyne/" sfx="undyne" textbox="DZ/default">
     <Center />
 
     <sfxs>
@@ -790,7 +790,7 @@
 
   </portrait_undyne>
 
-  <portrait_Magolor path="DZ/magolor/" sfx="magolor" textbox="default">
+  <portrait_Magolor path="DZ/magolor/" sfx="magolor" textbox="DZ/default">
     <Center />
 
     <sfxs>
@@ -805,7 +805,7 @@
 
   </portrait_Magolor>
 
-  <portraitDZ_CHara path="DZ/chara/" sfx="chara" textbox="default">
+  <portraitDZ_CHara path="DZ/chara/" sfx="chara" textbox="DZ/default">
     <Center />
 
     <sfxs>
@@ -1553,7 +1553,7 @@
   <portrait_badeline_spirit copy="portrait_badeline" path="DZ/ghost/" sfx="badeline" textbox="badeline">
   </portrait_badeline_spirit>
 
-  <portrait_seven_goner copy="portrait_kirby" path="DZ/kirby/" sfx="kirby" textbox="kirby">
+  <portrait_seven_goner copy="portrait_kirby" path="DZ/kirby/" sfx="kirby" textbox="DZ/kirby">
   </portrait_seven_goner>
 
 </Sprites>

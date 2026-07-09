@@ -28,6 +28,8 @@ public class CustomConfig
             if (areaMeta != null)
             {
                 string confData = Encoding.UTF8.GetString(areaMeta.Data);
+                if (confData.Length > 0 && confData[0] == '\uFEFF')
+                    confData = confData.Substring(1);
                 return DeserializeConfig(confData, ty);
             }
         }

@@ -48,7 +48,7 @@ Modes:
       Ambience: event:/env/DZ/00_main
     Inventory: Default
     HeartIsEnd: true
-    SeekerSlowdown: false
+    SeekerSlowdown: false
     MountainModelDirectory: Mountain/DZ/0
     MountainTextureDirectory: DZ/0
     Idle:

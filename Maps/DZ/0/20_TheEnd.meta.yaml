@@ -48,7 +48,7 @@ Modes:
       Ambience: event:/env/DZ/20_main
     Inventory: Default
     HeartIsEnd: true
-    SeekerSlowdown: false
+    SeekerSlowdown: false
     BackgroundMusic: event:/music/DZ/menu/level_select
     BackgroundAmbience: bus:/gameplay_sfx/ambience/DZ/new_worldmap
     BackgroundMusicParams:

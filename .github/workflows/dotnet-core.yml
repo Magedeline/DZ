@@ -33,7 +33,7 @@ jobs:
         CelestePrefix: ${{ github.workspace }}/lib-stripped
 
     - name: Upload Artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v7
       with:
         name: DZ
         path: |

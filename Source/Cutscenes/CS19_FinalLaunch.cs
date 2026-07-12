@@ -7,7 +7,7 @@ using Monocle;
 using MonoMod;
 using Celeste.Entities;
 using CutsceneEntity = Celeste.CutsceneEntity;
-using BirdNPC = Celeste.Entities.BirdNPC;
+using BirdNPC = Celeste.Entities.DZBirdNPC;
 using AscendManager = Celeste.AscendManager;
 using Level = Celeste.Level;
 using Audio = Celeste.Audio;
@@ -26,7 +26,7 @@ public class CS19_FinalLaunch : CutsceneEntity
 
     private CharaBoost boost;
 
-    private BirdNPC bird;
+    private DZBirdNPC bird;
 
     private float fadeToWhite;
 
@@ -204,7 +204,7 @@ public class CS19_FinalLaunch : CutsceneEntity
     private IEnumerator BirdRoutine(float delay)
     {
         yield return delay;
-        Level.Add(bird = new BirdNPC(Vector2.Zero, BirdNPC.Modes.None));
+        Level.Add(bird = new DZBirdNPC(Vector2.Zero, DZBirdNPC.Modes.None));
         bird.Sprite.Play("flyupIdle");
         Vector2 vector = new Vector2(320f, 180f) / 2f;
         Vector2 topCenter = new Vector2(vector.X, 0f);

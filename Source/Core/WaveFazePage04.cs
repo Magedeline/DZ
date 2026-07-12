@@ -17,7 +17,7 @@ namespace DZ
         public override void Added(WaveFazePresentation presentation)
         {
             base.Added(presentation);
-            List<MTexture> textures = Presentation.Gfx.GetAtlasSubtextures("playback/platforms");
+            List<MTexture> textures = Presentation.Gfx?.GetAtlasSubtextures("playback/platforms") ?? new List<MTexture>();
             tutorial = new WaveFazePlaybackTutorial("DZ/wavefazingppt", new Vector2(-189f, 0.0f), new Vector2(-189f, 0.0f), new Vector2(126f, 0.0f), new Vector2(1f, 1f), new Vector2(1f, 1f));
             tutorial.OnRender = () => {
                 if (textures.Count > 0)
@@ -27,25 +27,33 @@ namespace DZ
 
         public override IEnumerator Routine()
         {
-            WaveFazePage04 waveFazePage04 = this;
             yield return 0.5f;
-            waveFazePage04.list = FancyText.Parse(Dialog.Get("WAVEFAZE_PAGE4_LIST"), waveFazePage04.Width, 32, defaultColor: Color.Black * 0.7f);
-            float delay = 0.0f;
-            for (; waveFazePage04.listIndex < waveFazePage04.list.Nodes.Count; ++waveFazePage04.listIndex)
+
+            string[] listKeys = new string[]
             {
-                if (waveFazePage04.list.Nodes[waveFazePage04.listIndex] is FancyText.NewLine)
-                {
-                    yield return waveFazePage04.PressButton();
-                }
-                else
+                "WAVEFAZE_PAGE4_LIST_A",
+                "WAVEFAZE_PAGE4_LIST_B",
+                "WAVEFAZE_PAGE4_LIST_C",
+                "WAVEFAZE_PAGE4_LIST_D",
+                "WAVEFAZE_PAGE4_LIST_E",
+                "WAVEFAZE_PAGE4_LIST_F"
+            };
+
+            foreach (string key in listKeys)
+            {
+                list = FancyText.Parse(Dialog.Get(key), Width, 32, defaultColor: Color.Black * 0.7f);
+                listIndex = 0;
+                float delay = 0f;
+                for (; listIndex < list.Nodes.Count; ++listIndex)
                 {
                     delay += 0.008f;
-                    if (delay >= 0.016000000759959221)
+                    if (delay >= 0.016f)
                     {
                         delay -= 0.016f;
                         yield return 0.016f;
                     }
                 }
+                yield return PressButton();
             }
         }
 

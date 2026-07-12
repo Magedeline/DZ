@@ -7,6 +7,7 @@ using IL.Celeste;
 using Microsoft.Xna.Framework;
 using Monocle;
 using FlingBirdIntro = Celeste.Entities.FlingBirdIntro;
+using BirdNPC = Celeste.Entities.DZBirdNPC;
 
 namespace Celeste.Cutscenes;
 
@@ -18,7 +19,7 @@ public class CS19_MissTheBird : CutsceneEntity
 
     private FlingBirdIntro flingBird;
 
-    private BirdNPC bird;
+    private DZBirdNPC bird;
 
 
     private Coroutine zoomRoutine;
@@ -54,7 +55,7 @@ public class CS19_MissTheBird : CutsceneEntity
         {
             yield break;
         }
-        bird = new BirdNPC(flingBird.Position, BirdNPC.Modes.None);
+        bird = new DZBirdNPC(flingBird.Position, DZBirdNPC.Modes.Grab);
         bird.Sprite.Play("idle");
         level.Add(bird);
         flingBird.RemoveSelf();

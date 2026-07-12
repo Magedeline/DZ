@@ -1,19 +1,22 @@
-- Name: DZ
+- DLL: bin/DZ.dll
+  Name: DZ
   Version: 4.0.0
-  DLL: bin/DZ.dll
   Dependencies:
-    - Name: EverestCore
-      Version: 1.5935.0
     - Name: CommunalHelper
       Version: 1.25.3
-    - Name: VivHelper
-      Version: 1.14.7
-    - Name: MaxHelpingHand
-      Version: 1.40.2
-    - Name: FrostHelper
-      Version: 1.79.0
+    - Name: Everest
+      Version: 1.6314.0
+    - Name: EverestCore
+      Version: 1.5935.0
     - Name: ExtendedVariantMode
       Version: 0.50.1
+    - Name: FrostHelper
+      Version: 1.79.0
+    - Name: MaxHelpingHand
+      Version: 1.40.2
+    - Name: VivHelper
+      Version: 1.14.7
+    - Name: VortexHelper
   OptionalDependencies:
     - Name: VidPlayer
       Version: 0.5.2
@@ -25,4 +28,3 @@
       Version: 1.6.8
     - Name: Deathlink
       Version: 1.10.1
-

@@ -2,13 +2,15 @@
 // Based on CS19_AnotherDimensionIntro structure
 
 #nullable disable
+using Celeste.Entities;
+using BirdNPC = Celeste.Entities.DZBirdNPC;
 namespace Celeste.Cutscenes
 {
   public class Cs20BirdGuidanceIntro : CutsceneEntity
   {
     public const string FLAG = "bird_guidance_intro";
     private global::Celeste.Player player;
-    private BirdNPC bird;
+    private DZBirdNPC bird;
     private float fade = 1f;
 
     public Cs20BirdGuidanceIntro(global::Celeste.Player player)
@@ -20,7 +22,7 @@ namespace Celeste.Cutscenes
 
     public override void OnBegin(Level level)
     {
-      this.bird = this.Scene.Entities.FindFirst<BirdNPC>();
+      this.bird = this.Scene.Entities.FindFirst<DZBirdNPC>();
       this.player.StateMachine.State = Player.StDummy;
       if (level.Wipe != null)
         level.Wipe.Cancel();
@@ -53,7 +55,7 @@ namespace Celeste.Cutscenes
       {
         yield return (object) cs20BirdIntro.bird.StartleAndFlyAway();
         cs20BirdIntro.Level.Session.DoNotLoad.Add(cs20BirdIntro.bird.EntityID);
-        cs20BirdIntro.bird = (BirdNPC) null;
+        cs20BirdIntro.bird = (DZBirdNPC) null;
       }
       
       yield return (object) 0.5f;

@@ -27,7 +27,7 @@ namespace Celeste.Triggers
             if (!triggered)
             {
                 triggered = true;
-                var bird = Scene.Tracker.GetEntity<global::Celeste.Entities.BirdNPC>();
+                var bird = Scene.Tracker.GetEntity<global::Celeste.Entities.DZBirdNPC>();
                 if (bird != null)
                 {
                     bird.Add(new Coroutine(bird.StartleAndFlyAway()));

@@ -3296,6 +3296,8 @@ namespace Celeste.Entities
                             Play(playFootstepOnLand > 0f ? Sfxs.char_mad_footstep : Sfxs.char_mad_land, SurfaceIndex.Param, surface);
                         if (platform is DreamBlock)
                             (platform as DreamBlock).FootstepRipple(Position);
+                        else if (platform is PhantomBlock phantomPlatform)
+                            phantomPlatform.FootstepRipple(Position);
                     }
 
                     playFootstepOnLand = 0f;
@@ -3419,7 +3421,70 @@ namespace Celeste.Entities
                         dreamBlock = block;
                         return true;
                     }
-                }        
+                }
+            }
+
+            // ── PhantomBlock fallback ──────────────────────────────────────────
+            // PhantomBlock is a dream-dashable Solid that is NOT a DreamBlock, so the
+            // CollideFirst<DreamBlock> check above won't find it.  Repeat the same
+            // corner-correction logic for PhantomBlock so the player can dream-dash
+            // through it (without triggering the Madeline↔Kirby swap hooks).
+            if (Inventory.DreamDash && DashAttacking && (dir.X == Math.Sign(DashDir.X) || dir.Y == Math.Sign(DashDir.Y)))
+            {
+                var phantom = CollideFirst<PhantomBlock>(Position + dir);
+                if (phantom != null)
+                {
+                    if (CollideCheck<Solid, PhantomBlock>(Position + dir))
+                    {
+                        Vector2 side = new Vector2(Math.Abs(dir.Y), Math.Abs(dir.X));
+                        bool checkNegative, checkPositive;
+                        if (dir.X != 0)
+                        {
+                            checkNegative = Speed.Y <= 0;
+                            checkPositive = Speed.Y >= 0;
+                        }
+                        else
+                        {
+                            checkNegative = Speed.X <= 0;
+                            checkPositive = Speed.X >= 0;
+                        }
+
+                        if (checkNegative)
+                        {
+                            for (int i = -1; i >= -DashCornerCorrection; i--)
+                            {
+                                var at = Position + dir + side * i;
+                                if (!CollideCheck<Solid, PhantomBlock>(at))
+                                {
+                                    Position += side * i;
+                                    phantomBlock = phantom;
+                                    return true;
+                                }
+                            }
+                        }
+
+                        if (checkPositive)
+                        {
+                            for (int i = 1; i <= DashCornerCorrection; i++)
+                            {
+                                var at = Position + dir + side * i;
+                                if (!CollideCheck<Solid, PhantomBlock>(at))
+                                {
+                                    Position += side * i;
+                                    phantomBlock = phantom;
+                                    return true;
+                                }
+                            }
+                        }
+
+                        return false;
+                    }
+                    else
+                    {
+                        phantomBlock = phantom;
+                        return true;
+                    }
+                }
             }
 
             return false;
@@ -4496,8 +4561,8 @@ namespace Celeste.Entities
                 level.Particles.Emit(FlyFeather.P_Boost, 12, Center, Vector2.One * 4, (-dir).Angle());
 
             //Dash Slide
-            if (onGround && DashDir.X != 0 && DashDir.Y > 0 && Speed.Y > 0 
-                && (!Inventory.DreamDash || !CollideCheck<DreamBlock>(Position + Vector2.UnitY)))
+            if (onGround && DashDir.X != 0 && DashDir.Y > 0 && Speed.Y > 0
+                && (!Inventory.DreamDash || (!CollideCheck<DreamBlock>(Position + Vector2.UnitY) && !CollideCheck<PhantomBlock>(Position + Vector2.UnitY))))
             {
                 DashDir.X = Math.Sign(DashDir.X);
                 DashDir.Y = 0;
@@ -5082,6 +5147,10 @@ namespace Celeste.Entities
         #region Dream Dash State
 
         private DreamBlock dreamBlock;
+        // Dream-dash target when dashing through a PhantomBlock (which is NOT a DreamBlock,
+        // so it can't be stored in `dreamBlock`).  Tracked separately and handled in parallel
+        // in DreamDashCheck / DreamDashUpdate / DreamDashEnd.
+        private PhantomBlock phantomBlock;
         private SoundSource dreamSfxLoop;
         private bool dreamJump;
 
@@ -5127,6 +5196,19 @@ namespace Celeste.Entities
                 dreamBlock.OnPlayerExit(SelfPlayer);
                 dreamBlock = null;
             }
+            else if (phantomBlock != null)
+            {
+                if (DashDir.X != 0)
+                {
+                    jumpGraceTimer = JumpGraceTime;
+                    dreamJump = true;
+                }
+                else
+                    jumpGraceTimer = 0;
+
+                phantomBlock.OnPlayerExit(SelfPlayer);
+                phantomBlock = null;
+            }
 
             Stop(dreamSfxLoop);
             Play(Sfxs.char_mad_dreamblock_exit);
@@ -5142,8 +5224,14 @@ namespace Celeste.Entities
             if (dreamDashCanEndTimer > 0)
                 dreamDashCanEndTimer -= Engine.DeltaTime;
 
-            var block = CollideFirst<DreamBlock>();          
-            if (block == null)
+            var block = CollideFirst<DreamBlock>();
+            // PhantomBlock is not a DreamBlock, so check it separately when no DreamBlock
+            // is overlapping.  While inside a PhantomBlock we must take the "inside block"
+            // branch, otherwise DreamDashedIntoSolid() would see the PhantomBlock (a Solid)
+            // and kill the player.
+            PhantomBlock phantom = (block == null) ? CollideFirst<PhantomBlock>() : null;
+
+            if (block == null && phantom == null)
             {
                 if (DreamDashedIntoSolid())
                 {
@@ -5183,7 +5271,17 @@ namespace Celeste.Entities
             }
             else
             {
-                dreamBlock = block;
+                Collider clipCollider;
+                if (block != null)
+                {
+                    dreamBlock = block;
+                    clipCollider = dreamBlock.Collider;
+                }
+                else
+                {
+                    phantomBlock = phantom;
+                    clipCollider = phantomBlock.Collider;
+                }
 
                 if (Scene.OnInterval(0.1f))
                     CreateTrail();
@@ -5192,7 +5290,7 @@ namespace Celeste.Entities
                 if (level.OnInterval(0.04f))
                 {
                     var displacement = level.Displacement.AddBurst(Center, .3f, 0f, 40f);
-                    displacement.WorldClipCollider = dreamBlock.Collider;
+                    displacement.WorldClipCollider = clipCollider;
                     displacement.WorldClipPadding = 2;
                 }
             }

@@ -162,6 +162,11 @@ namespace DZ
             // ─── 4. Dream-block Madeline ↔ Kirby player swap ────────────────────
             DreamBlockPlayerSwapHooks.Load();
 
+            // ─── 4.5. PhantomBlock dream-dash support (vanilla Player) ─────────
+            // Lets the vanilla Player dream-dash through PhantomBlock (a non-DreamBlock
+            // Solid) without triggering the swap above.
+            PhantomBlockDreamDashHooks.Load();
+
             // ─── 5. Entity Name Remapping (player entity ID normalization) ──────
             // Hook Level.LoadLevel to remap player entity IDs from binary maps
             if (levelLoadLevelHook == null)
@@ -263,6 +268,9 @@ namespace DZ
 
             // Remove dream-block swap hooks
             DreamBlockPlayerSwapHooks.Unload();
+
+            // Remove PhantomBlock dream-dash hooks
+            PhantomBlockDreamDashHooks.Unload();
 
             Logger.Log(LogLevel.Info, "DZ",
                 "[MonoModHooks] All advanced MonoMod hooks unloaded");

@@ -226,9 +226,9 @@ DZ_CREDIT_MUSIC=Music & Sound
 DZ_CREDIT_MUSIC_1=Nintendo
 DZ_CREDIT_MUSIC_2=Risty
 DZ_CREDIT_MUSIC_3=Kyle gamer
-DZ_CREDIT_MUSIC_4=Gametal
+DZ_CREDIT_MUSIC_4=GaMetal
 DZ_CREDIT_MUSIC_5=Maxo
-DZ_CREDIT_MUSIC_6=CloudJumper
+DZ_CREDIT_MUSIC_6=Cloud Jumper
 DZ_CREDIT_MUSIC_7=Prunty
 DZ_CREDIT_MUSIC_8=No Credit Sadly Sowwy
 DZ_CREDIT_MUSIC_9=Karu
@@ -243,12 +243,19 @@ DZ_CREDIT_MUSIC_17=Team BNP
 DZ_CREDIT_MUSIC_18=DJ Cutman
 DZ_CREDIT_MUSIC_19=Zami
 DZ_CREDIT_MUSIC_20=Tonica
-DZ_CREDIT_MUSIC_21=AYDUmusic and CloudJumper
+DZ_CREDIT_MUSIC_21=AYDUmusic and Cloud Jumper
 DZ_CREDIT_MUSIC_22=Desolo Zantas
 DZ_CREDIT_MUSIC_23=The Noble Demon
 DZ_CREDIT_MUSIC_24=Anthony Lo Re
 DZ_CREDIT_MUSIC_25=NyxTheShield
 DZ_CREDIT_MUSIC_26=DZ
+DZ_CREDIT_MUSIC_27=Maggy
+DZ_CREDIT_MUSIC_28=Kiwiquest
+DZ_CREDIT_MUSIC_29=Pusheen2026
+DZ_CREDIT_MUSIC_30=NoteBlock
+DZ_CREDIT_MUSIC_31=Strawberry Flavored Demon
+DZ_CREDIT_MUSIC_32=CryoChem
+DZ_CREDIT_MUSIC_33=TheMatthewFlames
 DZ_CREDIT_LEVEL_DESIGN=Level Design
 DZ_CREDIT_LEVEL_DESIGN_1=DZ
 DZ_CREDIT_WRITING=Writing
@@ -17462,84 +17469,178 @@ DZ_CH20_ASCEND_VS_ELS_11=
 DZ_CH21_ASCEND_VS_ELS_FINAL=
 [ELS left normal]
 {# 000000}HOW DISAPPOINTING...{#}
-{# 000000}I EXPECTED MORE FROM YOU....{#}
-{# 000000}darker than darkness, colder than cold, more desolate than desolation itself!{#}
+{# 000000}I EXPECTED MORE FROM YOU.{#}
+{# 000000}Darker than darkness. Colder than cold. More desolate than desolation itself.{#}
 {# 000000}I EXPECTED YOU TO BE NOTHING BUT A PILE OF ASHES BY NOW!{#}
-{# 000000}BUT NO, YOU KEEP CLIMBING AND CLIMBING!{#}
-{# 000000}HOW IRRITATING!!!{#}
+{# 000000}BUT NO. YOU KEEP CLIMBING. AND CLIMBING. AND CLIMBING!{#}
+{# 000000}HOW UTTERLY IRRITATING!!!{#}
 
 [GRANNY left normal]
-{# AAAAFF}Listen ELS I know this may seem hard but look on the bright side!{#}
-{# AAAAFF}She May not be strongs as yours, but she isn't alone!{#}
+{# AAAAFF}Listen, ELS. I know this may seem hard to believe,{#}
+{# AAAAFF}but look on the bright side!{#}
+{# AAAAFF}She may not be as strong as you,{#}
+{# AAAAFF}but she is never alone.{#}
 
 [MADELINE left distracted]
-To Be clear we have something that you may not gonna Like
-and that is deltarune and star warrior
+To be clear — we have something you're probably not going to like.
+Deltarune. And a Star Warrior.
 
 [ELS right normal]
-DELTARUNE!?... STAR WARRIOR!!!?
-How did you know of I have witness
+{# 000000}DELTARUNE?!{#}
+{# 000000}A STAR WARRIOR?!{#}
+{# 000000}...How do you know of those?{#}
+{# 000000}I witnessed their existence myself. That knowledge should have died with the void.{#}
 
 [KIRBY left angry]
-It's because it's the way that it were design
+Because that's the way it was always meant to be.
 
 [ELS right normal]
-...
-I know since you already knew it that blew my secrets from them
-I will tell you about my origin and at the very beginnging
+{# 000000}...{#}
+{# 000000}So you already know.{#}
+{# 000000}Then I will tell you everything.{#}
+{# 000000}About where I came from. About the very beginning.{#}
 {trigger 0 fade to white}
 
 DZ_CH21_ELS_FLASHBACK=
-it began after I abandon my army and my mother ship
-I was in shambles trying to get out
+{# 000000}It began after I abandoned my army and my mothership.{#}
+{# 000000}I was in shambles, desperate to escape.{#}
 {trigger 0 escape pod destroyed}
-by the time I realized...
+{# 000000}By the time I realized what was happening...{#}
 {trigger 1 suited man burned in flames}
-it was too late.
-I was hovering dead in Spaces
-and call anyone for help
-... but nobdoy came
-and nobody save me
-I was so alone for trillions of years
-until the dark matter found me
-that then I was not only being experminted on
-my body has change worst than them worst than giygas, I became something that fill my rage
-ultimately I knew of what I have become,
-however you already fought void termina back then and multiple zero
-but you were wrong
-there more dark matter than you might not expect
-there thoundsand of titan army, and quinliion of dark matter who came for one purpose
-to consume of one scientist who knew that they would consume this heart called "DETERMINATION"
-that cultimated being has more power than love, and more soruce power than anything combined.
-with my goal to bring them of what they needed for me I would not only have my body back but to have my mind my soul. and my purpose to restore
-however the royal scientist wouldn't allowed them to be taken,
-he sacrafice himself to seal the barrier of the even horizon leaving no dark matter escape,
-standing in the blackhole alone waiting for a victim to lower them in
+{# 000000}...it was already too late.{#}
+{# 000000}I was adrift. Dead in space.{#}
+{# 000000}I called out for anyone.{#}
+{# 000000}...but nobody came.{#}
+{# 000000}Nobody saved me.{#}
+{# 000000}I was alone for trillions of years.{#}
+{# 000000}Until the dark matter found me.{#}
+{# 000000}They did not save me. They experimented on me.{#}
+{# 000000}My body changed — worse than them, worse than Giygas.{#}
+{# 000000}I became something built entirely from rage.{#}
+{# 000000}I knew what I had become.{#}
+{# 000000}You had already fought Void Termina. You had already defeated Zero after Zero.{#}
+{# 000000}But you were wrong if you thought that was all.{#}
+{# 000000}There are thousands of titan armies.{#}
+{# 000000}Quintillions of dark matter, all with one purpose:{#}
+{# 000000}To consume the heart of the scientist who carried DETERMINATION.{#}
+{# 000000}That culminated being held more power than love.{#}
+{# 000000}More than any single force in existence.{#}
+{# 000000}My goal was to bring them what they needed —{#}
+{# 000000}and in return, I would have my body back. My mind. My soul. My purpose.{#}
+{# 000000}But the royal scientist would not allow it.{#}
+{# 000000}He sacrificed himself to seal the barrier of the event horizon.{#}
+{# 000000}No dark matter could escape.{#}
+{# 000000}He stood alone at the edge of the black hole,{#}
+{# 000000}waiting for a victim to draw them inward.{#}
 
 [ELS right normal]
-as you know they want your soul to take as full admin control
-and they wanted back from what he has taken
+{# 000000}And as you now know —{#}
+{# 000000}they want your soul.{#}
+{# 000000}Full administrative control.{#}
+{# 000000}And they want back what he took from them.{#}
 
 [ASRIEL left sad]
-more dark matter...
-so this is why that zero keep reincarnating himself
+More dark matter...
+So this is why Zero kept reincarnating himself.
 
-[badeline left yell]
-listen you dark creep
-you may think that your gonna manipulated us
-well try harder than that you freak
+[BADELINE left yell]
+Listen here, you dark creep.
+You think you can manipulate us?
+Try harder than that.
 
-[els right normal]
-you seriously absoloutly pathetic bitch...
-how dar you say that to us...
-[madeline left angry]
-to be clear since they want our heart that made of pure love and determination
+[ELS right normal]
+{# 000000}...You are absolutely pathetic.{#}
+{# 000000}How dare you speak to us like that.{#}
+
+[MADELINE left angry]
+To be clear —
+since they want a heart made of pure love and determination,
 then come at us and fight...!
 
-[els right normal]
-...
-alright then
-lets see if your soul can fight against THIS!
+[ELS right normal]
+{# 000000}...{#}
+{# 000000}Alright, then.{#}
+{# 000000}Let's see if your soul can fight against THIS!{#}
+
+DZ_NIGHTMARE_DEFEAT=
+[ELS right normal]
+{# 000000}...{#}
+{# 000000}You actually did it.{#}
+{# 000000}Every fragment of darkness. Every zero. Every form.{#}
+{# 000000}Gone.{#}
+
+[MADELINE left determined]
+It's over, ELS.
+This world will live on.
+The darkness ends here.
+
+[ELS right normal]
+{# 000000}Heh...{#}
+{# 000000}Hehe...{#}
+
+[BADELINE left angryalt]
+What's so funny?
+
+[ELS right normal]
+{# 000000}Look around you.{#}
+{# 000000}The universe is beginning to erase itself.{#}
+
+[MADELINE left surprised]
+Wait — WHAT?!
+{trigger 0 tileset and decals begin to erase}
+
+[KIRBY right angry]
+Oh brother, you have GOT to be kidding me!
+
+[KIRBY left sad]
+We need to get out of this dimension.
+If we stay, we'll be erased along with it.
+
+DZ_NIGHTMARE_ASCENT=
+[GRANNY right normal]
+{# AAAAFF}Not without my help.{#}
+{trigger 0 bird, goner souls, and allies arrive}
+
+[ELS left normal]
+{# 000000}Impossible...!{#}
+{# 000000}How did you get here so fast?!{#}
+
+[MAGOLOR right annoyed]
+Because that is what we came for.
+Not just to get them out —
+but to get you out as well.
+
+[ELS right normal]
+{# 000000}...But why?{#}
+{# 000000}Why are you being kind to me?{#}
+
+[CHARA right normal]
+Because even someone catastrophic deserves a second chance
+to become something greater.
+
+[ELS right normal]
+{# 000000}I...{#}
+{# 000000}I understand.{#}
+{# 000000}I will hold them off while you go.{#}
+{# 000000}They will not let me leave so easily.{#}
+
+[MADELINE right surprised]
+ELS — but—!
+
+[ELS right normal]
+{# 000000}Go. I will deal with them myself.{#}
+
+[KIRBY right determined]
+No. I'm standing with you.
+I'll hold them off too.
+
+[ASRIEL right normal]
+If there's any power I have left —
+I'll give it to all of you.
+
+[ELS right normal]
+{# 000000}...Try not to keep up, Asriel.{#}
+{trigger 1 warp flash white}
 
 DZ_CH21_FINAL_BATTLE_ALLIES_ARRIVE=
 [KIRBY left determined]
@@ -17833,106 +17934,107 @@ when I have your determination I will reshape this universe
 and reset everything into a new world.
 
 DZ_CH21_ELS_TERMINA_BOSS_END=
-[els right normal]
-Impossible!
-This Cannot be happening
-[MADELINE left angry]
-It's over els this world will live on
-but the darkness will fade away
-[els right normal]
-he he he
+[ELS right normal]
+{# 000000}...{#}
+{# 000000}You actually did it.{#}
+{# 000000}Every fragment of darkness. Every zero. Every form.{#}
+{# 000000}Gone.{#}
+
+[MADELINE left determined]
+It's over, ELS.
+This world will live on.
+The darkness ends here.
+
+[ELS right normal]
+{# 000000}Heh...{#}
+{# 000000}Hehe...{#}
+
 [BADELINE left angryalt]
-what so funny of you laughing?
-[els right normal]
-Look like the unvierse is starting to erased itself.
+What's so funny?
+
+[ELS right normal]
+{# 000000}Look around you.{#}
+{# 000000}The universe is beginning to erase itself.{#}
+
 [MADELINE left surprised]
-wait WHAT!
-{trigger 0 tileset and decals is starting to erased}
+Wait — WHAT?!
+{trigger 0 tileset and decals begin to erase}
+
 [KIRBY right angry]
-Oh brother you got to be kidding me!
+Oh brother, you have GOT to be kidding me!
+
 [KIRBY left sad]
-we need to get out of this dimension
-if we stay here we will also get erased
+We need to get out of this dimension.
+If we stay, we'll be erased along with it.
+
 [GRANNY right normal]
-Not without my help
-{trigger 1 bird, soul goner, and rest of the allies came}
-[els left normal]
-Impossible?!
-how did you get that fast?!
+{# AAAAFF}Not without my help.{#}
+{trigger 1 bird, goner souls, and rest of the allies arrive}
+
+[ELS left normal]
+{# 000000}Impossible...!{#}
+{# 000000}How did you get here so fast?!{#}
+
 [MAGOLOR right annoyed]
-because that what we came here for
-to not only get them out
-but to get you out as well
-[els right normal]
-but... why!?
-why you being so kind to me?
+Because that is what we came for.
+Not just to get them out —
+but to get you out as well.
+
+[ELS right normal]
+{# 000000}...But why?{#}
+{# 000000}Why are you being kind to me?{#}
+
 [CHARA right normal]
-because since you have been castropic
-there always a second chances to become greater
-[els right normal]
-I...
-I understand
-I'll hold them off while you all go
-they are not like it...
+Because even someone catastrophic deserves a second chance
+to become something greater.
+
+[ELS right normal]
+{# 000000}I...{#}
+{# 000000}I understand.{#}
+{# 000000}I will hold them off while you go.{#}
+{# 000000}They will not let me leave so easily.{#}
+
 [MADELINE right surprised]
-els! BUT!...
-[els right normal]
-Go, I will have to deal with them myself.
+ELS — but—!
+
+[ELS right normal]
+{# 000000}Go. I will deal with them myself.{#}
+
 [KIRBY right determined]
-No I will stand with you and hold off as well
+No. I'm standing with you.
+I'll hold them off too.
+
 [ASRIEL right normal]
-If there any chacne of I little power i have left
-Then I'll give to them all.
-[els right normal]
-Try not to keep up Asriel...
+If there's any power I have left —
+I'll give it to all of you.
 
-DZ_CH21_LAST_BIG_ROOM=
-[els right normal]
-This is it kirby, our final escape we need to get to the last powerchamber
+[ELS right normal]
+{# 000000}...Try not to keep up, Asriel.{#}
 
-[KIRBY left determined]
-I'm On it, Lets Finish This once and for all
-
-DZ_CH21_ELS_LAST_BOOST=
-[els right normal]
-tell your parent to forgive me!
-
-DZ_CH20_SAVED=
+DZ_CH20_RESTORATION_AND_FAREWELL=
 {trigger 0 maddy baddy and everyone else walk in left}
-[MADELINE left surprised]
-Wait...
-I just realized something.
-[BADELINE right normal]
-What is it?
-[MADELINE left sadder]
-Els...
-He saved us.
-[KIRBY left surprised]
-Huh? What do you mean?
-[MADELINE left sad]
-The terrible darkness of multiple zero...
-The void that was consuming everything.
-He held it back so we could escape.
-He gave us a second chance...
-even after everything he did.
-[BADELINE right scoff]
-...
-He really did, didn't he?
 [MADELINE left normal]
-I hope he finds peace too.
-Wherever he is now.
-[KIRBY left determined]
-Yeah... me too.
+Granny, there you are!
 [Granny left normal]
-To be Clear all that matter is you finally pay it off and I own you too my grand daughter.
+Hey there Kiddo
+It's been a long time no see after my death heh?
+[MADELINE left sad]
+Yeah, it's been a while
+[MADELINE left distracted]
+... however
+since els is gone for good
+what are we going to do now?
+[Granny left normal]
+well if I were you I would suggest to wake up
 {trigger 1 granny and titan king walk in right}
 [THEO right wtf]
 What the... Granny?!
 [Granny left creepa]
-Hehe... Surprised to see me, Theo?
+Whoops... Surprised to see me, Theo?
+I didn't expect not only him but to everyone else is here too...
 [THEO right normal]
 and I see you all are in one pieces with those people.
-[Toriel left goawaykingtitan]
+[Toriel left normal]
 Yeah, thanks to Kirby and Madeline here.
 also it's pleasure to meet you elder lady.
 [ASRIEL left sad]
@@ -18018,7 +18120,7 @@ so everyone please remember
 stay determined, stay strongs, and never give up hopes
 thats what we are and who are, as from starwarrior, to deltarune.
 {trigger 1 asriel slowly fades away into the flower form}
-[toriel right goawaykingtitan]
+[toriel right normal]
 thank you asriel for what you did from whats right.
 
 [undyne right normal]
@@ -18049,14 +18151,14 @@ you know son, one day instead of you going back to the flower, maybe you can sta
 [asriel left sad]
 actaully thats is even better dad then I rather than going back to the flower, I think I will stay with kirby for a while.
 
-{trigger 3 chara walk in left and look at asriel}
+{trigger 2 chara walk in left and look at asriel}
 
 [chara left normal]
 asriel I glad you finally remember who you are, your my best friend after all.
 from the last reality, to the present, to the future, I will always be here for you.
 and I hope that the real player would understand that you are a good person and you deserve to be happy, and I hope that you will find your own happiness in the afterlife.
 
-{trigger 4 asriel granny titan king and kirby parent begin to fade away}
+{trigger 3 asriel granny titan king and kirby parent begin to fade away}
 
 [granny right normal]
 well then our times has finally up
@@ -18070,8 +18172,6 @@ uhg what happen?
 the last time has happen to me is I was consumed by the void, and now I am back again?
 wait...
 ... I am a flower again!? oh come on!
-
-{trigger 5 fadded back to black}
 
 DZ_CH20_MONTHS_LATER=
 8 MONTHS LATER...
@@ -18849,15 +18949,20 @@ WAVEFAZE_PAGE1_TITLE=Wavefazing and You
 WAVEFAZE_PAGE1_SUBTITLE=A practical and complex solution for catching a fastest bird in deep space
 WAVEFAZE_PAGE2_TITLE=Can't|Catch|That|God|Damn|Bird?!
 
-WAVEFAZE_PAGE2_LIST=
+WAVEFAZE_PAGE2_LIST_A=
 -Fact: Birds are hard to catch
+WAVEFAZE_PAGE2_LIST_B=
 -Wow. It's fast!
+WAVEFAZE_PAGE2_LIST_C=
 -Also, it can fly
+WAVEFAZE_PAGE2_LIST_D=
 -It Can Also go though Narrow Gap
+WAVEFAZE_PAGE2_LIST_E=
 -And {+CHARA} won't help
+WAVEFAZE_PAGE2_LIST_F=
 -(he is the worst)
 
-WAVEFAZE_PAGE2_IMPOSSIBLE=AM I Stupid???!
+WAVEFAZE_PAGE2_STUPID=AM I Stupid???!
 WAVEFAZE_PAGE3_TITLE=Introducing... Wavefazing!!!:3
 
 WAVEFAZE_PAGE3_INFO=
@@ -18869,12 +18974,17 @@ and phase through with non dream block{~} back all in One!{/~}
 WAVEFAZE_PAGE3_EASY=How? It's "easy!"
 WAVEFAZE_PAGE4_TITLE=Here How It's Done
 
-WAVEFAZE_PAGE4_LIST=
+WAVEFAZE_PAGE4_LIST_A=
 -Jump
+WAVEFAZE_PAGE4_LIST_B=
 -Dash diagonally down to the ground
+WAVEFAZE_PAGE4_LIST_C=
 -Immediately jump again and hold forward
+WAVEFAZE_PAGE4_LIST_D=
 -Shortly after use your dash faze to go through to those wall
+WAVEFAZE_PAGE4_LIST_E=
 -{~}You did it!{/~}
+WAVEFAZE_PAGE4_LIST_F=
 -(go you)
 
 WAVEFAZE_PAGE5_TITLE=Having Issue?
@@ -19292,6 +19402,58 @@ DZ_LASTENDEMY_MODE_7=
       for moderation purposes, as with any online service.
     - If you are uncomfortable sharing your name, rename your
       save file before going online.
+DZ_MYSTERYMAN_GASTER=
+{# 00ffff}{~}... You approach me...{/~}{#}
+{# 00ffff}{~}Few have ever dared to come this close...{/~}{#}
+{# 00ffff}{~}I suppose you deserve to know who I am...{/~}{#}
+{# 00ffff}{~}Long ago... I was not always this... phantom...{/~}{#}
+{# 00ffff}{~}I was young once... full of curiosity... full of hope...{/~}{#}
+{# 00ffff}{~}I lived in another reality... a world of monsters and magic...{/~}{#}
+{# 00ffff}{~}I was the Royal Scientist... appointed by the King himself...{/~}{#}
+{# 00ffff}{~}I studied the very fabric of existence... the determination that binds souls...{/~}{#}
+{# 00ffff}{~}But my ambition... it outgrew my wisdom...{/~}{#}
+{# 00ffff}{~}I reached too far... into the space between worlds...{/~}{#}
+{# 00ffff}{~}And the void reached back...{/~}{#}
+{# 00ffff}{~}It tore me from my reality... scattered me across time and space...{/~}{#}
+{# 00ffff}{~}Now I exist only in fragments... echoes... glimpses...{/~}{#}
+{# 00ffff}{~}A youth no more... a scientist no more...{/~}{#}
+{# 00ffff}{~}Just a mystery... a man who should not be...{/~}{#}
+{# 00ffff}{~}But I found purpose here... in this mountain...{/~}{#}
+{# 00ffff}{~}I watched over the vessel's creation... guided those who sought the truth...{/~}{#}
+{# 00ffff}{~}And yet... I am not the only one who was taken from their world...{/~}{#}
+{# 00ffff}{~}There is another... a child... much like I once was...{/~}{#}
+{# 00ffff}{~}Young... innocent... full of curiosity and hope...{/~}{#}
+{# 00ffff}{~}You know them... the one who fell... the fallen human...{/~}{#}
+{# 00ffff}{~}Chara...{/~}{#}
+{# 00ffff}{~}Their story mirrors my own more than you realize...{/~}{#}
+{# 00ffff}{~}A child torn from their reality... thrust into a world not their own...{/~}{#}
+{# 00ffff}{~}But unlike me... the fallen human did not fall into the void by accident...{/~}{#}
+{# 00ffff}{~}They were taken...{/~}{#}
+{# 00ffff}{~}By a horrible entity... a being known as NME...{/~}{#}
+{# 00ffff}{~}Nightmare... a creature that feeds on dreams and devours worlds...{/~}{#}
+{# 00ffff}{~}It saw the fallen human's light... their determination... and it wanted to consume it...{/~}{#}
+{# 00ffff}{~}So it reached across realities... and snatched that child away...{/~}{#}
+{# 00ffff}{~}Just as the void took me... NME took the fallen human...{/~}{#}
+{# 00ffff}{~}Two children from different worlds... both stolen from where they belonged...{/~}{#}
+{# 00ffff}{~}But the fallen human fights on... that child's spirit is unbreakable...{/~}{#}
+{# 00ffff}{~}While I... I could only watch... and wait...{/~}{#}
+{# 00ffff}{~}Until now...{/~}{#}
+{# 00ffff}{~}I have seen what NME truly plans... it is not finished with this world...{/~}{#}
+{# 00ffff}{~}It gathers strength in the shadows between realities...{/~}{#}
+{# 00ffff}{~}And when it returns... it will not just take one child...{/~}{#}
+{# 00ffff}{~}It will consume everything... every world... every dream... every soul...{/~}{#}
+{# 00ffff}{~}I cannot stop it alone... not in this state... not as fragments...{/~}{#}
+{# 00ffff}{~}But you... you have determination... you have faced the impossible before...{/~}{#}
+{# 00ffff}{~}So I must ask you one thing before I fade...{/~}{#}
+{# 00ffff}{~}Will you help me... when the time comes... to stop NME?{/~}{#}
+{# 00ffff}{~}There will come a day... a journey beyond this mountain... beyond the moon as well...{/~}{#}
+{# 00ffff}{~}An extra path... one that leads to NME's domain...{/~}{#}
+{# 00ffff}{~}And on that day... I will need someone with your strength...{/~}{#}
+{# 00ffff}{~}Think on it... that is all I ask...{/~}{#}
+{# 00ffff}{~}And now... my story is told...{/~}{#}
+{# 00ffff}{~}It is time for me to fade... as I always have...{/~}{#}
+{# 00ffff}{~}Do not mourn me... I was never truly here...{/~}{#}
+{# 00ffff}{~}Goodbye...{/~}{#}
 DZ_LASTENDEMY_MODE_8=
     {big}ETIQUETTE & FAIR PLAY{/}
     - Wait for other players at checkpoints and room exits

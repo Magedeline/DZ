@@ -144,7 +144,7 @@ public class CS21_RestorationAndFarewell : CutsceneEntity
         
         // Decades later title card
         yield return 2f;
-        yield return Textbox.Say("DZ_CH20_DECADES_LATER");
+        yield return Textbox.Say("DZ_CH20_MONTHS_LATER");
         
         yield return 1f;
         EndCutscene(level);

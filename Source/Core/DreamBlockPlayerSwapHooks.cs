@@ -107,6 +107,13 @@ namespace DZ
 
                 var dyn = DynamicData.For(self);
 
+                // If the player is dream-dashing through a PhantomBlock (a non-DreamBlock
+                // dream-dashable solid), do NOT swap characters — PhantomBlocks are
+                // intentionally swap-free.  The PhantomBlock target is stored on the
+                // player by PhantomBlockDreamDashHooks / K_Player.DreamDashCheck.
+                if (dyn.TryGet(PhantomBlockDreamDashHooks.PhantomKey, out Celeste.Entities.PhantomBlock phantom) && phantom != null)
+                    return;
+
                 // Save current state so OnPlayerExit can restore it
                 dyn.Set(PreEnterSpriteModeKey,   self.Sprite.Mode);
                 dyn.Set(PreEnterKirbyActiveKey,  session.IsKirbyModeActive);

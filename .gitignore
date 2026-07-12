@@ -358,8 +358,14 @@ MigrationBackup/
 /.vscode
 Maps/DZ/wip/test.bin
 Maps/DZ/wip/test.bin
-Audio/DZ_AUDIO.bank
 .gitignore
 Audio/Master Bank.strings.bank
 Audio/Master Bank.bank
 build_errors.txt
+Audio/DZ_DLC_MUS.bank
+Audio/DZ_DLC_SFX.bank
+Audio/DZ_MUS_A.bank
+Audio/DZ_MUS_B.bank
+Audio/DZ_MUS_C.bank
+Audio/DZ_SFX.bank
+Audio/DZ_UI.bank

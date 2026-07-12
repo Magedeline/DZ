@@ -1,5 +1,6 @@
 // Celeste.CS10_FinalLaunch
 
+using BirdNPC = Celeste.Entities.DZBirdNPC;
 namespace Celeste.Entities;
 
 [HotReloadable]
@@ -7,7 +8,7 @@ internal class CustomRalseiBoostCutscene : CutsceneEntity
 {
 	private global::Celeste.Player player;
 	private CustomRalseiBoost boost;
-	private BirdNPC bird;
+	private DZBirdNPC bird;
 	private float fadeToWhite;
 	private Vector2 birdScreenPosition;
 	private AscendManager.Streaks streaks;
@@ -206,7 +207,7 @@ internal class CustomRalseiBoostCutscene : CutsceneEntity
 	private IEnumerator birdRoutine(float delay)
 	{
 		yield return delay;
-		Level.Add(bird = new BirdNPC(Vector2.Zero, BirdNPC.Modes.None));
+		Level.Add(bird = new DZBirdNPC(Vector2.Zero, DZBirdNPC.Modes.None));
 		bird.Sprite.Play("flyupIdle");
 		Vector2 vector = new Vector2(320f, 180f) / 2f;
 		Vector2 topCenter = new Vector2(vector.X, 0f);

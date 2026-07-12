@@ -186,7 +186,7 @@ namespace DZ
                         base.Scene.Add(new CS10_MoonIntro(player2));
                         break;
                     }
-                    level.Entities.FindFirst<Celeste.Entities.BirdNPC>()?.RemoveSelf();
+                    level.Entities.FindFirst<Celeste.Entities.DZBirdNPC>()?.RemoveSelf();
                     level.Session.Inventory.Dashes = 1;
                     player2.Dashes = 1;
                     break;

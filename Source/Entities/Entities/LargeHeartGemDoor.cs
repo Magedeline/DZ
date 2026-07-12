@@ -49,7 +49,7 @@ internal class LargeHeartGemDoor : Entity
         Vector2? nullable = data.FirstNodeNullable(new Vector2?(offset));
         if (nullable.HasValue)
             this.openDistance = Math.Abs(nullable.Value.Y - this.Y);
-        this.icon = GFX.Game.GetAtlasSubtextures("objects/DZ/DZ/heart_spear_door_mod/icon");
+        this.icon = GFX.Game.GetAtlasSubtextures("objects/DZ/heart_spear_door_mod/icon");
         if (this.startHidden)
         {
             this.Visible = false;
@@ -118,7 +118,7 @@ internal class LargeHeartGemDoor : Entity
             }
             while (entity == null || Math.Abs(entity.X - this.Center.X) >= 100f);
             
-            Audio.Play("event:/DZ/new_content/game/19_spaces/large_heart_door", this.Position);
+            Audio.Play("event:/DZ/new_content/game/19_spaces/heart_door", this.Position);
             this.Visible = true;
             this.heartAlpha = 0f;
             topTo = this.topSolid.Y;
@@ -186,7 +186,7 @@ internal class LargeHeartGemDoor : Entity
                 
                 if (prevCounter > 0f && this.counter == 0f && lastCounter > 0f)
                 {
-                    Audio.Play("event:/DZ/new_content/game/19_spaces/large_heart_door", this.Position);
+                    Audio.Play("event:/DZ/new_content/game/19_spaces/heart_door", this.Position);
                     level.Shake(0.6f);
                     
                     Vector2 topDebrisPos = new Vector2(this.X + this.size / 2f, this.Y);
@@ -210,8 +210,6 @@ internal class LargeHeartGemDoor : Entity
             player.StateMachine.State = Player.StDummy;
         }
 
-        this.cutsceneMusic = Audio.Play("event:/DZ/new_content/music/lvl19/cinematic/BEB_cutscenes", this.Position);
-        
         yield return 0.5f;
         this.Scene.Add(new WhiteLine(this.Position, this.size));
         level.Shake(0.5f);
@@ -329,7 +327,7 @@ internal class LargeHeartGemDoor : Entity
     private void drawMist(Rectangle bounds, Vector2 mist)
     {
         Color color = GetRainbowColor(this.mist.X * 0.01f) * 0.6f;
-        MTexture mtexture = GFX.Game["objects/DZ/DZ/heart_spear_door_mod/iso"];
+        MTexture mtexture = GFX.Game["objects/DZ/heart_spear_door_mod/iso"];
         int val11 = mtexture.Width / 2;
         int val12 = mtexture.Height / 2;
         for (int index1 = 0; index1 < bounds.Width; index1 += val11)

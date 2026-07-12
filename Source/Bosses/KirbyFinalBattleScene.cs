@@ -1087,7 +1087,7 @@ namespace Celeste.Bosses
                 // Smoothly chase targets so the music morphs rather than jumps
                 musicProgress = Calc.Approach(musicProgress, musicProgressTarget, Engine.DeltaTime * 0.12f);
                 musicPitch    = Calc.Approach(musicPitch,    musicPitchTarget,    Engine.DeltaTime * 0.6f);
-                Audio.SetMusicParam("progress",     musicProgress);
+                Audio.SetMusicParam("els_progress",     musicProgress);
                 Audio.SetMusicParam("finale_pitch", musicPitch);
             }
 

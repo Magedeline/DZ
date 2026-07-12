@@ -1,3 +1,4 @@
+using BirdNPC = Celeste.Entities.DZBirdNPC;
 namespace Celeste.Cutscenes
 {
     [HotReloadable]
@@ -92,7 +93,7 @@ namespace Celeste.Cutscenes
             yield return 4f;
 
             // Add bird scene
-            var bird = new BirdNPC(player.Position + new Vector2(88f, -200f), BirdNPC.Modes.None);
+            var bird = new global::Celeste.Entities.DZBirdNPC(player.Position + new Vector2(88f, -200f), global::Celeste.Entities.DZBirdNPC.Modes.None);
             Scene.Add(bird);
             var instance = Audio.Play("event:/game/general/bird_in", bird.Position);
             bird.Facing = Facings.Left;

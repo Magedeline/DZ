@@ -6,7 +6,7 @@
 
 #nullable disable
 using Celeste.Entities;
-using BirdNPC = Celeste.Entities.BirdNPC;
+using BirdNPC = Celeste.Entities.DZBirdNPC;
 using System.Collections.Generic;
 
 namespace Celeste.Cutscenes
@@ -17,7 +17,7 @@ namespace Celeste.Cutscenes
     private global::Celeste.Player player;
     private CharaDummy chara;
     private readonly List<CharaDummy> monsterKinds = new List<CharaDummy>();
-    private BirdNPC bird;
+    private DZBirdNPC bird;
     private float fade = 1f;
     private float targetX;
 
@@ -31,7 +31,7 @@ namespace Celeste.Cutscenes
 
     public override void OnBegin(Level level)
     {
-      this.bird = this.Scene.Entities.FindFirst<BirdNPC>();
+      this.bird = this.Scene.Entities.FindFirst<DZBirdNPC>();
       this.player.StateMachine.State = Player.StDummy;
       if (level.Wipe != null)
         level.Wipe.Cancel();
@@ -59,7 +59,7 @@ namespace Celeste.Cutscenes
       {
         yield return (object) cs10MoonIntro.bird.StartleAndFlyAway();
         level.Session.DoNotLoad.Add(cs10MoonIntro.bird.EntityID);
-        cs10MoonIntro.bird = (BirdNPC) null;
+        cs10MoonIntro.bird = (DZBirdNPC) null;
       }
       yield return (object) 0.5f;
       cs10MoonIntro.player.Speed = Vector2.Zero;

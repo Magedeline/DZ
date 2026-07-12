@@ -12,13 +12,14 @@ namespace Celeste.Entities;
     [CustomEntity(ids: "DZ/BirdNPC")]
     [HotReloadable]
 
-public class BirdNPC : Actor
+public class DZBirdNPC : Actor
 {
     public enum Modes
     {
         None,
         Sleeping,
         HoverNGrab,
+        Grab,
         ClimbingTutorial,
         DashingTutorial,
         DreamJumpTutorial,
@@ -33,7 +34,7 @@ public class BirdNPC : Actor
 
     private static string FlownFlag = "bird_fly_away_";
 
-    static BirdNPC()
+    static DZBirdNPC()
     {
         P_Feather = new ParticleType
         {
@@ -90,7 +91,7 @@ public class BirdNPC : Actor
     private bool onlyIfPlayerLeft;
 
     [MethodImpl(MethodImplOptions.NoInlining)]
-    public BirdNPC(Vector2 position, Modes mode)
+    public DZBirdNPC(Vector2 position, Modes mode)
         : base(position)
     {
         Add(Sprite = GFX.SpriteBank.Create("bird"));
@@ -113,7 +114,7 @@ public class BirdNPC : Actor
     }
 
     [MethodImpl(MethodImplOptions.NoInlining)]
-    public BirdNPC(EntityData data, Vector2 offset)
+    public DZBirdNPC(EntityData data, Vector2 offset)
         : this(data.Position + offset, data.Enum("mode", Modes.None))
     {
         EntityID = new EntityID(data.Level.Name, data.ID);
@@ -156,6 +157,7 @@ public class BirdNPC : Actor
                 Facing = Facings.Right;
                 break;
             case Modes.HoverNGrab:
+            case Modes.Grab:
                 Sprite.Play("hover");
                 break;
             case Modes.MoveToNodes:

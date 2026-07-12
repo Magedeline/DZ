@@ -3743,5 +3743,12 @@
       <Anim id="overloaded" path="overloaded" loop="false" delay="0.05"/>
     </reality_anchor>
 
+  <mysteryman path="characters/DZ/mysteryman/" start="idle">
+      <Justify x=".5" y="1" />
+
+      <Loop id="idle" path="0" delay="0.15" frames="0-0" />
+      <Anim id="vanish" path="1" loop="false" delay="0.05" frames="1-1" />
+    </mysteryman>
+
 </Sprites>
 

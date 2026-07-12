@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using FMOD.Studio;
 using Celeste.Utils;
 using Microsoft.Xna.Framework;
@@ -39,6 +40,29 @@ public class CS_Gen_IntroRemix_1 : Scene
 
     // Audio
     private string bgMusicEvent;
+    private string musicTrackTitle;
+    private string musicArtistName;
+
+    // Map chapter ID to (track title, artist/composer name) for B-Side.
+    private static readonly Dictionary<int, (string Track, string Artist)> MusicCredits = new()
+    {
+        [1] = ("Forsaken City", "Kyle Gamer"),
+        [2] = ("Ressurection", "Kyle Gamer"),
+        [3] = ("Running into the new World", "Nintendo"),
+        [4] = ("Greens Greens Field", "Maggy"),
+        [5] = ("Scatter and Lost", "Kyle Gamer"),
+        [6] = ("Golden Feather", "Kyle Gamer"),
+        [7] = ("Falling and quite", "Kyle Gamer"),
+        [8] = ("Confronting Myself", "Kyle Gamer"),
+        [9] = ("Reaching for the Summit", "Kyle Gamer"),
+        [10] = ("Diversion and Doorkeys", "Kiwiquest"),
+        [11] = ("Snowdin Town", "Karu"),
+        [12] = ("Waterfall", "Cloud Jumper"),
+        [13] = ("Hotlands", "Oshiro Music"),
+        [14] = ("Cyber World?", "Prunty"),
+        [15] = ("MEGALOVANIA", "Ryno.gg"),
+        [18] = ("Heart of the Mountian", "Kyle Gamer"),
+    };
 
     // Timing
     private const float TAPE_INSERT_DURATION = 2.0f;
@@ -66,6 +90,8 @@ public class CS_Gen_IntroRemix_1 : Scene
             ? areaData.Mode[1]?.AudioState?.Music?.Event
             : null;
 
+        ResolveMusicCredits();
+
         // Try to load VHS textures
         LoadTextures(areaData);
 
@@ -73,6 +99,20 @@ public class CS_Gen_IntroRemix_1 : Scene
         var entity = new Entity();
         entity.Add(new Coroutine(VHSRemixRoutine()));
         Add(entity);
+    }
+
+    private void ResolveMusicCredits()
+    {
+        if (MusicCredits.TryGetValue(session.Area.ID, out var credit))
+        {
+            musicTrackTitle = credit.Track;
+            musicArtistName = credit.Artist;
+        }
+        else
+        {
+            musicTrackTitle = chapterName;
+            musicArtistName = "B-SIDE REMIX";
+        }
     }
 
     private void LoadTextures(AreaData areaData)
@@ -131,7 +171,7 @@ public class CS_Gen_IntroRemix_1 : Scene
     private IEnumerator VHSStaticIntro()
     {
         // Play VHS tape insert SFX
-        Audio.Play("event:/DZ/ui/vhs_tape_insert");
+        Audio.Play("event:/DZ/ui/main/bside_intro_text");
 
         for (float t = 0f; t < STATIC_INTRO_DURATION; t += Engine.DeltaTime)
         {
@@ -383,7 +423,7 @@ public class CS_Gen_IntroRemix_1 : Scene
 
         // Draw text with chromatic aberration (red channel offset)
         ActiveFont.DrawOutline(
-            chapterName,
+            musicTrackTitle,
             new Vector2(centerX + aberration + wobbleX, centerY - 40 + wobbleY),
             new Vector2(0.5f, 0.5f),
             Vector2.One * 1.8f,
@@ -393,7 +433,7 @@ public class CS_Gen_IntroRemix_1 : Scene
 
         // Cyan channel offset
         ActiveFont.DrawOutline(
-            chapterName,
+            musicTrackTitle,
             new Vector2(centerX - aberration + wobbleX, centerY - 40 + wobbleY),
             new Vector2(0.5f, 0.5f),
             Vector2.One * 1.8f,
@@ -403,7 +443,7 @@ public class CS_Gen_IntroRemix_1 : Scene
 
         // Main white text
         ActiveFont.DrawOutline(
-            chapterName,
+            musicTrackTitle,
             new Vector2(centerX + wobbleX, centerY - 40 + wobbleY),
             new Vector2(0.5f, 0.5f),
             Vector2.One * 1.8f,
@@ -413,7 +453,7 @@ public class CS_Gen_IntroRemix_1 : Scene
 
         // "B-SIDE REMIX" subtitle
         ActiveFont.DrawOutline(
-            "B-SIDE REMIX",
+            musicArtistName,
             new Vector2(centerX + wobbleX, centerY + 50 + wobbleY),
             new Vector2(0.5f, 0.5f),
             Vector2.One * 1.0f,
@@ -426,7 +466,7 @@ public class CS_Gen_IntroRemix_1 : Scene
         {
             float blinkAlpha = (float)(Math.Sin(vhsTimer * 3f) * 0.3f + 0.7f);
             ActiveFont.Draw(
-                "â–º PLAY",
+                "PLAY",
                 new Vector2(100f, 980f),
                 Vector2.Zero,
                 Vector2.One * 0.6f,
@@ -468,7 +508,7 @@ public class CS_Gen_IntroRemix_1 : Scene
         // "REC â—" indicator
         float recBlink = (float)(Math.Sin(vhsTimer * 1.5f) > 0 ? 1f : 0f);
         ActiveFont.Draw(
-            "â— REC",
+            "REC",
             new Vector2(1800f, 50f),
             new Vector2(1f, 0f),
             Vector2.One * 0.5f,

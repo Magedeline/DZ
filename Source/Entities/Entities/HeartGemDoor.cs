@@ -41,7 +41,7 @@ internal class HeartGemDoor : Entity
         Vector2? nullable = data.FirstNodeNullable(new Vector2?(offset));
         if (nullable.HasValue)
             this.openDistance = Math.Abs(nullable.Value.Y - this.Y);
-        this.icon = GFX.Game.GetAtlasSubtextures("objects/DZ/DZ/heart_spear_door_mod/icon");
+        this.icon = GFX.Game.GetAtlasSubtextures("objects/DZ/heart_spear_door_mod/icon");
     }
 
     public override void Added(Scene scene)

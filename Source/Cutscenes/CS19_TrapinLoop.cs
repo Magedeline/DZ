@@ -1,7 +1,7 @@
 using Celeste.Entities;
 using Celeste.NPCs;
 using FMOD.Studio;
-using BirdNPC = Celeste.Entities.BirdNPC;
+using BirdNPC = Celeste.Entities.DZBirdNPC;
 using DZ;
 using TimeRateModifier = Celeste.Mod.Entities.TimeRateModifier;
 
@@ -11,7 +11,7 @@ namespace Celeste.Cutscenes
     {
         // Existing fields
         private readonly global::Celeste.Player player;
-        private BirdNPC bird;
+        private DZBirdNPC bird;
         private EventInstance snapshot;
         private Vector2 playerSpeed;
 
@@ -313,7 +313,7 @@ namespace Celeste.Cutscenes
             if (WasSkipped)
             {
                 bird?.RemoveSelf();
-                Scene.Add(bird = new BirdNPC(birdWaitPosition, BirdNPC.Modes.WaitForLightningOff));
+                Scene.Add(bird = new DZBirdNPC(birdWaitPosition, DZBirdNPC.Modes.WaitForLightningOff));
                 bird.Facing = Facings.Right;
                 bird.FlyAwayUp = false;
                 bird.WaitForLightningPostDelay = 1f;

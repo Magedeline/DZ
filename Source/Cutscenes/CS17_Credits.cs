@@ -253,7 +253,7 @@ namespace Celeste.Cutscenes
             this.autoUpdateCamera = false;
             yield return CutsceneEntity.CameraTo(new Vector2(this.Level.Bounds.Left + 64, this.Level.Bounds.Top), 2f);
             yield return 5f;
-            Entities.BirdNPC bird = new Entities.BirdNPC(oshiro.Position + new Vector2(280f, -160f), Entities.BirdNPC.Modes.None);
+            Entities.DZBirdNPC bird = new Entities.DZBirdNPC(oshiro.Position + new Vector2(280f, -160f), Entities.DZBirdNPC.Modes.None);
             bird.Depth = 10010;
             bird.Light.Visible = false;
             this.Scene.Add(bird);
@@ -389,7 +389,7 @@ namespace Celeste.Cutscenes
             yield return this.NextLevel("credits-city");
             yield return this.SetupLevel();
             yield return this.SpawnChara();
-            Entities.BirdNPC first = this.Scene.Entities.FindFirst<Entities.BirdNPC>();
+            Entities.DZBirdNPC first = this.Scene.Entities.FindFirst<Entities.DZBirdNPC>();
             if (first != null)
                 first.Facing = Facings.Right;
             this.badelineWalkApproach = 1f;
@@ -1300,7 +1300,7 @@ namespace Celeste.Cutscenes
             yield return 0.5f;
             this.player.Sprite.Play("lookUp", false, false);
             yield return 2f;
-            Entities.BirdNPC first = this.Scene.Entities.FindFirst<Entities.BirdNPC>();
+            Entities.DZBirdNPC first = this.Scene.Entities.FindFirst<Entities.DZBirdNPC>();
             if (first != null)
                 first.AutoFly = true;
             yield return 0.1f;

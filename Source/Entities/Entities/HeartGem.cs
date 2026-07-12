@@ -1,4 +1,5 @@
 using DZ;
+using BirdNPC = Celeste.Entities.DZBirdNPC;
 using TimeRateModifier = Celeste.Mod.Entities.TimeRateModifier;
 
 namespace Celeste.Entities 
@@ -352,7 +353,7 @@ this.endCutscene();
             bool isCrystalHeartVariant = this.sevenbirdFlyby || !string.IsNullOrEmpty(this.customSfx) || this.unlockDSide;
             if (this.IsFake) {
            level.StartCutscene(this.SkipFakeHeartCutscene, true, false, true);
-           foreach (BirdNPC existingBird in level.Entities.FindAll<BirdNPC>()) {
+           foreach (DZBirdNPC existingBird in level.Entities.FindAll<DZBirdNPC>()) {
                existingBird.RemoveSelf();
            }
             } else {
@@ -533,7 +534,7 @@ Glitch.Value = 0.75f;
              this.poem.Offset = new Vector2((float)(panAmount * 8), 0f) * Ease.CubeInOut(p);
        yield return null;
 }
-      this.bird = new BirdNPC(birdFrom, BirdNPC.Modes.None);
+      this.bird = new DZBirdNPC(birdFrom, DZBirdNPC.Modes.None);
        this.bird.Sprite.Play("fly", false, false);
      this.bird.Sprite.UseRawDeltaTime = true;
             this.bird.Facing = Facings.Right;
@@ -829,7 +830,7 @@ Level level = Scene as Level;
  private BloomPoint bloom;
       private VertexLight light;
     private Poem poem;
-      private BirdNPC bird;
+      private DZBirdNPC bird;
   private float timer;
         private bool collected;
  private bool autoPulse = true;

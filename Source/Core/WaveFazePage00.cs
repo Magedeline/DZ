@@ -93,6 +93,8 @@ namespace DZ
             if (flag)
                 DrawDottedRect(position.X - 80f, position.Y - 80f, 160f, 200f);
             MTexture mtexture = Presentation.Gfx[icon];
+            if (mtexture == null)
+                return;
             float scale = 128f / mtexture.Height;
             mtexture.DrawCentered(position, Color.White, scale);
             ActiveFont.Draw(text, position + new Vector2(0.0f, 80f), new Vector2(0.5f, 0.0f), Vector2.One * 0.6f, selected & flag ? Color.Black : Color.White);

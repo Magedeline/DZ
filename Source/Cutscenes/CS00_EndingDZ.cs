@@ -34,7 +34,7 @@ public class CS00_EndingDZ : CutsceneEntity
 
     private Player player;
 
-    private Entities.BirdNPC bird;
+    private Entities.DZBirdNPC bird;
 
     private Entities.Bridge bridge;
 
@@ -45,7 +45,7 @@ public class CS00_EndingDZ : CutsceneEntity
     private TimeRateModifier timeRateModifier;
 
     [MethodImpl(MethodImplOptions.NoInlining)]
-    public CS00_EndingDZ(Player player, Entities.BirdNPC bird, Entities.Bridge bridge)
+    public CS00_EndingDZ(Player player, Entities.DZBirdNPC bird, Entities.Bridge bridge)
         : base(fadeInOnSkip: false, endingChapterAfter: false)
     {
         this.player = player;

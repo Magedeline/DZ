@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using Celeste.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -40,6 +41,29 @@ public class CS_Gen_IntroRemix_2 : Scene
 
     // Audio
     private string bgMusicEvent;
+    private string musicTrackTitle;
+    private string musicArtistName;
+
+    // Map chapter ID to (track title, artist/composer name) for C-Side.
+    private static readonly Dictionary<int, (string Track, string Artist)> MusicCredits = new()
+    {
+        [1] = ("Sever Skyline Re-Remix", "Pusheen2026"),
+        [2] = ("The Black Moon", "Pusheen2026"),
+        [3] = ("Green Greens Drum and Bass", "Acid-Notation"),
+        [4] = ("Rudest Buster", "Pusheen2026 and Originally by Toby Fox"),
+        [5] = ("Goated Karma", "Pusheen2026"),
+        [6] = ("Golden Flower", "Pusheen2026"),
+        [7] = ("Mirror Re-Magic Remix", "NoteBlock"),
+        [8] = ("Core of the Earth", "Pusheen2026"),
+        [9] = ("Celeste 2", "Lani Trek"),
+        [10] = ("Ruins", "Strawberry Flavored Demon"),
+        [11] = ("Gyftmas in Snowdin Town", "Kiwiquest"),
+        [12] = ("From Now On Remix", "CryoChem"),
+        [13] = ("Hotlands Remix Metal", "GaMetal"),
+        [14] = ("Cyber World? SytnhWave Remix", "NyxTheShield"),
+        [15] = ("MEGALOVANIA BONE AND CHILLS", "Pusheen2026, Toby Fox, and TheMatthewFlames"),
+        [18] = ("Say Goodbye Forever", "Pusheen2026"),
+    };
 
     // Timing (faster pacing for C-Side intensity)
     private const float TAPE_INSERT_DURATION = 1.5f;
@@ -72,6 +96,8 @@ public class CS_Gen_IntroRemix_2 : Scene
             ? areaData.Mode[2]?.AudioState?.Music?.Event
             : null;
 
+        ResolveMusicCredits();
+
         // Try to load VHS textures
         LoadTextures(areaData);
 
@@ -79,6 +105,20 @@ public class CS_Gen_IntroRemix_2 : Scene
         var entity = new Entity();
         entity.Add(new Coroutine(VHSDamagedTapeRoutine()));
         Add(entity);
+    }
+
+    private void ResolveMusicCredits()
+    {
+        if (MusicCredits.TryGetValue(session.Area.ID, out var credit))
+        {
+            musicTrackTitle = credit.Track;
+            musicArtistName = credit.Artist;
+        }
+        else
+        {
+            musicTrackTitle = chapterName;
+            musicArtistName = "C-SIDE REMIX";
+        }
     }
 
     private void LoadTextures(AreaData areaData)
@@ -135,7 +175,7 @@ public class CS_Gen_IntroRemix_2 : Scene
     /// <summary>Heavy static with increasing VHS distortion</summary>
     private IEnumerator DamagedStaticIntro()
     {
-        Audio.Play("event:/DZ/ui/vhs_tape_damaged");
+        Audio.Play("event:/DZ/ui/main/cside_intro_text");
 
         for (float t = 0f; t < STATIC_INTRO_DURATION; t += Engine.DeltaTime)
         {
@@ -191,7 +231,7 @@ public class CS_Gen_IntroRemix_2 : Scene
     private IEnumerator TapeJamSequence()
     {
         tapeJammed = true;
-        Audio.Play("event:/DZ/ui/vhs_tape_jam");
+        Audio.Play("event:/DZ/ui/main/cside_intro_text");
 
         // Freeze frame with heavy static
         staticNoise = 0.7f;
@@ -201,7 +241,7 @@ public class CS_Gen_IntroRemix_2 : Scene
 
         // Tape unjams with a pop
         tapeJammed = false;
-        Audio.Play("event:/DZ/ui/vhs_tape_resume");
+        Audio.Play("event:/DZ/ui/main/cside_intro_text");
 
         // Quick tracking recovery
         for (float t = 0f; t < 0.5f; t += Engine.DeltaTime)
@@ -503,7 +543,7 @@ public class CS_Gen_IntroRemix_2 : Scene
 
         // Red channel
         ActiveFont.DrawOutline(
-            chapterName,
+            musicTrackTitle,
             new Vector2(centerX + aberration + wobbleX, centerY - 40 + wobbleY),
             new Vector2(0.5f, 0.5f),
             Vector2.One * 1.8f,
@@ -513,7 +553,7 @@ public class CS_Gen_IntroRemix_2 : Scene
 
         // Blue channel (instead of cyan for more intensity)
         ActiveFont.DrawOutline(
-            chapterName,
+            musicTrackTitle,
             new Vector2(centerX - aberration + wobbleX, centerY - 40 + wobbleY - aberration * 0.3f),
             new Vector2(0.5f, 0.5f),
             Vector2.One * 1.8f,
@@ -523,7 +563,7 @@ public class CS_Gen_IntroRemix_2 : Scene
 
         // Green channel offset
         ActiveFont.DrawOutline(
-            chapterName,
+            musicTrackTitle,
             new Vector2(centerX + wobbleX, centerY - 40 + wobbleY + aberration * 0.2f),
             new Vector2(0.5f, 0.5f),
             Vector2.One * 1.8f,
@@ -533,7 +573,7 @@ public class CS_Gen_IntroRemix_2 : Scene
 
         // Main white text
         ActiveFont.DrawOutline(
-            chapterName,
+            musicTrackTitle,
             new Vector2(centerX + wobbleX, centerY - 40 + wobbleY),
             new Vector2(0.5f, 0.5f),
             Vector2.One * 1.8f,
@@ -544,7 +584,7 @@ public class CS_Gen_IntroRemix_2 : Scene
         // "C-SIDE REMIX" subtitle â€” gold color with heavier distortion
         float subtitleWobble = (float)Math.Sin(vhsTimer * 8f) * 3f;
         ActiveFont.DrawOutline(
-            "C-SIDE REMIX",
+            musicArtistName,
             new Vector2(centerX + wobbleX + subtitleWobble, centerY + 50 + wobbleY),
             new Vector2(0.5f, 0.5f),
             Vector2.One * 1.0f,
@@ -557,7 +597,7 @@ public class CS_Gen_IntroRemix_2 : Scene
         {
             float blinkAlpha = (float)(Math.Sin(vhsTimer * 4f) * 0.3f + 0.7f);
             ActiveFont.Draw(
-                "â–º PLAY",
+                "PLAY",
                 new Vector2(100f, 980f),
                 Vector2.Zero,
                 Vector2.One * 0.6f,
@@ -610,7 +650,7 @@ public class CS_Gen_IntroRemix_2 : Scene
         // "REC â—" with flickering
         float recBlink = (float)(Math.Sin(vhsTimer * 1.5f) > 0 ? 1f : 0f);
         ActiveFont.Draw(
-            "â— REC",
+            "REC",
             new Vector2(1800f, 50f),
             new Vector2(1f, 0f),
             Vector2.One * 0.5f,

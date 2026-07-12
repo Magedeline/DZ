@@ -4,7 +4,7 @@ using CutsceneNode = Celeste.Entities.CutsceneNode;
 using FMOD.Studio;
 using Facings = Celeste.Facings;
 using FlingBirdIntro = Celeste.Entities.FlingBirdIntro;
-using BirdNPC = Celeste.Entities.BirdNPC;
+using BirdNPC = Celeste.Entities.DZBirdNPC;
 using IL.Celeste;
 
 namespace Celeste.Cutscenes;
@@ -17,7 +17,7 @@ public class CS19_KillTheBird : CutsceneEntity
 
     private CharaDummy chara;
 
-    private BirdNPC bird;
+    private DZBirdNPC bird;
 
     private Vector2 birdWaitPosition;
 
@@ -90,7 +90,7 @@ public class CS19_KillTheBird : CutsceneEntity
         yield return 0.6f;
         player.Sprite.Play("rollGetUp");
         yield return 0.8f;
-        level.Session.Audio.Music.Event = "event:/DZ/new_content/music/lvl19/tragiclost";
+        level.Session.Audio.Music.Event = "event:/DZ/new_content/music/lvl19/lost";
         level.Session.Audio.Apply(false);
         yield return Textbox.Say("DZ_CH19_KILL_THE_BIRD", BirdLooksHurt, BirdSquakOnGround, ApproachBird, ApproachBirdAgain, BadelineAppears, WaitABeat, MadelineSits, BadelineHugs, StandUp, ShiftCameraToBird);
         yield return level.ZoomBack(0.5f);
@@ -141,7 +141,7 @@ public class CS19_KillTheBird : CutsceneEntity
         yield return 0.8f;
         Audio.Play("event:/new_content/game/10_farewell/bird_crashscene_recover", flingBird.Position);
         flingBird.RemoveSelf();
-        Scene.Add(bird = new BirdNPC(flingBird.Position, BirdNPC.Modes.None));
+        Scene.Add(bird = new DZBirdNPC(flingBird.Position, DZBirdNPC.Modes.Grab));
         bird.Facing = Facings.Right;
         bird.Sprite.Play("recover");
         yield return 0.6f;
@@ -167,12 +167,12 @@ public class CS19_KillTheBird : CutsceneEntity
     private IEnumerator ApproachBirdAgain()
     {
         Audio.Play("event:/new_content/game/10_farewell/bird_crashscene_leave", bird.Position);
-        Add(new Coroutine(bird.FlyTo(birdWaitPosition, 2f, relocateSfx: false)));
+        Add(new Coroutine(bird.FlyTo(birdWaitPosition, 6f, relocateSfx: false)));
         yield return player.DummyWalkTo(player.X + 20f);
         snapshot = Audio.CreateSnapshot("snapshot:/game_10_bird_wings_silenced");
         yield return 0.8f;
         bird.RemoveSelf();
-        Scene.Add(bird = new BirdNPC(birdWaitPosition, BirdNPC.Modes.WaitForLightningOff));
+        Scene.Add(bird = new DZBirdNPC(birdWaitPosition, DZBirdNPC.Modes.WaitForLightningOff));
         bird.Facing = Facings.Right;
         bird.FlyAwayUp = false;
         bird.WaitForLightningPostDelay = 1f;
@@ -294,7 +294,7 @@ public class CS19_KillTheBird : CutsceneEntity
             {
                 bird.RemoveSelf();
             }
-            base.Scene.Add(bird = new BirdNPC(birdWaitPosition, BirdNPC.Modes.WaitForLightningOff));
+            base.Scene.Add(bird = new DZBirdNPC(birdWaitPosition, DZBirdNPC.Modes.WaitForLightningOff));
             bird.Facing = Facings.Right;
             bird.FlyAwayUp = false;
             bird.WaitForLightningPostDelay = 1f;
@@ -325,8 +325,8 @@ public class CS19_KillTheBird : CutsceneEntity
             charaBoost.Active = (charaBoost.Visible = (charaBoost.Collidable = true));
         }
         flingBird?.RemoveSelf();
-        BirdNPC birdNPC;
-        level.Add(birdNPC = new BirdNPC(flingBird.BirdEndPosition, BirdNPC.Modes.WaitForLightningOff));
+        DZBirdNPC birdNPC;
+        level.Add(birdNPC = new DZBirdNPC(flingBird.BirdEndPosition, DZBirdNPC.Modes.WaitForLightningOff));
         birdNPC.Facing = Facings.Right;
         birdNPC.FlyAwayUp = false;
     }

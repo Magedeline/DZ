@@ -6,7 +6,8 @@ using Monocle;
 using Celeste.Entities;
 using Celeste.NPCs;
 using DZ;
-using BirdNPC = Celeste.Entities.BirdNPC;
+using BirdNPC = Celeste.Entities.DZBirdNPC;
+
 
 namespace Celeste.Cutscenes;
 
@@ -18,7 +19,7 @@ public class CS19_Gravestone : CutsceneEntity
 
     private CharaDummy chara;
 
-    private BirdNPC bird;
+    private DZBirdNPC bird;
 
     private Vector2 boostTarget;
 
@@ -93,7 +94,7 @@ public class CS19_Gravestone : CutsceneEntity
 
     private IEnumerator BirdStuff()
     {
-        bird = new BirdNPC(player.Position + new Vector2(88f, -200f), BirdNPC.Modes.None);
+        bird = new DZBirdNPC(player.Position + new Vector2(88f, -200f), DZBirdNPC.Modes.None);
         bird.DisableFlapSfx = true;
         Scene.Add(bird);
         EventInstance instance = Audio.Play("event:/game/general/bird_in", bird.Position);

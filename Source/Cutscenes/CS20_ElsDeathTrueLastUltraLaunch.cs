@@ -9,7 +9,8 @@ using Celeste.Entities.SoulBoosts;
 // Kirby Heaven Ascend Manager for the final ascension
 using Microsoft.Xna.Framework;
 using Monocle;
-using BirdNPC = Celeste.Entities.BirdNPC;
+using BirdNPC = Celeste.Entities.DZBirdNPC;
+
 
 #pragma warning disable CS0618 // Engine.TimeRate is obsolete but needed for vanilla behavior
 
@@ -27,7 +28,7 @@ namespace Celeste.Cutscenes
 
         private SevenSoulBoost boost;
 
-        private BirdNPC bird;
+        private DZBirdNPC bird;
 
         private SiamoZeroFinalBoss els;
 
@@ -54,7 +55,7 @@ namespace Celeste.Cutscenes
         private string dialog;
 
         // Seven goner birds that transform into souls
-        private readonly List<BirdNPC> soulBirds = new List<BirdNPC>(7);
+        private readonly List<DZBirdNPC> soulBirds = new List<DZBirdNPC>(7);
         private readonly Vector2[] soulBirdScreenPositions = new Vector2[7];
         private readonly List<VertexLight> soulLights = new List<VertexLight>(7);
         private bool soulBirdsTransformed = false;
@@ -256,7 +257,7 @@ namespace Celeste.Cutscenes
             heavenManager = null;
 
             // Clean up any remaining soul birds
-            foreach (BirdNPC b in soulBirds)
+            foreach (DZBirdNPC b in soulBirds)
             {
                 if (b != null && b.Scene != null)
                     b.RemoveSelf();
@@ -326,7 +327,7 @@ namespace Celeste.Cutscenes
         private IEnumerator BirdRoutine(float delay)
         {
             yield return delay;
-            Level.Add(bird = new BirdNPC(Vector2.Zero, BirdNPC.Modes.None));
+            Level.Add(bird = new DZBirdNPC(Vector2.Zero, DZBirdNPC.Modes.None));
             bird.Sprite.Play("flyupIdle");
             Vector2 vector = new Vector2(320f, 180f) / 2f;
             Vector2 topCenter = new Vector2(vector.X, 0f);
@@ -382,7 +383,7 @@ namespace Celeste.Cutscenes
                     (float)Math.Sin(spawnAngle) * 200f
                 );
 
-                BirdNPC soulBird = new BirdNPC(Vector2.Zero, BirdNPC.Modes.None);
+                DZBirdNPC soulBird = new DZBirdNPC(Vector2.Zero, DZBirdNPC.Modes.None);
                 Level.Add(soulBird);
                 soulBird.Sprite.Play("flyupIdle");
                 soulBird.Sprite.Color = Color.Lerp(SoulColors[i], Color.White, 0.3f);

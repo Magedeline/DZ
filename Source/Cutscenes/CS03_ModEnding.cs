@@ -1,4 +1,5 @@
 #nullable enable
+using BirdNPC = Celeste.Entities.DZBirdNPC;
 namespace Celeste.Cutscenes
 {
     [HotReloadable]
@@ -112,7 +113,7 @@ namespace Celeste.Cutscenes
             yield return 2f;
 
             Vector2 birdOrigin = (badeline?.Position ?? player.Position) + new Vector2(88f, -200f);
-            BirdNPC bird = new BirdNPC(birdOrigin, BirdNPC.Modes.None);
+            global::Celeste.Entities.DZBirdNPC bird = new global::Celeste.Entities.DZBirdNPC(birdOrigin, global::Celeste.Entities.DZBirdNPC.Modes.None);
             Scene.Add(bird);
             FMOD.Studio.EventInstance? instance = Audio.Play("event:/game/general/bird_in", bird.Position);
             bird.Facing = Facings.Left;

@@ -1017,6 +1017,9 @@ triggers.DZ/KirbyDamageTrigger.placements.name.cooldown=Cooldown
 # Kirby Dream Block
 entities.DZ/KirbyDreamBlock.placements.name.kirby_dream_block=Kirby Dream Block
 
+# Phantom Block (dream-dashable, no character swap)
+entities.DZ/PhantomBlock.placements.name.phantom_block=Phantom Block
+
 # Kirby Final Battle Scene
 entities.DZ/KirbyFinalBattleScene.placements.name.kirby_final_battle_scene=Kirby Final Battle Scene
 entities.DZ/KirbyFinalBattleScene.attributes.description.totalZeroForms=Number of Zero forms to defeat before the Warp Star ride (1-6).

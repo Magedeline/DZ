@@ -18011,7 +18011,7 @@ I'll give it to all of you.
 [ELS right normal]
 {# 000000}...Try not to keep up, Asriel.{#}
 
-DZ_CH20_RESTORATION_AND_FAREWELL=
+DZ_CH21_RESTORATION=
 {trigger 0 maddy baddy and everyone else walk in left}
 [MADELINE left normal]
 Granny, there you are!
@@ -18103,10 +18103,7 @@ with hopes and dreams, I will be with you all in spirit, and I will always love 
 can finally go free!
 {trigger 13 asriel released the souls and the 4th wall opens up destroying giygas and the barrer of the void}
 
-DZ_CH20_GIYGAS_IS_DESTROYED=
-The barrier of the void shatters, and with it, Giygas's influence is finally broken. The world is safe once again, but at a great cost.
-
-DZ_CH20_GOODBYE=
+DZ_CH21_GOODBYE=
 {anchor bottom}
 {trigger 0 asriel powerdown and say goodbye to everyone}
 [ASRIEL left normal]
@@ -18173,10 +18170,10 @@ the last time has happen to me is I was consumed by the void, and now I am back 
 wait...
 ... I am a flower again!? oh come on!
 
-DZ_CH20_MONTHS_LATER=
+DZ_CH21_MONTHS_LATER=
 8 MONTHS LATER...
 
-	CH20_END_CINEMATIC=
+	CH21_END_CINEMATIC=
 		{anchor bottom}
 
 		[WEBCAM_THEO right excited]

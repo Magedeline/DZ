@@ -26,6 +26,7 @@ namespace DZ
     {
         // ── Manual Hook references (must be stored so they aren't GC'd) ──────────
         private static Hook dashBeginHook;
+        private static Hook spriteSafePlayHook;
 
         // ── IL Hook reference for WallJump (worked example: On/Hook → IL) ──────
         // Stored in a static field so the ILHook isn't GC'd mid-game.
@@ -46,6 +47,36 @@ namespace DZ
         /// </summary>
         public static void Load()
         {
+            // ─── 1.5. Sprite.Play guard — prevents CommunalHelper PlayerVisualModifier
+            //         from KeyNotFoundException-crashing when any sprite (e.g. BladeTrackSpinner,
+            //         PlayerDeadBody) plays an animation that isn't in its dictionary.
+            try
+            {
+                MethodInfo spritePlay = typeof(Monocle.Sprite).GetMethod(
+                    "Play",
+                    BindingFlags.Instance | BindingFlags.Public,
+                    null,
+                    new Type[] { typeof(string), typeof(bool), typeof(bool) },
+                    null);
+
+                if (spritePlay != null)
+                {
+                    spriteSafePlayHook = new Hook(
+                        spritePlay,
+                        typeof(MonoModHooks).GetMethod(
+                            nameof(Hook_Sprite_Play),
+                            BindingFlags.Static | BindingFlags.NonPublic));
+
+                    Logger.Log(LogLevel.Info, "DZ",
+                        "[MonoModHooks] Guard Hook on Sprite.Play registered");
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(LogLevel.Warn, "DZ",
+                    $"[MonoModHooks] Failed to hook Sprite.Play: {ex.Message}");
+            }
+
             // ─── 2. Manual Hook (private method) ─────────────────────────
             // Player.DashBegin is private — On.* hooks can't reach it.
             // We use MonoMod's Hook class + reflection to intercept it anyway.
@@ -238,6 +269,9 @@ namespace DZ
             // IL.Celeste.Player.NormalUpdate -= IL_Player_NormalUpdate;
 
             // Dispose manual hooks (this un-detours the methods)
+            spriteSafePlayHook?.Dispose();
+            spriteSafePlayHook = null;
+
             dashBeginHook?.Dispose();
             dashBeginHook = null;
 
@@ -720,6 +754,29 @@ namespace DZ
         //  its properties (sprite, position, nodes) when creating EnhancedBirdNPC.
         //
         // =====================================================================
+
+        // =====================================================================
+        //  SPRITE.PLAY GUARD — CommunalHelper PlayerVisualModifier compatibility
+        // =====================================================================
+        //
+        //  CommunalHelper's PlayerVisualModifier hooks ALL Sprite.Play calls
+        //  globally and crashes with KeyNotFoundException when a sprite that
+        //  isn't the player's tries to play an animation (e.g. BladeTrackSpinner
+        //  playing "spin", PlayerDeadBody playing "deadside").
+        //
+        //  This hook runs BEFORE CommunalHelper's and silently skips Play calls
+        //  when the animation ID doesn't exist in the sprite's dictionary.
+        //
+        // =====================================================================
+
+        private delegate void orig_Sprite_Play(Monocle.Sprite self, string id, bool restart, bool randomizeFrame);
+
+        private static void Hook_Sprite_Play(orig_Sprite_Play orig, Monocle.Sprite self, string id, bool restart, bool randomizeFrame)
+        {
+            if (self == null || string.IsNullOrEmpty(id) || !self.Has(id))
+                return;
+            orig(self, id, restart, randomizeFrame);
+        }
 
         private delegate void orig_FlingBirdIntro_Ctor(Celeste.Entities.FlingBirdIntro self, EntityData data, Vector2 levelOffset);
 

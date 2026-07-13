@@ -94,7 +94,7 @@ public class CS21_RestorationAndFarewell : CutsceneEntity
         player.Sprite.Play("idle");
         
         // Set the music for this emotional finale
-        Audio.SetMusic("event:/new_content/music/DZ/lvl21/saved");
+        Audio.SetMusic("event:/DZ/new_content/music/lvl20/musicbox");
         
         // Fade in from white (after defeating Els)
         FadeWipe fadeWipe = new FadeWipe(Level, wipeIn: true);
@@ -108,7 +108,7 @@ public class CS21_RestorationAndFarewell : CutsceneEntity
         
         // Main dialog with all triggers
         yield return Textbox.Say(
-            "DZ_CH20_RESTORATION_AND_FAREWELL",
+            "DZ_CH21_RESTORATION",
             EveryoneWalksIn,
             GrannyAndTitanKingWalkIn,
             PanToAsgoreAndToriel,
@@ -125,26 +125,20 @@ public class CS21_RestorationAndFarewell : CutsceneEntity
             ReleaseSouls
         );
         
-        // Giygas destruction message
-        yield return 0.5f;
-        Level.Flash(Color.White, true);
-        Level.Shake(2f);
-        yield return Textbox.Say("DZ_CH20_GIYGAS_IS_DESTROYED");
-        yield return 1f;
-        
         // Goodbye sequence
+        Audio.SetMusic("event:/DZ/new_content/music/lvl21/granny_and_asriel_goodbye");
         yield return Textbox.Say(
-            "DZ_CH20_GOODBYE",
+            "DZ_CH21_GOODBYE",
             AsrielPowerDown,
             AsrielFadesAway,
             CharaWalksIn,
-            SpiritsFadeAway,
+            () => SpiritsFadeAway(end: true),
             FadeToWhite
         );
         
         // Decades later title card
         yield return 2f;
-        yield return Textbox.Say("DZ_CH20_MONTHS_LATER");
+        yield return Textbox.Say("DZ_CH21_MONTHS_LATER");
         
         yield return 1f;
         EndCutscene(level);
@@ -159,7 +153,7 @@ public class CS21_RestorationAndFarewell : CutsceneEntity
         player.DummyGravity = false;
             
         // Play entry sound and perform moon landing (from CS20_saved)
-        entrySfx = Audio.Play("event:/new_content/char/madeline/screenentry_gran_landing", player.Position);
+        entrySfx = Audio.Play("event:/DZ/new_content/char/kirby/screenentry_gran_landing", player.Position);
         yield return player.MoonLanding(spawn);
             
         // Zoom to focus on the scene
@@ -214,10 +208,10 @@ public class CS21_RestorationAndFarewell : CutsceneEntity
         yield return null;
         
         noelle = CreateNPC("noelle", player.Position + new Vector2(rightOffset + 240f, 0f), "noelle");
-        chara = CreateNPC("chara", player.Position + new Vector2(farRight + 60f, 0f), "DZ_CHara");
+        chara = CreateNPC("chara", player.Position + new Vector2(farRight + 60f, 0f), "chara");
         yield return null;
         
-        flowey = CreateNPC("flowey", player.Position + new Vector2(farRight + 90f, 0f), "DZ_flowey");
+        flowey = CreateNPC("flowey", player.Position + new Vector2(farRight + 90f, 0f), "flowey");
         yield return null;
         
         // Kirby's parents (spirits)
@@ -256,21 +250,30 @@ public class CS21_RestorationAndFarewell : CutsceneEntity
     {
         npc.Add(npc.Sprite = GFX.SpriteBank.Create(spriteBank));
         npc.Sprite.Play("idle");
+        npc.IdleAnim = "idle";
+        npc.MoveAnim = "walk";
+        npc.Maxspeed = 40f;
     }
 
     private void SetupNpcSprite(Npc20_Asriel npc, string spriteBank)
     {
         npc.Add(npc.Sprite = GFX.SpriteBank.Create(spriteBank));
         npc.Sprite.Play("idle");
+        npc.IdleAnim = "idle";
+        npc.MoveAnim = "walk";
+        npc.Maxspeed = 40f;
     }
 
     private void SetupNpcSprite(Npc20_Granny npc, string spriteBank)
     {
         npc.Add(npc.Sprite = GFX.SpriteBank.Create(spriteBank));
         npc.Sprite.Play("idle");
+        npc.IdleAnim = "idle";
+        npc.MoveAnim = "walk";
+        npc.Maxspeed = 40f;
     }
 
-    #region Trigger 0-13: CH20_RESTORATION_AND_FAREWELL
+    #region Trigger 0-13: CH20_RESTORATION
 
     // {trigger 0 maddy baddy and everyone else walk in left}
     private IEnumerator EveryoneWalksIn()
@@ -319,7 +322,7 @@ public class CS21_RestorationAndFarewell : CutsceneEntity
         
         // Emotional moment - screen shake
         Level.Shake(0.2f);
-        Audio.Play("event:/new_content/char/DZ/asriel/emotional_reunion");
+        Audio.Play("event:/DZ/new_content/char/bosses/asriel/emotional_reunion");
         
         yield return 0.5f;
     }
@@ -367,7 +370,7 @@ public class CS21_RestorationAndFarewell : CutsceneEntity
         
         // Emotional hug moment
         Level.Shake(0.1f);
-        Audio.Play("event:/new_content/char/DZ/kirby/emotional_reunion");
+        Audio.Play("event:/DZ/new_content/char/kirby/emotional_reunion");
         
         // Particle effects for the reunion
         for (int i = 0; i < 20; i++)
@@ -435,7 +438,7 @@ public class CS21_RestorationAndFarewell : CutsceneEntity
     private IEnumerator ReleaseSouls()
     {
         // Dramatic buildup
-        Audio.SetMusic("event:/new_content/music/DZ/lvl20/back");
+        Audio.SetMusic("event:/DZ/new_content/music/lvl21/cinematic/break");
 
         yield return 0.5f;
 
@@ -459,6 +462,10 @@ public class CS21_RestorationAndFarewell : CutsceneEntity
 
             yield return 0.4f;
         }
+
+        // Fade the screen to white
+        Level.Flash(Color.White, true);
+        yield return 0.5f;
 
         // Create and position the barrier break effect
         barrierBreakController = new BarrierBreakController(asriel.Center + new Vector2(0f, -50f));
@@ -498,7 +505,7 @@ public class CS21_RestorationAndFarewell : CutsceneEntity
     // {trigger 1 asriel slowly fades away into the flower form}
     private IEnumerator AsrielFadesAway()
     {
-        Audio.Play("event:/new_content/char/DZ/asriel/fade_to_flower");
+        Audio.Play("event:/DZ/new_content/char/bosses/asriel/dissipate");
         
         // Slowly fade Asriel
         for (float p = 1f; p > 0f; p -= Engine.DeltaTime / 3f)
@@ -537,9 +544,14 @@ public class CS21_RestorationAndFarewell : CutsceneEntity
     }
 
     // {trigger 4 asriel granny titan king and kirby parent begin to fade away}
-    private IEnumerator SpiritsFadeAway()
+    private IEnumerator SpiritsFadeAway(bool end = false)
     {
-        Audio.Play("event:/new_content/char/DZ/spirits/fade_away");
+        Audio.Play("event:/DZ/new_content/char/granny/dissipate");
+        
+        if (end)
+        {
+            Audio.SetMusicParam("end", 1f);
+        }
         
         // Fade out all spirit characters
         for (float p = 1f; p > 0f; p -= Engine.DeltaTime / 4f)

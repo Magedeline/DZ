@@ -738,8 +738,8 @@
 {80d2953a-c33c-4946-a02c-5c8aff39ddb7} event:/DZ/game/08_edge/hug_image_3
 {3f9beabf-c366-4907-8784-3398e3fc8918} event:/DZ/game/08_edge/hug_levelup_text_in
 {cee68ccc-cf5e-466d-a612-f5fec34a8d8b} event:/DZ/game/08_edge/hug_levelup_text_out
-{dc537f94-b812-4e69-b25a-3ff0d37bd95c} event:/DZ/game/08_edge/pinballbumper_hit
 {b6bf9e62-1729-462a-804e-ab275b0d6f35} event:/DZ/game/08_edge/mysterygo
+{dc537f94-b812-4e69-b25a-3ff0d37bd95c} event:/DZ/game/08_edge/pinballbumper_hit
 {3dc0ceed-e57c-454c-a535-8764ec7a03e4} event:/DZ/game/08_edge/pinballbumper_reset
 {0b25f6e9-2443-4967-9eb8-6cc48e1316ae} event:/DZ/game/08_edge/scaryhair_move
 {0faaa0d1-e296-4129-a6f6-37ff7b8df7d0} event:/DZ/game/08_edge/scaryhair_whoosh
@@ -1120,9 +1120,9 @@
 {a8228c15-231d-46a1-a967-2bd255fca92f} event:/DZ/music/lvl8/starjump
 {bef8afaa-9f92-46b9-a0d1-8e7331fd10e3} event:/DZ/music/lvl8/the_fall
 {73d2b5e2-d8ba-495c-8d04-69b20c3c4c20} event:/DZ/music/lvl8/vibing
-{68829e79-5bab-4bcc-89cf-e9ae3ae5c92d} event:/DZ/music/lvl9/message
 {e08ee641-efd0-43e7-8343-f6d2b8ca9820} event:/DZ/music/lvl9/final_ascent
 {e419496d-109b-443a-beb9-d2cc3412a22e} event:/DZ/music/lvl9/main
+{68829e79-5bab-4bcc-89cf-e9ae3ae5c92d} event:/DZ/music/lvl9/message
 {2d2d3cbc-5610-491d-891d-db68c80a3abd} event:/DZ/music/menu/cast
 {dd1b05da-d751-4f78-ac70-0be5c1e02fc0} event:/DZ/music/menu/complete_area
 {0cfc90df-231b-416d-ae07-188f064b9f67} event:/DZ/music/menu/complete_bside
@@ -1199,6 +1199,8 @@
 {586591c6-fa40-43fd-aeff-bd92a6eaec07} event:/DZ/new_content/char/bosses/asriel/spellcast
 {15d211ca-7fe7-46c2-9b39-2cf7de863541} event:/DZ/new_content/char/bosses/asriel/spellcast_glitch
 {1e7212f2-e072-446e-bb98-884f1f367df9} event:/DZ/new_content/char/bosses/asriel/star
+{a3fa232a-bfb2-4bd0-ac6e-dd454a502fe5} event:/DZ/new_content/char/bosses/asriel/emotional_reunion
+{47f7d658-c893-48ee-b1fc-dfd422d7398f} event:/DZ/new_content/char/bosses/asriel/dissipate
 {3d39f42d-c246-4352-8099-59a98d885496} event:/DZ/new_content/char/bosses/els/beam
 {29d03a10-0cee-4f2a-aff3-d29fe7f713cf} event:/DZ/new_content/char/bosses/els/big_hit
 {c1b5a0a6-4879-4105-b070-d1a6f1a0162a} event:/DZ/new_content/char/bosses/els/bigger_star
@@ -1254,6 +1256,7 @@
 {c58f15bd-5b05-4f80-82bf-6e029f1e0f54} event:/DZ/new_content/char/kirby/screenentry_heaven_landing
 {a7ee7369-a07e-4258-91a5-5eac1c962689} event:/DZ/new_content/char/kirby/screenentry_lowgrav
 {09f996ce-99ff-405a-a8c8-f87a1d770577} event:/DZ/new_content/char/kirby/screenentry_manipulation
+{4b6924a1-0a4b-4667-a46b-31457e288958} event:/DZ/new_content/char/kirby/emotional_reunion
 {83d462e0-4b23-4523-b5da-bf859bd8ea24} event:/DZ/new_content/char/madeline/final_launch
 {b0b63340-79df-4731-a697-61b7d43fd1c1} event:/DZ/new_content/char/madeline/final_launch_part1
 {31d09a69-b13c-4bb8-8133-08243732c1de} event:/DZ/new_content/char/madeline/final_launch_part2
@@ -2608,7 +2611,13 @@
 {1aa61ee8-68fc-4c62-9a54-35743044bafe} snapshot:/berry_cooperation/5000s_down
 {a327f717-e8b5-4fb0-b4dd-84bd8a585fe0} bank:/dlc_music
 {e85b3c9e-428d-41b7-82c0-37814f3cbf15} bank:/dlc_sfx
-{8b7ab5eb-8ae0-4aed-a3f7-4d03b2f267d7} bank:/DZ_AUDIO
+{6507f673-f700-4f99-90fa-1177f28c773e} bank:/DZ_DLC_MUS
+{0d6bd5ff-1301-4c71-a0e9-8df3ce0b7d83} bank:/DZ_DLC_SFX
+{ad2943b2-3408-4704-9d3f-ab85bf85eda4} bank:/DZ_MUS_A
+{9085a834-ae8b-4483-b4bb-a94d174db607} bank:/DZ_MUS_B
+{bd4d742b-b102-48f2-84d2-26f3b2adb2df} bank:/DZ_MUS_C
+{342edba0-2b27-4831-9e7c-c0b43132a2bf} bank:/DZ_SFX
+{1fa3fd8b-a095-4e7e-bc56-88092f8ed177} bank:/DZ_UI
 {7916fdbf-1253-451d-a369-6dfd34341e4e} bank:/music
 {98263171-3ea2-482b-abb7-9af01e4c002a} bank:/sfx
 {f0efde81-92ec-4f1a-8b48-815f4d8a3255} bank:/ui

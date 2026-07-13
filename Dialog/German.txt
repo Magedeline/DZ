@@ -14784,8 +14784,6 @@ with hopes and dreams, I will be with you all in spirit, and I will always love 
 can finally go free!
 {trigger 13 asriel released the souls and the 4th wall opens up destroying giygas and the barrer of the void}
 
-DZ_CH20_GIYGAS_IS_DESTROYED=The barrier of the void shatters, and with it, Giygas's influence is finally broken. The world is safe once again, but at a great cost.
-
 DZ_CH20_GOODBYE={anchor bottom}
 {trigger 0 asriel powerdown and say goodbye to everyone}
 [ASRIEL left normal]

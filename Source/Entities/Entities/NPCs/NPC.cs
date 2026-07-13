@@ -1338,7 +1338,7 @@ namespace Celeste.Entities
         }
         protected override void OnTalk(global::Celeste.Player player)
         {
-            TryAddCutscene(new CS21_Saved(player));
+            TryAddCutscene(new CS21_RestorationAndFarewell(player));
         }
     }
 
@@ -1362,7 +1362,7 @@ namespace Celeste.Entities
         }
         protected override void OnTalk(global::Celeste.Player player)
         {
-            TryAddCutscene(new CS21_Saved(player));
+            TryAddCutscene(new CS21_RestorationAndFarewell(player));
         }
     }
 
@@ -1386,7 +1386,7 @@ namespace Celeste.Entities
         }
         protected override void OnTalk(global::Celeste.Player player)
         {
-            TryAddCutscene(new CS21_Saved(player));
+            TryAddCutscene(new CS21_RestorationAndFarewell(player));
         }
     }
     [CustomEntity("DZ/NPCEventInteract")]

@@ -263,8 +263,12 @@ namespace Celeste.Entities
         {
             if (inhaleParticles != null)
             {
-                player.Remove(inhaleParticles);
+                // Deferred: removing a component here would mutate the Components
+                // list while Entity.Removed is still enumerating it (crashes with
+                // "Collection was modified; enumeration operation may not execute").
+                var particles = inhaleParticles;
                 inhaleParticles = null;
+                scene.OnEndOfFrame += () => player?.Remove(particles);
             }
             if (mouthVoid != null)
             {

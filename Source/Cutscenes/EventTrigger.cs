@@ -472,9 +472,6 @@ namespace DZ
                 case "cs21_special_thanks_dodge_credits":
                     base.Scene.Add(new global::Celeste.Cutscenes.CS21_SpecialThanksDodgeCredits(player2));
                     break;
-                case "cs21_saved":
-                    base.Scene.Add(new global::Celeste.Cutscenes.CS21_Saved(player2));
-                    break;
                 case "cs21_farewell":
                     base.Scene.Add(new global::Celeste.Cutscenes.CS21_RestorationAndFarewell(player2));
                     break;

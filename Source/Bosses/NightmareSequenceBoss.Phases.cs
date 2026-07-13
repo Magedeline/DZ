@@ -1177,8 +1177,7 @@ public partial class NightmareSequenceBoss
         yield return Textbox.Say("DZ_NIGHTMARE_DEFEAT");
         yield return 0.5f;
 
-        // Victory music + completion flag
-        Audio.SetMusic(MUSIC_VICTORY);
+        // Completion flag
         level.Session.SetFlag(completionFlag);
 
         // ── ELS final explosion ──────────────────────────────────────────────────

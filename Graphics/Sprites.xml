@@ -466,16 +466,22 @@
   <lockdoor_temple_a path="objects/DZ/door/lockdoorTempleA" start="idle">
     <Justify x="0.5" y="0.5" />
     <Loop id="idle" path="lockdoorTempleA" delay="0.1" frames="0"/>
+    <Anim id="open" path="lockdoorTempleA" delay="0.06" frames="0"/>
+    <Anim id="burst" path="lockdoorTempleA" delay="0.06" frames="0"/>
   </lockdoor_temple_a>
 
   <lockdoor_temple_b path="objects/DZ/door/lockdoorTempleB" start="idle">
     <Justify x="0.5" y="0.5" />
     <Loop id="idle" path="lockdoorTempleB" delay="0.1" frames="0"/>
+    <Anim id="open" path="lockdoorTempleB" delay="0.06" frames="0"/>
+    <Anim id="burst" path="lockdoorTempleB" delay="0.06" frames="0"/>
   </lockdoor_temple_b>
   
   <lockdoor_moon path="objects/DZ/door/moonDoor" start="idle">
     <Justify x="0.5" y="0.5" />
     <Loop id="idle" path="moonDoor" delay="0.1" frames="0"/>
+    <Anim id="open" path="moonDoor" delay="0.06" frames="0"/>
+    <Anim id="burst" path="moonDoor" delay="0.06" frames="0"/>
   </lockdoor_moon>
   
   <door path="objects/DZ/door/" start="idle">
@@ -990,7 +996,7 @@
   
       <!-- CommunalHelper Elytra Mod Compatibility -->
       <Loop id="anim_player_elytra_fly" path="wing/fly" delay="0.08" />
-  
+
       <Metadata>
         <Frames path="idle" hair="0,-4:0|0,-4:1|0,-4:2|0,-4:3" hat="0,-12|0,-12|0,-12|0,-12" />
         <Frames path="walk" hair="0,-4:0|0,-4:1|0,-4:2|0,-4:3|0,-4:4|0,-4:5" hat="0,-12|0,-12|0,-12|0,-12|0,-12|0,-12" />
@@ -1033,6 +1039,7 @@
         <Anim id="dea2" path="death_h" delay="0.02" frames="0-12" />
         <Anim id="deadup"   path="death_h" delay="0.02" frames="0-12" />
         <Anim id="deaddown" path="death_h" delay="0.02" frames="0-12" />
+        <Loop id="deadside" path="death_h" delay="0.08" frames="0-12" />
         <Anim id="sleep" path="wakeUp/" delay="0.5" frames="14-0" />
 
         <Anim id="roll" path="roll" frames="0-12" delay="0.05"/>

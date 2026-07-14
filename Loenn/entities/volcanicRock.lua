@@ -2,7 +2,7 @@ local volcanicRock = {}
 
 volcanicRock.name = "DZ/VolcanicRock"
 volcanicRock.depth = 0
-volcanicRock.texture = "objects/DZ/DZ/DZ/volcanic_rock"
+volcanicRock.texture = "objects/DZ/volcanic_rock"
 
 volcanicRock.placements = {
     name = "volcanic_rock",

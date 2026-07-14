@@ -2,7 +2,7 @@ local coreFragment = {}
 
 coreFragment.name = "DZ/CoreFragment"
 coreFragment.depth = 0
-coreFragment.texture = "objects/DZ/DZ/DZ/core_fragment"
+coreFragment.texture = "objects/DZ/core_fragment"
 
 coreFragment.placements = {
     name = "core_fragment",

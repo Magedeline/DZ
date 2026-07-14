@@ -2,7 +2,7 @@ local horseHitch = {}
 
 horseHitch.name = "DZ/HorseHitch"
 horseHitch.depth = 0
-horseHitch.texture = "objects/DZ/DZ/DZ/horse_hitch"
+horseHitch.texture = "objects/DZ/horse_hitch"
 
 horseHitch.placements = {
     name = "horse_hitch",

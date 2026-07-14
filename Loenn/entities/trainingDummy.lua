@@ -2,7 +2,7 @@ local trainingDummy = {}
 
 trainingDummy.name = "DZ/TrainingDummy"
 trainingDummy.depth = 0
-trainingDummy.texture = "objects/DZ/DZ/DZ/training_dummy"
+trainingDummy.texture = "objects/DZ/training_dummy"
 
 trainingDummy.placements = {
     name = "training_dummy",

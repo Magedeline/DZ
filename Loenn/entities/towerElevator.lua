@@ -2,7 +2,7 @@ local towerElevator = {}
 
 towerElevator.name = "DZ/TowerElevator"
 towerElevator.depth = 0
-towerElevator.texture = "objects/DZ/DZ/DZ/tower_elevator"
+towerElevator.texture = "objects/DZ/tower_elevator"
 
 towerElevator.placements = {
     name = "tower_elevator",

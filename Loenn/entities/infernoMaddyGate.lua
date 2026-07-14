@@ -2,7 +2,7 @@ local infernoMaddyGate = {}
 
 infernoMaddyGate.name = "DZ/InfernoMaddyGate"
 infernoMaddyGate.depth = 0
-infernoMaddyGate.texture = "objects/DZ/DZ/DZ/inferno_maddy_gate"
+infernoMaddyGate.texture = "objects/DZ/inferno_maddy_gate"
 
 infernoMaddyGate.placements = {
     name = "inferno_maddy_gate",

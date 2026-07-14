@@ -2,7 +2,7 @@ local wantedPoster = {}
 
 wantedPoster.name = "DZ/WantedPoster"
 wantedPoster.depth = 0
-wantedPoster.texture = "objects/DZ/DZ/DZ/wanted_poster"
+wantedPoster.texture = "objects/DZ/wanted_poster"
 
 wantedPoster.placements = {
     name = "wanted_poster",

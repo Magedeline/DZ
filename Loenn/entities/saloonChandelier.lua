@@ -2,7 +2,7 @@ local saloonChandelier = {}
 
 saloonChandelier.name = "DZ/SaloonChandelier"
 saloonChandelier.depth = 0
-saloonChandelier.texture = "objects/DZ/DZ/DZ/saloonDZ_CHandelier"
+saloonChandelier.texture = "objects/DZ/saloonDZ_CHandelier"
 
 saloonChandelier.placements = {
     name = "saloonDZ_CHandelier",

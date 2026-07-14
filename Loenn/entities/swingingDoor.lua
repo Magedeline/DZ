@@ -2,7 +2,7 @@ local swingingDoor = {}
 
 swingingDoor.name = "DZ/SwingingDoor"
 swingingDoor.depth = 0
-swingingDoor.texture = "objects/DZ/DZ/DZ/swinging_door"
+swingingDoor.texture = "objects/DZ/swinging_door"
 
 swingingDoor.placements = {
     name = "swinging_door",

@@ -2,7 +2,7 @@ local crystalHeartGate = {}
 
 crystalHeartGate.name = "DZ/CrystalHeartGate"
 crystalHeartGate.depth = 0
-crystalHeartGate.texture = "objects/DZ/DZ/DZ/crystal_heart_gate"
+crystalHeartGate.texture = "objects/DZ/crystal_heart_gate"
 
 crystalHeartGate.placements = {
     name = "crystal_heart_gate",

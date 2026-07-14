@@ -2,7 +2,7 @@ local ralseiDummyAttacher = {}
 
 ralseiDummyAttacher.name = "DZ/RalseiDummyAttacher"
 ralseiDummyAttacher.depth = 0
-ralseiDummyAttacher.texture = "objects/DZ/DZ/DZ/ralsei_dummy_attacher"
+ralseiDummyAttacher.texture = "objects/DZ/ralsei_dummy_attacher"
 
 ralseiDummyAttacher.placements = {
     name = "ralsei_dummy_attacher",

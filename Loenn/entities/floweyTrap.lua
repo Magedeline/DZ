@@ -2,7 +2,7 @@ local floweyTrap = {}
 
 floweyTrap.name = "DZ/FloweyTrap"
 floweyTrap.depth = 0
-floweyTrap.texture = "objects/DZ/DZ/DZ/flowey_trap"
+floweyTrap.texture = "objects/DZ/flowey_trap"
 
 floweyTrap.placements = {
     name = "flowey_trap",

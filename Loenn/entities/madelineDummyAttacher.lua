@@ -2,7 +2,7 @@ local madelineDummyAttacher = {}
 
 madelineDummyAttacher.name = "DZ/MadelineDummyAttacher"
 madelineDummyAttacher.depth = 0
-madelineDummyAttacher.texture = "objects/DZ/DZ/DZ/madeline_dummy_attacher"
+madelineDummyAttacher.texture = "objects/DZ/madeline_dummy_attacher"
 
 madelineDummyAttacher.placements = {
     name = "madeline_dummy_attacher",

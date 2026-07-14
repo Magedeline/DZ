@@ -2,7 +2,7 @@ local revolverTarget = {}
 
 revolverTarget.name = "DZ/RevolverTarget"
 revolverTarget.depth = 0
-revolverTarget.texture = "objects/DZ/DZ/DZ/revolver_target"
+revolverTarget.texture = "objects/DZ/revolver_target"
 
 revolverTarget.placements = {
     name = "revolver_target",

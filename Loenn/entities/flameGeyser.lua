@@ -2,7 +2,7 @@ local flameGeyser = {}
 
 flameGeyser.name = "DZ/FlameGeyser"
 flameGeyser.depth = 0
-flameGeyser.texture = "objects/DZ/DZ/DZ/flame_geyser"
+flameGeyser.texture = "objects/DZ/flame_geyser"
 
 flameGeyser.placements = {
     name = "flame_geyser",

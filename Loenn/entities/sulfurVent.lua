@@ -2,7 +2,7 @@ local sulfurVent = {}
 
 sulfurVent.name = "DZ/SulfurVent"
 sulfurVent.depth = 0
-sulfurVent.texture = "objects/DZ/DZ/DZ/sulfur_vent"
+sulfurVent.texture = "objects/DZ/sulfur_vent"
 
 sulfurVent.placements = {
     name = "sulfur_vent",

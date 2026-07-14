@@ -2,7 +2,7 @@ local firewallSwitch = {}
 
 firewallSwitch.name = "DZ/FirewallSwitch"
 firewallSwitch.depth = 0
-firewallSwitch.texture = "objects/DZ/DZ/DZ/firewall_switch"
+firewallSwitch.texture = "objects/DZ/firewall_switch"
 
 firewallSwitch.placements = {
     name = "firewall_switch",

@@ -2,7 +2,7 @@ local glitchBlock = {}
 
 glitchBlock.name = "DZ/GlitchBlock"
 glitchBlock.depth = 0
-glitchBlock.texture = "objects/DZ/DZ/DZ/glitch_block"
+glitchBlock.texture = "objects/DZ/glitch_block"
 
 glitchBlock.placements = {
     name = "glitch_block",

@@ -2,7 +2,7 @@ local throneRoomController = {}
 
 throneRoomController.name = "DZ/ThroneRoomController"
 throneRoomController.depth = 0
-throneRoomController.texture = "objects/DZ/DZ/DZ/throne_room_controller"
+throneRoomController.texture = "objects/DZ/throne_room_controller"
 
 throneRoomController.placements = {
     name = "throne_room_controller",

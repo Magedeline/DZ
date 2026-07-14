@@ -2,7 +2,7 @@ local ruinsPuzzleSwitch = {}
 
 ruinsPuzzleSwitch.name = "DZ/RuinsPuzzleSwitch"
 ruinsPuzzleSwitch.depth = 0
-ruinsPuzzleSwitch.texture = "objects/DZ/DZ/DZ/ruins_puzzle_switch"
+ruinsPuzzleSwitch.texture = "objects/DZ/ruins_puzzle_switch"
 
 ruinsPuzzleSwitch.placements = {
     name = "ruins_puzzle_switch",

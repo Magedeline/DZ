@@ -2,7 +2,7 @@ local spiderBaker = {}
 
 spiderBaker.name = "DZ/SpiderBaker"
 spiderBaker.depth = 0
-spiderBaker.texture = "objects/DZ/DZ/DZ/spider_baker"
+spiderBaker.texture = "objects/DZ/spider_baker"
 
 spiderBaker.placements = {
     name = "spider_baker",

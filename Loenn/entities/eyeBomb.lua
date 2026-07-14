@@ -2,7 +2,7 @@ local eyeBomb = {}
 
 eyeBomb.name = "DZ/EyeBomb"
 eyeBomb.depth = 0
-eyeBomb.texture = "objects/DZ/DZ/DZ/eye_bomb"
+eyeBomb.texture = "objects/DZ/eye_bomb"
 
 eyeBomb.placements = {
     name = "eye_bomb",

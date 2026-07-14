@@ -2,7 +2,7 @@ local staircaseSwitch = {}
 
 staircaseSwitch.name = "DZ/StaircaseSwitch"
 staircaseSwitch.depth = 0
-staircaseSwitch.texture = "objects/DZ/DZ/DZ/staircase_switch"
+staircaseSwitch.texture = "objects/DZ/staircase_switch"
 
 staircaseSwitch.placements = {
     name = "staircase_switch",

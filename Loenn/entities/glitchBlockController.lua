@@ -2,7 +2,7 @@ local glitchBlockController = {}
 
 glitchBlockController.name = "DZ/GlitchBlockController"
 glitchBlockController.depth = 0
-glitchBlockController.texture = "objects/DZ/DZ/DZ/glitch_block_controller"
+glitchBlockController.texture = "objects/DZ/glitch_block_controller"
 
 glitchBlockController.placements = {
     name = "glitch_block_controller",

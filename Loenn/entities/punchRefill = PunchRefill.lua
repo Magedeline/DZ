@@ -2,7 +2,7 @@ local punchRefill = {}
 
 punchRefill.name = "DZ/PunchRefill"
 punchRefill.depth = 0
-punchRefill.texture = "objects/DZ/DZ/DZ/punch_refill"
+punchRefill.texture = "objects/DZ/punch_refill"
 
 punchRefill.placements = {
     name = "punch_refill",

@@ -2,7 +2,7 @@ local tape = {}
 
 tape.name = "DZ/Tape"
 tape.depth = 0
-tape.texture = "objects/DZ/DZ/DZ/tape"
+tape.texture = "objects/DZ/tape"
 
 tape.placements = {
     name = "tape",

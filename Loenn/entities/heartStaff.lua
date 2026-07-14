@@ -2,7 +2,7 @@ local heartStaff = {}
 
 heartStaff.name = "DZ/HeartStaff"
 heartStaff.depth = 0
-heartStaff.texture = "objects/DZ/DZ/DZ/heart_staff"
+heartStaff.texture = "objects/DZ/heart_staff"
 
 heartStaff.placements = {
     name = "heart_staff",

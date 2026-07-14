@@ -2,7 +2,7 @@ local infernoMirrorVortex = {}
 
 infernoMirrorVortex.name = "DZ/InfernoMirrorVortex"
 infernoMirrorVortex.depth = 0
-infernoMirrorVortex.texture = "objects/DZ/DZ/DZ/inferno_mirror_vortex"
+infernoMirrorVortex.texture = "objects/DZ/inferno_mirror_vortex"
 
 infernoMirrorVortex.placements = {
     name = "inferno_mirror_vortex",

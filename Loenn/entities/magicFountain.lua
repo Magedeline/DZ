@@ -2,7 +2,7 @@ local magicFountain = {}
 
 magicFountain.name = "DZ/MagicFountain"
 magicFountain.depth = 0
-magicFountain.texture = "objects/DZ/DZ/DZ/magic_fountain"
+magicFountain.texture = "objects/DZ/magic_fountain"
 
 magicFountain.placements = {
     name = "magic_fountain",

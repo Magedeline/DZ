@@ -164,9 +164,6 @@ namespace Celeste.Mod.DZ
             set => global::Celeste.DeathlinkIntegration.SetDamageModeEnabled(value);
         }
 
-        [SettingName("DZ_OVERWORLDHELPER_ENABLED")]
-        public bool OverworldHelperEnabled { get; set; } = true;
-
         #endregion
 
         /// <summary>Reset settings to defaults for hot reload.</summary>

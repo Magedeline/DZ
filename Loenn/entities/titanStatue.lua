@@ -2,7 +2,7 @@ local titanStatue = {}
 
 titanStatue.name = "DZ/TitanStatue"
 titanStatue.depth = 0
-titanStatue.texture = "objects/DZ/DZ/DZ/titan_statue"
+titanStatue.texture = "objects/DZ/titan_statue"
 
 titanStatue.placements = {
     name = "titan_statue",

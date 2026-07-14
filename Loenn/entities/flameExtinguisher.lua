@@ -2,7 +2,7 @@ local flameExtinguisher = {}
 
 flameExtinguisher.name = "DZ/FlameExtinguisher"
 flameExtinguisher.depth = 0
-flameExtinguisher.texture = "objects/DZ/DZ/DZ/flame_extinguisher"
+flameExtinguisher.texture = "objects/DZ/flame_extinguisher"
 
 flameExtinguisher.placements = {
     name = "flame_extinguisher",

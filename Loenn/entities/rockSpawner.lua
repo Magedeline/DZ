@@ -2,7 +2,7 @@ local rockSpawner = {}
 
 rockSpawner.name = "DZ/RockSpawner"
 rockSpawner.depth = 0
-rockSpawner.texture = "objects/DZ/DZ/DZ/rock_spawner"
+rockSpawner.texture = "objects/DZ/rock_spawner"
 
 rockSpawner.placements = {
     name = "rock_spawner",

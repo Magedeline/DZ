@@ -2,7 +2,7 @@ local titanCrown = {}
 
 titanCrown.name = "DZ/TitanCrown"
 titanCrown.depth = 0
-titanCrown.texture = "objects/DZ/DZ/DZ/titan_crown"
+titanCrown.texture = "objects/DZ/titan_crown"
 
 titanCrown.placements = {
     name = "titan_crown",

@@ -2,7 +2,7 @@ local spiderTreat = {}
 
 spiderTreat.name = "DZ/SpiderTreat"
 spiderTreat.depth = 0
-spiderTreat.texture = "objects/DZ/DZ/DZ/spider_treat"
+spiderTreat.texture = "objects/DZ/spider_treat"
 
 spiderTreat.placements = {
     name = "spider_treat",

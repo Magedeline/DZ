@@ -2,7 +2,7 @@ local realityGlitch = {}
 
 realityGlitch.name = "DZ/RealityGlitch"
 realityGlitch.depth = 0
-realityGlitch.texture = "objects/DZ/DZ/DZ/reality_glitch"
+realityGlitch.texture = "objects/DZ/reality_glitch"
 
 realityGlitch.placements = {
     name = "reality_glitch",

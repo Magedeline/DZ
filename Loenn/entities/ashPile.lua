@@ -2,7 +2,7 @@ local ashPile = {}
 
 ashPile.name = "DZ/AshPile"
 ashPile.depth = 0
-ashPile.texture = "objects/DZ/DZ/DZ/ash_pile"
+ashPile.texture = "objects/DZ/ash_pile"
 
 ashPile.placements = {
     name = "ash_pile",

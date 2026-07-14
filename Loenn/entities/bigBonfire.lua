@@ -2,7 +2,7 @@ local bigBonfire = {}
 
 bigBonfire.name = "DZ/BigBonfire"
 bigBonfire.depth = 0
-bigBonfire.texture = "objects/DZ/DZ/DZ/big_bonfire"
+bigBonfire.texture = "objects/DZ/big_bonfire"
 
 bigBonfire.placements = {
     name = "big_bonfire",

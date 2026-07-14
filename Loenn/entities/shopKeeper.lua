@@ -2,7 +2,7 @@ local shopKeeper = {}
 
 shopKeeper.name = "DZ/ShopKeeper"
 shopKeeper.depth = 0
-shopKeeper.texture = "objects/DZ/DZ/DZ/shop_keeper"
+shopKeeper.texture = "objects/DZ/shop_keeper"
 
 shopKeeper.placements = {
     name = "shop_keeper",

@@ -832,6 +832,7 @@
 {95b7af73-452b-4289-bc73-357f9318aed2} event:/DZ/game/general/passage_closed_behind
 {3c36165b-bafc-4280-83e8-79d6e616170f} event:/DZ/game/general/platform_disintegrate
 {772bd810-b1eb-4c2f-a239-72c17100ba95} event:/DZ/game/general/platform_return
+{014d7e4f-f3b4-45d4-a57e-58edbcb55fee} event:/DZ/game/general/remixes
 {55b4833e-de28-47bf-aa8c-6a565a96d39f} event:/DZ/game/general/secret_revealed
 {94d263fc-d053-4440-b06f-90f279c9afe6} event:/DZ/game/general/seed_complete_berry
 {dd26b18c-7284-487a-b005-b673f0e16c7b} event:/DZ/game/general/seed_complete_main
@@ -1183,6 +1184,8 @@
 {e36cf3a3-5bdf-4758-b906-514895f1db19} event:/DZ/new_content/char/bosses/asriel/crashbubbleburst
 {34087256-f241-4a86-8e48-8449bcb1800a} event:/DZ/new_content/char/bosses/asriel/crashbubblecharge
 {944b1800-6ca7-47d3-9098-8a6269c89680} event:/DZ/new_content/char/bosses/asriel/create
+{47f7d658-c893-48ee-b1fc-dfd422d7398f} event:/DZ/new_content/char/bosses/asriel/dissipate
+{a3fa232a-bfb2-4bd0-ac6e-dd454a502fe5} event:/DZ/new_content/char/bosses/asriel/emotional_reunion
 {82582cc7-ed51-495a-b554-19ad7456049e} event:/DZ/new_content/char/bosses/asriel/finalbeam
 {3d85803e-1807-4188-b0f7-cf4d338c0f8a} event:/DZ/new_content/char/bosses/asriel/get_hit
 {56faca37-217e-4ca5-a18c-a95f81881db6} event:/DZ/new_content/char/bosses/asriel/grab
@@ -1199,8 +1202,6 @@
 {586591c6-fa40-43fd-aeff-bd92a6eaec07} event:/DZ/new_content/char/bosses/asriel/spellcast
 {15d211ca-7fe7-46c2-9b39-2cf7de863541} event:/DZ/new_content/char/bosses/asriel/spellcast_glitch
 {1e7212f2-e072-446e-bb98-884f1f367df9} event:/DZ/new_content/char/bosses/asriel/star
-{a3fa232a-bfb2-4bd0-ac6e-dd454a502fe5} event:/DZ/new_content/char/bosses/asriel/emotional_reunion
-{47f7d658-c893-48ee-b1fc-dfd422d7398f} event:/DZ/new_content/char/bosses/asriel/dissipate
 {3d39f42d-c246-4352-8099-59a98d885496} event:/DZ/new_content/char/bosses/els/beam
 {29d03a10-0cee-4f2a-aff3-d29fe7f713cf} event:/DZ/new_content/char/bosses/els/big_hit
 {c1b5a0a6-4879-4105-b070-d1a6f1a0162a} event:/DZ/new_content/char/bosses/els/bigger_star
@@ -1246,6 +1247,7 @@
 {bcb8dfeb-fce8-4093-a383-8d8292420ca7} event:/DZ/new_content/char/kirby/knight/spin
 {d96b4865-b1ef-44d4-bc86-2e695b0db7a3} event:/DZ/new_content/char/kirby/bounce_boost
 {7ec06e69-2660-45ec-ab85-139fdc89000c} event:/DZ/new_content/char/kirby/death_pinkplatinum
+{4b6924a1-0a4b-4667-a46b-31457e288958} event:/DZ/new_content/char/kirby/emotional_reunion
 {7bab1feb-55e6-46e5-bf89-d18aceea79c0} event:/DZ/new_content/char/kirby/flyfinal
 {4877dc75-b68c-4fe4-a4f8-016dde08b7a5} event:/DZ/new_content/char/kirby/flynext
 {5a62e708-2f5b-41c1-92bc-bcaa1d28cde7} event:/DZ/new_content/char/kirby/glider_drop
@@ -1256,7 +1258,6 @@
 {c58f15bd-5b05-4f80-82bf-6e029f1e0f54} event:/DZ/new_content/char/kirby/screenentry_heaven_landing
 {a7ee7369-a07e-4258-91a5-5eac1c962689} event:/DZ/new_content/char/kirby/screenentry_lowgrav
 {09f996ce-99ff-405a-a8c8-f87a1d770577} event:/DZ/new_content/char/kirby/screenentry_manipulation
-{4b6924a1-0a4b-4667-a46b-31457e288958} event:/DZ/new_content/char/kirby/emotional_reunion
 {83d462e0-4b23-4523-b5da-bf859bd8ea24} event:/DZ/new_content/char/madeline/final_launch
 {b0b63340-79df-4731-a697-61b7d43fd1c1} event:/DZ/new_content/char/madeline/final_launch_part1
 {31d09a69-b13c-4bb8-8133-08243732c1de} event:/DZ/new_content/char/madeline/final_launch_part2

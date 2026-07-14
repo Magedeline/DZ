@@ -2,7 +2,7 @@ local titanSquire = {}
 
 titanSquire.name = "DZ/TitanSquire"
 titanSquire.depth = 0
-titanSquire.texture = "objects/DZ/DZ/DZ/titan_squire"
+titanSquire.texture = "objects/DZ/titan_squire"
 
 titanSquire.placements = {
     name = "titan_squire",

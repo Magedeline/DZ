@@ -102,6 +102,7 @@ public class DZModule : EverestModule {
         // Entity-level hooks (IL patches, renderer hooks, etc.)
         global::Celeste.Entities.DesoloZantasTape.Load();
         global::Celeste.Entities.PowerGenerator.Load();
+        global::Celeste.Entities.DefensivePowerGenerator.Load();
         global::Celeste.Entities.MaddyCrystal.Load();
         global::Celeste.Entities.FlingBirdMod.Load();
         global::Celeste.Entities.StarJumpBlock.Load();
@@ -183,6 +184,7 @@ public class DZModule : EverestModule {
         // Entity-level hooks
         global::Celeste.Entities.DesoloZantasTape.Unload();
         global::Celeste.Entities.PowerGenerator.Unload();
+        global::Celeste.Entities.DefensivePowerGenerator.Unload();
         // MaddyCrystal.Load() only sets up particles (no hooks), no Unload needed
         global::Celeste.Entities.FlingBirdMod.Unload();
         global::Celeste.Entities.StarJumpBlock.Unload();

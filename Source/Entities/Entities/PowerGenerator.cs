@@ -78,7 +78,7 @@ namespace Celeste.Entities
             this.start = this.Position;
             this.end = end ?? this.Position; // Default to position if not provided
             this.canTeleport = canTeleport;
-            this.sprite = GFX.SpriteBank.Create("powergen");
+            this.sprite = GFX.SpriteBank.Create("power_generator");
             this.sprite.OnLastFrame += (Action<string>)(anim =>
             {
                 switch (anim)

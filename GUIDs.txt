@@ -1381,6 +1381,8 @@
 {5771a39f-486b-4d1d-8e67-4cdc9e7b8145} event:/DZ/new_content/game/21_finale/thunder
 {4d5218d0-b542-4f83-902a-6688a842ed2b} event:/DZ/new_content/game/21_finale/truefinal_altitudecount
 {ef84f729-153f-4211-abe7-fb780cce60ec} event:/DZ/new_content/game/21_finale/whoosh_reverb
+{f418208c-9475-4331-bb12-70a703d08b5e} event:/DZ/new_content/game/21_finale/charge
+{efeb0572-fdab-45a5-a940-7ab5f216bf41} event:/DZ/new_content/game/21_finale/fire
 {995ea212-b2b7-47a3-b1b6-3720f6bda5ca} event:/DZ/new_content/music/lvl19/cinematic/bird_crash_first
 {2b922a75-db87-4bbb-9d8f-ad18017d39c6} event:/DZ/new_content/music/lvl19/cinematic/bird_crash_second
 {baa184ab-378e-4c3d-9247-628067353b4a} event:/DZ/new_content/music/lvl19/cinematic/els_glitch_first

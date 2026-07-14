@@ -1617,6 +1617,14 @@ entities.DZ/PopstarBerry.placements.name.popstar_berry=Popstar Berry
 # Power Generator
 entities.DZ/PowerGenerator.placements.name.power_generator=Power Generator
 
+# Defensive Power Generator
+entities.DZ/DefensivePowerGenerator.placements.name.defensive_power_generator=Defensive Power Generator
+entities.DZ/DefensivePowerGenerator.placements.name.flipX=Flip X
+entities.DZ/DefensivePowerGenerator.placements.name.beamEnabled=Beam Enabled
+entities.DZ/DefensivePowerGenerator.placements.name.laserInterval=Laser Interval
+entities.DZ/DefensivePowerGenerator.placements.name.rotationSpeed=Beam Rotation Speed
+entities.DZ/DefensivePowerGenerator.placements.name.beamRadius=Beam Radius
+
 # Power Source Number
 entities.DZ/PowerSourceNumber.placements.name.power_source_number=Power Source Number
 entities.DZ/PowerSourceNumber.placements.name.flag=Flag

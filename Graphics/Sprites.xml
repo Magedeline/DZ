@@ -2234,13 +2234,31 @@
       <Loop id="on" path="litTorch" delay="0.08" frames="3-8"/>
     </litTorch>
 
-  <powergen path="objects/DZ/powergen/" start="idle">
+  <power_generator path="objects/DZ/power_generator/" start="idle">
       <Justify x="0.5" y="0.5"/>
       <Loop id="idle" path="idle" delay="0.1"/>
       <Anim id="open" path="open" delay="0.06" frames="1-3" goto="opened"/>
       <Loop id="opened" path="opened" delay="0.06" frames="1-3" goto="break"/>
       <Anim id="break" path="break" delay="0.06"/>
-    </powergen>
+    </power_generator>
+
+  <defensive_power_generator path="objects/DZ/defensive_power_generator/" start="idle">
+      <Justify x="0.5" y="0.5"/>
+      <Loop id="idle" path="idle" delay="0.1"/>
+      <Anim id="open" path="open" delay="0.06" frames="1-6" goto="opened"/>
+      <Loop id="opened" path="opened" delay="0.06" frames="1-15" goto="break"/>
+      <Anim id="break" path="break" delay="0.06" frames="1-16"/>
+    </defensive_power_generator>
+
+  <defensive_power_generator_turret path="objects/DZ/defensive_power_generator/" start="turret">
+      <Justify x="0.5" y="0.5"/>
+      <Loop id="turret" path="turret" delay="0.08" frames="1-4"/>
+    </defensive_power_generator_turret>
+
+  <defensive_power_generator_beam path="objects/DZ/defensive_power_generator/" start="beam">
+      <Justify x="0.5" y="0.5"/>
+      <Loop id="beam" path="beam" delay="0.05" frames="1-34"/>
+    </defensive_power_generator_beam>
 
   <cloud path="objects/DZ/clouds/" start="idle">
       <Justify x="0.5" y="0.5"/>

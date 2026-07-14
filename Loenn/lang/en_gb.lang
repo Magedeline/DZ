@@ -137,7 +137,16 @@ entities.DZ/BigBonfire.placements.name.lightOuter=Light Outer
 entities.DZ/BigBonfire.placements.name.bloomRadius=Bloom Radius
 
 # Bird NPC
-entities.DZ/BirdNPC.placements.name.bird_npc=Bird NPC
+entities.DZ/BirdNPC.placements.name.dz_bird_npc=Bird NPC
+entities.DZ/BirdNPC.placements.name.mode=Mode
+entities.DZ/BirdNPC.placements.name.onlyOnce=Only Once
+entities.DZ/BirdNPC.placements.name.onlyIfPlayerLeft=Only If Player Left
+entities.DZ/BirdNPC.placements.name.enhanced_bird_npc=Bird NPC DZ
+entities.DZ/BirdNPC.placements.name.allowPlayerInteraction=Allow Player Interaction
+entities.DZ/BirdNPC.attributes.description.mode=Behaviour mode of the bird (e.g. Sleeping, FlyAway, MoveToNodes, ClimbingTutorial).
+entities.DZ/BirdNPC.attributes.description.onlyOnce=If true, the bird will not be loaded again after it has completed its behaviour (e.g. flown away).
+entities.DZ/BirdNPC.attributes.description.onlyIfPlayerLeft=If true, the bird only appears when the player is to the left of it.
+entities.DZ/BirdNPC.attributes.description.allowPlayerInteraction=If true, the player can interact with this bird NPC.
 
 # Blackhole Blocker Trigger
 triggers.DZ/BlackholeBlockerTrigger.placements.name.blackhole_blocker_trigger=Blackhole Blocker Trigger
@@ -636,10 +645,6 @@ entities.DZ/EnergyBarrier.placements.name.energy_barrier=Energy Barrier
 
 # Energy Drink
 entities.DZ/EnergyDrink.placements.name.energy_drink=Energy Drink
-
-# Enhanced Bird NPC
-entities.DZ/EnhancedBirdNPC.placements.name.enhanced_bird_npc=Enhanced Bird NPC
-entities.DZ/EnhancedBirdNPC.placements.name.allowPlayerInteraction=Allow Player Interaction
 
 # Enhanced Dialog NPC
 entities.DZ/EnhancedDialogNPC.placements.name.enhanced_dialog_npc=Enhanced Dialog NPC

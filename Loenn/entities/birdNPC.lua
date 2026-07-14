@@ -4,16 +4,29 @@ dzbirdNpc.name = "DZ/BirdNPC"
 dzbirdNpc.depth = -1000000
 dzbirdNpc.nodeLineRenderType = "line"
 dzbirdNpc.justification = {0.5, 1.0}
-dzbirdNpc.texture = "characters/bird/crow00"
+dzbirdNpc.texture = "characters/DZ/bird/crow00"
 dzbirdNpc.nodeLimits = {0, -1}
 dzbirdNpc.fieldInformation = {
     mode = {
-        options = enums.bird_npc_modes,
+        options = {
+            "None",
+            "Sleeping",
+            "HoverNGrab",
+            "Grab",
+            "ClimbingTutorial",
+            "DashingTutorial",
+            "DreamJumpTutorial",
+            "SuperWallJumpTutorial",
+            "HyperJumpTutorial",
+            "FlyAway",
+            "MoveToNodes",
+            "WaitForLightningOff"
+        },
         editable = false
     }
 }
 dzbirdNpc.placements = {
-    name = "DZ/BirdNPC",
+    name = "dz_bird_npc",
     data = {
         mode = "Sleeping",
         onlyOnce = false,

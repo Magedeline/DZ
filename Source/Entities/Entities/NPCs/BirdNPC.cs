@@ -9,7 +9,7 @@ using Monocle;
 namespace Celeste.Entities;
 
     [Tracked(true)]
-    [CustomEntity(ids: "DZ/BirdNPC")]
+    [CustomEntity("DZ/BirdNPC")]
     [HotReloadable]
 
 public class DZBirdNPC : Actor
@@ -374,8 +374,8 @@ public class DZBirdNPC : Actor
         Facing = Facings.Right;
         yield return 0.25f;
         bool caw = true;
-        BirdGonerTutorialGui tut1 = new BirdGonerTutorialGui(this, new Vector2(0f, -16f), GFX.Gui["hyperjump/tutorial00"], Dialog.Clean("TUTORIAL_DASH"), new Vector2(0f, -1f));
-        BirdGonerTutorialGui tut2 = new BirdGonerTutorialGui(this, new Vector2(0f, -16f), GFX.Gui["hyperjump/tutorial01"], Dialog.Clean("TUTORIAL_DREAMJUMP"));
+        BirdGonerTutorialGui tut1 = new BirdGonerTutorialGui(this, new Vector2(0f, -16f), GFX.Gui["hyperjump/DZ/tutorial00"], Dialog.Clean("TUTORIAL_DASH"), new Vector2(0f, -1f));
+        BirdGonerTutorialGui tut2 = new BirdGonerTutorialGui(this, new Vector2(0f, -16f), GFX.Gui["hyperjump/DZ/tutorial01"], Dialog.Clean("TUTORIAL_DREAMJUMP"));
         Player entity;
         do
         {

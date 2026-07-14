@@ -22,7 +22,7 @@ public static class OverworldTracker
         OverworldLoader self
     )
     {
-        orig(self);
+        try { orig(self); } catch (Exception e) { Logger.Log(LogLevel.Warn, "DZ/OverworldTracker", $"orig(self) threw: {e}"); }
         if (self.overworld == null) return;
         CurrentOverworld = self.overworld;
         OverworldCreated?.Invoke(self.overworld);

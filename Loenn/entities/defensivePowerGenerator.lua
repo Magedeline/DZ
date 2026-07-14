@@ -2,7 +2,7 @@ local defensivePowerGenerator = {}
 
 defensivePowerGenerator.name = "DZ/DefensivePowerGenerator"
 defensivePowerGenerator.depth = 0
-defensivePowerGenerator.texture = "objects/DZ/defensive_power_generator"
+defensivePowerGenerator.texture = "objects/DZ/defensive_power_generator/idle00"
 
 defensivePowerGenerator.placements = {
     name = "defensive_power_generator",

@@ -52,7 +52,7 @@ namespace Celeste.Entities
             var settings = global::Celeste.Mod.DZ.DZModule.Settings;
             bool enabled = settings != null && settings.GentleBreezeMode;
 
-            var kPlayer = Scene.Tracker.GetEntity<K_Player>();
+            var kPlayer = Scene.Entities.FindFirst<K_Player>();
 
             // Only run the freeze when the setting is on and a Kirby player exists.
             bool wantFreeze = enabled
@@ -116,7 +116,7 @@ namespace Celeste.Entities
             if (!freezeActive)
                 return;
 
-            var kPlayer = Scene.Tracker.GetEntity<K_Player>();
+            var kPlayer = Scene.Entities.FindFirst<K_Player>();
             if (kPlayer == null)
                 return;
 

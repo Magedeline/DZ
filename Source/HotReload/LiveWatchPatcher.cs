@@ -321,7 +321,6 @@ namespace Celeste.Mod.DZ.HotReload
     /// <summary>
     /// Visual overlay that displays when game is frozen
     /// </summary>
-    [Tracked]
     public class LiveWatchOverlay : Entity
     {
         private string _errorMessage;

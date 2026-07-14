@@ -246,6 +246,9 @@ entities.DZ/BountyReward.placements.name.enemyCount=Enemy Count
 # Bridge
 entities.DZ/Bridge.placements.name.bridge=Bridge
 
+# Bird NPC Dashing Tutorial Trigger
+triggers.DZ/BirdNPCDashingTutorialTrigger.placements.name.bird_npc_dashing_tutorial_trigger=Bird NPC Dashing Tutorial Trigger
+
 # Bridge Freeze Trigger
 triggers.DZ/BridgeFreezeTrigger.placements.name.bridge_freeze_trigger=Bridge Freeze Trigger
 triggers.DZ/BridgeFreezeTrigger.placements.name.freezeStrength=Freeze Strength

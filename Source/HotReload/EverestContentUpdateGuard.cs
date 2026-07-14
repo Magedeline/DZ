@@ -46,12 +46,12 @@ namespace Celeste.Mod.DZ.HotReload
 
         private static void GuardedUpdate(orig_Update orig, ModContent self, ModAsset prev, ModAsset next)
         {
-            // Skip updates for assets with no virtual path - inserting them into
-            // Everest's asset map would throw ArgumentNullException (null key).
-            if (next != null && next.PathVirtual == null && prev == null)
+            // Skip updates for assets with no virtual path - inserting or removing
+            // them from Everest's asset map would throw ArgumentNullException (null key).
+            if ((next != null && next.PathVirtual == null) || (prev != null && prev.PathVirtual == null))
             {
                 if (DZModule.Settings?.HotReloadVerbose == true)
-                    Logger.Log(LogLevel.Verbose, "DZ", $"[HotReload] Skipped content update for asset with null virtual path: {(next as FileSystemModAsset)?.Path ?? "<unknown>"}");
+                    Logger.Log(LogLevel.Verbose, "DZ", $"[HotReload] Skipped content update for asset with null virtual path: {(next as FileSystemModAsset ?? prev as FileSystemModAsset)?.Path ?? "<unknown>"}");
                 return;
             }
 

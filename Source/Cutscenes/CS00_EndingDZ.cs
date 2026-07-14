@@ -123,12 +123,12 @@ public class CS00_EndingDZ : CutsceneEntity
                 yield return null;
             }
         }
+        timeRateModifier.ResetTimeRateMultiplier();
         player.StateMachine.State = Player.StBirdDashTutorial;
         player.Dashes = 0;
         level.Session.Inventory.Dashes = 1;
-        timeRateModifier.ResetTimeRateMultiplier();
         keyOffed = true;
-        Audio.CurrentMusicEventInstance.triggerCue();
+        Audio.CurrentMusicEventInstance?.triggerCue();
         if (bird != null)
         {
             bird.Add(new Coroutine(bird.HideTutorial()));
@@ -199,7 +199,7 @@ public class CS00_EndingDZ : CutsceneEntity
             }
             if (!keyOffed)
             {
-                Audio.CurrentMusicEventInstance.triggerCue();
+                Audio.CurrentMusicEventInstance?.triggerCue();
             }
             if (level.HiresSnow == null)
             {
@@ -224,6 +224,7 @@ public class CS00_EndingDZ : CutsceneEntity
             endingText.Position = new Vector2(960f, 540f);
             level.Camera.Y = level.Bounds.Top - 3900;
         }
+        level.Session.SetFlag("birdfirstdash");
         level.PauseLock = true;
         level.Entities.FindFirst<SpeedrunTimerDisplay>().CompleteTimer = 10f;
         level.Add(new EndingCutsceneDelay(this));

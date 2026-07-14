@@ -113,7 +113,8 @@ public static class ChapterProgressDisplay
             if (icon == null) continue;
 
             DynamicData iconData = new DynamicData(icon);
-            int areaId = iconData.Get<int>("area");
+            if (!iconData.TryGet<int>("area", out int areaId) && !iconData.TryGet<int>("Area", out areaId))
+                continue;
 
             if (!_progressCache.TryGetValue(areaId, out var progress))
                 continue;

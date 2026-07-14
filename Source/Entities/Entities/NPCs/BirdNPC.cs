@@ -138,7 +138,6 @@ public class DZBirdNPC : Actor
                 break;
             case Modes.DashingTutorial:
                 Add(tutorialRoutine = new Coroutine(DashingTutorial()));
-                level.Session.SetFlag("birdfirstdash");
                 break;
             case Modes.DreamJumpTutorial:
                 Add(tutorialRoutine = new Coroutine(DreamJumpTutorial()));
@@ -174,7 +173,15 @@ public class DZBirdNPC : Actor
     {
         base.Added(scene);
         level = scene as Level;
-        if (mode == Modes.ClimbingTutorial && level.Session.GetLevelFlag("2"))
+        if (mode == Modes.DashingTutorial)
+        {
+            if (level.Session.GetFlag("birdfirstdash"))
+            {
+                RemoveSelf();
+                return;
+            }
+        }
+        if (mode == Modes.ClimbingTutorial && level.Session.GetLevelFlag("intro-2"))
         {
             RemoveSelf();
         }
@@ -334,14 +341,7 @@ public class DZBirdNPC : Actor
     {
         Y = level.Bounds.Top;
         X += 32f;
-        yield return 1f;
-        global::Celeste.Player player = Scene.Tracker.GetEntity<global::Celeste.Player>();
-        Bridge bridge = Scene.Entities.FindFirst<Bridge>();
-        while ((player == null || !(player.X > StartPosition.X - 36f) || !(player.Y > StartPosition.Y - 24f) || !(player.Y < StartPosition.Y + 8f)) && (!SaveData.Instance.Assists.Invincible || player == null || !(player.X > StartPosition.X - 24f) || !(player.Y > StartPosition.Y - 4f) || !(player.Y < StartPosition.Y + 48f)))
-        {
-            yield return null;
-        }
-        Scene.Add(new CS00_EndingDZ(player, this, bridge));
+        yield return null;
     }
 
     private IEnumerator DreamJumpTutorial()
@@ -579,16 +579,16 @@ public class DZBirdNPC : Actor
         base.DebugRender(camera);
         if (mode == Modes.DashingTutorial)
         {
-            float x = StartPosition.X - 36f;
-            float x2 = level.Bounds.Right;
+            float x = level.Bounds.Left;
+            float x2 = StartPosition.X + 36f;
             float y = StartPosition.Y - 24f;
             float y2 = StartPosition.Y + 8f;
             Draw.Line(new Vector2(x, y), new Vector2(x, y2), Color.Aqua);
             Draw.Line(new Vector2(x, y), new Vector2(x2, y), Color.Aqua);
             Draw.Line(new Vector2(x2, y), new Vector2(x2, y2), Color.Aqua);
             Draw.Line(new Vector2(x, y2), new Vector2(x2, y2), Color.Aqua);
-            float x3 = StartPosition.X - 24f;
-            float x4 = level.Bounds.Right;
+            float x3 = level.Bounds.Left;
+            float x4 = StartPosition.X + 24f;
             float y3 = StartPosition.Y - 4f;
             float y4 = StartPosition.Y + 48f;
             Draw.Line(new Vector2(x3, y3), new Vector2(x3, y4), Color.Aqua);

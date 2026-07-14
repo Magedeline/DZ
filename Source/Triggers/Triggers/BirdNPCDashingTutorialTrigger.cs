@@ -1,5 +1,6 @@
 using Celeste.Cutscenes;
 using Celeste.Entities;
+using DZ;
 using DZBirdNPC = Celeste.Entities.DZBirdNPC;
 using DZBridge = Celeste.Entities.Bridge;
 
@@ -36,13 +37,23 @@ public class BirdNPCDashingTutorialTrigger : Trigger
         if (kPlayer != null && CollideCheck(kPlayer))
         {
             TryFireTutorial(kPlayer: kPlayer, vanillaPlayer: null);
+            return;
+        }
+
+        Player vanillaPlayer = Scene?.Tracker.GetEntity<Player>();
+        if (vanillaPlayer != null
+            && !K_PlayerHooks.ShadowPlayers.Contains(vanillaPlayer)
+            && CollideCheck(vanillaPlayer))
+        {
+            TryFireTutorial(kPlayer: null, vanillaPlayer: vanillaPlayer);
         }
     }
 
     public override void OnEnter(Player player)
     {
         base.OnEnter(player);
-        TryFireTutorial(kPlayer: null, vanillaPlayer: player);
+        if (!K_PlayerHooks.ShadowPlayers.Contains(player))
+            TryFireTutorial(kPlayer: null, vanillaPlayer: player);
     }
 
     private void TryFireTutorial(K_Player kPlayer, Player vanillaPlayer)

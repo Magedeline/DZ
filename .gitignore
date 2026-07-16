@@ -369,3 +369,6 @@ Audio/DZ_MUS_B.bank
 Audio/DZ_MUS_C.bank
 Audio/DZ_SFX.bank
 Audio/DZ_UI.bank
+AsepriteScripts/character_checklist.md
+AsepriteScripts/CreateCelesteCharacter.lua
+AsepriteScripts/character_checklist.json

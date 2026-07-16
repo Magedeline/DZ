@@ -1172,6 +1172,7 @@
 {56fa11e9-307c-414d-81e8-da50f475183c} event:/DZ/music/sub/SunsetofSevenSuns_BC
 {30dca044-6e01-43e3-89b7-a9083de50317} event:/DZ/music/sub/TidyThingsUp
 {929f1d24-af19-4418-8718-49fe49fe8d95} event:/DZ/music/sub/WhiteOfficeMarch
+{579215f7-0a47-4bb7-8efd-ec639a6767c4} event:/DZ/music/sub/ColdGreensField
 {3fa335ef-57f4-4d35-bf6a-5abc777d7450} event:/DZ/new_content/char/bosses/asriel/big_bullet_fire
 {f29d3f1b-3e5f-4c48-9bae-f4d5dde61453} event:/DZ/new_content/char/bosses/asriel/big_laser
 {da62bd78-2db0-4eae-811f-81da4f3874b3} event:/DZ/new_content/char/bosses/asriel/big_star
@@ -1374,15 +1375,15 @@
 {9dac5c60-d0e1-447f-b7f7-b22c9a2f83c6} event:/DZ/new_content/game/21_finale/angel_flap
 {ebc644a2-520e-45a4-a8a3-a9958ef983be} event:/DZ/new_content/game/21_finale/angel_soar
 {9c68d259-230f-48da-aab3-774e9a706afe} event:/DZ/new_content/game/21_finale/angel_throw
+{f418208c-9475-4331-bb12-70a703d08b5e} event:/DZ/new_content/game/21_finale/charge
 {35b1a176-9b43-48d8-adc5-a41d882ed038} event:/DZ/new_content/game/21_finale/destroyed
 {053df1a7-d2fc-4601-8c18-6f8ad6f07bd1} event:/DZ/new_content/game/21_finale/falling_into_the_void
 {6dba5f2b-4c8f-4253-83a1-38948287da52} event:/DZ/new_content/game/21_finale/final_laugh
+{efeb0572-fdab-45a5-a940-7ab5f216bf41} event:/DZ/new_content/game/21_finale/fire
 {34553a56-dbeb-4060-a479-7970678d6336} event:/DZ/new_content/game/21_finale/flyuproll
 {5771a39f-486b-4d1d-8e67-4cdc9e7b8145} event:/DZ/new_content/game/21_finale/thunder
 {4d5218d0-b542-4f83-902a-6688a842ed2b} event:/DZ/new_content/game/21_finale/truefinal_altitudecount
 {ef84f729-153f-4211-abe7-fb780cce60ec} event:/DZ/new_content/game/21_finale/whoosh_reverb
-{f418208c-9475-4331-bb12-70a703d08b5e} event:/DZ/new_content/game/21_finale/charge
-{efeb0572-fdab-45a5-a940-7ab5f216bf41} event:/DZ/new_content/game/21_finale/fire
 {995ea212-b2b7-47a3-b1b6-3720f6bda5ca} event:/DZ/new_content/music/lvl19/cinematic/bird_crash_first
 {2b922a75-db87-4bbb-9d8f-ad18017d39c6} event:/DZ/new_content/music/lvl19/cinematic/bird_crash_second
 {baa184ab-378e-4c3d-9247-628067353b4a} event:/DZ/new_content/music/lvl19/cinematic/els_glitch_first

@@ -81,6 +81,7 @@
 {187affac-2205-43ae-b7e8-8d2ed59401dc} event:/char/dialogue/DZ/undyne
 {6877a222-9a4f-4bcf-b98c-eb46e27833bd} event:/char/dialogue/DZ/undyne_hyper
 {b6f02ff8-67c8-449c-ab00-e003247402b6} event:/char/dialogue/DZ/waddledee
+{fad07993-121f-4782-b046-2d0c0bc347ae} event:/char/dialogue/DZ/ralsei
 {9fdf9618-b47b-4427-bb22-4642a42296b9} event:/char/dialogue/sfx_support/phone_static_ex
 {0793a2c4-4c0b-41de-8f60-cbaed147961b} event:/char/dialogue/sfx_support/phone_static_mom
 {e27b3ab9-d6c9-4952-92bf-e652b98a9ed5} event:/char/dialogue/!!!_README
@@ -1148,6 +1149,7 @@
 {15aa8760-d2d7-4d1b-a186-ab9f702c1fef} event:/DZ/music/piano_lobby/Star_Allies
 {45bcfe03-151a-4561-abfa-781397498816} event:/DZ/music/piano_lobby/Yearning_the_Yellow
 {34cf27ec-2eed-4fa1-a13d-80e68afb5224} event:/DZ/music/sub/CarrotTrain
+{579215f7-0a47-4bb7-8efd-ec639a6767c4} event:/DZ/music/sub/ColdGreensField
 {0d290060-04e7-4d62-b2be-ef9bcf69b96a} event:/DZ/music/sub/CyberMountian
 {a7315695-24b1-4eb7-829f-f2e00d077f4c} event:/DZ/music/sub/DarkCastle
 {7e148907-9a13-4fe1-88b6-656cf57239df} event:/DZ/music/sub/DriedupSea
@@ -1172,7 +1174,6 @@
 {56fa11e9-307c-414d-81e8-da50f475183c} event:/DZ/music/sub/SunsetofSevenSuns_BC
 {30dca044-6e01-43e3-89b7-a9083de50317} event:/DZ/music/sub/TidyThingsUp
 {929f1d24-af19-4418-8718-49fe49fe8d95} event:/DZ/music/sub/WhiteOfficeMarch
-{579215f7-0a47-4bb7-8efd-ec639a6767c4} event:/DZ/music/sub/ColdGreensField
 {3fa335ef-57f4-4d35-bf6a-5abc777d7450} event:/DZ/new_content/char/bosses/asriel/big_bullet_fire
 {f29d3f1b-3e5f-4c48-9bae-f4d5dde61453} event:/DZ/new_content/char/bosses/asriel/big_laser
 {da62bd78-2db0-4eae-811f-81da4f3874b3} event:/DZ/new_content/char/bosses/asriel/big_star

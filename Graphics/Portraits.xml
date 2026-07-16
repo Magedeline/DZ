@@ -572,7 +572,7 @@
 	  
   </portrait_badeline>
 
-  <portrait_els path="DZ/els/" sfx="els" textbox="default">
+  <portrait_els path="DZ/els/" sfx="DZ/els" textbox="default">
     <Center />
 
     <sfxs>
@@ -1396,8 +1396,6 @@
     <Loop id="evil" path="evil" delay="0.1" frames="0-1" />
     <Loop id="evil2" path="evil2" delay="0.1" frames="0-1" />
     <Loop id="evil3" path="evil3" delay="0.1" frames="0-1" />
-    <Loop id="popin" path="normal" delay="0.1" frames="0" />
-    <Loop id="knockout" path="normal" delay="0.1" frames="0" />
   </portrait_flowey>
 
     <portrait_webcam_flowey path="DZ/flowey/" sfx="flowey_webcam" textbox="default" glitchy="true">

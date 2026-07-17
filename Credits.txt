@@ -1,7 +1,66 @@
-DZ (Desolo Zantas) Credits
+﻿DZ (Desolo Zantas) Credits
 
 Spriters / Art
-- DZ
+- ABuffZucchini
+- Alex6886
+- Anilmky Abicus
+- Asgord
+- atpx8
+- bryse0n
+- butcherberries
+- Chaotick
+- Circumplex
+- Coffe
+- DanTKO
+- Dr. Pufferfeesh
+- Earthwise
+- Eeveeisepic
+- Flagpole1up
+- floracat (free to edit)
+- Glow Woomii
+- Into the Jungle
+- IsaGoodFriend
+- j0nas
+- KKamila
+- KoseiDiamond
+- LavaErrorDoggo
+- LegS
+- M1n3c4rt
+- Maildropfolder
+- MaxAl
+- maya
+- MiraLake
+- Myn_Gen
+- nerferd_
+- nerferd_, Juno
+- Phrog
+- PowerAV
+- refUnchecked
+- Ridigel
+- Sapphire_Xer0
+- shub
+- Skqw
+- snolls
+- Soloiini
+- spalx
+- Spekio
+- Spooooky
+- Starl1ght
+- the_gb
+- TheAdvertisement
+- third
+- ThySirSlime
+- TiltTheStars
+- tobyaaa
+- valkyria
+- Verillia47
+- vexastrae
+- Woomii
+- Worldwaker2
+- xolimono
+- YeetTheTable
+- Zoey (tell first)
+
 
 Composers / Music
 - Nintendo
@@ -43,8 +102,5 @@ Level Design
 
 Code / Programming
 - DZ
-
-Asset Browser / Tools
-- Maddie480's Celeste Asset Drive Browser (https://maddie480.ovh/celeste/asset-drive)
 
 For full credits including code libraries, original Celeste team, Everest, map editors, and special thanks, see the in-game credits and Dialog/English.txt.

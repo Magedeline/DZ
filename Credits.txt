@@ -44,4 +44,7 @@ Level Design
 Code / Programming
 - DZ
 
+Asset Browser / Tools
+- Maddie480's Celeste Asset Drive Browser (https://maddie480.ovh/celeste/asset-drive)
+
 For full credits including code libraries, original Celeste team, Everest, map editors, and special thanks, see the in-game credits and Dialog/English.txt.

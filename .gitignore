@@ -373,3 +373,4 @@ AsepriteScripts/character_checklist.md
 AsepriteScripts/character_checklist.json
 AsepriteScripts/CreateCelesteCharacter.lua
 AsepriteScripts/CelesteHelper.lua
+tools/ResearchAssetDriveMatches.ps1

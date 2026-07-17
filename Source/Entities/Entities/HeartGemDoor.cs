@@ -41,7 +41,7 @@ internal class HeartGemDoor : Entity
         Vector2? nullable = data.FirstNodeNullable(new Vector2?(offset));
         if (nullable.HasValue)
             this.openDistance = Math.Abs(nullable.Value.Y - this.Y);
-        this.icon = GFX.Game.GetAtlasSubtextures("objects/DZ/heart_spear_door_mod/icon");
+        this.icon = GFX.Game.GetAtlasSubtextures("objects/DZ/heartdoor/icon00");
     }
 
     public override void Added(Scene scene)
@@ -75,7 +75,7 @@ internal class HeartGemDoor : Entity
         Solid solid2 = this.botSolid = new Solid(position2, (float)size2, (float)botSolidHeight, true);
         level3.Add((Entity)solid2);
         this.botSolid.SurfaceSoundIndex = 32;
-        if ((this.Scene as Level).Session.GetFlag("opened_heartgem_mod_door_" + (object)this.requires))
+        if ((this.Scene as Level).Session.GetFlag("opened_heartdoor_" + (object)this.requires))
         {
             this.opened = true;
             this.openPercent = 1f;
@@ -115,9 +115,19 @@ internal class HeartGemDoor : Entity
         this.Scene.Add(new WhiteLine(this.Position, this.size));
         level.Shake(0.3f);
         level.Flash(Color.White * 0.5f, false);
-        Audio.Play("event:/DZ/game/18_core/frontdoor_unlock", this.Position);
+        AreaKey area = level.Session.Area;
+        string unlockSfx;
+        if (area.Mode == AreaMode.BSide)
+            unlockSfx = "event:/DZ/game/18_core/frontdoor_unlock_bside";
+        else if (area.Mode == AreaMode.CSide)
+            unlockSfx = "event:/DZ/game/18_core/frontdoor_unlock_cside";
+        else if (area.Mode == (AreaMode)3)
+            unlockSfx = "event:/DZ/game/18_core/frontdoor_unlock_dside";
+        else
+            unlockSfx = "event:/DZ/game/18_core/frontdoor_unlock";
+        Audio.Play(unlockSfx, this.Position);
         this.opened = true;
-        level.Session.SetFlag("opened_heartgem_mod_door_" + this.requires, true);
+        level.Session.SetFlag("opened_heartdoor_" + this.requires, true);
         this.offset = 0.0f;
         yield return 0.6f;
         float topFrom = this.topSolid.Y;
@@ -171,7 +181,7 @@ internal class HeartGemDoor : Entity
     private void drawMist(Rectangle bounds, Vector2 mist)
     {
         Color color = Color.White * 0.6f;
-        MTexture mtexture = GFX.Game["objects/DZ/DZ/heart_spear_door_mod/iso"];
+        MTexture mtexture = GFX.Game["objects/DZ/heartdoor/depth"];
         int val11 = mtexture.Width / 2;
         int val12 = mtexture.Height / 2;
         for (int index1 = 0; index1 < bounds.Width; index1 += val11)
@@ -203,8 +213,8 @@ internal class HeartGemDoor : Entity
 
     private void drawEdges(Rectangle bounds, Color color)
     {
-        MTexture mtexture1 = GFX.Game["objects/DZ/DZ/heartdoor/edge"];
-        MTexture mtexture2 = GFX.Game["objects/DZ/DZ/heartdoor/top"];
+        MTexture mtexture1 = GFX.Game["objects/DZ/heartdoor/edge"];
+        MTexture mtexture2 = GFX.Game["objects/DZ/heartdoor/top"];
         int height = (int)((double)this.offset % 8.0);
         if (height > 0)
         {

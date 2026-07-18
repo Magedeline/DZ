@@ -24,7 +24,7 @@ jobs:
       run: unzip lib-stripped.zip
 
     - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
+      uses: actions/setup-dotnet@v6
     - name: Install dependencies
       run: dotnet restore
     - name: Build

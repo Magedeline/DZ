@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
@@ -24,6 +25,12 @@ namespace Celeste.Mod.DZ.HotReload
         // Cached overlay/scene so we don't scan the entity list every frame while frozen.
         private static Scene _overlayScene;
         private static LiveWatchOverlay _cachedOverlay;
+
+        // Cached reflection metadata for the RendererList internal lists.
+        private static Type _rendererListType;
+        private static FieldInfo _rendererListField;
+        private static FieldInfo _rendererAddingField;
+        private static FieldInfo _rendererRemovingField;
         
         public static readonly string LogPath = Path.Combine(
             Everest.PathGame, "LiveWatch_CrashLog.txt");
@@ -35,6 +42,8 @@ namespace Celeste.Mod.DZ.HotReload
             On.Monocle.Engine.Update += OnEngineUpdate;
             On.Celeste.Level.Update += OnLevelUpdate;
             On.Monocle.Scene.Update += OnSceneUpdate;
+            On.Monocle.RendererList.Update += OnRendererListUpdate;
+            On.Monocle.RendererList.BeforeRender += OnRendererListBeforeRender;
 
             Logger.Log(LogLevel.Info, "DZ", "[LiveWatch] Patcher installed");
         }
@@ -44,6 +53,8 @@ namespace Celeste.Mod.DZ.HotReload
             On.Monocle.Engine.Update -= OnEngineUpdate;
             On.Celeste.Level.Update -= OnLevelUpdate;
             On.Monocle.Scene.Update -= OnSceneUpdate;
+            On.Monocle.RendererList.Update -= OnRendererListUpdate;
+            On.Monocle.RendererList.BeforeRender -= OnRendererListBeforeRender;
         }
 
         private static void OnEngineUpdate(On.Monocle.Engine.orig_Update orig, Engine self, GameTime gameTime)
@@ -114,6 +125,92 @@ namespace Celeste.Mod.DZ.HotReload
                     Freeze(ex, $"Scene.Update ({self.GetType().Name})");
                 }
             }
+        }
+
+        private static void OnRendererListUpdate(On.Monocle.RendererList.orig_Update orig, RendererList self)
+        {
+            if (!_isFrozen)
+            {
+                CleanNullRenderers(self);
+                try
+                {
+                    orig(self);
+                }
+                catch (Exception ex)
+                {
+                    Freeze(ex, "RendererList.Update");
+                }
+            }
+        }
+
+        private static void OnRendererListBeforeRender(On.Monocle.RendererList.orig_BeforeRender orig, RendererList self)
+        {
+            if (!_isFrozen)
+            {
+                CleanNullRenderers(self);
+                try
+                {
+                    orig(self);
+                }
+                catch (Exception ex)
+                {
+                    Freeze(ex, "RendererList.BeforeRender");
+                }
+            }
+        }
+
+        private static void EnsureRendererListReflection()
+        {
+            if (_rendererListType != null)
+                return;
+
+            _rendererListType = typeof(Scene).Assembly.GetType("Monocle.RendererList");
+            if (_rendererListType == null)
+                return;
+
+            const BindingFlags flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
+            _rendererListField = _rendererListType.GetField("Renderers", flags);
+            _rendererAddingField = _rendererListType.GetField("adding", flags);
+            _rendererRemovingField = _rendererListType.GetField("removing", flags);
+        }
+
+        private static void CleanNullRenderers(RendererList self)
+        {
+            try
+            {
+                EnsureRendererListReflection();
+                if (_rendererListField == null)
+                    return;
+
+                int removed = 0;
+                removed += RemoveNullRenderers(_rendererListField.GetValue(self));
+                removed += RemoveNullRenderers(_rendererAddingField?.GetValue(self));
+                removed += RemoveNullRenderers(_rendererRemovingField?.GetValue(self));
+
+                if (removed > 0)
+                    Logger.Log(LogLevel.Warn, "DZ", $"[LiveWatch] Removed {removed} null renderer(s) from RendererList");
+            }
+            catch
+            {
+                // Never let cleanup throw.
+            }
+        }
+
+        private static int RemoveNullRenderers(object listObj)
+        {
+            if (listObj is not System.Collections.IList list)
+                return 0;
+
+            int removed = 0;
+            for (int i = list.Count - 1; i >= 0; i--)
+            {
+                if (list[i] == null)
+                {
+                    list.RemoveAt(i);
+                    removed++;
+                }
+            }
+            return removed;
         }
 
         private static void CheckInput()

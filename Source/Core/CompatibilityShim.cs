@@ -472,6 +472,14 @@ namespace DZ
             }
         }
 
+        public static void RecordGoldenStrawberry(Level level, string strawberryId)
+        {
+            if (level?.Session != null && !string.IsNullOrEmpty(strawberryId))
+            {
+                DZModule.SaveData?.UnlockAchievement($"golden_strawberry:{level.Session.Area.SID}:{strawberryId}");
+            }
+        }
+
         public static void RecordMiniHeart(Level level, string gemId)
         {
             if (level?.Session != null && !string.IsNullOrEmpty(gemId))
@@ -706,6 +714,10 @@ namespace Celeste.Extensions
         }
 
         public static void RecordPinkPlatinumBerry(Level level, string sid)
+        {
+        }
+
+        public static void RecordGoldenStrawberry(Level level, string sid)
         {
         }
     }

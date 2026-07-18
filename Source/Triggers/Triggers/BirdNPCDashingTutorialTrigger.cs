@@ -2,7 +2,7 @@ using Celeste.Cutscenes;
 using Celeste.Entities;
 using DZ;
 using DZBirdNPC = Celeste.Entities.DZBirdNPC;
-using DZBridge = Celeste.Entities.Bridge;
+using DZBridge = Celeste.Entities.BridgeDZ;
 
 namespace Celeste.Triggers;
 

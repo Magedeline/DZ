@@ -4,7 +4,7 @@ internal class HeartGemDoor : Entity
 {
     private MTexture temp = new MTexture();
     private Particle[] particles = new Particle[50];
-    private const string opened_flag = "opened_heartgem_mod_door_";
+    private const string opened_flag = "opened_heartdoor";
     private int requires;
     private int size;
     private readonly float openDistance;
@@ -181,7 +181,23 @@ internal class HeartGemDoor : Entity
     private void drawMist(Rectangle bounds, Vector2 mist)
     {
         Color color = Color.White * 0.6f;
-        MTexture mtexture = GFX.Game["objects/DZ/heartdoor/depth"];
+        MTexture mtexture = GFX.Game["objects/DZ/heartdoor/mist"];
+        int val11 = mtexture.Width / 2;
+        int val12 = mtexture.Height / 2;
+        for (int index1 = 0; index1 < bounds.Width; index1 += val11)
+        {
+            for (int index2 = 0; index2 < bounds.Height; index2 += val12)
+            {
+                mtexture.GetSubtexture((int)this.mod(mist.X, (float)val11), (int)this.mod(mist.Y, (float)val12), Math.Min(val11, bounds.Width - index1), Math.Min(val12, bounds.Height - index2), this.temp);
+                this.temp.Draw(new Vector2((float)(bounds.X + index1), (float)(bounds.Y + index2)), Vector2.Zero, color);
+            }
+        }
+    }
+
+    private void drawWater(Rectangle bounds, Vector2 mist)
+    {
+        Color color = Color.White * 0.6f;
+        MTexture mtexture = GFX.Game["objects/DZ/large_heartdoor/water"];
         int val11 = mtexture.Width / 2;
         int val12 = mtexture.Height / 2;
         for (int index1 = 0; index1 < bounds.Width; index1 += val11)
@@ -197,6 +213,7 @@ internal class HeartGemDoor : Entity
     private void drawInterior(Rectangle bounds)
     {
         Draw.Rect(bounds, Calc.HexToColor("18668f"));
+        this.drawWater(bounds, this.mist);
         this.drawMist(bounds, this.mist);
         this.drawMist(bounds, new Vector2(this.mist.Y, this.mist.X) * 1.5f);
         Vector2 vector21 = (this.Scene as Level).Camera.Position;

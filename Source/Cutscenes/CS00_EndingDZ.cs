@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Runtime.CompilerServices;
+using Celeste.Entities;
 using Celeste.Mod.DZ.UI;
 using global::Celeste.Mod.DZ.Cutscenes;
 using FMOD.Studio;
@@ -36,7 +37,7 @@ public class CS00_EndingDZ : CutsceneEntity
 
     private Entities.DZBirdNPC bird;
 
-    private Entities.Bridge bridge;
+    private BridgeDZ bridgedz;
 
     private bool keyOffed;
 
@@ -45,12 +46,12 @@ public class CS00_EndingDZ : CutsceneEntity
     private TimeRateModifier timeRateModifier;
 
     [MethodImpl(MethodImplOptions.NoInlining)]
-    public CS00_EndingDZ(Player player, Entities.DZBirdNPC bird, Entities.Bridge bridge)
+    public CS00_EndingDZ(Player player, Entities.DZBirdNPC bird, BridgeDZ bridgedz)
         : base(fadeInOnSkip: false, endingChapterAfter: false)
     {
         this.player = player;
         this.bird = bird;
-        this.bridge = bridge;
+        this.bridgedz = bridgedz;
         Add(timeRateModifier = new TimeRateModifier(1f, false));
     }
 
@@ -74,9 +75,9 @@ public class CS00_EndingDZ : CutsceneEntity
         while (timeRateModifier.CurrentTimeRate() > 0f)
         {
             yield return null;
-            if (timeRateModifier.CurrentTimeRate() < 0.5f && bridge != null)
+            if (timeRateModifier.CurrentTimeRate() < 0.5f && bridgedz != null)
             {
-                bridge.StopCollapseLoop();
+                bridgedz.StopCollapseLoop();
             }
             level.StopShake();
             MInput.GamePads[Input.Gamepad].StopRumble();

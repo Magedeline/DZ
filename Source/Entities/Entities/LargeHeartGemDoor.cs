@@ -7,7 +7,7 @@ internal class LargeHeartGemDoor : Entity
 {
     private MTexture temp = new MTexture();
     private Particle[] particles = new Particle[100];
-    private const string opened_flag = "opened_large_heartgem_mod_door_";
+    private const string opened_flag = "opened_large_heartdoor_";
     private int requires;
     private int size;
     private readonly float openDistance;
@@ -28,8 +28,36 @@ internal class LargeHeartGemDoor : Entity
         {
             if (SaveData.Instance.CheatMode)
                 return this.requires;
-            return SaveData.Instance.TotalHeartGems;
+            return this.GetStrawberries() + this.GetHeartGems() + this.GetMiniHearts() + this.GetPinkPlatinumBerries() + this.GetGoldenStrawberries();
         }
+    }
+
+    private int GetStrawberries() => SaveData.Instance.TotalStrawberries;
+    private int GetHeartGems() => SaveData.Instance.TotalHeartGems;
+    private int GetMiniHearts() => global::Celeste.Mod.DZ.DZModule.SaveData?.GetTotalMiniHearts() ?? 0;
+    private int GetPinkPlatinumBerries() => global::Celeste.Mod.DZ.DZModule.SaveData?.GetTotalPinkPlatinumBerries() ?? 0;
+    private int GetGoldenStrawberries() => global::Celeste.Mod.DZ.DZModule.SaveData?.GetTotalGoldenStrawberries() ?? 0;
+
+    private string GetFillSfxForSlot(int slotIndex, int strawberries, int golden, int pink, int heartGems, int miniHearts)
+    {
+        if (slotIndex < strawberries + golden + pink)
+            return "event:/DZ/game/general/strawberry_door_fill";
+        return "event:/DZ/game/18_core/frontdoor_heartfill";
+    }
+
+    private Color GetIconColorForSlot(int slotIndex, int strawberries, int golden, int pink, int heartGems, int miniHearts)
+    {
+        if (slotIndex >= strawberries + golden + pink + heartGems + miniHearts)
+            return Color.Gray;
+        if (slotIndex < strawberries)
+            return Color.HotPink;
+        if (slotIndex < strawberries + golden)
+            return Color.Gold;
+        if (slotIndex < strawberries + golden + pink)
+            return Color.Magenta;
+        if (slotIndex < strawberries + golden + pink + heartGems)
+            return Color.Cyan;
+        return Color.Orange;
     }
 
     private float counter { get; set; }
@@ -49,7 +77,10 @@ internal class LargeHeartGemDoor : Entity
         Vector2? nullable = data.FirstNodeNullable(new Vector2?(offset));
         if (nullable.HasValue)
             this.openDistance = Math.Abs(nullable.Value.Y - this.Y);
-        this.icon = GFX.Game.GetAtlasSubtextures("objects/DZ/heart_spear_door_mod/icon");
+        this.icon = new List<MTexture>();
+        this.icon.AddRange(GFX.Game.GetAtlasSubtextures("objects/DZ/large_heartdoor/icon"));
+        this.icon.AddRange(GFX.Game.GetAtlasSubtextures("objects/DZ/large_heartdoor/iconB"));
+        this.icon.AddRange(GFX.Game.GetAtlasSubtextures("objects/DZ/large_heartdoor/iconG"));
         if (this.startHidden)
         {
             this.Visible = false;
@@ -87,7 +118,7 @@ internal class LargeHeartGemDoor : Entity
         Solid solid2 = this.botSolid = new Solid(position2, (float)size2, (float)botSolidHeight, true);
         level3.Add((Entity)solid2);
         this.botSolid.SurfaceSoundIndex = 32;
-        if ((this.Scene as Level).Session.GetFlag("opened_large_heartgem_mod_door_" + (object)this.requires))
+        if ((this.Scene as Level).Session.GetFlag("opened_large_heartdoor_" + (object)this.requires))
         {
             this.opened = true;
             this.openPercent = 1f;
@@ -166,16 +197,22 @@ internal class LargeHeartGemDoor : Entity
             global::Celeste.Player player = this.Scene.Tracker.GetEntity<global::Celeste.Player>();
             if (player != null && Math.Abs(player.X - this.Center.X) < 120.0)
             {                
-                if (this.counter == 0.0f && this.heartGems > 0)
-                    Audio.Play("event:/DZ/game/18_core/frontdoor_heartfill", this.Position);
+                int s = this.GetStrawberries();
+                int g = this.GetGoldenStrawberries();
+                int p = this.GetPinkPlatinumBerries();
+                int h = this.GetHeartGems();
+                int m = this.GetMiniHearts();
+                int total = s + g + p + h + m;
+                if (this.counter == 0.0f && total > 0)
+                    Audio.Play(this.GetFillSfxForSlot(0, s, g, p, h, m), this.Position);
                 int was = (int)this.counter;
-                int target = Math.Min(this.heartGems, this.requires);
+                int target = Math.Min(total, this.requires);
                 this.counter = Calc.Approach(this.counter, target, Engine.DeltaTime * this.requires * 0.8f);
                 if (was != (int)this.counter)
                 {
                     yield return 0.1f;                    
                     if (this.counter < target)
-                        Audio.Play("event:/DZ/game/18_core/frontdoor_heartfill", this.Position);
+                        Audio.Play(this.GetFillSfxForSlot(was, s, g, p, h, m), this.Position);
                 }
                 lastCounter = this.counter;
             }
@@ -218,7 +255,7 @@ internal class LargeHeartGemDoor : Entity
         yield return 9.5f;
         
         this.opened = true;
-        level.Session.SetFlag("opened_large_heartgem_mod_door_" + this.requires, true);
+        level.Session.SetFlag("opened_large_heartdoor_" + this.requires, true);
         this.offset = 0.0f;
         
         yield return 0.6f;
@@ -327,7 +364,23 @@ internal class LargeHeartGemDoor : Entity
     private void drawMist(Rectangle bounds, Vector2 mist)
     {
         Color color = GetRainbowColor(this.mist.X * 0.01f) * 0.6f;
-        MTexture mtexture = GFX.Game["objects/DZ/heart_spear_door_mod/iso"];
+        MTexture mtexture = GFX.Game["objects/DZ/heartdoor/mist"];
+        int val11 = mtexture.Width / 2;
+        int val12 = mtexture.Height / 2;
+        for (int index1 = 0; index1 < bounds.Width; index1 += val11)
+        {
+            for (int index2 = 0; index2 < bounds.Height; index2 += val12)
+            {
+                mtexture.GetSubtexture((int)this.mod(mist.X, (float)val11), (int)this.mod(mist.Y, (float)val12), Math.Min(val11, bounds.Width - index1), Math.Min(val12, bounds.Height - index2), this.temp);
+                this.temp.Draw(new Vector2((float)(bounds.X + index1), (float)(bounds.Y + index2)), Vector2.Zero, color);
+            }
+        }
+    }
+
+    private void drawWater(Rectangle bounds, Vector2 mist)
+    {
+        Color color = Color.White * 0.6f;
+        MTexture mtexture = GFX.Game["objects/DZ/large_heartdoor/water"];
         int val11 = mtexture.Width / 2;
         int val12 = mtexture.Height / 2;
         for (int index1 = 0; index1 < bounds.Width; index1 += val11)
@@ -349,6 +402,7 @@ internal class LargeHeartGemDoor : Entity
         baseColor.B = (byte)((baseColor.B + Calc.HexToColor("18668f").B) / 2);
         
         Draw.Rect(bounds, baseColor);
+        this.drawWater(bounds, this.mist);
         this.drawMist(bounds, this.mist);
         this.drawMist(bounds, new Vector2(this.mist.Y, this.mist.X) * 1.5f);
         Vector2 vector21 = (this.Scene as Level).Camera.Position;
@@ -370,8 +424,8 @@ internal class LargeHeartGemDoor : Entity
 
     private void drawEdges(Rectangle bounds, Color color)
     {
-        MTexture mtexture1 = GFX.Game["objects/DZ/DZ/heartdoor/edge"];
-        MTexture mtexture2 = GFX.Game["objects/DZ/DZ/heartdoor/top"];
+        MTexture mtexture1 = GFX.Game["objects/DZ/heartdoor/edge"];
+        MTexture mtexture2 = GFX.Game["objects/DZ/heartdoor/top"];
         int height = (int)((double)this.offset % 8.0);
         
         // Rainbow color for edges
@@ -427,34 +481,30 @@ internal class LargeHeartGemDoor : Entity
             this.drawEdges(bounds2, color);
         }
         
-        // Rainbow heart icons
-        float iconSpacing = 12f;
-        int iconsPerRow = (int)((double)(this.size - 8) / (double)iconSpacing);
-        int rowCount = (int)Math.Ceiling((double)this.requires / (double)iconsPerRow);
-        for (int index1 = 0; index1 < rowCount; ++index1)
+        // Clockwise collectible icons
+        if (this.requires > 0)
         {
-            int iconsThisRow = (index1 + 1) * iconsPerRow < this.requires ? iconsPerRow : this.requires - index1 * iconsPerRow;
-            Vector2 vector2 = new Vector2(this.X + (float)this.size * 0.5f, this.Y) + new Vector2((float)((double)-iconsThisRow / 2.0 + 0.5), (float)((double)-rowCount / 2.0 + (double)index1 + 0.5)) * iconSpacing;
-            if (this.opened)
+            int s = this.GetStrawberries();
+            int g = this.GetGoldenStrawberries();
+            int p = this.GetPinkPlatinumBerries();
+            int h = this.GetHeartGems();
+            int m = this.GetMiniHearts();
+            Vector2 center = new Vector2(this.X + (float)this.size * 0.5f, this.Y);
+            float radius = Math.Max((float)this.size * 0.5f + 8f, (float)this.requires * 2f);
+            float angleStep = MathHelper.TwoPi / (float)this.requires;
+            float startAngle = -MathHelper.PiOver2;
+            for (int iconIndex = 0; iconIndex < this.requires; ++iconIndex)
             {
-                if (index1 < rowCount / 2)
-                    vector2.Y -= this.openAmount + 8f;
-                else
-                    vector2.Y += this.openAmount + 8f;
-            }
-            for (int index2 = 0; index2 < iconsThisRow; ++index2)
-            {
-                int iconIndex = index1 * iconsPerRow + index2;
+                float angle = startAngle + iconIndex * angleStep;
+                Vector2 vector2 = center + new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle)) * radius;
+                if (this.opened)
+                    vector2 += new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle)) * (this.openAmount + 8f);
 
-                // Rainbow color for each heart icon
-                float iconHue = (this.rainbowTimer + iconIndex * 0.5f) % MathHelper.TwoPi;
-                Color rainbowIconColor = Calc.HsvToColor(iconHue / MathHelper.TwoPi, 0.8f, 1.0f);
-
-                Color iconColor = rainbowIconColor * this.heartAlpha;
+                Color iconColor = this.GetIconColorForSlot(iconIndex, s, g, p, h, m) * this.heartAlpha;
                 if (this.opened)
                     iconColor *= 0.25f;
 
-                this.icon[(int)((double)Ease.CubeIn(Calc.ClampedMap(this.counter, (float)iconIndex, (float)iconIndex + 1f, 0.0f, 1f)) * (double)(this.icon.Count - 1))].DrawCentered(vector2 + new Vector2((float)index2 * iconSpacing, 0.0f), iconColor);
+                this.icon[(int)((double)Ease.CubeIn(Calc.ClampedMap(this.counter, (float)iconIndex, (float)iconIndex + 1f, 0.0f, 1f)) * (double)(this.icon.Count - 1))].DrawCentered(vector2, iconColor);
             }
         }
     }

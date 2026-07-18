@@ -116,6 +116,9 @@ namespace Celeste.Entities
                 level.Session.UpdateLevelStartDashes();
             }
 
+            // Record for large heart gem door counter
+            DZ.DZProgressionManager.RecordGoldenStrawberry(level, this.id.ToString());
+
             // Visual effects
             wiggler.Start();
             

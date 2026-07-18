@@ -341,7 +341,14 @@ public class DZBirdNPC : Actor
     {
         Y = level.Bounds.Top;
         X += 32f;
-        yield return null;
+        yield return 1f;
+        Player player = Scene.Tracker.GetEntity<Player>();
+        BridgeDZ bridgedz = Scene.Entities.FindFirst<BridgeDZ>();
+        while ((player == null || !(player.X > StartPosition.X - 92f) || !(player.Y > StartPosition.Y - 20f) || !(player.Y < StartPosition.Y - 10f)) && (!SaveData.Instance.Assists.Invincible || player == null || !(player.X > StartPosition.X - 60f) || !(player.Y > StartPosition.Y) || !(player.Y < StartPosition.Y + 34f)))
+        {
+            yield return null;
+        }
+        Scene.Add(new CS00_EndingDZ(player, this, bridgedz));
     }
 
     private IEnumerator DreamJumpTutorial()

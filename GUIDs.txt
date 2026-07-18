@@ -69,6 +69,7 @@
 {a2fd31ca-539b-485b-87a8-ea0871f6ae54} event:/char/dialogue/DZ/papyrus
 {47ed97bf-466c-4b66-8806-dc9dbdc4a3c6} event:/char/dialogue/DZ/preist
 {e60f4192-d0e6-4214-bc5e-75e34e8611d1} event:/char/dialogue/DZ/queen
+{fad07993-121f-4782-b046-2d0c0bc347ae} event:/char/dialogue/DZ/ralsei
 {550ea1eb-72a1-4503-9b67-f267ad2d198f} event:/char/dialogue/DZ/sans
 {a09322f2-4450-4518-a553-21406017bae2} event:/char/dialogue/DZ/secret_character
 {db62c49c-c5e3-4fd5-a814-0c1761b45188} event:/char/dialogue/DZ/spamton
@@ -81,7 +82,6 @@
 {187affac-2205-43ae-b7e8-8d2ed59401dc} event:/char/dialogue/DZ/undyne
 {6877a222-9a4f-4bcf-b98c-eb46e27833bd} event:/char/dialogue/DZ/undyne_hyper
 {b6f02ff8-67c8-449c-ab00-e003247402b6} event:/char/dialogue/DZ/waddledee
-{fad07993-121f-4782-b046-2d0c0bc347ae} event:/char/dialogue/DZ/ralsei
 {9fdf9618-b47b-4427-bb22-4642a42296b9} event:/char/dialogue/sfx_support/phone_static_ex
 {0793a2c4-4c0b-41de-8f60-cbaed147961b} event:/char/dialogue/sfx_support/phone_static_mom
 {e27b3ab9-d6c9-4952-92bf-e652b98a9ed5} event:/char/dialogue/!!!_README
@@ -793,6 +793,7 @@
 {0d63a3cb-4d55-4e40-ad49-607bbc70fb32} event:/DZ/game/18_core/sideway_threats
 {091b8164-5933-49d4-b72d-4c54cae1567a} event:/DZ/game/18_core/switch_to_cold
 {75def933-f395-4caf-9980-0fddbedd5b26} event:/DZ/game/18_core/switch_to_hot
+{01614c00-4b9d-4495-bf43-a70797d3f0ab} event:/DZ/game/general/miniheart_get
 {da557249-2236-424c-95e7-8f393ab0083f} event:/DZ/game/general/assist_dash_aim
 {bbf16102-f2ce-48d3-bb45-a53e26472622} event:/DZ/game/general/assist_dreamblockbounce
 {ceaa6a18-3d68-46a2-a85a-49e752588abe} event:/DZ/game/general/assist_nonsolid_in
@@ -846,6 +847,7 @@
 {965cdec1-a498-49fd-a1c3-bb0c772c10ae} event:/DZ/game/general/spring
 {c8ed03d8-5d2f-4aae-8db3-4820d3534a1c} event:/DZ/game/general/strawberry_blue_pulse
 {7a8a7923-9da6-4a0f-b1bd-589a50e80bf6} event:/DZ/game/general/strawberry_blue_touch
+{e6744e64-9b2c-493b-823e-61993a58c0d4} event:/DZ/game/general/strawberry_door_fill
 {bf005cf3-6dde-493b-907e-82b3b19ef593} event:/DZ/game/general/strawberry_flyaway
 {503d802e-b12a-45f3-b7f7-63ea95599d4e} event:/DZ/game/general/strawberry_get
 {495bf0c6-d40e-446d-b44b-c32e19f64448} event:/DZ/game/general/strawberry_laugh
@@ -1331,6 +1333,7 @@
 {11ceb604-2aba-41b5-a303-8b0611c25388} event:/DZ/new_content/game/19_spaces/glitch_medium
 {b4a66775-dcb3-4c18-b3ab-4e32d48091ac} event:/DZ/new_content/game/19_spaces/glitch_short
 {ef05f7da-ba07-4547-bc64-834bf42f18c1} event:/DZ/new_content/game/19_spaces/heart_door
+{42bc40d9-d34a-428a-8e73-89a078424472} event:/DZ/new_content/game/19_spaces/heart_door_fill
 {b2cf0360-637f-4a1a-a713-7bb7908d7a00} event:/DZ/new_content/game/19_spaces/heart_door_unlock
 {d4e105cd-830e-4f1d-8373-8b085da429b5} event:/DZ/new_content/game/19_spaces/key_unlock_1
 {5962f3e4-faf9-48ff-a76a-223c9b6a8c5b} event:/DZ/new_content/game/19_spaces/key_unlock_2

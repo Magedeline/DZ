@@ -11,7 +11,7 @@ namespace Celeste.Entities;
     [HotReloadable]
 
 
-public class Bridge : Entity
+public class BridgeDZ : Entity
 {
     private List<DZBridgeTile> tiles;
 
@@ -38,7 +38,7 @@ public class Bridge : Entity
     private SoundSource collapseSfx;
 
     [MethodImpl(MethodImplOptions.NoInlining)]
-    public Bridge(Vector2 position, int width, float gapStartX, float gapEndX)
+    public BridgeDZ(Vector2 position, int width, float gapStartX, float gapEndX)
         : base(position)
     {
         this.width = width;
@@ -59,7 +59,7 @@ public class Bridge : Entity
     }
 
     [MethodImpl(MethodImplOptions.NoInlining)]
-    public Bridge(EntityData data, Vector2 offset)
+    public BridgeDZ(EntityData data, Vector2 offset)
         : this(data.Position + offset, data.Width, data.Nodes[0].X, data.Nodes[1].X)
     {
     }

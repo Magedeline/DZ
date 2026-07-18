@@ -145,6 +145,39 @@ namespace Celeste.Mod.DZ
             Achievements.Add(key);
         }
 
+        public int GetTotalMiniHearts()
+        {
+            int count = 0;
+            foreach (string achievement in Achievements)
+            {
+                if (achievement.StartsWith("mini_heart:"))
+                    count++;
+            }
+            return count;
+        }
+
+        public int GetTotalPinkPlatinumBerries()
+        {
+            int count = 0;
+            foreach (string achievement in Achievements)
+            {
+                if (achievement.StartsWith("pink_platinum:"))
+                    count++;
+            }
+            return count;
+        }
+
+        public int GetTotalGoldenStrawberries()
+        {
+            int count = 0;
+            foreach (string achievement in Achievements)
+            {
+                if (achievement.StartsWith("golden_strawberry:"))
+                    count++;
+            }
+            return count;
+        }
+
         public void CollectHeartGem(string heartId)
         {
             CollectedHeartGems.Add(heartId);

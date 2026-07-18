@@ -775,7 +775,16 @@ namespace DZ
         {
             if (self == null || string.IsNullOrEmpty(id) || !self.Has(id))
                 return;
-            orig(self, id, restart, randomizeFrame);
+            try
+            {
+                orig(self, id, restart, randomizeFrame);
+            }
+            catch (KeyNotFoundException)
+            {
+                // Some downstream hooks (e.g., CommunalHelper's PlayerVisualModifier) throw
+                // KeyNotFoundException for IDs they don't recognise, even when the Sprite itself
+                // has the animation. Swallow these silently to match the guard's intent.
+            }
         }
 
         private delegate void orig_FlingBirdIntro_Ctor(Celeste.Entities.FlingBirdIntro self, EntityData data, Vector2 levelOffset);

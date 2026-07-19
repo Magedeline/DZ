@@ -1036,7 +1036,7 @@
         <Loop id="skid" path="flip" delay="0.04" frames="8"/>
         <Loop id="dangling" path="dangling" delay="0.11" frames="0-9" />
         <Loop id="shaking" path="idle" delay="0.1" frames="0" />
-        <Anim id="dea2" path="death_h" delay="0.02" frames="0-12" />
+        <Anim id="dead" path="death_h" delay="0.02" frames="0-12" />
         <Anim id="deadup"   path="death_h" delay="0.02" frames="0-12" />
         <Anim id="deaddown" path="death_h" delay="0.02" frames="0-12" />
         <Loop id="deadside" path="death_h" delay="0.08" frames="0-12" />
@@ -1243,7 +1243,7 @@
       <Anim id="flip" path="flip" delay="0.04" frames="0-7" goto="runFast"/>
       <Loop id="skid" path="flip" delay="0.04" frames="8"/>
       <Loop id="dangling" path="dangling" delay="0.11" frames="0-9" />
-      <Anim id="dea2" path="death_h" delay="0.02" frames="0-12" />
+      <Anim id="dead" path="death_h" delay="0.02" frames="0-12" />
       <Anim id="deadup"   path="death_h" delay="0.02" frames="0-12" />
       <Anim id="deaddown" path="death_h" delay="0.02" frames="0-12" />
       
@@ -1583,7 +1583,7 @@
       <Loop id="bubble" path="bubble" delay="0.08" />
       <Loop id="dangling" path="dangling" delay="0.11" frames="0-9" />
       <Loop id="deaddown" path="deaddown" delay="0.1" frames="0-1" />
-      <Loop id="dea2" path="dea2" delay="0.1" frames="0-1" />
+      <Loop id="dead" path="dead" delay="0.1" frames="0-1" />
       <Loop id="deadup" path="deadup" delay="0.1" frames="0-1" />
       <Anim id="death_h" path="death_h" delay="0.02" frames="0-14" />
       <Loop id="dreamDash" path="dreamDash" delay="0.03" frames="0-20" />
@@ -1632,7 +1632,7 @@
       <Loop id="carrytheo_collapse" path="carrytheo_collapse" delay="0.1" />
       <Loop id="dangling" path="dangling" delay="0.11" frames="0-9" />
       <Loop id="deaddown" path="deaddown" delay="0.1" frames="0-1" />
-      <Loop id="dea2" path="dea2" delay="0.1" frames="0-1" />
+      <Loop id="dead" path="dead" delay="0.1" frames="0-1" />
       <Loop id="deadup" path="deadup" delay="0.1" frames="0-1" />
       <Anim id="death_h" path="death_h" delay="0.02" frames="0-14" />
       <Loop id="dreamDash" path="dreamDash" delay="0.03" frames="0-20" />
@@ -1684,7 +1684,7 @@
       <Loop id="bubble" path="bubble" delay="0.08" />
       <Loop id="dangling" path="dangling" delay="0.11" frames="0-9" />
       <Loop id="deaddown" path="deaddown" delay="0.1" frames="0-1" />
-      <Loop id="dea2" path="dea2" delay="0.1" frames="0-1" />
+      <Loop id="dead" path="dead" delay="0.1" frames="0-1" />
       <Loop id="deadup" path="deadup" delay="0.1" frames="0-1" />
       <Anim id="death_h" path="death_h" delay="0.02" frames="0-14" />
       <Loop id="dreamDash" path="dreamDash" delay="0.03" frames="0-20" />

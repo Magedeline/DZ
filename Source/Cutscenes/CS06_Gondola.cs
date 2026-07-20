@@ -58,16 +58,16 @@ namespace Celeste.Cutscenes
 		}
 
 		// Token: 0x0600130C RID: 4876 RVA: 0x00067790 File Offset: 0x00065990
-		public CS06_Gondola(NPC theo, GondolaDZ gondola, Player player) : base(false, true)
+		public CS06_Gondola(NPC magolor, GondolaDZ gondola, Player player) : base(false, true)
 		{
-			this.theo = theo;
+			this.magolor = magolor;
 			this.gondola = new GondolaWrapper(gondola);
 			this.player = player;
 		}
 
-		public CS06_Gondola(NPC theo, GondolaMod gondola, Player player) : base(false, true)
+		public CS06_Gondola(NPC magolor, GondolaMod gondola, Player player) : base(false, true)
 		{
-			this.theo = theo;
+			this.magolor = magolor;
 			this.gondola = new GondolaWrapper(gondola);
 			this.player = player;
 		}
@@ -76,6 +76,18 @@ namespace Celeste.Cutscenes
 		public override void OnBegin(Level level)
 		{
 			level.RegisterAreaComplete();
+			if (this.magolor.Sprite == null)
+			{
+				Sprite sprite = this.magolor.Get<Sprite>();
+				if (sprite != null)
+				{
+					this.magolor.Sprite = sprite;
+				}
+				else
+				{
+					Logger.Log(LogLevel.Warn, "CS06_Gondola", "Cutscene actor has no Sprite component.");
+				}
+			}
 			foreach (Backdrop backdrop in level.Foreground.Backdrops)
 			{
 				if (backdrop is WindSnowFG)
@@ -100,9 +112,9 @@ namespace Celeste.Cutscenes
 			Audio.SetMusic("event:/DZ/music/lvl1/magolor", true, true);
 			yield return Textbox.Say("DZ_CH6_GONDOLA", new Func<IEnumerator>[]
 			{
-				new Func<IEnumerator>(this.EnterTheo),
-				new Func<IEnumerator>(this.CheckOnTheo),
-				new Func<IEnumerator>(this.GetUpTheo),
+				new Func<IEnumerator>(this.EnterMagolor),
+				new Func<IEnumerator>(this.CheckOnMagolor),
+				new Func<IEnumerator>(this.GetUpMagolor),
 				new Func<IEnumerator>(this.LookAtLever),
 				new Func<IEnumerator>(this.PullLever),
 				new Func<IEnumerator>(this.WaitABit),
@@ -116,8 +128,8 @@ namespace Celeste.Cutscenes
 				new Func<IEnumerator>(this.StartBreathing),
 				new Func<IEnumerator>(this.Ascend),
 				new Func<IEnumerator>(this.WaitABit),
-				new Func<IEnumerator>(this.TheoTakesOutPhone),
-				new Func<IEnumerator>(this.FaceTheo)
+				new Func<IEnumerator>(this.MagolorTakesOutPhone),
+				new Func<IEnumerator>(this.FaceMagolor)
 			});
 			yield return this.ShowPhoto();
 			base.EndCutscene(this.Level, true);
@@ -137,6 +149,7 @@ namespace Celeste.Cutscenes
 				this.rumbler.RemoveSelf();
 				this.rumbler = null;
 			}
+			level.Session.SetFlag(NPC06_Magolor.CutsceneFlag, true);
 			level.CompleteArea(true, false, false);
 			if (!this.WasSkipped)
 			{
@@ -145,67 +158,88 @@ namespace Celeste.Cutscenes
 			}
 		}
 
+		private Sprite MagolorSprite
+		{
+			get
+			{
+				if (this.magolor.Sprite == null)
+				{
+					Sprite sprite = this.magolor.Get<Sprite>();
+					if (sprite != null)
+					{
+						this.magolor.Sprite = sprite;
+					}
+				}
+				return this.magolor.Sprite;
+			}
+		}
+
+		private void PlayMagolorAnim(string anim)
+		{
+			MagolorSprite?.Play(anim, false, false);
+		}
+
 		// Token: 0x06001310 RID: 4880 RVA: 0x000678D5 File Offset: 0x00065AD5
-		private IEnumerator EnterTheo()
+		private IEnumerator EnterMagolor()
 		{
 			this.player.Facing = Facings.Left;
 			yield return 0.2f;
-			yield return this.PanCamera(new Vector2((float)this.Level.Bounds.Left, this.theo.Y - 90f), 1f, null);
-			this.theo.Visible = true;
-			float theoStartX = this.theo.X;
-			yield return this.theo.MoveTo(new Vector2(theoStartX + 35f, this.theo.Y), false, null, false);
+			yield return this.PanCamera(new Vector2((float)this.Level.Bounds.Left, this.magolor.Y - 90f), 1f, null);
+			this.magolor.Visible = true;
+			float magolorStartX = this.magolor.X;
+			yield return this.magolor.MoveTo(new Vector2(magolorStartX + 35f, this.magolor.Y), false, null, false);
 			yield return 0.6f;
-			yield return this.theo.MoveTo(new Vector2(theoStartX + 60f, this.theo.Y), false, null, false);
-			Audio.Play("event:/game/04_cliffside/gondola_theo_fall", this.theo.Position);
-			this.theo.Sprite.Play("idleEdge", false, false);
+			yield return this.magolor.MoveTo(new Vector2(magolorStartX + 60f, this.magolor.Y), false, null, false);
+			Audio.Play("event:/game/04_cliffside/gondola_theo_fall", this.magolor.Position);
+			PlayMagolorAnim("idleEdge");
 			yield return 1f;
-			this.theo.Sprite.Play("falling", false, false);
-			this.theo.X += 4f;
-			this.theo.Depth = -10010;
+			PlayMagolorAnim("falling");
+			this.magolor.X += 4f;
+			this.magolor.Depth = -10010;
 			float speed = 80f;
-			while (this.theo.Y < this.player.Y)
+			while (this.magolor.Y < this.player.Y)
 			{
-				this.theo.Y += speed * Engine.DeltaTime;
+				this.magolor.Y += speed * Engine.DeltaTime;
 				speed += 120f * Engine.DeltaTime;
 				yield return null;
 			}
 			this.Level.DirectionalShake(new Vector2(0f, 1f), 0.3f);
 			Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
-			this.theo.Y = this.player.Y;
-			this.theo.Sprite.Play("hitGround", false, false);
-			this.theo.Sprite.Rate = 0f;
-			this.theo.Depth = 1000;
-			this.theo.Sprite.Scale = new Vector2(1.3f, 0.8f);
+			this.magolor.Y = this.player.Y;
+			PlayMagolorAnim("hitGround");
+			MagolorSprite.Rate = 0f;
+			this.magolor.Depth = 1000;
+			MagolorSprite.Scale = new Vector2(1.3f, 0.8f);
 			yield return 0.5f;
-			Vector2 start = this.theo.Sprite.Scale;
+			Vector2 start = MagolorSprite.Scale;
 			Tween tween = Tween.Create(Tween.TweenMode.Oneshot, null, 2f, true);
 			tween.OnUpdate = delegate(Tween t)
 			{
-				this.theo.Sprite.Scale.X = MathHelper.Lerp(start.X, 1f, t.Eased);
-				this.theo.Sprite.Scale.Y = MathHelper.Lerp(start.Y, 1f, t.Eased);
+				MagolorSprite.Scale.X = MathHelper.Lerp(start.X, 1f, t.Eased);
+				MagolorSprite.Scale.Y = MathHelper.Lerp(start.Y, 1f, t.Eased);
 			};
 			base.Add(tween);
-			yield return this.PanCamera(new Vector2((float)this.Level.Bounds.Left, this.theo.Y - 120f), 1f, null);
+			yield return this.PanCamera(new Vector2((float)this.Level.Bounds.Left, this.magolor.Y - 120f), 1f, null);
 			yield return 0.6f;
 			yield break;
 		}
 
 		// Token: 0x06001311 RID: 4881 RVA: 0x000678E4 File Offset: 0x00065AE4
-		private IEnumerator CheckOnTheo()
+		private IEnumerator CheckOnMagolor()
 		{
 			yield return this.player.DummyWalkTo(this.gondola.X - 18f, false, 1f, false);
 			yield break;
 		}
 
 		// Token: 0x06001312 RID: 4882 RVA: 0x000678F3 File Offset: 0x00065AF3
-		private IEnumerator GetUpTheo()
+		private IEnumerator GetUpMagolor()
 		{
 			yield return 1.4f;
-			Audio.Play("event:/game/04_cliffside/gondola_theo_recover", this.theo.Position);
-			this.theo.Sprite.Rate = 1f;
-			this.theo.Sprite.Play("recoverGround", false, false);
+			Audio.Play("event:/game/04_cliffside/gondola_theo_recover", this.magolor.Position);
+			MagolorSprite.Rate = 1f;
+			PlayMagolorAnim("recoverGround");
 			yield return 1.6f;
-			yield return this.theo.MoveTo(new Vector2(this.gondola.X - 50f, this.player.Y), false, null, false);
+			yield return this.magolor.MoveTo(new Vector2(this.gondola.X - 50f, this.player.Y), false, null, false);
 			yield return 0.2f;
 			yield break;
 		}
@@ -213,9 +247,9 @@ namespace Celeste.Cutscenes
 		// Token: 0x06001313 RID: 4883 RVA: 0x00067902 File Offset: 0x00065B02
 		private IEnumerator LookAtLever()
 		{
-			yield return this.theo.MoveTo(new Vector2(this.gondola.X + 7f, this.theo.Y), false, null, false);
+			yield return this.magolor.MoveTo(new Vector2(this.gondola.X + 7f, this.magolor.Y), false, null, false);
 			this.player.Facing = Facings.Right;
-			this.theo.Sprite.Scale.X = -1f;
+			MagolorSprite.Scale.X = -1f;
 			yield break;
 		}
 
@@ -223,14 +257,14 @@ namespace Celeste.Cutscenes
 		private IEnumerator PullLever()
 		{
 			base.Add(new Coroutine(this.player.DummyWalkToExact((int)this.gondola.X - 7, false, 1f, false), true));
-			this.theo.Sprite.Scale.X = -1f;
+			MagolorSprite.Scale.X = -1f;
 			yield return 0.2f;
-			Audio.Play("event:/game/04_cliffside/gondola_theo_lever_start", this.theo.Position);
-			this.theo.Sprite.Play("pullVent", false, false);
+			Audio.Play("event:/game/04_cliffside/gondola_theo_lever_start", this.magolor.Position);
+			PlayMagolorAnim("pullVent");
 			yield return 1f;
 			Input.Rumble(RumbleStrength.Medium, RumbleLength.Medium);
 			this.gondola.Lever.Play("pulled", false, false);
-			this.theo.Sprite.Play("fallVent", false, false);
+			PlayMagolorAnim("fallVent");
 			yield return 0.6f;
 			this.Level.Shake(0.3f);
 			Input.Rumble(RumbleStrength.Strong, RumbleLength.Long);
@@ -245,7 +279,7 @@ namespace Celeste.Cutscenes
 			this.bottomCloud.Position.Y = this.Level.Camera.Top - (float)this.bottomCloud.Texture.Height;
 			this.LoopCloudsAt = this.bottomCloud.Position.Y;
 			this.AutoSnapCharacters = true;
-			this.theoXOffset = this.theo.X - this.gondola.X;
+			this.magolorXOffset = this.magolor.X - this.gondola.X;
 			this.playerXOffset = this.player.X - this.gondola.X;
 			this.player.StateMachine.State = Player.StFrozen;
 			Tween tween = Tween.Create(Tween.TweenMode.Oneshot, null, 16f, true);
@@ -268,9 +302,9 @@ namespace Celeste.Cutscenes
 			this.gondola.RotationSpeed = 1f;
 			this.gondolaState = CS06_Gondola.GondolaStates.MovingToCenter;
 			yield return 1f;
-			yield return this.MoveTheoOnGondola(12f, false);
+			yield return this.MoveMagolorOnGondola(12f, false);
 			yield return 0.2f;
-			this.theo.Sprite.Scale.X = -1f;
+			MagolorSprite.Scale.X = -1f;
 			yield break;
 		}
 
@@ -288,7 +322,7 @@ namespace Celeste.Cutscenes
 			{
 				yield return null;
 			}
-			this.theo.Sprite.Scale.X = 1f;
+			MagolorSprite.Scale.X = 1f;
 			yield return 1f;
 			yield return this.MovePlayerOnGondola(-20f);
 			yield return 0.5f;
@@ -301,19 +335,19 @@ namespace Celeste.Cutscenes
 			Audio.SetMusic("event:/DZ/music/lvl6/minigame", true, true);
 			base.Add(new Coroutine(this.Level.ZoomTo(new Vector2(160f, 110f), 2f, 0.5f), true));
 			yield return 0.3f;
-			this.theo.Sprite.Scale.X = 1f;
+			MagolorSprite.Scale.X = 1f;
 			yield return 0.2f;
-			base.Add(new Coroutine(this.MovePlayerOnGondola(this.theoXOffset - 8f), true));
+			base.Add(new Coroutine(this.MovePlayerOnGondola(this.magolorXOffset - 8f), true));
 			yield return 0.4f;
-			Audio.Play("event:/game/04_cliffside/gondola_theoselfie_halt", this.theo.Position);
-			this.theo.Sprite.Play("holdOutPhone", false, false);
+			Audio.Play("event:/game/04_cliffside/gondola_theoselfie_halt", this.magolor.Position);
+			PlayMagolorAnim("holdOutPhone");
 			yield return 1.5f;
-			this.theoXOffset += 4f;
+			this.magolorXOffset += 4f;
 			this.playerXOffset += 4f;
 			this.gondola.RotationSpeed = -1f;
 			this.gondolaState = CS06_Gondola.GondolaStates.Stopped;
 			Input.Rumble(RumbleStrength.Strong, RumbleLength.Long);
-			this.theo.Sprite.Play("takeSelfieImmediate", false, false);
+			PlayMagolorAnim("takeSelfieImmediate");
 			base.Add(new Coroutine(this.PanCamera(this.gondola.Position + (this.gondola.Destination - this.gondola.Position).SafeNormalize() * 32f + new Vector2(-160f, -120f), 0.3f, Ease.CubeOut), true));
 			yield return 0.5f;
 			this.Level.Flash(Color.White, false);
@@ -333,7 +367,7 @@ namespace Celeste.Cutscenes
 		private IEnumerator MovePlayerLeft()
 		{
 			yield return this.MovePlayerOnGondola(-20f);
-			this.theo.Sprite.Scale.X = -1f;
+			MagolorSprite.Scale.X = -1f;
 			yield return 0.5f;
 			yield return this.MovePlayerOnGondola(20f);
 			yield return 0.5f;
@@ -346,11 +380,11 @@ namespace Celeste.Cutscenes
 		// Token: 0x06001319 RID: 4889 RVA: 0x00067955 File Offset: 0x00065B55
 		private IEnumerator SnapLeverOff()
 		{
-			yield return this.MoveTheoOnGondola(7f, true);
-			Audio.Play("event:/game/04_cliffside/gondola_theo_lever_fail", this.theo.Position);
-			this.theo.Sprite.Play("pullVent", false, false);
+			yield return this.MoveMagolorOnGondola(7f, true);
+			Audio.Play("event:/game/04_cliffside/gondola_theo_lever_fail", this.magolor.Position);
+			PlayMagolorAnim("pullVent");
 			yield return 1f;
-			this.theo.Sprite.Play("fallVent", false, false);
+			PlayMagolorAnim("fallVent");
 			yield return 1f;
 			this.gondola.BreakLever();
 			Input.Rumble(RumbleStrength.Medium, RumbleLength.Medium);
@@ -410,8 +444,8 @@ namespace Celeste.Cutscenes
 				yield return this.gondolaDarkness.Reach(() => this.gondola.PullSides());
 			}
 			this.BurstTentacles(2, 60f, 200f);
-			yield return this.MoveTheoOnGondola(0f, true);
-			this.theo.Sprite.Play("comfortStart", false, false);
+			yield return this.MoveMagolorOnGondola(0f, true);
+			PlayMagolorAnim("comfortStart");
 			yield break;
 		}
 
@@ -497,29 +531,29 @@ namespace Celeste.Cutscenes
 				float y = player.Y;
 				player.Y = y - 1f;
 			}
-			this.theo.Position.Y = this.player.Position.Y;
-			this.theo.Sprite.Play("comfortRecover", false, false);
-			this.theo.Sprite.Scale.X = 1f;
+			this.magolor.Position.Y = this.player.Position.Y;
+			PlayMagolorAnim("comfortRecover");
+			MagolorSprite.Scale.X = 1f;
 			yield return this.player.DummyWalkTo(this.gondola.X + 80f, false, 1f, false);
 			this.player.DummyAutoAnimate = false;
 			this.player.Sprite.Play("tired", false, false);
-			yield return this.theo.MoveTo(new Vector2(this.gondola.X + 64f, this.theo.Y), false, null, false);
+			yield return this.magolor.MoveTo(new Vector2(this.gondola.X + 64f, this.magolor.Y), false, null, false);
 			yield return 0.5f;
 			yield break;
 		}
 
 		// Token: 0x0600131F RID: 4895 RVA: 0x000679AF File Offset: 0x00065BAF
-		private IEnumerator TheoTakesOutPhone()
+		private IEnumerator MagolorTakesOutPhone()
 		{
 			this.player.Facing = Facings.Right;
 			yield return 0.25f;
-			this.theo.Sprite.Play("usePhone", false, false);
+			PlayMagolorAnim("usePhone");
 			yield return 2f;
 			yield break;
 		}
 
 		// Token: 0x06001320 RID: 4896 RVA: 0x000679BE File Offset: 0x00065BBE
-		private IEnumerator FaceTheo()
+		private IEnumerator FaceMagolor()
 		{
 			this.player.DummyAutoAnimate = true;
 			yield return 0.2f;
@@ -531,9 +565,9 @@ namespace Celeste.Cutscenes
 		// Token: 0x06001321 RID: 4897 RVA: 0x000679CD File Offset: 0x00065BCD
 		private IEnumerator ShowPhoto()
 		{
-			this.theo.Sprite.Scale.X = -1f;
+			MagolorSprite.Scale.X = -1f;
 			yield return 0.25f;
-			yield return this.player.DummyWalkTo(this.theo.X + 5f, false, 1f, false);
+			yield return this.player.DummyWalkTo(this.magolor.X + 5f, false, 1f, false);
 			yield return 1f;
 			Selfie selfie = new Selfie(base.SceneAs<Level>());
 			base.Scene.Add(selfie);
@@ -609,7 +643,7 @@ namespace Celeste.Cutscenes
 			}
 			if (this.AutoSnapCharacters)
 			{
-				this.theo.Position = this.gondola.GetRotatedFloorPositionAt(this.theoXOffset, 52f);
+				this.magolor.Position = this.gondola.GetRotatedFloorPositionAt(this.magolorXOffset, 52f);
 				this.player.Position = this.gondola.GetRotatedFloorPositionAt(this.playerXOffset, 52f);
 				if (this.evil != null)
 				{
@@ -659,19 +693,19 @@ namespace Celeste.Cutscenes
 		}
 
 		// Token: 0x06001326 RID: 4902 RVA: 0x00067E01 File Offset: 0x00066001
-		private IEnumerator MoveTheoOnGondola(float x, bool changeFacing = true)
+		private IEnumerator MoveMagolorOnGondola(float x, bool changeFacing = true)
 		{
-			this.theo.Sprite.Play("walk", false, false);
+			PlayMagolorAnim("walk");
 			if (changeFacing)
 			{
-				this.theo.Sprite.Scale.X = (float)Math.Sign(x - this.theoXOffset);
+				MagolorSprite.Scale.X = (float)Math.Sign(x - this.magolorXOffset);
 			}
-			while (this.theoXOffset != x)
+			while (this.magolorXOffset != x)
 			{
-				this.theoXOffset = Calc.Approach(this.theoXOffset, x, 48f * Engine.DeltaTime);
+				this.magolorXOffset = Calc.Approach(this.magolorXOffset, x, 48f * Engine.DeltaTime);
 				yield return null;
 			}
-			this.theo.Sprite.Play("idle", false, false);
+			PlayMagolorAnim("idle");
 			yield break;
 		}
 
@@ -702,7 +736,7 @@ namespace Celeste.Cutscenes
 		}
 
 		// Token: 0x04000EFF RID: 3839
-		private NPC theo;
+		private NPC magolor;
 
 		// Token: 0x04000F00 RID: 3840
 		private GondolaWrapper gondola;
@@ -741,7 +775,7 @@ namespace Celeste.Cutscenes
 		private bool AutoSnapCharacters;
 
 		// Token: 0x04000F0C RID: 3852
-		private float theoXOffset;
+		private float magolorXOffset;
 
 		// Token: 0x04000F0D RID: 3853
 		private float playerXOffset;

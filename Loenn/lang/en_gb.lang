@@ -308,6 +308,10 @@ entities.DZ/CeremonyFlame.placements.name.maxSpreadDistance=Max Spread Distance
 triggers.DZ/CH18OutroTrigger.placements.name.ch18_outro_trigger=CH18 Outro Trigger
 triggers.DZ/CH18OutroTrigger.placements.name.triggerOnce=Trigger Once
 
+# Cs08 Campfire Trigger
+triggers.DZ/Cs08CampfireTrigger.placements.name.cs08_campfire_trigger=Cs08 Campfire Trigger
+triggers.DZ/Cs08CampfireTrigger.placements.name.triggerOnce=Trigger Once
+
 # Chapter16 Cutscene Trigger
 triggers.DZ/Chapter16CutsceneTrigger.placements.name.chapter16_cutscene_trigger=Chapter16 Cutscene Trigger
 triggers.DZ/Chapter16CutsceneTrigger.placements.name.cutsceneId=Cutscene Id
@@ -1438,7 +1442,7 @@ entities.DZ/NPC05_Oshiro_Rooftop.placements.name.npc05_oshiro_rooftop=NPC05 Oshi
 entities.DZ/NPC05_Oshiro_Suite.placements.name.npc05_oshiro_suite=NPC05 Oshiro Suite
 
 # NPC06 Magolor
-entities.DZ/NPC06_Magolor.placements.name.npc06_magolor=NPC06 Magolor
+entities.DZ/NPC06_Magolor.placements.name.npc06_magolor=NPC06 Magolor (Gondola)
 
 # NPC06 Theo
 entities.DZ/NPC06_Theo.placements.name.npc06_theo=NPC06 Theo

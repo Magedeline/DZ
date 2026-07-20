@@ -21,7 +21,6 @@ public class GondolaMod : Solid
     private bool brokenLever;
     private readonly bool inCliffside;
     private readonly bool triggerCutscene;
-    private bool cutsceneStarted;
     private NPC06_Magolor magolorNPC;
 
     public Vector2 Start { get; }
@@ -31,14 +30,14 @@ public class GondolaMod : Solid
     public GondolaMod(EntityData data, Vector2 offset) : base(data.Position + offset, 64f, 8f, true)
     {
         EnableAssistModeChecks = false;
-        Add(front = GFX.SpriteBank.Create("DZ_gondola"));
+        Add(front = GFX.SpriteBank.Create("gondola"));
         front.Play("idle");
         front.Origin = new Vector2(front.Width / 2f, 12f);
         front.Y = -52f;
-        Add(top = new Image(GFX.Game["objects/DZ/DZ/gondola/top"]));
+        Add(top = new Image(GFX.Game["objects/DZ/gondola/top"]));
         top.Origin = new Vector2(top.Width / 2f, 12f);
         top.Y = -52f;
-        Add(Lever = new Sprite(GFX.Game, "objects/DZ/DZ/gondola/lever"));
+        Add(Lever = new Sprite(GFX.Game, "objects/DZ/gondola/lever"));
         Lever.Add("idle", "", 0.0f, new int[1]);
         Lever.Add("pulled", "", 0.5f, "idle", 1, 1);
         Lever.Origin = new Vector2(front.Width / 2f, 12f);
@@ -69,14 +68,14 @@ public class GondolaMod : Solid
     public GondolaMod() : base(Vector2.Zero, 64f, 8f, true)
     {
         EnableAssistModeChecks = false;
-        Add(front = GFX.SpriteBank.Create("DZ_gondola"));
+        Add(front = GFX.SpriteBank.Create("gondola"));
         front.Play("idle");
         front.Origin = new Vector2(front.Width / 2f, 12f);
         front.Y = -52f;
-        Add(top = new Image(GFX.Game["objects/DZ/DZ/gondola/top"]));
+        Add(top = new Image(GFX.Game["objects/DZ/gondola/top"]));
         top.Origin = new Vector2(top.Width / 2f, 12f);
         top.Y = -52f;
-        Add(Lever = new Sprite(GFX.Game, "objects/DZ/DZ/gondola/lever"));
+        Add(Lever = new Sprite(GFX.Game, "objects/DZ/gondola/lever"));
         Lever.Add("idle", "", 0.0f, new int[1]);
         Lever.Add("pulled", "", 0.5f, "idle", 1, 1);
         Lever.Origin = new Vector2(front.Width / 2f, 12f);
@@ -87,8 +86,9 @@ public class GondolaMod : Solid
         Destination = Position + new Vector2(320f, 0f); // Default destination - reasonable distance
         Depth = -10500;
         inCliffside = true; // Default value - gondola starts in cliffside
+        triggerCutscene = false; // Disable auto-trigger for dynamically created gondolas
         SurfaceSoundIndex = 28;
-        
+
         Logger.Log(LogLevel.Debug, "GondolaMod", "Created gondola with parameterless constructor for cutscene use");
     }
 
@@ -97,17 +97,17 @@ public class GondolaMod : Solid
         base.Added(scene);
         scene.Add(back = new Entity(Position));
         back.Depth = 9000;
-        backImg = new Image(GFX.Game["objects/DZ/DZ/gondola/back"]);
+        backImg = new Image(GFX.Game["objects/DZ/gondola/back"]);
         backImg.Origin = new Vector2(backImg.Width / 2f, 12f);
         backImg.Y = -52f;
         back.Add(backImg);
         scene.Add(LeftCliffside = new Entity(Position + new Vector2(-124f, 0.0f)));
-        Image image1 = new Image(GFX.Game["objects/DZ/DZ/gondola/cliffsideLeft"]);
+        Image image1 = new Image(GFX.Game["objects/DZ/gondola/cliffsideLeft"]);
         image1.JustifyOrigin(0.0f, 1f);
         LeftCliffside.Add(image1);
         LeftCliffside.Depth = 8998;
         scene.Add(rightCliffside = new Entity(Destination + new Vector2(144f, -104f)));
-        Image image2 = new Image(GFX.Game["objects/DZ/DZ/gondola/cliffsideRight"]);
+        Image image2 = new Image(GFX.Game["objects/DZ/gondola/cliffsideRight"]);
         image2.JustifyOrigin(0.0f, 0.5f);
         image2.Scale.X = -1f;
         rightCliffside.Add(image2);
@@ -129,8 +129,8 @@ public class GondolaMod : Solid
         }
         top.Rotation = Calc.Angle(Start, Destination);
 
-        // Create NPC06_Magolor for the cutscene if triggerCutscene is enabled
-        if (triggerCutscene && inCliffside)
+        // Spawn the cutscene NPC if auto-trigger is enabled and the cutscene hasn't played yet
+        if (triggerCutscene && inCliffside && !(scene is Level level && level.Session.GetFlag(NPC06_Magolor.CutsceneFlag)))
         {
             magolorNPC = new NPC06_Magolor(Position + new Vector2(-100f, 0f));
             scene.Add(magolorNPC);
@@ -139,26 +139,6 @@ public class GondolaMod : Solid
 
     public override void Update()
     {
-        // Auto-trigger cutscene when player approaches the gondola
-        if (triggerCutscene && inCliffside && !cutsceneStarted)
-        {
-            Player player = Scene.Tracker.GetEntity<Player>();
-            if (player != null && player.X > Left - 16f)
-            {
-                cutsceneStarted = true;
-                NPC npc = magolorNPC ?? Scene.Entities.FindFirst<NPC>();
-                if (npc != null)
-                {
-                    CS06_Gondola cutscene = new CS06_Gondola(npc, this, player);
-                    Scene.Add(cutscene);
-                }
-                else
-                {
-                    Logger.Log(LogLevel.Warn, "GondolaMod", "triggerCutscene: No NPC found in the scene for gondola cutscene");
-                }
-            }
-        }
-
         if (inCliffside)
         {
             float num = Math.Sign(Rotation) == Math.Sign(RotationSpeed) ? 8f : 6f;
@@ -252,7 +232,7 @@ public class GondolaMod : Solid
         RotationSpeed = 0f;
         brokenLever = false;
         Position = Start;
-        
+
         if (Lever != null)
         {
             Lever.Play("idle");
@@ -260,12 +240,12 @@ public class GondolaMod : Solid
             Lever.Position = Vector2.Zero;
             Lever.Rotation = 0f;
         }
-        
+
         if (front != null)
         {
             front.Play("idle");
         }
-        
+
         updatePositions();
         Logger.Log(LogLevel.Debug, "GondolaMod", "Gondola reset for cutscene");
     }

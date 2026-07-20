@@ -63,7 +63,7 @@ public class PlateauMod : Solid
         if (scene is Level level)
         {
             // Check if the cutscene hasn't been played yet
-            if (!level.Session.GetFlag(Cs08Campfire.FLAG) && !cutsceneTriggered)
+            if (!level.Session.GetFlag(Cs08Campfire.FLAG) && !level.Session.GetFlag(CS08_StarJumpEnd.Flag) && !cutsceneTriggered)
             {
                 cutsceneTriggered = true;
                 

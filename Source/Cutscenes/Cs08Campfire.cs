@@ -15,7 +15,7 @@ namespace Celeste.Cutscenes
         public const string STARS_BACKGROUND_FLAG = "starsbg";
 
         private static readonly Vector2 CAMERA_START_OFFSET = new(0f, -144f);
-        private static readonly Vector2 PLAYER_OFFSET = new(24f, 16f);
+        private static readonly Vector2 PLAYER_OFFSET = new(24f, -8f);
         private static readonly Vector2 MADELINE_OFFSET = new(-20f, -16f);
         private static readonly Vector2 RESPAWN_POINT = new(-176f, 312f);
         
@@ -399,10 +399,10 @@ namespace Celeste.Cutscenes
             // Setup Player
             if (player != null)
             {
-                player.Sprite.Play("asleep");
+                player.Sprite.Play("idle");
                 player.Position = playerCampfirePosition;
                 player.StateMachine.Locked = false;
-                player.StateMachine.State = WasSkipped ? 0 : global::Celeste.Player.StDummy;
+                player.StateMachine.State = 0;
                 player.Speed = Vector2.Zero;
                 player.Facing = Facings.Left;
             }

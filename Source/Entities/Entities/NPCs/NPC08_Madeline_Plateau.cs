@@ -24,14 +24,6 @@ public class Npc08MadelinePlateau : global::Celeste.NPC
     public override void Awake(Scene scene)
     {
         base.Awake(scene);
-        Player entity = base.Scene.Tracker.GetEntity<Player>();
-        
-        // Only trigger the cutscene if it hasn't been played yet (check flag on room entry)
-        if (entity != null && scene is Level level && !level.Session.GetFlag(Cs08Campfire.FLAG))
-        {
-            base.Scene.Add(new Cs08Campfire(this, entity, this));
-        }
-        
         Add(base.Light = new VertexLight(new Vector2(0f, -6f), Color.White, 1f, 16, 48));
     }
 

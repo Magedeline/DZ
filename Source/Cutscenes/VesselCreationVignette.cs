@@ -1,6 +1,7 @@
 #nullable enable
 
 using Celeste;
+using Celeste.Effects;
 using FMOD.Studio;
 using Microsoft.Xna.Framework.Input;
 
@@ -70,6 +71,7 @@ namespace Celeste.Cutscenes
         private TextMenu? pauseMenu;
         private HudRenderer hud;
         private Coroutine? sequenceCoroutine;
+        private VesselVoidBackdrop voidBackdrop;
         
         // Current state
         private CreationPhase currentPhase = CreationPhase.Introduction;
@@ -148,7 +150,11 @@ namespace Celeste.Cutscenes
             
             // Load vessel graphics
             loadVesselGraphics();
-            
+
+            // Shared "frozen lightning" void backdrop — same class used as an
+            // in-game styleground ("DZ/VesselVoidBackdrop") elsewhere.
+            voidBackdrop = new VesselVoidBackdrop();
+
             // Initialize vessel position (center of screen)
             vesselPosition = new Vector2(Engine.Width / 2f, Engine.Height / 2f);
             IngesteLogger.Debug($"[VesselCreation] Vessel position initialized: {vesselPosition}");
@@ -1027,6 +1033,7 @@ namespace Celeste.Cutscenes
             {
                 base.Update();
                 updateTextInput();
+                voidBackdrop.Update(this);
                 if (!exiting)
                 {
                     // Update the sequence coroutine directly
@@ -1157,11 +1164,19 @@ namespace Celeste.Cutscenes
         {
             // Draw background FIRST, before base.Render()
             Draw.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, null, RasterizerState.CullNone, null, Engine.ScreenMatrix);
-            
-            // Render solid background (black for most phases, white for transition)
-            Color bgColor = currentPhase == CreationPhase.Transition ? Color.White : Color.Black;
-            Draw.Rect(0f, 0f, Engine.ViewWidth, Engine.ViewHeight, bgColor);
-            
+
+            if (currentPhase == CreationPhase.Transition)
+            {
+                // Fading out to white for the scene transition — flat white base.
+                Draw.Rect(0f, 0f, Engine.ViewWidth, Engine.ViewHeight, Color.White);
+            }
+            else
+            {
+                // Void backdrop: black base + animated mirrored "frozen lightning" veins.
+                Draw.Rect(0f, 0f, Engine.ViewWidth, Engine.ViewHeight, Color.Black);
+                voidBackdrop.Render(this);
+            }
+
             Draw.SpriteBatch.End();
             
             // Now call base render for HUD and other components

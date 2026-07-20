@@ -962,30 +962,6 @@ namespace Celeste.Entities
         }
     }
 
-    [CustomEntity("DZ/NPC06_Magolor")]
-    [Tracked(true)]
-    public partial class Npc06_Magolor : NPC
-    {
-        public Npc06_Magolor(EntityData data, Vector2 offset) : base(data.Position + offset)
-        {
-            if (Sprite != null)
-            {
-                Remove(Sprite);
-            }
-            Add(Sprite = GFX.SpriteBank.Create("magolor"));
-            Sprite.CenterOrigin();
-        }
-        protected override void OnTalk(global::Celeste.Player player)
-        {
-            var magolor = Scene.Tracker.GetEntity<NPC06_Magolor>();
-            var gondola = Scene.Tracker.GetEntity<GondolaDZ>();
-            if (magolor != null && gondola != null)
-            {
-                TryAddCutscene(new CS06_Gondola(magolor, gondola, player));
-            }
-        }
-    }
-
     [CustomEntity("DZ/NPC06_Theo")]
     [Tracked(true)]
     public partial class Npc06_Theo : NPC
@@ -1085,7 +1061,6 @@ namespace Celeste.Entities
         }
     }
 
-    [CustomEntity("DZ/NPC08_Madeline_Plateau")]
     [Tracked(true)]
     public partial class Npc08_Madeline_Plateau : NPC
     {
@@ -1101,10 +1076,9 @@ namespace Celeste.Entities
         protected override void OnTalk(global::Celeste.Player player)
         {
             var madelineNPC = Scene.Tracker.GetEntity<Npc08MadelinePlateau>();
-            var madeline = Scene.Tracker.GetEntity<CelesteNPC>();
-            if (madelineNPC != null && madeline != null)
+            if (madelineNPC != null)
             {
-                TryAddCutscene(new Cs08Campfire(madelineNPC, player, madeline));
+                TryAddCutscene(new Cs08Campfire(madelineNPC, player, madelineNPC));
             }
         }
     }

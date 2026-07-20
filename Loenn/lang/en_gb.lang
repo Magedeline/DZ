@@ -2326,6 +2326,14 @@ entities.DZ/SevenSoulBoost.attributes.description.finalCh21Boost=If this is the 
 entities.DZ/SevenSoulBoost.attributes.description.finalCh21GoldenBoost=If this final boost triggers the golden ending variant.
 entities.DZ/SevenSoulBoost.attributes.description.finalCh21Dialog=Dialog key for the cutscene triggered by the final Chapter 21 boost.
 
+# Chara Boost
+entities.DZ/CharaBoost.placements.name.chara_boost=Chara Boost
+entities.DZ/CharaBoost.attributes.description.lockCamera=If the camera should be locked during the boost sequence.
+entities.DZ/CharaBoost.attributes.description.canSkip=If the boost can be skipped when the player passes by.
+entities.DZ/CharaBoost.attributes.description.finalCh19Boost=If this is the final Chapter 19 boost that triggers the ending cutscene.
+entities.DZ/CharaBoost.attributes.description.finalCh19GoldenBoost=If this final boost triggers the golden ending variant.
+entities.DZ/CharaBoost.attributes.description.finalCh19Dialog=If the final boost should trigger the Chapter 9 dialog.
+
 # Warp Star Launch Pad
 entities.DZ/WarpStarLaunchPad.placements.name.warp_star_launch_pad=Warp Star Launch Pad
 entities.DZ/WarpStarLaunchPad.attributes.description.finalBattleRoom=Session level name of the room containing the final battle scene.

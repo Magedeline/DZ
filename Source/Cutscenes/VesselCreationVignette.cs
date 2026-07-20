@@ -154,6 +154,7 @@ namespace Celeste.Cutscenes
             // Shared "frozen lightning" void backdrop — same class used as an
             // in-game styleground ("DZ/VesselVoidBackdrop") elsewhere.
             voidBackdrop = new VesselVoidBackdrop();
+            voidBackdrop.Scale = 2f;
 
             // Initialize vessel position (center of screen)
             vesselPosition = new Vector2(Engine.Width / 2f, Engine.Height / 2f);

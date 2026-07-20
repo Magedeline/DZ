@@ -145,10 +145,10 @@ public class CS19_FinalLaunch : CutsceneEntity
     [MethodImpl(MethodImplOptions.NoInlining)]
     public override void OnEnd(Level level)
     {
-        if (WasSkipped && boost != null && boost.Ch9FinalBoostSfx != null)
+        if (WasSkipped && boost != null && boost.Ch19FinalBoostSfx != null)
         {
-            boost.Ch9FinalBoostSfx.stop(STOP_MODE.ALLOWFADEOUT);
-            boost.Ch9FinalBoostSfx.release();
+            boost.Ch19FinalBoostSfx.stop(STOP_MODE.ALLOWFADEOUT);
+            boost.Ch19FinalBoostSfx.release();
         }
         string nextLevelName = "end-chapter20";
         Player.IntroTypes nextLevelIntro = Player.IntroTypes.Transition;

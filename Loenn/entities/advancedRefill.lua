@@ -9,7 +9,8 @@ advancedRefill.placements = {
     data = {
         oneUse = false,
         respectInventoryLimits = true,
-        dashCount = 1
+        dashCount = 1,
+        refillStamina = true
     }
 }
 

@@ -66,7 +66,7 @@ public class CharaBoost : Entity
 
     private bool finalCh19GoldenBoost;
 
-    private bool finalCh9Dialog;
+    private bool finalCh19Dialog;
 
     private Vector2[] nodes;
 
@@ -78,10 +78,10 @@ public class CharaBoost : Entity
 
     private SoundSource relocateSfx;
 
-    public FMOD.Studio.EventInstance Ch9FinalBoostSfx;
+    public FMOD.Studio.EventInstance Ch19FinalBoostSfx;
 
     [MethodImpl(MethodImplOptions.NoInlining)]
-    public CharaBoost(Vector2[] nodes, bool lockCamera, bool canSkip = false, bool finalCh19Boost = false, bool finalCh19GoldenBoost = false, bool finalCh9Dialog = false)
+    public CharaBoost(Vector2[] nodes, bool lockCamera, bool canSkip = false, bool finalCh19Boost = false, bool finalCh19GoldenBoost = false, bool finalCh19Dialog = false)
         : base(nodes[0])
     {
         base.Depth = -1000000;
@@ -89,7 +89,7 @@ public class CharaBoost : Entity
         this.canSkip = canSkip;
         this.finalCh19Boost = finalCh19Boost;
         this.finalCh19GoldenBoost = finalCh19GoldenBoost;
-        this.finalCh9Dialog = finalCh9Dialog;
+        this.finalCh19Dialog = finalCh19Dialog;
         base.Collider = new Circle(16f);
         Add(new PlayerCollider(OnPlayer));
         Add(sprite = GFX.SpriteBank.Create("charaboost"));
@@ -111,7 +111,7 @@ public class CharaBoost : Entity
 
     [MethodImpl(MethodImplOptions.NoInlining)]
     public CharaBoost(EntityData data, Vector2 offset)
-        : this(data.NodesWithPosition(offset), data.Bool("lockCamera", defaultValue: true), data.Bool("canSkip"), data.Bool("finalCh19Boost"), data.Bool("finalCh19GoldenBoost"), data.Bool("finalCh9Dialog"))
+        : this(data.NodesWithPosition(offset), data.Bool("lockCamera", defaultValue: true), data.Bool("canSkip"), data.Bool("finalCh19Boost"), data.Bool("finalCh19GoldenBoost"), data.Bool("finalCh19Dialog"))
     {
     }
 
@@ -242,7 +242,7 @@ public class CharaBoost : Entity
         }
         if (finalBoost && finalCh19Boost)
         {
-            Scene.Add(new CS19_FinalLaunch(player, this, finalCh9Dialog));
+            Scene.Add(new CS19_FinalLaunch(player, this, finalCh19Dialog));
             player.Active = false;
             chara.Active = false;
             Active = false;
@@ -307,7 +307,7 @@ public class CharaBoost : Entity
         {
             if (finalCh19Boost)
             {
-                Ch9FinalBoostSfx = Audio.Play("event:/DZ/new_content/char/chara/booster_finalfinal_part2", Position);
+                Ch19FinalBoostSfx = Audio.Play("event:/DZ/new_content/char/chara/booster_finalfinal_part2", Position);
             }
             Engine.FreezeTimer = 0.1f;
             yield return null;

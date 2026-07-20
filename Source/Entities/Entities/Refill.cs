@@ -1,4 +1,5 @@
 using DZ;
+using Monocle;
 using MonoMod.Utils;
 
 namespace Celeste.Entities
@@ -39,6 +40,7 @@ namespace Celeste.Entities
         private bool oneUse;
         private int dashCount;
         private bool respectInventoryLimits;
+        private bool refillStamina;
 
         public AdvancedRefill(EntityData data, Vector2 offset)
             : base(data.Position + offset)
@@ -47,6 +49,7 @@ namespace Celeste.Entities
             dashCount = data.Int("dashCount", 1);
             oneUse = data.Bool("oneUse", false);
             respectInventoryLimits = data.Bool("respectInventoryLimits", true);
+            refillStamina = data.Bool("refillStamina", true);
 
             sprite = CreateAndAddSprite(GetSpriteNameForDashCount(dashCount), "refill", true);
             flash = CreateAndAddSprite(GetFlashSpriteNameForDashCount(dashCount), "refillFlash", false, false);
@@ -139,12 +142,12 @@ namespace Celeste.Entities
         {
             return dashCount switch
             {
-                2 => "objects/DZ/DZ/refillTwo/outline",
-                3 => "objects/DZ/DZ/solarrefill/outline",
-                4 => "objects/DZ/DZ/lunarrefill/outline",
-                5 => "objects/DZ/DZ/blackholerefill/outline",
-                >= 10 => "objects/DZ/DZ/savestarrefill/outline",
-                _ => "objects/DZ/DZ/refill/outline"
+                2 => "objects/DZ/refillTwo/outline",
+                3 => "objects/DZ/solarrefill/outline",
+                4 => "objects/DZ/lunarrefill/outline",
+                5 => "objects/DZ/blackholerefill/outline",
+                >= 10 => "objects/DZ/savestarrefill/outline",
+                _ => "objects/DZ/refill/outline"
             };
         }
 
@@ -179,11 +182,34 @@ namespace Celeste.Entities
             // Determine how many dashes to give
             int dashesToGive = CalculateDashesToGive(player, inventory);
 
-            if (player.Dashes >= dashesToGive)
-                return; // Player already has enough dashes
+            bool needsDashRefill = player.Dashes < dashesToGive;
+            bool needsStaminaRefill = refillStamina && player.Stamina < global::Celeste.Player.ClimbMaxStamina;
+
+            if (!needsDashRefill && !needsStaminaRefill)
+                return; // Nothing to refill
 
             // Apply the refill using LessDasheline-compatible method for extended dashes (3-10)
-            SetPlayerDashes(player, dashesToGive);
+            if (needsDashRefill)
+            {
+                SetPlayerDashes(player, dashesToGive);
+            }
+
+            // Refill stamina and extend the temporary stamina-length timer
+            if (refillStamina)
+            {
+                player.RefillStamina();
+
+                float staminaBoostDuration = GetStaminaBoostDuration(dashesToGive);
+                if (staminaBoostDuration > 0f)
+                {
+                    var boost = player.Get<AdvancedRefillStaminaBoost>();
+                    if (boost == null)
+                    {
+                        player.Add(boost = new AdvancedRefillStaminaBoost());
+                    }
+                    boost.AddTime(staminaBoostDuration);
+                }
+            }
 
             // Play appropriate sound
             Audio.Play(GetSoundForDashCount(dashCount), Position);
@@ -270,6 +296,12 @@ namespace Celeste.Entities
             };
         }
 
+        private static float GetStaminaBoostDuration(int dashes)
+        {
+            // Each dash count gives one extra second of topped-up stamina.
+            return dashes * 1.0f;
+        }
+
         private IEnumerator RefillRoutine(global::Celeste.Player player)
         {
             // Ensure particles are loaded
@@ -344,6 +376,39 @@ namespace Celeste.Entities
             else
             {
                 RemoveSelf();
+            }
+        }
+
+        /// <summary>
+        /// Temporarily keeps the player's stamina topped up. Each AdvancedRefill touch adds time to the timer.
+        /// </summary>
+        private class AdvancedRefillStaminaBoost : Monocle.Component
+        {
+            private float timer;
+
+            public AdvancedRefillStaminaBoost() : base(true, false)
+            {
+            }
+
+            public void AddTime(float seconds)
+            {
+                timer += seconds;
+            }
+
+            public override void Update()
+            {
+                base.Update();
+
+                if (Entity is global::Celeste.Player player)
+                {
+                    player.Stamina = global::Celeste.Player.ClimbMaxStamina;
+                }
+
+                timer -= Engine.DeltaTime;
+                if (timer <= 0f)
+                {
+                    RemoveSelf();
+                }
             }
         }
 

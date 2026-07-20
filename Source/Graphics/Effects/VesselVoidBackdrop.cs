@@ -40,6 +40,10 @@ namespace Celeste.Effects
 
         public float Alpha = 1f;
         public float PulseSpeed = 1.4f;
+        public float HeartBeatSpeed = 1f;
+        public float BreathSpeed = 0.75f;
+        public float BreathScale = 0.50f;
+        public float Scale = 1f;
         public Color InnerColor = Calc.HexToColor("FF6FCF");
         public Color OuterColor = Calc.HexToColor("3AC8FF");
 
@@ -61,6 +65,9 @@ namespace Celeste.Effects
         {
             Alpha = data.AttrFloat("alpha", 1f);
             PulseSpeed = data.AttrFloat("pulseSpeed", 1.4f);
+            HeartBeatSpeed = data.AttrFloat("heartBeatSpeed", 1f);
+            BreathSpeed = data.AttrFloat("breathSpeed", 0.35f);
+            BreathScale = data.AttrFloat("breathScale", 0.04f);
             InnerColor = Calc.HexToColor(data.Attr("innerColor", "FF6FCF"));
             OuterColor = Calc.HexToColor(data.Attr("outerColor", "3AC8FF"));
         }
@@ -121,23 +128,29 @@ namespace Celeste.Effects
 
             Vector2 canvas = scene is Level ? new Vector2(320f, 180f) : new Vector2(Engine.ViewWidth, Engine.ViewHeight);
             Vector2 center = canvas * 0.5f;
-            float scale = System.Math.Min(canvas.X, canvas.Y) * 0.5f * REACH;
+            float baseScale = System.Math.Min(canvas.X, canvas.Y) * 0.5f * REACH;
 
-            // Soft core glow at the origin, where the vessel sits.
-            float corePulse = 0.75f + 0.25f * (float)System.Math.Sin(time * PulseSpeed * 1.5f);
-            Draw.Circle(center, scale * 0.05f + 4f, InnerColor * (0.20f * Alpha * corePulse), 10);
-            Draw.Circle(center, scale * 0.03f + 2f, InnerColor * (0.35f * Alpha * corePulse), 10);
+            float breath = 0.5f + 0.5f * (float)System.Math.Sin(time * BreathSpeed);
+            float heartbeat = HeartBeat(time, HeartBeatSpeed);
+            float globalPulse = 0.55f + 0.35f * breath + 0.45f * heartbeat;
+
+            // Slow breathing expansion of the whole web.
+            float scale = baseScale * Scale * MathHelper.Lerp(1f - BreathScale, 1f + BreathScale, breath);
+
+            // Soft core glow at the origin, where the vessel sits — brightens with each beat.
+            Draw.Circle(center, scale * 0.05f + 4f + 2f * heartbeat, InnerColor * (0.22f * Alpha * globalPulse), 10);
+            Draw.Circle(center, scale * 0.03f + 2f + 1f * heartbeat, InnerColor * (0.40f * Alpha * globalPulse), 10);
 
             for (int mirrorX = -1; mirrorX <= 1; mirrorX += 2)
             {
                 for (int mirrorY = -1; mirrorY <= 1; mirrorY += 2)
                 {
-                    RenderWedge(mirrorX, mirrorY, center, scale);
+                    RenderWedge(mirrorX, mirrorY, center, scale, breath, heartbeat, globalPulse);
                 }
             }
         }
 
-        private void RenderWedge(int mirrorX, int mirrorY, Vector2 center, float scale)
+        private void RenderWedge(int mirrorX, int mirrorY, Vector2 center, float scale, float breath, float heartbeat, float globalPulse)
         {
             for (int i = 0; i < wedge.Length; i++)
             {
@@ -148,13 +161,22 @@ namespace Celeste.Effects
                 float normDist = maxDistance > 0f ? MathHelper.Clamp(v.Distance / maxDistance, 0f, 1f) : 0f;
                 Color baseColor = Color.Lerp(InnerColor, OuterColor, normDist);
 
-                float pulse = 0.5f + 0.5f * (float)System.Math.Sin(v.Distance * 9f - time * PulseSpeed);
-                float glowAlpha = MathHelper.Lerp(0.18f, 0.5f, pulse) * Alpha;
-                float coreAlpha = MathHelper.Lerp(0.45f, 1f, pulse) * Alpha;
+                float wave = 0.5f + 0.5f * (float)System.Math.Sin(v.Distance * 9f - time * PulseSpeed);
+                float pulse = MathHelper.Lerp(wave, heartbeat, 0.6f) + 0.15f * breath;
+                float glowAlpha = MathHelper.Lerp(0.18f, 0.55f, pulse) * Alpha;
+                float coreAlpha = MathHelper.Lerp(0.45f, 1.05f, pulse) * Alpha;
 
                 Draw.Line(start, end, baseColor * glowAlpha, v.Thickness * 3f);
                 Draw.Line(start, end, Color.Lerp(baseColor, Color.White, 0.3f) * coreAlpha, v.Thickness);
             }
+        }
+
+        private static float HeartBeat(float time, float speed)
+        {
+            float phase = (time * speed) % 1f;
+            float beat1 = (float)System.Math.Exp(-System.Math.Pow((phase - 0.15f) * 12f, 2));
+            float beat2 = (float)System.Math.Exp(-System.Math.Pow((phase - 0.42f) * 10f, 2)) * 0.65f;
+            return (beat1 + beat2) / 1.65f;
         }
     }
 }

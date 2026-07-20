@@ -2,6 +2,8 @@
   Name: DZ
   Version: 4.0.0
   Dependencies:
+    - Name: BrokemiaHelper
+      Version: 1.8.5
     - Name: CommunalHelper
       Version: 1.25.3
     - Name: Everest

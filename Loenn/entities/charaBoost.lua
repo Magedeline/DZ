@@ -2,14 +2,14 @@ local charaBoost = {}
 
 charaBoost.name = "DZ/CharaBoost"
 charaBoost.depth = -1000000
-charaBoost.texture = "characters/DZ/charaboost/idle00"
+charaBoost.texture = "objects/DZ/charaboost/idle00"
 charaBoost.nodeLineRenderType = "line"
 charaBoost.nodeVisibility = "always"
 charaBoost.nodeLimits = {1, -1}
 
 charaBoost.placements = {
     name = "chara_boost",
-    nodes = {{x = 0, y = 0}},
+    nodes = {{x = 32, y = 0}},
     data = {
         lockCamera = true,
         canSkip = false,

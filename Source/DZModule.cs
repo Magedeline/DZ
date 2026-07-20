@@ -104,7 +104,7 @@ public class DZModule : EverestModule {
         global::Celeste.Entities.PowerGenerator.Load();
         global::Celeste.Entities.DefensivePowerGenerator.Load();
         global::Celeste.Entities.MaddyCrystal.Load();
-        global::Celeste.Entities.FlingBirdMod.Load();
+        global::Celeste.Mod.DZ.Entities.FlingBird.Load();
         global::Celeste.Entities.StarJumpBlock.Load();
         global::Celeste.Entities.WhiteHole.Load();
         global::Celeste.Entities.PlateauMod.Load();
@@ -186,7 +186,7 @@ public class DZModule : EverestModule {
         global::Celeste.Entities.PowerGenerator.Unload();
         global::Celeste.Entities.DefensivePowerGenerator.Unload();
         // MaddyCrystal.Load() only sets up particles (no hooks), no Unload needed
-        global::Celeste.Entities.FlingBirdMod.Unload();
+        global::Celeste.Mod.DZ.Entities.FlingBird.Unload();
         global::Celeste.Entities.StarJumpBlock.Unload();
         global::Celeste.Entities.WhiteHole.Unload();
         global::Celeste.Entities.PlateauMod.Unload();

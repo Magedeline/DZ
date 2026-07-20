@@ -1,8 +1,8 @@
-namespace Celeste.Entities;
-[CustomEntity(ids: "DZ/FlingBirdMod")]
+namespace Celeste.Mod.DZ.Entities;
+[CustomEntity(ids: "DZ/FlingBird")]
 [Tracked(true)]
 [HotReloadable]
-internal class FlingBirdMod : Entity
+internal class FlingBird : Entity
 {
     public const float SKIP_DIST = 100f;
     public static readonly Vector2 FLING_SPEED = new(380f, -100f);
@@ -48,7 +48,7 @@ internal class FlingBirdMod : Entity
         }
     }
 
-    public FlingBirdMod(Vector2[] nodes, bool skippable, bool lightningRemoved)
+    public FlingBird(Vector2[] nodes, bool skippable, bool lightningRemoved)
         : base(nodes[0])
     {
         LightningRemoved = lightningRemoved;
@@ -86,13 +86,13 @@ internal class FlingBirdMod : Entity
         Audio.Play("event:/new_content/game/10_farewell/bird_throw", Center);
     }
 
-    public FlingBirdMod(EntityData data, Vector2 levelOffset)
+    public FlingBird(EntityData data, Vector2 levelOffset)
         : this(data.NodesWithPosition(levelOffset), data.Bool("waiting"), data.Bool("lightningRemoved"))
     {
         entityData = data;
     }
 
-    public FlingBirdMod(EntityData data, Vector2 levelOffset, bool lightningRemoved)
+    public FlingBird(EntityData data, Vector2 levelOffset, bool lightningRemoved)
         : this(data.NodesWithPosition(levelOffset), data.Bool("waiting"), lightningRemoved)
     {
         entityData = data;
@@ -101,7 +101,7 @@ internal class FlingBirdMod : Entity
     public override void Awake(Scene scene)
     {
         base.Awake(scene);
-        var all = Scene.Entities.FindAll<FlingBirdMod>();
+        var all = Scene.Entities.FindAll<FlingBird>();
         for (var index = all.Count - 1; index >= 0; --index)
         {
             if (all[index].entityData.Level.Name != entityData.Level.Name)

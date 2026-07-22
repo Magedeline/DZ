@@ -227,7 +227,11 @@ public class CS00_EndingDZ : CutsceneEntity
         }
         level.Session.SetFlag("birdfirstdash");
         level.PauseLock = true;
-        level.Entities.FindFirst<SpeedrunTimerDisplay>().CompleteTimer = 10f;
+        SpeedrunTimerDisplay speedrunTimer = level.Entities.FindFirst<SpeedrunTimerDisplay>();
+        if (speedrunTimer != null)
+        {
+            speedrunTimer.CompleteTimer = 10f;
+        }
         level.Add(new EndingCutsceneDelay(this));
     }
 }

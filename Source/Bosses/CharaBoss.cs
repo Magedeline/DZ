@@ -1241,7 +1241,7 @@ namespace Celeste.Entities {
             Sprite.Play("charaboss_attack2Lock", restart: true);
             yield return 0.6f; // Wait for lock animation
             laserSfx.Stop();
-            Audio.Play("event:/char/badeline/boss_laser_fire", Position);
+            // Fire sound is now played by CharaBossBiggerBeam at the closest point on the beam to the player
             yield return CharaBossBiggerBeam.ACTIVE_TIME; // Wait for 5s beam to finish
             Sprite.Play("charaboss_attack2Recoil");
         }

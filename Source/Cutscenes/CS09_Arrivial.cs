@@ -82,7 +82,7 @@ public class CS09_Arrivial : CutsceneEntity
     private IEnumerator Trigger3TeleportToCreditRoom()
     {
         Level level = Scene as Level;
-        level?.TeleportTo(player, "lvl_credit", Player.IntroTypes.Respawn, Vector2.Zero);
+        level?.TeleportTo(player, "credit", Player.IntroTypes.Respawn, Vector2.Zero);
         yield return 0.5f;
     }
 
@@ -97,7 +97,7 @@ public class CS09_Arrivial : CutsceneEntity
         if (!level.Session.GetFlag("ch9_arrivial_complete"))
         {
             level.Session.SetFlag("ch9_arrivial_complete", true);
-            level.TeleportTo(player, "lvl_credit", Player.IntroTypes.Respawn, Vector2.Zero);
+            level.TeleportTo(player, "credit", Player.IntroTypes.Respawn, Vector2.Zero);
         }
         player.StateMachine.State = Player.StNormal;
     }

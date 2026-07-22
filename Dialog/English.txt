@@ -882,8 +882,11 @@ MYSTERY_MAN={# 00ffff}{~}???{/~}{#}
 # ================================
 # Chapter Souls (Heart Gem Collection)
 # ================================
-soul_DZ_0_01_City=Useless Garbage Machine
-soul_DZ_0_02_Shadow_Shadow=Reawaken
+# A-Side Souls
+soul_DZ_0_01_City_A=Useless Garbage Machine
+soul_DZ_0_02_Shadow_A=Reawaken
+soul_DZ_0_03_Stars_A=Twinkle in the Dark
+soul_DZ_0_04_Legend_A=The Legend Begins
 soul_DZ_0_05_Fractured_A=Hopeless and Hopelessly Lost
 soul_DZ_0_06_Stronghold_A=The Legend
 soul_DZ_0_07_Inferno_A=Lighter and Darker
@@ -891,24 +894,109 @@ soul_DZ_0_08_Truth_A=Out of Reached
 soul_DZ_0_09_Summit_A=On The Horizon
 soul_DZ_0_10_Ruins_A=PLANK AND BURNED
 soul_DZ_0_11_Snow_A=WILD WILD FROST WEST
+soul_DZ_0_12_Water_A=Deep Blue Despair
+soul_DZ_0_13_Fire_A=Rising Temperatures
+soul_DZ_0_14_Digital_A=Boot Sequence
+soul_DZ_0_15_Castle_A=Where Kings Once Ruled
+soul_DZ_0_16_Corruption_A=Rotting from Within
 soul_DZ_0_18_Heart_A=Hopes and Dreams
-soul_DZ_0_19_Space=KILL YOURSELF NOW
+soul_DZ_0_19_Space_A=YOU IDIOT
+
+# B-Side Souls (Remix)
 soul_DZ_1_01_City_B=Sever the Skyline
 soul_DZ_1_02_Shadow_B=Black Moon Rise
+soul_DZ_1_03_Stars_B=Shooting Star Symphony
+soul_DZ_1_04_Legend_B=Legend in the Making
 soul_DZ_1_05_Fractured_B=Good karma
 soul_DZ_1_06_Stronghold_B=Golden Feather
 soul_DZ_1_07_Inferno_B=Mirror of Magic
 soul_DZ_1_08_Truth_B=Center of the Mountain
 soul_DZ_1_09_Summit_B=No More Running
+soul_DZ_1_10_Ruins_B=Burned Bridges
+soul_DZ_1_11_Snow_B=Frostbite
+soul_DZ_1_12_Water_B=Undertow
+soul_DZ_1_13_Fire_B=Backdraft
+soul_DZ_1_14_Digital_B=Firewall Breach
+soul_DZ_1_15_Castle_B=Crown of Thorns
+soul_DZ_1_16_Corruption_B=System Decay
+soul_DZ_1_17_Epilogue_B=Before the Beginning
 soul_DZ_1_18_Heart_B=Goodbye
+soul_DZ_1_19_Space_B=Lost in the Stars
+soul_DZ_1_20_TheEnd_B=Not Over Yet
+soul_DZ_1_21_LastLevel_B=Try Harder
+
+# C-Side Souls (Re-Remix)
 soul_DZ_2_01_City_C=Taking Over the Streets
 soul_DZ_2_02_Shadow_C=Under my Control
+soul_DZ_2_03_Stars_C=Galaxy in My Hand
+soul_DZ_2_04_Legend_C=Unwritten Legend
 soul_DZ_2_05_Fractured_C=Amazing karma
 soul_DZ_2_06_Stronghold_C=Zantas Feather
 soul_DZ_2_07_Inferno_C=Jazzy Move
 soul_DZ_2_08_Truth_C=Megalovania
 soul_DZ_2_09_Summit_C=Don't Kill and Don't Be Killed
+soul_DZ_2_10_Ruins_C=Ash and Dust
+soul_DZ_2_11_Snow_C=White Out
+soul_DZ_2_12_Water_C=Maelstrom
+soul_DZ_2_13_Fire_C=Eruption
+soul_DZ_2_14_Digital_C=Blue Screen of Death
+soul_DZ_2_15_Castle_C=Checkmate
+soul_DZ_2_16_Corruption_C=Fatal Error
+soul_DZ_2_17_Epilogue_C=The Beginning of the End
 soul_DZ_2_18_Heart_C=End of the World
+soul_DZ_2_19_Space_C=Beyond the Horizon
+soul_DZ_2_20_TheEnd_C=Game Over
+soul_DZ_2_21_LastLevel_C=Final Attempt
+
+# ================================
+# D-Side Souls (Remix)
+# ================================
+soul_DZ_3_01_City_D=Neon Underground
+soul_DZ_3_02_Shadow_D=Eclipse of the Void
+soul_DZ_3_03_Stars_D=Constellation of Sorrow
+soul_DZ_3_04_Legend_D=Myth Unwritten
+soul_DZ_3_05_Fractured_D=Shattered Reflection
+soul_DZ_3_06_Stronghold_D=Fallen Fortress
+soul_DZ_3_07_Inferno_D=Blue Flames
+soul_DZ_3_08_Truth_D=Beyond the Lies
+soul_DZ_3_09_Summit_D=Above the Heavens
+soul_DZ_3_10_Ruins_D=Ashes of the Past
+soul_DZ_3_11_Snow_D=Blizzard Warning
+soul_DZ_3_12_Water_D=Drowning Currents
+soul_DZ_3_13_Fire_D=Volcanic Requiem
+soul_DZ_3_14_Digital_D=System Override
+soul_DZ_3_15_Castle_D=Throne of Darkness
+soul_DZ_3_16_Corruption_D=Glitch in the Code
+soul_DZ_3_17_Epilogue_D=Final Chapter
+soul_DZ_3_18_Heart_D=Last Wish
+soul_DZ_3_19_Space_D=Event Horizon
+soul_DZ_3_20_TheEnd_D=The End of Everything
+soul_DZ_3_21_LastLevel_D=The Last Stand
+
+# ================================
+# DX-Side Souls (Re-Remix)
+# ================================
+soul_DZ_DXSide_01_City_DX=Concrete Jungle Fever
+soul_DZ_DXSide_02_Shadow_DX=Into the Abyss
+soul_DZ_DXSide_03_Stars_DX=Supernova Lullaby
+soul_DZ_DXSide_04_Legend_DX=Legend Reborn
+soul_DZ_DXSide_05_Fractured_DX=Mirror Dimension
+soul_DZ_DXSide_06_Stronghold_DX=Titan's Fall
+soul_DZ_DXSide_07_Inferno_DX=Hellfire Requiem
+soul_DZ_DXSide_08_Truth_DX=The Final Truth
+soul_DZ_DXSide_09_Summit_DX=Summit of the Gods
+soul_DZ_DXSide_10_Ruins_DX=Dust to Dust
+soul_DZ_DXSide_11_Snow_DX=Absolute Zero
+soul_DZ_DXSide_12_Water_DX=Ocean of Tears
+soul_DZ_DXSide_13_Fire_DX=Phoenix Rising
+soul_DZ_DXSide_14_Digital_DX=Digital Nightmare
+soul_DZ_DXSide_15_Castle_DX=Kingdom of Shadows
+soul_DZ_DXSide_16_Corruption_DX=Total System Failure
+soul_DZ_DXSide_17_Epilogue_DX=After the End
+soul_DZ_DXSide_18_Heart_DX=Dream's End
+soul_DZ_DXSide_19_Space_DX=Singularity
+soul_DZ_DXSide_20_TheEnd_DX=Null and Void
+soul_DZ_DXSide_21_LastLevel_DX=The Ultimate End
 
 Tralier_intro=
 [Madeline left distracted]
@@ -16093,7 +16181,7 @@ Don't lose heart, a few more attempts.
 Determination is your strength, {+KIRBY}.
 
 DZ_CH19_LAST_ROOM_ALT_2=
-[SANS right dudewtfalt]
+[SANS right normal]
 Hanging in there, buddy?
 
 [KIRBY left sadder]
@@ -16101,7 +16189,9 @@ Surviving, but reaching the finale seems nearly impossible.
 
 [SANS right normal]
 Nah, we'll be right beside you until the very end.
-Trust me, things will work out
+
+[SANS right wink]
+and Trust me, things will work out
 
 [KIRBY left angry]
 Very well.
@@ -16110,7 +16200,7 @@ Very well.
 Our Choice Matters.
 
 DZ_CH19_CHARA_LAST_BOOST=
-[CHARA right laughing]
+[CHARA right finally]
 Bring them home Kirby!!!
 
 DZ_CH20_INTRO=

@@ -59,7 +59,11 @@ public class Soul : Entity
 
     private VirtualRenderTarget temp;
 
+    private VirtualRenderTarget dSideCassette;
+
     private Particle[] particles = new Particle[80];
+
+    private bool showDsideCassette;
 
     public Color Color { get; private set; }
 
@@ -80,13 +84,19 @@ public class Soul : Entity
         poem = VirtualContent.CreateRenderTarget("soul-a", num, num2);
         smoke = VirtualContent.CreateRenderTarget("soul-b", num / 2, num2 / 2);
         temp = VirtualContent.CreateRenderTarget("soul-c", num / 2, num2 / 2);
-        poem = VirtualContent.CreateRenderTarget("soul-d", num / 2, num2 / 2);
+        dSideCassette = VirtualContent.CreateRenderTarget("cassette-d", num / 2, num2 / 2);
         base.Tag = Tags.HUD | Tags.FrozenUpdate;
         Add(new BeforeRenderHook(BeforeRender));
         for (int i = 0; i < particles.Length; i++)
         {
             particles[i].Reset(Calc.Random.NextFloat());
         }
+    }
+
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    public Soul(string text, int heartIndex, float heartAlpha, bool showDsideCassette) : this(text, heartIndex, heartAlpha)
+    {
+        this.showDsideCassette = showDsideCassette;
     }
 
     [MethodImpl(MethodImplOptions.NoInlining)]
@@ -97,6 +107,7 @@ public class Soul : Entity
             poem.Dispose();
             smoke.Dispose();
             temp.Dispose();
+            dSideCassette?.Dispose();
             RemoveSelf();
             disposed = true;
         }
@@ -165,6 +176,32 @@ public class Soul : Entity
             Engine.Graphics.GraphicsDevice.Clear(Color.Transparent);
             MagicGlow.Render((RenderTarget2D)poem, timer, -1f, Matrix.CreateScale(0.5f));
             GaussianBlur.Blur((RenderTarget2D)smoke, temp, smoke);
+
+            if (showDsideCassette)
+            {
+                Engine.Graphics.GraphicsDevice.SetRenderTarget(dSideCassette);
+                Engine.Graphics.GraphicsDevice.Clear(Color.Transparent);
+                Draw.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, null, null, null, Matrix.CreateScale((float)dSideCassette.Width / 960f));
+                // dSideCassette is half-resolution, so 850,270 maps to 1700,540 on screen after 2x upscaling.
+                DrawCassette(new Vector2(850f, 270f));
+                Draw.SpriteBatch.End();
+            }
+        }
+    }
+
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    private void DrawCassette(Vector2 position)
+    {
+        try
+        {
+            MTexture cassette = GFX.Gui["collectables/cassette"];
+            cassette.DrawCentered(position, Color.White, 1.5f);
+        }
+        catch
+        {
+            // Fallback: draw a labeled cassette box if the texture is missing.
+            Draw.Rect(position.X - 32f, position.Y - 20f, 64f, 40f, Color.MediumPurple);
+            ActiveFont.Draw("DSIDE\nTAPE", position, new Vector2(0.5f, 0.5f), Vector2.One * 0.5f, Color.White);
         }
     }
 
@@ -176,6 +213,12 @@ public class Soul : Entity
             float num = 1920f / (float)poem.Width;
             Draw.SpriteBatch.Draw((RenderTarget2D)smoke, Vector2.Zero, smoke.Bounds, Color.White * 0.3f * Alpha, 0f, Vector2.Zero, num * 2f, SpriteEffects.None, 0f);
             Draw.SpriteBatch.Draw((RenderTarget2D)poem, Vector2.Zero, poem.Bounds, Color.White * Alpha, 0f, Vector2.Zero, num, SpriteEffects.None, 0f);
+
+            if (showDsideCassette && dSideCassette != null)
+            {
+                float cassetteScale = 1920f / (float)dSideCassette.Width;
+                Draw.SpriteBatch.Draw((RenderTarget2D)dSideCassette, Vector2.Zero, dSideCassette.Bounds, Color.White * Alpha, 0f, Vector2.Zero, cassetteScale, SpriteEffects.None, 0f);
+            }
         }
     }
 

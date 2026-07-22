@@ -9,7 +9,7 @@ namespace Celeste.Entities
     [TrackedAs(typeof(CelesteStrawberry))]
     internal class PinkPlatinumBerry : Entity, IStrawberry
     {
-        private enum CollectSound
+        protected enum CollectSound
         {
             Original,
             Elaborate,
@@ -26,17 +26,19 @@ namespace Celeste.Entities
 
         public static ParticleType? PPlatGlow;
         public static ParticleType? PGhostGlow;
-        private bool collected;
-        private float wobble = 0.0f;
-        private bool isGhostBerry;
-        private string customCollectSound;
-        private Vector2 start;
-        private Sprite sprite;
-        private Wiggler wiggler;
-        private BloomPoint bloom;
-        private VertexLight light;
-        private Tween lightTween;
-        private CollectSound collectSound;
+        protected bool collected;
+        protected float wobble = 0.0f;
+        protected bool isGhostBerry;
+        protected string customCollectSound;
+        protected Vector2 start;
+        protected Sprite sprite;
+        protected Wiggler wiggler;
+        protected BloomPoint bloom;
+        protected VertexLight light;
+        protected Tween lightTween;
+        protected CollectSound collectSound;
+
+        protected virtual string SpriteName => "pinkplatinumberry";
 
         public PinkPlatinumBerry(EntityData data, Vector2 offset, EntityID gid)
         {
@@ -49,7 +51,7 @@ namespace Celeste.Entities
             this.Add(new MirrorReflection());
             this.Add(this.Follower = new Follower(this.Id, onLoseLeader: new Action(this.OnLoseLeader)));
             this.Follower.FollowDelay = 0.3f;
-            this.sprite = GFX.SpriteBank.Create("pinkplatinumberry");
+            this.sprite = GFX.SpriteBank.Create(this.SpriteName);
             this.wiggler = Wiggler.Create(0.4f, 4f, v => this.sprite.Scale = Vector2.One * (1.0f + v * 0.35f));
             this.bloom = new BloomPoint(0.15f, 12f);
             this.light = new VertexLight(Color.White, 1f, 16, 24);
@@ -58,7 +60,7 @@ namespace Celeste.Entities
             this.customCollectSound = data.Attr(nameof(customCollectSound), string.Empty);
         }
 
-        private void OnPlayer(global::Celeste.Player player)
+        protected virtual void OnPlayer(global::Celeste.Player player)
         {
             ((Level)Scene).Session.GrabbedGolden = true;
             if (Follower.Leader != null || collected) return;
@@ -151,7 +153,7 @@ namespace Celeste.Entities
             }
         }
 
-        private void OnAnimate(string id)
+        protected virtual void OnAnimate(string id)
         {
             if (this.sprite.CurrentAnimationFrame != 30)
                 return;
@@ -168,7 +170,7 @@ namespace Celeste.Entities
             }
         }
 
-        public void OnCollect()
+        public virtual void OnCollect()
         {
             if (this.collected)
                 return;
@@ -184,7 +186,8 @@ namespace Celeste.Entities
                 }
             }
 
-            Session session = ((Level)this.Scene).Session;
+            Level level = (Level)this.Scene;
+            Session session = level.Session;
             if (!this.CommandSpawned)
             {
                 SaveData.Instance.AddStrawberry(this.Id, this.Golden);
@@ -192,13 +195,18 @@ namespace Celeste.Entities
                 session.Strawberries.Add(this.Id);
             }
 
-            DZProgressionManager.RecordPinkPlatinumBerry(this.Scene as Level, this.Id.ToString());
+            RecordCollection(level, this.Id.ToString());
 
             session.UpdateLevelStartDashes();
             this.Add(new Coroutine(this.collectRoutine()));
         }
 
-        private void OnLoseLeader()
+        protected virtual void RecordCollection(Level level, string berryId)
+        {
+            DZProgressionManager.RecordPinkPlatinumBerry(level, berryId);
+        }
+
+        protected virtual void OnLoseLeader()
         {
             if (this.collected)
                 return;
@@ -215,7 +223,7 @@ namespace Celeste.Entities
             this.Dead = true;
         }
 
-        private IEnumerator collectRoutine()
+        protected virtual IEnumerator collectRoutine()
         {
             Scene scene = this.Scene;
             this.Tag = (int)Tags.TransitionUpdate;

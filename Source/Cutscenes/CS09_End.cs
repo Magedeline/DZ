@@ -1,4 +1,4 @@
-namespace Celeste.Cutscenes;
+namespace DZ.Cutscenes;
 
 [HotReloadable]
 public class Cs09End : CutsceneEntity

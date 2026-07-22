@@ -1567,10 +1567,6 @@ triggers.DZ/ParallaxShiftTrigger.placements.name.duration=Duration
 
 # Payphone
 entities.DZ/Payphone.placements.name.payphone=Payphone
-entities.DZ/Payphone.placements.name.dreamDialogId=Dream Dialog Id
-entities.DZ/Payphone.placements.name.awakeDialogId=Awake Dialog Id
-entities.DZ/Payphone.placements.name.flagToSet=Flag To Set
-entities.DZ/Payphone.placements.name.onlyOnce=Only Once
 
 # Pink Gameboy Color Grade Trigger
 triggers.DZ/PinkGameboyColorGradeTrigger.placements.name.pink_gameboy_color_grade_trigger=Pink Gameboy Color Grade Trigger

@@ -10,6 +10,7 @@ using FMOD.Studio;
 using Microsoft.Xna.Framework;
 using Monocle;
 using MonoMod;
+using Payphone = Celeste.Mod.DZ.Entities.Payphone;
 using FlingBirdIntro = Celeste.Entities.FlingBirdIntro;
 using NPC = Celeste.NPCs.NPC;
 
@@ -269,14 +270,14 @@ namespace DZ
                 }
                 case "cs02_dreaming_phonecall_portal":
                 {
-                    var payphone = level.Entities.FindFirst<global::Celeste.Entities.Payphone>();
+                    var payphone = level.Entities.FindFirst<Payphone>();
                     if (payphone != null)
-                        base.Scene.Add(new global::Celeste.Cutscenes.Cs02DreamingPhonecallPortal(player2));
+                        base.Scene.Add(new global::Celeste.Mod.DZ.CS02_DreamingPhonecallPortal(player2));
                     break;
                 }
                 case "cs02_awake_phonecall_ending":
                 {
-                    var payphone = level.Entities.FindFirst<global::Celeste.Entities.Payphone>();
+                    var payphone = level.Entities.FindFirst<Payphone>();
                     if (payphone != null)
                         base.Scene.Add(new global::Celeste.Cutscenes.Cs02CallKirby(player2));
                     break;
@@ -398,7 +399,7 @@ namespace DZ
                     Engine.Scene = new global::Celeste.Cutscenes.Cs13TapeVignette(level.Session);
                     break;
                 case "payphone_eat":
-                    base.Scene.Add(new global::Celeste.Cutscenes.Cs02DreamingPhonecallPortal(player2));
+                    base.Scene.Add(new global::Celeste.Mod.DZ.CS02_DreamingPhonecallPortal(player2));
                     break;
                 case "cs15_titan_king_boss":
                     base.Scene.Add(new global::Celeste.Cutscenes.CS15_TitanKingBoss(player2));

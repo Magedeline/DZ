@@ -24,8 +24,8 @@ namespace DZ
         private static void Player_Added(On.Celeste.Player.orig_Added orig, global::Celeste.Player self, Scene scene)
         {
             orig(self, scene);
-            var deltaBerry = scene.Tracker.GetEntity<PopstarBerry>();
-            var follower = deltaBerry?.Get<Follower>();
+            var deltaBerry = scene.Tracker.GetEntity<PopstarBerry>() ?? (IStrawberry)scene.Tracker.GetEntity<PinkPlatinumBerry>();
+            var follower = (deltaBerry as Entity)?.Get<Follower>();
             if (deltaBerry != null && follower != null)
                 follower.Leader = self.Leader;
         }
@@ -41,7 +41,7 @@ namespace DZ
 
         private static void onCreatePauseMenuButtons(Level level, TextMenu menu, bool minimal)
         {
-            PopstarBerry berry = level.Tracker.GetEntity<PopstarBerry>();
+            Entity berry = level.Tracker.GetEntity<PopstarBerry>() ?? (Entity)level.Tracker.GetEntity<PinkPlatinumBerry>();
             var follower = berry?.Get<Follower>();
             if (berry != null && follower != null && follower.HasLeader && !minimal)
             {
@@ -63,19 +63,19 @@ namespace DZ
         {
             orig(self, scene);
             PopstarBerry deltaBerry = scene.Tracker.GetEntity<PopstarBerry>();
-            if (deltaBerry != null)
+            if (deltaBerry == null)
+                return;
+
+            var spriteField = typeof(CelesteStrawberry).GetField("Sprite", BindingFlags.NonPublic | BindingFlags.Instance);
+            if (spriteField != null)
             {
-                var spriteField = typeof(CelesteStrawberry).GetField("Sprite", BindingFlags.NonPublic | BindingFlags.Instance);
-                if (spriteField != null)
-                {
-                    string spriteName = SaveDataExtensions.IsDeltaBerryCollected(deltaBerry.ToString())
-                        ? "popstarberry_golden"
-                        : "popstarberry";
-                    if (GFX.SpriteBank.Has(spriteName))
-                        spriteField.SetValue(self, GFX.SpriteBank.Create(spriteName));
-                    else
-                        spriteField.SetValue(self, GFX.SpriteBank.Create("popstarberry"));
-                }
+                string spriteName = SaveDataExtensions.IsDeltaBerryCollected(deltaBerry.ToString())
+                    ? "popstarberry_golden"
+                    : "popstarberry";
+                if (GFX.SpriteBank.Has(spriteName))
+                    spriteField.SetValue(self, GFX.SpriteBank.Create(spriteName));
+                else
+                    spriteField.SetValue(self, GFX.SpriteBank.Create("popstarberry"));
             }
         }
 
@@ -88,12 +88,19 @@ namespace DZ
                 yield return origEnum.Current;
             }
             PopstarBerry deltaBerry = scene.Tracker.GetEntity<PopstarBerry>();
+            PinkPlatinumBerry platBerry = scene.Tracker.GetEntity<PinkPlatinumBerry>();
             if (deltaBerry != null)
             {
                 SaveDataExtensions.MarkDeltaBerryAsCollected(deltaBerry.ToString());
                 StrawberryPoints points = scene.Entities.ToAdd.OfType<StrawberryPoints>().FirstOrDefault();
                 if (points != null) scene.Entities.ToAdd.Remove(points);
                 scene.Add(new CSGEN_StrawberrySeeds(self));
+            }
+            else if (platBerry != null)
+            {
+                SaveDataExtensions.MarkDeltaBerryAsCollected(platBerry.ToString());
+                StrawberryPoints points = scene.Entities.ToAdd.OfType<StrawberryPoints>().FirstOrDefault();
+                if (points != null) scene.Entities.ToAdd.Remove(points);
             }
         }
 

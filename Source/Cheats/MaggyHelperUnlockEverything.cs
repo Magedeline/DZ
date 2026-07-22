@@ -16,12 +16,16 @@ public class DZUnlockEverything : CheatListener
     {
         // MIDI-derived input pattern: C7=l, D7=r, E7=d, F7=r, G7=u, high=L/R/A
         // Sequence: l,u,u,l,l,u,r,d,r,r,Z,X,C
-        AddInput('l', [MethodImpl(MethodImplOptions.NoInlining)] () => Input.MenuLeft.Pressed && !Input.MenuLeft.Repeating);
-        AddInput('r', [MethodImpl(MethodImplOptions.NoInlining)] () => Input.MenuRight.Pressed && !Input.MenuRight.Repeating);
-        AddInput('u', [MethodImpl(MethodImplOptions.NoInlining)] () => Input.MenuUp.Pressed && !Input.MenuUp.Repeating);
-        AddInput('d', [MethodImpl(MethodImplOptions.NoInlining)] () => Input.MenuDown.Pressed && !Input.MenuDown.Repeating);
+        // Only allow the manual Konami code if the player has already enabled Celeste's cheat mode.
+        if (!SaveData.Instance.CheatMode)
+            return;
+
+        AddInput('l', () => Input.MoveX.Value == -1 && Input.MoveX.PreviousValue != -1);
+        AddInput('r', () => Input.MoveX.Value == 1 && Input.MoveX.PreviousValue != 1);
+        AddInput('u', () => Input.MoveY.Value == -1 && Input.MoveY.PreviousValue != -1);
+        AddInput('d', () => Input.MoveY.Value == 1 && Input.MoveY.PreviousValue != 1);
         AddInput('Z', () => Input.Dash.Pressed);
-        AddInput('X', [MethodImpl(MethodImplOptions.NoInlining)] () => Input.Grab.Pressed);
+        AddInput('X', () => Input.Grab.Pressed);
         AddInput('C', () => Input.Jump.Pressed);
         AddCheat("luulurdrrZXC", EnteredCheat);
         Logging = true;

@@ -60,17 +60,47 @@ namespace Celeste.Mod.DZ
         [SettingIgnore]
         public bool LastEndemyAgreed { get; set; }
 
-        public bool DebugMode { get; set; }
-        public bool SkipModIntro { get; set; }
-        public bool HasSeenIntroWarning { get; set; }
         public AudioThemeMode AudioThemeMode { get; set; } = AudioThemeMode.Pusheen;
 
-        /// <summary>
-        /// Developer bypass flag: skips all introductory sequences and enables room-warp debug menus.
-        /// Set this to true during testing cycles to bypass the mod selection screen, intro warning, and vessel creation.
-        /// </summary>
+        #region Debug / Development (hidden from settings menu)
+
+        [SettingIgnore]
+        public bool DebugMode { get; set; }
+
+        [SettingIgnore]
+        public bool SkipModIntro { get; set; }
+
+        [SettingIgnore]
+        public bool HasSeenIntroWarning { get; set; }
+
         [SettingIgnore]
         public bool DeveloperBypass { get; set; }
+
+        [SettingIgnore]
+        public bool HotReloadEnabled { get; set; } = true;
+
+        [SettingIgnore]
+        public bool HotReloadShowUI { get; set; } = true;
+
+        [SettingIgnore]
+        public bool HotReloadSound { get; set; } = true;
+
+        [SettingIgnore]
+        public bool HotReloadVerbose { get; set; }
+
+        [SettingIgnore]
+        [DefaultButtonBinding(0, Keys.F9)]
+        public ButtonBinding HotReloadToggle { get; set; }
+
+        [SettingIgnore]
+        [DefaultButtonBinding(0, Keys.F11)]
+        public ButtonBinding HotReloadManual { get; set; }
+
+        [SettingIgnore]
+        [DefaultButtonBinding(0, Keys.F12)]
+        public ButtonBinding HotReloadUIBinding { get; set; }
+
+        #endregion
 
         #region Overworld 3D Settings
 
@@ -125,35 +155,6 @@ namespace Celeste.Mod.DZ
 
         #endregion
 
-        #region Hot Reload Settings (Development)
-
-        [SettingSubHeader("DZ_HOTRELOAD_HEADER")]
-        [SettingName("DZ_HOTRELOAD_ENABLED")]
-        public bool HotReloadEnabled { get; set; } = true;
-
-        [SettingName("DZ_HOTRELOAD_SHOW_UI")]
-        public bool HotReloadShowUI { get; set; } = true;
-
-        [SettingName("DZ_HOTRELOAD_SOUND")]
-        public bool HotReloadSound { get; set; } = true;
-
-        [SettingName("DZ_HOTRELOAD_VERBOSE")]
-        public bool HotReloadVerbose { get; set; }
-
-        [SettingName("DZ_BIND_HOTRELOAD_TOGGLE")]
-        [DefaultButtonBinding(0, Keys.F9)]
-        public ButtonBinding HotReloadToggle { get; set; }
-
-        [SettingName("DZ_BIND_HOTRELOAD_RELOAD")]
-        [DefaultButtonBinding(0, Keys.F11)]
-        public ButtonBinding HotReloadManual { get; set; }
-
-        [SettingName("DZ_BIND_HOTRELOAD_UI")]
-        [DefaultButtonBinding(0, Keys.F12)]
-        public ButtonBinding HotReloadUIBinding { get; set; }
-
-        #endregion
-
         #region Mod Integration Settings
 
         [SettingSubHeader("DZ_INTEGRATIONS_HEADER")]
@@ -183,12 +184,17 @@ namespace Celeste.Mod.DZ
             LastEndemyMode = false;
             LastEndemyAgreed = false;
 
-            // Reset debug settings
+            AudioThemeMode = AudioThemeMode.Pusheen;
+
+            // Reset debug / development settings
             DebugMode = false;
             SkipModIntro = false;
             HasSeenIntroWarning = false;
-            AudioThemeMode = AudioThemeMode.Pusheen;
             DeveloperBypass = false;
+            HotReloadEnabled = true;
+            HotReloadShowUI = true;
+            HotReloadSound = true;
+            HotReloadVerbose = false;
 
             // Reset overworld settings
             EnableCustomMountainModels = true;

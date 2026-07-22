@@ -7,6 +7,9 @@ popstarBerry.texture = "objects/DZ/popstar_berry"
 popstarBerry.placements = {
     name = "popstar_berry",
     data = {
+        collectSound = "Original",
+        customCollectSound = "",
+        requiredBerries = 0
     }
 }
 

@@ -78,6 +78,7 @@ public static class DSideHookRegistry
             {
                 case HookModule.DSide:
                     Celeste2Hooks.Load();
+                    DSideHookImplementation.Initialize();
                     _hookStates[moduleName] = true;
                     Logger.Log(LogLevel.Info, "DZ/HookRegistry",
                         "✓ D-Side hooks loaded (On.hook + IL.hook)");
@@ -128,6 +129,7 @@ public static class DSideHookRegistry
             switch (module)
             {
                 case HookModule.DSide:
+                    DSideHookImplementation.Shutdown();
                     Celeste2Hooks.Unload();
                     _hookStates[moduleName] = false;
                     Logger.Log(LogLevel.Info, "DZ/HookRegistry",

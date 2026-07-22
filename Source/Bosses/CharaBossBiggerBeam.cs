@@ -18,6 +18,7 @@ public partial class CharaBossBiggerBeam : Entity
     private CharaBoss charaboss;
     private Sprite beamSprite;
     private Sprite beamStartSprite;
+    private SoundSource beamSfx;
     private float chargeTimer;
     private float followTimer;
     private float activeTimer;
@@ -95,6 +96,7 @@ public partial class CharaBossBiggerBeam : Entity
             destroy();
         };
         Add(beamStartSprite = GFX.SpriteBank.Create("chara_beam_start"));
+        Add(beamSfx = new SoundSource());
         beamSprite.Visible = false;
         Depth = -1000000;
     }
@@ -142,8 +144,19 @@ public partial class CharaBossBiggerBeam : Entity
     {
         base.Update();
         var player = Scene.Tracker.GetEntity<global::Celeste.Player>();
-        beamAlpha = Calc.Approach(beamAlpha, 1f, 2f * Engine.DeltaTime);
+        beamAlpha = Calc.Approach(beamAlpha, 0.8f, 2f * Engine.DeltaTime);
         
+        // Update position to closest point on beam to player so sound distance is based
+        // on how far the player actually is from the beam, not from the boss
+        if (player != null && charaboss != null)
+        {
+            Vector2 beamStart = charaboss.BeamOrigin;
+            Vector2 beamDir = Calc.AngleToVector(angle, 1f);
+            float projection = Vector2.Dot(player.Center - beamStart, beamDir);
+            projection = MathHelper.Clamp(projection, 0f, beam_length);
+            Position = beamStart + beamDir * projection;
+        }
+
         if (chargeTimer > 0.0)
         {
             sideFadeAlpha = Calc.Approach(sideFadeAlpha, 1f, Engine.DeltaTime);
@@ -197,6 +210,8 @@ public partial class CharaBossBiggerBeam : Entity
             {
                 beamSprite.Play("charaboss_shoot");
                 beamStartSprite.Play("charaboss_shoot", true);
+                // Play fire sound at the closest point on the beam to the player
+                beamSfx.Play("event:/char/badeline/boss_laser_fire");
                 // Spawn the persistent kill zone when the beam first fires
                 killZone = new BeamKillZone(this);
                 Scene.Add(killZone);
@@ -208,6 +223,7 @@ public partial class CharaBossBiggerBeam : Entity
                 // Beam duration over — remove kill zone, play end/dissipate animation
                 killZone?.RemoveSelf();
                 killZone = null;
+                beamSfx.Stop();
                 beamSprite.Play("charaboss_end");
                 beamStartSprite.Stop();
                 return;
@@ -330,6 +346,7 @@ public partial class CharaBossBiggerBeam : Entity
 
     private void destroy()
     {
+        beamSfx.Stop();
         killZone?.RemoveSelf();
         killZone = null;
         RemoveSelf();
@@ -337,6 +354,7 @@ public partial class CharaBossBiggerBeam : Entity
 
     public override void Removed(Scene scene)
     {
+        beamSfx.Stop();
         killZone?.RemoveSelf();
         killZone = null;
         base.Removed(scene);

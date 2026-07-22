@@ -161,7 +161,6 @@ public class CS19_FinalLaunch : CutsceneEntity
             nextLevelName = "end-golden";
             nextLevelIntro = Player.IntroTypes.Jump;
         }
-        level.CompleteArea(true, true, true);
         player.Active = true;
         player.Speed = Vector2.Zero;
         player.EnforceLevelBounds = true;
@@ -183,7 +182,6 @@ public class CS19_FinalLaunch : CutsceneEntity
                 level.SnapColorGrade("golden");
                 new FadeWipe(level, wipeIn: true).Duration = 2f;
                 ScreenWipe.WipeColor = Color.White;
-                level.CompleteArea(true, true, true);
             }
         };
     }

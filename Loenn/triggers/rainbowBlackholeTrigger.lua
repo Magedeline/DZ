@@ -2,6 +2,13 @@ local rainbowBlackholeTrigger = {}
 
 rainbowBlackholeTrigger.name = "DZ/RainbowBlackholeTrigger"
 rainbowBlackholeTrigger.depth = 0
+rainbowBlackholeTrigger.fieldInformation = {
+    strength = {
+        options = { "Mild", "Medium", "High", "Wild", "Insane" },
+        editable = false
+    }
+}
+
 rainbowBlackholeTrigger.placements = {
     name = "rainbow_blackhole_trigger",
     data = {

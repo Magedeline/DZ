@@ -1,4 +1,4 @@
-namespace Celeste.Entities
+namespace Celeste.Mod.DZ.Entities.Entities
 {
     /// <summary>
     /// Payphone entity that allows player to talk to Chara instead of Badeline
@@ -7,200 +7,93 @@ namespace Celeste.Entities
     /// </summary>
     [Tracked]
     [CustomEntity(ids: "DZ/Payphone")]
-    public class Payphone : Entity
+   public class Payphone : Entity
+{
+    public static ParticleType P_Snow;
+
+    public static ParticleType P_SnowB;
+
+    public bool Broken;
+
+    public Sprite Sprite;
+
+    public Image Blink;
+
+    private VertexLight light;
+
+    private BloomPoint bloom;
+
+    private float lightFlickerTimer;
+
+    private float lightFlickerFor = 0.1f;
+
+    private int lastFrame;
+
+    private SoundSource buzzSfx;
+
+    public Payphone(Vector2 pos)
+        : base(pos)
     {
-        private const string ACTIVATED_FLAG = "payphone_activated";
+        base.Depth = 1;
+        Add(Sprite = GFX.SpriteBank.Create("payphone"));
+        Sprite.Play("idle");
+        Add(Blink = new Image(GFX.Game["cutscenes/payphone/blink"]));
+        Blink.Origin = Sprite.Origin;
+        Blink.Visible = false;
+        Add(light = new VertexLight(new Vector2(-6f, -45f), Color.White, 1f, 8, 96));
+        light.Spotlight = true;
+        light.SpotlightDirection = new Vector2(0f, 1f).Angle();
+        Add(bloom = new BloomPoint(new Vector2(-6f, -45f), 0.8f, 8f));
+        Add(buzzSfx = new SoundSource());
+        buzzSfx.Play("event:/env/local/02_old_site/phone_lamp");
+        buzzSfx.Param("on", 1f);
+    }
 
-        private Sprite sprite;
-        private TalkComponent talk;
-        private SoundSource loopSfx;
-        private bool activated;
-        private string dreamDialogId;
-        private string awakeDialogId;
-        private string flagToSet;
-        private bool onlyOnce;
-        
-        // Public properties for cutscene access
-        public Sprite Sprite => sprite;
-        public bool Broken { get; set; }
-        public Vector2 Blink = Vector2.Zero;
-
-        public Payphone(EntityData data, Vector2 offset) : base(data.Position + offset)
+    public override void Update()
+    {
+        base.Update();
+        if (!Broken)
         {
-            dreamDialogId = data.Attr("dreamDialogId", "DZ_CH2_DREAM_PHONECALL_TRAP");
-            awakeDialogId = data.Attr("awakeDialogId", "DZ_CH2_CALLING_KIRBY_ENDING");
-            flagToSet = data.Attr("flagToSet", "");
-            onlyOnce = data.Bool("onlyOnce", true);
-
-            Depth = 8999;
-
-            setupSprite();
-            setupComponents();
-        }
-
-        private void setupSprite()
-        {
-            Add(sprite = new Sprite(GFX.Game, "cutscenes/payphone/"));
-            sprite.AddLoop("idle", "phone", 0.1f, 0);
-            sprite.AddLoop("ringing", "phone", 0.1f, 0);
-            sprite.Add("pickUp", "phone", 0.08f, "idle", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11);
-            sprite.AddLoop("talkPhone", "phone", 0.08f, 11);
-            sprite.Add("hangUp", "phone", 0.08f, "idle", 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0);
-            sprite.Add("jumpBack", "phone", 0.08f, "idle", 12, 13, 14, 15, 16, 17);
-            sprite.Add("scare", "phone", 0.08f, "idle", 18, 19, 20, 21);
-            sprite.Add("transform", "phone", 0.08f, "idle", 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45);
-            sprite.Add("eat", "phone", 0.08f, "monsterIdle", 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 83, 83, 84, 84, 85, 85, 86, 86, 87, 87, 74, 75, 76, 77, 78, 79, 80, 81, 82);
-            sprite.AddLoop("monsterIdle", "phone", 0.2f, 83, 84, 85, 86, 87);
-            sprite.Play("idle");
-        }
-
-        private void setupComponents()
-        {
-            Add(talk = new TalkComponent(
-                new Rectangle(-16, -8, 32, 16),
-                new Vector2(0f, -24f),
-                onTalk
-            ));
-
-            Add(loopSfx = new SoundSource());
-        }
-
-        private void onTalk(global::Celeste.Player player)
-        {
-            if (Scene is Level level)
+            lightFlickerTimer -= Engine.DeltaTime;
+            if (lightFlickerTimer <= 0f)
             {
-                if (onlyOnce && level.Session.GetFlag(ACTIVATED_FLAG))
+                if (base.Scene.OnInterval(0.025f))
                 {
-                    return;
+                    bool flag = Calc.Random.NextFloat() > 0.5f;
+                    light.Visible = flag;
+                    bloom.Visible = flag;
+                    Blink.Visible = !flag;
+                    buzzSfx.Param("on", flag ? 1 : 0);
                 }
-
-                level.StartCutscene(onTalkEnd);
-                Add(new Coroutine(talkCoroutine(player)));
+                if (lightFlickerTimer < 0f - lightFlickerFor)
+                {
+                    lightFlickerTimer = Calc.Random.Choose(0.4f, 0.6f, 0.8f, 1f);
+                    lightFlickerFor = Calc.Random.Choose(0.1f, 0.2f, 0.05f);
+                    light.Visible = true;
+                    bloom.Visible = true;
+                    Blink.Visible = false;
+                    buzzSfx.Param("on", 1f);
+                }
             }
         }
-
-        private IEnumerator talkCoroutine(global::Celeste.Player player)
+        else
         {
-            player.StateMachine.State = global::Celeste.Player.StDummy;
-
-            // Answer the phone
-            sprite.Play("pickUp");
-            yield return 0.5f;
-
-            // Determine which dialog to use based on dream state
-            string dialogToUse = GetCurrentDialogId();
-
-            // Play dialog
-            yield return Textbox.Say(dialogToUse);
-
-            // Hang up
-            sprite.Play("hangUp");
-            yield return 0.3f;
-
-            endCutscene();
+            Blink.Visible = (bloom.Visible = (light.Visible = false));
+            buzzSfx.Param("on", 0f);
         }
-
-        private string GetCurrentDialogId()
+        if (Sprite.CurrentAnimationID == "eat" && Sprite.CurrentAnimationFrame == 5 && lastFrame != Sprite.CurrentAnimationFrame)
         {
-            if (Scene is Level level && level.Session.Dreaming)
-            {
-                return dreamDialogId;
-            }
-            return awakeDialogId;
+            Level level = SceneAs<Level>();
+            level.ParticlesFG.Emit(P_Snow, 10, level.Camera.Position + new Vector2(236f, 152f), new Vector2(10f, 0f));
+            level.ParticlesFG.Emit(P_SnowB, 8, level.Camera.Position + new Vector2(236f, 152f), new Vector2(6f, 0f));
+            level.DirectionalShake(Vector2.UnitY);
+            Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
         }
-
-        private void endCutscene()
+        if (Sprite.CurrentAnimationID == "eat" && Sprite.CurrentAnimationFrame == Sprite.CurrentAnimationTotalFrames - 5 && lastFrame != Sprite.CurrentAnimationFrame)
         {
-            if (Scene is Level level)
-            {
-                level.EndCutscene();
-                onTalkEnd(level);
-            }
+            Input.Rumble(RumbleStrength.Light, RumbleLength.Medium);
         }
-
-        private void onTalkEnd(Level level)
-        {
-            if (!string.IsNullOrEmpty(flagToSet))
-            {
-                level.Session.SetFlag(flagToSet, true);
-            }
-
-            if (onlyOnce)
-            {
-                level.Session.SetFlag(ACTIVATED_FLAG, true);
-                talk.Enabled = false;
-            }
-
-            var player = level.Tracker.GetEntity<global::Celeste.Player>();
-            if (player != null)
-            {
-                player.StateMachine.State = global::Celeste.Player.StNormal;
-            }
-        }
-
-        public override void Added(Scene scene)
-        {
-            base.Added(scene);
-
-            if (Scene is Level level && onlyOnce && level.Session.GetFlag(ACTIVATED_FLAG))
-            {
-                talk.Enabled = false;
-            }
-        }
-
-        public override void Update()
-        {
-            base.Update();
-
-            if (!activated && sprite.CurrentAnimationID == "idle")
-            {
-                // Phone ringing logic could go here
-            }
-        }
-
-        public override void Removed(Scene scene)
-        {
-            loopSfx?.Stop();
-            base.Removed(scene);
-        }
-
-        /// <summary>
-        /// Trigger the payphone cutscene with the appropriate dialog based on dream/awake state.
-        /// Used by cutscenes to automatically show dream or awake dialog.
-        /// </summary>
-        public IEnumerator TriggerCutsceneDialog()
-        {
-            if (Scene is not Level level)
-                yield break;
-
-            var player = level.Tracker.GetEntity<global::Celeste.Player>();
-            if (player == null)
-                yield break;
-
-            level.StartCutscene(onTalkEnd);
-            yield return talkCoroutine(player);
-        }
-
-        /// <summary>
-        /// Get the appropriate dialog ID based on current dream state.
-        /// Returns dream dialog if level.Session.Dreaming is true, otherwise awake dialog.
-        /// </summary>
-        public string GetDialogForCurrentState()
-        {
-            return GetCurrentDialogId();
-        }
-
-        /// <summary>
-        /// Check if the payphone is currently in dream state.
-        /// </summary>
-        public bool IsDreamState()
-        {
-            if (Scene is Level level)
-                return level.Session.Dreaming;
-            return false;
-        }
+        lastFrame = Sprite.CurrentAnimationFrame;
     }
 }
-
-
-
+}

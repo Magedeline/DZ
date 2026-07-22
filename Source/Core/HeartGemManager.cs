@@ -208,7 +208,7 @@ public static class HeartGemManager
         {
             AreaMode.BSide => "1",
             AreaMode.CSide => "2",
-            _ when (int)session.Area.Mode == AreaModeExtender.MODE_2 => "2",
+            _ when (int)session.Area.Mode == AreaModeExtender.MODE_DSIDE => "3",
             _ when (int)session.Area.Mode == AreaModeExtender.MODE_DXSIDE => "DXSide",
             _ => "0"
         };
@@ -219,7 +219,7 @@ public static class HeartGemManager
         {
             AreaMode.BSide => "_B",
             AreaMode.CSide => "_C",
-            _ when (int)session.Area.Mode == AreaModeExtender.MODE_2 => "_D",
+            _ when (int)session.Area.Mode == AreaModeExtender.MODE_DSIDE => "_D",
             _ when (int)session.Area.Mode == AreaModeExtender.MODE_DXSIDE => "_DX",
             _ => "_A"
         };
@@ -292,6 +292,9 @@ public static class HeartGemManager
 
             // Set the "heart collected" flag for this side
             level.Session.SetFlag($"heartgem_{AreaModeExtender.GetModeName(mode)}_collected");
+
+            // Also write the vanilla heart-gem flag so Everest/overworld UI recognizes it.
+            SetVanillaHeartGemFlag(area.ID, mode, true);
         }
 
         // Set area mode completion
@@ -334,5 +337,40 @@ public static class HeartGemManager
             total += GetTotalHeartsForChapter(i);
         }
         return total;
+    }
+
+    /// <summary>
+    /// Writes the vanilla AreaModeStats.HeartGem flag for the given area and mode.
+    /// This makes Everest and the overworld chapter panel recognize the heart as collected.
+    /// </summary>
+    private static void SetVanillaHeartGemFlag(int areaId, int mode, bool value)
+    {
+        try
+        {
+            SaveData save = SaveData.Instance;
+            if (save == null || areaId < 0 || areaId >= save.Areas_Safe.Count)
+                return;
+
+            object areaStats = save.Areas_Safe[areaId];
+            if (areaStats == null)
+                return;
+
+            System.Reflection.PropertyInfo modesProp = areaStats.GetType().GetProperty("Modes");
+            if (modesProp?.GetValue(areaStats) is not System.Collections.IList modes || mode < 0 || mode >= modes.Count)
+                return;
+
+            object modeStats = modes[mode];
+            if (modeStats == null)
+                return;
+
+            System.Reflection.PropertyInfo heartProp = modeStats.GetType().GetProperty("HeartGem")
+                ?? modeStats.GetType().GetProperty("heartGem");
+            heartProp?.SetValue(modeStats, value);
+        }
+        catch (Exception ex)
+        {
+            Logger.Log(LogLevel.Warn, "DZ",
+                $"Failed to set vanilla heart gem flag for area {areaId} mode {mode}: {ex.Message}");
+        }
     }
 }

@@ -1,3 +1,4 @@
+using DZ;
 
 namespace Celeste.Entities
 {
@@ -24,6 +25,11 @@ namespace Celeste.Entities
         private string collectSound;
         private string customCollectSound;
 
+        private bool unlocked;
+        private int totalRequired;
+        private int collectedRequired;
+        private int requiredBerriesOverride;
+
         public int CheckpointId { get; private set; } = -1;
         public int Order { get; private set; } = -1;
 
@@ -39,6 +45,7 @@ namespace Celeste.Entities
             Order = data.Int("order", -1);
             collectSound      = data.Attr("collectSound",       "Original");
             customCollectSound = data.Attr("customCollectSound", "");
+            requiredBerriesOverride = data.Int("requiredBerries", 0);
 
             Depth = -100;
             Collider = new Monocle.Hitbox(14f, 14f, -7f, -10f);
@@ -57,7 +64,7 @@ namespace Celeste.Entities
         public override void Added(Scene scene)
         {
             base.Added(scene);
-            
+
             // Check if already collected
             var level = scene as Level;
             if (level != null)
@@ -68,28 +75,61 @@ namespace Celeste.Entities
                     RemoveSelf();
                     return;
                 }
+
+                unlocked = ComputeUnlockState(level, out collectedRequired, out totalRequired);
+                if (!unlocked)
+                {
+                    Collidable = false;
+                    bloom.Visible = false;
+                    light.Visible = false;
+                    sprite.Color = Color.Gray * 0.4f;
+                }
             }
         }
 
         public override void Update()
         {
+            Level level = Scene as Level;
+
             if (!collected)
             {
-                wobble += Engine.DeltaTime * 4f;
-                sprite.Y = (float)Math.Sin(wobble) * 2f;
-                
-                // Rainbow cycling effect
-                rainbowTimer += Engine.DeltaTime * 3f;
-                Color rainbowColor = GetRainbowColor(rainbowTimer);
-                sprite.Color = rainbowColor;
-                light.Color = rainbowColor;
-                
-                // Subtle star particles
-                if (Scene is Level level && Engine.Scene.OnInterval(0.1f))
+                if (!unlocked)
                 {
-                    if (PStarGlow != null)
+                    // Hologram appearance until the unlock condition is met.
+                    wobble += Engine.DeltaTime * 4f;
+                    sprite.Y = (float)Math.Sin(wobble) * 2f;
+
+                    float progress = totalRequired > 0 ? (float)collectedRequired / totalRequired : 0f;
+                    sprite.Color = Color.Lerp(Color.Black, Color.White, 0.3f + progress * 0.5f) * (0.3f + progress * 0.5f);
+
+                    if (ComputeUnlockState(level, out collectedRequired, out totalRequired))
                     {
-                        level.ParticlesFG?.Emit(PStarGlow, 1, Position + new Vector2(Calc.Random.Range(-8f, 8f), Calc.Random.Range(-8f, 8f)), Vector2.One * 4f);
+                        unlocked = true;
+                        Collidable = true;
+                        bloom.Visible = true;
+                        light.Visible = true;
+                        sprite.Color = Color.White;
+                        Audio.Play("event:/game/general/seed_reappear", Position);
+                    }
+                }
+                else
+                {
+                    wobble += Engine.DeltaTime * 4f;
+                    sprite.Y = (float)Math.Sin(wobble) * 2f;
+
+                    // Rainbow cycling effect
+                    rainbowTimer += Engine.DeltaTime * 3f;
+                    Color rainbowColor = GetRainbowColor(rainbowTimer);
+                    sprite.Color = rainbowColor;
+                    light.Color = rainbowColor;
+
+                    // Subtle star particles
+                    if (level != null && Engine.Scene.OnInterval(0.1f))
+                    {
+                        if (PStarGlow != null)
+                        {
+                            level.ParticlesFG?.Emit(PStarGlow, 1, Position + new Vector2(Calc.Random.Range(-8f, 8f), Calc.Random.Range(-8f, 8f)), Vector2.One * 4f);
+                        }
                     }
                 }
             }
@@ -134,10 +174,8 @@ namespace Celeste.Entities
 
         private void OnPlayer(global::Celeste.Player player)
         {
-            if (collected)
+            if (collected || !unlocked)
                 return;
-
-
 
             collected = true;
             Collidable = false;
@@ -146,17 +184,16 @@ namespace Celeste.Entities
             Audio.Play("event:/DZ/game/general/strawberry_get", Position, "colour", 5f);
 
             // Secondary audio event driven by collectSound mode
-            switch (collectSound)
+            switch (collectSound?.ToLowerInvariant())
             {
-                case "Elaborate":
-                    Audio.Play(AudioElaborate, Position, "colour", 5f);
+                case "elaborate":
+                    Audio.Play(AudioElaborate, Position);
                     break;
-                case "Minimalist":
-                    // no secondary sound
+                case "minimalist":
+                    // No secondary sound
                     break;
-                case "Custom":
-                    if (!string.IsNullOrEmpty(customCollectSound))
-                        Audio.Play(customCollectSound, Position);
+                case "custom" when !string.IsNullOrEmpty(customCollectSound):
+                    Audio.Play(customCollectSound, Position);
                     break;
                 default: // "Original"
                     Audio.Play(AudioOriginalFx, Position);
@@ -171,15 +208,19 @@ namespace Celeste.Entities
             {
                 level.Session.Strawberries.Add(id);
                 level.Session.UpdateLevelStartDashes();
+                global::DZ.DZProgressionManager.RecordPopstarBerry(level, id.ToString());
             }
 
             // Visual effects
             wiggler.Start();
 
-            Add(new Coroutine(collectRoutine(player)));
+            Add(new Coroutine(CollectRoutine(player)));
+
+            // Rainbow berry style "POYOFECT!" popup
+            Scene.Add(new FloatingText("POYOFECT!", player.Center + new Vector2(0f, -16f), Color.Gold, 1.5f));
         }
 
-        private System.Collections.IEnumerator collectRoutine(global::Celeste.Player player)
+        private System.Collections.IEnumerator CollectRoutine(global::Celeste.Player player)
         {
             var level = Scene as Level;
             
@@ -213,6 +254,70 @@ namespace Celeste.Entities
             // Final collection effects - rainbow explosion
             level?.ParticlesFG?.Emit(PStarCollectGlow, 20, player.Center, Vector2.One * 10f);
             level?.Shake(0.2f);
+        }
+
+        private bool ComputeUnlockState(Level level, out int collected, out int total)
+        {
+            collected = level?.Session?.Strawberries?.Count ?? 0;
+            total = GetTotalBerries(level);
+            return total <= 0 || collected >= total;
+        }
+
+        private int GetTotalBerries(Level level)
+        {
+            if (requiredBerriesOverride > 0)
+                return requiredBerriesOverride;
+
+            if (level == null)
+                return 0;
+
+            var area = global::Celeste.AreaData.Get(level.Session.Area);
+            int mode = (int)level.Session.Area.Mode;
+            int totalInMap = 0;
+            if (area != null && area.Mode != null && mode >= 0 && mode < area.Mode.Length)
+            {
+                totalInMap = area.Mode[mode].TotalStrawberries;
+            }
+
+            return Math.Max(0, totalInMap - CountPopstarBerriesInMap(level));
+        }
+
+        private int CountPopstarBerriesInMap(Level level)
+        {
+            int count = 0;
+            var mapData = level.Session.MapData;
+            if (mapData == null || mapData.Levels == null)
+                return count;
+
+            foreach (var levelData in mapData.Levels)
+            {
+                if (levelData.Entities == null)
+                    continue;
+
+                foreach (var entity in levelData.Entities)
+                {
+                    if (entity.Name == "DZ/PopstarBerry")
+                        count++;
+                }
+            }
+
+            return count;
+        }
+
+        public override void Render()
+        {
+            base.Render();
+
+            if (!unlocked && !collected && totalRequired > 0 && collectedRequired > 0)
+            {
+                Level level = SceneAs<Level>();
+                if (level != null)
+                {
+                    string text = $"{collectedRequired}/{totalRequired}";
+                    Vector2 pos = Position - level.Camera.Position + new Vector2(0f, 20f);
+                    ActiveFont.DrawOutline(text, pos, new Vector2(0.5f, 0f), Vector2.One * 0.6f, Color.White, 2f, Color.Black * 0.8f);
+                }
+            }
         }
 
         public static void LoadParticles()

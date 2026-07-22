@@ -54,7 +54,6 @@ public class DZModule : EverestModule {
         DSideHookRegistry.InitializeAll();
 
         VignetteHooks.Load();
-        global::DZ.Entities.Payphone.LoadParticles();
         KirbyPlayerController.Load();
         PlayerSelectHooks.Load();
         SoulPlayerController.Load();
@@ -75,13 +74,13 @@ public class DZModule : EverestModule {
         CosmicChapterPanelHook.Load();
         ChapterMasteryTracker.Load();
 
-        // Heart gem, player, and room-transition systems
+        // Heart gem, cassette/tape, player, and room-transition systems
         global::DZ.HeartGemManager.Load();
+        global::DZ.CassetteUnlockHook.Load();
         global::DZ.AltSidesHelperBridge.Load();
         global::DZ.K_PlayerHooks.Load();
         global::DZ.RoomTransitionHandler.Load();
         global::DZ.PlayerCompatShim.Load();
-        PayphoneCutsceneTriggers.Load();
 
         // Map-list / chapter navigation fixes
         global::DZ.MapListExt.Load();
@@ -157,13 +156,13 @@ public class DZModule : EverestModule {
         CosmicChapterPanelHook.Unload();
         ChapterMasteryTracker.Unload();
 
-        // Heart gem, player, and room-transition systems
+        // Heart gem, cassette/tape, player, and room-transition systems
         global::DZ.HeartGemManager.Unload();
+        global::DZ.CassetteUnlockHook.Unload();
         global::DZ.AltSidesHelperBridge.Unload();
         global::DZ.K_PlayerHooks.Unload();
         global::DZ.RoomTransitionHandler.Unload();
         global::DZ.PlayerCompatShim.Unload();
-        PayphoneCutsceneTriggers.Unload();
 
         // Map-list / chapter navigation fixes
         global::DZ.MapListExt.Unload();

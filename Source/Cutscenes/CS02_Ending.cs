@@ -1,4 +1,5 @@
 using Facings = Celeste.Facings;
+using Payphone = Celeste.Mod.DZ.Entities.Payphone;
 
 namespace Celeste.Cutscenes
 {
@@ -6,7 +7,6 @@ namespace Celeste.Cutscenes
   public class Cs02CallKirby : CutsceneEntity
   {
 
-    private global::Celeste.Session flag;
     private global::Celeste.Player player;
     private Payphone payphone;
     private SoundSource phoneSfx;
@@ -20,51 +20,57 @@ namespace Celeste.Cutscenes
 
     public override void OnBegin(Level level)
     {   
-      this.flag = level.Session;
-      this.flag.Flags.Contains("DZ_CH2_ENDING_DONE");
       level.RegisterAreaComplete();
-      this.payphone = this.Scene.Tracker.GetEntity<Payphone>();
+      this.payphone = level.Tracker.GetEntity<Payphone>();
+      if (this.payphone == null || this.player == null)
+      {
+        Logger.Log(LogLevel.Warn, "DZ", "[Cs02CallKirby] Missing payphone or player; aborting cutscene.");
+        level.EndCutscene();
+        RemoveSelf();
+        return;
+      }
       this.Add((Component) new Coroutine(this.cutscene(level)));
     }
 
     private IEnumerator cutscene(Level level)
     {
-      Cs02CallKirby cs02Ending = this;
-      cs02Ending.player.StateMachine.State = Player.StDummy;
-      cs02Ending.player.Dashes = 1;
-      while ((double) cs02Ending.player.Light.Alpha > 0.0)
+      if (player == null || payphone == null)
       {
-        cs02Ending.player.Light.Alpha -= Engine.DeltaTime * 1.25f;
-        yield return (object) null;
+        Logger.Log(LogLevel.Warn, "DZ", "[Cs02CallKirby] Missing payphone or player during cutscene; aborting.");
+        level.EndCutscene();
+        yield break;
       }
-      yield return (object) 1f;
-      yield return (object) cs02Ending.player.DummyWalkTo(cs02Ending.payphone.X - 4f);
-      yield return (object) 0.2f;
-      cs02Ending.player.Facing = Facings.Right;
-      yield return (object) 0.5f;
-      cs02Ending.player.Visible = false;
-      Audio.Play("event:/game/02_old_site/sequence_phone_pickup", cs02Ending.player.Position);
-      yield return (object) cs02Ending.payphone.Sprite.PlayRoutine("pickUp");
-      yield return (object) 0.25f;
-      cs02Ending.phoneSfx.Position = cs02Ending.player.Position;
-      cs02Ending.phoneSfx.Play("event:/game/02_old_site/sequence_phone_ringtone_loop");
-      yield return (object) 6f;
-      cs02Ending.phoneSfx.Stop();
-      cs02Ending.payphone.Sprite.Play("talkPhone");
-
-      yield return (object) Textbox.Say("DZ_CH2_CALLING_KIRBY");
-
-      yield return (object) 0.3f;
-      cs02Ending.endCutscene(level);
+      player.StateMachine.State = Player.StDummy;
+      player.Dashes = 1;
+      while (player.Light.Alpha > 0f)
+      {
+        player.Light.Alpha -= Engine.DeltaTime * 1.25f;
+        yield return null;
+      }
+      yield return 1f;
+      yield return player.DummyWalkTo(payphone.X - 4f);
+      yield return 0.2f;
+      player.Facing = Facings.Right;
+      yield return 0.5f;
+      player.Visible = false;
+      Audio.Play("event:/game/02_old_site/sequence_phone_pickup", player.Position);
+      yield return payphone.Sprite.PlayRoutine("pickUp");
+      yield return 0.25f;
+      phoneSfx.Position = player.Position;
+      phoneSfx.Play("event:/game/02_old_site/sequence_phone_ringtone_loop");
+      yield return 6f;
+      phoneSfx.Stop();
+      payphone.Sprite.Play("talkPhone");
+      yield return Textbox.Say("DZ_CH2_CALLING_KIRBY");
+      yield return 0.3f;
+      level.EndCutscene();
     }
 
-        private void endCutscene(Level level)
-        {
-            level.EndCutscene();
-            OnEnd(level);
-        }
-
-        public override void OnEnd(Level level) => level.CompleteArea(true, true, false);
+    public override void OnEnd(Level level)
+    {
+      phoneSfx.Stop();
+      level.CompleteArea(true, true, false);
+    }
   }
 }
 

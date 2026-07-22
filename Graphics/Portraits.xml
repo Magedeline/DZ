@@ -805,7 +805,7 @@
 
   </portrait_Magolor>
 
-  <portraitDZ_CHara path="DZ/chara/" sfx="DZ/chara" textbox="default">
+  <portrait_chara path="DZ/chara/" sfx="DZ/chara" textbox="default">
     <Center />
 
     <sfxs>
@@ -1072,7 +1072,7 @@
     <Anim id="idle_glitchypanic_breakdown" path="panic00" delay="0.01" frames="0*18" goto="idle_glitchypanic"/>
     <Loop id="talk_glitchypanic" path="panic00" delay="0.03" frames="0*30" />
 
-  </portraitDZ_CHara>
+  </portrait_chara>
 
 <portrait_sans path="DZ/sans/" sfx="DZ/sans" textbox="default">
     <Center />
@@ -1095,14 +1095,14 @@
       <Anim id="idle_normal" path="normal" delay="0.1" frames="0*4" goto="idle_normal:1"/>
       <Loop id="talk_blink" path="blink" delay="0.2" frames="0*4" />
       <Anim id="idle_blink" path="blink" delay="0.1" frames="0*4" goto="idle_blink:1"/>
-      <Loop id="talkDZ_CHaradont" path="charadont" delay="0.2" frames="0*4" />
-      <Anim id="idleDZ_CHaradont" path="charadont" delay="0.1" frames="0*4" goto="idleDZ_CHaradont:1"/>
-      <Loop id="talkDZ_CHuckle" path="chuckle" delay="0.2" frames="0*4" />
-      <Anim id="idleDZ_CHuckle" path="chuckle" delay="0.1" frames="0*4" goto="idleDZ_CHuckle:1"/>
-      <Loop id="talkDZ_CHuckleB" path="chuckleB" delay="0.15" frames="0-1" />
-      <Anim id="idleDZ_CHuckleB" path="chuckleB" delay="0.15" frames="0-1" goto="idleDZ_CHuckleB"/>
-      <Loop id="talkDZ_CHuckleC" path="chuckleC" delay="0.2" frames="0*4" />
-      <Anim id="idleDZ_CHuckleC" path="chuckleC" delay="0.1" frames="0*4" goto="idleDZ_CHuckleC:1"/>
+      <Loop id="talk_charadont" path="charadont" delay="0.2" frames="0*4" />
+      <Anim id="idle_charadont" path="charadont" delay="0.1" frames="0*4" goto="idle_charadont:1"/>
+      <Loop id="talk_chuckle" path="chuckle" delay="0.2" frames="0*4" />
+      <Anim id="idle_chuckle" path="chuckle" delay="0.1" frames="0*4" goto="idle_chuckle:1"/>
+      <Loop id="talk_chuckleB" path="chuckleB" delay="0.15" frames="0-1" />
+      <Anim id="idle_chuckleB" path="chuckleB" delay="0.15" frames="0-1" goto="idle_chuckleB"/>
+      <Loop id="talk_chuckleC" path="chuckleC" delay="0.2" frames="0*4" />
+      <Anim id="idle_chuckleC" path="chuckleC" delay="0.1" frames="0*4" goto="idle_chuckleC:1"/>
       <Loop id="talk_dudewtf" path="dudewtf" delay="0.2" frames="0*4" />
       <Anim id="idle_dudewtf" path="dudewtf" delay="0.1" frames="0*4" goto="idle_dudewtf:1"/>
       <Loop id="talk_dudewtfalt" path="dudewtfalt" delay="0.2" frames="0*4" />

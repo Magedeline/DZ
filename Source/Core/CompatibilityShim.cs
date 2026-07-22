@@ -449,6 +449,23 @@ namespace DZ
         {
         }
 
+        /// <summary>
+        /// Unlocks the next area in each level set while the player is in the DZ level set.
+        /// Used for normal progression, unlocking one chapter at a time.
+        /// </summary>
+        public static void ProgressUnlockNextArea()
+        {
+            SaveData saveData = SaveData.Instance;
+            if (saveData?.LevelSet == AreaModeExtender.MAP_PREFIX)
+            {
+                foreach (LevelSetStats levelSet in saveData.LevelSets)
+                {
+                    if (levelSet.UnlockedAreas < levelSet.MaxArea)
+                        levelSet.UnlockedAreas++;
+                }
+            }
+        }
+
         public static void RecordCheckpoint(Level level, Vector2 checkpoint, string checkpointId)
         {
             if (level?.Session == null)
@@ -469,6 +486,14 @@ namespace DZ
             if (level?.Session != null && !string.IsNullOrEmpty(berryId))
             {
                 DZModule.SaveData?.UnlockAchievement($"pink_platinum:{level.Session.Area.SID}:{berryId}");
+            }
+        }
+
+        public static void RecordPopstarBerry(Level level, string berryId)
+        {
+            if (level?.Session != null && !string.IsNullOrEmpty(berryId))
+            {
+                DZModule.SaveData?.UnlockAchievement($"popstar:{level.Session.Area.SID}:{berryId}");
             }
         }
 

@@ -1,23 +1,21 @@
 #nullable disable
 
 using Celeste.Entities;
-using Payphone = Celeste.Entities.Payphone;
 using Wire = Celeste.Entities.Wire;
+using Payphone = Celeste.Mod.DZ.Entities.Payphone;
 
 namespace Celeste.Cutscenes
 {
   [HotReloadable]
-  public class Cs02CharaTrap : CutsceneEntity
+  public class Cs04DreamingPhonecall : CutsceneEntity
   {
     private CharaDummy evil;
-
-    private global::Celeste.Session flag;
 
     private global::Celeste.Player player;
     private Payphone payphone;
     private SoundSource ringtone;
 
-    public Cs02CharaTrap(global::Celeste.Player player)
+    public Cs04DreamingPhonecall(global::Celeste.Player player)
         : base(false)
     {
       this.player = player;
@@ -25,18 +23,28 @@ namespace Celeste.Cutscenes
 
     public override void OnBegin(Level level)
     {
-      this.flag = level.Session;
-      this.flag.Flags.Contains("DZ_CH2_DREAM_PHONECALL_TRAP_DONE");
       level.Session.Dreaming = true;
-      this.payphone = this.Scene.Tracker.GetEntity<Payphone>();
+      this.payphone = level.Tracker.GetEntity<Payphone>();
+      if (this.payphone == null || this.player == null)
+      {
+        Logger.Log(LogLevel.Warn, "DZ", "[Cs04DreamingPhonecall] Missing payphone or player; aborting cutscene.");
+        level.EndCutscene();
+        RemoveSelf();
+        return;
+      }
       this.Add(new Coroutine(this.cutscene(level)));
       this.Add(this.ringtone = new SoundSource());
-      if (this.payphone != null)
-        this.ringtone.Position = this.payphone.Position;
+      this.ringtone.Position = this.payphone.Position;
     }
 
     private IEnumerator cutscene(Level level)
     {
+      if (player == null || payphone == null)
+      {
+        Logger.Log(LogLevel.Warn, "DZ", "[Cs04DreamingPhonecall] Missing payphone or player during cutscene; aborting.");
+        level.EndCutscene();
+        yield break;
+      }
       player.StateMachine.State = Player.StDummy;
       player.Dashes = 1;
       yield return 0.3f;
@@ -61,15 +69,15 @@ namespace Celeste.Cutscenes
       yield return payphone.Sprite.PlayRoutine("pickUp");
       yield return 1f;
       if (level.Session.Area.Mode == AreaMode.Normal)
-        Audio.SetMusic("event:/DZ/music/lvl2/phone_loop");
+        Audio.SetMusic("event:/DZ/music/lvl4/phone_loop");
       payphone.Sprite.Play("talkPhone");
 
-      yield return Textbox.Say("DZ_CH2_DREAM_PHONECALL_TRAP", showChara);
+      yield return Textbox.Say("DZ_CH4_DREAM_PHONECALL", showChara);
       if (evil != null)
       {
         if (level.Session.Area.Mode == AreaMode.Normal)
-          Audio.SetMusic("event:/DZ/music/lvl2/phone_end");
-        evil.Any();
+          Audio.SetMusic("event:/DZ/music/lvl4/phone_end");
+        evil.Vanish();
         evil = null;
         yield return 1f;
       }
@@ -98,7 +106,7 @@ namespace Celeste.Cutscenes
 
         private IEnumerator showChara()
     {
-      Payphone payphone = this.Scene?.Tracker?.GetEntity<Payphone>();
+      Payphone payphone = this.Scene?.Entities?.FindFirst<Payphone>();
       Level level = this.Scene as Level;
       if (payphone == null || level == null)
         yield break;
@@ -107,9 +115,10 @@ namespace Celeste.Cutscenes
 
       evil = new CharaDummy(payphone.Position + new Vector2(32f, -24f));
       this.Scene.Add(evil);
-        evil.Added(level); // Moved after Add to ensure Scene is set
+      evil.Appear(level);
+        // Moved after Add to ensure Scene is set
       yield return 0.2f;
-      ++payphone.Blink.X;
+      payphone.Blink.X += 1f;
       yield return payphone.Sprite.PlayRoutine("jumpBack");
       yield return payphone.Sprite.PlayRoutine("scare");
       yield return 1.2f;
@@ -149,13 +158,14 @@ namespace Celeste.Cutscenes
     {
         if (evil != null)
         {
-            evil.Any();
+            evil.Vanish();
             evil = null;
         }
     }
 
     public override void OnEnd(Level level)
     {
+      ringtone?.Stop();
       Leader.StoreStrawberries(this.player.Leader);
       level.ResetZoom();
       level.Bloom.Base = 0.0f;

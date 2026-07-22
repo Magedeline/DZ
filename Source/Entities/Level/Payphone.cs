@@ -1,11 +1,10 @@
 using System.Runtime.CompilerServices;
 using Microsoft.Xna.Framework;
 using Monocle;
-using Celeste;
 
-namespace DZ.Entities;
+namespace Celeste.Mod.DZ.Entities;
 
-[CustomEntity(ids: "DZ/Payphone")]
+[CustomEntity("DZ/Payphone")]
 [Tracked]
 [HotReloadable]
 public class Payphone : Entity
@@ -14,7 +13,7 @@ public class Payphone : Entity
 
     public static ParticleType P_SnowB;
 
-    public static void LoadParticles()
+    static Payphone()
     {
         P_Snow = new ParticleType
         {
@@ -69,15 +68,27 @@ public class Payphone : Entity
 
     private SoundSource buzzSfx;
 
-    [MethodImpl(MethodImplOptions.NoInlining)]
     public Payphone(EntityData data, Vector2 offset)
-        : base(data.Position + offset)
+        : this(data.Position + offset)
     {
-        LoadParticles();
-        base.Depth = 1;
-        Add(Sprite = GFX.SpriteBank.Create("payphone"));
+    }
+
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    public Payphone(Vector2 pos)
+        : base(pos)
+    {
+        base.Depth = -1;
+        Add(Sprite = new Sprite(GFX.Game, "cutscenes/DZ/payphone/"));
+        Sprite.AddLoop("idle", "phone", 0.1f, 0);
+        Sprite.Add("pickUp", "phone", 0.08f, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11);
+        Sprite.AddLoop("talkPhone", "phone", 0.08f, 11);
+        Sprite.Add("jumpBack", "phone", 0.08f, 12, 13, 14, 15, 16, 17);
+        Sprite.Add("scare", "phone", 0.08f, 18, 19, 20, 21);
+        Sprite.Add("transform", "phone", 0.08f, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45);
+        Sprite.Add("eat", "phone", 0.08f, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 83, 83, 84, 84, 85, 85, 86, 86, 87, 87, 74, 75, 76, 77, 78, 79, 80, 81, 82);
+        Sprite.AddLoop("monsterIdle", "phone", 0.2f, 83, 84, 85, 86, 87);
         Sprite.Play("idle");
-        Add(Blink = new Image(GFX.Game["cutscenes/payphone/blink"]));
+        Add(Blink = new Image(GFX.Game["cutscenes/DZ/payphone/blink"]));
         Blink.Origin = Sprite.Origin;
         Blink.Visible = false;
         Add(light = new VertexLight(new Vector2(-6f, -45f), Color.White, 1f, 8, 96));
@@ -87,6 +98,12 @@ public class Payphone : Entity
         Add(buzzSfx = new SoundSource());
         buzzSfx.Play("event:/env/local/02_old_site/phone_lamp");
         buzzSfx.Param("on", 1f);
+    }
+
+    public override void Removed(Scene scene)
+    {
+        buzzSfx.Stop();
+        base.Removed(scene);
     }
 
     [MethodImpl(MethodImplOptions.NoInlining)]
@@ -124,7 +141,7 @@ public class Payphone : Entity
         }
         if (Sprite.CurrentAnimationID == "eat" && Sprite.CurrentAnimationFrame == 5 && lastFrame != Sprite.CurrentAnimationFrame)
         {
-            Celeste.Level level = SceneAs<Celeste.Level>();
+            Level level = SceneAs<Level>();
             level.ParticlesFG.Emit(P_Snow, 10, level.Camera.Position + new Vector2(236f, 152f), new Vector2(10f, 0f));
             level.ParticlesFG.Emit(P_SnowB, 8, level.Camera.Position + new Vector2(236f, 152f), new Vector2(6f, 0f));
             level.DirectionalShake(Vector2.UnitY);

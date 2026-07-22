@@ -53,6 +53,7 @@ namespace Celeste.Bosses
     ///   warpStarBobAmplitude   float  3       Pixels of vertical sine-bob on the player
     ///   warpStarBobSpeed       float  2.5     Bob frequency (radians/second)
     ///   warpStarRideDuration   float  8       Seconds the Warp Star ride lasts
+    ///   warpStarFlySpeed       float  120     Horizontal fly speed (px/s) during WarpStarRide + FlyingVoid
     ///   phase2ScrollSpeed      float  350     FlyingBattleScrollBackdrop pixels/second
     ///   allyFormationOffsetX   float  -40     Ally cluster X offset from player
     ///   allyFormationOffsetY   float  -20     Ally cluster Y offset from player
@@ -125,6 +126,7 @@ namespace Celeste.Bosses
         private readonly float  warpStarBobAmplitude;
         private readonly float  warpStarBobSpeed;
         private readonly float  warpStarRideDuration;
+        private readonly float  warpStarFlySpeed;
         private readonly float  phase2ScrollSpeed;
         private readonly float  allyFormationOffsetX;
         private readonly float  allyFormationOffsetY;
@@ -153,11 +155,9 @@ namespace Celeste.Bosses
         private float   zeroMaxHealth;
         private SiamoZeroFinalBoss? activeZeroBoss;
 
-        // Warp star bob
-        private float warpStarSineTimer;
-        private float warpStarAnchorY;
-        private bool  anchorYSet;
-        private float trailTimer;
+        // Warp star ride — full player controller (freeze + free-flight input)
+        private WarpStarRideController? rideController;
+        private float warpStarFlyTimer;
 
         // Phase 2 colour shift
         private int   phase2ColorIndex;
@@ -294,6 +294,7 @@ namespace Celeste.Bosses
             warpStarBobAmplitude  = data.Float("warpStarBobAmplitude", 3f);
             warpStarBobSpeed      = data.Float("warpStarBobSpeed", 2.5f);
             warpStarRideDuration  = data.Float("warpStarRideDuration", 8f);
+            warpStarFlySpeed      = data.Float("warpStarFlySpeed", 120f);
             phase2ScrollSpeed     = data.Float("phase2ScrollSpeed", 350f);
             allyFormationOffsetX  = data.Float("allyFormationOffsetX", -40f);
             allyFormationOffsetY  = data.Float("allyFormationOffsetY", -20f);
@@ -950,9 +951,22 @@ namespace Celeste.Bosses
             yield return Textbox.Say("DZ_CH21_FINAL_BATTLE_WARPSTAR_RIDE");
 
             // ── Spawn visible Warp Star under the player ──────────────────────
+            // Prefer K_Player (Kirby) if active — it keeps a hidden vanilla
+            // Player "shadow" purely for API compatibility, so checking
+            // Player first would incorrectly grab that non-controlling shadow.
             player ??= Scene.Tracker.GetEntity<Player>();
-            var ridingStar = new RidingWarpStar(player?.Center ?? Position);
+            Entity? activePlayer = Scene.Tracker.GetEntity<K_Player>() ?? (Entity?)player;
+            var ridingStar = new RidingWarpStar(activePlayer?.Center ?? Position);
             Scene.Add(ridingStar);
+
+            // ── Full player controller: freezes physics, accepts free-flight
+            //    input within a safe local arena for the entire ride + void ──
+            if (activePlayer != null)
+            {
+                rideController = new WarpStarRideController(
+                    activePlayer, warpStarFlySpeed, warpStarBobAmplitude, warpStarBobSpeed);
+                Scene.Add(rideController);
+            }
 
             // ── Enable AbyssmentBackdrop rightward scroll for the ride ─────────
             // This sells the sense of flying through space toward Nightmare.
@@ -1036,9 +1050,10 @@ namespace Celeste.Bosses
                 scrollBd.ScrollSpeedX = phase2ScrollSpeed;
             }
 
-            // Restore level bounds (ground is back)
+            // Hand control back to the player (ground is back)
             player ??= Scene.Tracker.GetEntity<Player>();
-            if (player != null) player.EnforceLevelBounds = true;
+            rideController?.RemoveSelf();
+            rideController = null;
 
             // Ramp scroll speed visually over 2 s
             if (scrollBd != null)
@@ -1061,9 +1076,7 @@ namespace Celeste.Bosses
 
             yield return Textbox.Say("DZ_CH21_FINAL_BATTLE_PHASE2_ARRIVAL");
 
-            // Warp Star ride ends; reset bob anchor
             SetPhase(BattlePhase.Phase2Scroll);
-            anchorYSet = false;
 
             // Kick off the attack loop — runs as a parallel coroutine for the
             // full duration of Phase2Scroll so it stops automatically when the
@@ -1091,31 +1104,24 @@ namespace Celeste.Bosses
                 Audio.SetMusicParam("finale_pitch", musicPitch);
             }
 
-            // Flying phase — no bounds
-            if (CurrentPhase == BattlePhase.WarpStarRide || CurrentPhase == BattlePhase.FlyingVoid)
-                player.EnforceLevelBounds = false;
-
-            // Warp Star bob
-            if (CurrentPhase == BattlePhase.WarpStarRide && warpStarBobAmplitude > 0f)
-            {
-                if (!anchorYSet) { warpStarAnchorY = player.Y; anchorYSet = true; }
-                warpStarSineTimer += Engine.DeltaTime * warpStarBobSpeed;
-                player.Y = warpStarAnchorY + (float)Math.Sin(warpStarSineTimer) * warpStarBobAmplitude;
-            }
-            else if (CurrentPhase != BattlePhase.WarpStarRide)
-            {
-                anchorYSet = false;
-            }
-
-            // Warp trail particles
+            // Simulated forward-flight feel via backdrop scroll speed.
+            // Player freeze/input/bob/trail are fully owned by WarpStarRideController.
             if (CurrentPhase == BattlePhase.WarpStarRide)
             {
-                trailTimer -= Engine.DeltaTime;
-                if (trailTimer <= 0f)
-                {
-                    trailTimer = 0.04f;
-                    level.ParticlesFG.Emit(P_WarpTrail, 3, player.Center, Vector2.One * 6f);
-                }
+                warpStarFlyTimer += Engine.DeltaTime;
+                float flyRamp = Math.Min(warpStarFlyTimer / 1.5f, 1f); // ramp up over 1.5s
+                if (abyssment != null)
+                    abyssment.ScrollSpeed = 220f + warpStarFlySpeed * flyRamp;
+            }
+            else if (CurrentPhase == BattlePhase.FlyingVoid)
+            {
+                warpStarFlyTimer += Engine.DeltaTime;
+                if (abyssment != null)
+                    abyssment.ScrollSpeed = 80f + warpStarFlySpeed * 0.5f;
+            }
+            else
+            {
+                warpStarFlyTimer = 0f;
             }
 
             // Phase 2 colour push to scroll backdrop

@@ -1068,6 +1068,158 @@ namespace Celeste.Bosses
     }
 
     // ══════════════════════════════════════════════════════════════════════════
+    //  WARP STAR RIDE CONTROLLER  — full player controller for the Warp Star
+    //  flight sections (BattlePhase.WarpStarRide + FlyingVoid).
+    //
+    //  Takes over player control while riding: freezes normal physics
+    //  (StDummy), accepts directional input to fly freely within a bounded
+    //  local arena around the mount point (so the player never drifts far
+    //  enough to trigger level-chunk streaming — the root cause of the
+    //  "Collection was modified" EntityList crash), layers a floaty idle
+    //  bob on top, emits the golden warp trail, and restores normal player
+    //  control the moment it is removed.
+    // ══════════════════════════════════════════════════════════════════════════
+    [Tracked]
+    [HotReloadable]
+    public class WarpStarRideController : Entity
+    {
+        // Supports either vanilla Player or K_Player (Kirby) — K_Player is a
+        // separate Actor-based class with its own StateMachine/StDummy and
+        // keeps a hidden "shadow" vanilla Player synced *from* itself each
+        // frame purely for API compatibility. Writing to that shadow does
+        // nothing to the real Kirby, so we must detect and drive whichever
+        // type is actually active.
+        private readonly Entity   playerEntity;
+        private readonly Player?  vanillaPlayer;
+        private readonly K_Player? kirbyPlayer;
+
+        private readonly float  moveSpeed;
+        private readonly float  bobAmplitude;
+        private readonly float  bobSpeed;
+        private readonly float  arenaHalfWidth;
+        private readonly float  arenaHalfHeight;
+
+        private Level   level = null!;
+        private Vector2 arenaCenter;
+        private float   bobTimer;
+        private float   lastBobOffset;
+        private float   trailTimer;
+        private bool    restored;
+
+        public WarpStarRideController(Entity playerEntity, float moveSpeed, float bobAmplitude,
+            float bobSpeed, float arenaHalfWidth = 130f, float arenaHalfHeight = 70f)
+            : base(playerEntity.Position)
+        {
+            this.playerEntity    = playerEntity;
+            vanillaPlayer        = playerEntity as Player;
+            kirbyPlayer          = playerEntity as K_Player;
+            this.moveSpeed       = moveSpeed;
+            this.bobAmplitude    = bobAmplitude;
+            this.bobSpeed        = bobSpeed;
+            this.arenaHalfWidth  = arenaHalfWidth;
+            this.arenaHalfHeight = arenaHalfHeight;
+            Tag = Tags.Persistent;
+        }
+
+        public override void Added(Scene scene)
+        {
+            base.Added(scene);
+            level       = SceneAs<Level>();
+            arenaCenter = playerEntity.Position;
+
+            if (vanillaPlayer != null)
+            {
+                vanillaPlayer.StateMachine.State = Player.StDummy;
+                vanillaPlayer.DummyAutoAnimate   = true;
+                vanillaPlayer.EnforceLevelBounds = false;
+                vanillaPlayer.Speed              = Vector2.Zero;
+            }
+            else if (kirbyPlayer != null)
+            {
+                kirbyPlayer.StateMachine.State = K_Player.StDummy;
+                kirbyPlayer.DummyAutoAnimate   = true;
+                kirbyPlayer.DummyGravity       = false;
+                kirbyPlayer.Speed              = Vector2.Zero;
+            }
+        }
+
+        public override void Update()
+        {
+            base.Update();
+
+            if (playerEntity?.Scene == null)
+            {
+                RemoveSelf();
+                return;
+            }
+
+            // ── Free-flight input, clamped to a local arena around the mount point ──
+            Vector2 dir = new Vector2(Input.MoveX.Value, Input.MoveY.Value);
+            if (dir != Vector2.Zero)
+            {
+                Vector2 pos = playerEntity.Position + dir * moveSpeed * Engine.DeltaTime;
+                pos.X = Calc.Clamp(pos.X, arenaCenter.X - arenaHalfWidth,  arenaCenter.X + arenaHalfWidth);
+                pos.Y = Calc.Clamp(pos.Y, arenaCenter.Y - arenaHalfHeight, arenaCenter.Y + arenaHalfHeight);
+                playerEntity.Position = pos;
+
+                if (dir.X != 0f)
+                {
+                    Facings facing = dir.X > 0f ? Facings.Right : Facings.Left;
+                    if (vanillaPlayer != null) vanillaPlayer.Facing = facing;
+                    else if (kirbyPlayer != null) kirbyPlayer.Facing = facing;
+                }
+            }
+
+            // ── Idle bob, applied as a delta so it never fights player input ────
+            if (bobAmplitude > 0f)
+            {
+                bobTimer += Engine.DeltaTime * bobSpeed;
+                float bobOffset = (float)Math.Sin(bobTimer) * bobAmplitude;
+                playerEntity.Y += bobOffset - lastBobOffset;
+                lastBobOffset = bobOffset;
+
+                // Re-clamp after bob in case it pushed past the arena edge
+                playerEntity.Y = Calc.Clamp(playerEntity.Y,
+                    arenaCenter.Y - arenaHalfHeight, arenaCenter.Y + arenaHalfHeight);
+            }
+
+            // ── Warp trail particles ─────────────────────────────────────────────
+            trailTimer -= Engine.DeltaTime;
+            if (trailTimer <= 0f)
+            {
+                trailTimer = 0.04f;
+                level.ParticlesFG.Emit(KirbyFinalBattleScene.P_WarpTrail, 3, playerEntity.Center, Vector2.One * 6f);
+            }
+        }
+
+        public override void Removed(Scene scene)
+        {
+            base.Removed(scene);
+            RestorePlayer();
+        }
+
+        /// <summary>Restores normal player control. Safe to call multiple times.</summary>
+        public void RestorePlayer()
+        {
+            if (restored) return;
+            restored = true;
+
+            if (vanillaPlayer != null)
+            {
+                if (vanillaPlayer.StateMachine.State == Player.StDummy)
+                    vanillaPlayer.StateMachine.State = Player.StNormal;
+                vanillaPlayer.EnforceLevelBounds = true;
+            }
+            else if (kirbyPlayer != null)
+            {
+                if (kirbyPlayer.StateMachine.State == K_Player.StDummy)
+                    kirbyPlayer.StateMachine.State = K_Player.StNormal;
+                kirbyPlayer.DummyGravity = true;
+            }
+        }
+    }
+
+    // ══════════════════════════════════════════════════════════════════════════
     //  WARP DOWNWARD LASER  — vertical-ish beam fired from above the player
     //  Faithful to the Nightmare Phase 2 downward beam attack.
     //  Charge gathers above, then a straight vertical beam fires down.

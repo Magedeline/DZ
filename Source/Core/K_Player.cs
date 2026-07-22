@@ -870,12 +870,25 @@ namespace Celeste.Entities
                     $"[K_Player] Removed vanilla Player at {existingVanilla.Position} — K_Player is authoritative");
             }
 
-            // Create shadow player if not already set
+            // Create shadow player if not already set.
+            // Deferred: Added() runs synchronously while Monocle's EntityList is
+            // still enumerating the "adding" list (K_Player was just added).
+            // Calling scene.Add() here mutates that same list mid-enumeration,
+            // crashing with "Collection was modified; enumeration operation may
+            // not execute." Defer to end of frame instead.
             if (_shadowPlayer == null)
             {
                 _shadowPlayer = new global::Celeste.Player(Position, Sprite.Mode);
                 K_PlayerHooks.ShadowPlayers.Add(_shadowPlayer);
-                scene.Add(_shadowPlayer);
+                var shadowToAdd = _shadowPlayer;
+                if (level != null)
+                {
+                    level.OnEndOfFrame += () => scene.Add(shadowToAdd);
+                }
+                else
+                {
+                    scene.Add(shadowToAdd);
+                }
                 Logger.Log(LogLevel.Debug, "DZ",
                     $"[K_Player] Created shadow player at {_shadowPlayer.Position}");
             }

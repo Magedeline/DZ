@@ -38,6 +38,22 @@ namespace Celeste.Entities
         private bool  hasSubscribed;
         private bool  returning;
 
+        // Idle animation for placeholder circles
+        private SineWave idleSine = null!;
+
+        // Boss placeholder colours (matches KirbyFinalBattleScene.ZeroAuraColors + ELS Termina)
+        private static readonly Color[] BossPlaceholderColors = new Color[]
+        {
+            Calc.HexToColor("8800ff"), // Siamo Zero
+            Calc.HexToColor("0044ff"), // Zero 3
+            Calc.HexToColor("ff0044"), // Contra Void
+            Calc.HexToColor("00ffcc"), // Tesseract Soul
+            Calc.HexToColor("888800"), // Hyper Meta Morpho Knight
+            Calc.HexToColor("440044"), // Nollus Nova
+        };
+        private static readonly Color ELSColor = Calc.HexToColor("ff00ff"); // ELS Termina
+        private static readonly Color NightmareColor = Calc.HexToColor("9900ff"); // NightmareSequenceBoss
+
         public WarpStarReturnController(EntityData data, Vector2 offset)
             : base(data.Position + offset)
         {
@@ -48,6 +64,9 @@ namespace Celeste.Entities
             autoListen         = data.Bool("autoListen",         true);
             Depth = -10001;
             Tag   = Tags.Persistent;
+
+            idleSine = new SineWave(0.6f).Randomize();
+            Add(idleSine);
         }
 
         public static WarpStarReturnController? Get(Scene scene) =>
@@ -131,6 +150,71 @@ namespace Celeste.Entities
             level.Session.FirstLevel   = false;
 
             level.LoadLevel(Player.IntroTypes.None);
+        }
+
+        // ── Render ────────────────────────────────────────────────────────────
+        // Draws coloured placeholder circles at boss positions, matching the
+        // WarpStarLaunchPad placeholder style (filled inner circle + outer outline).
+        public override void Render()
+        {
+            base.Render();
+
+            float r = 14f + idleSine.Value * 2f;
+
+            // ── SiamoZeroFinalBoss entities (Tracked) ───────────────────────
+            string[] zeroNames = { "Siamo Zero", "Zero 3", "Contra Void",
+                "Tesseract Soul", "Hyper Meta Morpho", "Nollus Nova" };
+            int zeroIdx = 0;
+            foreach (Entity entity in Scene.Tracker.GetEntities<SiamoZeroFinalBoss>())
+            {
+                if (entity == null || !entity.Visible) continue;
+
+                Color color = zeroIdx < BossPlaceholderColors.Length
+                    ? BossPlaceholderColors[zeroIdx] : Color.White;
+
+                Vector2 pos = entity.Position + new Vector2(0f, idleSine.Value * 2f);
+                Draw.Circle(pos, r, color, 5);
+                Draw.Circle(pos, r + 3f, color * 0.4f, 3);
+
+                string label = zeroIdx < zeroNames.Length ? zeroNames[zeroIdx] : "Zero";
+                Draw.SpriteBatch.DrawString(
+                    Draw.DefaultFont, label,
+                    pos + new Vector2(-20f, -r - 14f),
+                    color, 0f, Vector2.Zero, 0.4f,
+                    Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 0f);
+                zeroIdx++;
+            }
+
+            // ── ELSTerminaFinalBoss + NightmareSequenceBoss (not Tracked — scan by index) ──
+            int entityCount = Scene.Entities.Count;
+            for (int i = 0; i < entityCount; i++)
+            {
+                Entity e = Scene.Entities[i];
+                if (e == null) continue;
+
+                if (e is ELSTerminaFinalBoss els && e.Visible)
+                {
+                    Vector2 pos = e.Position + new Vector2(0f, idleSine.Value * 2f);
+                    Draw.Circle(pos, r + 4f, ELSColor, 6);
+                    Draw.Circle(pos, r + 7f, ELSColor * 0.4f, 3);
+                    Draw.SpriteBatch.DrawString(
+                        Draw.DefaultFont, "ELS Termina",
+                        pos + new Vector2(-28f, -r - 18f),
+                        ELSColor, 0f, Vector2.Zero, 0.4f,
+                        Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 0f);
+                }
+                else if (e is NightmareSequenceBoss nm && e.Visible)
+                {
+                    Vector2 pos = e.Position + new Vector2(0f, idleSine.Value * 2f);
+                    Draw.Circle(pos, r + 2f, NightmareColor, 5);
+                    Draw.Circle(pos, r + 5f, NightmareColor * 0.4f, 3);
+                    Draw.SpriteBatch.DrawString(
+                        Draw.DefaultFont, "Nightmare",
+                        pos + new Vector2(-24f, -r - 14f),
+                        NightmareColor, 0f, Vector2.Zero, 0.4f,
+                        Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 0f);
+                }
+            }
         }
     }
 }

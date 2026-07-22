@@ -725,7 +725,12 @@ namespace Celeste.Entities
                 return existing;
             
             var ui = new UniversalHealthUI();
-            level.Add(ui);
+            // Deferred: GetOrCreate can be called from Entity.Added()/Awake() while
+            // Monocle's EntityList is still enumerating the "adding" list. Adding
+            // here synchronously would mutate that same list mid-enumeration,
+            // crashing with "Collection was modified; enumeration operation may
+            // not execute."
+            level.OnEndOfFrame += () => level.Add(ui);
             return ui;
         }
         

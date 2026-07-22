@@ -216,7 +216,14 @@ public class PlayerSelectionManager : Entity
         if (manager == null)
         {
             manager = new PlayerSelectionManager();
-            level?.Add(manager);
+            // Deferred: GetOrCreate can be called from Entity.Added()/Awake() while
+            // Monocle's EntityList is still enumerating the "adding" list. Adding
+            // here synchronously would mutate that same list mid-enumeration,
+            // crashing with "Collection was modified; enumeration operation may
+            // not execute."
+            var managerToAdd = manager;
+            if (level != null)
+                level.OnEndOfFrame += () => level.Add(managerToAdd);
         }
 
         return manager;

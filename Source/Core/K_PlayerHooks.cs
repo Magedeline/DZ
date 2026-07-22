@@ -143,16 +143,22 @@ namespace DZ
                         // Remember position before removal
                         Vector2 spawnPos = vanillaPlayer.Position;
 
-                        // Remove vanilla Player
-                        vanillaPlayer.RemoveSelf();
+                        // Deferred: this hook runs synchronously while EntityList is still
+                        // enumerating entities being added. Removing the vanilla Player and
+                        // adding K_Player immediately here mutates that same list mid-enumeration,
+                        // crashing with "Collection was modified; enumeration operation may not
+                        // execute." on every level load. Defer both operations to end of frame.
+                        level.OnEndOfFrame += () =>
+                        {
+                            vanillaPlayer.RemoveSelf();
 
-                        // Spawn K_Player at the same spot
-                        var kirbyPlayer = new K_Player(spawnPos, PlayerSpriteMode.Madeline);
-                        level.Add(kirbyPlayer);
-                        kirbyPlayer.EnableKirbyMode();
+                            var kirbyPlayer = new K_Player(spawnPos, PlayerSpriteMode.Madeline);
+                            level.Add(kirbyPlayer);
+                            kirbyPlayer.EnableKirbyMode();
 
-                        Logger.Log(LogLevel.Info, "DZ",
-                            $"[K_PlayerHooks] Replaced vanilla Player with K_Player at {kirbyPlayer.Position}");
+                            Logger.Log(LogLevel.Info, "DZ",
+                                $"[K_PlayerHooks] Replaced vanilla Player with K_Player at {kirbyPlayer.Position}");
+                        };
                     }
                 }
                 else

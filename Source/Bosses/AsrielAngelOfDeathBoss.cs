@@ -65,7 +65,6 @@ namespace DZ
         private global::Celeste.Level level;
 
         // Visual components
-        private string currentAnimation;
         private Vector2 basePosition;
         private Vector2 riseStartPosition;
         
@@ -91,20 +90,16 @@ namespace DZ
         private int bcon;             // Beam attack controller state
         private float ar_shake;       // Arm shake intensity
         private float armrot;         // Arm rotation angle
-        private float bodyfader;      // Body fade alpha (0-1)
+        private float bodyfader = 0f; // Body fade alpha (0-1); rendered in DrawBody but not yet driven by any phase
         private bool darker;          // Screen darkening flag
         private float darker_x;       // Darkening amount
         private float arf;            // Arm rotation force
-        private int turns;            // Battle turn counter
         private int hits;             // Hit counter for final attack
         private float radi;           // Beam charge radius
         private float r_siner;        // Beam sine counter
         private float r_al;           // Beam alpha
         private bool r_break;         // Beam break flag
         private float armx, army;     // Arm vector positions
-        private int psfx;             // Sound effect handle
-        private bool attacked;        // Attack completed flag
-        private float mycommand;        // Random command value
         private float bgExpand;           // Continuous bg expansion counter (wraps 0-1)
         private float vol;            // Music volume for fade
         private int songcon;          // Song controller state
@@ -113,19 +108,11 @@ namespace DZ
         private int endcon;           // End controller state
         private int gocon;            // Go controller state
         private int gotimer;          // Go timer
-        private int whatiheard;       // Player choice heard
-        private int nextbattle;       // Next battle group
-        private int gg;               // Random value
-        private int gen_type;         // Generator type for ultimate
-        private bool talked;          // Talk state flag
-        private int blconwd;          // Dialog writer instance reference
-        private int blcon;            // Dialog box reference
-        private int iii;              // Instance reference
-        private bool rickyImmune;     // Ricky's immunity flag
-        
-        // FMOD event instances for audio
-        private EventInstance psfxEvent;
-        private EventInstance batmusic;
+        private int gen_type = 0;     // Generator type for ultimate; read by the alarm timing but not yet set by any attack setup
+
+        // Battle music instance; volume fades read it, but nothing starts it yet (music is
+        // currently handled through the level session audio instead).
+        private EventInstance batmusic = null;
 
         // Attack patterns
         private List<AttackType> currentAttackPattern;
@@ -261,8 +248,6 @@ namespace DZ
             CreateSpriteLayer(ref shoulderSprite, "shoulder", "00");
             CreateSpriteLayer(ref stemSprite, "stem", "00");
             CreateSpriteLayer(ref crySprite, "cry", "00");
-            
-            currentAnimation = "idle";
         }
 
         private void CreateSpriteLayer(ref Sprite sprite, string folder, string defaultFrame)
@@ -1387,7 +1372,6 @@ namespace DZ
                     if (arf >= 0f)
                     {
                         ucon = 0;
-                        attacked = true;
                     }
                 }
             }
@@ -1474,7 +1458,6 @@ namespace DZ
                     {
                         ar_shake = 0f;
                         bcon = 0;
-                        attacked = true;
                     }
                 }
                 

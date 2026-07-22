@@ -44,7 +44,11 @@ public class Gondola : CelesteSolid
     // ── State ─────────────────────────────────────────────────────────────────
 
     private readonly bool _inCliffside;
+    // Set when the lever breaks, but nothing reads it back yet (see _leverBreaking below
+    // for the animation flag that's actually consumed).
+#pragma warning disable CS0414
     private bool          _brokenLever;
+#pragma warning restore CS0414
     private Vector2       _leverPos;
     private float         _leverRot;
     private Vector2       _leverVel;

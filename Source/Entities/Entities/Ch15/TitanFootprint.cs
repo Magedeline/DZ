@@ -37,7 +37,6 @@ namespace Celeste.Entities.Chapters.Ch15
         private float targetY;
         private Player targetPlayer;
         private Level level;
-        private bool triggered;
         private float shakeIntensity;
         #endregion
 
@@ -77,7 +76,6 @@ namespace Celeste.Entities.Chapters.Ch15
             shadowAlpha = 0f;
             crushY = -CrushHeight - 100f;
             targetY = 0f;
-            triggered = false;
             shakeIntensity = 0f;
             
             // Large warning area collider
@@ -94,8 +92,7 @@ namespace Celeste.Entities.Chapters.Ch15
         public void Trigger()
         {
             if (State != FootprintState.Idle) return;
-            
-            triggered = true;
+
             State = FootprintState.Warning;
             stateTimer = WarningDuration;
             shadowAlpha = 0f;
@@ -191,7 +188,6 @@ namespace Celeste.Entities.Chapters.Ch15
             
             State = FootprintState.Cooldown;
             stateTimer = CooldownTime;
-            triggered = false;
         }
         #endregion
 

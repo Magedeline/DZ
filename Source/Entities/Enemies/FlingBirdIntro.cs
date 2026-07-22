@@ -50,8 +50,12 @@ public class FlingBirdIntro : DZ.Nez.Component, IUpdatable
     // -------------------------------------------------------------------------
 
     private bool _startedRoutine;
+    // Set when the intro cutscene starts; _emitParticles is referenced by the feather-particle
+    // TODO further down but that emission isn't wired up yet, so neither field is read yet.
+#pragma warning disable CS0414
     private bool _inCutscene;
     private bool _emitParticles;
+#pragma warning restore CS0414
 
     // Fly-to state (bird entering from off-screen)
     private bool _flyingToStart;

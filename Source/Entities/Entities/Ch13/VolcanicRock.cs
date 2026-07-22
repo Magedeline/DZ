@@ -30,7 +30,6 @@ namespace Celeste.Entities.Chapters.Ch13
         private float shakeTimer;
         private Level level;
         private List<RockDebris> debris;
-        private bool hasFallen;
         private VertexLight rockLight;
         #endregion
 
@@ -61,7 +60,6 @@ namespace Celeste.Entities.Chapters.Ch13
             startPosition = Position;
             State = RockState.Waiting;
             shakeTimer = 0f;
-            hasFallen = false;
             debris = new List<RockDebris>();
             
             Collider = new Hitbox(32f, 32f, -16f, -16f);
@@ -162,7 +160,6 @@ namespace Celeste.Entities.Chapters.Ch13
         private void Impact()
         {
             State = RockState.Impact;
-            hasFallen = true;
             sprite.Play("impact");
             
             // Create debris

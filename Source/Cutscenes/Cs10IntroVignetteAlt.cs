@@ -11,12 +11,10 @@ namespace DZ;
 public class Cs10IntroVignetteAlt : Scene
 {
     private Session session;
-    private bool completed;
 
     public Cs10IntroVignetteAlt(Session session)
     {
         this.session = session;
-        this.completed = false;
     }
 
     public override void Begin()
@@ -32,7 +30,6 @@ public class Cs10IntroVignetteAlt : Scene
         yield return 0.5f;
         Logger.Log(LogLevel.Info, "DZ", "Chapter 10 intro vignette displayed");
         yield return 1.5f;
-        completed = true;
         LevelEnter.Go(session, fromSaveData: false);
     }
 }

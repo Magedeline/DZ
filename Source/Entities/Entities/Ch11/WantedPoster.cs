@@ -31,7 +31,6 @@ namespace Celeste.Entities.Chapters.Ch11
         private Sprite sprite;
         private TalkComponent talkComponent;
         private Player readingPlayer;
-        private float spawnTimer;
         private Level level;
         private List<Entity> spawnedEnemies;
         private int spawnedCount;
@@ -66,7 +65,6 @@ namespace Celeste.Entities.Chapters.Ch11
             
             State = PosterState.Unread;
             spawnedEnemies = new List<Entity>();
-            spawnTimer = 0f;
             spawnedCount = 0;
             bountyComplete = false;
             

@@ -15,7 +15,6 @@ namespace Celeste.Cutscenes
     {
         private readonly SoulPlayer soul;
         private Level level;
-        private bool sequenceComplete;
 
         public CS20_SoulRefusedToDie(SoulPlayer soul)
             : base(true, false)
@@ -67,7 +66,6 @@ namespace Celeste.Cutscenes
             yield return 1.0f;
 
             // Resume battle
-            sequenceComplete = true;
             EndCutscene(level);
         }
 

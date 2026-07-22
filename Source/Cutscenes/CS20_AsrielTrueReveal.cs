@@ -44,7 +44,6 @@ namespace DZ
         private AsrielGodBoss asrielBoss;
         private Level level;
         private Sprite asrielSprite;
-        private float counter;
         private float con;
         private bool flasher;
         private float ss; // sine wave offset for floating
@@ -88,7 +87,6 @@ namespace DZ
 
             // Initialize state
             con = 1f;
-            counter = 0f;
             ss = 0f;
 
             // Start with idle animation
@@ -142,8 +140,6 @@ namespace DZ
         /// </summary>
         private IEnumerator Phase1_FlowerFormSequence()
         {
-            counter = 0f;
-
             // Play 'back' animation which has frames 00-21 (matches Undertale's 0-7 + flicker sequence)
             if (asrielSprite != null && asrielSprite.Has("back"))
                 asrielSprite.Play("back", restart: true);
@@ -255,7 +251,6 @@ namespace DZ
         private IEnumerator Phase3_KidAnimation()
         {
             con = 4f;
-            counter = 0f;
 
             // Idle animation frames 1-3 for subtle movement
             float[] kidFrameTimes = new float[] { 0.25f, 0.5f, 0.75f }; // 15, 30, 45 frames

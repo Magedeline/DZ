@@ -32,8 +32,6 @@ public class SwitchGate : CelesteSolid
     private string _spriteName;
     private float _iconRate;
     private Color _iconColor;
-    private float _wiggleValue;
-    private bool _moving;
 
     // -------------------------------------------------------------------------
     // Constructor
@@ -109,7 +107,6 @@ public class SwitchGate : CelesteSolid
         yield return 0.1f;
 
         // Move to target position
-        _moving = true;
         int particleAt = 0;
 
         float duration = 2f;
@@ -160,7 +157,6 @@ public class SwitchGate : CelesteSolid
         }
 
         _iconColor = FinishColor;
-        _moving = false;
     }
 
     private void EmitEdgeDust(Vector2 from, Vector2 to)

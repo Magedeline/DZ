@@ -90,10 +90,11 @@ namespace Celeste.Entities
 
         // Visuals
         private Image?       starImg;
-        private VertexLight  starLight;
-        private BloomPoint   starBloom;
-        private SineWave     idleSine;
-        private Wiggler      collectWiggle;
+        // Assigned in Added() (always called before Update/Render), not the constructor.
+        private VertexLight  starLight = null!;
+        private BloomPoint   starBloom = null!;
+        private SineWave     idleSine = null!;
+        private Wiggler      collectWiggle = null!;
         private Image?       kirbyIndicator;
         private Image?       madelineIndicator;
         private TalkComponent? talkPrompt;

@@ -1,5 +1,3 @@
-using FMOD.Studio;
-
 namespace Celeste.Entities;
 
 [CustomEntity(ids: "DZ/LargeHeartDoorMod")]
@@ -17,7 +15,6 @@ internal class LargeHeartGemDoor : Entity
     private float offset;
     private Vector2 mist;
     private List<MTexture> icon;
-    private EventInstance cutsceneMusic;
     private bool startHidden;
     private float heartAlpha = 1f;
     private float rainbowTimer = 0f;
@@ -294,12 +291,7 @@ internal class LargeHeartGemDoor : Entity
         level.Particles.Emit(ParticleTypes.Dust, 15, finalBotDebris, new Vector2(this.size / 2f, 4f), Color.White);
         
         yield return 1.0f;
-        
-        if (this.cutsceneMusic != null)
-        {
-            Audio.Stop(this.cutsceneMusic, true);
-        }
-        
+
         if (player != null)
         {
             player.StateMachine.State = Player.StNormal;
@@ -327,10 +319,6 @@ internal class LargeHeartGemDoor : Entity
     public override void Removed(Scene scene)
     {
         base.Removed(scene);
-        if (this.cutsceneMusic != null)
-        {
-            Audio.Stop(this.cutsceneMusic, true);
-        }
     }
 
     private void renderBloom()

@@ -29,7 +29,6 @@ namespace Celeste.Entities.Chapters.Ch13
         
         private Sprite sprite;
         private VertexLight platformLight;
-        private float stateTimer;
         private Level level;
         private List<SteamParticle> steamParticles;
         private Player standingPlayer;
@@ -63,7 +62,6 @@ namespace Celeste.Entities.Chapters.Ch13
             CurrentHeat = 0f;
             
             State = PlatformState.Cool;
-            stateTimer = 0f;
             steamParticles = new List<SteamParticle>();
             baseColor = Color.Gray;
             hotColor = Color.Orange;

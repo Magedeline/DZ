@@ -1,3 +1,5 @@
+#pragma warning disable CS8632 // this file uses '?' on a few types without opting the whole file into nullable-reference-type analysis
+
 using Microsoft.Xna.Framework;
 using DZ.Nez;
 using Scene = DZ.Nez.Scene;

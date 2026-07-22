@@ -38,7 +38,6 @@ public class FloatySpaceBlock : CelesteSolid
     public bool MasterOfGroup  { get; private set; }
 
     private FloatySpaceBlock _master = null!;
-    private bool             _awake;
 
     // ── Per-block state ───────────────────────────────────────────────────────
 
@@ -49,8 +48,13 @@ public class FloatySpaceBlock : CelesteSolid
     private float   _yLerp;
     private float   _sinkTimer;
     private float   _sineWave;
+    // Dash-push is read in MoveToTarget() but nothing in this port yet detects a dash and
+    // sets these (no OnDashed hook exists here) — _dashEase only ever decays toward 0, so
+    // the push is inert until that hook is added.
     private float   _dashEase;
+#pragma warning disable CS0649
     private Vector2 _dashDirection;
+#pragma warning restore CS0649
 
     // ── Constructor ───────────────────────────────────────────────────────────
 
@@ -82,7 +86,6 @@ public class FloatySpaceBlock : CelesteSolid
     public override void OnAddedToScene()
     {
         base.OnAddedToScene();
-        _awake = true;
 
         if (!HasGroup)
         {

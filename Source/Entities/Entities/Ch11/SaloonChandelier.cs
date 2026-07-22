@@ -30,11 +30,9 @@ namespace Celeste.Entities.Chapters.Ch11
         private Sprite sprite;
         private Vector2 anchorPoint;
         private float currentAngle;
-        private float angularVelocity;
         private float time;
         private Level level;
         private List<ChandelierShard> shards;
-        private bool hasFallen;
         private VertexLight candleLight;
         private List<CandleFlameParticle> flameParticles;
         #endregion
@@ -72,9 +70,7 @@ namespace Celeste.Entities.Chapters.Ch11
             
             State = ChandelierState.Swinging;
             currentAngle = 0f;
-            angularVelocity = 0f;
             time = 0f;
-            hasFallen = false;
             shards = new List<ChandelierShard>();
             flameParticles = new List<CandleFlameParticle>();
             
@@ -161,9 +157,7 @@ namespace Celeste.Entities.Chapters.Ch11
             level?.Shake(0.4f);
             level?.ParticlesFG.Emit(ParticleTypes.Dust, 15, Position, Vector2.One * 8f);
             Audio.Play("event:/game/general/crystalheart_pulse", Position);
-            
-            hasFallen = true;
-            
+
             // Extinguish candles
             candleLight.Alpha = 0.2f;
         }

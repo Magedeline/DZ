@@ -45,8 +45,10 @@ public class Decal : DZ.Nez.Component, IUpdatable
     private readonly Vector2 _scale;
     private readonly int _depth;
 
-    // Parallax
+    // Parallax — set by MakeParallax(), but render-time consumption is still a TODO above.
+#pragma warning disable CS0414
     private bool _parallax;
+#pragma warning restore CS0414
     private float _parallaxAmount;
 
     // Floaty sine
@@ -64,7 +66,6 @@ public class Decal : DZ.Nez.Component, IUpdatable
     // Scared animal
     private bool _scaredAnimal;
     private float _scaredTimer;
-    private bool _wasPlayerClose;
 
     // Animation
     /// <summary>

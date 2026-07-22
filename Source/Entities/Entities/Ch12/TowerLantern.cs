@@ -267,7 +267,6 @@ namespace Celeste.Entities.Chapters.Ch12
         private List<TowerLantern> lanterns;
         private List<int> requiredSequence;
         private List<int> currentSequence;
-        private bool puzzleComplete;
 
         public LanternPuzzleController(EntityData data, Vector2 offset)
             : base(data.Position + offset)
@@ -275,7 +274,6 @@ namespace Celeste.Entities.Chapters.Ch12
             lanterns = new List<TowerLantern>();
             requiredSequence = new List<int>();
             currentSequence = new List<int>();
-            puzzleComplete = false;
         }
 
         public override void Added(Scene scene)
@@ -320,7 +318,6 @@ namespace Celeste.Entities.Chapters.Ch12
 
         private void CompletePuzzle()
         {
-            puzzleComplete = true;
             var level = Scene as Level;
             level?.Session.SetFlag("lantern_puzzle_complete", true);
             level?.Flash(Color.Gold * 0.3f);

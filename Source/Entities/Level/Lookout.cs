@@ -40,9 +40,13 @@ public class Lookout : Component, IUpdatable
     // -------------------------------------------------------------------------
 
     private bool _interacting;
+    // Set for the sprite-animation and node-travel TODOs further down, neither of which is
+    // wired up yet (sprite.Play(_animPrefix + ...) and node traversal are still placeholders).
+#pragma warning disable CS0414
     private string _animPrefix = "";
     private int _nodeIndex;
     private float _nodePercent;
+#pragma warning restore CS0414
     private Hud _hud;
     private Vector2 _interactOffset;
 
@@ -207,9 +211,6 @@ public class Lookout : Component, IUpdatable
         Vector2 camStartCenter = camStart + new Vector2(160f, 90f);
         Vector2 speed = Vector2.Zero;
         Vector2 lastDir = Vector2.Zero;
-
-        const float accel = 800f;
-        const float maxSpd = 240f;
 
         while (_interacting)
         {

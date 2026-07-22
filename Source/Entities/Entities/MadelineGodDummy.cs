@@ -42,7 +42,11 @@ namespace Celeste.Entities
 
         private Vector2 floatNormal = Vector2.UnitY;
         private bool isInitialized = false;
+        // Write-only external hook, same as CharaDummy.Float (set by cutscenes, e.g.
+        // Cs08End.cs), just not yet poked by any cutscene for this dummy type.
+#pragma warning disable CS0649
         internal float Float;
+#pragma warning restore CS0649
 
         // Rainbow hair / aura
         private float rainbowTimer = 0f;

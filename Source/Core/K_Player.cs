@@ -487,7 +487,6 @@ namespace Celeste.Entities
         private float comboWindowTimer;
         private Vector2 combatSlashDir;
         private float groundPoundTimer;
-        private bool groundPounding;
         private bool groundPoundImpacted;
 
         // Punch Attack Vars
@@ -6768,7 +6767,6 @@ namespace Celeste.Entities
 
         private void GroundPoundBegin()
         {
-            groundPounding = true;
             groundPoundImpacted = false;
             groundPoundTimer = 0;
             Speed.X = 0;
@@ -6782,7 +6780,6 @@ namespace Celeste.Entities
 
         private void GroundPoundEnd()
         {
-            groundPounding = false;
         }
 
         private int GroundPoundUpdate()

@@ -30,7 +30,6 @@ namespace Celeste.Entities.Chapters.Ch11
         private Sprite horseSprite;
         private TalkComponent talkComponent;
         private Player travelingPlayer;
-        private float travelTimer;
         private Level level;
         private HorseHitch destination;
         private List<DustParticle> dustParticles;
@@ -61,7 +60,6 @@ namespace Celeste.Entities.Chapters.Ch11
             IsUnlocked = isUnlocked;
             
             State = isUnlocked ? HitchState.Active : HitchState.Inactive;
-            travelTimer = 0f;
             dustParticles = new List<DustParticle>();
             
             // Setup collider

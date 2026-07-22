@@ -245,13 +245,11 @@ namespace DZ
         private Session session;
         private int chapterNumber;
         private PostcardDZ postcard;
-        private bool completed;
 
         public PostcardDialogVignette(Session session, int chapterNumber)
         {
             this.session = session;
             this.chapterNumber = chapterNumber;
-            this.completed = false;
         }
 
         public override void Begin()
@@ -272,7 +270,6 @@ namespace DZ
 
             yield return postcard.DisplayRoutine();
 
-            completed = true;
             yield return TransitionToMap();
         }
 

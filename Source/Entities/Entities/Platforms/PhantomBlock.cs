@@ -44,9 +44,15 @@ namespace Celeste.Entities
         private bool playerHasDreamDash;
         private MTexture[] particleTextures;
         private DreamParticle[] particles;
+        // Read by Render()/WobbleLine() below, ported straight from vanilla DreamBlock's
+        // renderer. Vanilla sets these from the crusher-shake and one-use white-flash
+        // behaviors, neither of which this simplified PhantomBlock (no static-mover/one-use
+        // support, see class doc) implements, so they stay at their defaults here.
+#pragma warning disable CS0649
         private float whiteFill;
-        private float whiteHeight = 1f;
         private Vector2 shake;
+#pragma warning restore CS0649
+        private float whiteHeight = 1f;
         private float animTimer;
         private float wobbleFrom = Calc.Random.NextFloat((float)Math.PI * 2f);
         private float wobbleTo   = Calc.Random.NextFloat((float)Math.PI * 2f);

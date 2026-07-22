@@ -57,7 +57,6 @@ public class TheoCrystal : CelesteActor, IUpdatable
     private float _hardVerticalHitSoundCooldown;
     private bool _dead;
     private bool _shattering;
-    private bool _tutorialShown;
 
     // -------------------------------------------------------------------------
     // Constructor

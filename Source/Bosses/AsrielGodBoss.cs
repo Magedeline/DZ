@@ -159,7 +159,6 @@ namespace Celeste.Entities
         private int currentPhase = 0;
         private int hitsInPhase = 0;              // Hits taken in current phase
 #pragma warning disable CS0414
-        private bool phaseTransitioning = false;
 #pragma warning restore CS0414
         private int totalHitsTaken = 0;           // Total hits taken across all phases
 #pragma warning disable CS0414
@@ -398,8 +397,8 @@ namespace Celeste.Entities
         
         // Boss state management
         private BossState currentState = BossState.Waiting;
-        private AttackType currentAttackType = AttackType.Shoot;
 #pragma warning disable CS0414
+        private AttackType currentAttackType = AttackType.Shoot;
         private AttackPhase currentAttackPhase = AttackPhase.Charging;
 #pragma warning restore CS0414
     private float playerHitCooldown = 0f;
@@ -997,7 +996,6 @@ namespace Celeste.Entities
         /// </summary>
         private void StartPhaseTransition()
         {
-            phaseTransitioning = true;
             SetState(BossState.Transitioning);
             currentPhase++;
             hitsInPhase = 0;
@@ -1041,7 +1039,6 @@ namespace Celeste.Entities
             }
             
             // Resume fighting
-            phaseTransitioning = false;
             canHit = true;
             SetState(BossState.Idle);
             startAttacking();

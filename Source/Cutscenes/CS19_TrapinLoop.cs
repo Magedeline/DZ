@@ -42,15 +42,17 @@ namespace Celeste.Cutscenes
             this.player.StateMachine.State = Player.StDummy;
             this.player.StateMachine.Locked = true;
             this.player.Visible = true;
+            // Resolved here (not just inside CutsceneRoutine) so OnEndRoutine can still
+            // reach it if the cutscene is skipped before the routine assigns it.
+            charabooster = Scene.Entities.FindFirst<CharaBoost>();
             Add(new Coroutine(CutsceneRoutine(level)));
         }
 
         // extracted routine from the old IEnumerator OnBegin
         private IEnumerator CutsceneRoutine(Level level)
         {
-            var boost = Scene.Entities.FindFirst<CharaBoost>();
-            if (boost != null)
-                boost.Active = boost.Visible = boost.Collidable = false;
+            if (charabooster != null)
+                charabooster.Active = charabooster.Visible = charabooster.Collidable = false;
 
             yield return MovePlayerToGround();
 
@@ -107,11 +109,11 @@ namespace Celeste.Cutscenes
             yield return 0.3f;
 
             // Make charabooster appear
-            if (boost != null)
+            if (charabooster != null)
             {
-                Level.Displacement.AddBurst(boost.Center, 0.5f, 8f, 32f, 0.5f);
-                Audio.Play("event:/new_content/char/badeline/booster_first_appear", boost.Center);
-                boost.Active = boost.Visible = boost.Collidable = true;
+                Level.Displacement.AddBurst(charabooster.Center, 0.5f, 8f, 32f, 0.5f);
+                Audio.Play("event:/new_content/char/badeline/booster_first_appear", charabooster.Center);
+                charabooster.Active = charabooster.Visible = charabooster.Collidable = true;
             }
 
             yield return 0.3f;

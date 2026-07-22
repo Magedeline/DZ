@@ -34,7 +34,6 @@ namespace Celeste.Entities.Chapters.Ch16
         private List<EyeBeam> beams;
         private VertexLight eyeLight;
         private Color eyeColor;
-        private bool isGazing;
         private float closingTimer;
         #endregion
 
@@ -61,8 +60,7 @@ namespace Celeste.Entities.Chapters.Ch16
             gazeTimer = 0f;
             beams = new List<EyeBeam>();
             eyeColor = Color.DarkRed;
-            isGazing = false;
-            
+
             Collider = new Hitbox(32f, 32f, -16f, -16f);
             
             Add(sprite = GFX.SpriteBank.Create("abyssal_eye"));
@@ -149,7 +147,6 @@ namespace Celeste.Entities.Chapters.Ch16
                         {
                             State = EyeState.Gazing;
                             gazeTimer = 2f;
-                            isGazing = true;
                             sprite.Play("gazing");
                             
                             Audio.Play("event:/game/char_badeline/beam_launch", Position);
@@ -168,7 +165,6 @@ namespace Celeste.Entities.Chapters.Ch16
                     if (gazeTimer <= 0f)
                     {
                         State = EyeState.Closing;
-                        isGazing = false;
                         sprite.Play("closing");
                     }
                     break;

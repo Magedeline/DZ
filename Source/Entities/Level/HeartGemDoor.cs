@@ -51,7 +51,6 @@ public class HeartGemDoor : Component, IUpdatable
     private DZ.Entities.Core.CelesteSolid _topSolid;
     private DZ.Entities.Core.CelesteSolid _botSolid;
     private float _offset;
-    private Vector2 _mist;
     private bool _startHidden;
     private float _heartAlpha = 1f;
     private int _heartGems;
@@ -290,6 +289,9 @@ public class HeartGemDoor : Component, IUpdatable
 
     public override void Update()
     {
+        // Refresh from save data so the Routine's fill counter has something to approach.
+        _heartGems = GetHeartGems();
+
         // Update mist animation
         _offset -= Time.DeltaTime * 4f;
         if (_offset < 0f) _offset += 32f;

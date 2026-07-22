@@ -1,3 +1,5 @@
+#pragma warning disable CS8632 // this file uses '?' on a few types without opting the whole file into nullable-reference-type analysis
+
 using Microsoft.Xna.Framework;
 using DZ.Nez;
 using Scene = DZ.Nez.Scene;
@@ -33,8 +35,12 @@ public class Door : CelesteActor
     // Private state
     // -------------------------------------------------------------------------
 
+    // Set from the door's material, referenced by the "TODO: play sound" markers below —
+    // the open/close SFX playback itself isn't wired up yet.
+#pragma warning disable CS0414
     private string _openSfx;
     private string _closeSfx;
+#pragma warning restore CS0414
     private bool _wasCollidingWithSolid;
 
     // -------------------------------------------------------------------------

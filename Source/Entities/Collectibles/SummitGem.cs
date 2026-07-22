@@ -53,7 +53,6 @@ public class SummitGem : Component, IUpdatable
 
     private Vector2 _spawnPosition;
     private string _entityId;
-    private bool _isGhost;
     private float _bounceSfxDelay;
 
     private float _scaleWiggleValue;

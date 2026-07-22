@@ -48,15 +48,11 @@ public class CharaBoss : BossBase
     // Combat
     private readonly List<CharaProjectile> _activeProjectiles = new();
     private readonly List<CharaBeam> _activeBeams = new();
-    private float _attackTimer;
     private bool DZ_CHarging;
     private float DZ_CHargeTimer;
 
     // Attack patterns
     private readonly Dictionary<int, Func<IEnumerator>> _attackPatterns = new();
-
-    // Audio
-    private float _laserChargeVolume;
 
     // Configuration
     public const float MoveSpeed = 600f;

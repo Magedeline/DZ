@@ -26,7 +26,6 @@ namespace Celeste.Cutscenes
         private Coroutine? textCoroutine;
         private float textAlpha = 0f;
         private float glitchIntensity = 0f;
-        private bool phoneRinging = false;
 #pragma warning disable CS0414
         private bool doorLocked = false;
 #pragma warning restore CS0414
@@ -124,8 +123,6 @@ namespace Celeste.Cutscenes
         // Trigger 2: Cell phone rumbling effect
         private IEnumerator cellPhoneRumble()
         {
-            phoneRinging = true;
-
             // Play phone rumble sound with EventInstance
             phoneRumbleSfx = Audio.Play("event:/DZ/game/04_legend/sequence_phone_ring_loop", Vector2.Zero);
 
@@ -137,7 +134,6 @@ namespace Celeste.Cutscenes
                 yield return 0.1f;
             }
 
-            phoneRinging = false;
             glitchIntensity = 0f;
         }
 

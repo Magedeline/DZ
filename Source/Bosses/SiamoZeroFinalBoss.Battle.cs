@@ -169,7 +169,6 @@ namespace Celeste.Entities
         // Phase management (BadelineBoss style) - HP System
         private int currentPhase = 0;
         private int hitsInPhase = 0;
-        private bool phaseTransitioning = false;
         private int totalHitsTaken = 0;
         
         // Custom attack sequence
@@ -1221,7 +1220,6 @@ namespace Celeste.Entities
                 if (totalHitsTaken % MAX_HITS_PER_PHASE == 0 && currentPhase < TOTAL_PHASES - 1)
                 {
                     currentPhase++;
-                    phaseTransitioning = true;
                 }
             }
             

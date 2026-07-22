@@ -70,7 +70,6 @@ public class DustGraphic : DZ.Nez.Component, IUpdatable
     private float               _shakeTimer;
     private Vector2             _shakeValue;
     private bool                _eyesMoveByRotation;
-    private Vector2             _eyeLookRange;
 
     // Blink state
     private bool  _leftEyeVisible  = true;

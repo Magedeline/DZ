@@ -27,7 +27,6 @@ namespace Celeste.Entities.Chapters.Ch13
         private Sprite sprite;
         private Rectangle climbArea;
         private float shiftTimer;
-        private float collapseTimer;
         private Level level;
         private List<AshParticle> ashParticles;
         private Player climbingPlayer;
@@ -62,7 +61,6 @@ namespace Celeste.Entities.Chapters.Ch13
             
             State = PileState.Stable;
             shiftTimer = 0f;
-            collapseTimer = 0f;
             ashParticles = new List<AshParticle>();
             
             Add(sprite = GFX.SpriteBank.Create("ash_pile"));

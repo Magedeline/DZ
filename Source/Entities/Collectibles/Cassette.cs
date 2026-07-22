@@ -1,3 +1,5 @@
+#pragma warning disable CS8632 // this file uses '?' on a few types without opting the whole file into nullable-reference-type analysis
+
 using Microsoft.Xna.Framework;
 using DZ.Nez;
 using Entity = DZ.Nez.Entity;
@@ -37,7 +39,6 @@ public class Cassette : Component, IUpdatable
     private Vector2 _spawnPosition;
     private Vector2[] _nodes;
     private bool _collecting;
-    private bool _isGhost;
     private float _hoverTimer;
 
     private BoxCollider _collider;

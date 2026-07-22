@@ -46,7 +46,6 @@ namespace Celeste.Entities.Chapters.Ch10
         private float swingAngle;
         private float swingSpeed;
         private int throwCount;
-        private float stateTimer;
         private Player targetPlayer;
         private Level level;
         private List<BakedGoodProjectile> activeProjectiles;
@@ -82,7 +81,6 @@ namespace Celeste.Entities.Chapters.Ch10
             swingAngle = 0f;
             swingSpeed = 2f;
             throwCount = 0;
-            stateTimer = 0f;
             wasAttacked = false;
             activeProjectiles = new List<BakedGoodProjectile>();
             

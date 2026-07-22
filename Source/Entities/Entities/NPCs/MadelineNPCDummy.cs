@@ -39,7 +39,11 @@ namespace Celeste.Entities
         private TalkComponent talker;
         private Vector2 floatNormal = Vector2.UnitY;
         private bool isInitialized = true;
+        // Write-only external hook, same as CharaDummy.Float (set by cutscenes, e.g.
+        // Cs08End.cs), just not yet poked by any cutscene for this dummy type.
+#pragma warning disable CS0649
         internal float Float;
+#pragma warning restore CS0649
 
         public MadelineNPCDummy(Vector2 position, string dialogKey = null) : base(position)
         {

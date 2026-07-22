@@ -35,7 +35,6 @@ namespace Celeste.Entities.Chapters.Ch11
         private Player targetPlayer;
         private Level level;
         private List<ExplosionParticle> explosionParticles;
-        private bool hasDetonated;
         private VertexLight fuseLight;
         private float flickerTimer;
         #endregion
@@ -68,7 +67,6 @@ namespace Celeste.Entities.Chapters.Ch11
             
             State = BomberState.Hidden;
             fuseTimer = 0f;
-            hasDetonated = false;
             flickerTimer = 0f;
             explosionParticles = new List<ExplosionParticle>();
             
@@ -164,8 +162,7 @@ namespace Celeste.Entities.Chapters.Ch11
         private void Explode()
         {
             State = BomberState.Exploding;
-            hasDetonated = true;
-            
+
             // Create explosion particles
             for (int i = 0; i < 30; i++)
             {

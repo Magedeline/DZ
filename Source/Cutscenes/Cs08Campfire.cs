@@ -494,7 +494,12 @@ namespace Celeste.Cutscenes
             public List<Question> OnlyAppearIfAsked;
             public List<Question> DoNotAppearIfAsked;
             public bool CanRepeat;
+            // Read by Render() below for the hover-highlight offset, but Render() itself is
+            // never called — the active dialog-option flow renders through Textbox.Say
+            // instead. Kept for whenever the custom option menu gets wired up.
+#pragma warning disable CS0649
             public float Highlight;
+#pragma warning restore CS0649
             public const float WIDTH = 1400f;
             public const float HEIGHT = 140f;
             public const float PADDING = 20f;

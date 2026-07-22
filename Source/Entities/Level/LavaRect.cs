@@ -55,7 +55,11 @@ public class LavaRect : DZ.Nez.Component, IUpdatable
     // ── Internal state ────────────────────────────────────────────────────────
 
     private float    _timer;
+    // Marks when surface geometry needs recomputing, but nothing consumes the flag yet —
+    // the surface is currently recomputed unconditionally each frame.
+#pragma warning disable CS0414
     private bool     _dirty = true;
+#pragma warning restore CS0414
 
     // Bubbles.
     private Bubble[]        _bubbles        = Array.Empty<Bubble>();

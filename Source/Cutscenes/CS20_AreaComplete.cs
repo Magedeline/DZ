@@ -14,7 +14,6 @@ public class CS20_AreaComplete : CutsceneEntity
     private readonly bool skipCredits;
     private readonly string nextLevel;
     private float fadeAlpha;
-    private bool showingComplete;
     private TimeRateModifier timeRateModifier;
 
     public CS20_AreaComplete(bool hasGoldenStrawberry = false, bool hasPinkPlatinumBerry = false, bool skipCredits = false, string nextLevelName = null)
@@ -74,7 +73,6 @@ public class CS20_AreaComplete : CutsceneEntity
         if (Level != null)
         {
             Level.RegisterAreaComplete();
-            showingComplete = true;
         }
         
         // Play area complete jingle

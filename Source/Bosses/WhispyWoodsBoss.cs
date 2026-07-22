@@ -23,7 +23,6 @@ namespace Celeste.Entities
         
         // Attack management
         private Coroutine attackCoroutine;
-        private bool isAttacking;
         private bool useCustomSequence;
         private List<AttackStep> customAttackSteps;
         private string attackSequenceData;
@@ -237,7 +236,6 @@ namespace Celeste.Entities
             if (attackCoroutine != null && attackCoroutine.Active) return;
             if (currentState == BossState.Defeated) return;
             
-            isAttacking = true;
             SetState(BossState.Attacking);
             attackCoroutine = new Coroutine(attackSequence());
             Add(attackCoroutine);
@@ -245,7 +243,6 @@ namespace Celeste.Entities
         
         private void stopAttacking()
         {
-            isAttacking = false;
             if (attackCoroutine != null)
                 attackCoroutine.Cancel();
         }

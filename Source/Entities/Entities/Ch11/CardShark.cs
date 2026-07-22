@@ -43,7 +43,6 @@ namespace Celeste.Entities.Chapters.Ch11
         private Vector2 startPosition;
         private float patrolDistance;
         private Facings facing;
-        private float throwCooldown;
         private Player targetPlayer;
         private Level level;
         private List<PlayingCardProjectile> activeCards;
@@ -81,7 +80,6 @@ namespace Celeste.Entities.Chapters.Ch11
             
             startPosition = Position;
             facing = Facings.Right;
-            throwCooldown = 0f;
             cardsThrown = 0;
             currentSuit = CardSuit.Hearts;
             activeCards = new List<PlayingCardProjectile>();

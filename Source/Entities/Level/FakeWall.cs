@@ -77,8 +77,8 @@ public class FakeWall : Component, IUpdatable
     {
         base.OnAddedToEntity();
 
-        // Set up collider
-        var collider = Entity.AddComponent(new BoxCollider(_width, _height));
+        // Set up collider (Entity is always set here, since this runs from OnAddedToEntity)
+        var collider = Entity!.AddComponent(new BoxCollider(_width, _height));
 
         // TODO: set up effect cutout
 
@@ -152,7 +152,7 @@ public class FakeWall : Component, IUpdatable
 
             if (_alpha <= 0f)
             {
-                Entity.Destroy();
+                Entity!.Destroy();
             }
         }
         else
@@ -174,7 +174,7 @@ public class FakeWall : Component, IUpdatable
 
     private MadelinePlayer? CheckPlayerInside()
     {
-        var collider = Entity.GetComponent<BoxCollider>();
+        var collider = Entity!.GetComponent<BoxCollider>();
         if (collider == null) return null;
 
         var rect = new RectangleF(

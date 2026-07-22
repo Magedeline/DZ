@@ -29,7 +29,6 @@ namespace Celeste.Entities.Chapters.Ch11
         private List<Tumbleweed> tumbleweeds;
         public Vector2 clusterVelocity;
         private float rotation;
-        private float spawnTimer;
         private Level level;
         private List<DustParticle> dustParticles;
         private bool isActive;
@@ -64,7 +63,6 @@ namespace Celeste.Entities.Chapters.Ch11
             State = TumbleweedState.Idle;
             clusterVelocity = new Vector2(Calc.Random.Choose(-1, 1) * rollSpeed, 0f);
             rotation = 0f;
-            spawnTimer = 0f;
             isActive = true;
             tumbleweeds = new List<Tumbleweed>();
             dustParticles = new List<DustParticle>();

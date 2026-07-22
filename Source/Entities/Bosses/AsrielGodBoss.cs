@@ -34,7 +34,6 @@ public class AsrielGodBoss : BossBase
 
     // Attack state
     private int _consecutiveAttacks;
-    private bool _isChaosSabersActive;
     private List<Entity> _activeProjectiles = new();
 
     // Visual

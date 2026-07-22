@@ -222,39 +222,29 @@ public class LightningBreakerBox : DZ.Nez.Entity
         Vector2 centre  = Position + new Vector2(BoxSize * 0.5f, BoxSize * 0.5f);
         Vector2 emitPos;
         Vector2 range;
-        float   angle;
-        int     count;
 
         if (dir == Vector2.UnitX)
         {
-            angle   = 0f;
             emitPos = centre + new Vector2(BoxSize * 0.5f - 12f, 0f);
             range   = Vector2.UnitY * (BoxSize - 6f) * 0.5f;
-            count   = (int)(BoxSize / 8f) * 4;
         }
         else if (dir == -Vector2.UnitX)
         {
-            angle   = MathF.PI;
             emitPos = centre + new Vector2(-(BoxSize * 0.5f - 12f), 0f);
             range   = Vector2.UnitY * (BoxSize - 6f) * 0.5f;
-            count   = (int)(BoxSize / 8f) * 4;
         }
         else if (dir == Vector2.UnitY)
         {
-            angle   = MathF.PI * 0.5f;
             emitPos = centre + new Vector2(0f, BoxSize * 0.5f - 12f);
             range   = Vector2.UnitX * (BoxSize - 6f) * 0.5f;
-            count   = (int)(BoxSize / 8f) * 4;
         }
         else
         {
-            angle   = -MathF.PI * 0.5f;
             emitPos = centre + new Vector2(0f, -(BoxSize * 0.5f - 12f));
             range   = Vector2.UnitX * (BoxSize - 6f) * 0.5f;
-            count   = (int)(BoxSize / 8f) * 4;
         }
 
-        // TODO: emit particles: LightningBreakerBox_Smash (count+2 at emitPos ± range, facing angle)
+        // TODO: emit particles: LightningBreakerBox_Smash ((BoxSize/8*4)+2 at emitPos ± range, facing dir)
     }
 
     // ── Helpers ───────────────────────────────────────────────────────────────

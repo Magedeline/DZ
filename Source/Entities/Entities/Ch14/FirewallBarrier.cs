@@ -30,7 +30,6 @@ namespace Celeste.Entities.Chapters.Ch14
         
         private Sprite sprite;
         private VertexLight barrierLight;
-        private float stateTimer;
         private Level level;
         private List<BarrierParticle> particles;
         private List<BarrierPulse> pulses;
@@ -64,7 +63,6 @@ namespace Celeste.Entities.Chapters.Ch14
             EnergyDrain = energyDrain;
             
             State = startActive ? BarrierState.Active : BarrierState.Inactive;
-            stateTimer = 0f;
             pulseTimer = 0f;
             isRecharging = false;
             particles = new List<BarrierParticle>();

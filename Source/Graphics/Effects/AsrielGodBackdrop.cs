@@ -103,7 +103,9 @@ namespace Celeste.Effects
         private float ftimer = 0f;
         private float falpha = 0f;
         // rotation accumulator (degrees) - disabled
+#pragma warning disable CS0414
         private float bgRotation = 0f;
+#pragma warning restore CS0414
         // horizontal outward expansion offsets (left and right expansion from center)
         private float horizontalExpandX = 0f;
         // flag 502 equivalent: set by session flag "asriel_god_boss_flashmode"

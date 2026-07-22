@@ -39,11 +39,9 @@ namespace Celeste.Entities
         private Vector2 targetPosition;
         private Vector2 homePosition;
         private float patrolRadius;
-        private bool isChasing;
-        
+
         // Combat
         private float attackCooldownTimer;
-        private bool isAttacking;
         private EnemyState currentState;
         
         // Visual
@@ -211,7 +209,6 @@ namespace Celeste.Entities
             if (player != null && Vector2.Distance(Position, player.Position) < DETECTION_RANGE)
             {
                 currentState = EnemyState.Chase;
-                isChasing = true;
                 return;
             }
             
@@ -234,7 +231,6 @@ namespace Celeste.Entities
             if (player == null)
             {
                 currentState = EnemyState.Patrol;
-                isChasing = false;
                 targetPosition = homePosition;
                 return;
             }
@@ -245,7 +241,6 @@ namespace Celeste.Entities
             if (distanceToPlayer > DETECTION_RANGE * 1.5f)
             {
                 currentState = EnemyState.Patrol;
-                isChasing = false;
                 targetPosition = homePosition;
                 return;
             }
@@ -254,7 +249,6 @@ namespace Celeste.Entities
             if (distanceToPlayer < ATTACK_RANGE && attackCooldownTimer <= 0)
             {
                 currentState = EnemyState.Attack;
-                isAttacking = true;
                 Add(new Coroutine(AttackRoutine()));
                 return;
             }
@@ -305,7 +299,6 @@ namespace Celeste.Entities
             // Recovery
             yield return 0.3f;
             
-            isAttacking = false;
             currentState = EnemyState.Chase;
         }
         

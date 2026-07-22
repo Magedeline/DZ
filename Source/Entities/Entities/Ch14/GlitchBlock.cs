@@ -32,7 +32,6 @@ namespace Celeste.Entities.Chapters.Ch14
         private Sprite sprite;
         private float stateTimer;
         private float glitchTimer;
-        private int patternIndex;
         private Level level;
         private List<GlitchParticle> glitchParticles;
         private bool isPattern;
@@ -72,7 +71,6 @@ namespace Celeste.Entities.Chapters.Ch14
             State = GlitchState.Stable;
             stateTimer = 0f;
             glitchTimer = 0f;
-            patternIndex = 0;
             random = new Random();
             glitchParticles = new List<GlitchParticle>();
             patternTimes = new List<float>();

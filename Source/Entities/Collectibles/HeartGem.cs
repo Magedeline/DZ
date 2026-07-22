@@ -49,10 +49,8 @@ public class HeartGem : Component, IUpdatable
     // -------------------------------------------------------------------------
 
     private Vector2 _spawnPosition;
-    private bool _isGhost;
     private bool _isFake;
     private bool _removeCameraTriggers;
-    private bool _autoPulse = true;
     private float _timer;
     private float _bounceSfxDelay;
     private Vector2 _moveWiggleDir;

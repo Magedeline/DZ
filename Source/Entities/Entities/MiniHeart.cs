@@ -38,7 +38,6 @@ namespace Celeste.Entities
         private readonly bool breakOnTouch;
 
         private bool hasBeenBroken;
-        private bool collected;
         private Coroutine smashRoutine;
         private EventInstance pauseMusicSnapshot;
         private SoundEmitter collectSound;

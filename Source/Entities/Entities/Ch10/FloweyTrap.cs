@@ -45,8 +45,6 @@ namespace Celeste.Entities.Chapters.Ch10
         private Sprite sprite;
         private StateMachine stateMachine;
         private float attackCooldown;
-        private float stateTimer;
-        private int attackCount;
         private Player targetPlayer;
         private Level level;
         private List<FloweyPellet> activePellets;
@@ -88,9 +86,7 @@ namespace Celeste.Entities.Chapters.Ch10
             AttackInterval = attackInterval;
             CurrentPattern = pattern;
             
-            stateTimer = 0f;
             attackCooldown = 0f;
-            attackCount = 0;
             activePellets = new List<FloweyPellet>();
             emergePosition = Position;
             
@@ -134,7 +130,6 @@ namespace Celeste.Entities.Chapters.Ch10
         {
             sprite.Play("attack");
             State = FloweyState.Attacking;
-            attackCount = 0;
         }
 
         private void RetractingBegin()

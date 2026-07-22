@@ -108,9 +108,6 @@ namespace Celeste.Cutscenes
         // Soul-light list for the Seven Goner Souls
         private readonly List<VertexLight> soulLights = new List<VertexLight>(7);
 
-        // Screen-shake helper
-        private Coroutine shakeRoutine;
-
         // ── Constructor ───────────────────────────────────────────────────
         public CS21_ElsTerminaFinalBattleIntro(global::Celeste.Player player)
             : base(fadeInOnSkip: false)

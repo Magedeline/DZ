@@ -29,7 +29,6 @@ namespace Celeste.Entities.Chapters.Ch14
         public bool IsActive => State != RainState.Inactive;
         
         private List<MatrixColumn> columns;
-        private float stateTimer;
         private Level level;
         private Random random;
         private Color rainColor;
@@ -64,7 +63,6 @@ namespace Celeste.Entities.Chapters.Ch14
             Density = density;
             
             State = intensity;
-            stateTimer = 0f;
             columns = new List<MatrixColumn>();
             random = new Random();
             rainColor = Color.Green;

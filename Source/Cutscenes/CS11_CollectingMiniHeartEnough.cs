@@ -39,7 +39,6 @@ namespace Celeste.Cutscenes
         
         // For spin effect
         private float spinRotation = 0f;
-        private bool isSpinning = false;
         #endregion
 
         public CS11_CollectingMiniHeartEnough(EntityData data, Vector2 offset)
@@ -121,8 +120,6 @@ namespace Celeste.Cutscenes
             // Play spin sound
             Audio.Play(SFX_SPIN);
             
-            // Start spinning effect
-            isSpinning = true;
             float elapsed = 0f;
             
             // Make Madeline NPC spin rapidly
@@ -163,10 +160,7 @@ namespace Celeste.Cutscenes
                 // Flash effect for outfit change
                 level.Flash(Color.White * 0.5f, true);
                 Audio.Play(SFX_OUTFITDZ_CHANGE);
-                
-                // Stop spinning
-                isSpinning = false;
-                
+
                 if (madeline.Sprite != null)
                 {
                     madeline.Sprite.Rotation = 0f;
@@ -200,9 +194,6 @@ namespace Celeste.Cutscenes
                 player.StateMachine.State = Player.StNormal;
                 player.StateMachine.Locked = false;
             }
-            
-            // Make sure spinning stops
-            isSpinning = false;
             
             // Reset Madeline sprite rotation if needed
             if (madeline != null && madeline.Sprite != null)

@@ -51,7 +51,6 @@ namespace Celeste.Entities.Chapters.Ch15
         private VertexLight flameGlow;
         private List<PhoenixAshParticle> ashParticles;
         private List<PhoenixFeatherProjectile> feathers;
-        private bool isReviving;
         #endregion
 
         #region Constructor
@@ -84,7 +83,6 @@ namespace Celeste.Entities.Chapters.Ch15
             diveAngle = 0f;
             stateTimer = 0f;
             attackCount = 0;
-            isReviving = false;
             ashParticles = new List<PhoenixAshParticle>();
             feathers = new List<PhoenixFeatherProjectile>();
             

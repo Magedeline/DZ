@@ -1606,7 +1606,7 @@ Then I'll have to say this
 [CHARA left smirk]
 It's a beautiful day out side
 
-[CHARA right smirk]
+[CHARA left smirk]
 Bird are singing {0.6} Flower are Blooming
 On these days Ladies like you
 

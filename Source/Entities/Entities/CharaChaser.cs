@@ -80,6 +80,10 @@ public class CharaChaser : Entity
 
     private bool triggerIntro = true;
 
+    private Coroutine chasingCoroutine;
+
+    private Tween chaseTween;
+
     public CharaChaser(Vector2 position, int index)
         : base(position)
     {
@@ -131,7 +135,7 @@ public class CharaChaser : Entity
             return;
         }
         base.Added(scene);
-        Add(new Coroutine(StartChasingRoutine(level)));
+        Add(chasingCoroutine = new Coroutine(StartChasingRoutine(level)));
     }
 
     [MethodImpl(MethodImplOptions.NoInlining)]
@@ -139,7 +143,7 @@ public class CharaChaser : Entity
     {
         base.Added(scene);
         Session session = SceneAs<Level>().Session;
-        if (session.GetLevelFlag("bDZ_CHase") && session.Area.Mode == AreaMode.Normal)
+        if (session.GetLevelFlag("14_end") && session.Area.Mode == AreaMode.Normal)
         {
             RemoveSelf();
         }
@@ -147,7 +151,7 @@ public class CharaChaser : Entity
         {
             RemoveSelf();
         }
-        else if (!session.GetFlag("evilDZ_CHara_intro") && session.Level == "3" && session.Area.Mode == AreaMode.Normal)
+        else if (!session.GetFlag("evil_chara_intro") && session.Level == "b_chase" && session.Area.Mode == AreaMode.Normal)
         {
             Hovering = false;
             Visible = true;
@@ -165,14 +169,14 @@ public class CharaChaser : Entity
                 session.Audio.Music.Event = null;
                 session.Audio.Apply(forceSixteenthNoteHack: false);
             }
-            if (triggerIntro && scene.Tracker.GetEntity<CS02DZ_CHaraIntro>() == null)
+            if (triggerIntro && scene.Tracker.GetEntity<CS02_CharaIntro>() == null)
             {
-                scene.Add(new CS02DZ_CHaraIntro(this));
+                scene.Add(new CS02_CharaIntro(this));
             }
         }
         else
         {
-            Add(new Coroutine(StartChasingRoutine(base.Scene as Level)));
+            Add(chasingCoroutine = new Coroutine(StartChasingRoutine(base.Scene as Level)));
         }
     }
 
@@ -221,8 +225,8 @@ public class CharaChaser : Entity
         Audio.Play("event:/char/badeline/level_entry", Position, "chaser_count", index);
         Vector2 from = Position;
         float duration = (followBehindTime - 0.1f) / speedMultiplier;
-        Tween tween = Tween.Create(Tween.TweenMode.Oneshot, Ease.CubeIn, duration, start: true);
-        tween.OnUpdate = [MethodImpl(MethodImplOptions.NoInlining)] (Tween t) =>
+        chaseTween = Tween.Create(Tween.TweenMode.Oneshot, Ease.CubeIn, duration, start: true);
+        chaseTween.OnUpdate = [MethodImpl(MethodImplOptions.NoInlining)] (Tween t) =>
         {
             Position = Vector2.Lerp(from, to, t.Eased);
             if (to.X != from.X)
@@ -231,13 +235,14 @@ public class CharaChaser : Entity
             }
             Trail();
         };
-        Add(tween);
-        yield return tween.Duration;
+        Add(chaseTween);
+        yield return chaseTween.Duration;
+        chaseTween = null;
     }
 
     private IEnumerator StopChasing()
     {
-        if ((base.Scene as Level).Session.Area.GetLevelSet() == "Celeste")
+        if ((base.Scene as Level).Session.Area.GetLevelSet() == "DZ")
         {
             return orig_StopChasing();
         }
@@ -477,6 +482,27 @@ public class CharaChaser : Entity
     }
 
     /// <summary>
+    /// Pauses any active chasing routine so cutscenes can take control of Chara.
+    /// </summary>
+    public void PauseChasing()
+    {
+        if (chasingCoroutine != null)
+        {
+            chasingCoroutine.RemoveSelf();
+            chasingCoroutine = null;
+        }
+        if (chaseTween != null)
+        {
+            chaseTween.RemoveSelf();
+            chaseTween = null;
+        }
+        following = false;
+        Hovering = false;
+        Collidable = false;
+        introComplete = false;
+    }
+
+    /// <summary>
     /// Called by CS02DZ_CHaraIntro when the cutscene completes.
     /// Starts the chasing behavior.
     /// </summary>
@@ -485,7 +511,18 @@ public class CharaChaser : Entity
         if (!introComplete && Scene is Level level)
         {
             introComplete = true;
-            Add(new Coroutine(StartChasingRoutine(level)));
+            if (chasingCoroutine != null)
+            {
+                chasingCoroutine.RemoveSelf();
+                chasingCoroutine = null;
+            }
+            if (chaseTween != null)
+            {
+                chaseTween.RemoveSelf();
+                chaseTween = null;
+            }
+            chasingCoroutine = new Coroutine(StartChasingRoutine(level));
+            Add(chasingCoroutine);
         }
     }
 }

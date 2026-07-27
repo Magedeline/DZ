@@ -265,7 +265,7 @@ namespace DZ
                 {
                     var chara = level.Entities.FindFirst<global::Celeste.Entities.CharaChaser>();
                     if (chara != null)
-                        base.Scene.Add(new global::Celeste.Cutscenes.CS02DZ_CHaraIntro(chara));
+                        base.Scene.Add(new global::Celeste.Cutscenes.CS02_CharaIntro(chara));
                     break;
                 }
                 case "cs02_dreaming_phonecall_portal":

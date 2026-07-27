@@ -7,9 +7,9 @@ using Monocle;
 
 namespace Celeste.Cutscenes;
 
-public class CS02DZ_CHaraIntro : CutsceneEntity
+public class CS02_CharaIntro : CutsceneEntity
 {
-    public const string Flag = "evilDZ_CHara_intro";
+    public const string Flag = "evil_chara_intro";
 
     private Player player;
 
@@ -26,7 +26,7 @@ public class CS02DZ_CHaraIntro : CutsceneEntity
     private float anxietyJitter;
 
     [MethodImpl(MethodImplOptions.NoInlining)]
-    public CS02DZ_CHaraIntro(CharaChaser chara)
+    public CS02_CharaIntro(CharaChaser chara)
     {
         this.chara = chara;
         charaEndPosition = chara.Position + new Vector2(8f, -24f);
@@ -37,6 +37,7 @@ public class CS02DZ_CHaraIntro : CutsceneEntity
     [MethodImpl(MethodImplOptions.NoInlining)]
     public override void OnBegin(Level level)
     {
+        chara.PauseChasing();
         Add(new Coroutine(Cutscene(level)));
     }
 
@@ -94,7 +95,7 @@ public class CS02DZ_CHaraIntro : CutsceneEntity
 
     private IEnumerator RevealChara()
     {
-        Audio.Play("event:/DZ/game/02_old_site/sequenceDZ_CHara_intro", chara.Position);
+        Audio.Play("event:/DZ/game/02_old_site/sequence_chara_intro", chara.Position);
         yield return 0.1f;
         Level.Displacement.AddBurst(chara.Position + new Vector2(0f, -4f), 0.8f, 8f, 48f, 0.5f);
         Input.Rumble(RumbleStrength.Light, RumbleLength.Medium);
@@ -142,7 +143,7 @@ public class CS02DZ_CHaraIntro : CutsceneEntity
         chara.Visible = true;
         chara.Sprite.Play("fallSlow");
         chara.Hovering = false;
-        chara.Add(new Coroutine(chara.StartChasingRoutine(level)));
-        level.Session.SetFlag("evilDZ_CHara_intro");
+        chara.BeginChasing();
+        level.Session.SetFlag("evil_chara_intro");
     }
 }

@@ -124,21 +124,6 @@ namespace Celeste.Entities
             this.spikesLeft = this.CollideCheck<Spikes>(this.Position - Vector2.UnitX);
             this.spikesRight = this.CollideCheck<Spikes>(this.Position + Vector2.UnitX);
 
-            // --- ROOM "j-mid" LOGIC EXAMPLE ---
-            // If you want to check if the generator is in room "j-mid":
-            if ((scene as Level)?.Session?.Level == "j-mid")
-            {
-                this.health = 5;
-
-                // Teleport from boss-19fake to center-01
-                Player player = (scene as Level)?.Tracker.GetEntity<Player>();
-                if (player != null)
-                {
-                    Add(new Coroutine(TeleportToRoom(player, "j-mid", false)));
-                    return;
-                }
-            }
-
             // Keep blackhole visuals in sync when entering/re-entering rooms.
             RefreshBlackholeFromGeneratorProgress(scene as Level);
         }
@@ -382,55 +367,14 @@ namespace Celeste.Entities
             this.Collidable = false;
             this.DestroyStaticMovers();
 
-            // --- LIGHTNING EFFECT ---
-            // Example: Add a lightning effect entity or play a lightning sound
             if (this.Scene != null)
             {
-                // Use the correct constructor for LightningStrike
-                // Example: new LightningStrike(position, colorIndex, delay, lifeTime)
                 this.Scene.Add(new LightningStrike(this.Position, 0, 0f, 1f));
                 Audio.Play("event:/new_content/game/10_farewell/lightning_strike", this.Position);
             }
 
-            // --- STRONG GLITCH EFFECTS ---
-            if (this.Scene != null)
-            {
-                // Screen flash effect
-                this.Scene.Add(new Flash(this.Center, Color.Red, 0.5f, 64f));
-                
-                // Add glitch displacement effect
-                this.Scene.Add(new GlitchEffect(this.Center, 1.5f));
-                
-                // Multiple lightning strikes for dramatic effect
-                for (int i = 0; i < 3; i++)
-                {
-                    Vector2 offset = new Vector2(Calc.Random.Range(-32f, 32f), Calc.Random.Range(-32f, 32f));
-                    this.Scene.Add(new LightningStrike(this.Position + offset, Calc.Random.Range(0, 3), i * 0.1f, 0.8f));
-                }
-                
-                // Particle burst effect
-                Level fxLevel = this.SceneAs<Level>();
-                if (fxLevel != null)
-                {
-                    // Electric sparks burst
-                    for (int i = 0; i < 20; i++)
-                    {
-                        Vector2 sparkDir = Calc.AngleToVector(Calc.Random.NextFloat() * MathHelper.TwoPi, Calc.Random.Range(50f, 120f));
-                        fxLevel.ParticlesFG.Emit(LightningBreakerBox.P_Sparks, this.Center + sparkDir * 0.1f, sparkDir.Angle());
-                    }
-                    
-                    // Screen shake for impact
-                    fxLevel.Shake(0.8f);
-                    
-                    // Distort effect - using correct Celeste distortion
-                    fxLevel.Displacement.AddBurst(this.Center, 0.8f, 16f, 128f);
-                }
-            }
-
-            // --- PITCH PARAMETER ---
-            // Example: Play destruction sound with pitch parameter
             var sfx = Audio.Play("event:/DZ/new_content/game/19_spaces/powergenerator_hit_scream", this.Position);
-            Audio.SetParameter(sfx, "pitch", 1.2f); // Set pitch as needed
+            Audio.SetParameter(sfx, "pitch", 1.2f);
 
             if (this.flag)
                 session.SetFlag("disable_lightning");
@@ -532,77 +476,6 @@ namespace Celeste.Entities
             }
 
             return true;
-        }
-
-        private IEnumerator TeleportToRoom(Player player, string targetRoom, bool lastHit)
-        {
-            Level level = Scene as Level;
-            if (level == null || player == null)
-                yield break;
-
-            // Attract player to center
-            if (!player.Dead)
-                player.StartAttract(Center + Vector2.UnitY * 4f);
-
-            float timer = 0.15f;
-            while (!player.Dead && !player.AtAttractTarget)
-            {
-                yield return null;
-                timer -= Engine.DeltaTime;
-            }
-
-            if (timer > 0f)
-                yield return timer;
-
-            // Screen effects
-            CelesteGame.Freeze(0.1f);
-            level.Shake();
-            yield return 0.05f;
-
-            yield return 0.2f;
-
-            // Perform the room transition
-            level.OnEndOfFrame += () =>
-            {
-                Vector2 levelOffset = level.LevelOffset;
-                Facings facing = player.Facing;
-
-                level.Remove(player);
-                level.UnloadLevel();
-
-                level.Session.Level = targetRoom;
-                level.Session.RespawnPoint = level.GetSpawnPoint(new Vector2(level.Bounds.Left, level.Bounds.Top));
-                level.Session.FirstLevel = false;
-
-                level.LoadLevel(Player.IntroTypes.Transition);
-
-                // Calculate center position of the new room
-                Vector2 roomCenter = new Vector2(
-                    level.Bounds.Left + level.Bounds.Width / 2f,
-                    level.Bounds.Top + level.Bounds.Height / 2f
-                );
-
-                level.Add(player);
-                player.Position = roomCenter;
-                player.Facing = facing;
-                player.Hair.MoveHairBy(level.LevelOffset - levelOffset);
-
-                // Center camera on player
-                level.Camera.Position = new Vector2(
-                    roomCenter.X - level.Camera.Viewport.Width / 2f,
-                    roomCenter.Y - level.Camera.Viewport.Height / 2f
-                );
-
-                if (level.Wipe != null)
-                {
-                    level.Wipe.Cancel();
-                }
-                level.Flash(Color.White);
-                level.Shake();
-
-                // Play teleport sound
-                Audio.Play("event:/game/06_reflection/badeline_disappear");
-            };
         }
 
         public static void Load()

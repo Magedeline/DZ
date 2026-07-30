@@ -162,26 +162,6 @@ namespace Celeste.Entities
             {
                 this.Scene.Add(new LightningStrike(this.Position, 0, 0f, 1f));
                 Audio.Play("event:/new_content/game/10_farewell/lightning_strike", this.Position);
-                this.Scene.Add(new Flash(this.Center, Color.Red, 0.5f, 64f));
-                this.Scene.Add(new GlitchEffect(this.Center, 1.5f));
-
-                for (int i = 0; i < 3; i++)
-                {
-                    Vector2 offset = new Vector2(Calc.Random.Range(-32f, 32f), Calc.Random.Range(-32f, 32f));
-                    this.Scene.Add(new LightningStrike(this.Position + offset, Calc.Random.Range(0, 3), i * 0.1f, 0.8f));
-                }
-
-                Level fxLevel = this.SceneAs<Level>();
-                if (fxLevel != null)
-                {
-                    for (int i = 0; i < 20; i++)
-                    {
-                        Vector2 sparkDir = Calc.AngleToVector(Calc.Random.NextFloat() * MathHelper.TwoPi, Calc.Random.Range(50f, 120f));
-                        fxLevel.ParticlesFG.Emit(LightningBreakerBox.P_Sparks, this.Center + sparkDir * 0.1f, sparkDir.Angle());
-                    }
-                    fxLevel.Shake(0.8f);
-                    fxLevel.Displacement.AddBurst(this.Center, 0.8f, 16f, 128f);
-                }
             }
 
             var sfx = Audio.Play("event:/DZ/new_content/game/19_spaces/powergenerator_hit_break", this.Position);

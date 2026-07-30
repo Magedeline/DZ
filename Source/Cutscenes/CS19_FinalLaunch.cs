@@ -150,11 +150,11 @@ public class CS19_FinalLaunch : CutsceneEntity
             boost.Ch19FinalBoostSfx.stop(STOP_MODE.ALLOWFADEOUT);
             boost.Ch19FinalBoostSfx.release();
         }
-        string nextLevelName = "end-chapter20";
+        string nextLevelName = "end-granny";
         Player.IntroTypes nextLevelIntro = Player.IntroTypes.Transition;
         if (hasPinkPlatinum)
         {
-            nextLevelName = "end-chapter20";
+            nextLevelName = "end-granny";
         }
         if (hasGolden)
         {

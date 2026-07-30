@@ -255,6 +255,11 @@ namespace Celeste.Entities {
 
         public void OnPlayer(global::Celeste.Player player)
         {
+            // Boss has already consumed its last node; ignore any further hits so
+            // nodeIndex never advances past the end of the nodes array (crash guard).
+            if (nodeIndex >= nodes.Length - 1)
+                return;
+
             if (Sprite == null)
                 CreateBossSprite();
             

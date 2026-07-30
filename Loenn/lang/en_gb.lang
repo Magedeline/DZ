@@ -2653,3 +2653,25 @@ entities.DZ/GigaVines.attributes.description.flag=Session flag that enables the 
 entities.DZ/GigaVines.attributes.description.invertFlag=If true the vines are active while the flag is unset.
 entities.DZ/GigaVines.attributes.description.pauseFlag=While this session flag is set, growth pauses.
 entities.DZ/GigaVines.attributes.description.retractFlag=While this session flag is set, the vines pull back.
+
+
+# --- Multi Dash Bumper ---
+
+# Multi Dash Bumper
+entities.DZ/MultiDashBumper.placements.name.one_dash=Dash Bumper (1 Dash)
+entities.DZ/MultiDashBumper.placements.name.two_dash=Dash Bumper (2 Dash)
+entities.DZ/MultiDashBumper.placements.name.three_dash=Dash Bumper (3 Dash)
+entities.DZ/MultiDashBumper.placements.name.four_dash=Dash Bumper (4 Dash)
+entities.DZ/MultiDashBumper.placements.name.five_dash=Dash Bumper (5 Dash)
+entities.DZ/MultiDashBumper.placements.name.rainbow_ten_dash=Rainbow Dash Bumper (10 Dash)
+entities.DZ/MultiDashBumper.attributes.description.dashes=How many dashes the player leaves with. 1-5 each have their own colour; 6 and above render as the rainbow bumper.
+entities.DZ/MultiDashBumper.attributes.description.radius=Pixel radius of the bumper and its hitbox.
+entities.DZ/MultiDashBumper.attributes.description.respawnTime=Seconds the bumper stays spent before it can be hit again.
+entities.DZ/MultiDashBumper.attributes.description.launchMultiplier=Multiplier on the launch speed. 1 matches the vanilla bumper.
+entities.DZ/MultiDashBumper.attributes.description.setExactly=If true the bumper forces the dash count exactly, which can take dashes away. If false it only ever raises it.
+entities.DZ/MultiDashBumper.attributes.description.refillStamina=If true the bumper also refills stamina, like a refill does.
+entities.DZ/MultiDashBumper.attributes.description.oneUse=If true the bumper is removed after a single hit.
+entities.DZ/MultiDashBumper.attributes.description.moveTime=Seconds for one leg of the trip to the node, when a node is placed.
+entities.DZ/MultiDashBumper.attributes.description.sineWave=If true the bumper drifts on a sine wave like the vanilla one.
+entities.DZ/MultiDashBumper.attributes.description.flag=Session flag that enables the bumper. Empty means always active.
+entities.DZ/MultiDashBumper.attributes.description.invertFlag=If true the bumper is active while the flag is unset.

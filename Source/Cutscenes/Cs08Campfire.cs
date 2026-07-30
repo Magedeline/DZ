@@ -24,11 +24,14 @@ namespace Celeste.Cutscenes
         private static readonly Vector2 RALSEI_OFFSET = new(-80f, -16f);
 
         private const float LIGHT_APPROACH_SPEED = 2f;
-        private const float DIALOG_OPTION_WIDTH = 1400f;
         private const float DIALOG_OPTION_HEIGHT = 140f;
         private const float DIALOG_OPTION_EASE_SPEED = 4f;
+        // Option rows are drawn in HUD space (1920x1080), matching the vanilla campfire layout.
+        private const float DIALOG_OPTION_LEFT = 260f;
+        private const float DIALOG_OPTION_TOP = 120f;
         private const string music_event = "event:/DZ/music/lvl8/intro";
         private const string collapse_audio_event = "event:/DZ/sfx/player_collapse";
+        private const string selfie_audio_event = "event:/game/02_old_site/theoselfie_foley";
         #endregion
 
         #region Fields
@@ -55,6 +58,9 @@ namespace Celeste.Cutscenes
         public Cs08Campfire(Npc08MadelinePlateau madelineNPC, global::Celeste.Player player, CelesteNPC madeline) 
             : base(true, false)
         {
+            // The dialog options are drawn in HUD space, so this entity has to render there too.
+            Tag = (int)Tags.HUD;
+
             this.player = player ?? throw new ArgumentNullException(nameof(player));
             this.madeline = madeline ?? throw new ArgumentNullException(nameof(madeline));
 
@@ -186,25 +192,29 @@ namespace Celeste.Cutscenes
             yield return fadeOut.Wait();
 
             // Bonfire lighting
-            bonfire.SetMode(Bonfire.Mode.Lit);
+            bonfire?.SetMode(Bonfire.Mode.Lit);
             yield return 2.45f;
+
+            // Everything at the campfire is placed relative to the fire; fall back to
+            // the sleeping spot if the room has no bonfire so the scene still plays out.
+            Vector2 firePosition = bonfire?.Position ?? playerCampfirePosition;
 
             // Camera repositioning
             level.Camera.Position = player.CameraTarget;
             player.Position = playerCampfirePosition;
             player.Facing = Facings.Left;
             player.Sprite.Play("asleep");
-            
+
             if (badeline != null)
             {
-                badeline.Position = bonfire.Position + BADELINE_OFFSET;
+                badeline.Position = firePosition + BADELINE_OFFSET;
                 if (badeline.Sprite != null)
                     badeline.Sprite.Scale.X = -1f; // Face left
             }
-            
+
             if (ralsei != null)
             {
-                ralsei.Position = bonfire.Position + RALSEI_OFFSET;
+                ralsei.Position = firePosition + RALSEI_OFFSET;
                 if (ralsei.Sprite != null)
                     ralsei.Sprite.Scale.X = 1f; // Face right
             }
@@ -216,7 +226,7 @@ namespace Celeste.Cutscenes
             var fadeIn = new FadeWipe(level, true);
             yield return null;
             level.ResetZoom();
-            level.Camera.Position = new Vector2(bonfire.X - 160f, bonfire.Y - 140f);
+            level.Camera.Position = new Vector2(firePosition.X - 160f, firePosition.Y - 140f);
             yield return 3f;
             Audio.SetMusic("event:/DZ/music/lvl8/intro");
             yield return 1.5f;
@@ -265,12 +275,13 @@ namespace Celeste.Cutscenes
                     Audio.Play("event:/ui/game/chatoptions_select");
                     while ((optionEase -= Engine.DeltaTime * DIALOG_OPTION_EASE_SPEED) > 0.0)
                         yield return null;
+                    optionEase = 0f;
                     Option selected = currentOptions[currentOptionIndex];
                     askedQuestions.Add(selected.Question);
                     currentOptions = null;
-                    // Selfie option uses trigger 0 to spawn the photo; others use WaitABit
-                    Func<IEnumerator> trigger0 = selected.Question.Ask.EndsWith("SELFIE") ? SelfieSequence : WaitABit;
-                    yield return Textbox.Say(selected.Question.Answer, trigger0, BeerSequence);
+                    // Trigger order is fixed and matches the {trigger N} tags in Dialog/English.txt:
+                    // 0 = beat, 1 = group selfie, 2 = drink.
+                    yield return Textbox.Say(selected.Question.Answer, WaitABit, SelfieSequence, BeerSequence);
                     key = selected.Goto;
                     if (string.IsNullOrEmpty(key))
                         break;
@@ -298,30 +309,78 @@ namespace Celeste.Cutscenes
         }
 
         /// <summary>
-        /// Trigger 0 for the selfie dialog option: Badeline takes out her phone
+        /// Trigger 1 for the selfie dialog option: Badeline takes out her phone
         /// and captures a group photo around the campfire.
         /// </summary>
         private IEnumerator SelfieSequence()
         {
-            Level level = Scene as Level;
-            if (level == null)
+            if (Scene is not Level level)
             {
                 yield return 0.5f;
                 yield break;
             }
 
-            // Badeline takes out her phone
-            if (badeline != null && badeline.Sprite != null && badeline.Sprite.Has("holdOutPhone"))
-            {
-                badeline.Sprite.Play("holdOutPhone");
-                yield return 1.5f;
-            }
+            // Push in on the group before the shot
+            Add(new Coroutine(level.ZoomTo(new Vector2(160f, 105f), 2f, 0.5f)));
+            yield return 0.6f;
 
-            // Spawn the selfie photo overlay
+            // Badeline takes out her phone
+            if (badeline != null)
+            {
+                if (badeline.Sprite != null && badeline.Sprite.Has("holdOutPhone"))
+                    badeline.Sprite.Play("holdOutPhone");
+                Audio.Play(selfie_audio_event, badeline.Position);
+            }
+            else
+            {
+                Audio.Play(selfie_audio_event, player.Position);
+            }
+            yield return 1f;
+            Input.Rumble(RumbleStrength.Light, RumbleLength.Medium);
+
+            // PictureRoutine flashes the screen, shows the photo, waits for input,
+            // then plays it out and removes the entity from the scene itself.
             selfie = new Selfie(level);
-            Scene.Add(selfie);
-            yield return selfie.OpenRoutine("selfieCampfire");
-            yield return selfie.WaitForInput();
+            level.Add(selfie);
+            yield return selfie.PictureRoutine("selfieCampfire");
+            selfie = null;
+
+            yield return 0.5f;
+            yield return level.ZoomBack(0.5f);
+            yield return 0.2f;
+
+            if (badeline != null && badeline.Sprite != null && badeline.Sprite.Has("idle"))
+                badeline.Sprite.Play("idle");
+        }
+
+        public override void Update()
+        {
+            if (currentOptions != null)
+            {
+                for (int i = 0; i < currentOptions.Count; i++)
+                {
+                    currentOptions[i].Update();
+                    currentOptions[i].Highlight = Calc.Approach(
+                        currentOptions[i].Highlight,
+                        currentOptionIndex == i ? 1f : 0f,
+                        Engine.DeltaTime * DIALOG_OPTION_EASE_SPEED);
+                }
+            }
+            base.Update();
+        }
+
+        public override void Render()
+        {
+            if (Level == null || Level.Paused || currentOptions == null)
+                return;
+
+            for (int i = 0; i < currentOptions.Count; i++)
+            {
+                Vector2 position = new(
+                    DIALOG_OPTION_LEFT,
+                    DIALOG_OPTION_TOP + (DIALOG_OPTION_HEIGHT + Option.PADDING) * i);
+                currentOptions[i].Render(position, optionEase);
+            }
         }
 
         private IEnumerator PlayerLightApproach()
@@ -424,60 +483,54 @@ namespace Celeste.Cutscenes
         }
 
         /// <summary>
-        /// Create all dialogue questions including new ones
+        /// Create all dialogue questions. Every id here needs a matching
+        /// DZ_CH8_MADELINE_ASK_&lt;ID&gt; and DZ_CH8_MADELINE_SAY_&lt;ID&gt; pair in
+        /// Dialog/English.txt, otherwise the option row renders as a raw key.
         /// </summary>
         private Dictionary<string, Question> CreateDialogueQuestions()
         {
             return new Dictionary<string, Question>
             {
-                ["anything"] = new Question("anything"),
-                ["zero"] = new Question("zero"),
                 ["gaster"] = new Question("gaster"),
+                ["journey"] = new Question("journey"),
                 ["badeline"] = new Question("badeline"),
+                ["goal"] = new Question("goal"),
                 ["granny"] = new Question("granny"),
                 ["void"] = new Question("void"),
-                ["evilgod"] = new Question("evilgod"),
                 ["monster"] = new Question("monster"),
-                ["goal"] = new Question("goal"),
-                ["grandpa"] = new Question("grandpa"),
-                ["story"] = new Question("story"),
-                ["tips"] = new Question("tips"),
+                ["els"] = new Question("els"),
+                ["anything"] = new Question("anything"),
                 [nameof(selfie)] = new Question(nameof(selfie)),
                 ["sleep"] = new Question("sleep"),
                 ["sleep_confirm"] = new Question("sleep_confirm"),
-                ["sleep_cancel"] = new Question("sleep_cancel"),
-                ["memories"] = new Question("memories"),
-                ["journey"] = new Question("journey"),
-                ["fears"] = new Question("fears"),
-                ["hope"] = new Question("hope")
+                ["sleep_cancel"] = new Question("sleep_cancel")
             };
         }
 
         /// <summary>
-        /// Setup dialogue node structure with new options
+        /// Setup dialogue node structure. The selfie closes the night out, so it only
+        /// unlocks once every other thread has been asked; "sleep" is the early exit
+        /// and disappears at exactly the point the selfie becomes available.
         /// </summary>
         private void SetupDialogueNodes(Dictionary<string, Question> questions)
         {
             dialogNodes.Add("start", new Option[]
             {
-                new Option(questions["anything"], "start").ExcludedBy(questions["granny"]),
-                new Option(questions["zero"], "start").Require(questions["goal"]),
-                new Option(questions["goal"], "start").Require(questions["gaster"]),
-                new Option(questions["grandpa"], "start").Require(questions["goal"], questions["granny"]),
-                new Option(questions["story"], "start").Require(questions["grandpa"], questions["evilgod"]),
-                new Option(questions["tips"], "start").Require(questions["story"]),
                 new Option(questions["gaster"], "start"),
+                new Option(questions["journey"], "start"),
                 new Option(questions["badeline"], "start").Require(questions["gaster"]),
-                new Option(questions["granny"], "start").Require(questions["gaster"], questions["goal"]),
+                new Option(questions["goal"], "start").Require(questions["gaster"]),
+                new Option(questions["granny"], "start").Require(questions["journey"]),
                 new Option(questions["void"], "start").Require(questions["granny"]),
-                new Option(questions["evilgod"], "start").Require(questions["void"]),
                 new Option(questions["monster"], "start").Require(questions["void"]),
-                new Option(questions[nameof(selfie)], "").Require(questions["evilgod"], questions["story"]),
-                new Option(questions["sleep"], "sleep").Require(questions["granny"]).ExcludedBy(questions["evilgod"], questions["story"]).Repeatable(),
-                new Option(questions["memories"], "start").Require(questions["badeline"]),
-                new Option(questions["journey"], "start").Require(questions["memories"]),
-                new Option(questions["fears"], "start").Require(questions["monster"]),
-                new Option(questions["hope"], "start").Require(questions["journey"], questions["fears"])
+                new Option(questions["els"], "start").Require(questions["monster"]),
+                new Option(questions["anything"], "start").Require(questions["badeline"], questions["goal"]),
+                new Option(questions[nameof(selfie)], "")
+                    .Require(questions["journey"], questions["monster"], questions["els"], questions["anything"]),
+                new Option(questions["sleep"], "sleep")
+                    .Require(questions["gaster"])
+                    .ExcludedBy(questions["journey"], questions["monster"], questions["els"], questions["anything"])
+                    .Repeatable()
             });
 
             dialogNodes.Add("sleep", new Option[]
@@ -494,12 +547,8 @@ namespace Celeste.Cutscenes
             public List<Question> OnlyAppearIfAsked;
             public List<Question> DoNotAppearIfAsked;
             public bool CanRepeat;
-            // Read by Render() below for the hover-highlight offset, but Render() itself is
-            // never called — the active dialog-option flow renders through Textbox.Say
-            // instead. Kept for whenever the custom option menu gets wired up.
-#pragma warning disable CS0649
+            /// <summary>Eased 0-1 hover weight, driven by the cutscene's Update().</summary>
             public float Highlight;
-#pragma warning restore CS0649
             public const float WIDTH = 1400f;
             public const float HEIGHT = 140f;
             public const float PADDING = 20f;

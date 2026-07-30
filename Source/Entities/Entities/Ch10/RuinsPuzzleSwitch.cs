@@ -107,7 +107,7 @@ namespace Celeste.Entities.Chapters.Ch10
             sprite.Play("active");
             glowAlpha = 1f;
             
-            Audio.Play("event:/game/general/diamond_get", Position);
+            Audio.Play(ChapterSfx.RuinsTouchSwitchAny, Position);
             
             // Notify connected gates
             foreach (var gate in connectedGates)
@@ -140,7 +140,7 @@ namespace Celeste.Entities.Chapters.Ch10
             sprite.Play("complete");
             glowAlpha = 1f;
             
-            Audio.Play("event:/game/general/crystalheart_pulse", Position);
+            Audio.Play(ChapterSfx.RuinsTouchSwitchLastOneshot, Position);
             level?.Shake(0.2f);
         }
 
@@ -394,7 +394,7 @@ namespace Celeste.Entities.Chapters.Ch10
             
             State = GateState.Opening;
             targetOpenAmount = 1f;
-            Audio.Play("event:/game/general/diamond_get", Position);
+            Audio.Play(ChapterSfx.RuinsGateOpen, Position);
         }
 
         public void Close()
@@ -403,7 +403,7 @@ namespace Celeste.Entities.Chapters.Ch10
             
             State = GateState.Closing;
             targetOpenAmount = 0f;
-            Audio.Play("event:/game/general/diamond_get", Position);
+            Audio.Play(ChapterSfx.RuinsGateOpen, Position);
         }
         #endregion
 
@@ -429,6 +429,7 @@ namespace Celeste.Entities.Chapters.Ch10
                 if (openAmount >= 1f)
                 {
                     State = GateState.Open;
+                    Audio.Play(ChapterSfx.RuinsGateFinish, Position);
                 }
                 else if (openAmount <= 0f)
                 {
@@ -506,7 +507,7 @@ namespace Celeste.Entities.Chapters.Ch10
 
         private void CompleteSequence()
         {
-            Audio.Play("event:/game/general/crystalheart_pulse", Position);
+            Audio.Play(ChapterSfx.RuinsTouchSwitchLastOneshot, Position);
             level?.Shake(0.3f);
             
             // Open connected gates

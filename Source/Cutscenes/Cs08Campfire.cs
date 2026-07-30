@@ -14,9 +14,30 @@ namespace Celeste
         public const string DuskBackgroundFlag = "duskbg";
         public const string StarsBackgroundFlag = "starsbg";
 
-        private NPC madeline;
-        private Player player;
-        private BigBonfire bonfire;
+        private static readonly Vector2 CAMERA_START_OFFSET = new(0f, -144f);
+        private static readonly Vector2 PLAYER_OFFSET = new(24f, -8f);
+        private static readonly Vector2 MADELINE_OFFSET = new(-20f, -16f);
+        private static readonly Vector2 RESPAWN_POINT = new(-176f, 312f);
+        
+        // NPC positioning offsets for campfire scene
+        private static readonly Vector2 BADELINE_OFFSET = new(50f, -16f);
+        private static readonly Vector2 RALSEI_OFFSET = new(-80f, -16f);
+
+        private const float LIGHT_APPROACH_SPEED = 2f;
+        private const float DIALOG_OPTION_HEIGHT = 140f;
+        private const float DIALOG_OPTION_EASE_SPEED = 4f;
+        // Option rows are drawn in HUD space (1920x1080), matching the vanilla campfire layout.
+        private const float DIALOG_OPTION_LEFT = 260f;
+        private const float DIALOG_OPTION_TOP = 120f;
+        private const string music_event = "event:/DZ/music/lvl8/intro";
+        private const string collapse_audio_event = "event:/DZ/sfx/player_collapse";
+        private const string selfie_audio_event = "event:/game/02_old_site/theoselfie_foley";
+        #endregion
+
+        #region Fields
+        private readonly global::Celeste.Player player;
+        private readonly CelesteNPC madeline;
+        private Bonfire bonfire;
         private PlateauMod plateau;
         private Vector2 cameraStart;
         private Vector2 playerCampfirePosition;
@@ -32,9 +53,11 @@ namespace Celeste
 
         public Cs08Campfire(NPC madeline, Player player)
         {
+            // The dialog options are drawn in HUD space, so this entity has to render there too.
             Tag = (int)Tags.HUD;
-            this.madeline = madeline;
-            this.player = player;
+
+            this.player = player ?? throw new ArgumentNullException(nameof(player));
+            this.madeline = madeline ?? throw new ArgumentNullException(nameof(madeline));
 
             // Create questions
             Question question1 = new Question("anything");
@@ -154,37 +177,47 @@ namespace Celeste
             cs08Campfire.Level.ParticlesFG.Emit(Payphone.P_SnowB, 12, position, Vector2.UnitX * 10f);
             yield return 0.7f;
 
-            FadeWipe fade = new FadeWipe(level, false);
-            fade.Duration = 1.5f;
-            fade.EndTimer = 2.5f;
-            yield return fade.Wait();
-            cs08Campfire.bonfire.SetMode(BigBonfire.Mode.Lit);
+        /// <summary>
+        /// Transition to the campfire scene with fade and repositioning
+        /// </summary>
+        private IEnumerator CampfireTransition(Level level)
+        {
+            // player.Freeze(); // Removed, not available. Use Locked state instead.
+            player.StateMachine.Locked = true;
+
+            // Fade out
+            var fadeOut = new FadeWipe(level, false);
+            fadeOut.Duration = 1.5f;
+            fadeOut.EndTimer = 2.5f;
+            yield return fadeOut.Wait();
+
+            // Bonfire lighting
+            bonfire?.SetMode(Bonfire.Mode.Lit);
             yield return 2.45f;
             camTo.Cancel();
 
-            cs08Campfire.madeline.Position = cs08Campfire.madelineCampfirePosition;
-            if (cs08Campfire.madeline.Sprite != null)
+            // Everything at the campfire is placed relative to the fire; fall back to
+            // the sleeping spot if the room has no bonfire so the scene still plays out.
+            Vector2 firePosition = bonfire?.Position ?? playerCampfirePosition;
+
+            // Camera repositioning
+            level.Camera.Position = player.CameraTarget;
+            player.Position = playerCampfirePosition;
+            player.Facing = Facings.Left;
+            player.Sprite.Play("asleep");
+
+            if (badeline != null)
             {
-                cs08Campfire.madeline.Sprite.Play("sleep");
-                cs08Campfire.madeline.Sprite.SetAnimationFrame(cs08Campfire.madeline.Sprite.CurrentAnimationTotalFrames - 1);
+                badeline.Position = firePosition + BADELINE_OFFSET;
+                if (badeline.Sprite != null)
+                    badeline.Sprite.Scale.X = -1f; // Face left
             }
 
-            cs08Campfire.player.Position = cs08Campfire.playerCampfirePosition;
-            cs08Campfire.player.Facing = Facings.Left;
-            cs08Campfire.player.Sprite.Play("asleep");
-
-            if (cs08Campfire.badeline != null)
+            if (ralsei != null)
             {
-                cs08Campfire.badeline.Position = cs08Campfire.bonfire.Position + new Vector2(50f, -16f);
-                if (cs08Campfire.badeline.Sprite != null)
-                    cs08Campfire.badeline.Sprite.Scale.X = -1f;
-            }
-
-            if (cs08Campfire.ralsei != null)
-            {
-                cs08Campfire.ralsei.Position = cs08Campfire.bonfire.Position + new Vector2(-80f, -16f);
-                if (cs08Campfire.ralsei.Sprite != null)
-                    cs08Campfire.ralsei.Sprite.Scale.X = 1f;
+                ralsei.Position = firePosition + RALSEI_OFFSET;
+                if (ralsei.Sprite != null)
+                    ralsei.Sprite.Scale.X = 1f; // Face right
             }
 
             level.Session.SetFlag("starsbg");
@@ -193,7 +226,7 @@ namespace Celeste
             FadeWipe fadeWipe1 = new FadeWipe(level, true);
             yield return null;
             level.ResetZoom();
-            level.Camera.Position = new Vector2(cs08Campfire.bonfire.X - 160f, cs08Campfire.bonfire.Y - 140f);
+            level.Camera.Position = new Vector2(firePosition.X - 160f, firePosition.Y - 140f);
             yield return 3f;
             Audio.SetMusic("event:/DZ/music/lvl8/vibing");
             yield return 1.5f;
@@ -242,10 +275,13 @@ namespace Celeste
                     Audio.Play("event:/ui/game/chatoptions_select");
                     while ((cs08Campfire.optionEase -= Engine.DeltaTime * 4f) > 0.0)
                         yield return null;
-                    Option selected = cs08Campfire.currentOptions[cs08Campfire.currentOptionIndex];
-                    cs08Campfire.asked.Add(selected.Question);
-                    cs08Campfire.currentOptions = null;
-                    yield return Textbox.Say(selected.Question.Answer, cs08Campfire.WaitABit, cs08Campfire.SelfieSequence, cs08Campfire.BeerSequence);
+                    optionEase = 0f;
+                    Option selected = currentOptions[currentOptionIndex];
+                    askedQuestions.Add(selected.Question);
+                    currentOptions = null;
+                    // Trigger order is fixed and matches the {trigger N} tags in Dialog/English.txt:
+                    // 0 = beat, 1 = group selfie, 2 = drink.
+                    yield return Textbox.Say(selected.Question.Answer, WaitABit, SelfieSequence, BeerSequence);
                     key = selected.Goto;
                     if (!string.IsNullOrEmpty(key))
                         selected = null;
@@ -267,27 +303,84 @@ namespace Celeste
             yield return 0.8f;
         }
 
+        private IEnumerator BeerSequence()
+        {
+            yield return 0.5f;
+        }
+
+        /// <summary>
+        /// Trigger 1 for the selfie dialog option: Badeline takes out her phone
+        /// and captures a group photo around the campfire.
+        /// </summary>
         private IEnumerator SelfieSequence()
         {
-            Cs08Campfire cs08Campfire = this;
-            Level level = Scene as Level;
-            if (level == null)
+            if (Scene is not Level level)
             {
                 yield return 0.5f;
                 yield break;
             }
 
-            if (cs08Campfire.badeline != null && cs08Campfire.badeline.Sprite != null && cs08Campfire.badeline.Sprite.Has("holdOutPhone"))
-            {
-                cs08Campfire.badeline.Sprite.Play("holdOutPhone");
-                yield return 1.5f;
-            }
+            // Push in on the group before the shot
+            Add(new Coroutine(level.ZoomTo(new Vector2(160f, 105f), 2f, 0.5f)));
+            yield return 0.6f;
 
-            cs08Campfire.selfie = new Selfie(cs08Campfire.SceneAs<Level>());
-            cs08Campfire.Scene.Add(cs08Campfire.selfie);
-            yield return cs08Campfire.selfie.PictureRoutine("selfieCampfire");
-            cs08Campfire.selfie = null;
+            // Badeline takes out her phone
+            if (badeline != null)
+            {
+                if (badeline.Sprite != null && badeline.Sprite.Has("holdOutPhone"))
+                    badeline.Sprite.Play("holdOutPhone");
+                Audio.Play(selfie_audio_event, badeline.Position);
+            }
+            else
+            {
+                Audio.Play(selfie_audio_event, player.Position);
+            }
+            yield return 1f;
+            Input.Rumble(RumbleStrength.Light, RumbleLength.Medium);
+
+            // PictureRoutine flashes the screen, shows the photo, waits for input,
+            // then plays it out and removes the entity from the scene itself.
+            selfie = new Selfie(level);
+            level.Add(selfie);
+            yield return selfie.PictureRoutine("selfieCampfire");
+            selfie = null;
+
             yield return 0.5f;
+            yield return level.ZoomBack(0.5f);
+            yield return 0.2f;
+
+            if (badeline != null && badeline.Sprite != null && badeline.Sprite.Has("idle"))
+                badeline.Sprite.Play("idle");
+        }
+
+        public override void Update()
+        {
+            if (currentOptions != null)
+            {
+                for (int i = 0; i < currentOptions.Count; i++)
+                {
+                    currentOptions[i].Update();
+                    currentOptions[i].Highlight = Calc.Approach(
+                        currentOptions[i].Highlight,
+                        currentOptionIndex == i ? 1f : 0f,
+                        Engine.DeltaTime * DIALOG_OPTION_EASE_SPEED);
+                }
+            }
+            base.Update();
+        }
+
+        public override void Render()
+        {
+            if (Level == null || Level.Paused || currentOptions == null)
+                return;
+
+            for (int i = 0; i < currentOptions.Count; i++)
+            {
+                Vector2 position = new(
+                    DIALOG_OPTION_LEFT,
+                    DIALOG_OPTION_TOP + (DIALOG_OPTION_HEIGHT + Option.PADDING) * i);
+                currentOptions[i].Render(position, optionEase);
+            }
         }
 
         private IEnumerator BeerSequence()
@@ -357,14 +450,71 @@ namespace Celeste
 
         public override void Render()
         {
-            if (Level.Paused || currentOptions == null)
-                return;
-            int num = 0;
-            foreach (Option currentOption in currentOptions)
+            dialogNodes = new Dictionary<string, Option[]>();
+            askedQuestions = new HashSet<Question>();
+            currentOptions = new List<Option>();
+
+            // Create questions with new dialogue options
+            var questions = CreateDialogueQuestions();
+            SetupDialogueNodes(questions);
+        }
+
+        /// <summary>
+        /// Create all dialogue questions. Every id here needs a matching
+        /// DZ_CH8_MADELINE_ASK_&lt;ID&gt; and DZ_CH8_MADELINE_SAY_&lt;ID&gt; pair in
+        /// Dialog/English.txt, otherwise the option row renders as a raw key.
+        /// </summary>
+        private Dictionary<string, Question> CreateDialogueQuestions()
+        {
+            return new Dictionary<string, Question>
             {
-                currentOption.Render(new Vector2(260f, (float)(120.0 + 160.0 * num)), optionEase);
-                ++num;
-            }
+                ["gaster"] = new Question("gaster"),
+                ["journey"] = new Question("journey"),
+                ["badeline"] = new Question("badeline"),
+                ["goal"] = new Question("goal"),
+                ["granny"] = new Question("granny"),
+                ["void"] = new Question("void"),
+                ["monster"] = new Question("monster"),
+                ["els"] = new Question("els"),
+                ["anything"] = new Question("anything"),
+                [nameof(selfie)] = new Question(nameof(selfie)),
+                ["sleep"] = new Question("sleep"),
+                ["sleep_confirm"] = new Question("sleep_confirm"),
+                ["sleep_cancel"] = new Question("sleep_cancel")
+            };
+        }
+
+        /// <summary>
+        /// Setup dialogue node structure. The selfie closes the night out, so it only
+        /// unlocks once every other thread has been asked; "sleep" is the early exit
+        /// and disappears at exactly the point the selfie becomes available.
+        /// </summary>
+        private void SetupDialogueNodes(Dictionary<string, Question> questions)
+        {
+            dialogNodes.Add("start", new Option[]
+            {
+                new Option(questions["gaster"], "start"),
+                new Option(questions["journey"], "start"),
+                new Option(questions["badeline"], "start").Require(questions["gaster"]),
+                new Option(questions["goal"], "start").Require(questions["gaster"]),
+                new Option(questions["granny"], "start").Require(questions["journey"]),
+                new Option(questions["void"], "start").Require(questions["granny"]),
+                new Option(questions["monster"], "start").Require(questions["void"]),
+                new Option(questions["els"], "start").Require(questions["monster"]),
+                new Option(questions["anything"], "start").Require(questions["badeline"], questions["goal"]),
+                new Option(questions[nameof(selfie)], "")
+                    .Require(questions["journey"], questions["monster"], questions["els"], questions["anything"]),
+                new Option(questions["sleep"], "sleep")
+                    .Require(questions["gaster"])
+                    .ExcludedBy(questions["journey"], questions["monster"], questions["els"], questions["anything"])
+                    .Repeatable()
+            });
+
+            dialogNodes.Add("sleep", new Option[]
+            {
+                new Option(questions["sleep_cancel"], "start").Repeatable(),
+                new Option(questions["sleep_confirm"], "")
+            });
         }
 
         private class Option
@@ -374,11 +524,12 @@ namespace Celeste
             public List<Question> OnlyAppearIfAsked;
             public List<Question> DoNotAppearIfAsked;
             public bool CanRepeat;
+            /// <summary>Eased 0-1 hover weight, driven by the cutscene's Update().</summary>
             public float Highlight;
-            public const float Width = 1400f;
-            public const float Height = 140f;
-            public const float Padding = 20f;
-            public const float TextScale = 0.7f;
+            public const float WIDTH = 1400f;
+            public const float HEIGHT = 140f;
+            public const float PADDING = 20f;
+            public const float TEXT_SCALE = 0.7f;
 
             public Option(Question question, string go)
             {

@@ -4438,45 +4438,68 @@ yeah I couldn't do this without you {+PART_OF_ME}
 
 DZ_CH8_MADELINE_ASK_JOURNEY=
 [KIRBY left normal]
-What's is like on this mountain?
+What was your journey up this mountain like?
 
 DZ_CH8_MADELINE_SAY_JOURNEY=
-[MADELINE left sad]
-You said what?
+[MADELINE left distracted]
+My journey?
 ...
 
 [MADELINE left normal]
-You see.
-when I first climb it, or before that.
+Huh. Nobody ever asks about that part.
+Alright. From the start, then.
+
+[MADELINE left sad]
+Before I ever set foot up here, I was a mess.
+Anxiety, depression, the whole package.
+I couldn't hold a job. Most days I couldn't hold a conversation.
 
 [MADELINE left sadder]
-I have a lot of problem with anxiety and depression.
-which one of my grandpa had told me when he climb this mountain.
-and I was 18 years old back then.
-
-[RALSEI right sad]
-Dang and did you grandpa do that?
-
-[BADELINE right worried]
-Yes but.
-He never came back on that day.
-
-[BADELINE right worriedalt]
-which to me he may been gone or.
-get trap in the monster realm.
-
-[MADELINE left distracted]
-How did you know that?
-
-[BADELINE right concerned]
-because I saw your grandpa picture of him being with monster.
-
-[BADELINE right worriedalt]
-which I feel like that the reason why he call you for help.
+My grandpa used to talk about this mountain like it was a person.
+He said Celeste takes whatever you're carrying and shows it right back to you.
+So when I was 18, I decided I was going to climb it.
+Just to prove I could finish one thing in my life.
 
 [MADELINE left normal]
-If you know about this.
-Then yeah he could be alive.
+And I did. It nearly broke me in half, but I did.
+
+[RALSEI right sad]
+Your grandpa climbed it too, didn't he?
+
+[MADELINE left sad]
+He did.
+He went up one morning, and he never came back down.
+
+[BADELINE right worried]
+Not that day. Not any day after.
+
+[BADELINE right serious_alt]
+And I don't think the mountain took him.
+I think something down there kept him.
+
+[MADELINE left distracted]
+...How would you even know that?
+
+[BADELINE right concerned]
+Because I found a picture of him.
+He was standing with monsters, {0.3}and he was smiling.
+
+[BADELINE right serious]
+That's why he reached out to you for help.
+He's been down there the whole time, waiting on someone to come get him.
+
+[MADELINE left normal]
+Then he's alive.
+...He's alive, and I walked right past him.
+
+[RALSEI right sad]
+You didn't know.
+You know now, and now there's all of us.
+
+[MADELINE left peaceful]
+Yeah.
+Yeah, okay.
+Then we go get him.
 
 DZ_CH8_MADELINE_ASK_GASTER=
 [KIRBY left normal]
@@ -4526,10 +4549,11 @@ which to be honest your my friends and I'm somewhat your cousin.
 [MADELINE left normal]
 Well then your always welcome to my places with {+PART_OF_ME}.
 
-DZ_CH8_MADELINE_ASK_EVILGOD=
+DZ_CH8_MADELINE_ASK_ELS=
 [KIRBY left normal]
 What was that voice that you heard of?
 
+DZ_CH8_MADELINE_SAY_ELS=
 [MADELINE left distracted]
 Oh that?
 ...
@@ -4559,53 +4583,66 @@ DZ_CH8_MADELINE_SAY_EVILGOD=
 
 DZ_CH8_MADELINE_ASK_MONSTER=
 [KIRBY left normal]
-Any kind of monster that you found out?
+What did you find down there?
 
 DZ_CH8_MADELINE_SAY_MONSTER=
 [MADELINE left distracted]
-Your asking me of this?
+You actually want the whole list?
 
 [MADELINE left normal]
-Oh that thing well.
-I met a shark like creature and a fluff pushover like you ralsei.
-who they were so nice to me.
-one of the fluff goat that her name is {~}TORIEL AND ASGORE{/~}
-They were so nice to me that i they made a Butterscotch pie.
-but to top things off i add strawberry to it and not gonna lie.
-They Love it!
+Okay. A shark-looking warrior with a spear.
+She tried to run me through twice, then made me dinner.
+A little fluffball who folds under any argument. {0.2}Kind of like you, Ralsei.
+And two goat monsters. {~}TORIEL AND ASGORE{/~}.
+
+[MADELINE left normal]
+They took one look at me. {0.3}A human, standing in their kingdom.
+And they made me pie.
+Butterscotch. I put strawberry on top of it.
+They loved it so much they made a second one.
 
 [BADELINE right normal]
 Honestly?
-I was amazed of how much those monster kind were so nice to you.
+I kept waiting for the monster part of this story to get worse.
+They were kinder to you than most people up here have been.
 
 [MADELINE left normal]
-Thanks, but...
+Yeah. They were.
+...But.
 
 [MADELINE left sad]
-They used to have two child back then.
-One of them that we know is {+CHARA}
-And the other Name ASRIEL.
-Who used to be siblings.
+They had two kids, once.
+One of them was {+CHARA}.
+The other one was named ASRIEL.
+They grew up as siblings.
 ...
 
 [MADELINE left sadder]
-But sadly that Asriel became very sick and {+CHARA} try his best to save him.
-But at the end they both pass away.
-TORIEL AND ASGORE lost both children in one night.
+Asriel got sick. Really sick.
+{+CHARA} tried everything to save him.
+None of it worked, and it took them both.
+TORIEL AND ASGORE lost both of their children in one night.
 
 [RALSEI right sadder]
-Oh, dang I am so sorry for them...
-and how long you have been in the hellish realm.
+Oh...
+That's awful. I'm so sorry for them.
+
+[RALSEI right sad]
+How long were you down there? With all of that?
 
 [MADELINE left upset]
-About 2 motnths straight.
+Two months. Straight.
 
-[BADELINE right worriedalt]
-That long?
-Sheesh, {0.3} We only have getting up there for a month.
+[BADELINE right serious_alt]
+Two months?
+Sheesh, {0.3}we've only been on this mountain for one.
 
 [BADELINE right concerned]
-but there timeline is much faster than this world.
+Their world runs faster than ours does.
+Every hour we sit up here is longer down there.
+
+[MADELINE left sad]
+Which means every hour we waste, they're the ones waiting.
 
 DZ_CH8_MADELINE_ASK_GOAL=
 [KIRBY left normal]
@@ -4752,7 +4789,7 @@ DZ_CH8_MADELINE_SAY_SELFIE=
 [MADELINE left normal]
 Oh yeah, that's sound a good idea.
 All right all of you gather around now say strawberry.
-{trigger 0 baddy take out her phone and show photo}
+{trigger 1}
 
 [MADELINE left normal]
 All right everyone, I thinks it's a good time to take a good night sleep.
@@ -4788,7 +4825,13 @@ oh ok,
 
 [MADELINE left normal]
 well then hopes this goes well.
-{+CH6_THEO_SAY_SELFIE}
+Get some rest, {+KIRBY}. You earned it.
+
+[BADELINE right normal]
+Hopefully we can free those monster kind and put the end to this.
+
+[RALSEI right normal]
+Good night everyone, and stay Determined.
 
 DZ_CH8_MADELINE_ASK_SLEEP_CANCEL=
 [KIRBY left normal]

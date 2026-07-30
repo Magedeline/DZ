@@ -1078,7 +1078,7 @@ namespace Celeste.Entities
             var madelineNPC = Scene.Tracker.GetEntity<Npc08MadelinePlateau>();
             if (madelineNPC != null)
             {
-                TryAddCutscene(new Cs08Campfire(madelineNPC, player));
+                TryAddCutscene(new Cs08Campfire(madelineNPC, player, madelineNPC));
             }
         }
     }

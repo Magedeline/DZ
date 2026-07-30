@@ -28,7 +28,7 @@ public class Npc08MadelinePlateau : global::Celeste.NPC
         var player = Scene.Tracker.GetEntity<Player>();
         if (player != null)
         {
-            Scene.Add(new Cs08Campfire(this, player));
+            Scene.Add(new Cs08Campfire(this, player, this));
         }
 
         Add(base.Light = new VertexLight(new Vector2(0f, -6f), Color.White, 1f, 16, 48));

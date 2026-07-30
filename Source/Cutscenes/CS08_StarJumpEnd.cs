@@ -9,7 +9,7 @@ namespace Celeste.Cutscenes
 {
     public class CS08_StarJumpEnd : CutsceneEntity
     {
-        public const string Flag = "plateauDZ_2";
+        public const string Flag = "plateau_2";
 
         private bool waiting = true;
         private bool shaking;
@@ -225,9 +225,12 @@ namespace Celeste.Cutscenes
             level.CameraOffset.Y = 0f;
             level.Camera.Position = this.cameraStart;
             this.SetBloom(0f);
-            this.bonfire.SetMode(Bonfire.Mode.Smoking);
-            this.plateau.Depth = this.player.Depth + 10;
-            this.plateau.Remove(this.plateau.Occluder);
+            this.bonfire?.SetMode(Bonfire.Mode.Smoking);
+            if (this.plateau != null)
+            {
+                this.plateau.Depth = this.player.Depth + 10;
+                this.plateau.Remove(this.plateau.Occluder);
+            }
             this.player.Position = this.playerStart + new Vector2(0f, 8f);
             this.player.Speed = Vector2.Zero;
             this.player.Sprite.Play("tentacle_dangling", false, false);
@@ -252,15 +255,18 @@ namespace Celeste.Cutscenes
             Input.Rumble(RumbleStrength.Medium, RumbleLength.Long);
             this.shakingLoopSfx.Stop(true);
             this.shaking = false;
-            int num = 0;
-            while ((float)num < this.plateau.Width)
+            if (this.plateau != null)
             {
-                level.Add(Engine.Pooler.Create<Debris>().Init(this.plateau.Position + new Vector2((float)num + Calc.Random.NextFloat(8f), Calc.Random.NextFloat(8f)), '3', true).BlastFrom(this.plateau.Center + new Vector2(0f, 8f)));
-                level.Add(Engine.Pooler.Create<Debris>().Init(this.plateau.Position + new Vector2((float)num + Calc.Random.NextFloat(8f), Calc.Random.NextFloat(8f)), '3', true).BlastFrom(this.plateau.Center + new Vector2(0f, 8f)));
-                num += 8;
+                int num = 0;
+                while ((float)num < this.plateau.Width)
+                {
+                    level.Add(Engine.Pooler.Create<Debris>().Init(this.plateau.Position + new Vector2((float)num + Calc.Random.NextFloat(8f), Calc.Random.NextFloat(8f)), '3', true).BlastFrom(this.plateau.Center + new Vector2(0f, 8f)));
+                    level.Add(Engine.Pooler.Create<Debris>().Init(this.plateau.Position + new Vector2((float)num + Calc.Random.NextFloat(8f), Calc.Random.NextFloat(8f)), '3', true).BlastFrom(this.plateau.Center + new Vector2(0f, 8f)));
+                    num += 8;
+                }
+                this.plateau.RemoveSelf();
             }
-            this.plateau.RemoveSelf();
-            this.bonfire.RemoveSelf();
+            this.bonfire?.RemoveSelf();
             level.Shake(0.3f);
             this.player.Speed.Y = 160f;
             this.player.Sprite.Play("tentacle_pull", false, false);
@@ -470,7 +476,7 @@ namespace Celeste.Cutscenes
             // Dramatic interruption
             this.Level.Shake(0.4f);
             Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
-            Audio.Play("event:/DZ/new_content/char/bosses/els/consume_crystal_heart");
+            Audio.Play("event:/DZ/game/08_edge/chara_feather_slice");
             
             this.Level.Flash(Color.Red * 0.3f, false);
             
@@ -588,7 +594,7 @@ namespace Celeste.Cutscenes
             level.Remove(this.player);
             level.UnloadLevel();
             level.EndCutscene();
-            level.Session.SetFlag("plateauDZ_2", true);
+            level.Session.SetFlag("plateau_2", true);
             level.SnapColorGrade(AreaData.Get(level).ColorGrade);
             level.Session.Dreaming = false;
             level.Session.FirstLevel = false;

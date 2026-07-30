@@ -202,6 +202,13 @@
     <Loop id="shattered" path="shatter" frames="16" delay="0.08"/>
   </theo_crystal>
 
+	<maddy_crystal path="characters/DZ/maddyCrystal/" start="idle">
+		<Origin x="32" y="42"/>
+		<Loop id="idle" path="idle" delay="0.08"/>
+		<Anim id="shatter" path="shatter" delay="0.08" goto="shattered"/>
+		<Loop id="shattered" path="shatter" frames="16" delay="0.08"/>
+	</maddy_crystal>
+
   <oshiro path="characters/DZ/oshiro/" start="idle">
     <Justify x=".5" y=".667" />
 
@@ -633,6 +640,27 @@
     <Anim id="open" path="templeDoorC" delay="0.1" frames="6-14" goto="idle"/>
     <Anim id="hit" path="templeDoorC" delay="0.08" frames="0-4" goto="idle"/>
   </templegate_theo>
+	
+  <tesseractgate_default path="objects/DZ/door/" start="idle">
+    <Justify x="0.5" y="0"/>
+    <Loop id="idle" path="tesseractDoorA" delay="0.1" frames="0"/>
+    <Anim id="open" path="tesseractDoorA" delay="0.1" frames="6-14" goto="idle"/>
+    <Anim id="hit" path="tesseractDoorA" delay="0.08" frames="0-4" goto="idle"/>
+  </tesseractgate_default>
+
+  <tesseractgate_mirror path="objects/DZ/door/" start="idle">
+    <Justify x="0.5" y="0"/>
+    <Loop id="idle" path="tesseractDoorB" delay="0.1" frames="0"/>
+    <Anim id="open" path="tesseractDoorB" delay="0.1" frames="6-14" goto="idle"/>
+    <Anim id="hit" path="tesseractDoorB" delay="0.08" frames="0-4" goto="idle"/>
+  </tesseractgate_mirror>
+
+  <tesseractgate_maddy path="objects/DZ/door/" start="idle">
+    <Justify x="0.5" y="0"/>
+    <Loop id="idle" path="tesseractDoorC" delay="0.1" frames="0"/>
+    <Anim id="open" path="tesseractDoorC" delay="0.1" frames="6-14" goto="idle"/>
+    <Anim id="hit" path="tesseractDoorC" delay="0.08" frames="0-4" goto="idle"/>
+  </tesseractgate_maddy>
 
   <dashSwitch_default path="objects/temple/dashButton" start="idle">
     <Justify x="0.5" y="0.5"/>

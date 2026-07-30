@@ -40,7 +40,7 @@ namespace DZ
                 return;
             }
 
-            if (level.Session.GetFlag(Cs08Campfire.FLAG) || level.Session.GetFlag(CS08_StarJumpEnd.Flag))
+            if (level.Session.GetFlag(Cs08Campfire.Flag) || level.Session.GetFlag(CS08_StarJumpEnd.Flag))
             {
                 return;
             }
@@ -54,7 +54,7 @@ namespace DZ
             hasTriggered = true;
             player.StateMachine.State = global::Celeste.Player.StDummy;
             level.StartCutscene(OnCutsceneEnd);
-            base.Scene.Add(new Cs08Campfire(npc, player, npc));
+            base.Scene.Add(new Cs08Campfire(npc, player));
         }
 
         private void OnCutsceneEnd(Level level)

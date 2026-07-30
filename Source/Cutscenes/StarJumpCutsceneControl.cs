@@ -230,9 +230,13 @@ public class StarJumpCutsceneControl : Entity
         // Add the cutscene
         CS08_StarJumpEnd cutscene = new CS08_StarJumpEnd(npcController, this.player, playerStart, cameraStart);
         this.Scene.Add(cutscene);
-        
+
         Logger.Log(LogLevel.Info, "StarJumpCutsceneControl", 
             $"CS08_StarJumpEnd cutscene triggered! PlayerStart: {playerStart}, CameraStart: {cameraStart}");
+
+        // Unload this controller now that the cutscene has taken over, so it stops
+        // updating (music/camera/player state) and cannot conflict with the cutscene.
+        this.RemoveSelf();
     }
 
     private void UpdateMusicLayers()

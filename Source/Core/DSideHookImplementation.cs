@@ -163,6 +163,15 @@ public static class DSideHookImplementation
         AreaData area = AreaData.Get(self.Session.Area);
         int mode = (int)self.Session.Area.Mode;
 
+        // The Chapter 8 campfire and star-jump-end cutscenes use a Fall intro to drop
+        // the player into the scene. Outside of room "a-04" (where those cutscenes take
+        // place) a Fall intro doesn't make sense, so downgrade it there. This only applies
+        // to Chapter 8 (Revelation's Edge) - other chapters are left untouched.
+        if (introType == Player.IntroTypes.Fall && area.SID == AreaModeExtender.Build0SID("08_Truth") && self.Session.Level != "a-04")
+        {
+            introType = Player.IntroTypes.Transition;
+        }
+
         if (AreaModeExtender.IsOurMap(area) && mode >= AreaModeExtender.MODE_2)
         {
             string stateKey = $"{area.SID}_mode_{mode}";

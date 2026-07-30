@@ -1,18 +1,21 @@
-// Everest mods typically expose the 'On' hooks via this namespace
+using Microsoft.Xna.Framework;
+using Monocle;
+using System;
+using System.Collections;
 
-namespace Celeste.Entities
+namespace Celeste
 {
-    [CustomEntity(ids: "DZ/Maddy_crystal")]
-    [Tracked(true)]
-    public sealed class MaddyCrystal : Actor {
-        private const string SpriteBankId = "madeline_crystal";
-        private static ParticleType pImpact;
+    [CustomEntity("DZ/MaddyCrystal")]
+    [Tracked]
+    public class MaddyCrystal : Actor
+    {
+        public static ParticleType P_Impact;
         public Vector2 Speed;
         public bool OnPedestal;
-        private Holdable hold;
+        public Holdable Hold;
         private Sprite sprite;
         private bool dead;
-        private Level level;
+        private Level Level;
         private Collision onCollideH;
         private Collision onCollideV;
         private float noGravityTimer;
@@ -25,39 +28,26 @@ namespace Celeste.Entities
         private BirdTutorialGui tutorialGui;
         private float tutorialTimer;
 
-        public MaddyCrystal(EntityData data, Vector2 offset)
-          : this(data.Position + offset) {
-        }
-
         public MaddyCrystal(Vector2 position)
-          : base(position) {
-            Initialize(position);
-        }
-
-        public MaddyCrystal(IEnumerable<Component> components) : base(Vector2.One) {
-            Initialize(Vector2.One);
-
-            foreach (var component in components) Add(component);
-        }
-
-        private void Initialize(Vector2 position) {
+            : base(position)
+        {
             previousPosition = position;
             Depth = 100;
             Collider = new Hitbox(8f, 10f, -4f, -10f);
-            Add(sprite = CreateSprite());
+            Add(sprite = GFX.SpriteBank.Create("maddy_crystal"));
             sprite.Scale.X = -1f;
-            Add(hold = new Holdable());
-            hold.PickupCollider = new Hitbox(16f, 22f, -8f, -16f);
-            hold.SlowFall = false;
-            hold.SlowRun = true;
-            hold.OnPickup = OnPickup;
-            hold.OnRelease = OnRelease;
-            hold.DangerousCheck = dangerous;
-            hold.OnHitSeeker = hitSeeker1;
-            hold.OnSwat = swat;
-            hold.OnHitSpring = hitSpring;
-            hold.OnHitSpinner = hitSpinner;
-            hold.SpeedGetter = () => Speed;
+            Add(Hold = new Holdable());
+            Hold.PickupCollider = new Hitbox(16f, 22f, -8f, -16f);
+            Hold.SlowFall = false;
+            Hold.SlowRun = true;
+            Hold.OnPickup = OnPickup;
+            Hold.OnRelease = OnRelease;
+            Hold.DangerousCheck = Dangerous;
+            Hold.OnHitSeeker = HitSeeker;
+            Hold.OnSwat = Swat;
+            Hold.OnHitSpring = HitSpring;
+            Hold.OnHitSpinner = HitSpinner;
+            Hold.SpeedGetter = () => Speed;
             onCollideH = OnCollideH;
             onCollideV = OnCollideV;
             LiftSpeedGraceTime = 0.1f;
@@ -66,370 +56,345 @@ namespace Celeste.Entities
             Add(new MirrorReflection());
         }
 
-        private static Sprite CreateSprite() {
-            if (!GFX.SpriteBank.Has(SpriteBankId)) {
-                throw new Exception($"Missing sprite bank entry '{SpriteBankId}' for {nameof(MaddyCrystal)}.");
-            }
-
-            return GFX.SpriteBank.Create(SpriteBankId);
+        public MaddyCrystal(EntityData e, Vector2 offset)
+            : this(e.Position + offset)
+        {
         }
 
-        private static void EnsureImpactParticle() {
-            if (pImpact != null) {
-                return;
-            }
-
-            pImpact = new ParticleType {
-                Color = Color.White,
-                Color2 = Color.AliceBlue,
-                ColorMode = ParticleType.ColorModes.Choose,
-                LifeMin = 0.5f,
-                LifeMax = 1.0f,
-                Size = 1f,
-                SizeRange = 0.5f,
-                DirectionRange = 0.5f,
-                SpeedMin = 40f,
-                SpeedMax = 80f,
-                FadeMode = ParticleType.FadeModes.Late,
-                Acceleration = new Vector2(0f, 40f)
-            };
+        public static void Load()
+        {
+            P_Impact = new ParticleType();
         }
 
-        public override void Added(Scene scene) {
+        public override void Added(Scene scene)
+        {
             base.Added(scene);
-            this.level = this.SceneAs<Level>();
-            foreach (var entity1 in this.level.Tracker.GetEntities<MaddyCrystal>()) {
-                var entity = (MaddyCrystal)entity1;
-                if (entity != this && entity.hold.IsHeld)
-                    this.RemoveSelf();
+            Level = SceneAs<Level>();
+            foreach (MaddyCrystal entity in Level.Tracker.GetEntities<MaddyCrystal>())
+            {
+                if (entity != this && entity.Hold.IsHeld)
+                    RemoveSelf();
             }
-
-            if (this.level.Session.Level != "e-00")
+            if (!(Level.Session.Level == "e-00"))
                 return;
-            this.tutorialGui = new BirdTutorialGui((Entity)this, new Vector2(0.0f, -24f),
-              (object)Dialog.Clean("tutorial_carry"), new object[2]
-              {
-        (object)Dialog.Clean("tutorial_hold"),
-        (object)BirdTutorialGui.ButtonPrompt.Grab
-              });
-            this.tutorialGui.Open = false;
-            this.Scene.Add((Entity)this.tutorialGui);
+            tutorialGui = new BirdTutorialGui(this, new Vector2(0.0f, -24f), Dialog.Clean("tutorial_carry"), Dialog.Clean("tutorial_hold"), BirdTutorialGui.ButtonPrompt.Grab);
+            tutorialGui.Open = false;
+            Scene.Add(tutorialGui);
         }
 
-        public override void Update() {
+        public override void Update()
+        {
             base.Update();
-            if (this.shattering || this.dead)
+            if (shattering || dead)
                 return;
-            if ((double)this.swatTimer > 0.0)
-                this.swatTimer -= Engine.DeltaTime;
-            this.hardVerticalHitSoundCooldown -= Engine.DeltaTime;
-            if (this.OnPedestal) {
-                this.Depth = 8999;
-            } else {
-                this.Depth = 100;
-                if (this.hold.IsHeld) {
-                    this.prevLiftSpeed = Vector2.Zero;
-                } else {
-                    if (this.OnGround()) {
-                        this.Speed.X = Calc.Approach(this.Speed.X,
-                          this.OnGround(this.Position + Vector2.UnitX * 3f)
-                            ? (this.OnGround(this.Position - Vector2.UnitX * 3f) ? 0.0f : -20f)
-                            : 20f, 800f * Engine.DeltaTime);
-                        Vector2 liftSpeed = this.LiftSpeed;
-                        if (liftSpeed == Vector2.Zero && this.prevLiftSpeed != Vector2.Zero) {
-                            this.Speed = this.prevLiftSpeed;
-                            this.prevLiftSpeed = Vector2.Zero;
-                            this.Speed.Y = Math.Min(this.Speed.Y * 0.6f, 0.0f);
-                            if ((double)this.Speed.X != 0.0 && (double)this.Speed.Y == 0.0)
-                                this.Speed.Y = -60f;
-                            if ((double)this.Speed.Y < 0.0)
-                                this.noGravityTimer = 0.15f;
-                        } else {
-                            this.prevLiftSpeed = liftSpeed;
-                            if ((double)liftSpeed.Y < 0.0 && (double)this.Speed.Y < 0.0)
-                                this.Speed.Y = 0.0f;
+            if (swatTimer > 0.0)
+                swatTimer -= Engine.DeltaTime;
+            hardVerticalHitSoundCooldown -= Engine.DeltaTime;
+            if (OnPedestal)
+            {
+                Depth = 8999;
+            }
+            else
+            {
+                Depth = 100;
+                if (Hold.IsHeld)
+                {
+                    prevLiftSpeed = Vector2.Zero;
+                }
+                else
+                {
+                    if (OnGround())
+                    {
+                        Speed.X = Calc.Approach(Speed.X, OnGround(Position + Vector2.UnitX * 3f) ? (OnGround(Position - Vector2.UnitX * 3f) ? 0.0f : -20f) : 20f, 800f * Engine.DeltaTime);
+                        Vector2 liftSpeed = LiftSpeed;
+                        if (liftSpeed == Vector2.Zero && prevLiftSpeed != Vector2.Zero)
+                        {
+                            Speed = prevLiftSpeed;
+                            prevLiftSpeed = Vector2.Zero;
+                            Speed.Y = Math.Min(Speed.Y * 0.6f, 0.0f);
+                            if (Speed.X != 0.0 && Speed.Y == 0.0)
+                                Speed.Y = -60f;
+                            if (Speed.Y < 0.0)
+                                noGravityTimer = 0.15f;
                         }
-                    } else if (this.hold.ShouldHaveGravity) {
+                        else
+                        {
+                            prevLiftSpeed = liftSpeed;
+                            if (liftSpeed.Y < 0.0 && Speed.Y < 0.0)
+                                Speed.Y = 0.0f;
+                        }
+                    }
+                    else if (Hold.ShouldHaveGravity)
+                    {
                         float num1 = 800f;
-                        if ((double)Math.Abs(this.Speed.Y) <= 30.0)
+                        if (Math.Abs(Speed.Y) <= 30.0)
                             num1 *= 0.5f;
                         float num2 = 350f;
-                        if ((double)this.Speed.Y < 0.0)
+                        if (Speed.Y < 0.0)
                             num2 *= 0.5f;
-                        this.Speed.X = Calc.Approach(this.Speed.X, 0.0f, num2 * Engine.DeltaTime);
-                        if ((double)this.noGravityTimer > 0.0)
-                            this.noGravityTimer -= Engine.DeltaTime;
+                        Speed.X = Calc.Approach(Speed.X, 0.0f, num2 * Engine.DeltaTime);
+                        if (noGravityTimer > 0.0)
+                            noGravityTimer -= Engine.DeltaTime;
                         else
-                            this.Speed.Y = Calc.Approach(this.Speed.Y, 200f, num1 * Engine.DeltaTime);
+                            Speed.Y = Calc.Approach(Speed.Y, 200f, num1 * Engine.DeltaTime);
                     }
-
-                    this.previousPosition = this.ExactPosition;
-                    this.MoveH(this.Speed.X * Engine.DeltaTime, this.onCollideH);
-                    this.MoveV(this.Speed.Y * Engine.DeltaTime, this.onCollideV);
-                    if ((double)this.Center.X > (double)this.level.Bounds.Right) {
-                        this.MoveH(32f * Engine.DeltaTime);
-                        if ((double)this.Left - 8.0 > (double)this.level.Bounds.Right)
-                            this.RemoveSelf();
-                    } else if ((double)this.Left < (double)this.level.Bounds.Left) {
-                        this.Left = (float)this.level.Bounds.Left;
-                        this.Speed.X *= -0.4f;
-                    } else if ((double)this.Top < (double)(this.level.Bounds.Top - 4)) {
-                        this.Top = (float)(this.level.Bounds.Top + 4);
-                        this.Speed.Y = 0.0f;
-                    } else if ((double)this.Bottom > (double)this.level.Bounds.Bottom && SaveData.Instance.Assists.Invincible) {
-                        this.Bottom = (float)this.level.Bounds.Bottom;
-                        this.Speed.Y = -300f;
-                        Audio.Play("event:/game/general/assist_screenbottom", this.Position);
-                    } else if ((double)this.Top > (double)this.level.Bounds.Bottom)
-                        this.die();
-
-                    if ((double)this.X < (double)(this.level.Bounds.Left + 10))
-                        this.MoveH(32f * Engine.DeltaTime);
-                    global::Celeste.Player entity = this.Scene.Tracker.GetEntity<global::Celeste.Player>();
-                    TempleGate templeGate = this.CollideFirst<TempleGate>();
-                    if (templeGate != null && entity != null) {
+                    previousPosition = ExactPosition;
+                    MoveH(Speed.X * Engine.DeltaTime, onCollideH);
+                    MoveV(Speed.Y * Engine.DeltaTime, onCollideV);
+                    if (Center.X > (double)Level.Bounds.Right)
+                    {
+                        MoveH(32f * Engine.DeltaTime);
+                        if (Left - 8.0 > Level.Bounds.Right)
+                            RemoveSelf();
+                    }
+                    else if (Left < (double)Level.Bounds.Left)
+                    {
+                        Left = Level.Bounds.Left;
+                        Speed.X *= -0.4f;
+                    }
+                    else if (Top < (double)(Level.Bounds.Top - 4))
+                    {
+                        Top = Level.Bounds.Top + 4;
+                        Speed.Y = 0.0f;
+                    }
+                    else if (Bottom > (double)Level.Bounds.Bottom && SaveData.Instance.Assists.Invincible)
+                    {
+                        Bottom = Level.Bounds.Bottom;
+                        Speed.Y = -300f;
+                        Audio.Play("event:/game/general/assist_screenbottom", Position);
+                    }
+                    else if (Top > (double)Level.Bounds.Bottom)
+                        Die();
+                    if (X < (double)(Level.Bounds.Left + 10))
+                        MoveH(32f * Engine.DeltaTime);
+                    Player entity = Scene.Tracker.GetEntity<Player>();
+                    TempleGate templeGate = CollideFirst<TempleGate>();
+                    if (templeGate != null && entity != null)
+                    {
                         templeGate.Collidable = false;
-                        this.MoveH((float)(Math.Sign(entity.X - this.X) * 32) * Engine.DeltaTime);
+                        MoveH(Math.Sign(entity.X - X) * 32 * Engine.DeltaTime);
                         templeGate.Collidable = true;
                     }
                 }
-
-                if (!this.dead)
-                    this.hold.CheckAgainstColliders();
-                if (this.hitSeeker != null && (double)this.swatTimer <= 0.0 && !this.hitSeeker.Check(this.hold))
-                    this.hitSeeker = (HoldableCollider)null;
-                if (this.tutorialGui == null)
+                if (!dead)
+                    Hold.CheckAgainstColliders();
+                if (hitSeeker != null && swatTimer <= 0.0 && !hitSeeker.Check(Hold))
+                    hitSeeker = null;
+                if (tutorialGui == null)
                     return;
-                if (!this.OnPedestal && !this.hold.IsHeld && this.OnGround() && this.level.Session.GetFlag("foundMaddyInCrystal"))
-                    this.tutorialTimer += Engine.DeltaTime;
+                if (!OnPedestal && !Hold.IsHeld && OnGround() && Level.Session.GetFlag("foundMaddyInCrystal"))
+                    tutorialTimer += Engine.DeltaTime;
                 else
-                    this.tutorialTimer = 0.0f;
-                this.tutorialGui.Open = (double)this.tutorialTimer > 0.25;
+                    tutorialTimer = 0.0f;
+                tutorialGui.Open = tutorialTimer > 0.25;
             }
         }
 
-        private IEnumerator shatter() {
-            MaddyCrystal theoCrystal = this;
-            theoCrystal.shattering = true;
+        public IEnumerator Shatter()
+        {
+            MaddyCrystal maddyCrystal = this;
+            maddyCrystal.shattering = true;
             BloomPoint bloom = new BloomPoint(0.0f, 32f);
             VertexLight light = new VertexLight(Color.AliceBlue, 0.0f, 64, 200);
-            theoCrystal.Add((Component)bloom);
-            theoCrystal.Add((Component)light);
-            for (float p = 0.0f; (double)p < 1.0; p += Engine.DeltaTime) {
-                theoCrystal.Position = theoCrystal.Position + theoCrystal.Speed * (1f - p) * Engine.DeltaTime;
-                theoCrystal.level.ZoomFocusPoint = theoCrystal.TopCenter - theoCrystal.level.Camera.Position;
+            maddyCrystal.Add(bloom);
+            maddyCrystal.Add(light);
+            for (float p = 0.0f; p < 1.0; p += Engine.DeltaTime)
+            {
+                maddyCrystal.Position += maddyCrystal.Speed * (1f - p) * Engine.DeltaTime;
+                maddyCrystal.Level.ZoomFocusPoint = maddyCrystal.TopCenter - maddyCrystal.Level.Camera.Position;
                 light.Alpha = p;
                 bloom.Alpha = p;
-                yield return (object)null;
+                yield return null;
             }
-
-            yield return (object)0.5f;
-            theoCrystal.level.Shake();
-            theoCrystal.sprite.Play(nameof(shatter));
-            yield return (object)1f;
-            theoCrystal.level.Shake();
+            yield return 0.5f;
+            maddyCrystal.Level.Shake();
+            maddyCrystal.sprite.Play("shatter");
+            yield return 1f;
+            maddyCrystal.Level.Shake();
         }
 
-        public void ExplodeLaunch(Vector2 from) {
-            if (this.hold.IsHeld)
+        public void ExplodeLaunch(Vector2 from)
+        {
+            if (Hold.IsHeld)
                 return;
-            this.Speed = (this.Center - from).SafeNormalize(120f);
-            SlashFx.Burst(this.Center, this.Speed.Angle());
+            Speed = (Center - from).SafeNormalize(120f);
+            SlashFx.Burst(Center, Speed.Angle());
         }
 
-        private void swat(HoldableCollider hc, int dir) {
-            if (!this.hold.IsHeld || this.hitSeeker != null)
+        public void Swat(HoldableCollider hc, int dir)
+        {
+            if (!Hold.IsHeld || hitSeeker != null)
                 return;
-            this.swatTimer = 0.1f;
-            this.hitSeeker = hc;
-            this.hold.Holder.Swat(dir);
+            swatTimer = 0.1f;
+            hitSeeker = hc;
+            Hold.Holder.Swat(dir);
         }
 
-        private bool dangerous(HoldableCollider holdableCollider) {
-            return !this.hold.IsHeld && this.Speed != Vector2.Zero && this.hitSeeker != holdableCollider;
+        public bool Dangerous(HoldableCollider holdableCollider) => !Hold.IsHeld && Speed != Vector2.Zero && hitSeeker != holdableCollider;
+
+        public void HitSeeker(Seeker seeker)
+        {
+            if (!Hold.IsHeld)
+                Speed = (Center - seeker.Center).SafeNormalize(120f);
+            Audio.Play("event:/game/07_mirror_temple/crystalmaddy_hit_side", Position);
         }
 
-        private void hitSeeker1(Seeker seeker) {
-            if (!this.hold.IsHeld)
-                this.Speed = (this.Center - seeker.Center).SafeNormalize(120f);
-            Audio.Play("event:/game/05_mirror_temple/crystaltheo_hit_side", this.Position);
-        }
-
-        private void hitSpinner(Entity spinner) {
-            if (this.hold.IsHeld || (double)this.Speed.Length() >= 0.0099999997764825821)
+        public void HitSpinner(Entity spinner)
+        {
+            if (Hold.IsHeld || Speed.Length() >= 0.0099999997764825821)
                 return;
-            Vector2 vector2 = this.LiftSpeed;
-            if ((double)vector2.Length() >= 0.0099999997764825821)
+            Vector2 vector2 = LiftSpeed;
+            if (vector2.Length() >= 0.0099999997764825821)
                 return;
-            vector2 = this.previousPosition - this.ExactPosition;
-            if ((double)vector2.Length() >= 0.0099999997764825821 || !this.OnGround())
+            vector2 = previousPosition - ExactPosition;
+            if (vector2.Length() >= 0.0099999997764825821 || !OnGround())
                 return;
-            int num = Math.Sign(this.X - spinner.X);
+            int num = Math.Sign(X - spinner.X);
             if (num == 0)
                 num = 1;
-            this.Speed.X = (float)num * 120f;
-            this.Speed.Y = -30f;
+            Speed.X = num * 120f;
+            Speed.Y = -30f;
         }
 
-        private bool hitSpring(Spring spring) {
-            if (!this.hold.IsHeld) {
-                if (spring.Orientation == Spring.Orientations.Floor && (double)this.Speed.Y >= 0.0) {
-                    this.Speed.X *= 0.5f;
-                    this.Speed.Y = -160f;
-                    this.noGravityTimer = 0.15f;
+        public bool HitSpring(Spring spring)
+        {
+            if (!Hold.IsHeld)
+            {
+                if (spring.Orientation == Spring.Orientations.Floor && Speed.Y >= 0.0)
+                {
+                    Speed.X *= 0.5f;
+                    Speed.Y = -160f;
+                    noGravityTimer = 0.15f;
                     return true;
                 }
-
-                if (spring.Orientation == Spring.Orientations.WallLeft && (double)this.Speed.X <= 0.0) {
-                    this.MoveTowardsY(spring.CenterY + 5f, 4f);
-                    this.Speed.X = 220f;
-                    this.Speed.Y = -80f;
-                    this.noGravityTimer = 0.1f;
+                if (spring.Orientation == Spring.Orientations.WallLeft && Speed.X <= 0.0)
+                {
+                    MoveTowardsY(spring.CenterY + 5f, 4f);
+                    Speed.X = 220f;
+                    Speed.Y = -80f;
+                    noGravityTimer = 0.1f;
                     return true;
                 }
-
-                if (spring.Orientation == Spring.Orientations.WallRight && (double)this.Speed.X >= 0.0) {
-                    this.MoveTowardsY(spring.CenterY + 5f, 4f);
-                    this.Speed.X = -220f;
-                    this.Speed.Y = -80f;
-                    this.noGravityTimer = 0.1f;
+                if (spring.Orientation == Spring.Orientations.WallRight && Speed.X >= 0.0)
+                {
+                    MoveTowardsY(spring.CenterY + 5f, 4f);
+                    Speed.X = -220f;
+                    Speed.Y = -80f;
+                    noGravityTimer = 0.1f;
                     return true;
                 }
             }
-
             return false;
         }
 
-        private void OnCollideH(CollisionData data) {
-            if (data.Hit is DashSwitch) {
-                int num = (int)(data.Hit as DashSwitch).OnDashCollide((global::Celeste.Player)null,
-                  Vector2.UnitX * (float)Math.Sign(this.Speed.X));
+        private void OnCollideH(CollisionData data)
+        {
+            if (data.Hit is DashSwitch)
+            {
+                int num = (int)(data.Hit as DashSwitch).OnDashCollide(null, Vector2.UnitX * Math.Sign(Speed.X));
             }
-
-            Audio.Play("event:/game/05_mirror_temple/crystaltheo_hit_side", this.Position);
-            if ((double)Math.Abs(this.Speed.X) > 100.0)
-                this.impactParticles(data.Direction);
-            this.Speed.X *= -0.4f;
+            Audio.Play("event:/game/07_mirror_temple/crystalmaddy_hit_side", Position);
+            if (Math.Abs(Speed.X) > 100.0)
+                ImpactParticles(data.Direction);
+            Speed.X *= -0.4f;
         }
 
-        private void OnCollideV(CollisionData data) {
-            if (data.Hit is DashSwitch) {
-                int num = (int)(data.Hit as DashSwitch).OnDashCollide((global::Celeste.Player)null,
-                  Vector2.UnitY * (float)Math.Sign(this.Speed.Y));
+        private void OnCollideV(CollisionData data)
+        {
+            if (data.Hit is DashSwitch)
+            {
+                int num = (int)(data.Hit as DashSwitch).OnDashCollide(null, Vector2.UnitY * Math.Sign(Speed.Y));
             }
-
-            if ((double)this.Speed.Y > 0.0) {
-                if ((double)this.hardVerticalHitSoundCooldown <= 0.0) {
-                    Audio.Play("event:/game/05_mirror_temple/crystaltheo_hit_ground", this.Position, "crystal_velocity",
-                      Calc.ClampedMap(this.Speed.Y, 0.0f, 200f));
-                    this.hardVerticalHitSoundCooldown = 0.5f;
-                } else
-                    Audio.Play("event:/game/05_mirror_temple/crystaltheo_hit_ground", this.Position, "crystal_velocity", 0.0f);
+            if (Speed.Y > 0.0)
+            {
+                if (hardVerticalHitSoundCooldown <= 0.0)
+                {
+                    Audio.Play("event:/game/07_mirror_temple/crystalmaddy_hit_ground", Position, "crystal_velocity", Calc.ClampedMap(Speed.Y, 0.0f, 200f));
+                    hardVerticalHitSoundCooldown = 0.5f;
+                }
+                else
+                    Audio.Play("event:/game/07_mirror_temple/crystalmaddy_hit_ground", Position, "crystal_velocity", 0.0f);
             }
-
-            if ((double)this.Speed.Y > 160.0)
-                this.impactParticles(data.Direction);
-            if ((double)this.Speed.Y > 140.0 && !(data.Hit is SwapBlock) && !(data.Hit is DashSwitch))
-                this.Speed.Y *= -0.6f;
+            if (Speed.Y > 160.0)
+                ImpactParticles(data.Direction);
+            if (Speed.Y > 140.0 && !(data.Hit is SwapBlock) && !(data.Hit is DashSwitch))
+                Speed.Y *= -0.6f;
             else
-                this.Speed.Y = 0.0f;
+                Speed.Y = 0.0f;
         }
 
-        private void impactParticles(Vector2 dir) {
-            EnsureImpactParticle();
-            if (this.level?.Particles == null) {
-                return;
-            }
-
+        private void ImpactParticles(Vector2 dir)
+        {
             float direction;
             Vector2 position;
             Vector2 positionRange;
-            if ((double)dir.X > 0.0) {
+            if (dir.X > 0.0)
+            {
                 direction = 3.14159274f;
-                position = new Vector2(this.Right, this.Y - 4f);
+                position = new Vector2(Right, Y - 4f);
                 positionRange = Vector2.UnitY * 6f;
-            } else if ((double)dir.X < 0.0) {
+            }
+            else if (dir.X < 0.0)
+            {
                 direction = 0.0f;
-                position = new Vector2(this.Left, this.Y - 4f);
+                position = new Vector2(Left, Y - 4f);
                 positionRange = Vector2.UnitY * 6f;
-            } else if ((double)dir.Y > 0.0) {
+            }
+            else if (dir.Y > 0.0)
+            {
                 direction = -1.57079637f;
-                position = new Vector2(this.X, this.Bottom);
-                positionRange = Vector2.UnitX * 6f;
-            } else {
-                direction = 1.57079637f;
-                position = new Vector2(this.X, this.Top);
+                position = new Vector2(X, Bottom);
                 positionRange = Vector2.UnitX * 6f;
             }
-
-            this.level.Particles.Emit(MaddyCrystal.pImpact, 12, position, positionRange, direction);
+            else
+            {
+                direction = 1.57079637f;
+                position = new Vector2(X, Top);
+                positionRange = Vector2.UnitX * 6f;
+            }
+            Level.Particles.Emit(MaddyCrystal.P_Impact, 12, position, positionRange, direction);
         }
 
-        public override bool IsRiding(Solid solid) {
-            return (double)this.Speed.Y == 0.0 && base.IsRiding(solid);
-        }
+        public override bool IsRiding(Solid solid) => Speed.Y == 0.0 && base.IsRiding(solid);
 
         public override void OnSquish(CollisionData data)
         {
-            if (this.TrySquishWiggle(data) || SaveData.Instance.Assists.Invincible) {
+            if (TrySquishWiggle(data) || SaveData.Instance.Assists.Invincible || SaveData.Instance.AssistMode)
                 return;
-            }
-
-            this.die();
+            Die();
         }
 
-        private void OnPickup() {
-            this.Speed = Vector2.Zero;
-            this.AddTag((int)Tags.Persistent);
+        private void OnPickup()
+        {
+            Speed = Vector2.Zero;
+            AddTag((int)Tags.Persistent);
         }
 
-        private void OnRelease(Vector2 force) {
-            this.RemoveTag((int)Tags.Persistent);
-            if ((double)force.X != 0.0 && (double)force.Y == 0.0)
+        private void OnRelease(Vector2 force)
+        {
+            RemoveTag((int)Tags.Persistent);
+            if (force.X != 0.0 && force.Y == 0.0)
                 force.Y = -0.4f;
-            this.Speed = force * 200f;
-            if (!(this.Speed != Vector2.Zero))
+            Speed = force * 200f;
+            if (!(Speed != Vector2.Zero))
                 return;
-            this.noGravityTimer = 0.1f;
+            noGravityTimer = 0.1f;
         }
 
-        private void die() {
-            if (this.dead)
+        public void Die()
+        {
+            if (dead)
                 return;
-            this.dead = true;
-            global::Celeste.Player entity = this.level.Tracker.GetEntity<global::Celeste.Player>();
+            dead = true;
+            Player entity = Level.Tracker.GetEntity<Player>();
             entity?.Die(-Vector2.UnitX * (float)entity.Facing);
-            Audio.Play("event:/DZ/char/kirby/death", this.Position);
-            this.Add((Component)new DeathEffect(Color.ForestGreen, new Vector2?(this.Center - this.Position)));
-            this.sprite.Visible = false;
-            this.Depth = -1000000;
-            this.AllowPushing = false;
-        }
-
-        public static void Load() {
-            EnsureImpactParticle();
-        }
-
-        /// <summary>
-        /// Handles the horizontal collision event for the player, invoking the original collision logic
-        /// and additionally triggering the <see cref="MaddyCrystal.OnCollideH"/> method if the player is holding a <see cref="MaddyCrystal"/>.
-        /// </summary>
-        /// <param name="orig">The original OnCollideH delegate to invoke the base collision logic.</param>
-        /// <param name="player">The player instance involved in the collision.</param>
-        /// <param name="data">The collision data describing the collision event.</param>
-        public static void OnPlayerOnCollideH(Action<global::Celeste.Player, CollisionData> orig, global::Celeste.Player player, CollisionData data) {
-            orig(player, data);
-            if (player?.Holding?.Entity is MaddyCrystal maddyCrystal && maddyCrystal != null) {
-                maddyCrystal.OnCollideH(data);
-            }
-        }
-
-        public static void OnPlayerOnCollideV(Action<global::Celeste.Player, CollisionData> orig, global::Celeste.Player player, CollisionData data) {
-            orig(player, data);
-            if (player?.Holding?.Entity is MaddyCrystal maddyCrystal && maddyCrystal != null) {
-                maddyCrystal.OnCollideV(data);
-            }
+            Audio.Play("event:/char/madeline/death", Position);
+            Add(new DeathEffect(Calc.HexToColor("5BCEFA"), Center - Position));
+            Add(new DeathEffect(Calc.HexToColor("F5A9B8"), Center - Position));
+            Add(new DeathEffect(Color.White, Center - Position));
+            sprite.Visible = false;
+            Depth = -1000000;
+            AllowPushing = false;
         }
     }
 }
-

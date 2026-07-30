@@ -5,14 +5,24 @@ sessionFlagTrigger.depth = 0
 sessionFlagTrigger.placements = {
     name = "session_flag_trigger",
     data = {
-        sessionFlag = "sample_trigger_0",
+        sessionFlag = "",
         flagState = true,
         triggerOnce = true,
         requiredFlag = "",
         requiredFlagState = true,
         flagAction = "SetValue",
-        triggerMode = "OnEnter",
-        sampleProperty = 0
+        triggerMode = "OnEnter"
+    }
+}
+
+sessionFlagTrigger.fieldInformation = {
+    flagAction = {
+        options = { "SetValue", "Toggle" },
+        editable = false
+    },
+    triggerMode = {
+        options = { "OnEnter", "OnLeave" },
+        editable = false
     }
 }
 

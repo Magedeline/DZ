@@ -102,7 +102,7 @@ public class DZModule : EverestModule {
         global::Celeste.Entities.DesoloZantasTape.Load();
         global::Celeste.Entities.PowerGenerator.Load();
         global::Celeste.Entities.DefensivePowerGenerator.Load();
-        global::Celeste.Entities.MaddyCrystal.Load();
+        global::Celeste.MaddyCrystal.Load();
         global::Celeste.Mod.DZ.Entities.FlingBird.Load();
         global::Celeste.Entities.StarJumpBlock.Load();
         global::Celeste.Entities.WhiteHole.Load();

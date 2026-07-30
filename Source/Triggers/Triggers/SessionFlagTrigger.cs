@@ -1,8 +1,13 @@
-using DZ;
+using System;
 
 namespace Celeste.Triggers
 {
-    [CustomEntity(IngesteConstants.EntityNames.SESSION_FLAG_TRIGGER, IngesteConstants.EntityNames.SAMPLE_TRIGGER)]
+    /// <summary>
+    /// Trigger that sets or toggles a session flag when the player enters or leaves.
+    /// Supports conditional triggering based on another flag's state.
+    /// </summary>
+    [CustomEntity("DZ/SessionFlagTrigger")]
+    [Tracked]
     [HotReloadable]
     public class SessionFlagTrigger : Trigger
     {
@@ -17,11 +22,11 @@ namespace Celeste.Triggers
 
         public SessionFlagTrigger(EntityData data, Vector2 offset) : base(data, offset)
         {
-            int sampleProperty = data.Int(nameof(sampleProperty), 0);
-            sessionFlag = data.Attr(nameof(sessionFlag), $"sample_trigger_{sampleProperty}");
+            // Read the session flag name directly without using sampleProperty
+            sessionFlag = data.Attr(nameof(sessionFlag), "");
             flagState = data.Bool(nameof(flagState), true);
             triggerOnce = data.Bool(nameof(triggerOnce), true);
-            requiredFlag = data.Attr(nameof(requiredFlag), string.Empty);
+            requiredFlag = data.Attr(nameof(requiredFlag), "");
             requiredFlagState = data.Bool(nameof(requiredFlagState), true);
             flagAction = ParseFlagAction(data.Attr(nameof(flagAction), nameof(FlagAction.SetValue)));
             triggerMode = ParseTriggerMode(data.Attr(nameof(triggerMode), nameof(TriggerMode.OnEnter)));
@@ -50,33 +55,42 @@ namespace Celeste.Triggers
 
         private void ApplyFlag()
         {
+            // Validate that a flag name was provided
             if (string.IsNullOrWhiteSpace(sessionFlag))
             {
                 return;
             }
 
+            // Check if we should only trigger once
             if (triggerOnce && hasTriggered)
             {
                 return;
             }
 
             Level level = SceneAs<Level>();
-            if (level == null)
+            if (level?.Session == null)
             {
                 return;
             }
 
-            if (!string.IsNullOrEmpty(requiredFlag) && level.Session.GetFlag(requiredFlag) != requiredFlagState)
+            // Check required flag condition if specified
+            if (!string.IsNullOrEmpty(requiredFlag))
             {
-                return;
+                bool currentRequiredFlagState = level.Session.GetFlag(requiredFlag);
+                if (currentRequiredFlagState != requiredFlagState)
+                {
+                    return;
+                }
             }
 
+            // Determine the next flag state based on the action
             bool nextState = flagAction switch
             {
                 FlagAction.Toggle => !level.Session.GetFlag(sessionFlag),
                 _ => flagState
             };
 
+            // Apply the flag change
             level.Session.SetFlag(sessionFlag, nextState);
             hasTriggered = true;
         }

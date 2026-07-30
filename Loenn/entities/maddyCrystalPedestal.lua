@@ -1,13 +1,11 @@
 local maddyCrystalPedestal = {}
 
 maddyCrystalPedestal.name = "DZ/MaddyCrystalPedestal"
-maddyCrystalPedestal.depth = 0
-maddyCrystalPedestal.texture = "objects/DZ/maddy_crystal_pedestal"
-
+maddyCrystalPedestal.depth = 8998
+maddyCrystalPedestal.texture = "characters/DZ/maddyCrystal/pedestal"
+maddyCrystalPedestal.justification = {0.5, 1.0}
 maddyCrystalPedestal.placements = {
-    name = "maddy_crystal_pedestal",
-    data = {
-    }
+    name = "maddycrystalpedestal",
 }
 
 return maddyCrystalPedestal

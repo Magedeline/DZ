@@ -536,7 +536,6 @@
 {fce53a50-e0b1-4991-b418-83bd3a769799} event:/DZ/env/local/campfire_start
 {22dead1d-4a98-4efa-97f3-21baaa9281a5} event:/DZ/env/local/waterfall_big_in
 {34314435-dd27-4a6d-93d3-8b63cf6124fb} event:/DZ/env/local/waterfall_big_main
-{18e075bb-f193-4570-a0e3-13190cbf44d2} event:/DZ/env/local/waterfall_small_in_deep
 {49c5500d-b427-4f3b-afc2-d6824d476594} event:/DZ/env/local/waterfall_small_in_shallow
 {808d5d82-6e29-4695-bff8-c7823e2018e9} event:/DZ/env/local/waterfall_small_main
 {cb39685d-e068-40ed-b80c-ded6034d8fbd} event:/DZ/env/state/underwater
@@ -657,6 +656,8 @@
 {1cdd8817-6194-435f-8209-718afb5c9eff} event:/DZ/game/06_stronghold/snowball_spawn
 {37ced6cb-f50f-47d7-a7de-a00f16fe1290} event:/DZ/game/06_stronghold/stone_blockade
 {92c9ed0e-1e1f-4e5e-a11f-2b358180a2f6} event:/DZ/game/06_stronghold/whiteblock_fallthru
+{a87eb1d1-bf20-49c1-ac6b-a072744e57ec} event:/DZ/game/06_stronghold/cloud_red_reappear
+{987d1109-267e-4c2a-9ed8-6552c28146ac} event:/DZ/game/06_stronghold/cloud_red_boost
 {d6b14e6d-6f02-4c99-b933-00f0e7d7538d} event:/DZ/game/07_inferno/bladespinner_spin
 {400a8758-22ad-47b3-a117-9830ff2f7690} event:/DZ/game/07_inferno/button_activate
 {fb5da806-2992-4b32-a2de-64a1f53a7590} event:/DZ/game/07_inferno/button_depress
@@ -701,7 +702,6 @@
 {03433716-b469-439d-9d32-d7a60859223c} event:/DZ/game/07_inferno/swapblock_return
 {11eb2a5d-40bd-4915-a60e-e6495c9defd2} event:/DZ/game/07_inferno/swapblock_return_end
 {36387306-759d-405f-b962-3bf9c7564f7a} event:/DZ/game/07_inferno/torch_activate
-{3ed64d98-d050-4a3f-b35b-6bfc1d306031} event:/DZ/game/08_edge/boss_spikes_burst
 {a1a021a7-6805-4ad4-bba1-5dda61f29991} event:/DZ/game/08_edge/chara_feather_slice
 {68f68411-6188-40e0-a279-6e781451bd34} event:/DZ/game/08_edge/chara_freakout_1
 {a210ec8a-d72f-4bd2-a017-a599e3609f90} event:/DZ/game/08_edge/chara_freakout_2
@@ -713,6 +713,7 @@
 {d02db141-4505-4ec6-b840-c37ca045f624} event:/DZ/game/08_edge/chara_pull_impact
 {602c4d95-ca9d-4999-8113-395e4657d926} event:/DZ/game/08_edge/chara_pull_rumble_loop
 {03331dc9-ce3e-4949-ac59-a7ecfdf05708} event:/DZ/game/08_edge/chara_pull_whooshdown
+{3ed64d98-d050-4a3f-b35b-6bfc1d306031} event:/DZ/game/08_edge/chara_spikes_burst
 {f6c23430-296c-4493-b9ae-ffdd18f6c52f} event:/DZ/game/08_edge/crushblock_activate
 {3c15b350-8d41-4683-97ce-f11217dea8f1} event:/DZ/game/08_edge/crushblock_impact
 {b15a0d2f-2e4c-48ae-8e0f-fa62cfd54c1d} event:/DZ/game/08_edge/crushblock_move_loop
@@ -760,12 +761,20 @@
 {f62deb31-fa43-497d-ba23-eedd10fd2f57} event:/DZ/game/09_beyondsummit/gem_unlock_5
 {a4da1287-d22e-45fa-a68e-858f9561412d} event:/DZ/game/09_beyondsummit/gem_unlock_6
 {4ac1261f-28ee-401f-b817-40880cfbedb0} event:/DZ/game/09_beyondsummit/gem_unlock_complete
+{67f43fa1-210c-4036-a396-bd884edb5bb4} event:/DZ/game/13_hotcliff/laser_fire
+{0f38112e-3589-4f01-b3fb-89478d0baf0f} event:/DZ/game/13_hotcliff/treadmill
+{aa093504-38cc-41c2-9ae0-2aaada28a450} event:/DZ/game/13_hotcliff/turret_charge
+{1db402ac-00cb-417e-9fcf-2d0b6848c12c} event:/DZ/game/13_hotcliff/turret_fire
 {8d47087a-919b-448a-a220-68c8f16e5a81} event:/DZ/game/13_hotcliff/pew
 {b561407d-1b1c-4bf5-af51-467647756639} event:/DZ/game/14_cybernexus/crunch
-{b7ffa391-6831-452e-bb36-0438bbd53e0e} event:/DZ/game/14_cybernexus/game_14_portal_openexit_leaving_hotcliff
+{b7ffa391-6831-452e-bb36-0438bbd53e0e} event:/DZ/game/14_cybernexus/enter
+{8904df38-1baf-4336-a45b-6e561140d8f9} event:/DZ/game/14_cybernexus/hit
+{76aa6871-d963-416b-ad42-ba6a1c839cbe} event:/DZ/game/14_cybernexus/swing
 {dc94706c-f55c-4519-b927-a2252a6243f3} event:/DZ/game/15_citadel/cinematic_trident
 {8dfa655b-b5b1-417a-bd0c-21dd2fa7efb6} event:/DZ/game/15_citadel/fire_flame
 {e6bd1fa0-d837-4f92-99b6-316acf5ffd15} event:/DZ/game/15_citadel/leaving_cyber
+{3a443373-e74f-4bbb-a913-319b14f92003} event:/DZ/game/15_citadel/fire
+{4f59508e-2eb3-4885-97e9-d27147a6ad14} event:/DZ/game/15_citadel/target
 {0ac44c79-42c0-4baa-b807-fe25095b2132} event:/DZ/game/16_myworld/destroyed_a
 {a5ed3686-2f04-4ce4-9d93-da51100b5ece} event:/DZ/game/16_myworld/destroyed_b
 {ba34b54f-91f4-4bb1-9ddb-9c199c1c505a} event:/DZ/game/16_myworld/destroyed_c
@@ -773,6 +782,15 @@
 {c2c17235-f671-4d6d-95c8-5ae94476508e} event:/DZ/game/16_myworld/last_hit
 {56316304-968e-494b-94a9-7884403840a9} event:/DZ/game/16_myworld/story_stuck
 {6c854ae9-bdaf-4e30-b3b8-0e1359a8e696} event:/DZ/game/16_myworld/woosh
+{1d2cf725-c3d0-4119-a05f-0ee23892bdd1} event:/DZ/game/16_myworld/freaksout_01
+{0f4e0333-6aec-4614-9d2c-a026ba918816} event:/DZ/game/16_myworld/freaksout_02
+{d4f701f2-87f2-4a8a-99d3-e603da4bc3e5} event:/DZ/game/16_myworld/nuke_drop
+{034d692b-819c-4614-b6b7-ca5e372ffd21} event:/DZ/game/16_myworld/nuke_explosion
+{98ef6e2b-1ad7-4a59-bba7-b4539bcce7d7} event:/DZ/game/16_myworld/big_nuke_explosion
+{305ec9b0-6f1e-4623-bcae-f876f1457ff9} event:/DZ/game/16_myworld/big_nuke_drop
+{8872d7df-01ec-4320-9205-0404fcb7eb50} event:/DZ/game/16_myworld/freaksout_03
+{de9651e5-2a33-44c4-987c-b7b1e7b89f5f} event:/DZ/game/16_myworld/freaksout_04
+{b06d4982-4178-4b19-8fda-f1562239ebb8} event:/DZ/game/16_myworld/freaksout_05
 {b7f3c6aa-3357-4f76-950f-23c10489bb11} event:/DZ/game/18_core/bounceblock_break
 {1d9602ce-e0f1-4345-8dc5-7a529e6ed047} event:/DZ/game/18_core/bounceblock_reappear
 {17fcbb91-13bb-4aca-a579-2f5bf155cf99} event:/DZ/game/18_core/bounceblock_touch
@@ -867,6 +885,27 @@
 {1d02fac3-bbbc-43c6-8135-55c19a1111d6} event:/DZ/game/general/wall_break_ice
 {2f66a973-ae07-4e97-abc3-c60b4fa050d8} event:/DZ/game/general/wall_break_stone
 {9265ec96-3456-4813-b94b-e0d614f16a94} event:/DZ/game/general/wall_break_wood
+{19ec26af-a07f-45b9-8144-1348ff386c9a} event:/DZ/game/10_ruins/touchswitch_any
+{0e61c82f-cc29-45aa-aaa4-2ecaab5298d1} event:/DZ/game/10_ruins/touchswitch_gate_finish
+{88d08b51-1414-447c-9220-0f797302f990} event:/DZ/game/10_ruins/pillar_break
+{19ae9152-cb85-4593-b870-c4f23a6f027e} event:/DZ/game/10_ruins/touchswitch_gate_open
+{2990a0a4-1ff3-4179-91a7-1401141d5f37} event:/DZ/game/10_ruins/big_pillar
+{61c6aaf3-055b-43a1-91cb-c6537acd6615} event:/DZ/game/10_ruins/mouse
+{d31058d6-f4fe-490d-a441-7ad391772489} event:/DZ/game/10_ruins/touchswitch_last
+{0a840491-4a9a-4ebf-b26e-12f6677b81b8} event:/DZ/game/10_ruins/touchswitch_last_cutoff
+{db874477-ac72-4654-a6e9-8362dae84ff3} event:/DZ/game/10_ruins/touchswitch_last_oneshot
+{f35ce79b-cf3d-46c8-9eb1-d48abad8a0cb} event:/DZ/game/11_snowdin_city/ice_idle
+{a1fc8bf6-8015-47cc-9197-50046b746d9a} event:/DZ/game/11_snowdin_city/rolling
+{e0659782-ca7c-4af9-a808-e795e0e5b994} event:/DZ/game/11_snowdin_city/smash
+{8fa47031-872f-4b17-a8a3-225536580e47} event:/DZ/game/11_snowdin_city/timesup
+{43119fb5-7094-4f5d-b26d-9d52bbed9282} event:/DZ/game/11_snowdin_city/hit
+{9627796f-4dbc-4fd7-bf1d-831a679f7329} event:/DZ/game/11_snowdin_city/bone_break
+{a752dc78-eb65-4ad1-8c13-a39a1a145896} event:/DZ/game/11_snowdin_city/swing
+{f2e56060-96e4-4fa1-b20a-96ddbb95f2bb} event:/DZ/game/12_wateredgefall/spear_throw
+{bf0c3a4e-a322-438b-9ea4-8ddc7b039cd6} event:/DZ/game/12_wateredgefall/spear_appear
+{d6025447-642e-409e-a6c1-7c65f07e6340} event:/DZ/game/12_wateredgefall/wingshut
+{d91f54cc-314f-4507-9a94-956d428d09c7} event:/DZ/game/12_wateredgefall/titan_beam
+{695d9ab8-2b16-44a3-8d56-2c9b9a45b0d3} event:/DZ/game/12_wateredgefall/water_splash
 {548e6b9b-95f8-4b6f-8136-8ea9711d72b3} event:/DZ/music/arena/battle_1
 {f6fe45e6-0229-422e-886a-f57d236574f6} event:/DZ/music/arena/battle_10
 {6ad92f22-6829-4fef-9e36-1664d975f040} event:/DZ/music/arena/battle_11
@@ -889,7 +928,7 @@
 {93332021-cdfc-45be-bfd2-c0ab28961e21} event:/DZ/music/bside/06_stronghold
 {2746632c-57b6-4a02-86e0-9f0dbdf3b0bd} event:/DZ/music/bside/07_inferno
 {3e342bb8-3436-4f65-8d04-565d261bb3bd} event:/DZ/music/bside/08_edge
-{bd894745-ad69-47f6-baaf-cecf2d1752d8} event:/DZ/music/bside/09_beyondsummit
+{bd894745-ad69-47f6-baaf-cecf2d1752d8} event:/DZ/music/bside/09_vortex
 {ac95e19e-6cbf-42c7-b343-be9f4bb6ba33} event:/DZ/music/bside/10_ruins
 {71f4578a-1c17-4038-a437-d3b8d567bedd} event:/DZ/music/bside/11_snowdincity
 {9c20673a-aeda-4364-8877-088f957990c3} event:/DZ/music/bside/12_wateredgefall
@@ -923,7 +962,7 @@
 {bec287e3-3edf-4295-b2e3-56ebdc41cb34} event:/DZ/music/cside/06_stronghold
 {5e22ba18-c49a-4754-b7c2-7655fb9afd4c} event:/DZ/music/cside/07_inferno
 {6619c369-780c-46a7-969d-8d15ba2a1449} event:/DZ/music/cside/08_edge
-{8e2e7ec5-27e3-4efd-8a8e-9173fd63817d} event:/DZ/music/cside/09_beyondsummit
+{8e2e7ec5-27e3-4efd-8a8e-9173fd63817d} event:/DZ/music/cside/09_vortex
 {adc1b7ed-1ce3-40c6-8e30-8db2164a1534} event:/DZ/music/cside/10_ruins
 {4b48e581-ac35-4640-8c18-3c48abe7b000} event:/DZ/music/cside/11_snowdincity
 {a7e45f51-eaff-4b57-86b3-2d8e317283af} event:/DZ/music/cside/12_wateredgefall
@@ -940,7 +979,7 @@
 {f90d23d4-2dc2-481b-a9d7-fd01d0145547} event:/DZ/music/dxside/06_stronghold
 {1dc1796b-4d66-46b8-bda5-9517c4e052a8} event:/DZ/music/dxside/07_inferno
 {2ee05a4e-7a09-406d-a24d-338b472ff23d} event:/DZ/music/dxside/08_edge
-{4b0d1a1e-8bc3-4bba-aeb6-4e36c5db37fe} event:/DZ/music/dxside/09_beyondsummit
+{4b0d1a1e-8bc3-4bba-aeb6-4e36c5db37fe} event:/DZ/music/dxside/09_vortex
 {f677c1e0-d168-4899-a3e4-76591a2aff68} event:/DZ/music/dxside/10_ruins
 {de295914-bb7c-40ce-a5f0-bb7e49827ad5} event:/DZ/music/dxside/11_snowdincity
 {75f25119-a4f8-4619-b9b4-552776324d27} event:/DZ/music/dxside/12_wateredgefall
@@ -1213,6 +1252,7 @@
 {7971267a-6059-4845-8350-9e32afc186ec} event:/DZ/new_content/char/bosses/els/special/create
 {c351739b-2ccb-48e4-8ed9-fe3c878e319e} event:/DZ/new_content/char/bosses/els/special/crying_death
 {b663606d-f69a-4f95-8c02-d830f3c61e78} event:/DZ/new_content/char/bosses/els/special/dark_matter_spawn
+{4446a859-091b-44c1-a4d4-89389ca744ab} event:/DZ/new_content/char/bosses/els/special/final_attack
 {58a173af-15f4-471b-931b-596bb6ceec01} event:/DZ/new_content/char/bosses/els/special/get_hit
 {4324c4a4-08a2-4c1b-956d-6203127d5131} event:/DZ/new_content/char/bosses/els/special/get_hit_extra
 {c5f7634e-1b88-4f7f-ad97-7bf22d021c75} event:/DZ/new_content/char/bosses/els/special/idle
@@ -1231,7 +1271,6 @@
 {57c3ba46-5fd7-4b5f-acca-324a2ec9ce6e} event:/DZ/new_content/char/bosses/els/special/spawn
 {0cea98f7-3abb-4a43-bedb-b5fd55363375} event:/DZ/new_content/char/bosses/els/special/teleport
 {f4f4fdcd-b7a3-4caa-aaac-7e916d336a2e} event:/DZ/new_content/char/bosses/els/special/woosh
-{4446a859-091b-44c1-a4d4-89389ca744ab} event:/DZ/new_content/char/bosses/els/special/final_attack
 {3d39f42d-c246-4352-8099-59a98d885496} event:/DZ/new_content/char/bosses/els/beam
 {29d03a10-0cee-4f2a-aff3-d29fe7f713cf} event:/DZ/new_content/char/bosses/els/big_hit
 {c1b5a0a6-4879-4105-b070-d1a6f1a0162a} event:/DZ/new_content/char/bosses/els/bigger_star
@@ -1239,6 +1278,7 @@
 {efa67cd6-5ad5-4b6e-8379-4f0a56248338} event:/DZ/new_content/char/bosses/els/create
 {60dcb762-d157-4356-bc18-9f1be6c4b818} event:/DZ/new_content/char/bosses/els/crying_death
 {eaeaa61a-7ba7-4699-86dd-4e6d7ef67517} event:/DZ/new_content/char/bosses/els/dark_matter_spawn
+{6d5d0a29-2c82-4ef1-8da2-8c9da109b864} event:/DZ/new_content/char/bosses/els/final_attack
 {520ecaea-2f3c-444a-ace9-d3eb5e2c8ab7} event:/DZ/new_content/char/bosses/els/get_hit
 {495d5dc2-4572-46da-8a5b-8d3b367b6a2c} event:/DZ/new_content/char/bosses/els/get_hit_extra
 {d68fe6bc-c80f-4ec0-ac84-7bf1ca7598b5} event:/DZ/new_content/char/bosses/els/idle
@@ -1257,7 +1297,6 @@
 {fdbf4ba0-49a2-4cb2-9e02-5dd3a68340c9} event:/DZ/new_content/char/bosses/els/spawn
 {ab39cfe5-c3e3-45b1-8d18-e117d4e4dd67} event:/DZ/new_content/char/bosses/els/teleport
 {8590926e-887e-4375-9c38-c4006d76d302} event:/DZ/new_content/char/bosses/els/woosh
-{6d5d0a29-2c82-4ef1-8da2-8c9da109b864} event:/DZ/new_content/char/bosses/els/final_attack
 {0bf52c26-1f8c-46ca-8f47-29281661d83e} event:/DZ/new_content/char/chara/birdcrash_scene_float
 {2f33b716-9d8e-41d1-ad14-c729e157b154} event:/DZ/new_content/char/chara/booster_finalfinal_part1
 {4399e68c-961c-4d7f-9e9e-706af2979bfe} event:/DZ/new_content/char/chara/booster_finalfinal_part2
@@ -1268,6 +1307,7 @@
 {cd63d76f-5524-4dc7-880a-d195aa745226} event:/DZ/new_content/char/granny/dissipate
 {eedac50f-2337-49b3-8011-76ca15e1fcd4} event:/DZ/new_content/char/granny/serious
 {3a97baf2-0213-4bf7-ac94-f3b027b62450} event:/DZ/new_content/char/kirby/knight/backflip
+{0cb2c079-2788-43b3-8f3e-336bdc0c03b5} event:/DZ/new_content/char/kirby/knight/final_attack
 {739e18f3-75d1-4bc0-83a3-1d4495d492cc} event:/DZ/new_content/char/kirby/knight/punch_a
 {30d698a8-1e52-4b51-95fa-3bcddd2060fd} event:/DZ/new_content/char/kirby/knight/punch_b
 {1e84b98e-6efe-4234-adc9-dedb8d487773} event:/DZ/new_content/char/kirby/knight/punch_c
@@ -1275,7 +1315,6 @@
 {9d4de383-5902-4649-9049-38099b5a994e} event:/DZ/new_content/char/kirby/knight/slide
 {fb46f8b7-3420-4f31-b303-49223e0b91b6} event:/DZ/new_content/char/kirby/knight/soar
 {bcb8dfeb-fce8-4093-a383-8d8292420ca7} event:/DZ/new_content/char/kirby/knight/spin
-{0cb2c079-2788-43b3-8f3e-336bdc0c03b5} event:/DZ/new_content/char/kirby/knight/final_attack
 {d96b4865-b1ef-44d4-bc86-2e695b0db7a3} event:/DZ/new_content/char/kirby/bounce_boost
 {7ec06e69-2660-45ec-ab85-139fdc89000c} event:/DZ/new_content/char/kirby/death_pinkplatinum
 {4b6924a1-0a4b-4667-a46b-31457e288958} event:/DZ/new_content/char/kirby/emotional_reunion
@@ -1406,7 +1445,6 @@
 {9dac5c60-d0e1-447f-b7f7-b22c9a2f83c6} event:/DZ/new_content/game/21_finale/angel_flap
 {ebc644a2-520e-45a4-a8a3-a9958ef983be} event:/DZ/new_content/game/21_finale/angel_soar
 {9c68d259-230f-48da-aab3-774e9a706afe} event:/DZ/new_content/game/21_finale/angel_throw
-{f418208c-9475-4331-bb12-70a703d08b5e} event:/DZ/new_content/game/21_finale/charge
 {35b1a176-9b43-48d8-adc5-a41d882ed038} event:/DZ/new_content/game/21_finale/destroyed
 {053df1a7-d2fc-4601-8c18-6f8ad6f07bd1} event:/DZ/new_content/game/21_finale/falling_into_the_void
 {6dba5f2b-4c8f-4253-83a1-38948287da52} event:/DZ/new_content/game/21_finale/final_laugh
@@ -1415,6 +1453,7 @@
 {5771a39f-486b-4d1d-8e67-4cdc9e7b8145} event:/DZ/new_content/game/21_finale/thunder
 {4d5218d0-b542-4f83-902a-6688a842ed2b} event:/DZ/new_content/game/21_finale/truefinal_altitudecount
 {ef84f729-153f-4211-abe7-fb780cce60ec} event:/DZ/new_content/game/21_finale/whoosh_reverb
+{8692ed59-492e-4c86-ab71-98ede327fd43} event:/DZ/new_content/game/general/cheat_activate
 {995ea212-b2b7-47a3-b1b6-3720f6bda5ca} event:/DZ/new_content/music/lvl19/cinematic/bird_crash_first
 {2b922a75-db87-4bbb-9d8f-ad18017d39c6} event:/DZ/new_content/music/lvl19/cinematic/bird_crash_second
 {baa184ab-378e-4c3d-9247-628067353b4a} event:/DZ/new_content/music/lvl19/cinematic/els_glitch_first
@@ -1448,7 +1487,6 @@
 {64d33aa1-8579-4cdf-8889-89d1b0d0b293} event:/DZ/new_content/music/lvl21/cinematic/outsideworld
 {0f012fc5-2f6e-41e0-8ab3-2d1efe5dd64d} event:/DZ/new_content/music/lvl21/arrival
 {d530f415-df39-497f-aed2-b69b1f36c729} event:/DZ/new_content/music/lvl21/els
-{cca5cd0e-61fe-4390-8deb-a8d6883018ae} event:/DZ/new_content/music/lvl21/final_ascent
 {386f5d17-0a64-4027-a984-4dfa41f6aaeb} event:/DZ/new_content/music/lvl21/finale
 {19b36b15-5b2a-4d4d-84af-07c40330c4d1} event:/DZ/new_content/music/lvl21/granny_and_asriel_goodbye
 {1c58fcb4-e6f7-4acb-8d2f-d3c6f79366cf} event:/DZ/new_content/music/lvl21/main

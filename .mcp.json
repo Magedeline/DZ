@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "loenn-mcp": {
+      "type": "stdio",
+      "command": "C:\\Users\\warsh\\AppData\\Roaming\\Python\\Python314\\Scripts\\loenn-mcp.exe",
+      "args": [],
+      "env": {
+        "LOENN_MCP_WORKSPACE": "C:\\SteamLibrary\\steamapps\\common\\Celeste\\Mods\\DZ"
+      }
+    }
+  }
+}

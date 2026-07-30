@@ -964,10 +964,16 @@ entities.DZ/InfernoBigEyeballShockwave.placements.name.inferno_big_eyeball_shock
 # Inferno Eye
 entities.DZ/InfernoEye.placements.name.inferno_eye=Inferno Eye
 
-# Inferno Maddy Gate
-entities.DZ/InfernoMaddyGate.placements.name.inferno_maddy_gate=Inferno Maddy Gate
-entities.DZ/InfernoMaddyGate.placements.name.sprite=Sprite
-entities.DZ/InfernoMaddyGate.placements.name.height=Height
+# Tesseract Gateway
+entities.DZ/TesseractGateway.placements.name.maddy_holdingmaddy=Tesseract Gate (Maddy, Holding Maddy)
+entities.DZ/TesseractGateway.placements.name.default_closebehindplayer=Tesseract Gate (Default, Close Behind Player)
+entities.DZ/TesseractGateway.placements.name.mirror_closebehindplayer=Tesseract Gate (Mirror, Close Behind Player)
+entities.DZ/TesseractGateway.placements.name.default_nearestswitch=Tesseract Gate (Default, Nearest Switch)
+entities.DZ/TesseractGateway.placements.name.mirror_nearestswitch=Tesseract Gate (Mirror, Nearest Switch)
+entities.DZ/TesseractGateway.placements.name.default_touchswitches=Tesseract Gate (Default, Touch Switches)
+entities.DZ/TesseractGateway.placements.name.sprite=Sprite
+entities.DZ/TesseractGateway.placements.name.height=Height
+entities.DZ/TesseractGateway.placements.name.type=Type
 
 # Inferno Mirror
 entities.DZ/InfernoMirror.placements.name.inferno_mirror=Inferno Mirror
@@ -1154,6 +1160,9 @@ entities.DZ/LuckyBlock.placements.name.lucky_block=Lucky Block
 
 # Maddy Crystal Pedestal
 entities.DZ/MaddyCrystalPedestal.placements.name.maddy_crystal_pedestal=Maddy Crystal Pedestal
+
+# Maddy Crystal
+entities.DZ/MaddyCrystal.placements.name.maddy_crystal=Maddy Crystal
 
 # Madeline Bandage Dummy
 entities.DZ/MadelineBandageDummy.placements.name.madeline_bandage_dummy=Madeline Bandage Dummy
@@ -1540,6 +1549,16 @@ entities.DZ/NPC20_Madeline.placements.name.npc20_madeline=NPC20 Madeline
 # NPC Event Interact
 entities.DZ/NPCEventInteract.placements.name.npc_event_interact=NPC Event Interact
 
+# NPC Event Interact Trigger
+triggers.DZ/NpcEventInteractTrigger.placements.name.npc_event_interact_trigger=NPC Event Interact Trigger
+triggers.DZ/NpcEventInteractTrigger.attributes.description.npcName=Name used for logging and the default dialog key fallback.
+triggers.DZ/NpcEventInteractTrigger.attributes.description.dialogKey=Dialog key to display when the trigger fires. Falls back to DEFAULT_NPC_DIALOG_<npcName> if empty.
+triggers.DZ/NpcEventInteractTrigger.attributes.description.csFlag=Session flag set once the interaction has completed.
+triggers.DZ/NpcEventInteractTrigger.attributes.description.triggerFlag=Additional session flag set once the interaction has completed.
+triggers.DZ/NpcEventInteractTrigger.attributes.description.requireFlag=Session flag that must be set before the trigger is active.
+triggers.DZ/NpcEventInteractTrigger.attributes.description.onlyOnce=If the trigger should deactivate after firing once.
+triggers.DZ/NpcEventInteractTrigger.attributes.description.mode=OnEnter fires automatically when the player enters the trigger area. OnInteract requires the player to press the Talk/Interact button while inside the area.
+
 # Obsidian Shard
 entities.DZ/ObsidianShard.placements.name.obsidian_shard=Obsidian Shard
 entities.DZ/ObsidianShard.placements.name.isCollectible=Is Collectible
@@ -1801,6 +1820,23 @@ triggers.DZ/SizeChangeTrigger.placements.name.sizeDZ_CHange_trigger=Size Change 
 triggers.DZ/SizeChangeTrigger.placements.name.ability=Ability
 triggers.DZ/SizeChangeTrigger.placements.name.action=Action
 triggers.DZ/SizeChangeTrigger.placements.name.onlyOnce=Only Once
+
+# Session Flag Trigger
+triggers.DZ/SessionFlagTrigger.placements.name.session_flag_trigger=Session Flag Trigger
+triggers.DZ/SessionFlagTrigger.placements.name.sessionFlag=Session Flag
+triggers.DZ/SessionFlagTrigger.placements.name.flagState=Flag State
+triggers.DZ/SessionFlagTrigger.placements.name.triggerOnce=Trigger Once
+triggers.DZ/SessionFlagTrigger.placements.name.requiredFlag=Required Flag
+triggers.DZ/SessionFlagTrigger.placements.name.requiredFlagState=Required Flag State
+triggers.DZ/SessionFlagTrigger.placements.name.flagAction=Flag Action
+triggers.DZ/SessionFlagTrigger.placements.name.triggerMode=Trigger Mode
+triggers.DZ/SessionFlagTrigger.attributes.description.sessionFlag=Session flag to set (or toggle) when the trigger fires.
+triggers.DZ/SessionFlagTrigger.attributes.description.flagState=Value to assign to the session flag when Flag Action is SetValue.
+triggers.DZ/SessionFlagTrigger.attributes.description.triggerOnce=If true, the trigger only fires once per room/session.
+triggers.DZ/SessionFlagTrigger.attributes.description.requiredFlag=Optional session flag that must match Required Flag State for this trigger to fire.
+triggers.DZ/SessionFlagTrigger.attributes.description.requiredFlagState=Required state of Required Flag for this trigger to fire.
+triggers.DZ/SessionFlagTrigger.attributes.description.flagAction=Whether to set the flag to Flag State (SetValue) or invert its current value (Toggle).
+triggers.DZ/SessionFlagTrigger.attributes.description.triggerMode=Whether the flag is applied when the player enters (OnEnter) or leaves (OnLeave) the trigger.
 
 # Skin Swap Trigger
 triggers.DZ/SkinSwapTrigger.placements.name.skin_swap_trigger=Skin Swap Trigger
@@ -2355,3 +2391,322 @@ entities.DZ/WarpStarReturnController.attributes.description.returnSpawnX=Pixel X
 entities.DZ/WarpStarReturnController.attributes.description.returnSpawnY=Pixel Y position of the spawn point in the return room.
 entities.DZ/WarpStarReturnController.attributes.description.phase2ActivateFlag=Session flag set before loading the return room so Phase 2 triggers activate.
 entities.DZ/WarpStarReturnController.attributes.description.autoListen=If true, automatically listens to the final battle phase changes.
+
+
+# =============================================================================
+# Chapters 10-16 gameplay entities (placeholder art: drawn squares and circles)
+# =============================================================================
+
+# --- Chapter 10: Ruins ---
+
+# Breakable Pillar
+entities.DZ/BreakablePillar.placements.name.breakable_pillar=Breakable Pillar
+entities.DZ/BreakablePillar.attributes.description.requiresDash=If true, only a dash shatters the pillar. If false, any player contact breaks it.
+entities.DZ/BreakablePillar.attributes.description.reboundOnBreak=If true, the dash rebounds off the pillar as it breaks. If false, the dash carries through.
+entities.DZ/BreakablePillar.attributes.description.respawnDelay=Seconds before the pillar rebuilds itself. Zero leaves it broken permanently.
+entities.DZ/BreakablePillar.attributes.description.debrisCount=Number of masonry chunks thrown out when it breaks.
+entities.DZ/BreakablePillar.attributes.description.flag=Session flag set when the pillar is broken.
+
+# Touch Torch Switch
+entities.DZ/TouchTorchSwitch.placements.name.touch_torch_switch=Touch Torch Switch
+entities.DZ/TouchTorchSwitch.attributes.description.group=Puzzle group. All torches sharing a group must be lit to complete it.
+entities.DZ/TouchTorchSwitch.attributes.description.flag=Session flag set when the whole group is lit. Defaults to torch_switch_<group>.
+entities.DZ/TouchTorchSwitch.attributes.description.requiresDash=If true, the player must dash into the torch rather than touch it.
+entities.DZ/TouchTorchSwitch.attributes.description.persistent=If true, a completed group stays lit after leaving and re-entering the room.
+entities.DZ/TouchTorchSwitch.attributes.description.radius=Pixel radius of the touch area.
+
+# --- Chapter 11: Snowding City ---
+
+# Slippery Floor
+entities.DZ/SlipperyFloor.placements.name.slippery_floor=Slippery Floor
+entities.DZ/SlipperyFloor.attributes.description.slipperiness=How much horizontal speed is kept each frame. 0 is normal ground, 1 is frictionless.
+entities.DZ/SlipperyFloor.attributes.description.slideSpeed=Constant pull along slideDirection, for downhill ice. Zero disables it.
+entities.DZ/SlipperyFloor.attributes.description.slideDirection=Which way slideSpeed pulls the player.
+entities.DZ/SlipperyFloor.attributes.description.safeGround=If true, the surface counts as safe ground (no dream-block or spike death carry-over).
+entities.DZ/SlipperyFloor.attributes.description.affectsEnemies=If true, enemies standing on the ice are pulled by slideSpeed too.
+
+# Spaghetti Swing
+entities.DZ/SpaghettiSwing.placements.name.spaghetti_swing=Spaghetti Swing
+entities.DZ/SpaghettiSwing.attributes.description.length=Pixel length of the strand from anchor to handle.
+entities.DZ/SpaghettiSwing.attributes.description.startAngle=Resting angle in degrees. Zero hangs straight down, negative swings left.
+entities.DZ/SpaghettiSwing.attributes.description.maxAngle=Maximum swing angle in degrees before the strand catches.
+entities.DZ/SpaghettiSwing.attributes.description.gravity=Pendulum gravity. Higher values swing faster.
+entities.DZ/SpaghettiSwing.attributes.description.damping=Per-frame energy retention. 1 never loses momentum.
+entities.DZ/SpaghettiSwing.attributes.description.pumpStrength=How strongly left/right input drives the swing while riding.
+entities.DZ/SpaghettiSwing.attributes.description.launchBoost=Multiplier applied to the handle's velocity when the player jumps off.
+entities.DZ/SpaghettiSwing.attributes.description.grabRadius=Pixel radius around the handle where the player can grab on.
+entities.DZ/SpaghettiSwing.attributes.description.holdTimeLimit=Seconds before the player is thrown off automatically. Zero means no limit.
+entities.DZ/SpaghettiSwing.attributes.description.autoGrab=If true, touching the handle grabs it. If false, the grab button must be held.
+
+# Blue Bone
+entities.DZ/BlueBone.placements.name.blue_bone=Blue Bone
+entities.DZ/BlueBone.attributes.description.boneLength=Pixel length of the bone along its long axis.
+entities.DZ/BlueBone.attributes.description.boneThickness=Pixel thickness of the bone across its short axis.
+entities.DZ/BlueBone.attributes.description.horizontal=If true the bone lies horizontally, otherwise vertically.
+entities.DZ/BlueBone.attributes.description.speed=Travel speed in pixels per second between the spawn point and the node.
+entities.DZ/BlueBone.attributes.description.moveThreshold=Player speed above which the bone is lethal. The player must stop below this to pass safely.
+entities.DZ/BlueBone.attributes.description.pauseTime=Seconds the bone waits at each end of its sweep.
+entities.DZ/BlueBone.attributes.description.loop=If true the bone sweeps back and forth forever, otherwise it is removed at the node.
+entities.DZ/BlueBone.attributes.description.flag=Session flag that enables the bone. Empty means always active.
+entities.DZ/BlueBone.attributes.description.invertFlag=If true the bone is active while the flag is unset.
+
+# --- Chapter 12: Wateredgefall ---
+
+# Water Eye Drop
+entities.DZ/WaterEyeDrop.placements.name.water_eye_drop=Water Eye Drop
+entities.DZ/WaterEyeDrop.attributes.description.dropInterval=Seconds between droplets.
+entities.DZ/WaterEyeDrop.attributes.description.warningTime=Seconds the eye swells before releasing a droplet, as the tell.
+entities.DZ/WaterEyeDrop.attributes.description.dropSpeed=Fall speed of the droplet in pixels per second.
+entities.DZ/WaterEyeDrop.attributes.description.dropRadius=Pixel radius of the droplet.
+entities.DZ/WaterEyeDrop.attributes.description.maxFallDistance=How far a droplet falls before it despawns.
+entities.DZ/WaterEyeDrop.attributes.description.eyeRadius=Pixel radius of the eye.
+entities.DZ/WaterEyeDrop.attributes.description.detectWidth=Width of the column checked for the player when onlyWhenPlayerBelow is set.
+entities.DZ/WaterEyeDrop.attributes.description.onlyWhenPlayerBelow=If true, the eye only drips while the player stands in its column.
+entities.DZ/WaterEyeDrop.attributes.description.deadly=If true, the droplet kills the player on contact.
+entities.DZ/WaterEyeDrop.attributes.description.flag=Session flag that enables the eye. Empty means always active.
+entities.DZ/WaterEyeDrop.attributes.description.invertFlag=If true the eye is active while the flag is unset.
+
+# Floating Lily Pad
+entities.DZ/FloatingLilyPad.placements.name.floating_lily_pad=Floating Lily Pad
+entities.DZ/FloatingLilyPad.attributes.description.sinkSpeed=How fast the pad sinks while the player stands on it.
+entities.DZ/FloatingLilyPad.attributes.description.sinkDepth=Pixels the pad sinks before it counts as fully submerged.
+entities.DZ/FloatingLilyPad.attributes.description.riseSpeed=How fast the pad floats back up once unloaded.
+entities.DZ/FloatingLilyPad.attributes.description.submergeDelay=Seconds held at full sink depth before the pad goes under.
+entities.DZ/FloatingLilyPad.attributes.description.resurfaceDelay=Seconds the pad stays submerged and non-solid.
+entities.DZ/FloatingLilyPad.attributes.description.driftSpeed=Horizontal drift speed. Zero keeps the pad in place.
+entities.DZ/FloatingLilyPad.attributes.description.driftDistance=Pixels the pad drifts before reversing. Zero drifts forever in one direction.
+entities.DZ/FloatingLilyPad.attributes.description.bobAmplitude=Pixel range of the idle bob.
+entities.DZ/FloatingLilyPad.attributes.description.bobSpeed=Speed of the idle bob.
+entities.DZ/FloatingLilyPad.attributes.description.submerges=If false the pad sinks to its depth limit but never goes under.
+
+# Throwable Spear
+entities.DZ/ThrowableSpear.placements.name.throwable_spear=Throwable Spear
+entities.DZ/ThrowableSpear.attributes.description.throwSpeed=Flight speed when thrown, replacing the normal held-object arc.
+entities.DZ/ThrowableSpear.attributes.description.stickDuration=Seconds a thrown spear stays stuck in a wall.
+entities.DZ/ThrowableSpear.attributes.description.respawnDelay=Seconds before the spear returns to its placed position. Zero means one use.
+entities.DZ/ThrowableSpear.attributes.description.damage=Damage dealt to enemies the spear passes through.
+entities.DZ/ThrowableSpear.attributes.description.killsEnemies=If true, the flying spear damages enemies.
+entities.DZ/ThrowableSpear.attributes.description.sticksToSolids=If true, the spear sticks into the wall it hits instead of vanishing.
+entities.DZ/ThrowableSpear.attributes.description.platformWhenStuck=If true, a horizontally stuck spear becomes a small solid ledge.
+entities.DZ/ThrowableSpear.attributes.description.spearLength=Pixel length of the drawn spear.
+entities.DZ/ThrowableSpear.attributes.description.spearThickness=Pixel thickness of the drawn spear.
+
+# --- Chapter 13: Hotcliff ---
+
+# Treadmill Floor
+entities.DZ/TreadmillFloor.placements.name.treadmill_floor=Treadmill Floor
+entities.DZ/TreadmillFloor.attributes.description.speed=Belt drag in pixels per second applied to whatever stands on it.
+entities.DZ/TreadmillFloor.attributes.description.moveLeft=If true the belt pulls left, otherwise right.
+entities.DZ/TreadmillFloor.attributes.description.reverseInterval=Seconds between automatic direction flips. Zero keeps one direction.
+entities.DZ/TreadmillFloor.attributes.description.affectsEnemies=If true, enemies standing on the belt are dragged too.
+entities.DZ/TreadmillFloor.attributes.description.flag=Session flag that enables the belt. Empty means always active.
+entities.DZ/TreadmillFloor.attributes.description.invertFlag=If true the belt runs while the flag is unset.
+
+# Spark Ball
+entities.DZ/SparkBall.placements.name.spark_ball=Spark Ball
+entities.DZ/SparkBall.attributes.description.mode=Orbit circles the placed point, Patrol walks the nodes, Chase follows the player, Static sits still.
+entities.DZ/SparkBall.attributes.description.radius=Pixel radius of the ball and its hitbox.
+entities.DZ/SparkBall.attributes.description.orbitRadius=Orbit radius in Orbit mode.
+entities.DZ/SparkBall.attributes.description.speed=Movement speed in pixels per second for Orbit and Patrol.
+entities.DZ/SparkBall.attributes.description.clockwise=Orbit direction.
+entities.DZ/SparkBall.attributes.description.startAngle=Starting orbit angle in degrees.
+entities.DZ/SparkBall.attributes.description.chaseAcceleration=Acceleration toward the player in Chase mode.
+entities.DZ/SparkBall.attributes.description.chaseMaxSpeed=Speed cap in Chase mode.
+entities.DZ/SparkBall.attributes.description.sparkCount=Number of crackling arcs drawn around the ball.
+entities.DZ/SparkBall.attributes.description.deadly=If true, contact kills the player.
+entities.DZ/SparkBall.attributes.description.pingPong=In Patrol mode, reverse along the nodes instead of looping back to the first.
+entities.DZ/SparkBall.attributes.description.flag=Session flag that enables the ball. Empty means always active.
+entities.DZ/SparkBall.attributes.description.invertFlag=If true the ball is active while the flag is unset.
+
+# Lava Geyser
+entities.DZ/LavaGeyser.placements.name.lava_geyser=Lava Geyser
+entities.DZ/LavaGeyser.attributes.description.eruptHeight=Pixel height of the eruption column.
+entities.DZ/LavaGeyser.attributes.description.warningTime=Seconds of rumbling at the vent before erupting.
+entities.DZ/LavaGeyser.attributes.description.eruptDuration=Seconds the lethal column stays out.
+entities.DZ/LavaGeyser.attributes.description.cooldown=Seconds dormant between eruptions.
+entities.DZ/LavaGeyser.attributes.description.startDelay=Seconds before the first cycle, for putting several geysers out of phase.
+entities.DZ/LavaGeyser.attributes.description.downward=If true the column erupts downward from a ceiling vent.
+entities.DZ/LavaGeyser.attributes.description.deadly=If true, the column kills the player.
+entities.DZ/LavaGeyser.attributes.description.flag=Session flag that enables the geyser. Empty means always active.
+entities.DZ/LavaGeyser.attributes.description.invertFlag=If true the geyser runs while the flag is unset.
+
+# --- Chapter 14: Cyber Nexus ---
+
+# Nexus Touch Switch (2.5D)
+entities.DZ/NexusTouchSwitch.placements.name.nexus_touch_switch=Nexus Touch Switch (2.5D)
+entities.DZ/NexusTouchSwitch.attributes.description.group=Switch group. All switches in a group must be pressed to open that group's gate cubes.
+entities.DZ/NexusTouchSwitch.attributes.description.flag=Session flag set when the group completes. Defaults to nexus_switch_<group>.
+entities.DZ/NexusTouchSwitch.attributes.description.requiresDash=If true, the player must dash into the switch rather than touch it.
+entities.DZ/NexusTouchSwitch.attributes.description.persistent=If true, a completed group stays pressed after re-entering the room.
+entities.DZ/NexusTouchSwitch.attributes.description.size=Pixel size of the cube face.
+entities.DZ/NexusTouchSwitch.attributes.description.depthOffset=Pixels the faux-3D back face is offset by. Zero draws a flat square.
+
+# Nexus Gate Cube Block (2.5D)
+entities.DZ/NexusGateCubeBlock.placements.name.nexus_gate_cube_block=Nexus Gate Cube Block (2.5D)
+entities.DZ/NexusGateCubeBlock.attributes.description.group=Switch group this gate listens to.
+entities.DZ/NexusGateCubeBlock.attributes.description.startOpen=If true the gate begins open and non-solid.
+entities.DZ/NexusGateCubeBlock.attributes.description.openTime=Seconds the retract animation takes.
+entities.DZ/NexusGateCubeBlock.attributes.description.depthOffset=Pixels the faux-3D back face is offset by. Zero draws a flat square.
+entities.DZ/NexusGateCubeBlock.attributes.description.invert=If true the gate closes when the group completes instead of opening.
+
+# Nexus Portal
+entities.DZ/NexusPortal.placements.name.nexus_portal=Nexus Portal
+entities.DZ/NexusPortal.attributes.description.exitMode=Primary always uses node 1 (exit B). Alternate swaps B and C each use. Random picks one. Flag uses C while the flag is set.
+entities.DZ/NexusPortal.attributes.description.flag=Session flag consulted in Flag exit mode.
+entities.DZ/NexusPortal.attributes.description.cooldown=Seconds before this portal can be entered again.
+entities.DZ/NexusPortal.attributes.description.preserveMomentum=If true the player keeps their speed through the portal.
+entities.DZ/NexusPortal.attributes.description.exitBoost=Multiplier applied to the preserved speed on exit.
+entities.DZ/NexusPortal.attributes.description.radius=Pixel radius of the portal mouth.
+entities.DZ/NexusPortal.attributes.description.requiresDash=If true, the player must be dashing to enter.
+
+# Rude Buster Axe
+entities.DZ/RudeBusterAxe.placements.name.rude_buster_axe=Rude Buster Axe (Power-Up)
+entities.DZ/RudeBusterAxe.attributes.description.charges=Axe throws granted when collected.
+entities.DZ/RudeBusterAxe.attributes.description.respawnDelay=Seconds before the pickup returns. Zero removes it after one collection.
+entities.DZ/RudeBusterAxe.attributes.description.oneUse=If true the pickup is removed permanently when collected.
+entities.DZ/RudeBusterAxe.attributes.description.flag=Session flag set when the pickup is collected.
+entities.DZ/RudeBusterAxe.attributes.description.radius=Pixel radius of the pickup.
+entities.DZ/RudeBusterAxe.attributes.description.throwSpeed=Flight speed of the thrown axe.
+entities.DZ/RudeBusterAxe.attributes.description.range=Pixels the axe travels before turning back or vanishing.
+entities.DZ/RudeBusterAxe.attributes.description.damage=Damage each axe deals to an enemy.
+entities.DZ/RudeBusterAxe.attributes.description.boomerang=If true the axe returns to the player at the end of its range.
+entities.DZ/RudeBusterAxe.attributes.description.refundOnCatch=If true, catching a returning axe gives the charge back.
+entities.DZ/RudeBusterAxe.attributes.description.spinSpeed=How fast the axe head spins, visual only.
+entities.DZ/RudeBusterAxe.attributes.description.axeSize=Pixel size of the drawn axe head.
+entities.DZ/RudeBusterAxe.attributes.description.useButton=Which input throws an axe. Grab is ignored while the player is climbing.
+
+# --- Chapter 15: Citadel ---
+
+# Gaster Blaster
+entities.DZ/GasterBlaster.placements.name.gaster_blaster=Gaster Blaster
+entities.DZ/GasterBlaster.attributes.description.angle=Firing angle in degrees. 0 fires right, 90 fires down.
+entities.DZ/GasterBlaster.attributes.description.aimsAtPlayer=If true the blaster re-aims at the player while charging, but not while firing.
+entities.DZ/GasterBlaster.attributes.description.chargeTime=Seconds of charge-up before the beam fires.
+entities.DZ/GasterBlaster.attributes.description.beamDuration=Seconds the beam stays out.
+entities.DZ/GasterBlaster.attributes.description.cooldown=Seconds between shots.
+entities.DZ/GasterBlaster.attributes.description.beamWidth=Pixel width of the beam and its hit area.
+entities.DZ/GasterBlaster.attributes.description.beamLength=Pixel length of the beam.
+entities.DZ/GasterBlaster.attributes.description.headSize=Pixel size of the skull.
+entities.DZ/GasterBlaster.attributes.description.startDelay=Seconds before the first cycle, for staggering several blasters.
+entities.DZ/GasterBlaster.attributes.description.shots=Number of shots before the blaster goes quiet. Zero fires forever.
+entities.DZ/GasterBlaster.attributes.description.deadly=If true, the beam kills the player.
+entities.DZ/GasterBlaster.attributes.description.flag=Session flag that enables the blaster. Empty means always active.
+entities.DZ/GasterBlaster.attributes.description.invertFlag=If true the blaster is active while the flag is unset.
+
+# Anti Gravity Field
+entities.DZ/AntiGravityField.placements.name.anti_gravity_field=Anti Gravity Field
+entities.DZ/AntiGravityField.attributes.description.riseAcceleration=How quickly the player is accelerated upward inside the field.
+entities.DZ/AntiGravityField.attributes.description.maxRiseSpeed=Cap on the upward speed the field applies.
+entities.DZ/AntiGravityField.attributes.description.showBorder=If true the field's edge is drawn in game.
+entities.DZ/AntiGravityField.attributes.description.affectsEnemies=If true, enemies inside the field are lifted too.
+entities.DZ/AntiGravityField.attributes.description.flag=Session flag that enables the field. Empty means always active.
+entities.DZ/AntiGravityField.attributes.description.invertFlag=If true the field is active while the flag is unset.
+
+# Anti Gravity Power-Up
+entities.DZ/AntiGravityPowerUp.placements.name.anti_gravity_power_up=Anti Gravity Power-Up
+entities.DZ/AntiGravityPowerUp.attributes.description.duration=Seconds of anti-gravity granted on collection.
+entities.DZ/AntiGravityPowerUp.attributes.description.riseAcceleration=How quickly the player is accelerated upward while the buff lasts.
+entities.DZ/AntiGravityPowerUp.attributes.description.maxRiseSpeed=Cap on the upward speed applied while the buff lasts.
+entities.DZ/AntiGravityPowerUp.attributes.description.respawnDelay=Seconds before the pickup returns. Zero removes it after one collection.
+entities.DZ/AntiGravityPowerUp.attributes.description.oneUse=If true the pickup is removed permanently when collected.
+entities.DZ/AntiGravityPowerUp.attributes.description.radius=Pixel radius of the pickup.
+entities.DZ/AntiGravityPowerUp.attributes.description.flag=Session flag set when the pickup is collected.
+
+# Flashing Black
+entities.DZ/FlashingBlack.placements.name.flashing_black=Flashing Black
+entities.DZ/FlashingBlack.attributes.description.visibleDuration=Seconds the room is visible between blackouts.
+entities.DZ/FlashingBlack.attributes.description.fadeDuration=Seconds each fade to and from black takes.
+entities.DZ/FlashingBlack.attributes.description.blackDuration=Seconds the screen stays fully black.
+entities.DZ/FlashingBlack.attributes.description.maxAlpha=How opaque the blackout gets. 1 is fully black.
+entities.DZ/FlashingBlack.attributes.description.keepPlayerVisible=If true a faint marker stays on the player during the blackout.
+entities.DZ/FlashingBlack.attributes.description.warnFlash=If true a short white flash warns just before the screen goes black.
+entities.DZ/FlashingBlack.attributes.description.startBlack=If true the room starts in the black phase.
+entities.DZ/FlashingBlack.attributes.description.flag=Session flag that enables the blackout. Empty means always active.
+entities.DZ/FlashingBlack.attributes.description.invertFlag=If true the blackout runs while the flag is unset.
+
+# --- Chapter 16: MyWorld ---
+
+# Replayback
+entities.DZ/Replayback.placements.name.replayback=Replayback
+entities.DZ/Replayback.attributes.description.recordDuration=Seconds of player movement kept in the recording.
+entities.DZ/Replayback.attributes.description.startDelay=Seconds the ghost trails behind the player.
+entities.DZ/Replayback.attributes.description.deadly=If true, touching the ghost kills the player.
+entities.DZ/Replayback.attributes.description.loop=If true the ghost keeps replaying forever, otherwise it stops after one pass.
+entities.DZ/Replayback.attributes.description.ghostAlpha=Opacity of the ghost.
+entities.DZ/Replayback.attributes.description.ghostSize=Pixel size of the ghost.
+entities.DZ/Replayback.attributes.description.flag=Session flag that enables the recorder. Empty means always active.
+entities.DZ/Replayback.attributes.description.invertFlag=If true the recorder runs while the flag is unset.
+
+# Replayback Power-Up
+entities.DZ/ReplaybackPowerUp.placements.name.replayback_power_up=Replayback Power-Up
+entities.DZ/ReplaybackPowerUp.attributes.description.rewindTime=How many seconds back the player is sent when they rewind.
+entities.DZ/ReplaybackPowerUp.attributes.description.charges=Rewinds granted when collected.
+entities.DZ/ReplaybackPowerUp.attributes.description.respawnDelay=Seconds before the pickup returns. Zero removes it after one collection.
+entities.DZ/ReplaybackPowerUp.attributes.description.oneUse=If true the pickup is removed permanently when collected.
+entities.DZ/ReplaybackPowerUp.attributes.description.radius=Pixel radius of the pickup.
+entities.DZ/ReplaybackPowerUp.attributes.description.useButton=Which input triggers the rewind. Grab is ignored while the player is climbing.
+
+# Nuke Drop
+entities.DZ/NukeDrop.placements.name.nuke_drop=Nuke Drop
+entities.DZ/NukeDrop.attributes.description.mode=Once drops a single nuke, Interval drops on a timer, Flag drops each time the flag turns on.
+entities.DZ/NukeDrop.attributes.description.interval=Seconds between drops in Interval mode.
+entities.DZ/NukeDrop.attributes.description.startDelay=Seconds before the first drop.
+entities.DZ/NukeDrop.attributes.description.fallSpeed=Fall speed of the bomb in pixels per second.
+entities.DZ/NukeDrop.attributes.description.fuseTime=Seconds the bomb blinks on the ground before detonating.
+entities.DZ/NukeDrop.attributes.description.blastRadius=Pixel radius of the shockwave.
+entities.DZ/NukeDrop.attributes.description.spawnHeight=Pixels above the spawner the bomb appears.
+entities.DZ/NukeDrop.attributes.description.shakeTime=Seconds of screen shake on detonation.
+entities.DZ/NukeDrop.attributes.description.targetsPlayer=If true the bomb spawns above the player's current X position.
+entities.DZ/NukeDrop.attributes.description.deadly=If true, the shockwave kills the player.
+entities.DZ/NukeDrop.attributes.description.damage=Damage the shockwave deals to enemies.
+entities.DZ/NukeDrop.attributes.description.bigBlast=If true, use the heavier big_nuke drop and explosion sounds instead of the standard pair.
+entities.DZ/NukeDrop.attributes.description.flag=Session flag watched in Flag mode.
+
+# Nuke Drop Power-Up
+entities.DZ/NukeDropPowerUp.placements.name.nuke_drop_power_up=Nuke Drop Power-Up
+entities.DZ/NukeDropPowerUp.attributes.description.charges=Nuke strikes granted when collected.
+entities.DZ/NukeDropPowerUp.attributes.description.respawnDelay=Seconds before the pickup returns. Zero removes it after one collection.
+entities.DZ/NukeDropPowerUp.attributes.description.oneUse=If true the pickup is removed permanently when collected.
+entities.DZ/NukeDropPowerUp.attributes.description.radius=Pixel radius of the pickup.
+entities.DZ/NukeDropPowerUp.attributes.description.dropHeight=Pixels above the player the called-down bomb appears.
+entities.DZ/NukeDropPowerUp.attributes.description.fallSpeed=Fall speed of the called-down bomb.
+entities.DZ/NukeDropPowerUp.attributes.description.fuseTime=Seconds the called-down bomb blinks before detonating.
+entities.DZ/NukeDropPowerUp.attributes.description.blastRadius=Pixel radius of the friendly shockwave.
+entities.DZ/NukeDropPowerUp.attributes.description.damage=Damage the friendly shockwave deals to enemies.
+entities.DZ/NukeDropPowerUp.attributes.description.bigBlast=If true, use the heavier big_nuke drop and explosion sounds instead of the standard pair.
+entities.DZ/NukeDropPowerUp.attributes.description.useButton=Which input calls down a nuke. Grab is ignored while the player is climbing.
+
+# Giga Vines
+entities.DZ/GigaVines.placements.name.giga_vines=Giga Vines
+entities.DZ/GigaVines.attributes.description.direction=Which way the vine band grows.
+entities.DZ/GigaVines.attributes.description.growSpeed=Growth speed in pixels per second.
+entities.DZ/GigaVines.attributes.description.retractSpeed=Retraction speed while retractFlag is set.
+entities.DZ/GigaVines.attributes.description.startDelay=Seconds before the vines start growing.
+entities.DZ/GigaVines.attributes.description.maxExtent=Pixels the vines can grow. Zero grows to the room edge.
+entities.DZ/GigaVines.attributes.description.deadly=If true, touching the vines kills the player.
+entities.DZ/GigaVines.attributes.description.tendrilCount=Number of wobbling tendrils drawn at the leading edge.
+entities.DZ/GigaVines.attributes.description.flag=Session flag that enables the vines. Empty means always active.
+entities.DZ/GigaVines.attributes.description.invertFlag=If true the vines are active while the flag is unset.
+entities.DZ/GigaVines.attributes.description.pauseFlag=While this session flag is set, growth pauses.
+entities.DZ/GigaVines.attributes.description.retractFlag=While this session flag is set, the vines pull back.
+
+# --- Multi Dash Bumper ---
+
+# Multi Dash Bumper
+entities.DZ/MultiDashBumper.placements.name.one_dash=Dash Bumper (1 Dash)
+entities.DZ/MultiDashBumper.placements.name.two_dash=Dash Bumper (2 Dash)
+entities.DZ/MultiDashBumper.placements.name.three_dash=Dash Bumper (3 Dash)
+entities.DZ/MultiDashBumper.placements.name.four_dash=Dash Bumper (4 Dash)
+entities.DZ/MultiDashBumper.placements.name.five_dash=Dash Bumper (5 Dash)
+entities.DZ/MultiDashBumper.placements.name.rainbow_ten_dash=Rainbow Dash Bumper (10 Dash)
+entities.DZ/MultiDashBumper.attributes.description.dashes=How many dashes the player leaves with. 1-5 each have their own colour; 6 and above render as the rainbow bumper.
+entities.DZ/MultiDashBumper.attributes.description.radius=Pixel radius of the bumper and its hitbox.
+entities.DZ/MultiDashBumper.attributes.description.respawnTime=Seconds the bumper stays spent before it can be hit again.
+entities.DZ/MultiDashBumper.attributes.description.launchMultiplier=Multiplier on the launch speed. 1 matches the vanilla bumper.
+entities.DZ/MultiDashBumper.attributes.description.setExactly=If true the bumper forces the dash count exactly, which can take dashes away. If false it only ever raises it.
+entities.DZ/MultiDashBumper.attributes.description.refillStamina=If true the bumper also refills stamina, like a refill does.
+entities.DZ/MultiDashBumper.attributes.description.oneUse=If true the bumper is removed after a single hit.
+entities.DZ/MultiDashBumper.attributes.description.moveTime=Seconds for one leg of the trip to the node, when a node is placed.
+entities.DZ/MultiDashBumper.attributes.description.sineWave=If true the bumper drifts on a sine wave like the vanilla one.
+entities.DZ/MultiDashBumper.attributes.description.flag=Session flag that enables the bumper. Empty means always active.
+entities.DZ/MultiDashBumper.attributes.description.invertFlag=If true the bumper is active while the flag is unset.

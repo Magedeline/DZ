@@ -123,9 +123,9 @@ namespace DZ
                         base.Scene.Add(new CS05_Reflection1(player2));
                     }
                     break;
-                case "cancelDZ_CH5_see_theo":
-                    level.Session.SetFlag("itDZ_CH5_see_theo");
-                    level.Session.SetFlag("itDZ_CH5_see_theo_b");
+                case "cancel_CH5_see_theo":
+                    level.Session.SetFlag("it_CH5_see_theo");
+                    level.Session.SetFlag("it_CH5_see_theo_b");
                     level.Session.SetFlag("ignore_darkness_" + level.Session.Level);
                     Add(new Coroutine(Brighten()));
                     break;
@@ -323,9 +323,6 @@ namespace DZ
                     base.Scene.Add(new global::Celeste.Cutscenes.Cs03ModEnding(actualPlayer));
                     break;
                 }
-                case "cs07_darker":
-                    base.Scene.Add(new global::Celeste.Cutscenes.CS07_Darker(player2));
-                    break;
                 case "cs07_genocide_vision_finale":
                     base.Scene.Add(new global::Celeste.Cutscenes.CS07_GenocideVisionFinale(player2));
                     break;
@@ -334,6 +331,30 @@ namespace DZ
                     break;
                 case "cs07_genocide_wakeup":
                     base.Scene.Add(new global::Celeste.Cutscenes.CS07_GenocideWakeup(player2));
+                    break;
+                case "cs7_see_maddy":
+                    if (!(base.Scene as Level).Session.GetFlag("seeMaddyInCrystal"))
+                    {
+                        base.Scene.Add(new CS07_SeeMaddy(player2, 0));
+                    }
+                    break;
+                case "cs7_found_maddy":
+                    if (!level.Session.GetFlag("foundMaddyInCrystal"))
+                    {
+                        base.Scene.Add(new CS07_SaveMaddy(player2));
+                    }
+                    break;
+                case "ch7_mirror_reflection":
+                    if (!level.Session.GetFlag("cs7_darkeryetdarker"))
+                    {
+                        base.Scene.Add(new CS07_Darker(player2));
+                    }
+                    break;
+                case "cancel_cs7_see_maddy":
+                    level.Session.SetFlag("it_cs7_see_maddy");
+                    level.Session.SetFlag("it_cs7_see_maddy_b");
+                    level.Session.SetFlag("ignore_darkness_" + level.Session.Level);
+                    Add(new Coroutine(Brighten()));
                     break;
                 case "cs08_charaboss_intro":
                     base.Scene.Add(new global::Celeste.Cutscenes.Cs08CharaBossIntro(player2));

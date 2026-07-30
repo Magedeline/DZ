@@ -139,7 +139,7 @@ namespace Celeste.Entities {
                     this.NormalSprite.Play("pretendDead");
                 this.NormalSprite.Scale.X = 1f;
             }
-            else if (this.patternIndex == 0 && !this.level.Session.GetFlag("DZ_CH8_CHARA_BOSS_MIDDLE") && this.level.Session.Level.Equals("boss-14"))
+            else if (this.patternIndex == 0 && !this.level.Session.GetFlag(CS08_BossMid.Flag) && this.level.Session.Level.Equals("boss-14"))
             {
                 this.level.Add((Entity)new CS08_BossMid());
             }
@@ -255,13 +255,18 @@ namespace Celeste.Entities {
 
         public void OnPlayer(global::Celeste.Player player)
         {
+            // Boss has already consumed its last node; ignore any further hits so
+            // nodeIndex never advances past the end of the nodes array (crash guard).
+            if (nodeIndex >= nodes.Length - 1)
+                return;
+
             if (Sprite == null)
                 CreateBossSprite();
             
             Sprite.Play("charaboss_getHit");
             Audio.Play("event:/char/badeline/boss_hug", Position);
             chargeSfx.Stop();
-            if (laserSfx.EventName == "event:/char/badeline/boss_laserDZ_CHarge" && laserSfx.Playing)
+            if (laserSfx.EventName == "event:/char/badeline/boss_laser_charge" && laserSfx.Playing)
                 laserSfx.Stop();
 
             Collidable = false;
@@ -271,11 +276,11 @@ namespace Celeste.Entities {
             if (dialog)
             {
                 if (nodeIndex == 1)
-                    Scene.Add(new MiniTextbox("dz_ch8_charaboss_tired_a"));
+                    Scene.Add(new MiniTextbox("dz_ch8_chara_boss_tired_a"));
                 else if (nodeIndex == 2)
-                    Scene.Add(new MiniTextbox("dz_ch8_charaboss_tired_b"));
+                    Scene.Add(new MiniTextbox("dz_ch8_chara_boss_tired_b"));
                 else if (nodeIndex == 3)
-                    Scene.Add(new MiniTextbox("dz_ch8_charaboss_tired_c"));
+                    Scene.Add(new MiniTextbox("dz_ch8_chara_boss_tired_c"));
             }
 
             foreach (var entity in level.Tracker.GetEntities<CharaBossShot>())
@@ -327,9 +332,9 @@ namespace Celeste.Entities {
                     Audio.SetParameter(Audio.CurrentAmbienceEventInstance, "postboss", 1f);
                     Audio.SetMusic(null);
                 }
-                else if (nodeIndex == 4 && level.Session.Audio.Music.Event != "event:/DZ/music/lvl8/chara_glitch")
+                else if (level.Session.Level.Equals("boss-14") && level.Session.GetFlag(CS08_BossMid.Flag) && level.Session.Audio.Music.Event != "event:/DZ/music/lvl8/chara_glitch")
                 {
-                    // After middle phase - switch to glitch music for intensity
+                    // After middle phase cutscene has played in boss-14 - switch to glitch music for intensity
                     level.Session.Audio.Music.Event = "event:/DZ/music/lvl8/chara_glitch";
                     level.Session.Audio.Apply(false);
                 }
@@ -338,7 +343,7 @@ namespace Celeste.Entities {
                     level.Session.Audio.Music.Event = "event:/DZ/music/lvl8/chara_core";
                     level.Session.Audio.Apply(false);
                 }
-                else if (startHit && level.Session.Audio.Music.Event != "event:/DZ/music/lvl8/chara_glitch")
+                else if (nodeIndex == 4 && level.Session.Audio.Music.Event != "event:/DZ/music/lvl8/chara_glitch")
                 {
                     level.Session.Audio.Music.Event = "event:/DZ/music/lvl8/chara_glitch";
                     level.Session.Audio.Apply(false);
@@ -572,9 +577,17 @@ namespace Celeste.Entities {
                 }
                 level.Flash(Color.White);
                 level.Shake();
-                
+
                 // Play teleport sound
                 Audio.Play("event:/game/06_reflection/badeline_disappear");
+
+                if (targetRoom.Equals("center-01"))
+                {
+                    level.Session.Audio.Music.Event = "event:/DZ/music/lvl8/chara_core";
+                    level.Session.Audio.Apply(false);
+                    if (!level.Session.GetFlag(CS08_BossCenter.Flag))
+                        level.Add(new CS08_BossCenter());
+                }
             };
         }
 

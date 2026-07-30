@@ -55,6 +55,8 @@ eventTrigger.fieldInformation = {
             "cs07_genocide_vision_finale",
             "cs07_genocide_vision_intro",
             "cs07_genocide_wakeup",
+            "cs7_see_maddy",
+            "cs7_found_maddy",
             -- Chapter 8
             "cs08DZ_CHaraboss_intro",
             "ch8DZ_CHara_boss_center",

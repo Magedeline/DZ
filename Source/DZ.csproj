@@ -21,7 +21,6 @@
 
     <ItemGroup>
         <PackageReference Include="Celeste.Moserware.Skills" Version="1.0.0" />
-        <PackageReference Include="CelesteMarina.DependencyInjection" Version="1.1.0" />
         <PackageReference Include="CelesteMod.Roslyn.ModLifecycleAttributes" Version="1.0.0">
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
           <PrivateAssets>all</PrivateAssets>

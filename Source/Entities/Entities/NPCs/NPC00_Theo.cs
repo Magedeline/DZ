@@ -1,46 +1,54 @@
-using System;
-using System.Runtime.CompilerServices;
 using Microsoft.Xna.Framework;
 using Monocle;
+using System;
+using System.Collections;
 
-namespace Celeste;
-
-    [Tracked(true)]
-    [CustomEntity(ids: "DZ/NPC00_Theo")]
-    [HotReloadable]
-public class NPC00_Theo : NPC
+namespace Celeste
 {
-    private bool talking;
-
-    [MethodImpl(MethodImplOptions.NoInlining)]
-    public NPC00_Theo(Vector2 position)
-        : base(position)
+    [CustomEntity("DZ/NPC00_Theo")]
+    [Tracked(false)]
+    public class NPC00_Theo : Entity
     {
-        Add(Sprite = GFX.SpriteBank.Create("theo"));
-        Sprite.Play("idle");
-    }
+        private bool talking;
 
-    [MethodImpl(MethodImplOptions.NoInlining)]
-    public override void Added(Scene scene)
-    {
-        base.Added(scene);
-        if ((scene as Level).Session.GetFlag("theo"))
-            RemoveSelf();
-    }
+        public Sprite Sprite;
 
-    [MethodImpl(MethodImplOptions.NoInlining)]
-    public override void Update()
-    {
-        Player entity = Level.Tracker.GetEntity<Player>();
-        if (entity != null && !base.Session.GetFlag("theo") && !talking)
+        public SoundSource Hahaha;
+
+        public Level Level;
+
+        public Session Session => Level?.Session;
+
+        public NPC00_Theo(Vector2 position)
+            : base(position)
         {
-            int num = Level.Bounds.Left + 96;
-            if (entity.OnGround() && entity.X >= (float)num && entity.X <= base.X + 16f && Math.Abs(entity.Y - base.Y) < 4f && entity.Facing == (Facings)Math.Sign(base.X - entity.X))
+            Add(Sprite = GFX.SpriteBank.Create("theo"));
+            Sprite.Play("idle");
+            Add(Hahaha = new SoundSource());
+        }
+
+        public override void Added(Scene scene)
+        {
+            base.Added(scene);
+            Level = scene as Level;
+            if (Level.Session.GetFlag("theo"))
             {
-                talking = true;
-                base.Scene.Add(new CS00_Theo(this, entity));
+                RemoveSelf();
             }
         }
-        base.Update();
+
+        public override void Update()
+        {
+            Player entity = Level.Tracker.GetEntity<Player>();
+            if (entity != null && !Session.GetFlag("theo") && !talking)
+            {
+                int num = Level.Bounds.Left + 96;
+                if (entity.OnGround() && entity.X >= (double)num && entity.X <= X + 16.0 && Math.Abs(entity.Y - Y) < 4.0 && entity.Facing == (Facings)Math.Sign(X - entity.X))
+                {
+                    talking = true;
+                    Scene.Add(new CS00_Theo(this, entity));
+                }
+            }
+        }
     }
 }

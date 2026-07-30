@@ -2,7 +2,7 @@ local flingBirdIntro = {}
 
 flingBirdIntro.name = "DZ/FlingBirdIntro"
 flingBirdIntro.depth = 0
-flingBirdIntro.texture = "objects/DZ/fling_bird_intro"
+flingBirdIntro.texture = "characters/DZ/bird/Hover04"
 flingBirdIntro.nodeLineRenderType = "line"
 flingBirdIntro.nodeVisibility = "always"
 flingBirdIntro.nodeLimits = {1, -1}

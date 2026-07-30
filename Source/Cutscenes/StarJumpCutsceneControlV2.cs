@@ -181,9 +181,13 @@ public class StarJumpCutsceneControlV2 : Entity
         
         // Set the cutscene flag so it doesn't trigger again
         this.Level.Session.SetFlag(cutsceneFlag, true);
-        
+
         Logger.Log(LogLevel.Info, "StarJumpCutsceneControlV2", 
             $"CS08_StarJumpEnd cutscene triggered! PlayerStart: {playerStartPos}, CameraStart: {cameraStartPos}");
+
+        // Unload this controller now that the cutscene has taken over, so it stops
+        // updating (music/camera/player state) and cannot conflict with the cutscene.
+        this.RemoveSelf();
     }
 
     [MethodImpl(MethodImplOptions.NoInlining)]

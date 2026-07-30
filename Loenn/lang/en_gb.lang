@@ -964,10 +964,16 @@ entities.DZ/InfernoBigEyeballShockwave.placements.name.inferno_big_eyeball_shock
 # Inferno Eye
 entities.DZ/InfernoEye.placements.name.inferno_eye=Inferno Eye
 
-# Inferno Maddy Gate
-entities.DZ/InfernoMaddyGate.placements.name.inferno_maddy_gate=Inferno Maddy Gate
-entities.DZ/InfernoMaddyGate.placements.name.sprite=Sprite
-entities.DZ/InfernoMaddyGate.placements.name.height=Height
+# Tesseract Gateway
+entities.DZ/TesseractGateway.placements.name.maddy_holdingmaddy=Tesseract Gate (Maddy, Holding Maddy)
+entities.DZ/TesseractGateway.placements.name.default_closebehindplayer=Tesseract Gate (Default, Close Behind Player)
+entities.DZ/TesseractGateway.placements.name.mirror_closebehindplayer=Tesseract Gate (Mirror, Close Behind Player)
+entities.DZ/TesseractGateway.placements.name.default_nearestswitch=Tesseract Gate (Default, Nearest Switch)
+entities.DZ/TesseractGateway.placements.name.mirror_nearestswitch=Tesseract Gate (Mirror, Nearest Switch)
+entities.DZ/TesseractGateway.placements.name.default_touchswitches=Tesseract Gate (Default, Touch Switches)
+entities.DZ/TesseractGateway.placements.name.sprite=Sprite
+entities.DZ/TesseractGateway.placements.name.height=Height
+entities.DZ/TesseractGateway.placements.name.type=Type
 
 # Inferno Mirror
 entities.DZ/InfernoMirror.placements.name.inferno_mirror=Inferno Mirror
@@ -1154,6 +1160,9 @@ entities.DZ/LuckyBlock.placements.name.lucky_block=Lucky Block
 
 # Maddy Crystal Pedestal
 entities.DZ/MaddyCrystalPedestal.placements.name.maddy_crystal_pedestal=Maddy Crystal Pedestal
+
+# Maddy Crystal
+entities.DZ/MaddyCrystal.placements.name.maddy_crystal=Maddy Crystal
 
 # Madeline Bandage Dummy
 entities.DZ/MadelineBandageDummy.placements.name.madeline_bandage_dummy=Madeline Bandage Dummy
@@ -1540,6 +1549,16 @@ entities.DZ/NPC20_Madeline.placements.name.npc20_madeline=NPC20 Madeline
 # NPC Event Interact
 entities.DZ/NPCEventInteract.placements.name.npc_event_interact=NPC Event Interact
 
+# NPC Event Interact Trigger
+triggers.DZ/NpcEventInteractTrigger.placements.name.npc_event_interact_trigger=NPC Event Interact Trigger
+triggers.DZ/NpcEventInteractTrigger.attributes.description.npcName=Name used for logging and the default dialog key fallback.
+triggers.DZ/NpcEventInteractTrigger.attributes.description.dialogKey=Dialog key to display when the trigger fires. Falls back to DEFAULT_NPC_DIALOG_<npcName> if empty.
+triggers.DZ/NpcEventInteractTrigger.attributes.description.csFlag=Session flag set once the interaction has completed.
+triggers.DZ/NpcEventInteractTrigger.attributes.description.triggerFlag=Additional session flag set once the interaction has completed.
+triggers.DZ/NpcEventInteractTrigger.attributes.description.requireFlag=Session flag that must be set before the trigger is active.
+triggers.DZ/NpcEventInteractTrigger.attributes.description.onlyOnce=If the trigger should deactivate after firing once.
+triggers.DZ/NpcEventInteractTrigger.attributes.description.mode=OnEnter fires automatically when the player enters the trigger area. OnInteract requires the player to press the Talk/Interact button while inside the area.
+
 # Obsidian Shard
 entities.DZ/ObsidianShard.placements.name.obsidian_shard=Obsidian Shard
 entities.DZ/ObsidianShard.placements.name.isCollectible=Is Collectible
@@ -1801,6 +1820,23 @@ triggers.DZ/SizeChangeTrigger.placements.name.sizeDZ_CHange_trigger=Size Change 
 triggers.DZ/SizeChangeTrigger.placements.name.ability=Ability
 triggers.DZ/SizeChangeTrigger.placements.name.action=Action
 triggers.DZ/SizeChangeTrigger.placements.name.onlyOnce=Only Once
+
+# Session Flag Trigger
+triggers.DZ/SessionFlagTrigger.placements.name.session_flag_trigger=Session Flag Trigger
+triggers.DZ/SessionFlagTrigger.placements.name.sessionFlag=Session Flag
+triggers.DZ/SessionFlagTrigger.placements.name.flagState=Flag State
+triggers.DZ/SessionFlagTrigger.placements.name.triggerOnce=Trigger Once
+triggers.DZ/SessionFlagTrigger.placements.name.requiredFlag=Required Flag
+triggers.DZ/SessionFlagTrigger.placements.name.requiredFlagState=Required Flag State
+triggers.DZ/SessionFlagTrigger.placements.name.flagAction=Flag Action
+triggers.DZ/SessionFlagTrigger.placements.name.triggerMode=Trigger Mode
+triggers.DZ/SessionFlagTrigger.attributes.description.sessionFlag=Session flag to set (or toggle) when the trigger fires.
+triggers.DZ/SessionFlagTrigger.attributes.description.flagState=Value to assign to the session flag when Flag Action is SetValue.
+triggers.DZ/SessionFlagTrigger.attributes.description.triggerOnce=If true, the trigger only fires once per room/session.
+triggers.DZ/SessionFlagTrigger.attributes.description.requiredFlag=Optional session flag that must match Required Flag State for this trigger to fire.
+triggers.DZ/SessionFlagTrigger.attributes.description.requiredFlagState=Required state of Required Flag for this trigger to fire.
+triggers.DZ/SessionFlagTrigger.attributes.description.flagAction=Whether to set the flag to Flag State (SetValue) or invert its current value (Toggle).
+triggers.DZ/SessionFlagTrigger.attributes.description.triggerMode=Whether the flag is applied when the player enters (OnEnter) or leaves (OnLeave) the trigger.
 
 # Skin Swap Trigger
 triggers.DZ/SkinSwapTrigger.placements.name.skin_swap_trigger=Skin Swap Trigger

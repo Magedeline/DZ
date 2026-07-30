@@ -52,11 +52,11 @@ public abstract class IngesteInteractTrigger : Entity
         proceedToNextEvent = true;
         break;
       case "ch5_see_maddy":
-        Scene.Add(new Cs05SeeMaddy(player, 0));
+        Scene.Add(new CS07_SeeMaddy(player, 0));
         proceedToNextEvent = true;
         break;
       case "ch5_see_maddy_b":
-        Scene.Add(new Cs05SeeMaddy(player, 1));
+        Scene.Add(new CS07_SeeMaddy(player, 1));
         proceedToNextEvent = true;
         break;
       case "ch5_maddy_phone":

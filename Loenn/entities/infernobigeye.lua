@@ -1,0 +1,50 @@
+local viewportHandler = require("viewport_handler")
+local drawableSpriteStruct = require("structs.drawable_sprite")
+local utils = require("utils")
+
+local infernoBigEye = {}
+
+infernoBigEye.name = "DZ/InfernoBigEye"
+infernoBigEye.depth = 0
+infernoBigEye.placements = {
+    name = "inferno_big_eye"
+}
+
+local bodyTexture = "danger/DZ/templeeye/body00"
+local pupilTexture = "danger/DZ/templeeye/pupil"
+
+function infernoBigEye.draw(room, entity, viewport)
+    local roomX, roomY = viewportHandler.getRoomCoordinates(room)
+    local deltaX = roomX - entity.x
+    local deltaY = roomY - entity.y
+    local angle = math.atan2(deltaY, deltaX)
+    local offsetX = math.cos(angle) * 10
+    local offsetY = math.sin(angle) * 10
+
+    if math.abs(deltaX) < math.abs(offsetX) then
+        offsetX = deltaX
+    end
+
+    if math.abs(deltaY) < math.abs(offsetY) then
+        offsetY = deltaY
+    end
+
+    local pupilData = {
+        x = entity.x + offsetX,
+        y = entity.y + offsetY
+    }
+
+    local bodySprite = drawableSpriteStruct.fromTexture(bodyTexture, entity)
+    local pupilSprite = drawableSpriteStruct.fromTexture(pupilTexture, pupilData)
+
+    bodySprite:draw()
+    pupilSprite:draw()
+end
+
+function infernoBigEye.selection(room, entity)
+    local sprite = drawableSpriteStruct.fromTexture(bodyTexture, entity)
+
+    return sprite:getRectangle()
+end
+
+return infernoBigEye

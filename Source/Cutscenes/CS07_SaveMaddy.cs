@@ -1,224 +1,111 @@
-using Celeste.Entities;
+using Microsoft.Xna.Framework;
+using Monocle;
+using System.Collections;
+using System.Collections.Generic;
 
-namespace Celeste.Cutscenes {
-    [HotReloadable]
-    public class Cs07SaveMaddy(global::Celeste.Player player) : CutsceneEntity {
-        public const string FLAG = "FoundMaddy";
-        private const float walk_offset = 18f;
-        private const float end_position_offset = -24f;
-        private const float zoom_duration = 0.5f;
-        
-        private readonly global::Celeste.Player player = player ?? throw new ArgumentNullException(nameof(player));
-        private Entity maddyCrystal;
+namespace Celeste
+{
+    public class CS07_SaveMaddy : CutsceneEntity
+    {
+        public const string Flag = "foundMaddyInCrystal";
+        private Player player;
+        private MaddyCrystal maddy;
         private Vector2 playerEndPosition;
         private bool wasDashAssistOn;
-        private TheoCrystalPedestal crystalPedestal;
 
-        public override void OnBegin(Level level) {
-            InitializeEntities(level);
-            StoreDashAssistState();
+        public CS07_SaveMaddy(Player player)
+        {
+            this.player = player;
+        }
+
+        public override void OnBegin(Level level)
+        {
+            maddy = level.Tracker.GetEntity<MaddyCrystal>();
+            playerEndPosition = maddy.Position + new Vector2(-24f, 0.0f);
+            wasDashAssistOn = SaveData.Instance.Assists.DashAssist;
             Add(new Coroutine(Cutscene(level)));
         }
 
-        private void InitializeEntities(Level level) {
-            // Find the MaddyCrystal entity in the level
-            maddyCrystal = level.FirstOrDefault<Entity>(entity => {
-                return isMaddyCrystal(entity);
-
-                static bool isMaddyCrystal(object o) {
-                    if (o is Entity entity) return entity.GetType().Name == nameof(MaddyCrystal);
-
-                    return false;
-                }
-            });
-            // Find the TheoCrystalPedestal entity in the scene
-            crystalPedestal = Scene.Entities.FindFirst<TheoCrystalPedestal>();
-            // Set the player's end position relative to the MaddyCrystal's position
-            if (maddyCrystal != null) {
-                playerEndPosition = PlayerEndPosition1(maddyCrystal.Position);
-            }
-        }
-
-        private static Vector2 PlayerEndPosition1(Vector2 maddyCrystalPosition) {
-            return new Vector2(maddyCrystalPosition.X + end_position_offset, maddyCrystalPosition.Y);
-        }
-
-        private void StoreDashAssistState() {
-            wasDashAssistOn = SaveData.Instance.Assists.DashAssist;
-        }
-
-        private IEnumerator Cutscene(Level level) {
-            yield return SetupCutscene(level);
-            yield return WalkToMaddy();
-            yield return ShowDialogue();
-            yield return FinalizeCutscene(level);
-        }
-
-        private IEnumerator SetupCutscene(Level level) {
-            player.StateMachine.State = Player.StDummy;
-            player.StateMachine.Locked = true;
-            player.ForceCameraUpdate = true;
-            
-            level.Session.Audio.Music.Layer(6, 0f);
+        private IEnumerator Cutscene(Level level)
+        {
+            CS07_SaveMaddy cs05SaveTheo = this;
+            cs05SaveTheo.player.StateMachine.State = 11;
+            cs05SaveTheo.player.StateMachine.Locked = true;
+            cs05SaveTheo.player.ForceCameraUpdate = true;
+            level.Session.Audio.Music.Layer(6, 0.0f);
             level.Session.Audio.Apply();
-            
-            yield break;
-        }
-
-        private IEnumerator WalkToMaddy() {
-            if (maddyCrystal == null) yield break;
-            
-            yield return player.DummyWalkTo(maddyCrystal.X - walk_offset);
-            player.Facing = Facings.Right;
-        }
-
-        private IEnumerator ShowDialogue() {
-            yield return Textbox.Say("ch7_found_maddy", TryToBreakCrystal);
+            yield return cs05SaveTheo.player.DummyWalkTo(cs05SaveTheo.maddy.X - 18f);
+            cs05SaveTheo.player.Facing = Facings.Right;
+            yield return Textbox.Say("DZ_CH7_FOUND_MADDY", cs05SaveTheo.TryToBreakCrystal);
             yield return 0.25f;
+            yield return cs05SaveTheo.Level.ZoomBack(0.5f);
+            cs05SaveTheo.EndCutscene(level);
         }
 
-        private IEnumerator FinalizeCutscene(Level level) {
-            yield return Level.ZoomBack(zoom_duration);
-            EndCutscene(level);
-        }
-
-        private IEnumerator TryToBreakCrystal() {
-            yield return PrepareForCrystalBreak();
-            yield return ExecuteDash();
-            yield return CompleteBreakSequence();
-        }
-
-        private IEnumerator PrepareForCrystalBreak() {
-            if (crystalPedestal != null) {
-                crystalPedestal.Collidable = true;
-            }
-            
-            if (maddyCrystal == null) yield break;
-            
-            yield return player.DummyWalkTo(maddyCrystal.X);
+        private IEnumerator TryToBreakCrystal()
+        {
+            CS07_SaveMaddy cs05SaveTheo = this;
+            cs05SaveTheo.Scene.Entities.FindFirst<TheoCrystalPedestal>().Collidable = true;
+            yield return cs05SaveTheo.player.DummyWalkTo(cs05SaveTheo.maddy.X);
             yield return 0.1f;
-            yield return Level.ZoomTo(new Vector2(160f, 90f), 2f, zoom_duration);
-            
-            player.DummyAutoAnimate = false;
-            player.Sprite.Play("lookUp");
+            yield return cs05SaveTheo.Level.ZoomTo(new Vector2(160f, 90f), 2f, 0.5f);
+            cs05SaveTheo.player.DummyAutoAnimate = false;
+            cs05SaveTheo.player.Sprite.Play("lookUp");
             yield return 1f;
-        }
-
-        private IEnumerator ExecuteDash() {
-            SetupDashState();
-            
+            cs05SaveTheo.wasDashAssistOn = SaveData.Instance.Assists.DashAssist;
+            SaveData.Instance.Assists.DashAssist = false;
+            Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
+            MInput.Disabled = true;
+            cs05SaveTheo.player.OverrideDashDirection = new Vector2(0.0f, -1f);
+            cs05SaveTheo.player.StateMachine.Locked = false;
+            cs05SaveTheo.player.StateMachine.State = cs05SaveTheo.player.StartDash();
+            cs05SaveTheo.player.Dashes = 0;
             yield return 0.1f;
-            
-            while (!player.OnGround() || player.Speed.Y < 0f) {
-                player.Dashes = 0;
+            while (!cs05SaveTheo.player.OnGround() || cs05SaveTheo.player.Speed.Y < 0.0)
+            {
+                cs05SaveTheo.player.Dashes = 0;
                 Input.MoveY.Value = -1;
                 Input.MoveX.Value = 0;
                 yield return null;
             }
-            
-            RestorePlayerControl();
-        }
-
-        private void SetupDashState() {
-            SaveData.Instance.Assists.DashAssist = false;
-            Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
-            MInput.Disabled = true;
-            
-            player.OverrideDashDirection = new Vector2(0f, -1f);
-            player.StateMachine.Locked = false;
-            player.StateMachine.State = player.StartDash();
-            player.Dashes = 0;
-        }
-
-        private void RestorePlayerControl() {
-            player.OverrideDashDirection = null;
-            Input.MoveX.Value = 0;
-            Input.MoveY.Value = 0;
-            player.Speed = Vector2.Zero;
-            player.StateMachine.State = Player.StDummy;
-            player.StateMachine.Locked = true;
+            cs05SaveTheo.player.OverrideDashDirection = new Vector2?();
+            cs05SaveTheo.player.StateMachine.State = 11;
+            cs05SaveTheo.player.StateMachine.Locked = true;
             MInput.Disabled = false;
-            player.DummyAutoAnimate = true;
-        }
-
-        private IEnumerator CompleteBreakSequence() {
-            yield return player.DummyWalkToExact((int)playerEndPosition.X, true);
+            cs05SaveTheo.player.DummyAutoAnimate = true;
+            yield return cs05SaveTheo.player.DummyWalkToExact((int)cs05SaveTheo.playerEndPosition.X, true);
             yield return 1.5f;
         }
 
-        public override void OnEnd(Level level) {
-            // Ensure input is reset even if cutscene ends early
-            if (player != null) {
-                Input.MoveX.Value = 0;
-                Input.MoveY.Value = 0;
-                player.Speed = Vector2.Zero;
-                player.OverrideDashDirection = null;
-            }
-            
-            RestoreGameState(level);
-            PositionPlayer();
-            UpdateCameraAndAudio(level);
-            HandleFollowers();
-            UpdateCrystalState();
-            HandleMaddyCrystal();
-        }
-
-        private void RestoreGameState(Level level) {
+        public override void OnEnd(Level level)
+        {
             SaveData.Instance.Assists.DashAssist = wasDashAssistOn;
+            player.Position = playerEndPosition;
+            while (!player.OnGround())
+                player.MoveV(1f);
+            level.Camera.Position = player.CameraTarget;
             level.Session.SetFlag("foundMaddyInCrystal");
             level.ResetZoom();
-        }
-
-        private void PositionPlayer() {
-            player.Position = playerEndPosition;
-            while (!player.OnGround()) {
-                player.MoveV(1f);
-            }
-        }
-
-        private void UpdateCameraAndAudio(Level level) {
-            level.Camera.Position = player.CameraTarget;
             level.Session.Audio.Music.Layer(6, 1f);
             level.Session.Audio.Apply();
-        }
-
-        private void HandleFollowers() {
-            var followerList = new List<Follower>(player.Leader.Followers);
+            List<Follower> followerList = new List<Follower>(player.Leader.Followers);
             player.RemoveSelf();
-            
-            var newPlayer = new global::Celeste.Player(player.Position, player.DefaultSpriteMode);
-            Scene.Add(newPlayer);
-            
-            foreach (var follower in followerList) {
-                newPlayer.Leader.Followers.Add(follower);
-                follower.Leader = newPlayer.Leader;
+            level.Add(player = new Player(player.Position, player.DefaultSpriteMode));
+            foreach (Follower follower in followerList)
+            {
+                player.Leader.Followers.Add(follower);
+                follower.Leader = player.Leader;
             }
-            
-            newPlayer.Facing = Facings.Right;
-            newPlayer.IntroType = global::Celeste.Player.IntroTypes.None;
-        }
-
-        private void UpdateCrystalState() {
-            if (crystalPedestal != null) {
-                crystalPedestal.Collidable = false;
-                crystalPedestal.DroppedTheo = true;
-            }
-        }
-
-        private void HandleMaddyCrystal() {
-            if (maddyCrystal == null) return;
-            
-            maddyCrystal.Depth = 100;
-            
-            if (maddyCrystal is Actor maddyActor) {
-                maddyActor.Position = Vector2.Zero;
-                while (!maddyActor.OnGround()) {
-                    maddyActor.MoveV(1f);
-                }
-            }
+            player.Facing = Facings.Right;
+            player.IntroType = Player.IntroTypes.None;
+            MaddyCrystalPedestal first = Scene.Entities.FindFirst<MaddyCrystalPedestal>();
+            first.Collidable = false;
+            first.DroppedMaddy = true;
+            maddy.Depth = 100;
+            maddy.OnPedestal = false;
+            maddy.Speed = Vector2.Zero;
+            while (!maddy.OnGround())
+                maddy.MoveV(1f);
         }
     }
 }
-
-
-

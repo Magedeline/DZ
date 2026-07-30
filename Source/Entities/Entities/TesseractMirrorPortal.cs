@@ -192,7 +192,7 @@ namespace Celeste.Entities
       if (this.buffer == null)
         this.buffer = VirtualContent.CreateRenderTarget("temple-portal", 120, 64);
       Vector2 position = new Vector2((float) this.buffer.Width, (float) this.buffer.Height) / 2f;
-      MTexture mtexture = GFX.Game["objects/DZ/DZ/temple/portal/portal"];
+      MTexture mtexture = GFX.Game["objects/DZ/temple/portal/portal"];
       Engine.Graphics.GraphicsDevice.SetRenderTarget((RenderTarget2D) this.buffer);
       Engine.Graphics.GraphicsDevice.Clear(Color.Black);
       Draw.SpriteBatch.Begin();
@@ -217,7 +217,7 @@ namespace Celeste.Entities
       base.Render();
       if (this.buffer != null)
         Draw.SpriteBatch.Draw((Texture2D) (RenderTarget2D) this.buffer, this.Position + new Vector2((float) (-(double) this.Collider.Width / 2.0), (float) (-(double) this.Collider.Height / 2.0)), Color.White * this.bufferAlpha);
-      GFX.Game["objects/DZ/DZ/temple/portal/portalframe"].DrawCentered(this.Position);
+      GFX.Game["objects/DZ/temple/portal/portalframe"].DrawCentered(this.Position);
       Level scene = this.Scene as Level;
       for (int index = 0; index < this.debris.Length; ++index)
       {
@@ -232,7 +232,8 @@ namespace Celeste.Entities
 
     private void OnPlayer(global::Celeste.Player player)
     {
-      if (!this.canTrigger)
+      Level level = this.SceneAs<Level>();
+      if (!this.canTrigger || level == null || !level.Session.GetFlag(this.GetUnlockedFlag()))
         return;
       this.canTrigger = false;
       this.Scene.Add((Entity)new CS07_MirrorPortal(player, this));
@@ -275,7 +276,7 @@ namespace Celeste.Entities
         : base(position)
       {
         this.Depth = 9500;
-        this.textures = GFX.Game.GetAtlasSubtextures("objects/DZ/DZ/temple/portal/reflection");
+        this.textures = GFX.Game.GetAtlasSubtextures("objects/DZ/temple/portal/reflection");
         Vector2 vector2 = new Vector2(10f, 4f);
         this.offsets = new Vector2[this.textures.Count];
         for (int index = 0; index < this.offsets.Length; ++index)
@@ -293,7 +294,7 @@ namespace Celeste.Entities
 
       public override void Render()
       {
-        GFX.Game["objects/DZ/DZ/temple/portal/surface"].DrawCentered(this.Position);
+        GFX.Game["objects/DZ/temple/portal/surface"].DrawCentered(this.Position);
       }
     }
 

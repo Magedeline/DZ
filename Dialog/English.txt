@@ -4195,26 +4195,29 @@ But there something that I need you{n}know better about this places.
 what do you mean?
 
 [MADELINE right sad]
-remember Gaster said thing that it will get interesting?
+remember I was pulled from the vortex?
 
 [BADELINE left concerned]
 Yeah... so?
 
 [MADELINE right distracted]
 I'm very sure that seekers are not the only one here.
-I seen many new monster and demons from this realm.
+I seen many new monster and demons from this dimension.
 
 [MADELINE right sad]
 and I think that those monster want to leave this dimension,
-after what they have gone through.
+after all of there lost and grief.
 
 [MADELINE right sadder]
 They were {4.0}so nice to me.
 
+[MADELINE right upset]
+But to other weren't.
+
 {trigger 1 Madeline turns around}
 
 [BADELINE left angry]
-so... your saying that legend is actually true?
+so... what your saying is actually true?
 
 {trigger 2 wait a bit}
 
@@ -4225,11 +4228,11 @@ yes it is true.
 But don't get too cocky.
 {trigger 3 kirby turns back, zoom out, room gets brighter}
 
-[RALSEI left sad]
+[BADELINE left sad]
 What do you mean?
 
 [MADELINE right sad]
-What I mean is there tons of patrol around this places.
+What I mean is there loaded of darkness.
 
 [MADELINE right sadder]
 I can {*}feel{/*} it.
@@ -4238,6 +4241,7 @@ These {~}darkness{/~} are consuming me...
 [MADELINE right sad]
 and the main power source that they need is me.
 I'm the key for them to break us out the barrier for a little bit.
+however, I cannot do this on my own.
 {trigger 0 zoom back in}
 
 [BADELINE left concerned]
@@ -4252,7 +4256,7 @@ DZ_CH7_SEE_MADDY_B=
 Okay I do not think that place is more like darker than dark...
 
 [MADELINE left angry]
-...and if so then where there monster?
+...and if so then where these monster?
 
 [MADELINE right angry]
 PAPYRUS! DON'T YOU DARE TOUCH MY STRAWBERRY.
@@ -4270,6 +4274,8 @@ Thats Okay you can explain to me later.
 [MADELINE right sad]
 Yeah... you're right.
 He was a funny bone man.
+
+[MADELINE right upset]
 But his borther Sans took this joke abit too serious.
 
 [BADELINE left scoff]
@@ -4289,11 +4295,11 @@ DZ_CH7_FOUND_MADDY=
 I knew you'd make it!
 
 [MADELINE right sad]
-Now hurry before they come back!
+Now hurry before they noticed us!
 
 [BADELINE left concerned]
 Were on it.
-{trigger 0 Attempt to break the Maddy crystal, but it just falls to the ground}
+{trigger 0 Attempt to break the crystal, but it just falls to the ground}
 
 [MADELINE right surprised]
 Woah there {0.3} Watch it!
@@ -4383,42 +4389,6 @@ DZ_CH9_BADELINE_ENDING_EASTEREGG=
 [BADELINE right normal]
 Debug Mode... interesting.
 I wonder what secrets you'll find.
-
-DZ_CH8_PLAT=
-[BADELINE right normal]
-{+MADELINE}, you're awake!
-
-[MADELINE left normal]
-yeah well thanks {0.5}but...
-
-[MADELINE left distracted]
-How long I have been knock out?
-
-[BADELINE right concerned]
-about 6 hours.
-
-[MADELINE left upset]
-...
-Bruh I have been knock out for 6 damn hour?
-sheesh
-
-[MADELINE left distracted]
-Although did you save me?
-
-[BADELINE right concerned]
-No.
-
-[BADELINE right normal]
-But Kirby did.
-
-[MADELINE left normal]
-That's wonderful.
-
-[MADELINE left peaceful]
-Thank you Kirby for getting me out of there.
-
-[RALSEI right distracted]
-Were glad we were in it together.
 
 DZ_CH8_MADELINE_INTRO=
 [BADELINE right normal]
@@ -4608,6 +4578,8 @@ The same reason that he torture so many of our own monsterkind.
 
 [MADELINE left sad]
 Yeah it was pretty rough not gonna lied.
+
+DZ_CH8_MADELINE_SAY_EVILGOD=
 
 DZ_CH8_MADELINE_ASK_MONSTER=
 [KIRBY left normal]
@@ -5154,7 +5126,7 @@ DZ_CH8_CHARA_BOSS_TIRED_B=
 [CHARA right angry]
 YOU'RE JUST ANOTHER IDIOTIC MOUNTAIN CLIMBER!!!
 
-DZ_H8DZ_CHARA_BOSS_TIRED_C=
+DZ_CH8_CHARA_BOSS_TIRED_C=
 [CHARA right angry]
 UGH!!!
 
@@ -5162,13 +5134,26 @@ DZ_CH8_CHARA_BOSS_MIDDLE=
 [CHARA right angry]
 You know what... {0.4} fine!
 Prove to me if your really are a fighter.
-Do not disapointed me ever Again...!
+Do not disappointed me ever Again...!
 
 DZ_CH8_CHARA_BOSS_AFTER_MIDDLE=
 [CHARA right angry]
-Still fighting?
-You won't give up, will you...
-Then let's see what you've really got!
+Now Look what you done to this
+can you see of what you causing the nature to fall into this pity hell!!!?
+
+[BADELINE left angryalt]
+that wasn't us it was you who doing this
+
+[BADELINE left yell]
+so please give your soul to madeline!
+
+[CHARA right angry]
+My Souls!?
+Ugh thats it
+if I am going down
+
+[CHARA right freakD]
+I'll take you with me!!!
 
 DZ_CH8_CHARA_BOSS_ENDING=
 [CHARA right upset flip]

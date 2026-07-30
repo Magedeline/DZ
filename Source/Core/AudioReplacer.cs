@@ -146,6 +146,11 @@ public static class AudioReplacer
         ["event:/ui/world_map/chapter/tab_roll_left"]             = "event:/DZ/ui/world_map/chapter/tab_roll_left",
         ["event:/ui/world_map/chapter/tab_roll_right"]            = "event:/DZ/ui/world_map/chapter/tab_roll_right",
         ["event:/ui/world_map/icon/assist_skip"]                  = "event:/DZ/ui/world_map/icon/assist_skip",
+
+        // Music - Starjump
+        ["event:/music/lvl6/starjump"]                            = "event:/DZ/music/lvl8/starjump",
+
+        // UI World Map Icons
         ["event:/ui/world_map/icon/flip_left"]                    = "event:/DZ/ui/world_map/icon/flip_left",
         ["event:/ui/world_map/icon/flip_right"]                   = "event:/DZ/ui/world_map/icon/flip_right",
         ["event:/ui/world_map/icon/roll_left"]                    = "event:/DZ/ui/world_map/icon/roll_left",

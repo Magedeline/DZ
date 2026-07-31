@@ -49,7 +49,7 @@ namespace Celeste.Cutscenes
             // Try to create phone sprite
             try
             {
-                phoneSprite = GFX.SpriteBank.Create("phone");
+                phoneSprite = GFX.SpriteBank.Create("payphone");
                 phoneSprite.Play("idle");
             }
             catch

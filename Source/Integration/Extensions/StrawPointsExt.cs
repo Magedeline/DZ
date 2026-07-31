@@ -19,7 +19,7 @@ namespace DZ
     public StrawBerryPointsExt(Vector2 position, bool ghostberry, int index, bool moonberry, bool popstarberry)
       : base(position)
     {
-      this.Add((Component) (this.sprite = GFX.SpriteBank.Create("starwberry")));
+      this.Add((Component) (this.sprite = GFX.SpriteBank.Create("strawberry")));
       this.Add((Component) (this.light = new VertexLight(Color.White, 1f, 16, 24)));
       this.Add((Component) (this.bloom = new BloomPoint(1f, 12f)));
       this.Depth = -2000100;

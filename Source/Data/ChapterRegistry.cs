@@ -132,7 +132,7 @@ internal static class ChapterRegistry
         Register(chapters, new AreaMapData.ChapterDef
         {
             Number = 16, SID = AreaModeExtender.Build0SID("16_Corruption"), Name = "Organ Garden of Despair",
-            Icon = "areas/DZ/corruption", Has1 = true, Has2 = true, HasDSide = true, HasDXSide = false,
+            Icon = "areas/DZ/corruption", Has1 = false, Has2 = false, HasDSide = false, HasDXSide = false,
         });
 
         // Chapter 17: Epilogue (A-Side only)

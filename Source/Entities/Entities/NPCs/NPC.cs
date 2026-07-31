@@ -626,7 +626,7 @@ namespace Celeste.Entities
             {
                 Remove(Sprite);
             }
-            Add(Sprite = GFX.SpriteBank.Create("phone"));
+            Add(Sprite = GFX.SpriteBank.Create("payphone"));
             Sprite.CenterOrigin();
         }
     }

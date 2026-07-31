@@ -205,6 +205,13 @@ public class DZModule : EverestModule {
         Logger.Log(LogLevel.Info, nameof(DZModule), "DZ mod unloaded");
     }
 
+    public override void LoadContent(bool firstLoad) {
+        base.LoadContent(firstLoad);
+
+        // Forward content initialization (custom sprite banks) to the BossesExample integration.
+        global::Celeste.Mod.DZ.BossesExample.BossesExampleModule.LoadContent(firstLoad);
+    }
+
     private static void OnEngineUpdate(On.Monocle.Engine.orig_Update orig, Monocle.Engine self, GameTime gameTime)
     {
         orig(self, gameTime);

@@ -55,6 +55,14 @@ namespace Celeste.Mod.DZ.HotReload
             On.Monocle.Scene.Update -= OnSceneUpdate;
             On.Monocle.RendererList.Update -= OnRendererListUpdate;
             On.Monocle.RendererList.BeforeRender -= OnRendererListBeforeRender;
+
+            // Clear any active freeze so a hot-reload doesn't leave the overlay
+            // entity orphaned in the scene (it belongs to the assembly being unloaded).
+            _cachedOverlay?.RemoveSelf();
+            _cachedOverlay = null;
+            _overlayScene = null;
+            _isFrozen = false;
+            _lastError = null;
         }
 
         private static void OnEngineUpdate(On.Monocle.Engine.orig_Update orig, Engine self, GameTime gameTime)

@@ -304,6 +304,7 @@
     <Anim id="fade4" path="normal" delay=".07" frames="44-46,46*10,47-50"/>
 	  <Anim id="fade5" path="normal" delay=".07" frames="52,53,54,53,54,53,54,53,54,53,54,53,54-59"/>
 	  <Anim id="fade_wow" path="wow/normal" delay=".1" frames="52-66"/>
+	  <Anim id="fade_determination" path="normal" delay=".07" frames="52,53,54,53,54,53,54,53,54,53,54,53,54-59"/>
   </strawberry>
 
   <ghostberry path="collectables/DZ/ghostberry/" start="idle">
@@ -3802,6 +3803,123 @@
       <Loop id="idle" path="0" delay="0.15" frames="0-0" />
       <Anim id="vanish" path="1" loop="false" delay="0.05" frames="1-1" />
     </mysteryman>
+
+  <!-- Sprite bank entries wired up for entities whose art existed but had no XML registration -->
+
+  <block_gate path="objects/DZ/block_gate/" start="idle">
+    <Loop id="idle" path="idle" frames="0" delay="0.1" />
+  </block_gate>
+
+  <bounty_board path="objects/DZ/bounty_board/" start="idle">
+    <Loop id="idle" path="idle" frames="0" delay="0.1" />
+  </bounty_board>
+
+  <bounty_reward path="objects/DZ/bounty_reward/" start="idle">
+    <Loop id="idle" path="idle" frames="0" delay="0.1" />
+  </bounty_reward>
+
+  <butterscotch_pie path="objects/DZ/butterscotch_pie/" start="idle">
+    <Loop id="idle" path="idle" frames="0" delay="0.1" />
+  </butterscotch_pie>
+
+  <crystal_heart_gate path="objects/DZ/crystal_heart_gate/" start="closed">
+    <Loop id="closed" path="idle" frames="0" delay="0.1" />
+    <Loop id="opening" path="idle" frames="0" delay="0.1" />
+    <Loop id="open" path="idle" frames="0" delay="0.1" />
+  </crystal_heart_gate>
+
+  <echo_orb path="objects/DZ/echo_orb/" start="idle">
+    <Loop id="idle" path="idle" frames="0" delay="0.1" />
+  </echo_orb>
+
+  <explosive_barrel path="objects/DZ/explosive_barrel/" start="idle">
+    <Loop id="idle" path="idle" frames="0" delay="0.1" />
+  </explosive_barrel>
+
+  <firewall_switch path="objects/DZ/firewall_switch/" start="unpressed">
+    <Loop id="unpressed" path="idle" frames="0" delay="0.1" />
+    <Loop id="pressed" path="idle" frames="0" delay="0.1" />
+  </firewall_switch>
+
+  <flame_extinguisher path="objects/DZ/flame_extinguisher/" start="activate">
+    <Loop id="activate" path="idle" frames="0" delay="0.1" />
+  </flame_extinguisher>
+
+  <spider_treat path="objects/DZ/spider_treat/" start="idle">
+    <Loop id="idle" path="idle" frames="0" delay="0.1" />
+  </spider_treat>
+
+  <staircase_switch path="objects/DZ/staircase_switch/" start="unpressed">
+    <Loop id="unpressed" path="idle" frames="0" delay="0.1" />
+    <Loop id="pressed" path="idle" frames="0" delay="0.1" />
+  </staircase_switch>
+
+  <titan_crown path="objects/DZ/titan_crown/" start="idle">
+    <Loop id="idle" path="idle" frames="0" delay="0.1" />
+  </titan_crown>
+
+  <toriel_oven path="objects/DZ/toriel_oven/" start="closed">
+    <Loop id="closed" path="idle" frames="0" delay="0.1" />
+    <Loop id="open" path="idle" frames="0" delay="0.1" />
+  </toriel_oven>
+
+  <void_barrier path="objects/DZ/void_barrier/" start="active">
+    <Loop id="active" path="idle" frames="0" delay="0.1" />
+    <Loop id="disabled" path="idle" frames="0" delay="0.1" />
+  </void_barrier>
+
+  <voidstarberry path="objects/DZ/voidstarberry/" start="idle">
+    <Loop id="idle" path="idle" frames="0" delay="0.1" />
+  </voidstarberry>
+
+  <wish_orb path="objects/DZ/wish_orb/" start="idle">
+    <Loop id="idle" path="idle" frames="0" delay="0.1" />
+  </wish_orb>
+
+  <roxus path="objects/DZ/npc_roxus/" start="idle">
+    <Loop id="idle" path="idle" frames="0" delay="0.1" />
+  </roxus>
+
+  <temmie path="objects/DZ/npc_temmie/" start="idle">
+    <Loop id="idle" path="idle" frames="0" delay="0.1" />
+  </temmie>
+
+  <cerberus_body path="characters/DZ/flame_cerberus/" start="idle">
+    <Loop id="idle" path="idle" frames="0" delay="0.1" />
+    <Loop id="walk" path="roaming" frames="0" delay="0.1" />
+    <Loop id="attack" path="attacking" frames="0" delay="0.1" />
+    <Loop id="triple_attack" path="triple_attack" frames="0" delay="0.1" />
+    <Loop id="stunned" path="stunned" frames="0" delay="0.1" />
+    <Anim id="defeat" path="defeat" frames="0" delay="0.1" />
+  </cerberus_body>
+
+  <titan_shield path="objects/DZ/titan_squire/" start="idle">
+    <Loop id="idle" path="idle" frames="0" delay="0.1" />
+  </titan_shield>
+
+  <titan_sword path="objects/DZ/titan_squire/" start="idle">
+    <Loop id="idle" path="idle" frames="0" delay="0.1" />
+  </titan_sword>
+
+  <swinging_door_left path="objects/DZ/swinging_door/" start="closed">
+    <Loop id="closed" path="idle" frames="0" delay="0.1" />
+  </swinging_door_left>
+
+  <swinging_door_right path="objects/DZ/swinging_door/" start="closed">
+    <Loop id="closed" path="idle" frames="0" delay="0.1" />
+  </swinging_door_right>
+
+  <gondolaDarkness path="objects/DZ/gondola_mod_darkness/" start="appear">
+    <Loop id="appear" path="idle" frames="0" delay="0.1" />
+  </gondolaDarkness>
+
+  <wispy_woods path="objects/DZ/npc10_wispy/" start="idle">
+    <Loop id="idle" path="idle" frames="0" delay="0.1" />
+  </wispy_woods>
+
+  <towerObstacle path="objects/DZ/tower_obstacle_factory/" start="idle">
+    <Loop id="idle" path="idle" frames="0" delay="0.1" />
+  </towerObstacle>
 
 </Sprites>
 

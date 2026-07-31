@@ -167,15 +167,15 @@ namespace Celeste.Cutscenes
         private IEnumerator Cutscene(Level level)
         {
             level.Flash(Color.DarkRed * 0.5f, true);
-            yield return Textbox.Say("DZ_SOULBARRIERDZ_CH16_ELS_INTRO");
+            yield return Textbox.Say("DZ_SOULBARRIER_ELS_INTRO");
 
             SpawnBossGroup(barrier.Center, "Chapter16Els", "els");
             yield return 0.5f;
             StartBattleAfterDelay(0.5f);
-            yield return Textbox.Say("DZ_SOULBARRIERDZ_CH16_ELS_FIGHT");
+            yield return Textbox.Say("DZ_SOULBARRIER_ELS_FIGHT");
 
             while (!battleWon) yield return null;
-            yield return Textbox.Say("DZ_SOULBARRIERDZ_CH16_ELS_DEFEAT");
+            yield return Textbox.Say("DZ_SOULBARRIER_ELS_DEFEAT");
             BreakBarrierAfterDelay(0.3f);
             yield return 1f;
 

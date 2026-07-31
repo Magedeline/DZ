@@ -11,10 +11,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
     - name: Download Everest stripped lib
-      uses: robinraju/release-downloader@v1.4
+      uses: robinraju/release-downloader@v1
       with:
         repository: EverestAPI/Everest
         latest: true
@@ -24,7 +24,9 @@ jobs:
       run: unzip lib-stripped.zip
 
     - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
     - name: Install dependencies
       run: dotnet restore
     - name: Build
@@ -33,14 +35,8 @@ jobs:
         CelestePrefix: ${{ github.workspace }}/lib-stripped
 
     - name: Upload Artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: DZ
-        path: |
-          everest.yaml
-          bin
-          Ahorn/**/*
-          Audio/**/*
-          Dialog/**/*
-          Graphics/**/*
-          Loenn/**/*
+        path: DZ.zip
+        if-no-files-found: error

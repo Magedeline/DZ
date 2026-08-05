@@ -273,14 +273,9 @@ namespace DZ
 
         private static char getCurrentSide(AreaKey areaKey)
         {
-            // Convert AreaMode to side character
-            switch ((int)areaKey.Mode)
-            {
-                case 0: return 'A'; // Normal
-                case 1: return 'B'; // BSide
-                case 2: return 'C'; // CSide
-                default: return 'A';
-            }
+            // Convert AreaMode to side character via the canonical DzSideMap so that
+            // mode 3 (D-Side) correctly maps to 'D' instead of silently falling back to 'A'.
+            return DzSideMap.CharFromMode((int)areaKey.Mode);
         }
 
         private static void checkSideUnlock(AreaKey areaKey)

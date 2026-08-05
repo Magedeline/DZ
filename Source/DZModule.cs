@@ -98,6 +98,12 @@ public class DZModule : EverestModule {
         // Kirby health system
         global::DZ.KirbyHealthSystemHooks.Load();
 
+#if DEBUG
+        // Sprite/editor contract validator — dev builds only, deferred until
+        // after content is loaded. Has no runtime cost in Release builds.
+        global::DZ.SpriteContractValidator.RunAllDeferred();
+#endif
+
         // Entity-level hooks (IL patches, renderer hooks, etc.)
         BirdPathSafetyHooks.Load();
         global::Celeste.Entities.DesoloZantasTape.Load();

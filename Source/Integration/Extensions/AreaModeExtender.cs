@@ -111,6 +111,11 @@ public static class AreaModeExtender
 
     public static string GetSideFolder(AreaMode mode) => GetSideFolder((int)mode);
 
+    // TODO(refactor): GetSideFolder, GetSideLabel, GetModeName, SideFolders, SideSuffixes
+    // duplicate the mapping that now lives canonically in DzSideMap (Source/Core/DzSideMap.cs).
+    // A follow-up PR should make these methods delegate to DzSideMap after confirming no callers
+    // depend on the exact return-value format.  AreaMapData has a similar overlap (see
+    // docs/DZ-REFACTOR-NOTES.md § "Known unresolved ownership overlap").
     public static string GetSideFolder(int modeIndex)
     {
         if (modeIndex < 0 || modeIndex >= SideFolders.Length)
@@ -119,6 +124,9 @@ public static class AreaModeExtender
         return SideFolders[modeIndex];
     }
 
+    // TODO(refactor): BuildDSideSID handles any side (A/B/C/D), not just D-Side.
+    // Prefer DzSideMap.BuildSid() for new callers; rename this in the follow-up
+    // ownership-consolidation PR (docs/DZ-REFACTOR-NOTES.md § "Follow-up Work").
     public static string BuildDSideSID(AreaMode mode, string mapName) => BuildDSideSID((int)mode, mapName);
 
     public static string BuildDSideSID(int modeIndex, string mapName)

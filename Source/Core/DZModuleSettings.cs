@@ -100,6 +100,15 @@ namespace Celeste.Mod.DZ
         [DefaultButtonBinding(0, Keys.F12)]
         public ButtonBinding HotReloadUIBinding { get; set; }
 
+        /// <summary>
+        /// When enabled, the side-selection diagnostic logger emits structured log
+        /// entries at major lifecycle/selection/collection boundaries (area entry,
+        /// SID evaluation, mode-array inspection). Off by default — has no runtime
+        /// cost unless explicitly enabled. See docs/DZ-REFACTOR-NOTES.md for details.
+        /// </summary>
+        [SettingIgnore]
+        public bool EnableSideDiagnostics { get; set; }
+
         #endregion
 
         #region Overworld 3D Settings
@@ -193,6 +202,7 @@ namespace Celeste.Mod.DZ
             HotReloadShowUI = true;
             HotReloadSound = true;
             HotReloadVerbose = false;
+            EnableSideDiagnostics = false;
 
             // Reset overworld settings
             EnableCustomMountainModels = true;

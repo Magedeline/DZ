@@ -270,6 +270,12 @@ namespace Celeste.Entities
                         yield break;
 
                     AttackStep step = customAttackSteps[i];
+
+                    // Reshape the battleground before the attack that wants it,
+                    // so the arena is already moving as the telegraph starts.
+                    if (!string.IsNullOrEmpty(step.Arena))
+                        global::Celeste.Bosses.BattleArenaDirector.Get(Scene)?.Apply(step.Arena);
+
                     TryExecuteNamedAttack(step.Action);
 
                     float waitTime = step.Delay > 0f ? step.Delay : GetDefaultAttackDelay(step.Action);
@@ -525,8 +531,33 @@ namespace Celeste.Entities
                 .ToLowerInvariant();
         }
 
+        /// <summary>
+        /// Placeholder action for an arena-only step. Matches no attack, so it
+        /// reshapes the battleground and waits.
+        /// </summary>
+        private const string ArenaOnlyAction = "arenaonly";
+
         private AttackStep ParseAttackSequenceEntry(string token)
         {
+            // Optional arena profile: "Attack#profile", combinable with the delay
+            // grammar as "Attack#profile:1.2". Stripped before the ':'/'@' split
+            // because those two are already the delay/arg separators — reusing
+            // one of them would make "Attack@1.4" ambiguous.
+            string arena = string.Empty;
+            int hash = token.IndexOf('#');
+            if (hash >= 0)
+            {
+                int end = token.IndexOfAny(new[] { ':', '@' }, hash);
+                if (end < 0) end = token.Length;
+                arena = token.Substring(hash + 1, end - hash - 1).Trim();
+
+                // A bare "#profile:2.0" step (reshape the arena, then wait) has no
+                // attack name. Substitute a placeholder no-op so the delay is not
+                // mistaken for one — TryExecuteNamedAttack ignores unknown actions.
+                string head = token.Substring(0, hash).Trim();
+                token = (head.Length > 0 ? head : ArenaOnlyAction) + token.Substring(end);
+            }
+
             string[] parts = token.Split(new[] { ':', '@' }, StringSplitOptions.RemoveEmptyEntries);
             string action = parts.Length > 0 ? parts[0].Trim() : string.Empty;
             float delay = GetDefaultAttackDelay(action);
@@ -538,7 +569,7 @@ namespace Celeste.Entities
             if (parts.Length > 2)
                 float.TryParse(parts[2], NumberStyles.Float, CultureInfo.InvariantCulture, out arg);
 
-            return new AttackStep(action, delay, arg);
+            return new AttackStep(action, delay, arg, arena);
         }
 
         private float GetDefaultAttackDelay(string action)

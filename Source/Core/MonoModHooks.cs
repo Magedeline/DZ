@@ -755,6 +755,33 @@ namespace DZ
         //
         // =====================================================================
 
+        // Delegate matching the constructor signature
+        // For constructors, the instance is passed as 'self' after orig
+        private delegate void orig_FlingBirdIntro_Ctor(object self, EntityData data, Vector2 offset);
+
+        private static void Hook_FlingBirdIntro_Ctor(orig_FlingBirdIntro_Ctor orig, object self, EntityData data, Vector2 offset)
+        {
+            // Call the original constructor
+            orig(self, data, offset);
+
+            // Add any custom logic here if needed
+            // For example, storing a reference or logging
+            try
+            {
+                var settings = global::Celeste.Mod.DZ.DZModule.Settings;
+                if (settings?.DebugMode == true)
+                {
+                    Logger.Log(LogLevel.Verbose, "DZ",
+                        $"[Hook] FlingBirdIntro constructor called at position {offset}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(LogLevel.Warn, "DZ",
+                    $"[Hook] Error in FlingBirdIntro constructor hook: {ex.Message}");
+            }
+        }
+
         // =====================================================================
         //  SPRITE.PLAY GUARD — CommunalHelper PlayerVisualModifier compatibility
         // =====================================================================
@@ -785,17 +812,6 @@ namespace DZ
                 // KeyNotFoundException for IDs they don't recognise, even when the Sprite itself
                 // has the animation. Swallow these silently to match the guard's intent.
             }
-        }
-
-        private delegate void orig_FlingBirdIntro_Ctor(Celeste.Entities.FlingBirdIntro self, EntityData data, Vector2 levelOffset);
-
-        private static void Hook_FlingBirdIntro_Ctor(orig_FlingBirdIntro_Ctor orig, Celeste.Entities.FlingBirdIntro self, EntityData data, Vector2 levelOffset)
-        {
-            // Call original constructor
-            orig(self, data, levelOffset);
-
-            // FlingBirdIntro is now initialized and ready for use with EnhancedBirdNPC
-            // CS19_MissTheBird will find this instance and use its data
         }
     }
 }

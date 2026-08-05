@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Sprites>
-  <DZ_heartgem0 path="collectables/DZ/heartgem/0/" start="idle">
-    <Center />
-    <Loop id="idle" path="spin" frames="0" />
-    <Loop id="spin" path="spin" frames="0*10,1-10" delay="0.08"/>
-    <Loop id="fastspin" path="spin"  frames="1-10" delay="0.08"/>
-  </DZ_heartgem0>
+	<DZheartgem0 path="collectables/DZ/heartgem/0/" start="idle">
+		<Center />
+		<Loop id="idle" path="spin" frames="0" />
+		<Loop id="spin" path="spin" frames="0*10,1-10" delay="0.08"/>
+		<Loop id="fastspin" path="spin" frames="1-10" delay="0.08"/>
+	</DZheartgem0>
 
-  <DZ_heartgem1 path="collectables/DZ/heartgem/1/" start="idle">
-    <Center />
-    <Loop id="idle" path="spin" frames="0" />
-    <Loop id="spin" path="spin" frames="0*10,1-10" delay="0.08"/>
-    <Loop id="fastspin" path="spin" frames="1-10" delay="0.08"/>
-  </DZ_heartgem1>
-	
-  <DZ_heartgem2 path="collectables/DZ/heartgem/2/" start="idle">
-    <Center />
-    <Loop id="idle" path="spin" frames="0" />
-    <Loop id="spin" path="spin" frames="0*10,1-10" delay="0.08"/>
-    <Loop id="fastspin" path="spin" frames="1-10" delay="0.08"/>
-  </DZ_heartgem2>
+	<DZheartgem1 path="collectables/DZ/heartgem/1/" start="idle">
+		<Center />
+		<Loop id="idle" path="spin" frames="0" />
+		<Loop id="spin" path="spin" frames="0*10,1-10" delay="0.08"/>
+		<Loop id="fastspin" path="spin" frames="1-10" delay="0.08"/>
+	</DZheartgem1>
 
-  <DZ_heartgem3 path="collectables/DZ/heartgem/3/" start="idle">
-    <Center />
-    <Loop id="idle" path="spin" frames="0" />
-    <Loop id="spin" path="spin" frames="0*10,1-10" delay="0.08"/>
-    <Loop id="fastspin" path="spin" frames="1-10" delay="0.08"/>
-  </DZ_heartgem3>
+	<DZheartgem2 path="collectables/DZ/heartgem/2/" start="idle">
+		<Center />
+		<Loop id="idle" path="spin" frames="0" />
+		<Loop id="spin" path="spin" frames="0*10,1-10" delay="0.08"/>
+		<Loop id="fastspin" path="spin" frames="1-10" delay="0.08"/>
+	</DZheartgem2>
 
-  <heartgem4 path="collectables/DZ/heartgem/4/" start="idle">
-    <Center />
-    <Loop id="idle" path="" frames="0" />
-    <Loop id="spin" path="" frames="0*10,1-10" delay="0.08"/>
-    <Loop id="fastspin" path="" frames="1-10" delay="0.08"/>
-    <Anim id="break" path="" frames="11-32" delay="0.07"/>
-  </heartgem4>
+	<DZheartgem3 path="collectables/DZ/heartgem/3/" start="idle">
+		<Center />
+		<Loop id="idle" path="spin" frames="0" />
+		<Loop id="spin" path="spin" frames="0*10,1-10" delay="0.08"/>
+		<Loop id="fastspin" path="spin" frames="1-10" delay="0.08"/>
+	</DZheartgem3>
+
+	<DZheartgem4 path="collectables/DZ/heartgem/4/" start="idle">
+		<Center />
+		<Loop id="idle" path="" frames="0" />
+		<Loop id="spin" path="" frames="0*10,1-10" delay="0.08"/>
+		<Loop id="fastspin" path="" frames="1-10" delay="0.08"/>
+		<Anim id="break" path="" frames="11-32" delay="0.07"/>
+	</DZheartgem4>
 
   <DZ_save path="save/DZ/saveIcon" start="start">
     <Center />
@@ -67,12 +67,16 @@
     <Origin x="6" y="6" />
     <Justification x="0.5" y="0.5" />
     
-    <Anim id="heart_full" path="heart_full" delay="0.1" frames="0-10" />
-    <Anim id="heart_empty" path="heart_empty" delay="0.1" frames="0" />
-    <Anim id="heart_half" path="heart_half" delay="0.1" frames="0-10" />
-    <Loop id="heart_beat" path="heart_full" delay="0.15" frames="0-10" />
-    <Anim id="heart_damage" path="heart_empty" delay="0.05" frames="0" goto="heart_empty" />
-    <Anim id="heart_heal" path="heart_full" delay="0.08" frames="0-10" goto="heart_full" />
+    <!-- NOTE: the original heart_full/heart_empty/heart_half art lived at
+         Gui/kirby/ and Gui/DZ/kirby/ (see objects.txt) and is no longer in the
+         repo, so these are remapped onto the healthbar/DZ art that does exist.
+         Swap the paths back if that art is restored. -->
+    <Anim id="heart_full" path="heart" delay="0.1" frames="0-10" />
+    <Anim id="heart_empty" path="heart" delay="0.1" frames="24" />
+    <Anim id="heart_half" path="heart" delay="0.1" frames="12" />
+    <Loop id="heart_beat" path="heart" delay="0.15" frames="0-10" />
+    <Anim id="heart_damage" path="heartdamage" delay="0.05" frames="0-9" goto="heart_empty" />
+    <Anim id="heart_heal" path="heartcreate" delay="0.08" frames="0-13" goto="heart_full" />
   </gui_kirby_health>
   
 </Sprites>

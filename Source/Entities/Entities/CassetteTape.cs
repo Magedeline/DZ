@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Monocle;
 using System;
 using System.Collections;
+using DZ;
 
 namespace Celeste.Entities
 {
@@ -185,6 +186,9 @@ namespace Celeste.Entities
             if (level != null)
             {
                 level.Session.SetFlag($"cassetteTape_{tapeId}_collected", true);
+
+                // Activate TapeBlockManager immediately
+                ActivateTapeBlocks(level);
             }
 
             // Visual/audio feedback
@@ -236,6 +240,83 @@ namespace Celeste.Entities
             }
 
             RemoveSelf();
+        }
+
+        /// <summary>
+        /// Activates the TapeBlockManager to start the cassette tape system
+        /// </summary>
+        private void ActivateTapeBlocks(Level level)
+        {
+            // Check if TapeBlockManager already exists
+            TapeBlockManager manager = level.Tracker.GetEntity<TapeBlockManager>();
+
+            if (manager == null)
+            {
+                // Create new TapeBlockManager
+                manager = new TapeBlockManager();
+                level.Add(manager);
+
+                // Configure level cassette settings before manager initializes
+                ConfigureLevelCassetteSettings(level);
+
+                // Give it a frame to initialize
+                level.OnEndOfFrame += () =>
+                {
+                    if (manager.Scene != null)
+                    {
+                        manager.OnLevelStart();
+                    }
+                };
+            }
+            else
+            {
+                // Update existing manager with new tape settings
+                ConfigureLevelCassetteSettings(level);
+            }
+
+            // Store the tape info in the session for later use
+            level.Session.SetFlag($"cassetteTape_{tapeId}_active", true);
+            level.Session.SetCounter($"cassetteTape_remixIndex", remixIndex);
+
+            // If there are TapeBlocks in the scene, they will now respond to the manager
+            Logger.Log(LogLevel.Info, "CassetteTape", 
+                $"Activated TapeBlockManager for tape '{tapeId}' with remixIndex {remixIndex}");
+        }
+
+        /// <summary>
+        /// Configures the level's cassette block settings based on the collected tape
+        /// </summary>
+        private void ConfigureLevelCassetteSettings(Level level)
+        {
+            // Set the cassette song based on audioEvent or use a default with the remixIndex
+            AreaData areaData = AreaData.Get(level.Session);
+
+            if (!string.IsNullOrEmpty(audioEvent))
+            {
+                areaData.CassetteSong = audioEvent;
+            }
+            else
+            {
+                // Use default cassette tape music with remix parameter
+                areaData.CassetteSong = "event:/DZ/music/Cassette/tape/tape_music";
+            }
+
+            // Mark that the level has cassette blocks
+            level.HasCassetteBlocks = true;
+
+            // Set default cassette block settings if not already configured
+            if (level.CassetteBlockBeats == 0)
+            {
+                level.CassetteBlockBeats = 4; // Default to 4 beat cycle (0, 1, 2, 3)
+            }
+
+            if (level.CassetteBlockTempo == 0)
+            {
+                level.CassetteBlockTempo = 1.0f; // Default tempo
+            }
+
+            Logger.Log(LogLevel.Info, "CassetteTape", 
+                $"Configured cassette settings: Song={areaData.CassetteSong}, Beats={level.CassetteBlockBeats}, Tempo={level.CassetteBlockTempo}");
         }
 
         public override void SceneEnd(Scene scene)

@@ -129,8 +129,6 @@ namespace Celeste.Mod.DZ
 
         public bool EnableCosmicBackgroundEffect { get; set; } = true;
 
-        public bool Show2DXSideInMenu { get; set; } = true;
-
         [SettingRange(0, 5)]
         public int ChapterDisplayMode { get; set; } = 0;
 
@@ -208,7 +206,6 @@ namespace Celeste.Mod.DZ
             ShowSideUnlockNotifications = true;
             ShowChapterMasteryOnPanel = true;
             EnableCosmicBackgroundEffect = true;
-            Show2DXSideInMenu = true;
             ChapterDisplayMode = 0;
         }
     }

@@ -3,7 +3,6 @@ using DZ;
 using CutsceneNode = Celeste.Entities.CutsceneNode;
 using FMOD.Studio;
 using Facings = Celeste.Facings;
-using FlingBirdIntro = Celeste.Entities.FlingBirdIntro;
 using BirdNPC = Celeste.Entities.DZBirdNPC;
 using IL.Celeste;
 
@@ -23,13 +22,18 @@ public class CS19_KillTheBird : CutsceneEntity
 
     private EventInstance snapshot;
 
-    public CS19_KillTheBird(global::Celeste.Player player)
+    public CS19_KillTheBird(global::Celeste.Player player, FlingBirdIntro flingBirdIntro)
     {
         this.player = player;
+        Add(new LevelEndingHook(delegate
+        {
+            Engine.TimeRate = 1f;
+        }));
     }
 
     public override void OnBegin(Level level)
     {
+        Engine.TimeRate = 1f;
         // Find the FlingBirdIntroMod in the scene
         flingBird = Scene.Entities.FindFirst<FlingBirdIntro>();
         if (flingBird != null)
@@ -52,13 +56,23 @@ public class CS19_KillTheBird : CutsceneEntity
         yield return flingBird.DoGrabbingRoutine(player);
         flingBird.Sprite.Play("hurt");
         flingBird.X += 8f;
-        while (!player.OnGround())
+        int groundSnapSafety = 0;
+        while (!player.OnGround() && groundSnapSafety++ < 1024)
         {
             player.MoveVExact(1);
+            if ((groundSnapSafety & 63) == 0)
+            {
+                yield return null;
+            }
         }
-        while (player.CollideCheck<Solid>())
+        int unstickSafety = 0;
+        while (player.CollideCheck<Solid>() && unstickSafety++ < 1024)
         {
             player.Y--;
+            if ((unstickSafety & 63) == 0)
+            {
+                yield return null;
+            }
         }
         Engine.TimeRate = 0.65f;
         float ground = player.Position.Y;
@@ -66,14 +80,20 @@ public class CS19_KillTheBird : CutsceneEntity
         player.Sprite.Play("roll");
         player.Speed.X = 200f;
         player.DummyFriction = false;
-        for (float p = 0f; p < 1f; p += Engine.DeltaTime)
+        for (float p = 0f; p < 1f;)
         {
-            player.Speed.X = Calc.Approach(player.Speed.X, 0f, 160f * Engine.DeltaTime);
+            float delta = Engine.RawDeltaTime;
+            if (delta <= 0f)
+            {
+                delta = 1f / 60f;
+            }
+            p += delta;
+            player.Speed.X = Calc.Approach(player.Speed.X, 0f, 160f * delta);
             if (player.Speed.X != 0f && Scene.OnInterval(0.1f))
             {
                 Dust.BurstFG(player.Position, -(float)Math.PI / 2f, 2);
             }
-            flingBird.Position.X += Engine.DeltaTime * 80f * Ease.CubeOut(1f - p);
+            flingBird.Position.X += delta * 80f * Ease.CubeOut(1f - Calc.Clamp(p, 0f, 1f));
             flingBird.Position.Y = ground;
             yield return null;
         }
@@ -83,7 +103,12 @@ public class CS19_KillTheBird : CutsceneEntity
         yield return 0.25f;
         while (Engine.TimeRate < 1f)
         {
-            Engine.TimeRate = Calc.Approach(Engine.TimeRate, 1f, 4f * Engine.DeltaTime);
+            float delta = Engine.RawDeltaTime;
+            if (delta <= 0f)
+            {
+                delta = 1f / 60f;
+            }
+            Engine.TimeRate = Calc.Approach(Engine.TimeRate, 1f, 4f * delta);
             yield return null;
         }
         player.ForceCameraUpdate = false;
@@ -246,6 +271,7 @@ public class CS19_KillTheBird : CutsceneEntity
 
     public override void OnEnd(Level level)
     {
+        Engine.TimeRate = 1f;
         Audio.ReleaseSnapshot(snapshot);
         snapshot = null;
         if (WasSkipped)
@@ -305,6 +331,7 @@ public class CS19_KillTheBird : CutsceneEntity
 
     public override void Removed(Scene scene)
     {
+        Engine.TimeRate = 1f;
         Audio.ReleaseSnapshot(snapshot);
         snapshot = null;
         base.Removed(scene);
@@ -312,12 +339,13 @@ public class CS19_KillTheBird : CutsceneEntity
 
     public override void SceneEnd(Scene scene)
     {
+        Engine.TimeRate = 1f;
         Audio.ReleaseSnapshot(snapshot);
         snapshot = null;
         base.SceneEnd(scene);
     }
 
-    public static void HandlePostCutsceneSpawn(global::Celeste.Entities.FlingBirdIntro flingBird, Level level)
+    public static void HandlePostCutsceneSpawn(FlingBirdIntro flingBird, Level level)
     {
         CharaBoost charaBoost = level.Entities.FindFirst<CharaBoost>();
         if (charaBoost != null)
@@ -329,6 +357,24 @@ public class CS19_KillTheBird : CutsceneEntity
         level.Add(birdNPC = new DZBirdNPC(flingBird.BirdEndPosition, DZBirdNPC.Modes.WaitForLightningOff));
         birdNPC.Facing = Facings.Right;
         birdNPC.FlyAwayUp = false;
+    }
+
+    internal static void HandlePostCutsceneFlyAway(FlingBirdIntro flingBirdIntro, Level level)
+    {
+        // Spawn the bird at the waiting position after the cutscene
+        DZBirdNPC postCutsceneBird = new DZBirdNPC(flingBirdIntro.BirdEndPosition, DZBirdNPC.Modes.FlyAway);
+        postCutsceneBird.Facing = Facings.Right;
+        postCutsceneBird.AutoFly = true;
+        postCutsceneBird.FlyAwayUp = true;
+        level.Add(postCutsceneBird);
+
+        // Set the flag indicating the bird has flown
+        level.Session.SetFlag("MissTheBirdMod", true);
+    }
+
+    internal static void HandlePostCutsceneBirdFlyAway(FlingBirdIntro flingBirdIntro, Level level)
+    {
+        HandlePostCutsceneFlyAway(flingBirdIntro, level);
     }
 }
 

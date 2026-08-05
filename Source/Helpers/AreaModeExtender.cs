@@ -1,6 +1,10 @@
 // This file is intentionally a thin forwarder to the real DZ.AreaModeExtender.
 // It exists only for namespace Celeste compatibility with older callers.
 // All logic lives in Integration/Extensions/AreaModeExtender.cs (namespace DZ).
+
+// Note: We do NOT redefine Celeste.AreaMode here because vanilla Celeste already
+// has that enum. Our DZ.AreaMode extends it with DSide values.
+
 namespace Celeste
 {
     /// <summary>

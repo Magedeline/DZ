@@ -319,7 +319,7 @@ namespace Celeste.Entities {
                 return;
             }
             
-            if (CanChangeMusic(level.Session.Area.Mode == AreaMode.Normal))
+            if (CanChangeMusic((int)level.Session.Area.Mode == 0))
             {
                 if (lastHit && level.Session.Level.Equals("boss-19"))
                 {

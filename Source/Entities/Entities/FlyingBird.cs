@@ -67,7 +67,10 @@ namespace Celeste.Entities
             Depth = -1000000;
             
             // Create sprite
-            Add(Sprite = GFX.SpriteBank.Create("bird"));
+            Sprite = GFX.SpriteBank.Create("bird");
+            if (Sprite == null)
+                throw new Exception("[FlyingBird] GFX.SpriteBank does not contain a 'bird' sprite. Check your Graphics/Sprites.xml.");
+            Add(Sprite);
             Sprite.Play("fly");
             Sprite.UseRawDeltaTime = false;
             Sprite.OnFrameChange = OnSpriteFrameChange;

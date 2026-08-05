@@ -108,7 +108,7 @@ namespace Celeste.Cutscenes
             anxietyFadeTarget = 1f;
             
             // Set ominous music
-            if (level.Session.Area.Mode == AreaMode.Normal)
+            if ((int)level.Session.Area.Mode == 0)
             {
                 Audio.SetMusic(MUSIC_EVENT, true, true);
             }

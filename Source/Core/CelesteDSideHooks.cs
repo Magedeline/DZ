@@ -416,11 +416,6 @@ public static class Celeste2Hooks
             // D-Side specific setup
             Logger.Log(LogLevel.Debug, "DZ", "D-Side level mode initialized");
         }
-        else if (mode == AreaModeExtender.MODE_DXSIDE)
-        {
-            // DX-Side specific setup
-            Logger.Log(LogLevel.Debug, "DZ", "DX-Side level mode initialized");
-        }
     }
 
     private static void OnLevelEnd(On.Celeste.Level.orig_End orig, Level self)

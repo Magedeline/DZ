@@ -77,7 +77,11 @@ namespace Celeste.Entities
         // Previous health for change detection
         private int lastPlayerHealth = -1;
         private int lastPlayerMaxHealth = -1;
-        
+
+        // Cached strings to avoid per-frame allocations
+        private string cachedPlayerHealthText = string.Empty;
+        private string cachedPlayerHealthNumericText = string.Empty;
+
         #endregion
         
         #region Properties
@@ -116,7 +120,12 @@ namespace Celeste.Entities
             public float DisplayedHealth;
             public float DamageFlash;
             public int LastHealth;
-            
+
+            // Cached string to avoid per-frame allocations
+            public string CachedHealthText = string.Empty;
+            public int LastCachedHealth = -1;
+            public int LastCachedMaxHealth = -1;
+
             public TrackedBoss(Entity boss, Func<int> health, Func<int> maxHealth, string name, bool useDynamicName)
             {
                 Boss = boss;
@@ -377,8 +386,26 @@ namespace Celeste.Entities
             
             // Update tracked bosses
             UpdateTrackedBosses();
+
+            // Update player health string cache if needed
+            if (playerHealth != null)
+            {
+                int currentHP = playerHealth.CurrentHP;
+                int maxHP = playerHealth.MaxHP;
+                if (currentHP != lastPlayerHealth || maxHP != lastPlayerMaxHealth)
+                {
+                    UpdatePlayerHealthStrings(currentHP, maxHP);
+                }
+            }
         }
-        
+
+        private void UpdatePlayerHealthStrings(int current, int max)
+        {
+            // Cache the formatted strings to avoid per-frame allocations
+            cachedPlayerHealthText = $"{current}/{max}";
+            cachedPlayerHealthNumericText = $"HP: {current}/{max}";
+        }
+
         private void UpdateTrackedBosses()
         {
             for (int i = trackedBosses.Count - 1; i >= 0; i--)
@@ -408,10 +435,18 @@ namespace Celeste.Entities
                 }
                 
                 tracked.LastHealth = currentHealth;
-                
+
+                // Update cached health string if values changed
+                if (currentHealth != tracked.LastCachedHealth || maxHealth != tracked.LastCachedMaxHealth)
+                {
+                    tracked.CachedHealthText = $"{currentHealth}/{maxHealth}";
+                    tracked.LastCachedHealth = currentHealth;
+                    tracked.LastCachedMaxHealth = maxHealth;
+                }
+
                 // Smooth animation
                 tracked.DisplayedHealth = Calc.Approach(tracked.DisplayedHealth, currentHealth, maxHealth * 3f * Engine.DeltaTime);
-                
+
                 // Update flash
                 if (tracked.DamageFlash > 0)
                 {
@@ -426,6 +461,9 @@ namespace Celeste.Entities
         
         private void OnPlayerHealthChanged(int current, int max)
         {
+            // Update cached strings when health changes
+            UpdatePlayerHealthStrings(current, max);
+
             // Trigger wiggle on changed hearts
             if (lastPlayerHealth >= 0 && lastPlayerMaxHealth > 0)
             {
@@ -565,25 +603,23 @@ namespace Celeste.Entities
             
             // Border
             Draw.HollowRect(position - Vector2.One, barWidth + 2, barHeight + 2, Color.White * 0.5f);
-            
-            // HP text
-            string hpText = $"{playerHealth.CurrentHP}/{playerHealth.MaxHP}";
-            ActiveFont.DrawOutline(hpText, position + new Vector2(barWidth + 8, -2), Vector2.Zero, Vector2.One * 0.4f, Color.White, 1f, Color.Black * 0.8f);
+
+            // HP text (use cached string)
+            ActiveFont.DrawOutline(cachedPlayerHealthText, position + new Vector2(barWidth + 8, -2), Vector2.Zero, Vector2.One * 0.4f, Color.White, 1f, Color.Black * 0.8f);
         }
         
         private void RenderPlayerNumeric(Vector2 position)
         {
-            string hpText = $"HP: {playerHealth.CurrentHP}/{playerHealth.MaxHP}";
-            
+            // Use cached string
             Color textColor = Color.White;
             if (playerHealth.IsLowHealth)
             {
                 float pulse = (float)Math.Sin(lowHealthPulse) * 0.5f + 0.5f;
                 textColor = Color.Lerp(Color.White, Color.Red, pulse);
             }
-            
-            // Draw with outline
-            ActiveFont.DrawOutline(hpText, position, Vector2.Zero, Vector2.One * 0.6f, textColor, 2f, Color.Black * 0.8f);
+
+            // Draw with outline (use cached string)
+            ActiveFont.DrawOutline(cachedPlayerHealthNumericText, position, Vector2.Zero, Vector2.One * 0.6f, textColor, 2f, Color.Black * 0.8f);
         }
         
         private void RenderBossHealthBars()
@@ -639,13 +675,12 @@ namespace Celeste.Entities
             
             // Border
             Draw.HollowRect(position - Vector2.One, BOSS_BAR_WIDTH + 2, BOSS_BAR_HEIGHT + 2, Color.White * 0.6f);
-            
-            // Health numbers
-            string healthText = $"{currentHealth}/{maxHealth}";
-            Vector2 textSize = ActiveFont.Measure(healthText) * 0.35f;
+
+            // Health numbers (use cached string)
+            Vector2 textSize = ActiveFont.Measure(tracked.CachedHealthText) * 0.35f;
             Vector2 textPos = position + new Vector2(BOSS_BAR_WIDTH / 2f - textSize.X / 2f, BOSS_BAR_HEIGHT + 2f);
-            
-            ActiveFont.DrawOutline(healthText, textPos, Vector2.Zero, Vector2.One * 0.35f, Color.White, 1f, Color.Black * 0.8f);
+
+            ActiveFont.DrawOutline(tracked.CachedHealthText, textPos, Vector2.Zero, Vector2.One * 0.35f, Color.White, 1f, Color.Black * 0.8f);
         }
         
         private Color GetHealthColor(float percent)

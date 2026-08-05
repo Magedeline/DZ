@@ -143,15 +143,15 @@ public class CharaChaser : Entity
     {
         base.Added(scene);
         Session session = SceneAs<Level>().Session;
-        if (session.GetLevelFlag("14_end") && session.Area.Mode == AreaMode.Normal)
+        if (session.GetLevelFlag("14_end") && (int)session.Area.Mode == 0)
         {
             RemoveSelf();
         }
-        else if (!session.GetLevelFlag("14_end") && session.Area.Mode == AreaMode.Normal)
+        else if (!session.GetLevelFlag("14_end") && (int)session.Area.Mode == 0)
         {
             RemoveSelf();
         }
-        else if (!session.GetFlag("evil_chara_intro") && session.Level == "b_chase" && session.Area.Mode == AreaMode.Normal)
+        else if (!session.GetFlag("evil_chara_intro") && session.Level == "b_chase" && (int)session.Area.Mode == 0)
         {
             Hovering = false;
             Visible = true;
@@ -164,7 +164,7 @@ public class CharaChaser : Entity
             {
                 Sprite.Play("fallSlow");
             }
-            if (session.Area.Mode == AreaMode.Normal)
+            if ((int)session.Area.Mode == 0)
             {
                 session.Audio.Music.Event = null;
                 session.Audio.Apply(forceSixteenthNoteHack: false);
@@ -196,7 +196,7 @@ public class CharaChaser : Entity
         Sprite.Play("fallSlow");
         if (Hair != null) Hair.Visible = true;
         Hovering = false;
-        if (CanChangeMusic(level.Session.Area.Mode == AreaMode.Normal))
+        if (CanChangeMusic((int)level.Session.Area.Mode == 0))
         {
             // Set music based on current level
             string musicEvent = level.Session.Level.StartsWith("b-3") 

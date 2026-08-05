@@ -261,11 +261,18 @@ namespace Celeste.Entities
             public string Action;
             public float Delay;
             public float Arg;
-            public AttackStep(string action, float delay, float arg = 0f)
+            /// <summary>
+            /// Optional BattleArenaDirector profile name, authored as an
+            /// "Attack#profile" suffix. Empty means "leave the arena alone".
+            /// </summary>
+            public string Arena;
+
+            public AttackStep(string action, float delay, float arg = 0f, string arena = "")
             {
                 Action = action;
                 Delay = delay;
                 Arg = arg;
+                Arena = arena;
             }
         }
         
@@ -1197,7 +1204,7 @@ namespace Celeste.Entities
             Moving = true;
             bool lastHit = nodeIndex == nodes.Length - 1;
             
-            if (level.Session.Area.Mode == AreaMode.Normal)
+            if ((int)level.Session.Area.Mode == 0)
             {
                 // Check if this is the last hit in a special room
                 if (lastHit && level.Session.Level.Equals("x-12"))

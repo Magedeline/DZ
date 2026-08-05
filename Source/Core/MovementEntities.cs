@@ -126,28 +126,40 @@ namespace DZ
     }
 
     // =============================================
-    // SpringCloud - Bouncy cloud, disappears after use
+    // SpringCloud - Bouncy cloud with fragile and small variants
     // =============================================
     [CustomEntity("DZ/SpringCloud")]
     [Tracked]
     public class SpringCloud : JumpThru
     {
-        private float respawnTime;
-        private float timer = 0f;
-        private bool broken = false;
-        private float extraHeight;
-        private Sprite sprite;
+        private const int NormalWidth = 32;
+        private const int SmallWidth = 29;
+        private const float NormalScale = 1f;
+        private const float SmallScale = 29f / 35f;
+
+        private readonly bool fragile;
+        private readonly float respawnTime;
+        private readonly float extraHeight;
+        private readonly Image sprite;
+        private float timer;
+        private bool broken;
 
         public SpringCloud(EntityData data, Vector2 offset)
-            : base(data.Position + offset, data.Width, safe: true)
+            : base(data.Position + offset, data.Bool("small", false) ? SmallWidth : NormalWidth, safe: true)
         {
+            bool small = data.Bool("small", false);
+            fragile = data.Bool("fragile", false);
             respawnTime = data.Float("respawnTime", 3f);
             extraHeight = data.Float("extraHeight", 50f);
-            Depth = -50;
+            Depth = 0;
 
-            Add(sprite = GFX.SpriteBank.Create("DZ_springCloud"));
-            sprite.Position = new Vector2(Width / 2f, 0f);
-            sprite.Play("idle");
+            string texture = fragile ? "objects/DZ/clouds/fragile00" : "objects/DZ/clouds/cloud00";
+            float scale = small ? SmallScale : NormalScale;
+
+            Add(sprite = new Image(GFX.Game[texture]));
+            sprite.JustifyOrigin(0.5f, 0.5f);
+            sprite.Position = new Vector2(Width / 2f, 4f);
+            sprite.Scale = new Vector2(scale, 1f);
         }
 
         public override void Update()
@@ -156,12 +168,12 @@ namespace DZ
             if (broken)
             {
                 timer -= Engine.DeltaTime;
-                if (timer <= 0)
+                if (timer <= 0f)
                 {
                     broken = false;
                     Collidable = true;
                     Visible = true;
-                    sprite.Play("respawn");
+                    sprite.Color = Color.White;
                 }
                 return;
             }
@@ -177,21 +189,26 @@ namespace DZ
         {
             player.Speed.Y = -(260f + extraHeight);
             Audio.Play("event:/game/general/spring", Position);
-            sprite.Play("bounce");
+
+            if (!fragile)
+            {
+                return;
+            }
+
             broken = true;
             timer = respawnTime;
             Collidable = false;
-
             Add(new Coroutine(FadeOut()));
         }
 
         private IEnumerator FadeOut()
         {
-            for (float t = 1f; t > 0; t -= Engine.DeltaTime * 3f)
+            for (float t = 1f; t > 0f; t -= Engine.DeltaTime * 3f)
             {
                 sprite.Color = Color.White * t;
                 yield return null;
             }
+
             Visible = false;
         }
     }

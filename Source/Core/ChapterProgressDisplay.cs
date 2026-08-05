@@ -317,11 +317,10 @@ public static class ChapterProgressDisplay
             new Color(100, 150, 255),  // B-Side
             new Color(255, 100, 150),  // C-Side
             new Color(255, 200, 50),   // D-Side
-            new Color(200, 150, 255),  // DX-Side
             new Color(100, 255, 255),  // Custom sides
         };
 
-        var sideNames = new string[] { "A", "B", "C", "D", "DX" };
+        var sideNames = new string[] { "A", "B", "C", "D" };
 
         // Check standard sides (A, B, C, D)
         for (int i = 0; i < Math.Min(4, area.Mode.Length); i++)
@@ -339,7 +338,7 @@ public static class ChapterProgressDisplay
             }
         }
 
-        // Check for extended sides (D-Side, DX-Side) using AreaModeExtender
+        // Check for extended sides (D-Side) using AreaModeExtender
         try
         {
             // D-Side
@@ -354,22 +353,6 @@ public static class ChapterProgressDisplay
                         Mode = 3,
                         Completed = dCompleted,
                         Color = sideColors[3]
-                    });
-                }
-            }
-
-            // DX-Side
-            if (global::DZ.AreaModeExtender.GetSaveAreaModeCount(area.ID) > 4)
-            {
-                bool dxSideCompleted = IsModeSideCompleted(save, area.ID, 4);
-                if (!progress.Sides.Any(s => s.Mode == 4))
-                {
-                    progress.Sides.Add(new SideProgress
-                    {
-                        Name = "DX",
-                        Mode = 4,
-                        Completed = dxSideCompleted,
-                        Color = sideColors[4]
                     });
                 }
             }

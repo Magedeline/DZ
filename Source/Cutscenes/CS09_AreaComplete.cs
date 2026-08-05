@@ -161,7 +161,7 @@ namespace Celeste.Cutscenes
                     if (AreaData.Areas.Count > nextAreaId && AreaData.Areas[nextAreaId] != null)
                     {
                         // Transition to next chapter
-                        AreaKey nextAreaKey = new(nextAreaId, AreaMode.Normal);
+                        AreaKey nextAreaKey = new(nextAreaId, (global::Celeste.AreaMode)0);
                         level.Session.InArea = true;
                         Engine.Scene = new LevelLoader(new Session(nextAreaKey), null);
                     }

@@ -63,6 +63,24 @@ namespace Celeste.Bosses
     ///   battleMusicEvent       string event:/DZ/new_content/music/lvl21/els_termina_final
     ///   victoryMusicEvent      string event:/DZ/new_content/music/lvl21/victory
     ///   completionFlag         string ch21_els_termina_final_battle_done
+    ///   progressKey            string ch21_final_battle
+    ///                                 Session key prefix for death-resume state.
+    ///
+    /// ═══════════════════════════════════════════════════
+    ///  DEATH RESUME
+    /// ═══════════════════════════════════════════════════
+    ///  Level.Reload() (any death) calls UnloadLevel(), which removes every
+    ///  entity not tagged Tags.Global — Tags.Persistent only survives room
+    ///  *transitions*. So a death destroys this entity and kills the whole
+    ///  BattleSequence() coroutine with it, and the room reloads with a fresh
+    ///  copy sitting in BattlePhase.Idle that nothing ever restarts.
+    ///
+    ///  Progress is therefore checkpointed into the Session (same convention as
+    ///  AsrielGodBoss) and Awake() resumes automatically:
+    ///     PreBattle    → back into the Zero waves, already-defeated forms skipped
+    ///     WarpStarRide → Phase 1 replays from the Warp Star launch
+    ///     FlyingVoid   ↗
+    ///     Phase2Scroll → straight back into the side-scroll approach
     /// </summary>
     [CustomEntity("DZ/KirbyFinalBattleScene")]
     [Tracked(true)]
@@ -138,6 +156,16 @@ namespace Celeste.Bosses
         private const  string  FINALE_EVENT = "event:/DZ/new_content/music/lvl21/finale";
         private readonly string victoryMusicEvent;
         private readonly string completionFlag;
+        private readonly string progressKey;
+
+        // ── Session keys for the death-resume checkpoint ─────────────────────
+        private string StartedFlag    => progressKey + "_started";
+        private string PhaseCounter   => progressKey + "_phase";
+        private string ZeroCounter    => progressKey + "_zeros";
+        // "Have these lines already been read?" — so a death mid-ride doesn't
+        // force the player back through five textboxes on every retry.
+        private string Phase1SeenFlag => progressKey + "_p1_seen";
+        private string Phase2SeenFlag => progressKey + "_p2_seen";
 
         // ── Events ────────────────────────────────────────────────────────────
         /// <summary>Fired whenever SetPhase is called. WarpStarReturnController subscribes to this.</summary>
@@ -157,6 +185,7 @@ namespace Celeste.Bosses
 
         // Warp star ride — full player controller (freeze + free-flight input)
         private WarpStarRideController? rideController;
+        private RidingWarpStar?         ridingStar;
         private float warpStarFlyTimer;
 
         // Phase 2 colour shift
@@ -188,6 +217,22 @@ namespace Celeste.Bosses
         private AbyssmentBackdrop?          abyssment;
         private FlyingBattleScrollBackdrop? scrollBd;
 
+        // Arena profiles ("Conquered Peak, modified"). Spawned here so any boss
+        // in the room can reshape the battleground from its attack sequence.
+        // Dormant until something applies a profile — see BattleArenaDirector.
+        private BattleArenaDirector? arenaDirector;
+        private bool ArenaDirected => arenaDirector?.HasActiveProfile ?? false;
+
+        /// <summary>Arena profile per HP zone, parallel to <see cref="PhaseColors"/>.</summary>
+        private static readonly string[] Phase2ArenaProfiles =
+        {
+            "default",  // 0 – full HP
+            "wide",     // 1 – 75 %
+            "tall",     // 2 – 50 %
+            "rush",     // 3 – 25 %
+            "collapse", // 4 – near-death
+        };
+
         // ── Zero wave definition ──────────────────────────────────────────────
         private struct ZeroWaveConfig
         {
@@ -198,37 +243,42 @@ namespace Celeste.Bosses
         }
 
         // One entry per form, in defeat order (matches ZeroFormNames / ZeroAuraColors)
+        //
+        // The "#profile" suffixes hand each attack an arena to land in — see
+        // BattleArenaDirector for the palette. The arc across the six waves runs
+        // open → constricting, ending with Nollus Nova fighting inside "collapse".
+        // These are tuning values: edit the strings, no rebuild of anything else.
         private static readonly ZeroWaveConfig[] DefaultZeroWaves = new ZeroWaveConfig[]
         {
             new ZeroWaveConfig {
                 Variant         = "zero",
                 Tier            = "soulBlack",
-                AttackSequence  = "CrescentBeamShot,EnergySwordCombo,TornadoSlash,RevolutionSword,RisingSpine",
+                AttackSequence  = "CrescentBeamShot#wide,EnergySwordCombo,TornadoSlash#tight,RevolutionSword,RisingSpine#wide",
                 DialogKey       = "DZ_CH21_ZERO_WAVE_SIAMO_ZERO" },
             new ZeroWaveConfig {
                 Variant         = "delta",
                 Tier            = "soulBlack",
-                AttackSequence  = "CrescentBeamShot,ConqueredPeakCascade,TornadoSlash,EnergyShower",
+                AttackSequence  = "CrescentBeamShot#drift,ConqueredPeakCascade#tall,TornadoSlash#tight,EnergyShower#wide",
                 DialogKey       = "DZ_CH21_ZERO_WAVE_ZERO_3" },
             new ZeroWaveConfig {
                 Variant         = "zero",
                 Tier            = "soulBlack",
-                AttackSequence  = "EnergySwordCombo,VortexStrike,DoubleSideSlash,EnergyShower",
+                AttackSequence  = "EnergySwordCombo#tight,VortexStrike,DoubleSideSlash#rush,EnergyShower#wide",
                 DialogKey       = "DZ_CH21_ZERO_WAVE_CONTRA_VOID" },
             new ZeroWaveConfig {
                 Variant         = "celestial",
                 Tier            = "stellarruss",
-                AttackSequence  = "RevolutionSword,ConqueredPeakCascade,EnergyShower,TimeborderCollapse",
+                AttackSequence  = "RevolutionSword#wide,ConqueredPeakCascade#tall,EnergyShower,TimeborderCollapse#collapse",
                 DialogKey       = "DZ_CH21_ZERO_WAVE_TESSERACT_SOUL" },
             new ZeroWaveConfig {
                 Variant         = "delta",
                 Tier            = "soulBlack",
-                AttackSequence  = "MorphoEmerge,DoubleSideSlash,TornadoSlash,RevolutionSword",
+                AttackSequence  = "MorphoEmerge#drift,DoubleSideSlash#rush,TornadoSlash#tight,RevolutionSword#wide",
                 DialogKey       = "DZ_CH21_ZERO_WAVE_HYPER_META_MORPHO" },
             new ZeroWaveConfig {
                 Variant         = "celestial",
                 Tier            = "stellarruss",
-                AttackSequence  = "TimeborderCollapse,MorphoEmerge,ConqueredPeakCascade,CrescentBeamShot,VortexStrike",
+                AttackSequence  = "TimeborderCollapse#collapse,MorphoEmerge#drift,ConqueredPeakCascade#tall,CrescentBeamShot#rush,VortexStrike#collapse",
                 DialogKey       = "DZ_CH21_ZERO_WAVE_NOLLUS_NOVA" },
         };
 
@@ -305,6 +355,7 @@ namespace Celeste.Bosses
                 "event:/DZ/new_content/music/lvl21/victory");
             completionFlag        = data.Attr("completionFlag",
                 "ch21_els_termina_final_battle_done");
+            progressKey           = data.Attr("progressKey", "ch21_final_battle");
 
             zeroMaxHealth = healthPerZeroForm * (hardMode ? 1.5f : 1f);
             Depth = -10000;
@@ -328,6 +379,14 @@ namespace Celeste.Bosses
                 zeroHealth[i] = zeroMaxHealth;
 
             BuildAllySlots();
+
+            // One director per room, shared by every boss in it.
+            arenaDirector = scene.Tracker.GetEntity<BattleArenaDirector>();
+            if (arenaDirector == null)
+            {
+                arenaDirector = new BattleArenaDirector();
+                scene.Add(arenaDirector);
+            }
         }
 
         public override void Awake(Scene scene)
@@ -336,6 +395,8 @@ namespace Celeste.Bosses
             player   ??= scene.Tracker.GetEntity<Player>();
             abyssment  = level.Background.Get<AbyssmentBackdrop>();
             scrollBd   = level.Background.Get<FlyingBattleScrollBackdrop>();
+
+            TryResume();
         }
 
         // ── Public API — called from EventTrigger / cutscenes / triggers ──────
@@ -344,8 +405,82 @@ namespace Celeste.Bosses
         public void StartBattle()
         {
             if (CurrentPhase != BattlePhase.Idle) return;
-            SetPhase(BattlePhase.PreBattle);
+
+            // Fresh run — wipe any checkpoint left over from a previous attempt.
+            ClearProgress();
+            level.Session.SetFlag(StartedFlag);
             Add(new Coroutine(BattleSequence()));
+        }
+
+        // ─────────────────────────────────────────────────────────────────────
+        //  DEATH RESUME
+        // ─────────────────────────────────────────────────────────────────────
+
+        /// <summary>
+        /// Picks the battle back up after a death reloaded the room. Does nothing
+        /// on a first entry, or once the battle has been completed.
+        /// </summary>
+        private void TryResume()
+        {
+            if (CurrentPhase != BattlePhase.Idle)          return;
+            if (!level.Session.GetFlag(StartedFlag))       return;
+            if (level.Session.GetFlag(completionFlag))     return;
+
+            zeroFormsDefeated = Math.Clamp(
+                level.Session.GetCounter(ZeroCounter), 0, totalZeroForms);
+
+            BattlePhase resume = ResumePhaseFor(level.Session.GetCounter(PhaseCounter));
+            if (resume == BattlePhase.Idle) return;
+
+            Add(new Coroutine(BattleSequence(resume)));
+        }
+
+        /// <summary>
+        /// Maps a checkpointed phase onto the phase the sequence should restart
+        /// from. Void flight rewinds to the Warp Star launch — there is no clean
+        /// mid-void entry point, and replaying the launch reads better than
+        /// materialising in the middle of nowhere.
+        /// </summary>
+        private static BattlePhase ResumePhaseFor(int savedPhase) =>
+            (BattlePhase)savedPhase switch
+            {
+                BattlePhase.PreBattle    => BattlePhase.PreBattle,
+                BattlePhase.WarpStarRide => BattlePhase.WarpStarRide,
+                BattlePhase.FlyingVoid   => BattlePhase.WarpStarRide,
+                BattlePhase.Phase2Scroll => BattlePhase.Phase2Scroll,
+                _                        => BattlePhase.Idle,
+            };
+
+        private void SaveProgress()
+        {
+            if (level == null) return;
+            level.Session.SetCounter(PhaseCounter, (int)CurrentPhase);
+            level.Session.SetCounter(ZeroCounter,  zeroFormsDefeated);
+        }
+
+        /// <summary>Wipes the resume checkpoint. Called on a fresh start and on victory.</summary>
+        public void ClearProgress()
+        {
+            if (level == null) return;
+            level.Session.SetFlag(StartedFlag,    false);
+            level.Session.SetFlag(Phase1SeenFlag, false);
+            level.Session.SetFlag(Phase2SeenFlag, false);
+            level.Session.SetCounter(PhaseCounter, 0);
+            level.Session.SetCounter(ZeroCounter,  0);
+        }
+
+        /// <summary>
+        /// Textbox that only plays the first time through. On a death-resume the
+        /// wait is kept so pacing survives, but the dialogue is skipped.
+        /// </summary>
+        private static IEnumerator SayOnce(string key, bool alreadySeen)
+        {
+            if (alreadySeen)
+            {
+                yield return 0.3f;
+                yield break;
+            }
+            yield return Textbox.Say(key);
         }
 
         /// <summary>
@@ -372,7 +507,13 @@ namespace Celeste.Bosses
         {
             phase2ColorIndex = Math.Clamp(phaseIndex, 0, PhaseColors.Length - 1);
             phase2ColorLerp  = 0f;
-            if (scrollBd != null && scrollBoost != 0f)
+
+            // Reshape the battleground for this HP zone. The director owns scroll
+            // speed once it is live, so the manual boost only applies while it is
+            // dormant — otherwise the two would fight over the same field.
+            bool directed = arenaDirector?.Apply(Phase2ArenaProfiles[phase2ColorIndex]) ?? false;
+
+            if (!directed && scrollBd != null && scrollBoost != 0f)
                 scrollBd.ScrollSpeedX += scrollBoost;
 
             // Phase 2 holds progress at 2.00 — only pitch nudges per shift
@@ -521,10 +662,11 @@ namespace Celeste.Bosses
             //  60–90 s → laser every 8 s
             //  90+ s   → mega laser every 20 s + continued small bullets
 
-            float elapsed   = 0f;
+            float elapsed     = 0f;
             float bulletTimer = 0f;
             float bigTimer    = 4f;
             float laserTimer  = 8f;
+            float downTimer   = 10f;
             float megaTimer   = 20f;
 
             while (CurrentPhase == BattlePhase.Phase2Scroll)
@@ -533,6 +675,7 @@ namespace Celeste.Bosses
                 bulletTimer -= Engine.DeltaTime;
                 bigTimer    -= Engine.DeltaTime;
                 laserTimer  -= Engine.DeltaTime;
+                downTimer   -= Engine.DeltaTime;
                 megaTimer   -= Engine.DeltaTime;
 
                 // Star bullet burst
@@ -558,10 +701,12 @@ namespace Celeste.Bosses
                     yield return 0.1f;
                 }
 
-                // Downward laser (Nightmare's Phase 2 signature beam from above)
-                if (elapsed > 60f && laserTimer <= 0f)
+                // Downward laser (Nightmare's Phase 2 signature beam from above).
+                // Needs its own timer — sharing laserTimer with the angled laser
+                // above meant this branch could never be reached.
+                if (elapsed > 60f && downTimer <= 0f)
                 {
-                    laserTimer = 10f;
+                    downTimer = 10f;
                     FireDownwardLaser();
                     level.Shake(0.6f);
                     yield return 0.1f;
@@ -730,19 +875,47 @@ namespace Celeste.Bosses
         }
 
         // ── Main battle coroutine ─────────────────────────────────────────────
-        private IEnumerator BattleSequence()
+        /// <param name="resumeFrom">
+        /// BattlePhase.Idle for a fresh run; anything else re-enters the sequence
+        /// at that phase after a death. See TryResume.
+        /// </param>
+        private IEnumerator BattleSequence(BattlePhase resumeFrom = BattlePhase.Idle)
         {
-            // ── PRE-PHASE: allies arrive ──────────────────────────────────────
-            yield return PrePhase_AlliesArrive();
+            bool fresh = resumeFrom == BattlePhase.Idle;
 
-            // ── PRE-PHASE: defeat all Zero forms ─────────────────────────────
-            yield return PrePhase_ZeroWaves();
+            // Only claim PreBattle when the Zero waves are actually going to run.
+            // Phase 1 and Phase 2 set their own phases, and announcing PreBattle
+            // on a late resume would rewind the checkpoint we just read.
+            if (resumeFrom <= BattlePhase.PreBattle)
+                SetPhase(BattlePhase.PreBattle);
 
-            // ── TRANSITION: zeros all defeated ───────────────────────────────
-            yield return ZerosDefeatedTransition();
+            if (fresh)
+            {
+                // ── PRE-PHASE: allies arrive ──────────────────────────────────
+                yield return PrePhase_AlliesArrive();
+            }
+            else
+            {
+                // On a resume the allies are already here and the intro has been
+                // seen — restore the state silently rather than replaying it.
+                RestoreSceneAfterDeath(resumeFrom);
+            }
 
-            // ── PHASE 1: Warp Star launch + void flight ───────────────────────
-            yield return Phase1_WarpStarAndVoid();
+            if (resumeFrom <= BattlePhase.PreBattle)
+            {
+                // ── PRE-PHASE: defeat all Zero forms ─────────────────────────
+                // Skips forms already killed before the death.
+                yield return PrePhase_ZeroWaves(skipIntro: !fresh);
+
+                // ── TRANSITION: zeros all defeated ───────────────────────────
+                yield return ZerosDefeatedTransition();
+            }
+
+            if (resumeFrom <= BattlePhase.FlyingVoid)
+            {
+                // ── PHASE 1: Warp Star launch + void flight ───────────────────
+                yield return Phase1_WarpStarAndVoid();
+            }
 
             // ── PHASE 2: side-scroll approach → arena ────────────────────────
             yield return Phase2_SideScrollApproach();
@@ -753,6 +926,35 @@ namespace Celeste.Bosses
             // Battle hands off to ELSTerminaFinalBoss which is already in the room.
             // Set flag so the cutscene system knows we've arrived.
             level.Session.SetFlag(completionFlag);
+            ClearProgress();
+        }
+
+        /// <summary>
+        /// Rebuilds the presentation state a death threw away — music, ally
+        /// cluster, soul lights — without replaying any dialogue.
+        /// </summary>
+        private void RestoreSceneAfterDeath(BattlePhase resumeFrom)
+        {
+            StartFinaleMusic();
+
+            if (resumeFrom >= BattlePhase.Phase2Scroll)
+            {
+                // The allies stayed behind at the start of Phase 2.
+                allyMasterAlpha = 0f;
+                musicProgress = musicProgressTarget = 2f;
+                musicPitch    = musicPitchTarget    = 2f;
+            }
+            else
+            {
+                allyMasterAlpha = 1f;
+                musicPitchTarget = Math.Min(1f + zeroFormsDefeated * 0.08f, 1.5f);
+                musicPitch       = musicPitchTarget;
+                SpawnSoulLightsInstant();
+            }
+
+            ApplyAllyAlpha();
+            Audio.SetMusicParam("progress",     musicProgress);
+            Audio.SetMusicParam("finale_pitch", musicPitch);
         }
 
         // ─────────────────────────────────────────────────────────────────────
@@ -761,8 +963,7 @@ namespace Celeste.Bosses
         private IEnumerator PrePhase_AlliesArrive()
         {
             // Start the shared finale event at the very beginning (progress=0, pitch=1)
-            Audio.SetMusic(FINALE_EVENT);
-            finaleStarted      = true;
+            StartFinaleMusic();
             musicProgress      = 0f;
             musicProgressTarget = 0f;
             musicPitch         = 1f;
@@ -785,6 +986,40 @@ namespace Celeste.Bosses
             yield return SpawnSoulLights();
             yield return Textbox.Say("DZ_CH21_FINAL_BATTLE_DREAM_FRIENDS");
             yield return 0.4f;
+        }
+
+        /// <summary>Starts (or restarts) the shared finale FMOD event.</summary>
+        private void StartFinaleMusic()
+        {
+            Audio.SetMusic(FINALE_EVENT);
+            finaleStarted = true;
+        }
+
+        /// <summary>
+        /// Re-creates the Seven Vessel Goner Soul lights with no dialogue, flash
+        /// or SFX. Used by the death resume, where replaying the ceremony would
+        /// be tedious.
+        /// </summary>
+        private void SpawnSoulLightsInstant()
+        {
+            foreach (VertexLight existing in soulLights) Remove(existing);
+            soulLights.Clear();
+
+            Actor? rider = WarpStarRideController.ResolveRider(Scene);
+            Vector2 basePos = (rider?.Center ?? Position) + new Vector2(-100f, -30f);
+
+            for (int i = 0; i < 7; i++)
+            {
+                float angle = MathHelper.TwoPi * i / 7f;
+                var light = new VertexLight(SoulColors[i], 1f, 24, 64)
+                {
+                    Position = basePos + new Vector2(
+                        (float)Math.Cos(angle) * 70f,
+                        (float)Math.Sin(angle) * 35f)
+                };
+                Add(light);
+                soulLights.Add(light);
+            }
         }
 
         private IEnumerator SpawnSoulLights()
@@ -814,17 +1049,22 @@ namespace Celeste.Bosses
         // ─────────────────────────────────────────────────────────────────────
         //  PRE-PHASE: ZERO WAVES
         // ─────────────────────────────────────────────────────────────────────
-        private IEnumerator PrePhase_ZeroWaves()
+        private IEnumerator PrePhase_ZeroWaves(bool skipIntro = false)
         {
-            level.Shake(0.4f);
-            Glitch.Value = 0.35f;
-            yield return 0.2f;
-            Glitch.Value = 0f;
+            if (!skipIntro)
+            {
+                level.Shake(0.4f);
+                Glitch.Value = 0.35f;
+                yield return 0.2f;
+                Glitch.Value = 0f;
 
-            yield return Textbox.Say("DZ_CH21_FINAL_BATTLE_ZEROS_INTRO");
-            yield return Textbox.Say("DZ_CH21_FINAL_BATTLE_GONERS_HOLD");
+                yield return Textbox.Say("DZ_CH21_FINAL_BATTLE_ZEROS_INTRO");
+                yield return Textbox.Say("DZ_CH21_FINAL_BATTLE_GONERS_HOLD");
+            }
 
-            for (int i = 0; i < totalZeroForms; i++)
+            // Start at the first form still standing, so a death mid-wave does not
+            // resurrect the ones already beaten.
+            for (int i = zeroFormsDefeated; i < totalZeroForms; i++)
             {
                 activeZeroIndex = i;
 
@@ -907,6 +1147,7 @@ namespace Celeste.Bosses
             }
 
             zeroFormsDefeated++;
+            SaveProgress();
 
             // Progress stays at 0.00 throughout Phase 1 — only pitch rises per kill
             musicPitchTarget = Math.Min(1f + zeroFormsDefeated * 0.08f, 1.5f);
@@ -941,6 +1182,9 @@ namespace Celeste.Bosses
         // ─────────────────────────────────────────────────────────────────────
         private IEnumerator Phase1_WarpStarAndVoid()
         {
+            bool seen = level.Session.GetFlag(Phase1SeenFlag);
+            level.Session.SetFlag(Phase1SeenFlag);
+
             // ── progress stays at 0.00 the entire Phase 1 ────────────────────
             // Only pitch rises: warp star launch surges it to 1.6
             musicPitchTarget = 1.6f;
@@ -948,25 +1192,25 @@ namespace Celeste.Bosses
             level.Shake(1.0f);
             Audio.Play("event:/DZ/new_content/game/21_desolo_zantas/warpstar_launch");
             level.Flash(Calc.HexToColor("FFD700") * 0.8f, true);
-            yield return Textbox.Say("DZ_CH21_FINAL_BATTLE_WARPSTAR_RIDE");
+            yield return SayOnce("DZ_CH21_FINAL_BATTLE_WARPSTAR_RIDE", seen);
 
             // ── Spawn visible Warp Star under the player ──────────────────────
-            // Prefer K_Player (Kirby) if active — it keeps a hidden vanilla
-            // Player "shadow" purely for API compatibility, so checking
-            // Player first would incorrectly grab that non-controlling shadow.
+            // ResolveRider prefers K_Player (Kirby) when it is active: Kirby keeps
+            // a hidden vanilla Player "shadow" purely for API compatibility, so
+            // asking the Tracker for Player first would grab that non-controlling
+            // shadow and every write to it would be silently discarded.
             player ??= Scene.Tracker.GetEntity<Player>();
-            Entity? activePlayer = Scene.Tracker.GetEntity<K_Player>() ?? (Entity?)player;
-            var ridingStar = new RidingWarpStar(activePlayer?.Center ?? Position);
+            Actor? activePlayer = WarpStarRideController.ResolveRider(Scene);
+            ridingStar = new RidingWarpStar(activePlayer?.Center ?? Position);
             Scene.Add(ridingStar);
 
             // ── Full player controller: freezes physics, accepts free-flight
             //    input within a safe local arena for the entire ride + void ──
-            if (activePlayer != null)
-            {
-                rideController = new WarpStarRideController(
-                    activePlayer, warpStarFlySpeed, warpStarBobAmplitude, warpStarBobSpeed);
-                Scene.Add(rideController);
-            }
+            // Created unconditionally — it resolves (and re-resolves) the rider
+            // itself, so a character swap mid-ride does not leave it inert.
+            rideController = new WarpStarRideController(
+                activePlayer, warpStarFlySpeed, warpStarBobAmplitude, warpStarBobSpeed);
+            Scene.Add(rideController);
 
             // ── Enable AbyssmentBackdrop rightward scroll for the ride ─────────
             // This sells the sense of flying through space toward Nightmare.
@@ -988,8 +1232,10 @@ namespace Celeste.Bosses
                 yield return null;
             }
 
-            // ── Warp Star ride ends — remove star sprite ───────────────────────
-            ridingStar.RemoveSelf();
+            // ── Warp Star ride ends ────────────────────────────────────────────
+            // The star itself stays: the player is still riding it through the
+            // void. Both it and the controller are torn down together when
+            // Phase 2 hands control back.
 
             // Switch to void flight — still progress = 0.00
             // Slow the backdrop scroll down for the drifting void feeling
@@ -1000,7 +1246,7 @@ namespace Celeste.Bosses
             }
             SetPhase(BattlePhase.FlyingVoid);
 
-            yield return Textbox.Say("DZ_CH21_FINAL_BATTLE_INTO_ABYSS");
+            yield return SayOnce("DZ_CH21_FINAL_BATTLE_INTO_ABYSS", seen);
 
             // Abyssment colour cycle — 5 seconds, progress still 0.00
             yield return 5f;
@@ -1013,18 +1259,18 @@ namespace Celeste.Bosses
             level.Flash(Calc.HexToColor("ff6699") * 0.45f, false);
             Audio.Play("event:/new_content/char/DZ/asriel/Asriel_Create");
             yield return 0.25f;
-            yield return Textbox.Say("DZ_CH21_FINAL_BATTLE_ASRIEL_JOINS");
+            yield return SayOnce("DZ_CH21_FINAL_BATTLE_ASRIEL_JOINS", seen);
 
             // Determination Soul flare
             level.Flash(Calc.HexToColor("ff0000") * 0.4f, false);
             yield return 0.2f;
-            yield return Textbox.Say("DZ_CH21_FINAL_BATTLE_DETERMINATION_SOUL");
+            yield return SayOnce("DZ_CH21_FINAL_BATTLE_DETERMINATION_SOUL", seen);
 
             // Els Termina silhouette
             yield return 0.4f;
             level.Flash(Color.Black * 0.65f, false);
             yield return 0.25f;
-            yield return Textbox.Say("DZ_CH21_FINAL_BATTLE_ELS_LOOMS");
+            yield return SayOnce("DZ_CH21_FINAL_BATTLE_ELS_LOOMS", seen);
             yield return 0.5f;
 
             // ── Phase 1 end: sweep progress 0 → 2 before Phase 2 takes over ──
@@ -1036,6 +1282,9 @@ namespace Celeste.Bosses
         // ─────────────────────────────────────────────────────────────────────
         private IEnumerator Phase2_SideScrollApproach()
         {
+            bool seen = level.Session.GetFlag(Phase2SeenFlag);
+            level.Session.SetFlag(Phase2SeenFlag);
+
             SetPhase(BattlePhase.Phase2Scroll);
             // progress = 2.00 for the entire Phase 2 loop; pitch maxes out at 2.0
             musicProgressTarget = 2.0f;
@@ -1052,11 +1301,14 @@ namespace Celeste.Bosses
 
             // Hand control back to the player (ground is back)
             player ??= Scene.Tracker.GetEntity<Player>();
-            rideController?.RemoveSelf();
+            rideController?.RemoveSelf();   // Removed() restores normal control
             rideController = null;
+            ridingStar?.RemoveSelf();
+            ridingStar = null;
 
-            // Ramp scroll speed visually over 2 s
-            if (scrollBd != null)
+            // Ramp scroll speed visually over 2 s — skipped once an arena profile
+            // is driving, since the director cross-fades the speed itself.
+            if (scrollBd != null && !ArenaDirected)
             {
                 float target = phase2ScrollSpeed;
                 scrollBd.ScrollSpeedX = 0f;
@@ -1074,9 +1326,7 @@ namespace Celeste.Bosses
             // Fade out allies — they stay behind
             Add(new Coroutine(FadeAllies(0f, 1.5f)));
 
-            yield return Textbox.Say("DZ_CH21_FINAL_BATTLE_PHASE2_ARRIVAL");
-
-            SetPhase(BattlePhase.Phase2Scroll);
+            yield return SayOnce("DZ_CH21_FINAL_BATTLE_PHASE2_ARRIVAL", seen);
 
             // Kick off the attack loop — runs as a parallel coroutine for the
             // full duration of Phase2Scroll so it stops automatically when the
@@ -1092,7 +1342,12 @@ namespace Celeste.Bosses
             base.Update();
 
             player ??= Scene.Tracker.GetEntity<Player>();
-            if (player == null) return;
+
+            // Deliberately no early-out on a missing vanilla Player. When Kirby
+            // is the active character the rider is a K_Player, and bailing here
+            // froze the music parameters, the backdrop colour push and the ally
+            // formation for the whole battle.
+            Actor? rider = WarpStarRideController.ResolveRider(Scene);
 
             // ── Drive FMOD parameters every frame ──────────────────────────────
             if (finaleStarted)
@@ -1100,23 +1355,26 @@ namespace Celeste.Bosses
                 // Smoothly chase targets so the music morphs rather than jumps
                 musicProgress = Calc.Approach(musicProgress, musicProgressTarget, Engine.DeltaTime * 0.12f);
                 musicPitch    = Calc.Approach(musicPitch,    musicPitchTarget,    Engine.DeltaTime * 0.6f);
-                Audio.SetMusicParam("els_progress",     musicProgress);
+                Audio.SetMusicParam("progress",     musicProgress);
                 Audio.SetMusicParam("finale_pitch", musicPitch);
             }
 
             // Simulated forward-flight feel via backdrop scroll speed.
             // Player freeze/input/bob/trail are fully owned by WarpStarRideController.
+            // Once an arena profile is live the director owns the backdrop speeds.
+            bool directed = ArenaDirected;
+
             if (CurrentPhase == BattlePhase.WarpStarRide)
             {
                 warpStarFlyTimer += Engine.DeltaTime;
                 float flyRamp = Math.Min(warpStarFlyTimer / 1.5f, 1f); // ramp up over 1.5s
-                if (abyssment != null)
+                if (abyssment != null && !directed)
                     abyssment.ScrollSpeed = 220f + warpStarFlySpeed * flyRamp;
             }
             else if (CurrentPhase == BattlePhase.FlyingVoid)
             {
                 warpStarFlyTimer += Engine.DeltaTime;
-                if (abyssment != null)
+                if (abyssment != null && !directed)
                     abyssment.ScrollSpeed = 80f + warpStarFlySpeed * 0.5f;
             }
             else
@@ -1134,10 +1392,10 @@ namespace Celeste.Bosses
             }
 
             // Ally formation bob
-            if (allyMasterAlpha > 0f && allySlots.Count > 0)
+            if (allyMasterAlpha > 0f && allySlots.Count > 0 && rider != null)
             {
                 allySineTimer += Engine.DeltaTime * 1.8f;
-                Vector2 centre = player.Center +
+                Vector2 centre = rider.Center +
                     new Vector2(allyFormationOffsetX, allyFormationOffsetY);
                 float totalW = (allySlots.Count - 1) * allySpacing;
                 float startX = centre.X - totalW * 0.5f;
@@ -1149,7 +1407,7 @@ namespace Celeste.Bosses
                     // Face player
                     float sx = allySlots[i].Img.Scale.X;
                     allySlots[i].Img.Scale = new Vector2(
-                        Math.Abs(sx) * (player.X < allySlots[i].Img.Position.X ? -1f : 1f),
+                        Math.Abs(sx) * (rider.X < allySlots[i].Img.Position.X ? -1f : 1f),
                         allySlots[i].Img.Scale.Y);
                 }
             }
@@ -1204,6 +1462,7 @@ namespace Celeste.Bosses
         private void SetPhase(BattlePhase phase)
         {
             CurrentPhase = phase;
+            SaveProgress();
             OnPhaseChanged?.Invoke(phase);
         }
     }

@@ -6,14 +6,13 @@ using FMOD.Studio;
 using IL.Celeste;
 using Microsoft.Xna.Framework;
 using Monocle;
-using FlingBirdIntro = Celeste.Entities.FlingBirdIntro;
 using BirdNPC = Celeste.Entities.DZBirdNPC;
 
 namespace Celeste.Cutscenes;
 
 public class CS19_MissTheBird : CutsceneEntity
 {
-    public const string Flag = "MissTheBird";
+    public const string Flag = "MissTheBirdMod";
 
     private global::Celeste.Player player;
 
@@ -27,12 +26,13 @@ public class CS19_MissTheBird : CutsceneEntity
     private EventInstance crashMusicSfx;
 
     [MethodImpl(MethodImplOptions.NoInlining)]
-    public CS19_MissTheBird(global::Celeste.Player player)
+    public CS19_MissTheBird(global::Celeste.Player player, FlingBirdIntro flingBirdIntro)
     {
         this.player = player;
         // Find the FlingBirdIntroMod in the scene
         Add(new LevelEndingHook(delegate
         {
+            Engine.TimeRate = 1f;
             Audio.Stop(crashMusicSfx);
         }));
     }
@@ -40,6 +40,7 @@ public class CS19_MissTheBird : CutsceneEntity
     [MethodImpl(MethodImplOptions.NoInlining)]
     public override void OnBegin(Level level)
     {
+        Engine.TimeRate = 1f;
         // Find the FlingBirdIntroMod in the scene
         flingBird = Scene.Entities.FindFirst<FlingBirdIntro>();
         Add(new Coroutine(Cutscene(level)));
@@ -79,15 +80,25 @@ public class CS19_MissTheBird : CutsceneEntity
                 bird.Position += new Vector2(0f, -4f);
             }, 0.8f, start: true));
         }, 0.1f, start: true));
-        while (!player.OnGround())
+        int groundSnapSafety = 0;
+        while (!player.OnGround() && groundSnapSafety++ < 1024)
         {
             player.MoveVExact(1);
+            if ((groundSnapSafety & 63) == 0)
+            {
+                yield return null;
+            }
         }
         Engine.TimeRate = 0.5f;
         player.Sprite.Play("roll");
         while (player.Speed.X != 0f)
         {
-            player.Speed.X = Calc.Approach(player.Speed.X, 0f, 120f * Engine.DeltaTime);
+            float delta = Engine.RawDeltaTime;
+            if (delta <= 0f)
+            {
+                delta = 1f / 60f;
+            }
+            player.Speed.X = Calc.Approach(player.Speed.X, 0f, 120f * delta);
             if (Scene.OnInterval(0.1f))
             {
                 Dust.BurstFG(player.Position, -MathF.PI / 2f, 2);
@@ -96,7 +107,12 @@ public class CS19_MissTheBird : CutsceneEntity
         }
         while (Engine.TimeRate < 1f)
         {
-            Engine.TimeRate = Calc.Approach(Engine.TimeRate, 1f, 4f * Engine.DeltaTime);
+            float delta = Engine.RawDeltaTime;
+            if (delta <= 0f)
+            {
+                delta = 1f / 60f;
+            }
+            Engine.TimeRate = Calc.Approach(Engine.TimeRate, 1f, 4f * delta);
             yield return null;
         }
         player.Speed.X = 0f;
@@ -188,7 +204,7 @@ public class CS19_MissTheBird : CutsceneEntity
     {
         Audio.Stop(crashMusicSfx);
         Engine.TimeRate = 1f;
-        level.Session.SetFlag("MissTheBird");
+        level.Session.SetFlag("MissTheBirdMod");
         if (WasSkipped)
         {
             player.Sprite.Play("idle");
@@ -219,6 +235,20 @@ public class CS19_MissTheBird : CutsceneEntity
         player.DummyGravity = true;
         player.ForceCameraUpdate = false;
         player.StateMachine.State = Player.StNormal;
+    }
+
+    public override void Removed(Scene scene)
+    {
+        Engine.TimeRate = 1f;
+        Audio.Stop(crashMusicSfx);
+        base.Removed(scene);
+    }
+
+    public override void SceneEnd(Scene scene)
+    {
+        Engine.TimeRate = 1f;
+        Audio.Stop(crashMusicSfx);
+        base.SceneEnd(scene);
     }
 }
 

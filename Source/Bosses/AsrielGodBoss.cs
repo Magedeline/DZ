@@ -77,6 +77,8 @@ namespace Celeste.Entities
         private const int MAX_HITS_PER_PHASE = 3;  // Hits needed to progress to next phase
         private const int TOTAL_PHASES = 5;        // Total number of boss phases
         private const int MAX_HITS = MAX_HITS_PER_PHASE * TOTAL_PHASES; // Total hits to defeat boss (15)
+        private const string AZZYBOSS14_SPECIAL_ATTACK_READY_FLAG = "dz_asriel_azzyboss14_special_attack_ready";
+        private const string AZZYBOSS14_SPECIAL_ATTACK_PLAYED_FLAG = "dz_asriel_azzyboss14_special_attack_played";
         
         #endregion
         
@@ -173,6 +175,11 @@ namespace Celeste.Entities
         private bool useCustomSequence;
         private List<AttackStep> customAttackSteps;
         private string attackSequenceData;
+
+        // Dialog keys configurable from Loenn entity data (asrielGodBoss.lua)
+        private readonly string azzyboss15DialogDoNotWantToFight;
+        private readonly string azzyboss15DialogFirstSpecialAttack;
+        private readonly string azzyboss15DialogMadelineBadelineSaveKirby;
 
         #endregion
         
@@ -439,7 +446,10 @@ namespace Celeste.Entities
             bool dialog,
             bool startHit,
             bool cameraLockY,
-            string attackSequence = "")
+            string attackSequence = "",
+            string azzyboss15DialogDoNotWantToFight = "DZ_CH20_KIRBY_DO_NOT_WANT_TO_FIGHT",
+            string azzyboss15DialogFirstSpecialAttack = "DZ_CH20_ASRIEL_FIRST_SPECIAL_ATTACK",
+            string azzyboss15DialogMadelineBadelineSaveKirby = "DZ_CH20_MADELINE_AND_BADELINE_SAVE_KIRBY_FROM_ASRIEL_FIRST_SPECIAL_ATTACK")
             : base(position,
                    spriteName: "asrielgodboss",  // Must match sprite bank ID in Sprites.xml
                    spriteScale: Vector2.One,
@@ -454,6 +464,15 @@ namespace Celeste.Entities
             this.dialog = dialog;
             this.startHit = startHit;
             this.attackSequenceData = attackSequence;
+            this.azzyboss15DialogDoNotWantToFight = string.IsNullOrWhiteSpace(azzyboss15DialogDoNotWantToFight)
+                ? "DZ_CH20_KIRBY_DO_NOT_WANT_TO_FIGHT"
+                : azzyboss15DialogDoNotWantToFight;
+            this.azzyboss15DialogFirstSpecialAttack = string.IsNullOrWhiteSpace(azzyboss15DialogFirstSpecialAttack)
+                ? "DZ_CH20_ASRIEL_FIRST_SPECIAL_ATTACK"
+                : azzyboss15DialogFirstSpecialAttack;
+            this.azzyboss15DialogMadelineBadelineSaveKirby = string.IsNullOrWhiteSpace(azzyboss15DialogMadelineBadelineSaveKirby)
+                ? "DZ_CH20_MADELINE_AND_BADELINE_SAVE_KIRBY_FROM_ASRIEL_FIRST_SPECIAL_ATTACK"
+                : azzyboss15DialogMadelineBadelineSaveKirby;
             this.Add((Component)(this.light = new VertexLight(Color.White, 1f, 32, 64)));
             // Collider already set in base constructor, just store reference
             this.circle = (Monocle.Circle)this.Collider;
@@ -477,7 +496,10 @@ namespace Celeste.Entities
         public AsrielGodBoss(EntityData e, Vector2 offset)
             : this(e.Position + offset, e.NodesOffset(offset), e.Int(nameof(patternIndex)),
                   e.Float("cameraPastY", 120f), e.Bool(nameof(dialog)), e.Bool(nameof(startHit)),
-                  e.Bool("cameraLockY", true), e.Attr("attackSequence", ""))
+                  e.Bool("cameraLockY", true), e.Attr("attackSequence", ""),
+                  e.Attr("azzyboss15DialogDoNotWantToFight", "DZ_CH20_KIRBY_DO_NOT_WANT_TO_FIGHT"),
+                  e.Attr("azzyboss15DialogFirstSpecialAttack", "DZ_CH20_ASRIEL_FIRST_SPECIAL_ATTACK"),
+                  e.Attr("azzyboss15DialogMadelineBadelineSaveKirby", "DZ_CH20_MADELINE_AND_BADELINE_SAVE_KIRBY_FROM_ASRIEL_FIRST_SPECIAL_ATTACK"))
         {
             // Parse custom attack sequence (if any)
             string seq = attackSequenceData.Trim();
@@ -1928,6 +1950,27 @@ namespace Celeste.Entities
 
         private IEnumerator Attack14Sequence()
         {
+            // CH20_KIRBY_DO_NOT_WANT_TO_FIGHT -> CH20_ASRIEL_FIRST_SPECIAL_ATTACK -> CH20_MADELINE_AND_BADELINE_SAVE_KIRBY_FROM_ASRIEL_FIRST_SPECIAL_ATTACK in azzyboss-14
+            bool inAzzyboss14 = level != null && level.Session.Level.Equals("azzyboss-14", StringComparison.OrdinalIgnoreCase);
+            bool azzyboss14SpecialAttackReady = level != null && level.Session.GetFlag(AZZYBOSS14_SPECIAL_ATTACK_READY_FLAG);
+            bool azzyboss14SpecialAttackPlayed = level != null && level.Session.GetFlag(AZZYBOSS14_SPECIAL_ATTACK_PLAYED_FLAG);
+            if (!dialogTriggered_DoNotWantToFight && dialog && inAzzyboss14 && azzyboss14SpecialAttackReady)
+            {
+                dialogTriggered_DoNotWantToFight = true;
+                stopAttacking();
+                yield return Textbox.Say(azzyboss15DialogDoNotWantToFight);
+                yield return 0.3f;
+
+                if (!dialogTriggered_FirstSpecialAttack && !azzyboss14SpecialAttackPlayed)
+                {
+                    dialogTriggered_FirstSpecialAttack = true;
+                    level.Add(new CS20_AsrielFirstSpecialAttack(azzyboss15DialogFirstSpecialAttack, azzyboss15DialogMadelineBadelineSaveKirby));
+                    while (level.Tracker.GetEntity<CS20_AsrielFirstSpecialAttack>() != null)
+                    {
+                        yield return null;
+                    }
+                }
+            }
             while (true)
             {
                 yield return 0.2f;
@@ -1938,14 +1981,6 @@ namespace Celeste.Entities
 
         private IEnumerator Attack15Sequence()
         {
-            // CH20_KIRBY_DO_NOT_WANT_TO_FIGHT dialog in azzyboss-15
-            if (!dialogTriggered_DoNotWantToFight && dialog)
-            {
-                dialogTriggered_DoNotWantToFight = true;
-                stopAttacking();
-                yield return Textbox.Say("DZ_CH20_KIRBY_DO_NOT_WANT_TO_FIGHT");
-                yield return 0.5f;
-            }
             while (true)
             {
                 yield return 0.2f;
@@ -2141,22 +2176,13 @@ namespace Celeste.Entities
 
         private IEnumerator Attack30Sequence()
         {
-            // CH20_KIRBY_REFUSED_TO_DIE Ã¢â€ â€™ CH20_ASRIEL_FIRST_SPECIAL_ATTACK Ã¢â€ â€™ CH20_MADELINE_AND_BADELINE_SAVE_KIRBY_FROM_ASRIEL_FIRST_SPECIAL_ATTACK
+            // CH20_KIRBY_REFUSED_TO_DIE dialog (first special attack is room-locked to azzyboss-14)
             if (!dialogTriggered_RefusedToDie && dialog)
             {
                 dialogTriggered_RefusedToDie = true;
                 stopAttacking();
                 yield return Textbox.Say("DZ_CH20_KIRBY_REFUSED_TO_DIE");
                 yield return 0.3f;
-
-                if (!dialogTriggered_FirstSpecialAttack)
-                {
-                    dialogTriggered_FirstSpecialAttack = true;
-                    yield return Textbox.Say("DZ_CH20_ASRIEL_FIRST_SPECIAL_ATTACK");
-                    yield return 0.3f;
-                    yield return Textbox.Say("DZ_CH20_MADELINE_AND_BADELINE_SAVE_KIRBY_FROM_ASRIEL_FIRST_SPECIAL_ATTACK");
-                    yield return 0.5f;
-                }
             }
             while (true)
             {
@@ -3313,7 +3339,7 @@ namespace Celeste.Entities
 
         private IEnumerator PlayDialog_KirbyDoNotWantToFight()
         {
-            yield return Textbox.Say("DZ_CH20_KIRBY_DO_NOT_WANT_TO_FIGHT");
+            yield return Textbox.Say(azzyboss15DialogDoNotWantToFight);
         }
 
         private IEnumerator PlayDialog_KirbyStruckDown()
@@ -3328,12 +3354,12 @@ namespace Celeste.Entities
 
         private IEnumerator PlayDialog_AsrielFirstSpecialAttack()
         {
-            yield return Textbox.Say("DZ_CH20_ASRIEL_FIRST_SPECIAL_ATTACK");
+            yield return Textbox.Say(azzyboss15DialogFirstSpecialAttack);
         }
 
         private IEnumerator PlayDialog_MadelineSaveKirbyFromFirstSpecialAttack()
         {
-            yield return Textbox.Say("DZ_CH20_MADELINE_AND_BADELINE_SAVE_KIRBY_FROM_ASRIEL_FIRST_SPECIAL_ATTACK");
+            yield return Textbox.Say(azzyboss15DialogMadelineBadelineSaveKirby);
         }
 
         private IEnumerator PlayDialog_AsrielGodSecondSpecialAttack()

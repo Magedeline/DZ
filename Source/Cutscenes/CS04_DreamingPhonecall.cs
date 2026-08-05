@@ -68,14 +68,14 @@ namespace Celeste.Cutscenes
       Audio.Play("event:/game/02_old_site/sequence_phone_pickup", player.Position);
       yield return payphone.Sprite.PlayRoutine("pickUp");
       yield return 1f;
-      if (level.Session.Area.Mode == AreaMode.Normal)
+      if ((int)level.Session.Area.Mode == 0)
         Audio.SetMusic("event:/DZ/music/lvl4/phone_loop");
       payphone.Sprite.Play("talkPhone");
 
       yield return Textbox.Say("DZ_CH4_DREAM_PHONECALL", showChara);
       if (evil != null)
       {
-        if (level.Session.Area.Mode == AreaMode.Normal)
+        if ((int)level.Session.Area.Mode == 0)
           Audio.SetMusic("event:/DZ/music/lvl4/phone_end");
         evil.Vanish();
         evil = null;

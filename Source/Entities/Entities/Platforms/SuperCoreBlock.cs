@@ -1,463 +1,325 @@
+using Celeste.Mod.Entities;
+using Microsoft.Xna.Framework;
+using Monocle;
+using System;
+using System.Collections.Generic;
+
 namespace Celeste.Entities
 {
-    /// <summary>
-    /// Enhanced core block that launches player at 3x speed with extended range
-    /// </summary>
-    [CustomEntity(ids: "DZ/SuperCoreBlock")]
+    [CustomEntity("DZ/SuperCoreBlock")]
     [Tracked]
-    public class SuperCoreBlock : Entity
+    public class SuperCoreBlock : Solid
     {
-        private Sprite sprite;
-        private VertexLight light;
-        private SoundSource coreSfx;
-        private Wiggler activationWiggler;
-        private Wiggler scaleWiggler;
-        private Level level;
-        
-        // Configuration
-        private float speedMultiplier;
-        private float launchRange;
-        private bool requiresCoreMode;
-        private Color hotColor;
-        private Color coldColor;
-        private Color superColor;
-        
-        // State
-        private bool isActivated = false;
-        private float cooldownTimer = 0f;
-        private const float COOLDOWN_TIME = 0.8f;
-        private Session.CoreModes currentCoreMode;
-        
-        // Visual effects
-        private float energyPulse = 0f;
-        private Vector2[] energyParticles;
-        private int particleCount = 24;
+        private const float WindUpDelay = 0.0f;
+        private const float WindUpDist = 10f;
+        private const float IceWindUpDist = 16f;
+        private const float BounceDist = 24f;
+        private const float LiftSpeedXMult = 0.75f;
+        private const float CooldownTime = 0.8f;
+        private const float BounceEndTime = 0.05f;
 
-        public SuperCoreBlock(EntityData data, Vector2 offset) : base(data.Position + offset)
+        private enum States
         {
+            Waiting,
+            WindingUp,
+            Bouncing,
+            Cooldown,
+        }
+
+        private readonly float speedMultiplier;
+        private readonly float launchRange;
+        private readonly bool requiresCoreMode;
+        private readonly Color hotColor;
+        private readonly Color coldColor;
+        private readonly Color superColor;
+
+        private States state;
+        private Level level;
+        private Session.CoreModes currentCoreMode;
+        private Vector2 bounceDir;
+        private Vector2 startPos;
+        private float windUpStartTimer;
+        private float windUpProgress;
+        private float cooldownTimer;
+        private float bounceEndTimer;
+        private float reappearFlash;
+        private bool iceMode;
+        private bool iceModeNext;
+        private Player targetPlayer;
+        private List<Image> hotImages;
+        private List<Image> coldImages;
+        private Sprite hotCenterSprite;
+        private Sprite coldCenterSprite;
+
+        public SuperCoreBlock(EntityData data, Vector2 offset)
+            : base(data.Position + offset, data.Width, data.Height, false)
+        {
+            Depth = 8990;
+            startPos = Position;
+
             speedMultiplier = data.Float("speedMultiplier", 3f);
             launchRange = data.Float("launchRange", 400f);
             requiresCoreMode = data.Bool("requiresCoreMode", false);
-            
-            // Color configuration
-            string hotHex = data.Attr("hotColor", "FF4500");
-            string coldHex = data.Attr("coldColor", "00BFFF");
-            string superHex = data.Attr("superColor", "FFD700");
-            
-            TryParseColor(hotHex, out hotColor);
-            TryParseColor(coldHex, out coldColor);
-            TryParseColor(superHex, out superColor);
+            iceMode = data.Bool("notCoreMode", false);
+            iceModeNext = iceMode;
 
-            Depth = -200;
-            Collider = new Hitbox(16f, 16f, -8f, -8f);
-            
-            SetupComponents();
-            InitializeEnergyParticles();
+            TryParseColor(data.Attr("hotColor", "FF4500"), out hotColor);
+            TryParseColor(data.Attr("coldColor", "00BFFF"), out coldColor);
+            TryParseColor(data.Attr("superColor", "FFD700"), out superColor);
+
+            hotImages = BuildSprite(GFX.Game["objects/DZ/BumpBlockNew/fire00"]);
+            hotCenterSprite = GFX.SpriteBank.Create("bumpBlockCenterFire");
+            hotCenterSprite.Position = new Vector2(Width, Height) / 2f;
+            hotCenterSprite.Visible = false;
+            Add(hotCenterSprite);
+
+            coldImages = BuildSprite(GFX.Game["objects/DZ/BumpBlockNew/ice00"]);
+            coldCenterSprite = GFX.SpriteBank.Create("bumpBlockCenterIce");
+            coldCenterSprite.Position = new Vector2(Width, Height) / 2f;
+            coldCenterSprite.Visible = false;
+            Add(coldCenterSprite);
+
+            Add(new CoreModeListener(OnChangeMode));
         }
 
-        private void SetupComponents()
+        public SuperCoreBlock(EntityData data, Vector2 offset, bool iceMode)
+            : this(data, offset)
         {
-            // Sprite setup
-            sprite = new Sprite(GFX.Game, "objects/DZ/DZ/superCoreBlock/");
-            sprite.AddLoop("hot_idle", "hot_idle", 0.08f);
-            sprite.AddLoop("hot_active", "hot_active", 0.04f);
-            sprite.AddLoop("cold_idle", "cold_idle", 0.08f);
-            sprite.AddLoop("cold_active", "cold_active", 0.04f);
-            sprite.AddLoop("super_idle", "super_idle", 0.05f);
-            sprite.AddLoop("super_active", "super_active", 0.02f);
-            sprite.AddLoop("superDZ_CHarged", "superDZ_CHarged", 0.01f);
-            sprite.Play("hot_idle");
-            Add(sprite);
-
-            // Lighting
-            light = new VertexLight(hotColor, 1.2f, 64, 48);
-            Add(light);
-
-            // Sound
-            coreSfx = new SoundSource();
-            Add(coreSfx);
-
-            // Visual effects
-            activationWiggler = Wiggler.Create(0.5f, 3f, null, false, false);
-            Add(activationWiggler);
-
-            scaleWiggler = Wiggler.Create(0.3f, 4f, null, false, false);
-            Add(scaleWiggler);
-        }
-
-        private void InitializeEnergyParticles()
-        {
-            energyParticles = new Vector2[particleCount];
-            for (int i = 0; i < particleCount; i++)
-            {
-                float angle = (i / (float)particleCount) * 360f * Calc.DegToRad;
-                energyParticles[i] = Calc.AngleToVector(angle, 16f);
-            }
+            this.iceMode = iceMode;
+            iceModeNext = iceMode;
+            ToggleSprite();
         }
 
         public override void Added(Scene scene)
         {
             base.Added(scene);
-            level = scene as Level;
-            
-            if (level?.Session != null)
-            {
-                currentCoreMode = level.Session.CoreMode;
-                UpdateVisualState();
-            }
+            level = SceneAs<Level>();
+            currentCoreMode = level.Session.CoreMode;
+            ToggleSprite();
         }
 
         public override void Update()
         {
             base.Update();
 
-            // Handle cooldown
-            if (cooldownTimer > 0f)
+            if (level?.Session != null)
+                currentCoreMode = level.Session.CoreMode;
+
+            reappearFlash = Calc.Approach(reappearFlash, 0f, Engine.DeltaTime * 8f);
+
+            if (state == States.Cooldown)
             {
                 cooldownTimer -= Engine.DeltaTime;
                 if (cooldownTimer <= 0f)
-                {
-                    isActivated = false;
-                    UpdateVisualState();
-                }
+                    state = States.Waiting;
             }
 
-            // Update core mode
-            if (level?.Session != null && currentCoreMode != level.Session.CoreMode)
+            if (state == States.Waiting)
             {
-                currentCoreMode = level.Session.CoreMode;
-                UpdateVisualState();
-                scaleWiggler.Start();
-            }
+                CheckModeChange();
+                Player player = WindUpPlayerCheck();
+                if (player == null || !CanTriggerInCurrentMode())
+                    return;
 
-            // Check for player collision
-            var player = Scene.Tracker.GetEntity<global::Celeste.Player>();
-            if (player != null && CollideCheck(player) && !isActivated)
-            {
-                TryLaunchPlayer(player);
-            }
-
-            UpdateVisualEffects();
-        }
-
-        private void TryLaunchPlayer(global::Celeste.Player player)
-        {
-            // Check if core mode is required
-            if (requiresCoreMode && currentCoreMode == Session.CoreModes.None)
-            {
+                StartWindUp(player);
                 return;
             }
 
-            LaunchPlayer(player);
-        }
-
-        private void LaunchPlayer(global::Celeste.Player player)
-        {
-            isActivated = true;
-            cooldownTimer = COOLDOWN_TIME;
-
-            // Calculate launch direction and speed
-            Vector2 launchDirection = CalculateLaunchDirection(player);
-            float baseSpeed = GetBaseLaunchSpeed();
-            float finalSpeed = baseSpeed * speedMultiplier;
-
-            // Apply launch force
-            player.Speed = launchDirection * finalSpeed;
-
-            // Extend launch range by reducing air friction temporarily
-            Add(new Coroutine(ExtendedLaunchCoroutine(player)));
-
-            // Visual and audio feedback
-            ActivateBlock();
-            CreateLaunchEffect(player.Position, launchDirection);
-
-            // Play sound based on core mode
-            PlayLaunchSound();
-        }
-
-        private Vector2 CalculateLaunchDirection(global::Celeste.Player player)
-        {
-            // Default upward launch, but check for input direction
-            Vector2 direction = Vector2.UnitY * -1f;
-
-            if (Input.MoveX.Value != 0)
+            if (state == States.WindingUp)
             {
-                // Diagonal launch
-                direction = new Vector2(Input.MoveX.Value, -0.7f).SafeNormalize();
-            }
-            else if (Input.MoveY.Value > 0)
-            {
-                // Downward launch (if holding down)
-                direction = Vector2.UnitY;
-            }
+                CheckModeChange();
 
-            return direction;
-        }
+                Player player = WindUpPlayerCheck();
+                if (player != null)
+                    bounceDir = GetBounceDirection(player);
 
-        private float GetBaseLaunchSpeed()
-        {
-            switch (currentCoreMode)
-            {
-                case Session.CoreModes.Hot:
-                    return 280f;
-                case Session.CoreModes.Cold:
-                    return 320f;
-                default:
-                    return 240f; // Normal mode gets super speed anyway
-            }
-        }
-
-        private IEnumerator ExtendedLaunchCoroutine(global::Celeste.Player player)
-        {
-            float timer = 0f;
-            float extendDuration = launchRange / (GetBaseLaunchSpeed() * speedMultiplier);
-
-            Vector2 originalGravity = new Vector2(0f, 900f); // Default gravity
-            float reducedGravity = 300f; // Reduced gravity for extended flight
-
-            while (timer < extendDuration && player != null)
-            {
-                timer += Engine.DeltaTime;
-
-                // Reduce gravity effect for extended flight
-                if (player.Speed.Y > 0f) // Only when falling
+                if (windUpStartTimer > 0f)
                 {
-                    player.Speed.Y -= (originalGravity.Y - reducedGravity) * Engine.DeltaTime;
+                    windUpStartTimer -= Engine.DeltaTime;
+                    windUpProgress = Calc.Approach(windUpProgress, 0f, Engine.DeltaTime * 8f);
+                    return;
                 }
 
-                // Create trail particles
-                if (Scene.OnInterval(0.05f))
-                {
-                    CreateTrailParticles(player.Position);
-                }
+                windUpProgress = Calc.Approach(windUpProgress, 1f, Engine.DeltaTime * 8f);
+                if (windUpProgress < 1f)
+                    return;
 
-                yield return null;
+                LaunchPlayer();
+                state = States.Bouncing;
+                bounceEndTimer = BounceEndTime;
+                return;
             }
 
-            // Final speed boost if still in air
-            if (player != null && !player.OnGround())
-            {
-                player.Speed *= 1.1f;
-                CreateSpeedBoostEffect(player.Position);
-            }
-        }
+            if (state != States.Bouncing)
+                return;
 
-        private void ActivateBlock()
-        {
-            UpdateVisualState();
-            activationWiggler.Start();
-            scaleWiggler.Start();
+            bounceEndTimer -= Engine.DeltaTime;
+            if (bounceEndTimer > 0f)
+                return;
 
-            // Intensify light
-            light.Alpha = 1.5f;
-        }
-
-        private void UpdateVisualState()
-        {
-            if (isActivated)
-            {
-                switch (currentCoreMode)
-                {
-                    case Session.CoreModes.Hot:
-                        sprite.Play("hot_active");
-                        light.Color = hotColor;
-                        break;
-                    case Session.CoreModes.Cold:
-                        sprite.Play("cold_active");
-                        light.Color = coldColor;
-                        break;
-                    default:
-                        sprite.Play("superDZ_CHarged");
-                        light.Color = superColor;
-                        break;
-                }
-            }
-            else
-            {
-                switch (currentCoreMode)
-                {
-                    case Session.CoreModes.Hot:
-                        sprite.Play("hot_idle");
-                        light.Color = hotColor;
-                        break;
-                    case Session.CoreModes.Cold:
-                        sprite.Play("cold_idle");
-                        light.Color = coldColor;
-                        break;
-                    default:
-                        sprite.Play("super_idle");
-                        light.Color = superColor;
-                        break;
-                }
-            }
-        }
-
-        private void PlayLaunchSound()
-        {
-            string soundEvent;
-            switch (currentCoreMode)
-            {
-                case Session.CoreModes.Hot:
-                    soundEvent = "event:/game/09_core/iceblock_reappear";
-                    break;
-                case Session.CoreModes.Cold:
-                    soundEvent = "event:/game/09_core/icewall_emerge";
-                    break;
-                default:
-                    soundEvent = "event:/game/general/crystalheart_pulse";
-                    break;
-            }
-
-            coreSfx.Play(soundEvent);
-            Audio.Play("event:/game/06_reflection/badeline_boss_bullet", Position);
-        }
-
-        private void CreateLaunchEffect(Vector2 playerPos, Vector2 direction)
-        {
-            if (level == null) return;
-
-            Color effectColor = GetCurrentColor();
-
-            // Explosion effect at block
-            for (int i = 0; i < 20; i++)
-            {
-                float angle = i * 18f * Calc.DegToRad;
-                Vector2 particleDir = Calc.AngleToVector(angle, Calc.Random.Range(40f, 80f));
-                Vector2 particlePos = Position + particleDir * 0.3f;
-
-                level.ParticlesFG.Emit(ParticleTypes.Dust, particlePos, effectColor, angle);
-            }
-
-            // Launch trail effect
-            for (int i = 0; i < 12; i++)
-            {
-                Vector2 trailPos = Position + direction * i * 8f;
-                level.ParticlesBG.Emit(ParticleTypes.Dust, trailPos, effectColor, direction.Angle());
-            }
-        }
-
-        private void CreateTrailParticles(Vector2 position)
-        {
-            if (level == null) return;
-
-            Color trailColor = GetCurrentColor() * 0.8f;
-            // Use the angle of the direction vector as the 4th argument (float)
-            Vector2 particleDir = new Vector2(Calc.Random.Range(-20f, 20f), Calc.Random.Range(10f, 30f));
-            float direction = (float)Math.Atan2(particleDir.Y, particleDir.X);
-
-            level.ParticlesBG.Emit(ParticleTypes.Dust, position, trailColor, direction);
-        }
-
-        private void CreateSpeedBoostEffect(Vector2 position)
-        {
-            if (level == null) return;
-
-            Color boostColor = superColor;
-
-            for (int i = 0; i < 16; i++)
-            {
-                float angle = i * 22.5f * Calc.DegToRad;
-                float distance = Calc.Random.Range(30f, 60f);
-                Vector2 direction = Calc.AngleToVector(angle, distance);
-                // Use angle (float) instead of direction (Vector2) for the 4th argument
-                level.ParticlesFG.Emit(ParticleTypes.Dust, position, boostColor, angle);
-            }
-        }
-
-        private void UpdateVisualEffects()
-        {
-            // Energy pulse animation
-            energyPulse += Engine.DeltaTime * 4f;
-            
-            // Pulsing light
-            float basePulse = 0.8f + (float)Math.Sin(Scene.TimeActive * 3f) * 0.2f;
-            if (isActivated)
-                basePulse += 0.4f + (float)Math.Sin(Scene.TimeActive * 15f) * 0.3f;
-            
-            light.Alpha = basePulse;
-
-            // Scale effects
-            Vector2 scale = Vector2.One;
-            scale *= 1f + activationWiggler.Value * 0.3f;
-            scale *= 1f + scaleWiggler.Value * 0.1f;
-            
-            if (isActivated)
-            {
-                scale *= 1f + (float)Math.Sin(Scene.TimeActive * 12f) * 0.15f;
-            }
-            
-            sprite.Scale = scale;
-        }
-
-        private Color GetCurrentColor()
-        {
-            switch (currentCoreMode)
-            {
-                case Session.CoreModes.Hot: return hotColor;
-                case Session.CoreModes.Cold: return coldColor;
-                default: return superColor;
-            }
+            state = States.Cooldown;
+            cooldownTimer = CooldownTime;
+            targetPlayer = null;
         }
 
         public override void Render()
         {
             base.Render();
 
-            // Render energy particles when active or charged
-            if (isActivated || currentCoreMode != Session.CoreModes.None)
+            if (state == States.WindingUp || state == States.Bouncing)
             {
-                RenderEnergyField();
+                Color flashColor = GetCurrentColor() * (state == States.WindingUp ? 0.18f : 0.25f);
+                Draw.Rect(X - 2f, Y - 2f, Width + 4f, Height + 4f, flashColor);
+
+                float flash = state == States.WindingUp ? Ease.CubeOut(windUpProgress) : 1f;
+                Draw.Rect(X - 4f, Y - 4f, Width + 8f, Height + 8f, Color.White * (0.12f * flash));
             }
 
-            // Render range indicator in debug mode
-            if (Engine.Commands.Open)
+            if (reappearFlash > 0f)
             {
-                Vector2 launchDir = Vector2.UnitY * -1f;
-                Vector2 rangeEnd = Position + launchDir * launchRange;
-                Draw.Line(Position, rangeEnd, Color.Yellow, 2);
-                Draw.Circle(Position, 4f, Color.Red, 3);
+                float amount = Ease.CubeOut(reappearFlash);
+                float padding = amount * 2f;
+                Draw.Rect(X - padding, Y - padding, Width + padding * 2f, Height + padding * 2f, Color.White * amount);
             }
         }
 
-        private void RenderEnergyField()
+        private List<Image> BuildSprite(MTexture source)
         {
-            Color fieldColor = GetCurrentColor();
-            float alpha = isActivated ? 0.8f : 0.4f;
-            
-            // Rotating energy particles
-            for (int i = 0; i < particleCount; i++)
+            List<Image> images = new List<Image>();
+            int columns = source.Width / 8;
+            int rows = source.Height / 8;
+
+            for (int x = 0; x < Width; x += 8)
             {
-                float angle = (i / (float)particleCount) * 360f * Calc.DegToRad + energyPulse;
-                float radius = 20f + (float)Math.Sin(Scene.TimeActive * 5f + i * 0.2f) * 4f;
-                
-                Vector2 particlePos = Position + Calc.AngleToVector(angle, radius);
-                Color particleColor = fieldColor * alpha * (0.5f + (float)Math.Sin(Scene.TimeActive * 8f + i * 0.5f) * 0.5f);
-                
-                Draw.Point(particlePos, particleColor);
-                
-                if (isActivated)
+                for (int y = 0; y < Height; y += 8)
                 {
-                    Draw.Point(particlePos + Vector2.One, particleColor * 0.6f);
+                    int column = x != 0 ? (x < Width - 8f ? Calc.Random.Next(1, columns - 1) : columns - 1) : 0;
+                    int row = y != 0 ? (y < Height - 8f ? Calc.Random.Next(1, rows - 1) : rows - 1) : 0;
+                    Image image = new Image(source.GetSubtexture(column * 8, row * 8, 8, 8));
+                    image.Position = new Vector2(x, y);
+                    images.Add(image);
+                    Add(image);
                 }
             }
 
-            // Core energy ring
-            if (isActivated)
+            return images;
+        }
+
+        private void ToggleSprite()
+        {
+            hotCenterSprite.Visible = !iceMode;
+            coldCenterSprite.Visible = iceMode;
+
+            foreach (Image hotImage in hotImages)
+                hotImage.Visible = !iceMode;
+
+            foreach (Image coldImage in coldImages)
+                coldImage.Visible = iceMode;
+        }
+
+        private void OnChangeMode(Session.CoreModes coreMode)
+        {
+            iceModeNext = coreMode == Session.CoreModes.Cold;
+        }
+
+        private void CheckModeChange()
+        {
+            if (iceModeNext == iceMode)
+                return;
+
+            iceMode = iceModeNext;
+            ToggleSprite();
+        }
+
+        private bool CanTriggerInCurrentMode()
+        {
+            if (!requiresCoreMode)
+                return true;
+
+            Session.CoreModes requiredMode = iceMode ? Session.CoreModes.Cold : Session.CoreModes.Hot;
+            return currentCoreMode == requiredMode;
+        }
+
+        private void StartWindUp(Player player)
+        {
+            state = States.WindingUp;
+            targetPlayer = player;
+            windUpStartTimer = WindUpDelay;
+            windUpProgress = 0f;
+            bounceDir = GetBounceDirection(player);
+            StartShaking(0.1f);
+            Audio.Play(iceMode ? "event:/game/09_core/iceblock_touch" : "event:/game/09_core/bounceblock_touch", Center);
+        }
+
+        private void LaunchPlayer()
+        {
+            Player player = targetPlayer ?? WindUpPlayerCheck();
+            if (player == null)
+                return;
+
+            float launchSpeed = GetBaseLaunchSpeed() * speedMultiplier;
+            player.StateMachine.State = 0;
+            player.Speed = bounceDir * launchSpeed;
+            player.Speed.X *= LiftSpeedXMult;
+            player.StartJumpGraceTime();
+
+            Input.Rumble(RumbleStrength.Medium, RumbleLength.Medium);
+            StartShaking(0.15f);
+            reappearFlash = 0.6f;
+            Audio.Play(iceMode ? "event:/game/09_core/iceblock_reappear" : "event:/game/09_core/bounceblock_break", Center);
+        }
+
+        private float GetBaseLaunchSpeed()
+        {
+            return iceMode ? 320f : 280f;
+        }
+
+        private Vector2 GetBounceDirection(Player player)
+        {
+            if (iceMode)
+                return -Vector2.UnitY;
+
+            Vector2 direction = (player.Center - Center).SafeNormalize(-Vector2.UnitY);
+            if (Math.Abs(direction.X) < 0.2f)
+                direction = new Vector2(Math.Sign(player.Center.X - Center.X), -0.7f).SafeNormalize(-Vector2.UnitY);
+
+            return direction;
+        }
+
+        private Player WindUpPlayerCheck()
+        {
+            Player player = CollideFirst<Player>(Position - Vector2.UnitY);
+            if (player != null && player.Speed.Y < 0f)
+                player = null;
+
+            if (player == null)
             {
-                float ringRadius = 16f + (float)Math.Sin(Scene.TimeActive * 10f) * 3f;
-                Draw.Circle(Position, ringRadius, fieldColor * 0.6f, 2);
-                Draw.Circle(Position, ringRadius * 0.7f, Color.White * 0.4f, 1);
+                player = CollideFirst<Player>(Position + Vector2.UnitX);
+                if (player == null || player.StateMachine.State != 1 || player.Facing != Facings.Left)
+                {
+                    player = CollideFirst<Player>(Position - Vector2.UnitX);
+                    if (player == null || player.StateMachine.State != 1 || player.Facing != Facings.Right)
+                        player = null;
+                }
             }
+
+            return player;
+        }
+
+        private Color GetCurrentColor()
+        {
+            return iceMode ? coldColor : hotColor;
         }
 
         private static bool TryParseColor(string hex, out Color color)
         {
             color = Color.White;
-            if (string.IsNullOrEmpty(hex)) return false;
-            
+            if (string.IsNullOrEmpty(hex))
+                return false;
+
             if (hex.StartsWith("#"))
                 hex = hex.Substring(1);
-            
+
             try
             {
                 if (hex.Length == 6)
@@ -469,15 +331,11 @@ namespace Celeste.Entities
                     return true;
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                Logger.Log(LogLevel.Warn, "SuperCoreBlock", $"Failed to parse color hex '{hex}': {ex.Message}");
             }
+
             return false;
         }
     }
 }
-
-
-
-

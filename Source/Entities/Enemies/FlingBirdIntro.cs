@@ -125,7 +125,12 @@ public class FlingBirdIntro : DZ.Nez.Component, IUpdatable
     public override void Update()
     {
         float dt = Time.DeltaTime;
-        _player ??= Entity.Scene?.FindEntitiesWithTag(0).OfType<MadelinePlayer>().FirstOrDefault();
+
+        // Optimize player lookup: use type-based search instead of tag enumeration
+        if (_player == null && Entity.Scene != null)
+        {
+            _player = Entity.Scene.FindEntityOfType<MadelinePlayer>();
+        }
 
         if (_startedRoutine)
         {

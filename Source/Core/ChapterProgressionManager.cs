@@ -641,7 +641,7 @@ public static class ChapterProgressionManager
             $"pending16={save.PendingUnlockChapter16OnRestart}, pending19={save.PendingUnlockChapter19OnRestart}, pending20={save.PendingUnlockChapter20OnRestart}, pending21={save.PendingUnlockChapter21OnRestart}");
     }
 
-    [Command("DZ_unlock_2", "Unlock D-Side (or DX-Side) for all DZ chapters. Usage: DZ_unlock_2 [2|dxside|status]")]
+    [Command("DZ_unlock_2", "Unlock D-Side for all DZ chapters. Usage: DZ_unlock_2 [2|status]")]
     private static void CmdUnlock2(string mode = "2")
     {
         var vanillaSave = SaveData.Instance;
@@ -662,15 +662,14 @@ public static class ChapterProgressionManager
             {
                 if (ad?.SID == null || !AreaModeExtender.IsOurMap(ad)) continue;
                 bool dUnlocked = AreaModeExtender.IsSideUnlocked(ad.ToKey(), AreaModeExtender.MODE_2);
-                bool dxUnlocked = AreaModeExtender.IsSideUnlocked(ad.ToKey(), AreaModeExtender.MODE_DXSIDE);
-                Engine.Commands?.Log($"  {ad.SID}: D-Side={dUnlocked}, DX-Side={dxUnlocked}");
+                Engine.Commands?.Log($"  {ad.SID}: D-Side={dUnlocked}");
                 count++;
             }
             Engine.Commands?.Log($"[DZ] Checked {count} KIRBY_CELESTE chapter(s).");
             return;
         }
 
-        bool unlockDX = mode == "dxside" || mode == "all";
+        bool unlockDX = false;
         int unlocked = 0;
 
         foreach (var ad in AreaData.Areas)

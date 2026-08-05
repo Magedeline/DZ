@@ -274,11 +274,11 @@ namespace DZ
         private static char getCurrentSide(AreaKey areaKey)
         {
             // Convert AreaMode to side character
-            switch (areaKey.Mode)
+            switch ((int)areaKey.Mode)
             {
-                case AreaMode.Normal: return 'A';
-                case AreaMode.BSide: return 'B';
-                case AreaMode.CSide: return 'C';
+                case 0: return 'A'; // Normal
+                case 1: return 'B'; // BSide
+                case 2: return 'C'; // CSide
                 default: return 'A';
             }
         }

@@ -31,7 +31,7 @@ namespace Celeste.Cutscenes
       cs04MirrorPortal.player.StateMachine.State = Player.StDummy;
       cs04MirrorPortal.player.StateMachine.Locked = true;
       cs04MirrorPortal.player.Dashes = 1;
-      if (level.Session.Area.Mode == AreaMode.Normal)
+      if ((int)level.Session.Area.Mode == 0)
         Audio.SetMusic((string) null);
       else
         cs04MirrorPortal.Add((Component) new Coroutine(MusicFadeOut1()));
@@ -90,7 +90,7 @@ namespace Celeste.Cutscenes
       cs04MirrorPortal.player.Sprite.Play("sleep");
       yield return (object) 1f;
       yield return (object) level.ZoomBack(1f);
-      if (level.Session.Area.Mode == AreaMode.Normal)
+      if ((int)level.Session.Area.Mode == 0)
       {
         level.Session.ColorGrade = "templevoid";
         for (p = 0.0f; (double) p < 1.0; p += Engine.DeltaTime)
@@ -153,7 +153,7 @@ namespace Celeste.Cutscenes
         level.Session.Dreaming = true;
         level.Session.Keys.Clear();
         bool useGenocidePath = CH7GenocideMirrorState.IsEnabled(level.Session)
-          && level.Session.Area.Mode == AreaMode.Normal
+          && (int)level.Session.Area.Mode == 0
           && CH7GenocideMirrorState.HasRoom(level, CH7GenocideMirrorState.VisionIntroRoom);
         string targetRoom;
         global::Celeste.Player.IntroTypes introType;
@@ -163,7 +163,7 @@ namespace Celeste.Cutscenes
           targetRoom = CH7GenocideMirrorState.VisionIntroRoom;
           introType = global::Celeste.Player.IntroTypes.WakeUp;
         }
-        else if (level.Session.Area.Mode == AreaMode.Normal)
+        else if ((int)level.Session.Area.Mode == 0)
         {
           targetRoom = "null";
           introType = global::Celeste.Player.IntroTypes.TempleMirrorVoid;
@@ -182,7 +182,7 @@ namespace Celeste.Cutscenes
         {
           level.Add((Entity) new CS07_GenocideVisionIntro(loadedPlayer));
         }
-        if (level.Session.Area.Mode != AreaMode.Normal && !useGenocidePath)
+        if ((int)level.Session.Area.Mode != 0 && !useGenocidePath)
         {
           Audio.SetMusicParam("fade", 1f);
         }

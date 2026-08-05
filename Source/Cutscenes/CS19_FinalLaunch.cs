@@ -150,29 +150,21 @@ public class CS19_FinalLaunch : CutsceneEntity
             boost.Ch19FinalBoostSfx.stop(STOP_MODE.ALLOWFADEOUT);
             boost.Ch19FinalBoostSfx.release();
         }
-        string nextLevelName = "end-granny";
-        Player.IntroTypes nextLevelIntro = Player.IntroTypes.Transition;
-        if (hasPinkPlatinum)
+        if (player != null)
         {
-            nextLevelName = "end-granny";
+            player.Active = true;
+            player.Speed = Vector2.Zero;
+            player.EnforceLevelBounds = true;
+            player.StateMachine.State = 0;
+            player.DummyFriction = true;
+            player.DummyGravity = true;
+            player.DummyAutoAnimate = true;
+            player.ForceCameraUpdate = false;
         }
-        if (hasGolden)
-        {
-            nextLevelName = "end-golden";
-            nextLevelIntro = Player.IntroTypes.Jump;
-        }
-        player.Active = true;
-        player.Speed = Vector2.Zero;
-        player.EnforceLevelBounds = true;
-        player.StateMachine.State = 0;
-        player.DummyFriction = true;
-        player.DummyGravity = true;
-        player.DummyAutoAnimate = true;
-        player.ForceCameraUpdate = false;
+
         Engine.TimeRate = 1f;
         level.OnEndOfFrame += [MethodImpl(MethodImplOptions.NoInlining)] () =>
         {
-            level.TeleportTo(player, nextLevelName, nextLevelIntro);
             if (hasGolden)
             {
                 if (level.Wipe != null)
@@ -183,6 +175,8 @@ public class CS19_FinalLaunch : CutsceneEntity
                 new FadeWipe(level, wipeIn: true).Duration = 2f;
                 ScreenWipe.WipeColor = Color.White;
             }
+
+            level.CompleteArea(spotlightWipe: hasGolden || hasPinkPlatinum, skipScreenWipe: false, skipCompleteScreen: false);
         };
     }
 

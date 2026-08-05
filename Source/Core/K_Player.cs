@@ -60,6 +60,8 @@ namespace Celeste.Entities
         private const float AirMult = .65f;
 
         private const float HoldingMaxRun = 70f;
+        private const float SprintSpeedMult = 1.35f;
+        private const float SprintAccelMult = 1.1f;
         private const float HoldMinTime = .35f;
 
         private const float BounceAutoJumpTime = .1f;
@@ -73,6 +75,8 @@ namespace Celeste.Entities
         private const float DuckSuperJumpYMult = .5f;
 
         private const float JumpGraceTime = 0.1f;
+        private const float ExtendedJumpGraceBonus = .06f;
+        private const float JumpBufferTime = .12f;
         private const float JumpSpeed = -105f;
         private const float JumpHBoost = 40f;
         private const float VarJumpTime = .2f;
@@ -100,6 +104,7 @@ namespace Celeste.Entities
         private const float SuperWallJumpH = MaxRun + JumpHBoost * 2;
 
         private const float DashSpeed = 240f;
+        private const float DashJumpCancelHorizontalMult = .85f;
         private const float EndDashSpeed = 160f;
         private const float EndDashUpMult = .75f;
         private const float DashTime = .15f;
@@ -376,6 +381,9 @@ namespace Celeste.Entities
 
         private Hitbox hurtbox;
         private float jumpGraceTimer;
+        private float jumpBufferTimer;
+        private bool sprintModeEnabled;
+        private bool usedAirDoubleJump;
         public bool AutoJump;
         public float AutoJumpTimer;
         private float varJumpSpeed;
@@ -1228,12 +1236,19 @@ namespace Celeste.Entities
                 if (dashAttackTimer > 0)
                     dashAttackTimer -= Engine.DeltaTime;
 
+                // Explicit jump buffering for forgiving early jump inputs
+                if (Input.Jump.Pressed)
+                    jumpBufferTimer = JumpBufferTime;
+                else if (jumpBufferTimer > 0)
+                    jumpBufferTimer -= Engine.DeltaTime;
+
                 //Jump Grace
                 if (onGround)
                 {
                     dreamJump = false;
-                    jumpGraceTimer = JumpGraceTime;
-                    
+                    jumpGraceTimer = JumpGraceTime + ExtendedJumpGraceBonus;
+                    usedAirDoubleJump = false;
+
                     // Phase 3: Reset multi-jump on landing and start input window
                     if (jumpCount > 0)
                     {
@@ -1243,7 +1258,7 @@ namespace Celeste.Entities
                 }
                 else if (jumpGraceTimer > 0)
                     jumpGraceTimer -= Engine.DeltaTime;
-                
+
                 // Phase 3: Update multi-jump input window timer
                 if (multiJumpInputTimer > 0)
                     multiJumpInputTimer -= Engine.DeltaTime;
@@ -3638,6 +3653,13 @@ namespace Celeste.Entities
                     }
                 }
 
+                // Sprint toggle: down + dash on ground toggles fast run mode
+                if (onGround && Input.MoveY.Value == 1 && Input.Dash.Pressed)
+                {
+                    sprintModeEnabled = !sprintModeEnabled;
+                    Input.Dash.ConsumeBuffer();
+                }
+
                 //Dashing
                 if (CanDash)
                 {
@@ -3704,12 +3726,19 @@ namespace Celeste.Entities
                     mult *= .3f;
 
                 float max = Holding == null ? MaxRun : HoldingMaxRun;
+                float accel = RunAccel;
+                if (sprintModeEnabled && Holding == null)
+                {
+                    max *= SprintSpeedMult;
+                    accel *= SprintAccelMult;
+                }
+
                 if (level.InSpace)
                     max *= SpacePhysicsMult;
                 if (Math.Abs(Speed.X) > max && Math.Sign(Speed.X) == moveX)
                     Speed.X = Calc.Approach(Speed.X, max * moveX, RunReduce * mult * Engine.DeltaTime);  //Reduce back from beyond the max speed
                 else
-                    Speed.X = Calc.Approach(Speed.X, max * moveX, RunAccel * mult * Engine.DeltaTime);   //Approach the max speed
+                    Speed.X = Calc.Approach(Speed.X, max * moveX, accel * mult * Engine.DeltaTime);   //Approach the max speed
             }
 
             //Vertical
@@ -3784,19 +3813,21 @@ namespace Celeste.Entities
                         varJumpTimer = 0;
                 }
 
-                //Jumping
-                if (Input.Jump.Pressed)
+                //Jumping (pressed OR explicitly buffered)
+                if (Input.Jump.Pressed || jumpBufferTimer > 0)
                 {
                     Water water = null;
                     if (jumpGraceTimer > 0)
                     {
                         Jump();
+                        jumpBufferTimer = 0;
                     }
                     // Phase 3: Multi-jump logic - check for double/triple jump in arena
                     else if (isInArena && !onGround && jumpCount < maxJumpCount && multiJumpInputTimer > 0)
                     {
                         PerformPhase3MultiJump();
                         Input.Jump.ConsumeBuffer();
+                        jumpBufferTimer = 0;
                     }
                     else if (CanUnDuck)
                     {
@@ -3809,6 +3840,8 @@ namespace Celeste.Entities
                                 SuperWallJump(-1);
                             else
                                 WallJump(-1);
+
+                            jumpBufferTimer = 0;
                         }
                         else if (canUnduck && WallJumpCheck(-1))
                         {
@@ -3818,11 +3851,20 @@ namespace Celeste.Entities
                                 SuperWallJump(1);
                             else
                                 WallJump(1);
+
+                            jumpBufferTimer = 0;
                         }
                         else if ((water = CollideFirst<Water>(Position + Vector2.UnitY * 2)) != null)
                         {
                             Jump();
                             water.TopSurface.DoRipple(Position, 1);
+                            jumpBufferTimer = 0;
+                        }
+                        else if (!isInArena && !onGround && !usedAirDoubleJump)
+                        {
+                            Jump();
+                            usedAirDoubleJump = true;
+                            jumpBufferTimer = 0;
                         }
                     }
                 }
@@ -4537,6 +4579,15 @@ namespace Celeste.Entities
                         return StNormal;
                     }
                 }
+            }
+
+            // Dash cancel into jump
+            if (Input.Jump.Pressed && CanUnDuck)
+            {
+                Jump();
+                Speed.X *= DashJumpCancelHorizontalMult;
+                jumpBufferTimer = 0;
+                return StNormal;
             }
 
             if (Speed != Vector2.Zero && level.OnInterval(0.02f))

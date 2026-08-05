@@ -28,7 +28,8 @@ namespace Celeste.Entities
         // Glider/holdable tracking
         private Entity carriedGlider;
         private bool gliderWasCarried;
-        
+        private K_Player boostingKPlayer;
+
         public bool BoostingPlayer { get; private set; }
 
         public GreyBooster(Vector2 position, bool red)
@@ -106,10 +107,27 @@ namespace Celeste.Entities
                 {
                     target = player.Center + new Vector2(0f, -2f) - Position;
                 }
+                else
+                {
+                    K_Player kPlayer = Scene.Tracker.GetEntity<K_Player>();
+                    if (kPlayer != null && CollideCheck(kPlayer))
+                    {
+                        target = kPlayer.Center + new Vector2(0f, -2f) - Position;
+                    }
+                }
                 sprite.Position = Calc.Approach(sprite.Position, target, 80f * Engine.DeltaTime);
             }
 
-            if (sprite.CurrentAnimationID == "inside" && !BoostingPlayer && !CollideCheck<global::Celeste.Player>())
+            if (respawnTimer <= 0f && cannotUseTimer <= 0f && !BoostingPlayer)
+            {
+                K_Player kPlayer = Scene.Tracker.GetEntity<K_Player>();
+                if (kPlayer != null && CollideCheck(kPlayer))
+                {
+                    OnKPlayer(kPlayer);
+                }
+            }
+
+            if (sprite.CurrentAnimationID == "inside" && !BoostingPlayer && !IsPlayerInside())
             {
                 sprite.Play("loop");
             }
@@ -143,10 +161,10 @@ namespace Celeste.Entities
             if (respawnTimer <= 0f && cannotUseTimer <= 0f && !BoostingPlayer)
             {
                 cannotUseTimer = 0.45f;
-                
+
                 // Check if player is carrying a glider/jellyfish
                 CheckForCarriedGlider(player);
-                
+
                 if (red)
                 {
                     RedBoost(player);
@@ -155,17 +173,56 @@ namespace Celeste.Entities
                 {
                     GreenBoost(player);
                 }
-                
+
                 // Play enter sound
                 string enterEvent = red 
                     ? "event:/DZ/game/07_inferno/redbooster_enter"
                     : "event:/DZ/game/06_stronghold/greenbooster_enter";
                 Audio.Play(enterEvent, Position);
-                
+
                 wiggler.Start();
                 sprite.Play("inside");
                 sprite.FlipX = player.Facing == Facings.Left;
             }
+        }
+
+        private void OnKPlayer(K_Player player)
+        {
+            if (respawnTimer <= 0f && cannotUseTimer <= 0f && !BoostingPlayer)
+            {
+                cannotUseTimer = 0.45f;
+
+                CheckForCarriedGlider(player);
+
+                if (red)
+                {
+                    RedBoost(player);
+                }
+                else
+                {
+                    GreenBoost(player);
+                }
+
+                string enterEvent = red
+                    ? "event:/DZ/game/07_inferno/redbooster_enter"
+                    : "event:/DZ/game/06_stronghold/greenbooster_enter";
+                Audio.Play(enterEvent, Position);
+
+                wiggler.Start();
+                sprite.Play("inside");
+                sprite.FlipX = player.Facing == Facings.Left;
+            }
+        }
+
+        private bool IsPlayerInside()
+        {
+            if (CollideCheck<global::Celeste.Player>())
+            {
+                return true;
+            }
+
+            K_Player kPlayer = Scene?.Tracker.GetEntity<K_Player>();
+            return kPlayer != null && CollideCheck(kPlayer);
         }
 
         private void CheckForCarriedGlider(global::Celeste.Player player)
@@ -173,27 +230,58 @@ namespace Celeste.Entities
             // Reset previous glider state
             carriedGlider = null;
             gliderWasCarried = false;
-            
+
             // Check if player is holding something
             if (player.Holding != null && player.Holding.Entity != null)
             {
                 Entity heldEntity = player.Holding.Entity;
-                
+
                 // Check if it's a glider type entity (GlitchGlider, Jellyfish, etc.)
                 if (IsGliderEntity(heldEntity))
                 {
                     carriedGlider = heldEntity;
                     gliderWasCarried = true;
-                    
+
                     // Make glider follow the boost
                     carriedGlider.Collidable = false;
                 }
             }
-            
+
             // Also check for nearby glider entities
             if (carriedGlider == null)
             {
                 // Check all entities in the scene
+                foreach (var entity in Scene.Entities)
+                {
+                    if (IsGliderEntity(entity) && Vector2.Distance(entity.Position, player.Position) < 20f)
+                    {
+                        carriedGlider = entity;
+                        gliderWasCarried = true;
+                        carriedGlider.Collidable = false;
+                        break;
+                    }
+                }
+            }
+        }
+
+        private void CheckForCarriedGlider(K_Player player)
+        {
+            carriedGlider = null;
+            gliderWasCarried = false;
+
+            if (player.Holding != null && player.Holding.Entity != null)
+            {
+                Entity heldEntity = player.Holding.Entity;
+                if (IsGliderEntity(heldEntity))
+                {
+                    carriedGlider = heldEntity;
+                    gliderWasCarried = true;
+                    carriedGlider.Collidable = false;
+                }
+            }
+
+            if (carriedGlider == null)
+            {
                 foreach (var entity in Scene.Entities)
                 {
                     if (IsGliderEntity(entity) && Vector2.Distance(entity.Position, player.Position) < 20f)
@@ -229,7 +317,7 @@ namespace Celeste.Entities
                 player.Speed = dir;
                 sprite.RenderPosition = player.Center + new Vector2(0f, -2f);
                 outline.Position = sprite.Position;
-                
+
                 // Move carried glider alongside player
                 if (gliderWasCarried && carriedGlider != null && carriedGlider.Scene != null)
                 {
@@ -239,7 +327,7 @@ namespace Celeste.Entities
                         -6f
                     );
                     carriedGlider.Position = player.Center + gliderOffset;
-                    
+
                     // Emit particles around glider to show it's being carried
                     if (Scene.OnInterval(0.04f))
                     {
@@ -247,37 +335,85 @@ namespace Celeste.Entities
                             carriedGlider.Center, Vector2.One * 4f);
                     }
                 }
-                
+
                 if (Scene.OnInterval(0.02f))
                 {
                     (Scene as Level).ParticlesBG.Emit(particleType, 2, player.Center, Vector2.One * 3f);
                 }
-                
+
                 timer += Engine.DeltaTime;
                 yield return null;
             }
 
             PlayerReleased();
-            
+
             // Release glider
             if (gliderWasCarried && carriedGlider != null && carriedGlider.Scene != null)
             {
                 ReleaseGlider(player);
             }
-            
+
             if (red)
             {
                 player.StateMachine.State = Player.StNormal;
             }
         }
 
+        private IEnumerator BoostRoutine(K_Player player, Vector2 dir)
+        {
+            float duration = red ? 0.3f : 0.25f;
+            float timer = 0f;
+
+            while (timer < duration && player.Scene != null && player.StateMachine.State == K_Player.StDash)
+            {
+                player.Speed = dir;
+                sprite.RenderPosition = player.Center + new Vector2(0f, -2f);
+                outline.Position = sprite.Position;
+
+                if (gliderWasCarried && carriedGlider != null && carriedGlider.Scene != null)
+                {
+                    Vector2 gliderOffset = new Vector2(
+                        player.Facing == Facings.Left ? -8f : 8f,
+                        -6f
+                    );
+                    carriedGlider.Position = player.Center + gliderOffset;
+
+                    if (Scene.OnInterval(0.04f))
+                    {
+                        (Scene as Level).ParticlesBG.Emit(particleType, 1,
+                            carriedGlider.Center, Vector2.One * 4f);
+                    }
+                }
+
+                if (Scene.OnInterval(0.02f))
+                {
+                    (Scene as Level).ParticlesBG.Emit(particleType, 2, player.Center, Vector2.One * 3f);
+                }
+
+                timer += Engine.DeltaTime;
+                yield return null;
+            }
+
+            PlayerReleased();
+
+            if (gliderWasCarried && carriedGlider != null && carriedGlider.Scene != null)
+            {
+                ReleaseGlider(player);
+            }
+
+            if (red && player.Scene != null)
+            {
+                player.StateMachine.State = K_Player.StNormal;
+            }
+        }
+
         private void ReleaseGlider(global::Celeste.Player player)
         {
             if (carriedGlider == null) return;
-            
+
             // Restore glider's collidable state
             carriedGlider.Collidable = true;
-            
+
             // Give glider a small velocity using reflection/dynamic to handle different types
             try
             {
@@ -293,17 +429,48 @@ namespace Celeste.Entities
             {
                 // If setting speed fails, just position the glider
             }
-            
+
             // Emit particles when releasing
             (Scene as Level).ParticlesBG.Emit(particleType, 6, 
                 carriedGlider.Center, Vector2.One * 6f);
-            
+
             // Position glider near player
             carriedGlider.Position = player.Center + new Vector2(
                 player.Facing == Facings.Left ? -12f : 12f,
                 -8f
             );
-            
+
+            carriedGlider = null;
+            gliderWasCarried = false;
+        }
+
+        private void ReleaseGlider(K_Player player)
+        {
+            if (carriedGlider == null) return;
+
+            carriedGlider.Collidable = true;
+
+            try
+            {
+                var speedProperty = carriedGlider.GetType().GetProperty("Speed");
+                if (speedProperty != null && speedProperty.CanWrite)
+                {
+                    Vector2 releaseVelocity = player.Speed * 0.3f;
+                    speedProperty.SetValue(carriedGlider, releaseVelocity);
+                }
+            }
+            catch
+            {
+            }
+
+            (Scene as Level).ParticlesBG.Emit(particleType, 6,
+                carriedGlider.Center, Vector2.One * 6f);
+
+            carriedGlider.Position = player.Center + new Vector2(
+                player.Facing == Facings.Left ? -12f : 12f,
+                -8f
+            );
+
             carriedGlider = null;
             gliderWasCarried = false;
         }
@@ -312,19 +479,39 @@ namespace Celeste.Entities
         {
             // Play dash sound
             Audio.Play("event:/DZ/game/07_inferno/redbooster_dash", Position);
-            
+
             player.StateMachine.State = Player.StDash; // RedDash state
             player.Speed = Vector2.Zero;
             player.DashDir = Vector2.UnitX * (float)player.Facing;
+            boostingKPlayer = null;
             BoostingPlayer = true;
             Tag = Tags.Persistent | Tags.TransitionUpdate;
             sprite.Play("spin");
             sprite.FlipX = player.Facing == Facings.Left;
             outline.Visible = true;
-            
+
             // Start looping movement sound
             loopingSfx.Play("event:/DZ/game/07_inferno/redbooster_move");
-            
+
+            dashRoutine.Replace(BoostRoutine(player, Vector2.UnitX * (float)player.Facing * BoostSpeed));
+        }
+
+        private void RedBoost(K_Player player)
+        {
+            Audio.Play("event:/DZ/game/07_inferno/redbooster_dash", Position);
+
+            player.StateMachine.State = K_Player.StDash;
+            player.Speed = Vector2.Zero;
+            player.DashDir = Vector2.UnitX * (float)player.Facing;
+            boostingKPlayer = player;
+            BoostingPlayer = true;
+            Tag = Tags.Persistent | Tags.TransitionUpdate;
+            sprite.Play("spin");
+            sprite.FlipX = player.Facing == Facings.Left;
+            outline.Visible = true;
+
+            loopingSfx.Play("event:/DZ/game/07_inferno/redbooster_move");
+
             dashRoutine.Replace(BoostRoutine(player, Vector2.UnitX * (float)player.Facing * BoostSpeed));
         }
 
@@ -332,20 +519,41 @@ namespace Celeste.Entities
         {
             // Play dash sound
             Audio.Play("event:/DZ/game/06_stronghold/greenbooster_dash", Position);
-            
+
             player.StateMachine.State = Player.StDash; // RedDash state  
             player.Speed = Vector2.Zero;
             Vector2 direction = (player.Center - Center).SafeNormalize();
             player.DashDir = direction;
+            boostingKPlayer = null;
             BoostingPlayer = true;
             Tag = Tags.Persistent | Tags.TransitionUpdate;
             sprite.Play("spin");
             sprite.FlipX = player.Facing == Facings.Left;
             outline.Visible = true;
-            
+
             // Start looping movement sound
             loopingSfx.Play("event:/DZ/game/07_inferno/redbooster_move");
-            
+
+            dashRoutine.Replace(BoostRoutine(player, direction * BoostSpeed));
+        }
+
+        private void GreenBoost(K_Player player)
+        {
+            Audio.Play("event:/DZ/game/06_stronghold/greenbooster_dash", Position);
+
+            player.StateMachine.State = K_Player.StDash;
+            player.Speed = Vector2.Zero;
+            Vector2 direction = (player.Center - Center).SafeNormalize();
+            player.DashDir = direction;
+            boostingKPlayer = player;
+            BoostingPlayer = true;
+            Tag = Tags.Persistent | Tags.TransitionUpdate;
+            sprite.Play("spin");
+            sprite.FlipX = player.Facing == Facings.Left;
+            outline.Visible = true;
+
+            loopingSfx.Play("event:/DZ/game/07_inferno/redbooster_move");
+
             dashRoutine.Replace(BoostRoutine(player, direction * BoostSpeed));
         }
 
@@ -353,17 +561,18 @@ namespace Celeste.Entities
         {
             // Stop looping sound
             loopingSfx.Stop();
-            
+
             // Play end sound
             string endEvent = red 
                 ? "event:/DZ/game/07_inferno/redbooster_end"
                 : "event:/DZ/game/06_stronghold/greenbooster_end";
             Audio.Play(endEvent, sprite.RenderPosition);
-            
+
             sprite.Play("pop");
             cannotUseTimer = 0f;
             respawnTimer = RespawnTime;
             BoostingPlayer = false;
+            boostingKPlayer = null;
             Tag = 0;
         }
 

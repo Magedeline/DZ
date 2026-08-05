@@ -66,7 +66,7 @@ public class CS02_DreamingPhonecallPortal : CutsceneEntity
         Audio.Play("event:/game/02_old_site/sequence_phone_pickup", player.Position);
         yield return payphone.Sprite.PlayRoutine("pickUp");
         yield return 1f;
-        if (level.Session.Area.Mode == AreaMode.Normal)
+        if ((int)level.Session.Area.Mode == 0)
         {
             Audio.SetMusic("event:/DZ/music/lvl2/phone_loop");
         }
@@ -74,7 +74,7 @@ public class CS02_DreamingPhonecallPortal : CutsceneEntity
         yield return Textbox.Say("DZ_CH2_DREAM_PHONECALLPORTAL", ShowShadowMadeline);
         if (child != null)
         {
-            if (level.Session.Area.Mode == AreaMode.Normal)
+            if ((int)level.Session.Area.Mode == 0)
             {
                 Audio.SetMusic("event:/DZ/music/lvl2/phone_end");
             }

@@ -204,23 +204,21 @@ public static class HeartGemManager
         int lastSlash = sid.LastIndexOf('/');
         string chapterName = lastSlash >= 0 ? sid.Substring(lastSlash + 1) : sid;
 
-        string sideName = session.Area.Mode switch
+        string sideName = (int)session.Area.Mode switch
         {
-            AreaMode.BSide => "1",
-            AreaMode.CSide => "2",
-            _ when (int)session.Area.Mode == AreaModeExtender.MODE_DSIDE => "3",
-            _ when (int)session.Area.Mode == AreaModeExtender.MODE_DXSIDE => "DXSide",
+            1 => "1", // BSide
+            2 => "2", // CSide
+            3 => "3", // DSide
             _ => "0"
         };
 
         // Construct the registry key: soul_DZ_0_01_City
         // The suffix pattern matches the English.txt keys
-        string suffix = session.Area.Mode switch
+        string suffix = (int)session.Area.Mode switch
         {
-            AreaMode.BSide => "_B",
-            AreaMode.CSide => "_C",
-            _ when (int)session.Area.Mode == AreaModeExtender.MODE_DSIDE => "_D",
-            _ when (int)session.Area.Mode == AreaModeExtender.MODE_DXSIDE => "_DX",
+            1 => "_B", // BSide
+            2 => "_C", // CSide
+            3 => "_D", // DSide
             _ => "_A"
         };
 

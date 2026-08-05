@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <AssemblyName>DZ.RysyPlugin</AssemblyName>
+        <RootNamespace>DZ.RysyPlugin</RootNamespace>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <LangVersion>latest</LangVersion>
+
+        <!-- Path to a checkout of https://github.com/JaThePlayer/Rysy.
+             Override on the command line with -p:RysyRepo=... if you move it. -->
+        <RysyRepo Condition="'$(RysyRepo)' == ''">C:\Users\warsh\source\repos\Rysy</RysyRepo>
+    </PropertyGroup>
+
+    <!-- Nothing from Rysy may be copied into our output. Rysy scans Rysy/bin for
+         plugin assemblies, so a stray Rysy.dll there would be loaded as a plugin. -->
+    <ItemDefinitionGroup>
+        <ProjectReference Private="false" ExcludeAssets="runtime" />
+        <Reference Private="false" ExcludeAssets="runtime" />
+    </ItemDefinitionGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="$(RysyRepo)\Rysy\Rysy.csproj" />
+        <ProjectReference Include="$(RysyRepo)\Rysy.Shared\Rysy.Shared.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Reference Include="FNA">
+            <HintPath>$(RysyRepo)\Rysy\lib\FNA.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+
+    <!-- Rysy loads Rysy/bin/*.dll non-recursively, so the normal output path
+         (Rysy/Source/bin/Debug/net10.0) is invisible to it. Copy up to Rysy/bin. -->
+    <Target Name="CopyToRysyBin" AfterTargets="Build"
+            Inputs="$(OutputPath)\$(AssemblyName).dll;$(OutputPath)\$(AssemblyName).pdb"
+            Outputs="..\bin\$(AssemblyName).dll;..\bin\$(AssemblyName).pdb">
+        <MakeDir Directories="..\bin" />
+        <Copy SourceFiles="$(OutputPath)\$(AssemblyName).dll" DestinationFolder="..\bin" />
+        <Copy SourceFiles="$(OutputPath)\$(AssemblyName).pdb" DestinationFolder="..\bin" />
+    </Target>
+
+</Project>

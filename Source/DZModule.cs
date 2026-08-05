@@ -99,6 +99,7 @@ public class DZModule : EverestModule {
         global::DZ.KirbyHealthSystemHooks.Load();
 
         // Entity-level hooks (IL patches, renderer hooks, etc.)
+        BirdPathSafetyHooks.Load();
         global::Celeste.Entities.DesoloZantasTape.Load();
         global::Celeste.Entities.PowerGenerator.Load();
         global::Celeste.Entities.DefensivePowerGenerator.Load();
@@ -181,6 +182,7 @@ public class DZModule : EverestModule {
         global::DZ.KirbyHealthSystemHooks.Unload();
 
         // Entity-level hooks
+        BirdPathSafetyHooks.Unload();
         global::Celeste.Entities.DesoloZantasTape.Unload();
         global::Celeste.Entities.PowerGenerator.Unload();
         global::Celeste.Entities.DefensivePowerGenerator.Unload();

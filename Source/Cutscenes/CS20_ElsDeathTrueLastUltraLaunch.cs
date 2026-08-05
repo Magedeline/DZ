@@ -54,6 +54,8 @@ namespace Celeste.Cutscenes
 
         private string dialog;
 
+        private const string DreamFriendsCapturedDialogKey = "DZ_CH20_DREAM_FRIENDS_CAPTURED";
+
         // Seven goner birds that transform into souls
         private readonly List<DZBirdNPC> soulBirds = new List<DZBirdNPC>(7);
         private readonly Vector2[] soulBirdScreenPositions = new Vector2[7];
@@ -90,7 +92,7 @@ namespace Celeste.Cutscenes
         [MethodImpl(MethodImplOptions.NoInlining)]
         public override void OnBegin(Level level)
         {
-            if (player == null || boost == null)
+            if (player == null)
             {
                 EndCutscene(level);
                 return;
@@ -121,7 +123,19 @@ namespace Celeste.Cutscenes
 
             if (!string.IsNullOrEmpty(dialog))
             {
-                yield return Textbox.Say(dialog);
+                if (string.Equals(dialog, DreamFriendsCapturedDialogKey, StringComparison.Ordinal))
+                {
+                    yield return Textbox.Say(dialog,
+                        Trigger0ShiftBackToKirby,
+                        Trigger1CaptureAllies,
+                        Trigger2LiftKirbySoul,
+                        Trigger3ZeroDamagesSoul,
+                        Trigger4MuteMusic);
+                }
+                else
+                {
+                    yield return Textbox.Say(dialog);
+                }
             }
             else
             {
@@ -309,6 +323,73 @@ namespace Celeste.Cutscenes
                     ScreenWipe.WipeColor = Color.White;
                 }
             };
+        }
+
+        private IEnumerator Trigger0ShiftBackToKirby()
+        {
+            if (Level == null || player == null)
+                yield break;
+
+            cameraOffset = new Vector2(0f, -36f);
+            Level.Shake(0.2f);
+            Level.Displacement.AddBurst(player.Center, 0.25f, 24f, 120f, 0.5f);
+            yield return 0.2f;
+        }
+
+        private IEnumerator Trigger1CaptureAllies()
+        {
+            if (Level == null || player == null)
+                yield break;
+
+            Audio.Play("event:/game/06_reflection/boss_spikes_burst", player.Center);
+            Level.Flash(Calc.HexToColor("560000") * 0.25f, false);
+            Level.Shake(0.35f);
+
+            for (int i = 0; i < 12; i++)
+            {
+                Level.ParticlesFG.Emit(Player.P_DashB, 1, player.Center, Vector2.One * 18f);
+                yield return 0.02f;
+            }
+
+            yield return 0.2f;
+        }
+
+        private IEnumerator Trigger2LiftKirbySoul()
+        {
+            if (player == null)
+                yield break;
+
+            Vector2 from = player.Position;
+            Vector2 to = from + new Vector2(0f, -28f);
+
+            Audio.Play("event:/game/06_reflection/feather_state", player.Center);
+            for (float t = 0f; t < 1f; t += Engine.DeltaTime / 0.6f)
+            {
+                player.Position = Vector2.Lerp(from, to, Ease.CubeOut(t));
+                yield return null;
+            }
+
+            player.Position = to;
+            yield return 0.1f;
+        }
+
+        private IEnumerator Trigger3ZeroDamagesSoul()
+        {
+            if (Level == null || player == null)
+                yield break;
+
+            Level.Shake(0.5f);
+            Level.Flash(Color.White * 0.3f, false);
+            Audio.Play("event:/char/badeline/boss_hug", player.Center);
+            yield return 0.25f;
+            yield return 0.2f;
+        }
+
+        private IEnumerator Trigger4MuteMusic()
+        {
+            Audio.SetMusic(null);
+            Audio.SetAmbience(null);
+            yield return null;
         }
 
         private IEnumerator WaveCamera()

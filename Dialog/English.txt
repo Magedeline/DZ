@@ -1622,7 +1622,7 @@ On these days Ladies like you
 [CHARA left revenge]
 SHOULD BE BURNED IN HELL
 
-DZ_CH2_DREAM_PHONECALL_TRAP=
+DZ_CH2_DREAM_PHONECALLPORTAL=
 [MADELINE_PHONE left distracted]
 Hello?
 
@@ -1777,7 +1777,7 @@ But as long he do not want some fuss up cry like a baby, I won't be with him... 
 You better get used to with him.
 Anyways See ya Baddy...
 
-DZ_CH2_CALLING_KIRBY_ENDING=
+DZ_CH2_END_PHONECALL=
 [susiehaltmann right normal]
 Hello there Susie haltmann is speaking.
 
@@ -16834,7 +16834,7 @@ you can win
 you have to win
 you need to be stronger
 never give up and never backdown
-we belived in you
+we believed in you
 froggit...:3
 
 [ELS left normal]
@@ -16925,8 +16925,10 @@ this will be your doom!
 
 DZ_CH20_ASRIEL_FIRST_SPECIAL_ATTACK=
 [ASRIEL_GOD left frustrated]
-UGH! You Power is quite enough
+UGH! Your Power is quite enough
 It's Time for this Timeline to be purge once and for all!
+
+{trigger 0 asriel summon a meteorite}
 
 DZ_CH20_MADELINE_AND_BADELINE_SAVE_KIRBY_FROM_ASRIEL_FIRST_SPECIAL_ATTACK=
 [KIRBY left surprised]
@@ -16955,8 +16957,8 @@ You can't be alive! I killed you both!
 Watch it you goat boy, you better not hurt my friend here or I will end you right here and now!
 
 [MADELINE left sad]
-{# AAAAFF}Infact We never really left, {+KIRBY}.{#}
-{# AAAAFF}Our love for you {~}TRANSCENDED{/~} mortality itself.{#}
+{# AAAAFF}Infact We never really left, {+KIRBY}.{@}
+{# AAAAFF}Our love for you {~}TRANSCENDED{/~} mortality itself.{@}
 
 [ASRIEL_GOD left normal]
 Fine, you can have your little reunion, but it won't stop me from killing you all!
@@ -17327,14 +17329,21 @@ DZ_CH20_ASRIEL_REMEMBER_FINAL=
 [ASRIEL_ZERO left horrified]
 {# 880088}N-NO! STOP! I DON'T WANT TO {~}HURT{/~} THEM!{#}
 {# 000000}OBEY ME! YOU ARE {~}NOTHING{/~} WITHOUT MY POWER!{#}
+{# 880088}STOP IT PLEASE!{#}
+{# 880088}STOP IT NOW!!!{#}
+
+{trigger 0 asriel rip els eye out and deactivated the final beam}
 
 DZ_CH20_ASRIEL_REMEMBER_F=
 [ASRIEL_ZERO left determined]
 {# 880088}I... I {~}REFUSE{/~}!{#}
 {# 880088}These are my {*}FRIENDS{/*}! I won't let you hurt them!{#}
-{# 880088}I choose {~}LOVE{/~} over {~}POWER{/~}!{#}
-{# 000000}NO! {*}IMPOSSIBLE{/*}!{#}
-{# 000000}HOW CAN A WEAK CHILD RESIST ME?!{#}
+{# 880088}I choose {~}LOVE{/~} over {~}POWER{/~}...{#}
+{# 880088}{*}But now I am all alone{/*}!{#}
+{# 880088}{*}I am so scared to lose someone{/*}...{#}
+{# 880088}{*}So Please{/*}...{#}
+{# 880088}Please...{#}
+{trigger 1 asriel return back to a kid}
 
 # ====================================================================
 # CHAPTER 20: ASRIEL ANGEL OF DEATH BOSS FIGHT - DIALOG INTEGRATION
@@ -17361,7 +17370,7 @@ DZ_CH20_ASRIEL_BOSS_END=
 [KIRBY left sadder]
 {# FFDDAA}Hey buddy... look at me...{#}
 {# FFDDAA}You've got ALL of us now...{#}
-{# FFDDAA}And we're {*}NEVER{/*} letting go...{#}
+{# FFDDAA}And we're {*}NEVER{/*} letting you go...{#}
 
 [BADELINE right worriedalt]
 {# DDAAFF}Your fear doesn't define you, Asriel...{#}
@@ -17372,44 +17381,46 @@ DZ_CH20_ASRIEL_BOSS_END=
 [none left]
 UGH... INSUFFERABLE FOOLS.
 
-{trigger 1 camera slightly move to els on the right}
+{trigger 1 slowdown music switch to els theme and move camera slightly to els on the right}
 
 [MADELINE left angry]
 ELLICA DOPPIA REVEALS YOURSELF... NOW!
 
 {trigger 2 madeline walk forward and confront els}
 
-[ASRIEL left sad]
-{# 000000}Els... the darkness controlling me throughout.{#}
-{# 000000}Your used and manipulated me!{#}
-{# 000000}I thought your better than this with us.{#}
-{# 000000}But I was wrong completely.{#}
-{# 000000}Infact You Are The True Final Zeros.{#}
-{# 000000}Just Like The Others mirror From One of them.{#}
-{# 000000}You conqurered, consumed, killed, betrayed, and manipulated everyone.{#}
-{# 000000}and Top all of that.{#}
-{# 000000}Your consequences is above You!{#}
+[ASRIEL left angry]
+{# 880088}Els... the darkness controlling me throughout my mind and body.{#}
+{# 880088}Your used and manipulated me!{#}
+{# 880088}I thought your better than this with us.{#}
+{# 880088}But I was wrong completely.{#}
+{# 880088}Infact You Are The True Final Zeros.{#}
+{# 880088}Just Like The Others mirror From One of them.{#}
+{# 880088}You conqurered, consumed, killed, betrayed, and manipulated everyone.{#}
+{# 880088}and Top all of that.{#}
+{# 880088}Your consequences is above You!{#}
 
 {trigger 3 els start angry with disortion effect}
 
 [ELS left normal]
-{# 000000}SHUT THE FUCK UP YOUR ALL FIVE OF YOU GENERATE ABSOLUTE DISGUSTING!{#}
+{# FFFFFF}SHUT THE FUCK UP YOUR ALL FOUR OF YOU GENERATE ABSOLUTE DISGUSTING!{#}
 
 {trigger 4 els calm down and disapointed}
 
 [ELS left normal]
-{# 000000}PERHAPS IT'S A GOOD TIME TO SHOWN TO OURSELF!{#}
-{# 000000}.... YOU WANT TO KNOW THE TRUTH?{#}
-{# 000000}FINE, SO BE IF SO THEN...{#}
-{# 000000}TIME FOR YOUR FINAL CHANNELENGE!{#}
+{# FFFFFF}PERHAPS IT'S A GOOD TIME TO SHOWN TO OURSELF!{#}
+{# FFFFFF}.... YOU WANT TO KNOW THE REAL TRUTH?{#}
+{# FFFFFF}FINE, SO BE IF SO THEN...{#}
+{# FFFFFF}TIME FOR YOUR FINAL CHANNELENGE!{#}
 
 DZ_CH20_ELS_SUMMON_THE_FINAL_MOUNTIAN=
 [ELS left normal]
-{# 000000}IF YOU WON'T ACCEPT YOUR FATE... THEN I WILL FORCE IT UPON YOU!{#}
-{# 000000}BEHOLD THE FINAL CLIMB!{#}
-{# 000000}THIS WILL BE YOUR LAST CHANCES TO REACH TO THE TOP!{#}
-{# 000000}AND IF YOU FAILED I WILL CRUSH EVERYTHING TO EVERLASTING OBLIVION!{#}
-{# 000000}TICK TOCK MY STAR WARRIOR!{#}
+{# FFFFFF}IF YOU WON'T ACCEPT YOUR FATE... THEN I WILL FORCE IT UPON YOU!{#}
+{# FFFFFF}BEHOLD THE FINAL CLIMB!{#}
+{# FFFFFF}THIS WILL BE YOUR LAST CHANCES TO REACH TO THE TOP!{#}
+{# FFFFFF}AND IF YOU FAILED I WILL CRUSH EVERYTHING TO EVERLASTING OBLIVION!{#}
+{# FFFFFF}TICK TOCK MY STAR WARRIOR!{#}
+
+{trigger 5 els vanish}
 
 [KIRBY left angry]
 God damn it, he is getting away.
@@ -17420,7 +17431,7 @@ NOT WITHOUT US, KIRBY!
 [ASRIEL left sad]
 I may lost my way
 but I remembered something very important as one lesson
-I as asriel dreemurr, I fight for kirby, I fight for chara, I fight for mad and bad, I fight for everyon for the sake of hope and dreams.
+I as asriel dreemurr, I fight for kirby, I fight for chara, I fight for mad and bad, I fight for everyone for the sake of hope and dreams.
 
 [BADELINE_SPIRIT right worriedalt]
 well dispite this
@@ -17530,30 +17541,31 @@ But you are here now, and you are trying to make things right.
 DZ_CH21_ASCEND_VS_ELS_4=
 
 [KIRBY left surprised]
-Woah there that were way too much dakr matter army that I couldn't handle.
+Woah there that were way too much for me that I couldn't handle.
 
-[ASRIEL left sad]
+[ASRIEL left distracted]
 ...
 
 [KIRBY left distracted]
 Maybe els is right, maybe we are not strong enough to win this.
 
-[ASRIEL left sad]
+[ASRIEL left distracted]
 ...
 
-[ASRIEL left normal]
+[ASRIEL left angry]
 No.
 I was wrong to think that way.
+[ASRIEL left normal]
 you have proven me strength and courage time and time again.
 I have no doubt that we can do this together.
 
-[MADELINE_SPIRIT left normal]
+[MADELINE_SPIRIT left normal
 awww, Asriel, that's so sweet of you to say.
 
-[ASRIEL left sad]
+[ASRIEL left angry]
 I mean it.
 
-[MADELINE_SPIRIT left normal]
+[MADELINE_SPIRIT left together]
 If you say so
 
 [MADELINE_SPIRIT left together_zoom]
@@ -17643,6 +17655,8 @@ wait you can do that?
 [SEVEN_GONER left together]
 YES, WE CAN.
 each of our own colors are shining brighter and brighter, and we can use that to light the way.
+
+{trigger 0 the seven souls shine brighter and brighter, lighting the way through the darkness}
 
 [MADELINE_SPIRIT left distracted]
 that's actually really helpful, thank you.
@@ -17734,7 +17748,7 @@ DZ_CH20_ASCEND_VS_ELS_11=
 {# AAAAFF}Granny's spirit is with us!{#}
 {# AAAAFF}She's cheering us on from the sidelines!{#}
 
-[GRANNY left creepa]
+[GRANNY left concerning]
 {# AAAAFF}Just be careful, Els is really strong!{#}
 {# AAAAFF}I also must say something about you my dear grand daughter{#}
 {# AAAAFF}I know you have been through a lot, and I know you have made some mistakes...{#}
@@ -17749,347 +17763,73 @@ DZ_CH20_ASCEND_VS_ELS_11=
 {# AAAAFF}Of course, Madeline! You have a wonderful support system!{#}
 {# AAAAFF}And remember, no matter what happens, I will always love you!{#}
 {# AAAAFF}Now were here to climb this mountain!{#}
-{# AAAAFF}It's time to finish this once and for all!{trigger 0}{trigger 1}{#}
+[GRANNY left seriousshreddage]
+{trigger 0 granny seriousshreddage}
+{# AAAAFF}It's time to finish this once and for all!{#}
+{trigger 1 flyfinal}
 
-DZ_CH21_ASCEND_VS_ELS_FINAL=
-[ELS left normal]
-{# 000000}HOW DISAPPOINTING...{#}
-{# 000000}I EXPECTED MORE FROM YOU.{#}
-{# 000000}Darker than darkness. Colder than cold. More desolate than desolation itself.{#}
-{# 000000}I EXPECTED YOU TO BE NOTHING BUT A PILE OF ASHES BY NOW!{#}
-{# 000000}BUT NO. YOU KEEP CLIMBING. AND CLIMBING. AND CLIMBING!{#}
-{# 000000}HOW UTTERLY IRRITATING!!!{#}
-
-[GRANNY left normal]
-{# AAAAFF}Listen, ELS. I know this may seem hard to believe,{#}
-{# AAAAFF}but look on the bright side!{#}
-{# AAAAFF}She may not be as strong as you,{#}
-{# AAAAFF}but she is never alone.{#}
-
-[MADELINE left distracted]
-To be clear — we have something you're probably not going to like.
-Deltarune. And a Star Warrior.
-
-[ELS right normal]
-{# 000000}DELTARUNE?!{#}
-{# 000000}A STAR WARRIOR?!{#}
-{# 000000}...How do you know of those?{#}
-{# 000000}I witnessed their existence myself. That knowledge should have died with the void.{#}
-
-[KIRBY left angry]
-Because that's the way it was always meant to be.
-
-[ELS right normal]
-{# 000000}...{#}
-{# 000000}So you already know.{#}
-{# 000000}Then I will tell you everything.{#}
-{# 000000}About where I came from. About the very beginning.{#}
-{trigger 0 fade to white}
-
-DZ_CH21_ELS_FLASHBACK=
-{# 000000}It began after I abandoned my army and my mothership.{#}
-{# 000000}I was in shambles, desperate to escape.{#}
-{trigger 0 escape pod destroyed}
-{# 000000}By the time I realized what was happening...{#}
-{trigger 1 suited man burned in flames}
-{# 000000}...it was already too late.{#}
-{# 000000}I was adrift. Dead in space.{#}
-{# 000000}I called out for anyone.{#}
-{# 000000}...but nobody came.{#}
-{# 000000}Nobody saved me.{#}
-{# 000000}I was alone for trillions of years.{#}
-{# 000000}Until the dark matter found me.{#}
-{# 000000}They did not save me. They experimented on me.{#}
-{# 000000}My body changed — worse than them, worse than Giygas.{#}
-{# 000000}I became something built entirely from rage.{#}
-{# 000000}I knew what I had become.{#}
-{# 000000}You had already fought Void Termina. You had already defeated Zero after Zero.{#}
-{# 000000}But you were wrong if you thought that was all.{#}
-{# 000000}There are thousands of titan armies.{#}
-{# 000000}Quintillions of dark matter, all with one purpose:{#}
-{# 000000}To consume the heart of the scientist who carried DETERMINATION.{#}
-{# 000000}That culminated being held more power than love.{#}
-{# 000000}More than any single force in existence.{#}
-{# 000000}My goal was to bring them what they needed —{#}
-{# 000000}and in return, I would have my body back. My mind. My soul. My purpose.{#}
-{# 000000}But the royal scientist would not allow it.{#}
-{# 000000}He sacrificed himself to seal the barrier of the event horizon.{#}
-{# 000000}No dark matter could escape.{#}
-{# 000000}He stood alone at the edge of the black hole,{#}
-{# 000000}waiting for a victim to draw them inward.{#}
-
-[ELS right normal]
-{# 000000}And as you now know —{#}
-{# 000000}they want your soul.{#}
-{# 000000}Full administrative control.{#}
-{# 000000}And they want back what he took from them.{#}
-
-[ASRIEL left sad]
-More dark matter...
-So this is why Zero kept reincarnating himself.
-
-[BADELINE left yell]
-Listen here, you dark creep.
-You think you can manipulate us?
-Try harder than that.
-
-[ELS right normal]
-{# 000000}...You are absolutely pathetic.{#}
-{# 000000}How dare you speak to us like that.{#}
-
-[MADELINE left angry]
-To be clear —
-since they want a heart made of pure love and determination,
-then come at us and fight...!
-
-[ELS right normal]
-{# 000000}...{#}
-{# 000000}Alright, then.{#}
-{# 000000}Let's see if your soul can fight against THIS!{#}
-
-DZ_NIGHTMARE_DEFEAT=
-[ELS right normal]
-{# 000000}...{#}
-{# 000000}You actually did it.{#}
-{# 000000}Every fragment of darkness. Every zero. Every form.{#}
-{# 000000}Gone.{#}
-
-[MADELINE left determined]
-It's over, ELS.
-This world will live on.
-The darkness ends here.
-
-[ELS right normal]
-{# 000000}Heh...{#}
-{# 000000}Hehe...{#}
-
-[BADELINE left angryalt]
-What's so funny?
-
-[ELS right normal]
-{# 000000}Look around you.{#}
-{# 000000}The universe is beginning to erase itself.{#}
-
+DZ_CH21_WARPSTARLAUNCHPAD=
 [MADELINE left surprised]
-Wait — WHAT?!
-{trigger 0 tileset and decals begin to erase}
+There he is
+this is where he originally came from
 
-[KIRBY right angry]
-Oh brother, you have GOT to be kidding me!
-
-[KIRBY left sad]
-We need to get out of this dimension.
-If we stay, we'll be erased along with it.
-
-DZ_NIGHTMARE_ASCENT=
-[GRANNY right normal]
-{# AAAAFF}Not without my help.{#}
-{trigger 0 bird, goner souls, and allies arrive}
-
-[ELS left normal]
-{# 000000}Impossible...!{#}
-{# 000000}How did you get here so fast?!{#}
-
-[MAGOLOR right annoyed]
-Because that is what we came for.
-Not just to get them out —
-but to get you out as well.
-
-[ELS right normal]
-{# 000000}...But why?{#}
-{# 000000}Why are you being kind to me?{#}
-
-[CHARA right normal]
-Because even someone catastrophic deserves a second chance
-to become something greater.
-
-[ELS right normal]
-{# 000000}I...{#}
-{# 000000}I understand.{#}
-{# 000000}I will hold them off while you go.{#}
-{# 000000}They will not let me leave so easily.{#}
-
-[MADELINE right surprised]
-ELS — but—!
-
-[ELS right normal]
-{# 000000}Go. I will deal with them myself.{#}
-
-[KIRBY right determined]
-No. I'm standing with you.
-I'll hold them off too.
-
-[ASRIEL right normal]
-If there's any power I have left —
-I'll give it to all of you.
-
-[ELS right normal]
-{# 000000}...Try not to keep up, Asriel.{#}
-{trigger 1 warp flash white}
-
-DZ_CH21_FINAL_BATTLE_ALLIES_ARRIVE=
-[KIRBY left determined]
-Everyone! This is our last stand.
-Every dream friend, every ally — we're all here together.
-
-[MADELINE left determined]
-We didn't come this far to fall now.
-All of us, side by side. Let's finish this.
-
-[BADELINE right worriedalt]
-Okay, inspiring speech noted.
-Now can we actually deal with the enormous army of darkness heading toward us?
-
-[MAGOLOR right annoyed]
-For what it's worth, I brought reinforcements.
-You did not think I would miss the final battle, did you?
-
-[BANDANA_DEE left determined]
-Meta Knight and King Dedede are right behind me!
-We stand with you, Kirby!
-
-DZ_CH21_FINAL_BATTLE_DREAM_FRIENDS=
-[KIRBY left happy]
-Dream friends...
-I knew you'd come.
-
-[RICK_KOO_CHUCHU left together]
-We go everywhere together.
-That hasn't changed.
-
-[GOOEY left happy]
-Goo!
-(We're ready!)
-
-[MARX left normal]
-Don't get all sentimental.
-Let's just win.
-
-[SUSIE right normal]
-Systems nominal. Allies assembled.
-Efficiency: maximum.
-
-DZ_CH21_FINAL_BATTLE_ZEROS_INTRO=
-[none left]
-Then they arrived.
-The collected darkness from across every world and every timeline.
-
-[SIAMO_ZERO right dark]
-You cannot erase what we are.
-We are zero. We are void. We are inevitable.
-
-[MADELINE left surprised]
-That's— there are so many of them.
-Siamo Zero, Zero 3, Contra Void, Tesseract Soul...
-
-[KIRBY left determined]
-Hyper Meta Morpho Knight and Nollus Nova too.
-Together they formed the complete darkness.
-
-[BADELINE right angry]
-Six forms of nothing trying to take everything.
-Not today.
-
-DZ_CH21_FINAL_BATTLE_GONERS_HOLD=
-[SEVEN_GONER left together]
-VESSEL FORMATION ACTIVE.
-WE HOLD THE LINE. ALL SEVEN.
-
-[SEVEN_GONER left together]
-THEY WILL NOT PASS WHILE WE STAND.
-DETERMINATION HOLDS.
-
-[KIRBY left determined]
-The Goner Souls are buying us time.
-We have to defeat every last one of them. Together!
-
-DZ_CH21_ZERO_WAVE_SIAMO_ZERO=
-[SIAMO_ZERO right dark]
-Siamo Zero. The first void. The original fall.
-None of you belong here.
-
-[KIRBY left determined]
-We're not leaving. Not without you.
-
-DZ_CH21_ZERO_WAVE_ZERO_3=
-[ZERO_3 right dark]
-Zero 3. The recursive nothing.
-Every hero has failed before. You will too.
-
-[MADELINE left determined]
-Not a chance. We've come too far.
-
-DZ_CH21_ZERO_WAVE_CONTRA_VOID=
-[CONTRA_VOID right dark]
-Contra Void. The inverse of all that breathes.
-Your light only makes the dark stronger.
-
-[BADELINE right angry]
-Madeline— don't listen to it. Focus.
-
-DZ_CH21_ZERO_WAVE_TESSERACT_SOUL=
-[TESSERACT_SOUL right dark]
-Tesseract Soul. Beyond dimension. Beyond time.
-You cannot strike what exists everywhere at once.
-
+{trigger 0 madeline turn left}
+[MADELINE left sad]
+alright everyone I know this is going to be a tough fight
+I know we have lost a lot of people and friends along the way
+but theyre never truly gone, they are always with us in spirit
 [ASRIEL left determined]
-We don't have to understand it. We just have to outlast it.
+I understand that this would be the last shot
+before I lend over my power to all of you
+I want to ask one question.
+what happen to chara when I was sick?
+[KIRBY left sad]
+he was discarded and he was left alone for a long time from what I saw from those tape footage
+[ASRIEL left distracted]
+... Then that explain why alot really
+wait... did you see that?
 
-DZ_CH21_ZERO_WAVE_HYPER_META_MORPHO=
-[MORPHO_KNIGHT right dark]
-Hyper Meta Morpho Knight. The blade that ends all battles.
-Every war has always ended here.
-
-[KIRBY left determined]
-Then we end it differently. Together.
-
-DZ_CH21_ZERO_WAVE_NOLLUS_NOVA=
-[NOLLUS_NOVA right dark]
-Nollus Nova. The last void. The final collapse.
-There is nothing beyond me.
-
-[KIRBY left determined]
-There's us.
-
-DZ_CH21_FINAL_BATTLE_ZEROS_FALLEN=
-[none left]
-One by one, the forms of darkness were shattered.
-Siamo Zero. Zero 3. Contra Void. Tesseract Soul.
-Hyper Meta Morpho Knight. Nollus Nova.
+{trigger 1 madeline turn right and a warpstar land hovering}
 
 [KIRBY left surprised]
-They're... all gone.
+My warpstar you here!
+[MADELINE left sad]
+kirby are you sure about this?
+it's small
+[Badeline left scoff]
+well I guess we have no other choices but to fly...?
 
-[MADELINE left determined]
-The zeros are gone. But Els Termina is still out there.
-We have to keep going.
+DZ_CH21_WARPSTAR_LAUNCHPAD_STAR_ALLIES_SPARKLER=
+KIRBY AND THE WARP STAR ALLIES SPARKLER
 
-[BADELINE right normal]
-This isn't over.
-Not yet.
+{trigger 0 Heart, Dark, Dream, Soul, seven human goners merge and transform into warpstardesolozantas}
 
-[SEVEN_GONER left together]
-ALL ZEROS NEUTRALISED.
-PATH TO ELS TERMINA: OPEN.
+DZ_CH21_WARPSTAR_LAUNCHPAD_DESOLO_ZANTAS=
+KIRBY AND THE WARP STAR DESOLO ZANTAS
 
-DZ_CH21_FINAL_BATTLE_WARPSTAR_RIDE=
-[KIRBY left determined]
-There it is. The Warp Star.
-It'll take us straight to Els Termina.
+DZ_CH21_WARPSTAR_LAUNCHPAD_DESOLO_ZANTAS_REACTIONS=
+[KIRBY left surprised]
+Woah! This is amazing! The warp star has transformed into a new form!
+I never seen or thought it could do this before!
+[MADELINE left surprised]
+Holy cow! This is incredible! The warp star is glowing with a new power!
+[ASRIEL left normal]
+I can feel the energy of the warp star coursing through me!
+even tho I feel that my tought from them are... communicating us?
+[BADELINE left worriedalt]
+I don't know what to say... this is all so overwhelming.
+[BADELINE left normal]
+good thing we have each other to rely on, and the warp star is giving us a boost of hope and determination.
+[GRANNY left normal]
+{# AAAAFF}This is it, everyone! The final battle is about to begin!{#}
+{# AAAAFF}Let's give it everything we've got and show Els that we won't back down!{#}
+Now go and defeat Els Termina once and for all!
 
-[MADELINE left distracted]
-It's... really small.
+{trigger 0 warpstar launchpad fly}
 
-[KIRBY left happy]
-Don't worry! It fits everyone who needs it.
-Trust me, I've done this before.
-
-[BADELINE right normal]
-Riding a golden star into the void.
-Perfectly normal day.
-
-[KIRBY left determined]
-Hold on tight. Here we go!
+[GRANNY left normal]
+{# AAAAFF}Please be careful...!{#}
+{# AAAAFF}My Sweet Grand Daughter...{#}
 
 DZ_CH21_FINAL_BATTLE_INTO_ABYSS=
 [none left]
@@ -18101,7 +17841,7 @@ Past. Present. Future. All of it, alive here, in this moment.
 
 [MADELINE left surprised]
 This place...
-I can see Celeste Mountain. And the Underground. And Dream Land.
+I can see Every Dimension.
 All of it at once.
 
 [KIRBY left sad]
@@ -18112,189 +17852,23 @@ Not like this though. Not with so many people beside me.
 There's no ground.
 There is no ground anywhere.
 
-[KIRBY left happy]
-It's fine! I can fly.
-And we have something even better than ground.
+[MADELINE left distracted]
+then what is it?
 
-DZ_CH21_FINAL_BATTLE_ASRIEL_JOINS=
-[none left]
-Then, beside them, a familiar gentle light.
-
-[ASRIEL left sad]
-I don't have much power left.
-After everything I took from everyone... this is all I have.
-
-[ASRIEL left sad]
-But I can give it to you.
-If my last act is keeping you all from falling, then it's worth it.
-
-[MADELINE left surprised]
-Asriel...
-You don't have to do this.
-
-[ASRIEL left normal]
-I know I don't have to.
-That's why it means something.
-
-[KIRBY left determined]
-We are not leaving you behind, Asriel.
-Whatever comes next, we face it together.
-
-[ASRIEL left sad]
-...thank you, Kirby.
-Then together, let's see this through.
-
-DZ_CH21_FINAL_BATTLE_DETERMINATION_SOUL=
-[none left]
-The first of the seven soul lights blazed into full brilliance.
-Red. Pure red.
-Determination.
-
-[DETERMINATION_SOUL left together]
-YOU DIDN'T GIVE UP WHEN EVERYTHING SAID TO.
-NEITHER WILL WE.
-
-[MADELINE left determined]
-That's—
-That's everyone who ever fell and got back up.
-
-[KIRBY left determined]
-Then let's give them something worth standing up for.
-Let's go finish this.
-
-DZ_CH21_FINAL_BATTLE_ELS_LOOMS=
-[none left]
-Far ahead, through the cascading reflections of every world—
-a silhouette.
-Immense. Elemental. Waiting.
-
-[BADELINE right angry]
-There.
-That's it. That's Els Termina.
-
-[KIRBY left determined]
-I see it.
-Ready, Madeline?
-
-[MADELINE left determined]
-Ready.
-Let's end this.
-
-DZ_CH21_FINAL_BATTLE_PHASE2_ARRIVAL=
-[none left]
-The void gave way.
-Ground rose from nowhere — solid, real, burning with colour.
-The final arena.
-
-[KIRBY left determined]
-This is it.
-The air feels different here. Like the whole universe is holding its breath.
-
-[MADELINE left determined]
-Then let's give it something to breathe out about.
-
-[ASRIEL left sad]
-My power is almost spent.
-I'll hold the sky together as long as I can.
-Don't waste the time I'm buying you.
-
-[BADELINE right angry]
-We won't.
-Now let's fight.
-
-DZ_CH21_ELS_TERMINA_BOSS_INTRO=
-[els right normal]
-I am no longer the dark matter you have seen, no longer zero.
-I am els termina
-I am the titan of the size as the mountain, as you have climb
-I will not only consume everything I will dominated and conquered worlds after worlds
-that is what we were made of
-
-ELS TERMINA
-THE FORCE OF NATURE
-
-[ELS right normal]
-don't forget...
-when I have your determination I will reshape this universe
-and reset everything into a new world.
-
-DZ_CH21_ELS_TERMINA_BOSS_END=
-[ELS right normal]
-{# 000000}...{#}
-{# 000000}You actually did it.{#}
-{# 000000}Every fragment of darkness. Every zero. Every form.{#}
-{# 000000}Gone.{#}
-
-[MADELINE left determined]
-It's over, ELS.
-This world will live on.
-The darkness ends here.
-
-[ELS right normal]
-{# 000000}Heh...{#}
-{# 000000}Hehe...{#}
-
-[BADELINE left angryalt]
-What's so funny?
-
-[ELS right normal]
-{# 000000}Look around you.{#}
-{# 000000}The universe is beginning to erase itself.{#}
-
-[MADELINE left surprised]
-Wait — WHAT?!
-{trigger 0 tileset and decals begin to erase}
-
-[KIRBY right angry]
-Oh brother, you have GOT to be kidding me!
+{trigger 0 darkness becomes visible}
 
 [KIRBY left sad]
-We need to get out of this dimension.
-If we stay, we'll be erased along with it.
+Event Horizon, we're inside the blackhole I believe.
 
-[GRANNY right normal]
-{# AAAAFF}Not without my help.{#}
-{trigger 1 bird, goner souls, and rest of the allies arrive}
+{trigger 1 multiple portal open to reveal siamo zero, zero 3, contra void, soul tesseract, nodus tollen, hyper meta morpho knight and els termina}
 
-[ELS left normal]
-{# 000000}Impossible...!{#}
-{# 000000}How did you get here so fast?!{#}
+[none left]
 
-[MAGOLOR right annoyed]
-Because that is what we came for.
-Not just to get them out —
-but to get you out as well.
+{trigger 2 all of them merge into one and transform into penumbra phastasm}
 
-[ELS right normal]
-{# 000000}...But why?{#}
-{# 000000}Why are you being kind to me?{#}
-
-[CHARA right normal]
-Because even someone catastrophic deserves a second chance
-to become something greater.
-
-[ELS right normal]
-{# 000000}I...{#}
-{# 000000}I understand.{#}
-{# 000000}I will hold them off while you go.{#}
-{# 000000}They will not let me leave so easily.{#}
-
-[MADELINE right surprised]
-ELS — but—!
-
-[ELS right normal]
-{# 000000}Go. I will deal with them myself.{#}
-
-[KIRBY right determined]
-No. I'm standing with you.
-I'll hold them off too.
-
-[ASRIEL right normal]
-If there's any power I have left —
-I'll give it to all of you.
-
-[ELS right normal]
-{# 000000}...Try not to keep up, Asriel.{#}
+DZ_CH21_FINAL_WRITER=
+PENUMBRA PHASTASM
+THE END OF EVERYTHING.
 
 DZ_CH21_RESTORATION=
 {trigger 0 maddy baddy and everyone else walk in left}

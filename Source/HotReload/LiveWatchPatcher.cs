@@ -266,7 +266,11 @@ namespace Celeste.Mod.DZ.HotReload
                 if (_cachedOverlay == null)
                 {
                     _cachedOverlay = new LiveWatchOverlay(_lastError, _errorTimestamp);
-                    scene.Add(_cachedOverlay);
+                    // Defer entity addition to avoid modifying collection during enumeration
+                    if (scene is Level level)
+                        level.OnEndOfFrame += () => level.Add(_cachedOverlay);
+                    else
+                        scene.OnEndOfFrame += () => scene.Add(_cachedOverlay);
                 }
             }
         }
@@ -302,7 +306,11 @@ namespace Celeste.Mod.DZ.HotReload
                 _overlayScene = scene;
                 _cachedOverlay?.RemoveSelf();
                 _cachedOverlay = new LiveWatchOverlay(_lastError, _errorTimestamp);
-                scene.Add(_cachedOverlay);
+                // Defer entity addition to avoid modifying collection during enumeration
+                if (scene is Level level)
+                    level.OnEndOfFrame += () => level.Add(_cachedOverlay);
+                else
+                    scene.OnEndOfFrame += () => scene.Add(_cachedOverlay);
             }
 
             // Play error sound if audio is working

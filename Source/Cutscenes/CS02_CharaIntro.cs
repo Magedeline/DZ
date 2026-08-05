@@ -74,7 +74,7 @@ public class CS02_CharaIntro : CutsceneEntity
         player.StateMachine.State = 11;
         player.StateMachine.Locked = true;
         yield return 1f;
-        if (level.Session.Area.Mode == AreaMode.Normal)
+        if ((int)level.Session.Area.Mode == 0)
         {
             Audio.SetMusic("event:/DZ/music/lvl2/evil_madeline");
         }

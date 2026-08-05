@@ -192,7 +192,7 @@ namespace Celeste.Cutscenes
 
         private void SetEvilMusic()
         {
-            if (Level.Session.Area.Mode == AreaMode.Normal)
+            if ((int)Level.Session.Area.Mode == 0)
             {
                 Level level = base.Scene as Level;
                 level.Session.Audio.Music.Event = "event:/DZ/music/lvl2/evilDZ_CHara";

@@ -272,7 +272,7 @@ public class AngyOshiro : Entity
 
     private IEnumerator ChaseCoroutine()
     {
-        if (level.Session.Area.Mode != AreaMode.Normal)
+        if ((int)level.Session.Area.Mode != 0)
         {
             yield return 1f;
         }

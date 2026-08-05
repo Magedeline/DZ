@@ -177,12 +177,11 @@ public class CS_Powerup : CutsceneEntity
         this.level.Session.Audio.Music.Event = "event:/ricky06/cpostsilence";
         this.level.Session.Audio.Apply(false);
       }
-      ref Vector2 local = ref ((Entity) this.boss).Position;
       double x1 = (double) ((Entity) this.boss).Position.X;
       bounds = this.level.Bounds;
       double num3 = (double) bounds.Left + 400.0;
       double num4 = (double) Calc.Approach((float) x1, (float) num3, 15f);
-      local.X = (float) num4;
+      ((Entity) this.boss).Position.X = (float) num4;
       yield return (object) null;
     }
   }
@@ -195,19 +194,17 @@ public class CS_Powerup : CutsceneEntity
         TrailManager.Add((Entity) this.badeline, Color.Purple, 1f, false, false);
       if ((double) p > 0.0099999997764825821)
       {
-        ref Vector2 local = ref ((Entity) this.badeline).Position;
         double y = (double) ((Entity) this.badeline).Position.Y;
         Rectangle bounds = this.level.Bounds;
         double num1 = (double) bounds.Top + 50.0;
         double num2 = (double) Calc.Approach((float) y, (float) num1, 5f);
-        local.Y = (float) num2;
+        ((Entity) this.badeline).Position.Y = (float) num2;
       }
-      ref Vector2 local1 = ref ((Entity) this.badeline).Position;
       double x = (double) ((Entity) this.badeline).Position.X;
       Rectangle bounds1 = this.level.Bounds;
       double num3 = (double) bounds1.Left + 260.0;
       double num4 = (double) Calc.Approach((float) x, (float) num3, 10f);
-      local1.X = (float) num4;
+      ((Entity) this.badeline).Position.X = (float) num4;
       yield return (object) null;
     }
   }

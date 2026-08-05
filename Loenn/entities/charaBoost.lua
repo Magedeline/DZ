@@ -5,7 +5,7 @@ charaBoost.depth = -1000000
 charaBoost.texture = "objects/DZ/charaboost/idle00"
 charaBoost.nodeLineRenderType = "line"
 charaBoost.nodeVisibility = "always"
-charaBoost.nodeLimits = {1, -1}
+charaBoost.nodeLimits = {0, -1}
 
 charaBoost.placements = {
     name = "chara_boost",

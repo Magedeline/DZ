@@ -7,31 +7,40 @@ using MonoMod.Utils;
 namespace DZ;
 
 /// <summary>
-/// Extends DZ chapters with D/DX sides while keeping vanilla save boundaries stable.
+/// Represents the different game modes/sides available in Celeste.
+/// </summary>
+public enum AreaMode
+{
+    Normal = 0,
+    BSide = 1,
+    CSide = 2,
+    DSide = 3
+}
+
+/// <summary>
+/// Extends DZ chapters with D-Side while keeping vanilla save boundaries stable.
 /// </summary>
 public static class AreaModeExtender
 {
     private static readonly Type RuntimeAreaStatsType = typeof(Session).Assembly.GetType("Celeste.AreaStats", throwOnError: false);
     private static readonly HashSet<string> EarlyMapMetaSkipLog = new(StringComparer.OrdinalIgnoreCase);
 
-    public const int MODE_NORMAL = 0;
-    public const int MODE_1 = 1;
-    public const int MODE_2 = 2;
-    public const int MODE_DSIDE = 3;
-    public const int MODE_DXSIDE = 4;
-    public const int TOTAL_MODES = 5;
+    public const int MODE_NORMAL = (int)AreaMode.Normal;
+    public const int MODE_1 = (int)AreaMode.BSide;
+    public const int MODE_2 = (int)AreaMode.CSide;
+    public const int MODE_DSIDE = (int)AreaMode.DSide;
+    public const int TOTAL_MODES = 4;
 
     public const string MAP_PREFIX = "DZ";
     private const string MapPrefixSlash = MAP_PREFIX + "/";
 
-    /// <summary>Folder names for each side (A, B, C, D, DX)</summary>
+    /// <summary>Folder names for each side (A, B, C, D)</summary>
     public static readonly string[] SideFolders =
     {
         "0",   // MODE_NORMAL (0)
         "1",   // MODE_1 (1)
         "2",   // MODE_2 (2)
-        "3",   // MODE_DSIDE (3)
-        "4"   // MODE_DXSIDE (4)
+        "3"    // MODE_DSIDE (3)
     };
 
     /// <summary>Case-insensitive set of valid side folder names for O(1) membership tests.</summary>
@@ -42,16 +51,15 @@ public static class AreaModeExtender
     private static readonly string[] SidePrefixes = Array.ConvertAll(
         SideFolders, f => MapPrefixSlash + f + "/");
 
-    public static readonly string[] SideSuffixes = { "", " B-Side", " C-Side", " D-Side", " DX-Side" };
-    public static readonly string[] HeartGemColors = { "blue", "red", "gold", "rainbow", "void" };
+    public static readonly string[] SideSuffixes = { "", " B-Side", " C-Side", " D-Side" };
+    public static readonly string[] HeartGemColors = { "blue", "red", "gold", "rainbow" };
 
     public static readonly string[] HeartGemGetSounds =
     {
         "event:/game/general/crystalheart_blue_get",
         "event:/game/general/crystalheart_red_get",
         "event:/game/general/crystalheart_gold_get",
-        "event:/DZ/game/general/crystalheart_rainbow_get",
-        "event:/DZ/game/general/crystalheart_blue_get"
+        "event:/DZ/game/general/crystalheart_rainbow_get"
     };
 
     private static bool _loaded;
@@ -82,6 +90,15 @@ public static class AreaModeExtender
     /// Queues the chapter panel to reopen on the given extended-side tab the
     /// next time <paramref name="areaId"/>'s chapter panel resets.
     /// </summary>
+    public static void SetPendingSideReturn(int areaId, AreaMode mode)
+    {
+        SetPendingSideReturn(areaId, (int)mode);
+    }
+
+    /// <summary>
+    /// Queues the chapter panel to reopen on the given extended-side tab the
+    /// next time <paramref name="areaId"/>'s chapter panel resets.
+    /// </summary>
     public static void SetPendingSideReturn(int areaId, int modeIndex)
     {
         if (modeIndex < MODE_2)
@@ -92,6 +109,8 @@ public static class AreaModeExtender
 
     private delegate void orig_MapMetaModeProperties_ApplyTo(MapMetaModeProperties self, AreaData area, AreaMode mode);
 
+    public static string GetSideFolder(AreaMode mode) => GetSideFolder((int)mode);
+
     public static string GetSideFolder(int modeIndex)
     {
         if (modeIndex < 0 || modeIndex >= SideFolders.Length)
@@ -99,6 +118,8 @@ public static class AreaModeExtender
 
         return SideFolders[modeIndex];
     }
+
+    public static string BuildDSideSID(AreaMode mode, string mapName) => BuildDSideSID((int)mode, mapName);
 
     public static string BuildDSideSID(int modeIndex, string mapName)
     {
@@ -291,8 +312,7 @@ public static class AreaModeExtender
             return false;
 
         bool hasD = chapterDef.Has2;
-        bool hasDX = chapterDef.HasDXSide;
-        if (!hasD && !hasDX)
+        if (!hasD)
             return false;
 
         // If AltSidesHelper is present and owns this chapter's D-Side, let ASH
@@ -300,16 +320,13 @@ public static class AreaModeExtender
         if (hasD && AltSidesHelperBridge.IsAshOwned(area.SID))
         {
             hasD = false;
-            if (!hasDX)
-                return false;
+            return false;
         }
 
         int oldLength = area.Mode.Length;
         int required = oldLength;
         if (hasD)
             required = Math.Max(required, MODE_2 + 1);
-        if (hasDX)
-            required = Math.Max(required, MODE_DXSIDE + 1);
 
         if (required <= oldLength)
             return false;
@@ -319,9 +336,6 @@ public static class AreaModeExtender
 
         if (hasD)
             newModes[MODE_2] = BuildExtendedMode(area, baseKey, MODE_2);
-
-        if (hasDX)
-            newModes[MODE_DXSIDE] = BuildExtendedMode(area, baseKey, MODE_DXSIDE);
 
         area.Mode = newModes;
 
@@ -395,7 +409,7 @@ public static class AreaModeExtender
     {
         try
         {
-            mode.MapData = new MapData(new AreaKey(area.ID, (global::Celeste.AreaMode) modeIndex));
+            mode.MapData = new MapData(new AreaKey(area.ID, (global::Celeste.AreaMode)modeIndex));
             return mode.MapData != null;
         }
         catch (Exception ex)
@@ -555,8 +569,6 @@ public static class AreaModeExtender
         int required = 3;
         if (area.Mode.Length > MODE_2 && area.Mode[MODE_2] != null && IsSideUnlocked(key, MODE_2))
             required = MODE_2 + 1;
-        if (area.Mode.Length > MODE_DXSIDE && area.Mode[MODE_DXSIDE] != null && IsSideUnlocked(key, MODE_DXSIDE))
-            required = MODE_DXSIDE + 1;
 
         if (required == save.UnlockedModes)
             return;
@@ -606,7 +618,7 @@ public static class AreaModeExtender
             return;
 
         int completedMode = (int) session.Area.Mode;
-        if (completedMode is not MODE_1 and not MODE_2 and not MODE_2 and not MODE_DXSIDE)
+        if (completedMode is not MODE_1 and not MODE_2)
             return;
 
         // When returning to the overworld after an extended side, make sure the
@@ -1055,7 +1067,7 @@ public static class AreaModeExtender
         if (mode >= MODE_NORMAL && mode <= MODE_2)
             return false;
 
-        sanitized = new AreaKey(key.ID, (global::Celeste.AreaMode) Math.Clamp(mode, MODE_NORMAL, MODE_2));
+        sanitized = new AreaKey(key.ID, (global::Celeste.AreaMode)Math.Clamp(mode, MODE_NORMAL, MODE_2));
         return true;
     }
 
@@ -1141,6 +1153,13 @@ public static class AreaModeExtender
     /// side of <paramref name="area"/>.  For ASH-owned D-Sides, checks DZ's
     /// extended save data instead of the vanilla AreaModeStats slot.
     /// </summary>
+    public static bool IsSideHeartGemCollected(AreaKey area, AreaMode mode) => IsSideHeartGemCollected(area, (int)mode);
+
+    /// <summary>
+    /// Returns true when the player has collected the heart gem for the given
+    /// side of <paramref name="area"/>.  For ASH-owned D-Sides, checks DZ's
+    /// extended save data instead of the vanilla AreaModeStats slot.
+    /// </summary>
     public static bool IsSideHeartGemCollected(AreaKey area, int modeIndex)
     {
         if (modeIndex < MODE_NORMAL || modeIndex >= TOTAL_MODES)
@@ -1158,6 +1177,12 @@ public static class AreaModeExtender
 
         return GetSaveAreaModeHeartGem(area.ID, modeIndex);
     }
+
+    /// <summary>
+    /// Returns true when the player has completed (reached the end of) the given
+    /// side of <paramref name="area"/>.
+    /// </summary>
+    public static bool IsSideCompleted(AreaKey area, AreaMode mode) => IsSideCompleted(area, (int)mode);
 
     /// <summary>
     /// Returns true when the player has completed (reached the end of) the given
@@ -1186,10 +1211,23 @@ public static class AreaModeExtender
     /// Returns true when the player has both completed the side and collected
     /// its heart gem (the vanilla "full clear" condition for alt-sides).
     /// </summary>
+    public static bool IsSideFullyCleared(AreaKey area, AreaMode mode)
+        => IsSideCompleted(area, mode) && IsSideHeartGemCollected(area, mode);
+
+    /// <summary>
+    /// Returns true when the player has both completed the side and collected
+    /// its heart gem (the vanilla "full clear" condition for alt-sides).
+    /// </summary>
     public static bool IsSideFullyCleared(AreaKey area, int modeIndex)
         => IsSideCompleted(area, modeIndex) && IsSideHeartGemCollected(area, modeIndex);
 
     // ── Public typed accessors for heart-gem presentation ─────────────────────
+
+    /// <summary>
+    /// Returns the heart-gem color name for the given side, or
+    /// <see cref="HeartGemColors"/>[<see cref="MODE_NORMAL"/>] when out of range.
+    /// </summary>
+    public static string GetHeartGemColor(AreaMode mode) => GetHeartGemColor((int)mode);
 
     /// <summary>
     /// Returns the heart-gem color name for the given side, or
@@ -1201,6 +1239,12 @@ public static class AreaModeExtender
             return HeartGemColors[MODE_NORMAL];
         return HeartGemColors[modeIndex];
     }
+
+    /// <summary>
+    /// Returns the heart-gem collect sound event for the given side, or
+    /// <c>null</c> when the side index is out of range.
+    /// </summary>
+    public static string GetHeartGemSound(AreaMode mode) => GetHeartGemSound((int)mode);
 
     /// <summary>
     /// Returns the heart-gem collect sound event for the given side, or
@@ -1229,6 +1273,8 @@ public static class AreaModeExtender
         return false;
     }
 
+    public static string GetModeName(AreaMode mode) => GetModeName((int)mode);
+
     public static string GetModeName(int modeIndex)
     {
         return modeIndex switch
@@ -1237,10 +1283,11 @@ public static class AreaModeExtender
             MODE_1 => "1",
             MODE_2 => "2",
             MODE_DSIDE => "3",
-            MODE_DXSIDE => "DXSide",
             _ => $"Mode{modeIndex}"
         };
     }
+
+    public static string GetSideLabel(AreaMode mode) => GetSideLabel((int)mode);
 
     public static string GetSideLabel(int modeIndex)
     {
@@ -1250,7 +1297,6 @@ public static class AreaModeExtender
             MODE_1 => "B",
             MODE_2 => "C",
             MODE_DSIDE => "D",
-            MODE_DXSIDE => "DX",
             _ => "?"
         };
     }
@@ -1265,6 +1311,8 @@ public static class AreaModeExtender
 
         return DZModule.Instance != null && DZModule.Settings?.DebugMode == true;
     }
+
+    public static bool IsSideUnlocked(AreaKey area, AreaMode mode) => IsSideUnlocked(area, (int)mode);
 
     public static bool IsSideUnlocked(AreaKey area, int modeIndex)
     {

@@ -51,17 +51,6 @@ public static class PostcardUnlockSystem
         UnlockMusic = "event:/DZ/music/menu/complete_2_summit"
     };
 
-    /// <summary>Postcard config for DX-Side unlock (shown after completing D-Side)</summary>
-    public static readonly PostcardConfig DXSideConfig = new()
-    {
-        DialogKey = "POSTCARD_DXSIDE_UNLOCK",
-        TexturePath = "postcards/dxside_unlock",
-        SfxIn = "event:/DZ/ui/main/postcard_2s_in",
-        SfxOut = "event:/DZ/ui/main/postcard_2s_out",
-        TintColor = new Color(50, 0, 80),  // Dark void tint
-        UnlockMusic = "event:/DZ/music/menu/complete_2_summit"
-    };
-
     /// <summary>Postcard config for the 100% ultra completion postcard.</summary>
     public static readonly PostcardConfig UltraVariantConfig = new()
     {
@@ -84,7 +73,6 @@ public static class PostcardUnlockSystem
         {
             AreaModeExtender.MODE_1 => cConfig,   // Completing B unlocks C
             AreaModeExtender.MODE_2 => dConfig,   // Completing C unlocks D
-            AreaModeExtender.MODE_DXSIDE => DXSideConfig,  // Completing D unlocks DX
             _ => null
         };
     }
@@ -108,7 +96,6 @@ public static class PostcardUnlockSystem
             {
                 AreaModeExtender.MODE_1 => "C-Side",
                 AreaModeExtender.MODE_2 => "D-Side",
-                AreaModeExtender.MODE_DXSIDE => "DX-Side",
                 _ => "New Side"
             };
             dialogText = $"{sideName} Unlocked!\nComplete the challenge to earn a new heart gem.";

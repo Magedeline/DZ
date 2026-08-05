@@ -2,11 +2,16 @@
   "mcpServers": {
     "loenn-mcp": {
       "type": "stdio",
-      "command": "C:\\Users\\warsh\\AppData\\Roaming\\Python\\Python314\\Scripts\\loenn-mcp.exe",
+      "command": "C:\\Users\\warsh\\AppData\\Local\\Python\\pythoncore-3.14-64\\Scripts\\loenn-mcp.exe",
       "args": [],
       "env": {
-        "LOENN_MCP_WORKSPACE": "C:\\SteamLibrary\\steamapps\\common\\Celeste\\Mods\\DZ"
+        "LOENN_MCP_WORKSPACE": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Celeste\\Mods\\DZ"
       }
+    },
+    "aseprite-mcp-pro": {
+      "command": "node",
+      "args": ["C:\\Users\\warsh\\Desktop\\ase\\aseprite-mcp-pro-v1.2.2\\server\\build\\index.js"]
     }
   }
 }
+

@@ -124,6 +124,13 @@ entities.DZ/BeyondSummitCloudEntity.placements.name.dark=Dark
 entities.DZ/BeyondSummitCloudEntity.placements.name.particleCount=Particle Count
 entities.DZ/BeyondSummitCloudEntity.placements.name.speedMultiplier=Speed Multiplier
 
+# Spring Cloud
+entities.DZ/SpringCloud.placements.name.red_cloud=Red Cloud
+entities.DZ/SpringCloud.placements.name.red_cloud_fragile=Fragile Red Cloud
+entities.DZ/SpringCloud.placements.name.fragile=Fragile
+entities.DZ/SpringCloud.placements.name.small=Small
+entities.DZ/SpringCloud.placements.name.red=Red
+
 # Beyond Summit Gem
 entities.DZ/BeyondSummitGem.placements.name.beyond_summit_gem=Beyond Summit Gem
 entities.DZ/BeyondSummitGem.placements.name.sprite=Sprite
@@ -2414,6 +2421,17 @@ entities.DZ/TouchTorchSwitch.attributes.description.flag=Session flag set when t
 entities.DZ/TouchTorchSwitch.attributes.description.requiresDash=If true, the player must dash into the torch rather than touch it.
 entities.DZ/TouchTorchSwitch.attributes.description.persistent=If true, a completed group stays lit after leaving and re-entering the room.
 entities.DZ/TouchTorchSwitch.attributes.description.radius=Pixel radius of the touch area.
+
+# Torch Gate
+entities.DZ/TorchGate.placements.name.torch_gate=Torch Gate
+entities.DZ/TorchGate.attributes.description.width=Width of the gate in pixels.
+entities.DZ/TorchGate.attributes.description.height=Height of the gate in pixels.
+entities.DZ/TorchGate.attributes.description.group=Torch group. Gate activates when all TouchTorchSwitches in this group are lit.
+entities.DZ/TorchGate.attributes.description.flag=Custom session flag to listen for. Defaults to torch_switch_<group>.
+entities.DZ/TorchGate.attributes.description.moveX=Horizontal distance (in pixels) the gate moves when activated. Negative moves left.
+entities.DZ/TorchGate.attributes.description.moveY=Vertical distance (in pixels) the gate moves when activated. Negative moves up.
+entities.DZ/TorchGate.attributes.description.moveSpeed=Movement speed in pixels per second.
+entities.DZ/TorchGate.attributes.description.permanent=If true, gate stays at target position on room reload after activation.
 
 # --- Chapter 11: Snowding City ---
 

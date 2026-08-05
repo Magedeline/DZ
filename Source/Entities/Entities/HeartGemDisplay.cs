@@ -7,15 +7,17 @@ namespace Celeste.Entities
 		// Sprite names for each side
 		private static readonly string[] SpriteNames = new string[]
 		{
-			"blueheartgem",    // 0: A-Side - Blue
-			"redheartgem",     // 1: B-Side - Red
-			"goldenheartgem",  // 2: C-Side - Golden
-			"pinkheartgem"     // 3: D-Side - Pink
+			"DZheartgem0",    // 0: A-Side - Blue
+			"DZheartgem1",     // 1: B-Side - Red
+			"DZheartgem2",  // 2: C-Side - Golden
+			"DZheartgem3",     // 3: D-Side - Pink
+			"DZheartgem4",     // 4: E-Side or Special
+			"DZheartgem6"      // 5: F-Side or Custom
 		};
 
 		public HeartGemDisplayMod(int heartgem, bool hasGem) : base(true, true)
 		{
-			this.Sprites = new Sprite[4];
+			this.Sprites = new Sprite[6];
 			for (int i = 0; i < this.Sprites.Length; i++)
 			{
 				// Create sprite with proper ID based on side

@@ -27,18 +27,18 @@ namespace Celeste.Entities
             : base(position)
         {
             // Main PC image - Star Cutter themed computer terminal
-            Add(image = new Image(AtlasPathHelper.GetTexture("objects/DZ/DZ/DZpc/pc0")));
+            Add(image = new Image(AtlasPathHelper.GetTexture("objects/DZ/maggypc/pc0")));
             image.JustifyOrigin(0.5f, 1f);
             
             // Depth between foreground and background elements
             base.Depth = 8999;
             
             // Holographic display spectogram
-            spectogram = AtlasPathHelper.GetTexture("objects/DZ/DZ/DZpc/spectogram");
+            spectogram = AtlasPathHelper.GetTexture("objects/DZ/maggypc/spectogram");
             subtex = spectogram.GetSubtexture(0, 0, SPECTOGRAM_WIDTH, SPECTOGRAM_HEIGHT, subtex);
 
             // Ambient sci-fi computer sound
-            Add(sfx = new SoundSource("event:/DZ/new_content/env/19_pusheenpc"));
+            Add(sfx = new SoundSource("event:/DZ/new_content/env/local/pusheenpc"));
             sfx.Param("pusheenpc_distance", 1f);
             sfx.Position = new Vector2(0f, -16f);
             

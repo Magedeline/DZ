@@ -123,7 +123,7 @@ namespace Celeste.Entities
       else
         templeMirrorPortal.rightTorch.Light(templeMirrorPortal.switchCounter);
       ++templeMirrorPortal.switchCounter;
-      if ((templeMirrorPortal.Scene as Level).Session.Area.Mode == AreaMode.Normal)
+      if ((int)(templeMirrorPortal.Scene as Level).Session.Area.Mode == 0)
       {
         LightingRenderer lighting = (templeMirrorPortal.Scene as Level).Lighting;
         float lightTarget = Math.Max(0.0f, lighting.Alpha - 0.2f);

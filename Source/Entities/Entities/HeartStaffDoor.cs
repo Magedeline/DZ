@@ -258,7 +258,7 @@ namespace Celeste.Entities
                 {
                     float angle = Calc.Random.NextFloat() * (float)Math.PI * 2f;
                     level.ParticlesFG.Emit(
-                        HeartGem.PBlueShine, // Use existing particle
+                        DZHeartGem.P_BlueShine, // Use existing particle
                         staffPos + Calc.AngleToVector(angle, 8f),
                         staffColor,
                         angle
@@ -283,7 +283,7 @@ namespace Celeste.Entities
                 float angle = Calc.Random.NextFloat() * (float)Math.PI * 2f;
                 XnaColor color = GetRandomStaffColor();
                 level.ParticlesFG.Emit(
-                    HeartGem.PBlueShine,
+                    DZHeartGem.P_BlueShine,
                     Center + Calc.AngleToVector(angle, Calc.Random.Range(0f, 32f)),
                     color,
                     angle
@@ -308,7 +308,7 @@ namespace Celeste.Entities
                 {
                     XnaColor color = GetRandomStaffColor();
                     float angle = Calc.Random.NextFloat() * (float)Math.PI * 2f;
-                    level.ParticlesBG.Emit(HeartGem.PBlueShine, Center, color, angle);
+                    level.ParticlesBG.Emit(DZHeartGem.P_BlueShine, Center, color, angle);
                 }
 
                 yield return null;
@@ -335,7 +335,7 @@ namespace Celeste.Entities
             {
                 float angle = ((float)i / 30f) * (float)Math.PI * 2f;
                 XnaColor color = GetRandomStaffColor();
-                level.ParticlesFG.Emit(HeartGem.PGoldShine, Center, color, angle);
+                level.ParticlesFG.Emit(DZHeartGem.P_GoldShine, Center, color, angle);
             }
         }
 

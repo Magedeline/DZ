@@ -117,11 +117,11 @@ internal class HeartGemDoor : Entity
         level.Flash(Color.White * 0.5f, false);
         AreaKey area = level.Session.Area;
         string unlockSfx;
-        if (area.Mode == AreaMode.BSide)
+        if ((int)area.Mode == 1)
             unlockSfx = "event:/DZ/game/18_core/frontdoor_unlock_bside";
-        else if (area.Mode == AreaMode.CSide)
+        else if ((int)area.Mode == 2)
             unlockSfx = "event:/DZ/game/18_core/frontdoor_unlock_cside";
-        else if (area.Mode == (AreaMode)3)
+        else if ((int)area.Mode == 3)
             unlockSfx = "event:/DZ/game/18_core/frontdoor_unlock_dside";
         else
             unlockSfx = "event:/DZ/game/18_core/frontdoor_unlock";

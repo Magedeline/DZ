@@ -73,9 +73,9 @@
     <Loop id="climbup" path="climb" delay="0.04" frames="0-5" />
     <Loop id="duck" path="duck" delay="0" frames="0" />
     <Loop id="edge" path="edge" delay="0.25" frames="0-13" />
-    <Anim id="sleep" path="sleep" delay="0.1" frames="0-10,10*5,11-23" />
-    <Anim id="faint" path="faint" delay="0.1" frames="0-10" goto="fainted" />
-    <Loop id="fainted" path="faint" delay="0.1" frames="10" />
+    <Anim id="sleep" path="sleep" delay="0.1" frames="0-10,10*5,11-13" />
+    <Anim id="faint" path="sleep" delay="0.1" frames="0-10" goto="fainted" />
+    <Loop id="fainted" path="sleep" delay="0.1" frames="10" />
     <Anim id="flip" path="flip" delay="0.04" frames="0-7" goto="runFast"/>
     <Loop id="skid" path="flip" delay="0.04" frames="8"/>
     <Loop id="dangling" path="dangling" delay="0.11" frames="0-9" />
@@ -84,7 +84,7 @@
     <Loop id="angry" path="angry" delay="0.04" />
     <Anim id="boost" path="boost" frames="0-9" delay="0.05"/>
 
-    <Loop id="pretendDead" path="sleep" delay="0" frames="23" />
+    <Loop id="pretendDead" path="sleep" delay="0" frames="13" />
     <Loop id="spin" path="spin" delay="0.1" />
     <Loop id="hug" path="hug" delay="0.08"/>
     
@@ -380,43 +380,43 @@
     <Loop id="noFlash" path="seed" frames="0" />
   </goldberrySeed>
 
-	<heartgem0 path="collectables/DZ/heartGem/0/">
+	<heartgem0 path="collectables/DZ/heartgem/0/" start="idle">
 		<Center />
-		<Loop id="idle" path="" frames="0" />
-		<Loop id="spin" path="" frames="0*10,1-13" delay="0.1"/>
-		<Loop id="fastspin" path="" delay="0.1"/>
+		<Loop id="idle" path="spin" frames="0" />
+		<Loop id="spin" path="spin" frames="0*10,1-13" delay="0.1"/>
+		<Loop id="fastspin" path="spin" delay="0.1"/>
 	</heartgem0>
 
-	<heartgem1 path="collectables/DZ/heartGem/1/">
+	<heartgem1 path="collectables/DZ/heartgem/1/" start="idle">
 		<Center />
-		<Loop id="idle" path="" frames="0" />
-		<Loop id="spin" path="" frames="0*10,1-13" delay="0.1"/>
-		<Loop id="fastspin" path="" delay="0.1"/>
+		<Loop id="idle" path="spin" frames="0" />
+		<Loop id="spin" path="spin" frames="0*10,1-13" delay="0.1"/>
+		<Loop id="fastspin" path="spin" delay="0.1"/>
 	</heartgem1>
 
-	<heartgem2 path="collectables/DZ/heartgem/2/">
+	<heartgem2 path="collectables/DZ/heartgem/2/" start="idle">
 		<Center />
-		<Loop id="idle" path="" frames="0" />
-		<Loop id="spin" path="" frames="0*10,1-13" delay="0.1"/>
-		<Loop id="fastspin" path="" delay="0.1"/>
+		<Loop id="idle" path="spin" frames="0" />
+		<Loop id="spin" path="spin" frames="0*10,1-13" delay="0.1"/>
+		<Loop id="fastspin" path="spin" delay="0.1"/>
 	</heartgem2>
 
-  <heartgem3 path="collectables/DZ/heartgem/3/">
-    <Center />
-    <Loop id="idle" path="" frames="0" />
-    <Loop id="spin" path="" frames="0*10,1-13" delay="0.1"/>
-    <Loop id="fastspin" path="" delay="0.1"/>
+  <heartgem3 path="collectables/DZ/heartgem/3/" start="idle">
+	<Center />
+	<Loop id="idle" path="spin" frames="0" />
+	<Loop id="spin" path="spin" frames="0*10,1-13" delay="0.1"/>
+	<Loop id="fastspin" path="spin" delay="0.1"/>
   </heartgem3>
-	
-	<heartGemWhite path="collectables/DZ/heartGem/">
+
+	<heartGemWhite path="collectables/DZ/heartgem/4/" start="idle">
 		<Center />
 
-		<Loop id="idle" path="white" frames="0" />
-		<Loop id="spin" path="white" frames="0*10,1-13" delay="0.1"/>
-		<Loop id="fastspin" path="white" delay="0.1"/>
+		<Loop id="idle" path="spin" frames="0" />
+		<Loop id="spin" path="spin" frames="0*10,1-13" delay="0.1"/>
+		<Loop id="fastspin" path="spin" delay="0.1"/>
 	</heartGemWhite>
-	
-	<heartGemGhost path="collectables/DZ/heartGem/">
+
+	<heartGemGhost path="collectables/DZ/heartgem/" start="idle">
 		<Center />
 
 		<Loop id="idle" path="ghost" frames="0" />
@@ -473,23 +473,23 @@
   
   <lockdoor_temple_a path="objects/DZ/door/lockdoorTempleA" start="idle">
     <Justify x="0.5" y="0.5" />
-    <Loop id="idle" path="lockdoorTempleA" delay="0.1" frames="0"/>
-    <Anim id="open" path="lockdoorTempleA" delay="0.06" frames="0"/>
-    <Anim id="burst" path="lockdoorTempleA" delay="0.06" frames="0"/>
+    <Loop id="idle" path="" delay="0.1" frames="0"/>
+    <Anim id="open" path="" delay="0.06" frames="0"/>
+    <Anim id="burst" path="" delay="0.06" frames="0"/>
   </lockdoor_temple_a>
 
   <lockdoor_temple_b path="objects/DZ/door/lockdoorTempleB" start="idle">
     <Justify x="0.5" y="0.5" />
-    <Loop id="idle" path="lockdoorTempleB" delay="0.1" frames="0"/>
-    <Anim id="open" path="lockdoorTempleB" delay="0.06" frames="0"/>
-    <Anim id="burst" path="lockdoorTempleB" delay="0.06" frames="0"/>
+    <Loop id="idle" path="" delay="0.1" frames="0"/>
+    <Anim id="open" path="" delay="0.06" frames="0"/>
+    <Anim id="burst" path="" delay="0.06" frames="0"/>
   </lockdoor_temple_b>
   
   <lockdoor_moon path="objects/DZ/door/moonDoor" start="idle">
     <Justify x="0.5" y="0.5" />
-    <Loop id="idle" path="moonDoor" delay="0.1" frames="0"/>
-    <Anim id="open" path="moonDoor" delay="0.06" frames="0"/>
-    <Anim id="burst" path="moonDoor" delay="0.06" frames="0"/>
+    <Loop id="idle" path="" delay="0.1" frames="0"/>
+    <Anim id="open" path="" delay="0.06" frames="0"/>
+    <Anim id="burst" path="" delay="0.06" frames="0"/>
   </lockdoor_moon>
   
   <door path="objects/DZ/door/" start="idle">
@@ -1112,7 +1112,7 @@
       <Anim id="flip" path="flip" delay="0.04" frames="0-7" goto="runFast"/>
       <Loop id="skid" path="flip" delay="0.04" frames="8"/>
       <Loop id="dangling" path="dangling" delay="0.11" frames="0-9" />
-      <Anim id="spawn" path="spawn" delay="0.08" frames="0*3,0-9" goto="fallSlow"/>
+      <Anim id="spawn" path="idle" delay="0.08" frames="0*3,0-8" goto="fallSlow"/>
       <Anim id="ralseiboost" path="ralseiboost" delay="0.05"/>
   
       <Loop id="pretendDead" path="sleep" delay="0" frames="23" />
@@ -1162,8 +1162,8 @@
       <Loop id="duck" path="duck" delay="0" frames="0" />
       <Loop id="edge" path="edge" delay="0.25" frames="0-13" />
       <Anim id="sleep" path="sleep" delay="0.1" frames="0-10,10*5,11-13" />
-      <Anim id="faint" path="faint" delay="0.1" frames="0-10" goto="fainted" />
-      <Loop id="fainted" path="faint" delay="0.1" frames="10" />
+      <Anim id="faint" path="sleep" delay="0.1" frames="0-10" goto="fainted" />
+      <Loop id="fainted" path="sleep" delay="0.1" frames="10" />
       <Anim id="flip" path="flip" delay="0.04" frames="0-7" goto="runFast"/>
       <Loop id="skid" path="flip" delay="0.04" frames="8"/>
       <Loop id="dangling" path="dangling" delay="0.11" frames="0-9" />
@@ -1445,7 +1445,7 @@
       <Anim id="kirby_death" path="combat/death_" delay="0.08" />
   </kirby_player_ext>
 
-  <badeline path="characters/DZ/chara/">
+  <badeline path="characters/DZ/badeline/">
       <Justify x=".5" y="1" />
       
       <Loop id="idle" path="idle" delay="0.1" />
@@ -1474,9 +1474,9 @@
       <Loop id="climbup" path="climb" delay="0.04" frames="0-5" />
       <Loop id="duck" path="duck" delay="0" frames="0" />
       <Loop id="edge" path="edge" delay="0.25" frames="0-13" />
-      <Anim id="sleep" path="sleep" delay="0.1" frames="0-10,10*5,11-23" />
-      <Anim id="faint" path="faint" delay="0.1" frames="0-10" goto="fainted" />
-      <Loop id="fainted" path="faint" delay="0.1" frames="10" />
+      <Anim id="sleep" path="sleep" delay="0.1" frames="0-10,10*5,11-13" />
+      <Anim id="faint" path="sleep" delay="0.1" frames="0-10" goto="fainted" />
+      <Loop id="fainted" path="sleep" delay="0.1" frames="10" />
       <Anim id="flip" path="flip" delay="0.04" frames="0-7" goto="runFast"/>
       <Loop id="skid" path="flip" delay="0.04" frames="8"/>
       <Loop id="dangling" path="dangling" delay="0.11" frames="0-9" />
@@ -1484,8 +1484,8 @@
       <Loop id="laugh" path="laugh" delay="0.04" />
       <Loop id="angry" path="angry" delay="0.04" />
       <Anim id="boost" path="boost" frames="0-9" delay="0.05"/>
-  
-      <Loop id="pretendDead" path="sleep" delay="0" frames="23" />
+
+      <Loop id="pretendDead" path="sleep" delay="0" frames="13" />
       <Loop id="spin" path="spin" delay="0.1" />
       <Loop id="hug" path="hug" delay="0.08"/>
       
@@ -1548,9 +1548,9 @@
       <Loop id="climbup" path="climb" delay="0.04" frames="0-5" />
       <Loop id="duck" path="duck" delay="0" frames="0" />
       <Loop id="edge" path="edge" delay="0.25" frames="0-13" />
-      <Anim id="sleep" path="sleep" delay="0.1" frames="0-10,10*5,11-23" />
-      <Anim id="faint" path="faint" delay="0.1" frames="0-10" goto="fainted" />
-      <Loop id="fainted" path="faint" delay="0.1" frames="10" />
+      <Anim id="sleep" path="sleep" delay="0.1" frames="0-10,10*5,11-13" />
+      <Anim id="faint" path="sleep" delay="0.1" frames="0-10" goto="fainted" />
+      <Loop id="fainted" path="sleep" delay="0.1" frames="10" />
       <Anim id="flip" path="flip" delay="0.04" frames="0-7" goto="runFast"/>
       <Loop id="skid" path="flip" delay="0.04" frames="8"/>
       <Loop id="dangling" path="dangling" delay="0.11" frames="0-9" />
@@ -1612,7 +1612,7 @@
       <Loop id="bubble" path="bubble" delay="0.08" />
       <Loop id="dangling" path="dangling" delay="0.11" frames="0-9" />
       <Loop id="deaddown" path="deaddown" delay="0.1" frames="0-1" />
-      <Loop id="dead" path="dead" delay="0.1" frames="0-1" />
+      <Loop id="dead" path="deadside" delay="0.1" frames="0-1" />
       <Loop id="deadup" path="deadup" delay="0.1" frames="0-1" />
       <Anim id="death_h" path="death_h" delay="0.02" frames="0-14" />
       <Loop id="dreamDash" path="dreamDash" delay="0.03" frames="0-20" />
@@ -1661,7 +1661,7 @@
       <Loop id="carrytheo_collapse" path="carrytheo_collapse" delay="0.1" />
       <Loop id="dangling" path="dangling" delay="0.11" frames="0-9" />
       <Loop id="deaddown" path="deaddown" delay="0.1" frames="0-1" />
-      <Loop id="dead" path="dead" delay="0.1" frames="0-1" />
+      <Loop id="dead" path="deadside" delay="0.1" frames="0-1" />
       <Loop id="deadup" path="deadup" delay="0.1" frames="0-1" />
       <Anim id="death_h" path="death_h" delay="0.02" frames="0-14" />
       <Loop id="dreamDash" path="dreamDash" delay="0.03" frames="0-20" />
@@ -1713,7 +1713,7 @@
       <Loop id="bubble" path="bubble" delay="0.08" />
       <Loop id="dangling" path="dangling" delay="0.11" frames="0-9" />
       <Loop id="deaddown" path="deaddown" delay="0.1" frames="0-1" />
-      <Loop id="dead" path="dead" delay="0.1" frames="0-1" />
+      <Loop id="dead" path="deadside" delay="0.1" frames="0-1" />
       <Loop id="deadup" path="deadup" delay="0.1" frames="0-1" />
       <Anim id="death_h" path="death_h" delay="0.02" frames="0-14" />
       <Loop id="dreamDash" path="dreamDash" delay="0.03" frames="0-20" />
@@ -1738,102 +1738,25 @@
       <Anim id="throw" path="throw" delay="0.06" frames="0-3" goto="idle" />
     </ralseisil>
 
-  <heartgem0 path="collectables/DZ/heartgem/0/">
-  		<Center />
-  		<Loop id="idle" path="" frames="0" />
-  		<Loop id="spin" path="" frames="0*10,1-13" delay="0.1"/>
-  		<Loop id="fastspin" path="" delay="0.1"/>
-  	</heartgem0>
-
-  <heartgem1 path="collectables/DZ/heartgem/1/">
-  		<Center />
-  		<Loop id="idle" path="" frames="0" />
-  		<Loop id="spin" path="" frames="0*10,1-13" delay="0.1"/>
-  		<Loop id="fastspin" path="" delay="0.1"/>
-  	</heartgem1>
-
-  <heartgem2 path="collectables/DZ/heartgem/2/">
-  		<Center />
-  		<Loop id="idle" path="" frames="0" />
-  		<Loop id="spin" path="" frames="0*10,1-13" delay="0.1"/>
-  		<Loop id="fastspin" path="" delay="0.1"/>
-  	</heartgem2>
-
-  <heartgem3 path="collectables/DZ/heartgem/3/">
-  		<Center />
-  		<Loop id="idle" path="" frames="0" />
-  		<Loop id="spin" path="" frames="0*10,1-13" delay="0.1"/>
-  		<Loop id="fastspin" path="" delay="0.1"/>
-  	</heartgem3>
-
-  <heartgem4 path="collectables/DZ/heartGem/4/">
-  		<Center />
-  		<Loop id="idle" path="" frames="0" />
-  		<Loop id="spin" path="" frames="0*10,1-13" delay="0.1"/>
-  		<Loop id="fastspin" path="" delay="0.1"/>
-  	</heartgem4>
-
-  <heartgem5 path="collectables/DZ/heartGem/">
-  		<Center />
-  
-  		<Loop id="idle" path="ghost" frames="0" />
-  		<Loop id="spin" path="ghost" frames="0*10,1-13" delay="0.1"/>
-  		<Loop id="fastspin" path="ghost" delay="0.1"/>
-  	</heartgem5>
-
-  <heartstaff_red path="objects/DZ/heart_staff/">
-  		<Center />
-  	</heartstaff_red>
-
-  <heartstaff_blue path="objects/DZ/heart_staff/">
-  		<Center />
-  	</heartstaff_blue>
-
-  <heartstaff_yellow path="objects/DZ/heart_staff/">
-  		<Center />
-  	</heartstaff_yellow>
-
-  <heartstaff_green path="objects/DZ/heart_staff/">
-  		<Center />
-  	</heartstaff_green>
-
-  <heartstaff_purple path="objects/DZ/heart_staff/">
-  		<Center />
-  	</heartstaff_purple>
-
-  <heartstaff_orange path="objects/DZ/heart_staff/">
-  		<Center />
-  	</heartstaff_orange>
-
-  <heartstaff_pink path="objects/DZ/heart_staff/">
-  		<Center />
-  	</heartstaff_pink>
-
-  <heartstaff_ghost path="objects/DZ/heart_staff/">
-  		<Center />
-  		<Loop id="idle" path="ghost" frames="0" delay="0.1"/>
-  		<Loop id="spin" path="ghost" frames="0-11" delay="0.1"/>
-  	</heartstaff_ghost>
-
   <madeline_crystal path="objects/DZ/maggy/MadelineCrystal/" start="idle">
       <Justify x="0.5" y="0.5" />
       <Loop id="idle" path="idle" delay="0.08"/>
       <Anim id="shatter" path="shatter" delay="0.08" goto="shattered"/>
-      <Loop id="shattered" path="shatter" frames="16" delay="0.08"/>
+      <Loop id="shattered" path="shatter" frames="0" delay="0.08"/>
     </madeline_crystal>
 
   <pinkplatinumberry path="collectables/DZ/pinkplatinumberry/" start="idle">
       <Center />
       <Loop id="idle" path="idle" delay="0.1" frames="0-9"/>
-      <Loop id="ghost" path="ghost" delay="0.1" frames="0-9"/>
-      <Anim id="collect" path="collect" delay="0.1" frames="0-3"/>
+      <Loop id="ghost" path="idle" delay="0.1" frames="0-9"/>
+      <Anim id="collect" path="idle" delay="0.1" frames="0-3"/>
     </pinkplatinumberry>
 
   <ghostpinkplatinumberry path="collectables/DZ/ghostpinkplatinumberry/" start="idle">
       <Center />
   
-      <Loop id="idle" path="ghost" delay=".08" frames="0-6,0-6,0-6,0-6,0-7" />
-      <Anim id="collect" path="ghost" delay=".07" frames="7-11"/>
+      <Loop id="idle" path="idle" delay=".08" frames="0-6,0-6,0-6,0-6,0-7" />
+      <Anim id="collect" path="idle" delay=".07" frames="7-9"/>
     </ghostpinkplatinumberry>
 
   <pinkplatinumberry path="collectables/DZ/pinkplatinumberry/" start="idle">
@@ -1846,12 +1769,13 @@
 
   <popstarberry path="collectables/DZ/popstarberry/spin/" start="idle">
       <Center />
-      <Loop id="idle" path="spin" delay="0.1" frames="0"/>
+      <Loop id="idle" path="" delay="0.1" frames="0"/>
     </popstarberry>
 
-  <popstarberryghost path="collectables/DZ/popstarberry/spin/ghost/" start="idle">
+  <!-- No ghost variant art exists yet; reuses the normal spin frames. -->
+  <popstarberryghost path="collectables/DZ/popstarberry/spin/" start="idle">
       <Center />
-      <Loop id="idle" path="spin" delay="0.1" frames="0"/>
+      <Loop id="idle" path="" delay="0.1" frames="0"/>
     </popstarberryghost>
 
   <payphone path="cutscenes/DZ/payphone/" start="idle">
@@ -1924,22 +1848,22 @@
 
   <lockdoor_wood path="objects/DZ/door/lockdoor" start="idle">
       <Justify x="0.5" y="0.5" />
-      <Loop id="idle" path="lockdoor" delay="0.1" frames="0"/>
+      <Loop id="idle" path="" delay="0.1" frames="0"/>
     </lockdoor_wood>
 
   <lockdoor_temple_a path="objects/DZ/door/lockdoorTempleA" start="idle">
       <Justify x="0.5" y="0.5" />
-      <Loop id="idle" path="lockdoorTempleA" delay="0.1" frames="0"/>
+      <Loop id="idle" path="" delay="0.1" frames="0"/>
     </lockdoor_temple_a>
 
   <lockdoor_temple_b path="objects/DZ/door/lockdoorTempleB" start="idle">
       <Justify x="0.5" y="0.5" />
-      <Loop id="idle" path="lockdoorTempleB" delay="0.1" frames="0"/>
+      <Loop id="idle" path="" delay="0.1" frames="0"/>
     </lockdoor_temple_b>
 
   <lockdoor_moon path="objects/DZ/door/moonDoor" start="idle">
       <Justify x="0.5" y="0.5" />
-      <Loop id="idle" path="moonDoor" delay="0.1" frames="0"/>
+      <Loop id="idle" path="" delay="0.1" frames="0"/>
     </lockdoor_moon>
 
   <door path="objects/DZ/door/" start="idle">
@@ -2096,12 +2020,12 @@
 
   <dashSwitch_default path="objects/DZ/temple/dashButton" start="idle">
       <Justify x="0.5" y="0.5"/>
-      <Loop id="idle" path="dashButton" delay="0.1" frames="0"/>
+      <Loop id="idle" path="" delay="0.1" frames="0"/>
     </dashSwitch_default>
 
   <dashSwitch_mirror path="objects/DZ/temple/dashButtonMirror" start="idle">
       <Justify x="0.5" y="0.5"/>
-      <Loop id="idle" path="dashButtonMirror" delay="0.1" frames="0"/>
+      <Loop id="idle" path="" delay="0.1" frames="0"/>
     </dashSwitch_mirror>
 
   <gondola path="objects/DZ/gondola/" start="idle">
@@ -2130,12 +2054,12 @@
 
   <greyBooster path="objects/DZ/greybooster/" start="loop">
   		<Justify x="0.5" y="0.5"/>
-  		<Anim id="appear" path="greyBooster" delay="0.08" frames="26-34" goto="loop"/>
-  		<Loop id="loop" path="greyBooster" delay="0.1" frames="0-4"/>
-  		<Loop id="inside" path="greyBooster" delay="0.1" frames="5-8"/>
-  		<Loop id="spin" path="greyBooster" delay="0.06" frames="18-25"/>
-  		<Anim id="pop" path="greyBooster" delay="0.08" frames="9-17"/>
-  		<Loop id="oneuse_idle" path="greyBooster" delay="0.1" frames="0-4"/>
+  		<Anim id="appear" path="gasterbooster" delay="0.08" frames="26-34" goto="loop"/>
+  		<Loop id="loop" path="gasterbooster" delay="0.1" frames="0-4"/>
+  		<Loop id="inside" path="gasterbooster" delay="0.1" frames="5-8"/>
+  		<Loop id="spin" path="gasterbooster" delay="0.06" frames="18-25"/>
+  		<Anim id="pop" path="gasterbooster" delay="0.08" frames="9-17"/>
+  		<Loop id="oneuse_idle" path="gasterbooster" delay="0.1" frames="0-4"/>
   	</greyBooster>
 
   <flyFeather path="objects/DZ/flyFeather/" start="loop">
@@ -2348,13 +2272,13 @@
   <madeline path="characters/DZ/madeline/" start="idle">
       <Justify x=".5" y="1" />
   
-      <Loop id="idle" path="idle" delay="0.1" frames="15-22" />
-      <Loop id="walk" path="walk" delay="0.08" frames="15-22" />
-      <Loop id="run" path="run" delay="0.06" frames="15-22" />
-  
+      <Loop id="idle" path="idle" delay="0.1" frames="0-8" />
+      <Loop id="walk" path="walk" delay="0.08" frames="0-11" />
+      <Loop id="run" path="runFast" delay="0.06" frames="0-11" />
+
       <Anim id="wakeup" path="sleep" delay="0.1" frames="0-5"/>
       <Anim id="sleep" path="sleep" delay="0.1" frames="5-0"/>
-      
+
       <Anim id="alert" path="alert" delay="0.08"/>
       <Anim id="boost" path="boost" frames="0-9" delay="0.05"/>
       <Metadata>
@@ -2368,10 +2292,10 @@
   <madelinegod path="characters/DZ/madelinegod/" start="idle">
       <Justify x=".5" y="1" />
   
-      <Loop id="idle" path="idle" delay="0.1" frames="15-22" />
-      <Loop id="walk" path="walk" delay="0.08" frames="15-22" />
-      <Loop id="run" path="run" delay="0.06" frames="15-22" />
-      <Loop id="float" path="float" delay="0.05" frames="15-22" />
+      <Loop id="idle" path="idle" delay="0.1" frames="0-8" />
+      <Loop id="walk" path="runSlow" delay="0.08" frames="0-11" />
+      <Loop id="run" path="runFast" delay="0.06" frames="0-11" />
+      <Loop id="float" path="float" delay="0.05" frames="0-5" />
   
       <Anim id="wakeup" path="sleep" delay="0.1" frames="0-5"/>
       <Anim id="sleep" path="sleep" delay="0.1" frames="5-0"/>
@@ -2389,7 +2313,7 @@
   <gravestone path="characters/DZ/gravestones/" start="maddygrave00">
       <Justify x=".5" y="1" />
   
-      <Loop id="maddygrave00" path="maddygrave00" frames="0-1" />
+      <Loop id="maddygrave00" path="maddygrave" frames="0-1" />
     </gravestone>
 
   <toriel path="characters/DZ/toriel/" start="idle">
@@ -2470,7 +2394,7 @@
       <Anim id="holdOutPhone" path="magolor" delay="0.10" frames="124-131"/>
       <Anim id="takeSelfieImmediate" path="magolor" delay="0.10" frames="131-139" goto="idle"/>
       <Anim id="takeSelfie" path="magolor" delay="0.10" frames="124-139" goto="idle"/>
-      <Loop id="tired" path="tired" delay="0.15" frames="0-5"/>
+      <Loop id="tired" path="idle" delay="0.15" frames="0-5"/>
       
       <Anim id="alert" path="alert" delay="0.08"/>
     </magolor>
@@ -2578,8 +2502,8 @@
       <Loop id="patonmadshoulder" path="patonmadshoulder" delay="0.06" frames="0-0" />
       <Loop id="sheild" path="sheild" delay="0.06" frames="0-9" />
       <Loop id="wtf" path="wtf" delay="0.06" frames="0-8" />
-      <Loop id="oderup" path="oderup" delay="0.06" frames="0-5" />
-      <Loop id="eepy" path="eepy" delay="0.06" frames="0-5" />
+      <Loop id="oderup" path="orderup" delay="0.06" frames="0-5" />
+      <Loop id="eepy" path="eppy" delay="0.06" frames="0-5" />
     </sans>
 
   <sansheh path="characters/DZ/sans/" start="ha">
@@ -2599,12 +2523,12 @@
   <papyrus path="characters/DZ/papyrus/" start="idle">
       <Justify x=".5" y="1" />
   
-      <Loop id="idle" path="idle" delay="0.1" frames="0-7" />
-      <Loop id="walk" path="walk" delay="0.08" frames="0-6" />
-      <Loop id="notfair" path="notfair" delay="0.06" frames="0-3" />
+      <Loop id="idle" path="idle" delay="0.1" frames="1-8" />
+      <Loop id="walk" path="walk" delay="0.08" frames="1-5" />
+      <Loop id="notfair" path="notfair" delay="0.06" frames="1-4" />
       <Loop id="idontgetit" path="idontgetit" delay="0.06" frames="0-0" />
       <Loop id="cry" path="cry" delay="0.06" frames="0-3" />
-      <Loop id="angy" path="angy" delay="0.06" frames="0-5" />
+      <Loop id="angy" path="angy" delay="0.06" frames="1-6" />
       <Loop id="depress" path="depress" delay="0.06" frames="0-0" />
     </papyrus>
 
@@ -2872,12 +2796,12 @@
       <!-- ======================= -->
       
       <!-- Background Layer (bg folder) -->
-      <Loop id="bg_idle" path="bg/" delay="0.05" frames="0-7"/>
-      <Loop id="bg_intense" path="bg/" delay="0.03" frames="0-7"/>
+      <Loop id="bg_idle" path="bg/" delay="0.05" frames="0"/>
+      <Loop id="bg_intense" path="bg/" delay="0.03" frames="0"/>
       
       <!-- Black Background Layer (blackbg folder) -->
-      <Loop id="blackbg_idle" path="blackbg/" delay="0.05" frames="0-7"/>
-      <Loop id="blackbg_void" path="blackbg/" delay="0.02" frames="0-7"/>
+      <Loop id="blackbg_idle" path="blackbg/" delay="0.05" frames="0"/>
+      <Loop id="blackbg_void" path="blackbg/" delay="0.02" frames="0"/>
       
       <!-- Cosmowing Effects (cosmoswing folder - rainbow wings) -->
       <Loop id="cosmoswing_idle" path="cosmoswing/" delay="0.04" frames="0"/>
@@ -2885,8 +2809,8 @@
       <Loop id="cosmoswing_rainbow" path="cosmoswing/" delay="0.015" frames="0"/>
       
       <!-- Crying State (cry folder) -->
-      <Loop id="cry_idle" path="cry/" delay="0.1" frames="0-7"/>
-      <Loop id="cry_heavy" path="cry/" delay="0.08" frames="0-7"/>
+      <Loop id="cry_idle" path="cry/" delay="0.1" frames="0-2"/>
+      <Loop id="cry_heavy" path="cry/" delay="0.08" frames="0-2"/>
       
       <!-- Face Expressions (face folder) -->
       <Loop id="face_idle" path="face/" delay="0.05" frames="0-7"/>
@@ -2896,24 +2820,24 @@
       <Loop id="face_memory" path="face/" delay="0.08" frames="0-7"/>
       
       <!-- Orb Core (orb folder) -->
-      <Loop id="orb_idle" path="orb/" delay="0.05" frames="0-7"/>
-      <Loop id="orbDZ_CHarging" path="orb/" delay="0.02" frames="0-7"/>
-      <Loop id="orb_firing" path="orb/" delay="0.015" frames="0-7"/>
+      <Loop id="orb_idle" path="orb/" delay="0.05" frames="0-2"/>
+      <Loop id="orbDZ_CHarging" path="orb/" delay="0.02" frames="0-2"/>
+      <Loop id="orb_firing" path="orb/" delay="0.015" frames="0-2"/>
       
       <!-- Orb Wings (orbwing folder) -->
-      <Loop id="orbwing_idle" path="orbwing/" delay="0.04" frames="0-7"/>
-      <Loop id="orbwing_spread" path="orbwing/" delay="0.03" frames="0-7"/>
-      <Loop id="orbwing_attack" path="orbwing/" delay="0.02" frames="0-7"/>
+      <Loop id="orbwing_idle" path="orbwing/" delay="0.04" frames="0-3"/>
+      <Loop id="orbwing_spread" path="orbwing/" delay="0.03" frames="0-3"/>
+      <Loop id="orbwing_attack" path="orbwing/" delay="0.02" frames="0-3"/>
       
       <!-- Shoulder/Arms (shoulder folder) -->
-      <Loop id="shoulder_idle" path="shoulder/" delay="0.05" frames="0-7"/>
-      <Loop id="shoulder_raise" path="shoulder/" delay="0.04" frames="0-7"/>
-      <Loop id="shoulder_attack" path="shoulder/" delay="0.03" frames="0-7"/>
+      <Loop id="shoulder_idle" path="shoulder/" delay="0.05" frames="0-3"/>
+      <Loop id="shoulder_raise" path="shoulder/" delay="0.04" frames="0-3"/>
+      <Loop id="shoulder_attack" path="shoulder/" delay="0.03" frames="0-3"/>
       
       <!-- Stem/Body Core (stem folder) -->
-      <Loop id="stem_idle" path="stem/" delay="0.05" frames="0-7"/>
-      <Loop id="stem_rise" path="stem/" delay="0.03" frames="0-7"/>
-      <Loop id="stem_pulse" path="stem/" delay="0.02" frames="0-7"/>
+      <Loop id="stem_idle" path="stem/" delay="0.05" frames="0-4"/>
+      <Loop id="stem_rise" path="stem/" delay="0.03" frames="0-4"/>
+      <Loop id="stem_pulse" path="stem/" delay="0.02" frames="0-4"/>
       
       <!-- ======================= -->
       <!-- COMPOSITE ANIMATIONS    -->
@@ -2926,16 +2850,16 @@
       <Loop id="attacking" path="face/" delay="0.04" frames="0-7"/>
       
       <!-- Rise Sequence (Chapter 20 Phase 1) -->
-      <Anim id="rise_start" path="stem/" delay="0.04" frames="0-7" goto="rise_mid"/>
-      <Loop id="rise_mid" path="stem/" delay="0.03" frames="0-7"/>
-      <Anim id="rise_end" path="stem/" delay="0.04" frames="0-7" goto="idle"/>
+      <Anim id="rise_start" path="stem/" delay="0.04" frames="0-4" goto="rise_mid"/>
+      <Loop id="rise_mid" path="stem/" delay="0.03" frames="0-4"/>
+      <Anim id="rise_end" path="stem/" delay="0.04" frames="0-4" goto="idle"/>
       
       <!-- Struggle Phase (Player Trapped) -->
-      <Loop id="barrier_active" path="orb/" delay="0.03" frames="0-7"/>
+      <Loop id="barrier_active" path="orb/" delay="0.03" frames="0-2"/>
       <Loop id="dominating" path="face/" delay="0.04" frames="0-7"/>
       
       <!-- Void Answer Phase -->
-      <Loop id="void_disturbed" path="blackbg/" delay="0.02" frames="0-7"/>
+      <Loop id="void_disturbed" path="blackbg/" delay="0.02" frames="0"/>
       <Anim id="void_glitch" path="face/" delay="0.02" frames="0-7" goto="idle"/>
       
       <!-- Lost Soul Phase -->
@@ -2943,28 +2867,28 @@
       <Loop id="desperate" path="face/" delay="0.03" frames="0-7"/>
       
       <!-- Memory/Flashback Phase -->
-      <Anim id="memory_trigger" path="cry/" delay="0.05" frames="0-7" goto="memory_loop"/>
-      <Loop id="memory_loop" path="cry/" delay="0.08" frames="0-7"/>
+      <Anim id="memory_trigger" path="cry/" delay="0.05" frames="0-2" goto="memory_loop"/>
+      <Loop id="memory_loop" path="cry/" delay="0.08" frames="0-2"/>
       <Anim id="memory_break" path="face/" delay="0.03" frames="0-7" goto="idle"/>
       
       <!-- Els Control Struggle -->
       <Loop id="els_control" path="face/" delay="0.02" frames="0-7"/>
       <Anim id="els_glitch" path="face/" delay="0.015" frames="0-7" goto="els_control"/>
-      <Loop id="asriel_fight_back" path="cry/" delay="0.04" frames="0-7"/>
+      <Loop id="asriel_fight_back" path="cry/" delay="0.04" frames="0-2"/>
       
       <!-- ======================= -->
       <!-- ATTACK ANIMATIONS       -->
       <!-- ======================= -->
       
       <!-- Ultima Bullet -->
-      <Anim id="attack_ultimabullet_start" path="orb/" delay="0.03" frames="0-7" goto="attack_ultimabullet_hold"/>
-      <Loop id="attack_ultimabullet_hold" path="orb/" delay="0.04" frames="0-7"/>
-      <Anim id="attack_ultimabullet_fire" path="orb/" delay="0.02" frames="0-7" goto="idle"/>
+      <Anim id="attack_ultimabullet_start" path="orb/" delay="0.03" frames="0-2" goto="attack_ultimabullet_hold"/>
+      <Loop id="attack_ultimabullet_hold" path="orb/" delay="0.04" frames="0-2"/>
+      <Anim id="attack_ultimabullet_fire" path="orb/" delay="0.02" frames="0-2" goto="idle"/>
       
       <!-- Cross Shocker -->
-      <Anim id="attack_crossshocker_start" path="orbwing/" delay="0.03" frames="0-7" goto="attack_crossshocker_loop"/>
-      <Loop id="attack_crossshocker_loop" path="orbwing/" delay="0.04" frames="0-7"/>
-      <Anim id="attack_crossshocker_end" path="orbwing/" delay="0.03" frames="0-7" goto="idle"/>
+      <Anim id="attack_crossshocker_start" path="orbwing/" delay="0.03" frames="0-3" goto="attack_crossshocker_loop"/>
+      <Loop id="attack_crossshocker_loop" path="orbwing/" delay="0.04" frames="0-3"/>
+      <Anim id="attack_crossshocker_end" path="orbwing/" delay="0.03" frames="0-3" goto="idle"/>
       
       <!-- Star Storm Ultra -->
       <Anim id="attack_starstormultra_start" path="cosmoswing/" delay="0.025" frames="0" goto="attack_starstormultra_rain"/>
@@ -2972,18 +2896,18 @@
       <Anim id="attack_starstormultra_end" path="cosmoswing/" delay="0.04" frames="0" goto="idle"/>
       
       <!-- Shocker Breaker 3 -->
-      <Anim id="attack_shockerbreaker3_start" path="shoulder/" delay="0.025" frames="0-7" goto="attack_shockerbreaker3_hold"/>
-      <Loop id="attack_shockerbreaker3_hold" path="shoulder/" delay="0.03" frames="0-7"/>
-      <Anim id="attack_shockerbreaker3_release" path="shoulder/" delay="0.02" frames="0-7" goto="attack_shockerbreaker3_waves"/>
-      <Loop id="attack_shockerbreaker3_waves" path="shoulder/" delay="0.03" frames="0-7"/>
-      <Anim id="attack_shockerbreaker3_end" path="shoulder/" delay="0.04" frames="0-7" goto="idle"/>
+      <Anim id="attack_shockerbreaker3_start" path="shoulder/" delay="0.025" frames="0-3" goto="attack_shockerbreaker3_hold"/>
+      <Loop id="attack_shockerbreaker3_hold" path="shoulder/" delay="0.03" frames="0-3"/>
+      <Anim id="attack_shockerbreaker3_release" path="shoulder/" delay="0.02" frames="0-3" goto="attack_shockerbreaker3_waves"/>
+      <Loop id="attack_shockerbreaker3_waves" path="shoulder/" delay="0.03" frames="0-3"/>
+      <Anim id="attack_shockerbreaker3_end" path="shoulder/" delay="0.04" frames="0-3" goto="idle"/>
       
       <!-- Final Beam Attack (Ultimate - Els's Last Attack) -->
-      <Anim id="attack_finalbeamDZ_CHarge" path="orb/" delay="0.02" frames="0-7" goto="attack_finalbeam_focus"/>
-      <Loop id="attack_finalbeam_focus" path="orb/" delay="0.025" frames="0-7"/>
-      <Anim id="attack_finalbeam_fire" path="bg/" delay="0.015" frames="0-7" goto="attack_finalbeam_hold"/>
-      <Loop id="attack_finalbeam_hold" path="bg/" delay="0.02" frames="0-7"/>
-      <Anim id="attack_finalbeam_end" path="bg/" delay="0.03" frames="0-7" goto="idle"/>
+      <Anim id="attack_finalbeamDZ_CHarge" path="orb/" delay="0.02" frames="0-2" goto="attack_finalbeam_focus"/>
+      <Loop id="attack_finalbeam_focus" path="orb/" delay="0.025" frames="0-2"/>
+      <Anim id="attack_finalbeam_fire" path="bg/" delay="0.015" frames="0" goto="attack_finalbeam_hold"/>
+      <Loop id="attack_finalbeam_hold" path="bg/" delay="0.02" frames="0"/>
+      <Anim id="attack_finalbeam_end" path="bg/" delay="0.03" frames="0" goto="idle"/>
       
       <!-- ======================= -->
       <!-- STATE ANIMATIONS        -->
@@ -2991,17 +2915,17 @@
       
       <!-- Hurt/Damage States -->
       <Anim id="hurt" path="face/" delay="0.04" frames="0-7" goto="idle"/>
-      <Anim id="hurt_heavy" path="cry/" delay="0.04" frames="0-7" goto="idle"/>
+      <Anim id="hurt_heavy" path="cry/" delay="0.04" frames="0-2" goto="idle"/>
       
       <!-- Defeat/Redemption -->
-      <Anim id="defeat" path="cry/" delay="0.05" frames="0-7"/>
-      <Anim id="redemption" path="cry/" delay="0.06" frames="0-7"/>
-      <Loop id="crying_redemption" path="cry/" delay="0.08" frames="0-7"/>
+      <Anim id="defeat" path="cry/" delay="0.05" frames="0-2"/>
+      <Anim id="redemption" path="cry/" delay="0.06" frames="0-2"/>
+      <Loop id="crying_redemption" path="cry/" delay="0.08" frames="0-2"/>
       
       <!-- Phase 2 Transcendent States (if transforming) -->
-      <Loop id="phase2_idle" path="bg/" delay="0.04" frames="0-7"/>
-      <Loop id="phase2_hover" path="bg/" delay="0.03" frames="0-7"/>
-      <Loop id="phase2_ultimate" path="bg/" delay="0.025" frames="0-7"/>
+      <Loop id="phase2_idle" path="bg/" delay="0.04" frames="0"/>
+      <Loop id="phase2_hover" path="bg/" delay="0.03" frames="0"/>
+      <Loop id="phase2_ultimate" path="bg/" delay="0.025" frames="0"/>
       
     </asriel_angelofdeath>
 
@@ -3801,7 +3725,7 @@
       <Justify x=".5" y="1" />
 
       <Loop id="idle" path="0" delay="0.15" frames="0-0" />
-      <Anim id="vanish" path="1" loop="false" delay="0.05" frames="1-1" />
+      <Anim id="vanish" path="" loop="false" delay="0.05" frames="1" />
     </mysteryman>
 
   <!-- Sprite bank entries wired up for entities whose art existed but had no XML registration -->
@@ -3884,13 +3808,15 @@
     <Loop id="idle" path="idle" frames="0" delay="0.1" />
   </temmie>
 
-  <cerberus_body path="characters/DZ/flame_cerberus/" start="idle">
+  <!-- Art lives under objects/, not characters/, and only idle00 exists so far;
+       the other states reuse it until their own frames are drawn. -->
+  <cerberus_body path="objects/DZ/flame_cerberus/" start="idle">
     <Loop id="idle" path="idle" frames="0" delay="0.1" />
-    <Loop id="walk" path="roaming" frames="0" delay="0.1" />
-    <Loop id="attack" path="attacking" frames="0" delay="0.1" />
-    <Loop id="triple_attack" path="triple_attack" frames="0" delay="0.1" />
-    <Loop id="stunned" path="stunned" frames="0" delay="0.1" />
-    <Anim id="defeat" path="defeat" frames="0" delay="0.1" />
+    <Loop id="walk" path="idle" frames="0" delay="0.1" />
+    <Loop id="attack" path="idle" frames="0" delay="0.1" />
+    <Loop id="triple_attack" path="idle" frames="0" delay="0.1" />
+    <Loop id="stunned" path="idle" frames="0" delay="0.1" />
+    <Anim id="defeat" path="idle" frames="0" delay="0.1" />
   </cerberus_body>
 
   <titan_shield path="objects/DZ/titan_squire/" start="idle">

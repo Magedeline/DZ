@@ -1,18 +1,18 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using Celeste.Cutscenes;
 using Celeste.Entities;
 using Celeste.Mod;
 using Celeste.NPCs;
+using DZ.Cutscenes;
 using FMOD.Studio;
 using Microsoft.Xna.Framework;
 using Monocle;
 using MonoMod;
-using Payphone = Celeste.Mod.DZ.Entities.Payphone;
-using FlingBirdIntro = Celeste.Entities.FlingBirdIntro;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using NPC = Celeste.NPCs.NPC;
+using Payphone = Celeste.Mod.DZ.Entities.Payphone;
 
 namespace DZ
 {
@@ -89,11 +89,11 @@ namespace DZ
             {
                 level.Session.SetFlag(onceFlag, true);
             }
-            
+
             // Freeze player and start cutscene context for vanilla events
             player2.StateMachine.State = Player.StDummy;
             level.StartCutscene(OnCutsceneEnd);
-            
+
             switch (Event)
             {
                 case "end_city":
@@ -103,8 +103,12 @@ namespace DZ
                     base.Scene.Add(new CS02_DreamingPhonecall(player2));
                     break;
                 case "end_oldsite_awake":
-                    base.Scene.Add(new CS02_Ending(player2));
+                {
+                    var payphone = level.Entities.FindFirst<Payphone>();
+                    if (payphone != null)
+                        base.Scene.Add(new CS02_End(player2));
                     break;
+                }
                 case "ch5_see_theo":
                     if (!(base.Scene as Level).Session.GetFlag("seeTheoInCrystal"))
                     {
@@ -147,8 +151,8 @@ namespace DZ
                 case "ch8_door":
                     base.Scene.Add(new CS08_EnterDoor(player2, base.Left));
                     break;
-                case "ch9_goto_the_future":
-                case "ch9_goto_the_past":
+                case "ch19_goto_the_future":
+                case "ch19_goto_the_past":
                     level.OnEndOfFrame += () =>
                     {
                         new Vector2(level.LevelOffset.X + (float)level.Bounds.Width - player2.X, player2.Y - level.LevelOffset.Y);
@@ -159,7 +163,7 @@ namespace DZ
                         level.Remove(player2);
                         level.UnloadLevel();
                         level.Session.Dreaming = true;
-                        level.Session.Level = ((Event == "ch9_goto_the_future") ? "intro-01-future" : "intro-00-past");
+                        level.Session.Level = ((Event == "ch19_goto_the_future") ? "intro-01-future-maggy" : "intro-00-past-maggy");
                         level.Session.RespawnPoint = level.GetSpawnPoint(new Vector2(level.Bounds.Left, level.Bounds.Top));
                         level.Session.FirstLevel = false;
                         level.LoadLevel(Player.IntroTypes.Transition);
@@ -178,7 +182,7 @@ namespace DZ
                         level.Shake();
                         level.Add(new LightningStrike(new Vector2(player2.X + 60f, level.Bounds.Bottom - 180), 10, 200f));
                         level.Add(new LightningStrike(new Vector2(player2.X + 220f, level.Bounds.Bottom - 180), 40, 200f, 0.25f));
-                        Audio.Play("event:/new_content/game/10_farewell/lightning_strike");
+                        Audio.Play("event:/DZ/new_content/game/19_spaces/lightning_strike");
                     };
                     break;
                 case "ch9_moon_intro":
@@ -261,7 +265,6 @@ namespace DZ
                     base.Scene.Add(new global::Celeste.Cutscenes.Cs01ModEnding(player2));
                     break;
                 case "cs02_chara_intro":
-                case "cs02DZ_CHara_intro":
                 {
                     var chara = level.Entities.FindFirst<global::Celeste.Entities.CharaChaser>();
                     if (chara != null)
@@ -279,7 +282,7 @@ namespace DZ
                 {
                     var payphone = level.Entities.FindFirst<Payphone>();
                     if (payphone != null)
-                        base.Scene.Add(new global::Celeste.Cutscenes.Cs02CallKirby(player2));
+                        base.Scene.Add(new CS02_End(player2));
                     break;
                 }
                 case "cs03_first_step":
@@ -458,8 +461,8 @@ namespace DZ
                 case "cs19_beyond_the_void":
                     base.Scene.Add(new global::Celeste.Cutscenes.CS19_BeyondTheVoid(player2));
                     break;
-                case "cs19DZ_CHara_helps":
-                    base.Scene.Add(new global::Celeste.Cutscenes.CS19DZ_CHaraHelps(player2));
+                case "cs19_chara_helps":
+                    base.Scene.Add(new global::Celeste.Cutscenes.CS19_CharaHelps(player2));
                     break;
                 case "cs19_edge_of_universe":
                     base.Scene.Add(new global::Celeste.Cutscenes.CS19_EdgeOfUniverse(player2));
@@ -515,6 +518,42 @@ namespace DZ
                     }
                     break;
                 }
+                case "ch20_asriel_boss_end":
+                    base.Scene.Add(new CS20_AsrielBossEnd(player2));
+                    break;
+                case "ch20_intro":
+                    base.Scene.Add(new global::Celeste.Cutscenes.Cs20Intro(player2));
+                    break;
+                case "ch20_nothingness":
+                    base.Scene.Add(new global::Celeste.Cutscenes.Cs20Nothingness(player2));
+                    break;
+                case "ch20_bird_guidance_intro":
+                    base.Scene.Add(new global::Celeste.Cutscenes.Cs20BirdGuidanceIntro(player2));
+                    break;
+                case "ch20_contra_void":
+                    base.Scene.Add(new CS20_ContraVoid(player2));
+                    break;
+                case "ch20_els_last_wish":
+                    base.Scene.Add(new CS20_ElsLastWish(player2));
+                    break;
+                case "ch20_fake_madeline_and_badeline":
+                    base.Scene.Add(new CS20_FakeMadelineAndBadeline(player2));
+                    break;
+                case "ch20_grand_sunset":
+                    base.Scene.Add(new CS20_GrandSunset(player2));
+                    break;
+                case "ch20_rainbow_blossom_tree":
+                    base.Scene.Add(new global::Celeste.Cutscenes.CS20_RainbowBlossomTree(player2));
+                    break;
+                case "ch20_tesseract_soul":
+                    base.Scene.Add(new CS20_TesseractSoul(player2));
+                    break;
+                case "ch20_tesseract_soul_trap":
+                    base.Scene.Add(new CS20_TesseractSoulTrap(player2));
+                    break;
+                case "ch20_dream_friends_captured":
+                    base.Scene.Add(new CS20_DreamFriendsCaptured(player2));
+                    break;
                 case "ch20_end_later":
                     base.Scene.Add(new global::Celeste.Cutscenes.CS20_Later(player2));
                     break;

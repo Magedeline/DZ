@@ -63,9 +63,8 @@ public static class AreaMapData
         public bool Has1 { get; set; }
         public bool Has2 { get; set; }
         public bool HasDSide { get; set; }
-        public bool HasDXSide { get; set; }
 
-        /// <summary>Music event per side (A, B, C, D, DX)</summary>
+        /// <summary>Music event per side (A, B, C, D)</summary>
         public string[] MusicEvents { get; set; }
 
         /// <summary>Ambience event per side</summary>
@@ -150,7 +149,7 @@ public static class AreaMapData
         _bySID.Clear();
         _byBaseKey.Clear();
 
-        ChapterRegistry.RegisterAllChapters(Chapters);
+        // ChapterRegistry removed - chapters are now registered elsewhere
     }
 
     public static void ApplyHardcodedRuntimeData()
@@ -256,7 +255,6 @@ public static class AreaMapData
             chapter.Has1 = HasLoade2(baseKey, AreaModeExtender.MODE_1);
             chapter.Has2 = HasLoade2(baseKey, AreaModeExtender.MODE_2);
             chapter.HasDSide = HasLoade2(baseKey, AreaModeExtender.MODE_DSIDE);
-            chapter.HasDXSide = HasLoade2(baseKey, AreaModeExtender.MODE_DXSIDE);
         }
     }
 
@@ -316,10 +314,6 @@ public static class AreaMapData
 
         area.Mode[3] = chapter.HasDSide
             ? BuildOrUpdateMode(area.Mode[3], AreaModeExtender.BuildDSideSID(AreaModeExtender.MODE_DSIDE, baseKey), GetMusic(chapter, 3), GetAmbience(chapter, 3))
-            : null;
-
-        area.Mode[4] = chapter.HasDXSide
-            ? BuildOrUpdateMode(area.Mode[4], AreaModeExtender.BuildDSideSID(AreaModeExtender.MODE_DXSIDE, baseKey), GetMusic(chapter, 4), GetAmbience(chapter, 4))
             : null;
 
         if (!string.IsNullOrEmpty(chapter.CassetteSong))
@@ -495,11 +489,11 @@ public static class AreaMapData
         }
         area.MountainState = chapter.MountainState;
 
-        bool hasAltSides = chapter.Has1 || chapter.Has2 || chapter.HasDSide || chapter.HasDXSide;
+        bool hasAltSides = chapter.Has1 || chapter.Has2 || chapter.HasDSide;
         if (hasAltSides)
         {
             Logger.Log(LogLevel.Verbose, "DZ",
-                $"ApplyHardcodedRuntimeData: '{area.SID}' has alt-sides (B={chapter.Has1}, C={chapter.Has2}, D={chapter.HasDSide}, DX={chapter.HasDXSide})");
+                $"ApplyHardcodedRuntimeData: '{area.SID}' has alt-sides (B={chapter.Has1}, C={chapter.Has2}, D={chapter.HasDSide})");
             EnsureModeArray(area);
             ApplyModes(area, chapter);
         }

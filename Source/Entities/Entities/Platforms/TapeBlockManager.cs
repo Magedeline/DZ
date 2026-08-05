@@ -132,6 +132,16 @@ public class TapeBlockManager : Entity
             string CassetteSong = AreaData.Areas[SceneAs<Level>().Session.Area.ID].CassetteSong;
             sfx = Audio.CreateInstance(CassetteSong);
             sfxPerc = Audio.CreateInstance("event:/DZ/music/Cassette/tape/tape_perc");
+
+            // Apply remixIndex parameter if available
+            Level level = SceneAs<Level>();
+            if (level != null && level.Session.GetCounter("cassetteTape_remixIndex") != 0)
+            {
+                int remixIndex = level.Session.GetCounter("cassetteTape_remixIndex");
+                Audio.SetParameter(sfx, "remix", remixIndex);
+                Logger.Log(LogLevel.Info, "TapeBlockManager", $"Set remix parameter to {remixIndex}");
+            }
+
             if (leadBeats == 0)
             {
                 beatIndex = 0;

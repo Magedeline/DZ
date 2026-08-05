@@ -216,7 +216,7 @@ namespace Celeste.Cutscenes
             string time = $"{(int)timeSpan.TotalHours}{timeSpan:\\:mm\\:ss\\.fff}";
 
             StrawberriesCounter strawbs = new StrawberriesCounter(true, SaveData.Instance.TotalStrawberries, 175, true);
-            DeathsCounter deaths = new DeathsCounter(AreaMode.Normal, true, SaveData.Instance.TotalDeaths, 0);
+            DeathsCounter deaths = new DeathsCounter((global::Celeste.AreaMode)0, true, SaveData.Instance.TotalDeaths, 0);
             TimeDisplay timeDisplay = new TimeDisplay(time);
 
             float timeWidth = SpeedrunTimerDisplay.GetTimeWidth(time, 1f);

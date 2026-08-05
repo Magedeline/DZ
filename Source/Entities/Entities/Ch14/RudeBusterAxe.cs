@@ -86,7 +86,7 @@ namespace Celeste.Entities.Chapters.Ch14
             collected = true;
             respawnTimer = respawnDelay;
 
-            Audio.Play("event:/game/general/crystalheart_blue_get", Position);
+            Audio.Play(ChapterSfx.NexusSwing, Position);
             level?.Flash(PickupFill * 0.2f);
 
             Grant(Scene, charges, settings);
@@ -122,7 +122,7 @@ namespace Celeste.Entities.Chapters.Ch14
                 if (respawnTimer <= 0f)
                 {
                     collected = false;
-                    Audio.Play("event:/game/general/diamond_return", Position);
+                    Audio.Play(ChapterSfx.NexusSwing, Position);
                 }
 
                 return;
@@ -259,7 +259,7 @@ namespace Celeste.Entities.Chapters.Ch14
             if (settings.RefundOnCatch)
             {
                 Charges += 1;
-                Audio.Play("event:/game/general/diamond_return");
+                Audio.Play(ChapterSfx.NexusHit);
             }
         }
         #endregion
@@ -364,6 +364,24 @@ namespace Celeste.Entities.Chapters.Ch14
             }
         }
 
+        private bool HitBreakablePillar(Vector2 hitDirection)
+        {
+            foreach (Entity entity in Scene.Tracker.GetEntities<global::Celeste.Entities.Chapters.Ch10.BreakablePillar>())
+            {
+                global::Celeste.Entities.Chapters.Ch10.BreakablePillar pillar = (global::Celeste.Entities.Chapters.Ch10.BreakablePillar)entity;
+                if (pillar.IsBroken || !CollideCheck(pillar))
+                {
+                    continue;
+                }
+
+                pillar.Break(hitDirection);
+                Audio.Play(ChapterSfx.NexusHit, Position);
+                return true;
+            }
+
+            return false;
+        }
+
         private void TurnBack()
         {
             if (!settings.Boomerang)
@@ -378,7 +396,7 @@ namespace Celeste.Entities.Chapters.Ch14
 
         private void Dissipate()
         {
-            Audio.Play("event:/game/general/diamond_touch", Position);
+            Audio.Play(ChapterSfx.NexusHit, Position);
             RemoveSelf();
         }
         #endregion
@@ -421,6 +439,10 @@ namespace Celeste.Entities.Chapters.Ch14
                 Position += direction * settings.ThrowSpeed * Engine.DeltaTime;
 
                 if (Vector2.Distance(Position, origin) >= settings.Range)
+                {
+                    TurnBack();
+                }
+                else if (HitBreakablePillar(direction))
                 {
                     TurnBack();
                 }

@@ -330,7 +330,6 @@ namespace Celeste.Mod.DZ
         public bool Has1 { get; set; }
         public bool Has2 { get; set; }
         public bool HasDSide { get; set; }
-        public bool HasDXSide { get; set; }
         public DateTime LastUpdated { get; set; }
     }
 }

@@ -62,7 +62,7 @@ public class CS19_Gravestone : CutsceneEntity
         addedBooster = true;
         Level.Displacement.AddBurst(boostTarget, 0.5f, 8f, 32f, 0.5f);
         Audio.Play("event:/new_content/char/badeline/booster_first_appear", boostTarget);
-        Level.Add(new BadelineBoost(new Vector2[1] { boostTarget }, lockCamera: false));
+        Level.Add(new CharaBoost(new Vector2[1] { boostTarget }, lockCamera: false));
         yield return 0.2f;
         EndCutscene(Level);
     }
@@ -149,8 +149,8 @@ public class CS19_Gravestone : CutsceneEntity
         player.DummyAutoAnimate = true;
         player.DummyGravity = true;
         player.StateMachine.State = 0;
-        Level.Session.Inventory.Dashes = 2;
-        player.Dashes = 2;
+        Level.Session.Inventory.Dashes = 5;
+        player.Dashes = 5;
         if (chara != null)
         {
             chara.RemoveSelf();

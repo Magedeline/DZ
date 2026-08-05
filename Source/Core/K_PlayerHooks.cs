@@ -111,6 +111,12 @@ namespace DZ
         /// </summary>
         private static void OnEntityAdded(On.Monocle.EntityList.orig_Add_Entity orig, EntityList self, Entity entity)
         {
+            if (entity == null)
+            {
+                Logger.Log(LogLevel.Warn, "DZ", "[K_PlayerHooks] OnEntityAdded called with null entity — skipping.");
+                return;
+            }
+
             orig(self, entity);
 
             // When K_Player is added to the scene, ensure it's properly initialized

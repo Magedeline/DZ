@@ -109,7 +109,7 @@ namespace Celeste.Extensions
                 if (kirbyMode == null)
                 {
                     kirbyMode = new KirbyMode();
-                    level.Add(kirbyMode);
+                    level.OnEndOfFrame += () => level.Add(kirbyMode);
                 }
 
                 kirbyMode.SetPowerState(powerState);
@@ -148,7 +148,7 @@ namespace Celeste.Extensions
                 if (kirbyMode == null)
                 {
                     kirbyMode = new KirbyMode();
-                    level.Add(kirbyMode);
+                    level.OnEndOfFrame += () => level.Add(kirbyMode);
                 }
 
                 kirbyMode.SetPowerState(powerState);

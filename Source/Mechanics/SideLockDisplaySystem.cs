@@ -39,15 +39,6 @@ public static class SideLockDisplaySystem
         LockTint = new Color(180, 100, 255, 128)  // Purple, semi-transparent
     };
 
-    public static readonly LockDisplayConfig DXSideLockConfig = new()
-    {
-        ModeIndex = AreaModeExtender.MODE_DXSIDE,
-        LockIcon = "ui/common/lock",
-        LockedLabel = "DX-Side: Locked",
-        RequirementText = "Beat D-Side to unlock",
-        LockTint = new Color(50, 0, 80, 128)  // Dark void, semi-transparent
-    };
-
     private static bool _hookInstalled = false;
 
     // Card bounds used for the lock overlay region (matches the vanilla chapter
@@ -139,7 +130,7 @@ public static class SideLockDisplaySystem
     // ── Helpers ──────────────────────────────────────────────────────────────
 
     private static bool IsExtendedMode(int modeIndex)
-        => modeIndex == AreaModeExtender.MODE_2 || modeIndex == AreaModeExtender.MODE_DXSIDE;
+        => modeIndex == AreaModeExtender.MODE_2 || modeIndex == AreaModeExtender.MODE_DSIDE;
 
     /// <summary>
     /// Reads the chapter panel's currently displayed mode index via DynamicData.
@@ -204,7 +195,7 @@ public static class SideLockDisplaySystem
         float y = cardPos.Y + CardSize.Y / 2f + 16f;
         bool drewAny = false;
 
-        for (int mode = AreaModeExtender.MODE_2; mode <= AreaModeExtender.MODE_DXSIDE; mode++)
+        for (int mode = AreaModeExtender.MODE_2; mode <= AreaModeExtender.MODE_DSIDE; mode++)
         {
             if (mode >= areaData.Mode.Length || areaData.Mode[mode] == null)
                 continue;
@@ -241,7 +232,6 @@ public static class SideLockDisplaySystem
         return modeIndex switch
         {
             AreaModeExtender.MODE_2 => dSideLockConfig,
-            AreaModeExtender.MODE_DXSIDE => DXSideLockConfig,
             _ => null
         };
     }
@@ -270,7 +260,7 @@ public static class SideLockDisplaySystem
         if (AreaModeExtender.IsSideUnlocked(area, modeIndex))
             return null;  // Already unlocked
 
-        if (modeIndex < 1 || modeIndex > AreaModeExtender.MODE_DXSIDE)
+        if (modeIndex < 1 || modeIndex > AreaModeExtender.MODE_DSIDE)
             return null;
 
         int previousMode = modeIndex - 1;
@@ -324,7 +314,6 @@ public static class SideLockDisplaySystem
             AreaModeExtender.MODE_1 => "B-Side",
             AreaModeExtender.MODE_2 => "C-Side",
             AreaModeExtender.MODE_DSIDE => "D-Side",
-            AreaModeExtender.MODE_DXSIDE => "DX-Side",
             _ => $"Side {modeIndex}"
         };
     }

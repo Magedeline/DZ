@@ -12,7 +12,7 @@ namespace DZ
 
             int displayValue = Calc.Clamp(index + 1, 1, 12);
             int keyIndex = Calc.Clamp(index, 0, 12);
-            string name = "DZ_CH20_HEIGHT_" + keyIndex;
+            string name = "DZ_CH21_HEIGHT_" + keyIndex;
 
             if (Dialog.Has(name, null))
             {
@@ -90,7 +90,7 @@ namespace DZ
         private void stepAudioProgression()
         {
             Session session = (Scene as Level).Session;
-            if (setAudioProgression || index < 0 || session.Area.Mode != AreaMode.Normal)
+            if (setAudioProgression || index < 0 || (int)session.Area.Mode != 0)
                 return;
 
             setAudioProgression = true;
@@ -98,12 +98,12 @@ namespace DZ
 
             if (progress < 12)
             {
-                session.Audio.Music.Event = "event:/DZ/new_content/music/lvl20/climb";
+                session.Audio.Music.Event = "event:/DZ/new_content/music/lvl21/main";
                 session.Audio.Music.Progress = progress;
             }
             else
             {
-                session.Audio.Music.Event = "event:/DZ/new_content/music/lvl20/final_titan";
+                session.Audio.Music.Event = "event:/DZ/new_content/music/lvl21/final_ascent";
             }
 
             session.Audio.Apply(false);

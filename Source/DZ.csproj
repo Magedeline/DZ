@@ -7,7 +7,10 @@
         <LangVersion>latest</LangVersion>
         <CelestePrefix Condition="'$(CelestePrefix)' == '' And Exists('..\..\..\Celeste.dll')">..\..\..</CelestePrefix>
         <CelestePrefix Condition="'$(CelestePrefix)' == ''">lib-stripped</CelestePrefix>
-        <ZippedFiles>..\everest.yaml;..\bin\**\*.*;..\Audio\**\*.*;..\Dialog\**\*.*;..\Graphics\**\*.*;..\Ahorn\**\*.*;..\Loenn\**\*.*</ZippedFiles>
+        <!-- ..\Rysy\bin\*.* is deliberately non-recursive: it ships the Rysy editor plugin
+             (DZ.RysyPlugin.dll/.pdb) without dragging in ..\Rysy\Source and its build output.
+             Rysy also scans Rysy/bin non-recursively, so the two match. -->
+        <ZippedFiles>..\everest.yaml;..\bin\**\*.*;..\Audio\**\*.*;..\Dialog\**\*.*;..\Graphics\**\*.*;..\Ahorn\**\*.*;..\Loenn\**\*.*;..\Rysy\bin\*.*</ZippedFiles>
         <!-- Engine.TimeRate is obsolete in newer Celeste/Everest but is the vanilla API for time scaling.
              Suppressed project-wide since it is used intentionally across many cutscenes and bosses. -->
         <NoWarn>CS0618</NoWarn>
@@ -29,7 +32,7 @@
         <PackageReference Include="MonoMod.RuntimeDetour" Version="25.3.6" PrivateAssets="all" ExcludeAssets="runtime" />
         <PackageReference Include="MonoMod.Patcher" Version="25.0.1" />
         <PackageReference Include="CelesteAnalyzer" Version="1.0.3.1" />
-        <PackageReference Include="Rysy.Shared" Version="0.0.13" />
+        <PackageReference Include="Rysy.Shared" Version="0.0.12" />
         <PackageReference Include="Saladim.CelesteModTemplate" Version="0.5.0" />
         <PackageReference Include="YamlDotNet" Version="18.1.0" />
     </ItemGroup>

@@ -100,7 +100,7 @@ namespace DZ
 		private void stepAudioProgression()
 		{
 			Session session = (base.Scene as Level).Session;
-			if (!this.setAudioProgression && this.index >= 0 && session.Area.Mode == AreaMode.Normal)
+			if (!this.setAudioProgression && this.index >= 0 && (int)session.Area.Mode == 0)
 			{
 				this.setAudioProgression = true;
 				int num = this.index + 1;

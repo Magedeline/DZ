@@ -9,7 +9,7 @@ cassette.placements = {
     data = {
         spritePath = "collectables/cassette/",
         unlockText = "",
-        1ToUnlock = ""
+        bToUnlock = ""
     }
 }
 

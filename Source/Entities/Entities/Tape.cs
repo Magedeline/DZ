@@ -226,7 +226,7 @@ public class DesoloZantasTape : Entity
 
     // â”€â”€â”€â”€â”€ Unlock data â”€â”€â”€â”€â”€
     private readonly string[]  _unlockText;
-    private readonly string    _dToUnlock;
+    private readonly string    _cSideToUnlock;
 
     // â”€â”€â”€â”€â”€ Visual tuning â”€â”€â”€â”€â”€
     private readonly Color _particleColor;
@@ -267,8 +267,8 @@ public class DesoloZantasTape : Entity
         _previewParamValue= data.Float("previewParamValue",-1f); // -1 = use area ID
 
         // Unlock  (e.g. "map/campaingname/mapname/map.bin")
-        _dToUnlock = data.Attr("dToUnlock", "");
-        _unlockText    = ResolveUnlockText(data.Attr("unlockText", ""), _dToUnlock);
+        _cSideToUnlock = data.Attr("cSideToUnlock", "");
+        _unlockText    = ResolveUnlockText(data.Attr("unlockText", ""), _cSideToUnlock);
     }
 
     // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ Entity Lifecycle â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
@@ -279,8 +279,8 @@ public class DesoloZantasTape : Entity
         base.Added(scene);
         EnsureParticles();
 
-        IsGhost = !string.IsNullOrEmpty(_dToUnlock)
-               && IngesteModule.SaveData.UnlockedDSideIDs.Contains(_dToUnlock);
+        IsGhost = !string.IsNullOrEmpty(_cSideToUnlock)
+               && IngesteModule.SaveData.UnlockedDSideIDs.Contains(_cSideToUnlock);
 
         string animKey = IsGhost ? "ghost" : "idle";
         _sprite = new Sprite(GFX.Game, _spritePath);
@@ -357,16 +357,16 @@ public class DesoloZantasTape : Entity
         level.Session.RespawnPoint = level.GetSpawnPoint(_nodes[1]);
         level.Session.UpdateLevelStartDashes();
 
-        if (!string.IsNullOrEmpty(_dToUnlock))
+        if (!string.IsNullOrEmpty(_cSideToUnlock))
         {
-            IngesteModule.SaveData.UnlockedDSideIDs.Add(_dToUnlock);
-            if (!IngesteModule.SaveData.PendingDSideUnlockIDs.Contains(_dToUnlock))
-                IngesteModule.SaveData.PendingDSideUnlockIDs.Add(_dToUnlock);
+            IngesteModule.SaveData.UnlockedDSideIDs.Add(_cSideToUnlock);
+            if (!IngesteModule.SaveData.PendingDSideUnlockIDs.Contains(_cSideToUnlock))
+                IngesteModule.SaveData.PendingDSideUnlockIDs.Add(_cSideToUnlock);
         }
 
         DZ.DZProgressionManager.RecordCassette(level);
         if (level.Session.RespawnPoint.HasValue)
-            DZ.DZProgressionManager.RecordCheckpoint(level, level.Session.RespawnPoint.Value, _dToUnlock);
+            DZ.DZProgressionManager.RecordCheckpoint(level, level.Session.RespawnPoint.Value, _cSideToUnlock);
 
         cbm?.StopBlocks();
         Depth = -1000000;
@@ -454,12 +454,12 @@ public class DesoloZantasTape : Entity
 
     // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
-    private static string[] ResolveUnlockText(string custom, string dToUnlock)
+    private static string[] ResolveUnlockText(string custom, string cSideToUnlock)
     {
         if (!string.IsNullOrEmpty(custom))
             return custom.Split(',');
 
-        string up = dToUnlock.ToUpperInvariant();
+        string up = cSideToUnlock.ToUpperInvariant();
         if (up.Contains("1") || up.Contains("B_SIDE")) return new[] { "DZ_1_unlocked" };
         if (up.Contains("2") || up.Contains("C_SIDE")) return new[] { "DZ_2_unlocked" };
         if (up.Contains("2") || up.Contains("D_SIDE")) return new[] { "DZ_2_unlocked" };

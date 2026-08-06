@@ -353,26 +353,46 @@ namespace Celeste.Entities {
 			}
 		}
 
-		// Determine unlock text based on side being unlocked
+		// Determine unlock text based on side being unlocked.
+		// "sideToUnlock" is normally a canonical DZ SID ("DZ/2/01_City"), but older
+		// maps may store a bare side token ("C_SIDE") or a bare mode digit.
 		private string[] DetermineUnlockText(string sideToUnlock) {
 			if (string.IsNullOrEmpty(sideToUnlock)) {
-				return new string[] { "DZ_1_unlocked" };
+				return new string[] { UnlockKeyFor(DzSide.B) };
 			}
 
-			// Check if it's a specific side unlock
-			if (sideToUnlock.ToUpper().Contains("1") || sideToUnlock.ToUpper().Contains("B_SIDE")) {
-				return new string[] { "DZ_1_unlocked" };
-			} else if (sideToUnlock.ToUpper().Contains("2") || sideToUnlock.ToUpper().Contains("C_SIDE")) {
-				return new string[] { "DZ_2_unlocked" };
-			} else if (sideToUnlock.ToUpper().Contains("2") || sideToUnlock.ToUpper().Contains("D_SIDE")) {
-				return new string[] { "DZ_2_unlocked" };
-			} else if (sideToUnlock.ToUpper().Contains("REMIX")) {
+			// Parse the SID first. A substring test cannot be used on a SID because the
+			// map name carries its own digits -- "DZ/3/01_City" contains "1", which is
+			// what made the old Contains("1") check claim a D-Side cassette was a B-Side.
+			// Mode 0 is skipped: an A-Side has no cassette unlock text.
+			if (DzSideMap.TryParseSid(sideToUnlock, out DzSide sidSide, out _) && sidSide != DzSide.A) {
+				return new string[] { UnlockKeyFor(sidSide) };
+			}
+
+			string upper = sideToUnlock.ToUpperInvariant();
+			if (upper.Contains("B_SIDE")) {
+				return new string[] { UnlockKeyFor(DzSide.B) };
+			} else if (upper.Contains("C_SIDE")) {
+				return new string[] { UnlockKeyFor(DzSide.C) };
+			} else if (upper.Contains("D_SIDE")) {
+				return new string[] { UnlockKeyFor(DzSide.D) };
+			} else if (upper.Contains("REMIX")) {
 				return new string[] { "DZ_RemixExtra_unlocked" };
 			}
 
-			// Default to B-Side
-			return new string[] { "DZ_1_unlocked" };
+			// A bare mode digit as the whole value ("1"/"2"/"3").
+			if (int.TryParse(sideToUnlock.Trim(), out int mode) && mode > 0 && mode < DzSideMap.SideCount) {
+				return new string[] { UnlockKeyFor(DzSideMap.FromMode(mode)) };
+			}
+
+			// Default to B-Side, the first cassette-unlockable side.
+			return new string[] { UnlockKeyFor(DzSide.B) };
 		}
+
+		// Dialog key for a side's unlock text. The digit is the canonical DzSideMap
+		// folder (1=B, 2=C, 3=D) -- the same numbering DZ_areacomplete_fullclear_{1,2,3}
+		// and POSTCARD_{2,3}_UNLOCK already use in Dialog/English.txt.
+		private static string UnlockKeyFor(DzSide side) => $"DZ_{DzSideMap.ToFolder(side)}_unlocked";
 	}
 }
 

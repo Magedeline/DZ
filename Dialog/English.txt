@@ -873,7 +873,11 @@ DZ_areacomplete_fullclear_3=D-Side Clear
 # ================================
 # AltSidesHelper Unlock Text
 # ================================
-DZ_2_unlocked=D-Side Unlocked
+# Side digits match DzSideMap (1=B, 2=C, 3=D), as in DZ_areacomplete_fullclear_*.
+DZ_1_unlocked=B-Side Unlocked
+DZ_2_unlocked=C-Side Unlocked
+DZ_3_unlocked=D-Side Unlocked
+DZ_RemixExtra_unlocked=Remix Unlocked
 
 # ================================
 # Miscellaneous

@@ -454,18 +454,38 @@ public class DesoloZantasTape : Entity
 
     // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
+    // "dToUnlock" is normally a canonical DZ SID ("DZ/3/01_City"); older maps may
+    // store a bare side token ("D_SIDE") or a bare mode digit.
     private static string[] ResolveUnlockText(string custom, string dToUnlock)
     {
         if (!string.IsNullOrEmpty(custom))
             return custom.Split(',');
 
+        // Parse the SID first. A substring test cannot be used on a SID because the
+        // map name carries its own digits -- "DZ/3/01_City" contains "1", which is
+        // what made the old Contains("1") check claim a D-Side tape was a B-Side.
+        // Mode 0 is skipped: an A-Side has no tape unlock text.
+        if (DzSideMap.TryParseSid(dToUnlock, out DzSide sidSide, out _) && sidSide != DzSide.A)
+            return new[] { UnlockKeyFor(sidSide) };
+
         string up = dToUnlock.ToUpperInvariant();
-        if (up.Contains("1") || up.Contains("B_SIDE")) return new[] { "DZ_1_unlocked" };
-        if (up.Contains("2") || up.Contains("C_SIDE")) return new[] { "DZ_2_unlocked" };
-        if (up.Contains("2") || up.Contains("D_SIDE")) return new[] { "DZ_2_unlocked" };
-        if (up.Contains("REMIX"))                           return new[] { "DZ_RemixExtra_unlocked" };
-        return new[] { "DZ_2_unlocked" };
+        if (up.Contains("B_SIDE")) return new[] { UnlockKeyFor(DzSide.B) };
+        if (up.Contains("C_SIDE")) return new[] { UnlockKeyFor(DzSide.C) };
+        if (up.Contains("D_SIDE")) return new[] { UnlockKeyFor(DzSide.D) };
+        if (up.Contains("REMIX"))  return new[] { "DZ_RemixExtra_unlocked" };
+
+        // A bare mode digit as the whole value ("1"/"2"/"3").
+        if (int.TryParse(dToUnlock?.Trim(), out int mode) && mode > 0 && mode < DzSideMap.SideCount)
+            return new[] { UnlockKeyFor(DzSideMap.FromMode(mode)) };
+
+        // This entity is the D-Side tape, so D-Side is the default.
+        return new[] { UnlockKeyFor(DzSide.D) };
     }
+
+    // Dialog key for a side's unlock text. The digit is the canonical DzSideMap
+    // folder (1=B, 2=C, 3=D) -- the same numbering DZ_areacomplete_fullclear_{1,2,3}
+    // and POSTCARD_{2,3}_UNLOCK already use in Dialog/English.txt.
+    private static string UnlockKeyFor(DzSide side) => $"DZ_{DzSideMap.ToFolder(side)}_unlocked";
 }
 
 

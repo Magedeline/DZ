@@ -226,7 +226,7 @@ public class DesoloZantasTape : Entity
 
     // â”€â”€â”€â”€â”€ Unlock data â”€â”€â”€â”€â”€
     private readonly string[]  _unlockText;
-    private readonly string    _dToUnlock;
+    private readonly string    _cSideToUnlock;
 
     // â”€â”€â”€â”€â”€ Visual tuning â”€â”€â”€â”€â”€
     private readonly Color _particleColor;
@@ -267,8 +267,8 @@ public class DesoloZantasTape : Entity
         _previewParamValue= data.Float("previewParamValue",-1f); // -1 = use area ID
 
         // Unlock  (e.g. "map/campaingname/mapname/map.bin")
-        _dToUnlock = data.Attr("dToUnlock", "");
-        _unlockText    = ResolveUnlockText(data.Attr("unlockText", ""), _dToUnlock);
+        _cSideToUnlock = data.Attr("cSideToUnlock", "");
+        _unlockText    = ResolveUnlockText(data.Attr("unlockText", ""), _cSideToUnlock);
     }
 
     // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ Entity Lifecycle â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
@@ -279,8 +279,8 @@ public class DesoloZantasTape : Entity
         base.Added(scene);
         EnsureParticles();
 
-        IsGhost = !string.IsNullOrEmpty(_dToUnlock)
-               && IngesteModule.SaveData.UnlockedDSideIDs.Contains(_dToUnlock);
+        IsGhost = !string.IsNullOrEmpty(_cSideToUnlock)
+               && IngesteModule.SaveData.UnlockedDSideIDs.Contains(_cSideToUnlock);
 
         string animKey = IsGhost ? "ghost" : "idle";
         _sprite = new Sprite(GFX.Game, _spritePath);
@@ -357,16 +357,16 @@ public class DesoloZantasTape : Entity
         level.Session.RespawnPoint = level.GetSpawnPoint(_nodes[1]);
         level.Session.UpdateLevelStartDashes();
 
-        if (!string.IsNullOrEmpty(_dToUnlock))
+        if (!string.IsNullOrEmpty(_cSideToUnlock))
         {
-            IngesteModule.SaveData.UnlockedDSideIDs.Add(_dToUnlock);
-            if (!IngesteModule.SaveData.PendingDSideUnlockIDs.Contains(_dToUnlock))
-                IngesteModule.SaveData.PendingDSideUnlockIDs.Add(_dToUnlock);
+            IngesteModule.SaveData.UnlockedDSideIDs.Add(_cSideToUnlock);
+            if (!IngesteModule.SaveData.PendingDSideUnlockIDs.Contains(_cSideToUnlock))
+                IngesteModule.SaveData.PendingDSideUnlockIDs.Add(_cSideToUnlock);
         }
 
         DZ.DZProgressionManager.RecordCassette(level);
         if (level.Session.RespawnPoint.HasValue)
-            DZ.DZProgressionManager.RecordCheckpoint(level, level.Session.RespawnPoint.Value, _dToUnlock);
+            DZ.DZProgressionManager.RecordCheckpoint(level, level.Session.RespawnPoint.Value, _cSideToUnlock);
 
         cbm?.StopBlocks();
         Depth = -1000000;
@@ -454,9 +454,9 @@ public class DesoloZantasTape : Entity
 
     // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
-    // "dToUnlock" is normally a canonical DZ SID ("DZ/3/01_City"); older maps may
+    // "cSideToUnlock" is normally a canonical DZ SID ("DZ/3/01_City"); older maps may
     // store a bare side token ("D_SIDE") or a bare mode digit.
-    private static string[] ResolveUnlockText(string custom, string dToUnlock)
+    private static string[] ResolveUnlockText(string custom, string cSideToUnlock)
     {
         if (!string.IsNullOrEmpty(custom))
             return custom.Split(',');
@@ -465,17 +465,17 @@ public class DesoloZantasTape : Entity
         // map name carries its own digits -- "DZ/3/01_City" contains "1", which is
         // what made the old Contains("1") check claim a D-Side tape was a B-Side.
         // Mode 0 is skipped: an A-Side has no tape unlock text.
-        if (DzSideMap.TryParseSid(dToUnlock, out DzSide sidSide, out _) && sidSide != DzSide.A)
+        if (DzSideMap.TryParseSid(cSideToUnlock, out DzSide sidSide, out _) && sidSide != DzSide.A)
             return new[] { UnlockKeyFor(sidSide) };
 
-        string up = dToUnlock.ToUpperInvariant();
+        string up = cSideToUnlock.ToUpperInvariant();
         if (up.Contains("B_SIDE")) return new[] { UnlockKeyFor(DzSide.B) };
         if (up.Contains("C_SIDE")) return new[] { UnlockKeyFor(DzSide.C) };
         if (up.Contains("D_SIDE")) return new[] { UnlockKeyFor(DzSide.D) };
         if (up.Contains("REMIX"))  return new[] { "DZ_RemixExtra_unlocked" };
 
         // A bare mode digit as the whole value ("1"/"2"/"3").
-        if (int.TryParse(dToUnlock?.Trim(), out int mode) && mode > 0 && mode < DzSideMap.SideCount)
+        if (int.TryParse(cSideToUnlock?.Trim(), out int mode) && mode > 0 && mode < DzSideMap.SideCount)
             return new[] { UnlockKeyFor(DzSideMap.FromMode(mode)) };
 
         // This entity is the D-Side tape, so D-Side is the default.

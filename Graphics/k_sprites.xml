@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Custom, separately-named sprite bank (NOT auto-merged by Everest the way
+  Graphics/Sprites.xml is; a mod must explicitly call
+  GFX.SpriteBank.LoadSpriteBank("Graphics/k_sprites.xml") for these entries
+  to become available). Consolidates the Kirby-reskinned atlas folders used
+  by Kirby Helper Mechanics' K_Player:
+
+    characters/DZ/kirby            -> kirby_player_ext (read by K_Player.cs)
+    characters/DZ/kirby_Playback   -> kirby_playback
+    cutscenes/DZ/kirby_payphone    -> kirby_payphone
+    objects/DZ/kirby/booster       -> kirby_booster / kirby_boosterRed
+    objects/DZ/kirby/lookout       -> kirby_lookout
+
+  kirby_playback/kirby_payphone/kirby_booster/kirby_lookout are staged for
+  future entities (dash-route ghost, cutscene NPC, reskinned booster/lookout)
+  that don't exist in Kirby Helper Mechanics yet; only kirby_player_ext is
+  currently read by code (K_Player.cs: GFX.SpriteBank.Create("kirby_player_ext")).
+-->
+<Sprites>
+
+  <kirby_player_ext path="characters/DZ/kirby/" start="kirby_idle">
+      <Justify x=".5" y="1" />
+
+      <!-- Basic Animations -->
+      <Loop id="kirby_idle" path="idle" delay="0.15" />
+      <Loop id="kirby_walk" path="walk" delay="0.08" />
+      <Loop id="kirby_run" path="runFast" delay="0.06" />
+      <Loop id="kirby_jump" path="jumpFast" delay="0.1" frames="0,1" />
+      <Loop id="kirby_fall" path="fall" delay="0.1" />
+
+      <!-- Kirby Abilities -->
+      <Anim id="kirby_inhale_start" path="inhalebegin" delay="0.06" goto="kirby_inhale_loop" />
+      <Loop id="kirby_inhale_loop" path="inhaleloop" delay="0.08" />
+      <Anim id="kirby_inhale_end" path="inhaleend" delay="0.06" goto="kirby_idle" />
+      <Loop id="kirby_hover" path="hover" delay="0.12" frames="0-1" />
+      <Loop id="kirby_float" path="float" delay="0.12" frames="0-1" />
+      <Anim id="kirby_spit" path="spit" delay="0.05" />
+      <Anim id="kirby_damage" path="hurt" delay="0.08" goto="kirby_idle" />
+
+      <!-- Transformation Animations -->
+      <Anim id="kirby_transform_in" path="transform_in" delay="0.06" goto="kirby_idle" />
+      <Anim id="kirby_transform_out" path="transform_out" delay="0.06" />
+
+      <!-- Power States - Fire -->
+      <Loop id="kirby_fire_idle" path="fire/idle" delay="0.15" />
+      <Loop id="kirby_fire_walk" path="fire/walk" delay="0.08" />
+      <Anim id="kirby_fire_attack" path="fire/attack" delay="0.04" goto="kirby_fire_idle" />
+      <Anim id="kirby_fire_breath" path="fire/breath" delay="0.03" goto="kirby_fire_idle" />
+      <Anim id="kirby_fire_dashball" path="fire/dashball" delay="0.1" />
+
+      <!-- Power States - Ice -->
+      <Loop id="kirby_ice_idle" path="ice/idle" delay="0.15" />
+      <Loop id="kirby_ice_walk" path="ice/walk" delay="0.08" />
+      <Anim id="kirby_ice_attack" path="ice/attack" delay="0.06" goto="kirby_ice_idle" />
+      <Anim id="kirby_ice_shard" path="ice/shard" delay="0.05" goto="kirby_ice_idle" />
+      <Anim id="kirby_ice_slide" path="ice/slide" delay="0.1" goto="kirby_ice_idle" />
+      <Anim id="kirby_ice_breath" path="ice/breath" delay="0.1" goto="kirby_ice_idle" />
+
+      <!-- Power States - Spark -->
+      <Loop id="kirby_spark_idle" path="spark/idle" delay="0.12" />
+      <Loop id="kirby_spark_walk" path="spark/walk" delay="0.08" />
+      <Anim id="kirby_spark_attack" path="spark/attack" delay="0.03" goto="kirby_spark_idle" />
+      <Anim id="kirby_spark_shield" path="spark/shield" delay="0.05" goto="kirby_spark_idle" />
+      <Anim id="kirby_sparkDZ_CHarge" path="spark/charge" delay="0.1" goto="kirby_spark_idle" />
+      <Anim id="kirby_spark_release" path="spark/release" delay="0.1" goto="kirby_spark_idle" />
+
+      <!-- Power States - Stone -->
+      <Loop id="kirby_stone_idle" path="stone/idle" delay="0.2" />
+      <Loop id="kirby_stone_walk" path="stone/walk" delay="0.1" />
+      <Anim id="kirby_stone_transform" path="stone/transform" delay="0.05" />
+      <Loop id="kirby_stone_form" path="stone/form" delay="0.3" />
+      <Anim id="kirby_stone_shatter" path="stone/shatter" delay="0.05" goto="kirby_idle" />
+      <Anim id="kirby_stone_prebigform" path="stone/prebigform" delay="0.05" goto="kirby_idle" />
+      <Anim id="kirby_stone_bigformgroundpound" path="stone/bigformgroundpound" delay="0.05" goto="kirby_bigform_idle" />
+      <Loop id="kirby_bigform_shatter" path="stone/bigformshatter" delay="0.02" goto="kirby_idle" />
+
+      <!-- Power States - Sword -->
+      <Loop id="kirby_sword_idle" path="sword/idle" delay="0.15" />
+      <Loop id="kirby_sword_walk" path="sword/walk" delay="0.08" />
+      <Anim id="kirby_sword_attack1" path="sword/attack1" delay="0.04" goto="kirby_sword_idle" />
+      <Anim id="kirby_sword_attack2" path="sword/attack2" delay="0.05" goto="kirby_sword_idle" />
+      <Anim id="kirby_sword_spin" path="sword/spin" delay="0.03" goto="kirby_sword_idle" />
+      <Anim id="kirby_sword_dash" path="sword/dash" delay="0.1" goto="kirby_sword_idle" />
+      <Anim id="kirby_sword_parry" path="sword/parry" delay="0.05" goto="kirby_sword_idle" />
+      <Anim id="kirby_sword_sliceup" path="sword/sliceup" delay="0.05" goto="kirby_sword_finalslice" />
+      <Anim id="kirby_sword_finalslice" path="sword/finalslice" delay="0.04" goto="kirby_sword_idle" />
+
+      <!-- Combat Animations - Not Added (as requested) -->
+      <!-- Range / Mouthful / Swallow / Copy - use placeholder frames until dedicated art is added -->
+      <Anim id="kirby_range" path="spit" delay="0.05" goto="kirby_idle" />
+      <Loop id="kirby_mouthful" path="idlemouthful" delay="0.08" />
+      <Anim id="kirby_swallow" path="exhale" delay="0.08" goto="kirby_idle" />
+      <Anim id="kirby_copy" path="transform_in" delay="0.06" goto="kirby_idle" />
+
+      <!-- Death Animations -->
+      <Anim id="kirby_pre_death" path="combat/pre_death_" delay="0.08" goto="kirby_mid_death" />
+      <Anim id="kirby_mid_death" path="combat/mid_death_" delay="0.08" goto="kirby_post_death" />
+      <Anim id="kirby_post_death" path="combat/post_death_" delay="0.08" />
+      <Anim id="kirby_death" path="combat/death_" delay="0.08" />
+  </kirby_player_ext>
+
+  <kirby_playback copy="player" path="characters/DZ/kirby_Playback/"/>
+
+  <kirby_payphone path="cutscenes/DZ/kirby_payphone/" start="idle">
+    <Justify x=".5" y="1" />
+
+    <Loop id="idle" path="phone" delay="0.1" frames="0"/>
+    <Anim id="pickUp" path="phone" delay="0.08" frames="1-11"/>
+    <Loop id="talkPhone" path="phone" delay="0.08" frames="11"/>
+    <Anim id="jumpBack" path="phone" delay="0.08" frames="12-17"/>
+    <Anim id="scare" path="phone" delay="0.08" frames="18-21"/>
+    <Anim id="transform" path="phone" delay="0.08" frames="22-45" />
+    <Anim id="eat" path="phone" delay="0.08" frames="46-73,83*2,84*2,85*2,86*2,87*2,74-82"/>
+    <Loop id="monsterIdle" path="phone" delay="0.2" frames="83-87"/>
+  </kirby_payphone>
+
+  <kirby_booster path="objects/DZ/kirby/booster/" start="loop">
+    <Justify x="0.5" y="0.5"/>
+    <Loop id="loop" path="booster" delay="0.1" frames="0-4"/>
+    <Loop id="inside" path="booster" delay="0.1" frames="5-8"/>
+    <Loop id="spin" path="booster" delay="0.06" frames="18-25"/>
+    <Anim id="pop" path="booster" delay="0.08" frames="9-17"/>
+  </kirby_booster>
+  <kirby_boosterRed path="objects/DZ/kirby/booster/" start="loop">
+    <Justify x="0.5" y="0.5"/>
+    <Anim id="appear" path="boosterRed" delay="0.08" frames="26-34" goto="loop"/>
+    <Loop id="loop" path="boosterRed" delay="0.1" frames="0-4"/>
+    <Loop id="inside" path="boosterRed" delay="0.1" frames="5-8"/>
+    <Loop id="spin" path="boosterRed" delay="0.06" frames="18-25"/>
+    <Anim id="pop" path="boosterRed" delay="0.08" frames="9-17"/>
+  </kirby_boosterRed>
+
+  <kirby_lookout path="objects/DZ/kirby/lookout/" start="idle">
+    <Justify x=".5" y="1" />
+
+    <Loop id="idle" path="lookout" delay="0.1" frames="5*9,6"/>
+    <Anim id="lookRight" path="lookout" delay="0.08" frames="0-4" goto="looking"/>
+    <Anim id="lookLeft" path="lookout" delay="0.08" frames="15-17,3,4" goto="looking"/>
+    <Loop id="looking" path="lookout" delay="0.08" frames="4"/>
+    <Loop id="lookingUp" path="lookout" frames="7"/>
+    <Loop id="lookingUpRight" path="lookout" frames="8"/>
+    <Loop id="lookingRight" path="lookout" frames="9"/>
+    <Loop id="lookingDownRight" path="lookout" frames="10"/>
+    <Loop id="lookingDown" path="lookout" frames="11"/>
+    <Loop id="lookingDownLeft" path="lookout" frames="12"/>
+    <Loop id="lookingLeft" path="lookout" frames="13"/>
+    <Loop id="lookingUpLeft" path="lookout" frames="14"/>
+
+    <Loop id="badeline_idle" path="badeline" delay="0.1" frames="5*9,6"/>
+    <Anim id="badeline_lookRight" path="badeline" delay="0.08" frames="0-4" goto="badeline_looking"/>
+    <Anim id="badeline_lookLeft" path="badeline" delay="0.08" frames="15-17,3,4" goto="badeline_looking"/>
+    <Loop id="badeline_looking" path="badeline" delay="0.08" frames="4"/>
+    <Loop id="badeline_lookingUp" path="badeline" frames="7"/>
+    <Loop id="badeline_lookingUpRight" path="badeline" frames="8"/>
+    <Loop id="badeline_lookingRight" path="badeline" frames="9"/>
+    <Loop id="badeline_lookingDownRight" path="badeline" frames="10"/>
+    <Loop id="badeline_lookingDown" path="badeline" frames="11"/>
+    <Loop id="badeline_lookingDownLeft" path="badeline" frames="12"/>
+    <Loop id="badeline_lookingLeft" path="badeline" frames="13"/>
+    <Loop id="badeline_lookingUpLeft" path="badeline" frames="14"/>
+
+    <Loop id="nobackpack_idle" path="nobackpack" delay="0.1" frames="5*9,6"/>
+    <Anim id="nobackpack_lookRight" path="nobackpack" delay="0.08" frames="0-4" goto="nobackpack_looking"/>
+    <Anim id="nobackpack_lookLeft" path="nobackpack" delay="0.08" frames="15-17,3,4" goto="nobackpack_looking"/>
+    <Loop id="nobackpack_looking" path="nobackpack" delay="0.08" frames="4"/>
+    <Loop id="nobackpack_lookingUp" path="nobackpack" frames="7"/>
+    <Loop id="nobackpack_lookingUpRight" path="nobackpack" frames="8"/>
+    <Loop id="nobackpack_lookingRight" path="nobackpack" frames="9"/>
+    <Loop id="nobackpack_lookingDownRight" path="nobackpack" frames="10"/>
+    <Loop id="nobackpack_lookingDown" path="nobackpack" frames="11"/>
+    <Loop id="nobackpack_lookingDownLeft" path="nobackpack" frames="12"/>
+    <Loop id="nobackpack_lookingLeft" path="nobackpack" frames="13"/>
+    <Loop id="nobackpack_lookingUpLeft" path="nobackpack" frames="14"/>
+  </kirby_lookout>
+
+</Sprites>

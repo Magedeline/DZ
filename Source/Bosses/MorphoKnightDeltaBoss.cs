@@ -262,7 +262,7 @@ namespace Celeste.Entities.Bosses
 
         private IEnumerator EmergenceSequence()
         {
-            Audio.Play("event:/morpho_emergence", Position);
+            Audio.Play("event:/DZ/char/bosses/mkd/intromorphodelta", Position);
             knightSprite.Play("emerge");
             wingsSprite.Play("folded");
             
@@ -277,7 +277,7 @@ namespace Celeste.Entities.Bosses
             
             // Wings spread dramatically
             wingsSprite.Play("spread");
-            Audio.Play("event:/morpho_wings_spread", Position);
+            Audio.Play("event:/DZ/char/bosses/mkd/morpholandedA", Position);
             level?.Shake(1f);
             level?.Flash(Color.Orange * 0.3f, true);
             
@@ -286,7 +286,7 @@ namespace Celeste.Entities.Bosses
             knightSprite.Play("idle");
             wingsSprite.Play("flap");
             swordSprite.Play("idle");
-            ambientLoop.Play("event:/morpho_ambient_loop");
+            ambientLoop.Play("event:/DZ/char/bosses/mkd/scifi_amb");
             
             currentPhase = BossPhase.Phase1_Butterfly;
         }
@@ -332,7 +332,7 @@ namespace Celeste.Entities.Bosses
         {
             knightSprite.Play("attack");
             wingsSprite.Play("flame");
-            Audio.Play("event:/morpho_metamorphosis", Position);
+            Audio.Play("event:/DZ/char/bosses/mkd/butterflytransform", Position);
             
             var level = Scene as Level;
             level?.Shake(1.5f);
@@ -362,7 +362,7 @@ namespace Celeste.Entities.Bosses
             knightSprite.Play("divine");
             wingsSprite.Play("divine");
             swordSprite.Play("divine");
-            Audio.Play("event:/morpho_divine_awakening", Position);
+            Audio.Play("event:/DZ/char/bosses/mkd/introintense", Position);
             
             auraSprite.Visible = true;
             auraSprite.Play("active");
@@ -398,7 +398,7 @@ namespace Celeste.Entities.Bosses
             knightSprite.Play("transcend");
             wingsSprite.Play("divine");
             auraSprite.Play("transcendent");
-            Audio.Play("event:/morpho_transcendence", Position);
+            Audio.Play("event:/DZ/char/bosses/mkd/ultrasword", Position);
             
             var level = Scene as Level;
             level?.Shake(3f);
@@ -506,7 +506,7 @@ namespace Celeste.Entities.Bosses
         {
             knightSprite.Play("attack");
             swordSprite.Play("slash");
-            Audio.Play("event:/morpho_sword_slash", Position);
+            Audio.Play("event:/DZ/char/bosses/mkd/normalslash", Position);
             
             var level = Scene as Level;
             
@@ -523,7 +523,7 @@ namespace Celeste.Entities.Bosses
         private IEnumerator ButterflyBarrageAttack()
         {
             wingsSprite.Play("flap");
-            Audio.Play("event:/morpho_butterfly_barrage", Position);
+            Audio.Play("event:/DZ/char/bosses/mkd/butterflyadsorb", Position);
             
             var level = Scene as Level;
             
@@ -543,7 +543,7 @@ namespace Celeste.Entities.Bosses
         private IEnumerator GracefulDashAttack()
         {
             knightSprite.Play("dash");
-            Audio.Play("event:/morpho_graceful_dash", Position);
+            Audio.Play("event:/DZ/char/bosses/mkd/soar_fly", Position);
             
             var player = Scene.Tracker.GetEntity<global::Celeste.Player>();
             if (player != null)
@@ -567,7 +567,7 @@ namespace Celeste.Entities.Bosses
         private IEnumerator WingGustAttack()
         {
             wingsSprite.Play("spread");
-            Audio.Play("event:/morpho_wing_gust", Position);
+            Audio.Play("event:/DZ/char/bosses/mkd/soar", Position);
             
             var level = Scene as Level;
             level?.Shake(0.8f);
@@ -587,7 +587,7 @@ namespace Celeste.Entities.Bosses
         private IEnumerator FlameWingAttack()
         {
             wingsSprite.Play("flame");
-            Audio.Play("event:/morpho_flame_wing", Position);
+            Audio.Play("event:/DZ/char/bosses/mkd/flamegyser", Position);
             
             var level = Scene as Level;
             
@@ -607,7 +607,7 @@ namespace Celeste.Entities.Bosses
 
         private IEnumerator SoulAbsorbAttack()
         {
-            Audio.Play("event:/morpho_soul_absorb", Position);
+            Audio.Play("event:/DZ/char/bosses/mkd/heartadsorb", Position);
             
             var level = Scene as Level;
             level?.Flash(Color.Orange * 0.3f, true);
@@ -628,7 +628,7 @@ namespace Celeste.Entities.Bosses
 
         private IEnumerator TeleportStrikeAttack()
         {
-            Audio.Play("event:/morpho_teleport", Position);
+            Audio.Play("event:/DZ/char/bosses/mkd/vanishA", Position);
             
             // Fade out
             Collidable = false;
@@ -656,7 +656,7 @@ namespace Celeste.Entities.Bosses
             Collidable = true;
             knightSprite.Color = Color.White;
             
-            Audio.Play("event:/morpho_teleport_strike", Position);
+            Audio.Play("event:/DZ/char/bosses/mkd/slash", Position);
             knightSprite.Play("attack");
             swordSprite.Play("slash");
             
@@ -673,7 +673,7 @@ namespace Celeste.Entities.Bosses
         private IEnumerator ScaleStormAttack()
         {
             wingsSprite.Play("flap");
-            Audio.Play("event:/morpho_scale_storm", Position);
+            Audio.Play("event:/DZ/char/bosses/mkd/wobble", Position);
             
             var level = Scene as Level;
             
@@ -695,7 +695,7 @@ namespace Celeste.Entities.Bosses
         {
             knightSprite.Play("divine");
             swordSprite.Play("divine");
-            Audio.Play("event:/morpho_divine_judgment", Position);
+            Audio.Play("event:/DZ/char/bosses/mkd/groundslash", Position);
             
             var level = Scene as Level;
             
@@ -716,7 +716,7 @@ namespace Celeste.Entities.Bosses
 
         private IEnumerator HeavenlyBladesAttack()
         {
-            Audio.Play("event:/morpho_heavenly_blades", Position);
+            Audio.Play("event:/DZ/char/bosses/mkd/summon", Position);
             
             var level = Scene as Level;
             
@@ -746,7 +746,7 @@ namespace Celeste.Entities.Bosses
 
         private IEnumerator ParadiseLostAttack()
         {
-            Audio.Play("event:/morpho_paradise_lost", Position);
+            Audio.Play("event:/DZ/char/bosses/mkd/flamegyserwithblacksmoke", Position);
             
             var level = Scene as Level;
             level?.Shake(1.5f);
@@ -766,7 +766,7 @@ namespace Celeste.Entities.Bosses
         private IEnumerator CelestialBeamAttack()
         {
             knightSprite.Play("divine");
-            Audio.Play("event:/morpho_celestial_beam", Position);
+            Audio.Play("event:/DZ/char/bosses/mkd/charging", Position);
             
             bodyGlow.Alpha = 3f;
             
@@ -801,7 +801,7 @@ namespace Celeste.Entities.Bosses
         {
             knightSprite.Play("transcend");
             swordSprite.Play("slash");
-            Audio.Play("event:/morpho_transcendent_slash", Position);
+            Audio.Play("event:/DZ/char/bosses/mkd/ultraslash", Position);
             
             var level = Scene as Level;
             
@@ -825,7 +825,7 @@ namespace Celeste.Entities.Bosses
 
         private IEnumerator InfiniteButterfliesAttack()
         {
-            Audio.Play("event:/morpho_infinite_butterflies", Position);
+            Audio.Play("event:/DZ/char/bosses/mkd/butterflytransformbackground", Position);
             
             var level = Scene as Level;
             
@@ -849,7 +849,7 @@ namespace Celeste.Entities.Bosses
         private IEnumerator DeltaStrikeAttack()
         {
             knightSprite.Play("transcend");
-            Audio.Play("event:/morpho_delta_strike", Position);
+            Audio.Play("event:/DZ/char/bosses/mkd/vanishC", Position);
             
             var level = Scene as Level;
             var player = Scene.Tracker.GetEntity<global::Celeste.Player>();
@@ -890,7 +890,7 @@ namespace Celeste.Entities.Bosses
         {
             knightSprite.Play("transcend");
             auraSprite.Play("transcendent");
-            Audio.Play("event:/morpho_apotheosis", Position);
+            Audio.Play("event:/DZ/char/bosses/mkd/final_roar", Position);
             
             var level = Scene as Level;
             
@@ -931,7 +931,7 @@ namespace Celeste.Entities.Bosses
             if (isDefeated) return;
             
             health -= damage;
-            Audio.Play("event:/morpho_damage", Position);
+            Audio.Play("event:/DZ/char/bosses/mkd/waorh", Position);
             
             var level = Scene as Level;
             level?.Shake(0.4f);
@@ -963,7 +963,7 @@ namespace Celeste.Entities.Bosses
         {
             ambientLoop.Stop();
             knightSprite.Play("divine");
-            Audio.Play("event:/morpho_defeat", Position);
+            Audio.Play("event:/DZ/char/bosses/mkd/defeat", Position);
             
             var level = Scene as Level;
             
@@ -990,8 +990,12 @@ namespace Celeste.Entities.Bosses
             }
             
             yield return 1f;
-            
+
             level?.Session.SetFlag("morpho_knight_delta_boss_defeated");
+
+            var player = Scene.Tracker.GetEntity<global::Celeste.Player>();
+            level?.Add(new global::Celeste.Cutscenes.CS_MorphoKnightDefeatOutro(player, Position));
+
             RemoveSelf();
         }
         #endregion

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Sprite bank for the morpho_knight_delta moveset (Kirby Customs "Morpho Knight
+  EX", KSSU-style). Auto-generated from Graphics/Atlases/Gameplay/characters/DZ/
+  morpho_knight_delta/<move>/<move>NN.png folders.
+
+  NOT auto-merged by Everest (this file is not named Sprites.xml), so it must be
+  loaded explicitly. DZModule.LoadContent() calls:
+    GFX.SpriteBank.LoadSpriteBank("Graphics/bosses/morphosprites.xml")
+  after which entries are available the same way as any Sprites.xml entry, e.g.
+    GFX.SpriteBank.Create("morpho_knight_delta")
+
+  All delays are a placeholder 0.05s/frame; tune per-move timing once the boss
+  controller/state machine is wired up. "start" is a placeholder (no true idle
+  pose exists yet among the cropped moves); update once one is chosen.
+-->
+<Sprites>
+  <morpho_knight_delta path="characters/DZ/morpho_knight_delta/" start="mkd_comboA">
+      <Justify x=".5" y="1" />
+
+      <Anim id="mkd_alertwalking" path="alertwalking/alertwalking" delay="0.05" />
+      <Anim id="mkd_appearground" path="appearground/appearground" delay="0.05" />
+      <Anim id="mkd_awaken" path="awaken/awaken" delay="0.05" />
+      <Anim id="mkd_butterflyadsorb" path="butterflyadsorb/butterflyadsorb" delay="0.05" />
+      <Anim id="mkd_butterflyflap" path="butterflyflap/butterflyflap" delay="0.05" />
+      <Anim id="mkd_butterflytransform" path="butterflytransform/butterflytransform" delay="0.05" />
+      <Anim id="mkd_charge" path="charge/charge" delay="0.05" />
+      <Anim id="mkd_circleforultrasword" path="circleforultrasword/circleforultrasword" delay="0.05" />
+      <Anim id="mkd_comboA" path="comboA/comboA" delay="0.05" />
+      <Anim id="mkd_comboB" path="comboB/comboB" delay="0.05" />
+      <Anim id="mkd_comboC" path="comboC/comboC" delay="0.05" />
+      <Anim id="mkd_comboD" path="comboD/comboD" delay="0.05" />
+      <Anim id="mkd_crescentshot" path="crescentshot/crescentshot" delay="0.05" />
+      <Anim id="mkd_defeated" path="defeated/defeated" delay="0.05" />
+      <Anim id="mkd_defensecrescentshot" path="defensecrescentshot/defensecrescentshot" delay="0.05" />
+      <Anim id="mkd_downthrust" path="downthrust/downthrust" delay="0.05" />
+      <Anim id="mkd_earlycombo" path="earlycombo/earlycombo" delay="0.05" />
+      <Anim id="mkd_earlyfinish" path="earlyfinish/earlyfinish" delay="0.05" />
+      <Anim id="mkd_extraslash" path="extraslash/extraslash" delay="0.05" />
+      <Anim id="mkd_failed" path="failed/failed" delay="0.05" />
+      <Anim id="mkd_failedground" path="failedground/failedground" delay="0.05" />
+      <Anim id="mkd_finalultraslash" path="finalultraslash/finalultraslash" delay="0.05" />
+      <Anim id="mkd_firewall" path="firewall/firewall" delay="0.05" />
+      <Anim id="mkd_firewallmidair" path="firewallmidair/firewallmidair" delay="0.05" />
+      <Anim id="mkd_firstultraintro" path="firstultraintro/firstultraintro" delay="0.05" />
+      <Anim id="mkd_flamegyser" path="flamegyser/flamegyser" delay="0.05" />
+      <Anim id="mkd_fly" path="fly/fly" delay="0.05" />
+      <Anim id="mkd_gaurd" path="gaurd/gaurd" delay="0.05" />
+      <Anim id="mkd_gigacrescentshot" path="gigacrescentshot/gigacrescentshot" delay="0.05" />
+      <Anim id="mkd_hitVFX" path="hitVFX/hitVFX" delay="0.05" />
+      <Anim id="mkd_hurt" path="hurt/hurt" delay="0.05" />
+      <Anim id="mkd_jumpcrescentshot" path="jumpcrescentshot/jumpcrescentshot" delay="0.05" />
+      <Anim id="mkd_morphocalibur" path="morphocalibur/morphocalibur" delay="0.05" />
+      <Anim id="mkd_multipleslash" path="multipleslash/multipleslash" delay="0.05" />
+      <Anim id="mkd_normalslash" path="normalslash/normalslash" delay="0.05" />
+      <Anim id="mkd_quickmove" path="quickmove/quickmove" delay="0.05" />
+      <Anim id="mkd_reappear" path="reappear/reappear" delay="0.05" />
+      <Anim id="mkd_secondattack" path="secondattack/secondattack" delay="0.05" />
+      <Anim id="mkd_shotA" path="shotA/shotA" delay="0.05" />
+      <Anim id="mkd_shotB" path="shotB/shotB" delay="0.05" />
+      <Anim id="mkd_shotC" path="shotC/shotC" delay="0.05" />
+      <Anim id="mkd_shuttleloop" path="shuttleloop/shuttleloop" delay="0.05" />
+      <Anim id="mkd_slashswordrush" path="slashswordrush/slashswordrush" delay="0.05" />
+      <Anim id="mkd_smashtotheground" path="smashtotheground/smashtotheground" delay="0.05" />
+      <Anim id="mkd_sucessed" path="sucessed/sucessed" delay="0.05" />
+      <Anim id="mkd_sucessedground" path="sucessedground/sucessedground" delay="0.05" />
+      <Anim id="mkd_summon" path="summon/summon" delay="0.05" />
+      <Anim id="mkd_summonmidair" path="summonmidair/summonmidair" delay="0.05" />
+      <Anim id="mkd_teslacharge" path="teslacharge/teslacharge" delay="0.05" />
+      <Anim id="mkd_tornadoattack" path="tornadoattack/tornadoattack" delay="0.05" />
+      <Anim id="mkd_tripleslash" path="tripleslash/tripleslash" delay="0.05" />
+      <Anim id="mkd_typeA" path="typeA/typeA" delay="0.05" />
+      <Anim id="mkd_typeB" path="typeB/typeB" delay="0.05" />
+      <Anim id="mkd_typeC" path="typeC/typeC" delay="0.05" />
+      <Anim id="mkd_typeD" path="typeD/typeD" delay="0.05" />
+      <Anim id="mkd_ultraA" path="ultraA/ultraA" delay="0.05" />
+      <Anim id="mkd_ultraB" path="ultraB/ultraB" delay="0.05" />
+      <Anim id="mkd_ultraC" path="ultraC/ultraC" delay="0.05" />
+      <Anim id="mkd_ultraappear" path="ultraappear/ultraappear" delay="0.05" />
+      <Anim id="mkd_ultracharge" path="ultracharge/ultracharge" delay="0.05" />
+      <Anim id="mkd_ultraintroB" path="ultraintroB/ultraintroB" delay="0.05" />
+      <Anim id="mkd_ultraintroC" path="ultraintroC/ultraintroC" delay="0.05" />
+      <Anim id="mkd_ultraoutroA" path="ultraoutroA/ultraoutroA" delay="0.05" />
+      <Anim id="mkd_ultraoutroB" path="ultraoutroB/ultraoutroB" delay="0.05" />
+      <Anim id="mkd_ultraprepared" path="ultraprepared/ultraprepared" delay="0.05" />
+      <Anim id="mkd_ultraslashA" path="ultraslashA/ultraslashA" delay="0.05" />
+      <Anim id="mkd_ultraslashB" path="ultraslashB/ultraslashB" delay="0.05" />
+      <Anim id="mkd_ultraslashwithflamegyserC" path="ultraslashwithflamegyserC/ultraslashwithflamegyserC" delay="0.05" />
+      <Anim id="mkd_ultravanish" path="ultravanish/ultravanish" delay="0.05" />
+      <Anim id="mkd_upthrust" path="upthrust/upthrust" delay="0.05" />
+      <Anim id="mkd_vanishground" path="vanishground/vanishground" delay="0.05" />
+      <Anim id="mkd_vanishmidair" path="vanishmidair/vanishmidair" delay="0.05" />
+      <Anim id="mkd_vfxandslashattacks" path="vfxandslashattacks/vfxandslashattacks" delay="0.05" />
+  </morpho_knight_delta>
+</Sprites>

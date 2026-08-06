@@ -141,6 +141,16 @@ namespace Celeste.Entities
                 level.Remove(player);
             }
 
+            // K_Player runs alongside vanilla Player as the authoritative
+            // controller; make sure its warp-star flight ends and it's parked
+            // in Dummy before the room reloads, so it doesn't keep flying.
+            var kPlayer = level.Tracker.GetEntity<K_Player>();
+            if (kPlayer != null)
+            {
+                kPlayer.StateMachine.State = K_Player.StDummy;
+                level.Remove(kPlayer);
+            }
+
             // Set the phase2 flag BEFORE loading the room so triggers there see it immediately
             level.Session.SetFlag(phase2ActivateFlag);
 

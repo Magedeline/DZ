@@ -1,0 +1,845 @@
+{
+  "target": 0.1822,
+  "results": [
+    {
+      "scored": 16,
+      "median": 2.8,
+      "cave_rate": 0.312,
+      "trainer": "city",
+      "config": "000011012",
+      "mode": "mdmc",
+      "proba": 0.0,
+      "miss": 0.1298
+    },
+    {
+      "scored": 16,
+      "median": 2.8,
+      "cave_rate": 0.312,
+      "trainer": "city",
+      "config": "000011012",
+      "mode": "mdmc",
+      "proba": 0.5,
+      "miss": 0.1298
+    },
+    {
+      "scored": 16,
+      "median": 2.8,
+      "cave_rate": 0.312,
+      "trainer": "city",
+      "config": "000011012",
+      "mode": "mdmc",
+      "proba": 1.0,
+      "miss": 0.1298
+    },
+    {
+      "scored": 16,
+      "median": 2.8,
+      "cave_rate": 0.312,
+      "trainer": "city",
+      "config": "000011012",
+      "mode": "hybrid",
+      "proba": 0.0,
+      "miss": 0.1298
+    },
+    {
+      "scored": 16,
+      "median": 2.8,
+      "cave_rate": 0.312,
+      "trainer": "city",
+      "config": "000011012",
+      "mode": "hybrid",
+      "proba": 0.5,
+      "miss": 0.1298
+    },
+    {
+      "scored": 16,
+      "median": 2.8,
+      "cave_rate": 0.312,
+      "trainer": "city",
+      "config": "000011012",
+      "mode": "hybrid",
+      "proba": 1.0,
+      "miss": 0.1298
+    },
+    {
+      "scored": 16,
+      "median": 2.8,
+      "cave_rate": 0.312,
+      "trainer": "city",
+      "config": "001001112",
+      "mode": "mdmc",
+      "proba": 0.0,
+      "miss": 0.1298
+    },
+    {
+      "scored": 16,
+      "median": 2.8,
+      "cave_rate": 0.312,
+      "trainer": "city",
+      "config": "001001112",
+      "mode": "mdmc",
+      "proba": 0.5,
+      "miss": 0.1298
+    },
+    {
+      "scored": 16,
+      "median": 2.8,
+      "cave_rate": 0.312,
+      "trainer": "city",
+      "config": "001001112",
+      "mode": "mdmc",
+      "proba": 1.0,
+      "miss": 0.1298
+    },
+    {
+      "scored": 16,
+      "median": 2.8,
+      "cave_rate": 0.312,
+      "trainer": "city",
+      "config": "001001112",
+      "mode": "hybrid",
+      "proba": 0.0,
+      "miss": 0.1298
+    },
+    {
+      "scored": 16,
+      "median": 2.8,
+      "cave_rate": 0.312,
+      "trainer": "city",
+      "config": "001001112",
+      "mode": "hybrid",
+      "proba": 0.5,
+      "miss": 0.1298
+    },
+    {
+      "scored": 16,
+      "median": 2.8,
+      "cave_rate": 0.312,
+      "trainer": "city",
+      "config": "001001112",
+      "mode": "hybrid",
+      "proba": 1.0,
+      "miss": 0.1298
+    },
+    {
+      "scored": 1,
+      "median": 2.0,
+      "cave_rate": 0.0,
+      "trainer": "fractured",
+      "config": "000011012",
+      "mode": "wfc",
+      "proba": 0.0,
+      "miss": 0.1822
+    },
+    {
+      "scored": 1,
+      "median": 2.0,
+      "cave_rate": 0.0,
+      "trainer": "fractured",
+      "config": "000011012",
+      "mode": "wfc",
+      "proba": 0.5,
+      "miss": 0.1822
+    },
+    {
+      "scored": 1,
+      "median": 2.0,
+      "cave_rate": 0.0,
+      "trainer": "fractured",
+      "config": "000011012",
+      "mode": "wfc",
+      "proba": 1.0,
+      "miss": 0.1822
+    },
+    {
+      "scored": 1,
+      "median": 2.0,
+      "cave_rate": 0.0,
+      "trainer": "fractured",
+      "config": "001001112",
+      "mode": "wfc",
+      "proba": 0.0,
+      "miss": 0.1822
+    },
+    {
+      "scored": 1,
+      "median": 2.0,
+      "cave_rate": 0.0,
+      "trainer": "fractured",
+      "config": "001001112",
+      "mode": "wfc",
+      "proba": 0.5,
+      "miss": 0.1822
+    },
+    {
+      "scored": 1,
+      "median": 2.0,
+      "cave_rate": 0.0,
+      "trainer": "fractured",
+      "config": "001001112",
+      "mode": "wfc",
+      "proba": 1.0,
+      "miss": 0.1822
+    },
+    {
+      "scored": 1,
+      "median": 2.0,
+      "cave_rate": 0.0,
+      "trainer": "fractured",
+      "config": "010111010",
+      "mode": "wfc",
+      "proba": 0.0,
+      "miss": 0.1822
+    },
+    {
+      "scored": 1,
+      "median": 2.0,
+      "cave_rate": 0.0,
+      "trainer": "fractured",
+      "config": "010111010",
+      "mode": "wfc",
+      "proba": 0.5,
+      "miss": 0.1822
+    },
+    {
+      "scored": 1,
+      "median": 2.0,
+      "cave_rate": 0.0,
+      "trainer": "fractured",
+      "config": "010111010",
+      "mode": "wfc",
+      "proba": 1.0,
+      "miss": 0.1822
+    },
+    {
+      "scored": 1,
+      "median": 2.0,
+      "cave_rate": 0.0,
+      "trainer": "fractured",
+      "config": "111101111",
+      "mode": "wfc",
+      "proba": 0.0,
+      "miss": 0.1822
+    },
+    {
+      "scored": 1,
+      "median": 2.0,
+      "cave_rate": 0.0,
+      "trainer": "fractured",
+      "config": "111101111",
+      "mode": "wfc",
+      "proba": 0.5,
+      "miss": 0.1822
+    },
+    {
+      "scored": 1,
+      "median": 2.0,
+      "cave_rate": 0.0,
+      "trainer": "fractured",
+      "config": "111101111",
+      "mode": "wfc",
+      "proba": 1.0,
+      "miss": 0.1822
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "city",
+      "config": "010111010",
+      "mode": "mdmc",
+      "proba": 0.0,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "city",
+      "config": "010111010",
+      "mode": "mdmc",
+      "proba": 0.5,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "city",
+      "config": "010111010",
+      "mode": "mdmc",
+      "proba": 1.0,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "city",
+      "config": "010111010",
+      "mode": "hybrid",
+      "proba": 0.0,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "city",
+      "config": "010111010",
+      "mode": "hybrid",
+      "proba": 0.5,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "city",
+      "config": "010111010",
+      "mode": "hybrid",
+      "proba": 1.0,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "city",
+      "config": "111101111",
+      "mode": "mdmc",
+      "proba": 0.0,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "city",
+      "config": "111101111",
+      "mode": "mdmc",
+      "proba": 0.5,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "city",
+      "config": "111101111",
+      "mode": "mdmc",
+      "proba": 1.0,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "city",
+      "config": "111101111",
+      "mode": "hybrid",
+      "proba": 0.0,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "city",
+      "config": "111101111",
+      "mode": "hybrid",
+      "proba": 0.5,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "city",
+      "config": "111101111",
+      "mode": "hybrid",
+      "proba": 1.0,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "summit",
+      "config": "000011012",
+      "mode": "mdmc",
+      "proba": 0.0,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "summit",
+      "config": "000011012",
+      "mode": "mdmc",
+      "proba": 0.5,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "summit",
+      "config": "000011012",
+      "mode": "mdmc",
+      "proba": 1.0,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "summit",
+      "config": "000011012",
+      "mode": "hybrid",
+      "proba": 0.0,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "summit",
+      "config": "000011012",
+      "mode": "hybrid",
+      "proba": 0.5,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "summit",
+      "config": "000011012",
+      "mode": "hybrid",
+      "proba": 1.0,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "summit",
+      "config": "001001112",
+      "mode": "mdmc",
+      "proba": 0.0,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "summit",
+      "config": "001001112",
+      "mode": "mdmc",
+      "proba": 0.5,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "summit",
+      "config": "001001112",
+      "mode": "mdmc",
+      "proba": 1.0,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "summit",
+      "config": "001001112",
+      "mode": "hybrid",
+      "proba": 0.0,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "summit",
+      "config": "001001112",
+      "mode": "hybrid",
+      "proba": 0.5,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "summit",
+      "config": "001001112",
+      "mode": "hybrid",
+      "proba": 1.0,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "summit",
+      "config": "010111010",
+      "mode": "mdmc",
+      "proba": 0.0,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "summit",
+      "config": "010111010",
+      "mode": "mdmc",
+      "proba": 0.5,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "summit",
+      "config": "010111010",
+      "mode": "mdmc",
+      "proba": 1.0,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "summit",
+      "config": "010111010",
+      "mode": "hybrid",
+      "proba": 0.0,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "summit",
+      "config": "010111010",
+      "mode": "hybrid",
+      "proba": 0.5,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "summit",
+      "config": "010111010",
+      "mode": "hybrid",
+      "proba": 1.0,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "summit",
+      "config": "111101111",
+      "mode": "mdmc",
+      "proba": 0.0,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "summit",
+      "config": "111101111",
+      "mode": "mdmc",
+      "proba": 0.5,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "summit",
+      "config": "111101111",
+      "mode": "mdmc",
+      "proba": 1.0,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "summit",
+      "config": "111101111",
+      "mode": "hybrid",
+      "proba": 0.0,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "summit",
+      "config": "111101111",
+      "mode": "hybrid",
+      "proba": 0.5,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "summit",
+      "config": "111101111",
+      "mode": "hybrid",
+      "proba": 1.0,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "fractured",
+      "config": "000011012",
+      "mode": "mdmc",
+      "proba": 0.0,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "fractured",
+      "config": "000011012",
+      "mode": "mdmc",
+      "proba": 0.5,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "fractured",
+      "config": "000011012",
+      "mode": "mdmc",
+      "proba": 1.0,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "fractured",
+      "config": "000011012",
+      "mode": "hybrid",
+      "proba": 0.0,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "fractured",
+      "config": "000011012",
+      "mode": "hybrid",
+      "proba": 0.5,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "fractured",
+      "config": "000011012",
+      "mode": "hybrid",
+      "proba": 1.0,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "fractured",
+      "config": "001001112",
+      "mode": "mdmc",
+      "proba": 0.0,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "fractured",
+      "config": "001001112",
+      "mode": "mdmc",
+      "proba": 0.5,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "fractured",
+      "config": "001001112",
+      "mode": "mdmc",
+      "proba": 1.0,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "fractured",
+      "config": "001001112",
+      "mode": "hybrid",
+      "proba": 0.0,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "fractured",
+      "config": "001001112",
+      "mode": "hybrid",
+      "proba": 0.5,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "fractured",
+      "config": "001001112",
+      "mode": "hybrid",
+      "proba": 1.0,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "fractured",
+      "config": "010111010",
+      "mode": "mdmc",
+      "proba": 0.0,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "fractured",
+      "config": "010111010",
+      "mode": "mdmc",
+      "proba": 0.5,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "fractured",
+      "config": "010111010",
+      "mode": "mdmc",
+      "proba": 1.0,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "fractured",
+      "config": "010111010",
+      "mode": "hybrid",
+      "proba": 0.0,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "fractured",
+      "config": "010111010",
+      "mode": "hybrid",
+      "proba": 0.5,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "fractured",
+      "config": "010111010",
+      "mode": "hybrid",
+      "proba": 1.0,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "fractured",
+      "config": "111101111",
+      "mode": "mdmc",
+      "proba": 0.0,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "fractured",
+      "config": "111101111",
+      "mode": "mdmc",
+      "proba": 0.5,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "fractured",
+      "config": "111101111",
+      "mode": "mdmc",
+      "proba": 1.0,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "fractured",
+      "config": "111101111",
+      "mode": "hybrid",
+      "proba": 0.0,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "fractured",
+      "config": "111101111",
+      "mode": "hybrid",
+      "proba": 0.5,
+      "miss": 0.31779999999999997
+    },
+    {
+      "scored": 16,
+      "median": 51.4,
+      "cave_rate": 0.5,
+      "trainer": "fractured",
+      "config": "111101111",
+      "mode": "hybrid",
+      "proba": 1.0,
+      "miss": 0.31779999999999997
+    }
+  ]
+}

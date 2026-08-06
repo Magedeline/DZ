@@ -375,3 +375,7 @@ AsepriteScripts/CreateCelesteCharacter.lua
 AsepriteScripts/CelesteHelper.lua
 tools/ResearchAssetDriveMatches.ps1
 Audio/DZ_AUDIO.bank
+*.py
+
+# ...but the PCG pipeline is source, not a stray script. Keep it tracked.
+!Tools/PCG/*.py

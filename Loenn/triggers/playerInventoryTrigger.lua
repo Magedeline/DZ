@@ -17,4 +17,32 @@ playerInventoryTrigger.placements = {
     }
 }
 
+playerInventoryTrigger.fieldInformation = {
+    inventoryType = {
+        options = {
+            "Default", "CH6End", "TheSummit", "Core", "OldSite", "Prologue",
+            "Farewell", "Custom", "KirbyPlayer", "SayGoodbye", "TitanTowerClimbing",
+            "Corruption", "TheEnd"
+        },
+        editable = false
+    },
+    playerState = {
+        options = { "NoChange", "Enable", "Disable" },
+        editable = false
+    },
+    kirbyPower = {
+        options = {
+            "None", "Fire", "Ice", "Spark", "Sword", "Cutter", "Beam", "Stone",
+            "Needle", "Parasol", "Wheel", "Bomb", "Fighter", "Suplex", "Ninja",
+            "Mirror", "Hammer", "Knight", "Wing", "UFO", "Sleep"
+        },
+        editable = false
+    },
+    dashes = {
+        fieldType = "integer",
+        minimumValue = 0,
+        maximumValue = 10
+    }
+}
+
 return playerInventoryTrigger

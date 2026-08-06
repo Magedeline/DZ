@@ -155,6 +155,55 @@ namespace DZ
         }
 
         /// <summary>
+        /// Enable Kirby mode with an arbitrary dash count and optional power state, without touching
+        /// <see cref="CurrentInventory"/>/the dash-count session counter. Intended for callers (e.g.
+        /// triggers) that manage their own inventory presets but still need K_Player-aware, refill-safe
+        /// Kirby mode toggling.
+        /// </summary>
+        public static void EnableKirbyMode(Level level, int maxDashes, KirbyMode.KirbyPowerState powerState = KirbyMode.KirbyPowerState.None)
+        {
+            if (level?.Session == null) return;
+
+            level.Session.SetFlag(FLAG_KIRBY_MODE, true);
+            EnableKirbyModeOnPlayer(level, maxDashes);
+            SetDashesOnPlayer(level, maxDashes);
+
+            if (powerState != KirbyMode.KirbyPowerState.None)
+            {
+                var kPlayer = level.Tracker.GetEntity<K_Player>();
+                if (kPlayer != null)
+                {
+                    kPlayer.SetKirbyPowerState(powerState);
+                }
+                else
+                {
+                    var player = level.Tracker.GetEntity<global::Celeste.Player>();
+                    if (player != null && !K_PlayerHooks.ShadowPlayers.Contains(player))
+                        player.SetKirbyPowerState(powerState);
+                }
+            }
+
+            IngesteLogger.Info($"Kirby mode enabled ({maxDashes} dashes, power: {powerState})");
+        }
+
+        /// <summary>
+        /// Disable Kirby mode on whichever player is authoritative in the scene, keeping the local
+        /// session flag and DZModule.Session.IsKirbyModeActive in sync with the actual player state.
+        /// </summary>
+        public static void DisableKirbyMode(Level level)
+        {
+            if (level?.Session == null) return;
+
+            level.Session.SetFlag(FLAG_KIRBY_MODE, false);
+            DisableKirbyModeOnPlayer(level);
+
+            if (DZModule.Session != null)
+                DZModule.Session.IsKirbyModeActive = false;
+
+            IngesteLogger.Info("Kirby mode disabled");
+        }
+
+        /// <summary>
         /// Set inventory based on a specific dash count (from refill pickup)
         /// </summary>
         public static void SetInventoryFromDashCount(Level level, int dashCount)
@@ -202,6 +251,9 @@ namespace DZ
             if (level?.Session == null) return;
 
             level.Session.SetFlag(FLAG_KIRBY_MODE, false);
+            if (DZModule.Session != null)
+                DZModule.Session.IsKirbyModeActive = false;
+
             EnableStandardInventory(level);
 
             // EnableStandardInventory already calls DisableKirbyModeOnPlayer; this is a belt-and-
@@ -237,10 +289,19 @@ namespace DZ
         }
 
         /// <summary>
-        /// Check if Kirby mode is currently active
+        /// Check if Kirby mode is currently active.
         /// </summary>
+        /// <remarks>
+        /// DZModule.Session.IsKirbyModeActive is the authoritative flag — it's the one K_Player
+        /// itself flips in EnableKirbyMode/DisableKirbyMode and the one checked by K_PlayerHooks,
+        /// RoomTransitionHandler, and DreamBlockPlayerSwapHooks. The local FLAG_KIRBY_MODE session
+        /// flag is only used as a fallback for legacy callers that read the session flag directly.
+        /// </remarks>
         public static bool IsKirbyModeActive(Level level)
         {
+            if (DZModule.Session != null)
+                return DZModule.Session.IsKirbyModeActive;
+
             return level?.Session?.GetFlag(FLAG_KIRBY_MODE) ?? false;
         }
 
@@ -251,8 +312,9 @@ namespace DZ
         {
             if (level?.Session == null) return RefillInventoryType.Standard;
 
-            // Check Kirby mode flag first
-            if (level.Session.GetFlag(FLAG_KIRBY_MODE))
+            // Check Kirby mode flag first — prefer the authoritative DZModule.Session flag that
+            // K_Player itself maintains, falling back to the local session flag for legacy saves.
+            if (IsKirbyModeActive(level))
             {
                 return RefillInventoryType.SaveStar;
             }
@@ -351,11 +413,18 @@ namespace DZ
         /// Routes to K_Player.Dashes when K_Player is present; otherwise falls through to the
         /// vanilla Player via <see cref="SetPlayerDashesWithLessDasheline"/>, skipping shadow players.
         /// </summary>
+        /// <remarks>
+        /// K_Player.MaxDashes is computed from MaxDashOverride (or Inventory.Dashes as a fallback),
+        /// not from the current Dashes value. Setting Dashes alone would be silently reverted by any
+        /// later RefillDash()/UseRefill() call snapping back to the old MaxDashes. SetMaxDashes keeps
+        /// the two in sync so refills preserve the inventory-granted dash count.
+        /// </remarks>
         private static void SetDashesOnPlayer(Level level, int dashes)
         {
             var kPlayer = level.Tracker.GetEntity<K_Player>();
             if (kPlayer != null)
             {
+                kPlayer.SetMaxDashes(dashes);
                 kPlayer.Dashes = dashes;
                 return;
             }

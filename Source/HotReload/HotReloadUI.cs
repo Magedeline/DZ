@@ -6,8 +6,12 @@ namespace Celeste.Mod.DZ.HotReload
 {
     /// <summary>
     /// A global UI entity that displays hot reload notifications.
+    /// Not [Tracked]: this entity is only ever referenced via the static
+    /// <see cref="Instance"/> field, and Monocle.Tracker's type lookup
+    /// dictionaries are built once at startup — since this type is
+    /// re-created across DZ.dll hot reloads, tracking it would throw a
+    /// KeyNotFoundException in Tracker.EntityAdded for the reloaded type.
     /// </summary>
-    [Tracked]
     public class HotReloadUI : Entity
     {
         private static HotReloadUI Instance;

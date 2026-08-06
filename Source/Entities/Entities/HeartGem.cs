@@ -281,10 +281,12 @@ namespace Celeste.Entities
                     HeartGemColor.Blue => "heartgem0",
                     HeartGemColor.Red => "heartgem1",
                     HeartGemColor.Gold => "heartgem2",
-                    HeartGemColor.Orange => "heartgem3",  // Or custom sprite
-                    HeartGemColor.Purple => "heartgem4",  // Or custom sprite
-                    HeartGemColor.Pink => "heartgem5",    // Or custom sprite
-                    HeartGemColor.White => "heartgem6",   // Or custom sprite
+                    HeartGemColor.Pink => "heartgem3",
+                    // No dedicated sprite banks exist yet for Purple/Pink/White in Sprites.xml,
+                    // so fall back to an existing heartgem sprite to avoid a missing-animation crash.
+                    HeartGemColor.Orange => "heartgem4",  // TODO: add "heartgem4" to Sprites.xml for a custom sprite
+                    HeartGemColor.Purple => "heartgem5",    // TODO: add "heartgem5" to Sprites.xml for a custom sprite
+                    HeartGemColor.White => "heartGemWhite",
                     _ => "heartgem" + (int)area.Mode
                 };
             }
@@ -594,6 +596,23 @@ namespace Celeste.Entities
                     }
                     player.Depth = 0;
                     follow.EndCutscene();
+                }
+                else if (follow.GemColor == HeartGemColor.Purple)
+                {
+                    // Purple (E-Side) heart gem: reveal Morpho Knight Delta and
+                    // fight it immediately instead of completing the area.
+                    // TODO: area completion after the boss fight is not wired
+                    // up yet -- MorphoKnightDeltaBoss.DefeatSequence() only
+                    // sets a session flag for now.
+                    level.FormationBackdrop.Display = false;
+                    for (t = 0.0f; t < 1.0; t += Engine.RawDeltaTime * 2f)
+                    {
+                        follow.poem.Alpha = Ease.CubeIn(1f - t);
+                        yield return null;
+                    }
+                    player.Depth = 0;
+                    follow.EndCutscene();
+                    level.Add(new global::Celeste.Cutscenes.CS_MorphoKnightReveal(player, follow.Position));
                 }
                 else
                 {

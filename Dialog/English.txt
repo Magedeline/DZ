@@ -501,6 +501,7 @@ DZ_SmallMaps_14_Digital_Boss=Cyber Nexus - Queen's Core (Boss)
 
 # Chapter 15 - Castle
 DZ_0_15_Castle=Ethereal Citadel
+DZ_3_15_Castle=Ethereal Citadel
 
 # Chapter 16 - Corruption
 DZ_0_16_Corruption=Organ Garden of Despair

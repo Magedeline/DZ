@@ -218,6 +218,15 @@ public class DZModule : EverestModule {
 
         // Forward content initialization (custom sprite banks) to the BossesExample integration.
         global::Celeste.Mod.DZ.BossesExample.BossesExampleModule.LoadContent(firstLoad);
+
+        // morphosprites.xml is not named Sprites.xml, so Everest won't auto-merge it —
+        // load and merge it into GFX.SpriteBank explicitly. LoadSpriteBank is static
+        // (merges into GFX.SpriteBank internally), not an instance method on it.
+        try {
+            SpriteBank.LoadSpriteBank("Graphics/bosses/morphosprites.xml");
+        } catch (Exception ex) {
+            Logger.Log(LogLevel.Warn, nameof(DZModule), $"Failed to load Graphics/bosses/morphosprites.xml: {ex.Message}");
+        }
     }
 
     private static void OnEngineUpdate(On.Monocle.Engine.orig_Update orig, Monocle.Engine self, GameTime gameTime)

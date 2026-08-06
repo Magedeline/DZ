@@ -168,7 +168,7 @@ namespace Celeste.Entities
 
         private void HandleKPlayerCollision(K_Player kPlayer)
         {
-            if (DZModule.Session?.IsKirbyModeActive == true && kPlayer.kirbyController?.IsInhaling == true)
+            if (DZModule.Session?.IsKirbyModeActive == true && kPlayer.StateMachine.State == K_Player.StKirbyInhale)
             {
                 Audio.Play("event:/DZ/char/kirby/inhale_start", Position);
                 Break();

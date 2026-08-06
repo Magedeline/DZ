@@ -1,16 +1,9 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using Monocle;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
-using Celeste.Cutscenes;
+using Celeste.Bosses;
 using Celeste.Entities.Bosses;
-using Celeste.Mod.DZ;
 using Celeste.Projectiles;
 using DZ;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using static Monocle.Calc;
 
 /// Please do not remove the player class from the mod, even if it seems like it's not doing much. The Player class is used as a base for all player-related functionality, and removing it would cause the mod to break. If you want to disable certain features, please do so through the mod's settings or by commenting out specific code sections, rather than removing the entire Player class.
@@ -21,6 +14,7 @@ namespace Celeste.Entities
     [CustomEntity("DZ/K_Player")]
     [Tracked(true)]
     [HotReloadable]
+    [DebuggerDisplay($"{{{nameof(GetDebuggerDisplay)}(),nq}}")]
     public class K_Player : Actor
 #pragma warning restore CL0008
     {
@@ -114,6 +108,8 @@ namespace Celeste.Entities
         private const int DashCornerCorrection = 4;
         private const int DashVFloorSnapDist = 3;
         private const float DashAttackTime = .3f;
+        private const float SwimMaxRise = -60f;
+        private const float SwimDashSpeedMult = 0.75f;
 
         private const float BoostMoveSpeed = 80f;
         public const float BoostTime = .25f;
@@ -210,6 +206,7 @@ namespace Celeste.Entities
         public const int StDiveKick = 36;
         public const int StAquaGrapple = 37;
         public const int StPunchAttack = 38;
+        public const int StWarpStarFly = 39;
 
         public const string TalkSfx = "player_talk";
 
@@ -343,11 +340,15 @@ namespace Celeste.Entities
         public bool StrawberriesBlocked;
         public Vector2 PreviousPosition;
         public bool DummyAutoAnimate = true;
+        public bool DummyGravity = true;
+        public bool DummyFriction = true;
+        public bool DummyMaxspeed = true;
+        public bool DummyMoving;
         public Vector2 ForceStrongWindHair;
         public Vector2? OverrideDashDirection;
         public bool FlipInReflection = false;
         public bool JustRespawned;  // True if the player hasn't moved since respawning
-        public bool Dead { get; private set; }
+        public bool Dead { get; private set; } = false;
         public bool IsDead => Dead;
         public float CurrentStamina
         {
@@ -393,6 +394,8 @@ namespace Celeste.Entities
         private int hopWaitX;   // If you climb hop onto a moving solid, snap to beside it until you get above it
         private float hopWaitXSpeed;
         private Vector2 lastAim;
+        private bool dreamJump;
+        private Color starFlyColor = Calc.HexToColor("ffd65c");
         private float dashCooldownTimer;
         private float dashRefillCooldownTimer;
         public Vector2 DashDir;
@@ -400,6 +403,10 @@ namespace Celeste.Entities
         private int wallSlideDir;
         private float climbNoMoveTimer;
         private Vector2 carryOffset;
+        private float? launchApproachX;
+        private float hitSquashNoMoveTimer;
+        private float summitLaunchTargetX;
+        private float summitLaunchParticleTimer;
         private Vector2 deadOffset;
         private float introEase;
         private float wallSpeedRetentionTimer; // If you hit a wall, start this timer. If coast is clear within this timer, retain h-speed
@@ -424,8 +431,16 @@ namespace Celeste.Entities
         private float playFootstepOnLand;
         private float minHoldTimer;
         public Booster CurrentBooster;
-        private Booster lastBooster;
+        public Booster LastBooster;
+        private DreamBlock dreamBlock;
+        private PhantomBlock phantomBlock;
+        private SoundSource dreamSfxLoop;
         private bool calledDashEvents;
+        private Vector2 boostTarget;
+        private bool boostRed;
+        private float gliderBoostTimer;
+        private Vector2 gliderBoostDir;
+        private bool demoDashed;
         private int lastDashes;
         private Sprite sweatSprite;
         private int startHairCount;
@@ -441,6 +456,34 @@ namespace Celeste.Entities
         private readonly Hitbox duckHurtbox = new Hitbox(8, 4, -4, -6);
         private readonly Hitbox starFlyHitbox = new Hitbox(8, 8, -4, -10);
         private readonly Hitbox starFlyHurtbox = new Hitbox(6, 6, -3, -9);
+        private const float StarFlyTime = 2f;
+        private const float StarFlyEndNoBounceTime = 0.2f;
+        private const float StarFlyWallBounce = -0.5f;
+        private float starFlyTimer;
+        private bool starFlyTransforming;
+        private float starFlySpeedLerp;
+        private Vector2 starFlyLastDir;
+        private BloomPoint starFlyBloom;
+        private SoundSource starFlyLoopSfx;
+        private SoundSource starFlyWarningSfx;
+        private SimpleCurve cassetteFlyCurve;
+        private float cassetteFlyLerp;
+        private Vector2 attractTo;
+
+        // ── Warp Star Flight (final battle void-flight mechanic) ──────────
+        private readonly Hitbox warpStarFlyHitbox = new Hitbox(8, 8, -4, -10);
+        private readonly Hitbox warpStarFlyHurtbox = new Hitbox(6, 6, -3, -9);
+        private const float WarpStarFlyTransformTime = 0.5f;
+        private const float WarpStarFlyMaxSpeed = 220f;
+        private const float WarpStarFlyAccel = 900f;
+        private Color warpStarFlyColor = Calc.HexToColor("44ddff");
+        private bool warpStarFlyActive;
+        private bool warpStarFlyTransforming;
+        private Vector2 warpStarFlyLastDir = Vector2.UnitX;
+        private BloomPoint warpStarFlyBloom;
+        private SoundSource warpStarFlyLoopSfx;
+        private bool warpStarFlySubscribed;
+        private KirbyFinalBattleScene warpStarFlyBattle;
 
         private Vector2 normalLightOffset = new Vector2(0, -8);
         private Vector2 duckingLightOffset = new Vector2(0, -3);
@@ -488,6 +531,17 @@ namespace Celeste.Entities
         // Combat Vars
         public bool CombatEnabled = false;
         public bool KirbyModeActive = false;
+
+        /// <summary>
+        /// Gate for the Fighter-specific attack moveset (Dash Attack, Combat Slash,
+        /// Punch Attack, Aerial Combo, Cyclone Slash, Slide Tackle, Counter Stance,
+        /// Aqua Grapple, Star Shot). Requires both a mapper/trigger having explicitly
+        /// enabled combat in this room (<see cref="CombatEnabled"/>, see PlayerTrigger)
+        /// and the player currently holding the Fighter copy ability. Ground Pound,
+        /// Dive Kick, and Air Drift are general Kirby movement tools and intentionally
+        /// stay available without Fighter.
+        /// </summary>
+        private bool CanFighterAttack => CombatEnabled && CurrentPowerState == KirbyMode.KirbyPowerState.Fighter;
         private float dashAttackCooldownTimer;
         private float combatSlashCooldownTimer;
         private float combatSlashTimer;
@@ -527,6 +581,11 @@ namespace Celeste.Entities
         private float kirbyFlapScaleTimer;
         private float kirbyHammerTimer;
         private Vector2 kirbyStarSpitDir;
+
+        // Inhale "tendril" visual — ported from ingeste.lua create_inhales/update_inhales/draw_inhales.
+        // Small wisps that orbit near the mouth and get sucked toward the inhale origin while inhaling.
+        private const int KirbyInhaleTendrilCount = 5;
+        private Vector2[] kirbyInhaleTendrils;
 
         /// <summary>Public accessor for refill entities.</summary>
         public int KirbyFlapCount => kirbyFlapCount;
@@ -590,75 +649,77 @@ namespace Celeste.Entities
         private static class Sfxs
         {
             // Character - Madeline (Kirby skin) — using GUIDs from GUIDs.txt
-            public const string char_mad_footstep             = "event:/DZ/char/kirby/footstep";
-            public const string char_mad_handhold             = "event:/DZ/char/kirby/handhold";
-            public const string char_mad_campfire_stand       = "event:/DZ/char/kirby/campfire_stand";
-            public const string char_mad_summit_sit           = "event:/DZ/char/kirby/summit_sit";
-            public const string char_mad_idle_scratch         = "event:/DZ/char/kirby/idle_scratch";
-            public const string char_mad_idle_sneeze          = "event:/DZ/char/kirby/idle_sneeze";
-            public const string char_mad_idle_crackknuckles   = "event:/DZ/char/kirby/idle_crackknuckles";
-            public const string char_mad_jump                 = "event:/DZ/char/kirby/jump";
-            public const string char_mad_jump_assisted        = "event:/DZ/char/kirby/jump_assisted";
-            public const string char_mad_jump_dreamblock      = "event:/DZ/char/kirby/jump_dreamblock";
-            public const string char_mad_jump_super           = "event:/DZ/char/kirby/jump_super";
-            public const string char_mad_jump_superslide      = "event:/DZ/char/kirby/jump_superslide";
-            public const string char_mad_jump_superwall       = "event:/DZ/char/kirby/jump_superwall";
-            public const string char_mad_jump_wall_left       = "event:/DZ/char/kirby/jump_wall_left";
-            public const string char_mad_jump_wall_right      = "event:/DZ/char/kirby/jump_wall_right";
-            public const string char_mad_jump_climb_left      = "event:/DZ/char/kirby/jump_climb_left";
-            public const string char_mad_jump_climb_right     = "event:/DZ/char/kirby/jump_climb_right";
-            public const string char_mad_land                 = "event:/DZ/char/kirby/landing";
-            public const string char_mad_grab                 = "event:/DZ/char/kirby/grab";
-            public const string char_mad_grab_letgo           = "event:/DZ/char/kirby/grab_letgo";
-            public const string char_mad_climb_ledge          = "event:/DZ/char/kirby/climb_ledge";
-            public const string char_mad_wallslide            = "event:/DZ/char/kirby/wallslide";
-            public const string char_mad_dash_red_right       = "event:/DZ/char/kirby/dash_red_right";
-            public const string char_mad_dash_red_left        = "event:/DZ/char/kirby/dash_red_left";
-            public const string char_mad_dash_pink_right      = "event:/DZ/char/kirby/dash_pink_right";
-            public const string char_mad_dash_pink_left       = "event:/DZ/char/kirby/dash_pink_left";
-            public const string char_mad_duck                 = "event:/DZ/char/kirby/duck";
-            public const string char_mad_stand                = "event:/DZ/char/kirby/stand";
-            public const string char_mad_water_dash_gen       = "event:/DZ/char/kirby/water_dash_gen";
-            public const string char_mad_water_move_shallow   = "event:/DZ/char/kirby/water_move_shallow";
-            public const string char_mad_dreamblock_enter     = "event:/DZ/char/kirby/dreamblock_enter";
-            public const string char_mad_dreamblock_exit      = "event:/DZ/char/kirby/dreamblock_exit";
-            public const string char_mad_dreamblock_travel    = "event:/DZ/char/kirby/dreamblock_travel";
-            public const string char_mad_revive               = "event:/DZ/char/kirby/revive";
-            public const string char_mad_mirrortemple_landing = "event:/DZ/char/kirby/mirrortemple_big_landing";
-            public const string char_mad_summit_areastart     = "event:/DZ/char/kirby/summit_areastart";
-            public const string char_mad_crystaltheo_lift     = "event:/DZ/char/kirby/crystaltheo_lift";
-            public const string char_mad_crystaltheo_throw    = "event:/DZ/char/kirby/crystaltheo_throw";
+            public const string char_kirb_footstep = "event:/DZ/char/kirby/footstep";
+            public const string char_kirb_handhold = "event:/DZ/char/kirby/handhold";
+            public const string char_kirb_campfire_stand = "event:/DZ/char/kirby/campfire_stand";
+            public const string char_kirb_summit_sit = "event:/DZ/char/kirby/summit_sit";
+            public const string char_kirb_idle_scratch = "event:/DZ/char/kirby/idle_scratch";
+            public const string char_kirb_idle_sneeze = "event:/DZ/char/kirby/idle_sneeze";
+            public const string char_kirb_idle_crackknuckles = "event:/DZ/char/kirby/idle_crackknuckles";
+            public const string char_kirb_jump = "event:/DZ/char/kirby/jump";
+            public const string char_kirb_jump_assisted = "event:/DZ/char/kirby/jump_assisted";
+            public const string char_kirb_jump_dreamblock = "event:/DZ/char/kirby/jump_dreamblock";
+            public const string char_kirb_jump_super = "event:/DZ/char/kirby/jump_super";
+            public const string char_kirb_jump_superslide = "event:/DZ/char/kirby/jump_superslide";
+            public const string char_kirb_jump_superwall = "event:/DZ/char/kirby/jump_superwall";
+            public const string char_kirb_jump_wall_left = "event:/DZ/char/kirby/jump_wall_left";
+            public const string char_kirb_jump_wall_right = "event:/DZ/char/kirby/jump_wall_right";
+            public const string char_kirb_jump_climb_left = "event:/DZ/char/kirby/jump_climb_left";
+            public const string char_kirb_jump_climb_right = "event:/DZ/char/kirby/jump_climb_right";
+            public const string char_kirb_land = "event:/DZ/char/kirby/landing";
+            public const string char_kirb_grab = "event:/DZ/char/kirby/grab";
+            public const string char_kirb_grab_letgo = "event:/DZ/char/kirby/grab_letgo";
+            public const string char_kirb_climb_ledge = "event:/DZ/char/kirby/climb_ledge";
+            public const string char_kirb_wallslide = "event:/DZ/char/kirby/wallslide";
+            public const string char_kirb_dash_red_right = "event:/DZ/char/kirby/dash_red_right";
+            public const string char_kirb_dash_red_left = "event:/DZ/char/kirby/dash_red_left";
+            public const string char_kirb_dash_pink_right = "event:/DZ/char/kirby/dash_pink_right";
+            public const string char_kirb_dash_pink_left = "event:/DZ/char/kirby/dash_pink_left";
+            public const string char_kirb_duck = "event:/DZ/char/kirby/duck";
+            public const string char_kirb_stand = "event:/DZ/char/kirby/stand";
+            public const string char_kirb_water_dash_gen = "event:/DZ/char/kirby/water_dash_gen";
+            public const string char_kirb_water_move_shallow = "event:/DZ/char/kirby/water_move_shallow";
+            public const string char_kirb_dreamblock_enter = "event:/DZ/char/kirby/dreamblock_enter";
+            public const string char_kirb_dreamblock_exit = "event:/DZ/char/kirby/dreamblock_exit";
+            public const string char_kirb_dreamblock_travel = "event:/DZ/char/kirby/dreamblock_travel";
+            public const string char_kirb_revive = "event:/DZ/char/kirby/revive";
+            public const string char_kirb_mirrortemple_landing = "event:/DZ/char/kirby/mirrortemple_big_landing";
+            public const string char_kirb_summit_areastart = "event:/DZ/char/kirby/summit_areastart";
+            public const string char_kirb_crystaltheo_lift = "event:/DZ/char/kirby/crystaltheo_lift";
+            public const string char_kirb_crystaltheo_throw = "event:/DZ/char/kirby/crystaltheo_throw";
+            public const string char_kirb_phantom_in = "event:/DZ/char/kirby/phantom_in";
+            public const string char_kirb_phantom_out = "event:/DZ/char/kirby/phantom_out";
 
             // Game
-            public const string game_06_feather_state_bump    = "event:/game/06_reflection/feather_state_bump";
-            public const string game_06_feather_state_end     = "event:/game/06_reflection/feather_state_end";
-            public const string game_06_feather_state_loop    = "event:/game/06_reflection/feather_state_loop";
-            public const string game_06_feather_state_warning = "event:/game/06_reflection/feather_state_warning";
-            public const string game_09_conveyor_activate     = "event:/game/09_core/conveyor_activate";
-            public const string game_assist_dreamblockbounce  = "event:/game/general/assist_dreamblockbounce";
+            public const string game_08_warpstar_state_bump = "event:/DZ/game/08_reflection/feather_state_bump";
+            public const string game_08_warpstar_state_end = "event:/DZ/game/08_reflection/feather_state_end";
+            public const string game_08_warpstar_state_loop = "event:/DZ/game/08_reflection/feather_state_loop";
+            public const string game_08_warpstar_state_warning = "event:/DZ/game/08_reflection/feather_state_warning";
+            public const string game_18_conveyor_activate = "event:/DZ/game/18_core/conveyor_activate";
+            public const string game_assist_dreamblockbounce = "event:/DZ/game/general/assist_dreamblockbounce";
 
             // Music
-            public const string music_reflection_main = "event:/music/lvl8/main";
+            public const string music_reflection_main = "event:/DZ/music/lvl8/main";
 
             // Badeline sound mapping
-            public static readonly Dictionary<string, string> MadelineToBadelineSound = new Dictionary<string, string>
+            public static readonly Dictionary<string, string> KirbyToBadelineSound = new Dictionary<string, string>
             {
-                { char_mad_jump, "event:/char/badeline/jump" },
-                { char_mad_jump_wall_left, "event:/char/badeline/jump_wall_left" },
-                { char_mad_jump_wall_right, "event:/char/badeline/jump_wall_right" },
-                { char_mad_jump_climb_left, "event:/char/badeline/jump_climb_left" },
-                { char_mad_jump_climb_right, "event:/char/badeline/jump_climb_right" },
-                { char_mad_land, "event:/char/badeline/land" },
-                { char_mad_footstep, "event:/char/badeline/footstep" },
-                { char_mad_dash_red_right, "event:/char/badeline/dash_red_right" },
-                { char_mad_dash_red_left, "event:/char/badeline/dash_red_left" },
-                { char_mad_dash_pink_right, "event:/char/badeline/dash_pink_right" },
-                { char_mad_dash_pink_left, "event:/char/badeline/dash_pink_left" },
-                { char_mad_grab, "event:/char/badeline/grab" },
-                { char_mad_grab_letgo, "event:/char/badeline/grab_letgo" },
-                { char_mad_wallslide, "event:/char/badeline/wallslide" },
-                { char_mad_dreamblock_enter, "event:/char/badeline/dreamblock_enter" },
-                { char_mad_dreamblock_exit, "event:/char/badeline/dreamblock_exit" },
+                { char_kirb_jump, "event:/DZ/char/chara/jump" },
+                { char_kirb_jump_wall_left, "event:/DZ/char/chara/jump_wall_left" },
+                { char_kirb_jump_wall_right, "event:/DZ/char/chara/jump_wall_right" },
+                { char_kirb_jump_climb_left, "event:/DZ/char/chara/jump_climb_left" },
+                { char_kirb_jump_climb_right, "event:/DZ/char/chara/jump_climb_right" },
+                { char_kirb_land, "event:/DZ/char/chara/land" },
+                { char_kirb_footstep, "event:/DZ/char/chara/footstep" },
+                { char_kirb_dash_red_right, "event:/DZ/char/chara/dash_red_right" },
+                { char_kirb_dash_red_left, "event:/DZ/char/chara/dash_red_left" },
+                { char_kirb_dash_pink_right, "event:/DZ/char/chara/dash_pink_right" },
+                { char_kirb_dash_pink_left, "event:/DZ/char/chara/dash_pink_left" },
+                { char_kirb_grab, "event:/DZ/char/chara/grab" },
+                { char_kirb_grab_letgo, "event:/DZ/char/chara/grab_letgo" },
+                { char_kirb_wallslide, "event:/DZ/char/chara/wallslide" },
+                { char_kirb_dreamblock_enter, "event:/DZ/char/chara/dreamblock_enter" },
+                { char_kirb_dreamblock_exit, "event:/DZ/char/chara/dreamblock_exit" },
             };
         }
 
@@ -671,12 +732,11 @@ namespace Celeste.Entities
         /// Required for the map editor and level loader to instantiate this entity.
         /// </summary>
         public K_Player(EntityData data, Vector2 offset)
-            : this(data.Position + offset, (PlayerSpriteMode)data.Enum("spriteMode", PlayerSpriteMode.Madeline))
+            : this(data.Position + offset, PlayerSpriteMode.Madeline)
         {
         }
 
-        public K_Player(Vector2 position, PlayerSpriteMode spriteMode)
-            : base(new Vector2((int)position.X, (int)position.Y))
+        public K_Player(Vector2 position, PlayerSpriteMode spriteMode) : base(position)
         {
             Depth = Depths.Player;
             Tag = Tags.Persistent;
@@ -709,8 +769,8 @@ namespace Celeste.Entities
             onCollideH = OnCollideH;
             onCollideV = OnCollideV;
 
-            // states (must be at least StAquaGrapple + 1, or SetCallbacks below throws)
-            StateMachine = new StateMachine(StAquaGrapple + 1);
+            // states (must be at least StWarpStarFly + 1, or SetCallbacks below throws)
+            StateMachine = new StateMachine(StWarpStarFly + 1);
             StateMachine.SetCallbacks(StNormal, NormalUpdate, null, NormalBegin, NormalEnd);
             StateMachine.SetCallbacks(StClimb, ClimbUpdate, null, ClimbBegin, ClimbEnd);
             StateMachine.SetCallbacks(StDash, DashUpdate, DashCoroutine, DashBegin, DashEnd);
@@ -754,6 +814,7 @@ namespace Celeste.Entities
             StateMachine.SetCallbacks(StDiveKick, DiveKickUpdate, null, DiveKickBegin, DiveKickEnd);
             StateMachine.SetCallbacks(StAquaGrapple, AquaGrappleUpdate, null, AquaGrappleBegin, AquaGrappleEnd);
             StateMachine.SetCallbacks(StPunchAttack, PunchAttackUpdate, null, PunchAttackBegin, PunchAttackEnd);
+            StateMachine.SetCallbacks(StWarpStarFly, WarpStarFlyUpdate, WarpStarFlyCoroutine, WarpStarFlyBegin, WarpStarFlyEnd);
 
             Add(StateMachine);
 
@@ -771,7 +832,7 @@ namespace Celeste.Entities
 
             Add(wallSlideSfx = new SoundSource());
             Add(swimSurfaceLoopSfx = new SoundSource());
-            
+
             Sprite.OnFrameChange = (anim) =>
             {
                 if (Scene != null && !Dead)
@@ -790,7 +851,7 @@ namespace Celeste.Entities
                     {
                         var landed = SurfaceIndex.GetPlatformByPriority(CollideAll<Platform>(Position + Vector2.UnitY, temp));
                         if (landed != null)
-                            Play(Sfxs.char_mad_footstep, SurfaceIndex.Param, landed.GetStepSoundIndex(this));
+                            Play(Sfxs.char_kirb_footstep, SurfaceIndex.Param, landed.GetStepSoundIndex(this));
                     }
                     // climbing (holds)
                     else if ((anim.Equals(PlayerSprite.ClimbUp) && (frame == 5)) ||
@@ -798,12 +859,12 @@ namespace Celeste.Entities
                     {
                         var holding = SurfaceIndex.GetPlatformByPriority(CollideAll<Solid>(Center + Vector2.UnitX * (int)Facing, temp));
                         if (holding != null)
-                            Play(Sfxs.char_mad_handhold, SurfaceIndex.Param, holding.GetWallSoundIndex(SelfPlayer, (int)Facing));
+                            Play(Sfxs.char_kirb_handhold, SurfaceIndex.Param, holding.GetWallSoundIndex(SelfPlayer, (int)Facing));
                     }
                     else if (anim.Equals("wakeUp") && frame == 19)
-                        Play(Sfxs.char_mad_campfire_stand);
+                        Play(Sfxs.char_kirb_campfire_stand);
                     else if (anim.Equals("sitDown") && frame == 12)
-                        Play(Sfxs.char_mad_summit_sit);
+                        Play(Sfxs.char_kirb_summit_sit);
                     else if (anim.Equals("push") && (frame == 8 || frame == 15))
                         Dust.BurstFG(Position + new Vector2(-(int)Facing * 5, -1), new Vector2(-(int)Facing, -0.5f).Angle(), 1, 0);
                 }
@@ -828,12 +889,12 @@ namespace Celeste.Entities
                             if (Sprite.Mode == PlayerSpriteMode.Madeline)
                             {
                                 if (next == "idleB")
-                                    idleSfx = Play(Sfxs.char_mad_idle_scratch);
+                                    idleSfx = Play(Sfxs.char_kirb_idle_scratch);
                                 else if (next == "idleC")
-                                    idleSfx = Play(Sfxs.char_mad_idle_sneeze);
+                                    idleSfx = Play(Sfxs.char_kirb_idle_sneeze);
                             }
                             else if (next == "idleA")
-                                idleSfx = Play(Sfxs.char_mad_idle_crackknuckles);
+                                idleSfx = Play(Sfxs.char_kirb_idle_crackknuckles);
                         }
                     }
                 }
@@ -860,6 +921,17 @@ namespace Celeste.Entities
             {
                 // Initialize level state for DZ player spawning
                 level.ScreenPadding = 32f;
+            }
+
+            // Automatically drive warp-star flight from the final battle phases
+            if (!warpStarFlySubscribed)
+            {
+                warpStarFlyBattle = KirbyFinalBattleScene.Get(scene);
+                if (warpStarFlyBattle != null)
+                {
+                    warpStarFlyBattle.OnPhaseChanged += OnWarpStarBattlePhaseChanged;
+                    warpStarFlySubscribed = true;
+                }
             }
         }
 
@@ -1004,6 +1076,13 @@ namespace Celeste.Entities
                 _shadowPlayer.RemoveSelf();
                 _shadowPlayer = null;
             }
+
+            if (warpStarFlySubscribed && warpStarFlyBattle != null)
+            {
+                warpStarFlyBattle.OnPhaseChanged -= OnWarpStarBattlePhaseChanged;
+                warpStarFlySubscribed = false;
+                warpStarFlyBattle = null;
+            }
         }
 
         public override void SceneEnd(Scene scene)
@@ -1079,6 +1158,13 @@ namespace Celeste.Entities
                     var p = (Sprite.CurrentAnimationFrame / (float)Sprite.CurrentAnimationTotalFrames);
                     var white = GFX.Game.GetAtlasSubtexturesAt("characters/DZ/player/startStarFlyWhite", Sprite.CurrentAnimationFrame);
                     white.Draw(Sprite.RenderPosition, Sprite.Origin, starFlyColor * p, Sprite.Scale, Sprite.Rotation, 0);
+                }
+
+                // inhale tendril wisps — ported from ingeste.lua draw_inhales
+                if (StateMachine.State == StKirbyInhale && kirbyInhaleTendrils != null)
+                {
+                    foreach (Vector2 tendril in kirbyInhaleTendrils)
+                        Draw.Point(tendril, Color.White);
                 }
 
                 // revert scale
@@ -1220,7 +1306,7 @@ namespace Celeste.Entities
                         Speed.X = WallJumpHSpeed * moveX;
                         Stamina += ClimbJumpCost;
                         wallBoostTimer = 0;
-                        sweatSprite.Play("idle");                       
+                        sweatSprite.Play("idle");
                     }
                 }
 
@@ -1514,7 +1600,7 @@ namespace Celeste.Entities
                 wasTired = false;
 
             base.Update();
-            
+
             //Light Offset
             if (Ducking)
                 Light.Position = duckingLightOffset;
@@ -1579,7 +1665,7 @@ namespace Celeste.Entities
                 if (isSliding)
                 {
                     if (!wallSlideSfx.Playing)
-                        Loop(wallSlideSfx, Sfxs.char_mad_wallslide);
+                        Loop(wallSlideSfx, Sfxs.char_kirb_wallslide);
 
                     var platform = SurfaceIndex.GetPlatformByPriority(CollideAll<Solid>(Center + Vector2.UnitX * (int)Facing, temp));
                     if (platform != null)
@@ -1618,7 +1704,7 @@ namespace Celeste.Entities
                     }
                 }
             }
-            
+
             //Strawberry Block
             StrawberriesBlocked = CollideCheck<BlockField>();
 
@@ -1634,7 +1720,7 @@ namespace Celeste.Entities
                     var from = level.Camera.Position;
                     var target = CameraTarget;
                     var multiplier = StateMachine.State == StTempleFall ? 8 : 1f;
-                    
+
                     level.Camera.Position = from + (target - from) * (1f - (float)Math.Pow(0.01f / multiplier, Engine.DeltaTime));
                 }
             }
@@ -1657,10 +1743,10 @@ namespace Celeste.Entities
                 // If the current collider is not the hurtbox we set it to, that means a collision callback changed it. Keep the new one!
                 bool keepNew = (Collider != hurtbox);
 
-                if (!keepNew)    
+                if (!keepNew)
                     Collider = was;
             }
-            
+
             //Bounds
             if (InControl && !Dead && StateMachine.State != StDreamDash)
                 level.EnforceBounds(SelfPlayer);
@@ -1673,16 +1759,16 @@ namespace Celeste.Entities
             {
                 wasDucking = Ducking;
                 if (wasDucking)
-                    Play(Sfxs.char_mad_duck);
+                    Play(Sfxs.char_kirb_duck);
                 else if (onGround)
-                    Play(Sfxs.char_mad_stand);
+                    Play(Sfxs.char_kirb_stand);
             }
 
             // shallow swim sfx
             if (Speed.X != 0 && ((StateMachine.State == StSwim && !SwimUnderwaterCheck()) || (StateMachine.State == StNormal && CollideCheck<Water>(Position))))
             {
                 if (!swimSurfaceLoopSfx.Playing)
-                    swimSurfaceLoopSfx.Play(Sfxs.char_mad_water_move_shallow);
+                    swimSurfaceLoopSfx.Play(Sfxs.char_kirb_water_move_shallow);
             }
             else
                 swimSurfaceLoopSfx.Stop();
@@ -1777,8 +1863,8 @@ namespace Celeste.Entities
             // Hat + scarf always visible (drives color even in non-Kirby mode for future use)
             if (HatScarf != null)
             {
-                HatScarf.Visible     = true;
-                HatScarf.Color       = resolvedColor;
+                HatScarf.Visible = true;
+                HatScarf.Color = resolvedColor;
                 HatScarf.AccentColor = Color.Lerp(resolvedColor, Microsoft.Xna.Framework.Color.White, 0.45f);
             }
 
@@ -1832,7 +1918,11 @@ namespace Celeste.Entities
                 anim = "kirby_idle";
             else if (onGround)
             {
-                if (Math.Abs(Speed.X) <= RunAccel / 40f && moveX == 0)
+                // Puffed-cheeks idle so the player can see Kirby is loaded and
+                // ready to Star Spit, instead of looking identical to plain idle.
+                if (kirbyHasInhaledEnemy && Math.Abs(Speed.X) <= RunAccel / 40f && moveX == 0)
+                    anim = "kirby_mouthful";
+                else if (Math.Abs(Speed.X) <= RunAccel / 40f && moveX == 0)
                     anim = "kirby_idle";
                 else if (Math.Abs(Speed.X) < MaxRun * .5f)
                     anim = "kirby_walk";
@@ -2137,7 +2227,7 @@ namespace Celeste.Entities
                 return at;
             }
         }
-        
+
         public bool GetChasePosition(float sceneTime, float timeAgo, out ChaserState chaseState)
         {
             if (!Dead)
@@ -2176,7 +2266,7 @@ namespace Celeste.Entities
                 {
                     default:
                         return true;
-                        
+
                     case StIntroJump:
                     case StIntroWalk:
                     case StIntroWakeUp:
@@ -2198,7 +2288,7 @@ namespace Celeste.Entities
                 {
                     default:
                         return false;
-                        
+
                     case StIntroJump:
                     case StIntroWalk:
                     case StIntroWakeUp:
@@ -2217,7 +2307,7 @@ namespace Celeste.Entities
                 {
                     default:
                         return true;
-                        
+
                     case StIntroJump:
                     case StIntroWalk:
                     case StIntroWakeUp:
@@ -2239,7 +2329,7 @@ namespace Celeste.Entities
                 return PlayerInventory.Default;
             }
         }
-        
+
         #endregion
 
         #region Transitions
@@ -2280,7 +2370,7 @@ namespace Celeste.Entities
 
         public void BeforeSideTransition()
         {
-            
+
         }
 
         public void BeforeDownTransition()
@@ -2302,7 +2392,7 @@ namespace Celeste.Entities
         public void BeforeUpTransition()
         {
             Speed.X = 0;
-            
+
             if (StateMachine.State != StRedDash && StateMachine.State != StReflectionFall && StateMachine.State != StStarFly)
             {
                 varJumpSpeed = Speed.Y = JumpSpeed;
@@ -2323,11 +2413,8 @@ namespace Celeste.Entities
         #endregion
 
         #region Jumps 'n' Stuff
-        
-        public bool OnSafeGround
-        {
-            get; private set;
-        }
+
+        public bool OnSafeGround { get; private set; } = false;
 
         public bool LoseShards
         {
@@ -2336,7 +2423,7 @@ namespace Celeste.Entities
                 return onGround;
             }
         }
-        
+
         private const float LaunchedBoostCheckSpeedSq = 100 * 100;
         private const float LaunchedJumpCheckSpeedSq = 220 * 220;
         private const float LaunchedMinSpeedSq = 140 * 140;
@@ -2376,12 +2463,12 @@ namespace Celeste.Entities
             if (playSfx)
             {
                 if (launched)
-                    Play(Sfxs.char_mad_jump_assisted);
+                    Play(Sfxs.char_kirb_jump_assisted);
 
                 if (dreamJump)
-                    Play(Sfxs.char_mad_jump_dreamblock);
+                    Play(Sfxs.char_kirb_jump_dreamblock);
                 else
-                    Play(Sfxs.char_mad_jump);
+                    Play(Sfxs.char_kirb_jump);
             }
 
             Sprite.Scale = new Vector2(.6f, 1.4f);
@@ -2405,17 +2492,17 @@ namespace Celeste.Entities
             Speed.Y = JumpSpeed;
             Speed += LiftBoost;
 
-            Play(Sfxs.char_mad_jump);
+            Play(Sfxs.char_kirb_jump);
 
             if (Ducking)
             {
                 Ducking = false;
                 Speed.X *= DuckSuperJumpXMult;
                 Speed.Y *= DuckSuperJumpYMult;
-                Play(Sfxs.char_mad_jump_superslide);
+                Play(Sfxs.char_kirb_jump_superslide);
             }
             else
-                Play(Sfxs.char_mad_jump_super);
+                Play(Sfxs.char_kirb_jump_super);
 
             varJumpSpeed = Speed.Y;
             launched = true;
@@ -2466,10 +2553,10 @@ namespace Celeste.Entities
             // wall-sound?
             var pushOff = SurfaceIndex.GetPlatformByPriority(CollideAll<Platform>(Position - Vector2.UnitX * dir * 4, temp));
             if (pushOff != null)
-                Play(Sfxs.char_mad_land, SurfaceIndex.Param, pushOff.GetWallSoundIndex(SelfPlayer, -dir));
+                Play(Sfxs.char_kirb_land, SurfaceIndex.Param, pushOff.GetWallSoundIndex(SelfPlayer, -dir));
 
             // jump sfx
-            Play(dir < 0 ? Sfxs.char_mad_jump_wall_right : Sfxs.char_mad_jump_wall_left);
+            Play(dir < 0 ? Sfxs.char_kirb_jump_wall_right : Sfxs.char_kirb_jump_wall_left);
             Sprite.Scale = new Vector2(.6f, 1.4f);
 
             if (dir == -1)
@@ -2497,8 +2584,8 @@ namespace Celeste.Entities
             varJumpSpeed = Speed.Y;
             launched = true;
 
-            Play(dir < 0 ? Sfxs.char_mad_jump_wall_right : Sfxs.char_mad_jump_wall_left);
-            Play(Sfxs.char_mad_jump_superwall);
+            Play(dir < 0 ? Sfxs.char_kirb_jump_wall_right : Sfxs.char_kirb_jump_wall_left);
+            Play(Sfxs.char_kirb_jump_superwall);
             Sprite.Scale = new Vector2(.6f, 1.4f);
 
             if (dir == -1)
@@ -2530,12 +2617,12 @@ namespace Celeste.Entities
 
             if (Facing == Facings.Right)
             {
-                Play(Sfxs.char_mad_jump_climb_right);
+                Play(Sfxs.char_kirb_jump_climb_right);
                 Dust.Burst(Center + Vector2.UnitX * 2, Calc.UpLeft, 4);
             }
             else
             {
-                Play(Sfxs.char_mad_jump_climb_left);
+                Play(Sfxs.char_kirb_jump_climb_left);
                 Dust.Burst(Center + Vector2.UnitX * -2, Calc.UpRight, 4);
             }
         }
@@ -2543,10 +2630,7 @@ namespace Celeste.Entities
         public void Bounce(float fromY)
         {
             if (StateMachine.State == StBoost && CurrentBooster != null)
-            {
                 CurrentBooster.PlayerReleased();
-                CurrentBooster = null;
-            }
 
             var was = Collider;
             Collider = normalHitbox;
@@ -2574,13 +2658,10 @@ namespace Celeste.Entities
             Collider = was;
         }
 
-        public void SuperBounce(float fromY)
+        private void SuperBounce(float fromY)
         {
             if (StateMachine.State == StBoost && CurrentBooster != null)
-            {
                 CurrentBooster.PlayerReleased();
-                CurrentBooster = null;
-            }
 
             var was = Collider;
             Collider = normalHitbox;
@@ -2746,36 +2827,8 @@ namespace Celeste.Entities
             RefillStamina();
         }
 
-        public bool TryRefuseDeath()
-        {
-            if (Scene == null) return false;
-
-            var asrielGod = Scene.Tracker.GetEntity<AsrielGodBoss>();
-            if (asrielGod != null && !asrielGod.IsBossDefeated)
-            {
-                Scene.Add(new CS20_AsrielGodRefusedToDie(this));
-                return true;
-            }
-
-            var asrielAngel = Scene.Tracker.GetEntity<AsrielAngelOfDeathBoss>();
-            if (asrielAngel != null && asrielAngel.IsVulnerable == false && asrielAngel.CurrentPhase != AsrielAngelOfDeathBoss.BossPhase.Defeated)
-            {
-                Scene.Add(new CS20_AsrielGodRefusedToDie(this));
-                return true;
-            }
-
-            return false;
-        }
-
         public PlayerDeadBody Die(Vector2 direction, bool evenIfInvincible = false, bool registerDeathInStats = true)
         {
-            // Check for Asriel refusal sequence before dying
-            if (TryRefuseDeath())
-            {
-                return null;
-            }
-
-
             var session = level.Session;
             bool invincible = (!evenIfInvincible && SaveData.Instance.AssistMode && SaveData.Instance.Assists.Invincible)
                 || (!evenIfInvincible && DZModule.Settings?.GentleBreezeMode == true);
@@ -2805,8 +2858,8 @@ namespace Celeste.Entities
                 Collidable = false;
                 Drop();
 
-                if (lastBooster != null)
-                    lastBooster.PlayerDied();
+                if (LastBooster != null)
+                    LastBooster.PlayerDied();
 
                 level.InCutscene = false;
                 level.Shake();
@@ -2871,7 +2924,7 @@ namespace Celeste.Entities
                 {
                     Collider = duckHitbox;
                     hurtbox = duckHurtbox;
-                    
+
                 }
                 else
                 {
@@ -2931,13 +2984,9 @@ namespace Celeste.Entities
         }
 
         #endregion
-
         #region Holding
 
-        public Holdable Holding
-        {
-            get; set;
-        }
+        public Holdable Holding { get; set; }
 
         public void UpdateCarry()
         {
@@ -2986,7 +3035,7 @@ namespace Celeste.Entities
                     Speed.X += ThrowRecoil * -(int)Facing;
                 }
 
-                Play(Sfxs.char_mad_crystaltheo_throw);
+                Play(Sfxs.char_kirb_crystaltheo_throw);
                 Sprite.Play("throw");
                 Holding = null;
             }
@@ -3112,7 +3161,7 @@ namespace Celeste.Entities
                     Speed.X = 0;
                 else
                 {
-                    Play(Sfxs.game_06_feather_state_bump);
+                    Play(Sfxs.game_08_warpstar_state_bump);
                     Input.Rumble(RumbleStrength.Light, RumbleLength.Medium);
                     Speed.X *= StarFlyWallBounce;
                 }
@@ -3206,7 +3255,7 @@ namespace Celeste.Entities
                     Speed.Y = 0;
                 else
                 {
-                    Play(Sfxs.game_06_feather_state_bump);
+                    Play(Sfxs.game_08_warpstar_state_bump);
                     Input.Rumble(RumbleStrength.Light, RumbleLength.Medium);
                     Speed.Y *= StarFlyWallBounce;
                 }
@@ -3309,6 +3358,10 @@ namespace Celeste.Entities
                     if (Speed.Y >= MaxFall / 2)
                         Dust.Burst(Position, Calc.Angle(new Vector2(0, -1)), 8);
 
+                    // Kirby landing star burst — ported from ingeste.lua hit_ground_star:
+                    // a few randomly-directioned star particles kicked out from the feet.
+                    HitGroundStarBurst();
+
                     if (highestAirY < Y - 50 && Speed.Y >= MaxFall && Math.Abs(Speed.X) >= MaxRun)
                         Sprite.Play(PlayerSprite.RunStumble);
 
@@ -3320,7 +3373,7 @@ namespace Celeste.Entities
                     {
                         var surface = platform.GetLandSoundIndex(this);
                         if (surface >= 0)
-                            Play(playFootstepOnLand > 0f ? Sfxs.char_mad_footstep : Sfxs.char_mad_land, SurfaceIndex.Param, surface);
+                            Play(playFootstepOnLand > 0f ? Sfxs.char_kirb_footstep : Sfxs.char_kirb_land, SurfaceIndex.Param, surface);
                         if (platform is DreamBlock)
                             (platform as DreamBlock).FootstepRipple(Position);
                         else if (platform is PhantomBlock phantomPlatform)
@@ -3330,7 +3383,7 @@ namespace Celeste.Entities
                     playFootstepOnLand = 0f;
                 }
             }
-            else 
+            else
             {
                 if (Speed.Y < 0)
                 {
@@ -3568,6 +3621,123 @@ namespace Celeste.Entities
 
         #endregion
 
+        #region Legacy Vanilla States (Ported)
+
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private bool SwimCheck()
+        {
+            if (CollideCheck<Water>(Position + Vector2.UnitY * -8f))
+            {
+                return CollideCheck<Water>(Position);
+            }
+            return false;
+        }
+
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private bool SwimUnderwaterCheck()
+        {
+            return CollideCheck<Water>(Position + Vector2.UnitY * -9f);
+        }
+
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private bool SwimJumpCheck()
+        {
+            return !CollideCheck<Water>(Position + Vector2.UnitY * -14f);
+        }
+
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private bool SwimRiseCheck()
+        {
+            return !CollideCheck<Water>(Position + Vector2.UnitY * -18f);
+        }
+
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private bool UnderwaterMusicCheck()
+        {
+            if (CollideCheck<Water>(Position))
+            {
+                return CollideCheck<Water>(Position + Vector2.UnitY * -12f);
+            }
+            return false;
+        }
+
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private void SwimBegin()
+        {
+            if (Speed.Y > 0f)
+            {
+                Speed.Y *= 0.5f;
+            }
+            Stamina = 110f;
+        }
+
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private int SwimUpdate()
+        {
+            if (!SwimCheck())
+            {
+                return StNormal;
+            }
+            if (CanUnDuck)
+            {
+                Ducking = false;
+            }
+            if (CanDash)
+            {
+                Input.Dash.ConsumeBuffer();
+                Input.CrouchDash.ConsumeBuffer();
+                return StDash;
+            }
+            bool underwater = SwimUnderwaterCheck();
+            if (!underwater && Speed.Y >= 0f && Input.GrabCheck && !IsTired && CanUnDuck && Math.Sign(Speed.X) != 0 - (int)Facing && ClimbCheck((int)Facing))
+            {
+                if (!MoveVExact(-1))
+                {
+                    Ducking = false;
+                    return StClimb;
+                }
+            }
+            Vector2 aim = Input.Feather.Value;
+            aim = aim.SafeNormalize();
+            float xSpeed = underwater ? 60f : 80f;
+            float ySpeed = 80f;
+            if (Math.Abs(Speed.X) > 80f && Math.Sign(Speed.X) == Math.Sign(aim.X))
+            {
+                Speed.X = Calc.Approach(Speed.X, xSpeed * aim.X, 400f * Engine.DeltaTime);
+            }
+            else
+            {
+                Speed.X = Calc.Approach(Speed.X, xSpeed * aim.X, 600f * Engine.DeltaTime);
+            }
+            if (aim.Y == 0f && SwimRiseCheck())
+            {
+                Speed.Y = Calc.Approach(Speed.Y, -60f, 600f * Engine.DeltaTime);
+            }
+            else if (aim.Y >= 0f || SwimUnderwaterCheck())
+            {
+                if (Math.Abs(Speed.Y) > 80f && Math.Sign(Speed.Y) == Math.Sign(aim.Y))
+                {
+                    Speed.Y = Calc.Approach(Speed.Y, ySpeed * aim.Y, 400f * Engine.DeltaTime);
+                }
+                else
+                {
+                    Speed.Y = Calc.Approach(Speed.Y, ySpeed * aim.Y, 600f * Engine.DeltaTime);
+                }
+            }
+            if (!underwater && moveX != 0 && CollideCheck<Solid>(Position + Vector2.UnitX * moveX) && !CollideCheck<Solid>(Position + new Vector2(moveX, -3f)))
+            {
+                ClimbHop();
+            }
+            if (Input.Jump.Pressed && SwimJumpCheck())
+            {
+                Jump();
+                return StNormal;
+            }
+            return StSwim;
+        }
+
+        #endregion
+
         #region Normal State
 
         private void NormalBegin()
@@ -3599,26 +3769,6 @@ namespace Celeste.Entities
             //Use Lift Boost if walked off platform
             if (LiftBoost.Y < 0 && wasOnGround && !onGround && Speed.Y >= 0)
                 Speed.Y = LiftBoost.Y;
-
-            // Check if KirbyPlayerController wants to enter flying state
-            if (kirbyController != null && KirbyModeActive)
-            {
-                // If controller says we're flying and not already in float state, transition
-                if (kirbyController.IsFlying && StateMachine.State != StKirbyFloat && Holding == null)
-                {
-                    // Only transition if we're not on ground or just started flying
-                    if (!onGround || Input.MoveY.Value < 0)
-                    {
-                        return StKirbyFloat;
-                    }
-                }
-
-                // If controller is inhaling, transition to inhale state
-                if (kirbyController.IsInhaling && StateMachine.State != StKirbyInhale)
-                {
-                    return StKirbyInhale;
-                }
-            }
 
             if (Holding == null)
             {
@@ -3663,7 +3813,7 @@ namespace Celeste.Entities
                 //Dashing
                 if (CanDash)
                 {
-                    Speed += LiftBoost;                   
+                    Speed += LiftBoost;
                     return StartDash();
                 }
 
@@ -3695,7 +3845,7 @@ namespace Celeste.Entities
                         }
                     }
                 }
-                else if(onGround && Input.MoveY == 1 && Speed.Y >= 0)
+                else if (onGround && Input.MoveY == 1 && Speed.Y >= 0)
                 {
                     Ducking = true;
                     Sprite.Scale = new Vector2(1.4f, .6f);
@@ -3763,7 +3913,7 @@ namespace Celeste.Entities
                         if (Speed.Y >= half)
                         {
                             float spriteLerp = Math.Min(1f, (Speed.Y - half) / (fmf - half));
-                            Sprite.Scale.X = MathHelper.Lerp(1f, .5f, spriteLerp);
+                            Sprite.Scale.X = MathHelper.Lerp(1f, 1.6f, spriteLerp);
                             Sprite.Scale.Y = MathHelper.Lerp(1f, 1.5f, spriteLerp);
                         }
                     }
@@ -3814,7 +3964,7 @@ namespace Celeste.Entities
                 }
 
                 //Jumping (pressed OR explicitly buffered)
-                if (Input.Jump.Pressed || jumpBufferTimer > 0)
+                if (Input.Jump.Pressed)
                 {
                     Water water = null;
                     if (jumpGraceTimer > 0)
@@ -3836,36 +3986,25 @@ namespace Celeste.Entities
                         {
                             if (Facing == Facings.Right && Input.Grab.Check && Stamina > 0 && Holding == null && !ClimbBlocker.Check(Scene, this, Position + Vector2.UnitX * WallJumpCheckDist))
                                 ClimbJump();
-                            else if (DashAttacking && DashDir.X == 0 && DashDir.Y == -1)
-                                SuperWallJump(-1);
-                            else
-                                WallJump(-1);
+                        }
+                        else if (DashAttacking && DashDir.X == 0 && DashDir.Y == -1)
+                            SuperWallJump(-1);
+                        else
+                            WallJump(-1);
 
-                            jumpBufferTimer = 0;
-                        }
-                        else if (canUnduck && WallJumpCheck(-1))
-                        {
-                            if (Facing == Facings.Left && Input.Grab.Check && Stamina > 0 && Holding == null && !ClimbBlocker.Check(Scene, this, Position + Vector2.UnitX * -WallJumpCheckDist))
-                                ClimbJump();
-                            else if (DashAttacking && DashDir.X == 0 && DashDir.Y == -1)
-                                SuperWallJump(1);
-                            else
-                                WallJump(1);
-
-                            jumpBufferTimer = 0;
-                        }
-                        else if ((water = CollideFirst<Water>(Position + Vector2.UnitY * 2)) != null)
-                        {
-                            Jump();
-                            water.TopSurface.DoRipple(Position, 1);
-                            jumpBufferTimer = 0;
-                        }
-                        else if (!isInArena && !onGround && !usedAirDoubleJump)
-                        {
-                            Jump();
-                            usedAirDoubleJump = true;
-                            jumpBufferTimer = 0;
-                        }
+                        jumpBufferTimer = 0;
+                    }
+                    else if ((water = CollideFirst<Water>(Position + Vector2.UnitY * 2)) != null)
+                    {
+                        Jump();
+                        water.TopSurface.DoRipple(Position, 1);
+                        jumpBufferTimer = 0;
+                    }
+                    else if (!isInArena && !onGround && !usedAirDoubleJump)
+                    {
+                        Jump();
+                        usedAirDoubleJump = true;
+                        jumpBufferTimer = 0;
                     }
                 }
             }
@@ -3891,8 +4030,6 @@ namespace Celeste.Entities
             //                         > Ground Pound (down) > Aerial Combo
             //   Jump button:  vanilla jump/wall jump (above) > Dive Kick (down)
             //                 > Kirby Float (flaps left) > Air Drift (no flaps)
-            //                 Air abilities require a FRESH press — a buffered
-            //                 press is reserved for vanilla landing/wall jumps.
             //
             // Every accepted press consumes its buffer so one press can never
             // trigger two abilities.
@@ -3905,14 +4042,14 @@ namespace Celeste.Entities
                 if (Input.Dash.Pressed)
                 {
                     // Dash Attack: chain off an active dash-attack window
-                    if (DashAttacking && dashAttackCooldownTimer <= 0)
+                    if (CanFighterAttack && DashAttacking && dashAttackCooldownTimer <= 0)
                     {
                         Input.Dash.ConsumeBuffer();
                         return StDashAttack;
                     }
 
                     // Cyclone Slash: air spin when out of dashes
-                    if (kirby && !onGround && Dashes <= 0 && skillStamina >= CycloneSlashStaminaCost)
+                    if (CanFighterAttack && kirby && !onGround && Dashes <= 0 && skillStamina >= CycloneSlashStaminaCost)
                     {
                         Input.Dash.ConsumeBuffer();
                         return StCycloneSlash;
@@ -3932,7 +4069,7 @@ namespace Celeste.Entities
                     if (onGround)
                     {
                         // Slide Tackle: grab while ducking (Kirby's slide)
-                        if (kirby && Ducking && skillStamina >= SlideTackleStaminaCost)
+                        if (CanFighterAttack && kirby && Ducking && skillStamina >= SlideTackleStaminaCost)
                         {
                             Input.Grab.ConsumeBuffer();
                             return StSlideTackle;
@@ -3951,7 +4088,7 @@ namespace Celeste.Entities
                                     return StKirbyHammer;
                                 }
 
-                                if (skillStamina >= CounterStanceStaminaCost)
+                                if (CanFighterAttack && skillStamina >= CounterStanceStaminaCost)
                                 {
                                     Input.Grab.ConsumeBuffer();
                                     return StCounterStance;
@@ -3965,13 +4102,13 @@ namespace Celeste.Entities
                                 return StKirbyInhale;
                             }
 
-                            if (CombatEnabled && punchAttackCooldownTimer <= 0 && IsInCloseEncounter())
+                            if (CanFighterAttack && punchAttackCooldownTimer <= 0 && IsInCloseEncounter())
                             {
                                 Input.Grab.ConsumeBuffer();
                                 return StPunchAttack;
                             }
 
-                            if (CombatEnabled && combatSlashCooldownTimer <= 0)
+                            if (CanFighterAttack && combatSlashCooldownTimer <= 0)
                             {
                                 Input.Grab.ConsumeBuffer();
                                 return StCombatSlash;
@@ -3984,14 +4121,14 @@ namespace Celeste.Entities
                         // exists, otherwise Star Shot charge
                         if (kirby && Input.MoveY.Value == -1)
                         {
-                            if (skillHasAquaGrappleUnlocked && skillStamina >= AquaGrappleStaminaCost
+                            if (CanFighterAttack && skillHasAquaGrappleUnlocked && skillStamina >= AquaGrappleStaminaCost
                                 && TryFindGrappleAnchor(out skillGrappleTarget))
                             {
                                 Input.Grab.ConsumeBuffer();
                                 return StAquaGrapple;
                             }
 
-                            if (skillStamina >= StarShotStaminaCost)
+                            if (CanFighterAttack && skillStamina >= StarShotStaminaCost)
                             {
                                 Input.Grab.ConsumeBuffer();
                                 return StStarShot;
@@ -4006,7 +4143,7 @@ namespace Celeste.Entities
                         }
 
                         // Neutral air grab: Aerial Combo
-                        if (CombatEnabled && combatSlashCooldownTimer <= 0)
+                        if (CanFighterAttack && combatSlashCooldownTimer <= 0)
                         {
                             Input.Grab.ConsumeBuffer();
                             return StAerialCombo;
@@ -4027,9 +4164,7 @@ namespace Celeste.Entities
                     }
 
                     // Kirby Float: signature puff jump
-                    // Use controller's state if available, otherwise fall back to internal flap count
-                    bool canFloat = (kirbyController?.IsFlying == true) ||
-                                    (kirbyController == null && kirbyFlapCount > 0);
+                    bool canFloat = kirbyFlapCount > 0;
                     if (canFloat && Holding == null)
                     {
                         Input.Jump.ConsumeBuffer();
@@ -4103,7 +4238,7 @@ namespace Celeste.Entities
             climbNoMoveTimer = ClimbNoMoveTime;
             wallBoostTimer = 0;
             lastClimbMove = 0;
-            
+
             Input.Rumble(RumbleStrength.Medium, RumbleLength.Short);
 
             for (int i = 0; i < ClimbCheckDist; i++)
@@ -4115,7 +4250,7 @@ namespace Celeste.Entities
             // tell the thing we grabbed it
             var platform = SurfaceIndex.GetPlatformByPriority(CollideAll<Solid>(Position + Vector2.UnitX * (int)Facing, temp));
             if (platform != null)
-                Play(Sfxs.char_mad_grab, SurfaceIndex.Param, platform.GetWallSoundIndex(SelfPlayer, (int)Facing));
+                Play(Sfxs.char_kirb_grab, SurfaceIndex.Param, platform.GetWallSoundIndex(SelfPlayer, (int)Facing));
         }
 
         private void ClimbEnd()
@@ -4143,7 +4278,7 @@ namespace Celeste.Entities
         private int ClimbUpdate()
         {
             climbNoMoveTimer -= Engine.DeltaTime;
-            
+
             //Refill stamina on ground
             if (onGround)
                 Stamina = ClimbMaxStamina;
@@ -4162,7 +4297,6 @@ namespace Celeste.Entities
             //Dashing
             if (CanDash)
             {
-                Speed += LiftBoost;
                 return StartDash();
             }
 
@@ -4170,7 +4304,7 @@ namespace Celeste.Entities
             if (!Input.Grab.Check)
             {
                 Speed += LiftBoost;
-                Play(Sfxs.char_mad_grab_letgo);
+                Play(Sfxs.char_kirb_grab_letgo);
                 return StNormal;
             }
 
@@ -4183,7 +4317,7 @@ namespace Celeste.Entities
                     if (wallBoosting)
                     {
                         Speed += LiftBoost;
-                        Play(Sfxs.char_mad_grab_letgo);
+                        Play(Sfxs.char_kirb_grab_letgo);
                     }
                     else
                         ClimbHop();
@@ -4199,9 +4333,9 @@ namespace Celeste.Entities
                 wallBoosting = true;
 
                 if (conveyorLoopSfx == null)
-                    conveyorLoopSfx = Audio.Play(Sfxs.game_09_conveyor_activate, Position, "end", 0);
+                    conveyorLoopSfx = Audio.Play(Sfxs.game_18_conveyor_activate, Position, "end", 0);
                 Audio.Position(conveyorLoopSfx, Position);
-                
+
                 Speed.Y = Calc.Approach(Speed.Y, WallBoosterSpeed, WallBoosterAccel * Engine.DeltaTime);
                 LiftSpeed = Vector2.UnitY * Math.Max(Speed.Y, WallBoosterLiftSpeed);
                 Input.Rumble(RumbleStrength.Light, RumbleLength.Short);
@@ -4351,7 +4485,7 @@ namespace Celeste.Entities
             forceMoveXTimer = ClimbHopForceTime;
             fastJump = false;
             noWindTimer = ClimbHopNoWindTime;
-            Play(Sfxs.char_mad_climb_ledge);
+            Play(Sfxs.char_kirb_climb_ledge);
         }
 
         private bool SlipCheck(float addY = 0)
@@ -4398,6 +4532,7 @@ namespace Celeste.Entities
 
         public int StartDash()
         {
+            beforeDashSpeed = Speed;
             wasDashB = Dashes == 2;
             Dashes = Math.Max(0, Dashes - 1);
             Input.Dash.ConsumeBuffer();
@@ -4424,10 +4559,7 @@ namespace Celeste.Entities
             }
         }
 
-        public bool StartedDashing
-        {
-            get; private set;
-        }
+        public bool StartedDashing { get; private set; } = false;
 
         private void CallDashEvents()
         {
@@ -4450,20 +4582,20 @@ namespace Celeste.Entities
                         if (rightDashSound)
                         {
                             if (wasDashB)
-                                Play(Sfxs.char_mad_dash_pink_right);
+                                Play(Sfxs.char_kirb_dash_pink_right);
                             else
-                                Play(Sfxs.char_mad_dash_red_right);
+                                Play(Sfxs.char_kirb_dash_red_right);
                         }
                         else
                         {
                             if (wasDashB)
-                                Play(Sfxs.char_mad_dash_pink_left);
+                                Play(Sfxs.char_kirb_dash_pink_left);
                             else
-                                Play(Sfxs.char_mad_dash_red_left);
+                                Play(Sfxs.char_kirb_dash_red_left);
                         }
 
                         if (SwimCheck())
-                            Play(Sfxs.char_mad_water_dash_gen);
+                            Play(Sfxs.char_kirb_water_dash_gen);
                     }
 
                     //Dash Listeners
@@ -4499,7 +4631,6 @@ namespace Celeste.Entities
             Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
 
             dashAttackTimer = DashAttackTime;
-            beforeDashSpeed = Speed;
             Speed = Vector2.Zero;
             DashDir = Vector2.Zero;
 
@@ -4532,388 +4663,6 @@ namespace Celeste.Entities
                     if (hold.Check(SelfPlayer) && Pickup(hold))
                         return StPickup;
             }
-
-            if (DashDir.Y == 0)
-            {
-                //JumpThru Correction
-                foreach (JumpThru jt in Scene.Tracker.GetEntities<JumpThru>())
-                    if (CollideCheck(jt) && Bottom - jt.Top <= DashHJumpThruNudge)
-                        MoveVExact((int)(jt.Top - Bottom));
-
-                //Super Jump
-                if (CanUnDuck && Input.Jump.Pressed && jumpGraceTimer > 0)
-                {
-                    SuperJump();
-                    return StNormal;
-                }
-            }
-
-            if (DashDir.X == 0 && DashDir.Y == -1)
-            {
-                if (Input.Jump.Pressed && CanUnDuck)
-                {
-                    if (WallJumpCheck(1))
-                    {
-                        SuperWallJump(-1);
-                        return StNormal;
-                    }
-                    else if (WallJumpCheck(-1))
-                    {
-                        SuperWallJump(1);
-                        return StNormal;
-                    }
-                }
-            }
-            else
-            {
-                if (Input.Jump.Pressed && CanUnDuck)
-                {
-                    if (WallJumpCheck(1))
-                    {
-                        WallJump(-1);
-                        return StNormal;
-                    }
-                    else if (WallJumpCheck(-1))
-                    {
-                        WallJump(1);
-                        return StNormal;
-                    }
-                }
-            }
-
-            // Dash cancel into jump
-            if (Input.Jump.Pressed && CanUnDuck)
-            {
-                Jump();
-                Speed.X *= DashJumpCancelHorizontalMult;
-                jumpBufferTimer = 0;
-                return StNormal;
-            }
-
-            if (Speed != Vector2.Zero && level.OnInterval(0.02f))
-                level.ParticlesFG.Emit(wasDashB ? P_DashB : P_DashA, Center + Calc.Random.Range(Vector2.One *-2, Vector2.One * 2), DashDir.Angle());
-            return StDash;
-        }
-
-        private IEnumerator DashCoroutine()
-        {
-            yield return null;
-
-            var dir = lastAim;
-            if (OverrideDashDirection.HasValue)
-                dir = OverrideDashDirection.Value;
-
-            var newSpeed = dir * DashSpeed;
-            if (Math.Sign(beforeDashSpeed.X) == Math.Sign(newSpeed.X) && Math.Abs(beforeDashSpeed.X) > Math.Abs(newSpeed.X))
-                newSpeed.X = beforeDashSpeed.X;
-            Speed = newSpeed;
-
-            if (CollideCheck<Water>())
-                Speed *= SwimDashSpeedMult;
-
-            DashDir = dir;
-            SceneAs<Level>().DirectionalShake(DashDir, .2f);
-
-            if (DashDir.X != 0)
-                Facing = (Facings)Math.Sign(DashDir.X);
-
-            CallDashEvents();
-
-            //Feather particles
-            if (StateMachine.PreviousState == StStarFly)
-                level.Particles.Emit(FlyFeather.P_Boost, 12, Center, Vector2.One * 4, (-dir).Angle());
-
-            //Dash Slide
-            if (onGround && DashDir.X != 0 && DashDir.Y > 0 && Speed.Y > 0
-                && (!Inventory.DreamDash || (!CollideCheck<DreamBlock>(Position + Vector2.UnitY) && !CollideCheck<PhantomBlock>(Position + Vector2.UnitY))))
-            {
-                DashDir.X = Math.Sign(DashDir.X);
-                DashDir.Y = 0;
-                Speed.Y = 0;
-                Speed.X *= DodgeSlideSpeedMult;
-                Ducking = true;
-            }
-            
-            SlashFx.Burst(Center, DashDir.Angle());
-            CreateTrail();
-            dashTrailTimer = .08f;
-
-            //Swap Block check
-            if (DashDir.X != 0 && Input.Grab.Check)
-            {
-                var swapBlock = CollideFirst<SwapBlock>(Position + Vector2.UnitX * Math.Sign(DashDir.X));
-                if (swapBlock != null && swapBlock.Direction.X == Math.Sign(DashDir.X))
-                {
-                    StateMachine.State = StClimb;
-                    Speed = Vector2.Zero;
-                    yield break;
-                }
-            }
-
-            //Stick to Swap Blocks
-            Vector2 swapCancel = Vector2.One;
-            foreach (SwapBlock swapBlock in Scene.Tracker.GetEntities<SwapBlock>())
-            {
-                if (CollideCheck(swapBlock, Position + Vector2.UnitY))
-                {
-                    if (swapBlock != null && swapBlock.Swapping)
-                    {
-                        if (DashDir.X != 0 && swapBlock.Direction.X == Math.Sign(DashDir.X))
-                            Speed.X = swapCancel.X = 0;
-                        if (DashDir.Y != 0 && swapBlock.Direction.Y == Math.Sign(DashDir.Y))
-                            Speed.Y = swapCancel.Y = 0;
-                    }
-                }
-            }
-
-            yield return DashTime;
-
-            CreateTrail();
-
-            AutoJump = true;
-            AutoJumpTimer = 0;
-            if (DashDir.Y <= 0)
-            {
-                Speed = DashDir * EndDashSpeed;
-                Speed.X *= swapCancel.X;
-                Speed.Y *= swapCancel.Y;
-            }
-            if (Speed.Y < 0)
-                Speed.Y *= EndDashUpMult;
-            StateMachine.State = StNormal;
-        }
-
-        #endregion
-
-        #region Swim State
-
-        private const float SwimYSpeedMult = .5f;    
-        private const float SwimMaxRise = -60;
-        private const float SwimVDeccel = 600f;
-        private const float SwimMax = 80f;
-        private const float SwimUnderwaterMax = 60f;
-        private const float SwimAccel = 600f;
-        private const float SwimReduce = 400f;
-        private const float SwimDashSpeedMult = .75f;
-        
-        private bool SwimCheck()
-        {
-            return CollideCheck<Water>(Position + Vector2.UnitY * -8) && CollideCheck<Water>(Position);
-        }
-
-        private bool SwimUnderwaterCheck()
-        {
-            return CollideCheck<Water>(Position + Vector2.UnitY * -9);
-        }
-
-        private bool SwimJumpCheck()
-        {
-            return !CollideCheck<Water>(Position + Vector2.UnitY * -14);
-        }
-
-        private bool SwimRiseCheck()
-        {
-            return !CollideCheck<Water>(Position + Vector2.UnitY * -18);
-        }
-
-        private bool UnderwaterMusicCheck()
-        {
-            return CollideCheck<Water>(Position) && CollideCheck<Water>(Position + Vector2.UnitY * -12);
-        }
-
-        private void SwimBegin()
-        {
-            if (Speed.Y > 0)
-                Speed.Y *= SwimYSpeedMult;
-
-            Stamina = ClimbMaxStamina;
-
-
-        }
-
-        private int SwimUpdate()
-        {
-            if (!SwimCheck())
-                return StNormal;
-
-            //Never duck if possible
-            if (CanUnDuck)
-                Ducking = false;
-
-            //Dashing
-            if (CanDash)
-            {
-                //Dashes = Math.Max(0, Dashes - 1);
-                Input.Dash.ConsumeBuffer();
-                return StDash;
-            }
-
-            bool underwater = SwimUnderwaterCheck();
-
-            //Climbing
-            if (!underwater && Speed.Y >= 0 && Input.Grab.Check && !IsTired && CanUnDuck)
-            {
-                //Climbing
-                if (Math.Sign(Speed.X) != -(int)Facing && ClimbCheck((int)Facing))
-                {
-                    if (!MoveVExact(-1))
-                    {
-                        Ducking = false;
-                        return StClimb;
-                    }
-                }
-            }
-
-            //Movement
-            {
-                Vector2 move = Input.Aim.Value;
-                move = move.SafeNormalize();
-
-                float maxX = underwater ? SwimUnderwaterMax : SwimMax;
-                float maxY = SwimMax;
-
-                if (Math.Abs(Speed.X) > SwimMax && Math.Sign(Speed.X) == Math.Sign(move.X))
-                    Speed.X = Calc.Approach(Speed.X, maxX * move.X, SwimReduce * Engine.DeltaTime);  //Reduce back from beyond the max speed
-                else
-                    Speed.X = Calc.Approach(Speed.X, maxX * move.X, SwimAccel * Engine.DeltaTime);   //Approach the max speed
-
-                if (move.Y == 0 && SwimRiseCheck())
-                {
-                    //Rise if close to the surface and not pressing a direction
-                    Speed.Y = Calc.Approach(Speed.Y, SwimMaxRise, SwimAccel * Engine.DeltaTime);
-                }
-                else if (move.Y >= 0 || SwimUnderwaterCheck())
-                {
-                    if (Math.Abs(Speed.Y) > SwimMax && Math.Sign(Speed.Y) == Math.Sign(move.Y))
-                        Speed.Y = Calc.Approach(Speed.Y, maxY * move.Y, SwimReduce * Engine.DeltaTime);  //Reduce back from beyond the max speed
-                    else
-                        Speed.Y = Calc.Approach(Speed.Y, maxY * move.Y, SwimAccel * Engine.DeltaTime);   //Approach the max speed
-                }
-            }
-
-            //Popping up onto ledge
-            const int ledgePopDist = -3;
-            if (!underwater && moveX != 0
-                && CollideCheck<Solid>(Position + Vector2.UnitX * moveX)
-                && !CollideCheck<Solid>(Position + new Vector2(moveX, ledgePopDist)))
-            {
-                ClimbHop();
-            }
-
-            //Jumping
-            if (Input.Jump.Pressed && SwimJumpCheck())
-            {
-                Jump();
-                return StNormal;
-            }
-
-            return StSwim;
-        }
-
-        #endregion
-
-        #region Boost State
-
-        private Vector2 boostTarget;
-        private bool boostRed;
-
-        public void Boost(Booster booster)
-        {
-            StateMachine.State = StBoost;
-            Speed = Vector2.Zero;
-            boostTarget = booster.Center;
-            boostRed = false;
-            lastBooster = CurrentBooster = booster;
-        }
-
-        public void RedBoost(Booster booster)
-        {
-            StateMachine.State = StBoost;
-            Speed = Vector2.Zero;
-            boostTarget = booster.Center;
-            boostRed = true;
-            lastBooster = CurrentBooster = booster;
-        }
-
-        private void BoostBegin()
-        {
-            RefillDash();
-            RefillStamina();
-        }
-
-        private void BoostEnd()
-        {
-            var to = (boostTarget - Collider.Center).Floor();
-            MoveToX(to.X);
-            MoveToY(to.Y);
-        }
-
-        private int BoostUpdate()
-        {
-            Vector2 targetAdd = Input.Aim.Value * 3;
-            var to = Calc.Approach(ExactPosition, boostTarget - Collider.Center + targetAdd, BoostMoveSpeed * Engine.DeltaTime);
-            MoveToX(to.X);
-            MoveToY(to.Y);
-
-            if (Input.Dash.Pressed)
-            {
-                Input.Dash.ConsumePress();
-                if (boostRed)
-                    return StRedDash;
-                else
-                    return StDash;
-            }
-
-            return StBoost;
-        }
-
-        private IEnumerator BoostCoroutine()
-        {
-            yield return BoostTime;
-
-            if (boostRed)
-                StateMachine.State = StRedDash;
-            else
-                StateMachine.State = StDash;
-        }
-
-        #endregion
-
-        #region Red Dash State
-
-        private void RedDashBegin()
-        {
-            calledDashEvents = false;
-            dashStartedOnGround = false;
-
-            CelesteGame.Freeze(.05f);
-            Dust.Burst(Position, Calc.Angle(-DashDir), 8);
-            dashCooldownTimer = DashCooldown;
-            dashRefillCooldownTimer = DashRefillCooldown;
-            StartedDashing = true;
-
-            level.Displacement.AddBurst(Center, .5f, 0, 80, .666f, Ease.QuadOut, Ease.QuadOut);
-            
-            Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
-
-            dashAttackTimer = DashAttackTime;
-            Speed = Vector2.Zero;
-
-            if (!onGround && Ducking && CanUnDuck)
-                Ducking = false;
-        }
-
-        private void RedDashEnd()
-        {
-            CallDashEvents();
-        }
-
-        private int RedDashUpdate()
-        {
-            StartedDashing = false;
-
-            if (CanDash)
-                return StartDash();
 
             if (DashDir.Y == 0)
             {
@@ -4962,214 +4711,366 @@ namespace Celeste.Entities
                 }
             }
 
+            // Dash cancel into jump
+            if (Input.Jump.Pressed && CanUnDuck)
+            {
+                Jump();
+                Speed.X *= DashJumpCancelHorizontalMult;
+                jumpBufferTimer = 0;
+                return StNormal;
+            }
+
+            if (Speed != Vector2.Zero && level.OnInterval(0.02f))
+                level.ParticlesFG.Emit(wasDashB ? P_DashB : P_DashA, Center + Calc.Random.Range(Vector2.One * -2, Vector2.One * 2), DashDir.Angle());
+            return StDash;
+        }
+
+        private IEnumerator DashCoroutine()
+        {
+            yield return null;
+
+            var dir = lastAim;
+            if (OverrideDashDirection.HasValue)
+                dir = OverrideDashDirection.Value;
+
+            var newSpeed = dir * DashSpeed;
+            if (Math.Sign(beforeDashSpeed.X) == Math.Sign(newSpeed.X) && Math.Abs(beforeDashSpeed.X) > Math.Abs(newSpeed.X))
+                newSpeed.X = beforeDashSpeed.X;
+            Speed = newSpeed;
+
+            if (CollideCheck<Water>())
+                Speed *= SwimDashSpeedMult;
+
+            DashDir = dir;
+            SceneAs<Level>().DirectionalShake(DashDir, .2f);
+
+            CallDashEvents();
+
+            //Feather particles
+            if (StateMachine.PreviousState == StStarFly)
+                level.Particles.Emit(FlyFeather.P_Boost, 12, Center, Vector2.One * 4, (-dir).Angle());
+
+            //Stick to Swap Blocks
+            Vector2 swapCancel = Vector2.One;
+            foreach (SwapBlock swapBlock in Scene.Tracker.GetEntities<SwapBlock>())
+            {
+                if (CollideCheck(swapBlock, Position + Vector2.UnitY))
+                {
+                    if (swapBlock != null && swapBlock.Swapping)
+                    {
+                        if (DashDir.X != 0 && swapBlock.Direction.X == Math.Sign(DashDir.X))
+                            Speed.X = swapCancel.X = 0;
+                        if (DashDir.Y != 0 && swapBlock.Direction.Y == Math.Sign(DashDir.Y))
+                            Speed.Y = swapCancel.Y = 0;
+                    }
+                }
+            }
+
+            yield return DashTime;
+
+            CreateTrail();
+
+            AutoJump = true;
+            AutoJumpTimer = 0;
+            if (DashDir.Y <= 0)
+            {
+                Speed = DashDir * EndDashSpeed;
+                Speed.X *= swapCancel.X;
+                Speed.Y *= swapCancel.Y;
+            }
+            if (Speed.Y < 0)
+                Speed.Y *= EndDashUpMult;
+
+            Sprite.Play(PlayerSprite.FallFast);
+
+            var climbing = false;
+            while (!OnGround() && !climbing)
+            {
+                Speed.Y = Calc.Approach(Speed.Y, MaxFall, Gravity * Engine.DeltaTime);
+                if (CollideCheck<Solid>(Position + new Vector2(1, 0)))
+                    climbing = true;
+                if (Top > level.Bounds.Bottom)
+                {
+                    level.CancelCutscene();
+                    Die(Vector2.Zero);
+                }
+                yield return null;
+            }
+
+            if (climbing)
+            {
+                Sprite.Play(PlayerSprite.WallSlide);
+                Dust.Burst(Position + new Vector2(4, -6), Calc.Angle(new Vector2(-4, 0)), 1);
+                Speed.Y = 0;
+                yield return 0.2f;
+
+                Sprite.Play(PlayerSprite.ClimbUp);
+                while (CollideCheck<Solid>(Position + new Vector2(1, 0)))
+                {
+                    Y += ClimbUpSpeed * Engine.DeltaTime;
+                    yield return null;
+                }
+
+                Play(Sfxs.char_kirb_climb_ledge);
+                Sprite.Play(PlayerSprite.JumpFast);
+                Speed.Y = JumpSpeed;
+
+                while (!OnGround())
+                {
+                    Speed.Y = Calc.Approach(Speed.Y, MaxFall, Gravity * Engine.DeltaTime);
+                    Speed.X = 20f;
+                    yield return null;
+                }
+
+                Speed.X = 0;
+                Speed.Y = 0;
+
+                Sprite.Play(PlayerSprite.Walk);
+                for (float time = 0f; time < 0.5f; time += Engine.DeltaTime)
+                {
+                    X += 32 * Engine.DeltaTime;
+                    yield return null;
+                }
+
+                Sprite.Play(PlayerSprite.Tired);
+            }
+            else
+            {
+                Sprite.Play(PlayerSprite.Tired);
+                Speed.Y = 0;
+
+                while (Speed.X != 0)
+                {
+                    Speed.X = Calc.Approach(Speed.X, 0, 240 * Engine.DeltaTime);
+                    if (Scene.OnInterval(0.04f))
+                        Dust.Burst(BottomCenter + new Vector2(0, -2), Calc.UpLeft, 4);
+                    yield return null;
+                }
+            }
+        }
+
+        #endregion
+
+        #region Boost State
+
+        public void Boost(Booster booster)
+        {
+            StateMachine.State = StBoost;
+            Speed = Vector2.Zero;
+            boostTarget = booster.Center;
+            boostRed = false;
+            LastBooster = (CurrentBooster = booster);
+        }
+
+        public void RedBoost(Booster booster)
+        {
+            StateMachine.State = StBoost;
+            Speed = Vector2.Zero;
+            boostTarget = booster.Center;
+            boostRed = true;
+            LastBooster = (CurrentBooster = booster);
+        }
+
+        private void BoostBegin()
+        {
+            RefillDash();
+            RefillStamina();
+        }
+
+        private void BoostEnd()
+        {
+            Vector2 vector = (boostTarget - Collider.Center).Floor();
+            MoveToX(vector.X);
+            MoveToY(vector.Y);
+        }
+
+        private int BoostUpdate()
+        {
+            Vector2 aim = Input.Aim.Value * 3f;
+            Vector2 target = Calc.Approach(ExactPosition, boostTarget - Collider.Center + aim, 80f * Engine.DeltaTime);
+            MoveToX(target.X);
+            MoveToY(target.Y);
+            if (Input.DashPressed || Input.CrouchDashPressed)
+            {
+                demoDashed = Input.CrouchDashPressed;
+                Input.Dash.ConsumePress();
+                Input.CrouchDash.ConsumeBuffer();
+                if (boostRed)
+                    return StRedDash;
+                return StDash;
+            }
+            return StBoost;
+        }
+
+        private IEnumerator BoostCoroutine()
+        {
+            yield return 0.25f;
+            if (boostRed)
+                StateMachine.State = StRedDash;
+            else
+                StateMachine.State = StDash;
+        }
+
+        #endregion
+
+        #region Red Dash State
+
+        private void RedDashBegin()
+        {
+            calledDashEvents = false;
+            dashStartedOnGround = false;
+            CelesteGame.Freeze(0.05f);
+            Dust.Burst(Position, (-DashDir).Angle(), 8);
+            dashCooldownTimer = DashCooldown;
+            dashRefillCooldownTimer = DashRefillCooldown;
+            StartedDashing = true;
+            level.Displacement.AddBurst(Center, 0.5f, 0f, 80f, 0.666f, Ease.QuadOut, Ease.QuadOut);
+            Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
+            dashAttackTimer = DashAttackTime;
+            gliderBoostTimer = 0.55f;
+            DashDir = (Speed = Vector2.Zero);
+            if (!onGround && CanUnDuck)
+                Ducking = false;
+        }
+
+        private void RedDashEnd()
+        {
+            CallDashEvents();
+        }
+
+        private int RedDashUpdate()
+        {
+            StartedDashing = false;
+            gliderBoostTimer = 0.05f;
+            if (CanDash)
+                return StartDash();
+            if (DashDir.Y == 0)
+            {
+                foreach (JumpThru jt in Scene.Tracker.GetEntities<JumpThru>())
+                    if (CollideCheck(jt) && Bottom - jt.Top <= 6f)
+                        MoveVExact((int)(jt.Top - Bottom));
+                if (CanUnDuck && Input.Jump.Pressed && jumpGraceTimer > 0f)
+                {
+                    SuperJump();
+                    return StNormal;
+                }
+            }
+            if (Input.Jump.Pressed && CanUnDuck)
+            {
+                if (WallJumpCheck(1))
+                {
+                    if (Facing == Facings.Right && Input.Grab.Check && Stamina > 0f && Holding == null && !ClimbBlocker.Check(Scene, this, Position + Vector2.UnitX * 3f))
+                        ClimbJump();
+                    else
+                        WallJump(-1);
+                    return StNormal;
+                }
+                if (WallJumpCheck(-1))
+                {
+                    if (Facing == Facings.Left && Input.Grab.Check && Stamina > 0f && Holding == null && !ClimbBlocker.Check(Scene, this, Position + Vector2.UnitX * -3f))
+                        ClimbJump();
+                    else
+                        WallJump(1);
+                    return StNormal;
+                }
+            }
             return StRedDash;
         }
 
         private IEnumerator RedDashCoroutine()
         {
             yield return null;
-
-            Speed = lastAim * DashSpeed;
-            DashDir = lastAim;
-            SceneAs<Level>().DirectionalShake(DashDir, .2f);
-
-            CallDashEvents();
+            Speed = lastAim.SafeNormalize() * 240f;
+            gliderBoostDir = (DashDir = lastAim);
+            SceneAs<Level>().DirectionalShake(DashDir, 0.2f);
+            if (DashDir.X != 0f)
+                Facing = (Facings)Math.Sign(DashDir.X);
         }
 
         #endregion
 
-        #region Hit Squash State
-
-        private const float HitSquashNoMoveTime = .1f;
-        private const float HitSquashFriction = 800;
-
-        private float hitSquashNoMoveTimer;
+        #region HitSquash State
 
         private void HitSquashBegin()
         {
-            hitSquashNoMoveTimer = HitSquashNoMoveTime;
+            hitSquashNoMoveTimer = 0.1f;
         }
 
+        [MethodImpl(MethodImplOptions.NoInlining)]
         private int HitSquashUpdate()
         {
-            Speed.X = Calc.Approach(Speed.X, 0, HitSquashFriction * Engine.DeltaTime);
-            Speed.Y = Calc.Approach(Speed.Y, 0, HitSquashFriction * Engine.DeltaTime);
-
+            Speed.X = Calc.Approach(Speed.X, 0f, 800f * Engine.DeltaTime);
+            Speed.Y = Calc.Approach(Speed.Y, 0f, 800f * Engine.DeltaTime);
             if (Input.Jump.Pressed)
             {
                 if (onGround)
+                {
                     Jump();
+                }
                 else if (WallJumpCheck(1))
-                    WallJump(-1);
+                {
+                    if (Facing == Facings.Right && Input.GrabCheck && Stamina > 0f && Holding == null && !ClimbBlocker.Check(Scene, this, Position + Vector2.UnitX * 3f))
+                        ClimbJump();
+                    else
+                        WallJump(-1);
+                }
                 else if (WallJumpCheck(-1))
-                    WallJump(1);
+                {
+                    if (Facing == Facings.Left && Input.GrabCheck && Stamina > 0f && Holding == null && !ClimbBlocker.Check(Scene, this, Position + Vector2.UnitX * -3f))
+                        ClimbJump();
+                    else
+                        WallJump(1);
+                }
                 else
+                {
                     Input.Jump.ConsumeBuffer();
-
+                }
                 return StNormal;
             }
-
             if (CanDash)
                 return StartDash();
-
-            if (Input.Grab.Check && ClimbCheck((int)Facing))
+            if (Input.GrabCheck && ClimbCheck((int)Facing))
                 return StClimb;
-
-            if (hitSquashNoMoveTimer > 0)
+            if (hitSquashNoMoveTimer > 0f)
+            {
                 hitSquashNoMoveTimer -= Engine.DeltaTime;
-            else
-                return StNormal;
-
-            return StHitSquash;
+                return StHitSquash;
+            }
+            return StNormal;
         }
 
         #endregion
 
         #region Launch State
 
-        private float? launchApproachX;
-
-        public Vector2 ExplodeLaunch(Vector2 from, bool snapUp = true)
-        {
-            Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
-            CelesteGame.Freeze(.1f);
-            launchApproachX = null;
-
-            Vector2 normal = (Center - from).SafeNormalize(-Vector2.UnitY);
-            var dot = Vector2.Dot(normal, Vector2.UnitY);
-
-            if (snapUp && dot <= -.7f)
-            {
-                //If close to up, make it up
-                normal.X = 0;
-                normal.Y = -1;
-            }
-            else if (dot <= .55f && dot >= -.55f)
-            {
-                //If partially down, make it sideways
-                normal.Y = 0;
-                normal.X = Math.Sign(normal.X);
-            }
-
-            Speed = LaunchSpeed * normal;
-            if (Speed.Y <= 50f)
-            {
-                Speed.Y = Math.Min(-150f, Speed.Y);
-                AutoJump = true;
-            }
-
-            if (Input.MoveX.Value == Math.Sign(Speed.X))
-                Speed.X *= 1.2f;
-
-            SlashFx.Burst(Center, Speed.Angle());
-            if (!Inventory.NoRefills)
-                RefillDash();
-            RefillStamina();
-            dashCooldownTimer = DashCooldown;
-            StateMachine.State = StLaunch;
-
-            return normal;
-        }
-
-        public void FinalBossPushLaunch(int dir)
-        {
-            launchApproachX = null;
-            Speed.X = .9f * dir * LaunchSpeed;
-            Speed.Y = -150;
-            AutoJump = true;
-
-            Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
-            SlashFx.Burst(Center, Speed.Angle());
-            RefillDash();
-            RefillStamina();
-            dashCooldownTimer = .28f;
-            StateMachine.State = StLaunch;
-        }
-
-        public void BadelineBoostLaunch(float atX)
-        {
-            launchApproachX = atX;
-            Speed.X = 0;
-            Speed.Y = -330f;
-            AutoJump = true;
-
-            SlashFx.Burst(Center, Speed.Angle());
-            RefillDash();
-            RefillStamina();
-            dashCooldownTimer = DashCooldown;
-            StateMachine.State = StLaunch;
-        }
-
         private void LaunchBegin()
         {
             launched = true;
         }
 
+        [MethodImpl(MethodImplOptions.NoInlining)]
         private int LaunchUpdate()
         {
-            //Approach X
             if (launchApproachX.HasValue)
-                MoveTowardsX(launchApproachX.Value, 60 * Engine.DeltaTime);
-
-            //Dashing
+                MoveTowardsX(launchApproachX.Value, 60f * Engine.DeltaTime);
             if (CanDash)
                 return StartDash();
-
-            //Decceleration
-            if (Speed.Y < 0)
-                Speed.Y = Calc.Approach(Speed.Y, MaxFall, Gravity * .5f * Engine.DeltaTime);
+            if (Input.GrabCheck && !IsTired && !Ducking)
+            {
+                foreach (Holdable component in Scene.Tracker.GetComponents<Holdable>())
+                {
+                    if (component.Check(SelfPlayer) && Pickup(component))
+                        return StPickup;
+                }
+            }
+            if (Speed.Y < 0f)
+                Speed.Y = Calc.Approach(Speed.Y, 160f, 450f * Engine.DeltaTime);
             else
-                Speed.Y = Calc.Approach(Speed.Y, MaxFall, Gravity * .25f * Engine.DeltaTime);
-            Speed.X = Calc.Approach(Speed.X, 0, RunAccel * .2f * Engine.DeltaTime);
-
-            if (Speed.Length() < LaunchCancelThreshold)
+                Speed.Y = Calc.Approach(Speed.Y, 160f, 225f * Engine.DeltaTime);
+            Speed.X = Calc.Approach(Speed.X, 0f, 200f * Engine.DeltaTime);
+            if (Speed.Length() < 220f)
                 return StNormal;
-            else
-                return StLaunch;
-        }
-
-        #endregion
-
-        #region Summit Launch State
-
-        private float summitLaunchTargetX;
-        private float summitLaunchParticleTimer;
-
-        public void SummitLaunch(float targetX)
-        {
-            summitLaunchTargetX = targetX;
-
-            StateMachine.State = StSummitLaunch;
-        }
-
-        private void SummitLaunchBegin()
-        {
-            wallBoostTimer = 0;
-            Sprite.Play("launch");
-            Speed = -Vector2.UnitY * DashSpeed;
-            summitLaunchParticleTimer = .4f;
-        }
-
-        private int SummitLaunchUpdate()
-        {
-            summitLaunchParticleTimer -= Engine.DeltaTime;
-            if (summitLaunchParticleTimer > 0 && Scene.OnInterval(.03f))
-                level.ParticlesFG.Emit(BadelineBoost.P_Move, 1, Center, Vector2.One * 4);
-
-            Facing = Facings.Right;
-            MoveTowardsX(summitLaunchTargetX, 20 * Engine.DeltaTime);
-            Speed = -Vector2.UnitY * DashSpeed;
-            if (level.OnInterval(0.2f))
-                level.Add(Engine.Pooler.Create<SpeedRing>().Init(Center, Calc.Down, Color.White));
-            return StSummitLaunch;
-        }
-
-        public void StopSummitLaunch()
-        {
-            StateMachine.State = StNormal;
-            Speed.Y = BounceSpeed;
-            AutoJump = true;
-            varJumpSpeed = Speed.Y;
+            return StLaunch;
         }
 
         #endregion
@@ -5178,287 +5079,349 @@ namespace Celeste.Entities
 
         private IEnumerator PickupCoroutine()
         {
-            Play(Sfxs.char_mad_crystaltheo_lift);
+            Play(Sfxs.char_kirb_crystaltheo_lift);
             Input.Rumble(RumbleStrength.Medium, RumbleLength.Short);
-
-            Vector2 oldSpeed = Speed;
-            float varJump = varJumpTimer;
+            if (Holding != null && Holding.SlowFall && ((gliderBoostTimer - 0.16f > 0f && gliderBoostDir.Y < 0f) || (Speed.Length() > 180f && Speed.Y <= 0f)))
+            {
+                Audio.Play("event:/DZ/new_content/game/19_farewell/glider_platform_dissipate", Position);
+            }
+            var oldSpeed = Speed;
+            var varJump = varJumpTimer;
             Speed = Vector2.Zero;
-
-            Vector2 begin = Holding.Entity.Position - Position;
-            Vector2 end = CarryOffsetTarget;
-            Vector2 control = new Vector2(begin.X + Math.Sign(begin.X) * 2, CarryOffsetTarget.Y - 2);
-            SimpleCurve curve = new SimpleCurve(begin, end, control);
-
+            var begin = Holding.Entity.Position - Position;
+            var carryOffsetTarget = CarryOffsetTarget;
+            var curve = new SimpleCurve(control: new Vector2(begin.X + Math.Sign(begin.X) * 2, CarryOffsetTarget.Y - 2f), begin: begin, end: carryOffsetTarget);
             carryOffset = begin;
-            var tween = Tween.Create(Tween.TweenMode.Oneshot, Ease.CubeInOut, .16f, true);
-            tween.OnUpdate = (t) =>
+            var tween = Tween.Create(Tween.TweenMode.Oneshot, Ease.CubeInOut, 0.16f, start: true);
+            tween.OnUpdate = t =>
             {
                 carryOffset = curve.GetPoint(t.Eased);
             };
             Add(tween);
             yield return tween.Wait();
-
             Speed = oldSpeed;
-            Speed.Y = Math.Min(Speed.Y, 0);
+            Speed.Y = Math.Min(Speed.Y, 0f);
             varJumpTimer = varJump;
             StateMachine.State = StNormal;
-        }
+            if (Holding != null && Holding.SlowFall)
+            {
+                if (gliderBoostTimer > 0f && gliderBoostDir.Y < 0f)
+                {
+                    Input.Rumble(RumbleStrength.Medium, RumbleLength.Short);
+                    gliderBoostTimer = 0f;
+                    Speed.Y = Math.Min(Speed.Y, -240f * Math.Abs(gliderBoostDir.Y));
+                }
+                else if (Speed.Y < 0f)
+                {
+                    Speed.Y = Math.Min(Speed.Y, -105f);
+                }
+                    }
+                }
 
         #endregion
 
         #region Dream Dash State
 
-        private DreamBlock dreamBlock;
-        // Dream-dash target when dashing through a PhantomBlock (which is NOT a DreamBlock,
-        // so it can't be stored in `dreamBlock`).  Tracked separately and handled in parallel
-        // in DreamDashCheck / DreamDashUpdate / DreamDashEnd.
-        private PhantomBlock phantomBlock;
-        private SoundSource dreamSfxLoop;
-        private bool dreamJump;
-
+        [MethodImpl(MethodImplOptions.NoInlining)]
         private void DreamDashBegin()
         {
             if (dreamSfxLoop == null)
                 Add(dreamSfxLoop = new SoundSource());
-
-            Speed = DashDir * DreamDashSpeed;
+            Speed = DashDir * 240f;
             TreatNaive = true;
-            Depth = Depths.PlayerDreamDashing;
-            dreamDashCanEndTimer = DreamDashMinTime;
-            Stamina = ClimbMaxStamina;
+            Depth = -12000;
+            dreamDashCanEndTimer = 0.1f;
+            Stamina = 110f;
             dreamJump = false;
-
-            Play(Sfxs.char_mad_dreamblock_enter);
-            Loop(dreamSfxLoop, Sfxs.char_mad_dreamblock_travel);
+            Play(Sfxs.char_kirb_dreamblock_enter);
+            Loop(dreamSfxLoop, Sfxs.char_kirb_dreamblock_travel);
         }
 
+        [MethodImpl(MethodImplOptions.NoInlining)]
         private void DreamDashEnd()
         {
-            Depth = Depths.Player;
+            Depth = 0;
             if (!dreamJump)
             {
                 AutoJump = true;
-                AutoJumpTimer = 0;
+                AutoJumpTimer = 0f;
             }
             if (!Inventory.NoRefills)
                 RefillDash();
             RefillStamina();
             TreatNaive = false;
-
             if (dreamBlock != null)
             {
-                if (DashDir.X != 0)
+                if (DashDir.X != 0f)
                 {
-                    jumpGraceTimer = JumpGraceTime;
+                    jumpGraceTimer = 0.1f;
                     dreamJump = true;
                 }
                 else
-                    jumpGraceTimer = 0;
-
+                {
+                    jumpGraceTimer = 0f;
+                }
                 dreamBlock.OnPlayerExit(SelfPlayer);
                 dreamBlock = null;
             }
-            else if (phantomBlock != null)
-            {
-                if (DashDir.X != 0)
-                {
-                    jumpGraceTimer = JumpGraceTime;
-                    dreamJump = true;
-                }
-                else
-                    jumpGraceTimer = 0;
-
-                phantomBlock.OnPlayerExit(SelfPlayer);
-                phantomBlock = null;
-            }
-
             Stop(dreamSfxLoop);
-            Play(Sfxs.char_mad_dreamblock_exit);
+            Play(Sfxs.char_kirb_dreamblock_exit);
             Input.Rumble(RumbleStrength.Medium, RumbleLength.Short);
         }
 
+        [MethodImpl(MethodImplOptions.NoInlining)]
         private int DreamDashUpdate()
         {
             Input.Rumble(RumbleStrength.Light, RumbleLength.Medium);
-
-            var oldPos = Position;
+            var position = Position;
             NaiveMove(Speed * Engine.DeltaTime);
-            if (dreamDashCanEndTimer > 0)
+            if (dreamDashCanEndTimer > 0f)
                 dreamDashCanEndTimer -= Engine.DeltaTime;
 
             var block = CollideFirst<DreamBlock>();
-            // PhantomBlock is not a DreamBlock, so check it separately when no DreamBlock
-            // is overlapping.  While inside a PhantomBlock we must take the "inside block"
-            // branch, otherwise DreamDashedIntoSolid() would see the PhantomBlock (a Solid)
-            // and kill the player.
-            PhantomBlock phantom = (block == null) ? CollideFirst<PhantomBlock>() : null;
-
-            if (block == null && phantom == null)
+            if (block == null)
             {
                 if (DreamDashedIntoSolid())
                 {
-                    if ((SaveData.Instance.AssistMode && SaveData.Instance.Assists.Invincible)
-                        || DZModule.Settings?.GentleBreezeMode == true)
+                    if (SaveData.Instance.Assists.Invincible)
                     {
-                        Position = oldPos;
-                        Speed *= -1;
+                        Position = position;
+                        Speed *= -1f;
                         Play(Sfxs.game_assist_dreamblockbounce);
                     }
                     else
+                    {
                         Die(Vector2.Zero);
+                    }
                 }
-                else if (dreamDashCanEndTimer <= 0)
+                else if (dreamDashCanEndTimer <= 0f)
                 {
-                    CelesteGame.Freeze(.05f);
-
-                    if (Input.Jump.Pressed && DashDir.X != 0)
+                    Celeste.Freeze(0.05f);
+                    if (Input.Jump.Pressed && DashDir.X != 0f)
                     {
                         dreamJump = true;
                         Jump();
                     }
-                    else
+                    else if (DashDir.Y >= 0f || DashDir.X != 0f)
                     {
-                        bool left = ClimbCheck(-1);
-                        bool right = ClimbCheck(1);
+                        if (DashDir.X > 0f && CollideCheck<Solid>(Position - Vector2.UnitX * 5f))
+                            MoveHExact(-5);
+                        else if (DashDir.X < 0f && CollideCheck<Solid>(Position + Vector2.UnitX * 5f))
+                            MoveHExact(5);
 
-                        if (Input.Grab.Check && (DashDir.Y >= 0 || DashDir.X != 0) && ((moveX == 1 && right) || (moveX == -1 && left)))
+                        bool canClimbLeft = ClimbCheck(-1);
+                        bool canClimbRight = ClimbCheck(1);
+                        if (Input.GrabCheck && ((moveX == 1 && canClimbRight) || (moveX == -1 && canClimbLeft)))
                         {
                             Facing = (Facings)moveX;
                             return StClimb;
                         }
                     }
-
                     return StNormal;
                 }
             }
             else
             {
-                Collider clipCollider;
-                if (block != null)
-                {
-                    dreamBlock = block;
-                    clipCollider = dreamBlock.Collider;
-                }
-                else
-                {
-                    phantomBlock = phantom;
-                    clipCollider = phantomBlock.Collider;
-                }
-
+                dreamBlock = block;
                 if (Scene.OnInterval(0.1f))
                     CreateTrail();
-
-                //Displacement effect
                 if (level.OnInterval(0.04f))
                 {
-                    var displacement = level.Displacement.AddBurst(Center, .3f, 0f, 40f);
-                    displacement.WorldClipCollider = clipCollider;
-                    displacement.WorldClipPadding = 2;
+                    var burst = level.Displacement.AddBurst(Center, 0.3f, 0f, 40f);
+                    burst.WorldClipCollider = dreamBlock.Collider;
+                    burst.WorldClipPadding = 2;
                 }
             }
-
             return StDreamDash;
         }
 
+        [MethodImpl(MethodImplOptions.NoInlining)]
         private bool DreamDashedIntoSolid()
         {
             if (CollideCheck<Solid>())
             {
-                for (int x = 1; x <= DreamDashEndWiggle; x++)
+                for (int i = 1; i <= 5; i++)
                 {
-                    for (int xm = -1; xm <= 1; xm += 2)
+                    for (int j = -1; j <= 1; j += 2)
                     {
-                        for (int y = 1; y <= DreamDashEndWiggle; y++)
+                        for (int k = 1; k <= 5; k++)
                         {
-                            for (int ym = -1; ym <= 1; ym += 2)
+                            for (int l = -1; l <= 1; l += 2)
                             {
-                                Vector2 add = new Vector2(x * xm, y * ym);
-                                if (!CollideCheck<Solid>(Position + add))
+                                var offset = new Vector2(i * j, k * l);
+                                if (!CollideCheck<Solid>(Position + offset))
                                 {
-                                    Position += add;
+                                    Position += offset;
                                     return false;
                                 }
                             }
                         }
                     }
                 }
-
                 return true;
             }
-            else
-                return false;
+            return false;
+        }
+
+        #endregion
+
+        #region Summit Launch State
+
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private void SummitLaunchBegin()
+        {
+            wallBoostTimer = 0f;
+            Sprite.Play("launch");
+            Speed = -Vector2.UnitY * 240f;
+            summitLaunchParticleTimer = 0.4f;
+        }
+
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private int SummitLaunchUpdate()
+        {
+            summitLaunchParticleTimer -= Engine.DeltaTime;
+            if (summitLaunchParticleTimer > 0f && Scene.OnInterval(0.03f))
+                level.ParticlesFG.Emit(BadelineBoost.P_Move, 1, Center, Vector2.One * 4f);
+
+            Facing = Facings.Right;
+            MoveTowardsX(summitLaunchTargetX, 20f * Engine.DeltaTime);
+            Speed = -Vector2.UnitY * 240f;
+            if (level.OnInterval(0.2f))
+                level.Add(Engine.Pooler.Create<SpeedRing>().Init(Center, MathF.PI / 2f, Color.White));
+
+            var spinner = Scene.CollideFirst<CrystalStaticSpinner>(new Rectangle((int)(X - 4f), (int)(Y - 40f), 8, 12));
+            if (spinner != null)
+            {
+                spinner.Destroy();
+                level.Shake();
+                Input.Rumble(RumbleStrength.Medium, RumbleLength.Short);
+                Celeste.Freeze(0.01f);
+            }
+            return StSummitLaunch;
+        }
+
+        #endregion
+
+        #region Dummy State
+
+        private void DummyBegin()
+        {
+            DummyMoving = false;
+            DummyGravity = true;
+            DummyAutoAnimate = true;
+        }
+
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private int DummyUpdate()
+        {
+            if (CanUnDuck)
+                Ducking = false;
+
+            if (!onGround && DummyGravity)
+            {
+                var mult = (Math.Abs(Speed.Y) < 40f && (Input.Jump.Check || AutoJump)) ? 0.5f : 1f;
+                if (level.InSpace)
+                    mult *= 0.6f;
+                Speed.Y = Calc.Approach(Speed.Y, 160f, 900f * mult * Engine.DeltaTime);
+            }
+            if (varJumpTimer > 0f)
+            {
+                if (AutoJump || Input.Jump.Check)
+                    Speed.Y = Math.Min(Speed.Y, varJumpSpeed);
+                else
+                    varJumpTimer = 0f;
+            }
+            if (!DummyMoving)
+            {
+                if (Math.Abs(Speed.X) > 90f && DummyMaxspeed)
+                    Speed.X = Calc.Approach(Speed.X, 90f * Math.Sign(Speed.X), 2500f * Engine.DeltaTime);
+                if (DummyFriction)
+                    Speed.X = Calc.Approach(Speed.X, 0f, 1000f * Engine.DeltaTime);
+            }
+            if (DummyAutoAnimate)
+            {
+                if (onGround)
+                {
+                    Sprite.Play(Speed.X == 0f ? "idle" : "walk");
+                }
+                else if (Speed.Y < 0f)
+                {
+                    Sprite.Play("jumpSlow");
+                }
+                else
+                {
+                    Sprite.Play("fallSlow");
+                }
+            }
+            return StDummy;
+        }
+
+        #endregion
+
+        #region Frozen State
+
+        private int FrozenUpdate()
+        {
+            return StFrozen;
+        }
+
+        #endregion
+
+        #region Temple Fall State
+
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private int TempleFallUpdate()
+        {
+            Facing = Facings.Right;
+            if (!onGround)
+            {
+                var targetX = level.Bounds.Left + 160;
+                var dir = (Math.Abs(targetX - X) > 4f) ? Math.Sign(targetX - X) : 0;
+                Speed.X = Calc.Approach(Speed.X, 54.000004f * dir, 325f * Engine.DeltaTime);
+            }
+            if (!onGround && DummyGravity)
+                Speed.Y = Calc.Approach(Speed.Y, 320f, 225f * Engine.DeltaTime);
+            return StTempleFall;
+        }
+
+        private IEnumerator TempleFallCoroutine()
+        {
+            Sprite.Play("fallFast");
+            while (!onGround)
+                yield return null;
+
+            Play(Sfxs.char_kirb_mirrortemple_landing);
+            Sprite.Play(Dashes <= 1 ? "fallPose" : "idle");
+            Sprite.Scale.Y = 0.7f;
+            Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
+            level.DirectionalShake(new Vector2(0f, 1f), 0.5f);
+            Speed.X = 0f;
+            level.Particles.Emit(P_SummitLandA, 12, BottomCenter, Vector2.UnitX * 3f, -MathF.PI / 2f);
+            level.Particles.Emit(P_SummitLandB, 8, BottomCenter - Vector2.UnitX * 2f, Vector2.UnitX * 2f, 3.403392f);
+            level.Particles.Emit(P_SummitLandB, 8, BottomCenter + Vector2.UnitX * 2f, Vector2.UnitX * 2f, -MathF.PI / 12f);
+            for (var p = 0f; p < 1f; p += Engine.DeltaTime)
+                yield return null;
+            StateMachine.State = StNormal;
         }
 
         #endregion
 
         #region Star Fly State
 
-        private const float StarFlyTransformDeccel = 1000f;
-        private const float StarFlyTime = 2f;
-        private const float StarFlyStartSpeed = 250f;
-        private const float StarFlyTargetSpeed = 140f;
-        private const float StarFlyMaxSpeed = 190f;
-        private const float StarFlyMaxLerpTime = 1f;
-        private const float StarFlySlowSpeed = StarFlyTargetSpeed * .65f;
-        private const float StarFlyAccel = 1000f;
-        private const float StarFlyRotateSpeed = 320 * Calc.DtR;
-        private const float StarFlyEndX = 160f;
-        private const float StarFlyEndXVarJumpTime = .1f;
-        private const float StarFlyEndFlashDuration = 0.5f;
-        private const float StarFlyEndNoBounceTime = .2f;
-        private const float StarFlyWallBounce = -.5f;
-        private const float StarFlyMaxExitY = 0f;
-        private const float StarFlyMaxExitX = 140;
-        private const float StarFlyExitUp = -100;
-
-        private Color starFlyColor = Calc.HexToColor("ffd65c");
-        private BloomPoint starFlyBloom;
-
-        private float starFlyTimer;
-        private bool starFlyTransforming;
-        private float starFlySpeedLerp;
-        private Vector2 starFlyLastDir;
-
-        private SoundSource starFlyLoopSfx;
-        private SoundSource starFlyWarningSfx;
-
-        public bool StartStarFly()
-        {
-            RefillStamina();
-
-            if (StateMachine.State == StReflectionFall)
-                return false;
-
-            if (StateMachine.State == StStarFly)
-            {
-                starFlyTimer = StarFlyTime;
-                Sprite.Color = starFlyColor;
-                Input.Rumble(RumbleStrength.Medium, RumbleLength.Medium);
-            }
-            else
-                StateMachine.State = StStarFly;
-
-            return true;
-        }
-
+        [MethodImpl(MethodImplOptions.NoInlining)]
         private void StarFlyBegin()
         {
-            Sprite.Play(PlayerSprite.StartStarFly);
-
+            Sprite.Play("startStarFly");
             starFlyTransforming = true;
             starFlyTimer = StarFlyTime;
-            starFlySpeedLerp = 0;
-            jumpGraceTimer = 0;
-
+            starFlySpeedLerp = 0f;
+            jumpGraceTimer = 0f;
             if (starFlyBloom == null)
-                Add(starFlyBloom = new BloomPoint(new Vector2(0, -6), 0f, 16));
+                Add(starFlyBloom = new BloomPoint(new Vector2(0f, -6f), 0f, 16f));
             starFlyBloom.Visible = true;
             starFlyBloom.Alpha = 0f;
-
             Collider = starFlyHitbox;
             hurtbox = starFlyHurtbox;
-
             if (starFlyLoopSfx == null)
             {
                 Add(starFlyLoopSfx = new SoundSource());
@@ -5466,259 +5429,388 @@ namespace Celeste.Entities
                 Add(starFlyWarningSfx = new SoundSource());
                 starFlyWarningSfx.DisposeOnTransition = false;
             }
-            starFlyLoopSfx.Play(Sfxs.game_06_feather_state_loop, "feather_speed", 1);
+            starFlyLoopSfx.Play(Sfxs.game_08_warpstar_state_loop, "feather_speed", 1f);
             starFlyWarningSfx.Stop();
         }
-        
+
+        [MethodImpl(MethodImplOptions.NoInlining)]
         private void StarFlyEnd()
         {
-            Play(Sfxs.game_06_feather_state_end);
-
+            Play(Sfxs.game_08_warpstar_state_end);
             starFlyWarningSfx.Stop();
             starFlyLoopSfx.Stop();
             Hair.DrawPlayerSpriteOutline = false;
             Sprite.Color = Color.White;
-            level.Displacement.AddBurst(Center, 0.25f, 8, 32);
+            level.Displacement.AddBurst(Center, 0.25f, 8f, 32f);
             starFlyBloom.Visible = false;
             Sprite.HairCount = startHairCount;
-
             StarFlyReturnToNormalHitbox();
-
             if (StateMachine.State != StDash)
-                level.Particles.Emit(FlyFeather.P_Boost, 12, Center, Vector2.One * 4, (-Speed).Angle());
+                level.Particles.Emit(FlyFeather.P_Boost, 12, Center, Vector2.One * 4f, (-Speed).Angle());
         }
 
+        [MethodImpl(MethodImplOptions.NoInlining)]
         private void StarFlyReturnToNormalHitbox()
         {
             Collider = normalHitbox;
             hurtbox = normalHurtbox;
+            if (!CollideCheck<Solid>())
+                return;
 
+            Vector2 position = Position;
+            Y -= normalHitbox.Bottom - starFlyHitbox.Bottom;
             if (CollideCheck<Solid>())
             {
-                Vector2 start = Position;
-
-                //Try moving up
-                Y -= (normalHitbox.Bottom - starFlyHitbox.Bottom);
-                if (CollideCheck<Solid>())
-                    Position = start;
-                else
-                    return;
-
-                //Try ducking and moving up
+                Position = position;
                 Ducking = true;
-                Y -= (duckHitbox.Bottom - starFlyHitbox.Bottom);
+                Y -= duckHitbox.Bottom - starFlyHitbox.Bottom;
                 if (CollideCheck<Solid>())
-                    Position = start;
-                else
-                    return;
-
-                throw new Exception("Could not get out of solids when exiting Star Fly State!");
+                {
+                    Position = position;
+                    Die(Vector2.Zero);
+                }
             }
         }
 
         private IEnumerator StarFlyCoroutine()
         {
-            while (Sprite.CurrentAnimationID == PlayerSprite.StartStarFly)
+            while (Sprite.CurrentAnimationID == "startStarFly")
                 yield return null;
-
             while (Speed != Vector2.Zero)
                 yield return null;
 
-            yield return .1f;
-
+            yield return 0.1f;
             Sprite.Color = starFlyColor;
             Sprite.HairCount = 7;
             Hair.DrawPlayerSpriteOutline = true;
-
-            level.Displacement.AddBurst(Center, 0.25f, 8, 32);
+            level.Displacement.AddBurst(Center, 0.25f, 8f, 32f);
             starFlyTransforming = false;
             starFlyTimer = StarFlyTime;
-
             RefillDash();
             RefillStamina();
-
-            //Speed boost
-            {
-                var dir = Input.Aim.Value;
-                if (dir == Vector2.Zero)
-                    dir = Vector2.UnitX * (int)Facing;
-                Speed = dir * StarFlyStartSpeed;
-                starFlyLastDir = dir;
-
-                level.Particles.Emit(FlyFeather.P_Boost, 12, Center, Vector2.One * 4, (-dir).Angle());
-            }
-
+            Vector2 vector = Input.Feather.Value;
+            if (vector == Vector2.Zero)
+                vector = Vector2.UnitX * (int)Facing;
+            Speed = vector * 250f;
+            starFlyLastDir = vector;
+            level.Particles.Emit(FlyFeather.P_Boost, 12, Center, Vector2.One * 4f, (-vector).Angle());
             Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
             level.DirectionalShake(starFlyLastDir);
-
-            while (starFlyTimer > StarFlyEndFlashDuration)
+            while (starFlyTimer > 0.5f)
                 yield return null;
-
-            starFlyWarningSfx.Play(Sfxs.game_06_feather_state_warning);
+            starFlyWarningSfx.Play(Sfxs.game_08_warpstar_state_warning);
         }
 
+        [MethodImpl(MethodImplOptions.NoInlining)]
         private int StarFlyUpdate()
         {
-            starFlyBloom.Alpha = Calc.Approach(starFlyBloom.Alpha, 0.7f, Engine.DeltaTime * 2f);
-
+            Input.Rumble(RumbleStrength.Climb, RumbleLength.Short);
             if (starFlyTransforming)
             {
-                Speed = Calc.Approach(Speed, Vector2.Zero, StarFlyTransformDeccel * Engine.DeltaTime);
+                Speed = Calc.Approach(Speed, Vector2.Zero, 1000f * Engine.DeltaTime);
             }
             else
             {
-                //Movement
+                Vector2 value = Input.Feather.Value;
+                bool useLastDir = false;
+                if (value == Vector2.Zero)
                 {
-                    Vector2 aim = Input.Aim.Value;
-                    bool slow = false;
-                    if (aim == Vector2.Zero)
-                    {
-                        slow = true;
-                        aim = starFlyLastDir;
-                    }
-
-                    //Figure out direction
-                    Vector2 currentDir = Speed.SafeNormalize(Vector2.Zero);
-                    if (currentDir == Vector2.Zero)
-                        currentDir = aim;
-                    else
-                        currentDir = currentDir.RotateTowards(aim.Angle(), StarFlyRotateSpeed * Engine.DeltaTime);
-                    starFlyLastDir = currentDir;
-
-                    //Figure out max speed
-                    float maxSpeed;
-                    if (slow)
-                    {
-                        starFlySpeedLerp = 0;
-                        maxSpeed = StarFlySlowSpeed;
-                    }
-                    else if (currentDir != Vector2.Zero && Vector2.Dot(currentDir, aim) >= .45f)
-                    {
-                        starFlySpeedLerp = Calc.Approach(starFlySpeedLerp, 1, Engine.DeltaTime / StarFlyMaxLerpTime);
-                        maxSpeed = MathHelper.Lerp(StarFlyTargetSpeed, StarFlyMaxSpeed, starFlySpeedLerp);
-                    }
-                    else
-                    {
-                        starFlySpeedLerp = 0;
-                        maxSpeed = StarFlyTargetSpeed;
-                    }
-
-                    starFlyLoopSfx.Param("feather_speed", slow ? 0 : 1);
-
-                    //Approach max speed
-                    float currentSpeed = Speed.Length();
-                    currentSpeed = Calc.Approach(currentSpeed, maxSpeed, StarFlyAccel * Engine.DeltaTime);
-
-                    //Set speed
-                    Speed = currentDir * currentSpeed;
-
-                    //Particles
-                    if (level.OnInterval(.02f))
-                        level.Particles.Emit(FlyFeather.P_Flying, 1, Center, Vector2.One * 2, (-Speed).Angle());
+                    useLastDir = true;
+                    value = starFlyLastDir;
                 }
+                Vector2 vector = Speed.SafeNormalize(Vector2.Zero);
+                vector = (starFlyLastDir = ((vector != Vector2.Zero) ? vector.RotateTowards(value.Angle(), 5.5850534f * Engine.DeltaTime) : value));
+                float target;
+                if (useLastDir)
+                {
+                    starFlySpeedLerp = 0f;
+                    target = 91f;
+                }
+                else if (vector != Vector2.Zero && Vector2.Dot(vector, value) >= 0.45f)
+                {
+                    starFlySpeedLerp = Calc.Approach(starFlySpeedLerp, 1f, Engine.DeltaTime / 1f);
+                    target = MathHelper.Lerp(140f, 190f, starFlySpeedLerp);
+                }
+                else
+                {
+                    starFlySpeedLerp = 0f;
+                    target = 140f;
+                }
+                starFlyLoopSfx.Param("feather_speed", useLastDir ? 0 : 1);
+                float speedLen = Speed.Length();
+                speedLen = Calc.Approach(speedLen, target, 1000f * Engine.DeltaTime);
+                Speed = vector * speedLen;
+                if (level.OnInterval(0.02f))
+                    level.Particles.Emit(FlyFeather.P_Flying, 1, Center, Vector2.One * 2f, (-Speed).Angle());
 
-                //Jump cancelling
                 if (Input.Jump.Pressed)
                 {
-                    if (OnGround(3))
+                    if (OnGround())
                     {
                         Jump();
                         return StNormal;
                     }
-                    else if (WallJumpCheck(-1))
+                    if (WallJumpCheck(-1))
                     {
                         WallJump(1);
                         return StNormal;
                     }
-                    else if (WallJumpCheck(1))
+                    if (WallJumpCheck(1))
                     {
                         WallJump(-1);
                         return StNormal;
                     }
                 }
-
-                //Grab cancelling
-                if (Input.Grab.Check)
+                if (Input.GrabCheck)
                 {
+                    bool climb = false;
                     if (Input.MoveX.Value != -1 && ClimbCheck(1))
                     {
                         Facing = Facings.Right;
-                        return StClimb;
+                        climb = true;
                     }
                     else if (Input.MoveX.Value != 1 && ClimbCheck(-1))
                     {
                         Facing = Facings.Left;
-                        return StClimb;
+                        climb = true;
                     }
+                    if (climb)
+                        return StClimb;
                 }
-
-                //Dash cancelling
                 if (CanDash)
                     return StartDash();
 
-                //Timer
                 starFlyTimer -= Engine.DeltaTime;
-                if (starFlyTimer <= 0)
+                if (starFlyTimer <= 0f)
                 {
                     if (Input.MoveY.Value == -1)
-                        Speed.Y = StarFlyExitUp;
-
+                        Speed.Y = -100f;
                     if (Input.MoveY.Value < 1)
                     {
                         varJumpSpeed = Speed.Y;
                         AutoJump = true;
-                        AutoJumpTimer = 0;
-                        varJumpTimer = VarJumpTime;
+                        AutoJumpTimer = 0f;
+                        varJumpTimer = 0.2f;
                     }
-
-                    if (Speed.Y > StarFlyMaxExitY)
-                        Speed.Y = StarFlyMaxExitY;
-
-                    if (Math.Abs(Speed.X) > StarFlyMaxExitX)
-                        Speed.X = StarFlyMaxExitX * Math.Sign(Speed.X);
-
+                    if (Speed.Y > 0f)
+                        Speed.Y = 0f;
+                    if (Math.Abs(Speed.X) > 140f)
+                        Speed.X = 140f * Math.Sign(Speed.X);
                     Input.Rumble(RumbleStrength.Medium, RumbleLength.Medium);
-
                     return StNormal;
                 }
+                if (starFlyTimer < 0.5f && Scene.OnInterval(0.05f))
+                    Sprite.Color = (Sprite.Color == starFlyColor) ? NormalHairColor : starFlyColor;
+            }
+            return StStarFly;
+        }
 
-                // Flicker at end
-                if (starFlyTimer < StarFlyEndFlashDuration && Scene.OnInterval(0.05f))
+        #endregion
+
+        #region Warp Star Fly State
+
+        /// <summary>
+        /// Called by KirbyFinalBattleScene (or WarpStarReturnController) when
+        /// the battle phase changes. Automatically begins/ends warp-star flight.
+        /// </summary>
+        private void OnWarpStarBattlePhaseChanged(KirbyFinalBattleScene.BattlePhase phase)
+        {
+            bool shouldFly = phase == KirbyFinalBattleScene.BattlePhase.WarpStarRide
+                || phase == KirbyFinalBattleScene.BattlePhase.FlyingVoid;
+
+            if (shouldFly && StateMachine.State != StWarpStarFly)
+            {
+                StateMachine.State = StWarpStarFly;
+            }
+            else if (!shouldFly && StateMachine.State == StWarpStarFly)
+            {
+                StateMachine.State = StNormal;
+            }
+        }
+
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private void WarpStarFlyBegin()
+        {
+            Sprite.Play("startStarFly");
+            warpStarFlyActive = true;
+            warpStarFlyTransforming = true;
+            if (warpStarFlyBloom == null)
+                Add(warpStarFlyBloom = new BloomPoint(new Vector2(0f, -6f), 0f, 16f));
+            warpStarFlyBloom.Visible = true;
+            warpStarFlyBloom.Alpha = 0f;
+            Collider = warpStarFlyHitbox;
+            hurtbox = warpStarFlyHurtbox;
+            if (warpStarFlyLoopSfx == null)
+            {
+                Add(warpStarFlyLoopSfx = new SoundSource());
+                warpStarFlyLoopSfx.DisposeOnTransition = false;
+            }
+            warpStarFlyLoopSfx.Play(Sfxs.game_08_warpstar_state_loop, "feather_speed", 1f);
+            Depth = Depths.Top;
+        }
+
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private void WarpStarFlyEnd()
+        {
+            Play(Sfxs.game_08_warpstar_state_end);
+            warpStarFlyLoopSfx?.Stop();
+            warpStarFlyActive = false;
+            warpStarFlyTransforming = false;
+            Hair.DrawPlayerSpriteOutline = false;
+            Sprite.Color = Color.White;
+            if (warpStarFlyBloom != null)
+                warpStarFlyBloom.Visible = false;
+            level?.Displacement.AddBurst(Center, 0.25f, 8f, 32f);
+            Depth = 0;
+            WarpStarFlyReturnToNormalHitbox();
+        }
+
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private void WarpStarFlyReturnToNormalHitbox()
+        {
+            Collider = normalHitbox;
+            hurtbox = normalHurtbox;
+            if (!CollideCheck<Solid>())
+                return;
+
+            Vector2 position = Position;
+            Y -= normalHitbox.Bottom - warpStarFlyHitbox.Bottom;
+            if (CollideCheck<Solid>())
+            {
+                Position = position;
+                Ducking = true;
+                Y -= duckHitbox.Bottom - warpStarFlyHitbox.Bottom;
+                if (CollideCheck<Solid>())
                 {
-                    if (Sprite.Color == starFlyColor)
-                        Sprite.Color = NormalHairColor;
-                    else
-                        Sprite.Color = starFlyColor;
+                    Position = position;
+                    Die(Vector2.Zero);
+                }
+            }
+        }
+
+        private IEnumerator WarpStarFlyCoroutine()
+        {
+            while (Sprite.CurrentAnimationID == "startStarFly")
+                yield return null;
+
+            yield return 0.1f;
+            Sprite.Color = warpStarFlyColor;
+            Sprite.HairCount = 7;
+            Hair.DrawPlayerSpriteOutline = true;
+            level?.Displacement.AddBurst(Center, 0.25f, 8f, 32f);
+            warpStarFlyTransforming = false;
+            RefillDash();
+            RefillStamina();
+            Vector2 vector = Input.Feather.Value;
+            if (vector == Vector2.Zero)
+                vector = Vector2.UnitX * (int)Facing;
+            Speed = vector * 200f;
+            warpStarFlyLastDir = vector;
+            Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
+            level?.DirectionalShake(warpStarFlyLastDir);
+        }
+
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private int WarpStarFlyUpdate()
+        {
+            Input.Rumble(RumbleStrength.Climb, RumbleLength.Short);
+
+            if (warpStarFlyTransforming)
+            {
+                Speed = Calc.Approach(Speed, Vector2.Zero, 1000f * Engine.DeltaTime);
+                return StWarpStarFly;
+            }
+
+            // Free-flight steering: full-freedom flight is the "all above" model —
+            // combines feather-style directional steering, dash escape, jump escape,
+            // and grab-to-climb escape, but never auto-ends (phase-driven only).
+            Vector2 aim = Input.Feather.Value;
+            bool useLastDir = false;
+            if (aim == Vector2.Zero)
+            {
+                useLastDir = true;
+                aim = warpStarFlyLastDir;
+            }
+            Vector2 dir = Speed.SafeNormalize(Vector2.Zero);
+            dir = (warpStarFlyLastDir = (dir != Vector2.Zero)
+                ? dir.RotateTowards(aim.Angle(), 5.5850534f * Engine.DeltaTime)
+                : aim);
+
+            float target = useLastDir ? WarpStarFlyMaxSpeed * 0.6f : WarpStarFlyMaxSpeed;
+            float speedLen = Speed.Length();
+            speedLen = Calc.Approach(speedLen, target, WarpStarFlyAccel * Engine.DeltaTime);
+            Speed = dir * speedLen;
+
+            if (warpStarFlyLoopSfx != null)
+                warpStarFlyLoopSfx.Param("feather_speed", useLastDir ? 0 : 1);
+
+            if (level != null && level.OnInterval(0.02f))
+                level.Particles.Emit(FlyFeather.P_Flying, 1, Center, Vector2.One * 2f, (-Speed).Angle());
+
+            if (Input.Jump.Pressed)
+            {
+                if (OnGround())
+                {
+                    Jump();
+                    return StNormal;
+                }
+                if (WallJumpCheck(-1))
+                {
+                    WallJump(1);
+                    return StNormal;
+                }
+                if (WallJumpCheck(1))
+                {
+                    WallJump(-1);
+                    return StNormal;
                 }
             }
 
-            return StStarFly;
+            if (Input.GrabCheck)
+            {
+                bool climb = false;
+                if (Input.MoveX.Value != -1 && ClimbCheck(1))
+                {
+                    Facing = Facings.Right;
+                    climb = true;
+                }
+                else if (Input.MoveX.Value != 1 && ClimbCheck(-1))
+                {
+                    Facing = Facings.Left;
+                    climb = true;
+                }
+                if (climb)
+                    return StClimb;
+            }
+
+            if (CanDash)
+                return StartDash();
+
+            if (Scene.OnInterval(0.05f))
+                Sprite.Color = (Sprite.Color == warpStarFlyColor) ? NormalHairColor : warpStarFlyColor;
+
+            return StWarpStarFly;
         }
 
         #endregion
 
         #region Cassette Fly State
 
-        private SimpleCurve cassetteFlyCurve;
-        private float cassetteFlyLerp;
-
         public void StartCassetteFly(Vector2 targetPosition, Vector2 control)
         {
             StateMachine.State = StCassetteFly;
             cassetteFlyCurve = new SimpleCurve(Position, targetPosition, control);
-            cassetteFlyLerp = 0;
-            Speed = Vector2.Zero;
         }
 
+        [MethodImpl(MethodImplOptions.NoInlining)]
         private void CassetteFlyBegin()
         {
             Sprite.Play("bubble");
-            Sprite.Y += 5;
+            Sprite.Y += 5f;
         }
 
         private void CassetteFlyEnd()
         {
-
         }
 
         private int CassetteFlyUpdate()
@@ -5732,43 +5824,37 @@ namespace Celeste.Entities
             level.FormationBackdrop.Display = true;
             level.FormationBackdrop.Alpha = 0.5f;
             Sprite.Scale = Vector2.One * 1.25f;
-            Depth = Depths.FormationSequences;
+            Depth = -2000000;
             yield return 0.4f;
-
             while (cassetteFlyLerp < 1f)
             {
-                if (level.OnInterval(.03f))
-                    level.Particles.Emit(P_CassetteFly, 2, Center, Vector2.One * 4);
-
+                if (level.OnInterval(0.03f))
+                    level.Particles.Emit(P_CassetteFly, 2, Center, Vector2.One * 4f);
                 cassetteFlyLerp = Calc.Approach(cassetteFlyLerp, 1f, 1.6f * Engine.DeltaTime);
                 Position = cassetteFlyCurve.GetPoint(Ease.SineInOut(cassetteFlyLerp));
                 level.Camera.Position = CameraTarget;
                 yield return null;
             }
-
             Position = cassetteFlyCurve.End;
             Sprite.Scale = Vector2.One * 1.25f;
-            Sprite.Y -= 5;
-            Sprite.Play(PlayerSprite.FallFast);
+            Sprite.Y -= 5f;
+            Sprite.Play("fallFast");
             yield return 0.2f;
-
             level.CanRetry = true;
             level.FormationBackdrop.Display = false;
             level.FormationBackdrop.Alpha = 0.5f;
             StateMachine.State = StNormal;
-            Depth = Depths.Player;
-            yield break;
+            Depth = 0;
         }
 
         #endregion
 
         #region Attract State
 
-        private Vector2 attractTo;
-
+        [MethodImpl(MethodImplOptions.NoInlining)]
         public void StartAttract(Vector2 attractTo)
         {
-            this.attractTo = Calc.Round(attractTo);
+            this.attractTo = attractTo.Round();
             StateMachine.State = StAttract;
         }
 
@@ -5779,9 +5865,9 @@ namespace Celeste.Entities
 
         private void AttractEnd()
         {
- 
         }
 
+        [MethodImpl(MethodImplOptions.NoInlining)]
         private int AttractUpdate()
         {
             if (Vector2.Distance(attractTo, ExactPosition) <= 1.5f)
@@ -5792,250 +5878,11 @@ namespace Celeste.Entities
             }
             else
             {
-                Vector2 at = Calc.Approach(ExactPosition, attractTo, 200 * Engine.DeltaTime);
-                MoveToX(at.X);
-                MoveToY(at.Y);
+                Vector2 vector = Calc.Approach(ExactPosition, attractTo, 200f * Engine.DeltaTime);
+                MoveToX(vector.X);
+                MoveToY(vector.Y);
             }
-
             return StAttract;
-        }
-
-        public bool AtAttractTarget
-        {
-            get
-            {
-                return StateMachine.State == StAttract && ExactPosition == attractTo;
-            }
-        }
-
-        #endregion
-
-        #region Dummy State
-
-        public bool DummyMoving = false;
-        public bool DummyGravity = true;
-        public bool DummyFriction = true;
-        public bool DummyMaxspeed = true;
-
-        private void DummyBegin()
-        {
-            DummyMoving = false;
-            DummyGravity = true;
-            DummyAutoAnimate = true;
-        }
-
-        private int DummyUpdate()
-        {
-            if (CanUnDuck)
-                Ducking = false;
-
-            // gravity
-            if (!onGround && DummyGravity)
-            {
-                float mult = (Math.Abs(Speed.Y) < HalfGravThreshold && (Input.Jump.Check || AutoJump)) ? .5f : 1f;
-
-                if (level.InSpace)
-                    mult *= SpacePhysicsMult;
-
-                Speed.Y = Calc.Approach(Speed.Y, MaxFall, Gravity * mult * Engine.DeltaTime);
-            }
-
-            // variable jumping
-            if (varJumpTimer > 0)
-            {
-                if (AutoJump || Input.Jump.Check)
-                    Speed.Y = Math.Min(Speed.Y, varJumpSpeed);
-                else
-                    varJumpTimer = 0;
-            }
-
-            if (!DummyMoving)
-            {
-                if (Math.Abs(Speed.X) > MaxRun && DummyMaxspeed)
-                    Speed.X = Calc.Approach(Speed.X, MaxRun * Math.Sign(Speed.X), RunAccel * 2.5f * Engine.DeltaTime);
-                if (DummyFriction)
-                    Speed.X = Calc.Approach(Speed.X, 0, RunAccel * Engine.DeltaTime);
-            }
-
-            //Sprite
-            if (DummyAutoAnimate)
-            {
-                if (onGround)
-                {
-                    if (Speed.X == 0)
-                        Sprite.Play("idle");
-                    else
-                        Sprite.Play(PlayerSprite.Walk);
-                }
-                else
-                {
-                    if (Speed.Y < 0)
-                        Sprite.Play(PlayerSprite.JumpSlow);
-                    else
-                        Sprite.Play(PlayerSprite.FallSlow);
-                }
-                    
-            }
-
-            return StDummy;
-        }
-
-        public IEnumerator DummyWalkTo(float x, bool walkBackwards = false, float speedMultiplier = 1f, bool keepWalkingIntoWalls = false)
-        {
-            StateMachine.State = StDummy;
-
-            if (Math.Abs(X - x) > 4 && !Dead)
-            {
-                DummyMoving = true;
-
-                if (walkBackwards)
-                {
-                    Sprite.Rate = -1;
-                    Facing = (Facings)Math.Sign(X - x);
-                }
-                else
-                {
-                    Facing = (Facings)Math.Sign(x - X);
-                }
-
-                while (Math.Abs(x - X) > 4 && Scene != null && (keepWalkingIntoWalls || !CollideCheck<Solid>(Position + Vector2.UnitX * Math.Sign(x - X))))
-                {
-                    Speed.X = Calc.Approach(Speed.X, Math.Sign(x - X) * WalkSpeed * speedMultiplier, RunAccel * Engine.DeltaTime);
-                    yield return null;
-                }
-
-                Sprite.Rate = 1;
-                Sprite.Play(PlayerSprite.Idle);
-                DummyMoving = false;
-            }
-        }
-
-        public IEnumerator DummyWalkToExact(int x, bool walkBackwards = false, float speedMultiplier = 1f)
-        {
-            StateMachine.State = StDummy;
-
-            if (X != x)
-            {
-                DummyMoving = true;
-
-                if (walkBackwards)
-                {
-                    Sprite.Rate = -1;
-                    Facing = (Facings)Math.Sign(X - x);
-                }
-                else
-                {
-                    Facing = (Facings)Math.Sign(x - X);
-                }
-
-                var last = Math.Sign(X - x);
-                while (X != x && !CollideCheck<Solid>(Position + new Vector2((int)Facing, 0)))
-                {
-                    Speed.X = Calc.Approach(Speed.X, Math.Sign(x - X) * WalkSpeed * speedMultiplier, RunAccel * Engine.DeltaTime);
-
-                    // handle case where we overstep
-                    var next = Math.Sign(X - x);
-                    if (next != last)
-                    {
-                        X = x;
-                        break;
-                    }
-                    last = next;
-
-                    yield return null;
-                }
-
-                Speed.X = 0;
-                Sprite.Rate = 1;
-                Sprite.Play(PlayerSprite.Idle);
-                DummyMoving = false;
-            }
-        }
-
-        public IEnumerator DummyRunTo(float x, bool fastAnim = false)
-        {
-            StateMachine.State = StDummy;
-            
-            if (Math.Abs(X - x) > 4)
-            {
-                DummyMoving = true;
-                if (fastAnim)
-                    Sprite.Play(PlayerSprite.RunFast);
-                else if (!Sprite.LastAnimationID.StartsWith("run"))
-                    Sprite.Play(PlayerSprite.RunSlow);
-                Facing = (Facings)Math.Sign(x - X);
-
-                while (Math.Abs(X - x) > 4)
-                {
-                    Speed.X = Calc.Approach(Speed.X, Math.Sign(x - X) * MaxRun, RunAccel * Engine.DeltaTime);
-                    yield return null;
-                }
-
-                Sprite.Play(PlayerSprite.Idle);
-                DummyMoving = false;
-            }
-        }
-
-        #endregion
-
-        #region Frozen State
-        
-        private int FrozenUpdate()
-        {
-            return StFrozen;
-        }
-
-        #endregion
-
-        #region Temple Fall State
-        
-        private int TempleFallUpdate()
-        {
-            Facing = Facings.Right;
-
-            if (!onGround)
-            {
-                var center = level.Bounds.Left + 160;
-                int mX;
-                if (Math.Abs(center - X) > 4)
-                    mX = Math.Sign(center - X);
-                else
-                    mX = 0;
-
-                Speed.X = Calc.Approach(Speed.X, MaxRun * .6f * mX, RunAccel * .5f * AirMult * Engine.DeltaTime);
-            }
-            if (!onGround && DummyGravity)
-                Speed.Y = Calc.Approach(Speed.Y, MaxFall * 2, Gravity * 0.25f * Engine.DeltaTime);
-
-            return StTempleFall;
-        }
-
-        private IEnumerator TempleFallCoroutine()
-        {
-            Sprite.Play(PlayerSprite.FallFast);
-
-            while (!onGround)
-                yield return null;
-
-            Play(Sfxs.char_mad_mirrortemple_landing);
-            if (Dashes <= 1)
-                Sprite.Play(PlayerSprite.LandInPose);
-            else
-                Sprite.Play(PlayerSprite.Idle);
-            Sprite.Scale.Y = 0.7f;
-
-            Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
-            level.DirectionalShake(new Vector2(0, 1f), 0.5f);
-            Speed.X = 0;
-
-            level.Particles.Emit(P_SummitLandA, 12, BottomCenter, Vector2.UnitX * 3, Calc.Up);
-            level.Particles.Emit(P_SummitLandB, 8, BottomCenter - Vector2.UnitX * 2, Vector2.UnitX * 2, Calc.Left + 15 * Calc.DtR);
-            level.Particles.Emit(P_SummitLandB, 8, BottomCenter + Vector2.UnitX * 2, Vector2.UnitX * 2, Calc.Right - 15 * Calc.DtR);
-
-            for (var p = 0f; p < 1; p += Engine.DeltaTime)
-                yield return null;
-
-            StateMachine.State = StNormal;
         }
 
         #endregion
@@ -6129,7 +5976,7 @@ namespace Celeste.Entities
                 level.Session.Level = "00";
                 level.Session.RespawnPoint = level.GetSpawnPoint(new Vector2(level.Bounds.Left, level.Bounds.Bottom));
                 level.LoadLevel((global::Celeste.Player.IntroTypes)IntroTypes.None);
-                
+
                 FallEffects.Show(false);
 
                 level.Session.Audio.Music.Event = Sfxs.music_reflection_main;
@@ -6139,10 +5986,7 @@ namespace Celeste.Entities
 
         #endregion
 
-        /// <summary>
-        /// Emit visual effect when DZ/Player enters the map
-        /// This provides a visual indication of the custom player spawning
-        /// </summary>
+        #region Emit Spawn Effect State
         private void EmitSpawnEffect()
         {
             if (level == null)
@@ -6172,7 +6016,7 @@ namespace Celeste.Entities
             // Optional: Play spawn sound effect
             try
             {
-                Audio.Play(Sfxs.char_mad_grab, position);
+                Audio.Play(Sfxs.char_kirb_grab, position);
             }
             catch
             {
@@ -6182,6 +6026,7 @@ namespace Celeste.Entities
             // Log spawn for debugging
             Logger.Log(LogLevel.Info, "DZ", $"Player spawn effect emitted at position: {position}");
         }
+        #endregion
 
         #region Intro Walk State
 
@@ -6260,12 +6105,12 @@ namespace Celeste.Entities
                     Speed.Y += Engine.DeltaTime * 800f;
                     yield return null;
                 }
-                
+
                 Speed.Y = 0;
                 if (wasSummitJump)
                 {
                     yield return 0.2f;
-                    Play(Sfxs.char_mad_summit_areastart);
+                    Play(Sfxs.char_kirb_summit_areastart);
                     Sprite.Play("launchRecover");
                     yield return 0.1f;
                 }
@@ -6277,10 +6122,19 @@ namespace Celeste.Entities
             {
                 if (!wasSummitJump)
                     Sprite.Play(PlayerSprite.FallSlow);
-                
+
                 while (!onGround)
                 {
-                    Speed.Y += Engine.DeltaTime * 800f;
+                    Speed.Y = Calc.Approach(Speed.Y, MaxFall, Gravity * Engine.DeltaTime);
+                    if (CollideCheck<Solid>(Position + new Vector2(1, 0)))
+                    {
+                        // was tracking climbing state here, no longer needed
+                    }
+                    if (Top > level.Bounds.Bottom)
+                    {
+                        level.CancelCutscene();
+                        Die(Vector2.Zero);
+                    }
                     yield return null;
                 }
             }
@@ -6293,7 +6147,7 @@ namespace Celeste.Entities
                 Depth = Depths.Player;
                 level.DirectionalShake(Vector2.UnitY);
                 Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
-                
+
             }
 
             if (wasSummitJump)
@@ -6304,7 +6158,7 @@ namespace Celeste.Entities
                 level.ParticlesBG.Emit(P_SummitLandC, 30, BottomCenter, Vector2.UnitX * 5);
 
                 yield return 0.35f;
-                for (int i = 0; i < Hair.Nodes.Count; i++)
+                for (var i = 0; i < Hair.Nodes.Count; i++)
                     Hair.Nodes[i] = new Vector2(0, 2 + i);
             }
 
@@ -6334,7 +6188,7 @@ namespace Celeste.Entities
 
         private void IntroRespawnBegin()
         {
-            Play(Sfxs.char_mad_revive);
+            Play(Sfxs.char_kirb_revive);
 
             Depth = Depths.Top;
             introEase = 1f;
@@ -6350,7 +6204,7 @@ namespace Celeste.Entities
             respawnTween.OnUpdate = (t) =>
             {
                 deadOffset = Vector2.Lerp(from, Vector2.Zero, t.Eased);
-                introEase = 1 - t.Eased; 
+                introEase = 1 - t.Eased;
             };
             respawnTween.OnComplete = (t) =>
             {
@@ -6378,7 +6232,7 @@ namespace Celeste.Entities
         private void BirdDashTutorialBegin()
         {
             DashBegin();
-            Play(Sfxs.char_mad_dash_red_right);
+            Play(Sfxs.char_kirb_dash_red_right);
             Sprite.Play(PlayerSprite.Dash);
         }
 
@@ -6413,7 +6267,9 @@ namespace Celeste.Entities
             AutoJump = true;
             AutoJumpTimer = 0;
             if (DashDir.Y <= 0)
+            {
                 Speed = DashDir * EndDashSpeed;
+            }
             if (Speed.Y < 0)
                 Speed.Y *= EndDashUpMult;
 
@@ -6439,15 +6295,15 @@ namespace Celeste.Entities
                 Dust.Burst(Position + new Vector2(4, -6), Calc.Angle(new Vector2(-4, 0)), 1);
                 Speed.Y = 0;
                 yield return 0.2f;
-                
+
                 Sprite.Play(PlayerSprite.ClimbUp);
                 while (CollideCheck<Solid>(Position + new Vector2(1, 0)))
                 {
                     Y += ClimbUpSpeed * Engine.DeltaTime;
                     yield return null;
                 }
-                
-                Play(Sfxs.char_mad_climb_ledge);
+
+                Play(Sfxs.char_kirb_climb_ledge);
                 Sprite.Play(PlayerSprite.JumpFast);
                 Speed.Y = JumpSpeed;
 
@@ -6467,7 +6323,7 @@ namespace Celeste.Entities
                     X += 32 * Engine.DeltaTime;
                     yield return null;
                 }
-                
+
                 Sprite.Play(PlayerSprite.Tired);
             }
             else
@@ -6531,7 +6387,7 @@ namespace Celeste.Entities
         private void AddChaserStateSound(string sound, string param = null, float value = 0, ChaserStateSound.Actions action = ChaserStateSound.Actions.Oneshot)
         {
             string eventName = null;
-            Sfxs.MadelineToBadelineSound.TryGetValue(sound, out eventName);
+            Sfxs.KirbyToBadelineSound.TryGetValue(sound, out eventName);
 
             if (eventName != null)
                 activeSounds.Add(new ChaserStateSound() { Event = eventName, Parameter = param, ParameterValue = value, Action = action });
@@ -6648,7 +6504,7 @@ namespace Celeste.Entities
             DealCombatDamageInRadius(Center + lastAim * 8f, DashAttackDamageRadius, DashAttackDamage);
 
             if (Speed != Vector2.Zero && level.OnInterval(0.02f))
-                level.ParticlesFG.Emit(wasDashB ? P_DashB : P_DashA, Center + Calc.Random.Range(Vector2.One * -2, Vector2.One * 2), Speed.Angle());
+                level.ParticlesFG.Emit(wasDashB ? P_DashB : P_DashA, Center + Calc.Random.Range(Vector2.One * -2, Vector2.One * 2), DashDir.Angle());
 
             return StDashAttack;
         }
@@ -6700,8 +6556,6 @@ namespace Celeste.Entities
             combatSlashDir = lastAim;
             if (combatSlashDir == Vector2.Zero)
                 combatSlashDir = Vector2.UnitX * (int)Facing;
-            if (combatSlashDir.X != 0)
-                Facing = (Facings)Math.Sign(combatSlashDir.X);
 
             Speed = combatSlashDir * CombatSlashSpeed * (1f + comboCount * 0.15f);
 
@@ -6720,7 +6574,7 @@ namespace Celeste.Entities
 
         private int CombatSlashUpdate()
         {
-            DealCombatDamageInRadius(Center + combatSlashDir * 12f, CombatSlashRange, CombatSlashDamage + comboCount);
+            DealCombatDamageInRadius(Center + combatSlashDir * 10f, CombatSlashRange, CombatSlashDamage + comboCount);
 
             // chain into the next combo hit
             if (Input.Grab.Pressed && comboCount < MaxComboCount && combatSlashCooldownTimer <= 0)
@@ -6885,7 +6739,7 @@ namespace Celeste.Entities
             RefillStamina();
 
             // jump-cancel: a buffered jump press at impact becomes a real jump,
-            // keeping the landing as responsive as Madeline's
+            // keeping the landing as responsive as Kirby's
             if (Input.Jump.Pressed)
             {
                 Jump();
@@ -6983,6 +6837,25 @@ namespace Celeste.Entities
 
         #endregion
 
+        // Landing star particle burst — ported from ingeste.lua hit_ground_star.
+        // Kicks a small random-direction star burst from the feet on hard landings.
+        private void HitGroundStarBurst()
+        {
+            if (level == null)
+                return;
+
+            int sx = Calc.Random.Choose(-1, 0, 1);
+            int sy = Calc.Random.Choose(-1, 0, 1);
+            if (sx == 0 && sy == 0)
+                sx = 1;
+
+            Vector2 dir = new Vector2(sx, sy);
+            if (dir != Vector2.Zero)
+                dir.Normalize();
+
+            level.Particles.Emit(P_SummitLandA, BottomCenter, dir.Angle());
+        }
+
         #region Kirby Inhale State
 
         private void KirbyInhaleBegin()
@@ -6992,10 +6865,13 @@ namespace Celeste.Entities
 
             Sprite.Play("idle");
             Input.Rumble(RumbleStrength.Light, RumbleLength.Short);
+
+            CreateKirbyInhaleTendrils();
         }
 
         private void KirbyInhaleEnd()
         {
+            kirbyInhaleTendrils = null;
         }
 
         private int KirbyInhaleUpdate()
@@ -7013,6 +6889,16 @@ namespace Celeste.Entities
             Vector2 inhaleDir = Vector2.UnitX * (int)Facing;
             Vector2 inhaleOrigin = Center + inhaleDir * 16f;
             PullAndInhaleEnemies(inhaleOrigin, inhaleDir);
+            UpdateKirbyInhaleTendrils(inhaleDir);
+
+            // A successful capture ends the state immediately rather than waiting
+            // for the player to release and re-press Grab -- the follow-up Star
+            // Spit is a separate press either way, so there's no reason to make
+            // them let go first.
+            if (kirbyHasInhaledEnemy)
+            {
+                return StNormal;
+            }
 
             // wind visual
             if (level.OnInterval(.04f))
@@ -7025,13 +6911,7 @@ namespace Celeste.Entities
                 }
             }
 
-            // stop inhaling - check both input and controller state
-            bool shouldStopInhaling = !Input.Grab.Check || kirbyInhaleTimer <= 0;
-            if (kirbyController != null && !kirbyController.IsInhaling)
-            {
-                shouldStopInhaling = true;
-            }
-            if (shouldStopInhaling)
+            if (!Input.Grab.Check || kirbyInhaleTimer <= 0)
             {
                 return StNormal;
             }
@@ -7089,10 +6969,48 @@ namespace Celeste.Entities
                 {
                     kirbyHasInhaledEnemy = true;
                     entity.RemoveSelf();
-                    Play(Sfxs.char_mad_grab);
+                    Play(Sfxs.char_kirb_grab);
                     Sprite.Scale = new Vector2(1.4f, .6f);
                     break;
                 }
+            }
+        }
+
+        // ── Inhale tendril visual (ported from ingeste.lua create_inhales/update_inhales/draw_inhales) ──
+
+        private void CreateKirbyInhaleTendrils()
+        {
+            kirbyInhaleTendrils = new Vector2[KirbyInhaleTendrilCount];
+            for (int i = 0; i < KirbyInhaleTendrilCount; i++)
+                kirbyInhaleTendrils[i] = Center;
+        }
+
+        private void UpdateKirbyInhaleTendrils(Vector2 facingDir)
+        {
+            if (kirbyInhaleTendrils == null)
+                return;
+
+            for (int i = 0; i < kirbyInhaleTendrils.Length; i++)
+            {
+                Vector2 tendril = kirbyInhaleTendrils[i];
+
+                // Lua: if dist <= 2 or dist >= 18 then respawn at a random point near the mouth
+                float dist = Vector2.Distance(tendril, Center);
+                if (dist <= 2f || dist >= 18f)
+                {
+                    tendril = Center + facingDir * (10f + Calc.Random.Range(0f, 5f));
+                    tendril.Y += 6f - Calc.Random.Range(0f, 12f);
+                }
+
+                // Lua calc_path: normalized per-axis step toward the mouth
+                Vector2 toCenter = Center - tendril;
+                float length = toCenter.Length();
+                Vector2 step = length > 0f ? toCenter / length : Vector2.Zero;
+
+                tendril.X -= Math.Abs(step.X) * facingDir.X;
+                tendril.Y += (tendril.Y > Center.Y ? -1f : 1f) * Math.Abs(step.Y);
+
+                kirbyInhaleTendrils[i] = tendril;
             }
         }
 
@@ -7103,16 +7021,7 @@ namespace Celeste.Entities
         private void KirbyFloatBegin()
         {
             // Consume one flap on entry
-            // Synchronize with controller if available
-            if (kirbyController != null)
-            {
-                // Controller manages its own flap state
-                kirbyFlapCount = Math.Max(0, kirbyFlapCount - 1);
-            }
-            else
-            {
-                kirbyFlapCount = Math.Max(0, kirbyFlapCount - 1);
-            }
+            kirbyFlapCount = Math.Max(0, kirbyFlapCount - 1);
             kirbyFlapScaleTimer = KirbyFlapScaleTime;
 
             // Initial upward kick — preserves stronger upward momentum so
@@ -7125,7 +7034,7 @@ namespace Celeste.Entities
             kirbySprite?.Play("kirby_float");
 
             // Puff sound ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â reuse jump sound pitched differently via FMOD
-            Play(Sfxs.char_mad_jump);
+            Play(Sfxs.char_kirb_jump);
 
             // Entry puff particles downward
             level.Particles.Emit(P_DashA, 3, BottomCenter, Vector2.UnitX * 4, Calc.Down);
@@ -7185,8 +7094,7 @@ namespace Celeste.Entities
                 }
 
                 // Additional flap: press jump again to bounce upward (costs a flap)
-                // Check both internal flap count and controller state
-                bool hasFlaps = kirbyFlapCount > 0 || kirbyController?.IsFlying == true;
+                bool hasFlaps = kirbyFlapCount > 0;
                 if (hasFlaps)
                 {
                     Input.Jump.ConsumeBuffer();
@@ -7196,22 +7104,19 @@ namespace Celeste.Entities
                     Speed.Y = KirbyFloatSpeed;
                     Sprite.Scale = new Vector2(1.35f, 0.7f);
 
-                    Play(Sfxs.char_mad_jump);
+                    Play(Sfxs.char_kirb_jump);
                     level.Particles.Emit(P_DashA, 2, BottomCenter, Vector2.UnitX * 4, Calc.Down);
                 }
             }
 
-            // Out of flaps - also check controller state
-            bool outOfFlaps = kirbyFlapCount <= 0 && (kirbyController == null || !kirbyController.IsFlying);
-            if (outOfFlaps && Speed.Y > KirbyFloatFallSpeed)
+            // Out of flaps
+            if (kirbyFlapCount <= 0 && Speed.Y > KirbyFloatFallSpeed)
                 return StNormal;
 
             // Land - restore flap count and exit float
             if (onGround && Speed.Y >= 0)
             {
                 kirbyFlapCount = DZModule.Settings?.KirbyMaxFloatJumps ?? 5;
-                // Reset controller state if present
-                kirbyController?.Reset();
                 return StNormal;
             }
 
@@ -7344,7 +7249,7 @@ namespace Celeste.Entities
             Speed.X = -kirbyStarSpitDir.X * ThrowRecoil;
 
             SlashFx.Burst(Center, kirbyStarSpitDir.Angle());
-            Play(Sfxs.char_mad_dash_red_right);
+            Play(Sfxs.char_kirb_dash_red_right);
 
             yield return .15f;
 
@@ -7366,245 +7271,7 @@ namespace Celeste.Entities
 
         #endregion
 
-        #region Skill-Based Combat States
-
-        // Air Drift State
-        private void AirDriftBegin()
-        {
-            skillIsAirDrifting = true;
-            airDriftTimer = AirDriftDuration;
-            skillStamina -= AirDriftStaminaCost;
-
-            // keep stronger upward momentum instead of clipping it
-            Speed.Y = Math.Min(Speed.Y, -60f);
-
-            if (Sprite != null)
-            {
-                if (Sprite.Has("float"))
-                    Sprite.Play("float");
-                else if (Sprite.Has("hover"))
-                    Sprite.Play("hover");
-                Sprite.Scale = new Vector2(1.1f, 0.9f);
-            }
-
-            if (level != null)
-            {
-                level.Particles.Emit(ParticleTypes.SparkyDust, 6, Center, Vector2.One * 12f);
-                Audio.Play("event:/DZ/char/kirby/dashDZ_CHarge", Position); // TODO: add to FMOD bank
-            }
-        }
-
-        private void AirDriftEnd()
-        {
-            skillIsAirDrifting = false;
-            airDriftTimer = 0f;
-            skillComboCount++;
-            skillLastActionTime = Scene.RawTimeActive;
-
-            if (Sprite != null)
-            {
-                Sprite.Scale = Vector2.One;
-                Sprite.Color = Color.White;
-            }
-        }
-
-        private int AirDriftUpdate()
-        {
-            if (!IsKirbyMode())
-                return StNormal;
-
-            airDriftTimer -= Engine.DeltaTime;
-
-            // state machine calls AirDriftEnd on the transition
-            if (airDriftTimer <= 0f || onGround)
-                return StNormal;
-
-            int moveX = Input.MoveX.Value;
-            Speed.X = Calc.Approach(Speed.X, AirDriftSpeed * moveX, 400f * Engine.DeltaTime);
-            Speed.Y = Calc.Approach(Speed.Y, 20f, 200f * Engine.DeltaTime);
-
-            if (moveX != 0)
-                Facing = (Facings)moveX;
-
-            return StAirDrift;
-        }
-
-        // Cyclone Slash State
-        private void CycloneSlashBegin()
-        {
-            skillIsCycloneSlashing = true;
-            cycloneSlashTimer = CycloneSlashDuration;
-            skillStamina -= CycloneSlashStaminaCost;
-
-            Speed.X = 0f;
-            Speed.Y = -30f;
-
-            if (Sprite != null)
-            {
-                if (Sprite.Has("spin"))
-                    Sprite.Play("spin");
-                else if (Sprite.Has("dash"))
-                    Sprite.Play("dash");
-                Sprite.Scale = new Vector2(1.3f, 0.7f);
-                Sprite.Color = Color.Orange * 0.8f;
-            }
-
-            if (level != null)
-            {
-                level.Particles.Emit(ParticleTypes.SparkyDust, 12, Center, Vector2.One * 20f);
-                level.Shake(0.15f);
-                Audio.Play("event:/DZ/char/kirby/kirby_knight/spin", Position); // TODO: add kirby_knight/* sub-bank to FMOD
-            }
-
-            StartSwing();
-            DealCombatDamageInRadius(Center, CycloneSlashRadius, 1);
-        }
-
-        private void CycloneSlashEnd()
-        {
-            skillIsCycloneSlashing = false;
-            cycloneSlashTimer = 0f;
-            skillComboCount++;
-            skillLastActionTime = Scene.RawTimeActive;
-
-            if (Sprite != null)
-            {
-                Sprite.Scale = Vector2.One;
-                Sprite.Color = Color.White;
-            }
-
-            if (level != null)
-                level.Particles.Emit(ParticleTypes.SparkyDust, 6, Center, Vector2.One * 12f);
-        }
-
-        private int CycloneSlashUpdate()
-        {
-            if (!IsKirbyMode())
-                return StNormal;
-
-            cycloneSlashTimer -= Engine.DeltaTime;
-
-            // state machine calls CycloneSlashEnd on the transition
-            if (cycloneSlashTimer <= 0f || onGround)
-                return StNormal;
-
-            if (Sprite != null && Sprite.Has("spin") && !Sprite.CurrentAnimationID.Equals("spin"))
-                Sprite.Play("spin");
-
-            // fixed-rate damage ticks; each tick is a fresh swing
-            if (Scene.OnInterval(0.1f))
-            {
-                StartSwing();
-                DealCombatDamageInRadius(Center, CycloneSlashRadius, 1);
-            }
-
-            Speed.Y = Calc.Approach(Speed.Y, -20f, 300f * Engine.DeltaTime);
-
-            return StCycloneSlash;
-        }
-
-        // Star Shot State
-        private void StarShotBegin()
-        {
-            skillIsStarShotCharging = true;
-            starShotCharge = 0f;
-            skillStamina -= StarShotStaminaCost;
-
-            Speed.Y = -20f;
-            Speed.X *= 0.5f;
-
-            if (Sprite != null)
-            {
-                if (Sprite.Has("attack"))
-                    Sprite.Play("attack");
-                else if (Sprite.Has("spit"))
-                    Sprite.Play("spit");
-                Sprite.Scale = new Vector2(1.1f, 0.9f);
-                Sprite.Color = Color.Yellow * 0.8f;
-            }
-
-            if (level != null)
-                Audio.Play("event:/DZ/char/kirby/inhale_start", Position); // TODO: add to FMOD bank
-        }
-
-        private void StarShotEnd()
-        {
-            skillIsStarShotCharging = false;
-
-            if (starShotCharge >= StarShotMinCharge)
-                FireStarShot(starShotCharge);
-
-            starShotCharge = 0f;
-            skillComboCount++;
-            skillLastActionTime = Scene.RawTimeActive;
-
-            if (Sprite != null)
-            {
-                Sprite.Scale = Vector2.One;
-                Sprite.Color = Color.White;
-            }
-        }
-
-        private int StarShotUpdate()
-        {
-            if (!IsKirbyMode())
-                return StNormal;
-
-            starShotCharge = Math.Min(StarShotChargeMax, starShotCharge + Engine.DeltaTime);
-            Speed.Y = Calc.Approach(Speed.Y, -15f, 150f * Engine.DeltaTime);
-            Speed.X *= 0.9f;
-
-            // release fires the shot — StarShotEnd (called by the state machine) handles it
-            if (!Input.Grab.Check)
-                return StNormal;
-
-            if (Sprite != null && Scene.OnInterval(0.1f))
-            {
-                float pulse = 1f + (starShotCharge * 0.3f);
-                Sprite.Scale = new Vector2(1.1f, 0.9f) * pulse;
-            }
-
-            if (level != null && Scene.OnInterval(0.15f))
-                level.Particles.Emit(ParticleTypes.SparkyDust, 2, Center, Vector2.One * 8f);
-
-            return StStarShot;
-        }
-
-        private void FireStarShot(float charge)
-        {
-            if (level == null) return;
-
-            // fire along the same aim vector every other ability uses
-            Vector2 direction = lastAim;
-            if (direction == Vector2.Zero)
-                direction = Vector2.UnitX * (int)Facing;
-
-            int particleCount = (int)(8 * charge);
-            level.Particles.Emit(ParticleTypes.SparkyDust, particleCount, Center, Vector2.One * 15f);
-            level.Flash(Color.Yellow * 0.3f * charge, true);
-
-            Vector2 shotPos = Center + direction * 20f;
-            for (int i = 0; i < 5; i++)
-            {
-                Vector2 trailPos = shotPos + direction * (i * 10f);
-                level.Particles.Emit(ParticleTypes.SparkyDust, 2, trailPos, Vector2.One * 8f);
-            }
-
-            Audio.Play("event:/DZ/char/kirby/spit", Position); // TODO: add to FMOD bank
-            Speed = -direction * 80f * charge;
-
-            // Deal damage along path — one swing, so each enemy is hit once
-            StartSwing();
-            for (float d = 0; d < 120f * charge; d += 8f)
-            {
-                Vector2 checkPos = Center + direction * d;
-                if (Scene.CollideCheck<Solid>(checkPos))
-                    break;
-                DealCombatDamageAtPoint(checkPos, 16f, 2);
-            }
-        }
-
-        // Slide Tackle State
+        #region Slide Tackle State
         private void SlideTackleBegin()
         {
             StartSwing();
@@ -7679,7 +7346,7 @@ namespace Celeste.Entities
 
             Speed.X = Calc.Approach(Speed.X, SlideTackleSpeed * (int)Facing, 100f * Engine.DeltaTime);
 
-            // single swing for the whole slide: each enemy is hit exactly once
+            // single swing for the whole slide: each enemy is hit once
             DealCombatDamageInRadius(Center, 24f, 1);
 
             return StSlideTackle;
@@ -7716,7 +7383,7 @@ namespace Celeste.Entities
                     );
                     level.Particles.Emit(ParticleTypes.SparkyDust, 2, shieldPos, Vector2.One * 8f);
                 }
-                Audio.Play("event:/DZ/char/kirby/core_hairDZ_CHarged", Position);
+                Audio.Play("event:/DZ/char/kirby/kirby_knight/spin", Position); // TODO: add kirby_knight/* sub-bank to FMOD
             }
         }
 
@@ -7795,7 +7462,7 @@ namespace Celeste.Entities
 
             foreach (var entity in level.Entities)
             {
-                if (IsParryThreat(entity) && Vector2.DistanceSquared(Center, entity.Center) < 40f * 40f)
+                if (IsParryThreat(entity) && Vector2.DistanceSquared(Center, entity.Center) < 400f * 400f)
                     return true;
             }
             return false;
@@ -7898,9 +7565,194 @@ namespace Celeste.Entities
             return StDiveKick;
         }
 
+        // Air Drift State
+        private void AirDriftBegin()
+        {
+            skillIsAirDrifting = true;
+            airDriftTimer = AirDriftDuration;
+            skillStamina -= AirDriftStaminaCost;
+
+            AutoJump = false;
+            varJumpTimer = 0f;
+            Speed.Y = Math.Min(Speed.Y, 0f);
+
+            if (Sprite != null)
+            {
+                if (Sprite.Has("jumpFast"))
+                    Sprite.Play("jumpFast");
+                Sprite.Color = Color.White * 0.8f;
+            }
+
+            if (level != null)
+            {
+                level.Particles.Emit(ParticleTypes.SparkyDust, 8, Center, Vector2.One * 16f);
+                Audio.Play("event:/DZ/char/kirby/kirby_knight/spin", Position); // TODO: add kirby_knight/* sub-bank to FMOD
+            }
+        }
+
+        private void AirDriftEnd()
+        {
+            skillIsAirDrifting = false;
+            airDriftTimer = 0f;
+
+            if (Sprite != null)
+                Sprite.Color = Color.White;
+        }
+
+        private int AirDriftUpdate()
+        {
+            if (!IsKirbyMode())
+                return StNormal;
+
+            airDriftTimer -= Engine.DeltaTime;
+
+            if (airDriftTimer <= 0f || onGround)
+                return StNormal;
+
+            int moveX = Input.MoveX.Value;
+            if (moveX != 0)
+                Speed.X = moveX * AirDriftSpeed;
+
+            Speed.Y = Calc.Approach(Speed.Y, 0f, 200f * Engine.DeltaTime);
+
+            if (Input.Jump.Pressed && jumpGraceTimer <= 0)
+            {
+                Jump();
+                return StNormal;
+            }
+
+            if (level != null && Scene.OnInterval(0.05f))
+                level.Particles.Emit(ParticleTypes.SparkyDust, 1, Center, Vector2.One * 6f);
+
+            return StAirDrift;
+        }
+
+        // Cyclone Slash State
+        private void CycloneSlashBegin()
+        {
+            StartSwing();
+            skillIsCycloneSlashing = true;
+            cycloneSlashTimer = CycloneSlashDuration;
+            skillStamina -= CycloneSlashStaminaCost;
+
+            Speed *= 0.3f;
+
+            if (Sprite != null)
+            {
+                if (Sprite.Has("spin"))
+                    Sprite.Play("spin");
+                else if (Sprite.Has("dash"))
+                    Sprite.Play("dash");
+                Sprite.Scale = new Vector2(1.2f, 1.2f);
+                Sprite.Color = Color.Cyan * 0.8f;
+            }
+
+            if (level != null)
+            {
+                level.Particles.Emit(ParticleTypes.SparkyDust, 12, Center, Vector2.One * CycloneSlashRadius);
+                level.Shake(0.15f);
+                Audio.Play("event:/DZ/char/kirby/kirby_knight/spin", Position); // TODO: add kirby_knight/* sub-bank to FMOD
+            }
+        }
+
+        private void CycloneSlashEnd()
+        {
+            skillIsCycloneSlashing = false;
+            cycloneSlashTimer = 0f;
+            skillComboCount++;
+            skillLastActionTime = Scene.RawTimeActive;
+
+            if (Sprite != null)
+            {
+                Sprite.Scale = Vector2.One;
+                Sprite.Color = Color.White;
+            }
+        }
+
+        private int CycloneSlashUpdate()
+        {
+            if (!IsKirbyMode())
+                return StNormal;
+
+            cycloneSlashTimer -= Engine.DeltaTime;
+
+            if (cycloneSlashTimer <= 0f)
+                return StNormal;
+
+            Speed.Y = Calc.Approach(Speed.Y, 20f, 400f * Engine.DeltaTime);
+
+            DealCombatDamageInRadius(Center, CycloneSlashRadius, 2);
+
+            if (level != null && Scene.OnInterval(0.04f))
+                level.Particles.Emit(ParticleTypes.SparkyDust, 2, Center, Vector2.One * CycloneSlashRadius);
+
+            return StCycloneSlash;
+        }
+
+        // Star Shot State
+        private void StarShotBegin()
+        {
+            skillIsStarShotCharging = true;
+            starShotCharge = 0f;
+
+            Speed.X = Calc.Approach(Speed.X, 0f, 400f * Engine.DeltaTime);
+
+            if (Sprite != null)
+            {
+                if (Sprite.Has("idleC"))
+                    Sprite.Play("idleC");
+                Sprite.Color = Color.Gold * 0.8f;
+            }
+        }
+
+        private void StarShotEnd()
+        {
+            skillIsStarShotCharging = false;
+
+            if (Sprite != null)
+                Sprite.Color = Color.White;
+        }
+
+        private int StarShotUpdate()
+        {
+            if (!IsKirbyMode())
+                return StNormal;
+
+            starShotCharge = Math.Min(starShotCharge + Engine.DeltaTime, StarShotChargeMax);
+
+            if (level != null && Scene.OnInterval(0.05f))
+                level.Particles.Emit(ParticleTypes.SparkyDust, 1, Center, Vector2.One * 6f);
+
+            if (!Input.Grab.Check)
+            {
+                if (starShotCharge >= StarShotMinCharge && skillStamina >= StarShotStaminaCost)
+                {
+                    skillStamina -= StarShotStaminaCost;
+
+                    Vector2 dir = lastAim;
+                    if (dir == Vector2.Zero)
+                        dir = Vector2.UnitX * (int)Facing;
+                    dir = dir.SafeNormalize();
+
+                    level.Add(new PlayerStarBullet(
+                        Center + dir * 8f,
+                        dir * StarShotSpeed,
+                        this,
+                        KirbyStarSpitDamage));
+
+                    level.ParticlesFG.Emit(P_DashA, 4, Center + dir * 8f, Vector2.One * 4, dir.Angle());
+                    level.Displacement.AddBurst(Center + dir * 8f, 0.3f, 4, 24, 0.3f, Ease.QuadOut, Ease.QuadOut);
+
+                    Speed.X = -dir.X * ThrowRecoil;
+                    SlashFx.Burst(Center, dir.Angle());
+                }
+                return StNormal;
+            }
+
+            return StStarShot;
+        }
+
         // Aqua Grapple State
-        // skillGrappleTarget is found and validated by TryFindGrappleAnchor in
-        // NormalUpdate before the state is entered — no anchor, no grapple.
         private void AquaGrappleBegin()
         {
             skillIsAquaGrappling = true;
@@ -8073,7 +7925,7 @@ namespace Celeste.Entities
             {
                 float t = i / (float)segments;
                 Vector2 pos = Vector2.Lerp(from, to, t);
-                level.Particles.Emit(ParticleTypes.SparkyDust, 3, pos, Vector2.One * 8f, Color.Cyan);
+                level.Particles.Emit(ParticleTypes.SparkyDust, 3, pos, Vector2.One * 8f);
             }
         }
 
@@ -8131,7 +7983,10 @@ namespace Celeste.Entities
         public void EnableKirbyMode(int maxDashes = 3)
         {
             KirbyModeActive = true;
-            CombatEnabled = true;
+            // CombatEnabled is no longer forced on here -- it's a mapper/trigger-level
+            // toggle (see PlayerTrigger.EnableCombat/DisableCombat) independent of
+            // Kirby mode. Combat additionally requires the Fighter copy ability; see
+            // CanFighterAttack.
             if (maxDashes >= 3 && maxDashes <= MultiDashMaxCount)
                 MaxDashOverride = maxDashes;
             kirbyHasInhaledEnemy = false;
@@ -8175,6 +8030,7 @@ namespace Celeste.Entities
                 return;
             }
 
+            // Apply damage through health manager
             if (level != null)
             {
                 var healthManager = PlayerHealthManager.GetOrCreate(level, maxHealth);
@@ -8404,6 +8260,7 @@ namespace Celeste.Entities
                 if (Vector2.DistanceSquared(entity.Center, Center) <= CloseEncounterRadius * CloseEncounterRadius)
                     return true;
             }
+
             return false;
         }
 
@@ -8493,6 +8350,8 @@ namespace Celeste.Entities
         public void DealProjectileDamage(Entity target, int damage, Vector2 knockbackDir)
             => ApplyCombatDamage(target, damage, knockbackDir);
 
+        #endregion
+
         #region Phase 3: Extended Kirby Mechanics (Multi-Jump & Alternate Dash)
 
         /// <summary>
@@ -8575,7 +8434,7 @@ namespace Celeste.Entities
             Speed.Y = JumpSpeed;
 
             // Play jump sound
-            Play(Sfxs.char_mad_jump);
+            Play(Sfxs.char_kirb_jump);
 
             // Create jump particles
             if (Scene.OnInterval(.05f))
@@ -8585,7 +8444,10 @@ namespace Celeste.Entities
             multiJumpInputTimer = 0f;
         }
 
-        #endregion
+        private string GetDebuggerDisplay()
+        {
+            return ToString();
+        }
 
         #endregion
 

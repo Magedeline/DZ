@@ -76,7 +76,7 @@ namespace Celeste.Triggers
 
             ApplyPlayerState(player);
             ApplyInventory(level);
-            ApplyKirbyMode(player);
+            ApplyKirbyMode(level);
 
             hasTriggered = true;
         }
@@ -97,22 +97,26 @@ namespace Celeste.Triggers
             }
         }
 
-        private void ApplyKirbyMode(Player player)
+        /// <summary>
+        /// Toggles Kirby mode via <see cref="DZ.PlayerInventoryManager"/> so the correct player entity
+        /// (K_Player when present, otherwise the non-shadow vanilla Player) is targeted and the dash
+        /// count / session flags stay in sync with refills, rather than acting on whichever Player
+        /// instance happened to collide with this trigger.
+        /// </summary>
+        private void ApplyKirbyMode(Level level)
         {
             switch (inventoryType)
             {
                 case InventoryType.KirbyPlayer:
-                    player.EnableKirbyMode(dashes > 0 ? dashes : 3);
-                    if (kirbyPower != KirbyMode.KirbyPowerState.None)
-                        player.SetKirbyPowerState(kirbyPower);
+                    DZ.PlayerInventoryManager.EnableKirbyMode(level, dashes > 0 ? dashes : 3, kirbyPower);
                     break;
 
                 case InventoryType.Default:
                 case InventoryType.Prologue:
                 case InventoryType.OldSite:
                 case InventoryType.TheEnd:
-                    if (player.IsKirbyMode())
-                        player.DisableKirbyMode();
+                    if (DZ.PlayerInventoryManager.IsKirbyModeActive(level))
+                        DZ.PlayerInventoryManager.DisableKirbyMode(level);
                     break;
             }
         }

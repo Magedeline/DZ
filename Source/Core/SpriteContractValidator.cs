@@ -299,11 +299,14 @@ public static class SpriteContractValidator
 
     private static void OnAreaDataLoadOnce(On.Celeste.AreaData.orig_Load orig)
     {
-        // Unhook first so we only run once.
-        On.Celeste.AreaData.Load -= OnAreaDataLoadOnce;
-
         // Let original load run so GFX.SpriteBank is populated before we check.
         orig();
+
+        // Unhook AFTER orig() has run. Unhooking first disposes the detour that
+        // the captured `orig` delegate depends on, so calling orig() afterward
+        // throws "InvalidOperationException: Detour has been removed" the moment
+        // AreaData.Load() runs -- crashes GameLoader.LoadThread() on every boot.
+        On.Celeste.AreaData.Load -= OnAreaDataLoadOnce;
 
         if (_deferredRan) return;
         _deferredRan = true;

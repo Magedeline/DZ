@@ -32,7 +32,7 @@
         <PackageReference Include="MonoMod.RuntimeDetour" Version="25.3.6" PrivateAssets="all" ExcludeAssets="runtime" />
         <PackageReference Include="MonoMod.Patcher" Version="25.0.1" />
         <PackageReference Include="CelesteAnalyzer" Version="1.0.3.1" />
-        <PackageReference Include="Rysy.Shared" Version="0.0.12" />
+        <PackageReference Include="Rysy.Shared" Version="0.0.13" />
         <PackageReference Include="Saladim.CelesteModTemplate" Version="0.5.0" />
         <PackageReference Include="YamlDotNet" Version="18.1.0" />
     </ItemGroup>
